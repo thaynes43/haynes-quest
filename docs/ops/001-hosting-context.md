@@ -16,7 +16,7 @@ Sibling applications release versioned images to GHCR, then update the pinned im
 
 ## Immich reference
 
-The source-confirmed in-cluster Immich server address is `http://immich-server.photos.svc.cluster.local:2283`. The future integration design must decide eligible photos, credential delivery, browser image access, caching, and behavior when Immich is unavailable.
+The source-confirmed household Immich address is `http://immich-server.photos.svc.cluster.local:2283`. This is a deployment reference, not the game's fixed upstream. Users configure a photo-service URL and API key; the server accesses that connection's resolved people and eligible photos under [DESIGN-003](../designs/003-photo-connections-and-people.md). Deployment must allow the intended private photo destinations without granting a general network proxy.
 
 The review did not read family photos or personal asset metadata. This bootstrap creates no Immich credential or runtime integration.
 
@@ -26,6 +26,6 @@ Host name, namespace, runtime image, app health endpoint, resource budget, and p
 
 [ADR-001](../adrs/001-authentik-sign-in.md) establishes Authentik OIDC as the sole player sign-in method, following Haynes Network. Plan a dedicated game application/client in the existing Authentik service. Its registration values, callbacks, secret delivery, and allowed-player policy must be designed before provisioning. Authentication does not change the planned local hosting boundary. No game authentication resources exist yet.
 
-[ADR-002](../adrs/002-web-game-stack.md) proposes one Node/Hono application image serving the browser build and API, plus a dedicated Postgres database for sessions and saves. Deployment design must add migrations, backup/restore evidence, and private runtime-asset storage. [DESIGN-002](../designs/002-asset-pipeline.md) proposes a separate reproducible asset builder for Blender; it is production tooling, not part of the gameplay server. These resources have not been created.
+[ADR-002](../adrs/002-web-game-stack.md) proposes a Node/Hono application serving the browser build and API, plus dedicated Postgres storage for configuration, characters, generation jobs, sessions, and saves. Automatic character preparation adds a separate worker/provider boundary; its concrete tooling and compute are not selected. Deployment design must cover migrations, encrypted API-key storage with separately delivered key material, backup/restore, private generated assets, job concurrency/recovery, and credential revocation. [DESIGN-002](../designs/002-asset-pipeline.md) describes the candidate processing tools. These resources have not been created.
 
 Deployment completion will require a published image, a merged `haynes-ops` change, a successful Flux rollout, and the agreed live browser checks.

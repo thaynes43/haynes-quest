@@ -2,18 +2,18 @@
 
 - **Project:** Haynes Quest
 - **Last updated:** 2026-09-10
-- **Stage:** Stack and asset pipeline proposed; technical prototype is next
+- **Stage:** Configurable photo-driven characters defined; foundation and generation trials are next
 - **Driving model:** GPT-6 Astra
 
 ## Established
 
-Tom wants a novelty 3D browser game for his kids, with real Immich photos as collectibles and local hosting through `haynes-ops`. He chose `haynes-quest` on 2026-09-10.
+Tom wants a novelty 3D browser game, initially for his kids, with a configurable self-hosted photo library supplying generated characters and game content. Immich is the first integration, with local hosting through `haynes-ops`. He chose `haynes-quest` on 2026-09-10.
 
 His controls and login brief establishes Roblox as the style reference, touchscreen play with on-screen controls, keyboard/mouse play at a computer, and optional later gamepad support. Players must sign in through Authentik using the same approach as Haynes Network, with no alternative login method. These requirements are in PRD-001; [ADR-001](../docs/adrs/001-authentik-sign-in.md) records the identity-provider decision.
 
-After login, players choose a saved game or start a new one. New game offers exactly Jackson and Penelope; the save retains the chosen character. Tom wants the stack and asset workflow established before further gameplay design. Photo-based character reference generation and modeling are deferred until later.
+After login, players choose a saved game or start a new one from their configured roster. Users supply the photo-service URL, API key, and people's names; the application resolves those people and uses their photos to generate characters and retrieve gameplay imagery. There are no built-in personal names or fixed two-character limit. Saves retain stable character IDs across name changes and model regeneration. Tom wants the stack and automated asset workflow established before further gameplay design; real generation implementation remains later work.
 
-[ADR-002](../docs/adrs/002-web-game-stack.md) proposes TypeScript, React/Vite, Babylon.js, Hono/Node, Better Auth, and Postgres/Drizzle. [DESIGN-001](../docs/designs/001-technical-foundation.md) covers saves and runtime boundaries; [DESIGN-002](../docs/designs/002-asset-pipeline.md) covers generated references → editable Blender models → rigging/animation → GLB. The stack is a recommendation pending the prototype's integration and device evidence, not a claim of working software.
+[ADR-002](../docs/adrs/002-web-game-stack.md) proposes TypeScript, React/Vite, Babylon.js, Hono/Node, Better Auth, and Postgres/Drizzle, with a background generation boundary. [DESIGN-001](../docs/designs/001-technical-foundation.md) covers saves/runtime; [DESIGN-002](../docs/designs/002-asset-pipeline.md) covers the automated asset pipeline; [DESIGN-003](../docs/designs/003-photo-connections-and-people.md) covers private connections, resolved people, character IDs, and job lifecycle. Blender is candidate processing/prototyping tooling, not a mandatory manual step for every user-created character. The real reference/model/rig generator and worker tooling remain unselected.
 
 Reviewed `haynesnetwork`, `cigar-journal`, `libretto`, and their hosting patterns in `haynes-ops`. The seed follows their docs-first and PR workflows. It contains no application code or deployment.
 
@@ -25,9 +25,9 @@ The evidence is in [completed PLAN-001](plans/completed/001-repository-bootstrap
 
 ## Next step
 
-Prepare and execute [PLAN-002](plans/002-foundation-prototype.md) for the technical foundation using synthetic assets. Exact touch hardware is pending the device question; use ADR-002's provisional cross-platform scope until answered. Establish player admission before live Authentik provisioning. The core loop, world, camera, final controls, save cadence, and eligible Immich photos remain for later design.
+Prepare and execute [PLAN-002](plans/002-foundation-prototype.md) using synthetic connections, configurable rosters, and a simulated generation backend. That proves integration and recovery contracts only; follow with a real photo-to-character capability trial before considering generation implemented. Exact touch hardware is pending the device question; use ADR-002's provisional cross-platform scope until answered. Establish player admission before live Authentik provisioning. The core loop, world, camera, final controls, save cadence, and detailed person-photo filters remain for later design.
 
-Node, pnpm, and Python are available. Blender and glTF Transform are not installed; the asset plan calls for a repeatable builder rather than a live-pod installation. No app, database, Authentik client, or game assets have been provisioned by this documentation work.
+Node, pnpm, and Python are available. Blender and glTF Transform are not installed; use pinned worker/builder tooling through GitOps if the selected recipe needs them. No app, database, Authentik client, photo connection, generation backend, or game assets have been provisioned by this documentation work.
 
 ## Resume references
 
