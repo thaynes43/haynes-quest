@@ -1,36 +1,60 @@
-# PLAN-002: Validate the technical foundation
+# PLAN-002: Build and validate the playable foundation
 
-- **Status:** Draft
-- **Depends on:** Technical and nontechnical requirements documented; subsequent asset-tool setup completed (deferred by Tom)
-- **Requirements/designs:** [PRD-001 R-01, R-08–R-14, R-16–R-24, R-30–R-34](../../docs/prds/001-project-brief.md), [ADR-002](../../docs/adrs/002-web-game-stack.md), [DESIGN-001](../../docs/designs/001-technical-foundation.md), [DESIGN-002](../../docs/designs/002-asset-pipeline.md), [DESIGN-003](../../docs/designs/003-photo-connections-and-people.md), [DESIGN-004](../../docs/designs/004-memory-journey.md), [DESIGN-006](../../docs/designs/006-memory-age-and-abilities.md)
+- **Status:** Ready
+- **Current milestone:** First coding milestone; implementation not started
+- **Depends on:** Slice contracts in DESIGN-007; authoring tools, live admission/provisioning, and owner asset review are dependencies of the later milestones that use them
+- **Requirements/designs:** [PRD-001 R-01, R-08–R-14, R-16–R-24, R-30–R-39](../../docs/prds/001-project-brief.md), [ADR-002](../../docs/adrs/002-web-game-stack.md), [DESIGN-001](../../docs/designs/001-technical-foundation.md), [DESIGN-002](../../docs/designs/002-asset-pipeline.md), [DESIGN-003](../../docs/designs/003-photo-connections-and-people.md), [DESIGN-004](../../docs/designs/004-memory-journey.md), [DESIGN-006](../../docs/designs/006-memory-age-and-abilities.md), [DESIGN-007](../../docs/designs/007-poc-development-loop.md), [DESIGN-008](../../docs/designs/008-audio-pipeline.md)
 
 ## Outcome and scope
 
-Establish that the proposed stack can configure synthetic photo connections, people, and timelines, load a prepared shared animated avatar, support both input modes, create and resume account-owned memory journeys, and deliver the game from the local cluster. Use the results to accept or revise the browser/API/storage foundation and authored-asset workflow. Automatic character generation is [conditional future backlog BL-01](../../docs/BACKLOG.md#bl-01-automatic-playable-character-generation); no worker, mock job, provider comparison, or generation trial is a dependency or completion criterion for this plan.
+Build a small playable proof of chronological memory recovery and cumulative abilities, then validate the authored-asset workflow, account-owned saves, and browser delivery. The proposed route has one compact level, a generic avatar, three synthetic dated memories, one new movement action, retained starting actions, and a reachable finish. A fictional known birth date supplies the test age mapping. These are prototype defaults, not final age thresholds, level quotas, or a resolution of real-person setup policy.
 
-This plan describes a later implementation stage. Finish the technical and nontechnical requirements documentation first; Tom will arrange asset-tool setup afterward. The current documentation task does not execute this plan or install/connect its tools. Final avatar art, real Immich content, authored game worlds, full chapter gameplay, multiplayer, and gamepad support are outside this prototype. Synthetic chronology, chapter/memory progress, and a small memory-age/ability sequence establish the foundation contracts. This does not implement a complete growth system, enemy catalog, or combat loop.
+Tom's latest direction narrows the earlier blanket documentation prerequisite. Define the slice's contracts, then code with clearly synthetic placeholders while preparing the authoring tools and candidates. Full fighting, extra collectibles, story, and era content are [later work](../../docs/BACKLOG.md). Real Immich access, complete library reconciliation, multiplayer, gamepad support, and automatic character generation are outside this plan. Preserve integration boundaries; do not present synthetic adapter tests as proof of live Immich compatibility.
 
-## Steps
+This documentation task does not execute the plan, install tools, generate assets, or provision an application. The first milestone can start independently of final-art tools. Later hosted and reviewed-asset milestones have their own prerequisites and completion evidence.
 
-1. Scaffold the proposed TypeScript/Vite/React/Three.js and Hono application with pinned compatible dependencies, scripts, CI, and clear client/game/server boundaries. Use the [reviewed Astra examples](../../docs/reference/astra-game-workflows.md) as implementation references, without assuming their dependency versions or model claims prove this game's behavior. Verify the installed Better Auth API and callbacks rather than copying an older sibling version's calls.
-2. Prove the canvas lifecycle and common action interface with a small synthetic scene, one prepared avatar reused across configured subjects, keyboard/mouse, and on-screen touch controls. Cover empty, single-person, and larger person lists. Probe the agreed movement/camera behavior, an age-zero action set that can reach its first memory, and one later unlock/animation transition. Verify the same action availability on touch and keyboard/mouse, then decide whether Rapier is needed. Keep implementation choices experimental until the trial; revisit the engine if integration becomes costly.
-3. Implement the connection/person contracts against synthetic adapters: name resolution, account boundaries, destination/key handling, photo/date retrieval, and missing setup states. Build synthetic journey definitions under DESIGN-004, covering sparse years, missing infancy, single-year coverage, and the eventual explicit age-source policy under DESIGN-006. Keep shared avatar assets independent of subjects, including unavailable assets and validated replacements. Establish a reproducible synthetic GLB export/validation trial and local loader resources. Synthetic adapter results establish contracts; live Immich compatibility remains for the photo-integration stage.
-4. Implement and test the save envelope and ownership rules using isolated test identities and the proposed Postgres/Drizzle store. Cover subject selection, missing/renamed people, empty and multiple-save lists, chapter/memory/age/ability persistence, malformed data, another user's IDs, stale updates, and avatar replacement preserving saves. Test interrupted creation, late older uploads, date/age-source corrections, revocation, and duplicate collection credit against the agreed reconciliation rules. Memory and unlock changes must remain consistent across retries; forged ages/unlocks, out-of-order progression, and stale tabs cannot bypass the saved rules.
-5. Resolve the live admitted-player policy, then provision the game's own Authentik client, application secrets, and database through the established workflows. Test fresh login, existing-session SSO, expiry, and logout.
-6. Release the application image, open and merge the `haynes-ops` deployment PR once checks pass, and verify Flux, health, and the complete browser journey at the homelab HTTPS route. Delivery is a normal web app with no native iOS or TestFlight build step.
-7. Test and measure the synthetic scene in Safari on actual iPad and iPhone hardware and in the selected PC browsers. Record models/OS/browser versions and results, then accept or revise the foundation choices in ADR-002. Update the handoff with the validated scope and remaining gameplay, final avatar/world art, and live-photo work.
+## Milestones
+
+### 1. Runnable synthetic gameplay
+
+- Scaffold the proposed TypeScript/React/Vite/Three.js and Hono application with pinned compatible dependencies, build/type-check/test commands, and CI. Keep client, game, and server boundaries explicit. Record the proposed initial actions, camera, control mapping, synthetic dates/threshold, and stable memory/ability/asset/cue IDs before parallel implementation.
+- Use simple geometry and a generic placeholder. Start at zero, reach the first memory with the initial actions, unlock one later action in order, then use it and an earlier action to finish. Implement the same action interface for keyboard/mouse and simultaneous touch movement plus another action. Decide whether a physics library is needed from this probe.
+- Use a small synthetic adapter and clearly labeled development fixtures. Temporary local saves may support iteration but do not prove durable persistence; development identities must be excluded from the hosted production configuration.
+- Implement a small game-owned audio service with synthetic cues, explicit unlock, mute/volume preferences, visible feedback, bounded effects, and cleanup/interruption handling under DESIGN-008. Final sound candidates are reviewed separately.
+- Return a runnable checkpoint and focused evidence for chronology, locked-action rejection, duplicate collection, retained abilities, and scene/input/audio lifecycle. Record what still requires actual-device validation.
+
+### 2. Durable saves and hosted identity boundary
+
+- Add the proposed Postgres/Drizzle save store and validate ownership, stable subject identity, memory age, unlocks, collected-memory state, rule versions, and reload/resume. Test another user's identifiers, malformed requests, retries, stale updates, duplicate/out-of-order memories, and forged client ages/abilities.
+- Keep photo connections and resolved people behind the DESIGN-003 interface using synthetic adapters. Cover empty/multiple saves, missing/ambiguous subjects, name changes, and credential/account isolation for the implemented boundary. Unsupported library refresh or age-source edits remain explicit states, not silent progress changes; full reconciliation follows its later integration design.
+- Before hosted access, establish the admitted-player policy and provision the game's own Authentik client, secrets, and database through the established workflows. Verify installed Better Auth APIs and callback paths against pinned dependencies. Test fresh sign-in, existing-session SSO, expiry/logout, and server authorization. No alternative player login is added.
+
+### 3. Repeatable authoring and Tom's review
+
+This milestone can overlap code work once its own tools are ready. Use bounded Astra work orders with owned files/resources; serialize access to a shared Blender scene or isolate sessions.
+
+- Select and connect the Blender host/bridge and shared artifact workflow in DESIGN-002. Prove scene inspection, viewport capture, editable save/reopen, and GLB export/load with a synthetic object before producing final candidates. Manage homelab tooling through `haynes-ops`.
+- Prepare the DESIGN-008 SFX trial: selected account/plan and bounded generation budget, protected authoring key, pinned API/SDK script, FFmpeg/ffprobe, and storage/distribution appropriate to the output terms. These are unverified setup tasks, not a current subscription or authorization to purchase one. Music and narration remain optional later work.
+- Author only the avatar/props/materials/animations and small cue set the route needs. Use image-generated visual sketches followed by Blender. Retain editable masters, provenance, scripts/settings, checksums, and format/performance checks. No private family references are needed.
+- Present concrete visual and audio candidates in isolated review previews using the asset-review template. Obtain and record Tom's review of the exact final versions before gameplay promotion. Keep placeholders or the previous approved version in the runnable game while review is pending.
+
+### 4. Integrate, host, and playtest
+
+- Integrate approved final versions through stable asset/cue IDs. Verify animations, orientation, collider/camera fit, bounded delivery formats, local decoder resources, and audio behavior. Replacing assets must preserve saves and unlocked abilities; rejection or failure preserves a usable version.
+- Release the application image and deliver its deployment through a checked, squash-merged `haynes-ops` PR and Flux. Verify health, the homelab HTTPS route, Authentik-only entry, and server-owned save/resume. No native iOS or TestFlight build is involved.
+- Complete the route in Safari on actual iPad and iPhone hardware and in the selected PC browser. Record models, OS/browser versions, graphics measurements, simultaneous input behavior, audio unlock/mute/background/screen-lock/resume, and missing-file behavior. Desktop touch emulation cannot replace these checks.
+- Review the gameplay feel and asset results, accept or revise the tested stack decisions in ADR-002, and record the next small iteration. Do not start a full combat/story/content production pass merely because the foundation works.
 
 ## Completion evidence
 
-- Passing build, type checks, relevant tests, browser journeys, and asset validation, with commands and results recorded.
-- Saves retain their selected subject, chapter, memory age, abilities, and memories across reload, name edits, simulated avatar replacement, and another authenticated session; ownership and stale-update checks pass.
-- Synthetic connection/person tests cover missing and ambiguous names, credential isolation, cross-account access, revocation, scoped photo retrieval, unavailable assets, and valid/rejected asset replacement preserving the usable version and saves.
-- Synthetic timelines follow usable photo dates, distinguish coverage from age, handle gaps/single-year libraries, and preserve recorded progress through library changes under DESIGN-004.
-- A small synthetic progression starts at zero, has a reachable first memory, unlocks a later action in order, and retains earlier actions across save/resume. Test missing infancy and threshold gaps against the agreed policy, without a complete combat system.
-- Repeatable GLB export and optimization, working clips, local decoder requests, and no family photos in source/build artifacts.
-- Successful live Authentik flows and GitOps rollout, with image/version, PRs, and live checks recorded.
-- Recorded iPad, iPhone, and PC browser journeys and actual-device graphics results, plus an ADR-002 update recording the validated foundation choices and any necessary revisions. Desktop touch emulation alone is insufficient.
+All [DESIGN-007 PoC acceptance criteria](../../docs/designs/007-poc-development-loop.md#poc-acceptance) must have recorded evidence before the entire plan is Completed:
+
+- Passing build/type checks, focused progression/ownership/lifecycle tests, and browser journeys, with commands and results.
+- The route runs from zero through ordered memories and one new ability while retaining earlier actions; progress survives server-owned save/resume and approved asset replacement.
+- Reproducible visual/audio candidates, technical validation, exact-version owner review, and approved gameplay integration. A placeholder-only milestone is useful progress but not proof of the final-asset pipeline.
+- Authentik and GitOps release checks, with image/version and PR references; no family photos or authoring secrets in source/build artifacts.
+- Recorded actual iPad, iPhone, and PC results, plus the tested scope and remaining photo/gameplay work in the handoff. No unperformed device, generation, or deployment check is reported as complete.
 
 ## Result
 
-Not started; retain Draft while requirements documentation and subsequent tool setup remain outstanding. Device families and browser-only homelab delivery are confirmed. Record exact hardware/browser versions and establish live admission policy before the relevant prototype trials.
+Not started. The bounded first coding milestone is ready; final asset-tool connections, audio account/plan trial, owner asset reviews, live admission/provisioning, and actual-device testing remain future milestone dependencies. The current repository remains documentation-only.

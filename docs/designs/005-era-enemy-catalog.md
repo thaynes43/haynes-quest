@@ -68,9 +68,9 @@ The U.S. Copyright Office distinguishes ideas from their protected expression an
 
 | ID | Decision | Status |
 | --- | --- | --- |
-| Q-01 | Which references and original enemies/bosses cover the initial eras? | Deferred to content curation after the remaining requirements; no historical roster has been selected or verified. |
+| Q-01 | Which references and original enemies/bosses cover the initial eras? | Deferred to content curation after the core PoC is evaluated; no historical roster has been selected or verified. |
 | Q-02 | How should gender/interests influence selection, and which setup fields are required? | Manual entry for the journey subject is the direction; exact UI, weighting, and overrides remain proposed. |
 | Q-03 | How do decade/proportional chapters transition between enemy eras? | Calendar-period matching is required; exact chapter grouping and encounter transitions remain for level design. |
 | Q-04 | How do enemy encounters and bosses work? | Deferred; no combat mechanics, boss-per-level quota, or difficulty curve is selected. |
 
-This design is documentation only. Tool setup, asset production, catalog implementation, and gameplay prototypes remain deferred until the technical and nontechnical requirements phase is complete.
+This catalog design remains documentation only. Detailed fighting and broader encounter production are [BL-02](../BACKLOG.md#bl-02-combat-bosses-and-encounter-content). The bounded PoC in [DESIGN-007](007-poc-development-loop.md) can proceed with a synthetic collection/ability route without enemies; the catalog remains part of the later game direction.
