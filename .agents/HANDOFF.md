@@ -2,12 +2,14 @@
 
 - **Project:** Haynes Quest
 - **Last updated:** 2026-09-10
-- **Stage:** Documentation bootstrap complete; awaiting the game-design brief
+- **Stage:** Documentation bootstrap complete; capturing the game-design brief
 - **Driving model:** GPT-6 Astra
 
 ## Established
 
-Tom wants a novelty 3D browser game for his kids, with real Immich photos as collectibles and local hosting through `haynes-ops`. He chose `haynes-quest` on 2026-09-10 and will provide the game details later.
+Tom wants a novelty 3D browser game for his kids, with real Immich photos as collectibles and local hosting through `haynes-ops`. He chose `haynes-quest` on 2026-09-10.
+
+His controls and login brief establishes Roblox as the style reference, touchscreen play with on-screen controls, keyboard/mouse play at a computer, and optional later gamepad support. Players must sign in through Authentik using the same approach as Haynes Network, with no alternative login method. These requirements are in PRD-001; [ADR-001](../docs/adrs/001-authentik-sign-in.md) records the identity-provider decision.
 
 Reviewed `haynesnetwork`, `cigar-journal`, `libretto`, and their hosting patterns in `haynes-ops`. The seed follows their docs-first and PR workflows. It contains no application code or deployment.
 
@@ -19,7 +21,7 @@ The evidence is in [completed PLAN-001](plans/completed/001-repository-bootstrap
 
 ## Next step
 
-Capture Tom's detailed game brief in PRD-001, then develop the gameplay and architecture documents needed for the first playable slice. Engine, controls, devices, persistence, access model, and eligible Immich photos remain undecided. Do not infer those choices from sibling application stacks.
+Continue capturing Tom's game brief in PRD-001, then develop the gameplay and architecture documents needed for the first playable slice. The core loop, world, camera, precise controls, device/browser matrix, engine, persistence, player admission rules, and eligible Immich photos remain undecided. Do not infer those choices from the Roblox reference or sibling application stacks. Authentication uses Authentik; its game client and runtime integration have not been provisioned.
 
 ## Resume references
 
