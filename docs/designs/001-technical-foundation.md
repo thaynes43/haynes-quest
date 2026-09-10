@@ -7,7 +7,7 @@
 
 ## Overview
 
-The first technical prototype proves input, animated assets, configurable rosters, authenticated save ownership, and resuming a game. It uses synthetic photo connections and a simulated generation backend to establish the data/job contract. Real photo-to-model quality requires a separate generation trial; a stub does not prove it.
+After requirements documentation and tool setup, the planned first technical prototype proves input, animated assets, configurable rosters, authenticated save ownership, and resuming a game. It uses synthetic photo connections and a simulated generation backend to establish the data/job contract. Real photo-to-model quality requires a separate generation trial; a stub does not prove it.
 
 ```mermaid
 flowchart TB

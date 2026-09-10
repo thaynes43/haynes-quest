@@ -9,7 +9,24 @@
 
 The application generates playable characters from photos of people configured in a self-hosted photo connection. Preparation runs in the background: retrieve suitable photos, generate stylized references, generate and rig the model, validate it, and publish a reusable GLB asset. [DESIGN-003](003-photo-connections-and-people.md) owns the connection, person, character, and job lifecycle.
 
-**Now:** use synthetic libraries, arbitrary roster entries, and a simulated generator to prove the runtime/job contract. **Later:** validate and implement real automated character generation. Each user-added person must be supported by the application workflow; a developer hand-modeling every character is not the product design. Image generation alone does not establish working geometry, rigging, or animation.
+**Current phase:** finish documenting the technical and nontechnical requirements. Tom will arrange the asset-tool setup afterward. The planned foundation then uses synthetic libraries, arbitrary roster entries, and a simulated generator; a later trial validates real automated character generation. Each user-added person must be supported by the application workflow. Image generation alone does not establish working geometry, rigging, or animation.
+
+## Preferred authoring workflow
+
+Tom proposed **image generation for asset sketches, followed by Blender controlled through MCP** on 2026-09-10. This is the recommended workflow for authoring the game's shared art and developing its reusable character components. The specific bridge and host remain to be selected and tested after requirements documentation is complete.
+
+1. **Sketch and choose a direction.** Generate concept images for props, modular environment pieces, character templates, and other needed art. For a model reference, use consistent views, readable proportions, and clear materials; record the selected prompt and reference images so revisions preserve the design.
+2. **Build in Blender through MCP.** The agent creates or adjusts geometry and materials, inspects scene data and viewport images, and iterates. Retain editable Blender files and reusable construction scripts.
+3. **Prepare game behavior.** Add UVs, suitable textures, a rig, and the animations needed by the asset. Static props do not need a character rig. Test deformation and motion rather than judging only a still render.
+4. **Export and validate.** Export GLB, apply the agreed geometry/material/texture budgets, and verify appearance and animation in Babylon on iPad, iPhone, and PC. A Blender render alone is not the runtime acceptance check.
+
+This is a practical authoring approach for stylized assets. A sketch guides construction; it does not uniquely specify hidden geometry or produce an animation-ready model automatically. Complexity determines how much iteration an asset needs.
+
+### Relationship to generated player characters
+
+Use the authoring workflow to build base meshes, materials, rigs, animation sets, and repeatable generation recipes. The application's open-ended, photo-derived character feature still follows [DESIGN-003](003-photo-connections-and-people.md): configured people become characters through a persisted preparation workflow.
+
+Interactive image-generation and Blender MCP tools used by a developer session do not automatically become APIs available to the deployed game. A runtime generation service or reproducible job must be integrated and validated separately. Capture successful Blender operations as reusable scripts or templates where possible; normal user setup must not depend on an interactive developer session modeling each person.
 
 ## Production workflow
 
@@ -27,7 +44,7 @@ Blender supports [background execution and Python scripts](https://docs.blender.
 
 ## Tools and asset sources
 
-**Blender remains the proposed prototyping and asset-processing tool; the automatic generation backend is not yet selected.** Compare a controlled customizable base-character pipeline with a photo/reference-to-3D generator, including how each supplies a usable rig and consistent animation. Choose only after demonstrating acceptable character quality and repeatable automation. Retain editable base assets and reproducible scripts where the recipe uses them.
+**Image generation plus Blender MCP is the preferred authoring direction; the automatic generation backend is not yet selected.** Compare a controlled customizable base-character pipeline with a photo/reference-to-3D generator, including how each supplies a usable rig and consistent animation. Choose only after demonstrating acceptable character quality and repeatable automation. Retain editable base assets and reproducible scripts where the recipe uses them.
 
 Meshy's [Image-to-3D API](https://docs.meshy.ai/en/api/image-to-3d) offers GLB output and remeshing. Its [rigging API](https://docs.meshy.ai/en/api/rigging) expects suitable textured humanoids with clear limbs and has additional input limits. It is one possible trial candidate, not the chosen backend. Evaluate the complete automated reference/model/rig path and reject unusable results rather than assuming a manual cleanup step can finish every user request. Account access, credits, terms, and service suitability would need checking for that evaluation; none have been assumed or used. A self-hosted photo source does not select where generation runs.
 
@@ -53,6 +70,18 @@ Record each asset's source, license or generation provenance, tools/versions, ed
 
 ## Tooling readiness and validation
 
-The dev pod currently provides Node, pnpm, and Python. Blender, glTF Transform, and a KTX texture encoder were not installed when checked on 2026-09-10. Use pinned worker/builder images for whichever native tools the selected recipe needs; manage their deployment and compute through `haynes-ops`. Do not mutate the running pod as the durable installation method.
+Image generation is available in the current agent session. No Blender MCP tools are connected. The dev pod provides Node, pnpm, and Python; Blender, glTF Transform, and a KTX texture encoder were not installed when checked on 2026-09-10. **Setup is deferred until technical and nontechnical requirements are documented**, at Tom's direction. No images, models, software installations, or connections were created during this workflow review.
+
+A concrete bridge candidate is [ahujasid/blender-mcp](https://github.com/ahujasid/blender-mcp/tree/5f8ddaf6e987c4aa0c3467fcc548838b28f64477). Its [MCP implementation](https://github.com/ahujasid/blender-mcp/blob/5f8ddaf6e987c4aa0c3467fcc548838b28f64477/src/blender_mcp/server.py) supports scene/object inspection, viewport screenshots, and Python execution. This supplies the build/inspect/adjust loop; Blender's Python operators provide the modeling and export operations. It is a third-party bridge, not a model-generation guarantee or a selected production dependency.
+
+Record these requirements for later setup:
+
+- **Blender host and display:** the candidate's [add-on](https://github.com/ahujasid/blender-mcp/blob/5f8ddaf6e987c4aa0c3467fcc548838b28f64477/addon.py) expects a running Blender session and explicitly rejects background `-b` mode. Choose a workstation or a tested graphical/virtual-display homelab host. This restriction is specific to this interactive bridge; Blender's separate background export capability remains useful for jobs.
+- **Transport and files:** its MCP process uses stdio and communicates with the add-on over a TCP socket, defaulting to loopback port 9876. The [screenshot implementation](https://github.com/ahujasid/blender-mcp/blob/5f8ddaf6e987c4aa0c3467fcc548838b28f64477/src/blender_mcp/server.py#L461) writes on Blender's filesystem and reads from the MCP process's filesystem. Colocation or a tested shared-file/transfer arrangement is required. Changing a host setting alone does not establish remote authoring; the exact private connection from the dev pod remains to be designed.
+- **Private workspace:** agree where source references, editable files, renders, and exports live. Configure the candidate's documented `DISABLE_TELEMETRY=true` before using private art, and verify it during setup. See its [setup and telemetry documentation](https://github.com/ahujasid/blender-mcp/blob/5f8ddaf6e987c4aa0c3467fcc548838b28f64477/README.md).
+- **Pod registration:** record the bridge in haynes-ops's GitOps-managed `kubernetes/main/apps/dev/dev-env/app/resources/config/claude/mcp.json`, following that repo's session-restart workflow when the later setup task happens. Do not register a one-off server in this pod's generated config. Pin and test matching bridge/add-on versions.
+- **First connection check:** inspect a synthetic scene, create a simple object, retrieve a viewport image, save/reopen the editable file, and export/load a GLB. Establish the complete loop before introducing personal references or complex character work.
+
+Use pinned worker/builder images for whichever native tools the eventual runtime recipe needs; manage their deployment and compute through `haynes-ops`. Tool setup and the interactive authoring connection are not evidence that automatic game character generation works.
 
 The foundation trial must reproduce an exported synthetic GLB, play its animations in the chosen engine, pass format validation, and exercise simulated background job failures/retries and atomic asset replacement. The real generation trial must additionally turn photos of varied configured people into usable characters without developer intervention per person, with measured quality, latency, compute/cost, and actual-device results. Passing the synthetic trial does not complete PRD-001 AC-10.

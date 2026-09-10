@@ -1,14 +1,14 @@
 # PLAN-002: Validate the technical foundation
 
 - **Status:** Draft
-- **Depends on:** Documentation bootstrap complete
+- **Depends on:** Technical and nontechnical requirements documented; subsequent asset-tool setup completed (deferred by Tom)
 - **Requirements/designs:** [PRD-001 R-01, R-08–R-19](../../docs/prds/001-project-brief.md), [ADR-002](../../docs/adrs/002-web-game-stack.md), [DESIGN-001](../../docs/designs/001-technical-foundation.md), [DESIGN-002](../../docs/designs/002-asset-pipeline.md), [DESIGN-003](../../docs/designs/003-photo-connections-and-people.md)
 
 ## Outcome and scope
 
 Establish that the proposed stack can configure a synthetic photo connection and roster, load an animated synthetic character, support both input modes, create and resume account-owned saves, and deliver the game from the local cluster. Exercise persisted generation-job states with a simulated backend. Use the results to accept or revise the browser/API/storage foundation; real generation and its worker/provider choice remain a separate capability trial.
 
-This plan describes the next implementation stage. The current stack/asset documentation task does not execute it. Final characters, real Immich content, game worlds, progression, multiplayer, and gamepad support are outside this prototype.
+This plan describes a later implementation stage. Finish the technical and nontechnical requirements documentation first; Tom will arrange asset-tool setup afterward. The current documentation task does not execute this plan or install/connect its tools. Final characters, real Immich content, game worlds, progression, multiplayer, and gamepad support are outside this prototype.
 
 ## Steps
 
@@ -31,4 +31,4 @@ This plan describes the next implementation stage. The current stack/asset docum
 
 ## Result
 
-Not started. Device families and browser-only homelab delivery are confirmed. Record the exact hardware/browser versions and establish live admission policy during prototype preparation.
+Not started; retain Draft while requirements documentation and subsequent tool setup remain outstanding. Device families and browser-only homelab delivery are confirmed. Record exact hardware/browser versions and establish live admission policy before the relevant prototype trials.

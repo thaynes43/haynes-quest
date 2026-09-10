@@ -3,7 +3,7 @@
 - **Status:** Draft
 - **Owner:** Tom Haynes
 - **Last updated:** 2026-09-10
-- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, and browser-device brief on 2026-09-10
+- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, browser-device, and asset-authoring brief on 2026-09-10
 
 ## Summary
 
@@ -32,7 +32,7 @@ After signing in, players choose an existing saved game or start a new one using
 | R-13 | After login, let the player select one of their saved games or start a new game. | Must |
 | R-14 | Starting a new game includes choosing a character derived from the configured people. The saved game retains that character's identity when resumed. | Must |
 | R-15 | The application retrieves photos of each configured person and generates that person's playable character model from them. Generated visual references precede modeling; implement the generation workflow after its technical design. | Must |
-| R-16 | Establish the technology stack and asset-production workflow before expanding the detailed game design. | Current priority |
+| R-16 | Establish the technical direction and document both technical and nontechnical requirements before setting up asset tools or starting production/prototype work. Tom will arrange tool setup after the documentation phase. | Current priority |
 | R-17 | Let users configure the photo-service URL, API key, and people's names used to populate the game. | Must |
 | R-18 | Resolve configured names to people in the connected photo service and retrieve their photos for character generation and gameplay content. | Must |
 | R-19 | Deliver the game through a normal browser URL. Do not require a native iOS app, TestFlight, sideloading, or an app-install workaround. | Must |
@@ -85,7 +85,9 @@ These are requirements for future implementation, not completed checks. The play
 
 ## Current scope
 
-The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. The current phase establishes the [technology stack](../adrs/002-web-game-stack.md), [technical foundation](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), and [photo-connection/person contract](../designs/003-photo-connections-and-people.md). Character generation is a product capability to implement and validate, not a fixed roster authored by developers. Real generation and further game mechanics remain later work while the foundation is established.
+The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. Continue documenting the technical and nontechnical requirements, including the [technology stack](../adrs/002-web-game-stack.md), [technical foundation](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [photo-connection/person contract](../designs/003-photo-connections-and-people.md), and remaining player experience. Tool setup, asset production, and prototype implementation follow completion of this documentation phase.
+
+Tom proposed generating asset sketches with image generation, then having the agent create the assets in Blender through MCP. This is the preferred developer-authoring direction in DESIGN-002. Shared game assets and reusable character components can be developed this way; the automatic character-generation feature still needs its own runtime integration and capability trial. No tooling has been connected or installed for this proposal.
 
 The recommended stack is a proposal to validate in a small technical prototype, not an implemented runtime. Further gameplay acceptance criteria, viewpoint, progression, and multiplayer decisions will follow the remaining brief.
 

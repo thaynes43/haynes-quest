@@ -30,7 +30,7 @@ These are architectural judgments, not benchmark results. Babylon's capabilities
 
 ## Recommended outcome
 
-Use the following stack for the foundation prototype. Accept or revise the browser/API/storage choices after their integration and device trial; keep the generator and worker choices open until a real generation trial establishes their fit.
+After technical and nontechnical requirements documentation and subsequent tool setup are complete, use the following stack for the foundation prototype. Accept or revise the browser/API/storage choices after their integration and device trial; keep the generator and worker choices open until a real generation trial establishes their fit.
 
 | Layer | Recommendation | Reason |
 | --- | --- | --- |
@@ -43,6 +43,7 @@ Use the following stack for the foundation prototype. Accept or revise the brows
 | Validation | Zod at API/save boundaries; Vitest and Playwright for appropriate tests | Runtime data validation, save/ownership tests, and browser journeys. Actual hardware still determines graphics performance. |
 | Photo integration | Server-side adapter, Immich first | Resolve configured names and query photos within each connection's permissions; do not bake a household URL/key into the app. |
 | Character preparation | Persisted jobs and a separate generation worker/provider boundary | Photo selection → references → model/rig → validation → ready asset. Concrete generators and job execution tooling require a capability trial. |
+| Developer asset authoring | Image-generated sketches + Blender through MCP | Preferred workflow for shared assets, character templates, rigs, and reusable processing recipes. Bridge/host setup follows requirements documentation and does not select the app's runtime generator. |
 | Runtime art | GLB/glTF 2.0, with Blender for prototyping and reproducible processing where appropriate | A shared asset contract independent of the person or generator. Manual Blender work cannot be required for every new roster entry. |
 
 Vite plus Hono is preferred over Next.js for this prototype because the current application is a browser game with a small set of account screens and no established server-rendering need. Next.js remains viable, but adopting it solely to reproduce the sibling stack would add a server/client rendering boundary without a current benefit. Hono supports [Node.js and static assets](https://hono.dev/docs/getting-started/nodejs) and [Better Auth integration](https://hono.dev/examples/better-auth); Vite documents [production builds](https://vite.dev/guide/build).
