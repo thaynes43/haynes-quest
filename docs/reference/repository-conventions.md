@@ -13,7 +13,7 @@
 
 The existing application stacks are references, not decisions for a 3D game. This scaffold does not inherit Next.js, Postgres, tRPC, a monorepo, an authentication system, or a game engine merely because a sibling uses it.
 
-Tom subsequently selected Haynes Network's Authentik sign-in approach explicitly. [ADR-001](../adrs/001-authentik-sign-in.md) records that decision and the reviewed implementation sources. [ADR-002](../adrs/002-web-game-stack.md) now proposes the game stack: it reuses TypeScript/pnpm and the Better Auth/Drizzle/Postgres pattern from Haynes Network, plus the Node/Hono precedent in libretto, while choosing Vite and Babylon for the browser game. That proposal still needs its technical trial.
+Tom subsequently selected Haynes Network's Authentik sign-in approach explicitly. [ADR-001](../adrs/001-authentik-sign-in.md) records that decision and the reviewed implementation sources. [ADR-002](../adrs/002-web-game-stack.md) now proposes the game stack: it reuses TypeScript/pnpm and the Better Auth/Drizzle/Postgres pattern from Haynes Network, plus the Node/Hono precedent in libretto, while choosing Vite and Three.js for the browser game. The [Astra workflow evidence](astra-game-workflows.md) informs the engine recommendation. That proposal still needs its technical trial.
 
 `haynesnetwork` also records an owner preference for each app to have its own visual identity. The game should share dependable engineering conventions and have a playful identity of its own.
 

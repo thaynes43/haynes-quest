@@ -13,6 +13,7 @@ The game needs animated 3D characters, touch and desktop controls, conventional 
 ## Decision drivers
 
 - A code-driven 3D workflow that can be tested and maintained from the dev pod.
+- Inspectable examples of Astra-assisted browser games and reference-driven asset authoring, following Tom's request to prefer demonstrated workflows.
 - A practical mobile-browser baseline and a stable model/animation format.
 - Reuse of the household's TypeScript, authentication, database, and GitOps experience.
 - Few runtime services and clear separation between frame-by-frame gameplay and account data.
@@ -21,12 +22,15 @@ The game needs animated 3D characters, touch and desktop controls, conventional 
 
 | Option | Fit and tradeoff |
 | --- | --- |
-| **Babylon.js with a React shell** | Recommended. Animation, asset loading, input facilities, collisions, and optional physics are available within one engine. We still own game behavior, the controls, and the save system. |
-| Three.js + React Three Fiber + Rapier | Capable alternative with declarative React scene composition. More separate systems must be joined for input, physics, animation, and gameplay. Prefer it if that composition becomes a central design need. |
+| **Three.js with a React shell** | Recommended for the foundation trial. The reviewed Astra examples include inspectable browser-game source and the intended imagegen → Blender → Three.js workflow. Keep the game loop separate from React and explicitly own input, movement, and collision integration. |
+| Babylon.js with a React shell | Credible fallback with integrated animation, asset loading, input facilities, collisions, and optional physics. The reviewed Chess Cubed creator also reports Astra + Blender MCP + Babylon. Prefer it if the trial exposes costly integration in Three.js. |
+| Three.js + React Three Fiber + Rapier | Viable composition when React scene components and physics help. R3F and Rapier are optional choices to justify against gameplay; using Three.js does not require either package. |
 | Godot web export | Strong editor-led alternative. Adds a separate engine/build boundary around the web application; its web renderer and mobile limitations need consideration. Visual editing could justify it; native export is outside the confirmed delivery scope. |
-| PlayCanvas | Credible browser engine with an optional editor and a standalone npm workflow. No current requirement gives it an advantage over Babylon for this project. |
+| PlayCanvas | Credible browser engine with an optional editor and a standalone npm workflow. The reviewed evidence gives no current reason to prefer it for this project. |
 
 These are architectural judgments, not benchmark results. Babylon's capabilities are documented in its [specifications](https://www.babylonjs.com/specifications/). The alternatives were checked against the [Three.js game guide](https://threejs.org/manual/en/game.html), [R3F performance guidance](https://github.com/pmndrs/react-three-fiber/blob/master/docs/advanced/pitfalls.mdx), [Rapier character controller](https://rapier.rs/docs/user_guides/javascript/character_controller/), [Godot web export constraints](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_web.html), and [PlayCanvas standalone workflow](https://developer.playcanvas.com/user-manual/engine/standalone/).
+
+The [Astra workflow review](../reference/astra-game-workflows.md) records creator posts, source snapshots, and access limits. It changes this proposal's initial Babylon preference to Three.js because the accessible examples offer useful implementation precedents for the family PoC. It does not demonstrate a model-capability or device-performance advantage. No benchmark, successful local playtest, or owner acceptance of an implemented stack is implied.
 
 ## Recommended outcome
 
@@ -36,7 +40,7 @@ After technical and nontechnical requirements documentation and subsequent tool 
 | --- | --- | --- |
 | Language and tooling | TypeScript, pnpm, Node.js | Familiar across the sibling repos; shared types for saves and game commands. Pin compatible supported versions and commit the lockfile when scaffolding. |
 | Menus and application UI | React + Vite | Login, photo-connection/person setup, character availability, saves, character selection, menus, and touch controls. |
-| 3D runtime | Babylon.js, loaded when entering the game | Engine-owned frame loop and scene, isolated from React rendering. Use WebGL2 as the initial baseline; WebGPU can be evaluated later. |
+| 3D runtime | Three.js, loaded when entering the game | A dedicated game module owns the frame loop, scene, animation, and input integration, isolated from React rendering. Use WebGL2 as the initial baseline; WebGPU can be evaluated later. |
 | API and hosting | Hono on Node.js, serving the Vite production build and API on one origin | One application image and origin; Hono already has a sibling precedent in `libretto`. |
 | Sign-in | Better Auth with Authentik OIDC only | Carries forward Haynes Network's provider/session pattern using the game's own registration. |
 | Persistent state | PostgreSQL + Drizzle | Sessions, private photo-connection metadata, configured people, characters, asset assignments, and saves. Credentials need separate encryption-key delivery. |
@@ -51,13 +55,13 @@ Better Auth supports [custom OIDC providers](https://better-auth.com/docs/plugin
 
 Postgres is chosen for operational consistency and server-owned saves, not expected player count. SQLite would suffice for a small single-instance game, but introduces a separate application-volume/backup pattern. Browser-only storage does not provide the proposed account-linked resume experience across devices.
 
-Start with one package and clear client, game, server, and shared modules. The family PoC needs no generation worker, queue, mock-job layer, or generation-provider trial. Blender MCP belongs to the developer's authoring workflow; browser play loads validated assets. A multiplayer service has not been selected. Start the movement probe with the smallest collision implementation that exercises the asset; evaluate Babylon's Havok integration only if the controller needs it. Do not store engine scene objects in saves.
+Start with one package and clear client, game, server, and shared modules. The family PoC needs no generation worker, queue, mock-job layer, or generation-provider trial. Blender MCP belongs to the developer's authoring workflow; browser play loads validated assets. A multiplayer service has not been selected. Start the movement probe with the smallest collision implementation that exercises the agreed movement; evaluate Rapier if the controller or dynamic objects need it. Add R3F only if React scene composition earns its place in the design. Do not store scene objects in saves.
 
 ## Consequences
 
 | ID | Consequence |
 | --- | --- |
-| C-01 | React and Babylon need an explicit lifecycle bridge and typed command interface; per-frame motion must stay out of React state. |
+| C-01 | React and the Three.js game module need an explicit lifecycle bridge and typed command interface; per-frame motion must stay out of React state. Dispose renderer resources and stop input/frame-loop work when leaving the scene. |
 | C-02 | The server owns identity and authorization for saves, connections, people, characters, and private assets. The setup form can submit a key; saved credentials are never returned to gameplay clients. Photo selection/delivery stays within the configured connection and people. |
 | C-03 | The app needs a dedicated database/schema, credentials, migrations, backups, and restore verification through `haynes-ops`; it does not share Haynes Network tables. |
 | C-04 | Required engine loaders, optional physics WASM, and mesh/texture decoders must be packaged or served locally. Compressed assets must not silently depend on public CDN defaults. |

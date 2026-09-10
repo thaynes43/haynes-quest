@@ -15,10 +15,12 @@ The family PoC uses developer-authored playable characters: create stylized refe
 
 Tom proposed **image generation for asset sketches, followed by Blender controlled through MCP** on 2026-09-10. This is the recommended workflow for the game's shared art and the family's playable characters. The specific bridge and host remain to be selected and tested after requirements documentation is complete.
 
-1. **Sketch and choose a direction.** Generate concept images for props, modular environment pieces, character templates, and other needed art. For a model reference, use consistent views, readable proportions, and clear materials; record the selected prompt and reference images so revisions preserve the design.
-2. **Build in Blender through MCP.** The agent creates or adjusts geometry and materials, inspects scene data and viewport images, and iterates. Retain editable Blender files and reusable construction scripts.
+The [Astra community-workflow review](../reference/astra-game-workflows.md) found a close firsthand precedent in AstraBurn: imagegen mocks, matching Blender models, then Three.js integration. Chess Cubed separately reports Blender MCP with Babylon. These support evaluating the workflow without making a particular bridge or engine mandatory for asset authoring; they do not prove our export quality or device performance.
+
+1. **Sketch and choose a direction.** Generate concept images for props, modular environment pieces, character templates, and other needed art. Use consistent front, side, and back reference views where useful, with readable proportions and clear materials. These reference sheets or line-art guides are the planning images meant by “wireframes”; actual editable mesh topology is created in Blender. Record the selected prompt and references so revisions preserve the design.
+2. **Build in Blender through MCP.** The agent creates or adjusts geometry and materials, inspects scene data and viewport images, and iterates. Compare renders with the selected references from matching camera angles, fixing silhouette and proportions before detail. Retain editable Blender files and reusable construction scripts.
 3. **Prepare game behavior.** Add UVs, suitable textures, a rig, and the animations needed by the asset. Static props do not need a character rig. Test deformation and motion rather than judging only a still render.
-4. **Export and validate.** Export GLB, apply the agreed geometry/material/texture budgets, and verify appearance and animation in Babylon on iPad, iPhone, and PC. A Blender render alone is not the runtime acceptance check.
+4. **Export and validate.** Export GLB, apply the agreed geometry/material/texture budgets, and verify appearance and animation in Three.js on iPad, iPhone, and PC. A Blender render alone is not the runtime acceptance check.
 
 This is a practical authoring approach for stylized assets. A sketch guides construction; it does not uniquely specify hidden geometry or produce an animation-ready model automatically. Complexity determines how much iteration an asset needs.
 
@@ -56,7 +58,7 @@ Each character manifest maps its opaque game ID to a versioned GLB, required cli
 
 Start the prototype with provisional ceilings of **15,000 triangles and two materials per character, with textures no larger than 1024 pixels in either dimension**. These are working budgets, not owner requirements or performance guarantees. Measure download size, draw calls, animation cost, and memory before finalizing them. Load the selected character's full asset when needed; selection previews should not load or animate the entire roster continuously.
 
-Choose compression after the basic model works. Babylon's [glTF loader documentation](https://github.com/BabylonJS/Documentation/blob/master/content/features/featuresDeepDive/importers/glTF.md) describes Draco, Meshopt, and KTX2 support and CDN defaults. Package any required decoder/transcoder files locally and verify their requests. Do not add every compression system by default.
+Choose compression after the basic model works. Three.js's [GLTFLoader](https://threejs.org/docs/pages/GLTFLoader.html) documents Draco, Meshopt, and KTX2 integration. Configure [Draco decoder paths](https://threejs.org/docs/pages/DRACOLoader.html) and [KTX2 transcoder paths](https://threejs.org/docs/pages/KTX2Loader.html) only for formats we actually use. Package the required resources locally and verify their requests. Do not add every compression system by default.
 
 ## Storage and provenance
 
