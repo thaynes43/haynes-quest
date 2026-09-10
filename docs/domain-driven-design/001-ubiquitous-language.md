@@ -13,5 +13,8 @@ These terms describe the initial brief. Add specific gameplay terms when the gam
 | T-04 | Immich | The existing household photo service supplying the source photos. |
 | T-05 | On-screen controls | Touch-operated gameplay controls displayed on the screen for touchscreen play. Their layout and actions will follow the gameplay design. |
 | T-06 | Authentik | The existing identity provider used by Haynes Network and the sole sign-in provider selected for Haynes Quest. Successful sign-in identifies a person; the game's admission policy determines whether that person may play. |
+| T-07 | Playable character | One of the two characters, Jackson or Penelope, chosen when starting a new game. A character is distinct from the signed-in player. |
+| T-08 | Saved game | One player's resumable game, retaining the selected character and recorded progress. A player may have multiple saved games. |
+| T-09 | Character asset | The model, rig, materials, and animation clips used to display a playable character. Replacing an asset does not change the character's identity or invalidate its saved games. |
 
 Immich's photo records and the game's collection state are separate concepts. This distinction does not choose a persistence model or require copying full photo originals.
