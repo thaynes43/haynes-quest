@@ -21,8 +21,10 @@ These terms describe the initial brief. Add specific gameplay terms when the gam
 | T-12 | Generation job | Conditional future concept under [BL-01](../BACKLOG.md), not a PoC data object: a persisted background operation producing a validated character asset from a person's photos, with progress and recoverable failure. |
 | T-13 | Journey subject | The selected configured person whose photos supply a memory journey. This need not be the player and does not select an avatar model. |
 | T-14 | Memory | A recoverable collectible with a stable game-owned identity linked to an authorized source photo in a journey. It does not imply a complete biography or an inferred life event. |
-| T-15 | Chapter | A chronological part of a journey covering a represented period. Photo coverage and any known birth information inform grouping; exact boundaries and completion rules remain for design. |
+| T-15 | Chapter | A chronological part of a journey covering a represented period. Proposed as one playable level; annual versus proportional grouping and completion rules remain for design. Photo coverage and any known birth information inform its labels. |
 | T-16 | Memory journey | The ordered chapters and memories for one selected subject. A saved game retains its journey definition and progress. |
 | T-17 | Photo coverage | The earliest-to-latest usable dated photos available for a subject, distinct from birth, current age, or a complete lifespan. |
+| T-18 | Enemy theme | A proposed selectable set of enemy appearances and behaviors. It is stored as a journey setting separate from subject identity and difficulty; any gender-based suggestion uses explicitly supplied information under the eventual policy. |
+| T-19 | Difficulty | Gameplay challenge settings such as enemy speed, aggression, and action complexity. Subject age and gender do not establish player ability. Exact settings and progression remain for design. |
 
 Immich's photo records and the game's collection state are separate concepts. This distinction does not choose a persistence model or require copying full photo originals.
