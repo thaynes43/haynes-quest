@@ -6,7 +6,7 @@
 
 ## Confirmed direction
 
-Tom wants local hosting through `haynes-ops`. Application source belongs in this repository; cluster manifests belong in `thaynes43/haynes-ops`.
+Tom wants hosting on his homelab through `haynes-ops`. Application source belongs in this repository; cluster manifests belong in `thaynes43/haynes-ops`. Players on iPad, iPhone, and PC open the HTTPS game URL in their browser. No native iOS packaging, TestFlight, or app-install workflow is part of deployment.
 
 ## Existing patterns to reuse when the application exists
 
