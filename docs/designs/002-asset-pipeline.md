@@ -2,7 +2,7 @@
 
 - **Status:** Proposed
 - **Last updated:** 2026-09-10
-- **Satisfies:** [PRD-001 R-03, R-07–R-09, R-12, R-14, R-16–R-18, R-20–R-29](../prds/001-project-brief.md)
+- **Satisfies:** [PRD-001 R-03, R-07–R-09, R-12, R-14, R-16–R-18, R-20–R-34](../prds/001-project-brief.md)
 - **Governed by:** [Proposed ADR-002](../adrs/002-web-game-stack.md)
 
 ## Overview
@@ -30,6 +30,12 @@ Use the authoring workflow to build the PoC's avatar, materials, rig, and animat
 
 Capture reusable Blender scripts, meshes, and rigs when useful. Keep subject identity and journey progress independent of avatar versions. The deployed game loads prepared assets and does not need a connection to the authoring session. Personalized avatars and automatic generation would require a separate product decision under BL-01.
 
+## Growth and ability animation
+
+[DESIGN-006](006-memory-age-and-abilities.md) adds an age-zero baby start and abilities that accumulate as memories advance age. The avatar remains generic. Define animation/controller support for the chosen initial baby actions, later movement, tools, and puzzle interactions; exact abilities and thresholds come before final clip production. Visual growth could use posture, proportions, or asset variants, but the number of meshes and rig strategy are not yet selected.
+
+Stable ability IDs belong to game progression, with asset metadata mapping available actions to compatible animation clips and controller/collider behavior. A new mesh or animation version must preserve saved unlocks. Missing clips need a recoverable asset state rather than silently granting a different ability or removing progression. Test transitions, camera framing, collision fit, and retained earlier actions with synthetic assets on touch and PC before final art. Reusing an animation does not grant permission to invoke a locked action.
+
 ## Era-inspired enemy and boss assets
 
 [DESIGN-005](005-era-enemy-catalog.md) adds a finite, authored catalog of enemies and bosses whose influences fit the years represented by the photo journey. Record a reference's historical eligibility and the broad period qualities the asset should evoke, then create an original concept, model, materials, and animation set through the same workflow. Television, animation, games, YouTube, and internet culture are curation sources; they are not runtime media downloads or model-generation inputs during play.
@@ -45,7 +51,7 @@ Reuse rigs and behaviors where useful, while documenting each entry's ordinary-e
 | D-01 | Synthetic prototype | Use fictional people/photos and one shared placeholder avatar. Exercise journeys for different subjects, including additions and name changes, without editing application code or authoring another model. |
 | D-02 | Concepts to visual references | Generate consistent stylized references for the mysterious avatar, original enemies/bosses, and world assets. Agree silhouette, pose, clothing, and materials before final modeling. The avatar design is an artistic choice and does not require resemblance to a configured person. |
 | D-03 | References to geometry | Build and adjust geometry and materials in Blender through MCP. Preserve the chosen styling and produce geometry suitable for animation. Reuse base meshes and construction scripts where useful. |
-| D-04 | Rigging and animation | Use compatible skeleton naming and a consistent clip contract. The prototype exercises idle and locomotion; later gameplay determines the final actions. Check deformation and foot contact for the avatar's proportions. |
+| D-04 | Rigging and animation | Use compatible skeleton naming and a consistent clip contract. The prototype exercises the agreed initial baby movement and a small later-ability transition alongside idle/locomotion; later gameplay determines the full action set. Check deformation and foot contact for the avatar's proportions. |
 | D-05 | Export | Produce GLB/glTF 2.0 with tested materials, a documented orientation, normalized scale, skeleton, and named clips. Bake/export supported animation channels and inspect them in the engine. |
 | D-06 | Optimize and validate | Apply geometry/material/texture checks and measured reductions, then run the Khronos validator. Validate the asset visually and on devices during development; retain private intermediate assets for diagnosis. Record tool versions, checksums, source provenance, and validation results. |
 | D-07 | Integrate | Publish a new version under the same avatar-asset identity only after checks pass, preserving every saved journey. A failed export or validation leaves the existing good version in use. Acceptance includes camera framing, collider fit, animation, and device performance. |
@@ -62,7 +68,7 @@ Use [glTF Transform](https://gltf-transform.dev/cli) for inspection and selected
 
 ## Runtime contract and trial budgets
 
-The avatar manifest maps its asset identity to a versioned GLB, required clip names, and loading metadata. Enemy/boss catalog entries use the same versioned-asset pattern with their own identities and clip requirements. Person and journey identities belong to the photo/save contracts, independently of this manifest. Locomotion/controller state is separate from the visible mesh. Document export-to-engine orientation with a fixture; test animation retargeting rather than assuming identically named bones are sufficient.
+The avatar manifest maps its asset identity to a versioned GLB, required clip names, loading metadata, and action/animation compatibility for the selected ability set. Enemy/boss catalog entries use the same versioned-asset pattern with their own identities and clip requirements. Person and journey identities belong to the photo/save contracts, independently of this manifest. Locomotion/controller state is separate from the visible mesh. Document export-to-engine orientation with a fixture; test animation retargeting rather than assuming identically named bones are sufficient.
 
 Start the prototype with provisional ceilings of **15,000 triangles and two materials per character, with textures no larger than 1024 pixels in either dimension**. These are working budgets, not owner requirements or performance guarantees. Measure download size, draw calls, animation cost, and memory before finalizing them. Load the shared avatar when needed; do not eagerly load every chapter asset or photo into memory.
 

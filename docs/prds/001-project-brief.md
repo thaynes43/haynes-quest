@@ -3,11 +3,11 @@
 - **Status:** Draft
 - **Owner:** Tom Haynes
 - **Last updated:** 2026-09-10
-- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, browser-device, asset-authoring, family-PoC scope, memory-journey, level-pacing, and era-based enemy/boss brief on 2026-09-10
+- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, browser-device, asset-authoring, family-PoC scope, memory-journey, level-pacing, era-based enemy/boss, and memory-age ability brief on 2026-09-10
 
 ## Summary
 
-A novelty 3D web game for the family's proof of concept, with Roblox as the style reference. The player controls a generic, mysterious character who begins without memories. Starting a game selects a person from a configured self-hosted photo library; their photos become memories collected through a chronological journey across the years available for that person. Immich is the first integration. Enemies and bosses draw from an authored catalog inspired by the pop culture of the years represented in each journey. The shared avatar, enemies, bosses, and world assets are authored through image generation and Blender MCP. Players use touch controls or a keyboard and mouse, sign in through Authentik as on Haynes Network, and play a normal browser app hosted through `haynes-ops`.
+A novelty 3D web game for the family's proof of concept, with Roblox as the style reference. The player controls a generic, mysterious character who begins at memory age zero with no memories and only baby abilities. Starting a game selects a person from a configured self-hosted photo library; their photos become memories collected through a chronological journey across the years available for that person. Recovering memories advances the avatar to the represented ages, unlocking abilities that carry forward into later periods. Immich is the first integration. Enemies and bosses draw from an authored catalog inspired by the pop culture of the years represented in each journey. The shared avatar, enemies, bosses, and world assets are authored through image generation and Blender MCP. Players use touch controls or a keyboard and mouse, sign in through Authentik as on Haynes Network, and play a normal browser app hosted through `haynes-ops`.
 
 Tom selected **Haynes Quest**, repository slug **`haynes-quest`**, on 2026-09-10. The repository and documentation scaffold are established, and the game brief is being developed with Tom.
 
@@ -15,7 +15,7 @@ After signing in, players choose an existing saved game or start a new person's 
 
 ## Confirmed requirements
 
-The established platform constraints remain in force. R-12, R-14, and R-20–R-29 express Tom's narrative and gameplay direction within this draft. Decade-like/proportional levels, a static era-based enemy/boss catalog, and manual gender entry at setup are the latest direction. Exact grouping, personalization weights, and encounter mechanics remain proposed in DESIGN-004 and DESIGN-005.
+The established platform constraints remain in force. R-12, R-14, and R-20–R-34 express Tom's narrative and gameplay direction within this draft. Memory-age progression now adds an age-zero start and accumulating abilities to decade-like/proportional levels and the era enemy/boss catalog. Exact abilities, age thresholds, grouping, personalization weights, and encounter mechanics remain proposed in DESIGN-004–DESIGN-006.
 
 | ID | Requirement | Priority |
 | --- | --- | --- |
@@ -30,7 +30,7 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-2
 | R-09 | Support play with a keyboard and mouse at a computer. | Must |
 | R-10 | Consider gamepad support after the initial playable scope; it is optional future work. | Later option |
 | R-11 | Require players to sign in through Authentik, following Haynes Network's sign-in approach. Authentik is the only login method; do not add game-local passwords or separate login providers. | Must |
-| R-12 | Use a generic, mysterious playable avatar who begins without memories. Its model is independent of the selected photo-library person; no likeness or per-person character asset is required. | Must |
+| R-12 | Use a generic, mysterious playable avatar who begins at memory age zero without memories and with baby abilities. Its model is independent of the selected photo-library person; no likeness or per-person character asset is required. | Must |
 | R-13 | After login, let the player select one of their saved games or start a new game. | Must |
 | R-14 | Starting a new game includes choosing whose memories to explore from the configured people. The saved game retains that person's identity and journey progress when resumed. | Must |
 | R-15 | Automatically generate playable character models from configured people's photos if person-specific avatars are separately reintroduced. | Deferred; conditional future [BL-01](../BACKLOG.md), outside family PoC |
@@ -40,7 +40,7 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-2
 | R-19 | Deliver the game through a normal browser URL. Do not require a native iOS app, TestFlight, sideloading, or an app-install workaround. | Must |
 | R-20 | Organize collected memories into chronological chapters, beginning with baby photos when available and continuing through the latest available photos of the selected person. | Must |
 | R-21 | Tailor the chapter coverage to the person's represented years. A short childhood library and a library spanning decades must not be forced into the same fixed lifespan or empty future stages. | Must |
-| R-22 | Distinguish photo-date coverage from the person's age. Do not treat the earliest photo as birth or infer age from appearance. Use known birth information for age labels; see the proposed optional-birth-date policy in DESIGN-004. | Must; setup policy proposed |
+| R-22 | Distinguish photo-date coverage from the person's age. Do not treat the earliest photo as birth or infer age from appearance. Establish an explicit age source for photo-age calculation, labels, and ability progression. DESIGN-006 records the pending choice of required birth date versus an age-anchor alternative; calendar-year labels alone cannot determine abilities. | Must; age-source policy proposed |
 | R-23 | Collecting photos recovers memories and advances the selected journey. Preserve collected-memory and chapter progress across save/resume and avatar asset replacement. | Must |
 | R-24 | Handle missing early photos, sparse years, date problems, and later library changes without inventing memories, silently resetting progress, or requiring empty chapters. | Must |
 | R-25 | Group levels around decades or proportions of the available history, tailoring pacing to known age and photo coverage. Exact boundaries and count remain for design; a short history may have several levels within one era and no fixed ten-level rule is required. | Must; grouping details open |
@@ -48,6 +48,11 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-2
 | R-27 | Enemies and bosses reflect pop-culture influences of the actual calendar periods represented by the photos, including television, animation, games, and relevant YouTube/internet culture. Later-created influences must not appear before their supported period. | Must |
 | R-28 | Use a finite, authored catalog of prepared enemies and bosses with historical eligibility metadata. Dynamically select encounters from it for each journey; runtime trend retrieval and automatic enemy generation are not required. | Must |
 | R-29 | Give enemies and bosses original designs informed by era influences, or use appropriately licensed assets. Record reference/provenance information; loose inspiration, renaming, or recoloring alone is not treated as legal clearance. See DESIGN-005 and the asset pipeline. | Must |
+| R-30 | Every new save starts at memory age zero with no collected memories and a playable baby ability set. The first memory must be reachable with that set. | Must |
+| R-31 | Recovering memories advances the character through the ages those photos represent, in chronological growth order. Age is not awarded from photo count, elapsed play time, or chapter entry. | Must |
+| R-32 | Unlock abilities appropriate to the recovered age and retain earlier abilities into later stages. No later-age power is usable before its progression requirement; exact abilities and thresholds remain for design. | Must |
+| R-33 | Routes, objectives, enemies, and bosses must be solvable with abilities available at that point. Missing infancy, age gaps, and short child histories cannot require nonexistent memories or unearned future abilities to finish. | Must |
+| R-34 | Persist memory age, unlocked abilities, and progression-rule/age-source revisions with memory and encounter progress. Recovery and unlocks remain consistent across retries, resume, devices, and explicit library/rule reconciliation. | Must |
 
 ## Saved games and memory journeys
 
@@ -55,24 +60,31 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-2
 flowchart LR
     A[Authentik sign-in] --> B[Your saved games]
     B --> C[Choose a saved game]
-    C --> D[Resume its person, chapter, and memories]
+    C --> D[Resume person, age, abilities, and memories]
     B --> E[New game]
     E --> F[Choose whose memories to explore]
     F --> J[Enter subject settings]
     J --> G[Review available photo years and eras]
-    G --> H[Begin with the mysterious avatar]
-    H --> I[Collect memories and face era-based enemies and bosses]
+    G --> H[Begin at age zero with baby abilities]
+    H --> I[Recover memories and unlock age-based abilities]
+    I --> K[Use learned abilities against era-based challenges]
 ```
 
 The signed-in player, the person whose memories are explored, and the avatar are separate concepts. Adding a resolved person with usable photos makes another journey possible without authoring a new character model. The player chooses the journey's subject, while the same generic avatar can be used across subjects. Whether the story ultimately reveals that the avatar is the selected person remains undecided.
 
-Names are editable labels, not permanent save keys. Resolve them to the correct source person and retain a stable game-owned subject ID. A rename, replacement avatar asset, or newly imported photo must not change whose journey a save belongs to or erase its progress. Starting another person's journey creates a separate game. Missing photo setup or an unavailable avatar must leave existing saves visible. Save-slot count, naming, cadence, and refresh policy remain for design.
+Names are editable labels, not permanent save keys. Resolve them to the correct source person and retain a stable game-owned subject ID. A rename, replacement avatar asset, or newly imported photo must not change whose journey a save belongs to or erase its age, abilities, or other progress. Starting another person's journey creates a separate game. Missing photo setup or an unavailable avatar must leave existing saves visible. Save-slot count, naming, cadence, and refresh policy remain for design.
 
-The photo range determines which years are represented, not the person's actual age or a complete biography. Start with the earliest eligible dated memories; if infancy is absent, do not label the earliest available adult photos as babyhood. End at the latest represented period. [DESIGN-004](../designs/004-memory-journey.md) proposes optional birth-date setup for age-based stages, with calendar-year chapters when it is unknown, and records the clarification asked of Tom. Exact chapter boundaries, required collectibles, and the world and challenges within each chapter remain for gameplay design.
+The photo range determines which years are represented, not the person's actual age or a complete biography. Start with the earliest eligible dated memories; if infancy is absent, do not label the earliest available adult photos as babyhood. End at the latest represented period. [DESIGN-006](../designs/006-memory-age-and-abilities.md) requires a supported age source before age-gated play and records the question about required birth date versus an age-anchor alternative. Calendar-year coverage remains useful for previews and era selection but cannot replace the age needed to unlock abilities. Exact chapter boundaries, required collectibles, and the world and challenges within each chapter remain for gameplay design.
 
 Tom's revised direction is decade-like or proportional chapters across available photo coverage, with counts and boundaries adapted to the history. Short histories can have several levels within an era; long histories span successive eras. Combine sparse periods and bound required memories in dense ones. Exact grouping rules remain open; ten levels is not a requirement.
 
 Enemies and bosses come from a static, authored catalog of original characters influenced by period-relevant pop culture. The photo dates select the eligible era pool, and explicitly entered subject gender/settings can inform personalization within it. The catalog offers variety across genders. A childhood in the 1990s draws different influences from a childhood in a later decade; later photos advance the cast toward later eras. [DESIGN-005](../designs/005-era-enemy-catalog.md) defines the proposed catalog contract. Actual references, original characters, preference weights, and combat/boss mechanics remain to be designed.
+
+## Memory age and abilities
+
+Each new journey begins with the generic avatar at age zero, no memories, and a small playable baby ability set. Recovering the next chronological memories advances the avatar to the ages represented by those photos. New movement, interaction, tool, and puzzle abilities build on earlier skills, and the player carries them into later periods. Exact actions and thresholds are still to be designed in [DESIGN-006](../designs/006-memory-age-and-abilities.md).
+
+Calendar dates determine the cultural-era enemy pool; recovered age determines the character's abilities. The human player's difficulty settings are separate, while every required encounter must fit the abilities currently available. Entering a chapter does not grant all powers from its latest photos. Missing infancy still permits a journey that starts at zero: a short opening and guided catch-up to the earliest real memory's age are proposed, with no fabricated baby photos.
 
 ## Input and sign-in direction
 
@@ -104,7 +116,7 @@ These are requirements for future implementation, not completed checks. The play
 | AC-13 | On iPad, iPhone, and PC, opening the homelab-hosted HTTPS URL supports sign-in, setup, new-game selection, and resuming a ready save in the browser without installing an app or using TestFlight. | R-01, R-04, R-19 |
 | AC-14 | The same generic avatar supports journeys for different configured people and begins each new journey without memories; selecting a person does not select a likeness model. | R-12, R-14 |
 | AC-15 | A test library spanning multiple periods produces ordered chapters from its earliest eligible photos to its latest; collecting memories and resuming a save preserve the intended chronology and progress. | R-20, R-23 |
-| AC-16 | Photo coverage is presented separately from age. Known birth information gives appropriate age labels; absent birth information does not cause the earliest photo to be treated as birth. The proposed fallback uses calendar years. | R-22 |
+| AC-16 | Photo coverage is separate from age. A supported age source produces ages for labels and ability progression. Missing age information produces an actionable setup state for age-gated play; the earliest photo is never assumed to depict birth. | R-22 |
 | AC-17 | Libraries with missing infancy, sparse decades, a single represented year, or no usable dates produce supported chapters or an actionable setup state, with no invented or mandatory empty life stage. | R-21, R-24 |
 | AC-18 | New uploads, corrected dates, and removed photos cannot silently switch a save's subject, reorder completed chapters, erase collection credit, or award the same memory twice. | R-23, R-24 |
 | AC-19 | The chosen chapter policy produces a preview consistent with the saved journey for short, long, single-year, and sparse libraries. It avoids mandatory empty chapters and unbounded collection targets; exact expected counts follow the eventual grouping decision. | R-21, R-24, R-25 |
@@ -113,6 +125,11 @@ These are requirements for future implementation, not completed checks. The play
 | AC-22 | Runtime encounters use prepared catalog entries and assets without live trend feeds, reference-video downloads, or generation jobs. Missing period coverage uses the designed neutral fallback or an actionable availability state without skipping memories or selecting later-era enemies. | R-27, R-28 |
 | AC-23 | Catalog updates and profile edits do not reroll saved enemy/boss selections or reset encounter/memory progress. Unavailable assets have a compatible replacement or recoverable state that preserves progress. | R-23, R-28 |
 | AC-24 | Enemy/boss entries have historical eligibility evidence, original design or license provenance, and validated asset versions before use. Passing these authoring checks is not described as a legal guarantee. | R-27–R-29 |
+| AC-25 | On touch and keyboard/mouse, a new save starts at zero with no memories and only its baby abilities, and the first memory can be reached using those abilities. Another save does not inherit its unlocks. | R-08, R-09, R-30 |
+| AC-26 | Ordered synthetic memories advance age and unlock only eligible abilities; earlier abilities remain available across chapters and eras. Chapter entry, photo count, same-age photos, and elapsed time do not independently award later abilities. | R-31, R-32 |
+| AC-27 | Required paths and boss/enemy solutions never depend on an ability obtainable only beyond the obstacle. A child journey can finish without adult abilities, and missing infancy or large gaps use the designed reachable progression path. | R-24, R-33 |
+| AC-28 | Memory recovery, age, and ability unlocks save consistently across retry, stale tabs, reload, and another device. Duplicate or out-of-order requests and forged client ages/unlocks cannot bypass progression; older revisits cannot remove earned abilities. | R-31, R-32, R-34 |
+| AC-29 | Age-source/date corrections, catalog or progression-rule updates, and asset replacement follow explicit reconciliation while retaining saved identities and progress. Unavailable photos stay inaccessible without silently revoking recorded abilities. | R-24, R-34 |
 
 ## Conditional future acceptance
 
@@ -124,11 +141,11 @@ These criteria are retained for the [backlog](../BACKLOG.md), not for PoC accept
 
 ## Current scope
 
-The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. Continue documenting the technical and nontechnical requirements, including the [technology stack](../adrs/002-web-game-stack.md), [technical foundation](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [photo-connection/person contract](../designs/003-photo-connections-and-people.md), [memory journeys](../designs/004-memory-journey.md), [era-based enemies and bosses](../designs/005-era-enemy-catalog.md), and remaining player experience. Tool setup, asset production, and prototype implementation follow completion of this documentation phase.
+The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. Continue documenting the technical and nontechnical requirements, including the [technology stack](../adrs/002-web-game-stack.md), [technical foundation](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [photo-connection/person contract](../designs/003-photo-connections-and-people.md), [memory journeys](../designs/004-memory-journey.md), [era-based enemies and bosses](../designs/005-era-enemy-catalog.md), [memory-age abilities](../designs/006-memory-age-and-abilities.md), and remaining player experience. Tool setup, asset production, and prototype implementation follow completion of this documentation phase.
 
 Tom proposed generating asset sketches with image generation, then having the agent create the assets in Blender through MCP. This is the PoC authoring direction for the shared avatar, enemy/boss catalog, and world assets in DESIGN-002. His subsequent scope ruling defers automatic character generation to a possible release beyond the family PoC; its workers, job simulation, and provider trials are not active requirements. No tooling has been connected or installed for this proposal.
 
-The recommended stack is a proposal to validate in a small technical prototype, not an implemented runtime. The memory-journey direction establishes why photos are collected and how time shapes progression. Decade-like/proportional levels and the era-based enemy/boss catalog are now being designed in DESIGN-004 and DESIGN-005. World layout, encounter mechanics, camera, chapter completion rules, and the ending remain open.
+The recommended stack is a proposal to validate in a small technical prototype, not an implemented runtime. The memory-journey direction establishes why photos are collected and how time shapes progression. Decade-like/proportional levels and the era-based enemy/boss catalog are now being designed in DESIGN-004 and DESIGN-005. DESIGN-006 adds cumulative abilities unlocked by recovered age. Exact abilities/thresholds, world layout, encounter mechanics, camera, chapter completion rules, and the ending remain open.
 
 ## Open and deferred decisions
 
@@ -139,6 +156,7 @@ The recommended stack is a proposal to validate in a small technical prototype, 
 | Q-03 | Which source photos are eligible and how they become collectibles | Integration design | Partially resolved by Tom on 2026-09-10: use the configured service/key and named people for photo lookup. Photos now represent memories in chronological chapters. Detailed content filters, date handling, and chapter completion remain for design. |
 | Q-04 | Engine, app structure, persistence, and access model | Architecture phase | Authentik-only login is resolved by Tom. Saved games are now required. ADR-002 proposes the engine, application structure, and storage; admission rules still need design. |
 | Q-05 | Characters and new/resume game flow | Foundation design | Revised by Tom on 2026-09-10: generic mysterious avatar with no memory; select whose chronological photo journey to explore. Per-person playable models are no longer part of the PoC. See DESIGN-004. |
-| Q-06 | How is the person's age established when photos do not begin at birth? | Timeline setup design | Asked Tom on 2026-09-10: optional birth date with calendar-year fallback versus required birth date. Optional is the documented proposal pending his response; photo range alone is not age evidence. |
+| Q-06 | How is the person's age established when photos do not begin at birth? | Age/progression setup design | Updated question asked Tom on 2026-09-10 because ages now unlock abilities: require a birth date or allow an entered age for the earliest photo. Birth date is recommended, pending his answer. Calendar-year labels alone no longer suffice for age-gated play. |
 | Q-07 | How should decades and proportional time determine levels? | Chapter design | Revised by Tom on 2026-09-10: decade-like or proportional levels with enemies tied to the represented era. Exact grouping and counts remain open; ten levels is not a requirement. See DESIGN-004. |
 | Q-08 | Whose gender or preferences determine enemy personalization? | Enemy design | Direction clarified by Tom on 2026-09-10: manual entry for the selected person at new-game setup, within a catalog offering variety across genders. Era is the primary eligibility rule. Input options, requiredness, preference weighting, and overrides remain for DESIGN-005/setup design. |
+| Q-09 | Which abilities unlock at each recovered age, and how is growth introduced? | Ability and level design | Age-zero baby start, chronological unlocks, and retaining earlier abilities are established by Tom. Exact abilities, thresholds, missing-period catch-up, and visible growth remain for DESIGN-006. |
