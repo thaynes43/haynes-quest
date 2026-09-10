@@ -13,7 +13,7 @@ After requirements documentation and tool setup, the planned first technical pro
 flowchart TB
     subgraph Browser
         UI[React: photo setup, roster, saves, controls]
-        Game[Babylon: scene, animation, frame loop]
+        Game[Three.js game module: scene, animation, frame loop]
         UI <-->|Commands and coarse state updates| Game
     end
     UI -->|Same-origin API and session cookie| App[Node / Hono + Better Auth]
@@ -37,7 +37,7 @@ The character choice belongs to the saved game. A login identity is not automati
 
 | ID | Rule |
 | --- | --- |
-| D-01 | React owns the application screens and on-screen controls; Babylon owns its scene and frame loop. Mount/unmount disposes the engine, observers, timers, and input listeners. Pause input on blur, hidden tabs, and open menus. |
+| D-01 | React owns the application screens and on-screen controls; a Three.js game module owns the scene and frame loop. Unmount stops the loop and releases renderer, geometry, material, texture, observer, timer, and input resources. Pause input on blur, hidden tabs, and open menus. |
 | D-02 | Touch and keyboard/mouse translate into the same typed game-action interface. A later gamepad adapter can use it. The prototype probes simultaneous touch movement and a second action without settling the final control layout. |
 | D-03 | Saved games are server-owned records associated with the current session's user ID. List/read/write queries always scope by that owner; an owner supplied in request data is never authoritative. |
 | D-04 | Character IDs are opaque game-owned IDs linked to configured people. Validate ownership and availability, not membership in a hard-coded name enum. Save data stores the character ID, not its display name, GLB URL, skeleton, or serialized scene. |
@@ -67,6 +67,7 @@ Use a small, repeatable benchmark scene on actual iPad, iPhone, and PC hardware.
 - Probe keyboard/mouse and simultaneous touch actions, input cancellation on blur, and repeated scene entry/exit without duplicated listeners or render loops.
 - Open the homelab HTTPS URL in regular Safari on both iPad and iPhone and in the selected PC browsers. Validate sign-in redirects, setup, new/resume flows, phone/tablet control layouts, and returning after backgrounding the browser. No installed app or TestFlight build is a test prerequisite.
 - Load an animated synthetic GLB with locally served dependencies and no unplanned CDN requests; measure on actual touch hardware before accepting ADR-002.
+- Evaluate movement, camera, collision behavior, and the cost of integrating them against the agreed gameplay. The [community evidence](../reference/astra-game-workflows.md) informs the starting choice; costly integration or device failures are reasons to revisit Three.js before building out the world.
 
 ## Open and deferred decisions
 

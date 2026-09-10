@@ -6,6 +6,7 @@ Read [PROCESS.md](PROCESS.md) for the workflow and the [project brief](prds/001-
 | --- | --- | --- |
 | Product | What players should experience and why | [PRD-001: Project brief](prds/001-project-brief.md), [template](prds/000-template.md) |
 | Future backlog | Conditional work outside the family PoC | [BL-01: Automatic character generation](BACKLOG.md) |
+| Engine and asset evidence | Creator reports, inspected source, and limits of the Astra examples | [Astra game workflows](reference/astra-game-workflows.md) |
 | Architecture decisions | Significant choices and their tradeoffs | [ADR-001: Authentik sign-in](adrs/001-authentik-sign-in.md), [ADR-002: Proposed stack](adrs/002-web-game-stack.md), [template](adrs/000-template.md) |
 | Vocabulary | Consistent terms for the game and its integrations | [DDD-001: Ubiquitous language](domain-driven-design/001-ubiquitous-language.md), [template](domain-driven-design/000-template.md) |
 | Designs | Gameplay, interactions, integration contracts, and implementation detail | [Technical foundation](designs/001-technical-foundation.md), [Asset pipeline](designs/002-asset-pipeline.md), [Photo connections and people](designs/003-photo-connections-and-people.md), [template](designs/000-template.md) |
