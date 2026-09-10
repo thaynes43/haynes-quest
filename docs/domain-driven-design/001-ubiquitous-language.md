@@ -34,5 +34,9 @@ These terms describe the initial brief. Add specific gameplay terms when the gam
 | T-25 | Ability | A stable game-defined action or capability unlocked by memory-age progression. Earlier abilities carry into later periods; exact actions and thresholds remain for design. |
 | T-26 | Age source | Explicit birth information or another accepted age anchor that maps dated photos to the subject's age. Its revision is retained with a journey; the supported setup policy is pending in DESIGN-006. |
 | T-27 | Progression rule set | Versioned rules connecting ordered memory recovery, age thresholds, ability prerequisites, and unlocks. Saved journeys retain the rules needed to reproduce their progression. |
+| T-28 | Audio cue | A stable game event-to-sound identity, independent of the approved file version. Authoring produces prepared files; playback does not generate sounds through a cloud service. |
+| T-29 | Asset candidate | A versioned visual/audio output with concrete previews, provenance, and technical evidence, awaiting Tom's review before gameplay use. |
+| T-30 | Approved asset | The exact final visual/audio version Tom has approved for gameplay promotion. Material changes require renewed review; pending candidates leave placeholders or prior approved versions usable. |
+| T-31 | PoC slice | The bounded synthetic route in DESIGN-007 proving chronological memories, one new ability, retained actions, save/resume, and the development/review loop before broader game content. |
 
 Immich's photo records and the game's collection state are separate concepts. This distinction does not choose a persistence model or require copying full photo originals.

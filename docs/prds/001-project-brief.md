@@ -3,7 +3,7 @@
 - **Status:** Draft
 - **Owner:** Tom Haynes
 - **Last updated:** 2026-09-10
-- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, browser-device, asset-authoring, family-PoC scope, memory-journey, level-pacing, era-based enemy/boss, and memory-age ability brief on 2026-09-10
+- **Source:** Owner's project kickoff and subsequent platform, memory-journey, era/ability, and playable-PoC/Astra-team/audio brief on 2026-09-10
 
 ## Summary
 
@@ -34,7 +34,7 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-3
 | R-13 | After login, let the player select one of their saved games or start a new game. | Must |
 | R-14 | Starting a new game includes choosing whose memories to explore from the configured people. The saved game retains that person's identity and journey progress when resumed. | Must |
 | R-15 | Automatically generate playable character models from configured people's photos if person-specific avatars are separately reintroduced. | Deferred; conditional future [BL-01](../BACKLOG.md), outside family PoC |
-| R-16 | Establish the technical direction and document both technical and nontechnical requirements before setting up asset tools or starting production/prototype work. Tom will arrange tool setup after the documentation phase. | Current priority |
+| R-16 | Define the technical and nontechnical contracts for the next playable slice before implementing it. Tom's latest direction narrows the earlier all-requirements prerequisite: defer full gameplay/story details, establish the development loop, and arrange tools before the authoring steps that need them. Synthetic placeholders allow core code work to proceed. | Current priority |
 | R-17 | Let users configure the photo-service URL, API key, and people's names used to populate the game. | Must |
 | R-18 | Resolve configured names to people in the connected photo service and retrieve their eligible photos and usable dates for gameplay content and timeline construction. | Must |
 | R-19 | Deliver the game through a normal browser URL. Do not require a native iOS app, TestFlight, sideloading, or an app-install workaround. | Must |
@@ -53,6 +53,11 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-3
 | R-32 | Unlock abilities appropriate to the recovered age and retain earlier abilities into later stages. No later-age power is usable before its progression requirement; exact abilities and thresholds remain for design. | Must |
 | R-33 | Routes, objectives, enemies, and bosses must be solvable with abilities available at that point. Missing infancy, age gaps, and short child histories cannot require nonexistent memories or unearned future abilities to finish. | Must |
 | R-34 | Persist memory age, unlocked abilities, and progression-rule/age-source revisions with memory and encounter progress. Recovery and unlocks remain consistent across retries, resume, devices, and explicit library/rule reconciliation. | Must |
+| R-35 | Prioritize a bounded playable proof of the memory-to-ability loop. Defer detailed combat, extra collectibles, full story, and broader level content until the core gameplay can be evaluated. DESIGN-007 proposes the initial slice. | Current priority |
+| R-36 | Author visual assets through image-generated sketches and Blender. Tom reviews final visual and audio asset versions before they enter gameplay; technical validation and agent review do not replace his review. | Must |
+| R-37 | Establish an audio-authoring tool and repeatable cue workflow alongside visual authoring. Prepare and review files during development; the game need not generate audio while playing. Full music and narration can follow later. | Must; tool recommendation proposed |
+| R-38 | Use a GPT-6 Astra development team for code, visual assets, audio, story/design, and verification, with bounded work orders and coordinated handoffs. | Must |
+| R-39 | Support user-started browser audio, persistent mute/volume preferences, visible equivalents for required cues, and safe interruption/resume on touch and PC. Missing or blocked audio must not prevent play. | Must |
 
 ## Saved games and memory journeys
 
@@ -96,9 +101,9 @@ The Roblox reference establishes a style direction. It does not yet specify a ca
 
 The Authentik decision is recorded in [ADR-001](../adrs/001-authentik-sign-in.md). The identity provider is settled; the policy for which signed-in people may enter this family game still needs to be defined. An existing Haynes Network account does not by itself establish permission to access the game's photos.
 
-## Acceptance criteria for the first playable slice
+## Acceptance criteria for the family game
 
-These are requirements for future implementation, not completed checks. The playable loop and exact hardware/browser versions must be recorded before validating them against the confirmed iPad, iPhone, and PC targets.
+These are requirements for future implementation, not completed checks or a demand to implement the whole game before its first prototype. The bounded initial PoC has its own [DESIGN-007 acceptance criteria](../designs/007-poc-development-loop.md#poc-acceptance), using synthetic memories. Real photo integration, full chapter coverage, and enemy content follow in later milestones. Record the exact tested hardware/browser versions for each trial.
 
 | ID | Criterion | Requirements |
 | --- | --- | --- |
@@ -130,6 +135,10 @@ These are requirements for future implementation, not completed checks. The play
 | AC-27 | Required paths and boss/enemy solutions never depend on an ability obtainable only beyond the obstacle. A child journey can finish without adult abilities, and missing infancy or large gaps use the designed reachable progression path. | R-24, R-33 |
 | AC-28 | Memory recovery, age, and ability unlocks save consistently across retry, stale tabs, reload, and another device. Duplicate or out-of-order requests and forged client ages/unlocks cannot bypass progression; older revisits cannot remove earned abilities. | R-31, R-32, R-34 |
 | AC-29 | Age-source/date corrections, catalog or progression-rule updates, and asset replacement follow explicit reconciliation while retaining saved identities and progress. Unavailable photos stay inaccessible without silently revoking recorded abilities. | R-24, R-34 |
+| AC-30 | A small synthetic route demonstrates chronological collection, a new ability, retained earlier actions, and save/resume on both input modes before full combat or story production is required. | R-35 |
+| AC-31 | Every final visual/audio version promoted into gameplay has Tom's recorded approval and reproducible review evidence. Pending/rejected candidates remain outside normal gameplay; placeholders or prior approved versions keep code iterations usable. | R-36 |
+| AC-32 | Prepared audio cues work after user interaction, retain mute/volume preferences, survive scene/background transitions without duplicate or stale playback, and leave the route completable when muted or unavailable. No authoring key is shipped to the browser. | R-37, R-39 |
+| AC-33 | Astra work orders identify scope, owned files/resources, stable asset/cue/ability contracts, and verifiable handoff results. The team can repeat the code, author, review, integrate, and playtest cycle for one small slice. | R-38 |
 
 ## Conditional future acceptance
 
@@ -141,11 +150,11 @@ These criteria are retained for the [backlog](../BACKLOG.md), not for PoC accept
 
 ## Current scope
 
-The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. Continue documenting the technical and nontechnical requirements, including the [technology stack](../adrs/002-web-game-stack.md), [technical foundation](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [photo-connection/person contract](../designs/003-photo-connections-and-people.md), [memory journeys](../designs/004-memory-journey.md), [era-based enemies and bosses](../designs/005-era-enemy-catalog.md), [memory-age abilities](../designs/006-memory-age-and-abilities.md), and remaining player experience. Tool setup, asset production, and prototype implementation follow completion of this documentation phase.
+The bootstrap established the repository and documentation conventions. The current focus is a [small playable PoC and development loop](../designs/007-poc-development-loop.md), with [audio authoring/playback](../designs/008-audio-pipeline.md) alongside the existing visual pipeline. Document the contracts needed by this slice, then build a synthetic greybox while arranging the tools needed for candidate assets. Finishing all combat, collectibles, era content, or story design is no longer a prerequisite; those details are [backlogged](../BACKLOG.md).
 
-Tom proposed generating asset sketches with image generation, then having the agent create the assets in Blender through MCP. This is the PoC authoring direction for the shared avatar, enemy/boss catalog, and world assets in DESIGN-002. His subsequent scope ruling defers automatic character generation to a possible release beyond the family PoC; its workers, job simulation, and provider trials are not active requirements. No tooling has been connected or installed for this proposal.
+Tom confirmed image-generated sketches followed by Blender MCP models and his review before final assets are used. An Astra team works on code, visuals, audio, story/design, and verification. DESIGN-008 recommends an ElevenLabs SFX authoring trial with FFmpeg processing and prepared browser playback; the account/plan and setup remain untested. Automatic character generation remains conditional future BL-01. No tooling, candidate assets, or app code has been created by this documentation update.
 
-The recommended stack is a proposal to validate in a small technical prototype, not an implemented runtime. The memory-journey direction establishes why photos are collected and how time shapes progression. Decade-like/proportional levels and the era-based enemy/boss catalog are now being designed in DESIGN-004 and DESIGN-005. DESIGN-006 adds cumulative abilities unlocked by recovered age. Exact abilities/thresholds, world layout, encounter mechanics, camera, chapter completion rules, and the ending remain open.
+The recommended stack remains a proposal to validate. DESIGN-007 uses one test level, three synthetic memories, and one new movement ability as small implementation defaults, not final game quotas or age milestones. A fictional known birth date supplies the test age mapping without settling the real-person setup policy. The premise already motivates collection; a complete narrative and identity reveal are not needed for this probe. [PLAN-002](../../.agents/plans/002-foundation-prototype.md) separates the first coding milestone from hosted Authentik/save validation and reviewed-asset integration.
 
 ## Open and deferred decisions
 
@@ -160,3 +169,5 @@ The recommended stack is a proposal to validate in a small technical prototype, 
 | Q-07 | How should decades and proportional time determine levels? | Chapter design | Revised by Tom on 2026-09-10: decade-like or proportional levels with enemies tied to the represented era. Exact grouping and counts remain open; ten levels is not a requirement. See DESIGN-004. |
 | Q-08 | Whose gender or preferences determine enemy personalization? | Enemy design | Direction clarified by Tom on 2026-09-10: manual entry for the selected person at new-game setup, within a catalog offering variety across genders. Era is the primary eligibility rule. Input options, requiredness, preference weighting, and overrides remain for DESIGN-005/setup design. |
 | Q-09 | Which abilities unlock at each recovered age, and how is growth introduced? | Ability and level design | Age-zero baby start, chronological unlocks, and retaining earlier abilities are established by Tom. Exact abilities, thresholds, missing-period catch-up, and visible growth remain for DESIGN-006. |
+| Q-10 | Must all level and story details be settled before a playable PoC? | Current workflow | Resolved by Tom on 2026-09-10: defer fighting/extra-collectible details and focus on the core development loop. DESIGN-007 proposes a bounded slice; unfinished broader requirements do not gate it. |
+| Q-11 | Which audio tool should the Astra team use? | Audio authoring setup | DESIGN-008 recommends ElevenLabs for SFX/ambience, FFmpeg/ffprobe for exports, and native Web Audio playback. Researched proposal only; account, plan, budget, output quality, and setup are unverified. Music/narration remain later choices. |

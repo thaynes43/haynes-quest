@@ -67,7 +67,7 @@ Every save starts at zero even if the earliest available photo is older. The pro
 
 The enemy catalog needs encounter variants or solutions compatible with the current ability set. Era eligibility still applies first; a limited baby ability set is not a reason to use an enemy from the wrong period. The selected difficulty setting can tune an encounter, but every required route must remain solvable with the current actions. Boss frequency, victory conditions, and combat/evasion mechanics remain open.
 
-Asset authoring follows DESIGN-002 after requirements and tool setup. The later prototype should validate a small synthetic progression sequence and its animation/controller transitions before producing a full set of growth animations or enemies. A shared avatar does not imply one unchanging movement animation throughout the game, and age progression does not require a likeness model per person.
+Asset authoring follows DESIGN-002 once its specific tools are ready. [DESIGN-007](007-poc-development-loop.md) first validates a small synthetic progression and its controller transitions with placeholders; the chosen initial actions are enough to brief the PoC animation candidates. Full growth animations and enemies follow later, and final asset versions require Tom's review before integration. A shared avatar does not imply one unchanging movement animation throughout the game, and age progression does not require a likeness model per person.
 
 ## Validation scenarios
 
@@ -88,4 +88,4 @@ Asset authoring follows DESIGN-002 after requirements and tool setup. The later 
 | Q-03 | How are missing infancy and large time jumps introduced? | Short baby opening and guided catch-up are proposed. No fabricated memories or mandatory empty chapters. |
 | Q-04 | How does the generic avatar visibly grow? | Deferred to art/controller design; no likeness generation or fixed count of age models is selected. |
 
-This is documentation only. Tool setup, ability implementations, assets, and prototype execution remain deferred until technical and nontechnical requirements are documented.
+This design is documentation only. DESIGN-007 narrows the next milestone to a playable synthetic route with one later unlock and retained starting actions. Use a fictional known birth date for that fixture; it does not settle the real-person age-source policy. The full ability catalog and missing-period production policy do not gate this bounded coding milestone.

@@ -7,7 +7,7 @@
 
 ## Overview
 
-After requirements documentation and tool setup, the planned first technical prototype proves input, animated assets, configured people and timelines, authenticated save ownership, and resuming a memory journey. It uses synthetic photo connections and a prepared shared avatar to establish the data and asset contracts. The family PoC uses a generic mysterious avatar, independent of the selected person; automatic person-specific generation is [conditional future backlog BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
+The staged prototype in [DESIGN-007](007-poc-development-loop.md) first proves a small collection/ability route with synthetic placeholders, then validates authored assets, authenticated save ownership, and resuming a memory journey. Define the current slice contracts before code; final-asset tool setup is a dependency of authoring, not of the initial greybox. It uses synthetic photo connections and a prepared shared avatar to establish the data and asset contracts. The family PoC uses a generic mysterious avatar, independent of the selected person; automatic person-specific generation is [conditional future backlog BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
 
 ```mermaid
 flowchart TB

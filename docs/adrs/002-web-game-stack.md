@@ -34,7 +34,7 @@ The [Astra workflow review](../reference/astra-game-workflows.md) records creato
 
 ## Recommended outcome
 
-After technical and nontechnical requirements documentation and subsequent tool setup are complete, use the following stack for the foundation prototype. Accept or revise the browser/API/storage and authored-asset choices after their integration and device trial. Automatic character generation is conditional future work under [BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
+Use the following stack for the bounded foundation prototype under [DESIGN-007](../designs/007-poc-development-loop.md): define its contracts, then code with synthetic placeholders while arranging authoring tools for later milestones. Accept or revise the browser/API/storage and authored-asset choices after their integration and device trial. Automatic character generation is conditional future work under [BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
 
 | Layer | Recommendation | Reason |
 | --- | --- | --- |
@@ -46,7 +46,7 @@ After technical and nontechnical requirements documentation and subsequent tool 
 | Persistent state | PostgreSQL + Drizzle | Sessions, private photo-connection metadata, configured people, versioned journeys, memory progress, asset metadata, and saves. Credentials need separate encryption-key delivery. |
 | Validation | Zod at API/save boundaries; Vitest and Playwright for appropriate tests | Runtime data validation, save/ownership tests, and browser journeys. Actual hardware still determines graphics performance. |
 | Photo integration | Server-side adapter, Immich first | Resolve configured names and query photos within each connection's permissions; do not bake a household URL/key into the app. |
-| Developer asset authoring | Image-generated sketches + Blender through MCP | Preferred workflow for the PoC's shared avatar, world assets, rigs, and animations. Bridge/host setup follows requirements documentation. |
+| Developer asset authoring | Image-generated sketches + Blender through MCP | Preferred workflow for the PoC's shared avatar, world assets, rigs, and animations. Bridge/host setup precedes dependent authoring; Tom reviews final versions before gameplay promotion. |
 | Runtime art | Validated, versioned GLB/glTF 2.0 with a stable avatar-asset identity | The runtime loads the shared prepared avatar independently of the selected subject and journey. |
 
 Vite plus Hono is preferred over Next.js for this prototype because the current application is a browser game with a small set of account screens and no established server-rendering need. Next.js remains viable, but adopting it solely to reproduce the sibling stack would add a server/client rendering boundary without a current benefit. Hono supports [Node.js and static assets](https://hono.dev/docs/getting-started/nodejs) and [Better Auth integration](https://hono.dev/examples/better-auth); Vite documents [production builds](https://vite.dev/guide/build).
@@ -71,6 +71,6 @@ Start with one package and clear client, game, server, and shared modules. The f
 
 ## Acceptance evidence and references
 
-The [technical foundation design](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [connection/person contract](../designs/003-photo-connections-and-people.md), [memory-journey design](../designs/004-memory-journey.md), and [PLAN-002](../../.agents/plans/002-foundation-prototype.md) define the initial trial. It establishes the browser/API/storage foundation and prepared-asset workflow. No application has been built or deployed for this proposal.
+The [technical foundation design](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [connection/person contract](../designs/003-photo-connections-and-people.md), [memory-journey design](../designs/004-memory-journey.md), and [PLAN-002](../../.agents/plans/002-foundation-prototype.md) define the initial trial. It establishes the browser/API/storage foundation and prepared-asset workflow in stages. [DESIGN-007](../designs/007-poc-development-loop.md) defines the narrow loop and Astra handoffs; [DESIGN-008](../designs/008-audio-pipeline.md) proposes SFX authoring, FFmpeg processing, and native Web Audio playback. Full combat/story decisions do not gate the first code milestone. No application has been built or deployed for this proposal.
 
 The existing [repository comparison](../reference/repository-conventions.md) and [hosting context](../ops/001-hosting-context.md) provide the local precedents. External documentation was checked on 2026-09-10; dependency versions will be fixed during the prototype.
