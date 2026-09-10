@@ -3,12 +3,12 @@
 - **Status:** Proposed
 - **Date:** 2026-09-10
 - **Decision lead:** Astra; recommendation under Tom's instruction to establish the stack first
-- **Related requirements:** [PRD-001 R-01, R-03, R-08–R-19](../prds/001-project-brief.md)
+- **Related requirements:** [PRD-001 R-01, R-03, R-08–R-14, R-16–R-19](../prds/001-project-brief.md)
 - **Builds on:** [ADR-001: Authentik sign-in](001-authentik-sign-in.md)
 
 ## Context and problem statement
 
-The game needs animated 3D characters, touch and desktop controls, conventional sign-in and save-selection screens, persistent player saves, and configured photo connections. Users supply a photo-service URL, API key, and people; retrieved photos drive game content and an open-ended generated-character roster. It will run in the existing homelab Kubernetes environment and be accessed as a normal web app on iPad, iPhone, and PC. The owner explicitly excludes native iOS/TestFlight delivery. There is no current requirement for multiplayer or a visual level editor.
+The game needs animated 3D characters, touch and desktop controls, conventional sign-in and save-selection screens, persistent player saves, and configured photo connections. Users supply a photo-service URL, API key, and people; retrieved photos drive game content. The family PoC's data-configured roster uses developer-authored character assets. It will run in the existing homelab Kubernetes environment and be accessed as a normal web app on iPad, iPhone, and PC. The owner explicitly excludes native iOS/TestFlight delivery. There is no current requirement for multiplayer or a visual level editor.
 
 ## Decision drivers
 
@@ -30,21 +30,20 @@ These are architectural judgments, not benchmark results. Babylon's capabilities
 
 ## Recommended outcome
 
-After technical and nontechnical requirements documentation and subsequent tool setup are complete, use the following stack for the foundation prototype. Accept or revise the browser/API/storage choices after their integration and device trial; keep the generator and worker choices open until a real generation trial establishes their fit.
+After technical and nontechnical requirements documentation and subsequent tool setup are complete, use the following stack for the foundation prototype. Accept or revise the browser/API/storage and authored-asset choices after their integration and device trial. Automatic character generation is conditional future work under [BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
 
 | Layer | Recommendation | Reason |
 | --- | --- | --- |
 | Language and tooling | TypeScript, pnpm, Node.js | Familiar across the sibling repos; shared types for saves and game commands. Pin compatible supported versions and commit the lockfile when scaffolding. |
-| Menus and application UI | React + Vite | Login, photo-connection/person setup, preparation status, saves, character selection, menus, and touch controls. |
+| Menus and application UI | React + Vite | Login, photo-connection/person setup, character availability, saves, character selection, menus, and touch controls. |
 | 3D runtime | Babylon.js, loaded when entering the game | Engine-owned frame loop and scene, isolated from React rendering. Use WebGL2 as the initial baseline; WebGPU can be evaluated later. |
 | API and hosting | Hono on Node.js, serving the Vite production build and API on one origin | One application image and origin; Hono already has a sibling precedent in `libretto`. |
 | Sign-in | Better Auth with Authentik OIDC only | Carries forward Haynes Network's provider/session pattern using the game's own registration. |
-| Persistent state | PostgreSQL + Drizzle | Sessions, private photo-connection metadata, configured people, characters, saves, and durable generation-job metadata. Credentials need separate encryption-key delivery. |
+| Persistent state | PostgreSQL + Drizzle | Sessions, private photo-connection metadata, configured people, characters, asset assignments, and saves. Credentials need separate encryption-key delivery. |
 | Validation | Zod at API/save boundaries; Vitest and Playwright for appropriate tests | Runtime data validation, save/ownership tests, and browser journeys. Actual hardware still determines graphics performance. |
 | Photo integration | Server-side adapter, Immich first | Resolve configured names and query photos within each connection's permissions; do not bake a household URL/key into the app. |
-| Character preparation | Persisted jobs and a separate generation worker/provider boundary | Photo selection → references → model/rig → validation → ready asset. Concrete generators and job execution tooling require a capability trial. |
-| Developer asset authoring | Image-generated sketches + Blender through MCP | Preferred workflow for shared assets, character templates, rigs, and reusable processing recipes. Bridge/host setup follows requirements documentation and does not select the app's runtime generator. |
-| Runtime art | GLB/glTF 2.0, with Blender for prototyping and reproducible processing where appropriate | A shared asset contract independent of the person or generator. Manual Blender work cannot be required for every new roster entry. |
+| Developer asset authoring | Image-generated sketches + Blender through MCP | Preferred workflow for the PoC's characters, shared assets, rigs, and animations. Bridge/host setup follows requirements documentation. |
+| Runtime art | Validated, versioned GLB/glTF 2.0 assigned to stable character records | Developer authoring for each PoC character is supported. The runtime loads prepared assets through a shared contract. |
 
 Vite plus Hono is preferred over Next.js for this prototype because the current application is a browser game with a small set of account screens and no established server-rendering need. Next.js remains viable, but adopting it solely to reproduce the sibling stack would add a server/client rendering boundary without a current benefit. Hono supports [Node.js and static assets](https://hono.dev/docs/getting-started/nodejs) and [Better Auth integration](https://hono.dev/examples/better-auth); Vite documents [production builds](https://vite.dev/guide/build).
 
@@ -52,22 +51,22 @@ Better Auth supports [custom OIDC providers](https://better-auth.com/docs/plugin
 
 Postgres is chosen for operational consistency and server-owned saves, not expected player count. SQLite would suffice for a small single-instance game, but introduces a separate application-volume/backup pattern. Browser-only storage does not provide the proposed account-linked resume experience across devices.
 
-Start with one package and clear client, game, server, and shared modules. Automatic character creation requires background work isolated from API requests and gameplay. The foundation can simulate generation while proving persisted job states and ownership; actual generation needs a worker/provider capability trial. There is no current selection of Redis, a queue library, a generator vendor, or a multiplayer service. Start the movement probe with the smallest collision implementation that exercises the asset; evaluate Babylon's Havok integration only if the controller needs it. Do not store engine scene objects in saves.
+Start with one package and clear client, game, server, and shared modules. The family PoC needs no generation worker, queue, mock-job layer, or generation-provider trial. Blender MCP belongs to the developer's authoring workflow; browser play loads validated assets. A multiplayer service has not been selected. Start the movement probe with the smallest collision implementation that exercises the asset; evaluate Babylon's Havok integration only if the controller needs it. Do not store engine scene objects in saves.
 
 ## Consequences
 
 | ID | Consequence |
 | --- | --- |
 | C-01 | React and Babylon need an explicit lifecycle bridge and typed command interface; per-frame motion must stay out of React state. |
-| C-02 | The server owns identity and authorization for saves, connections, people, jobs, and generated assets. The setup form can submit a key; saved credentials are never returned to gameplay clients. Photo selection/delivery stays within the configured connection and people. |
+| C-02 | The server owns identity and authorization for saves, connections, people, characters, and private assets. The setup form can submit a key; saved credentials are never returned to gameplay clients. Photo selection/delivery stays within the configured connection and people. |
 | C-03 | The app needs a dedicated database/schema, credentials, migrations, backups, and restore verification through `haynes-ops`; it does not share Haynes Network tables. |
 | C-04 | Required engine loaders, optional physics WASM, and mesh/texture decoders must be packaged or served locally. Compressed assets must not silently depend on public CDN defaults. |
 | C-05 | Confirmed device families are iPad, iPhone, and PC, using browser-only homelab delivery. Validate touch in iPadOS/iOS Safari and keyboard/mouse in the selected PC browsers. Record exact hardware models and OS/browser versions during the trial; Android is not a required target. |
 | C-06 | A successful browser automation run is not evidence of mobile GPU performance. Engine and asset budgets remain provisional until actual-device measurements. |
-| C-07 | A provider's named-photo lookup does not generate 3D models. Automatic references, geometry, rigging, and validation are a separate capability to prove, with durable jobs, private assets, bounded compute, and recovery. A simulated generator cannot validate the complete feature. |
+| C-07 | Adding a photo-library person does not create a 3D model. The PoC assigns authored assets to configured characters. Automatic generation is deferred in BL-01 and does not gate acceptance of this foundation. |
 
 ## Acceptance evidence and references
 
-The [technical foundation design](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [connection/person contract](../designs/003-photo-connections-and-people.md), and [PLAN-002](../../.agents/plans/002-foundation-prototype.md) define the initial trial. It can establish the browser/API/storage foundation; the generator/worker choice remains open until real generation is validated. No application has been built or deployed for this proposal.
+The [technical foundation design](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [connection/person contract](../designs/003-photo-connections-and-people.md), and [PLAN-002](../../.agents/plans/002-foundation-prototype.md) define the initial trial. It establishes the browser/API/storage foundation and prepared-asset workflow. No application has been built or deployed for this proposal.
 
 The existing [repository comparison](../reference/repository-conventions.md) and [hosting context](../ops/001-hosting-context.md) provide the local precedents. External documentation was checked on 2026-09-10; dependency versions will be fixed during the prototype.
