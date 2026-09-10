@@ -2,7 +2,7 @@
 
 - **Project:** Haynes Quest
 - **Last updated:** 2026-09-10
-- **Stage:** Repository initialized; documentation bootstrap being published
+- **Stage:** Documentation bootstrap complete; awaiting the game-design brief
 - **Driving model:** GPT-6 Astra
 
 ## Established
@@ -11,13 +11,15 @@ Tom wants a novelty 3D browser game for his kids, with real Immich photos as col
 
 Reviewed `haynesnetwork`, `cigar-journal`, `libretto`, and their hosting patterns in `haynes-ops`. The seed follows their docs-first and PR workflows. It contains no application code or deployment.
 
+## Completed
+
+[Bootstrap PR #1](https://github.com/thaynes43/haynes-quest/pull/1) was squash-merged to `main` at `3b1ae9372cffd9162544e6b0f820cbf52019875b`. The repository contains the contributor guide, brief, vocabulary, templates, and hosting references. Local link and whitespace checks passed, and a separate Astra review found no blockers. No application build or deployment was included.
+
+The evidence is in [completed PLAN-001](plans/completed/001-repository-bootstrap.md). The canonical clone is `/home/dev/repos/haynes-quest`; start future work in a fresh task worktree from `origin/main`.
+
 ## Next step
 
-Finish [PLAN-001](plans/001-repository-bootstrap.md) by merging the reviewed documentation PR, verifying the remote result, and recording completion. Tom initialized [thaynes43/haynes-quest](https://github.com/thaynes43/haynes-quest) with a README on `main`; the pod's dev-bot can now access it.
-
-The canonical clone is `/home/dev/repos/haynes-quest`; the bootstrap task worktree is `/home/dev/work/haynes-quest-bootstrap` on `agent/repository-bootstrap`. The project-name/slug placeholders have been replaced. A separate Astra review found no content blocker. When moving PLAN-001 to `completed/`, update this file and the docs index links together.
-
-After that, the next owner brief supplies the gameplay details. Engine, controls, devices, persistence, access model, and eligible Immich photos remain undecided.
+Capture Tom's detailed game brief in PRD-001, then develop the gameplay and architecture documents needed for the first playable slice. Engine, controls, devices, persistence, access model, and eligible Immich photos remain undecided. Do not infer those choices from sibling application stacks.
 
 ## Resume references
 
