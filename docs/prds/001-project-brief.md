@@ -9,7 +9,7 @@
 
 A novelty 3D web game for Tom's kids. Real photos from the household's Immich instance are the things players collect. The project will have its own GitHub repository and run on the local cluster through `haynes-ops`.
 
-Tom selected **Haynes Quest**, repository slug **`haynes-quest`**, on 2026-09-10. The current step is publishing the documentation bootstrap. Tom will provide the game details later.
+Tom selected **Haynes Quest**, repository slug **`haynes-quest`**, on 2026-09-10. The repository and documentation scaffold are established. The next step is Tom's game-design brief.
 
 ## Confirmed requirements
 
@@ -24,7 +24,7 @@ Tom selected **Haynes Quest**, repository slug **`haynes-quest`**, on 2026-09-10
 
 ## Current scope
 
-Review sibling repositories, select the project name, and establish the contributor guide, document templates, project brief, vocabulary, handoff, and bootstrap plan.
+The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. The next product phase will use Tom's detailed brief to define the game.
 
 Detailed acceptance criteria for the playable game will be added after the next owner brief. This document does not prescribe a game engine, viewpoint, controls, progression system, multiplayer mode, database, or sign-in flow.
 
