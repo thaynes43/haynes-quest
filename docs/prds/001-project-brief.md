@@ -3,11 +3,11 @@
 - **Status:** Draft
 - **Owner:** Tom Haynes
 - **Last updated:** 2026-09-10
-- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, browser-device, asset-authoring, family-PoC scope, memory-journey, level-pacing, and enemy-personalization brief on 2026-09-10
+- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, browser-device, asset-authoring, family-PoC scope, memory-journey, level-pacing, and era-based enemy/boss brief on 2026-09-10
 
 ## Summary
 
-A novelty 3D web game for the family's proof of concept, with Roblox as the style reference. The player controls a generic, mysterious character who begins without memories. Starting a game selects a person from a configured self-hosted photo library; their photos become memories collected through a chronological journey across the years available for that person. Immich is the first integration. The shared avatar and world assets are authored through image generation and Blender MCP. Players use touch controls or a keyboard and mouse, sign in through Authentik as on Haynes Network, and play a normal browser app hosted through `haynes-ops`.
+A novelty 3D web game for the family's proof of concept, with Roblox as the style reference. The player controls a generic, mysterious character who begins without memories. Starting a game selects a person from a configured self-hosted photo library; their photos become memories collected through a chronological journey across the years available for that person. Immich is the first integration. Enemies and bosses draw from an authored catalog inspired by the pop culture of the years represented in each journey. The shared avatar, enemies, bosses, and world assets are authored through image generation and Blender MCP. Players use touch controls or a keyboard and mouse, sign in through Authentik as on Haynes Network, and play a normal browser app hosted through `haynes-ops`.
 
 Tom selected **Haynes Quest**, repository slug **`haynes-quest`**, on 2026-09-10. The repository and documentation scaffold are established, and the game brief is being developed with Tom.
 
@@ -15,7 +15,7 @@ After signing in, players choose an existing saved game or start a new person's 
 
 ## Confirmed requirements
 
-The established platform constraints remain in force. R-12, R-14, and R-20–R-26 express Tom's narrative and gameplay direction within this draft. Annual versus proportional levels and the source of gender-based enemy personalization are under discussion; the recommendations in DESIGN-004 are not confirmed owner decisions.
+The established platform constraints remain in force. R-12, R-14, and R-20–R-29 express Tom's narrative and gameplay direction within this draft. Decade-like/proportional levels, a static era-based enemy/boss catalog, and manual gender entry at setup are the latest direction. Exact grouping, personalization weights, and encounter mechanics remain proposed in DESIGN-004 and DESIGN-005.
 
 | ID | Requirement | Priority |
 | --- | --- | --- |
@@ -43,8 +43,11 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-2
 | R-22 | Distinguish photo-date coverage from the person's age. Do not treat the earliest photo as birth or infer age from appearance. Use known birth information for age labels; see the proposed optional-birth-date policy in DESIGN-004. | Must; setup policy proposed |
 | R-23 | Collecting photos recovers memories and advances the selected journey. Preserve collected-memory and chapter progress across save/resume and avatar asset replacement. | Must |
 | R-24 | Handle missing early photos, sparse years, date problems, and later library changes without inventing memories, silently resetting progress, or requiring empty chapters. | Must |
-| R-25 | Evaluate one-year levels and levels covering a proportion of the available history so the journey works for people with different lengths of photo coverage. DESIGN-004 proposes up to ten chapters adjusted for usable photos; the count and grouping rule are not settled. | Current design decision |
-| R-26 | Include different enemy sets with tailored personalization. Tom requested gender-tailored enemies; whose gender or preferences select them is awaiting clarification. DESIGN-004 proposes selectable themes with overridable presets and difficulty handled separately. | Must; selection policy open |
+| R-25 | Group levels around decades or proportions of the available history, tailoring pacing to known age and photo coverage. Exact boundaries and count remain for design; a short history may have several levels within one era and no fixed ten-level rule is required. | Must; grouping details open |
+| R-26 | Support explicitly entering the selected subject's gender at new-game setup to inform personalization within the eligible era catalog. Curate variety across genders; input options, requiredness, and preference rules remain for design. Do not infer gender from photos or names; difficulty is separate. | Must; setup details open |
+| R-27 | Enemies and bosses reflect pop-culture influences of the actual calendar periods represented by the photos, including television, animation, games, and relevant YouTube/internet culture. Later-created influences must not appear before their supported period. | Must |
+| R-28 | Use a finite, authored catalog of prepared enemies and bosses with historical eligibility metadata. Dynamically select encounters from it for each journey; runtime trend retrieval and automatic enemy generation are not required. | Must |
+| R-29 | Give enemies and bosses original designs informed by era influences, or use appropriately licensed assets. Record reference/provenance information; loose inspiration, renaming, or recoloring alone is not treated as legal clearance. See DESIGN-005 and the asset pipeline. | Must |
 
 ## Saved games and memory journeys
 
@@ -55,9 +58,10 @@ flowchart LR
     C --> D[Resume its person, chapter, and memories]
     B --> E[New game]
     E --> F[Choose whose memories to explore]
-    F --> G[Review available photo years]
+    F --> J[Enter subject settings]
+    J --> G[Review available photo years and eras]
     G --> H[Begin with the mysterious avatar]
-    H --> I[Collect memories through chronological chapters]
+    H --> I[Collect memories and face era-based enemies and bosses]
 ```
 
 The signed-in player, the person whose memories are explored, and the avatar are separate concepts. Adding a resolved person with usable photos makes another journey possible without authoring a new character model. The player chooses the journey's subject, while the same generic avatar can be used across subjects. Whether the story ultimately reveals that the avatar is the selected person remains undecided.
@@ -66,9 +70,9 @@ Names are editable labels, not permanent save keys. Resolve them to the correct 
 
 The photo range determines which years are represented, not the person's actual age or a complete biography. Start with the earliest eligible dated memories; if infancy is absent, do not label the earliest available adult photos as babyhood. End at the latest represented period. [DESIGN-004](../designs/004-memory-journey.md) proposes optional birth-date setup for age-based stages, with calendar-year chapters when it is unknown, and records the clarification asked of Tom. Exact chapter boundaries, required collectibles, and the world and challenges within each chapter remain for gameplay design.
 
-Tom is considering one year per level or roughly ten percent of the person's history per level. The current recommendation is up to ten chronological chapters across available photo coverage, combining sparse periods and bounding required memories in dense ones. This aims for a manageable adventure across short and long histories. It is a proposal, not a promise of ten equal levels or complete lifetime coverage.
+Tom's revised direction is decade-like or proportional chapters across available photo coverage, with counts and boundaries adapted to the history. Short histories can have several levels within an era; long histories span successive eras. Combine sparse periods and bound required memories in dense ones. Exact grouping rules remain open; ten levels is not a requirement.
 
-Enemies will have different sets. The source of gender-based personalization remains an open question; a player-selectable enemy theme with overridable presets is proposed in DESIGN-004. Names and photos are not a source for inferring gender. Enemy appearance, behavior, and difficulty need gameplay design; no particular gender-to-enemy mapping, combat system, or enemy roster has been selected.
+Enemies and bosses come from a static, authored catalog of original characters influenced by period-relevant pop culture. The photo dates select the eligible era pool, and explicitly entered subject gender/settings can inform personalization within it. The catalog offers variety across genders. A childhood in the 1990s draws different influences from a childhood in a later decade; later photos advance the cast toward later eras. [DESIGN-005](../designs/005-era-enemy-catalog.md) defines the proposed catalog contract. Actual references, original characters, preference weights, and combat/boss mechanics remain to be designed.
 
 ## Input and sign-in direction
 
@@ -104,7 +108,11 @@ These are requirements for future implementation, not completed checks. The play
 | AC-17 | Libraries with missing infancy, sparse decades, a single represented year, or no usable dates produce supported chapters or an actionable setup state, with no invented or mandatory empty life stage. | R-21, R-24 |
 | AC-18 | New uploads, corrected dates, and removed photos cannot silently switch a save's subject, reorder completed chapters, erase collection credit, or award the same memory twice. | R-23, R-24 |
 | AC-19 | The chosen chapter policy produces a preview consistent with the saved journey for short, long, single-year, and sparse libraries. It avoids mandatory empty chapters and unbounded collection targets; exact expected counts follow the eventual grouping decision. | R-21, R-24, R-25 |
-| AC-20 | Under the chosen personalization policy, different enemy sets can be selected and retained across resume without changing subject or memory progress. Gender-based presets, if used, use explicitly supplied information; missing information has a supported path. Theme selection does not silently change difficulty. | R-26 |
+| AC-20 | Setup supports explicit subject gender/settings, with a supported path for unknown information under the eventual input policy. Personalization selects within the era-eligible pool, survives resume, and does not alter subject identity, memory progress, or difficulty. Gender is not inferred from names or images. | R-26 |
+| AC-21 | Synthetic subjects at the same age in different calendar periods receive era-appropriate enemy and boss pools. Test mid-decade introductions, cross-era chapters, old photos uploaded later, and journeys ending before the present day. | R-25, R-27 |
+| AC-22 | Runtime encounters use prepared catalog entries and assets without live trend feeds, reference-video downloads, or generation jobs. Missing period coverage uses the designed neutral fallback or an actionable availability state without skipping memories or selecting later-era enemies. | R-27, R-28 |
+| AC-23 | Catalog updates and profile edits do not reroll saved enemy/boss selections or reset encounter/memory progress. Unavailable assets have a compatible replacement or recoverable state that preserves progress. | R-23, R-28 |
+| AC-24 | Enemy/boss entries have historical eligibility evidence, original design or license provenance, and validated asset versions before use. Passing these authoring checks is not described as a legal guarantee. | R-27–R-29 |
 
 ## Conditional future acceptance
 
@@ -116,11 +124,11 @@ These criteria are retained for the [backlog](../BACKLOG.md), not for PoC accept
 
 ## Current scope
 
-The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. Continue documenting the technical and nontechnical requirements, including the [technology stack](../adrs/002-web-game-stack.md), [technical foundation](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [photo-connection/person contract](../designs/003-photo-connections-and-people.md), [memory journeys](../designs/004-memory-journey.md), and remaining player experience. Tool setup, asset production, and prototype implementation follow completion of this documentation phase.
+The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. Continue documenting the technical and nontechnical requirements, including the [technology stack](../adrs/002-web-game-stack.md), [technical foundation](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), [photo-connection/person contract](../designs/003-photo-connections-and-people.md), [memory journeys](../designs/004-memory-journey.md), [era-based enemies and bosses](../designs/005-era-enemy-catalog.md), and remaining player experience. Tool setup, asset production, and prototype implementation follow completion of this documentation phase.
 
-Tom proposed generating asset sketches with image generation, then having the agent create the assets in Blender through MCP. This is the PoC authoring direction for the shared avatar and world assets in DESIGN-002. His subsequent scope ruling defers automatic character generation to a possible release beyond the family PoC; its workers, job simulation, and provider trials are not active requirements. No tooling has been connected or installed for this proposal.
+Tom proposed generating asset sketches with image generation, then having the agent create the assets in Blender through MCP. This is the PoC authoring direction for the shared avatar, enemy/boss catalog, and world assets in DESIGN-002. His subsequent scope ruling defers automatic character generation to a possible release beyond the family PoC; its workers, job simulation, and provider trials are not active requirements. No tooling has been connected or installed for this proposal.
 
-The recommended stack is a proposal to validate in a small technical prototype, not an implemented runtime. The memory-journey direction establishes why photos are collected and how time shapes progression. Annual/proportional levels and tailored enemy sets are now being designed in DESIGN-004. World layout, enemy interactions, camera, chapter completion rules, and the ending remain open.
+The recommended stack is a proposal to validate in a small technical prototype, not an implemented runtime. The memory-journey direction establishes why photos are collected and how time shapes progression. Decade-like/proportional levels and the era-based enemy/boss catalog are now being designed in DESIGN-004 and DESIGN-005. World layout, encounter mechanics, camera, chapter completion rules, and the ending remain open.
 
 ## Open and deferred decisions
 
@@ -132,5 +140,5 @@ The recommended stack is a proposal to validate in a small technical prototype, 
 | Q-04 | Engine, app structure, persistence, and access model | Architecture phase | Authentik-only login is resolved by Tom. Saved games are now required. ADR-002 proposes the engine, application structure, and storage; admission rules still need design. |
 | Q-05 | Characters and new/resume game flow | Foundation design | Revised by Tom on 2026-09-10: generic mysterious avatar with no memory; select whose chronological photo journey to explore. Per-person playable models are no longer part of the PoC. See DESIGN-004. |
 | Q-06 | How is the person's age established when photos do not begin at birth? | Timeline setup design | Asked Tom on 2026-09-10: optional birth date with calendar-year fallback versus required birth date. Optional is the documented proposal pending his response; photo range alone is not age evidence. |
-| Q-07 | Should levels cover individual years or a proportion of the available history? | Chapter design | Tom proposed both options. DESIGN-004 compares them and recommends up to ten chapters adjusted for usable photos. No fixed chapter count or grouping policy has been accepted. |
-| Q-08 | Whose gender or preferences determine enemy personalization? | Enemy design | Asked Tom on 2026-09-10: player-selected theme, subject gender, or player gender. Selectable themes with overridable presets are proposed pending his answer. |
+| Q-07 | How should decades and proportional time determine levels? | Chapter design | Revised by Tom on 2026-09-10: decade-like or proportional levels with enemies tied to the represented era. Exact grouping and counts remain open; ten levels is not a requirement. See DESIGN-004. |
+| Q-08 | Whose gender or preferences determine enemy personalization? | Enemy design | Direction clarified by Tom on 2026-09-10: manual entry for the selected person at new-game setup, within a catalog offering variety across genders. Era is the primary eligibility rule. Input options, requiredness, preference weighting, and overrides remain for DESIGN-005/setup design. |

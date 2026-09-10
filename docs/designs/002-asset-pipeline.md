@@ -2,7 +2,7 @@
 
 - **Status:** Proposed
 - **Last updated:** 2026-09-10
-- **Satisfies:** [PRD-001 R-03, R-07–R-09, R-12, R-14, R-16–R-18, R-20–R-24](../prds/001-project-brief.md)
+- **Satisfies:** [PRD-001 R-03, R-07–R-09, R-12, R-14, R-16–R-18, R-20–R-29](../prds/001-project-brief.md)
 - **Governed by:** [Proposed ADR-002](../adrs/002-web-game-stack.md)
 
 ## Overview
@@ -13,7 +13,7 @@ The family PoC uses a shared generic, mysterious avatar: create concept referenc
 
 ## Preferred authoring workflow
 
-Tom proposed **image generation for asset sketches, followed by Blender controlled through MCP** on 2026-09-10. This is the recommended workflow for the game's shared avatar and world art. The specific bridge and host remain to be selected and tested after requirements documentation is complete.
+Tom proposed **image generation for asset sketches, followed by Blender controlled through MCP** on 2026-09-10. This is the recommended workflow for the game's shared avatar, enemy/boss catalog, and world art. The specific bridge and host remain to be selected and tested after requirements documentation is complete.
 
 The [Astra community-workflow review](../reference/astra-game-workflows.md) found a close firsthand precedent in AstraBurn: imagegen mocks, matching Blender models, then Three.js integration. Chess Cubed separately reports Blender MCP with Babylon. These support evaluating the workflow without making a particular bridge or engine mandatory for asset authoring; they do not prove our export quality or device performance.
 
@@ -30,12 +30,20 @@ Use the authoring workflow to build the PoC's avatar, materials, rig, and animat
 
 Capture reusable Blender scripts, meshes, and rigs when useful. Keep subject identity and journey progress independent of avatar versions. The deployed game loads prepared assets and does not need a connection to the authoring session. Personalized avatars and automatic generation would require a separate product decision under BL-01.
 
+## Era-inspired enemy and boss assets
+
+[DESIGN-005](005-era-enemy-catalog.md) adds a finite, authored catalog of enemies and bosses whose influences fit the years represented by the photo journey. Record a reference's historical eligibility and the broad period qualities the asset should evoke, then create an original concept, model, materials, and animation set through the same workflow. Television, animation, games, YouTube, and internet culture are curation sources; they are not runtime media downloads or model-generation inputs during play.
+
+The concept brief must establish the game's own names, silhouettes, costumes, personalities, effects, and sound. Changing only the name or colors of a recognizable franchise character does not meet this authoring direction. Record original design provenance or appropriate licenses for reused assets. The copyright references and limits in DESIGN-005 explain why loose inspiration alone is not legal clearance; no finished enemy design is being cleared by this document.
+
+Reuse rigs and behaviors where useful, while documenting each entry's ordinary-enemy/boss role, animation needs, and measured runtime cost. Validate active encounters on the target devices rather than assuming the avatar's provisional budget guarantees performance with many enemies. The catalog can expand through authored releases, with stable IDs and saved-encounter compatibility under DESIGN-005. No catalog entries or enemy assets are being created in the current documentation phase.
+
 ## Production workflow
 
 | ID | Stage | Output and review |
 | --- | --- | --- |
 | D-01 | Synthetic prototype | Use fictional people/photos and one shared placeholder avatar. Exercise journeys for different subjects, including additions and name changes, without editing application code or authoring another model. |
-| D-02 | Concepts to visual references | Generate consistent stylized references for the mysterious avatar and world assets. Agree silhouette, pose, clothing, and materials before final modeling. The avatar design is an artistic choice and does not require resemblance to a configured person. |
+| D-02 | Concepts to visual references | Generate consistent stylized references for the mysterious avatar, original enemies/bosses, and world assets. Agree silhouette, pose, clothing, and materials before final modeling. The avatar design is an artistic choice and does not require resemblance to a configured person. |
 | D-03 | References to geometry | Build and adjust geometry and materials in Blender through MCP. Preserve the chosen styling and produce geometry suitable for animation. Reuse base meshes and construction scripts where useful. |
 | D-04 | Rigging and animation | Use compatible skeleton naming and a consistent clip contract. The prototype exercises idle and locomotion; later gameplay determines the final actions. Check deformation and foot contact for the avatar's proportions. |
 | D-05 | Export | Produce GLB/glTF 2.0 with tested materials, a documented orientation, normalized scale, skeleton, and named clips. Bake/export supported animation channels and inspect them in the engine. |
@@ -54,7 +62,7 @@ Use [glTF Transform](https://gltf-transform.dev/cli) for inspection and selected
 
 ## Runtime contract and trial budgets
 
-The avatar manifest maps its asset identity to a versioned GLB, required clip names, and loading metadata. Person and journey identities belong to the photo/save contracts, independently of this manifest. Locomotion/controller state is separate from the visible mesh. Document export-to-engine orientation with a fixture; test animation retargeting rather than assuming identically named bones are sufficient.
+The avatar manifest maps its asset identity to a versioned GLB, required clip names, and loading metadata. Enemy/boss catalog entries use the same versioned-asset pattern with their own identities and clip requirements. Person and journey identities belong to the photo/save contracts, independently of this manifest. Locomotion/controller state is separate from the visible mesh. Document export-to-engine orientation with a fixture; test animation retargeting rather than assuming identically named bones are sufficient.
 
 Start the prototype with provisional ceilings of **15,000 triangles and two materials per character, with textures no larger than 1024 pixels in either dimension**. These are working budgets, not owner requirements or performance guarantees. Measure download size, draw calls, animation cost, and memory before finalizing them. Load the shared avatar when needed; do not eagerly load every chapter asset or photo into memory.
 
