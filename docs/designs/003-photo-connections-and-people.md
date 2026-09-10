@@ -15,7 +15,7 @@ Connections, configured people, journey timelines, memories, and personal photos
 
 1. Sign in, then configure the photo-service URL and API key. The server validates connectivity and the required read capabilities; the UI shows connection status without returning the saved key.
 2. Enter people's names. Resolve each against the connected library's people records. When a name is ambiguous, present the available matches for selection. A missing name stays unresolved with guidance to check the library's people naming/indexing.
-3. Retrieve eligible photos and validate the dates needed for a chronological journey. Preview usable coverage and the proposed chapters. DESIGN-004 records the proposed optional birth date and calendar-year fallback; photo coverage alone does not establish age.
+3. Retrieve eligible photos and validate the dates needed for a chronological journey. Preview usable coverage and the proposed chapters. [DESIGN-006](006-memory-age-and-abilities.md) records the explicit age source needed for ability progression and the pending birth-date versus age-anchor choice; photo coverage alone does not establish age.
 4. Offer resolved people with usable memories for a new game. Confirming a subject creates a journey using the shared avatar made through the [developer authoring workflow](002-asset-pipeline.md). Missing photo setup has a recoverable state.
 5. Keep existing saves visible through connection or asset failures. A person rename or avatar replacement preserves the selected subject and collected memories. Later library changes follow an explicit timeline-update policy rather than silently rebuilding a saved journey.
 
