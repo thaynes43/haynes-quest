@@ -5,13 +5,13 @@ These items do not gate the family proof of concept. Revisit them only when thei
 ## BL-01: Automatic playable-character generation
 
 - **Status:** Deferred by Tom on 2026-09-10
-- **Revisit if:** Tom chooses to release the game beyond the family PoC
+- **Revisit if:** Tom chooses a broader release and separately decides to reintroduce person-specific playable avatars
 - **Requirement:** [PRD-001 R-15](prds/001-project-brief.md)
 - **Future acceptance criterion:** PRD-001 AC-10
 
-Let the application retrieve a configured person's photos and produce a usable playable-character model without developer authoring for each person. This could extend the configurable photo/person integration already planned for the PoC.
+Let the application retrieve a configured person's photos and produce a usable playable-character model without developer authoring for each person. This would reuse the photo/person integration but also change the current generic-avatar premise; a broader release alone does not require it.
 
-The family PoC instead uses characters authored with image-generated references and Blender MCP, then assigned to stable character records. Adding a person to photo configuration does not automatically produce a model. No generation worker, queue, job-state simulator, provider comparison, or real-generation trial is required for the PoC.
+The family PoC uses a shared generic mysterious avatar authored with image-generated concepts and Blender MCP. Configured people supply chronological photo journeys. Adding an eligible person needs no new model. No generation worker, queue, job-state simulator, provider comparison, or real-generation trial is required for the PoC.
 
 If revisited, evaluate the complete references → geometry → rig/animation → validated GLB workflow. Establish quality, latency, compute/cost, private-data handling, and a suitable generation service before choosing infrastructure. Interactive authoring tools alone do not establish this runtime capability.
 
