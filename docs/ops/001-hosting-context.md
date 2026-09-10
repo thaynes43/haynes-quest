@@ -22,6 +22,8 @@ The review did not read family photos or personal asset metadata. This bootstrap
 
 ## Decisions for the implementation stage
 
-Host name, namespace, runtime image, app health endpoint, resource budget, and any persistence or access-control requirements will be recorded with the deployment design. Local hosting does not imply adding a public ingress or a new Authentik application.
+Host name, namespace, runtime image, app health endpoint, resource budget, and persistence will be recorded with the deployment design. Local hosting does not imply adding a public ingress.
+
+[ADR-001](../adrs/001-authentik-sign-in.md) establishes Authentik OIDC as the sole player sign-in method, following Haynes Network. Plan a dedicated game application/client in the existing Authentik service. Its registration values, callbacks, secret delivery, and allowed-player policy must be designed before provisioning. Authentication does not change the planned local hosting boundary. No game authentication resources exist yet.
 
 Deployment completion will require a published image, a merged `haynes-ops` change, a successful Flux rollout, and the agreed live browser checks.

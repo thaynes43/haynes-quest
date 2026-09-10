@@ -13,6 +13,8 @@
 
 The existing application stacks are references, not decisions for a 3D game. This scaffold does not inherit Next.js, Postgres, tRPC, a monorepo, an authentication system, or a game engine merely because a sibling uses it.
 
+Tom subsequently selected Haynes Network's Authentik sign-in approach explicitly. [ADR-001](../adrs/001-authentik-sign-in.md) records that decision and the reviewed implementation sources; the remaining stack choices are still open.
+
 `haynesnetwork` also records an owner preference for each app to have its own visual identity. The game should share dependable engineering conventions and have a playful identity of its own.
 
 ## Source snapshots
