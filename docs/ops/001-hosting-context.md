@@ -26,4 +26,6 @@ Host name, namespace, runtime image, app health endpoint, resource budget, and p
 
 [ADR-001](../adrs/001-authentik-sign-in.md) establishes Authentik OIDC as the sole player sign-in method, following Haynes Network. Plan a dedicated game application/client in the existing Authentik service. Its registration values, callbacks, secret delivery, and allowed-player policy must be designed before provisioning. Authentication does not change the planned local hosting boundary. No game authentication resources exist yet.
 
+[ADR-002](../adrs/002-web-game-stack.md) proposes one Node/Hono application image serving the browser build and API, plus a dedicated Postgres database for sessions and saves. Deployment design must add migrations, backup/restore evidence, and private runtime-asset storage. [DESIGN-002](../designs/002-asset-pipeline.md) proposes a separate reproducible asset builder for Blender; it is production tooling, not part of the gameplay server. These resources have not been created.
+
 Deployment completion will require a published image, a merged `haynes-ops` change, a successful Flux rollout, and the agreed live browser checks.
