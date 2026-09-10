@@ -3,15 +3,15 @@
 - **Status:** Draft
 - **Owner:** Tom Haynes
 - **Last updated:** 2026-09-10
-- **Source:** Owner's project kickoff, controls/login brief, and characters/save-flow brief on 2026-09-10
+- **Source:** Owner's project kickoff and subsequent controls, saves, and configurable-people brief on 2026-09-10
 
 ## Summary
 
-A novelty 3D web game for Tom's kids, with Roblox as the style reference. Real photos from the household's Immich instance are the things players collect. Players use on-screen controls on a touchscreen or a keyboard and mouse at a computer, and sign in through Authentik using the same approach as Haynes Network. The project has its own GitHub repository and will run on the local cluster through `haynes-ops`.
+A novelty 3D web game, initially for Tom's kids, with Roblox as the style reference. Its distinguishing feature is personalization from a self-hosted photo service: users configure a service URL, API key, and people's names. Those people define the playable characters, and their photos supply character generation and content used in the game. Immich is the first integration. Players use on-screen controls on a touchscreen or a keyboard and mouse at a computer, and sign in through Authentik using the same approach as Haynes Network. The project has its own GitHub repository and will run on the local cluster through `haynes-ops`.
 
 Tom selected **Haynes Quest**, repository slug **`haynes-quest`**, on 2026-09-10. The repository and documentation scaffold are established, and the game brief is being developed with Tom.
 
-After signing in, players choose an existing saved game or start a new one. Each new game begins with a choice between the two playable characters, **Jackson** and **Penelope**. Character likenesses will be developed later from family-provided photos, starting with generated reference images. The current priority is the technology stack and asset workflow, before further gameplay design.
+After signing in, players choose an existing saved game or start a new one using a character from their configured people. The roster is open-ended, with no built-in personal names or fixed two-character limit. The application will derive character models from the retrieved photos. The current priority remains the technology stack and asset workflow; generation implementation and detailed gameplay follow that foundation.
 
 ## Confirmed requirements
 
@@ -19,7 +19,7 @@ After signing in, players choose an existing saved game or start a new one. Each
 | --- | --- | --- |
 | R-01 | The game runs in a web browser and uses 3D. | Must |
 | R-02 | The intended players are Tom's kids; this is a novelty family game. | Must |
-| R-03 | Players collect real photos sourced from Immich. | Must |
+| R-03 | Players collect real photos from the configured self-hosted photo service, with Immich as the first integration. Configured people also drive photo queries for other game uses as those are designed. | Must |
 | R-04 | The project gets its own GitHub repository, with local hosting managed through `haynes-ops`. | Must |
 | R-05 | Repository and documentation conventions stay consistent with Tom's existing projects. | Must |
 | R-06 | GPT-6 Astra leads the project end to end. | Must |
@@ -28,11 +28,13 @@ After signing in, players choose an existing saved game or start a new one. Each
 | R-09 | Support play with a keyboard and mouse at a computer. | Must |
 | R-10 | Consider gamepad support after the initial playable scope; it is optional future work. | Later option |
 | R-11 | Require players to sign in through Authentik, following Haynes Network's sign-in approach. Authentik is the only login method; do not add game-local passwords or separate login providers. | Must |
-| R-12 | Provide exactly two playable characters: Jackson and Penelope. | Must |
+| R-12 | Build an open-ended playable-character roster from the people configured by the user, with no hard-coded personal names or fixed two-character roster. | Must |
 | R-13 | After login, let the player select one of their saved games or start a new game. | Must |
-| R-14 | Starting a new game includes choosing Jackson or Penelope. The saved game retains that character choice when resumed. | Must |
-| R-15 | Develop the character models later from family-provided photos, generating reference images before modeling. | Must; later production stage |
+| R-14 | Starting a new game includes choosing a character derived from the configured people. The saved game retains that character's identity when resumed. | Must |
+| R-15 | The application retrieves photos of each configured person and generates that person's playable character model from them. Generated visual references precede modeling; implement the generation workflow after its technical design. | Must |
 | R-16 | Establish the technology stack and asset-production workflow before expanding the detailed game design. | Current priority |
+| R-17 | Let users configure the photo-service URL, API key, and people's names used to populate the game. | Must |
+| R-18 | Resolve configured names to people in the connected photo service and retrieve their photos for character generation and gameplay content. | Must |
 
 ## Saved games and characters
 
@@ -42,11 +44,13 @@ flowchart LR
     B --> C[Choose a saved game]
     C --> D[Resume its character and progress]
     B --> E[New game]
-    E --> F[Choose Jackson or Penelope]
+    E --> F[Choose from configured characters]
     F --> G[Begin a new saved game]
 ```
 
-The signed-in player and the selected character are separate concepts. A player chooses a character for a new game; choosing Jackson or Penelope is not an account login. The number of save slots, save naming, save timing, and any later character-switching behavior remain for design.
+The signed-in player, the configured person in the photo library, and the playable character are separate concepts. New game uses the configured roster; if no character is ready, guide the user through connection/person setup and character preparation. Existing saves remain listed while preparation runs. Character selection is not an account login. The number of save slots, save naming, save timing, and any later character-switching behavior remain for design.
+
+Names are user-facing configuration, not permanent save keys. The proposed integration resolves them to source people and assigns stable game character IDs. It must handle missing or duplicate names without silently selecting an unrelated person. A name change or new generated model must not turn an existing save into a different character. See [DESIGN-003](../designs/003-photo-connections-and-people.md).
 
 ## Input and sign-in direction
 
@@ -66,14 +70,18 @@ These are requirements for future implementation, not completed checks. The play
 | AC-02 | On an agreed desktop browser, a player can complete the same loop using a keyboard and mouse without a touchscreen. | R-03, R-09 |
 | AC-03 | A signed-out visitor must sign in through Authentik before entering gameplay or accessing protected collectible photos. The game offers no alternative login method. | R-11 |
 | AC-04 | A player admitted by the game's eventual access policy can sign in with their existing Authentik identity without setting up a game-local password. | R-11 |
-| AC-05 | After login, the player can see their saved games and a New game action. With no saves, they can start a new game. | R-13 |
-| AC-06 | New game offers exactly Jackson and Penelope, and starting it records the chosen character in a distinct save. | R-12, R-14 |
+| AC-05 | After login, the player can see their saved games and a New game action. With no saves, they can start through new-game setup, including character preparation if needed. | R-13, R-17 |
+| AC-06 | New game uses the player's configured roster. Starting it with a ready character records that character in a distinct save. Adding another configured person requires no code change. | R-12, R-14 |
 | AC-07 | Resuming a save restores its character and recorded progress without creating a new save or requiring character selection again. | R-13, R-14 |
 | AC-08 | One signed-in player cannot list, read, or modify another player's saves by changing an identifier. | R-11, R-13 |
+| AC-09 | A user can configure their service URL, API key, and people. Missing or ambiguous people and invalid connections produce actionable setup states instead of unrelated photo results. | R-17, R-18 |
+| AC-10 | The application retrieves a configured person's eligible photos and produces a validated, usable character model. Progress and failures are visible, and a retry does not corrupt an existing character or save. | R-12, R-15, R-18 |
+| AC-11 | Gameplay photo requests use the configured connection and resolved people; they do not fall back to another account's library or an unrestricted image search. | R-03, R-18 |
+| AC-12 | Renaming a source person or successfully regenerating their model preserves the game's character identity and saved progress. | R-14, R-15 |
 
 ## Current scope
 
-The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. The current phase records the new save/character requirements and proposes the [technology stack](../adrs/002-web-game-stack.md), [technical foundation](../designs/001-technical-foundation.md), and [asset pipeline](../designs/002-asset-pipeline.md). Character modeling and further game mechanics are deferred while this foundation is established.
+The bootstrap established the name, contributor guide, document templates, project brief, vocabulary, handoff, and completion record after reviewing sibling repositories. The current phase establishes the [technology stack](../adrs/002-web-game-stack.md), [technical foundation](../designs/001-technical-foundation.md), [asset pipeline](../designs/002-asset-pipeline.md), and [photo-connection/person contract](../designs/003-photo-connections-and-people.md). Character generation is a product capability to implement and validate, not a fixed roster authored by developers. Real generation and further game mechanics remain later work while the foundation is established.
 
 The recommended stack is a proposal to validate in a small technical prototype, not an implemented runtime. Further gameplay acceptance criteria, viewpoint, progression, and multiplayer decisions will follow the remaining brief.
 
@@ -83,6 +91,6 @@ The recommended stack is a proposal to validate in a small technical prototype, 
 | --- | --- | --- | --- |
 | Q-01 | Project name and repository slug | Repository creation | Resolved by Tom on 2026-09-10: `haynes-quest` (Haynes Quest). |
 | Q-02 | Game world, player loop, controls, and target devices | Product/design phase | Partially resolved by Tom on 2026-09-10: Roblox-style direction, touchscreen with on-screen controls, and keyboard/mouse are required; gamepad is a later option. World, loop, precise controls, and device/browser matrix remain deferred to the gameplay brief. |
-| Q-03 | Which Immich photos are eligible and how they become collectibles | Integration design | Deferred to the game and photo-selection brief. |
+| Q-03 | Which source photos are eligible and how they become collectibles | Integration design | Partially resolved by Tom on 2026-09-10: use the configured service/key and named people for photo lookup. Detailed content filters and the game's uses of these photos remain for design. |
 | Q-04 | Engine, app structure, persistence, and access model | Architecture phase | Authentik-only login is resolved by Tom. Saved games are now required. ADR-002 proposes the engine, application structure, and storage; admission rules still need design. |
-| Q-05 | Characters and new/resume game flow | Foundation design | Resolved by Tom on 2026-09-10: select an existing save or start new after login; new game offers Jackson and Penelope. Likeness modeling follows reference-image generation later. |
+| Q-05 | Characters and new/resume game flow | Foundation design | Resolved by Tom's revised brief on 2026-09-10: select an existing save or start new after login; configured people determine an open-ended roster whose models are generated from their photos. |
