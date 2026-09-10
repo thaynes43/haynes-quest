@@ -2,13 +2,13 @@
 
 [GitHub repository](https://github.com/thaynes43/haynes-quest)
 
-A Roblox-style 3D browser game personalized from a self-hosted photo library, with Immich as the first integration. Users configure their photo-service URL, API key, and people's names. The game will use those people's photos to generate playable characters and supply collectibles and other game content. Touchscreen and keyboard/mouse play are required, with gamepad support a later option. Players will sign in through Authentik, as they do on Haynes Network.
+A Roblox-style 3D browser game for a family proof of concept, personalized from a self-hosted photo library with Immich as the first integration. Users configure their photo-service URL, API key, and people's names. Their photos will supply collectibles and other game content; playable characters will use developer-authored assets. Touchscreen and keyboard/mouse play are required, with gamepad support a later option. Players will sign in through Authentik, as they do on Haynes Network.
 
 The game will run as a normal web app on **iPad, iPhone, and PC**, hosted on the homelab through `haynes-ops`. Players open its HTTPS URL; no native iOS app or TestFlight installation is needed. This repository starts with the project brief and documentation templates. The proposed runtime stack will be validated after the requirements phase and tool setup.
 
-After login, players will choose a saved game or start a new adventure with a character from their configured people. The roster is open-ended. The [proposed stack](docs/adrs/002-web-game-stack.md), [photo connection design](docs/designs/003-photo-connections-and-people.md), and [asset pipeline](docs/designs/002-asset-pipeline.md) establish the next technical step, using synthetic fixtures before validating real character generation.
+After login, players will choose a saved game or start a new adventure with an available character from their configured roster. Character names and roster size are data-configured. The [proposed stack](docs/adrs/002-web-game-stack.md), [photo connection design](docs/designs/003-photo-connections-and-people.md), and [asset pipeline](docs/designs/002-asset-pipeline.md) establish the next technical step, using synthetic fixtures and prepared models to validate the foundation.
 
-The preferred authoring workflow is image-generated sketches followed by Blender through MCP. Technical and nontechnical requirements are being documented first; tool setup and asset production follow that phase.
+The preferred authoring workflow is image-generated sketches followed by Blender through MCP, including the family's playable characters. Automatic character generation is [future backlog](docs/BACKLOG.md#bl-01-automatic-playable-character-generation) if the game expands beyond the family PoC. Technical and nontechnical requirements are being documented first; tool setup and asset production follow that phase.
 
 Start with the [project brief](docs/prds/001-project-brief.md), then the [documentation index](docs/README.md). Current work and the next step live in [`.agents/HANDOFF.md`](.agents/HANDOFF.md).
 
