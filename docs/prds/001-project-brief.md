@@ -3,7 +3,7 @@
 - **Status:** Draft
 - **Owner:** Tom Haynes
 - **Last updated:** 2026-09-10
-- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, browser-device, asset-authoring, family-PoC scope, and memory-journey brief on 2026-09-10
+- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, browser-device, asset-authoring, family-PoC scope, memory-journey, level-pacing, and enemy-personalization brief on 2026-09-10
 
 ## Summary
 
@@ -15,7 +15,7 @@ After signing in, players choose an existing saved game or start a new person's 
 
 ## Confirmed requirements
 
-The established platform constraints remain in force. R-12, R-14, and R-20–R-24 express Tom's latest narrative direction within this draft; detailed chapter rules and any eventual avatar identity reveal remain for design.
+The established platform constraints remain in force. R-12, R-14, and R-20–R-26 express Tom's narrative and gameplay direction within this draft. Annual versus proportional levels and the source of gender-based enemy personalization are under discussion; the recommendations in DESIGN-004 are not confirmed owner decisions.
 
 | ID | Requirement | Priority |
 | --- | --- | --- |
@@ -43,6 +43,8 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-2
 | R-22 | Distinguish photo-date coverage from the person's age. Do not treat the earliest photo as birth or infer age from appearance. Use known birth information for age labels; see the proposed optional-birth-date policy in DESIGN-004. | Must; setup policy proposed |
 | R-23 | Collecting photos recovers memories and advances the selected journey. Preserve collected-memory and chapter progress across save/resume and avatar asset replacement. | Must |
 | R-24 | Handle missing early photos, sparse years, date problems, and later library changes without inventing memories, silently resetting progress, or requiring empty chapters. | Must |
+| R-25 | Evaluate one-year levels and levels covering a proportion of the available history so the journey works for people with different lengths of photo coverage. DESIGN-004 proposes up to ten chapters adjusted for usable photos; the count and grouping rule are not settled. | Current design decision |
+| R-26 | Include different enemy sets with tailored personalization. Tom requested gender-tailored enemies; whose gender or preferences select them is awaiting clarification. DESIGN-004 proposes selectable themes with overridable presets and difficulty handled separately. | Must; selection policy open |
 
 ## Saved games and memory journeys
 
@@ -63,6 +65,10 @@ The signed-in player, the person whose memories are explored, and the avatar are
 Names are editable labels, not permanent save keys. Resolve them to the correct source person and retain a stable game-owned subject ID. A rename, replacement avatar asset, or newly imported photo must not change whose journey a save belongs to or erase its progress. Starting another person's journey creates a separate game. Missing photo setup or an unavailable avatar must leave existing saves visible. Save-slot count, naming, cadence, and refresh policy remain for design.
 
 The photo range determines which years are represented, not the person's actual age or a complete biography. Start with the earliest eligible dated memories; if infancy is absent, do not label the earliest available adult photos as babyhood. End at the latest represented period. [DESIGN-004](../designs/004-memory-journey.md) proposes optional birth-date setup for age-based stages, with calendar-year chapters when it is unknown, and records the clarification asked of Tom. Exact chapter boundaries, required collectibles, and the world and challenges within each chapter remain for gameplay design.
+
+Tom is considering one year per level or roughly ten percent of the person's history per level. The current recommendation is up to ten chronological chapters across available photo coverage, combining sparse periods and bounding required memories in dense ones. This aims for a manageable adventure across short and long histories. It is a proposal, not a promise of ten equal levels or complete lifetime coverage.
+
+Enemies will have different sets. The source of gender-based personalization remains an open question; a player-selectable enemy theme with overridable presets is proposed in DESIGN-004. Names and photos are not a source for inferring gender. Enemy appearance, behavior, and difficulty need gameplay design; no particular gender-to-enemy mapping, combat system, or enemy roster has been selected.
 
 ## Input and sign-in direction
 
@@ -97,6 +103,8 @@ These are requirements for future implementation, not completed checks. The play
 | AC-16 | Photo coverage is presented separately from age. Known birth information gives appropriate age labels; absent birth information does not cause the earliest photo to be treated as birth. The proposed fallback uses calendar years. | R-22 |
 | AC-17 | Libraries with missing infancy, sparse decades, a single represented year, or no usable dates produce supported chapters or an actionable setup state, with no invented or mandatory empty life stage. | R-21, R-24 |
 | AC-18 | New uploads, corrected dates, and removed photos cannot silently switch a save's subject, reorder completed chapters, erase collection credit, or award the same memory twice. | R-23, R-24 |
+| AC-19 | The chosen chapter policy produces a preview consistent with the saved journey for short, long, single-year, and sparse libraries. It avoids mandatory empty chapters and unbounded collection targets; exact expected counts follow the eventual grouping decision. | R-21, R-24, R-25 |
+| AC-20 | Under the chosen personalization policy, different enemy sets can be selected and retained across resume without changing subject or memory progress. Gender-based presets, if used, use explicitly supplied information; missing information has a supported path. Theme selection does not silently change difficulty. | R-26 |
 
 ## Conditional future acceptance
 
@@ -112,7 +120,7 @@ The bootstrap established the name, contributor guide, document templates, proje
 
 Tom proposed generating asset sketches with image generation, then having the agent create the assets in Blender through MCP. This is the PoC authoring direction for the shared avatar and world assets in DESIGN-002. His subsequent scope ruling defers automatic character generation to a possible release beyond the family PoC; its workers, job simulation, and provider trials are not active requirements. No tooling has been connected or installed for this proposal.
 
-The recommended stack is a proposal to validate in a small technical prototype, not an implemented runtime. The memory-journey direction establishes why photos are collected and how time shapes progression. World layout, challenges, camera, chapter completion rules, and the ending still need design.
+The recommended stack is a proposal to validate in a small technical prototype, not an implemented runtime. The memory-journey direction establishes why photos are collected and how time shapes progression. Annual/proportional levels and tailored enemy sets are now being designed in DESIGN-004. World layout, enemy interactions, camera, chapter completion rules, and the ending remain open.
 
 ## Open and deferred decisions
 
@@ -124,3 +132,5 @@ The recommended stack is a proposal to validate in a small technical prototype, 
 | Q-04 | Engine, app structure, persistence, and access model | Architecture phase | Authentik-only login is resolved by Tom. Saved games are now required. ADR-002 proposes the engine, application structure, and storage; admission rules still need design. |
 | Q-05 | Characters and new/resume game flow | Foundation design | Revised by Tom on 2026-09-10: generic mysterious avatar with no memory; select whose chronological photo journey to explore. Per-person playable models are no longer part of the PoC. See DESIGN-004. |
 | Q-06 | How is the person's age established when photos do not begin at birth? | Timeline setup design | Asked Tom on 2026-09-10: optional birth date with calendar-year fallback versus required birth date. Optional is the documented proposal pending his response; photo range alone is not age evidence. |
+| Q-07 | Should levels cover individual years or a proportion of the available history? | Chapter design | Tom proposed both options. DESIGN-004 compares them and recommends up to ten chapters adjusted for usable photos. No fixed chapter count or grouping policy has been accepted. |
+| Q-08 | Whose gender or preferences determine enemy personalization? | Enemy design | Asked Tom on 2026-09-10: player-selected theme, subject gender, or player gender. Selectable themes with overridable presets are proposed pending his answer. |
