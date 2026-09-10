@@ -4,7 +4,7 @@
 
 A Roblox-style 3D browser game personalized from a self-hosted photo library, with Immich as the first integration. Users configure their photo-service URL, API key, and people's names. The game will use those people's photos to generate playable characters and supply collectibles and other game content. Touchscreen and keyboard/mouse play are required, with gamepad support a later option. Players will sign in through Authentik, as they do on Haynes Network.
 
-This repository starts with the project brief and documentation templates. The proposed runtime stack will be validated before expanding the gameplay design. Deployment will live in `haynes-ops` on the local cluster.
+The game will run as a normal web app on **iPad, iPhone, and PC**, hosted on the homelab through `haynes-ops`. Players open its HTTPS URL; no native iOS app or TestFlight installation is needed. This repository starts with the project brief and documentation templates. The proposed runtime stack will be validated before expanding the gameplay design.
 
 After login, players will choose a saved game or start a new adventure with a character from their configured people. The roster is open-ended. The [proposed stack](docs/adrs/002-web-game-stack.md), [photo connection design](docs/designs/003-photo-connections-and-people.md), and [asset pipeline](docs/designs/002-asset-pipeline.md) establish the next technical step, using synthetic fixtures before validating real character generation.
 

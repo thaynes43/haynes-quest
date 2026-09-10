@@ -3,7 +3,7 @@
 - **Status:** Draft
 - **Owner:** Tom Haynes
 - **Last updated:** 2026-09-10
-- **Source:** Owner's project kickoff and subsequent controls, saves, and configurable-people brief on 2026-09-10
+- **Source:** Owner's project kickoff and subsequent controls, saves, configurable-people, and browser-device brief on 2026-09-10
 
 ## Summary
 
@@ -17,10 +17,10 @@ After signing in, players choose an existing saved game or start a new one using
 
 | ID | Requirement | Priority |
 | --- | --- | --- |
-| R-01 | The game runs in a web browser and uses 3D. | Must |
+| R-01 | The game is a 3D web application playable on iPad, iPhone, and PC. | Must |
 | R-02 | The intended players are Tom's kids; this is a novelty family game. | Must |
 | R-03 | Players collect real photos from the configured self-hosted photo service, with Immich as the first integration. Configured people also drive photo queries for other game uses as those are designed. | Must |
-| R-04 | The project gets its own GitHub repository, with local hosting managed through `haynes-ops`. | Must |
+| R-04 | The project gets its own GitHub repository, with hosting on Tom's homelab managed through `haynes-ops`. | Must |
 | R-05 | Repository and documentation conventions stay consistent with Tom's existing projects. | Must |
 | R-06 | GPT-6 Astra leads the project end to end. | Must |
 | R-07 | Use Roblox as the reference for the game's style. The specific look, camera, movement, and game world will be defined in the gameplay design. | Must |
@@ -35,6 +35,7 @@ After signing in, players choose an existing saved game or start a new one using
 | R-16 | Establish the technology stack and asset-production workflow before expanding the detailed game design. | Current priority |
 | R-17 | Let users configure the photo-service URL, API key, and people's names used to populate the game. | Must |
 | R-18 | Resolve configured names to people in the connected photo service and retrieve their photos for character generation and gameplay content. | Must |
+| R-19 | Deliver the game through a normal browser URL. Do not require a native iOS app, TestFlight, sideloading, or an app-install workaround. | Must |
 
 ## Saved games and characters
 
@@ -54,7 +55,9 @@ Names are user-facing configuration, not permanent save keys. The proposed integ
 
 ## Input and sign-in direction
 
-Touchscreen and keyboard/mouse are both required ways to play the first playable slice. Design the core interactions for both from the start. Exact devices, supported browsers, touch layout, keyboard bindings, and camera controls will follow the gameplay design. Optional gamepad support does not block that slice.
+Touchscreen play on **iPad and iPhone** and keyboard/mouse play on **PC** are required for the first playable slice. Tom confirmed these device families and browser-only delivery on 2026-09-10. Players open the homelab-hosted HTTPS URL in their browser; a native iOS build or TestFlight distribution is not part of the project.
+
+Use Safari on iPad/iPhone as the touch-browser validation baseline and a desktop browser on PC. Exact hardware models, OS/browser version floors, and the PC browser matrix will be recorded for the prototype. Touch layout, keyboard bindings, and camera controls still need gameplay design. Optional gamepad support does not block that slice.
 
 The Roblox reference establishes a style direction. It does not yet specify a camera viewpoint, character design, building system, multiplayer mode, or support for user-created games.
 
@@ -62,12 +65,12 @@ The Authentik decision is recorded in [ADR-001](../adrs/001-authentik-sign-in.md
 
 ## Acceptance criteria for the first playable slice
 
-These are requirements for future implementation, not completed checks. The playable loop and device/browser matrix must be defined before validating them.
+These are requirements for future implementation, not completed checks. The playable loop and exact hardware/browser versions must be recorded before validating them against the confirmed iPad, iPhone, and PC targets.
 
 | ID | Criterion | Requirements |
 | --- | --- | --- |
-| AC-01 | On an agreed touchscreen device, a player can complete the core play-and-collect loop using touch and the on-screen controls without a keyboard or mouse. | R-03, R-08 |
-| AC-02 | On an agreed desktop browser, a player can complete the same loop using a keyboard and mouse without a touchscreen. | R-03, R-09 |
+| AC-01 | On both an iPad and an iPhone using the Safari baseline, a player can complete the core play-and-collect loop using touch and the on-screen controls without a keyboard or mouse. | R-01, R-03, R-08 |
+| AC-02 | In an agreed PC browser, a player can complete the same loop using a keyboard and mouse without a touchscreen. | R-01, R-03, R-09 |
 | AC-03 | A signed-out visitor must sign in through Authentik before entering gameplay or accessing protected collectible photos. The game offers no alternative login method. | R-11 |
 | AC-04 | A player admitted by the game's eventual access policy can sign in with their existing Authentik identity without setting up a game-local password. | R-11 |
 | AC-05 | After login, the player can see their saved games and a New game action. With no saves, they can start through new-game setup, including character preparation if needed. | R-13, R-17 |
@@ -78,6 +81,7 @@ These are requirements for future implementation, not completed checks. The play
 | AC-10 | The application retrieves a configured person's eligible photos and produces a validated, usable character model. Progress and failures are visible, and a retry does not corrupt an existing character or save. | R-12, R-15, R-18 |
 | AC-11 | Gameplay photo requests use the configured connection and resolved people; they do not fall back to another account's library or an unrestricted image search. | R-03, R-18 |
 | AC-12 | Renaming a source person or successfully regenerating their model preserves the game's character identity and saved progress. | R-14, R-15 |
+| AC-13 | On iPad, iPhone, and PC, opening the homelab-hosted HTTPS URL supports sign-in, setup, new-game selection, and resuming a ready save in the browser without installing an app or using TestFlight. | R-01, R-04, R-19 |
 
 ## Current scope
 
@@ -90,7 +94,7 @@ The recommended stack is a proposal to validate in a small technical prototype, 
 | ID | Decision | Needed by | Status / resolution |
 | --- | --- | --- | --- |
 | Q-01 | Project name and repository slug | Repository creation | Resolved by Tom on 2026-09-10: `haynes-quest` (Haynes Quest). |
-| Q-02 | Game world, player loop, controls, and target devices | Product/design phase | Partially resolved by Tom on 2026-09-10: Roblox-style direction, touchscreen with on-screen controls, and keyboard/mouse are required; gamepad is a later option. World, loop, precise controls, and device/browser matrix remain deferred to the gameplay brief. |
+| Q-02 | Game world, player loop, controls, and target devices | Product/design phase | Partially resolved by Tom on 2026-09-10: Roblox-style direction; iPad/iPhone touch and PC keyboard/mouse in a normal web app; homelab hosting; no native iOS/TestFlight path. Gamepad is a later option. World, loop, precise controls, and exact hardware/browser versions remain for design and testing. |
 | Q-03 | Which source photos are eligible and how they become collectibles | Integration design | Partially resolved by Tom on 2026-09-10: use the configured service/key and named people for photo lookup. Detailed content filters and the game's uses of these photos remain for design. |
 | Q-04 | Engine, app structure, persistence, and access model | Architecture phase | Authentik-only login is resolved by Tom. Saved games are now required. ADR-002 proposes the engine, application structure, and storage; admission rules still need design. |
 | Q-05 | Characters and new/resume game flow | Foundation design | Resolved by Tom's revised brief on 2026-09-10: select an existing save or start new after login; configured people determine an open-ended roster whose models are generated from their photos. |

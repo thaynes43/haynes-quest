@@ -2,7 +2,7 @@
 
 - **Status:** Proposed
 - **Last updated:** 2026-09-10
-- **Satisfies:** [PRD-001 R-08, R-09, R-11–R-18](../prds/001-project-brief.md)
+- **Satisfies:** [PRD-001 R-01, R-08, R-09, R-11–R-19](../prds/001-project-brief.md)
 - **Governed by:** [ADR-001](../adrs/001-authentik-sign-in.md); [proposed ADR-002](../adrs/002-web-game-stack.md)
 
 ## Overview
@@ -57,7 +57,7 @@ Do not clear or overwrite a save when loading fails. A failed save must remain v
 
 Missing or incompatible character art should produce a recoverable loading state without deleting progress. The same saved character ID must work after successful model regeneration or a person's name change. Pending/failed generation and photo outages must not block the save-selection screen; use DESIGN-003's preparation and recovery states. A disconnected or deleted source person must never resolve silently to someone else.
 
-Use a small, repeatable benchmark scene. Proposed performance goals are 60 fps where practical and sustained 30 fps on the selected minimum device. Record device/OS/browser, render resolution, frame-time distribution, memory behavior, and load time; these are trial targets, not measured results. Headless or software-rendered browser results establish functional behavior only.
+Use a small, repeatable benchmark scene on actual iPad, iPhone, and PC hardware. Safari is the touch-browser baseline; record the selected PC browsers and exact device/OS/browser versions. Proposed performance goals are 60 fps where practical and sustained 30 fps on the selected minimum device. Record render resolution, frame-time distribution, memory behavior, and load time; these are trial targets, not measured results. Headless or software-rendered browser results establish functional behavior only.
 
 ## Validation
 
@@ -68,13 +68,14 @@ Use a small, repeatable benchmark scene. Proposed performance goals are 60 fps w
 - Exercise synthetic connection setup, missing/duplicate names, character readiness, and interrupted generation; test owner isolation across connections, people, jobs, and model assets. Confirm that a simulated successful regeneration preserves save identity.
 - Exercise fresh Authentik login, existing-session SSO, logout, and expired sessions. Before live authentication, agree the game's admitted-player policy and provision its separate client.
 - Probe keyboard/mouse and simultaneous touch actions, input cancellation on blur, and repeated scene entry/exit without duplicated listeners or render loops.
+- Open the homelab HTTPS URL in regular Safari on both iPad and iPhone and in the selected PC browsers. Validate sign-in redirects, setup, new/resume flows, phone/tablet control layouts, and returning after backgrounding the browser. No installed app or TestFlight build is a test prerequisite.
 - Load an animated synthetic GLB with locally served dependencies and no unplanned CDN requests; measure on actual touch hardware before accepting ADR-002.
 
 ## Open and deferred decisions
 
 | ID | Question | Needed by | Status / resolution |
 | --- | --- | --- | --- |
-| Q-01 | Which touchscreen devices and browsers define the minimum baseline? | Hardware trial | Asked on 2026-09-10. Pending; use the provisional cross-platform scope in ADR-002 until specified. |
+| Q-01 | Which touchscreen devices and browsers define the minimum baseline? | Hardware trial | Device families resolved by Tom on 2026-09-10: iPad, iPhone, and PC, browser-only, hosted on the homelab. Use Safari for the touch baseline; exact device models, version floors, and PC browsers remain to be recorded for testing. |
 | Q-02 | Which authenticated users may enter the game? | Live authentication provisioning | Deferred to access design; Authentik-only login is already settled. |
 | Q-03 | How often is progress saved, how are saves named, and how are concurrent sessions handled in the UI? | Playable save design | Deferred; no save-slot count or autosave timing has been assumed. |
 | Q-04 | Which photos are eligible, and what progress does collection record? | Photo integration | Configured connection and people are settled; exact photo filters and progress remain deferred. See DESIGN-003. |

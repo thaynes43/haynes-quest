@@ -12,6 +12,7 @@ Read [`.agents/HANDOFF.md`](.agents/HANDOFF.md) for the current stage, then the 
 - Keep the current scope explicit. The brief establishes Roblox-style direction, touch and keyboard/mouse input, Authentik-only login, saved games, and configurable people whose photos supply generated characters and gameplay content. Never hard-code personal character names or a fixed roster. Establish the stack and automated asset workflow before expanding gameplay; ADR-002 is a proposal to validate, not an implemented stack. Gamepad and real generation implementation remain later work.
 - Carry authorized work through implementation, meaningful validation, PR/merge, and any deployment the task includes. A documentation-only task does not imply deploying a placeholder application.
 - Cluster configuration belongs in `haynes-ops` and deploys through Flux. Follow that repo's applicable instructions for any deployment work.
+- Deliver a normal homelab-hosted web app for iPad, iPhone, and PC. Use Safari as the touch validation baseline. Do not introduce native iOS packaging, TestFlight, or a required app-install workaround.
 - Keep Immich credentials and family photos out of git, published build artifacts, and diagnostic output. Use clearly synthetic fixtures for development until the photo-selection contract is defined.
 - Give the game its own name, visual identity, and interaction design. Reuse proven engineering conventions from sibling repos where they fit.
 - Keep the handoff concise and current. Completed plans retain their IDs when moved to `.agents/plans/completed/`.
