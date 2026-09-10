@@ -8,27 +8,46 @@
 
 ## Recommendation
 
-Use **ElevenLabs through its direct API or official SDK for authored sound effects and ambience**, followed by **FFmpeg/ffprobe** for repeatable cleanup, inspection, and delivery exports. Tom reviews the candidate audio before its approved version enters gameplay. The browser plays prepared files; it does not call a generation service during play.
+Tom asked about free and self-hosted options before dependency setup. **Trial Stable Audio 3 Small-SFX locally on CPU for authored effects/ambience**, keeping ElevenLabs as an optional hosted alternative. This is the revised recommendation, not a completed provider selection: Tom has been asked which trial to prepare. FFmpeg/ffprobe processing, exact-version owner review, and native Web Audio playback remain common to either route. The game plays prepared files without a runtime generation service.
 
-This is a researched tool recommendation, not an installed or purchased integration. Begin code experiments with simple, clearly identified synthetic cues or licensed placeholders. The audio account/plan, key, generation budget, permitted distribution, storage, and tool versions need setup before producing service-generated candidates.
-
-| Candidate | Fit | Limitation |
+| Candidate | Fit | Current setup limit |
 | --- | --- | --- |
-| ElevenLabs API/SDK | Recommended authoring trial for bespoke SFX and loopable ambience; optional prepared speech later. | Requires an account, key, and credits. Output/usage conditions vary by service and plan; music needs its own check. |
-| Stable Audio 3 | Credible alternative if self-hosted authoring becomes important; official inference code/API/CLI and downloadable SFX/music models. | Model access, license acceptance, dependencies, compute, and measured pod performance add setup work. Not selected for the first loop. |
-| Kenney audio packs | Simple prepared placeholder/fallback option for UI and interaction cues. Individual reviewed pack pages identify CC0. | Less bespoke; choosing a final sound still follows Tom's asset review. |
+| Stable Audio 3 Small-SFX | Recommended self-hosted trial; open weights with CPU inference and local output files. Small-Music is a later instrumental-music option. | Gated model access and terms acceptance, isolated Python dependencies, roughly 3.5GB of SFX weights/tokenizer files before dependencies, and an actual CPU quality/speed trial. |
+| ElevenLabs API/SDK | Optional hosted SFX/loopable-ambience trial; free tier available. | Account/key and shared monthly credits; free output is noncommercial, with attribution conditions when shared. Music/API terms differ. |
+| Kenney audio packs | Simple prepared placeholder/fallback for UI/interaction cues; reviewed pack pages identify CC0. | Less bespoke; final choices still follow Tom's review. |
 
-Evidence: [ElevenLabs SFX guide](https://elevenlabs.io/docs/eleven-api/guides/cookbooks/sound-effects), [official TypeScript SDK](https://github.com/elevenlabs/elevenlabs-js), [Stable Audio 3](https://github.com/Stability-AI/stable-audio-3), [Stability model licensing](https://stability.ai/license), and [Kenney UI Audio](https://kenney.nl/assets/ui-audio), reviewed 2026-09-10. Inference-code licensing does not replace a model's terms. No output quality or runtime performance has been measured here.
+The [official Stable Audio repository](https://github.com/Stability-AI/stable-audio-3) supports CPU inference for Small-SFX/Small-Music; its published optimized-device timings are not a Linux pod benchmark. [Kenney UI Audio](https://kenney.nl/assets/ui-audio) remains an inexpensive way to keep code moving. No output quality or runtime performance has been measured here.
+
+### ElevenLabs free tier
+
+[Official pricing](https://elevenlabs.io/pricing), checked 2026-09-10, lists $0 for 10,000 shared monthly credits; Starter is $6/month. [API billing](https://help.elevenlabs.io/hc/en-us/articles/28184926326033-How-much-does-it-cost-to-use-the-API) includes SFX API access in the free plan. [SFX costs](https://help.elevenlabs.io/hc/en-us/articles/25735337678481-How-much-does-it-cost-to-generate-sound-effects) distinguish API calls from the website: one auto-duration API clip costs 100 credits, or an explicitly timed clip costs 20 credits/second. Spending the entire free allowance on auto-duration SFX therefore allows 100 API clips; the website's four-variation requests use a different rate. These limits may change and do not include other audio use from the same credit pool.
+
+Free output is for noncommercial use, with attribution when shared/published under the [publishing guidance](https://help.elevenlabs.io/hc/en-us/articles/13313564601361-Can-I-publish-the-content-I-generate-on-the-platform). A later subscription does not retroactively convert free-generated files into paid-plan output. ElevenLabs is a hosted service, not the self-hosted choice in this proposal.
+
+### Self-hosted trial prerequisites
+
+1. Tom obtains access to [Small-SFX](https://huggingface.co/stabilityai/stable-audio-3-small-sfx) through Hugging Face, including the displayed contact-sharing consent, Stability model terms, and Gemma terms. Small-Music has its own model access. No terms or account actions have been performed on his behalf.
+2. Store an authorized download token through the existing secret workflow, outside git and chat. Model downloads need explicitly allowed Hugging Face/CDN destinations in the authoring environment; determine exact hosts before the GitOps egress change. No proxy or allowlist bypass is part of setup.
+3. Pin the upstream revision and create an isolated Python environment. Upstream's [dependency manifest](https://github.com/Stability-AI/stable-audio-3/blob/main/pyproject.toml) requires Python 3.10+ and Torch/Torchaudio 2.7.1; explicitly choose CPU wheels because its default Linux x86_64 uv configuration selects CUDA wheels. Gradio is optional. Keep model caches on persistent storage and dependencies separate from Blender's environment.
+4. The [SFX audio checkpoint](https://huggingface.co/stabilityai/stable-audio-3-small-sfx/tree/main) is about 2.27GB; its text model/tokenizer adds about 1.22GB. Allow more disk for dependencies/caches. Disk footprint is not peak RAM. The dev-env pod has no allocated GPU; CPU authoring avoids moving the session or reserving a GPU for the first trial.
+5. Generate one short synthetic cue, inspect it with ffprobe, listen, and record generation time/peak memory before committing to the local route. The [source-verified CLI](https://github.com/Stability-AI/stable-audio-3/blob/main/stable_audio_3/cli.py) example is below; it has not been executed here.
+
+```bash
+python -m stable_audio_3.cli --model small-sfx --device cpu --no-half \
+  -p "gentle forest wind and birds" --duration 10 -o forest.wav
+```
+
+The inference code is MIT; model weights use the [Stability Community License and associated terms](https://huggingface.co/stabilityai/stable-audio-3-small-sfx/blob/main/LICENSE.md), including Gemma conditions for the text component. Personal hobby use has no model license fee; local compute/storage still cost resources. Do not describe the weights as unrestricted open source. Small-Music can be evaluated later without making a soundtrack a PoC dependency.
 
 ## Authoring workflow
 
 1. Define a cue ID, triggering event, mood, duration/loop intent, and priority. The brief uses original sound descriptions and identifies any needed source rights.
-2. The Audio Astra produces a small set of candidates using a pinned script/SDK. ElevenLabs' [SFX endpoint](https://elevenlabs.io/docs/api-reference/text-to-sound-effects/convert) accepts text and generation settings, including looping for its supported model. Match duration and export settings to the current endpoint/plan rather than assuming every format is available.
-3. Retain the original downloaded file and metadata. Inspect, trim, fade, check clipping/loop seams, and create browser delivery versions. [FFmpeg filters](https://ffmpeg.org/ffmpeg-filters.html) support these processing steps; [ffprobe](https://ffmpeg.org/ffprobe.html) supplies machine-readable stream metadata. Do not claim a lossy provider download becomes a lossless master by converting it to WAV.
+2. The Audio Astra produces a small set of candidates using the selected pinned local CLI or hosted script/SDK. For the hosted alternative, ElevenLabs' [SFX endpoint](https://elevenlabs.io/docs/api-reference/text-to-sound-effects/convert) accepts text and generation settings, including looping for its supported model. Match duration and export settings to the current endpoint/plan rather than assuming every format is available.
+3. Retain the original generated/downloaded file and metadata. Inspect, trim, fade, check clipping/loop seams, and create browser delivery versions. [FFmpeg filters](https://ffmpeg.org/ffmpeg-filters.html) support these processing steps; [ffprobe](https://ffmpeg.org/ffprobe.html) supplies machine-readable stream metadata. Do not claim a lossy provider download becomes a lossless master by converting it to WAV.
 4. Audition candidates in isolation and in a short labeled review preview. Keep a reproducible processing recipe, level/loop notes, checksums, and source/terms information. [Audacity macros](https://manual.audacityteam.org/man/macros.html) are an optional workstation editing aid; an interactive editor is not required for the agent pipeline.
 5. Present the concrete review package to Tom. Record approval against the exact version under DESIGN-007, then promote that version into the cue manifest. Keep the previous approved sound when a replacement is pending or rejected.
 
-Direct API scripts are preferred over making an audio MCP server a prerequisite. ElevenLabs' [former local MCP repository](https://github.com/elevenlabs/elevenlabs-mcp) is archived/deprecated; its replacement [hosted MCP](https://elevenlabs.io/docs/eleven-agents/operate/hosted-mcp) documents speech and agent-management capabilities, without establishing SFX/music parity for this workflow. We have not connected either server.
+A local CLI or direct API script is sufficient; an audio MCP server is not a prerequisite. ElevenLabs' [former local MCP repository](https://github.com/elevenlabs/elevenlabs-mcp) is archived/deprecated; its replacement [hosted MCP](https://elevenlabs.io/docs/eleven-agents/operate/hosted-mcp) documents speech and agent-management capabilities, without establishing SFX/music parity for this workflow. We have not connected either server.
 
 ## Small initial cue set
 
@@ -71,8 +90,8 @@ MDN specifically documents Safari audio interruption after switching away or tur
 
 ## Readiness and validation
 
-On 2026-09-10 the pod has Node, pnpm, Python, and uvx, but `ffmpeg`, `ffprobe`, SoX, Audacity, and Blender are not available on PATH. No connected audio-generation tool is exposed in this session. ElevenLabs account/auth, generation credits, output quality, and export eligibility have not been tested. No audio was generated, downloaded, or approved for the game by this research.
+On 2026-09-10 the pod has Node, pnpm, Python, and uvx, but `ffmpeg`, `ffprobe`, SoX, Audacity, and Blender are not available on PATH. No connected audio-generation tool is exposed in this session. ElevenLabs account/auth, generation credits, output quality, and export eligibility have not been tested. No audio was generated, downloaded, or approved for the game by this research. Stable Audio model access/terms acceptance and local performance are likewise unverified.
 
-Later setup pins the authoring scripts/SDK, arranges the account/key and bounded generation budget, configures permitted egress and secrets through `haynes-ops`, and provides FFmpeg/ffprobe plus suitable artifact storage. A pod-restarting dev-env change follows that repo's held-draft workflow. Do not install a deprecated MCP bridge to satisfy a capability already available by direct API.
+Later setup pins the selected local model environment or hosted script/SDK, arranges the required access/key and resource or credit budget, configures permitted egress and secrets through `haynes-ops`, and provides FFmpeg/ffprobe plus suitable artifact storage. PLAN-003 tracks the current Blender/FFmpeg image work separately from pending audio-provider access. A pod-restarting dev-env change follows that repo's held-draft workflow. Do not install a deprecated MCP bridge to satisfy a capability already available by direct API.
 
 Validate first interaction, mute, missing files, repeated scene entry, effect spam, backgrounding, screen lock, interruption, and resume on actual iPad/iPhone Safari and PC. Listen for clipped peaks, abrupt cuts, and loop seams; retain the measured export settings and Tom's exact-version review. The findings above are documentation evidence, not a completed generation, listening, or browser test.

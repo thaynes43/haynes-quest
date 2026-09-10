@@ -2,8 +2,8 @@
 
 - **Project:** Haynes Quest
 - **Last updated:** 2026-09-10
-- **Stage:** Core PoC workflow documented; first coding milestone ready, implementation not started
-- **Driving model and team:** GPT-6 Astra, using native Codex agents for bounded parallel tasks
+- **Stage:** Authoring dependency setup in progress before fresh-context game development; implementation not started
+- **Driving model and team:** GPT-6 Astra; new development agents start with empty conversation context and self-contained work orders
 
 ## Established
 
@@ -19,21 +19,21 @@ The full game groups history into decade-like/proportional chapters and selects 
 
 ## Current scope ruling
 
-Tom now wants the core gameplay flowing before filling out fighting, extra collectibles, and the full story. [DESIGN-007](../docs/designs/007-poc-development-loop.md) narrows the former all-requirements prerequisite: define the small slice's contracts, then code using synthetic placeholders while arranging authoring tools for their dependent steps. [PLAN-002](plans/002-foundation-prototype.md) is ready for its first coding milestone; broader design questions do not block that milestone.
+Tom now wants the core gameplay flowing before filling out fighting, extra collectibles, and the full story. [DESIGN-007](../docs/designs/007-poc-development-loop.md) narrows the former all-requirements prerequisite: define the small slice's contracts and use placeholders during implementation. The newer dependency-first sequence below applies before that development dispatch. The PLAN-002 slice is defined; Tom subsequently prioritized [PLAN-003 dependency setup](plans/003-authoring-tool-setup.md) before dispatching its development agents. Broader gameplay/story design still does not block that slice.
 
 The proposed slice is one compact level, three synthetic memories, one new movement ability, retained initial actions, a finish point, and save/resume. These are prototype defaults, not final game quotas or age milestones. The premise already supplies an objective; no full campaign, identity reveal, boss, music track, or spoken script is needed. [BL-02–BL-05](../docs/BACKLOG.md) retain later gameplay/story/audio work. [BL-01](../docs/BACKLOG.md#bl-01-automatic-playable-character-generation) remains conditional automatic person-specific generation beyond the family PoC, requiring a separate premise decision.
 
 The agreed visual workflow is image-generated concepts followed by Blender through MCP. Tom reviews final visual and audio versions before gameplay use. Prepare viewable/listenable candidates and technical evidence under the [asset-review template](../docs/assets/000-review-template.md); no asset candidate has been submitted or approved yet. Ordinary code/docs PRs still self-merge after checks. Pending assets leave placeholders or prior approved versions usable.
 
-[DESIGN-008](../docs/designs/008-audio-pipeline.md) recommends an ElevenLabs direct API/SDK trial for SFX/ambience, FFmpeg/ffprobe preparation, and native Web Audio playback of approved files. Account/plan, credits, output quality, and permitted exports are unverified. Music has separate use/export conditions and remains optional. No runtime generation service or audio MCP is required by this proposal.
+[DESIGN-008](../docs/designs/008-audio-pipeline.md) now recommends a self-hosted Stable Audio Small-SFX CPU trial, with ElevenLabs optional. Tom asked about free/self-hosted choices and has been asked which trial to prepare. ElevenLabs offers 10,000 free monthly shared credits for noncommercial output; Stable Audio requires gated Hugging Face access and model terms acceptance. No audio model, generation account, quality/speed trial, or final output is verified. Both routes use FFmpeg/ffprobe and prepared Web Audio playback. Music/narration remain later options.
 
-Astra lanes cover code, visuals, audio, story/design, and independent verification, coordinated by the driving Astra through [work orders](work-orders/000-template.md). Give each task owned paths and stable contracts; serialize shared Blender use or isolate sessions. The team size follows available concurrency rather than requiring permanent agents for every role.
+Astra lanes cover code, visuals, audio, story/design, and independent verification. Each development task starts with `fork_turns: "none"`, the applicable repo instructions, and a self-contained [work order](work-orders/000-template.md); do not inherit the planning conversation or reuse an unrelated research session. Give each task owned paths and stable contracts; serialize shared Blender use or isolate sessions. The team size follows available concurrency rather than requiring permanent agents for every role.
 
 ## Readiness and next step
 
-Start PLAN-002's first coding milestone in a fresh worktree from `origin/main`: record the small action/camera/cue contracts, scaffold the proposed stack, and produce a runnable synthetic collection/unlock route. Stage durable saves, hosted Authentik, reviewed-asset integration, and physical-device validation separately. A local development fixture identity is never an alternative hosted login; a temporary save is not durable persistence evidence. Live Immich integration is later work.
+Finish PLAN-003's dependency checkpoint first. The image build is [haynes-ops PR #2831](https://github.com/thaynes43/haynes-ops/pull/2831); runtime activation will be a separate held draft because changing this pod's image/MCP config restarts the session. Record build, activation, and live verification separately. Then start PLAN-002 in a fresh worktree with new-context Astra agents: record the small action/camera/cue contracts, scaffold the stack, and produce a runnable synthetic collection/unlock route. Stage durable saves, hosted Authentik, reviewed-asset integration, and physical-device validation separately. A local development fixture identity is never an alternative hosted login; a temporary save is not durable persistence evidence. Live Immich integration is later work.
 
-Image generation is available. No Blender MCP or audio-generation tool is connected in this session. Node, pnpm, Python, and uvx are available; Blender, glTF Transform, FFmpeg, and ffprobe are not available on PATH. No app, database, Authentik client, photo connection, or final game asset has been provisioned by this documentation work. Tool setup and any pod-restarting changes follow `haynes-ops` rules when that milestone is undertaken.
+Image generation is available. No Blender MCP or audio-generation tool is connected in this session. Node, pnpm, Python, uv, and Xvfb/Mesa are available; Blender, xauth, glTF Transform, FFmpeg, and ffprobe are missing from PATH in the currently running image. The new image adds those tools with a lazy, loopback-only Blender session on a virtual display, persistent shared files, and no GPU allocation. No app, database, Authentik client, photo connection, or final game asset has been provisioned by this documentation work. Tool setup and any pod-restarting changes follow `haynes-ops` rules when that milestone is undertaken.
 
 ## Repository and references
 

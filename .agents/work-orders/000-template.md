@@ -2,13 +2,16 @@
 
 - **Status:** Draft / In progress / Ready for review / Complete
 - **Agent/model:** GPT-6 Astra
+- **Context:** New agent with `fork_turns: "none"`; no inherited conversation
+- **Required reading:** <applicable instructions, handoff, named design/plan sections>
+- **Input artifacts:** <exact versions/paths available without this planning conversation>
 - **Worktree/branch:** <isolated task location>
 - **Depends on:** <contract, tool, or prior artifact>
 - **Owned paths/resources:** <files; include exclusive Blender session if relevant>
 
 ## Outcome and scope
 
-<One concrete result and the explicit boundaries of this task.>
+<A self-contained statement of the user-authorized result, current decisions, and scope boundaries. Include what the agent needs to know; do not refer to "what we discussed." Start a new agent for a new development task rather than continuing an unrelated research session.>
 
 ## Contracts and inputs
 

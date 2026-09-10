@@ -1,17 +1,17 @@
 # PLAN-002: Build and validate the playable foundation
 
 - **Status:** Ready
-- **Current milestone:** First coding milestone; implementation not started
-- **Depends on:** Slice contracts in DESIGN-007; authoring tools, live admission/provisioning, and owner asset review are dependencies of the later milestones that use them
+- **Current milestone:** Dependency setup in PLAN-003 precedes fresh-context development dispatch; game implementation not started
+- **Depends on:** Tom's dependency-first checkpoint in [PLAN-003](003-authoring-tool-setup.md), then slice contracts in DESIGN-007; authoring tools, live admission/provisioning, and owner asset review are dependencies of the later milestones that use them
 - **Requirements/designs:** [PRD-001 R-01, R-08–R-14, R-16–R-24, R-30–R-39](../../docs/prds/001-project-brief.md), [ADR-002](../../docs/adrs/002-web-game-stack.md), [DESIGN-001](../../docs/designs/001-technical-foundation.md), [DESIGN-002](../../docs/designs/002-asset-pipeline.md), [DESIGN-003](../../docs/designs/003-photo-connections-and-people.md), [DESIGN-004](../../docs/designs/004-memory-journey.md), [DESIGN-006](../../docs/designs/006-memory-age-and-abilities.md), [DESIGN-007](../../docs/designs/007-poc-development-loop.md), [DESIGN-008](../../docs/designs/008-audio-pipeline.md)
 
 ## Outcome and scope
 
 Build a small playable proof of chronological memory recovery and cumulative abilities, then validate the authored-asset workflow, account-owned saves, and browser delivery. The proposed route has one compact level, a generic avatar, three synthetic dated memories, one new movement action, retained starting actions, and a reachable finish. A fictional known birth date supplies the test age mapping. These are prototype defaults, not final age thresholds, level quotas, or a resolution of real-person setup policy.
 
-Tom's latest direction narrows the earlier blanket documentation prerequisite. Define the slice's contracts, then code with clearly synthetic placeholders while preparing the authoring tools and candidates. Full fighting, extra collectibles, story, and era content are [later work](../../docs/BACKLOG.md). Real Immich access, complete library reconciliation, multiplayer, gamepad support, and automatic character generation are outside this plan. Preserve integration boundaries; do not present synthetic adapter tests as proof of live Immich compatibility.
+Tom's latest direction narrows the earlier blanket documentation prerequisite. Complete the current PLAN-003 dependency checkpoint, define the slice's contracts, then code with clearly synthetic placeholders while authoring candidates. Full fighting, extra collectibles, story, and era content are [later work](../../docs/BACKLOG.md). Real Immich access, complete library reconciliation, multiplayer, gamepad support, and automatic character generation are outside this plan. Preserve integration boundaries; do not present synthetic adapter tests as proof of live Immich compatibility.
 
-This documentation task does not execute the plan, install tools, generate assets, or provision an application. The first milestone can start independently of final-art tools. Later hosted and reviewed-asset milestones have their own prerequisites and completion evidence.
+This documentation task does not execute the plan, install tools, generate assets, or provision an application. Tom has now prioritized the PLAN-003 dependency checkpoint before this plan starts. After that checkpoint, the first milestone can use placeholders without waiting for final asset production or approval. Later hosted and reviewed-asset milestones have their own prerequisites and completion evidence.
 
 ## Milestones
 
@@ -34,7 +34,7 @@ This documentation task does not execute the plan, install tools, generate asset
 This milestone can overlap code work once its own tools are ready. Use bounded Astra work orders with owned files/resources; serialize access to a shared Blender scene or isolate sessions.
 
 - Select and connect the Blender host/bridge and shared artifact workflow in DESIGN-002. Prove scene inspection, viewport capture, editable save/reopen, and GLB export/load with a synthetic object before producing final candidates. Manage homelab tooling through `haynes-ops`.
-- Prepare the DESIGN-008 SFX trial: selected account/plan and bounded generation budget, protected authoring key, pinned API/SDK script, FFmpeg/ffprobe, and storage/distribution appropriate to the output terms. These are unverified setup tasks, not a current subscription or authorization to purchase one. Music and narration remain optional later work.
+- Prepare the DESIGN-008 SFX trial: selected self-hosted model access/terms and isolated CPU environment, or a hosted account/plan and bounded credit budget; protected download/API credential, pinned authoring script, FFmpeg/ffprobe, and appropriate storage/distribution. These are unverified setup tasks, not a current subscription or authorization to purchase one. Music and narration remain optional later work.
 - Author only the avatar/props/materials/animations and small cue set the route needs. Use image-generated visual sketches followed by Blender. Retain editable masters, provenance, scripts/settings, checksums, and format/performance checks. No private family references are needed.
 - Present concrete visual and audio candidates in isolated review previews using the asset-review template. Obtain and record Tom's review of the exact final versions before gameplay promotion. Keep placeholders or the previous approved version in the runnable game while review is pending.
 
@@ -57,4 +57,4 @@ All [DESIGN-007 PoC acceptance criteria](../../docs/designs/007-poc-development-
 
 ## Result
 
-Not started. The bounded first coding milestone is ready; final asset-tool connections, audio account/plan trial, owner asset reviews, live admission/provisioning, and actual-device testing remain future milestone dependencies. The current repository remains documentation-only.
+Not started. The bounded coding scope is defined, but Tom now wants PLAN-003 dependency setup first; final asset-tool connections, audio account/plan trial, owner asset reviews, live admission/provisioning, and actual-device testing remain future milestone dependencies. The current repository remains documentation-only.
