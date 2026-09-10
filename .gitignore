@@ -1,0 +1,18 @@
+# Local credentials and private development inputs
+.env
+.env.*
+!.env.example
+/local-photos/
+
+# Common generated development output; tooling is chosen later
+node_modules/
+.next/
+dist/
+coverage/
+playwright-report/
+test-results/
+.playwright-mcp/
+*.log
+.DS_Store
+
+# Agent plans and handoff notes are project records and remain tracked.
