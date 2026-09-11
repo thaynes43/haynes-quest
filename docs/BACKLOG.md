@@ -1,6 +1,6 @@
 # Future backlog
 
-The current equipment, enemies and bosses are required by [PLAN-005](../.agents/plans/005-era-combat-loop.md), following Tom’s September 11 correction. The broader items below do not replace that work. BL-01 defers automatic generation while authored age/likeness evolution remains product direction; the later gameplay/content items can return within the family project after the core loop is evaluated.
+The current equipment, enemies and bosses are required by [PLAN-005](../.agents/plans/completed/005-era-combat-loop.md), following Tom’s September 11 correction. The broader items below do not replace that work. BL-01 defers automatic generation while authored age/likeness evolution remains product direction; the later gameplay/content items can return within the family project after the core loop is evaluated.
 
 ## BL-01: Automatic playable-character generation
 

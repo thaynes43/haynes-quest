@@ -1,6 +1,6 @@
 # WO047 — Browse every existing asset visually
 
-Status: In progress. Owner request, 2026-09-11: dispatch a subagent to organize all existing assets in MkDocs with inspiration images, 3D review and visible thumbnails on the catalog navigation page.
+Status: Completed, 2026-09-11. Owner request: dispatch a subagent to organize all existing assets in MkDocs with inspiration images, 3D review and visible thumbnails on the catalog navigation page.
 
 Lead: Astra max (layout, user-facing copy, integration and review). Inventory and mechanical wiring: fresh native Sol xhigh. Worktree: `/home/dev/work/quest-visual-catalog`, branch `agent/quest-visual-catalog`, base main `9ccc7a8d89210f6da9ba12e031e124eade52ba6b`.
 
@@ -51,4 +51,4 @@ Native Sol’s completed browser audit on September 11 passed desktop1440×1000 
 
 The successful run recorded zero page/console/HTTP/unexpected request failures and zero external requests. Eleven raw MP4 metadata cancellations observed while visiting the review pages are preserved separately. Their causes were not independently verified; video playback is outside this audit. Future harness classification was tightened to navigation/teardown after the successful run, with static lint/syntax checks and no repeated browser battery. Earlier harness attempts had an overstrict historical-image assertion and a relative-URL comparison error; neither was a catalog defect. Original results remain in ignored `test-results/visual-catalog`. Durable successful report: `docs/assets/media/catalog-navigation/v001/report.json`. Root’s final label-only change and compact screenshots are recorded alongside it; no media/path/layout behavior changed.
 
-Game rebuild remains byte-identical: `index-BPeATrrp.js`,1,001,106bytes,SHA256`15487f825f0f7d8125144d3a1eb49c37e5212bf6c7d0bb8de8f368f141bc6051`. Strict documentation/media checks passed. Checked application PR, immutable image publication, review-only GitOps pin and live final verification remain the release steps.
+Game rebuild remains byte-identical: `index-BPeATrrp.js`,1,001,106bytes,SHA256`15487f825f0f7d8125144d3a1eb49c37e5212bf6c7d0bb8de8f368f141bc6051`. Strict documentation/media checks passed. Application PR30 and ops PR2858 are merged. The immutable image is published and privately deployed; the final hosted catalog checks passed at 21:41 UTC. [WO048](048-release-verification.md) records the exact image, live evidence, stable normal app/dev-env and closed activity declarations. All catalog acceptance steps above are complete; owner artwork decisions remain open.

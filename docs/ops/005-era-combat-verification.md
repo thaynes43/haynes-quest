@@ -1,8 +1,10 @@
 # Era combat verification
 
-This record concerns the PLAN-005 correction: useful gear → era encounters → boss victory → released pictures → memory consumption → age and next period. It does not replace the separate evidence for the currently deployed historical prototype.
+**Historical checkpoint:** the pending work described below records earlier stages of the rebuild. The two-chapter private playtest and full visual catalog have since shipped; see the [current handoff](../../.agents/HANDOFF.md) and [final release evidence](../../.agents/work-orders/048-release-verification.md).
 
-**Current state, September 11 at 17:48 UTC:** the server/combat foundation is merged in PR26 and the supporting asset work in PR27. [PR28](https://github.com/thaynes43/haynes-quest/pull/28) adds the forgiving obby and recognizable parody cast. Its first automated verification, PostgreSQL tests, documentation and container checks passed; candidate production and full final playthroughs are still in progress. No PLAN-005 release has been deployed. Real library photos, admitted-player OAuth and physical Safari have not been validated by these checks.
+This record concerns the PLAN-005 correction: useful gear → era encounters → boss victory → released pictures → memory consumption → age and next period. It does not replace the separate evidence for the earlier deployed prototype.
+
+**State recorded September 11 at 17:48 UTC:** the server/combat foundation is merged in PR26 and the supporting asset work in PR27. [PR28](https://github.com/thaynes43/haynes-quest/pull/28) adds the forgiving obby and recognizable parody cast. Its first automated verification, PostgreSQL tests, documentation and container checks passed; candidate production and full final playthroughs are still in progress. No PLAN-005 release has been deployed. Real library photos, admitted-player OAuth and physical Safari have not been validated by these checks.
 
 ## Obby and parody correction
 

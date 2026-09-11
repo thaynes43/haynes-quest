@@ -3,7 +3,7 @@
 - **Status:** Owner-confirmed progression order; implementation details being ratified
 - **Source:** Tom's September 11 correction of the first demo
 - **Supersedes:** DESIGN-009's individual-photo age updates and memory-path-only level
-- **Plan:** [PLAN-005](../../.agents/plans/005-era-combat-loop.md)
+- **Plan:** [PLAN-005](../../.agents/plans/completed/005-era-combat-loop.md)
 
 ## The loop
 
