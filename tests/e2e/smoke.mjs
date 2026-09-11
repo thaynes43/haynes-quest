@@ -1,5 +1,6 @@
 import { chromium } from "playwright";
 import fs from "node:fs/promises";
+const url = process.env.QUEST_E2E_URL ?? "http://127.0.0.1:4173";
 const browser = await chromium.launch({
   headless: true,
   args: [
@@ -16,7 +17,7 @@ const page = await context.newPage();
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 await fs.mkdir("test-results", { recursive: true });
-await page.goto("http://127.0.0.1:4173");
+await page.goto(url);
 await page.getByRole("button", { name: "Start a journey" }).waitFor();
 await page.screenshot({
   path: "test-results/home-desktop.png",
