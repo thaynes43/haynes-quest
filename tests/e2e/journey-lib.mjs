@@ -610,7 +610,14 @@ export function createJourneyDriver({
       ? modalLeave
       : page.getByRole("button", { name: "Save & leave" }).first();
     await controls.activate(leave);
-    await page.locator("canvas").waitFor({ state: "detached" });
+    const canvas = page.locator("canvas");
+    await canvas
+      .waitFor({ state: "detached", timeout: 1_000 })
+      .catch(async (error) => {
+        if (!(await locatorReady(modalLeave))) throw error;
+        await controls.activate(modalLeave);
+      });
+    await canvas.waitFor({ state: "detached" });
     await page.reload();
     await controls.activate(page.locator(".save-card").first());
     await page.locator("canvas").waitFor();
