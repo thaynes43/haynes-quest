@@ -240,8 +240,10 @@ try {
       const model = await viewer.evaluate((element) => {
         const { x, y, z } = element.getDimensions();
         return {
-          src: element.src,
-          poster: element.poster,
+          src: new URL(element.src, location.href).href,
+          poster: element.poster
+            ? new URL(element.poster, location.href).href
+            : undefined,
           dimensions: { x, y, z },
           clips: [...element.availableAnimations],
           paused: element.paused,
