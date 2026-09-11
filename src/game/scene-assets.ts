@@ -44,6 +44,20 @@ export function disposeTree(root: THREE.Object3D): void {
 type ModelEntry = { promise: Promise<GLTF>; failed: boolean; loading: boolean };
 type RetryJob = { run: () => void; valid: () => boolean };
 
+type AttachmentResources = {
+  geometries: Set<THREE.BufferGeometry>;
+  materials: Set<THREE.Material>;
+  textures: Set<THREE.Texture>;
+  skeletons: Set<THREE.Skeleton>;
+  instances: Set<THREE.InstancedMesh>;
+};
+
+type AttachmentClone = {
+  root: THREE.Group;
+  source: AttachmentResources;
+  owned: AttachmentResources;
+};
+
 export interface InstanceAttachOptions {
   castShadow?: boolean;
   receiveShadow?: boolean;
@@ -95,6 +109,161 @@ function cloneMaterialWithTextures(
     properties[key] = texture;
   }
   return material;
+}
+
+function attachmentResources(): AttachmentResources {
+  return {
+    geometries: new Set<THREE.BufferGeometry>(),
+    materials: new Set<THREE.Material>(),
+    textures: new Set<THREE.Texture>(),
+    skeletons: new Set<THREE.Skeleton>(),
+    instances: new Set<THREE.InstancedMesh>(),
+  };
+}
+
+function collectAttachmentResources(root: THREE.Object3D): AttachmentResources {
+  const resources = attachmentResources();
+  root.traverse((object) => {
+    if (object instanceof THREE.InstancedMesh) resources.instances.add(object);
+    if (
+      !(object instanceof THREE.Mesh) &&
+      !(object instanceof THREE.Points) &&
+      !(object instanceof THREE.Line)
+    )
+      return;
+    resources.geometries.add(object.geometry);
+    for (const material of Array.isArray(object.material)
+      ? object.material
+      : [object.material]) {
+      resources.materials.add(material);
+      for (const value of Object.values(material))
+        if (value instanceof THREE.Texture) resources.textures.add(value);
+    }
+    if (object instanceof THREE.SkinnedMesh)
+      resources.skeletons.add(object.skeleton);
+  });
+  return resources;
+}
+
+function disposeAttachmentResources(resources: AttachmentResources): void {
+  for (const instance of resources.instances) instance.dispose();
+  for (const skeleton of resources.skeletons) skeleton.dispose();
+  for (const resource of [
+    ...resources.geometries,
+    ...resources.materials,
+    ...resources.textures,
+  ])
+    resource.dispose();
+}
+
+function createAttachmentClone(sourceRoot: THREE.Group): AttachmentClone {
+  const source = collectAttachmentResources(sourceRoot);
+  const owned = attachmentResources();
+  const geometryClones = new Map<THREE.BufferGeometry, THREE.BufferGeometry>();
+  const materialClones = new Map<THREE.Material, THREE.Material>();
+  const textureClones = new Map<THREE.Texture, THREE.Texture>();
+  try {
+    const root = clone(sourceRoot) as THREE.Group;
+    if (root === sourceRoot)
+      throw new Error("Asset hierarchy clone reused the cached source");
+    root.traverse((object) => {
+      if (object instanceof THREE.InstancedMesh) owned.instances.add(object);
+      if (
+        !(object instanceof THREE.Mesh) &&
+        !(object instanceof THREE.Points) &&
+        !(object instanceof THREE.Line)
+      )
+        return;
+      if (object instanceof THREE.SkinnedMesh) {
+        if (source.skeletons.has(object.skeleton))
+          throw new Error("Asset hierarchy clone reused a cached skeleton");
+        owned.skeletons.add(object.skeleton);
+      }
+      const sourceGeometry = object.geometry;
+      let geometry = geometryClones.get(sourceGeometry);
+      if (!geometry) {
+        const clonedGeometry = sourceGeometry.clone();
+        if (clonedGeometry === sourceGeometry)
+          throw new Error("Asset geometry clone reused the cached source");
+        geometryClones.set(sourceGeometry, clonedGeometry);
+        owned.geometries.add(clonedGeometry);
+        geometry = clonedGeometry;
+      }
+      object.geometry = geometry;
+      const cloneMaterial = (
+        sourceMaterial: THREE.Material,
+      ): THREE.Material => {
+        let material = materialClones.get(sourceMaterial);
+        if (material) return material;
+        material = sourceMaterial.clone();
+        if (material === sourceMaterial)
+          throw new Error("Asset material clone reused the cached source");
+        materialClones.set(sourceMaterial, material);
+        owned.materials.add(material);
+        const properties = material as unknown as Record<string, unknown>;
+        for (const [key, value] of Object.entries(properties)) {
+          if (!(value instanceof THREE.Texture)) continue;
+          let texture = textureClones.get(value);
+          if (!texture) {
+            texture = value.clone();
+            if (texture === value)
+              throw new Error("Asset texture clone reused the cached source");
+            textureClones.set(value, texture);
+            owned.textures.add(texture);
+          }
+          properties[key] = texture;
+        }
+        return material;
+      };
+      object.material = Array.isArray(object.material)
+        ? object.material.map(cloneMaterial)
+        : cloneMaterial(object.material);
+      object.castShadow = true;
+      object.receiveShadow = true;
+    });
+    return { root, source, owned };
+  } catch (error) {
+    disposeAttachmentResources(owned);
+    throw error;
+  }
+}
+
+function rollbackAttachment(attachment: AttachmentClone): void {
+  attachment.root.removeFromParent();
+  const resources = attachment.owned;
+  attachment.root.traverse((object) => {
+    if (
+      object instanceof THREE.InstancedMesh &&
+      !attachment.source.instances.has(object)
+    )
+      resources.instances.add(object);
+    if (
+      !(object instanceof THREE.Mesh) &&
+      !(object instanceof THREE.Points) &&
+      !(object instanceof THREE.Line)
+    )
+      return;
+    if (!attachment.source.geometries.has(object.geometry))
+      resources.geometries.add(object.geometry);
+    for (const material of Array.isArray(object.material)
+      ? object.material
+      : [object.material]) {
+      if (attachment.source.materials.has(material)) continue;
+      resources.materials.add(material);
+      for (const value of Object.values(material))
+        if (
+          value instanceof THREE.Texture &&
+          !attachment.source.textures.has(value)
+        )
+          resources.textures.add(value);
+    }
+    if (
+      object instanceof THREE.SkinnedMesh &&
+      !attachment.source.skeletons.has(object.skeleton)
+    )
+      resources.skeletons.add(object.skeleton);
+  });
+  disposeAttachmentResources(resources);
 }
 
 type SourcePrimitive = {
@@ -266,29 +435,55 @@ export class SceneAssets {
       }
       if (inFlight || finished) return;
       inFlight = true;
-      void this.load(url)
-        .then((gltf) => {
+      void this.load(url).then(
+        (gltf) => {
+          if (this.disposed || !valid()) {
+            inFlight = false;
+            this.removeRetry(url, job);
+            return;
+          }
+          let attachment: AttachmentClone;
+          try {
+            attachment = createAttachmentClone(gltf.scene);
+          } catch {
+            inFlight = false;
+            if (this.disposed || !valid()) {
+              this.removeRetry(url, job);
+              return;
+            }
+            this.registerRetry(url, job);
+            return;
+          }
+          if (this.disposed || !valid()) {
+            rollbackAttachment(attachment);
+            inFlight = false;
+            this.removeRetry(url, job);
+            return;
+          }
+          try {
+            target.add(attachment.root);
+            ready?.(attachment.root, gltf.animations);
+          } catch {
+            rollbackAttachment(attachment);
+            inFlight = false;
+            if (this.disposed || !valid()) {
+              this.removeRetry(url, job);
+              return;
+            }
+            this.registerRetry(url, job);
+            return;
+          }
+          if (this.disposed || !valid()) {
+            rollbackAttachment(attachment);
+            inFlight = false;
+            this.removeRetry(url, job);
+            return;
+          }
+          finished = true;
           inFlight = false;
           this.removeRetry(url, job);
-          if (this.disposed || !valid()) return;
-          const root = clone(gltf.scene) as THREE.Group;
-          const textureClones = new Map<THREE.Texture, THREE.Texture>();
-          root.traverse((object) => {
-            if (!(object instanceof THREE.Mesh)) return;
-            object.geometry = object.geometry.clone();
-            object.material = Array.isArray(object.material)
-              ? object.material.map((material) =>
-                  cloneMaterialWithTextures(material, textureClones),
-                )
-              : cloneMaterialWithTextures(object.material, textureClones);
-            object.castShadow = true;
-            object.receiveShadow = true;
-          });
-          target.add(root);
-          finished = true;
-          ready?.(root, gltf.animations);
-        })
-        .catch(() => {
+        },
+        () => {
           inFlight = false;
           if (finished) return;
           if (this.disposed || !valid()) {
@@ -296,7 +491,8 @@ export class SceneAssets {
             return;
           }
           this.registerRetry(url, job);
-        });
+        },
+      );
     };
     const job: RetryJob = { run, valid };
     run();
