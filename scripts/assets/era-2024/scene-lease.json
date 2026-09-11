@@ -1,0 +1,9 @@
+{
+  "work_order": "WO-016",
+  "author": "/root/era_2024_authoring",
+  "status": "unclaimed; offline preparation only",
+  "live_scene_owner": "/root/era_2020_authoring",
+  "remote_directory": "/workspace/haynes-quest/era-2024/v001",
+  "scene_access_or_subprocesses_started": false,
+  "next_gate": "Explicit root lease grant after current owner releases"
+}

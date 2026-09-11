@@ -1,0 +1,21 @@
+{
+  "work_order": "WO-016",
+  "reference_role": "Lead-selected original construction sheets; read only by this author",
+  "concepts": {
+    "loop-dancer": {
+      "path": "docs/assets/media/loop-dancer/v001/concept.png",
+      "sha256": "258db12b6472e09f2c0b4ec2d038b4f942643d94410a2f1b24979c16dc8860ba",
+      "visually_inspected": true
+    },
+    "prism-mimic": {
+      "path": "docs/assets/media/prism-mimic/v001/concept.png",
+      "sha256": "dac7e3bcc5704ed2b31a343aba866733fe673129730f7e5dd030c5591457e92d",
+      "visually_inspected": true
+    },
+    "trendweaver": {
+      "path": "docs/assets/media/trendweaver/v001/concept.png",
+      "sha256": "ab77f32f89b1d8fca9e8e32743d7f25898b0d581027ccf4a2150c93012aee92e",
+      "visually_inspected": true
+    }
+  }
+}
