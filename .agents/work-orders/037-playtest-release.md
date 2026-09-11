@@ -14,4 +14,4 @@ Root owns catalog text, homepage/playtest scope writing and final architecture/a
 
 ## Release boundary
 
-Prepare the exact runnable candidate and review package before any final promotion question required by DESIGN002/007. Ordinary checked code/docs PRs merge autonomously. The original exact-version owner asset gate remains; a passing build or this work order does not manufacture approval. No real Immich access, OAuth work, new model generation or dev-env restart. The current candidate library remains optional and future preferences remain deferred.
+WO044 ratifies a separate private candidate-review host under DESIGN007's explicit isolated-review allowance. Finish checks and publish that labeled review so Tom can inspect the actual game before making final artwork decisions. Ordinary checked code/docs PRs merge autonomously. The original exact-version owner asset gate remains for the normal demo; a passing build or this work order does not manufacture approval. No real Immich access, OAuth work, new model generation or dev-env restart. The current candidate library remains optional and future preferences remain deferred.

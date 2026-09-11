@@ -1,6 +1,6 @@
 # WO042 lead review notes
 
-This is a lead-owned integration checkpoint, not a final Fable result or permission decision. Fable owns the browser lease and its task worktree.
+This is a lead-owned integration checkpoint, not a final Fable result or permission decision. Fable has exited and released its resources; root preserved its work.
 
 ## Independent read-only review
 
@@ -12,7 +12,7 @@ One minor diagnostic regression was found at intake: `journey.mjs` assigned `act
 
 Independent code review confirms the Fable probe uses the same retained-contact recipe proved by WO031: contact1 stays on the joystick while a separately identified contact is pressed/released. The initial reviewer incorrectly treated generated protocol comments as stronger evidence than WO031's real Chromium event trace; that verdict was withdrawn. Do not diagnose the test as invalid solely from the declaration comment.
 
-Header buttons use `onClick`; game action buttons use pointer handling. The leading hypothesis is secondary-pointer events without a compatibility click. It is still a hypothesis until actual Help pointerdown/up/click events and primary flags are recorded. If confirmed, preserve primary touch/mouse/keyboard behavior, avoid duplicate activation, and verify menu opening clears movement and held-stick Save & leave fires once. No runtime or copy change has been made by the lead from this hypothesis.
+Header buttons use `onClick`; game action buttons use pointer handling. The leading hypothesis is secondary-pointer events without a compatibility click. The later actual event trace confirmed the missing compatibility click and implicit capture. If confirmed, preserve primary touch/mouse/keyboard behavior, avoid duplicate activation, and verify menu opening clears movement and held-stick Save & leave fires once. Root integrated the corrected activator in ff3ad87; WO043 records the passing actual event regression, including fresh keyboard/tap/mouse deduplication.
 
 ## Evidence wording to correct at final intake
 

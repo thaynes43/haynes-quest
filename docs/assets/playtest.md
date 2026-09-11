@@ -1,6 +1,6 @@
 # Two-chapter playtest
 
-This candidate tests the corrected game using fictional memories and artwork awaiting review. Look for **Playtest · Two chapters · Fictional memories** on the home screen to identify this build. The earlier prototype does not demonstrate the corrected loop described here.
+This private review candidate tests the corrected game using fictional memories and artwork awaiting review. Look for **Playtest · Two chapters · Fictional memories** on the home screen to identify this build. The earlier prototype does not demonstrate the corrected loop described here.
 
 ## What to try
 
@@ -29,7 +29,7 @@ These captures show the running candidate. They are game screenshots, not concep
 
 [Released fictional pictures](media/playtest/v001/keyboard-era-1-released-memories.png) · [Completed two-chapter journey](media/playtest/v001/keyboard-complete.png) · [Keyboard verification](media/playtest/v001/journey-keyboard-evidence.json)
 
-The complete keyboard check passed both chapters, both bosses, decoded pictures, age 0 → 4 → 7, saving and resuming, hazard recovery, jumps and the moving platform. Touch verification is still in progress. Physical iPhone/iPad Safari and child playtests remain open.
+The complete keyboard check passed both chapters, both bosses, decoded pictures, age 0 → 4 → 7, saving and resuming, hazard recovery, jumps and the moving platform. The complete touch journey also passed both chapters. A separate browser regression verified Help, the album, sound and Save while another finger holds the joystick. Physical iPhone/iPad Safari and child playtests remain open.
 
 ## The playtest cast
 
@@ -44,4 +44,4 @@ All four use their completed v001 models and five animations. Reusing them makes
 
 Alongside the four characters above, the candidate uses the [starting traveler](reviews/traveler-infant/v001.md), [older traveler](reviews/traveler-child/v001.md), [four pieces of equipment](reviews/era-equipment/v001.md), [trees](reviews/clearing-tree/v001.md), [stones](reviews/clearing-stone/v001.md), [path](reviews/clearing-path-kit/v001.md), [keepsakes](reviews/memory-keepsake/v001.md) and [arrival landmark](reviews/arrival-landmark/v001.md). These links show the actual models and available motion previews.
 
-The [exact playtest artwork list](media/playtest/v001/artwork.json) identifies all 15 GLB files and their checksums. These versions are candidates awaiting Tom's review. Approval of this bounded test would not approve unfinished characters or future revisions.
+The [exact playtest artwork list](media/playtest/v001/artwork.json) identifies all 15 GLB files and their checksums. These versions are candidates awaiting Tom's review. Playing this review build does not mark its artwork approved. Final versions remain yours to choose.
