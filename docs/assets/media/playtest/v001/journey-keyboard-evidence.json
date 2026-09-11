@@ -1,10 +1,10 @@
 {
-  "date": "2026-09-11T18:59:08.529Z",
+  "date": "2026-09-11T20:16:49.996Z",
   "browser": "153.0.8010.12",
   "bundle": {
-    "path": "/assets/index-C6hLU3Dp.js",
-    "bytes": 999033,
-    "sha256": "80eca3323c7ab9164d00723789e1b5bfe612231468efa9bb234bc813f8a039ac"
+    "path": "/assets/index-BPeATrrp.js",
+    "bytes": 1001106,
+    "sha256": "15487f825f0f7d8125144d3a1eb49c37e5212bf6c7d0bb8de8f368f141bc6051"
   },
   "viewport": {
     "keyboard": {
@@ -32,8 +32,8 @@
     "keyboard": {
       "pause": {
         "heldSeconds": 0.85,
-        "courseTimeBefore": 0.13319999999999993,
-        "courseTimeAfter": 0.13319999999999993,
+        "courseTimeBefore": 0.15,
+        "courseTimeAfter": 0.15,
         "resumedDelta": 0
       },
       "firstHazardRecovery": {
@@ -55,9 +55,9 @@
       "firstHazardPass": {
         "recoveries": 1,
         "position": {
-          "x": 5.839159999999995,
+          "x": 5.734689999999983,
           "y": 0,
-          "z": -4.579999999999997
+          "z": -4.580000000000007
         }
       },
       "missedGapRecovery": {
@@ -82,12 +82,12 @@
         "landingPosition": {
           "x": 0,
           "y": 0,
-          "z": -5.045309999999985
+          "z": -5.044690000000016
         },
         "position": {
           "x": 0,
           "y": 0,
-          "z": -5.045309999999985
+          "z": -5.044690000000016
         },
         "recoveries": 1,
         "jumpApex": 0.8312499999999999
@@ -96,53 +96,58 @@
         "checkpointId": "second-clearing",
         "checkpointArmedOnLanding": true,
         "landingPosition": {
-          "x": 0.7232299999999865,
+          "x": 0.7749999999999999,
           "y": 0,
-          "z": -11.142389999999876
+          "z": -11.244379999999946
         },
         "position": {
-          "x": 0.7232299999999865,
+          "x": 0.7749999999999999,
           "y": 0,
-          "z": -11.142389999999876
+          "z": -11.244379999999946
         },
         "recoveries": 1,
         "jumpApex": 0.8312499999999999
       },
       "runwaySweeper": {
         "waitedAtPosition": {
-          "x": 0.10322999999998637,
+          "x": -2.914335439641036e-16,
           "y": 0,
-          "z": -11.452389999999872
+          "z": -11.554379999999941
         },
         "takeoffPosition": {
-          "x": 0.10322999999998637,
+          "x": -2.914335439641036e-16,
           "y": 0,
-          "z": -12.382079999999862
+          "z": -12.32937999999993
         },
-        "hazardAngle": 0.1362822893127257,
+        "hazardAngle": 0.08356636458550804,
         "jumpApex": 0.8312499999999999,
         "landingPosition": {
-          "x": 0.10322999999998637,
+          "x": -2.914335439641036e-16,
           "y": 0,
-          "z": -14.552079999999828
+          "z": -14.4990699999999
+        },
+        "safeExitPosition": {
+          "x": -2.914335439641036e-16,
+          "y": 0,
+          "z": -14.809069999999895
         },
         "recoveries": 1
       },
       "secondFightSettle": {
         "before": {
           "position": {
-            "x": 0.10322999999998637,
+            "x": -2.914335439641036e-16,
             "y": 0,
-            "z": -14.552079999999828
+            "z": -14.809069999999895
           },
           "grounded": true,
           "supportId": "second-clearing-island"
         },
         "after": {
           "position": {
-            "x": 0.10322999999998637,
+            "x": -2.914335439641036e-16,
             "y": 0,
-            "z": -14.552079999999828
+            "z": -14.809069999999895
           },
           "grounded": true,
           "supportId": "second-clearing-island"
@@ -150,35 +155,37 @@
         "recoveries": 1
       },
       "ferry": {
-        "boardedAt": -16.650040268623705,
-        "riddenTo": -16.739948366622485,
-        "farDockAt": -17.283192875104994,
+        "boardedAt": -16.650000035248585,
+        "riddenTo": -16.736321664673536,
+        "farDockAt": -17.28304511206273,
+        "riderOffset": -0.6906786169560739,
+        "boardingDrift": 0,
         "riderOffsetDrift": 0,
         "waits": {
           "nearDock": {
-            "simulationSeconds": 2.4334000000000415,
-            "wallMilliseconds": 5285
+            "simulationSeconds": 2.416600000000029,
+            "wallMilliseconds": 5223
           },
           "ride": {
             "simulationSeconds": 0.8000000000000114,
-            "wallMilliseconds": 1700
+            "wallMilliseconds": 1771
           },
           "farDock": {
-            "simulationSeconds": 0.916600000000031,
-            "wallMilliseconds": 1439
+            "simulationSeconds": 0.9499000000000208,
+            "wallMilliseconds": 1723
           }
         },
         "checkpointId": "boss-landing",
         "landingPosition": {
-          "x": 0.10456467957650972,
+          "x": -2.914335439641036e-16,
           "y": 0,
-          "z": -20.071452476094525
+          "z": -20.042025755126225
         }
       }
     }
   },
   "portrait": "390x844 home has no horizontal overflow",
   "pageErrors": [],
-  "storage": "frozen root fixture server on 4391",
+  "storage": "WO045 frozen fixture; local modal-leave locator accommodation",
   "physicalDevices": "not tested"
 }

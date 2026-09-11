@@ -27,9 +27,9 @@ These captures show the running candidate. They are game screenshots, not concep
 <figure><img src="media/playtest/v001/keyboard-era-2-boss-landing.png" alt="Older traveler facing the returning Drama Dragon after crossing the moving platform"><figcaption>Older traveler at the second boss</figcaption></figure>
 </div>
 
-[Released fictional pictures](media/playtest/v001/keyboard-era-1-released-memories.png) · [Completed two-chapter journey](media/playtest/v001/keyboard-complete.png) · [Keyboard verification](media/playtest/v001/journey-keyboard-evidence.json)
+[Released fictional pictures](media/playtest/v001/keyboard-era-1-released-memories.png) · [Completed two-chapter journey](media/playtest/v001/keyboard-complete.png) · [Keyboard verification](media/playtest/v001/journey-keyboard-evidence.json) · [Touch verification](media/playtest/v001/touch-resumed-verification.json) · [Completed save check](media/playtest/v001/completed-touch-review.json)
 
-The complete keyboard check passed both chapters, both bosses, decoded pictures, age 0 → 4 → 7, saving and resuming, hazard recovery, jumps and the moving platform. The complete touch journey also passed both chapters. A separate browser regression verified Help, the album, sound and Save while another finger holds the joystick. Physical iPhone/iPad Safari and child playtests remain open.
+The complete keyboard check passed both chapters, both bosses, decoded pictures, age 0 → 4 → 7, saving and resuming, hazard recovery, jumps and the moving platform. A saved-and-resumed touch journey also completed both chapters, then reopened the same completed save twice with all three pictures visible. A separate browser regression verified Help, the album, sound and Save while another finger holds the joystick. Physical iPhone/iPad Safari and child playtests remain open.
 
 ## The playtest cast
 

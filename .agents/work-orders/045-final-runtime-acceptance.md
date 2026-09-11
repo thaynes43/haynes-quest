@@ -1,5 +1,7 @@
 # WO-045 results: final combined runtime browser acceptance
 
+Coordinator completion and corrected final-check contract: [WO046](046-coordinator-final-playtest.md). This file preserves the earlier native run boundaries.
+
 - **Status:** Keyboard journey and targeted probes passed; touch reached authoritative completion once, but no touch process exited zero because two obsolete/narrow harness checks stopped after late successful gameplay. Completed-card resume on this exact client remains for the coordinator's final tightened harness run.
 - **Model / dispatch:** Native GPT-5.6 Sol, `xhigh`, fresh context
 - **Worktree / branch:** `/home/dev/work/quest-touch-menu-regression`; `agent/quest-touch-menu-regression`

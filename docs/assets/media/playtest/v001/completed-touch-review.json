@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-11T20:37:40.268Z",
+  "browser": "153.0.8010.12",
+  "bundle": {
+    "path": "/assets/index-BPeATrrp.js",
+    "bytes": 1001106,
+    "sha256": "15487f825f0f7d8125144d3a1eb49c37e5212bf6c7d0bb8de8f368f141bc6051"
+  },
+  "viewport": "390x844 DPR1 Chromium touch",
+  "observations": [
+    {
+      "age": 7,
+      "memories": 3,
+      "chapters": 2,
+      "decodedPictures": 3
+    },
+    {
+      "age": 7,
+      "memories": 3,
+      "chapters": 2,
+      "decodedPictures": 3
+    }
+  ],
+  "pageErrors": [],
+  "requestFailures": [],
+  "status": "pass",
+  "physicalDevices": "not tested"
+}
