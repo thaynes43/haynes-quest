@@ -1,6 +1,6 @@
 # Two-chapter playtest
 
-This is the next test of the corrected game, using fictional memories and candidate artwork. It is being checked before release; the normal private game still runs the earlier prototype. A working link to that older build does not mean this playtest is live.
+This candidate tests the corrected game using fictional memories and artwork awaiting review. Look for **Playtest · Two chapters · Fictional memories** on the home screen to identify this build. The earlier prototype does not demonstrate the corrected loop described here.
 
 ## What to try
 

@@ -1,6 +1,6 @@
 # Current handoff
 
-- **Updated:** September 11, 2026 at 18:27 UTC. PLAN-005 remains active and unaccepted; PLAN-004 is historical/completed.
+- **Updated:** September 11, 2026 at 18:23 UTC. PLAN-005 remains active and unaccepted; PLAN-004 is historical/completed.
 - **Root:** `/home/dev/work/quest-parody-obby`, branch `agent/quest-parody-obby`, now includes main `0ef6214` (checked future-backlog PR29). Earlier implementation checkpoint `1e3281f` preserves the current design/catalog and owner steering.
 - **Routing:** AGENTS/TEAM govern. Root Astra max owns architecture, UI/copy, art direction, integration and serial imagegen. Ordinary native Sol xhigh. Every Blender task uses fresh native Astra max and one exclusive live-scene lease. Separate Fable 5.1 xhigh is authorized for coding/review.
 - **Limits:** OAuth/admission deferred; no dev-env restart. Synthetic fixtures only; no private photos, dates, names or credentials in git/logs/art prompts. Exact owner asset review precedes private gameplay promotion. Ordinary checked code/docs PRs must be squash-merged autonomously. Audio remains silent/unmapped; auditions have not been listened to.
