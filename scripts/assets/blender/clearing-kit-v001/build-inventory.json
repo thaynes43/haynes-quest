@@ -1,0 +1,1109 @@
+{
+  "memory-keepsake": {
+    "triangles": 1741,
+    "materials": [
+      "Honey bronze",
+      "PhotoSurface",
+      "Walnut"
+    ],
+    "bounds_blender": {
+      "min": [
+        -0.20999999344348907,
+        -0.05000000074505806,
+        0.0
+      ],
+      "max": [
+        0.20999999344348907,
+        0.05000000074505806,
+        0.6499999761581421
+      ]
+    },
+    "dimensions_blender": [
+      0.41999998688697815,
+      0.10000000149011612,
+      0.6499999761581421
+    ],
+    "ground_contact_area_m2": 0.009601946454495192,
+    "topology": {
+      "Plain closed walnut backing": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Left walnut cheek": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Right walnut cheek": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Pointed rounded arch": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Lower crosspiece": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Base corner brace": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Shoulder brace": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Discreet bronze peg": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Base corner brace.001": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Shoulder brace.001": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Discreet bronze peg.001": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Apex token seat": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Honey token": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Token sprout": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Token leaf": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Token leaf.001": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Integral stable rear wedge": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "PhotoSurface": {
+        "boundary_edges": 9,
+        "nonmanifold_edges": 9
+      }
+    },
+    "asset_id": "memory-keepsake",
+    "spec": {
+      "catalog_id": "memory-keepsake",
+      "dimensions_xyz": [
+        0.42,
+        0.65,
+        0.1
+      ],
+      "triangles_max": 3000,
+      "materials_max": 6,
+      "bytes_max": 1048576
+    },
+    "source_blender": "4.5.13 LTS",
+    "front_blender": "+Y",
+    "front_gltf": "-Z",
+    "ground_gltf_y": 0,
+    "source_concepts": {
+      "work_order": "WO-010",
+      "inspected_actual_images": true,
+      "references": [
+        {
+          "path": "docs/assets/media/storybook-reference/v001/environment.png",
+          "bytes": 2678153,
+          "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+        },
+        {
+          "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+          "bytes": 2384183,
+          "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+          "bytes": 2089695,
+          "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+          "bytes": 1184,
+          "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+          "bytes": 2201520,
+          "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+          "bytes": 1171,
+          "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/concept.png",
+          "bytes": 2213940,
+          "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+          "bytes": 1117,
+          "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/concept.png",
+          "bytes": 2058864,
+          "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+          "bytes": 978,
+          "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+          "bytes": 2075973,
+          "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+          "bytes": 1233,
+          "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+        }
+      ],
+      "external_inputs": [],
+      "private_inputs": false,
+      "candidate_status": "unapproved"
+    },
+    "master": {
+      "file": "memory-keepsake.blend",
+      "bytes": 209594,
+      "sha256": "a9fbeead38391f6a0c39a0c7b7c6a5031ffccf9fc9bac965031d49b9ed39cf37"
+    },
+    "glb": {
+      "file": "memory-keepsake.glb",
+      "bytes": 116304,
+      "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137"
+    },
+    "intentional_open_surface": "PhotoSurface is a flat, front-facing UV insert backed by closed wood."
+  },
+  "ground-tile": {
+    "triangles": 702,
+    "materials": [
+      "Grass",
+      "Soil"
+    ],
+    "bounds_blender": {
+      "min": [
+        -1.0,
+        -1.0,
+        0.0
+      ],
+      "max": [
+        1.0,
+        1.0,
+        0.11999999731779099
+      ]
+    },
+    "dimensions_blender": [
+      2.0,
+      2.0,
+      0.11999999731779099
+    ],
+    "ground_contact_area_m2": 4.0,
+    "topology": {
+      "Ground tile \u2014 closed grass and soil": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      }
+    },
+    "asset_id": "ground-tile",
+    "spec": {
+      "catalog_id": "clearing-path-kit",
+      "dimensions_xyz": [
+        2,
+        0.12,
+        2
+      ],
+      "triangles_max": 2000,
+      "materials_max": 4,
+      "bytes_max": 512000
+    },
+    "source_blender": "4.5.13 LTS",
+    "front_blender": "+Y",
+    "front_gltf": "-Z",
+    "ground_gltf_y": 0,
+    "source_concepts": {
+      "work_order": "WO-010",
+      "inspected_actual_images": true,
+      "references": [
+        {
+          "path": "docs/assets/media/storybook-reference/v001/environment.png",
+          "bytes": 2678153,
+          "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+        },
+        {
+          "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+          "bytes": 2384183,
+          "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+          "bytes": 2089695,
+          "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+          "bytes": 1184,
+          "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+          "bytes": 2201520,
+          "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+          "bytes": 1171,
+          "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/concept.png",
+          "bytes": 2213940,
+          "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+          "bytes": 1117,
+          "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/concept.png",
+          "bytes": 2058864,
+          "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+          "bytes": 978,
+          "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+          "bytes": 2075973,
+          "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+          "bytes": 1233,
+          "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+        }
+      ],
+      "external_inputs": [],
+      "private_inputs": false,
+      "candidate_status": "unapproved"
+    },
+    "master": {
+      "file": "ground-tile.blend",
+      "bytes": 189932,
+      "sha256": "960399fcb147db3cb54cbcd786007ffbaf7f85e794b636c1e3f5e23e96b2ed08"
+    },
+    "glb": {
+      "file": "ground-tile.glb",
+      "bytes": 50724,
+      "sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a"
+    },
+    "intentional_open_surface": null
+  },
+  "path-tile": {
+    "triangles": 392,
+    "materials": [
+      "Sandstone",
+      "Stone joints"
+    ],
+    "bounds_blender": {
+      "min": [
+        -1.0,
+        -1.0,
+        0.0
+      ],
+      "max": [
+        1.0,
+        1.0,
+        0.07999999821186066
+      ]
+    },
+    "dimensions_blender": [
+      2.0,
+      2.0,
+      0.07999999821186066
+    ],
+    "ground_contact_area_m2": 4.0,
+    "topology": {
+      "Continuous closed rectangular joint bed": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 01": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 02": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 03": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 04": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 05": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 06": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 07": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      }
+    },
+    "asset_id": "path-tile",
+    "spec": {
+      "catalog_id": "clearing-path-kit",
+      "dimensions_xyz": [
+        2,
+        0.08,
+        2
+      ],
+      "triangles_max": 2000,
+      "materials_max": 4,
+      "bytes_max": 512000
+    },
+    "source_blender": "4.5.13 LTS",
+    "front_blender": "+Y",
+    "front_gltf": "-Z",
+    "ground_gltf_y": 0,
+    "source_concepts": {
+      "work_order": "WO-010",
+      "inspected_actual_images": true,
+      "references": [
+        {
+          "path": "docs/assets/media/storybook-reference/v001/environment.png",
+          "bytes": 2678153,
+          "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+        },
+        {
+          "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+          "bytes": 2384183,
+          "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+          "bytes": 2089695,
+          "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+          "bytes": 1184,
+          "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+          "bytes": 2201520,
+          "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+          "bytes": 1171,
+          "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/concept.png",
+          "bytes": 2213940,
+          "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+          "bytes": 1117,
+          "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/concept.png",
+          "bytes": 2058864,
+          "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+          "bytes": 978,
+          "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+          "bytes": 2075973,
+          "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+          "bytes": 1233,
+          "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+        }
+      ],
+      "external_inputs": [],
+      "private_inputs": false,
+      "candidate_status": "unapproved"
+    },
+    "master": {
+      "file": "path-tile.blend",
+      "bytes": 185406,
+      "sha256": "daba9a1f42a0cd6d9811f5f9a11b212e0aafacf01673060a468c7afd1b9f1a91"
+    },
+    "glb": {
+      "file": "path-tile.glb",
+      "bytes": 30084,
+      "sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f"
+    },
+    "intentional_open_surface": null
+  },
+  "low-step": {
+    "triangles": 188,
+    "materials": [
+      "Sandstone",
+      "Stone joints"
+    ],
+    "bounds_blender": {
+      "min": [
+        -1.0,
+        -0.30000001192092896,
+        0.0
+      ],
+      "max": [
+        1.0,
+        0.30000001192092896,
+        0.2199999988079071
+      ]
+    },
+    "dimensions_blender": [
+      2.0,
+      0.6000000238418579,
+      0.2199999988079071
+    ],
+    "ground_contact_area_m2": 1.2000000476837158,
+    "topology": {
+      "Continuous closed rectangular joint bed": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 01": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 02": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 03": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Broad sandstone paver 04": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      }
+    },
+    "asset_id": "low-step",
+    "spec": {
+      "catalog_id": "clearing-path-kit",
+      "dimensions_xyz": [
+        2,
+        0.22,
+        0.6
+      ],
+      "triangles_max": 2000,
+      "materials_max": 4,
+      "bytes_max": 512000
+    },
+    "source_blender": "4.5.13 LTS",
+    "front_blender": "+Y",
+    "front_gltf": "-Z",
+    "ground_gltf_y": 0,
+    "source_concepts": {
+      "work_order": "WO-010",
+      "inspected_actual_images": true,
+      "references": [
+        {
+          "path": "docs/assets/media/storybook-reference/v001/environment.png",
+          "bytes": 2678153,
+          "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+        },
+        {
+          "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+          "bytes": 2384183,
+          "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+          "bytes": 2089695,
+          "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+          "bytes": 1184,
+          "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+          "bytes": 2201520,
+          "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+          "bytes": 1171,
+          "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/concept.png",
+          "bytes": 2213940,
+          "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+          "bytes": 1117,
+          "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/concept.png",
+          "bytes": 2058864,
+          "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+          "bytes": 978,
+          "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+          "bytes": 2075973,
+          "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+          "bytes": 1233,
+          "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+        }
+      ],
+      "external_inputs": [],
+      "private_inputs": false,
+      "candidate_status": "unapproved"
+    },
+    "master": {
+      "file": "low-step.blend",
+      "bytes": 182356,
+      "sha256": "355722f90edf9d712825c938fe8b61f0299991aba781a5cd1b4c5bce505b6ff5"
+    },
+    "glb": {
+      "file": "low-step.glb",
+      "bytes": 15968,
+      "sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f"
+    },
+    "intentional_open_surface": null
+  },
+  "clearing-tree": {
+    "triangles": 2840,
+    "materials": [
+      "Leaf",
+      "Walnut"
+    ],
+    "bounds_blender": {
+      "min": [
+        -1.25,
+        -0.7731931209564209,
+        0.0
+      ],
+      "max": [
+        1.25,
+        0.7731931209564209,
+        3.0
+      ]
+    },
+    "dimensions_blender": [
+      2.5,
+      1.5463862419128418,
+      3.0
+    ],
+    "ground_contact_area_m2": 0.37505561113357544,
+    "topology": {
+      "Curved trunk with integral root flare": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Left main limb": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Right main limb": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Low right branch": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Foliage 01 \u2014 high cushion": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Foliage 02 \u2014 left cushion": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Foliage 03 \u2014 right cushion": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Foliage 04 \u2014 low cushion": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      }
+    },
+    "asset_id": "clearing-tree",
+    "spec": {
+      "catalog_id": "clearing-tree",
+      "dimensions_xyz": [
+        2.5,
+        3,
+        null
+      ],
+      "triangles_max": 5000,
+      "materials_max": 5,
+      "bytes_max": 1048576
+    },
+    "source_blender": "4.5.13 LTS",
+    "front_blender": "+Y",
+    "front_gltf": "-Z",
+    "ground_gltf_y": 0,
+    "source_concepts": {
+      "work_order": "WO-010",
+      "inspected_actual_images": true,
+      "references": [
+        {
+          "path": "docs/assets/media/storybook-reference/v001/environment.png",
+          "bytes": 2678153,
+          "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+        },
+        {
+          "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+          "bytes": 2384183,
+          "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+          "bytes": 2089695,
+          "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+          "bytes": 1184,
+          "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+          "bytes": 2201520,
+          "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+          "bytes": 1171,
+          "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/concept.png",
+          "bytes": 2213940,
+          "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+          "bytes": 1117,
+          "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/concept.png",
+          "bytes": 2058864,
+          "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+          "bytes": 978,
+          "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+          "bytes": 2075973,
+          "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+          "bytes": 1233,
+          "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+        }
+      ],
+      "external_inputs": [],
+      "private_inputs": false,
+      "candidate_status": "unapproved"
+    },
+    "master": {
+      "file": "clearing-tree.blend",
+      "bytes": 218629,
+      "sha256": "839ce2438106d8cea9f562a90c082c82049689cc56e44868473cb0bbffc9022b"
+    },
+    "glb": {
+      "file": "clearing-tree.glb",
+      "bytes": 71316,
+      "sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9"
+    },
+    "intentional_open_surface": null
+  },
+  "clearing-stone": {
+    "triangles": 348,
+    "materials": [
+      "Lavender stone"
+    ],
+    "bounds_blender": {
+      "min": [
+        -0.5249999761581421,
+        -0.375,
+        0.0
+      ],
+      "max": [
+        0.5249999761581421,
+        0.375,
+        0.800000011920929
+      ]
+    },
+    "dimensions_blender": [
+      1.0499999523162842,
+      0.75,
+      0.800000011920929
+    ],
+    "ground_contact_area_m2": 0.3207858807872981,
+    "topology": {
+      "One rounded asymmetric lavender boulder": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      }
+    },
+    "asset_id": "clearing-stone",
+    "spec": {
+      "catalog_id": "clearing-stone",
+      "dimensions_xyz": [
+        1.05,
+        0.8,
+        0.75
+      ],
+      "triangles_max": 1500,
+      "materials_max": 3,
+      "bytes_max": 512000
+    },
+    "source_blender": "4.5.13 LTS",
+    "front_blender": "+Y",
+    "front_gltf": "-Z",
+    "ground_gltf_y": 0,
+    "source_concepts": {
+      "work_order": "WO-010",
+      "inspected_actual_images": true,
+      "references": [
+        {
+          "path": "docs/assets/media/storybook-reference/v001/environment.png",
+          "bytes": 2678153,
+          "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+        },
+        {
+          "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+          "bytes": 2384183,
+          "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+          "bytes": 2089695,
+          "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+          "bytes": 1184,
+          "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+          "bytes": 2201520,
+          "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+          "bytes": 1171,
+          "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/concept.png",
+          "bytes": 2213940,
+          "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+          "bytes": 1117,
+          "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/concept.png",
+          "bytes": 2058864,
+          "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+          "bytes": 978,
+          "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+          "bytes": 2075973,
+          "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+          "bytes": 1233,
+          "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+        }
+      ],
+      "external_inputs": [],
+      "private_inputs": false,
+      "candidate_status": "unapproved"
+    },
+    "master": {
+      "file": "clearing-stone.blend",
+      "bytes": 187725,
+      "sha256": "2e26ac4613f7c7a5a165fb1abd956af211ca0568ee88714a04f334f294d60f8a"
+    },
+    "glb": {
+      "file": "clearing-stone.glb",
+      "bytes": 41284,
+      "sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7"
+    },
+    "intentional_open_surface": null
+  },
+  "arrival-landmark": {
+    "triangles": 1880,
+    "materials": [
+      "Amber lantern",
+      "Dark bronze",
+      "Sandstone",
+      "Walnut"
+    ],
+    "bounds_blender": {
+      "min": [
+        -1.2000000476837158,
+        -0.2750000059604645,
+        0.0
+      ],
+      "max": [
+        1.2000000476837158,
+        0.2750000059604645,
+        2.799999952316284
+      ]
+    },
+    "dimensions_blender": [
+      2.4000000953674316,
+      0.550000011920929,
+      2.799999952316284
+    ],
+    "ground_contact_area_m2": 0.38836804032325745,
+    "topology": {
+      "Left inward walnut crescent": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Sandstone foot course 1 0": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Sandstone foot course 1 1": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Sandstone foot course 1 2": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Right inward walnut crescent": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Sandstone foot course -1 0": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Sandstone foot course -1 1": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Sandstone foot course -1 2": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Thin bronze crossbar": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Lantern suspension": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Amber lantern glass": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Bronze lantern rim": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Bronze lantern rim.001": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Lantern frame rib 0": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Lantern frame rib 1": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Lantern frame rib 2": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Lantern frame rib 3": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Lantern frame rib 4": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Lantern frame rib 5": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      },
+      "Lantern six-sided cap": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0
+      }
+    },
+    "asset_id": "arrival-landmark",
+    "spec": {
+      "catalog_id": "arrival-landmark",
+      "dimensions_xyz": [
+        2.4,
+        2.8,
+        0.55
+      ],
+      "triangles_max": 6000,
+      "materials_max": 6,
+      "bytes_max": 1048576
+    },
+    "source_blender": "4.5.13 LTS",
+    "front_blender": "+Y",
+    "front_gltf": "-Z",
+    "ground_gltf_y": 0,
+    "source_concepts": {
+      "work_order": "WO-010",
+      "inspected_actual_images": true,
+      "references": [
+        {
+          "path": "docs/assets/media/storybook-reference/v001/environment.png",
+          "bytes": 2678153,
+          "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+        },
+        {
+          "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+          "bytes": 2384183,
+          "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+          "bytes": 2089695,
+          "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+        },
+        {
+          "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+          "bytes": 1184,
+          "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+          "bytes": 2201520,
+          "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+        },
+        {
+          "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+          "bytes": 1171,
+          "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/concept.png",
+          "bytes": 2213940,
+          "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+        },
+        {
+          "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+          "bytes": 1117,
+          "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/concept.png",
+          "bytes": 2058864,
+          "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+        },
+        {
+          "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+          "bytes": 978,
+          "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+          "bytes": 2075973,
+          "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+        },
+        {
+          "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+          "bytes": 1233,
+          "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+        }
+      ],
+      "external_inputs": [],
+      "private_inputs": false,
+      "candidate_status": "unapproved"
+    },
+    "master": {
+      "file": "arrival-landmark.blend",
+      "bytes": 203825,
+      "sha256": "6787f0f78b03c10f092f59a886934aaf01e23f4975dd5566c90292adf57d4b0a"
+    },
+    "glb": {
+      "file": "arrival-landmark.glb",
+      "bytes": 118348,
+      "sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
+    },
+    "intentional_open_surface": null
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "asset_id": "low-step",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender": "4.5.13 LTS",
+  "glb_sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+  "bounds_blender": {
+    "min": [
+      -1.0,
+      -0.30000001192092896,
+      0.0
+    ],
+    "max": [
+      1.0,
+      0.30000001192092896,
+      0.2199999988079071
+    ],
+    "dimensions": [
+      2.0,
+      0.6000000238418579,
+      0.2199999988079071
+    ]
+  },
+  "meshes": [
+    {
+      "name": "low-step",
+      "vertices": 344,
+      "triangles": 188,
+      "materials": [
+        "Stone joints",
+        "Sandstone"
+      ],
+      "uv_layers": [],
+      "color_layers": [
+        "Color"
+      ]
+    }
+  ],
+  "external_image_count": 0,
+  "front_blender": "+Y",
+  "front_gltf": "-Z",
+  "scale_reference_m": 0.5,
+  "turntable": {
+    "file": "turntable.png",
+    "angles_degrees": [
+      0,
+      60,
+      120,
+      180,
+      240,
+      300
+    ],
+    "layout": "left to right, top row then bottom row",
+    "source": "six exact-GLB renders"
+  }
+}

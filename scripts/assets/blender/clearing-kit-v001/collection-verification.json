@@ -1,0 +1,647 @@
+{
+  "manifest_sha256": "95a477b3f55e47c8d300ab03257117fbfe21236483fe16c91c2d84d4acf7353a",
+  "verified_streams": [
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/memory-keepsake.glb",
+      "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137",
+      "bytes": 116304,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/beauty.png",
+      "sha256": "0f8e02f7bcb1325385ec7cc6bc9b1218c6efcb41b6a2e88d2396ea5772eb8a6c",
+      "bytes": 561792,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/front.png",
+      "sha256": "7a3f085f9a159b1934fbf1b72b1b5d9a4d287a4fef32378c0f476eadcd7c3eb9",
+      "bytes": 570834,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/side.png",
+      "sha256": "17ffe9fcd6ee35e1c9b8b6d8bfdce865595022f0ce1bd6458b5cb5cd9db61a2c",
+      "bytes": 545089,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/back.png",
+      "sha256": "4920110db07f1502df4ab56c7128640d7c9d57c96b8cdffdd1525cf56bcc4c77",
+      "bytes": 546837,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/top.png",
+      "sha256": "77ff3fe82657ed739638facc583475832451718ecdf9c150bc8d28e39d75aab0",
+      "bytes": 531284,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/scale.png",
+      "sha256": "8383fef1f890006173e9c2fdd22ef074c54f2f393cbf7da0342e86811535b089",
+      "bytes": 559866,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/turntable.png",
+      "sha256": "252040c160dd3d2a7ab7dfc1a18651704ded8c803e76102a608625e776efcb46",
+      "bytes": 659083,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/validation.json",
+      "sha256": "1aa34a4b471fb8034a7b163b0351de2da9c9e7246772404b90aa5d39bf2ae8a2",
+      "bytes": 2949,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/reimport.json",
+      "sha256": "2d8f0ca30e0d3e478d14c1212265ca45f630b5806c1e53ef604518f4cde2e666",
+      "bytes": 1370,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/three-inspection.json",
+      "sha256": "fa32231bda44a35178f6a008854440f0815a6d37bfd690ec724a10fb38d93e63",
+      "bytes": 1030,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/construction.json",
+      "sha256": "00caabbe0de04806736f3fcf19dac5cd053bfc47d046a350b6e8335b670d125d",
+      "bytes": 5440,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/memory-keepsake.blend",
+      "sha256": "a9fbeead38391f6a0c39a0c7b7c6a5031ffccf9fc9bac965031d49b9ed39cf37",
+      "bytes": 209594,
+      "saved_in_repository": false
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/ground-tile.glb",
+      "sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
+      "bytes": 50724,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/beauty.png",
+      "sha256": "5947ae801f0abeab7f1d1e3c5b82795ad72f11fffb561bd839bf420193cd618e",
+      "bytes": 530216,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/front.png",
+      "sha256": "62b070caed7b84037c1bd76e0d18e3e3a71d15fa34e1c6e2c4ab3eebd7215ee8",
+      "bytes": 532743,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/side.png",
+      "sha256": "1dba0117ae9898e925362cf892f7abc05a8e541393d3c1f7cca4f0e0f284ee5c",
+      "bytes": 533606,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/back.png",
+      "sha256": "f4665f739668227c2a99c0c1e6914a1241001eaa71019f72ff4bd57361b13e3c",
+      "bytes": 533900,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/top.png",
+      "sha256": "b8545c4560e41fd7252d8541d4510cc3380ccbb9c2bb7c0c60ed1f98482b1fb9",
+      "bytes": 518849,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/scale.png",
+      "sha256": "9a27bc6cf8c5991d8fd21a8323f89e12059a4f2fdcbc76546248deb2fe960d33",
+      "bytes": 528156,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/turntable.png",
+      "sha256": "4d2a5c31c46ade69a2e79c9cf9190c4a0a0c95b2cbff3e0873efc13c61bd1b12",
+      "bytes": 619986,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/validation.json",
+      "sha256": "e13cdf1f77a5bde0299e3e0ccd949df215f3abd4e219b1ffdd1dccec3beff148",
+      "bytes": 2347,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/reimport.json",
+      "sha256": "8f3d535249553b63fc665aea226eaee7c186373eb556b63424562871b3e43c9a",
+      "bytes": 1021,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/three-inspection.json",
+      "sha256": "f6df929e2e56360221a4f1ea0c5faf328e2355557a60066f6fa63483804355f3",
+      "bytes": 1158,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/construction.json",
+      "sha256": "b883348fe448036a618951d7c9ac49e0bb681d9f9b6c9b660e235cfc12cb46b1",
+      "bytes": 3704,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/ground-tile.blend",
+      "sha256": "960399fcb147db3cb54cbcd786007ffbaf7f85e794b636c1e3f5e23e96b2ed08",
+      "bytes": 189932,
+      "saved_in_repository": false
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/path-tile.glb",
+      "sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
+      "bytes": 30084,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/beauty.png",
+      "sha256": "b7533b3f0516c6c5b082ab0fbaac8a4db900c712b57afdcf527b2f1247096322",
+      "bytes": 531613,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/front.png",
+      "sha256": "3ed0384dc8424f69ea47c1d78ef6fad7f93a289b0e3071cb3993de7004dc1573",
+      "bytes": 532964,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/side.png",
+      "sha256": "ed6967021cbb06df99bf547324b0bcb266728d3969ba3f4942f147cdd8092c0f",
+      "bytes": 533038,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/back.png",
+      "sha256": "2ed2c0feeac47b2fe26ea952e98ea7f857f43d63f7464a24f40e0e6868789d2b",
+      "bytes": 533131,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/top.png",
+      "sha256": "67fa4740ed3e2947e0a664b1f38164813a0ab2ccf1320cb09e308ea50a32d046",
+      "bytes": 525863,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/scale.png",
+      "sha256": "523e66f2a079e8716902a7217336c72b0a8c56f8f138034dd2ba446d536933c9",
+      "bytes": 523443,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/turntable.png",
+      "sha256": "879cb625c4327a9a92cde3760839cfcc6f645590b48d54150a633bec616f6781",
+      "bytes": 547450,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/validation.json",
+      "sha256": "1b051e970ef134fad5472ce49c6d067b3a89153b1f3836330d0fd579a356bbbd",
+      "bytes": 2352,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/reimport.json",
+      "sha256": "a53284b16320c07598013e22d66dc6f1fedb35563019364685ee4206263e65f9",
+      "bytes": 1028,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/three-inspection.json",
+      "sha256": "a290949084841b7f1a2f109b6b2c040f74e3b1d98630bf2f49fd97951232504a",
+      "bytes": 1156,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/construction.json",
+      "sha256": "be63902132da52d095350f650fc7dca7b74a4ced10059177d97a14e5118006b1",
+      "bytes": 4388,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/path-tile.blend",
+      "sha256": "daba9a1f42a0cd6d9811f5f9a11b212e0aafacf01673060a468c7afd1b9f1a91",
+      "bytes": 185406,
+      "saved_in_repository": false
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/low-step.glb",
+      "sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+      "bytes": 15968,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/beauty.png",
+      "sha256": "5ea2c3dbcc6f086b10049e3f4c4a245e8a61c9958886960d102299fadf7b482a",
+      "bytes": 519762,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/front.png",
+      "sha256": "f4a69da005adce3973bb6a232feb3ea729f4820a93ea870e3719c834ab700fd4",
+      "bytes": 531708,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/side.png",
+      "sha256": "76777762cfbb3a34562edbe0b9dda103a6be599ea22933ee562adca13385e9b7",
+      "bytes": 531576,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/back.png",
+      "sha256": "9d4a5de4453598174fd44eb91687af6d9f6cb0a66805feb7daef5edd9b0fc37d",
+      "bytes": 531976,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/top.png",
+      "sha256": "4c4f9f680c6901dbc24ef6a2eecc64fbb09fa30cb25ba43a1f31ff7d08406fc0",
+      "bytes": 517318,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/scale.png",
+      "sha256": "8dc001c026e6c75d0d571b3be9ef71145c6335c2ff7e52fef61b8220ae87fcae",
+      "bytes": 517178,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/turntable.png",
+      "sha256": "cbe8d9f8c96c090cf22f3006af26c9e0fa3e1d61f1ebb4bde21bd7d628bc7ca6",
+      "bytes": 518920,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/validation.json",
+      "sha256": "0cea9be9b0fdade2e8397bc721419855a362ef523d10c707f3ba8dd3688473a8",
+      "bytes": 2400,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/reimport.json",
+      "sha256": "87940257e199d8aa10cb84fd29750d6e5f15afebd5cb51201bddc1a411767121",
+      "bytes": 1071,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/three-inspection.json",
+      "sha256": "cbd78a5994af5b0528c864496832406ee184b4be9de77ccfdcf844ef2df0721b",
+      "bytes": 771,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/construction.json",
+      "sha256": "1d27a79047b9df633320d7eb0b5beb953a6a7b8df63220ed44a580694b642134",
+      "bytes": 4156,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/low-step/low-step.blend",
+      "sha256": "355722f90edf9d712825c938fe8b61f0299991aba781a5cd1b4c5bce505b6ff5",
+      "bytes": 182356,
+      "saved_in_repository": false
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/clearing-tree.glb",
+      "sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+      "bytes": 71316,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/beauty.png",
+      "sha256": "68f8dc56d65dd89543bca5f36c35217fccc616e635ccf699e0694bc9c4414d49",
+      "bytes": 559831,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/front.png",
+      "sha256": "42cc069fac2a32713a3e05d9bd87768267c83c9a9357a818235a3f61212698e5",
+      "bytes": 579422,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/side.png",
+      "sha256": "e550ee56ee9a58f15eae5446b224809b98ae96f85e7d4e04dbd5bb7b092e6b27",
+      "bytes": 559992,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/back.png",
+      "sha256": "257c450e8fd59664d6efb2a90fd4ee2b2b90a02b646b0ba369b22f99dc7a561c",
+      "bytes": 581747,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/top.png",
+      "sha256": "9d3c2ee0184af7dfb6421c8da55922421091e0cfbfded67e96fa114b564772a2",
+      "bytes": 531818,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/scale.png",
+      "sha256": "0f390daaace0a34a92a9778999f6e6e090a0411cd411ef946ac9eef0296d102a",
+      "bytes": 559710,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/turntable.png",
+      "sha256": "37de9422809ee7503de18fc5ca03deabb231999de43c42f4a4894a3525eb8da6",
+      "bytes": 785194,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/validation.json",
+      "sha256": "5a7af2f811e4f2bc86cd4024e91ae902e95768fabc1fa6894166868d3886b3f5",
+      "bytes": 2424,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/reimport.json",
+      "sha256": "afc6d95ad5ac4ae6666b78a65a40cef58a998705e3571edbb676fd1a11b70f4a",
+      "bytes": 1040,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/three-inspection.json",
+      "sha256": "fe6c27804658c6278aa61d4335f5f057ee1c42de975273305dc233e1de0e0323",
+      "bytes": 747,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/construction.json",
+      "sha256": "92a3ec5abc85951889dcd2c5b3c142cd7b27891a70a13683705bc26515b7af8e",
+      "bytes": 4415,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/reuse.png",
+      "sha256": "1d448796010aae00c2071d79bdc091aa8f3612e15138f2895a629f99c5bd49f8",
+      "bytes": 601116,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/clearing-tree.blend",
+      "sha256": "839ce2438106d8cea9f562a90c082c82049689cc56e44868473cb0bbffc9022b",
+      "bytes": 218629,
+      "saved_in_repository": false
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/clearing-stone.glb",
+      "sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+      "bytes": 41284,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/beauty.png",
+      "sha256": "7b82a1143171e1dde0dff70b2e0c49769f5eadfde7f82bb31dc12919d3ade28b",
+      "bytes": 537305,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/front.png",
+      "sha256": "9808672759bfad6ef5eb6930c251e1ae43f2f1803b9aca640d6a37f366452e9d",
+      "bytes": 551287,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/side.png",
+      "sha256": "35086f535cde4ed7b6d7fd2416ab795466ff1c40b2d17036b83fd67c5c986f33",
+      "bytes": 549156,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/back.png",
+      "sha256": "f3a4322aa911a1938877816ab14d19d2a5c03635c7a50ac18ef417e50512f1c8",
+      "bytes": 551005,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/top.png",
+      "sha256": "35a779b674ce4f805d9d2708b150ee83334f5b1f0231ac3c67117fcc4ff039ec",
+      "bytes": 536898,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/scale.png",
+      "sha256": "b80728306bdb118dfa2c0c454cee666d81126f5a5534bd47687666edc6dabded",
+      "bytes": 539672,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/turntable.png",
+      "sha256": "38df9d6be8562b431f2b586c5dbd21661f5f1c621764de17e5bdfc10befc02c4",
+      "bytes": 646295,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/validation.json",
+      "sha256": "f3a2fdf06656aadcffc07e942cf180fe65472559aed4d83a7c2c80dfe6b0f1ec",
+      "bytes": 2362,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/reimport.json",
+      "sha256": "ac0ebeee6a9cd8edc1fbff23ab8e1786b06302c23a5aa4eb7af3f87801b24b8a",
+      "bytes": 1064,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/three-inspection.json",
+      "sha256": "747dd5e79211146be78005ac71dee50c9c0b77d2b66b90119a7a1878214bbf22",
+      "bytes": 784,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/construction.json",
+      "sha256": "e62cb36788ab97c53bf78d762cedd2e3663ff8482a19ba56489a586d231442a7",
+      "bytes": 3772,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/reuse.png",
+      "sha256": "bdf4e2d8dab055c604bde930ee71cdff243e5068086d7afa0139245a4945b6d7",
+      "bytes": 553604,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/clearing-stone.blend",
+      "sha256": "2e26ac4613f7c7a5a165fb1abd956af211ca0568ee88714a04f334f294d60f8a",
+      "bytes": 187725,
+      "saved_in_repository": false
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/arrival-landmark.glb",
+      "sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
+      "bytes": 118348,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/beauty.png",
+      "sha256": "2b13751a48433515c12bc303b1280c3f5007cf6eacbdd8e13bcd3c9ccd9e3139",
+      "bytes": 557714,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/front.png",
+      "sha256": "606402ca4ef097ede9aa36ccf32169d8695e562ea5edd33e207601801356504b",
+      "bytes": 565798,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/side.png",
+      "sha256": "bade86a06f95cb9d4f24b73223c977acebcb2a46d5e62329c718e34745dc4300",
+      "bytes": 535626,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/back.png",
+      "sha256": "35d918ec7351c993bf9f178ab1e53b96a2f1c52c6e873c013eaec820e3920247",
+      "bytes": 567080,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/top.png",
+      "sha256": "ecf658d63450cbbe98506c64467ab90e1a3427f6502f94f593695e30100a6051",
+      "bytes": 522493,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/scale.png",
+      "sha256": "1ade4e3397458f26b8b2be5e005f579094bdf9acaa09ea96e1ed4914b1a61c7d",
+      "bytes": 549808,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/turntable.png",
+      "sha256": "b287039e2f18257fac2aee1fd02a6a08dcf87b4b47192fcef2f591f8f0ddcd70",
+      "bytes": 710455,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/validation.json",
+      "sha256": "a1c08f36216d46aaf0941fb9893671cb09bdb829aa7be2467279d3393514d57d",
+      "bytes": 2880,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/reimport.json",
+      "sha256": "8f67e13102ff99403f9f9c3e441a63878a7463367144f14db6d19630a3ae06ec",
+      "bytes": 1479,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/three-inspection.json",
+      "sha256": "882b588e98f1d28633a117fb153532d006f577e9271e18c47b34882235e65552",
+      "bytes": 997,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/construction.json",
+      "sha256": "e05cb6fc6905a01a5fa4bf404073a6dc5e66fd44acd896fb9f960dc144a93d2c",
+      "bytes": 5659,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/arrival-landmark.blend",
+      "sha256": "6787f0f78b03c10f092f59a886934aaf01e23f4975dd5566c90292adf57d4b0a",
+      "bytes": 203825,
+      "saved_in_repository": false
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/tile-joins.png",
+      "sha256": "96b7de35041bdf0d2b6376ec4376d72b82762c2128ecde263899f2a48d9fd9f1",
+      "bytes": 883478,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/tile-joins.json",
+      "sha256": "7429be1cec7939fc54a09a09f79653af51c177b61bc76052ce423b3a6189abd2",
+      "bytes": 355,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/kit-beauty.png",
+      "sha256": "9f1b40427fd8d295802396b2630cc37d0f3508bb205a14cc6386c10ddad2f102",
+      "bytes": 1343204,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-kit-review.blend",
+      "sha256": "fa9312ba1e93b4d2f36fcf5ce23551b0759a63ed2e44979e336b50a66ce16fa9",
+      "bytes": 358856,
+      "saved_in_repository": false
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/live-scene-release.blend",
+      "sha256": "efa907e74c8e6fee25f7778a865d668430e547fc5b443d97bcb4d24893f38a40",
+      "bytes": 244258,
+      "saved_in_repository": false
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/source-bundle.json",
+      "sha256": "29b8a26733b7cb9013a6ffe90e5cf0869945608d73ea7e103b4c122fdaef5427",
+      "bytes": 79874,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/source-concepts.json",
+      "sha256": "6105581d16a4cddf3680d7d2319a450a6aaae4c35068e78f2c11c893ee5d28b0",
+      "bytes": 2429,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/build-inventory.json",
+      "sha256": "c7f551c1c618855400b3ada61ab5d849695703d56523c49978295c7177fea433",
+      "bytes": 33872,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/inspection-history.json",
+      "sha256": "414323aaee31d8564a803ea2eb648b0732505ced56961d1a9a0b9fadc010f6f4",
+      "bytes": 8343,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake-manifest.json",
+      "sha256": "f3fa7d75cb28948d5eb82f01e835841d480c9d542f8c6e43f7b04931500745ae",
+      "bytes": 10128,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-path-kit-manifest.json",
+      "sha256": "69635d48f7b22b6210754e1977f22ab8d53b23d25ba770a5fce99c4d7b05f378",
+      "bytes": 25664,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree-manifest.json",
+      "sha256": "626a670e5e45936652539ee4a511ccf9335397d3321055183f282888be6135cb",
+      "bytes": 10499,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone-manifest.json",
+      "sha256": "34eb1c7a08b3a22c8d7f5890efe339849a58607904a735b2fbaff8f55c272d3d",
+      "bytes": 10580,
+      "saved_in_repository": true
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark-manifest.json",
+      "sha256": "990d9ce2e8d16379f0944c981901d0336a32dc09bccfabc2a2f8b6ef6ae71d53",
+      "bytes": 10184,
+      "saved_in_repository": true
+    }
+  ]
+}

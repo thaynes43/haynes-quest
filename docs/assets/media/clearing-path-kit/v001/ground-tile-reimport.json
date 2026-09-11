@@ -1,0 +1,55 @@
+{
+  "asset_id": "ground-tile",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender": "4.5.13 LTS",
+  "glb_sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
+  "bounds_blender": {
+    "min": [
+      -1.0,
+      -1.0,
+      0.0
+    ],
+    "max": [
+      1.0,
+      1.0,
+      0.11999999731779099
+    ],
+    "dimensions": [
+      2.0,
+      2.0,
+      0.11999999731779099
+    ]
+  },
+  "meshes": [
+    {
+      "name": "ground-tile",
+      "vertices": 1224,
+      "triangles": 702,
+      "materials": [
+        "Grass",
+        "Soil"
+      ],
+      "uv_layers": [],
+      "color_layers": [
+        "Color"
+      ]
+    }
+  ],
+  "external_image_count": 0,
+  "front_blender": "+Y",
+  "front_gltf": "-Z",
+  "scale_reference_m": 0.5,
+  "turntable": {
+    "file": "turntable.png",
+    "angles_degrees": [
+      0,
+      60,
+      120,
+      180,
+      240,
+      300
+    ],
+    "layout": "left to right, top row then bottom row",
+    "source": "six exact-GLB renders"
+  }
+}

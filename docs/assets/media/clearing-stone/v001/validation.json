@@ -1,0 +1,99 @@
+{
+  "asset_id": "clearing-stone",
+  "file": "clearing-stone.glb",
+  "sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+  "bytes": 41284,
+  "triangles": 348,
+  "materials": [
+    {
+      "name": "Lavender stone",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9800000190734863
+    }
+  ],
+  "draw_primitives": 1,
+  "bounds_gltf": {
+    "min": [
+      -0.5249999761581421,
+      0,
+      -0.375
+    ],
+    "max": [
+      0.5249999761581421,
+      0.800000011920929,
+      0.375
+    ],
+    "dimensions": [
+      1.0499999523162842,
+      0.800000011920929,
+      0.75
+    ]
+  },
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "extensions_required": [],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "identity_node_transforms": true,
+    "triangle_budget": true,
+    "material_budget": true,
+    "file_budget": true,
+    "exact_dimensions": true,
+    "ground_y_zero": true,
+    "centered_footprint": true,
+    "no_external_resources": true,
+    "no_textures": true,
+    "no_required_extensions": true,
+    "opaque_surfaces": true,
+    "matte_materials": true,
+    "vertex_colors": true,
+    "all_triangle_primitives": true,
+    "no_skin_or_animation": true,
+    "closed_source_shells": true,
+    "stable_flat_ground_contact": true
+  },
+  "validator": {
+    "uri": "clearing-stone.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T05:22:27.426Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 39636
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 1,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 1,
+      "totalVertexCount": 1043,
+      "totalTriangleCount": 348,
+      "maxUVs": 0,
+      "maxInfluences": 0,
+      "maxAttributes": 3
+    }
+  }
+}

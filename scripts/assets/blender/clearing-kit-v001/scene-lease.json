@@ -1,0 +1,14 @@
+{
+  "work_order": "WO-010",
+  "owner": "native gpt-6-astra max",
+  "status": "released",
+  "acquired_at": "2026-09-11T04:50:30.581550+00:00",
+  "previous_lease": "WO-007 released 2026-09-11T04:37:50Z",
+  "released_at": "2026-09-11T05:33:31.020855+00:00",
+  "saved_live_scene": "live-scene-release.blend",
+  "saved_live_scene_sha256": "efa907e74c8e6fee25f7778a865d668430e547fc5b443d97bcb4d24893f38a40",
+  "delivery_manifest_sha256": "95a477b3f55e47c8d300ab03257117fbfe21236483fe16c91c2d84d4acf7353a",
+  "verified_artifact_streams": 107,
+  "background_rendering": "complete",
+  "candidate_status": "unapproved"
+}

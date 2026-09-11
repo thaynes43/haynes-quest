@@ -1,0 +1,69 @@
+{
+  "work_order": "WO-010",
+  "inspected_actual_images": true,
+  "references": [
+    {
+      "path": "docs/assets/media/storybook-reference/v001/environment.png",
+      "bytes": 2678153,
+      "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+    },
+    {
+      "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+      "bytes": 2384183,
+      "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+    },
+    {
+      "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+      "bytes": 2089695,
+      "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+    },
+    {
+      "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+      "bytes": 1184,
+      "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+    },
+    {
+      "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+      "bytes": 2201520,
+      "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+    },
+    {
+      "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+      "bytes": 1171,
+      "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+    },
+    {
+      "path": "docs/assets/media/clearing-tree/v001/concept.png",
+      "bytes": 2213940,
+      "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+    },
+    {
+      "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+      "bytes": 1117,
+      "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+    },
+    {
+      "path": "docs/assets/media/clearing-stone/v001/concept.png",
+      "bytes": 2058864,
+      "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+    },
+    {
+      "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+      "bytes": 978,
+      "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+    },
+    {
+      "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+      "bytes": 2075973,
+      "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+    },
+    {
+      "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+      "bytes": 1233,
+      "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+    }
+  ],
+  "external_inputs": [],
+  "private_inputs": false,
+  "candidate_status": "unapproved"
+}

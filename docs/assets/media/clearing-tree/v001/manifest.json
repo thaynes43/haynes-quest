@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "catalog_id": "clearing-tree",
+  "version": "v001",
+  "candidate_status": "unapproved",
+  "coordinator_review": "pending",
+  "tom_review": "pending",
+  "source_concepts": {
+    "work_order": "WO-010",
+    "inspected_actual_images": true,
+    "references": [
+      {
+        "path": "docs/assets/media/storybook-reference/v001/environment.png",
+        "bytes": 2678153,
+        "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+      },
+      {
+        "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+        "bytes": 2384183,
+        "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+        "bytes": 2089695,
+        "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+        "bytes": 1184,
+        "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+        "bytes": 2201520,
+        "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+        "bytes": 1171,
+        "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/concept.png",
+        "bytes": 2213940,
+        "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+        "bytes": 1117,
+        "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/concept.png",
+        "bytes": 2058864,
+        "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+        "bytes": 978,
+        "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+        "bytes": 2075973,
+        "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+        "bytes": 1233,
+        "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+      }
+    ],
+    "external_inputs": [],
+    "private_inputs": false,
+    "candidate_status": "unapproved"
+  },
+  "assets": {
+    "clearing-tree": {
+      "catalog_id": "clearing-tree",
+      "candidate_status": "unapproved",
+      "coordinator_review": "pending",
+      "tom_review": "pending",
+      "glb_sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+      "triangles": 2840,
+      "material_count": 2,
+      "draw_primitives": 2,
+      "dimensions_gltf_m": [
+        2.5,
+        3,
+        1.5463862419128418
+      ],
+      "files": [
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/clearing-tree.glb",
+          "file": "clearing-tree/clearing-tree.glb",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/clearing-tree.glb",
+          "sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+          "bytes": 71316,
+          "repository_path": "docs/assets/media/clearing-tree/v001/clearing-tree.glb"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/beauty.png",
+          "file": "clearing-tree/beauty.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/beauty.png",
+          "sha256": "68f8dc56d65dd89543bca5f36c35217fccc616e635ccf699e0694bc9c4414d49",
+          "bytes": 559831,
+          "repository_path": "docs/assets/media/clearing-tree/v001/beauty.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/front.png",
+          "file": "clearing-tree/front.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/front.png",
+          "sha256": "42cc069fac2a32713a3e05d9bd87768267c83c9a9357a818235a3f61212698e5",
+          "bytes": 579422,
+          "repository_path": "docs/assets/media/clearing-tree/v001/front.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/side.png",
+          "file": "clearing-tree/side.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/side.png",
+          "sha256": "e550ee56ee9a58f15eae5446b224809b98ae96f85e7d4e04dbd5bb7b092e6b27",
+          "bytes": 559992,
+          "repository_path": "docs/assets/media/clearing-tree/v001/side.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/back.png",
+          "file": "clearing-tree/back.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/back.png",
+          "sha256": "257c450e8fd59664d6efb2a90fd4ee2b2b90a02b646b0ba369b22f99dc7a561c",
+          "bytes": 581747,
+          "repository_path": "docs/assets/media/clearing-tree/v001/back.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/top.png",
+          "file": "clearing-tree/top.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/top.png",
+          "sha256": "9d3c2ee0184af7dfb6421c8da55922421091e0cfbfded67e96fa114b564772a2",
+          "bytes": 531818,
+          "repository_path": "docs/assets/media/clearing-tree/v001/top.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/scale.png",
+          "file": "clearing-tree/scale.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/scale.png",
+          "sha256": "0f390daaace0a34a92a9778999f6e6e090a0411cd411ef946ac9eef0296d102a",
+          "bytes": 559710,
+          "repository_path": "docs/assets/media/clearing-tree/v001/scale.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/turntable.png",
+          "file": "clearing-tree/turntable.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/turntable.png",
+          "sha256": "37de9422809ee7503de18fc5ca03deabb231999de43c42f4a4894a3525eb8da6",
+          "bytes": 785194,
+          "repository_path": "docs/assets/media/clearing-tree/v001/turntable.png",
+          "width": 1152,
+          "height": 768
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/validation.json",
+          "file": "clearing-tree/validation.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/validation.json",
+          "sha256": "5a7af2f811e4f2bc86cd4024e91ae902e95768fabc1fa6894166868d3886b3f5",
+          "bytes": 2424,
+          "repository_path": "docs/assets/media/clearing-tree/v001/validation.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/reimport.json",
+          "file": "clearing-tree/reimport.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/reimport.json",
+          "sha256": "afc6d95ad5ac4ae6666b78a65a40cef58a998705e3571edbb676fd1a11b70f4a",
+          "bytes": 1040,
+          "repository_path": "docs/assets/media/clearing-tree/v001/reimport.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/three-inspection.json",
+          "file": "clearing-tree/three-inspection.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/three-inspection.json",
+          "sha256": "fe6c27804658c6278aa61d4335f5f057ee1c42de975273305dc233e1de0e0323",
+          "bytes": 747,
+          "repository_path": "docs/assets/media/clearing-tree/v001/three-inspection.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/construction.json",
+          "file": "clearing-tree/construction.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/construction.json",
+          "sha256": "92a3ec5abc85951889dcd2c5b3c142cd7b27891a70a13683705bc26515b7af8e",
+          "bytes": 4415,
+          "repository_path": "docs/assets/media/clearing-tree/v001/construction.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/reuse.png",
+          "file": "clearing-tree/reuse.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/reuse.png",
+          "sha256": "1d448796010aae00c2071d79bdc091aa8f3612e15138f2895a629f99c5bd49f8",
+          "bytes": 601116,
+          "repository_path": "docs/assets/media/clearing-tree/v001/reuse.png",
+          "width": 1000,
+          "height": 650
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-tree/clearing-tree.blend",
+          "file": "clearing-tree/clearing-tree.blend",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-tree/clearing-tree.blend",
+          "sha256": "839ce2438106d8cea9f562a90c082c82049689cc56e44868473cb0bbffc9022b",
+          "bytes": 218629,
+          "repository_path": null
+        }
+      ]
+    }
+  },
+  "shared_kit_files": []
+}

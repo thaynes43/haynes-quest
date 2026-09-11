@@ -1,0 +1,103 @@
+{
+  "asset_id": "low-step",
+  "file": "low-step.glb",
+  "sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+  "bytes": 15968,
+  "triangles": 188,
+  "materials": [
+    {
+      "name": "Stone joints",
+      "metallicFactor": 0
+    },
+    {
+      "name": "Sandstone",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9599999785423279
+    }
+  ],
+  "draw_primitives": 2,
+  "bounds_gltf": {
+    "min": [
+      -1,
+      0,
+      -0.30000001192092896
+    ],
+    "max": [
+      1,
+      0.2199999988079071,
+      0.30000001192092896
+    ],
+    "dimensions": [
+      2,
+      0.2199999988079071,
+      0.6000000238418579
+    ]
+  },
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "extensions_required": [],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "identity_node_transforms": true,
+    "triangle_budget": true,
+    "material_budget": true,
+    "file_budget": true,
+    "exact_dimensions": true,
+    "ground_y_zero": true,
+    "centered_footprint": true,
+    "no_external_resources": true,
+    "no_textures": true,
+    "no_required_extensions": true,
+    "opaque_surfaces": true,
+    "matte_materials": true,
+    "vertex_colors": true,
+    "all_triangle_primitives": true,
+    "no_skin_or_animation": true,
+    "closed_source_shells": true,
+    "stable_flat_ground_contact": true
+  },
+  "validator": {
+    "uri": "low-step.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T05:22:27.413Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 13512
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 2,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 2,
+      "totalVertexCount": 344,
+      "totalTriangleCount": 188,
+      "maxUVs": 0,
+      "maxInfluences": 0,
+      "maxAttributes": 3
+    }
+  }
+}

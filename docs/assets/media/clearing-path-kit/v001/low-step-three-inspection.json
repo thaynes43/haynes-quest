@@ -1,0 +1,35 @@
+{
+  "asset_id": "low-step",
+  "three_revision": "186",
+  "glb_sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+  "loader": "Three.js GLTFLoader; CPU geometry and ray checks",
+  "bounds": {
+    "min": [
+      -1,
+      0,
+      -0.30000001192092896
+    ],
+    "max": [
+      1,
+      0.2199999988079071,
+      0.30000001192092896
+    ],
+    "dimensions": [
+      2,
+      0.2199999988079071,
+      0.6000000238418579
+    ]
+  },
+  "meshes": 2,
+  "material_primitives": 2,
+  "animations": 0,
+  "external_fetches": 0,
+  "checks": {
+    "static_mesh_loaded": true,
+    "ground_y_zero": true,
+    "no_animations": true,
+    "all_have_vertex_colors": true,
+    "stable_flat_ground_contact": true
+  },
+  "ground_contact_area_m2": 1.2000000476837158
+}

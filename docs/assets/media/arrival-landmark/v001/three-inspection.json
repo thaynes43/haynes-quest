@@ -1,0 +1,44 @@
+{
+  "asset_id": "arrival-landmark",
+  "three_revision": "186",
+  "glb_sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
+  "loader": "Three.js GLTFLoader; CPU geometry and ray checks",
+  "bounds": {
+    "min": [
+      -1.2000000476837158,
+      0,
+      -0.2750000059604645
+    ],
+    "max": [
+      1.2000000476837158,
+      2.799999952316284,
+      0.2750000059604645
+    ],
+    "dimensions": [
+      2.4000000953674316,
+      2.799999952316284,
+      0.550000011920929
+    ]
+  },
+  "meshes": 4,
+  "material_primitives": 4,
+  "animations": 0,
+  "external_fetches": 0,
+  "checks": {
+    "static_mesh_loaded": true,
+    "ground_y_zero": true,
+    "no_animations": true,
+    "all_have_vertex_colors": true,
+    "stable_flat_ground_contact": true,
+    "passable_width": true
+  },
+  "ground_contact_area_m2": 0.3883680513210308,
+  "passage_check": {
+    "samples": 65,
+    "height_interval_m": [
+      0.005,
+      1.6
+    ],
+    "minimum_width_m": 1.5999999046325684
+  }
+}

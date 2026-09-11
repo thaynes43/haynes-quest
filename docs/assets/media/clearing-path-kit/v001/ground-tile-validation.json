@@ -1,0 +1,103 @@
+{
+  "asset_id": "ground-tile",
+  "file": "ground-tile.glb",
+  "sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
+  "bytes": 50724,
+  "triangles": 702,
+  "materials": [
+    {
+      "name": "Grass",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9800000190734863
+    },
+    {
+      "name": "Soil",
+      "metallicFactor": 0
+    }
+  ],
+  "draw_primitives": 2,
+  "bounds_gltf": {
+    "min": [
+      -1,
+      0,
+      -1
+    ],
+    "max": [
+      1,
+      0.11999999731779099,
+      1
+    ],
+    "dimensions": [
+      2,
+      0.11999999731779099,
+      2
+    ]
+  },
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "extensions_required": [],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "identity_node_transforms": true,
+    "triangle_budget": true,
+    "material_budget": true,
+    "file_budget": true,
+    "exact_dimensions": true,
+    "ground_y_zero": true,
+    "centered_footprint": true,
+    "no_external_resources": true,
+    "no_textures": true,
+    "no_required_extensions": true,
+    "opaque_surfaces": true,
+    "matte_materials": true,
+    "vertex_colors": true,
+    "all_triangle_primitives": true,
+    "no_skin_or_animation": true,
+    "closed_source_shells": true,
+    "stable_flat_ground_contact": true
+  },
+  "validator": {
+    "uri": "ground-tile.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T05:22:27.401Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 48276
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 2,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 2,
+      "totalVertexCount": 1224,
+      "totalTriangleCount": 702,
+      "maxUVs": 0,
+      "maxInfluences": 0,
+      "maxAttributes": 3
+    }
+  }
+}

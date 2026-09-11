@@ -1,0 +1,119 @@
+{
+  "asset_id": "arrival-landmark",
+  "file": "arrival-landmark.glb",
+  "sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
+  "bytes": 118348,
+  "triangles": 1880,
+  "materials": [
+    {
+      "name": "Walnut",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9200000166893005
+    },
+    {
+      "name": "Sandstone",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9599999785423279
+    },
+    {
+      "name": "Dark bronze",
+      "metallicFactor": 0.44999998807907104,
+      "roughnessFactor": 0.5799999833106995
+    },
+    {
+      "name": "Amber lantern",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.550000011920929,
+      "emissiveFactor": [
+        0.3499999940395355,
+        0.19764902553134256,
+        0.051459543275670594
+      ]
+    }
+  ],
+  "draw_primitives": 4,
+  "bounds_gltf": {
+    "min": [
+      -1.2000000476837158,
+      0,
+      -0.2750000059604645
+    ],
+    "max": [
+      1.2000000476837158,
+      2.799999952316284,
+      0.2750000059604645
+    ],
+    "dimensions": [
+      2.4000000953674316,
+      2.799999952316284,
+      0.550000011920929
+    ]
+  },
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "extensions_required": [],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "identity_node_transforms": true,
+    "triangle_budget": true,
+    "material_budget": true,
+    "file_budget": true,
+    "exact_dimensions": true,
+    "ground_y_zero": true,
+    "centered_footprint": true,
+    "no_external_resources": true,
+    "no_textures": true,
+    "no_required_extensions": true,
+    "opaque_surfaces": true,
+    "matte_materials": true,
+    "vertex_colors": true,
+    "all_triangle_primitives": true,
+    "no_skin_or_animation": true,
+    "closed_source_shells": true,
+    "stable_flat_ground_contact": true
+  },
+  "validator": {
+    "uri": "arrival-landmark.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T05:22:27.433Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 113664
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 4,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 4,
+      "totalVertexCount": 2844,
+      "totalTriangleCount": 1880,
+      "maxUVs": 0,
+      "maxInfluences": 0,
+      "maxAttributes": 3
+    }
+  }
+}
