@@ -1,8 +1,8 @@
 # WO-014: The Pixel Orchard enemy candidates
 
-- Status: Native authoring dispatch blocked by tool capacity, 2026-09-11. Root and one Sol relay each received `collab spawn failed: agent thread limit reached`. No Blender author started, no scene was changed, and no model/provider fallback was used. Game/server work continues independently.
+- Status: Native Astra dispatch succeeded on 2026-09-11 after another active lane finished. Authoring in progress in `/home/dev/work/quest-era-2020-models`; prior capacity failure is historical, not a lifetime limit.
 - Authoring model: native `gpt-6-astra`, `max`, empty context.
-- Exclusive scene lease: unclaimed; no dispatch succeeded.
+- Exclusive scene lease: held by native Astra `era_2020_authoring`, WO-014, from initial inspection of the saved `arrival-landmark` scene. Root confirmed exclusive ownership; no other scene author is active.
 - Remote directory: `/workspace/haynes-quest/era-2020/v001`.
 - Owned repository paths: `scripts/assets/era-2020/`, `docs/assets/media/{blockling,signal-moth,buffer-baron}/v001/` except lead-authored concept/prompt/provenance files, and this work order's evidence sibling. Root owns review prose, catalog and gameplay integration.
 
