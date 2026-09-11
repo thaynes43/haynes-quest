@@ -1,0 +1,31 @@
+{
+  "work_order": "WO051",
+  "asset_id": "bestie-pink",
+  "version": "v001",
+  "seed": 51000,
+  "size": [
+    1024,
+    1024
+  ],
+  "palette": [
+    "efb982",
+    "cd895a",
+    "fff7ed",
+    "29212b",
+    "ed669e",
+    "ffb5d0",
+    "dca54f",
+    "ffd174",
+    "e5418b",
+    "36272b",
+    "76392e",
+    "f17d7c",
+    "f3eeeb",
+    "d85898",
+    "ef947e",
+    "b74d7f"
+  ],
+  "method": "Original deterministic pigment swatches; subtle woven cloth and hair color variation. No sampled media.",
+  "sha256": "371513afa54d0182c17bb20f94b2d1abf7086deefdc5e666bf3c5e711dad6d27",
+  "bytes": 20686
+}

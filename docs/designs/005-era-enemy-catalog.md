@@ -10,7 +10,7 @@
 
 Tom clarified on September 11 that the enemies must be **recognizable, funny pop-culture parodies** from the periods represented by the photos, like the playful use of recognizable references he sees in Roblox. His South Park comparison describes the freedom and recognizability of parody; it does not request adult humor. The intended family game uses playful exaggeration and slapstick.
 
-The lead incorrectly replaced this with a broad-inspiration-only rule and authored generic storybook creatures. That restriction was the coordinator's interpretation, not an owner requirement. The six resulting models—Blockling, Signal Moth, Buffer Baron, Loop Dancer, Prism Mimic and Trendweaver—are removed from enemy selection. Their completed masters and previews are retained as **possible friendly or ambient candidates**. Their production quality does not make them suitable enemies for this brief. No friendly role is approved or implemented by this reclassification.
+The friendly cast—Blockling, Signal Moth, Buffer Baron, Loop Dancer, Prism Mimic and Trendweaver—offers optional healing and recoverable consequences for harm under [DESIGN013](013-friendly-characters.md). Their masters, source concepts and animated previews belong in the friendly category. Enemy selection uses the separately curated parody roster.
 
 [DESIGN-010](010-era-combat-loop.md) retains the correct gameplay order: useful equipment, period enemies, boss victory, released memory bundle, consumption, age advancement and the next period. The replacement roster must name the specific cultural reference and supported dates, explain the recognizable visual joke and express it in the encounter behavior before modeling starts. Broad labels such as livestreaming or remix culture are insufficient.
 
@@ -80,7 +80,7 @@ Author the game models, animation, effects and sound deliberately; preserve the 
 
 | ID | Decision | Status |
 | --- | --- | --- |
-| Q-01 | Which references and original enemies/bosses cover the initial eras? | Active correction: replace the rejected generic cast with dated, recognizable parody briefs before new enemy modeling. |
+| Q-01 | Which references and original enemies/bosses cover the initial eras? | Active correction: use dated, recognizable parody briefs for each new enemy. |
 | Q-02 | How should gender/interests influence selection, and which setup fields are required? | Manual entry for the journey subject is the direction; exact UI, weighting, and overrides remain proposed. |
 | Q-03 | How do decade/proportional chapters transition between enemy eras? | Calendar-period matching is required; exact chapter grouping and encounter transitions remain for level design. |
 | Q-04 | How do enemy encounters and bosses work? | Owner-confirmed equipment → combat → boss → memories → age/period loop. DESIGN-010 implements provisional health, guard, attack, defeat/retry and one boss after two ordinary encounters per current level. Final balance remains open. |

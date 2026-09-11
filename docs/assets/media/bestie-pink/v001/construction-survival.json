@@ -1,0 +1,3926 @@
+{
+  "asset_id": "bestie-pink",
+  "glb_sha256": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+  "method": "WO051 source vertex/weight matching against actual re-imported GLB; contact surfaces reconstructed with imported bone matrices at six times in each clip.",
+  "named_source_parts": 106,
+  "exported_vertices": 12441,
+  "parts": [
+    {
+      "name": "Tailored jacket body",
+      "vertices": 80,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "Ribbed waist band",
+      "vertices": 48,
+      "maximum_export_distance_m": 0,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips"
+      ]
+    },
+    {
+      "name": "Visible neck",
+      "vertices": 112,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Soft trouser seat",
+      "vertices": 56,
+      "maximum_export_distance_m": 0,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips"
+      ]
+    },
+    {
+      "name": "Continuous cargo trouser leg R",
+      "vertices": 96,
+      "maximum_export_distance_m": 8.03104711621927e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "shin_R",
+        "thigh_R"
+      ]
+    },
+    {
+      "name": "Rolled trouser hem R",
+      "vertices": 48,
+      "maximum_export_distance_m": 8.032078824271593e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "shin_R"
+      ]
+    },
+    {
+      "name": "Cargo pocket R",
+      "vertices": 56,
+      "maximum_export_distance_m": 4.2311164349939645e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "thigh_R"
+      ]
+    },
+    {
+      "name": "Cargo pocket flap R",
+      "vertices": 56,
+      "maximum_export_distance_m": 3.003425064207477e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "thigh_R"
+      ]
+    },
+    {
+      "name": "Pocket snap R",
+      "vertices": 40,
+      "maximum_export_distance_m": 3.003425064207477e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "thigh_R"
+      ]
+    },
+    {
+      "name": "Continuous attached sleeve R",
+      "vertices": 96,
+      "maximum_export_distance_m": 2.0704706571450515e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "clavicle_R",
+        "forearm_R",
+        "upper_arm_R"
+      ]
+    },
+    {
+      "name": "Rib cuff R",
+      "vertices": 36,
+      "maximum_export_distance_m": 1.7393556106526376e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "forearm_R"
+      ]
+    },
+    {
+      "name": "White cuff stripe R",
+      "vertices": 24,
+      "maximum_export_distance_m": 1.715657020895378e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "forearm_R"
+      ]
+    },
+    {
+      "name": "Connected mitt palm R",
+      "vertices": 112,
+      "maximum_export_distance_m": 2.731428025981586e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hand_R"
+      ]
+    },
+    {
+      "name": "Rounded thumb R",
+      "vertices": 84,
+      "maximum_export_distance_m": 2.591270629181963e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hand_R"
+      ]
+    },
+    {
+      "name": "Rubber outsole R",
+      "vertices": 56,
+      "maximum_export_distance_m": 9.642787546226828e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "White midsole R",
+      "vertices": 56,
+      "maximum_export_distance_m": 9.541398782175747e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Sculpted sneaker upper R",
+      "vertices": 56,
+      "maximum_export_distance_m": 8.752450497695463e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Sneaker ankle collar R",
+      "vertices": 36,
+      "maximum_export_distance_m": 8.033163112486363e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Rounded sneaker toe R",
+      "vertices": 56,
+      "maximum_export_distance_m": 8.024520781191313e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Padded sneaker tongue R",
+      "vertices": 56,
+      "maximum_export_distance_m": 7.742870167248839e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Contrasting lace R0",
+      "vertices": 30,
+      "maximum_export_distance_m": 7.845805072292933e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Contrasting lace R1",
+      "vertices": 30,
+      "maximum_export_distance_m": 7.920075972833729e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Contrasting lace R2",
+      "vertices": 30,
+      "maximum_export_distance_m": 7.920075972833729e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Shoe outer accent R",
+      "vertices": 60,
+      "maximum_export_distance_m": 8.101971360474636e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Heel panel R",
+      "vertices": 56,
+      "maximum_export_distance_m": 8.363255687982019e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Continuous cargo trouser leg L",
+      "vertices": 96,
+      "maximum_export_distance_m": 8.03104711621927e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "shin_L",
+        "thigh_L"
+      ]
+    },
+    {
+      "name": "Rolled trouser hem L",
+      "vertices": 48,
+      "maximum_export_distance_m": 8.032078824271593e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "shin_L"
+      ]
+    },
+    {
+      "name": "Cargo pocket L",
+      "vertices": 56,
+      "maximum_export_distance_m": 4.2311164349939645e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "thigh_L"
+      ]
+    },
+    {
+      "name": "Cargo pocket flap L",
+      "vertices": 56,
+      "maximum_export_distance_m": 3.003425064207477e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "thigh_L"
+      ]
+    },
+    {
+      "name": "Pocket snap L",
+      "vertices": 40,
+      "maximum_export_distance_m": 3.003425064207477e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "thigh_L"
+      ]
+    },
+    {
+      "name": "Continuous attached sleeve L",
+      "vertices": 96,
+      "maximum_export_distance_m": 2.0704706571450515e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "clavicle_L",
+        "forearm_L",
+        "upper_arm_L"
+      ]
+    },
+    {
+      "name": "Rib cuff L",
+      "vertices": 36,
+      "maximum_export_distance_m": 1.7393556106526376e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "forearm_L"
+      ]
+    },
+    {
+      "name": "White cuff stripe L",
+      "vertices": 24,
+      "maximum_export_distance_m": 1.715657020895378e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "forearm_L"
+      ]
+    },
+    {
+      "name": "Connected mitt palm L",
+      "vertices": 112,
+      "maximum_export_distance_m": 2.731428025981586e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hand_L"
+      ]
+    },
+    {
+      "name": "Rounded thumb L",
+      "vertices": 84,
+      "maximum_export_distance_m": 2.591270629181963e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hand_L"
+      ]
+    },
+    {
+      "name": "Rubber outsole L",
+      "vertices": 56,
+      "maximum_export_distance_m": 9.642787546226828e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "White midsole L",
+      "vertices": 56,
+      "maximum_export_distance_m": 9.541398782175747e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Sculpted sneaker upper L",
+      "vertices": 56,
+      "maximum_export_distance_m": 8.752450497695463e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Sneaker ankle collar L",
+      "vertices": 36,
+      "maximum_export_distance_m": 8.033163112486363e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Rounded sneaker toe L",
+      "vertices": 56,
+      "maximum_export_distance_m": 8.024520781191313e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Padded sneaker tongue L",
+      "vertices": 56,
+      "maximum_export_distance_m": 7.742870167248839e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Contrasting lace L0",
+      "vertices": 30,
+      "maximum_export_distance_m": 7.845805072292933e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Contrasting lace L1",
+      "vertices": 30,
+      "maximum_export_distance_m": 7.920075972833729e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Contrasting lace L2",
+      "vertices": 30,
+      "maximum_export_distance_m": 7.920075972833729e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Shoe outer accent L",
+      "vertices": 60,
+      "maximum_export_distance_m": 8.101971360474636e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Heel panel L",
+      "vertices": 56,
+      "maximum_export_distance_m": 8.363255687982019e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Cream shirt opening",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "Varsity front placket -1",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 3.235680594571022e-07,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "Pearl jacket button (-1, 0.656)",
+      "vertices": 40,
+      "maximum_export_distance_m": 0,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "Pearl jacket button (-1, 0.719)",
+      "vertices": 40,
+      "maximum_export_distance_m": 0,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "Pearl jacket button (-1, 0.856)",
+      "vertices": 40,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "spine"
+      ]
+    },
+    {
+      "name": "Pearl jacket button (-1, 0.918)",
+      "vertices": 40,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "spine"
+      ]
+    },
+    {
+      "name": "White jacket pocket slash -1",
+      "vertices": 12,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "Varsity front placket 1",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 3.235680594571022e-07,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "Pearl jacket button (1, 0.656)",
+      "vertices": 40,
+      "maximum_export_distance_m": 0,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "Pearl jacket button (1, 0.719)",
+      "vertices": 40,
+      "maximum_export_distance_m": 0,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "Pearl jacket button (1, 0.856)",
+      "vertices": 40,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "spine"
+      ]
+    },
+    {
+      "name": "Pearl jacket button (1, 0.918)",
+      "vertices": 40,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "spine"
+      ]
+    },
+    {
+      "name": "White jacket pocket slash 1",
+      "vertices": 12,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips",
+        "spine"
+      ]
+    },
+    {
+      "name": "White collar piping",
+      "vertices": 72,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "spine"
+      ]
+    },
+    {
+      "name": "Varsity waistband stripe 0.599",
+      "vertices": 42,
+      "maximum_export_distance_m": 0,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips"
+      ]
+    },
+    {
+      "name": "Varsity waistband stripe 0.618",
+      "vertices": 42,
+      "maximum_export_distance_m": 0,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "hips"
+      ]
+    },
+    {
+      "name": "White heart patch border",
+      "vertices": 200,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 2.384185791015625e-07,
+      "joint_names": [
+        "spine"
+      ]
+    },
+    {
+      "name": "Pink heart patch",
+      "vertices": 200,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 2.384185791015625e-07,
+      "joint_names": [
+        "spine"
+      ]
+    },
+    {
+      "name": "Rounded expressive head",
+      "vertices": 216,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Ear -1",
+      "vertices": 84,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Inner ear -1",
+      "vertices": 40,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Rosy cheek -1",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Ear 1",
+      "vertices": 84,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Inner ear 1",
+      "vertices": 40,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Rosy cheek 1",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Small button nose",
+      "vertices": 112,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Bright eye white",
+      "vertices": 112,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Warm smiling pupil",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye highlight",
+      "vertices": 40,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Playful wink",
+      "vertices": 70,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Wink lash 0",
+      "vertices": 10,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Wink lash 1",
+      "vertices": 10,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Wink lash 2",
+      "vertices": 10,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Open eye lash",
+      "vertices": 10,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Open sunny smile",
+      "vertices": 80,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 1.1920928955078125e-07,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Smile tooth",
+      "vertices": 80,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 1.1920928955078125e-07,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Smile tongue",
+      "vertices": 84,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Friendly brow -1",
+      "vertices": 42,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Friendly brow 1",
+      "vertices": 42,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Parted sculpted crown",
+      "vertices": 288,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Back hair lock 00",
+      "vertices": 110,
+      "maximum_export_distance_m": 1.7881393432617188e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Back hair lock 01",
+      "vertices": 110,
+      "maximum_export_distance_m": 2.384185791015625e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Back hair lock 02",
+      "vertices": 110,
+      "maximum_export_distance_m": 2.384185791015625e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Back hair lock 03",
+      "vertices": 110,
+      "maximum_export_distance_m": 1.7881393432617188e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Back hair lock 04",
+      "vertices": 110,
+      "maximum_export_distance_m": 1.7881393432617188e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Back hair lock 05",
+      "vertices": 110,
+      "maximum_export_distance_m": 1.7881393432617188e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Back hair lock 06",
+      "vertices": 110,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Back hair lock 07",
+      "vertices": 110,
+      "maximum_export_distance_m": 1.7881393432617188e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Back hair lock 08",
+      "vertices": 110,
+      "maximum_export_distance_m": 1.7881393432617188e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Swept fringe -1",
+      "vertices": 130,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Face framing wave -1",
+      "vertices": 130,
+      "maximum_export_distance_m": 1.7881393432617188e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Outer flowing wave -1",
+      "vertices": 160,
+      "maximum_export_distance_m": 1.7881393432617188e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Swept fringe 1",
+      "vertices": 130,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Face framing wave 1",
+      "vertices": 130,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Outer flowing wave 1",
+      "vertices": 160,
+      "maximum_export_distance_m": 1.7881393432617188e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head",
+        "spine"
+      ]
+    },
+    {
+      "name": "Bow left broad folded loop",
+      "vertices": 70,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 1.1920928955078125e-07,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Bow upper broad folded loop",
+      "vertices": 70,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 1.1920928955078125e-07,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Bow soft centre knot",
+      "vertices": 56,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Bow folded seam A",
+      "vertices": 35,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Bow folded seam B",
+      "vertices": 35,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "part_a": "Continuous attached sleeve R",
+      "part_b": "Rib cuff R",
+      "required": "shared wrist chain and overlapping sleeve",
+      "rest": {
+        "surface_intersections": 17,
+        "nearest_surface_distance_m": 0.0002562008739914745,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562465670052916,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025619551888667047,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025622601970098913,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561768051236868,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562045701779425,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562465670052916,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562312001828104,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561897272244096,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025621106033213437,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025620058295316994,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561935398261994,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562312001828104,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562465670052916,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 29,
+            "nearest_surface_distance_m": 2.823019531206228e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 35,
+            "nearest_surface_distance_m": 0.00025626670685596764,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562185109127313,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025615113554522395,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562465670052916,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 29,
+            "nearest_surface_distance_m": 0.0002562021545600146,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.00025617112987674773,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 30,
+            "nearest_surface_distance_m": 6.567347736563534e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561759320087731,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562431327532977,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562465670052916,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562127192504704,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.0002562063164077699,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025622404064051807,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561977889854461,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562153968028724,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.000256202241871506,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "cheer": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561206347309053,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562137960921973,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561458386480808,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025620724773034453,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562786394264549,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561206347309053,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "high-five": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562465670052916,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 28,
+            "nearest_surface_distance_m": 0.0002561505534686148,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562063164077699,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025621065287850797,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562751469668001,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 29,
+            "nearest_surface_distance_m": 0.0002561905130278319,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "dizzy": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025618181098252535,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 28,
+            "nearest_surface_distance_m": 0.0002561815781518817,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 25,
+            "nearest_surface_distance_m": 0.0002562059089541435,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025616970378905535,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025618704967200756,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025618181098252535,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Rib cuff R",
+      "part_b": "Connected mitt palm R",
+      "required": "wrist centres coincide; visible overlap",
+      "rest": {
+        "surface_intersections": 16,
+        "nearest_surface_distance_m": 0.0009132302366197109,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0008589955396018922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0012088982621207833,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.001239876844920218,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0004864554794039577,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.00024829330504871905,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0008589955396018922,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 26,
+            "nearest_surface_distance_m": 0.0007657708483748138,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 26,
+            "nearest_surface_distance_m": 0.0003061320458073169,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.00021089526126161218,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0009377833921462297,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.00176189374178648,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 26,
+            "nearest_surface_distance_m": 0.0007657708483748138,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0004736984265036881,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 47,
+            "nearest_surface_distance_m": 0.0003744891146197915,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 53,
+            "nearest_surface_distance_m": 3.380114139872603e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0005584704340435565,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0009990116814151406,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0004736984265036881,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.002252650912851095,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 32,
+            "nearest_surface_distance_m": 0.0005758467596024275,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 45,
+            "nearest_surface_distance_m": 7.469927254533104e-07,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0005880771786905825,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0008589383796788752,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0008589955396018922,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.00036674682633019984,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.00016251720080617815,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.00010706485045375302,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 25,
+            "nearest_surface_distance_m": 0.00022690347395837307,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 26,
+            "nearest_surface_distance_m": 0.0007600649842061102,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 26,
+            "nearest_surface_distance_m": 0.0007601177203468978,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "cheer": [
+          {
+            "fraction": 0,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 2.702886558836326e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0004927156260237098,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.000334096112055704,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.00036162123433314264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0008483225828967988,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 2.702886558836326e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "high-five": [
+          {
+            "fraction": 0,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0004736984265036881,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0012342955451458693,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0012749260058626533,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 9.870602661976591e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.00020949786994606256,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.00043977261520922184,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "dizzy": [
+          {
+            "fraction": 0,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 0.0006418653065338731,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 0.00013491380377672613,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 0.00029148245812393725,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 5.4580290452577174e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.0005937820533290505,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 0.0006418653065338731,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Continuous cargo trouser leg R",
+      "part_b": "Sneaker ankle collar R",
+      "required": "continuous hip-knee-ankle chain; hem encloses shoe collar",
+      "rest": {
+        "surface_intersections": 12,
+        "nearest_surface_distance_m": 0.014138947241008282,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.005271530710160732,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.007562810089439154,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.007562810089439154,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.005271536763757467,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.013703652657568455,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0007905388483777642,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0020386502146720886,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 9,
+            "nearest_surface_distance_m": 0.0004915647441521287,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.010447152890264988,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.013703652657568455,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0018233080627396703,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0006200219504535198,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 13,
+            "nearest_surface_distance_m": 0.0007735817926004529,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.001558310934342444,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0009370187181048095,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0024293186143040657,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0019036809680983424,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856281708925962,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 9.349952597403899e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 19,
+            "nearest_surface_distance_m": 0.0010044574737548828,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 8,
+            "nearest_surface_distance_m": 0.002472435589879751,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 8,
+            "nearest_surface_distance_m": 0.0024724346585571766,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "cheer": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 13,
+            "nearest_surface_distance_m": 0.0007527382113039494,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0011568329064175487,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0011568329064175487,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 13,
+            "nearest_surface_distance_m": 0.0007527382113039494,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "high-five": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.002338962396606803,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0017235346604138613,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0023592845536768436,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "dizzy": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0026959567330777645,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0011088494211435318,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0011088494211435318,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0026959567330777645,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.003485702443867922,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Sneaker ankle collar R",
+      "part_b": "Sculpted sneaker upper R",
+      "required": "shoe collar embedded in sneaker upper",
+      "rest": {
+        "surface_intersections": 22,
+        "nearest_surface_distance_m": 0.0027242510113865137,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242519427090883,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724239369854331,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242666110396385,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242519427090883,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242510113865137,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.00272426032461226,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242559008300304,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "cheer": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242510113865137,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242510113865137,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "high-five": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242510113865137,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242510113865137,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "dizzy": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242505457252264,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724255435168743,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Continuous attached sleeve L",
+      "part_b": "Rib cuff L",
+      "required": "shared wrist chain and overlapping sleeve",
+      "rest": {
+        "surface_intersections": 17,
+        "nearest_surface_distance_m": 0.0002562008739914745,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561821020208299,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025617005303502083,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025612019817344844,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561553556006402,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562494482845068,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561821020208299,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.000256153114605695,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561971195973456,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562095469329506,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562288718763739,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562061126809567,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.000256153114605695,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561814908403903,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561729634180665,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561755827628076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562183071859181,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025623824330978096,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561814908403903,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 29,
+            "nearest_surface_distance_m": 0.0002562021545600146,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.00025618320796638727,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 30,
+            "nearest_surface_distance_m": 0.0002074328949674964,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561845467425883,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561821020208299,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561821020208299,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025622008251957595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.0002562091685831547,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025616821949370205,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025619761436246336,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025617520441301167,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.000256201543379575,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "cheer": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561202854849398,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025621725944802165,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025615195045247674,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002560956636443734,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561129513196647,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561202854849398,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "high-five": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025621068198233843,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562252921052277,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025619304506108165,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.00025622607790865004,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002562237496022135,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561607107054442,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "dizzy": [
+          {
+            "fraction": 0,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561798319220543,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561885630711913,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561677829362452,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 25,
+            "nearest_surface_distance_m": 0.0002562059089541435,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 27,
+            "nearest_surface_distance_m": 0.0002561216242611408,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 17,
+            "nearest_surface_distance_m": 0.0002561798319220543,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Rib cuff L",
+      "part_b": "Connected mitt palm L",
+      "required": "wrist centres coincide; visible overlap",
+      "rest": {
+        "surface_intersections": 16,
+        "nearest_surface_distance_m": 0.0009132302366197109,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0008588681230321527,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0013182999100536108,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.00041355896973982453,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0004988229484297335,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 4.6430144720943645e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0008588681230321527,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0006839275592938066,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0003219801001250744,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 28,
+            "nearest_surface_distance_m": 0.00018760471721179783,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 26,
+            "nearest_surface_distance_m": 6.295458297245204e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0022776355035603046,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0006839275592938066,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 1.9391763999010436e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0012152903946116567,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0007875559385865927,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0002569283824414015,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0004771244421135634,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 1.9391763999010436e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.002252505160868168,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 32,
+            "nearest_surface_distance_m": 0.0005758617771789432,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 45,
+            "nearest_surface_distance_m": 7.469927254533104e-07,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0005880164681002498,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.000858931103721261,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0008588681230321527,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0003668117569759488,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0001627566380193457,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.00010694142838474363,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 25,
+            "nearest_surface_distance_m": 0.00022687611635774374,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 26,
+            "nearest_surface_distance_m": 0.0007601322722621262,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 26,
+            "nearest_surface_distance_m": 0.000760157941840589,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "cheer": [
+          {
+            "fraction": 0,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 2.6782623535837047e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0012742512626573443,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0018075938569381833,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.0007062245858833194,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 9.449147910345346e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 2.6782623535837047e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "high-five": [
+          {
+            "fraction": 0,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0004883172805421054,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 8.678711310494691e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.00015686778351664543,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 16,
+            "nearest_surface_distance_m": 0.00046169714187271893,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0006658710772171617,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 18,
+            "nearest_surface_distance_m": 0.0002359507925575599,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "dizzy": [
+          {
+            "fraction": 0,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 0.0006418712437152863,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.0005937222740612924,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 5.476571823237464e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 0.00029143274878151715,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 0.00013497823965735734,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 21,
+            "nearest_surface_distance_m": 0.0006418712437152863,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Continuous cargo trouser leg L",
+      "part_b": "Sneaker ankle collar L",
+      "required": "continuous hip-knee-ankle chain; hem encloses shoe collar",
+      "rest": {
+        "surface_intersections": 12,
+        "nearest_surface_distance_m": 0.014138941653072834,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.005271553061902523,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.00756281241774559,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.00756281241774559,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.005271553061902523,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.000374055263819173,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.00443375576287508,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.01289627980440855,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 13,
+            "nearest_surface_distance_m": 0.0003753100463654846,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0030005890876054764,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.000374055263819173,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0018232321599498391,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0006199960480444133,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 13,
+            "nearest_surface_distance_m": 0.0007735980907455087,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0015583558706566691,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0009369409526698291,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0024292736779898405,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0019036212470382452,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034855958074331284,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 9.353284258395433e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 19,
+            "nearest_surface_distance_m": 0.0010043829679489136,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 8,
+            "nearest_surface_distance_m": 0.0024725114926695824,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 8,
+            "nearest_surface_distance_m": 0.0024724765680730343,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "cheer": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 13,
+            "nearest_surface_distance_m": 0.0007527690031565726,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0011567693436518312,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0011567693436518312,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 13,
+            "nearest_surface_distance_m": 0.0007527690031565726,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "high-five": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0023389316629618406,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.001723503926768899,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0023592375218868256,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "dizzy": [
+          {
+            "fraction": 0,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.002695987466722727,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0011088052997365594,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0011088052997365594,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 11,
+            "nearest_surface_distance_m": 0.0026959895621985197,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 12,
+            "nearest_surface_distance_m": 0.0034856717102229595,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Sneaker ankle collar L",
+      "part_b": "Sculpted sneaker upper L",
+      "required": "shoe collar embedded in sneaker upper",
+      "rest": {
+        "surface_intersections": 22,
+        "nearest_surface_distance_m": 0.002724266378208995,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242715004831553,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.00272426032461226,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242687065154314,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242673095315695,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.00272426032461226,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.00272426032461226,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242666110396385,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.00272426032461226,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242719661444426,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.00272426032461226,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "cheer": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "high-five": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "dizzy": [
+          {
+            "fraction": 0,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.0027242659125477076,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 22,
+            "nearest_surface_distance_m": 0.002724266378208995,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "every_named_source_part_survives": true,
+    "all_exported_weights_match_source": true,
+    "all_vertices_have_normalized_at_most_four_weights": true,
+    "every_required_rest_attachment_connected": true,
+    "every_required_attachment_connected_across_all_clips": true
+  }
+}

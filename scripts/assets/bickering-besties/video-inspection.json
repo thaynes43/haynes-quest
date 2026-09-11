@@ -1,0 +1,15 @@
+{
+  "sha256": "214b423c6c7aeaa73743665feb31952256a5df31b6a68557f2d0fa0bd5d8cdc7",
+  "bytes": 602737,
+  "codec": "h264",
+  "pixel_format": "yuv420p",
+  "width": 720,
+  "height": 560,
+  "frames": 414,
+  "fps": "30/1",
+  "duration_s": 13.8,
+  "audio_streams": 0,
+  "full_decode_passed": true,
+  "native_render_fps": 10,
+  "encoded_fps": 30
+}

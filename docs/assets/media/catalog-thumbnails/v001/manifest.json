@@ -24,6 +24,27 @@
       "sha256": "66deddb3f091a98ae63b4ca65e6154efa5a40e38a513073b8daed2eb810d30a1"
     },
     {
+      "source": "docs/assets/media/bestie-black/v001/beauty.png",
+      "source_sha256": "a8fd3da8abad904af15c649f0b737e0255e078bdc71101e0d5301fca5aa05a02",
+      "path": "docs/assets/media/catalog-thumbnails/v001/54191504b2b84d10.webp",
+      "bytes": 6386,
+      "sha256": "5df6191ee180bc145c95a6ab3a45f40dcc84b87a0021aa8ebd2b5d8b76c3fa11"
+    },
+    {
+      "source": "docs/assets/media/bestie-pink/v001/beauty.png",
+      "source_sha256": "3a372d117b76252181ffc599d3acc8d097fba863fab5e025e5992e31e0a96e2a",
+      "path": "docs/assets/media/catalog-thumbnails/v001/8b02a79d65933a01.webp",
+      "bytes": 6376,
+      "sha256": "f5a9e927fe2e0036f51365ed6fc9ffd0be5885eb0f01db8613b6f5e302b8edeb"
+    },
+    {
+      "source": "docs/assets/media/bickering-besties/v001/concept.png",
+      "source_sha256": "1fb8f525b23c811dd1c3946faca219224bb10800c2517ae87ffdb40beaa0aee1",
+      "path": "docs/assets/media/catalog-thumbnails/v001/cf4467e32c65d848.webp",
+      "bytes": 36756,
+      "sha256": "9e830883f6fc081f81f9e83ca658845bea27174472f1cadae47cf01c55e1bf7e"
+    },
+    {
       "source": "docs/assets/media/blockling/v001/beauty.png",
       "source_sha256": "5b98e243a42d3a5a48d7798dc336af4b9800669074f116c95a81e0ad98c03bb9",
       "path": "docs/assets/media/catalog-thumbnails/v001/3f329aa3e54bf29d.webp",

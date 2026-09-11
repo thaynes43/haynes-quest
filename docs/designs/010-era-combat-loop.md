@@ -27,7 +27,7 @@ Equipment must be visible and useful: a starting attack tool, protective equipme
 
 After victory, the boss’s defeat motion plays in the world. The player can choose **Reclaim your memories** to open the reward. The reward panel gives the actual memory pictures space on screen. It does not automatically pause the world in the middle of the boss's defeat. Distinguish locked, revealed and consumed states; communicate failed image loads and offer retry instead of showing an unexplained blank tile. The next period is visibly introduced with its age/year and changed enemies/environment accents. The character remains at the level's starting age throughout combat.
 
-The authored traveler and clearing candidates can materially improve the current scene; demo integration is awaiting the explicit owner decision recorded in PLAN-005. Enemies must be recognizable pop-culture parodies under DESIGN-005; the rejected wooden creature studies are preserved only for possible friendly/ambient use. Equipment and environment art may retain the storybook palette. Preserve exact asset versions and avoid treating a gameplay code merge as final art approval.
+The authored traveler and clearing candidates can materially improve the current scene; demo integration is awaiting the explicit owner decision recorded in PLAN-005. Enemies must be recognizable pop-culture parodies under DESIGN-005; the six friendly residents use the separate healing and harm rules in DESIGN013. Equipment and environment art may retain the storybook palette. Preserve exact asset versions and avoid treating a gameplay code merge as final art approval.
 
 ## Persistence and authority
 
@@ -47,7 +47,7 @@ Real private photos still need admitted-player access and connection/subject con
 
 ## Authored visual intake
 
-The isolated candidate scene uses the existing traveler/clearing models and hand-attached equipment for technical review. The six newly authored wooden creature studies are removed from enemy integration after Tom's direction correction. Their archived model pages do not demonstrate that the intended enemy vision is fulfilled. The reusable animation adapter and asset loading/ownership fixes remain useful for the replacement parody cast.
+The isolated candidate scene uses the existing traveler/clearing models and hand-attached equipment for technical review. The six friendly residents have their own healing and harm rules under DESIGN013. Their model pages retain the source concepts and exact exports. The separately curated parody cast uses the shared animation adapter and asset-loading ownership rules.
 
 ## Obstacle-course play
 

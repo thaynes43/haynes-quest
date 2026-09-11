@@ -19,4 +19,4 @@ Claim and record the one live Blender scene before mutation. Never reset the app
 
 ## Final continuation status
 
-WO-016 completed: source commits fb5851d/0eeb260/a170a7a, integrated cc821f5/0ab5e6d/d160f20. Live scene released 14:57:02 UTC; all isolated renders and packaging finished. Later owner ruling rejects these as enemies; preserve possible ambient/friendly studies.
+WO-016 completed: source commits fb5851d/0eeb260/a170a7a, integrated cc821f5/0ab5e6d/d160f20. Live scene released 14:57:02 UTC; all isolated renders and packaging finished. Current role: friendly residents under DESIGN013; retain the exact models, animations and source masters.

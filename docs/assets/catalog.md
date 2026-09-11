@@ -7,16 +7,16 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations.
 
-**23 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions**
+**25 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions**
 
-All versions await your review. [See what is in the playtest](playtest.md).
+The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
 <nav class="catalog-jumps" aria-label="Asset categories">
 <a href="#parody-characters">Parody characters</a>
 <a href="#travelers">Travelers</a>
 <a href="#world-and-keepsakes">World and keepsakes</a>
 <a href="#equipment">Equipment</a>
-<a href="#preserved-creature-studies">Preserved creature studies</a>
+<a href="#friendly-characters">Friendly characters</a>
 <a href="#reference-sheets">Reference sheets</a>
 <a href="#sound-auditions">Sound auditions</a>
 </nav>
@@ -26,9 +26,33 @@ All versions await your review. [See what is in the playtest](playtest.md).
 
 ## Parody characters {#parody-characters}
 
-Four completed characters form the temporary playtest cast. Nap Captain and The One-Star Diva are paused.
+The two Besties actors join four completed parody characters in the playtest library. Nap Captain and The One-Star Diva are paused.
 
 <div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="bestie-pink" markdown="1">
+
+[![Model render: Bestie Pink](media/catalog-thumbnails/v001/8b02a79d65933a01.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/bickering-besties/v001.md#bestie-pink)
+
+### [Bestie Pink](reviews/bickering-besties/v001.md#bestie-pink)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/cf4467e32c65d848.webp" alt="Approved inspiration for Bestie Pink" loading="lazy" decoding="async" width="68" height="50"><span>Approved inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="bestie-black" markdown="1">
+
+[![Model render: Bestie Black](media/catalog-thumbnails/v001/54191504b2b84d10.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/bickering-besties/v001.md#bestie-black)
+
+### [Bestie Black](reviews/bickering-besties/v001.md#bestie-black)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/cf4467e32c65d848.webp" alt="Approved inspiration for Bestie Black" loading="lazy" decoding="async" width="68" height="50"><span>Approved inspiration included</span></div>
+
+</div>
 
 <div class="catalog-card" data-asset-id="mister-hiss" markdown="1">
 
@@ -284,9 +308,11 @@ Four tools to find during a level. Each review includes the inspiration sheet, a
 
 </div>
 
-## Preserved creature studies {#preserved-creature-studies}
+<span id="preserved-creature-studies"></span>
 
-These six models missed the enemy brief. They remain possible friendly or ambient studies; no new role has been selected.
+## Friendly characters {#friendly-characters}
+
+Meet the helpful residents of the journey. Their greetings provide healing bonuses. Treat them kindly: harming a friend costs hearts and withholds their help until you make amends. These friendly roles are included in the PLAN006 playtest.
 
 <div class="catalog-grid" markdown="1">
 
@@ -296,7 +322,7 @@ These six models missed the enemy brief. They remain possible friendly or ambien
 
 ### [Blockling](reviews/blockling/v001.md)
 
-<span class="catalog-state">3D model · v001 · Preserved study</span>
+<span class="catalog-state">3D model · v001 · Friendly · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/96f8449e34bb7d10.webp" alt="Inspiration for Blockling" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -308,7 +334,7 @@ These six models missed the enemy brief. They remain possible friendly or ambien
 
 ### [Signal Moth](reviews/signal-moth/v001.md)
 
-<span class="catalog-state">3D model · v001 · Preserved study</span>
+<span class="catalog-state">3D model · v001 · Friendly · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/801894826980aaa1.webp" alt="Inspiration for Signal Moth" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -320,7 +346,7 @@ These six models missed the enemy brief. They remain possible friendly or ambien
 
 ### [Buffer Baron](reviews/buffer-baron/v001.md)
 
-<span class="catalog-state">3D model · v001 · Preserved study</span>
+<span class="catalog-state">3D model · v001 · Friendly · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/1ee8a794a04f24f4.webp" alt="Inspiration for Buffer Baron" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -332,7 +358,7 @@ These six models missed the enemy brief. They remain possible friendly or ambien
 
 ### [Loop Dancer](reviews/loop-dancer/v001.md)
 
-<span class="catalog-state">3D model · v001 · Preserved study</span>
+<span class="catalog-state">3D model · v001 · Friendly · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/945ff0da4bf9513b.webp" alt="Inspiration for Loop Dancer" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -344,7 +370,7 @@ These six models missed the enemy brief. They remain possible friendly or ambien
 
 ### [Prism Mimic](reviews/prism-mimic/v001.md)
 
-<span class="catalog-state">3D model · v001 · Preserved study</span>
+<span class="catalog-state">3D model · v001 · Friendly · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/4000f4ebcc9e87e6.webp" alt="Inspiration for Prism Mimic" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -356,7 +382,7 @@ These six models missed the enemy brief. They remain possible friendly or ambien
 
 ### [Trendweaver](reviews/trendweaver/v001.md)
 
-<span class="catalog-state">3D model · v001 · Preserved study</span>
+<span class="catalog-state">3D model · v001 · Friendly · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/ef135449b5393682.webp" alt="Inspiration for Trendweaver" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -369,6 +395,17 @@ These six models missed the enemy brief. They remain possible friendly or ambien
 Original inspiration and construction images. These are illustrations; related model reviews appear in the groups above.
 
 <div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="bickering-besties" markdown="1">
+
+[![Approved Besties inspiration](media/catalog-thumbnails/v001/cf4467e32c65d848.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/bickering-besties/v001.md)
+
+### [The Bickering Besties](reviews/bickering-besties/v001.md)
+
+<span class="catalog-state">Reference · v001 · Look approved</span>
+
+</div>
+
 
 <div class="catalog-card" data-asset-id="storybook-reference-clearing" markdown="1">
 
@@ -416,7 +453,7 @@ Original inspiration and construction images. These are illustrations; related m
 
 ## Sound auditions {#sound-auditions}
 
-Four existing sound candidates, with waveform thumbnails and playable reviews. Listening review is still open, and the game remains silent.
+Four existing sound candidates, with waveform thumbnails and playable reviews. The playtest uses these cues for actions, landings, memories and growth. Final listening review remains open.
 
 <div class="catalog-grid" markdown="1">
 
@@ -426,7 +463,7 @@ Four existing sound candidates, with waveform thumbnails and playable reviews. L
 
 ### [A memory found · v001](reviews/memory-collected/v001.md#audition)
 
-<span class="catalog-state">Sound audition · v001 · Listening review</span>
+<span class="catalog-state">Sound cue · v001 · In playtest · Review open</span>
 
 </div>
 
@@ -436,7 +473,7 @@ Four existing sound candidates, with waveform thumbnails and playable reviews. L
 
 ### [A little more possible · v001](reviews/ability-unlocked/v001.md#audition)
 
-<span class="catalog-state">Sound audition · v001 · Listening review</span>
+<span class="catalog-state">Sound cue · v001 · In playtest · Review open</span>
 
 </div>
 
@@ -446,7 +483,7 @@ Four existing sound candidates, with waveform thumbnails and playable reviews. L
 
 ### [Back on the path · v001](reviews/movement-landed/v001.md#audition)
 
-<span class="catalog-state">Sound audition · v001 · Listening review</span>
+<span class="catalog-state">Sound cue · v001 · In playtest · Review open</span>
 
 </div>
 
@@ -456,7 +493,7 @@ Four existing sound candidates, with waveform thumbnails and playable reviews. L
 
 ### [A quiet yes · v001](reviews/ui-confirmed/v001.md#audition)
 
-<span class="catalog-state">Sound audition · v001 · Listening review</span>
+<span class="catalog-state">Sound cue · v001 · In playtest · Review open</span>
 
 </div>
 
@@ -466,7 +503,7 @@ Four existing sound candidates, with waveform thumbnails and playable reviews. L
 
 ## What comes next
 
-The Besties duo is next for collaborative design, with alternating obstacle tricks and a shared recovery window agreed. Its appearance is still to be decided. No Besties or FNAF model has been generated. [Player and encounter curation](../designs/012-player-journey-curation.md) remains future work.
+The Besties duo now has two animated model candidates and its agreed obstacle routine. FNAF-inspired options remain a later design discussion. [Player and encounter curation](../designs/012-player-journey-curation.md) remains future work.
 
 <span id="adding-candidates"></span>
 

@@ -73,7 +73,7 @@ describe("game input", () => {
     });
   });
 
-  it("clears independent channels on blur and pointer cancellation and removes listeners on dispose", () => {
+  it("clears independent channels on blur and removes listeners on dispose", () => {
     const input = new GameInputState();
     const fakeWindow = new FakeEventTarget();
     const fakeDocument = new FakeEventTarget() as FakeEventTarget & {
@@ -126,24 +126,42 @@ describe("game input", () => {
     expect(input.snapshot().moveY).toBe(1);
     expect(input.consumeActions().jump).toBe(true);
 
-    input.set("moveY", 1);
-    input.set("interact", true);
-    input.set("attack", true);
-    input.set("guard", true);
-    fakeWindow.dispatch("pointercancel", { pointerId: 4 });
-    expect(input.snapshot().moveY).toBe(0);
-    expect(input.snapshot().interact).toBe(false);
-    expect(input.snapshot().attack).toBe(false);
-    expect(input.snapshot().guard).toBe(false);
-    expect(input.consumeActions()).toMatchObject({
-      attack: false,
-      guard: false,
-    });
-
     dispose();
     input.set("moveX", 0.5);
     fakeWindow.dispatch("blur");
     expect(input.snapshot().moveX).toBe(0.5);
+  });
+
+  it("cancels one touch action without erasing a held joystick", () => {
+    const input = new GameInputState();
+    const fakeWindow = new FakeEventTarget();
+    const fakeDocument = new FakeEventTarget() as FakeEventTarget & {
+      defaultView: FakeEventTarget;
+      visibilityState: DocumentVisibilityState;
+    };
+    fakeDocument.defaultView = fakeWindow;
+    fakeDocument.visibilityState = "visible";
+    const fakeTarget = new FakeEventTarget() as FakeEventTarget & {
+      ownerDocument: typeof fakeDocument;
+      getBoundingClientRect: () => DOMRect;
+    };
+    fakeTarget.ownerDocument = fakeDocument;
+    fakeTarget.getBoundingClientRect = () =>
+      ({ left: 0, width: 100 }) as DOMRect;
+    const dispose = bindBrowserInput({
+      target: fakeTarget as unknown as HTMLElement,
+      input,
+    });
+
+    input.set("moveY", 1);
+    input.set("attack", true);
+    fakeWindow.dispatch("pointercancel", { pointerId: 7 });
+    input.cancel("attack");
+
+    expect(input.snapshot().moveY).toBe(1);
+    expect(input.snapshot().attack).toBe(false);
+    expect(input.consumeActions().attack).toBe(false);
+    dispose();
   });
 
   it("caps joystick travel and maps upward screen travel to forward movement", () => {

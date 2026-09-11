@@ -16,6 +16,10 @@ const inventoryPath = path.resolve(
   process.env.QUEST_CATALOG_INVENTORY ??
     path.join(repoRoot, "scripts/assets/catalog-inventory.json"),
 );
+const thumbnailManifestPath = path.join(
+  repoRoot,
+  "docs/assets/media/catalog-thumbnails/v001/manifest.json",
+);
 const overallTimeoutMs = Number(
   process.env.QUEST_E2E_OVERALL_TIMEOUT_MS ?? 240_000,
 );
@@ -34,7 +38,43 @@ const viewports = [
   { name: "phone", width: 390, height: 844, hasTouch: true },
 ];
 const requiredNapClips = ["idle", "move", "attack", "hit", "defeat"];
+const requiredBestiesClips = [
+  "idle",
+  "move",
+  "attack",
+  "hit",
+  "defeat",
+  "cheer",
+  "high-five",
+  "dizzy",
+];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
+const expectedInventoryCounts = {
+  entries: 36,
+  reference_sheet_entries: 5,
+  model_entries: 26,
+  model_files: 26,
+  completed_model_candidates: 25,
+  paused_partial_model_candidates: 1,
+  concept_only_entries: 1,
+  audio_entries: 4,
+  owner_approved_entries: 1,
+};
+const expectedThumbnailFiles = 53;
+const integratedAssetIds = [
+  "bestie-pink",
+  "bestie-black",
+  "blockling",
+  "signal-moth",
+  "buffer-baron",
+  "loop-dancer",
+  "prism-mimic",
+  "trendweaver",
+  "memory-collected",
+  "ability-unlocked",
+  "movement-landed",
+  "ui-confirmed",
+];
 
 function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
@@ -135,6 +175,58 @@ function normalizeInventory(value) {
   return assets;
 }
 
+async function verifyThumbnailManifest(value, inventory) {
+  assert.equal(value?.version, "v001", "thumbnail manifest version");
+  assert.ok(Array.isArray(value?.files), "thumbnail manifest has files");
+  assert.equal(
+    value.files.length,
+    expectedThumbnailFiles,
+    `thumbnail manifest has exactly ${expectedThumbnailFiles} derivatives`,
+  );
+  const expectedSources = new Set();
+  for (const asset of inventory) {
+    expectedSources.add(asset.thumbnail);
+    if (asset.models.length && asset.inspirationImages.length) {
+      expectedSources.add(asset.inspirationImages[0].path);
+    }
+  }
+  const records = new Map();
+  for (const file of value.files) {
+    assert.equal(typeof file.source, "string", "thumbnail source path");
+    assert.equal(typeof file.path, "string", `${file.source}: thumbnail path`);
+    assert.equal(
+      records.has(file.source),
+      false,
+      `${file.source}: unique source`,
+    );
+    assert.equal(
+      [...records.values()].some((record) => record.path === file.path),
+      false,
+      `${file.path}: unique derivative path`,
+    );
+    const source = await fs.readFile(path.join(repoRoot, file.source));
+    const derivative = await fs.readFile(path.join(repoRoot, file.path));
+    assert.equal(
+      sha256(source),
+      file.source_sha256,
+      `${file.source}: source SHA-256`,
+    );
+    assert.equal(derivative.length, file.bytes, `${file.path}: exact bytes`);
+    assert.equal(
+      sha256(derivative),
+      file.sha256,
+      `${file.path}: derivative SHA-256`,
+    );
+    records.set(file.source, file);
+  }
+  assert.deepEqual(
+    [...records.keys()].sort(),
+    [...expectedSources].sort(),
+    "thumbnail manifest exactly covers current inventory sources",
+  );
+  return records;
+}
+
 function sitePrefix() {
   const marker = "/assets/catalog.html";
   assert.ok(
@@ -209,12 +301,11 @@ function attachDiagnostics(page, report, scope, expectedAbortContext) {
     const expectedMetadataAbort =
       failure.resourceType === "media" &&
       failure.error === "net::ERR_ABORTED" &&
-      expectedAbortContext?.activity &&
-      expectedAbortContext.metadataOnlyUrls.has(comparableUrl(request.url()));
+      expectedAbortContext?.metadataOnlyUrls.has(comparableUrl(request.url()));
     if (expectedMetadataAbort) {
       report.expectedMetadataAborts.push({
         ...failure,
-        during: expectedAbortContext.activity,
+        during: expectedAbortContext.activity ?? "metadata preload lifecycle",
       });
     } else {
       report.failedRequests.push(failure);
@@ -230,6 +321,33 @@ function attachDiagnostics(page, report, scope, expectedAbortContext) {
       });
     }
   });
+}
+
+function reclassifyExpectedMetadataAborts(
+  report,
+  scope,
+  expectedAbortContext,
+) {
+  const unexpected = [];
+  for (const failure of report.failedRequests) {
+    const expected =
+      failure.scope === scope &&
+      failure.resourceType === "media" &&
+      failure.error === "net::ERR_ABORTED" &&
+      expectedAbortContext.metadataOnlyUrls.has(
+        comparableUrl(failure.url, catalogUrl.href),
+      );
+    if (expected) {
+      report.expectedMetadataAborts.push({
+        ...failure,
+        during:
+          expectedAbortContext.activity ?? "metadata preload initialization",
+      });
+    } else {
+      unexpected.push(failure);
+    }
+  }
+  report.failedRequests = unexpected;
 }
 
 async function waitForImages(page, locator, label) {
@@ -282,7 +400,13 @@ function cardTitleLink(card) {
   );
 }
 
-async function inspectLanding(browser, inventory, viewport, report) {
+async function inspectLanding(
+  browser,
+  inventory,
+  thumbnailRecords,
+  viewport,
+  report,
+) {
   const context = await browser.newContext({
     viewport: { width: viewport.width, height: viewport.height },
     hasTouch: viewport.hasTouch,
@@ -360,6 +484,20 @@ async function inspectLanding(browser, inventory, viewport, report) {
         1,
         `${scope}: ${asset.id} has one primary thumbnail`,
       );
+      const primaryThumbnail = thumbnailRecords.get(asset.thumbnail);
+      assert.ok(
+        primaryThumbnail,
+        `${scope}: ${asset.id} primary source is in the thumbnail manifest`,
+      );
+      assert.equal(
+        comparableUrl(
+          await card
+            .locator("img.catalog-preview")
+            .evaluate((element) => element.src),
+        ),
+        comparableUrl(repositoryPathToUrl(primaryThumbnail.path)),
+        `${scope}: ${asset.id} card uses its inventory thumbnail source`,
+      );
       assert.equal(
         await card.locator(".catalog-state").count(),
         1,
@@ -376,6 +514,24 @@ async function inspectLanding(browser, inventory, viewport, report) {
         asset.models.length > 0 ? 1 : 0,
         `${scope}: ${asset.id} has the expected small inspiration image`,
       );
+      if (asset.models.length > 0) {
+        const inspirationThumbnail = thumbnailRecords.get(
+          asset.inspirationImages[0].path,
+        );
+        assert.ok(
+          inspirationThumbnail,
+          `${scope}: ${asset.id} inspiration is in the thumbnail manifest`,
+        );
+        assert.equal(
+          comparableUrl(
+            await card
+              .locator(".catalog-inspiration img")
+              .evaluate((element) => element.src),
+          ),
+          comparableUrl(repositoryPathToUrl(inspirationThumbnail.path)),
+          `${scope}: ${asset.id} card uses its inventory inspiration source`,
+        );
+      }
       const bounds = await card.boundingBox();
       assert.ok(bounds, `${scope}: ${asset.id} has bounds`);
       assert.ok(bounds.x >= -1, `${scope}: ${asset.id} begins inside viewport`);
@@ -409,20 +565,39 @@ async function inspectLanding(browser, inventory, viewport, report) {
     }
 
     const modelAssets = inventory.filter((entry) => entry.models.length > 0);
-    assert.equal(modelAssets.length, 24, `${scope}: all 24 models have cards`);
+    assert.equal(modelAssets.length, 26, `${scope}: all 26 models have cards`);
     const nap = modelAssets.find((entry) => entry.id === "nap-captain");
     assert.ok(nap, `${scope}: Nap Captain model card exists`);
     assert.equal(
       modelAssets.filter((entry) => entry.id !== "nap-captain").length,
-      23,
-      `${scope}: 23 other completed model candidates`,
+      25,
+      `${scope}: 25 other completed model candidates`,
     );
     assert.ok(
       modelAssets
         .filter((entry) => entry.id !== "nap-captain")
-        .every((entry) => /completed/i.test(entry.stateText)),
-      `${scope}: the other 23 model records are completed candidates`,
+        .every(
+          (entry) =>
+            /completed/i.test(entry.stateText) ||
+            /in PLAN006 playtest/i.test(entry.stateText),
+        ),
+      `${scope}: the other 25 model records are completed or in the current playtest`,
     );
+    for (const id of integratedAssetIds) {
+      const asset = inventory.find((entry) => entry.id === id);
+      assert.ok(asset, `${scope}: ${id} gameplay asset is inventoried`);
+      assert.match(
+        asset.stateText,
+        /in PLAN006 playtest/i,
+        `${scope}: ${id} inventory records current gameplay use`,
+      );
+      const cardState = cardInspections.find((entry) => entry.id === id)?.state;
+      assert.match(
+        cardState ?? "",
+        /in playtest/i,
+        `${scope}: ${id} card records current gameplay use`,
+      );
+    }
     const napState = await page
       .locator('.catalog-card[data-asset-id="nap-captain"] .catalog-state')
       .innerText();
@@ -595,6 +770,11 @@ async function inspectReviewPages(browser, inventory, report) {
       for (const url of metadataOnlyUrls) {
         expectedAbortContext.metadataOnlyUrls.add(comparableUrl(url));
       }
+      reclassifyExpectedMetadataAborts(
+        report,
+        "reviews-no-javascript",
+        expectedAbortContext,
+      );
       const images = await waitForImages(
         page,
         page.locator("main img"),
@@ -691,7 +871,7 @@ async function verifyModelDeliveries(inventory, report) {
   const models = inventory.flatMap((asset) =>
     asset.models.map((model) => ({ assetId: asset.id, ...model })),
   );
-  assert.equal(models.length, 24, "inventory declares exactly 24 model files");
+  assert.equal(models.length, 26, "inventory declares exactly 26 model files");
   assert.equal(
     new Set(models.map((model) => model.path)).size,
     models.length,
@@ -865,6 +1045,11 @@ async function inspectNapCaptain(browser, inventory, report) {
     for (const url of metadataOnlyUrls) {
       expectedAbortContext.metadataOnlyUrls.add(comparableUrl(url));
     }
+    reclassifyExpectedMetadataAborts(
+      report,
+      "nap-captain-viewer",
+      expectedAbortContext,
+    );
     const viewer = page.locator("model-viewer[src]");
     assert.equal(await viewer.count(), 1, "Nap Captain has one model viewer");
     assert.equal(
@@ -976,6 +1161,319 @@ async function inspectNapCaptain(browser, inventory, report) {
   }
 }
 
+async function inspectBesties(browser, inventory, report) {
+  const ids = ["bestie-pink", "bestie-black"];
+  const entries = ids.map((id) => {
+    const entry = inventory.find((candidate) => candidate.id === id);
+    assert.ok(entry, `${id} is in inventory`);
+    assert.equal(entry.models.length, 1, `${id} has one final model`);
+    return entry;
+  });
+  assert.equal(
+    entries[0].review.split("#", 1)[0],
+    entries[1].review.split("#", 1)[0],
+    "Besties share one review page",
+  );
+  const expectedModels = new Map(
+    entries.map((entry) => [
+      comparableUrl(repositoryPathToUrl(entry.models[0].path)),
+      entry.id,
+    ]),
+  );
+  const context = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    hasTouch: true,
+    deviceScaleFactor: 1,
+  });
+  await context.addInitScript(() => {
+    globalThis.__questBestiesWebglProbe = { calls: 0, successfulContexts: 0 };
+    for (const constructor of [
+      globalThis.HTMLCanvasElement,
+      globalThis.OffscreenCanvas,
+    ]) {
+      if (!constructor) continue;
+      const original = constructor.prototype.getContext;
+      constructor.prototype.getContext = function (type, ...args) {
+        const result = original.call(this, type, ...args);
+        if (["webgl", "webgl2", "experimental-webgl"].includes(type)) {
+          globalThis.__questBestiesWebglProbe.calls += 1;
+          if (result) globalThis.__questBestiesWebglProbe.successfulContexts += 1;
+        }
+        return result;
+      };
+    }
+  });
+  const page = await context.newPage();
+  page.setDefaultTimeout(20_000);
+  page.setDefaultNavigationTimeout(30_000);
+  const expectedAbortContext = {
+    activity: undefined,
+    metadataOnlyUrls: new Set(),
+  };
+  attachDiagnostics(page, report, "besties-viewers", expectedAbortContext);
+  const modelRequests = [];
+  page.on("request", (browserRequest) => {
+    if (/\.glb(?:$|[?#])/i.test(browserRequest.url())) {
+      modelRequests.push(comparableUrl(browserRequest.url()));
+    }
+  });
+
+  try {
+    const landing = await page.goto(catalogUrl.href, {
+      waitUntil: "domcontentloaded",
+    });
+    assert.equal(landing?.status(), 200, "Besties catalog response");
+    const pinkCard = page.locator(
+      '.catalog-card[data-asset-id="bestie-pink"]',
+    );
+    assert.equal(await pinkCard.count(), 1, "Bestie Pink has one catalog card");
+    const pinkLink = cardTitleLink(pinkCard);
+    assert.equal(await pinkLink.count(), 1, "Bestie Pink has one card title link");
+    const expectedReview = comparableUrl(repositoryPathToUrl(entries[0].review));
+    assert.equal(
+      comparableUrl(await pinkLink.evaluate((element) => element.href)),
+      expectedReview,
+      "Bestie Pink card targets its exact review fragment",
+    );
+    await pinkLink.scrollIntoViewIfNeeded();
+    await Promise.all([
+      page.waitForNavigation({ waitUntil: "domcontentloaded" }),
+      pinkLink.tap(),
+    ]);
+    assert.equal(
+      comparableUrl(page.url()),
+      expectedReview,
+      "phone tap opens the Bestie Pink review fragment",
+    );
+
+    const metadataOnlyUrls = await page
+      .locator('video[preload="metadata"]')
+      .evaluateAll((videos) =>
+        videos
+          .flatMap((video) => [
+            video.getAttribute("src"),
+            ...[...video.querySelectorAll("source[src]")].map((source) =>
+              source.getAttribute("src"),
+            ),
+          ])
+          .filter(Boolean)
+          .map((source) => new URL(source, location.href).href),
+      );
+    for (const url of metadataOnlyUrls) {
+      expectedAbortContext.metadataOnlyUrls.add(comparableUrl(url));
+    }
+    reclassifyExpectedMetadataAborts(
+      report,
+      "besties-viewers",
+      expectedAbortContext,
+    );
+
+    const viewers = page.locator("model-viewer[data-quest-clips][src]");
+    assert.equal(await viewers.count(), 2, "Besties review has two model viewers");
+    const inspections = [];
+    for (let index = 0; index < 2; index += 1) {
+      const viewer = viewers.nth(index);
+      await viewer.scrollIntoViewIfNeeded();
+      await viewer.evaluate(
+        (element) =>
+          new Promise((resolve, reject) => {
+            if (element.loaded) return resolve();
+            const timer = setTimeout(
+              () => reject(new Error("Besties model-viewer load timeout")),
+              20_000,
+            );
+            element.addEventListener(
+              "load",
+              () => {
+                clearTimeout(timer);
+                resolve();
+              },
+              { once: true },
+            );
+            element.addEventListener(
+              "error",
+              () => {
+                clearTimeout(timer);
+                reject(new Error("Besties model-viewer load error"));
+              },
+              { once: true },
+            );
+          }),
+      );
+      await viewer.evaluate(
+        () =>
+          new Promise((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(resolve)),
+          ),
+      );
+      const inspection = await viewer.evaluate((element) => {
+        const dimensions = element.getDimensions();
+        const canvas = element.shadowRoot?.querySelector("canvas");
+        const bounds = element.getBoundingClientRect();
+        return {
+          clips: [...element.availableAnimations],
+          dimensions: {
+            x: dimensions.x,
+            y: dimensions.y,
+            z: dimensions.z,
+          },
+          loaded: element.loaded,
+          modelIsVisible: element.modelIsVisible,
+          renderSurface: canvas
+            ? { width: canvas.width, height: canvas.height }
+            : undefined,
+          src: new URL(element.src, location.href).href,
+          visibleInViewport:
+            bounds.bottom > 0 &&
+            bounds.right > 0 &&
+            bounds.top < innerHeight &&
+            bounds.left < innerWidth,
+        };
+      });
+      const comparableModel = comparableUrl(inspection.src);
+      const id = expectedModels.get(comparableModel);
+      assert.ok(id, `Besties viewer uses an inventory model: ${inspection.src}`);
+      assert.equal(inspection.loaded, true, `${id} model loaded`);
+      assert.equal(inspection.modelIsVisible, true, `${id} model is visible`);
+      assert.equal(
+        inspection.visibleInViewport,
+        true,
+        `${id} viewer is visible after phone scroll`,
+      );
+      assert.ok(
+        Object.values(inspection.dimensions).every(
+          (dimension) => Number.isFinite(dimension) && dimension > 0,
+        ),
+        `${id} model has positive finite dimensions`,
+      );
+      assert.ok(
+        inspection.renderSurface?.width > 0 &&
+          inspection.renderSurface?.height > 0,
+        `${id} viewer has a non-empty canvas`,
+      );
+      assert.deepEqual(
+        [...inspection.clips].sort(),
+        [...requiredBestiesClips].sort(),
+        `${id} exposes all eight required clips`,
+      );
+      inspections.push({
+        ...inspection,
+        id,
+        src: publicLocation(inspection.src),
+      });
+    }
+    assert.deepEqual(
+      inspections.map((inspection) => inspection.id).sort(),
+      [...ids].sort(),
+      "Besties viewers represent two separate actor identities",
+    );
+    assert.ok(
+      await page.evaluate(
+        () => globalThis.__questBestiesWebglProbe.successfulContexts > 0,
+      ),
+      "Besties viewers created a WebGL context",
+    );
+    assert.deepEqual(
+      [...new Set(modelRequests)].sort(),
+      [...expectedModels.keys()].sort(),
+      "Besties review loads only the two exact inventory models",
+    );
+
+    const pinkViewer = page.locator(
+      'model-viewer[data-quest-clips][src*="bestie-pink.glb"]',
+    );
+    assert.equal(await pinkViewer.count(), 1, "Bestie Pink viewer is unique");
+    await pinkViewer.scrollIntoViewIfNeeded();
+    const controls = pinkViewer.locator(
+      "xpath=following-sibling::div[contains(concat(' ', normalize-space(@class), ' '), ' studio-model-controls ')][1]",
+    );
+    await controls.waitFor({ state: "visible" });
+    const selector = controls.locator(
+      'select[aria-label="Choose a movement clip"]',
+    );
+    const play = controls.locator('button[type="button"]');
+    assert.equal(await selector.count(), 1, "Bestie Pink has one clip selector");
+    assert.deepEqual(
+      (await selector.locator("option").allTextContents()).sort(),
+      [...requiredBestiesClips].sort(),
+      "Bestie Pink selector exposes all eight clips",
+    );
+    const before = await pinkViewer.evaluate((element) => ({
+      animationName: element.animationName,
+      currentTime: element.currentTime,
+      paused: element.paused,
+    }));
+    await selector.selectOption("high-five");
+    assert.equal(await selector.inputValue(), "high-five");
+    const selected = await pinkViewer.evaluate((element) => ({
+      animationName: element.animationName,
+      currentTime: element.currentTime,
+      paused: element.paused,
+    }));
+    assert.equal(
+      selected.animationName,
+      "high-five",
+      "clip selector changes the viewer animation",
+    );
+    assert.ok(selected.currentTime <= 0.01, "clip selector resets playback time");
+    assert.equal(selected.paused, true, "clip selection remains paused");
+    await play.tap();
+    await pinkViewer.evaluate(
+      (element) =>
+        new Promise((resolve, reject) => {
+          const deadline = performance.now() + 3_000;
+          const inspect = () => {
+            if (
+              element.animationName === "high-five" &&
+              !element.paused &&
+              element.currentTime > 0.03
+            ) {
+              resolve();
+              return;
+            }
+            if (performance.now() >= deadline) {
+              reject(new Error("Bestie Pink high-five did not begin playback"));
+              return;
+            }
+            requestAnimationFrame(inspect);
+          };
+          inspect();
+        }),
+    );
+    const playing = await pinkViewer.evaluate((element) => ({
+      animationName: element.animationName,
+      currentTime: element.currentTime,
+      paused: element.paused,
+    }));
+    assert.equal(await play.textContent(), "Pause");
+    await play.tap();
+    assert.equal(await play.textContent(), "Play");
+    assert.equal(
+      await pinkViewer.evaluate((element) => element.paused),
+      true,
+      "Bestie Pink playback pauses through the real control",
+    );
+    const screenshot = path.join(resultsDir, "besties-review-phone.png");
+    await page.screenshot({ path: screenshot, fullPage: true });
+    return {
+      cardTapDestination: publicLocation(page.url()),
+      viewers: inspections,
+      clipTransition: {
+        before,
+        selected,
+        playing,
+        finalControlText: await play.textContent(),
+      },
+      modelRequests: [...new Set(modelRequests)].map(publicLocation),
+      screenshot: path.basename(screenshot),
+      qualityAssessment: "not performed",
+    };
+  } finally {
+    expectedAbortContext.activity = "Besties viewer context teardown";
+    await context.close();
+  }
+}
+
 await fs.mkdir(resultsDir, { recursive: true });
 const report = {
   date: new Date().toISOString(),
@@ -986,6 +1484,7 @@ const report = {
   reviews: [],
   modelDeliveries: [],
   napCaptain: undefined,
+  besties: undefined,
   pageErrors: [],
   consoleErrors: [],
   badResponses: [],
@@ -994,10 +1493,10 @@ const report = {
   externalRequests: [],
   physicalSafari: "not tested",
   scope:
-    "catalog delivery, responsive navigation, exact model files and Nap Captain partial-model interaction; no final art-quality claim",
+    "catalog delivery, responsive navigation, exact model files, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
   harnessNotes: [
     "The current first inspiration image must be displayed inline; retained superseded concepts may instead remain reachable as local links.",
-    "Raw preload=metadata media cancellations are separated only when observed during serial review navigation or viewer teardown; video playback remains covered by earlier focused audits.",
+    "Browser-cancelled preload=metadata requests are separated only for exact video URLs declared by an inspected review in the same browser scope; HTTP errors and every other request failure remain fatal, while video playback remains covered by earlier focused audits.",
   ],
 };
 
@@ -1010,10 +1509,31 @@ const timeout = setTimeout(() => {
 }, overallTimeoutMs);
 
 try {
-  const inventory = normalizeInventory(
-    JSON.parse(await fs.readFile(inventoryPath, "utf8")),
+  const inventoryDocument = JSON.parse(
+    await fs.readFile(inventoryPath, "utf8"),
+  );
+  assert.deepEqual(
+    Object.fromEntries(
+      Object.keys(expectedInventoryCounts).map((key) => [
+        key,
+        inventoryDocument.counts?.[key],
+      ]),
+    ),
+    expectedInventoryCounts,
+    "inventory declares the expected current coverage counts",
+  );
+  const inventory = normalizeInventory(inventoryDocument);
+  assert.equal(
+    inventory.length,
+    expectedInventoryCounts.entries,
+    "inventory entry count matches its current contract",
+  );
+  const thumbnailRecords = await verifyThumbnailManifest(
+    JSON.parse(await fs.readFile(thumbnailManifestPath, "utf8")),
+    inventory,
   );
   report.inventoryEntries = inventory.length;
+  report.thumbnailFiles = thumbnailRecords.size;
   browser = await chromium.launch({
     headless: true,
     args: [
@@ -1031,12 +1551,19 @@ try {
 
   for (const viewport of viewports) {
     report.landing.push(
-      await inspectLanding(browser, inventory, viewport, report),
+      await inspectLanding(
+        browser,
+        inventory,
+        thumbnailRecords,
+        viewport,
+        report,
+      ),
     );
   }
   report.reviews = await inspectReviewPages(browser, inventory, report);
   report.modelDeliveries = await verifyModelDeliveries(inventory, report);
   report.napCaptain = await inspectNapCaptain(browser, inventory, report);
+  report.besties = await inspectBesties(browser, inventory, report);
 
   assert.deepEqual(report.pageErrors, [], "no page errors");
   assert.deepEqual(report.consoleErrors, [], "no console errors");

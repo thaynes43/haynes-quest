@@ -1,5 +1,8 @@
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { BestiesScene } from "./besties-scene";
+import type { BestiesFrame } from "./besties";
+import { FriendlyScene } from "./friendly-scene";
 import { ObbyScene } from "./obby-scene";
 import type { ObbyCourse } from "./obby";
 import type { AppearanceStage, SaveView } from "../shared/contracts";
@@ -45,6 +48,7 @@ type EncounterVisual = {
   hitUntil: number;
   authored: boolean;
   animation?: EnemyAnimation;
+  besties?: BestiesScene;
 };
 
 export class GardenScene {
@@ -57,6 +61,7 @@ export class GardenScene {
   private readonly assets = new SceneAssets();
   private readonly environment: THREE.WebGLRenderTarget;
   private obbyVisual: ObbyScene | null = null;
+  private friendlyVisual: FriendlyScene | null = null;
   private readonly resizeObserver: ResizeObserver | null;
   private readonly sun = new THREE.DirectionalLight(0xffedce, 2.1);
   private readonly target = new THREE.Vector3();
@@ -69,6 +74,33 @@ export class GardenScene {
   private visualTime = 0;
   private guardRing = groundRing(0.67, 0xadcfe2, 0.8);
   private slash: THREE.Mesh;
+  private readonly spell = new THREE.Group();
+  private readonly spellCore = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.035, 0.065, 1, 8),
+    new THREE.MeshBasicMaterial({
+      color: 0xf4eaff,
+      transparent: true,
+      depthWrite: false,
+    }),
+  );
+  private readonly spellGlow = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.11, 0.14, 1, 8),
+    new THREE.MeshBasicMaterial({
+      color: 0xad78ff,
+      transparent: true,
+      opacity: 0.3,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    }),
+  );
+  private readonly spellImpact = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(0.17, 1),
+    new THREE.MeshBasicMaterial({
+      color: 0xffedab,
+      transparent: true,
+      depthWrite: false,
+    }),
+  );
   private particles: THREE.Points | null = null;
   private memories = new Map<string, THREE.Group>();
   private photos = new Map<string, PhotoState>();
@@ -150,6 +182,9 @@ export class GardenScene {
     this.slash.position.set(0, 0.5, -0.3);
     this.slash.visible = false;
     this.traveler.add(this.slash);
+    this.spell.add(this.spellCore, this.spellGlow, this.spellImpact);
+    this.spell.visible = false;
+    this.scene.add(this.spell);
     this.loadTraveler();
     this.rebuildRoute(level, save);
     const Observer = container.ownerDocument.defaultView?.ResizeObserver;
@@ -174,9 +209,14 @@ export class GardenScene {
     this.photos.clear();
     this.memories.clear();
     this.pickups.clear();
-    for (const enemy of this.enemies.values()) enemy.animation?.dispose();
+    for (const enemy of this.enemies.values()) {
+      enemy.animation?.dispose();
+      enemy.besties?.dispose();
+    }
     this.enemies.clear();
     this.obbyVisual = null;
+    this.friendlyVisual?.dispose();
+    this.friendlyVisual = null;
     this.scene.remove(this.world);
     disposeTree(this.world);
     this.world = new THREE.Group();
@@ -187,7 +227,9 @@ export class GardenScene {
     this.cameraPlaced = false;
     const period = save.adventure?.activeLevel?.periodId;
     const later = period
-      ? period === "remix-runway-v1" || period === "remix-runway-v2"
+      ? period === "remix-runway-v1" ||
+        period === "remix-runway-v2" ||
+        period === "besties-obby-v1"
       : (save.adventure?.activeLevel?.eraYear ?? 2020) >= 2024;
     const palette = later ? palettes.fair : palettes.orchard;
     const sky = level.course && !later ? 0xcde5ef : palette.sky;
@@ -285,6 +327,19 @@ export class GardenScene {
         stonePlacements.push(stone.matrix.clone());
       }
     }
+    // Bring the existing canopy into view without filling the route or jump gaps.
+    if (level.course) {
+      for (const z of [1.7, -5.5, -11.7, -25.2]) {
+        for (const side of [-1, 1]) {
+          const planting = new THREE.Object3D();
+          planting.position.set(side * 5.55, 0, z);
+          planting.rotation.y = side * z * 0.35;
+          planting.scale.setScalar(later ? 0.8 : 0.9);
+          planting.updateMatrix();
+          treePlacements.push(planting.matrix.clone());
+        }
+      }
+    }
     this.assets.attachInstances(
       modelUrls.tree,
       this.world,
@@ -344,6 +399,8 @@ export class GardenScene {
       this.world.add(pickup);
       this.pickups.set(placement.id, pickup);
     }
+    this.friendlyVisual = new FriendlyScene(level, this.assets, valid);
+    this.world.add(this.friendlyVisual.root);
     for (const placement of level.encounters) {
       const root = new THREE.Group();
       root.position.set(placement.position.x, 0, placement.position.z);
@@ -385,7 +442,10 @@ export class GardenScene {
         authored: Boolean(artwork),
       };
       this.enemies.set(placement.id, visual);
-      if (artwork)
+      if (artwork?.kind === "duo") {
+        visual.besties = new BestiesScene(this.assets, valid, artwork.models);
+        model.add(visual.besties.root);
+      } else if (artwork)
         this.assets.attach(artwork.url, model, valid, (loaded, clips) => {
           visual.animation = new EnemyAnimation(
             loaded,
@@ -400,6 +460,7 @@ export class GardenScene {
   updateProgress(save: SaveView): void {
     if (this.disposed) return;
     this.save = save;
+    this.friendlyVisual?.sync(save);
     for (const [id, root] of this.memories) {
       const memory = save.memories.find((item) => item.id === id);
       root.visible = Boolean(
@@ -508,10 +569,68 @@ export class GardenScene {
     if (frame?.attacking && !this.previousAttack) this.attackAt = elapsed;
     this.previousAttack = frame?.attacking ?? false;
     const attackTime = elapsed - this.attackAt;
-    this.slash.visible = attackTime < 0.28;
+    const ranged =
+      (this.save.adventure?.inventory.find(
+        (item) => item.id === this.save.adventure?.equippedId,
+      )?.tier ?? 1) > 1;
+    this.slash.visible = !ranged && attackTime < 0.28;
     this.slash.rotation.z = -1.3 + attackTime * 12;
     this.slash.position.y = this.stage === "infant" ? 0.45 : 0.78;
     this.guardRing.visible = Boolean(frame?.guarding || frame?.recovering);
+    const spellTarget =
+      (frame?.attackTargetId
+        ? this.enemies
+            .get(frame.attackTargetId)
+            ?.besties?.targetPosition(position)
+        : null) ??
+      frame?.enemies.find((enemy) => enemy.id === frame.attackTargetId)
+        ?.position ??
+      (frame?.attackTargetId
+        ? this.friendlyVisual?.targetPosition(frame.attackTargetId)
+        : null);
+    this.spell.visible = Boolean(
+      ranged && spellTarget && attackTime >= 0 && attackTime < 0.28,
+    );
+    if (this.spell.visible && spellTarget) {
+      const origin = new THREE.Vector3(
+        position.x,
+        position.y + 0.78,
+        position.z,
+      );
+      const destination = new THREE.Vector3(
+        spellTarget.x,
+        spellTarget.y + 0.75,
+        spellTarget.z,
+      );
+      const direction = destination.sub(origin);
+      const distanceToTarget = direction.length();
+      if (distanceToTarget > 0.001) {
+        direction.divideScalar(distanceToTarget);
+        origin.addScaledVector(
+          direction,
+          Math.min(0.35, distanceToTarget * 0.2),
+        );
+        this.spell.position.copy(origin);
+        this.spell.quaternion.setFromUnitVectors(
+          new THREE.Vector3(0, 1, 0),
+          direction,
+        );
+        const length = Math.max(
+          0.01,
+          (distanceToTarget - 0.35) * Math.min(1, attackTime / 0.09),
+        );
+        for (const mesh of [this.spellCore, this.spellGlow]) {
+          mesh.position.y = length / 2;
+          mesh.scale.y = length;
+        }
+        const fade = Math.min(1, (0.28 - attackTime) / 0.1);
+        this.spellCore.material.opacity = fade;
+        this.spellGlow.material.opacity = fade * 0.3;
+        this.spellImpact.position.y = length;
+        this.spellImpact.scale.setScalar(0.7 + Math.sin(attackTime * 22) * 0.3);
+        this.spellImpact.material.opacity = fade;
+      }
+    }
 
     const desiredClip =
       !frame?.grounded && this.clips.has("jump")
@@ -529,7 +648,11 @@ export class GardenScene {
       position.y + dimensions.cameraTargetHeight + 0.3,
       position.z - 0.5,
     );
-    const distance = this.camera.aspect < 0.85 ? 6.2 : 4.9;
+    const duoInView =
+      frame?.besties &&
+      frame.besties.phase !== "inactive" &&
+      position.z < -17.5;
+    const distance = this.camera.aspect < 0.85 ? (duoInView ? 8.6 : 6.2) : 4.9;
     const flat = Math.cos(this.cameraPitch) * distance;
     this.desiredCamera.set(
       position.x + Math.sin(this.cameraYaw) * flat,
@@ -554,8 +677,15 @@ export class GardenScene {
           0.8 + Math.sin(elapsed * 2 + pickup.position.z) * 0.08;
       }
     }
+    this.friendlyVisual?.update(dt, elapsed, position, this.camera);
     for (const enemy of frame?.enemies ?? [])
-      this.animateEnemy(enemy, elapsed, frame?.currentTarget === enemy.id, dt);
+      this.animateEnemy(
+        enemy,
+        elapsed,
+        frame?.currentTarget === enemy.id,
+        dt,
+        frame?.besties,
+      );
     if (this.particles)
       this.particles.rotation.y = Math.sin(elapsed * 0.03) * 0.02;
     this.renderer.render(this.scene, this.camera);
@@ -579,12 +709,17 @@ export class GardenScene {
     );
     this.equipment?.dispose();
     this.equipment = null;
+    this.friendlyVisual?.dispose();
     this.mixer?.stopAllAction();
     if (this.avatarRoot) this.mixer?.uncacheRoot(this.avatarRoot);
     this.avatarRoot = null;
-    for (const enemy of this.enemies.values()) enemy.animation?.dispose();
+    for (const enemy of this.enemies.values()) {
+      enemy.animation?.dispose();
+      enemy.besties?.dispose();
+    }
     disposeTree(this.world);
     disposeTree(this.traveler);
+    disposeTree(this.spell);
     this.assets.dispose();
     this.environment.dispose();
     this.renderer.renderLists.dispose();
@@ -767,6 +902,7 @@ export class GardenScene {
     elapsed: number,
     targeted: boolean,
     deltaSeconds: number,
+    besties?: BestiesFrame,
   ): void {
     const visual = this.enemies.get(enemy.id);
     if (!visual) return;
@@ -775,6 +911,15 @@ export class GardenScene {
       enemy.position.y,
       enemy.position.z,
     );
+    if (visual.besties && besties) {
+      visual.besties.update(besties, deltaSeconds, enemy.hp, elapsed);
+      visual.model.rotation.y = 0;
+      visual.warning.visible =
+        visual.marker.visible =
+        visual.hp.visible =
+          false;
+      return;
+    }
     visual.model.rotation.y = enemy.facing;
     const dormant =
       visual.boss &&
@@ -862,34 +1007,32 @@ export class GardenScene {
     bladeGeometry.computeVertexNormals();
     const grassMat = material(later ? 0x729496 : 0x91a771);
     grassMat.side = THREE.DoubleSide;
-    const grass = new THREE.InstancedMesh(bladeGeometry, grassMat, 900);
+    const grass = new THREE.InstancedMesh(bladeGeometry, grassMat, 1600);
     const flowers = new THREE.InstancedMesh(
-      new THREE.SphereGeometry(0.035, 5, 4),
+      new THREE.SphereGeometry(0.06, 5, 4),
       material(later ? 0xd7b7dd : 0xffe9af),
-      160,
+      300,
     );
     const dummy = new THREE.Object3D();
-    for (let i = 0; i < 900; i++) {
+    for (let i = 0; i < 1600; i++) {
       const side = i % 2 ? 1 : -1;
-      const x = side * (1.55 + ((i * 43) % 87) / 17);
+      const x =
+        side *
+        (course ? 3.7 + ((i * 43) % 67) / 30 : 1.55 + ((i * 43) % 87) / 17);
       const z = 4 - ((i * 31) % 355) / 10;
       dummy.position.set(x, 0, z);
       dummy.rotation.set(0, i * 1.7, 0);
       dummy.scale.setScalar(0.55 + (i % 9) / 11);
       // Keep the final battle floor clear and readable.
       if (
-        (z < -18 && Math.abs(x) < 3.2) ||
-        (course &&
-          (later ||
-            Math.abs(x) < 4.5 ||
-            i % 3 !== 0 ||
-            !this.onIsland(course, x, z, 0.3)))
+        (z < -18 && Math.abs(x) < 3.8) ||
+        (course && !this.onIsland(course, x, z, 0.3))
       )
         dummy.scale.setScalar(0);
       dummy.updateMatrix();
       grass.setMatrixAt(i, dummy.matrix);
-      if (i < 160) {
-        dummy.position.y = 0.13;
+      if (i < 300) {
+        dummy.position.y = 0.18;
         dummy.scale.multiplyScalar(0.8);
         dummy.updateMatrix();
         flowers.setMatrixAt(i, dummy.matrix);

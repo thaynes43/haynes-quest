@@ -1,0 +1,136 @@
+{
+  "asset_id": "bestie-black",
+  "version": "v001",
+  "glb": "bestie-black.glb",
+  "glb_sha256": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05",
+  "runtime_scale": 1,
+  "units": "meters",
+  "up": "+Y",
+  "forward": "-Z",
+  "origin": [
+    0,
+    0,
+    0
+  ],
+  "height_m": 1.4,
+  "rest_floor_y_m": 0,
+  "root_motion": "stationary; caller owns translation and facing",
+  "triangles": 14056,
+  "materials": 5,
+  "draw_primitives": 5,
+  "joints": [
+    "root",
+    "hips",
+    "spine",
+    "neck",
+    "head",
+    "clavicle_R",
+    "upper_arm_R",
+    "forearm_R",
+    "hand_R",
+    "clavicle_L",
+    "upper_arm_L",
+    "forearm_L",
+    "hand_L",
+    "pelvis_R",
+    "thigh_R",
+    "shin_R",
+    "foot_R",
+    "pelvis_L",
+    "thigh_L",
+    "shin_L",
+    "foot_L"
+  ],
+  "texture": "one original embedded 1024x1024 atlas",
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.2,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.0,
+      "contact_fraction": 0.625,
+      "paired_hand": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "cheer",
+      "duration_s": 2.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "high-five",
+      "duration_s": 1.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": "left"
+    },
+    {
+      "name": "dizzy",
+      "duration_s": 2.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    }
+  ],
+  "attack_contact_time_s": 1.0,
+  "attack_contact_fraction": 0.625,
+  "high_five": {
+    "hand": "hand_L",
+    "time_s": 1,
+    "wrist_y_up": [
+      -0.38991994427292687,
+      1.0683413317144526,
+      -0.17723648605966572
+    ],
+    "tip_y_up": [
+      -0.4019638321531199,
+      1.1285610028718667,
+      -0.1772364836956303
+    ]
+  },
+  "defeat_final": "comic sit, last 0.48 seconds held; no fade or hidden removal"
+}

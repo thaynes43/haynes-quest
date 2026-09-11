@@ -13,6 +13,7 @@ import {
 } from 'drizzle-orm/pg-core';
 import type { AdventurePlan, AdventureState } from '../../shared/adventure.js';
 import type { Ability, AppearanceStage, RuleVersions, SaveFormat, SubjectOption } from '../../shared/contracts.js';
+import type { FriendlyState } from '../../shared/friendly.js';
 import type { FrozenMemory } from '../domain.js';
 
 export const players = pgTable('quest_players', {
@@ -77,6 +78,7 @@ export const saves = pgTable(
     saveFormat: text('save_format').$type<SaveFormat>().notNull().default('legacy-v1'),
     adventurePlan: jsonb('adventure_plan').$type<AdventurePlan | null>(),
     adventureState: jsonb('adventure_state').$type<AdventureState | null>(),
+    friendlyState: jsonb('friendly_state').$type<FriendlyState | null>(),
     revision: integer('revision').notNull().default(0),
     versions: jsonb('versions').$type<RuleVersions>().notNull(),
     createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull().defaultNow(),

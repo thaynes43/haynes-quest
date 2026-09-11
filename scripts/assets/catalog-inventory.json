@@ -2,15 +2,15 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 33,
-    "reference_sheet_entries": 4,
-    "model_entries": 24,
-    "model_files": 24,
+    "entries": 36,
+    "reference_sheet_entries": 5,
+    "model_entries": 26,
+    "model_files": 26,
     "concept_only_entries": 1,
     "audio_entries": 4,
-    "completed_model_candidates": 23,
+    "completed_model_candidates": 25,
     "paused_partial_model_candidates": 1,
-    "owner_approved_entries": 0
+    "owner_approved_entries": 1
   },
   "assets": [
     {
@@ -81,8 +81,68 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "historical construction reference; six creature directions rejected for enemy use; four equipment directions remain unapproved candidates",
+      "state": "construction references for six friendly characters and four equipment candidates; exact final artwork review pending",
       "checksums": {}
+    },
+    {
+      "id": "bickering-besties",
+      "title": "The Besties \u00b7 approved joint concept",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/bickering-besties/v001.md",
+      "concept_images": [
+        "docs/assets/media/bickering-besties/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "joint look approved by Tom on 2026-09-11; two exact model candidates have separate entries",
+      "checksums": {}
+    },
+    {
+      "id": "bestie-black",
+      "title": "Bestie Black",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/bickering-besties/v001.md#bestie-black",
+      "concept_images": [
+        "docs/assets/media/bickering-besties/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/bestie-black/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/bestie-black/v001/bestie-black.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "Besties duo actor in PLAN006 playtest; joint look approved; exact final model review pending",
+      "checksums": {
+        "docs/assets/media/bestie-black/v001/bestie-black.glb": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05"
+      }
+    },
+    {
+      "id": "bestie-pink",
+      "title": "Bestie Pink",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/bickering-besties/v001.md#bestie-pink",
+      "concept_images": [
+        "docs/assets/media/bickering-besties/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/bestie-pink/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/bestie-pink/v001/bestie-pink.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "Besties duo actor in PLAN006 playtest; joint look approved; exact final model review pending",
+      "checksums": {
+        "docs/assets/media/bestie-pink/v001/bestie-pink.glb": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae"
+      }
     },
     {
       "id": "traveler-infant",
@@ -374,7 +434,7 @@
     {
       "id": "blockling",
       "title": "Blockling",
-      "category": "preserved-creature-studies",
+      "category": "friendly-characters",
       "review": "docs/assets/reviews/blockling/v001.md",
       "concept_images": [
         "docs/assets/media/blockling/v001/concept.png"
@@ -388,7 +448,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/blockling/v001/blockling.glb": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb"
       }
@@ -396,7 +456,7 @@
     {
       "id": "signal-moth",
       "title": "Signal Moth",
-      "category": "preserved-creature-studies",
+      "category": "friendly-characters",
       "review": "docs/assets/reviews/signal-moth/v001.md",
       "concept_images": [
         "docs/assets/media/signal-moth/v001/concept.png"
@@ -410,7 +470,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/signal-moth/v001/signal-moth.glb": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe"
       }
@@ -418,7 +478,7 @@
     {
       "id": "buffer-baron",
       "title": "Buffer Baron",
-      "category": "preserved-creature-studies",
+      "category": "friendly-characters",
       "review": "docs/assets/reviews/buffer-baron/v001.md",
       "concept_images": [
         "docs/assets/media/buffer-baron/v001/concept.png"
@@ -432,7 +492,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/buffer-baron/v001/buffer-baron.glb": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915"
       }
@@ -440,7 +500,7 @@
     {
       "id": "loop-dancer",
       "title": "Loop Dancer",
-      "category": "preserved-creature-studies",
+      "category": "friendly-characters",
       "review": "docs/assets/reviews/loop-dancer/v001.md",
       "concept_images": [
         "docs/assets/media/loop-dancer/v001/concept.png"
@@ -454,7 +514,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/loop-dancer/v001/loop-dancer.glb": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
       }
@@ -462,7 +522,7 @@
     {
       "id": "prism-mimic",
       "title": "Prism Mimic",
-      "category": "preserved-creature-studies",
+      "category": "friendly-characters",
       "review": "docs/assets/reviews/prism-mimic/v001.md",
       "concept_images": [
         "docs/assets/media/prism-mimic/v001/concept.png"
@@ -476,7 +536,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/prism-mimic/v001/prism-mimic.glb": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
       }
@@ -484,7 +544,7 @@
     {
       "id": "trendweaver",
       "title": "Trendweaver",
-      "category": "preserved-creature-studies",
+      "category": "friendly-characters",
       "review": "docs/assets/reviews/trendweaver/v001.md",
       "concept_images": [
         "docs/assets/media/trendweaver/v001/concept.png"
@@ -498,7 +558,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/trendweaver/v001/trendweaver.glb": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
       }
@@ -631,7 +691,7 @@
     },
     {
       "id": "memory-collected",
-      "title": "A memory found · v001",
+      "title": "A memory found \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/memory-collected/v001.md#audition",
       "concept_images": [],
@@ -643,7 +703,7 @@
       ],
       "thumbnail": "docs/assets/media/memory-collected/v001/waveform.svg",
       "version": "v001",
-      "state": "audition available; technical intake passed; listening and Tom review pending; not integrated in gameplay",
+      "state": "cue in PLAN006 playtest; final listening review pending",
       "checksums": {
         "docs/assets/media/memory-collected/v001/cue.wav": "86ed72b341775dbb6f60414994912ec0d0292140e6408c20de54e5eb7ba0d358",
         "docs/assets/media/memory-collected/v001/source.wav": "90dfbc573fbf5923508c025b4e7c33438a166449fbd4c2e3cfb988c164ac526b"
@@ -651,7 +711,7 @@
     },
     {
       "id": "ability-unlocked",
-      "title": "A little more possible · v001",
+      "title": "A little more possible \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/ability-unlocked/v001.md#audition",
       "concept_images": [],
@@ -663,7 +723,7 @@
       ],
       "thumbnail": "docs/assets/media/ability-unlocked/v001/waveform.svg",
       "version": "v001",
-      "state": "audition available; technical intake passed; listening and Tom review pending; not integrated in gameplay",
+      "state": "cue in PLAN006 playtest; final listening review pending",
       "checksums": {
         "docs/assets/media/ability-unlocked/v001/cue.wav": "46318afe6c77579a6b063fa704e887cd6112601b4cc4144351fa9085845115c0",
         "docs/assets/media/ability-unlocked/v001/source.wav": "c6d084ce680ab407b20c351cb49509ade12290efb291453fdfc350ce3ef7a904"
@@ -671,7 +731,7 @@
     },
     {
       "id": "movement-landed",
-      "title": "Back on the path · v001",
+      "title": "Back on the path \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/movement-landed/v001.md#audition",
       "concept_images": [],
@@ -683,7 +743,7 @@
       ],
       "thumbnail": "docs/assets/media/movement-landed/v001/waveform.svg",
       "version": "v001",
-      "state": "audition available; technical intake passed; listening and Tom review pending; not integrated in gameplay",
+      "state": "cue in PLAN006 playtest; final listening review pending",
       "checksums": {
         "docs/assets/media/movement-landed/v001/cue.wav": "2c869c641b29e5df0ede83ad5dfab63f26a4d41c9b7258b56d3acb4dd71bf127",
         "docs/assets/media/movement-landed/v001/source.wav": "59661a9bf7f48019d114ce39ba344b5ecf7d69bc4bceb09493ef056cf8aee995"
@@ -691,7 +751,7 @@
     },
     {
       "id": "ui-confirmed",
-      "title": "A quiet yes · v001",
+      "title": "A quiet yes \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/ui-confirmed/v001.md#audition",
       "concept_images": [],
@@ -704,7 +764,7 @@
       ],
       "thumbnail": "docs/assets/media/ui-confirmed/v001/waveform.svg",
       "version": "v001",
-      "state": "audition available; technical intake passed; listening and Tom review pending; first source attempt retained as rejected; not integrated in gameplay",
+      "state": "cue in PLAN006 playtest; final listening review pending",
       "checksums": {
         "docs/assets/media/ui-confirmed/v001/cue.wav": "e9a0541c87b518de9b7d989ae4b6ef99d3ee03e40bfc1e65855bfe9069597608",
         "docs/assets/media/ui-confirmed/v001/source.wav": "416cdbb0fbb82da0b701f7fdac2fb4176b1f5933c4e1a236fab246e130ac941b",

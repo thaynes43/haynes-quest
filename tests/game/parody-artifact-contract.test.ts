@@ -3,9 +3,22 @@ import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { parodyArtwork } from "../../src/game/scene-catalog";
-import { PARODY_CANDIDATES } from "../../src/shared/parody-catalog";
+import {
+  PARODY_CANDIDATES,
+  PARODY_CATALOGS,
+} from "../../src/shared/parody-catalog";
 
 const REQUIRED_CLIPS = ["attack", "defeat", "hit", "idle", "move"];
+const BESTIES_REQUIRED_CLIPS = [
+  "attack",
+  "cheer",
+  "defeat",
+  "dizzy",
+  "high-five",
+  "hit",
+  "idle",
+  "move",
+];
 const ARCHIVED_UNSELECTABLE_IDS = ["nap-captain", "one-star-diva"];
 const JSON_CHUNK = 0x4e4f534a;
 const BIN_CHUNK = 0x004e4942;
@@ -143,14 +156,41 @@ const EXPECTED_ALIAS_MAP = {
   "sir-flush-a-lot-encore": "sir-flush-a-lot",
 };
 
+const v2Candidates = PARODY_CATALOGS["parody-catalog-v2"];
 const selectedArtifacts = [
   ...new Map(
-    PARODY_CANDIDATES.map((entry) => [
+    v2Candidates.map((entry) => [
       `${entry.assetId}@${entry.assetVersion}`,
       entry,
     ]),
   ).values(),
 ];
+
+const BESTIES_ARTIFACTS = {
+  "bestie-pink": {
+    glbBytes: 956_924,
+    glbSha256:
+      "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+    resources: { bufferBytes: 860_824, triangles: 14_588 },
+  },
+  "bestie-black": {
+    glbBytes: 928_000,
+    glbSha256:
+      "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05",
+    resources: { bufferBytes: 829_788, triangles: 14_056 },
+  },
+} as const;
+
+const BESTIES_DURATIONS: Record<string, number> = {
+  attack: 1.6,
+  cheer: 2,
+  defeat: 2,
+  dizzy: 2.4,
+  "high-five": 1.6,
+  hit: 0.6,
+  idle: 2.4,
+  move: 1.2,
+};
 
 interface ManifestClip {
   name: string;
@@ -392,14 +432,14 @@ function expectIdentityMeshNodes(document: GlbDocument) {
 
 describe("selectable parody runtime artifact contract", () => {
   it("maps all six v2 encounter identities onto the four completed assets", () => {
-    expect(PARODY_CANDIDATES).toHaveLength(6);
+    expect(v2Candidates).toHaveLength(6);
     expect(
       Object.fromEntries(
-        PARODY_CANDIDATES.map((entry) => [entry.id, entry.assetId]),
+        v2Candidates.map((entry) => [entry.id, entry.assetId]),
       ),
     ).toEqual(EXPECTED_ALIAS_MAP);
     expect(
-      PARODY_CANDIDATES.filter((entry) =>
+      v2Candidates.filter((entry) =>
         [entry.id, entry.assetId].some((id) =>
           ARCHIVED_UNSELECTABLE_IDS.includes(id),
         ),
@@ -416,7 +456,7 @@ describe("selectable parody runtime artifact contract", () => {
       "sir-flush-a-lot@v001",
     ]);
 
-    for (const entry of PARODY_CANDIDATES) {
+    for (const entry of v2Candidates) {
       const exact = EXACT_ARTIFACTS[entry.assetId];
       expect(exact, `${entry.id}: selected asset contract`).toBeDefined();
       expect(
@@ -430,9 +470,59 @@ describe("selectable parody runtime artifact contract", () => {
         contactFraction: exact!.contactFraction,
         height: exact!.height,
         id: entry.assetId,
+        kind: "single",
         url: `/studio/assets/media/${entry.assetId}/${entry.assetVersion}/${entry.assetId}.glb`,
       });
     }
+  });
+
+  it("maps all nine v3 identities and resolves the logical boss as two models", () => {
+    expect(PARODY_CANDIDATES).toHaveLength(9);
+    expect(
+      Object.fromEntries(
+        PARODY_CANDIDATES.map((entry) => [entry.id, entry.assetId]),
+      ),
+    ).toEqual({
+      ...EXPECTED_ALIAS_MAP,
+      "bickering-besties": "bickering-besties",
+      "peel-patrol-besties": "peel-patrol",
+      "sir-flush-a-lot-besties": "sir-flush-a-lot",
+    });
+
+    const entry = PARODY_CANDIDATES.find(
+      (candidate) => candidate.id === "bickering-besties",
+    )!;
+    expect(
+      parodyArtwork({
+        catalogEntryId: entry.id,
+        catalogEntryVersion: entry.version,
+        assetId: entry.assetId,
+        assetVersion: entry.assetVersion,
+      }),
+    ).toEqual({
+      contactFraction: 0.625,
+      height: 1.4,
+      id: "bickering-besties",
+      kind: "duo",
+      models: [
+        {
+          id: "bestie-pink",
+          url: "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+        },
+        {
+          id: "bestie-black",
+          url: "/studio/assets/media/bestie-black/v001/bestie-black.glb",
+        },
+      ],
+    });
+    expect(
+      parodyArtwork({
+        catalogEntryId: entry.id,
+        catalogEntryVersion: entry.version,
+        assetId: "bestie-pink",
+        assetVersion: entry.assetVersion,
+      }),
+    ).toBeNull();
   });
 
   for (const entry of selectedArtifacts) {
@@ -568,6 +658,64 @@ describe("selectable parody runtime artifact contract", () => {
       const height = restGeometryHeight(document, binary);
       expect(height.minimum).toBeCloseTo(0, 5);
       expect(height.maximum).toBeCloseTo(exact!.height, 5);
+    });
+  }
+
+  for (const [actorId, exact] of Object.entries(BESTIES_ARTIFACTS)) {
+    it(`${actorId}@v001 matches its exact bounded eight-clip GLB`, () => {
+      const glbUrl = new URL(
+        `../../docs/assets/media/${actorId}/v001/${actorId}.glb`,
+        import.meta.url,
+      );
+      expect(existsSync(glbUrl), `${actorId}: required published GLB`).toBe(
+        true,
+      );
+      const glbBytes = readFileSync(glbUrl);
+      expect(glbBytes.length).toBe(exact.glbBytes);
+      expect(sha256(glbBytes)).toBe(exact.glbSha256);
+      expect(glbBytes.length).toBeLessThanOrEqual(MAX_GLB_BYTES);
+
+      const { document, binary } = parseGlb(glbBytes);
+      const primitives = (document.meshes ?? []).flatMap(
+        (mesh) => mesh.primitives ?? [],
+      );
+      expect(document.buffers).toHaveLength(1);
+      expect(document.buffers?.[0]?.byteLength).toBe(
+        exact.resources.bufferBytes,
+      );
+      expect(
+        document.buffers?.every((buffer) => buffer.uri === undefined),
+      ).toBe(true);
+      expect(document.images).toHaveLength(1);
+      expect(
+        document.images?.every(
+          (image) =>
+            image.uri === undefined && Number.isInteger(image.bufferView),
+        ),
+      ).toBe(true);
+      expect(document.textures).toHaveLength(5);
+      expect(document.materials).toHaveLength(5);
+      expect(document.skins).toHaveLength(1);
+      expect(primitives).toHaveLength(5);
+      expect(triangleCount(document)).toBe(exact.resources.triangles);
+      expect(document.materials!.length).toBeLessThanOrEqual(MAX_MATERIALS);
+      expect(primitives.length).toBeLessThanOrEqual(MAX_PRIMITIVES);
+      expect(exact.resources.triangles).toBeLessThanOrEqual(MAX_TRIANGLES);
+      expect(document.extensionsRequired ?? []).toEqual([]);
+
+      expect(document.animations).toHaveLength(BESTIES_REQUIRED_CLIPS.length);
+      const durations = animationDurations(document, binary);
+      expect(Object.keys(durations).sort()).toEqual(BESTIES_REQUIRED_CLIPS);
+      for (const clipName of BESTIES_REQUIRED_CLIPS)
+        expect(durations[clipName]).toBeCloseTo(
+          BESTIES_DURATIONS[clipName]!,
+          5,
+        );
+
+      expectIdentityMeshNodes(document);
+      const height = restGeometryHeight(document, binary);
+      expect(height.minimum).toBeCloseTo(0, 5);
+      expect(height.maximum).toBeCloseTo(1.4, 5);
     });
   }
 });

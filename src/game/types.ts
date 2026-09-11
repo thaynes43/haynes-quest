@@ -60,12 +60,28 @@ export interface SceneFrame {
   moving: boolean;
   grounded: boolean;
   attacking: boolean;
+  attackTargetId: string | null;
   guarding: boolean;
   enemies: EnemyFrame[];
   currentTarget: string | null;
+  besties?: import("./besties").BestiesFrame;
   obby?: ObbySample;
   checkpointId?: string | null;
   recovering?: boolean;
+}
+
+export type AttackAttemptOutcome =
+  | "accepted"
+  | "guarded"
+  | "no-target"
+  | "unarmed"
+  | "cooldown"
+  | "busy"
+  | "unavailable";
+
+export interface AttackFeedback {
+  sequence: number;
+  outcome: AttackAttemptOutcome;
 }
 
 export interface SceneMediaState {
@@ -75,6 +91,8 @@ export interface SceneMediaState {
 }
 
 export interface GameStatus {
+  nearFriendlyId?: string | null;
+  bestiesPhase?: import("./besties").BestiesPhase;
   nearPickupId: string | null;
   nearEncounterId: string | null;
   nearMemoryId: string | null;
@@ -91,6 +109,7 @@ export interface GameStatus {
   activeLevelId: string | null;
   eraYear: number | null;
   attackReady: boolean;
+  attackFeedback: AttackFeedback | null;
   guardActive: boolean;
   guardReady: boolean;
   requestBusy: boolean;
@@ -129,6 +148,7 @@ export interface LevelInspection {
   memoryPositions: MemoryPlacementInspection[];
   pickupPositions: PickupInspection[];
   encounterPositions: EncounterInspection[];
+  friendlyPositions?: Array<PositionSnapshot & { id: string; assetId: string }>;
   finishPosition: PositionSnapshot;
   step: null | { z: number; height: number; unlockMemoryId: string };
 }
@@ -160,6 +180,7 @@ export interface CreateGameOptions {
 export interface GameHandle {
   updateSave(save: SaveView): void;
   setInput(action: GameInputAction, value: number | boolean): void;
+  cancelInput(action: GameInputAction): void;
   clearInput(): void;
   setPaused(paused: boolean): void;
   performAction(action: GameplayAction): boolean;

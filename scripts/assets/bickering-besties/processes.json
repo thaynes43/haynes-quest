@@ -1,0 +1,50 @@
+{
+  "work_order": "WO051",
+  "jobs": [
+    {
+      "purpose": "pink initial three views",
+      "pid": 58237,
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "purpose": "black initial three views",
+      "pid": 58373,
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "purpose": "superseded evidence, cancelled before ankle refinement",
+      "pid": 58559,
+      "exit_code": -15,
+      "reaped": true
+    },
+    {
+      "purpose": "source and attachment verification",
+      "pid": 58698,
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "purpose": "final exact candidate evidence",
+      "pid": 58765,
+      "exit_code": -15,
+      "reaped": true,
+      "note": "Stopped before final pair framing/palm-clearance correction."
+    },
+    {
+      "purpose": "pair surface test; first 0.8m found sleeve grazing, corrected 0.9m passed",
+      "pid": 59096,
+      "exit_code": 0,
+      "reaped": true,
+      "note": "Report checks, not process exit alone, determine pass."
+    },
+    {
+      "purpose": "final corrected pair evidence",
+      "pid": 59277,
+      "exit_code": 0,
+      "reaped": true
+    }
+  ],
+  "all_owned_jobs_exited_and_reaped": true
+}

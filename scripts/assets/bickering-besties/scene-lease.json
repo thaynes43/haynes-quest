@@ -1,0 +1,19 @@
+{
+  "work_order": "WO051",
+  "owner": "/root/besties_models",
+  "status": "released-complete",
+  "remote_root": "/workspace/haynes-quest/bickering-besties/v001",
+  "previous_checkpoint": "/workspace/haynes-quest/parody/remix-trio/v001/live-scene-release.blend",
+  "previous_sha256": "9a84bd4c72e70292512bd605f4da44f6fcccdca290816d230aa0bc053c972afe",
+  "safety_checkpoint": "/workspace/haynes-quest/bickering-besties/v001/previous-scene-safety.blend",
+  "started_at": "2026-09-11T22:19:44.848061+00:00",
+  "current_owner": null,
+  "released_at": "2026-09-11T23:02:30.832343+00:00",
+  "release_checkpoint": "/workspace/haynes-quest/bickering-besties/v001/live-scene-release.blend",
+  "release_checkpoint_sha256": "927ee5a27a13707798ed0e1a98060f9eeda999de6fe485cf4bda410055a74e2f",
+  "previous_checkpoint_unchanged": true,
+  "safety_sha256": "2268ee09ee815aa50f439975262ae8fc8c99b6cd8c3a050d5af601264e502fce",
+  "render_running": false,
+  "owned_worker_running": false,
+  "browser_lease": "released; owned Chromium and ephemeral server closed"
+}

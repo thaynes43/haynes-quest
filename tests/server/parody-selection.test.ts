@@ -11,6 +11,7 @@ import {
   PARODY_CANDIDATES,
   PARODY_CATALOGS,
   PARODY_CATALOG_VERSION,
+  PARODY_PERIODS,
   type ParodyCatalogEntry,
 } from '../../src/shared/parody-catalog.js';
 import {
@@ -31,12 +32,17 @@ import {
 import { signToken } from '../../src/server/security.js';
 
 const EXPECTED_2020 = ['mister-hiss', 'peel-patrol', 'drama-dragon'];
-const EXPECTED_2024 = [
+const EXPECTED_2024_V2 = [
   'sir-flush-a-lot-encore',
   'peel-patrol-encore',
   'drama-dragon-encore',
 ];
-const EXPECTED_2024_ASSETS = ['sir-flush-a-lot', 'peel-patrol', 'drama-dragon'];
+const EXPECTED_2024 = [
+  'sir-flush-a-lot-besties',
+  'peel-patrol-besties',
+  'bickering-besties',
+];
+const EXPECTED_2024_ASSETS = ['sir-flush-a-lot', 'peel-patrol', 'bickering-besties'];
 
 describe('frozen dated parody selection', () => {
   it('uses inclusive curated boundaries and rejects uncovered past and future dates', () => {
@@ -45,6 +51,12 @@ describe('frozen dated parody selection', () => {
     }
     for (const date of ['2024-01-01', '2026-12-31']) {
       expect(ids(selectParodyLevel(date, ['move', 'interact', 'jump']))).toEqual(EXPECTED_2024);
+      expect(ids(selectParodyLevel(date, ['move', 'interact']))).toEqual(EXPECTED_2024_V2);
+      expect(ids(selectParodyLevel(
+        date,
+        ['move', 'interact', 'jump'],
+        'parody-catalog-v2',
+      ))).toEqual(EXPECTED_2024_V2);
       expect(ids(selectParodyLevel(
         date,
         ['move', 'interact', 'jump'],
@@ -73,21 +85,29 @@ describe('frozen dated parody selection', () => {
       .toEqual(EXPECTED_2020);
   });
 
-  it('selects by represented date at the same age and freezes the matching route', () => {
+  it('selects by represented date and requires jump for the Besties period', () => {
     const early = selectParodyLevel('2023-06-01', ['move', 'interact']);
-    const later = selectParodyLevel('2024-06-01', ['move', 'interact']);
+    const laterWithoutJump = selectParodyLevel('2024-06-01', ['move', 'interact']);
+    const later = selectParodyLevel('2024-06-01', ['move', 'interact', 'jump']);
     expect({ periodId: early.periodId, ids: ids(early), routeId: early.routeId }).toEqual({
       periodId: 'block-party-v1',
       ids: EXPECTED_2020,
       routeId: 'gentle-intro-v1',
     });
     expect({ periodId: later.periodId, ids: ids(later), routeId: later.routeId }).toEqual({
-      periodId: 'remix-runway-v2',
+      periodId: 'besties-obby-v1',
       ids: EXPECTED_2024,
+      routeId: 'gentle-jump-v1',
+    });
+    expect({
+      periodId: laterWithoutJump.periodId,
+      ids: ids(laterWithoutJump),
+      routeId: laterWithoutJump.routeId,
+    }).toEqual({
+      periodId: 'remix-runway-v2',
+      ids: EXPECTED_2024_V2,
       routeId: 'gentle-intro-v1',
     });
-    expect(selectParodyLevel('2024-06-01', ['move', 'interact', 'jump']).routeId)
-      .toBe('gentle-jump-v1');
   });
 
   it('requires complete kind, role and starting-ability coverage', () => {
@@ -138,7 +158,7 @@ describe('frozen dated parody selection', () => {
           eraYear: 2024,
           startAgeYears: 4,
           targetAgeYears: 7,
-          periodId: 'remix-runway-v2',
+          periodId: 'besties-obby-v1',
           routeId: 'gentle-jump-v1',
         },
       ],
@@ -152,6 +172,47 @@ describe('frozen dated parody selection', () => {
         entry: `${id}@v001`,
         asset: `${EXPECTED_2024_ASSETS[index]}@v001`,
       })),
+    ]);
+  });
+
+  it('freezes v3 and represents the duo as one jump-gated boss identity', () => {
+    expect(PARODY_CATALOG_VERSION).toBe('parody-catalog-v3');
+    expect(Object.isFrozen(PARODY_CANDIDATES)).toBe(true);
+    expect(PARODY_CANDIDATES.every(Object.isFrozen)).toBe(true);
+    expect(PARODY_CANDIDATES.every((entry) => Object.isFrozen(entry.requiredAbilities)))
+      .toBe(true);
+    expect(PARODY_PERIODS['besties-obby-v1']).toEqual({
+      title: 'Besties Obby',
+      subtitle: 'Pink, black and one missed high-five',
+      description:
+        'Two rivals take turns building obstacle tricks. Their missed high-five leaves them dizzy.',
+    });
+
+    const besties = PARODY_CANDIDATES.filter(
+      (entry) => entry.periodId === 'besties-obby-v1',
+    );
+    expect(besties.map((entry) => entry.id)).toEqual(EXPECTED_2024);
+    expect(besties.find((entry) => entry.role === 'boss')).toMatchObject({
+      id: 'bickering-besties',
+      title: 'The Bickering Besties',
+      kind: 'boss',
+      requiredAbilities: ['move', 'jump'],
+      assetId: 'bickering-besties',
+      assetVersion: 'v001',
+    });
+
+    const secondLevel = fixturePlan().levels[1]!;
+    expect(secondLevel.bossId).toBe('level-2-2024-boss');
+    expect(secondLevel.encounters.filter((entry) => entry.role === 'boss')).toEqual([
+      expect.objectContaining({
+        id: secondLevel.bossId,
+        maxHp: 11,
+        content: expect.objectContaining({
+          catalogEntryId: 'bickering-besties',
+          assetId: 'bickering-besties',
+          assetVersion: 'v001',
+        }),
+      }),
     ]);
   });
 
@@ -175,6 +236,32 @@ describe('frozen dated parody selection', () => {
     expectInvalid(changedDate, state);
 
     expectInvalid({ ...structuredClone(plan), catalogVersion: 'parody-catalog-v0' }, state);
+  });
+
+  it('keeps the archived v2 catalog and its saved plans unchanged', () => {
+    expect(PARODY_CATALOGS['parody-catalog-v2'].map((entry) => ({
+      id: entry.id,
+      periodId: entry.periodId,
+      assetId: entry.assetId,
+      assetVersion: entry.assetVersion,
+    }))).toEqual([
+      { id: 'mister-hiss', periodId: 'block-party-v1', assetId: 'mister-hiss', assetVersion: 'v001' },
+      { id: 'peel-patrol', periodId: 'block-party-v1', assetId: 'peel-patrol', assetVersion: 'v001' },
+      { id: 'drama-dragon', periodId: 'block-party-v1', assetId: 'drama-dragon', assetVersion: 'v001' },
+      { id: 'sir-flush-a-lot-encore', periodId: 'remix-runway-v2', assetId: 'sir-flush-a-lot', assetVersion: 'v001' },
+      { id: 'peel-patrol-encore', periodId: 'remix-runway-v2', assetId: 'peel-patrol', assetVersion: 'v001' },
+      { id: 'drama-dragon-encore', periodId: 'remix-runway-v2', assetId: 'drama-dragon', assetVersion: 'v001' },
+    ]);
+
+    const plan = archivedCatalogV2Plan();
+    const state = createInitialAdventureState(plan);
+    expect(parseStoredAdventure(plan, state).plan).toEqual(plan);
+    expect(plan.levels[1]!.encounters.map((encounter) => encounter.content.catalogEntryId))
+      .toEqual(EXPECTED_2024_V2);
+    const record = storedCatalogV1Save(plan);
+    record.title = 'Stored parody catalog v2 plan';
+    record.versions.catalog = 'parody-catalog-v2';
+    expect(validateSaveRecord(record).adventurePlan).toEqual(plan);
   });
 
   it('keeps v1 strict, actionable and generic while requiring every v2 identity', async () => {
@@ -308,6 +395,36 @@ function archivedCatalogV1Plan(): AdventurePlanV2 {
       encounters: level.encounters.map((encounter) => {
         const entry = archivedEntries.find((candidate) =>
           candidate.periodId === (index === 0 ? 'block-party-v1' : 'remix-runway-v1') &&
+          candidate.kind === encounter.kind &&
+          candidate.role === encounter.role,
+        );
+        if (!entry) throw new Error('Archived fixture entry missing');
+        return {
+          ...encounter,
+          content: {
+            catalogEntryId: entry.id,
+            catalogEntryVersion: entry.version,
+            assetId: entry.assetId,
+            assetVersion: entry.assetVersion,
+          },
+        };
+      }),
+    })),
+  };
+}
+
+function archivedCatalogV2Plan(): AdventurePlanV2 {
+  const plan = fixturePlan();
+  const archivedEntries = PARODY_CATALOGS['parody-catalog-v2'];
+  return {
+    ...plan,
+    catalogVersion: 'parody-catalog-v2',
+    levels: plan.levels.map((level, index) => ({
+      ...level,
+      periodId: index === 0 ? 'block-party-v1' : 'remix-runway-v2',
+      encounters: level.encounters.map((encounter) => {
+        const entry = archivedEntries.find((candidate) =>
+          candidate.periodId === (index === 0 ? 'block-party-v1' : 'remix-runway-v2') &&
           candidate.kind === encounter.kind &&
           candidate.role === encounter.role,
         );

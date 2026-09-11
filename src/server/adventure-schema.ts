@@ -10,6 +10,11 @@ import {
   PARODY_CATALOGS,
   PARODY_CATALOG_VERSIONS,
 } from '../shared/parody-catalog.js';
+import {
+  FRIENDLY_CATALOG_VERSIONS,
+  friendlyDefinitionsForPlan,
+  type FriendlyState,
+} from '../shared/friendly.js';
 import type { Ability, RuleVersions, SubjectOption } from '../shared/contracts.js';
 import type { FrozenMemory } from './domain.js';
 import { AppError } from './errors.js';
@@ -83,7 +88,12 @@ const levelV1Schema = z.object({
 }).strict();
 const levelV2Schema = z.object({
   ...levelShape,
-  periodId: z.enum(['block-party-v1', 'remix-runway-v1', 'remix-runway-v2']),
+  periodId: z.enum([
+    'block-party-v1',
+    'remix-runway-v1',
+    'remix-runway-v2',
+    'besties-obby-v1',
+  ]),
   routeId: z.enum(['gentle-intro-v1', 'gentle-jump-v1']),
   encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
 }).strict();
@@ -129,6 +139,17 @@ const stateSchema = z.object({
   guardReadyAtMs: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
   actionReceipts: z.array(receiptSchema).max(128),
 }).strict();
+const friendlyProgressSchema = z.object({
+  hp: z.number().int().min(0).max(100_000),
+  defeated: z.boolean(),
+  boonClaimed: z.boolean(),
+  penaltyActive: z.boolean(),
+}).strict();
+const friendlyStateSchema = z.object({
+  version: z.literal('friendly-state-v1'),
+  catalogVersion: z.enum(FRIENDLY_CATALOG_VERSIONS),
+  friendlies: z.record(z.string().min(1).max(360), friendlyProgressSchema),
+}).strict();
 
 const storedSaveJsonSchema = z.object({
   subject: subjectSchema,
@@ -167,6 +188,40 @@ export function parseStoredAdventure(
   const state = parsedState.data as AdventureState;
   if (!validPlan(plan) || !validState(plan, state)) invalid();
   return { plan, state };
+}
+
+export function parseStoredFriendlyState(
+  raw: unknown,
+  plan: AdventurePlan,
+  adventureState: AdventureState,
+): FriendlyState {
+  const parsed = friendlyStateSchema.safeParse(raw);
+  if (!parsed.success) invalid();
+  const state = parsed.data as FriendlyState;
+  const definitions = friendlyDefinitionsForPlan(plan, state.catalogVersion);
+  const expected = new Map(definitions.map((definition) => [definition.id, definition]));
+  const levelIndexes = new Map(plan.levels.map((level) => [level.id, level.index]));
+  const ids = Object.keys(state.friendlies);
+  if (
+    ids.length !== expected.size ||
+    ids.some((id) => !expected.has(id))
+  ) invalid();
+  for (const definition of definitions) {
+    const progress = state.friendlies[definition.id];
+    if (
+      !progress ||
+      progress.hp > definition.maxHp ||
+      progress.defeated !== (progress.hp === 0) ||
+      progress.penaltyActive !== (progress.hp < definition.maxHp) ||
+      ((levelIndexes.get(definition.levelId) ?? Number.MAX_SAFE_INTEGER) >
+        adventureState.activeLevelIndex &&
+        (progress.hp !== definition.maxHp ||
+          progress.defeated ||
+          progress.boonClaimed ||
+          progress.penaltyActive))
+    ) invalid();
+  }
+  return state;
 }
 
 function validPlan(plan: AdventurePlan): boolean {

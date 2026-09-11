@@ -11,6 +11,7 @@ export const playerHitCooldownSeconds = 0.9;
 
 const maxEnemyContactFeetDelta = 0.3;
 const maxPlayerAttackFeetDelta = 1;
+const distanceEpsilon = 0.000001;
 
 type EnemyArena = NonNullable<EncounterPlacement["arena"]>;
 
@@ -35,6 +36,7 @@ interface LocalEnemy {
   hp: number;
   maxHp: number;
   defeated: boolean;
+  scripted: boolean;
 }
 
 export interface EnemyStepOptions {
@@ -52,8 +54,11 @@ const ordinaryTuning: EnemyTuning = {
 };
 const bossTuning: EnemyTuning = {
   speed: 0.65,
-  stopRange: 1.5,
-  attackRange: 1.75,
+  // The routed boss island resumes at z=-19 while its safe arena ends at
+  // z=-21. Its reach must bridge that two-metre boundary or it walks against
+  // the clamp forever without ever telegraphing an attack.
+  stopRange: 2.1,
+  attackRange: 2.25,
   windupSeconds: 1.2,
   collisionRadius: 0.68,
 };
@@ -95,6 +100,17 @@ function clampToArena(position: PositionSnapshot, arena?: EnemyArena): void {
   if (!arena) return;
   position.x = Math.max(arena.minX, Math.min(arena.maxX, position.x));
   position.z = Math.max(arena.minZ, Math.min(arena.maxZ, position.z));
+}
+
+function canReachPlayer(
+  player: PositionSnapshot,
+  arena: EnemyArena | undefined,
+  attackRange: number,
+): boolean {
+  if (!arena) return true;
+  const nearest = { ...player };
+  clampToArena(nearest, arena);
+  return distance(player, nearest) <= attackRange;
 }
 
 function spawnFor(
@@ -225,21 +241,34 @@ export class EnemySimulation {
         enemy.contactedDuringStrike = false;
         continue;
       }
+      if (enemy.scripted) continue;
       const tuning = tuningFor(enemy.role);
       const playerDistance = distance(enemy.position, options.player);
+      const playerReachable = canReachPlayer(
+        options.player,
+        enemy.arena,
+        tuning.attackRange,
+      );
       enemy.facing = facingToward(enemy.position, options.player);
       switch (enemy.phase) {
         case "idle":
-          if (playerDistance <= enemyActivationRadius) {
+          if (playerDistance <= enemyActivationRadius && playerReachable) {
             enemy.phase = "chasing";
             enemy.phaseSeconds = 0;
           }
           break;
         case "chasing":
-          if (playerDistance > enemyActivationRadius) {
+          if (playerDistance > enemyActivationRadius || !playerReachable) {
             enemy.phase = "idle";
             enemy.phaseSeconds = 0;
-          } else if (playerDistance <= tuning.stopRange) {
+          } else if (
+            playerDistance <= tuning.stopRange + distanceEpsilon ||
+            // Outside the arena, the clamped approach can converge on the
+            // preferred stopping distance for seconds. Use the visible strike
+            // area there so reaching the edge produces a full warning promptly.
+            (playerDistance <= tuning.attackRange &&
+              !canReachPlayer(options.player, enemy.arena, 0))
+          ) {
             enemy.phase = "windup";
             enemy.phaseSeconds = 0;
           } else {
@@ -291,7 +320,9 @@ export class EnemySimulation {
           enemy.phaseSeconds += dt;
           if (enemy.phaseSeconds >= enemyCooldownSeconds) {
             enemy.phase =
-              playerDistance <= enemyActivationRadius ? "chasing" : "idle";
+              playerDistance <= enemyActivationRadius && playerReachable
+                ? "chasing"
+                : "idle";
             enemy.phaseSeconds = 0;
           }
           break;
@@ -326,7 +357,7 @@ export class EnemySimulation {
 
   resolvePlayerCollision(position: PositionSnapshot, level: LevelLayout): void {
     for (const enemy of this.enemies.values()) {
-      if (enemy.defeated) continue;
+      if (enemy.defeated || enemy.scripted) continue;
       if (verticalDistance(position, enemy.position) > maxEnemyContactFeetDelta)
         continue;
       const minimumDistance = tuningFor(enemy.role).collisionRadius + 0.25;
@@ -366,6 +397,7 @@ export class EnemySimulation {
       hp: encounter.hp,
       maxHp: encounter.maxHp,
       defeated: encounter.defeated,
+      scripted: encounter.content?.assetId === "bickering-besties",
     });
   }
 }
@@ -374,6 +406,32 @@ export interface AttackTarget {
   id: string;
   facing: number;
   distance: number;
+}
+
+const malletAttackRange = {
+  ordinary: 1.7,
+  boss: 2,
+} as const;
+const prismWandAttackRange = 4.25;
+
+function equippedAttackTier(save: SaveView): number {
+  const adventure = save.adventure;
+  const equipment = adventure?.inventory.find(
+    (item) =>
+      item.id === adventure.equippedId &&
+      item.kind === "attack-tool" &&
+      item.collected,
+  );
+  return equipment?.tier ?? 0;
+}
+
+/** The tier-two Prism wand is ranged; the starting mallet remains melee. */
+export function playerAttackRange(
+  save: SaveView,
+  role: EncounterView["role"],
+): number {
+  if (equippedAttackTier(save) >= 2) return prismWandAttackRange;
+  return malletAttackRange[role];
 }
 
 export function findAttackTarget(
@@ -391,7 +449,7 @@ export function findAttackTarget(
     if (encounter.available === false) return [];
     if (encounter.role === "boss" && !bossActive) return [];
     const targetDistance = distance(player, enemy.position);
-    const range = encounter.role === "boss" ? 2 : 1.7;
+    const range = playerAttackRange(save, encounter.role);
     if (targetDistance > range) return [];
     if (verticalDistance(player, enemy.position) > maxPlayerAttackFeetDelta)
       return [];

@@ -2,7 +2,7 @@
 
 Browse the [asset catalog](catalog.md) by picture to choose what to review. Each model entry keeps its inspiration image, interactive 3D view and exact version together. The [art direction](art-direction.md) explains the common storybook style.
 
-The catalog includes travelers, world pieces, equipment, parody characters, earlier creature studies, reference images and sound auditions. Finished candidates and paused work are labeled separately. The [two-chapter playtest](playtest.md) identifies the temporary cast used in the isolated review game; no final artwork approval is implied.
+The catalog includes travelers, world pieces, equipment, parody characters, friendly characters, reference images and sound auditions. Finished candidates and paused work are labeled separately. The [two-chapter playtest](playtest.md) identifies the temporary cast used in the isolated review game; no final artwork approval is implied.
 
 Every candidate gets a review record, including concepts and paused or partial work. Show its source images, available model views or audio player, exact version, actual checks and feedback history; label what is still missing. The [review template](000-review-template.md) defines the record, and the [catalog maintenance rule](../PROCESS.md#asset-catalog-must-stay-current) requires matching inventory and thumbnail navigation with every asset change. Catalog inclusion does not require final artwork approval.
 

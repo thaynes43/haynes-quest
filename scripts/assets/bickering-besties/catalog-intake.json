@@ -1,0 +1,539 @@
+{
+  "work_order": "WO051",
+  "assets": [
+    {
+      "id": "bestie-pink",
+      "version": "v001",
+      "concept_images": [
+        "docs/assets/media/bickering-besties/v001/concept.png"
+      ],
+      "models": [
+        "docs/assets/media/bestie-pink/v001/bestie-pink.glb"
+      ],
+      "model_images": [
+        "docs/assets/media/bestie-pink/v001/beauty.png",
+        "docs/assets/media/bestie-pink/v001/front.png",
+        "docs/assets/media/bestie-pink/v001/side.png",
+        "docs/assets/media/bestie-pink/v001/back.png"
+      ],
+      "thumbnail_source": "docs/assets/media/bestie-pink/v001/beauty.png",
+      "editable_master": "docs/assets/media/bestie-pink/v001/bestie-pink.blend",
+      "manifest": "docs/assets/media/bestie-pink/v001/manifest.json",
+      "glb_sha256": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+      "glb_bytes": 956924,
+      "triangles": 14588,
+      "opaque_primitives": 5,
+      "runtime": {
+        "asset_id": "bestie-pink",
+        "version": "v001",
+        "glb": "bestie-pink.glb",
+        "glb_sha256": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+        "runtime_scale": 1,
+        "units": "meters",
+        "up": "+Y",
+        "forward": "-Z",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "height_m": 1.4,
+        "rest_floor_y_m": 0,
+        "root_motion": "stationary; caller owns translation and facing",
+        "triangles": 14588,
+        "materials": 5,
+        "draw_primitives": 5,
+        "joints": [
+          "root",
+          "hips",
+          "spine",
+          "neck",
+          "head",
+          "clavicle_R",
+          "upper_arm_R",
+          "forearm_R",
+          "hand_R",
+          "clavicle_L",
+          "upper_arm_L",
+          "forearm_L",
+          "hand_L",
+          "pelvis_R",
+          "thigh_R",
+          "shin_R",
+          "foot_R",
+          "pelvis_L",
+          "thigh_L",
+          "shin_L",
+          "foot_L"
+        ],
+        "texture": "one original embedded 1024x1024 atlas",
+        "clips": [
+          {
+            "name": "idle",
+            "duration_s": 2.4,
+            "loop": true,
+            "clamp_when_finished": false,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "move",
+            "duration_s": 1.2,
+            "loop": true,
+            "clamp_when_finished": false,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "attack",
+            "duration_s": 1.6,
+            "loop": false,
+            "clamp_when_finished": true,
+            "contact_time_s": 1.0,
+            "contact_fraction": 0.625,
+            "paired_hand": null
+          },
+          {
+            "name": "hit",
+            "duration_s": 0.6,
+            "loop": false,
+            "clamp_when_finished": true,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "defeat",
+            "duration_s": 2.0,
+            "loop": false,
+            "clamp_when_finished": true,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "cheer",
+            "duration_s": 2.0,
+            "loop": true,
+            "clamp_when_finished": false,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "high-five",
+            "duration_s": 1.6,
+            "loop": false,
+            "clamp_when_finished": true,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": "right"
+          },
+          {
+            "name": "dizzy",
+            "duration_s": 2.4,
+            "loop": true,
+            "clamp_when_finished": false,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          }
+        ],
+        "attack_contact_time_s": 1.0,
+        "attack_contact_fraction": 0.625,
+        "high_five": {
+          "hand": "hand_R",
+          "time_s": 1,
+          "wrist_y_up": [
+            0.38405808823594145,
+            1.1696323147161642,
+            -0.04752228801524816
+          ],
+          "tip_y_up": [
+            0.39592090885151593,
+            1.2289467212336793,
+            -0.04752225177224771
+          ]
+        },
+        "defeat_final": "comic sit, last 0.48 seconds held; no fade or hidden removal"
+      },
+      "state": "approved joint look; completed model candidate; exact final model review pending"
+    },
+    {
+      "id": "bestie-black",
+      "version": "v001",
+      "concept_images": [
+        "docs/assets/media/bickering-besties/v001/concept.png"
+      ],
+      "models": [
+        "docs/assets/media/bestie-black/v001/bestie-black.glb"
+      ],
+      "model_images": [
+        "docs/assets/media/bestie-black/v001/beauty.png",
+        "docs/assets/media/bestie-black/v001/front.png",
+        "docs/assets/media/bestie-black/v001/side.png",
+        "docs/assets/media/bestie-black/v001/back.png"
+      ],
+      "thumbnail_source": "docs/assets/media/bestie-black/v001/beauty.png",
+      "editable_master": "docs/assets/media/bestie-black/v001/bestie-black.blend",
+      "manifest": "docs/assets/media/bestie-black/v001/manifest.json",
+      "glb_sha256": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05",
+      "glb_bytes": 928000,
+      "triangles": 14056,
+      "opaque_primitives": 5,
+      "runtime": {
+        "asset_id": "bestie-black",
+        "version": "v001",
+        "glb": "bestie-black.glb",
+        "glb_sha256": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05",
+        "runtime_scale": 1,
+        "units": "meters",
+        "up": "+Y",
+        "forward": "-Z",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "height_m": 1.4,
+        "rest_floor_y_m": 0,
+        "root_motion": "stationary; caller owns translation and facing",
+        "triangles": 14056,
+        "materials": 5,
+        "draw_primitives": 5,
+        "joints": [
+          "root",
+          "hips",
+          "spine",
+          "neck",
+          "head",
+          "clavicle_R",
+          "upper_arm_R",
+          "forearm_R",
+          "hand_R",
+          "clavicle_L",
+          "upper_arm_L",
+          "forearm_L",
+          "hand_L",
+          "pelvis_R",
+          "thigh_R",
+          "shin_R",
+          "foot_R",
+          "pelvis_L",
+          "thigh_L",
+          "shin_L",
+          "foot_L"
+        ],
+        "texture": "one original embedded 1024x1024 atlas",
+        "clips": [
+          {
+            "name": "idle",
+            "duration_s": 2.4,
+            "loop": true,
+            "clamp_when_finished": false,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "move",
+            "duration_s": 1.2,
+            "loop": true,
+            "clamp_when_finished": false,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "attack",
+            "duration_s": 1.6,
+            "loop": false,
+            "clamp_when_finished": true,
+            "contact_time_s": 1.0,
+            "contact_fraction": 0.625,
+            "paired_hand": null
+          },
+          {
+            "name": "hit",
+            "duration_s": 0.6,
+            "loop": false,
+            "clamp_when_finished": true,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "defeat",
+            "duration_s": 2.0,
+            "loop": false,
+            "clamp_when_finished": true,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "cheer",
+            "duration_s": 2.0,
+            "loop": true,
+            "clamp_when_finished": false,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          },
+          {
+            "name": "high-five",
+            "duration_s": 1.6,
+            "loop": false,
+            "clamp_when_finished": true,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": "left"
+          },
+          {
+            "name": "dizzy",
+            "duration_s": 2.4,
+            "loop": true,
+            "clamp_when_finished": false,
+            "contact_time_s": null,
+            "contact_fraction": null,
+            "paired_hand": null
+          }
+        ],
+        "attack_contact_time_s": 1.0,
+        "attack_contact_fraction": 0.625,
+        "high_five": {
+          "hand": "hand_L",
+          "time_s": 1,
+          "wrist_y_up": [
+            -0.38991994427292687,
+            1.0683413317144526,
+            -0.17723648605966572
+          ],
+          "tip_y_up": [
+            -0.4019638321531199,
+            1.1285610028718667,
+            -0.1772364836956303
+          ]
+        },
+        "defeat_final": "comic sit, last 0.48 seconds held; no fade or hidden removal"
+      },
+      "state": "approved joint look; completed model candidate; exact final model review pending"
+    }
+  ],
+  "shared_reference": {
+    "path": "docs/assets/media/bickering-besties/v001/concept.png",
+    "sha256": "1fb8f525b23c811dd1c3946faca219224bb10800c2517ae87ffdb40beaa0aee1",
+    "look_approval": "Tom, September 11, 2026; Use this look for the duo.",
+    "final_export_approval": "pending"
+  },
+  "joint_pose": "docs/assets/media/bestie-pink/v001/joint-pose.png",
+  "joint_reel": "docs/assets/media/bestie-pink/v001/joint-animations.mp4",
+  "joint_motion_grid": "docs/assets/media/bestie-pink/v001/joint-motion-grid.png",
+  "joint_editable_review": "docs/assets/media/bestie-pink/v001/joint-export-review.blend",
+  "joint_reel_validation": {
+    "sha256": "214b423c6c7aeaa73743665feb31952256a5df31b6a68557f2d0fa0bd5d8cdc7",
+    "bytes": 602737,
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "width": 720,
+    "height": 560,
+    "frames": 414,
+    "fps": "30/1",
+    "duration_s": 13.8,
+    "audio_streams": 0,
+    "full_decode_passed": true,
+    "native_render_fps": 10,
+    "encoded_fps": 30
+  },
+  "pair_choreography": {
+    "both_facing_radians": 3.141592653589793,
+    "pink_world_side": "+X",
+    "black_world_side": "-X",
+    "high_five_centres_apart_m": 0.9,
+    "high_five_contact_s": 1.0,
+    "root_depth_offset_m": 0,
+    "root_owns": "approach from +/-1.25m, return for shared dizzy recovery, one boss and one reward"
+  },
+  "pair_surface_checks": {
+    "work_order": "WO051",
+    "source": "exact reimported GLBs",
+    "glb_sha256": {
+      "bestie-pink": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+      "bestie-black": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05"
+    },
+    "centre_spacing_m": 0.9,
+    "no_added_depth_offset": true,
+    "samples": [
+      {
+        "time_s": 0.85,
+        "hand_surface_intersections": 0,
+        "closest_hand_vertex_to_other_surface_m": 0.07835721969604492,
+        "whole_pair_surface_intersections": 0
+      },
+      {
+        "time_s": 1.0,
+        "hand_surface_intersections": 0,
+        "closest_hand_vertex_to_other_surface_m": 0.07562769949436188,
+        "whole_pair_surface_intersections": 0
+      },
+      {
+        "time_s": 1.15,
+        "hand_surface_intersections": 0,
+        "closest_hand_vertex_to_other_surface_m": 0.07780802249908447,
+        "whole_pair_surface_intersections": 0
+      }
+    ],
+    "checks": {
+      "both_hands_visibly_miss": true,
+      "no_pair_surface_intersections": true
+    }
+  },
+  "sources": [
+    {
+      "path": "scripts/assets/bickering-besties/atlas.py",
+      "bytes": 2409,
+      "sha256": "5b965cb45783ca257601efdb85d8ef23fe1d1f4cfe884559e26623b63a02cf0d"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/build.py",
+      "bytes": 898,
+      "sha256": "b7d0bfc53ec66a43553768600579a1b238762dfd267e4f473e28cdc82cf894c0"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/collect.py",
+      "bytes": 7386,
+      "sha256": "b5884b118796601938976665909bf3e96c4c011c062cda7acf16822355431e14"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/common.py",
+      "bytes": 8504,
+      "sha256": "4dd4711b27c43c5104224a4e8cfa64b48b629686eeb7096713dc59f00305bb46"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/compare-construction.py",
+      "bytes": 5676,
+      "sha256": "d4735d4745359c2a3a10d528147a41984e1d95edb9c7fc7dedc765bcb8cdb142"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/evidence.py",
+      "bytes": 5091,
+      "sha256": "a26aa563257dd1beb51ac0bf541b6ad6611d42c2fe95cc6fb8827fa3db89cbb4"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/inspect-attachments.mjs",
+      "bytes": 5682,
+      "sha256": "1acbdb1147c346baffa6e148a82e73965d6008332c9b5b3fabd10b626e0756fb"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/inspect-browser.mjs",
+      "bytes": 8857,
+      "sha256": "6fc4bb2deb4a75cd3028eaaf995ea2afcabab2b3a24ce0ed71c13508ab15a40e"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/inspect-pair.py",
+      "bytes": 2649,
+      "sha256": "67cdfc7fbaf76d486e2997ca92cca09cc96392e3387caaab164b0a225fb423a6"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/inspect-three.mjs",
+      "bytes": 8789,
+      "sha256": "7713032e377553680b2d0886d75c9f5861762e2cdbca199966c951c6be519429"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/model.py",
+      "bytes": 15014,
+      "sha256": "fdeabfa1ad43713002db616346b7293fea7f9910efaf622cf8521ab722161b24"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/render.py",
+      "bytes": 6408,
+      "sha256": "e26155d019284707b6e1b78d7fc3740edfdfd4470bb3e8202fee86b1aabb8930"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/rig.py",
+      "bytes": 15285,
+      "sha256": "aa95b3c996de892e543aa1207fdfd42addeb4ad79a2532712e9792ad80f6a49a"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/transfer.py",
+      "bytes": 4326,
+      "sha256": "d5d9847d4972fd1d10a9968b7f819aa754e90b03817f3f7296a7ef2c76ae025b"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/validate.mjs",
+      "bytes": 2942,
+      "sha256": "fa8d4983e87f1d7e8cae3cb96954603f72563baa7e72512e5f8815debb54f22c"
+    }
+  ],
+  "scene_lease": {
+    "work_order": "WO051",
+    "owner": "/root/besties_models",
+    "status": "released-complete",
+    "remote_root": "/workspace/haynes-quest/bickering-besties/v001",
+    "previous_checkpoint": "/workspace/haynes-quest/parody/remix-trio/v001/live-scene-release.blend",
+    "previous_sha256": "9a84bd4c72e70292512bd605f4da44f6fcccdca290816d230aa0bc053c972afe",
+    "safety_checkpoint": "/workspace/haynes-quest/bickering-besties/v001/previous-scene-safety.blend",
+    "started_at": "2026-09-11T22:19:44.848061+00:00",
+    "current_owner": null,
+    "released_at": "2026-09-11T23:02:30.832343+00:00",
+    "release_checkpoint": "/workspace/haynes-quest/bickering-besties/v001/live-scene-release.blend",
+    "release_checkpoint_sha256": "927ee5a27a13707798ed0e1a98060f9eeda999de6fe485cf4bda410055a74e2f",
+    "previous_checkpoint_unchanged": true,
+    "safety_sha256": "2268ee09ee815aa50f439975262ae8fc8c99b6cd8c3a050d5af601264e502fce",
+    "render_running": false,
+    "owned_worker_running": false,
+    "browser_lease": "released; owned Chromium and ephemeral server closed"
+  },
+  "owned_processes": {
+    "work_order": "WO051",
+    "jobs": [
+      {
+        "purpose": "pink initial three views",
+        "pid": 58237,
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "purpose": "black initial three views",
+        "pid": 58373,
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "purpose": "superseded evidence, cancelled before ankle refinement",
+        "pid": 58559,
+        "exit_code": -15,
+        "reaped": true
+      },
+      {
+        "purpose": "source and attachment verification",
+        "pid": 58698,
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "purpose": "final exact candidate evidence",
+        "pid": 58765,
+        "exit_code": -15,
+        "reaped": true,
+        "note": "Stopped before final pair framing/palm-clearance correction."
+      },
+      {
+        "purpose": "pair surface test; first 0.8m found sleeve grazing, corrected 0.9m passed",
+        "pid": 59096,
+        "exit_code": 0,
+        "reaped": true,
+        "note": "Report checks, not process exit alone, determine pass."
+      },
+      {
+        "purpose": "final corrected pair evidence",
+        "pid": 59277,
+        "exit_code": 0,
+        "reaped": true
+      }
+    ],
+    "all_owned_jobs_exited_and_reaped": true
+  }
+}

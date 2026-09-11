@@ -13,6 +13,23 @@ import { QuestAudio } from "./audio";
 import { MemoryImage } from "./MemoryImage";
 import { equipmentName, eraStory } from "./era";
 
+const friendlyNames: Record<string, string> = {
+  blockling: "Blockling",
+  "signal-moth": "Signal Moth",
+  "buffer-baron": "Buffer Baron",
+  "loop-dancer": "Loop Dancer",
+  "prism-mimic": "Prism Mimic",
+  trendweaver: "Trendweaver",
+};
+const bestiesInstructions: Record<string, string> = {
+  "pink-warning": "Pink’s turn! Watch the foam sweeper.",
+  "pink-trick": "Jump over the pink sweeper, or step aside!",
+  "black-warning": "Black’s turn! Move off the glowing lane.",
+  "black-trick": "Stay on the clear side, or jump!",
+  "high-five": "A high-five… whoops!",
+  dizzy: "They’re dizzy! Now use your wand!",
+};
+
 export function GameScreen({
   initialSave,
   onLeave,
@@ -93,9 +110,12 @@ function Adventure({
   const [save, setSave] = useState(initialSave);
   const [status, setStatus] = useState<GameStatus>();
   const [error, setError] = useState("");
+  const [attackNotice, setAttackNotice] = useState("");
+  const [friendDialogId, setFriendDialogId] = useState<string | null>(null);
+  const [confirmFriendlyHarm, setConfirmFriendlyHarm] = useState(false);
   const soundRef = useRef<QuestAudio | undefined>(undefined);
   const [muted, setMuted] = useState(true);
-  const [volume, setVolume] = useState(0.45);
+  const [volume, setVolume] = useState(0.35);
   const [showHelp, setShowHelp] = useState(false);
   const [showAlbum, setShowAlbum] = useState(false);
   const [showVictory, setShowVictory] = useState(
@@ -131,6 +151,12 @@ function Adventure({
   const nearbyPickup = level?.pickups.find(
     (pickup) => pickup.pickupId === status?.nearPickupId,
   );
+  const nearbyFriend = level?.friendlies?.find(
+    (friend) => friend.id === status?.nearFriendlyId,
+  );
+  const selectedFriend = level?.friendlies?.find(
+    (friend) => friend.id === friendDialogId,
+  );
   const target = level?.encounters.find(
     (enemy) => enemy.id === status?.nearEncounterId,
   );
@@ -138,6 +164,9 @@ function Adventure({
   useEffect(() => {
     mounted.current = true;
     let previousRequestError: string | null = null;
+    let previousAttackSequence = -1;
+    let previouslyGrounded = true;
+    let noticeTimer: ReturnType<typeof setTimeout> | undefined;
     const sound = new QuestAudio();
     soundRef.current = sound;
     setMuted(sound.preferences().muted);
@@ -145,12 +174,11 @@ function Adventure({
     const audioGesture = () => {
       void sound.start();
     };
-    const audioVisibility = () => {
-      if (document.hidden) sound.suspend();
-    };
-    document.addEventListener("pointerdown", audioGesture);
-    document.addEventListener("keydown", audioGesture);
-    document.addEventListener("visibilitychange", audioVisibility);
+    document.addEventListener("pointerdown", audioGesture, true);
+    document.addEventListener("pointerup", audioGesture, true);
+    document.addEventListener("touchend", audioGesture, true);
+    document.addEventListener("click", audioGesture, true);
+    document.addEventListener("keydown", audioGesture, true);
     const update = (next: SaveView, action?: GameplayAction) => {
       if (
         !mounted.current ||
@@ -162,9 +190,59 @@ function Adventure({
       latest.current = next;
       setSave(next);
       setError("");
-      if (action?.type === "recover-memory") void sound.cue("memory-collected");
-      if (action?.type === "consume-memory-bundle")
-        void sound.cue("ability-unlocked");
+      if (next.revision > before.revision) {
+        if (action?.type === "recover-memory")
+          void sound.cue("memory-collected");
+        if (action?.type === "consume-memory-bundle")
+          void sound.cue("ability-unlocked");
+        if (action?.type === "collect-equipment")
+          void sound.cue("ui-confirmed", { gain: 1.2 });
+        const enemyHit = next.adventure?.activeLevel?.encounters.some(
+          (enemy) =>
+            enemy.hp <
+            (before.adventure?.activeLevel?.encounters.find(
+              (prior) => prior.id === enemy.id,
+            )?.hp ?? enemy.hp),
+        );
+        if (
+          enemyHit ||
+          (next.adventure?.playerHp ?? 0) < (before.adventure?.playerHp ?? 0)
+        ) {
+          void sound.cue("movement-landed", { gain: 1.5, playbackRate: 0.85 });
+        }
+        if (action?.type === "interact-friendly") {
+          const prior = before.adventure?.activeLevel?.friendlies?.find(
+            (friend) => friend.id === action.friendlyId,
+          );
+          void sound.cue("ui-confirmed", { gain: 1, playbackRate: 1.1 });
+          setAttackNotice(
+            prior?.penaltyActive
+              ? "Friends again!"
+              : `A little kindness · +${(next.adventure?.playerHp ?? 0) - (before.adventure?.playerHp ?? 0)} health`,
+          );
+          if (noticeTimer) clearTimeout(noticeTimer);
+          noticeTimer = setTimeout(() => {
+            if (mounted.current) setAttackNotice("");
+          }, 2200);
+        }
+        if (action?.type === "attack-friendly") {
+          setConfirmFriendlyHarm(false);
+          setFriendDialogId(null);
+          const cost =
+            (before.adventure?.playerHp ?? 0) - (next.adventure?.playerHp ?? 0);
+          setAttackNotice(
+            cost > 0
+              ? `You hurt your friend · −${cost} health. Make amends to restore their help.`
+              : "Your friend needs help. Make amends to restore the friendship.",
+          );
+          if (noticeTimer) clearTimeout(noticeTimer);
+          noticeTimer = setTimeout(() => {
+            if (mounted.current) setAttackNotice("");
+          }, 2800);
+        }
+        if (action?.type === "guard")
+          void sound.cue("ui-confirmed", { gain: 0.7, playbackRate: 0.85 });
+      }
       if (
         action?.type === "recover-memory" &&
         before.adventure?.phase === "memory-released" &&
@@ -206,6 +284,47 @@ function Adventure({
           onStatus: (next) => {
             if (!mounted.current) return;
             if (
+              !previouslyGrounded &&
+              next.grounded &&
+              next.phase === "exploring"
+            )
+              void sound.cue("movement-landed");
+            previouslyGrounded = next.grounded;
+            if (
+              next.attackFeedback &&
+              next.attackFeedback.sequence !== previousAttackSequence
+            ) {
+              previousAttackSequence = next.attackFeedback.sequence;
+              const outcome = next.attackFeedback.outcome;
+              const ranged =
+                (latest.current.adventure?.inventory.find(
+                  (item) => item.id === latest.current.adventure?.equippedId,
+                )?.tier ?? 1) > 1;
+              const messages = {
+                accepted: ranged ? "Zap!" : "Whack!",
+                guarded:
+                  "Wait for their missed high-five. Attack when they’re dizzy!",
+                "no-target": "Move closer to a glowing enemy, then attack.",
+                unarmed: "Pick up a tool first.",
+                cooldown: "Ready in a moment.",
+                busy: "Your hit is landing…",
+                unavailable: "You can attack during a fight.",
+              };
+              setAttackNotice(messages[outcome]);
+              if (outcome === "accepted")
+                void sound.cue("ui-confirmed", {
+                  gain: 0.8,
+                  playbackRate: ranged ? 1.35 : 0.9,
+                });
+              if (noticeTimer) clearTimeout(noticeTimer);
+              noticeTimer = setTimeout(
+                () => {
+                  if (mounted.current) setAttackNotice("");
+                },
+                outcome === "accepted" ? 700 : 1800,
+              );
+            }
+            if (
               next.requestErrorCode &&
               next.requestErrorCode !== previousRequestError
             )
@@ -222,9 +341,12 @@ function Adventure({
     }
     return () => {
       mounted.current = false;
-      document.removeEventListener("pointerdown", audioGesture);
-      document.removeEventListener("keydown", audioGesture);
-      document.removeEventListener("visibilitychange", audioVisibility);
+      document.removeEventListener("pointerdown", audioGesture, true);
+      document.removeEventListener("pointerup", audioGesture, true);
+      document.removeEventListener("touchend", audioGesture, true);
+      document.removeEventListener("click", audioGesture, true);
+      document.removeEventListener("keydown", audioGesture, true);
+      if (noticeTimer) clearTimeout(noticeTimer);
       sound.dispose();
       soundRef.current = undefined;
       game.current?.dispose();
@@ -244,15 +366,25 @@ function Adventure({
             ? "chapter"
             : photoDetail
               ? "photo"
-              : showHelp
-                ? "help"
-                : showAlbum
-                  ? "album"
-                  : null;
+              : selectedFriend
+                ? "friend"
+                : showHelp
+                  ? "help"
+                  : showAlbum
+                    ? "album"
+                    : null;
   const modalOpen = activeModal !== null;
   useEffect(() => {
     game.current?.setPaused(modalOpen);
-  }, [modalOpen]);
+    // Stop world transients on opening a menu; a deliberate menu gesture can
+    // unlock its own confirmation or memory sound while the world stays paused.
+    if (
+      ["help", "album", "fallen", "artwork-update", "friend"].includes(
+        activeModal ?? "",
+      )
+    )
+      soundRef.current?.suspend();
+  }, [modalOpen, activeModal]);
 
   const feedback = (
     <>
@@ -277,21 +409,33 @@ function Adventure({
 
   const perform = (action: GameplayAction) => {
     setError("");
-    game.current?.performAction(action);
+    const accepted = game.current?.performAction(action);
+    if (
+      !accepted &&
+      (action.type === "interact-friendly" || action.type === "attack-friendly")
+    )
+      setError("That action isn’t ready yet. Keep exploring and try again.");
   };
   const busy = status?.requestBusy ?? false;
   const actionInput = (action: GameInputAction, value: boolean) =>
     game.current?.setInput(action, value);
+  const cancelActionInput = (action: GameInputAction) =>
+    game.current?.cancelInput(action);
+  const bestiesInstruction = status?.bestiesPhase
+    ? bestiesInstructions[status.bestiesPhase]
+    : undefined;
   const objective =
-    view.phase === "memory-released"
-      ? allRevealed
-        ? `Absorb the memories to grow to age ${level?.targetAgeYears}.`
-        : "The boss has fallen. Reclaim the memories it held."
-      : !weapon
-        ? "Find the spark mallet, then follow the course to the party."
-        : ordinaryLeft > 0
-          ? `${ordinaryLeft} ${ordinaryLeft === 1 ? "goofy guest stands" : "goofy guests stand"} between you and the boss.`
-          : `Face ${story.enemies.boss}. Watch its attack warning.`;
+    bestiesInstruction && view.phase === "exploring"
+      ? bestiesInstruction
+      : view.phase === "memory-released"
+        ? allRevealed
+          ? `Absorb the memories to grow to age ${level?.targetAgeYears}.`
+          : "The boss has fallen. Reclaim the memories it held."
+        : !weapon
+          ? "Find the spark mallet, then follow the course to the party."
+          : ordinaryLeft > 0
+            ? `${ordinaryLeft} ${ordinaryLeft === 1 ? "goofy guest stands" : "goofy guests stand"} between you and the boss.`
+            : `Face ${story.enemies.boss}. Watch its attack warning.`;
   const activePhoto = save.memories.find((memory) => memory.id === photoDetail);
 
   return (
@@ -369,7 +513,10 @@ function Adventure({
           {shield && <span>◈ {equipmentName(shield)}</span>}
         </div>
       </aside>
-      <div className="era-objective" aria-live="polite">
+      <div
+        className={`era-objective ${bestiesInstruction ? "besties" : ""} ${status?.bestiesPhase === "dizzy" ? "opening" : ""}`}
+        aria-live="polite"
+      >
         <small>
           CHAPTER {(level?.index ?? 0) + 1}
           {level ? ` OF ${level.totalLevels}` : ""}
@@ -387,12 +534,22 @@ function Adventure({
           />
         </div>
       )}
-      {target && view.phase === "exploring" && (
+      {target && !nearbyFriend && view.phase === "exploring" && (
         <div className="target-hint">
           {story.enemies[target.kind]} · {target.hp}/{target.maxHp}
         </div>
       )}
       {!modalOpen && feedback}
+      {!modalOpen && attackNotice && (
+        <div
+          className="attack-notice"
+          role="status"
+          aria-live="polite"
+          data-quest-ui
+        >
+          {attackNotice}
+        </div>
+      )}
       {!modalOpen && (
         <div className="game-bottom" data-quest-ui>
           <Joystick game={game} />
@@ -413,6 +570,7 @@ function Adventure({
               disabled={!shield || view.phase !== "exploring"}
               active={status?.guardActive}
               input={actionInput}
+              cancelInput={cancelActionInput}
             />
             <ActionButton
               action="jump"
@@ -423,6 +581,7 @@ function Adventure({
                 (view.phase !== "exploring" && view.phase !== "memory-released")
               }
               input={actionInput}
+              cancelInput={cancelActionInput}
             />
             <ActionButton
               action="attack"
@@ -431,24 +590,71 @@ function Adventure({
               disabled={!weapon || view.phase !== "exploring"}
               active={Boolean(target && status?.attackReady)}
               input={actionInput}
+              cancelInput={cancelActionInput}
             />
             <ActionButton
               action="interact"
-              label={nearbyPickup ? "Take gear" : "Remember"}
+              label={
+                nearbyPickup
+                  ? "Take gear"
+                  : nearbyFriend
+                    ? nearbyFriend.penaltyActive
+                      ? "Amends"
+                      : "Say hello"
+                    : "Remember"
+              }
               symbol={nearbyPickup ? "+" : "▧"}
-              disabled={!status?.nearPickupId && !status?.nearMemoryId}
-              active={Boolean(status?.nearPickupId || status?.nearMemoryId)}
+              disabled={
+                !status?.nearPickupId &&
+                !status?.nearMemoryId &&
+                (!nearbyFriend ||
+                  (!nearbyFriend.penaltyActive &&
+                    (nearbyFriend.boonClaimed ||
+                      view.playerHp === view.maxPlayerHp)))
+              }
+              active={Boolean(
+                status?.nearPickupId || status?.nearMemoryId || nearbyFriend,
+              )}
               input={actionInput}
+              cancelInput={cancelActionInput}
             />
           </div>
         </div>
+      )}
+      {nearbyFriend && !nearbyPickup && !attackNotice && !modalOpen && (
+        <button
+          className="friendly-prompt"
+          data-quest-ui
+          onClick={() => {
+            const handle = game.current;
+            if (handle?.inspect().status.nearFriendlyId !== nearbyFriend.id) {
+              setError("Land beside your friend to say hello.");
+              return;
+            }
+            // Freeze the validated position now, before React opens the dialog.
+            handle.setPaused(true);
+            setFriendDialogId(nearbyFriend.id);
+            setConfirmFriendlyHarm(false);
+          }}
+        >
+          <strong>♥ {friendlyNames[nearbyFriend.assetId] ?? "A friend"}</strong>
+          <span>
+            {nearbyFriend.penaltyActive
+              ? "Make amends"
+              : nearbyFriend.boonClaimed
+                ? "Your friend is resting"
+                : "A friendly face · healing help"}
+          </span>
+        </button>
       )}
       {nearbyPickup && !modalOpen && (
         <div className="pickup-prompt" data-quest-ui>
           <strong>{equipmentName(nearbyPickup)}</strong>
           <span>
             {nearbyPickup.kind === "attack-tool"
-              ? `${nearbyPickup.damage} strength · equips when collected`
+              ? nearbyPickup.tier > 1
+                ? "Ranged magic · aims at nearby enemies"
+                : `${nearbyPickup.damage} strength · equips when collected`
               : "Soften incoming hits with a well-timed guard"}
           </span>
         </div>
@@ -481,6 +687,105 @@ function Adventure({
         </Modal>
       )}
 
+      {activeModal === "friend" && selectedFriend && level && (
+        <Modal
+          notice={feedback}
+          title={friendlyNames[selectedFriend.assetId] ?? "A friendly face"}
+          eyebrow="A FRIEND ON YOUR JOURNEY"
+          onClose={() => {
+            setFriendDialogId(null);
+            setConfirmFriendlyHarm(false);
+          }}
+        >
+          {confirmFriendlyHarm ? (
+            <>
+              <p>
+                This character is your friend. Harming them costs you up to 2
+                health and pauses their help until you make amends.
+              </p>
+              <button
+                className="primary"
+                onClick={() => setConfirmFriendlyHarm(false)}
+              >
+                Leave them be
+              </button>
+              <button
+                className="secondary"
+                disabled={busy}
+                onClick={() =>
+                  perform({
+                    type: "attack-friendly",
+                    levelId: level.id,
+                    friendlyId: selectedFriend.id,
+                  })
+                }
+              >
+                Attack anyway
+              </button>
+            </>
+          ) : (
+            <>
+              <p>
+                {selectedFriend.penaltyActive
+                  ? selectedFriend.defeated
+                    ? "Your friend is knocked out. Make amends to help them up and restore your friendship."
+                    : "That hurt your friend, and cost you health. Make amends to restore your friendship."
+                  : selectedFriend.boonClaimed
+                    ? "Your friend has shared their healing gift for this chapter. They’re happy to see you again."
+                    : "Say hello to recover up to 2 health. Your friend saves this gift until you need it."}
+              </p>
+              {selectedFriend.penaltyActive && (
+                <p>
+                  Friend’s health: {selectedFriend.hp}/{selectedFriend.maxHp}.
+                  Your memories and equipment are safe.
+                </p>
+              )}
+              <button
+                className="primary"
+                disabled={
+                  busy ||
+                  (!selectedFriend.penaltyActive &&
+                    (selectedFriend.boonClaimed ||
+                      view.playerHp === view.maxPlayerHp))
+                }
+                onClick={() =>
+                  perform({
+                    type: "interact-friendly",
+                    levelId: level.id,
+                    friendlyId: selectedFriend.id,
+                  })
+                }
+              >
+                {selectedFriend.penaltyActive
+                  ? "Make amends"
+                  : selectedFriend.boonClaimed
+                    ? "Gift already shared"
+                    : view.playerHp === view.maxPlayerHp
+                      ? "You’re already healthy"
+                      : "Say hello · +2 health"}
+              </button>
+              <button
+                className="secondary"
+                onClick={() => setFriendDialogId(null)}
+              >
+                Keep exploring
+              </button>
+              {weapon &&
+                !selectedFriend.defeated &&
+                view.phase === "exploring" && (
+                  <button
+                    className="friend-harm"
+                    disabled={busy}
+                    onClick={() => setConfirmFriendlyHarm(true)}
+                  >
+                    Hurt this friend…
+                  </button>
+                )}
+            </>
+          )}
+        </Modal>
+      )}
+
       {activeModal === "help" && (
         <Modal
           notice={feedback}
@@ -490,7 +795,14 @@ function Adventure({
         >
           <p>
             Find tools and shields, dodge the silly guests and beat the boss.
-            Step out of a red attack circle, or guard with your shield.
+            Step out of a red attack circle, or guard with your shield. The
+            Prism wand aims at nearby enemies and sends a bright magic beam.
+          </p>
+          <p>
+            Characters with green hearts are friends. Say hello for healing when
+            you need it. Hurting a friend costs health; making amends restores
+            their friendship. The Besties take turns with obstacle tricks.
+            Attack together when their missed high-five leaves them dizzy.
           </p>
           <p>
             After the boss falls, remember the pictures it releases. Absorb that
@@ -532,7 +844,8 @@ function Adventure({
           </label>
           <p className="small-note">
             This private review uses fictional drawings. It has not connected to
-            your photo library. Sound is still awaiting review.
+            your photo library. Use the music-note button to mute the playtest
+            sounds.
           </p>
           <button className="primary" onClick={() => setShowHelp(false)}>
             Back to the adventure
@@ -778,6 +1091,7 @@ function ActionButton({
   disabled,
   active,
   input,
+  cancelInput,
 }: {
   action: GameInputAction;
   label: string;
@@ -785,6 +1099,7 @@ function ActionButton({
   disabled?: boolean;
   active?: boolean;
   input: (action: GameInputAction, value: boolean) => void;
+  cancelInput: (action: GameInputAction) => void;
 }) {
   return (
     <button
@@ -793,11 +1108,17 @@ function ActionButton({
       aria-label={label}
       disabled={disabled}
       onPointerDown={(event) => {
-        event.currentTarget.setPointerCapture(event.pointerId);
         input(action, true);
+        // Queue the press before requesting capture. A browser-specific capture
+        // failure must not turn a valid touch into a silent no-op.
+        try {
+          event.currentTarget.setPointerCapture(event.pointerId);
+        } catch {
+          // The pointer-up fallback below still releases the input.
+        }
       }}
       onPointerUp={() => input(action, false)}
-      onPointerCancel={() => input(action, false)}
+      onPointerCancel={() => cancelInput(action)}
       onLostPointerCapture={() => input(action, false)}
       onClick={(event) => {
         if (event.detail === 0) {

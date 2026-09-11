@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import type { GameplayActionRequest } from '../../shared/contracts.js';
+import { createInitialFriendlyState } from '../../shared/friendly.js';
 import {
   applyGameplayActionToSave,
   abilitiesForAge,
@@ -117,6 +118,7 @@ export class InMemoryQuestStore implements QuestStore {
         saveFormat: 'era-combat-v2',
         adventurePlan,
         adventureState,
+        friendlyState: createInitialFriendlyState(adventurePlan),
         revision: 0,
         createdAt: now,
         updatedAt: now,

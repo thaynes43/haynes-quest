@@ -141,7 +141,11 @@ export type AdventureRuleCode =
   | 'GUARD_COOLDOWN'
   | 'MEMORY_NOT_FOUND'
   | 'MEMORY_ALREADY_REVEALED'
-  | 'MEMORY_BUNDLE_INCOMPLETE';
+  | 'MEMORY_BUNDLE_INCOMPLETE'
+  | 'FRIENDLY_NOT_FOUND'
+  | 'FRIENDLY_NOT_ACTIVE'
+  | 'FRIENDLY_BOON_ALREADY_CLAIMED'
+  | 'FRIENDLY_HELP_NOT_NEEDED';
 
 export class AdventureRuleError extends Error {
   constructor(readonly code: AdventureRuleCode) {

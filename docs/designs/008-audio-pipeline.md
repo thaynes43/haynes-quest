@@ -92,6 +92,12 @@ MDN specifically documents Safari audio interruption after switching away or tur
 
 ## Readiness and validation
 
-The dedicated Blender service provides FFmpeg/ffprobe and verified artifact transfer. The separate audio service has downloaded its pinned 2.49GB model bundle anonymously and passed real CPU generation, asynchronous status/cancellation, and confined WAV downloads. The first 10-second stereo test took 7.3 seconds with about 3.9 GiB peak subprocess memory. PLAN-003 records deployment, cache-fix, and persistence evidence. No GPU is assigned, the samples have not been auditioned, and no game audio candidate is approved. Both native registrations and startup rules are staged and verified without restarting dev-env; discovery waits for the single held activation.
+The dedicated Blender service provides FFmpeg/ffprobe and verified artifact transfer. The separate audio service has downloaded its pinned 2.49GB model bundle anonymously and passed real CPU generation, asynchronous status/cancellation, and confined WAV downloads. The first 10-second stereo test took 7.3 seconds with about 3.9 GiB peak subprocess memory. PLAN-003 records deployment, cache-fix, and persistence evidence. No GPU is assigned, the samples have not been auditioned, and no game audio candidate is approved. PLAN003 completed the separate authoring-service activation. PLAN006 reuses four existing cues in the isolated private playtest; no dev-env restart is needed.
 
 Validate first interaction, mute, missing files, repeated scene entry, effect spam, backgrounding, screen lock, interruption, and resume on actual iPad/iPhone Safari and PC. Listen for clipped peaks, abrupt cuts, and loop seams; retain the measured export settings and Tom's exact-version review. The infrastructure generation checks above do not establish listening quality or browser behavior.
+
+## PLAN006 private playtest cues
+
+The candidate uses the existing v001 `ui-confirmed`, `movement-landed`, `memory-collected` and `ability-unlocked` WAVs. One Web Audio owner limits simultaneous sources to four and prioritizes memory/growth feedback. Default volume is 35%, with saved mute and volume preferences. Attack, impact, landing, friendly healing and memory actions have corresponding visible feedback.
+
+Gesture handling attempts audio start synchronously on key presses, pointer presses and releases, touch end and clicks. Release events provide an additional unlock opportunity for touch browsers. Modal/background handling stops transient sounds; disposal removes all listeners and closes the context. Native browser tests verify decoded sources, output connections, mute, volume and pause, while physical Safari and listening review remain open.

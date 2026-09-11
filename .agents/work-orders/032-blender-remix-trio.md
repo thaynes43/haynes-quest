@@ -15,7 +15,7 @@
 
 ## Delivery and quality
 
-All modeled candidates must preserve actual reference recognition, humor and coherent rear construction. Original tactile atlas/material work is required: ceramic/skin/hair, plush/cloth, fashion fabric/vinyl respectively. Do not flatten every character into colored untextured primitives or the rejected wooden creature style. Use softly beveled authored shapes and clear facial features at mobile size. No downloaded third-party model/texture or private likeness.
+All modeled candidates must preserve actual reference recognition, humor and coherent rear construction. Original tactile atlas/material work is required: ceramic/skin/hair, plush/cloth, fashion fabric/vinyl respectively. Do not flatten every character into colored untextured primitives or a uniform wooden material treatment. Use softly beveled authored shapes and clear facial features at mobile size. No downloaded third-party model/texture or private likeness.
 
 Each GLB <=2MiB, <=15000 renderedtriangles, <=6 opaque materials/primitives, embedded original useful1katlas/noexternalresources/decoder. Meters, glTFYup/forward-Z, feetY0, unitroot. Rig only needed bones, typically <=24, with meaningful deformation/attachment checks. Exact lowercase idle/move/attack/hit/defeat; idle/move loop; others once/clamped. Fixed scene root, no accidental root travel; root adapter maps contactfraction to combat windup/strike. Return measured exact lengths/contact rather than silently changing assumptions.
 

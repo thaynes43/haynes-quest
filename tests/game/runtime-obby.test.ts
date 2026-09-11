@@ -131,6 +131,73 @@ function routedSave(options: EraSaveOptions = {}): SaveView {
   };
 }
 
+function friendlyRoutedSave(options: EraSaveOptions = {}): SaveView {
+  const save = routedSave(options);
+  const activeLevel = save.adventure?.activeLevel;
+  if (!save.adventure || !activeLevel)
+    throw new Error("Friendly fixture requires an active era level");
+  const assetIds =
+    activeLevel.index === 0
+      ? (["blockling", "signal-moth", "buffer-baron"] as const)
+      : (["loop-dancer", "prism-mimic", "trendweaver"] as const);
+  return {
+    ...save,
+    adventure: {
+      ...save.adventure,
+      activeLevel: {
+        ...activeLevel,
+        friendlies: assetIds.map((assetId) => ({
+          id: `${activeLevel.id}-friendly-${assetId}`,
+          assetId,
+          assetVersion: "v001",
+          maxHp: 4,
+          hp: 4,
+          defeated: false,
+          boonClaimed: false,
+          penaltyActive: false,
+        })),
+      },
+    },
+  };
+}
+
+function bestiesRoutedSave(): SaveView {
+  const levelId = "level-2-2024";
+  const save = routedSave({
+    levelIndex: 1,
+    collectedKinds: ["attack-tool"],
+    defeatedIds: [`${levelId}-ordinary-a`, `${levelId}-ordinary-b`],
+  });
+  const activeLevel = save.adventure?.activeLevel;
+  if (!save.adventure || !activeLevel)
+    throw new Error("Besties fixture requires an active era level");
+  return {
+    ...save,
+    adventure: {
+      ...save.adventure,
+      catalogVersion: "parody-catalog-v3",
+      activeLevel: {
+        ...activeLevel,
+        periodId: "besties-obby-v1",
+        encounters: activeLevel.encounters.map((encounter) =>
+          encounter.id === activeLevel.bossId
+            ? {
+                ...encounter,
+                content: {
+                  catalogEntryId: "bickering-besties",
+                  catalogEntryVersion: "v001",
+                  assetId: "bickering-besties",
+                  assetVersion: "v001",
+                },
+              }
+            : encounter,
+        ),
+      },
+    },
+    versions: { ...save.versions, catalog: "parody-catalog-v3" },
+  };
+}
+
 describe("obby game runtime", () => {
   let nextFrame: FrameRequestCallback | undefined;
   let now: number;
@@ -239,7 +306,7 @@ describe("obby game runtime", () => {
     game.dispose();
   });
 
-  it.each(["pause", "blur", "pointercancel", "clear"])(
+  it.each(["pause", "blur", "clear"])(
     "discards a deferred jump on %s instead of jumping when play resumes",
     (cancellation) => {
       const game = createGame({
@@ -262,6 +329,364 @@ describe("obby game runtime", () => {
       game.dispose();
     },
   );
+
+  it("cancels a touch action without cancelling held movement", () => {
+    const game = createGame({
+      container: document.createElement("div"),
+      save: routedSave({ levelIndex: 1 }),
+      onAction: async () => routedSave({ levelIndex: 1, revision: 1 }),
+      onRefresh: async () => routedSave({ levelIndex: 1 }),
+    });
+    game.setInput("moveY", 1);
+    game.setInput("attack", true);
+    game.cancelInput("attack");
+    advance();
+    advance();
+    expect(game.inspect().status.position.z).toBeLessThan(1);
+    expect(game.inspect().status.attackFeedback).toBeNull();
+    game.dispose();
+  });
+
+  it("casts the Prism wand at the routed boss while the joystick stays held", () => {
+    const initial = routedSave({
+      levelIndex: 1,
+      collectedKinds: ["attack-tool"],
+      defeatedIds: ["level-2-2024-ordinary-a", "level-2-2024-ordinary-b"],
+    });
+    const onAction = vi.fn(
+      (_request: GameplayActionRequest) =>
+        new Promise<SaveView>(() => undefined),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    warmRuntime();
+    game.setInput("moveX", 0.4);
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+
+    expect(game.inspect().status.position.x).toBeGreaterThan(0);
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+      action: {
+        type: "attack",
+        levelId: "level-2-2024",
+        encounterId: "level-2-2024-boss",
+      },
+    });
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "accepted",
+    });
+    expect(sceneState.instances[0]?.frames.at(-1)).toMatchObject({
+      attacking: true,
+      attackTargetId: "level-2-2024-boss",
+    });
+    expect(game.inspect().input.moveX).toBe(0.4);
+    game.dispose();
+  });
+
+  it.each(["interact-friendly", "attack-friendly"] as const)(
+    "requires friendly range but permits confirmed %s while a modal pauses play",
+    (type) => {
+      const initial = friendlyRoutedSave({
+        playerHp: 8,
+        collectedKinds: ["attack-tool"],
+      });
+      const levelId = initial.adventure!.currentLevelId!;
+      const friendlyId = initial.adventure!.activeLevel!.friendlies![0]!.id;
+      const onAction = vi.fn(
+        (_request: GameplayActionRequest) =>
+          new Promise<SaveView>(() => undefined),
+      );
+      const game = createGame({
+        container: document.createElement("div"),
+        save: initial,
+        onAction,
+        onRefresh: async () => initial,
+      });
+      warmRuntime();
+
+      expect(game.inspect().status.nearFriendlyId).toBeNull();
+      game.setPaused(true);
+      expect(game.performAction({ type, levelId, friendlyId })).toBe(false);
+      expect(onAction).not.toHaveBeenCalled();
+
+      game.setPaused(false);
+      game.setInput("moveX", 1);
+      for (
+        let frame = 0;
+        frame < 40 && game.inspect().status.nearFriendlyId !== friendlyId;
+        frame += 1
+      )
+        advance();
+      game.clearInput();
+      expect(game.inspect().status.nearFriendlyId).toBe(friendlyId);
+
+      game.setPaused(true);
+      expect(game.performAction({ type, levelId, friendlyId })).toBe(true);
+      expect(onAction).toHaveBeenCalledOnce();
+      expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+        action: { type, levelId, friendlyId },
+      });
+      game.dispose();
+    },
+  );
+
+  it("keeps a nearby friendly outside ordinary attack targeting", () => {
+    const initial = friendlyRoutedSave({
+      collectedKinds: ["attack-tool"],
+    });
+    const friendlyId = initial.adventure!.activeLevel!.friendlies![0]!.id;
+    const onAction = vi.fn(async () => initial);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    warmRuntime();
+    game.setInput("moveX", 1);
+    for (
+      let frame = 0;
+      frame < 40 && game.inspect().status.nearFriendlyId !== friendlyId;
+      frame += 1
+    )
+      advance();
+    game.clearInput();
+
+    expect(game.inspect().status).toMatchObject({
+      nearFriendlyId: friendlyId,
+      nearEncounterId: null,
+      attackReady: false,
+    });
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+    expect(onAction).not.toHaveBeenCalled();
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "no-target",
+    });
+    game.dispose();
+  });
+
+  it("blocks the Besties during their routine and accepts a hit while they are dizzy", () => {
+    const initial = bestiesRoutedSave();
+    const bossId = initial.adventure!.activeLevel!.bossId;
+    const onAction = vi.fn(
+      (_request: GameplayActionRequest) =>
+        new Promise<SaveView>(() => undefined),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    warmRuntime();
+    game.setInput("moveY", -1);
+    for (let frame = 0; frame < 3; frame += 1) advance();
+    game.clearInput();
+
+    expect(game.inspect().status).toMatchObject({
+      bestiesPhase: "pink-warning",
+      nearEncounterId: bossId,
+      attackReady: false,
+    });
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+    expect(onAction).not.toHaveBeenCalled();
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "guarded",
+    });
+
+    for (
+      let frame = 0;
+      frame < 200 && game.inspect().status.bestiesPhase !== "dizzy";
+      frame += 1
+    )
+      advance();
+    expect(game.inspect().status).toMatchObject({
+      bestiesPhase: "dizzy",
+      nearEncounterId: bossId,
+      attackReady: true,
+    });
+
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+      action: {
+        type: "attack",
+        levelId: "level-2-2024",
+        encounterId: bossId,
+      },
+    });
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 2,
+      outcome: "accepted",
+    });
+    game.dispose();
+  });
+
+  it("keeps the composite Besties boss out of generic collision and contact", () => {
+    const initial = bestiesRoutedSave();
+    const bossId = initial.adventure!.activeLevel!.bossId;
+    const onAction = vi.fn(async () => initial);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    warmRuntime();
+    game.setInput("moveY", 1);
+    for (let frame = 0; frame < 19; frame += 1) advance();
+    game.clearInput();
+
+    expect(game.inspect().status).toMatchObject({
+      position: { x: 0, y: 0 },
+      bestiesPhase: "pink-warning",
+    });
+    expect(game.inspect().status.position.z).toBeCloseTo(-21.945, 9);
+    expect(
+      game.inspect().enemies.find((enemy) => enemy.id === bossId),
+    ).toMatchObject({
+      position: { x: 0, y: 0, z: -22 },
+      phase: "idle",
+    });
+    expect(onAction).not.toHaveBeenCalled();
+    game.dispose();
+  });
+
+  it("freezes the Besties routine while a modal pauses play", () => {
+    const initial = bestiesRoutedSave();
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction: async () => initial,
+      onRefresh: async () => initial,
+    });
+    warmRuntime();
+    for (let frame = 0; frame < 5; frame += 1) advance();
+    const beforePause = sceneState.instances[0]?.frames.at(-1)?.besties;
+    expect(beforePause).toMatchObject({
+      phase: "pink-warning",
+      vulnerable: false,
+    });
+
+    game.setPaused(true);
+    advance(10_000);
+    advance(10_000);
+    expect(sceneState.instances[0]?.frames.at(-1)?.besties).toEqual(
+      beforePause,
+    );
+    game.setPaused(false);
+    advance(10_000);
+    expect(sceneState.instances[0]?.frames.at(-1)?.besties).toEqual(
+      beforePause,
+    );
+    advance();
+    expect(
+      sceneState.instances[0]?.frames.at(-1)?.besties?.phaseProgress,
+    ).toBeGreaterThan(beforePause?.phaseProgress ?? Number.POSITIVE_INFINITY);
+    game.dispose();
+  });
+
+  it("restarts a Besties trick with a full warning after an actual fall", () => {
+    const initial = bestiesRoutedSave();
+    const onAction = vi.fn(async () => initial);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    warmRuntime();
+    game.setInput("moveX", 1);
+
+    let sawPinkTrick = false;
+    for (
+      let frame = 0;
+      frame < 100 && game.inspect().obby?.recoveries === 0;
+      frame += 1
+    ) {
+      advance();
+      sawPinkTrick ||= game.inspect().status.bestiesPhase === "pink-trick";
+    }
+
+    expect(sawPinkTrick).toBe(true);
+    expect(game.inspect()).toMatchObject({
+      status: {
+        position: { x: 0, y: 0, z: -19 },
+        bestiesPhase: "pink-warning",
+      },
+      obby: {
+        checkpointId: "boss-landing",
+        recoveryRemaining: 0.8,
+        recoveries: 1,
+      },
+    });
+    const restarted = sceneState.instances[0]?.frames.at(-1)?.besties;
+    expect(restarted).toMatchObject({
+      phase: "pink-warning",
+      phaseProgress: 0,
+      hazards: [{ damaging: false }],
+    });
+    expect(onAction).not.toHaveBeenCalled();
+
+    while ((game.inspect().obby?.recoveryRemaining ?? 0) > 0) {
+      expect(sceneState.instances[0]?.frames.at(-1)?.besties).toEqual(
+        restarted,
+      );
+      advance();
+    }
+    expect(sceneState.instances[0]?.frames.at(-1)?.besties).toMatchObject({
+      phase: "pink-warning",
+      phaseProgress: 0.05 / 1.2,
+    });
+    expect(onAction).not.toHaveBeenCalled();
+
+    for (let frame = 0; frame < 22; frame += 1) advance();
+    expect(game.inspect().status.bestiesPhase).toBe("pink-warning");
+    expect(onAction).not.toHaveBeenCalled();
+    advance();
+    expect(game.inspect().status.bestiesPhase).toBe("pink-trick");
+    expect(onAction).not.toHaveBeenCalled();
+    game.dispose();
+  });
+
+  it("reports an empty attack tap without dispatching a command", () => {
+    const initial = routedSave({
+      levelIndex: 1,
+      collectedKinds: ["attack-tool"],
+    });
+    const onAction = vi.fn(async () => initial);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    warmRuntime();
+
+    expect(onAction).not.toHaveBeenCalled();
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "no-target",
+    });
+    game.dispose();
+  });
 
   it("steps and renders the frozen v2 route from the genuine sampled course", () => {
     const game = createGame({
@@ -346,7 +771,7 @@ describe("obby game runtime", () => {
     ).toBe(true);
     expect(
       recovered.enemies.find((enemy) => enemy.id.endsWith("ordinary-a"))?.phase,
-    ).toBe("chasing");
+    ).toBe("idle");
     expect(onAction).not.toHaveBeenCalled();
 
     for (let frame = 0; frame < 15; frame += 1) advance();

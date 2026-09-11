@@ -38,6 +38,14 @@ export function friendlyError(error: unknown): string {
     return "The latest saved progress has been loaded. Try your action again.";
   if (code === "SECURE_RANDOM_UNAVAILABLE")
     return "This browser can’t safely identify game actions. Reopen the private game in an up-to-date browser.";
+  if (code === "FRIENDLY_HELP_NOT_NEEDED")
+    return "You’re already healthy. Your friend will keep their gift for later.";
+  if (code === "FRIENDLY_BOON_ALREADY_CLAIMED")
+    return "Your friend has already shared their gift for this chapter.";
+  if (code === "FRIENDLY_NOT_ACTIVE")
+    return "Your friend is resting. Make amends to help them up.";
+  if (code === "FRIENDLY_NOT_FOUND")
+    return "That friend is in another chapter. Keep exploring this one.";
   if (code === "PICKUP_ALREADY_COLLECTED")
     return "That tool is already in your equipment. Follow your current objective.";
   if (code === "MEMORY_ALREADY_REVEALED")

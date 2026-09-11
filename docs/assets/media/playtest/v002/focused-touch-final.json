@@ -1,0 +1,513 @@
+{
+  "date": "2026-09-11T23:34:22.228Z",
+  "status": "passed",
+  "scenario": "all",
+  "fixture": {
+    "origin": "http://127.0.0.1:4396",
+    "storage": "isolated in-memory test harness",
+    "setup": "Three validated saves were advanced to focused checkpoints before browser play with the production reducers. Browser combat and friendly actions used touch UI only.",
+    "preserved": [
+      "existing port 4395 fixture",
+      "unrelated port 4392 fixture"
+    ]
+  },
+  "browser": "153.0.8010.12",
+  "renderer": "headless Chromium with SwiftShader WebGL",
+  "bundle": {
+    "path": "/assets/index-D3lvcZ1s.js",
+    "bytes": 1028608,
+    "sha256": "718cc412a27bb79d768238f6326f154a0cccb52da555a69ed3ec4ce31173cebe"
+  },
+  "friendly": {
+    "viewport": {
+      "width": 820,
+      "height": 1180,
+      "touch": true
+    },
+    "friendId": "level-1-2020-friendly-blockling",
+    "fullHealthGiftRetained": true,
+    "normalAttackRevisionUnchanged": 1,
+    "harm": {
+      "firstHp": 2,
+      "defeatedHp": 0,
+      "playerHpFloorObserved": 8
+    },
+    "amends": {
+      "hp": 4,
+      "penaltyActive": false
+    },
+    "heal": {
+      "playerHp": 10,
+      "boonClaimed": true,
+      "retainedAfterReload": true
+    },
+    "audio": {
+      "unlock": {
+        "id": "context-1",
+        "state": "running",
+        "createdAt": 1254.2000000178814,
+        "gestureAtCreation": 1238.5,
+        "resumes": [
+          {
+            "at": 16151.90000000596,
+            "state": "running"
+          },
+          {
+            "at": 16152,
+            "state": "running"
+          },
+          {
+            "at": 16152,
+            "state": "running"
+          },
+          {
+            "at": 16152,
+            "state": "running"
+          }
+        ],
+        "suspends": [
+          {
+            "at": 15062.200000017881,
+            "state": "suspended"
+          }
+        ],
+        "closes": []
+      },
+      "connectedSources": 2,
+      "connections": [
+        {
+          "from": "gain-2",
+          "to": "destination-1",
+          "at": 1254.800000011921
+        },
+        {
+          "from": "source-3",
+          "to": "gain-4",
+          "at": 22223.40000000596
+        },
+        {
+          "from": "gain-4",
+          "to": "gain-2",
+          "at": 22223.40000000596
+        },
+        {
+          "from": "source-5",
+          "to": "gain-6",
+          "at": 22226.40000000596
+        },
+        {
+          "from": "gain-6",
+          "to": "gain-2",
+          "at": 22226.40000000596
+        }
+      ],
+      "muteMasterGain": 0,
+      "pauseSuspends": 4,
+      "volume": 0.75
+    },
+    "screenshots": [
+      "test-results/feedback/ipad-friendly-world.png",
+      "test-results/feedback/ipad-friendly-harm-confirm.png",
+      "test-results/feedback/ipad-friendly-amends.png"
+    ]
+  },
+  "dragon": {
+    "viewport": {
+      "width": 820,
+      "height": 1180,
+      "touch": true
+    },
+    "catalogVersion": "parody-catalog-v2",
+    "periodId": "remix-runway-v2",
+    "bossAssetId": "drama-dragon",
+    "heldJoystick": {
+      "inputMoveX": 0.5,
+      "beforePosition": {
+        "x": 0,
+        "y": 0,
+        "z": -19
+      },
+      "afterPosition": {
+        "x": 0.43942499999999984,
+        "y": 0,
+        "z": -19
+      }
+    },
+    "wandDamage": 3,
+    "retaliationDamage": 4,
+    "retaliationTrace": [
+      {
+        "elapsedMs": 13,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 142,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 267,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 394,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 520,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 643,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 769,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 893,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 1019,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 1146,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 1270,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 1401,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 1528,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 1654,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 1778,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "windup"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 1905,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "strike"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 10
+      },
+      {
+        "elapsedMs": 2030,
+        "player": {
+          "x": 0.8269250000000005,
+          "y": 0,
+          "z": -19
+        },
+        "enemy": {
+          "position": {
+            "x": 0.14943564000289541,
+            "y": 0,
+            "z": -21.121267759394648
+          },
+          "phase": "strike"
+        },
+        "distance": 2.2268293019350356,
+        "playerHp": 6
+      }
+    ],
+    "screenshots": [
+      "test-results/feedback/ipad-v2-dragon-wand.png",
+      "test-results/feedback/ipad-v2-dragon-retaliation.png"
+    ]
+  },
+  "besties": {
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "touch": true
+    },
+    "catalogVersion": "parody-catalog-v3",
+    "bossAssetId": "bickering-besties",
+    "modelResponses": [
+      {
+        "path": "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+        "status": 200
+      },
+      {
+        "path": "/studio/assets/media/bestie-black/v001/bestie-black.glb",
+        "status": 200
+      }
+    ],
+    "exactAssets": {
+      "pink": {
+        "path": "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+        "bytes": 956924,
+        "sha256": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae"
+      },
+      "black": {
+        "path": "/studio/assets/media/bestie-black/v001/bestie-black.glb",
+        "bytes": 928000,
+        "sha256": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05"
+      }
+    },
+    "media": {
+      "loading": 0,
+      "failed": 0,
+      "canvas": {
+        "bytes": 136836,
+        "width": 390,
+        "height": 844,
+        "entropy": 6.753733796220331,
+        "channelDeviation": [
+          65.09540948833408,
+          58.33968326148858,
+          48.122108748973545
+        ]
+      }
+    },
+    "closedPhase": "pink-warning",
+    "closedRevisionUnchanged": 19,
+    "dizzyPhase": "dizzy",
+    "openWindowDamage": 3,
+    "screenshots": [
+      "test-results/feedback/phone-besties-hazard.png",
+      "test-results/feedback/phone-besties-dizzy.png",
+      "test-results/feedback/phone-besties-open-hit.png"
+    ]
+  },
+  "pageErrors": [],
+  "failedResponses": [],
+  "limits": [
+    "Chromium touch emulation is not physical iPad or iPhone Safari.",
+    "Web Audio graph, decode, gesture unlock and lifecycle were instrumented; nobody listened to output in this run.",
+    "Screenshots and a nonblank canvas check establish rendered output, successful exact model loads and framing, not child usability or device frame time."
+  ]
+}

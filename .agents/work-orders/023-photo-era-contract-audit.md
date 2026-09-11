@@ -10,7 +10,7 @@
 
 ## Lead disposition at intake
 
-The auditor's age-zero short-hop / age-four stronger-jump wording below is a **proposed implementation**, not a user ruling. Tom asked for forgiving obby gameplay and timed jumps, without specifying new starting abilities. Root retains the existing age-zero movement tutorial and introduces jumping after first-boss growth, as recorded in DESIGN-011 and WO-024. No ability-version migration is currently selected. The birthday and catalog-identity findings are accepted; the source-local date basis remains a required decision before real Immich admission. The six rejected creatures are not eligible as neutral enemy fallbacks.
+The auditor's age-zero short-hop / age-four stronger-jump wording below is a **proposed implementation**, not a user ruling. Tom asked for forgiving obby gameplay and timed jumps, without specifying new starting abilities. Root retains the existing age-zero movement tutorial and introduces jumping after first-boss growth, as recorded in DESIGN-011 and WO-024. No ability-version migration is currently selected. The birthday and catalog-identity findings are accepted; the source-local date basis remains a required decision before real Immich admission. The six friendly residents are outside the enemy fallback catalog.
 
 ## Owner corrections audited
 
@@ -74,7 +74,7 @@ Replace year/boolean dispatch with the frozen level and encounter identities. `A
 
 DESIGN-005 currently says broad period influences with original names/silhouettes and expressly rejects a renamed or recolored recognizable franchise character. The current roster studies are broad ambient metaphors (blocks, signals, ribbons, masks and spools), and DESIGN-004 calls them original curation. That direction does not meet the owner's new requirement for recognizable pop-culture parody.
 
-This is a content/design conflict, not a date-selection implementation detail. Astra must revise the design and exact-version review criteria before more roster generation. Code can enforce stable identity, date windows, provenance and approval state; it cannot prove that a silhouette reads as the intended parody to a player. Existing generic candidates may remain preserved as historical studies or an explicitly selected neutral fallback, but must not be represented as satisfying the corrected roster.
+This is a content/design conflict, not a date-selection implementation detail. Astra must revise the design and exact-version review criteria before more roster generation. Code can enforce stable identity, date windows, provenance and approval state; it cannot prove that a silhouette reads as the intended parody to a player. The six resident models have a separate friendly role under DESIGN013; this enemy catalog requires its own dated parody entries.
 
 ### P1: The real-photo date basis is explicitly provisional
 

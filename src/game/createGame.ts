@@ -3,6 +3,7 @@ import type {
   GameplayAction,
   SaveView,
 } from "../shared/contracts";
+import { BestiesSimulation, BESTIES_ARENA_CENTER } from "./besties";
 import { ActionCoordinator, type ActionRequestState } from "./actions";
 import {
   bossIsActive,
@@ -131,6 +132,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
   }
 
   const enemies = new EnemySimulation(level, save);
+  let besties = new BestiesSimulation();
+  const bestiesEncounter = () =>
+    requireAdventure(save).activeLevel?.encounters.find(
+      (entry) => entry.content?.assetId === "bickering-besties",
+    );
   let pendingHit: { levelId: string; encounterId: string } | null = null;
   let disposed = false;
   let paused = false;
@@ -141,6 +147,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let timeSinceStatus = statusIntervalSeconds;
   let worldWasActive = false;
   let attackAnimationUntil = 0;
+  let attackTargetId: string | null = null;
+  let attackFeedback: GameStatus["attackFeedback"] = null;
+  let attackFeedbackSequence = 0;
   let attackCooldownUntil =
     lastTime + requireAdventure(save).attackCooldownRemainingMs;
   let guardActiveUntil =
@@ -156,6 +165,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     worldWasActive = false;
     lastTime = windowTarget.performance.now();
     if (options.container.ownerDocument.visibilityState !== "visible") {
+      besties.restartThreatenedTrick();
       pendingHit = null;
       combatNeedsFreshTelegraph = true;
     } else if (combatNeedsFreshTelegraph && !paused) {
@@ -171,7 +181,36 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const mediaState = (): SceneMediaState =>
     scene.getMediaState?.() ?? { loading: 0, failed: 0 };
 
-  const enemyFrames = (): EnemyFrame[] => enemies.frames();
+  const enemyFrames = (): EnemyFrame[] =>
+    enemies.frames().map((enemy) => {
+      if (enemy.id !== bestiesEncounter()?.id) return enemy;
+      const routine = besties.frame();
+      return {
+        ...enemy,
+        position: { ...BESTIES_ARENA_CENTER },
+        facing: Math.PI,
+        phase:
+          enemy.hp === 0
+            ? "defeated"
+            : routine.vulnerable
+              ? "cooldown"
+              : "idle",
+      };
+    });
+  const nearestFriendlyId = (): string | null => {
+    if (
+      !["exploring", "memory-released"].includes(requireAdventure(save).phase)
+    )
+      return null;
+    if (!controller.grounded || controller.recoveryRemaining > 0) return null;
+    return (
+      nearestWithin(
+        controller.position,
+        level.friendlies ?? [],
+        interactionRadius + 0.3,
+      )?.id ?? null
+    );
+  };
 
   const nearestPickupId = (): string | null => {
     if (requireAdventure(save).phase !== "exploring") return null;
@@ -224,6 +263,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const media = mediaState();
     const requestBusy = requestState.requestState === "acting";
     return {
+      nearFriendlyId: nearestFriendlyId(),
+      bestiesPhase: bestiesEncounter() ? besties.frame().phase : undefined,
       nearPickupId: nearestPickupId(),
       nearEncounterId: target?.id ?? null,
       nearMemoryId: nearestMemoryId(),
@@ -246,8 +287,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
         adventure.phase === "exploring" &&
         hasEquipment(save, "attack-tool") &&
         Boolean(target) &&
+        (target?.id !== bestiesEncounter()?.id || besties.frame().vulnerable) &&
         now >= attackCooldownUntil &&
         !requestBusy,
+      attackFeedback,
       guardActive: now < guardActiveUntil,
       guardReady:
         adventure.phase === "exploring" &&
@@ -269,6 +312,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
     if (!force && timeSinceStatus < statusIntervalSeconds) return;
     timeSinceStatus = 0;
     options.onStatus(getStatus());
+  };
+
+  const recordAttackFeedback = (
+    outcome: NonNullable<GameStatus["attackFeedback"]>["outcome"],
+  ): false => {
+    attackFeedback = { sequence: ++attackFeedbackSequence, outcome };
+    emitStatus(true);
+    return false;
   };
 
   const resetController = (nextCheckpoint: PositionSnapshot): void => {
@@ -341,8 +392,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
     if (identityChanged || retried) {
       courseTime = 0;
       traversalRecoveries = 0;
+      attackAnimationUntil = 0;
+      attackTargetId = null;
+      attackFeedback = null;
       resetController(checkpoint);
       enemies.reset(level, save);
+      besties = new BestiesSimulation();
       scene.rebuildRoute(level, save);
       scene.cameraYaw = 0;
     } else {
@@ -436,18 +491,37 @@ export function createGame(options: CreateGameOptions): GameHandle {
   };
 
   const performAction = (action: GameplayAction): boolean => {
-    if (mediaState().reloadRequired) return false;
+    if (mediaState().reloadRequired)
+      return action.type === "attack"
+        ? recordAttackFeedback("unavailable")
+        : false;
     const adventure = requireAdventure(save);
-    if (!validLevelAction(action)) return false;
+    if (!validLevelAction(action))
+      return action.type === "attack"
+        ? recordAttackFeedback("unavailable")
+        : false;
     if (
       paused &&
       action.type !== "recover-memory" &&
       action.type !== "consume-memory-bundle" &&
-      action.type !== "retry-level"
+      action.type !== "retry-level" &&
+      action.type !== "interact-friendly" &&
+      action.type !== "attack-friendly"
     ) {
-      return false;
+      return action.type === "attack"
+        ? recordAttackFeedback("unavailable")
+        : false;
     }
     switch (action.type) {
+      case "interact-friendly":
+      case "attack-friendly":
+        if (nearestFriendlyId() !== action.friendlyId) return false;
+        if (
+          action.type === "attack-friendly" &&
+          windowTarget.performance.now() < attackCooldownUntil
+        )
+          return false;
+        break;
       case "collect-equipment":
         if (
           adventure.phase !== "exploring" ||
@@ -457,15 +531,19 @@ export function createGame(options: CreateGameOptions): GameHandle {
         }
         break;
       case "attack": {
-        if (
-          adventure.phase !== "exploring" ||
-          !hasEquipment(save, "attack-tool") ||
-          windowTarget.performance.now() < attackCooldownUntil
-        ) {
-          return false;
-        }
+        if (adventure.phase !== "exploring")
+          return recordAttackFeedback("unavailable");
+        if (!hasEquipment(save, "attack-tool"))
+          return recordAttackFeedback("unarmed");
+        if (requestState.requestState === "acting")
+          return recordAttackFeedback("busy");
+        if (windowTarget.performance.now() < attackCooldownUntil)
+          return recordAttackFeedback("cooldown");
         const target = nearestEncounter(false);
-        if (target?.id !== action.encounterId) return false;
+        if (target?.id !== action.encounterId)
+          return recordAttackFeedback("no-target");
+        if (target.id === bestiesEncounter()?.id && !besties.frame().vulnerable)
+          return recordAttackFeedback("guarded");
         break;
       }
       case "take-hit":
@@ -506,9 +584,27 @@ export function createGame(options: CreateGameOptions): GameHandle {
         break;
     }
     const accepted = coordinator.perform(action);
-    if (accepted && action.type === "attack") {
+    if (action.type === "attack" || action.type === "attack-friendly") {
+      if (!accepted) return recordAttackFeedback("unavailable");
       attackAnimationUntil =
         windowTarget.performance.now() + attackAnimationSeconds * 1000;
+      attackTargetId =
+        action.type === "attack" ? action.encounterId : action.friendlyId;
+      if (action.type === "attack-friendly") {
+        const friend = level.friendlies?.find(
+          (entry) => entry.id === action.friendlyId,
+        );
+        if (friend)
+          controller.facing = Math.atan2(
+            controller.position.x - friend.position.x,
+            controller.position.z - friend.position.z,
+          );
+      }
+      attackFeedback = {
+        sequence: ++attackFeedbackSequence,
+        outcome: "accepted",
+      };
+      emitStatus(true);
     }
     return accepted;
   };
@@ -573,6 +669,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         }
         if (traversal.recovered) {
           traversalRecoveries++;
+          besties.restartThreatenedTrick();
           input.clear();
           pendingHit = null;
           enemies.restartThreatenedAttacks();
@@ -594,12 +691,28 @@ export function createGame(options: CreateGameOptions): GameHandle {
       if (actions.interact) {
         const pickupId = nearestPickupId();
         const memoryId = nearestMemoryId();
+        const friendlyId = nearestFriendlyId();
         if (pickupId && adventure.currentLevelId) {
           performAction({
             type: "collect-equipment",
             levelId: adventure.currentLevelId,
             pickupId,
           });
+        } else if (friendlyId && adventure.currentLevelId) {
+          const friend = adventure.activeLevel?.friendlies?.find(
+            (entry) => entry.id === friendlyId,
+          );
+          if (
+            friend &&
+            (friend.penaltyActive ||
+              (!friend.boonClaimed &&
+                adventure.playerHp < adventure.maxPlayerHp))
+          )
+            performAction({
+              type: "interact-friendly",
+              levelId: adventure.currentLevelId,
+              friendlyId,
+            });
         } else if (memoryId && adventure.currentLevelId) {
           performAction({
             type: "recover-memory",
@@ -617,11 +730,24 @@ export function createGame(options: CreateGameOptions): GameHandle {
             levelId: adventure.currentLevelId,
             encounterId: target.id,
           });
-        }
+        } else recordAttackFeedback("no-target");
       }
       if (actions.guard && adventure.currentLevelId) {
         performAction({ type: "guard", levelId: adventure.currentLevelId });
       }
+      const duo = bestiesEncounter();
+      const duoStep = besties.step({
+        player: controller.position,
+        deltaSeconds,
+        active: Boolean(
+          duo &&
+          combatActive &&
+          bossIsActive(save) &&
+          controller.position.z < -17.5,
+        ),
+        paused: controller.recoveryRemaining > 0,
+        defeated: duo?.defeated ?? false,
+      });
       const contacts = enemies.step(
         {
           player: controller.position,
@@ -630,6 +756,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
         },
         save,
       );
+      if (duoStep.hit && duo && !pendingHit && adventure.currentLevelId)
+        pendingHit = { levelId: adventure.currentLevelId, encounterId: duo.id };
       if (!pendingHit && contacts[0] && adventure.currentLevelId) {
         pendingHit = {
           levelId: adventure.currentLevelId,
@@ -652,9 +780,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
         Math.hypot(currentInput.moveX, currentInput.moveY) > 0.01,
       grounded: controller.grounded,
       attacking: now < attackAnimationUntil,
+      attackTargetId: now < attackAnimationUntil ? attackTargetId : null,
       guarding: now < guardActiveUntil,
       enemies: frames,
       currentTarget: target?.id ?? null,
+      besties: bestiesEncounter() ? besties.frame() : undefined,
       obby: level.course ? sampleObby(level.course, courseTime) : undefined,
       checkpointId: controller.checkpointId,
       recovering: controller.recoveryRemaining > 0,
@@ -673,6 +803,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
     },
     setInput(action, value): void {
       if (!disposed) input.set(action, value);
+    },
+    cancelInput(action): void {
+      if (!disposed) input.cancel(action);
     },
     setPaused(value): void {
       if (paused === value) return;
