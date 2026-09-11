@@ -138,13 +138,32 @@ export class EnemySimulation {
         this.addEnemy(placement, encounter);
         continue;
       }
+      const revived = current.defeated && !encounter.defeated;
       current.hp = encounter.hp;
       current.maxHp = encounter.maxHp;
       current.defeated = encounter.defeated;
       if (encounter.defeated) {
         current.phase = "defeated";
         current.phaseSeconds = 0;
+        current.contactedDuringStrike = false;
+      } else if (revived) {
+        current.spawn = { ...placement.position };
+        current.position = { ...placement.position };
+        current.facing = 0;
+        current.phase = "idle";
+        current.phaseSeconds = 0;
+        current.contactedDuringStrike = false;
+        this.hitCooldownSeconds = 0;
       }
+    }
+  }
+
+  restartThreatenedAttacks(): void {
+    for (const enemy of this.enemies.values()) {
+      if (enemy.phase !== "windup" && enemy.phase !== "strike") continue;
+      enemy.phase = "windup";
+      enemy.phaseSeconds = 0;
+      enemy.contactedDuringStrike = false;
     }
   }
 

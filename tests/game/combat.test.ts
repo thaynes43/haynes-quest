@@ -72,6 +72,39 @@ describe("enemy combat simulation", () => {
     ).toBe("cooldown");
   });
 
+  it("restarts a threatened attack with a full telegraph after resume", () => {
+    const save = makeEraSave();
+    const simulation = new EnemySimulation(createLevelLayout(save), save);
+    const player = { x: -2, y: 0, z: -7 };
+    stepMany(simulation, save, player, 2);
+    while (
+      simulation.frames().find((enemy) => enemy.id.endsWith("ordinary-a"))
+        ?.phase === "windup"
+    ) {
+      simulation.step({ player, deltaSeconds: 0.05, active: true }, save);
+    }
+    expect(
+      simulation.frames().find((enemy) => enemy.id.endsWith("ordinary-a"))
+        ?.phase,
+    ).toBe("strike");
+
+    simulation.restartThreatenedAttacks();
+    const restarted = simulation
+      .frames()
+      .find((enemy) => enemy.id.endsWith("ordinary-a"));
+    expect(restarted).toMatchObject({
+      phase: "windup",
+      windupProgress: 0,
+    });
+    expect(
+      simulation.step({ player, deltaSeconds: 0, active: true }, save),
+    ).toEqual([]);
+    expect(stepMany(simulation, save, player, 16)).toEqual([]);
+    expect(
+      simulation.step({ player, deltaSeconds: 0.05, active: true }, save),
+    ).toEqual(["level-1-2020-ordinary-a"]);
+  });
+
   it("keeps the boss dormant until both ordinary encounters are defeated", () => {
     const initial = makeEraSave();
     const level = createLevelLayout(initial);
@@ -113,6 +146,21 @@ describe("enemy combat simulation", () => {
     const throughDefeated = { x: -2, y: 0, z: -8 };
     simulation.resolvePlayerCollision(throughDefeated, level);
     expect(throughDefeated).toEqual({ x: -2, y: 0, z: -8 });
+
+    simulation.sync(level, save);
+    expect(
+      simulation.frames().find((enemy) => enemy.id.endsWith("ordinary-a")),
+    ).toMatchObject({
+      position: { x: -2, y: 0, z: -8 },
+      facing: 0,
+      phase: "idle",
+      windupProgress: 0,
+      hp: 4,
+    });
+    simulation.resolvePlayerCollision(throughDefeated, level);
+    expect(
+      Math.hypot(throughDefeated.x + 2, throughDefeated.z + 8),
+    ).toBeCloseTo(0.67, 6);
   });
 });
 

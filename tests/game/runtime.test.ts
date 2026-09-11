@@ -254,6 +254,45 @@ describe("era game runtime", () => {
     game.dispose();
   });
 
+  it("revives a defeated enemy after a stale action refresh", async () => {
+    const defeated = makeEraSave({
+      revision: 2,
+      defeatedIds: ["level-1-2020-ordinary-a"],
+      collectedKinds: ["guard-tool"],
+    });
+    const refreshed = makeEraSave({
+      revision: 3,
+      collectedKinds: ["guard-tool"],
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: defeated,
+      onAction: async () => {
+        throw new Error("SAVE_REVISION_STALE");
+      },
+      onRefresh: async () => refreshed,
+    });
+
+    expect(game.performAction({ type: "guard", levelId: "level-1-2020" })).toBe(
+      true,
+    );
+    await vi.waitFor(() =>
+      expect(game.inspect().status.requestErrorCode).toBe(
+        "SAVE_REVISION_STALE",
+      ),
+    );
+    expect(
+      game.inspect().enemies.find((enemy) => enemy.id.endsWith("ordinary-a")),
+    ).toMatchObject({
+      position: { x: -2, y: 0, z: -8 },
+      facing: 0,
+      phase: "idle",
+      windupProgress: 0,
+      hp: 4,
+    });
+    game.dispose();
+  });
+
   it("restores the player checkpoint and enemy spawns after an authoritative retry", async () => {
     const initial = makeEraSave();
     const fallen = makeEraSave({ phase: "fallen", playerHp: 0, revision: 1 });
@@ -293,6 +332,122 @@ describe("era game runtime", () => {
       { position: { x: 0, y: 0, z: -21 }, phase: "idle" },
     ]);
     expect(onAction.mock.calls[0]?.[0].action.type).toBe("retry-level");
+    game.dispose();
+  });
+
+  it("dispatches one contact after an in-flight guard request settles", async () => {
+    let resolveGuard!: (save: SaveView) => void;
+    const guardResponse = new Promise<SaveView>((resolve) => {
+      resolveGuard = resolve;
+    });
+    const guarded = makeEraSave({
+      revision: 1,
+      collectedKinds: ["guard-tool"],
+      guardActiveRemainingMs: 800,
+    });
+    const damaged = makeEraSave({
+      revision: 2,
+      collectedKinds: ["guard-tool"],
+      playerHp: 9,
+    });
+    const onAction = vi.fn((request: GameplayActionRequest) =>
+      request.action.type === "guard"
+        ? guardResponse
+        : Promise.resolve(damaged),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: makeEraSave({ collectedKinds: ["guard-tool"] }),
+      onAction,
+      onRefresh: async () => makeEraSave(),
+    });
+    expect(game.performAction({ type: "guard", levelId: "level-1-2020" })).toBe(
+      true,
+    );
+
+    let now = performance.now();
+    game.setInput("moveX", -0.22);
+    game.setInput("moveY", 1);
+    for (let index = 0; index < 100; index += 1) {
+      now += 16;
+      nextFrame?.(now);
+    }
+    game.setInput("moveX", 0);
+    game.setInput("moveY", 0);
+    for (let index = 0; index < 360; index += 1) {
+      now += 16;
+      nextFrame?.(now);
+      if (game.inspect().enemies.some((enemy) => enemy.phase === "cooldown")) {
+        break;
+      }
+    }
+    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual(
+      ["guard"],
+    );
+
+    resolveGuard(guarded);
+    await vi.waitFor(() =>
+      expect(game.inspect().status.requestBusy).toBe(false),
+    );
+    now += 16;
+    nextFrame?.(now);
+    await vi.waitFor(() => expect(onAction).toHaveBeenCalledTimes(2));
+    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual(
+      ["guard", "take-hit"],
+    );
+    for (let index = 0; index < 20; index += 1) {
+      now += 16;
+      nextFrame?.(now);
+    }
+    expect(onAction).toHaveBeenCalledTimes(2);
+    game.dispose();
+  });
+
+  it("restarts a strike telegraph after a paused modal closes", () => {
+    const onAction = vi.fn(async (_request: GameplayActionRequest) =>
+      makeEraSave({ revision: 1, playerHp: 9 }),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: makeEraSave(),
+      onAction,
+      onRefresh: async () => makeEraSave(),
+    });
+    let now = performance.now();
+    game.setInput("moveX", -0.22);
+    game.setInput("moveY", 1);
+    for (let index = 0; index < 100; index += 1) {
+      now += 16;
+      nextFrame?.(now);
+    }
+    game.setInput("moveX", 0);
+    game.setInput("moveY", 0);
+    for (let index = 0; index < 360; index += 1) {
+      now += 16;
+      nextFrame?.(now);
+      if (game.inspect().enemies.some((enemy) => enemy.phase === "strike")) {
+        break;
+      }
+    }
+    expect(
+      game.inspect().enemies.some((enemy) => enemy.phase === "strike"),
+    ).toBe(true);
+
+    game.setPaused(true);
+    now += 10_000;
+    nextFrame?.(now);
+    game.setPaused(false);
+    expect(
+      game.inspect().enemies.find((enemy) => enemy.phase === "windup"),
+    ).toMatchObject({ windupProgress: 0 });
+    now += 10_000;
+    nextFrame?.(now);
+    expect(onAction).not.toHaveBeenCalled();
+    for (let index = 0; index < 14; index += 1) {
+      now += 50;
+      nextFrame?.(now);
+    }
+    expect(onAction).not.toHaveBeenCalled();
     game.dispose();
   });
 

@@ -121,8 +121,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
   }
 
   const enemies = new EnemySimulation(level, save);
+  let pendingHit: { levelId: string; encounterId: string } | null = null;
   let disposed = false;
   let paused = false;
+  let combatNeedsFreshTelegraph = false;
   let animationFrame = 0;
   let lastTime = windowTarget.performance.now();
   let elapsed = 0;
@@ -143,6 +145,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const suspendWorldClock = (): void => {
     worldWasActive = false;
     lastTime = windowTarget.performance.now();
+    if (options.container.ownerDocument.visibilityState !== "visible") {
+      pendingHit = null;
+      combatNeedsFreshTelegraph = true;
+    } else if (combatNeedsFreshTelegraph && !paused) {
+      enemies.restartThreatenedAttacks();
+      combatNeedsFreshTelegraph = false;
+    }
   };
   options.container.ownerDocument.addEventListener(
     "visibilitychange",
@@ -298,6 +307,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
       !retainCompletedWorld && previousIdentity !== nextIdentity;
     const retried =
       previousPhase === "fallen" && nextSave.adventure.phase === "exploring";
+    if (identityChanged || retried || nextAdventure.phase !== "exploring") {
+      pendingHit = null;
+    }
     level = nextLevel;
     checkpoint = nextCheckpoint;
     if (identityChanged || retried) {
@@ -333,6 +345,36 @@ export function createGame(options: CreateGameOptions): GameHandle {
       emitStatus(true);
     },
   });
+
+  const flushPendingHit = (): void => {
+    if (!pendingHit || requestState.requestState === "acting") return;
+    const hit = pendingHit;
+    const adventure = requireAdventure(save);
+    const encounter = adventure.activeLevel?.encounters.find(
+      (candidate) => candidate.id === hit.encounterId,
+    );
+    if (
+      adventure.phase !== "exploring" ||
+      adventure.currentLevelId !== hit.levelId ||
+      !encounter ||
+      encounter.defeated
+    ) {
+      pendingHit = null;
+      return;
+    }
+    if (
+      coordinator.perform({
+        type: "take-hit",
+        levelId: hit.levelId,
+        encounterId: hit.encounterId,
+      })
+    ) {
+      pendingHit = null;
+      enemies.noteHitDispatched();
+    } else {
+      pendingHit = null;
+    }
+  };
 
   const validLevelAction = (action: GameplayAction): boolean =>
     action.levelId === requireAdventure(save).currentLevelId;
@@ -450,6 +492,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
       (adventure.phase === "exploring" ||
         adventure.phase === "memory-released");
     const combatActive = worldActive && adventure.phase === "exploring";
+    if (!visible && worldWasActive) {
+      pendingHit = null;
+      combatNeedsFreshTelegraph = true;
+    } else if (worldActive && combatNeedsFreshTelegraph) {
+      enemies.restartThreatenedAttacks();
+      combatNeedsFreshTelegraph = false;
+    }
     const deltaSeconds = worldActive && worldWasActive ? wallDeltaSeconds : 0;
     worldWasActive = worldActive;
     if (!worldActive) input.clear();
@@ -509,19 +558,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
         { player: controller.position, deltaSeconds, active: combatActive },
         save,
       );
-      for (const encounterId of contacts) {
-        if (!adventure.currentLevelId) break;
-        if (
-          performAction({
-            type: "take-hit",
-            levelId: adventure.currentLevelId,
-            encounterId,
-          })
-        ) {
-          enemies.noteHitDispatched();
-          break;
-        }
+      if (!pendingHit && contacts[0] && adventure.currentLevelId) {
+        pendingHit = {
+          levelId: adventure.currentLevelId,
+          encounterId: contacts[0],
+        };
       }
+      flushPendingHit();
     } else {
       enemies.step(
         { player: controller.position, deltaSeconds: 0, active: false },
@@ -561,6 +604,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
       paused = value;
       worldWasActive = false;
       input.clear();
+      if (paused) {
+        pendingHit = null;
+        combatNeedsFreshTelegraph = true;
+      } else if (combatNeedsFreshTelegraph) {
+        enemies.restartThreatenedAttacks();
+        combatNeedsFreshTelegraph = false;
+      }
     },
     clearInput(): void {
       input.clear();
@@ -602,6 +652,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     dispose(): void {
       if (disposed) return;
       disposed = true;
+      pendingHit = null;
       windowTarget.cancelAnimationFrame(animationFrame);
       options.container.ownerDocument.removeEventListener(
         "visibilitychange",

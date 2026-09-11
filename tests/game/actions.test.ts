@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import type {
   GameplayActionRequest,
   SaveView,
@@ -38,6 +38,48 @@ function createCoordinator(
 }
 
 describe("authoritative action coordinator", () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it("creates a secure v4 action id when randomUUID is unavailable", async () => {
+    const getRandomValues = vi.fn((bytes: Uint8Array) => {
+      bytes.fill(0xab);
+      return bytes;
+    });
+    vi.stubGlobal("crypto", { getRandomValues });
+    const response = makeEraSave({ revision: 5 });
+    const onAction = vi.fn().mockResolvedValue(response);
+    const { coordinator } = createCoordinator({
+      createActionId: undefined,
+      onAction,
+    });
+
+    expect(
+      coordinator.perform({ type: "guard", levelId: "level-1-2020" }),
+    ).toBe(true);
+    await vi.waitFor(() => expect(onAction).toHaveBeenCalledOnce());
+    expect(onAction.mock.calls[0]?.[0].actionId).toBe(
+      "abababab-abab-4bab-abab-abababababab",
+    );
+    expect(getRandomValues).toHaveBeenCalledOnce();
+  });
+
+  it("surfaces missing secure randomness without throwing", () => {
+    vi.stubGlobal("crypto", undefined);
+    const { coordinator, callbacks } = createCoordinator({
+      createActionId: undefined,
+    });
+
+    expect(
+      coordinator.perform({ type: "guard", levelId: "level-1-2020" }),
+    ).toBe(false);
+    expect(callbacks.onAction).not.toHaveBeenCalled();
+    expect(coordinator.inspect()).toEqual({
+      requestState: "error",
+      requestError: "guard",
+      requestErrorCode: "SECURE_RANDOM_UNAVAILABLE",
+    });
+  });
+
   it("retries one uncertain transport failure with the identical action id and payload", async () => {
     const response = makeEraSave({ revision: 5 });
     const onAction = vi
