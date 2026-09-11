@@ -47,14 +47,17 @@ const errors = [];
 const driver = createJourneyDriver({ url, errors });
 const desktopViewport = { width: 1024, height: 768 };
 
-function wants(group) {
+const onlyIds = (process.env.QUEST_PROBE_IDS ?? "").split(",").filter(Boolean);
+
+function wants(group, id) {
+  if (onlyIds.length) return onlyIds.includes(id);
   return groups.includes("all") || groups.includes(group);
 }
 
 const openContexts = new Set();
 
 async function probe(id, group, title, fn) {
-  if (!wants(group)) return;
+  if (!wants(group, id)) return;
   const started = Date.now();
   const entry = { id, group, title, status: "pass", observed: {} };
   try {
@@ -351,6 +354,38 @@ await probe(
     );
     entry.observed.setupFirstTab = firstTab;
     await context.close();
+  },
+);
+
+await probe(
+  "home-session-failure",
+  "home",
+  "labelled fault injection: a failed session request shows the resting banner and Try again reloads",
+  async (entry) => {
+    const { page } = await newPage();
+    let blocked = true;
+    await page.route("**/api/session", (route) =>
+      blocked ? route.fulfill({ status: 503, body: "{}" }) : route.continue(),
+    );
+    await page.goto(url);
+    const banner = page.getByRole("alert");
+    await banner.waitFor({ timeout: 8_000 });
+    entry.observed.banner = (await banner.textContent())?.trim();
+    entry.observed.startDisabled = await page
+      .getByRole("button", { name: "Start a journey" })
+      .isDisabled();
+    await shot(page, "home-session-failure");
+    blocked = false;
+    await banner.getByRole("button", { name: "Try again" }).click();
+    await page.waitForFunction(
+      () => !document.querySelector("button.primary")?.hasAttribute("disabled"),
+      undefined,
+      { timeout: 10_000 },
+    );
+    entry.observed.recoveredAfterTryAgain = true;
+    entry.observed.bannerGone = (await page.getByRole("alert").count()) === 0;
+    assert.equal(entry.observed.startDisabled, true);
+    assert.equal(entry.observed.bannerGone, true);
   },
 );
 
@@ -1683,6 +1718,53 @@ await probe(
     );
     assert.equal(retried.adventure.inventory.length, 2);
     await shot(page, "game-after-retry");
+  },
+);
+
+await probe(
+  "game-attack-mash",
+  "game",
+  "six rapid Attack taps near a guest: no error banner, cooldown handled quietly",
+  async (entry) => {
+    const { page, controls } = await startGame("touch");
+    await driver.collectEquipment(
+      page,
+      controls,
+      "attack-tool",
+      "mash-attack-tool",
+    );
+    const save = await driver.getSave(page);
+    const enemyId = save.adventure.activeLevel.encounters.find(
+      (enemy) => enemy.kind === "ordinary-a",
+    ).id;
+    await driver.approachEncounter(page, controls, enemyId, "mash-approach");
+    await page.locator(".target-hint").waitFor({ timeout: 4_000 });
+    let posts = 0;
+    page.on("request", (request) => {
+      if (request.url().includes("/actions") && request.method() === "POST")
+        posts += 1;
+    });
+    const hpBefore = save.adventure.activeLevel.encounters.find(
+      (enemy) => enemy.id === enemyId,
+    ).hp;
+    for (let index = 0; index < 6; index += 1) {
+      await controls.attack();
+      await delay(120);
+    }
+    await delay(1_200);
+    const after = await driver.getSave(page);
+    entry.observed.mash = {
+      actionPosts: posts,
+      enemyHpBefore: hpBefore,
+      enemyHpAfter: after.adventure.activeLevel.encounters.find(
+        (enemy) => enemy.id === enemyId,
+      ).hp,
+      errorBanner: await gameError(page),
+      requestErrorCode: (await driver.inspectGame(page))?.status
+        .requestErrorCode,
+    };
+    assert.equal(entry.observed.mash.errorBanner, null);
+    await shot(page, "game-attack-mash");
   },
 );
 
