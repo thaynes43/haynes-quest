@@ -1,0 +1,27 @@
+{
+  "checked_utc": "2026-09-11T14:43:33.868275+00:00",
+  "scope": "WO-014 isolated immutable-GLB renders only; no live Blender scene accessed",
+  "processes": [
+    {
+      "asset_id": "blockling",
+      "pid": 19265,
+      "process_state": "exited",
+      "sha256": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb",
+      "render_completed_utc": "2026-09-11T14:28:52.227933+00:00"
+    },
+    {
+      "asset_id": "signal-moth",
+      "pid": 19688,
+      "process_state": "exited",
+      "sha256": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe",
+      "render_completed_utc": "2026-09-11T14:35:34.435806+00:00"
+    },
+    {
+      "asset_id": "buffer-baron",
+      "pid": 22588,
+      "process_state": "exited",
+      "sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915",
+      "render_completed_utc": "2026-09-11T14:38:25.852384+00:00"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "three_revision": "186",
+  "mesh_primitives": 6,
+  "rest": {
+    "calls": 6,
+    "triangles": 14840,
+    "textures": 3,
+    "geometries": 6
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "calls": 6,
+      "triangles": 14840
+    },
+    {
+      "name": "move",
+      "calls": 6,
+      "triangles": 14840
+    },
+    {
+      "name": "attack",
+      "calls": 6,
+      "triangles": 14840
+    },
+    {
+      "name": "hit",
+      "calls": 6,
+      "triangles": 14840
+    },
+    {
+      "name": "defeat",
+      "calls": 6,
+      "triangles": 14840
+    }
+  ],
+  "webgl_error": 0,
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "asset_id": "buffer-baron",
+  "glb_sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915",
+  "browser": "153.0.8010.12",
+  "page_errors": [],
+  "external_requests": [],
+  "checks": {
+    "six_color_pass_draw_calls": true,
+    "matching_clip_draw_counts": true,
+    "no_webgl_error": true,
+    "no_page_errors": true,
+    "no_external_requests": true
+  },
+  "limitations": "Chromium software WebGL rasterization and counts only; no physical Safari, gameplay admission, load/performance target or owner approval claim."
+}

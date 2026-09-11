@@ -1,0 +1,20 @@
+{
+  "blockling": {
+    "concept_path": "docs/assets/media/blockling/v001/concept.png",
+    "sha256": "ef74355e4f1a328cdab3e454b0964c59ba2a5ff64a85dc9ddf6d6f30ab59e101",
+    "bytes": 2586773,
+    "inspection": "Actual selected concept inspected with image viewer before authoring; no regenerated reference or third-party mesh."
+  },
+  "signal-moth": {
+    "concept_path": "docs/assets/media/signal-moth/v001/concept.png",
+    "sha256": "84b2074b48972569fb858a65dc8e915922a3c5872521a2f2244903ee4b5f4a24",
+    "bytes": 2567931,
+    "inspection": "Actual selected concept inspected with image viewer before authoring; no regenerated reference or third-party mesh."
+  },
+  "buffer-baron": {
+    "concept_path": "docs/assets/media/buffer-baron/v001/concept.png",
+    "sha256": "20a7378128badc5600ab646d7b1ef40bce0f97bd614f07a7ccd92dc434aa93ef",
+    "bytes": 2462502,
+    "inspection": "Actual selected concept inspected with image viewer before authoring; no regenerated reference or third-party mesh."
+  }
+}

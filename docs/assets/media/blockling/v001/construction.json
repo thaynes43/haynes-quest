@@ -1,0 +1,102 @@
+{
+  "asset_id": "blockling",
+  "version": "v001",
+  "blender": "4.5.13 LTS",
+  "triangles": 14930,
+  "vertices": 7784,
+  "material_count": 6,
+  "bones": [
+    "body",
+    "head",
+    "leg.front.L",
+    "shin.front.L",
+    "foot.front.L",
+    "leg.back.L",
+    "shin.back.L",
+    "foot.back.L",
+    "leg.front.R",
+    "shin.front.R",
+    "foot.front.R",
+    "leg.back.R",
+    "shin.back.R",
+    "foot.back.R"
+  ],
+  "bounds_blender": {
+    "min": [
+      -0.26569482684135437,
+      -0.24568785727024078,
+      0.0
+    ],
+    "max": [
+      0.26569482684135437,
+      0.3611510097980499,
+      0.8500000238418579
+    ]
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.25,
+      "loop": false,
+      "impact_time_s": 0.65
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5833333333333334,
+      "loop": false,
+      "impact_time_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 1.75,
+      "loop": false,
+      "impact_time_s": null
+    }
+  ],
+  "scale_correction": {
+    "uniform_yz": 0.92712392476119,
+    "width": 0.92712392476119,
+    "source_min_z": 0.0
+  },
+  "spec": {
+    "height": 0.85,
+    "floor": 0,
+    "width": null,
+    "impact": 0.65
+  },
+  "pigment_atlas": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+    "bytes": 1242799,
+    "sha256": "e47ede0de639da19da8e024bd911aeea3fcc59fe3dfc811523a0d618d3344829"
+  },
+  "files": {
+    "blockling.blend": {
+      "bytes": 5103852,
+      "sha256": "ea7075a8729424bb476c8ee103bee654df2bae077c764d768a1d1dafcc4d52a9"
+    },
+    "blockling.glb": {
+      "bytes": 1121948,
+      "sha256": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb"
+    }
+  },
+  "construction_source": {
+    "file": "construction-source.py",
+    "bytes": 43925,
+    "sha256": "2b35aae2e43a80d765ef7ffa29a9cd71b9cd503e1f649348da2c3991bb6c4303"
+  }
+}

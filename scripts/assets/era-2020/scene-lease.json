@@ -1,0 +1,24 @@
+{
+  "owner": "era_2020_authoring",
+  "work_order": "WO-014",
+  "model": "gpt-6-astra",
+  "effort": "max",
+  "status": "released",
+  "time": "2026-09-11T14:38:57.613756+00:00",
+  "live_scene": "Saved final Buffer Baron rig and carved skin; no further WO-014 live-scene changes",
+  "isolated_render_ownership": [
+    {
+      "pid": 19688,
+      "asset": "signal-moth",
+      "directory": "/workspace/haynes-quest/era-2020/v001/signal-moth",
+      "log": "/workspace/haynes-quest/era-2020/v001/render-signal-moth-final.log"
+    },
+    {
+      "pid": 22588,
+      "asset": "buffer-baron",
+      "directory": "/workspace/haynes-quest/era-2020/v001/buffer-baron",
+      "log": "/workspace/haynes-quest/era-2020/v001/render-buffer-baron-final.log"
+    }
+  ],
+  "root_authorization": "Lead explicitly permits next writer while these separate processes render immutable GLBs. Remaining I/O is limited to WO-014 artifact paths."
+}

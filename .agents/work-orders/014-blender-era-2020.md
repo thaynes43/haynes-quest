@@ -1,8 +1,8 @@
 # WO-014: The Pixel Orchard enemy candidates
 
-- Status: Native Astra dispatch succeeded on 2026-09-11 after another active lane finished. Authoring in progress in `/home/dev/work/quest-era-2020-models`; prior capacity failure is historical, not a lifetime limit.
+- Status: **Candidate production complete, 2026-09-11.** All three exact exports selected by the Astra lead for first-pass packaging; Tom approval and gameplay promotion remain pending. Native Astra dispatch succeeded after another active lane finished; the earlier capacity failure was historical, not a lifetime limit. Final checks and delivery hashes are in [the evidence record](014-blender-era-2020-evidence.md).
 - Authoring model: native `gpt-6-astra`, `max`, empty context.
-- Exclusive scene lease: held by native Astra `era_2020_authoring`, WO-014, from initial inspection of the saved `arrival-landmark` scene. Root confirmed exclusive ownership; no other scene author is active.
+- Exclusive scene lease: **released at 2026-09-11 14:38:57 UTC** with root authorization. The 2024 Astra author now owns the live scene. All WO-014 isolated render processes were verified exited at **2026-09-11 14:43:33 UTC**; no WO-014 scene ownership or pending render job remains.
 - Remote directory: `/workspace/haynes-quest/era-2020/v001`.
 - Owned repository paths: `scripts/assets/era-2020/`, `docs/assets/media/{blockling,signal-moth,buffer-baron}/v001/` except lead-authored concept/prompt/provenance files, and this work order's evidence sibling. Root owns review prose, catalog and gameplay integration.
 
