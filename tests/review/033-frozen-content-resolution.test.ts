@@ -10,12 +10,15 @@ import { describe, expect, it } from "vitest";
 import { eraStory } from "../../src/client/era";
 import { GardenScene } from "../../src/game/scene";
 import { parodyArtwork } from "../../src/game/scene-catalog";
-import { PARODY_CANDIDATES } from "../../src/shared/parody-catalog";
+import {
+  ALL_PARODY_CANDIDATES,
+  PARODY_CANDIDATES,
+} from "../../src/shared/parody-catalog";
 import type { ActiveLevelView } from "../../src/shared/contracts";
 
 describe("frozen parody content resolution", () => {
   it("resolves every catalog identity to a versioned asset URL, a height and a contact fraction", () => {
-    for (const entry of PARODY_CANDIDATES) {
+    for (const entry of ALL_PARODY_CANDIDATES) {
       const artwork = parodyArtwork({
         catalogEntryId: entry.id,
         catalogEntryVersion: entry.version,
@@ -34,9 +37,33 @@ describe("frozen parody content resolution", () => {
     }
   });
 
+  it("resolves current encore identities through their reused finished assets", () => {
+    const expectedAssets = {
+      "sir-flush-a-lot-encore": "sir-flush-a-lot",
+      "peel-patrol-encore": "peel-patrol",
+      "drama-dragon-encore": "drama-dragon",
+    } as const;
+    for (const [entryId, assetId] of Object.entries(expectedAssets)) {
+      const entry = PARODY_CANDIDATES.find((candidate) => candidate.id === entryId);
+      expect(entry).toMatchObject({ assetId });
+      if (!entry) throw new Error(`Missing encore entry ${entryId}`);
+      expect(parodyArtwork({
+        catalogEntryId: entry.id,
+        catalogEntryVersion: entry.version,
+        assetId: entry.assetId,
+        assetVersion: entry.assetVersion,
+      })).toMatchObject({
+        id: assetId,
+        url: `/studio/assets/media/${assetId}/v001/${assetId}.glb`,
+      });
+    }
+  });
+
   it("names every catalog identity by its frozen title in the chapter story", () => {
     for (const periodId of ["block-party-v1", "remix-runway-v1"] as const) {
-      const entries = PARODY_CANDIDATES.filter((entry) => entry.periodId === periodId);
+      const entries = ALL_PARODY_CANDIDATES.filter(
+        (entry) => entry.periodId === periodId,
+      );
       const level = {
         periodId,
         encounters: entries.map((entry, index) => ({

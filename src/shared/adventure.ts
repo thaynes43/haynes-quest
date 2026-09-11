@@ -14,6 +14,7 @@ import type {
 import {
   PARODY_CATALOG_VERSION,
   type ObbyRouteId,
+  type ParodyCatalogVersion,
   type ParodyPeriodId,
 } from './parody-catalog.js';
 import { selectParodyLevel } from './parody-selection.js';
@@ -86,7 +87,7 @@ export interface AdventurePlanV1 {
 
 export interface AdventurePlanV2 {
   version: 'era-level-plan-v2';
-  catalogVersion: typeof PARODY_CATALOG_VERSION;
+  catalogVersion: ParodyCatalogVersion;
   levels: FrozenLevelPlanV2[];
 }
 
@@ -164,6 +165,7 @@ export function createAdventurePlan(
     throw new RangeError('An adventure requires between 1 and 24 memories');
   }
   const levels: FrozenLevelPlanV2[] = [];
+  const catalogVersion = PARODY_CATALOG_VERSION;
   let memoryIndex = 0;
   let startAgeYears = 0;
   let startDate = birthDate;
@@ -187,7 +189,7 @@ export function createAdventurePlan(
     const prefix = `level-${index + 1}-${eraYear}`;
     const pickups = createEquipment(prefix, index);
     const startingAbilities = abilitiesForAge(startAgeYears);
-    const selection = selectParodyLevel(startDate, startingAbilities);
+    const selection = selectParodyLevel(startDate, startingAbilities, catalogVersion);
     const encounters = createEncounters(prefix, index, selection.encounters);
     levels.push({
       id: prefix,
@@ -209,7 +211,7 @@ export function createAdventurePlan(
     startDate = finalMemory.date;
   }
 
-  return { version: 'era-level-plan-v2', catalogVersion: PARODY_CATALOG_VERSION, levels };
+  return { version: 'era-level-plan-v2', catalogVersion, levels };
 }
 
 export function createInitialAdventureState(plan: AdventurePlan): AdventureState {

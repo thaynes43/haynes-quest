@@ -5,9 +5,11 @@ import {
   createInitialAdventureState,
   toAdventureView,
   type AdventurePlanV1,
+  type AdventurePlanV2,
 } from '../../src/shared/adventure.js';
 import {
   PARODY_CANDIDATES,
+  PARODY_CATALOGS,
   PARODY_CATALOG_VERSION,
   type ParodyCatalogEntry,
 } from '../../src/shared/parody-catalog.js';
@@ -29,7 +31,12 @@ import {
 import { signToken } from '../../src/server/security.js';
 
 const EXPECTED_2020 = ['mister-hiss', 'peel-patrol', 'drama-dragon'];
-const EXPECTED_2024 = ['sir-flush-a-lot', 'nap-captain', 'one-star-diva'];
+const EXPECTED_2024 = [
+  'sir-flush-a-lot-encore',
+  'peel-patrol-encore',
+  'drama-dragon-encore',
+];
+const EXPECTED_2024_ASSETS = ['sir-flush-a-lot', 'peel-patrol', 'drama-dragon'];
 
 describe('frozen dated parody selection', () => {
   it('uses inclusive curated boundaries and rejects uncovered past and future dates', () => {
@@ -38,6 +45,11 @@ describe('frozen dated parody selection', () => {
     }
     for (const date of ['2024-01-01', '2026-12-31']) {
       expect(ids(selectParodyLevel(date, ['move', 'interact', 'jump']))).toEqual(EXPECTED_2024);
+      expect(ids(selectParodyLevel(
+        date,
+        ['move', 'interact', 'jump'],
+        'parody-catalog-v1',
+      ))).toEqual(['sir-flush-a-lot', 'nap-captain', 'one-star-diva']);
     }
     for (const date of ['2019-12-31', '2027-01-01']) {
       expect(() => selectParodyLevel(date, ['move', 'interact', 'jump']))
@@ -51,9 +63,13 @@ describe('frozen dated parody selection', () => {
         ? { ...entry, referenceAvailableBy: '2020-07-01' }
         : entry,
     );
-    expect(() => selectParodyLevel('2020-06-30', ['move', 'interact'], catalog))
+    expect(() => selectParodyLevel(
+      '2020-06-30', ['move', 'interact'], PARODY_CATALOG_VERSION, catalog,
+    ))
       .toThrow(ParodyCatalogUnavailableError);
-    expect(ids(selectParodyLevel('2020-07-01', ['move', 'interact'], catalog)))
+    expect(ids(selectParodyLevel(
+      '2020-07-01', ['move', 'interact'], PARODY_CATALOG_VERSION, catalog,
+    )))
       .toEqual(EXPECTED_2020);
   });
 
@@ -66,7 +82,7 @@ describe('frozen dated parody selection', () => {
       routeId: 'gentle-intro-v1',
     });
     expect({ periodId: later.periodId, ids: ids(later), routeId: later.routeId }).toEqual({
-      periodId: 'remix-runway-v1',
+      periodId: 'remix-runway-v2',
       ids: EXPECTED_2024,
       routeId: 'gentle-intro-v1',
     });
@@ -76,15 +92,21 @@ describe('frozen dated parody selection', () => {
 
   it('requires complete kind, role and starting-ability coverage', () => {
     const missingBoss = PARODY_CANDIDATES.filter((entry) => entry.id !== 'drama-dragon');
-    expect(() => selectParodyLevel('2020-01-01', ['move', 'interact'], missingBoss))
+    expect(() => selectParodyLevel(
+      '2020-01-01', ['move', 'interact'], PARODY_CATALOG_VERSION, missingBoss,
+    ))
       .toThrow(ParodyCatalogUnavailableError);
 
     const jumpBoss = PARODY_CANDIDATES.map((entry): ParodyCatalogEntry =>
       entry.id === 'drama-dragon' ? { ...entry, requiredAbilities: ['move', 'jump'] } : entry,
     );
-    expect(() => selectParodyLevel('2020-01-01', ['move', 'interact'], jumpBoss))
+    expect(() => selectParodyLevel(
+      '2020-01-01', ['move', 'interact'], PARODY_CATALOG_VERSION, jumpBoss,
+    ))
       .toThrow(ParodyCatalogUnavailableError);
-    expect(ids(selectParodyLevel('2020-01-01', ['move', 'interact', 'jump'], jumpBoss)))
+    expect(ids(selectParodyLevel(
+      '2020-01-01', ['move', 'interact', 'jump'], PARODY_CATALOG_VERSION, jumpBoss,
+    )))
       .toEqual(EXPECTED_2020);
   });
 
@@ -93,6 +115,7 @@ describe('frozen dated parody selection', () => {
     const reversed = selectParodyLevel(
       '2024-01-01',
       ['move', 'interact', 'jump'],
+      PARODY_CATALOG_VERSION,
       [...PARODY_CANDIDATES].reverse(),
     );
     expect(reversed).toEqual(forward);
@@ -115,7 +138,7 @@ describe('frozen dated parody selection', () => {
           eraYear: 2024,
           startAgeYears: 4,
           targetAgeYears: 7,
-          periodId: 'remix-runway-v1',
+          periodId: 'remix-runway-v2',
           routeId: 'gentle-jump-v1',
         },
       ],
@@ -125,8 +148,33 @@ describe('frozen dated parody selection', () => {
       asset: `${encounter.content.assetId}@${encounter.content.assetVersion}`,
     })))).toEqual([
       EXPECTED_2020.map((id) => ({ entry: `${id}@v001`, asset: `${id}@v001` })),
-      EXPECTED_2024.map((id) => ({ entry: `${id}@v001`, asset: `${id}@v001` })),
+      EXPECTED_2024.map((id, index) => ({
+        entry: `${id}@v001`,
+        asset: `${EXPECTED_2024_ASSETS[index]}@v001`,
+      })),
     ]);
+  });
+
+  it('validates a stored v1 catalog plan against its archived identities and gates', () => {
+    const plan = archivedCatalogV1Plan();
+    const state = createInitialAdventureState(plan);
+    expect(parseStoredAdventure(plan, state).plan).toEqual(plan);
+    expect(plan.levels[1]!.encounters.map((encounter) => encounter.content.catalogEntryId))
+      .toEqual(['sir-flush-a-lot', 'nap-captain', 'one-star-diva']);
+
+    const record = storedCatalogV1Save(plan);
+    expect(validateSaveRecord(record).adventurePlan).toEqual(plan);
+
+    const changedIdentity = structuredClone(plan);
+    changedIdentity.levels[1]!.encounters[1]!.content.assetId = 'peel-patrol';
+    expectInvalid(changedIdentity, state);
+
+    const changedDate = structuredClone(plan);
+    changedDate.levels[1]!.startDate = '2027-01-01';
+    changedDate.levels[1]!.eraYear = 2027;
+    expectInvalid(changedDate, state);
+
+    expectInvalid({ ...structuredClone(plan), catalogVersion: 'parody-catalog-v0' }, state);
   });
 
   it('keeps v1 strict, actionable and generic while requiring every v2 identity', async () => {
@@ -248,6 +296,36 @@ function fixturePlan() {
   ]);
 }
 
+function archivedCatalogV1Plan(): AdventurePlanV2 {
+  const plan = fixturePlan();
+  const archivedEntries = PARODY_CATALOGS['parody-catalog-v1'];
+  return {
+    ...plan,
+    catalogVersion: 'parody-catalog-v1',
+    levels: plan.levels.map((level, index) => ({
+      ...level,
+      periodId: index === 0 ? 'block-party-v1' : 'remix-runway-v1',
+      encounters: level.encounters.map((encounter) => {
+        const entry = archivedEntries.find((candidate) =>
+          candidate.periodId === (index === 0 ? 'block-party-v1' : 'remix-runway-v1') &&
+          candidate.kind === encounter.kind &&
+          candidate.role === encounter.role,
+        );
+        if (!entry) throw new Error('Archived fixture entry missing');
+        return {
+          ...encounter,
+          content: {
+            catalogEntryId: entry.id,
+            catalogEntryVersion: entry.version,
+            assetId: entry.assetId,
+            assetVersion: entry.assetVersion,
+          },
+        };
+      }),
+    })),
+  };
+}
+
 function legacyPlan(v2: ReturnType<typeof fixturePlan>): AdventurePlanV1 {
   return {
     version: 'era-level-plan-v1',
@@ -294,6 +372,21 @@ function storedV1Save(plan: AdventurePlanV1): SaveRecord {
       appearance: 'synthetic-traveler-v1',
       catalog: 'generic-era-catalog-v1',
       combat: 'discrete-combat-v1',
+    },
+  };
+}
+
+function storedCatalogV1Save(plan: AdventurePlanV2): SaveRecord {
+  const record = storedV1Save(legacyPlan(fixturePlan()));
+  return {
+    ...record,
+    title: 'Stored parody catalog v1 plan',
+    adventurePlan: plan,
+    adventureState: createInitialAdventureState(plan),
+    versions: {
+      ...record.versions,
+      journey: 'era-level-plan-v2',
+      catalog: 'parody-catalog-v1',
     },
   };
 }

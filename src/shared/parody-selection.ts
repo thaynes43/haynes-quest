@@ -5,8 +5,10 @@ import type {
   FrozenEncounterContent,
 } from './contracts.js';
 import {
-  PARODY_CANDIDATES,
+  PARODY_CATALOGS,
+  PARODY_CATALOG_VERSION,
   type ObbyRouteId,
+  type ParodyCatalogVersion,
   type ParodyCatalogEntry,
   type ParodyPeriodId,
 } from './parody-catalog.js';
@@ -44,7 +46,8 @@ const REQUIRED_SLOTS = [
 export function selectParodyLevel(
   startDate: string,
   startingAbilities: readonly Ability[],
-  catalog: readonly ParodyCatalogEntry[] = PARODY_CANDIDATES,
+  catalogVersion: ParodyCatalogVersion = PARODY_CATALOG_VERSION,
+  catalog: readonly ParodyCatalogEntry[] = PARODY_CATALOGS[catalogVersion],
 ): ParodyLevelSelection {
   const abilities = new Set(startingAbilities);
   const eligible = catalog.filter((entry) =>

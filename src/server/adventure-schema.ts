@@ -6,7 +6,10 @@ import {
   type AdventurePlanV2,
   type AdventureState,
 } from '../shared/adventure.js';
-import { PARODY_CANDIDATES, PARODY_CATALOG_VERSION } from '../shared/parody-catalog.js';
+import {
+  PARODY_CATALOGS,
+  PARODY_CATALOG_VERSIONS,
+} from '../shared/parody-catalog.js';
 import type { Ability, RuleVersions, SubjectOption } from '../shared/contracts.js';
 import type { FrozenMemory } from './domain.js';
 import { AppError } from './errors.js';
@@ -80,7 +83,7 @@ const levelV1Schema = z.object({
 }).strict();
 const levelV2Schema = z.object({
   ...levelShape,
-  periodId: z.enum(['block-party-v1', 'remix-runway-v1']),
+  periodId: z.enum(['block-party-v1', 'remix-runway-v1', 'remix-runway-v2']),
   routeId: z.enum(['gentle-intro-v1', 'gentle-jump-v1']),
   encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
 }).strict();
@@ -91,7 +94,7 @@ const planSchema = z.discriminatedUnion('version', [
   }).strict(),
   z.object({
     version: z.literal('era-level-plan-v2'),
-    catalogVersion: z.literal(PARODY_CATALOG_VERSION),
+    catalogVersion: z.enum(PARODY_CATALOG_VERSIONS),
     levels: z.array(levelV2Schema).min(1).max(24),
   }).strict(),
 ]);
@@ -210,7 +213,8 @@ function validPlan(plan: AdventurePlan): boolean {
 }
 
 function validParodyPlan(plan: AdventurePlanV2): boolean {
-  if (plan.catalogVersion !== PARODY_CATALOG_VERSION) return false;
+  const catalog = PARODY_CATALOGS[plan.catalogVersion];
+  if (!catalog) return false;
   for (const level of plan.levels) {
     const abilities = new Set(abilitiesForAge(level.startAgeYears));
     const expectedRoute = abilities.has('jump') ? 'gentle-jump-v1' : 'gentle-intro-v1';
@@ -222,7 +226,7 @@ function validParodyPlan(plan: AdventurePlanV2): boolean {
       level.encounters.filter((encounter) => encounter.kind === 'boss' && encounter.role === 'boss').length !== 1
     ) return false;
     for (const encounter of level.encounters) {
-      const entry = PARODY_CANDIDATES.find((candidate) =>
+      const entry = catalog.find((candidate) =>
         candidate.id === encounter.content.catalogEntryId &&
         candidate.version === encounter.content.catalogEntryVersion,
       );

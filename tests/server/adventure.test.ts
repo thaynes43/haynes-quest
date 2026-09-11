@@ -151,10 +151,10 @@ describe('era combat adventure', () => {
       routeId: 'gentle-intro-v1',
     });
     expect(save).toMatchObject({
-      versions: { journey: 'era-level-plan-v2', catalog: 'parody-catalog-v1' },
+      versions: { journey: 'era-level-plan-v2', catalog: 'parody-catalog-v2' },
       adventure: {
         planVersion: 'era-level-plan-v2',
-        catalogVersion: 'parody-catalog-v1',
+        catalogVersion: 'parody-catalog-v2',
       },
     });
     expect(level.encounters.map((encounter) => encounter.content?.catalogEntryId)).toEqual([
@@ -270,13 +270,13 @@ describe('era combat adventure', () => {
           eraYear: 2024,
           startAgeYears: 4,
           targetAgeYears: 7,
-          periodId: 'remix-runway-v1',
+          periodId: 'remix-runway-v2',
           routeId: 'gentle-jump-v1',
         },
       },
     });
     expect(save.adventure!.activeLevel!.encounters.map((encounter) => encounter.content?.catalogEntryId))
-      .toEqual(['sir-flush-a-lot', 'nap-captain', 'one-star-diva']);
+      .toEqual(['sir-flush-a-lot-encore', 'peel-patrol-encore', 'drama-dragon-encore']);
     expect(save.memories.map((memory) => memory.state)).toEqual(['consumed', 'consumed', 'locked']);
     expect(save.adventure!.inventory).toContainEqual(expect.objectContaining({ id: attackPickup.id }));
 

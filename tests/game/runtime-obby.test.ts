@@ -70,16 +70,28 @@ vi.mock("../../src/game/scene", () => ({
 
 import { createGame } from "../../src/game/createGame";
 
-const parodyIds: Record<0 | 1, Record<EncounterKind, string>> = {
+const parodyContent: Record<
+  0 | 1,
+  Record<EncounterKind, { entryId: string; assetId: string }>
+> = {
   0: {
-    "ordinary-a": "mister-hiss",
-    "ordinary-b": "peel-patrol",
-    boss: "drama-dragon",
+    "ordinary-a": { entryId: "mister-hiss", assetId: "mister-hiss" },
+    "ordinary-b": { entryId: "peel-patrol", assetId: "peel-patrol" },
+    boss: { entryId: "drama-dragon", assetId: "drama-dragon" },
   },
   1: {
-    "ordinary-a": "sir-flush-a-lot",
-    "ordinary-b": "nap-captain",
-    boss: "one-star-diva",
+    "ordinary-a": {
+      entryId: "sir-flush-a-lot-encore",
+      assetId: "sir-flush-a-lot",
+    },
+    "ordinary-b": {
+      entryId: "peel-patrol-encore",
+      assetId: "peel-patrol",
+    },
+    boss: {
+      entryId: "drama-dragon-encore",
+      assetId: "drama-dragon",
+    },
   },
 };
 
@@ -90,32 +102,32 @@ function routedSave(options: EraSaveOptions = {}): SaveView {
   if (!save.adventure || !activeLevel)
     throw new Error("Routed fixture requires an active era level");
   const routeId = levelIndex === 0 ? "gentle-intro-v1" : "gentle-jump-v1";
-  const periodId = levelIndex === 0 ? "block-party-v1" : "remix-runway-v1";
+  const periodId = levelIndex === 0 ? "block-party-v1" : "remix-runway-v2";
   return {
     ...save,
     adventure: {
       ...save.adventure,
       planVersion: "era-level-plan-v2",
-      catalogVersion: "parody-catalog-v1",
+      catalogVersion: "parody-catalog-v2",
       activeLevel: {
         ...activeLevel,
         routeId,
         periodId,
         encounters: activeLevel.encounters.map((encounter) => {
-          const id = parodyIds[levelIndex][encounter.kind];
+          const content = parodyContent[levelIndex][encounter.kind];
           return {
             ...encounter,
             content: {
-              catalogEntryId: id,
+              catalogEntryId: content.entryId,
               catalogEntryVersion: "v001",
-              assetId: id,
+              assetId: content.assetId,
               assetVersion: "v001",
             },
           };
         }),
       },
     },
-    versions: { ...save.versions, catalog: "parody-catalog-v1" },
+    versions: { ...save.versions, catalog: "parody-catalog-v2" },
   };
 }
 
