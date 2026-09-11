@@ -1,6 +1,6 @@
 # WO-011: Complete catalog delivery verification
 
-- **Status:** In progress
+- **Status:** Completed (local and final live deployment verified)
 - **Author:** fresh native GPT-5.6 Sol, xhigh, empty context, `catalog_verify`
 - **Worktree:** `/home/dev/work/quest-catalog-verify`, branch `agent/quest-catalog-verify`, base `c6cf561`
 - **Scope:** Non-Blender test review and actual browser/media delivery. Root owns art judgment and user-facing writing; WO-010 retains its exclusive Blender scene lease.
@@ -30,3 +30,11 @@ Server fix `36d8065` integrated as `f68158e`; settled-view/clip harness update `
 Complete stable run at `2026-09-11T05:52:22.185Z` passed in 24.15 seconds: 12 pages, 9 models, 7 clips, 4 browser-decoded auditions, 2 actual touch orbits, 105 media files and 7 model manifests. All hashes/MIME checks passed; zero page/console errors, failed responses or external requests. Every model visibly rendered in its 358 × 358 phone frame. Sol inspected all nine crops; root inspected all seven static crops and independently matched all four delivered cue hashes with their selected exports. Full safe report and crops are retained under `docs/assets/media/storybook-reference/v001/browser-intake/`.
 
 All test changes integrated through `2d26e1e`. The same full audit must now pass against the final immutable private deployment. No audio listening or physical Safari claim.
+
+## Final live result
+
+The same integrated harness passed against `https://haynes-quest.haynesops.com` at `2026-09-11T06:15:02.885Z` in 23.89 seconds. App commit `71c45b5fdba69cb38c59ccd336935218b322cd5c` was deployed by ops #2853 / `026deb4584dac21532547ec174f3a8c36058d66d`; exact image digest and safe results are in the [live report](../../docs/assets/media/storybook-reference/v001/browser-intake/catalog-live-report.json).
+
+Twelve pages, nine visible GLBs, seven exact traveler clips played/paused, four WAV auditions decoded, 112 media files and seven manifests passed. Every GLB size/hash matched its manifest. All nine phone viewers measured 358 × 358 within 390 × 844, with actual settled crops visually inspected by Sol; root inspected the live child and stone crops as final samples. Actual CDP touch orbit changed child and keepsake camera angles. No page/console errors, bad responses or external requests occurred. The higher media count includes seven browser crops added to the final review pages after the earlier local audit.
+
+No game saves or cluster mutations were created by this read-only audit. Physical Safari remains untested and audio listening was not performed. Root stopped only its verified local fixture harness PID 43126 after completion; no active work remains in this lane.

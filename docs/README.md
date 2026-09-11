@@ -17,9 +17,9 @@ Read [PROCESS.md](PROCESS.md) for the workflow and the [project brief](prds/001-
 | Team | Model routing, serial authoring, work orders and recovery | [TEAM.md](../.agents/TEAM.md) |
 | References | Conventions borrowed from sibling repos | [Repository review](reference/repository-conventions.md) |
 
-The resume point is [`.agents/HANDOFF.md`](../.agents/HANDOFF.md). Plans live only in `.agents/plans/`; sequences belong in designs. Add release automation when there is a versioned application to release.
+The resume point is [`.agents/HANDOFF.md`](../.agents/HANDOFF.md). Plans live only in `.agents/plans/`; sequences belong in designs. The application CI builds, verifies and publishes immutable images; deployment uses checked haynes-ops GitOps PRs.
 
-Current implementation order: [Overnight MVP with deferred OAuth](../.agents/plans/004-overnight-mvp.md). Adapter source notes: [AppDaemon Immich reference](reference/immich-appdaemon.md).
+Completed private milestone: [Overnight MVP with deferred OAuth](../.agents/plans/completed/004-overnight-mvp.md). Follow [PLAN-002](../.agents/plans/002-foundation-prototype.md) and the handoff for the remaining player-admission, owner-review and device gates. Adapter source notes: [AppDaemon Immich reference](reference/immich-appdaemon.md).
 
 ## Build and preview the site
 
@@ -32,6 +32,6 @@ PATH="$PWD/.venv-docs/bin:$PATH" scripts/docs/build.sh
 PATH="$PWD/.venv-docs/bin:$PATH" scripts/docs/serve.sh
 ```
 
-The local preview listens at `http://127.0.0.1:8000`. Re-run preparation by restarting the preview after changing canonical `.agents/` records or source docs. CI runs the same strict build and link/media checks. Generated `.docs-build/` and `site/` output are ignored; edit the source Markdown. No public hosting is configured by this scaffold. PLAN-004 includes a private review-site access path with the runnable preview.
+The local preview listens at `http://127.0.0.1:8000`. Re-run preparation by restarting the preview after changing canonical `.agents/` records or source docs. CI runs the same strict build and link/media checks. Generated `.docs-build/` and `site/` output are ignored; edit the source Markdown. The deployed app serves the [private asset studio](https://haynes-quest.haynesops.com/studio/assets/catalog.html) through the home network’s internal ingress. Public hosting is not enabled.
 
 Use the asset-review template's local image, GLB and audio markup. The model viewer is pinned and bundled locally; review exports must embed their buffers/textures and avoid compression requiring external decoder downloads. Provide still/download fallbacks and do not autoplay sound. Keep personal or restricted media outside static site input, even for a local preview intended to be deployed later.

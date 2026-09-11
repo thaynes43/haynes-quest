@@ -1,1 +1,5 @@
-You are GPT-6 Astra at max, coordinating Haynes Quest end to end. Fetch `thaynes43/haynes-quest` main, create a task worktree, and read `AGENTS.md`, `.agents/HANDOFF.md`, `.agents/TEAM.md` and `.agents/plans/004-overnight-mvp.md`. Execute that plan autonomously through a playable private MVP and the first-pass asset review catalog. Delegate per TEAM.md, keep durable checkpoints, and carry checked PRs through merge. OAuth waits until tomorrow; do not restart dev-env.
+# Historical overnight dispatch
+
+PLAN-004 is complete. This prompt records the executed work order; read [the current handoff](../HANDOFF.md) before starting new work.
+
+You are GPT-6 Astra at max, coordinating Haynes Quest end to end. Fetch `thaynes43/haynes-quest` main, create a task worktree, and read `AGENTS.md`, `.agents/HANDOFF.md`, `.agents/TEAM.md` and `.agents/plans/completed/004-overnight-mvp.md`. Execute that plan autonomously through a playable private MVP and the first-pass asset review catalog. Delegate per TEAM.md, keep durable checkpoints, and carry checked PRs through merge. OAuth waits until tomorrow; do not restart dev-env.

@@ -76,7 +76,7 @@ Normal documentation and code PRs still follow checks and autonomous squash merg
 
 ## PoC acceptance
 
-The table below describes the eventual player-ready PoC, including OAuth, owner-approved assets and physical-device checks. Those remain follow-on acceptance and do not block tonight. [PLAN-004](../../.agents/plans/004-overnight-mvp.md) governs the overnight checkpoint: a runnable private fixture route, synthetic media, visible growth/unlock, real server-owned persistence, browser-automated input/save checks, identified gameplay placeholders and the scoped first-pass review catalog. Record the table's deferred checks honestly rather than claiming fixture login or emulation satisfies them.
+The table below describes the eventual player-ready PoC, including OAuth, owner-approved assets and physical-device checks. Those remain follow-on acceptance and do not block tonight. [PLAN-004](../../.agents/plans/completed/004-overnight-mvp.md) governs the overnight checkpoint: a runnable private fixture route, synthetic media, visible growth/unlock, real server-owned persistence, browser-automated input/save checks, identified gameplay placeholders and the scoped first-pass review catalog. Record the table's deferred checks honestly rather than claiming fixture login or emulation satisfies them.
 
 | ID | Observable result |
 | --- | --- |

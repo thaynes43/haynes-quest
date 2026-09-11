@@ -3,7 +3,7 @@
 - **Status:** Proposed implementation; owner-confirmed workflow
 - **Last updated:** 2026-09-11
 - **Satisfies:** [PRD-001 R-07, R-12, R-29, R-36, R-38, R-41](../prds/001-project-brief.md)
-- **Read with:** [Art direction](../assets/art-direction.md), [team routing](../../.agents/TEAM.md), [PLAN-004](../../.agents/plans/004-overnight-mvp.md), [audio pipeline](008-audio-pipeline.md)
+- **Read with:** [Art direction](../assets/art-direction.md), [team routing](../../.agents/TEAM.md), [PLAN-004](../../.agents/plans/completed/004-overnight-mvp.md), [audio pipeline](008-audio-pipeline.md)
 
 ## Direction and scope
 
