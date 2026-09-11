@@ -15,9 +15,11 @@ Tom selected the duo boss and alternating routine, then approved the joint pink-
 | They miss their high-five | 1.6 seconds | A safe pause before attacking |
 | Both become dizzy | 5 seconds | Attack either side of the shared boss |
 
-Only one trick can hurt the player at a time, and each trick can register at most one contact. Warning shapes match the forthcoming danger area. Black alternates sides each cycle; at least two metres of clear ground remain available. Airborne feet above 0.35 metres avoid contact. Help, memories and friendly conversations pause the world. Falling uses the existing nearby checkpoint and retains gear and victories.
+Only one trick can hurt the player at a time, and each trick can register at most one contact. Warning shapes match the forthcoming danger area. Black alternates sides each cycle; at least two metres of clear ground remain available. Airborne feet above 0.35 metres avoid contact. Help, memories and friendly conversations pause the world. Falling uses the existing nearby checkpoint and retains gear and victories. A fall or background interruption restarts an active trick with its full harmless warning, preserving the selected lane and any hit already charged for that trick. Ordinary menus freeze the current phase.
 
-The two models share one boss health bar, one defeated flag and one memory reward. Regular attack targeting excludes the friendly residents. Boss victory releases the pictures without changing age; deliberately absorbing the completed bundle advances the journey as specified in DESIGN010.
+The wand deliberately reaches beyond the obstacles, leaving a forgiving approach and retreat area. The timed dizzy opening still governs attacks from there. Harder arena pressure belongs to later age-based content.
+
+The two models share one boss health bar, one defeated flag and one memory reward. Spell feedback lands on the nearer visible actor. Regular attack targeting excludes the friendly residents. Boss victory releases the pictures without changing age; deliberately absorbing the completed bundle advances the journey as specified in DESIGN010.
 
 ## Saved journeys and eligible abilities
 

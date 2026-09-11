@@ -4,6 +4,7 @@ import { BESTIES_ARENA_CENTER } from "./besties";
 import type { DuoParodyArtwork } from "./scene-catalog";
 import { SceneAssets } from "./scene-assets";
 import { groundRing } from "./scene-art";
+import type { PositionSnapshot } from "./types";
 
 interface DuoActor {
   root: THREE.Group;
@@ -183,6 +184,23 @@ export class BestiesScene {
       this.hazard.material.opacity = hazard.kind === "foam-bar" ? 1 : 0.8;
     }
   }
+  targetPosition(from: PositionSnapshot): PositionSnapshot | null {
+    let nearest: THREE.Vector3 | null = null;
+    let distance = Infinity;
+    for (const actor of this.actors.values()) {
+      const position = actor.root.getWorldPosition(new THREE.Vector3());
+      const candidateDistance = Math.hypot(
+        position.x - from.x,
+        position.z - from.z,
+      );
+      if (candidateDistance < distance) {
+        nearest = position;
+        distance = candidateDistance;
+      }
+    }
+    return nearest ? { x: nearest.x, y: nearest.y, z: nearest.z } : null;
+  }
+
   dispose(): void {
     for (const actor of this.actors.values()) {
       actor.mixer?.stopAllAction();

@@ -1,0 +1,20 @@
+# WO061: Lead resolution of the Fable PLAN006 review
+
+Status: fixes integrated in the task worktree; final focused verification and release gates pending.
+
+Fable5.1 reviewed exact checkpoint `3ba5a0c` under WO056. Its report and 13 executable probes are retained; the completed CLI task was reaped after copying the report, probe sources and logs to `test-results/fable-056/`. This record distinguishes that earlier checkpoint from the final release candidate.
+
+| Finding | Lead decision and implementation |
+| --- | --- |
+| F1: inconsistent current bundle evidence | Accepted. The earlier full journey and focused runs retain their actual hashes and scope. Root will commit the final source, record its clean build hash, rerun affected focused checks and verify the published/live bundle. No earlier run establishes an untested later build. |
+| F2: wand outranges the melee dragon | Retain the range advantage as deliberate forgiveness in this child-oriented slice. Moving outside the visible melee danger area provides a safe retreat; enemies remain on their islands. The wand must still hit from there. The actual defect was delayed or absent retaliation inside the marked range: root reproduced two boundary cases and corrected the warning transition. WO055 then observed an unguarded dragon hit within 2.038 seconds after a held-stick wand attack, without repositioning the player. |
+| F3: safe approach strip near Besties | Retain a forgiving observation/retreat area. The duo still requires its timed dizzy opening; approaching the marked obstacles exposes the player to their tricks. Harder arena pressure belongs to the later age/difficulty content, not a silent increase for the six-year-old slice. |
+| F4: stale playtest guide | Accepted and fixed in this PR. The guide now covers sound, all six friends, the new Besties roster, old-save compatibility and actual captures. WO058 also resolved seven remaining old friendly-role descriptions. |
+| F5: stale airborne friendly prompt | Accepted. Opening now rechecks the current grounded/range status and pauses synchronously before showing the conversation. An unavailable action also displays feedback. The grounded/range rule remains intact. A React regression exercises the stale-prompt path. |
+| F6: Besties recovery without a fresh warning | Accepted. Threatened tricks restart their full warning after fall recovery or resuming backgrounded combat, preserving the cycle/lane and preventing an extra hit from an already-used contact. Ordinary dialog pause preserves the intended routine state unless combat needs a fresh warning. |
+| F7: wand beam hits empty duo centre | Accepted. The spell visual now targets the nearer rendered actor in world coordinates. Logical targeting, shared HP and boss rewards remain one encounter. |
+| F8: future duo version silently uses v001 | Accepted. The matched immutable entry supplies the version in both actor URLs. Current v001 files and saved catalog identities are unchanged. |
+| F9: touch-release audio unlock | Accepted as a portability improvement. Pointer release, touch end and click also call the idempotent audio start method; disposal removes every listener. Physical Safari remains an explicit test limitation. |
+| F10: authoring helper whitespace | Fixed the trailing blank line and refreshed the source intake and delivery hashes. All 68 delivered file hashes still pass; GLBs, masters and concept are unchanged. |
+
+The safe ranged positions are explicit design decisions, not claims that bosses retaliate from every possible wand position. The user-requested progression and nearby retaliation are the release acceptance criteria. Neither this review nor automated Chromium tests establish physical-device performance, listening approval or the children's response.

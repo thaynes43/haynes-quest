@@ -36,7 +36,7 @@ These are captures from the running game, using its actual models.
 <figure><img src="media/playtest/v002/besties-phone.png" alt="The two Besties actors and their obstacle warning in a phone-sized game view"><figcaption>The Besties on a small screen</figcaption></figure>
 </div>
 
-The [first complete touch journey](media/playtest/v002/first-touch-evidence.json) passed both chapters, bosses, visible fictional pictures, age 0 → 4 → 7 and saved resume. That run preceded the final high-five pose and camera refinements; the exact final files are listed below. Automated Chromium touch and software graphics checks do not establish physical Safari performance or the children’s response.
+The [first complete touch journey](media/playtest/v002/first-touch-evidence.json) passed both chapters, bosses, visible fictional pictures, age 0 → 4 → 7 and saved resume. That run preceded the final high-five pose and camera refinements. A [focused touch check](media/playtest/v002/focused-touch-baseline.json) then verified friendly help and penalties, sound controls, held-stick wand damage, dragon retaliation and the Besties opening; subsequent review fixes have their own verification record. The exact artwork files are listed below. Automated Chromium touch and software graphics checks do not establish physical Safari performance or the children’s response.
 
 ## Cast and artwork
 

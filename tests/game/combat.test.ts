@@ -207,9 +207,13 @@ describe("enemy combat simulation", () => {
     ).toBe("windup");
   });
 
-  it.each([-19, -18.8])(
-    "lets the routed boss threaten the landing at z=%s without leaving its island",
-    (z) => {
+  it.each([
+    { x: 0, z: -19 },
+    { x: 0, z: -18.8 },
+    { x: 0.8, z: -19 },
+  ])(
+    "lets the routed boss promptly threaten landing ($x, $z) without leaving its island",
+    ({ x, z }) => {
       const base = makeEraSave({
         levelIndex: 1,
         defeatedIds: ["level-2-2024-ordinary-a", "level-2-2024-ordinary-b"],
@@ -225,7 +229,7 @@ describe("enemy combat simulation", () => {
         },
       };
       const simulation = new EnemySimulation(createLevelLayout(save), save);
-      const player = { x: 0, y: 0, z };
+      const player = { x, y: 0, z };
 
       const contacts = stepMany(simulation, save, player, 80);
       const boss = simulation

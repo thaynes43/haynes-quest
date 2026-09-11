@@ -175,6 +175,9 @@ function Adventure({
       void sound.start();
     };
     document.addEventListener("pointerdown", audioGesture, true);
+    document.addEventListener("pointerup", audioGesture, true);
+    document.addEventListener("touchend", audioGesture, true);
+    document.addEventListener("click", audioGesture, true);
     document.addEventListener("keydown", audioGesture, true);
     const update = (next: SaveView, action?: GameplayAction) => {
       if (
@@ -339,6 +342,9 @@ function Adventure({
     return () => {
       mounted.current = false;
       document.removeEventListener("pointerdown", audioGesture, true);
+      document.removeEventListener("pointerup", audioGesture, true);
+      document.removeEventListener("touchend", audioGesture, true);
+      document.removeEventListener("click", audioGesture, true);
       document.removeEventListener("keydown", audioGesture, true);
       if (noticeTimer) clearTimeout(noticeTimer);
       sound.dispose();
@@ -403,7 +409,12 @@ function Adventure({
 
   const perform = (action: GameplayAction) => {
     setError("");
-    game.current?.performAction(action);
+    const accepted = game.current?.performAction(action);
+    if (
+      !accepted &&
+      (action.type === "interact-friendly" || action.type === "attack-friendly")
+    )
+      setError("That action isn’t ready yet. Keep exploring and try again.");
   };
   const busy = status?.requestBusy ?? false;
   const actionInput = (action: GameInputAction, value: boolean) =>
@@ -615,6 +626,13 @@ function Adventure({
           className="friendly-prompt"
           data-quest-ui
           onClick={() => {
+            const handle = game.current;
+            if (handle?.inspect().status.nearFriendlyId !== nearbyFriend.id) {
+              setError("Land beside your friend to say hello.");
+              return;
+            }
+            // Freeze the validated position now, before React opens the dialog.
+            handle.setPaused(true);
             setFriendDialogId(nearbyFriend.id);
             setConfirmFriendlyHarm(false);
           }}

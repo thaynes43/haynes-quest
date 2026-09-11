@@ -263,11 +263,11 @@ export class EnemySimulation {
             enemy.phaseSeconds = 0;
           } else if (
             playerDistance <= tuning.stopRange + distanceEpsilon ||
-            // The arena edge can prevent the preferred close approach while
-            // leaving the player inside the visible strike area. Telegraph
-            // there instead of chasing forever against the boundary.
+            // Outside the arena, the clamped approach can converge on the
+            // preferred stopping distance for seconds. Use the visible strike
+            // area there so reaching the edge produces a full warning promptly.
             (playerDistance <= tuning.attackRange &&
-              !canReachPlayer(options.player, enemy.arena, tuning.stopRange))
+              !canReachPlayer(options.player, enemy.arena, 0))
           ) {
             enemy.phase = "windup";
             enemy.phaseSeconds = 0;

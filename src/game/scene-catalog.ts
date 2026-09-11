@@ -56,11 +56,11 @@ export function parodyArtwork(
       models: [
         {
           id: "bestie-pink",
-          url: "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+          url: `/studio/assets/media/bestie-pink/${entry.assetVersion}/bestie-pink.glb`,
         },
         {
           id: "bestie-black",
-          url: "/studio/assets/media/bestie-black/v001/bestie-black.glb",
+          url: `/studio/assets/media/bestie-black/${entry.assetVersion}/bestie-black.glb`,
         },
       ],
     };

@@ -47,6 +47,26 @@ function advanceTo(
   throw new Error(`Besties routine did not reach ${phase}`);
 }
 
+function hitsWhileAdvancing(
+  simulation: BestiesSimulation,
+  seconds: number,
+  player: { x: number; y: number; z: number },
+): BestiesStepResult[] {
+  const hits: BestiesStepResult[] = [];
+  let remaining = seconds;
+  while (remaining > 0.0000001) {
+    const result = simulation.step({
+      player,
+      deltaSeconds: Math.min(0.1, remaining),
+      active: true,
+      defeated: false,
+    });
+    if (result.hit) hits.push(result);
+    remaining -= Math.min(0.1, remaining);
+  }
+  return hits;
+}
+
 describe("BestiesSimulation", () => {
   it("opens with a harmless pink telegraph and assigns one attacking actor", () => {
     const simulation = new BestiesSimulation();
@@ -218,6 +238,132 @@ describe("BestiesSimulation", () => {
       frame: { phase: "pink-warning", phaseProgress: 0, cycleIndex: 0 },
     });
   });
+
+  it.each([
+    {
+      sourcePhase: "pink-warning" as const,
+      trick: "pink-trick" as const,
+      warning: "pink-warning" as const,
+      warningSeconds: BESTIES_PHASE_SECONDS["pink-warning"],
+      priorCycles: 0,
+    },
+    {
+      sourcePhase: "pink-trick" as const,
+      trick: "pink-trick" as const,
+      warning: "pink-warning" as const,
+      warningSeconds: BESTIES_PHASE_SECONDS["pink-warning"],
+      priorCycles: 0,
+    },
+    {
+      sourcePhase: "black-warning" as const,
+      trick: "black-trick" as const,
+      warning: "black-warning" as const,
+      warningSeconds: BESTIES_PHASE_SECONDS["black-warning"],
+      priorCycles: 1,
+    },
+    {
+      sourcePhase: "black-trick" as const,
+      trick: "black-trick" as const,
+      warning: "black-warning" as const,
+      warningSeconds: BESTIES_PHASE_SECONDS["black-warning"],
+      priorCycles: 1,
+    },
+  ])(
+    "restarts $sourcePhase at a full warning and preserves its cycle and lane",
+    ({ sourcePhase, trick, warning, warningSeconds, priorCycles }) => {
+      const simulation = new BestiesSimulation();
+      if (priorCycles > 0) advance(simulation, BESTIES_CYCLE_SECONDS);
+      advanceTo(simulation, sourcePhase);
+      advance(simulation, 0.35);
+      const beforeRestart = simulation.frame();
+
+      simulation.restartThreatenedTrick();
+      expect(simulation.frame()).toMatchObject({
+        phase: warning,
+        phaseProgress: 0,
+        cycleIndex: beforeRestart.cycleIndex,
+        blackLaneSide: beforeRestart.blackLaneSide,
+        hazards: [{ damaging: false }],
+      });
+
+      const paused = simulation.step({
+        player: safePlayer,
+        deltaSeconds: 99,
+        active: true,
+        paused: true,
+        defeated: false,
+      });
+      expect(paused).toMatchObject({
+        hit: false,
+        phaseEntered: null,
+        frame: { phase: warning, phaseProgress: 0 },
+      });
+
+      expect(advance(simulation, warningSeconds - 0.05).frame.phase).toBe(
+        warning,
+      );
+      expect(advance(simulation, 0.05)).toMatchObject({
+        hit: false,
+        phaseEntered: trick,
+        frame: { phase: trick, phaseProgress: 0 },
+      });
+    },
+  );
+
+  it.each([
+    {
+      trick: "pink-trick" as const,
+      actor: "bestie-pink" as const,
+      contact: { x: -2.65, y: 0, z: -20.4 },
+      retrySeconds:
+        BESTIES_PHASE_SECONDS["pink-warning"] +
+        BESTIES_PHASE_SECONDS["pink-trick"],
+    },
+    {
+      trick: "black-trick" as const,
+      actor: "bestie-black" as const,
+      contact: { x: -3.75, y: 0, z: -22.75 },
+      retrySeconds:
+        BESTIES_PHASE_SECONDS["black-warning"] +
+        BESTIES_PHASE_SECONDS["black-trick"],
+    },
+  ])(
+    "does not emit a second $actor hit when its contacted $trick is retried",
+    ({ trick, actor, contact, retrySeconds }) => {
+      const simulation = new BestiesSimulation();
+      advanceTo(simulation, trick);
+      expect(advance(simulation, 0.05, contact)).toMatchObject({
+        hit: true,
+        hitBy: actor,
+      });
+
+      simulation.restartThreatenedTrick();
+      expect(hitsWhileAdvancing(simulation, retrySeconds, contact)).toEqual([]);
+    },
+  );
+
+  it.each(["inactive", "high-five", "dizzy", "defeated"] as const)(
+    "leaves the %s phase unchanged when no trick is threatening",
+    (phase) => {
+      const simulation = new BestiesSimulation();
+      if (phase === "defeated") {
+        simulation.step({
+          player: safePlayer,
+          deltaSeconds: 0,
+          active: true,
+          defeated: true,
+        });
+      } else if (phase !== "inactive") {
+        advanceTo(simulation, phase);
+        advance(simulation, 0.25);
+      }
+      const beforeRestart = simulation.frame();
+
+      simulation.restartThreatenedTrick();
+
+      expect(simulation.frame()).toEqual(beforeRestart);
+    },
+  );
 
   it("uses one defeat flag for both actors and emits no repeat edge", () => {
     const simulation = new BestiesSimulation();

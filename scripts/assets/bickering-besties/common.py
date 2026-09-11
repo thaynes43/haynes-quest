@@ -137,4 +137,3 @@ def pose(pb,rot=(0,0,0),loc=(0,0,0),scale=(1,1,1)):
  basis=pb.bone.matrix_local.to_3x3();pb.rotation_mode='QUATERNION';pb.rotation_quaternion=(basis.inverted()@Euler(rot).to_matrix()@basis).to_quaternion();pb.location=basis.inverted()@Vector(loc);pb.scale=(scale[0],scale[2],scale[1])
 def smooth(t):t=max(0,min(1,t));return t*t*(3-2*t)
 def bell(t,c,w):return smooth(1-abs(t-c)/w)
-

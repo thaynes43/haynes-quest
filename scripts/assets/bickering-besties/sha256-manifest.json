@@ -244,7 +244,7 @@
     {
       "path": "scripts/assets/bickering-besties/catalog-intake.json",
       "bytes": 17135,
-      "sha256": "c8c35d763f1bce2c377952f1173ad1022d6532800b1b2d41eab3bc01dffd1831"
+      "sha256": "6ebe02686b70dc63ae443339a7d92496ff6c04b805e0a55eb2e2406244003120"
     },
     {
       "path": "scripts/assets/bickering-besties/collect.py",
@@ -253,8 +253,8 @@
     },
     {
       "path": "scripts/assets/bickering-besties/common.py",
-      "bytes": 8505,
-      "sha256": "fcb38b74bb2d9b277382c97f6daeb0d2a1a734beb4c10892fe53ef4da5494a19"
+      "bytes": 8504,
+      "sha256": "4dd4711b27c43c5104224a4e8cfa64b48b629686eeb7096713dc59f00305bb46"
     },
     {
       "path": "scripts/assets/bickering-besties/compare-construction.py",

@@ -165,6 +165,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     worldWasActive = false;
     lastTime = windowTarget.performance.now();
     if (options.container.ownerDocument.visibilityState !== "visible") {
+      besties.restartThreatenedTrick();
       pendingHit = null;
       combatNeedsFreshTelegraph = true;
     } else if (combatNeedsFreshTelegraph && !paused) {
@@ -668,6 +669,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         }
         if (traversal.recovered) {
           traversalRecoveries++;
+          besties.restartThreatenedTrick();
           input.clear();
           pendingHit = null;
           enemies.restartThreatenedAttacks();

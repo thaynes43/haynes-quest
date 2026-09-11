@@ -601,6 +601,69 @@ describe("obby game runtime", () => {
     game.dispose();
   });
 
+  it("restarts a Besties trick with a full warning after an actual fall", () => {
+    const initial = bestiesRoutedSave();
+    const onAction = vi.fn(async () => initial);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    warmRuntime();
+    game.setInput("moveX", 1);
+
+    let sawPinkTrick = false;
+    for (
+      let frame = 0;
+      frame < 100 && game.inspect().obby?.recoveries === 0;
+      frame += 1
+    ) {
+      advance();
+      sawPinkTrick ||= game.inspect().status.bestiesPhase === "pink-trick";
+    }
+
+    expect(sawPinkTrick).toBe(true);
+    expect(game.inspect()).toMatchObject({
+      status: {
+        position: { x: 0, y: 0, z: -19 },
+        bestiesPhase: "pink-warning",
+      },
+      obby: {
+        checkpointId: "boss-landing",
+        recoveryRemaining: 0.8,
+        recoveries: 1,
+      },
+    });
+    const restarted = sceneState.instances[0]?.frames.at(-1)?.besties;
+    expect(restarted).toMatchObject({
+      phase: "pink-warning",
+      phaseProgress: 0,
+      hazards: [{ damaging: false }],
+    });
+    expect(onAction).not.toHaveBeenCalled();
+
+    while ((game.inspect().obby?.recoveryRemaining ?? 0) > 0) {
+      expect(sceneState.instances[0]?.frames.at(-1)?.besties).toEqual(
+        restarted,
+      );
+      advance();
+    }
+    expect(sceneState.instances[0]?.frames.at(-1)?.besties).toMatchObject({
+      phase: "pink-warning",
+      phaseProgress: 0.05 / 1.2,
+    });
+    expect(onAction).not.toHaveBeenCalled();
+
+    for (let frame = 0; frame < 22; frame += 1) advance();
+    expect(game.inspect().status.bestiesPhase).toBe("pink-warning");
+    expect(onAction).not.toHaveBeenCalled();
+    advance();
+    expect(game.inspect().status.bestiesPhase).toBe("pink-trick");
+    expect(onAction).not.toHaveBeenCalled();
+    game.dispose();
+  });
+
   it("reports an empty attack tap without dispatching a command", () => {
     const initial = routedSave({
       levelIndex: 1,

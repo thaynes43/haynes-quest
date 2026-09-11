@@ -408,8 +408,8 @@
     },
     {
       "path": "scripts/assets/bickering-besties/common.py",
-      "bytes": 8505,
-      "sha256": "fcb38b74bb2d9b277382c97f6daeb0d2a1a734beb4c10892fe53ef4da5494a19"
+      "bytes": 8504,
+      "sha256": "4dd4711b27c43c5104224a4e8cfa64b48b629686eeb7096713dc59f00305bb46"
     },
     {
       "path": "scripts/assets/bickering-besties/compare-construction.py",

@@ -578,6 +578,11 @@ export class GardenScene {
     this.slash.position.y = this.stage === "infant" ? 0.45 : 0.78;
     this.guardRing.visible = Boolean(frame?.guarding || frame?.recovering);
     const spellTarget =
+      (frame?.attackTargetId
+        ? this.enemies
+            .get(frame.attackTargetId)
+            ?.besties?.targetPosition(position)
+        : null) ??
       frame?.enemies.find((enemy) => enemy.id === frame.attackTargetId)
         ?.position ??
       (frame?.attackTargetId

@@ -332,7 +332,7 @@ function contactsDuringSegment(
 function nextPhase(state: BestiesState): BestiesState {
   switch (state.phase) {
     case "pink-warning":
-      return { ...state, phase: "pink-trick", contactedDuringTrick: false };
+      return { ...state, phase: "pink-trick" };
     case "pink-trick":
       return {
         ...state,
@@ -340,7 +340,7 @@ function nextPhase(state: BestiesState): BestiesState {
         contactedDuringTrick: false,
       };
     case "black-warning":
-      return { ...state, phase: "black-trick", contactedDuringTrick: false };
+      return { ...state, phase: "black-trick" };
     case "black-trick":
       return { ...state, phase: "high-five", contactedDuringTrick: false };
     case "high-five":
@@ -368,6 +368,22 @@ export class BestiesSimulation {
 
   frame(): BestiesFrame {
     return makeFrame(this.state);
+  }
+
+  /**
+   * Restarts an in-progress obstacle with its full harmless warning.
+   * A contact already charged by that obstacle remains consumed after recovery.
+   */
+  restartThreatenedTrick(): void {
+    const warning =
+      this.state.phase === "pink-warning" || this.state.phase === "pink-trick"
+        ? "pink-warning"
+        : this.state.phase === "black-warning" ||
+            this.state.phase === "black-trick"
+          ? "black-warning"
+          : null;
+    if (warning === null) return;
+    this.state = { ...this.state, phase: warning, phaseSeconds: 0 };
   }
 
   step(options: BestiesStepOptions): BestiesStepResult {
