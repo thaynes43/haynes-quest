@@ -125,7 +125,7 @@ def character():
    c.curve('Hair | '+label+' rounded bob lock %d'%i,[(sx*.126,y,1.590),(sx*.175,y+.014,1.487),(sx*.188,y+.020,1.375),(sx*.146,y+.040,1.328)],[.032,.034,.042,.030],3,'head',2,n=8,steps=2)
  c.curve('Hair | broad side-swept fringe',[(-.156,.104,1.497),(-.126,.113,1.569),(-.052,.094,1.632),(.041,.070,1.648)],[.025,.037,.038,.024],3,'head',2,n=10,steps=3)
  c.bow('Hair bow | firmly sewn giant pink bow',(0,-.017,1.681),.204,11,'head',5)
- c.box('Hair bow | concealed attachment bar',(0,-.014,1.631),(.135,.082,.035),3,'head',bevel=.008,segments=2,mat=2)
+ c.box('Hair bow | concealed attachment bar',(0,-.014,1.643),(.135,.082,.060),3,'head',bevel=.008,segments=2,mat=2)
  c.contact('Hair bow | firmly sewn giant pink bow | sewn center knot','Hair bow | concealed attachment bar')
  c.contact('Hair bow | concealed attachment bar','Hair | complete sculpted chin-length black bob')
 

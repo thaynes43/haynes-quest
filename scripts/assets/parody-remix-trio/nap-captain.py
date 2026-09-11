@@ -70,10 +70,10 @@ def character():
  c.ellipsoid('Tail | sewn root patch',(0,-.133,.317),(.071,.021,.073),14,n=18,r=10)
  c.contact('Tail | single continuous long curling plush tail','Plush | rounded purple body')
  # Continuous forehead mask strap and a single rounded quilted mask.
- c.lathe('Mask | continuous strap around head',(0,0,0),[(.892,.231),(.918,.231),(.918,.226),(.892,.226)],6,'head',2,n=40,ellipse=(1,.77))
+ c.lathe('Mask | continuous strap around head',(0,0,0),[(.886,.205),(.918,.187),(.918,.182),(.886,.200)],6,'head',2,n=40,ellipse=(1,.77))
  mask=[(-.198,.896),(-.185,.937),(-.125,.961),(-.040,.962),(0,.950),(.040,.962),(.125,.961),(.185,.937),(.198,.896),(.149,.877),(.066,.889),(0,.914),(-.066,.889),(-.149,.877)]
- c.prism('Mask | single turquoise quilted forehead mask',mask,.175,.037,6,'head',2,bevel=.015)
- c.box('Mask | rear strap adjuster',(0,-.183,.905),(.045,.016,.040),6,'head',bevel=.008,segments=2,mat=2)
+ c.prism('Mask | single turquoise quilted forehead mask',mask,.162,.037,6,'head',2,bevel=.015)
+ c.box('Mask | rear strap adjuster',(0,-.157,.905),(.045,.016,.040),6,'head',bevel=.008,segments=2,mat=2)
  c.contact('Mask | continuous strap around head','Mask | single turquoise quilted forehead mask')
  # Cat pendant has one complete cord, a real linking loop and a gold crescent.
  c.ellipse_loop('Pendant | continuous brown neck cord',(0,0,.550),.145,.119,.0075,11,n=40,tube_n=6)

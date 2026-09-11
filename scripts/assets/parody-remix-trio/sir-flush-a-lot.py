@@ -22,8 +22,9 @@ def character():
  c.tube('Hinge | single fixed cross axle',[(-.166,-.165,.432),(.166,-.165,.432)],.015,14,mat=3,n=12)
  for x in [-.133,.133]:
   c.box('Hinge | ceramic bearing '+str(x),(x,-.173,.444),(.048,.061,.043),0,bevel=.012,segments=2)
- c.ellipsoid('Lid | one raised oval ceramic lid',(0,-.178,.638),(.217,.025,.219),0,'lid',n=24,r=10)
- c.ellipse_loop('Lid | softly rounded single rim',(0,-.151,.638),.194,.195,.010,1,'lid',normal='y',n=32,tube_n=6)
+ c.ellipsoid('Lid | one raised oval ceramic lid',(0,-.130,.638),(.217,.025,.219),0,'lid',n=24,r=10)
+ c.box('Lid | integral ceramic hinge tongue',(0,-.159,.443),(.120,.072,.048),0,'lid',bevel=.008,segments=2)
+ c.ellipse_loop('Lid | softly rounded single rim',(0,-.103,.638),.194,.195,.010,1,'lid',normal='y',n=32,tube_n=6)
  # Neck has no body/arms/legs; its deep lower end stays inside the bowl.
  c.lathe('Neck | single flexible opera neck',(0,.043,0),[(.302,.071),(.405,.068),(.491,.052),(.590,.061),(.664,.074)],2,'neck',mat=1,n=24)
  c.ellipsoid('Head | single male cartoon cranium',(0,.027,.775),(.151,.120,.169),2,'head',1,n=28,r=14)
@@ -79,7 +80,8 @@ def character():
  c.contact('Cistern | complete rounded rear ceramic tank','Cistern | structural bowl-to-tank bridge')
  c.contact('Neck | single flexible opera neck','Head | single male cartoon cranium')
  c.contact('Hair | fitted swept dark cap','Crown | attached small gold band')
- c.contact('Hinge | single fixed cross axle','Lid | one raised oval ceramic lid')
+ c.contact('Hinge | single fixed cross axle','Lid | integral ceramic hinge tongue')
+ c.contact('Lid | integral ceramic hinge tongue','Lid | one raised oval ceramic lid')
 
 def animate(arm,clip,t):
  p=arm.pose.bones
