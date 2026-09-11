@@ -1,6 +1,6 @@
 # Current handoff
 
-Updated September 11, 2026 after the final private release checks. The playable two-chapter MVP and visual asset catalog are delivered. [PLAN004](plans/completed/004-overnight-mvp.md) and the bounded [PLAN005](plans/completed/005-era-combat-loop.md) are completed. The next step is Tom's playtest and creative direction; do not restart authoring or expand the campaign automatically.
+Updated September 11, 2026 after Tom's first family playtest. [PLAN006](plans/006-playtest-polish-and-besties.md) is active in `/home/dev/work/quest-playtest-feedback`, branch `agent/quest-playtest-feedback`, base `698c9c7`. The touch wand/second-boss progression report is the first priority, followed by sound, foliage, friendly bonuses/penalties using the six existing creature assets, and Operation Besties. Native combat/audio lanes and a friendly-contract audit are running; root owns design, UI/copy, catalog integration and release. No new release has been made yet. The earlier PLAN004/005 delivery evidence below is historical and does not establish that real iPad touch play was satisfactory.
 
 ## Open these from the home network
 
@@ -44,9 +44,9 @@ The normal app retains UID `d3e0117d-9dc5-4716-9343-2a740147171b` and old3502/di
 
 Real family photos, full-name/birthday Immich lookup, per-level photo and encounter curation, parent/admin roles, favorites/exclusions and era overrides belong to [DESIGN012](../docs/designs/012-player-journey-curation.md). OAuth/admission remain deferred; fictional access cannot read Immich. No private photo import is authorized by the offer of a future 37-year archive test.
 
-Tom wants recognizable, funny period parodies and an approachable obby for his daughter, age six. His son, age eleven, prefers FNAF over Skibidi. The current four-model cast is temporary review content, not a permanent child-specific roster. The six earlier generic creature studies are rejected as enemies and retained only for possible friendly/ambient consideration.
+Tom wants recognizable, funny period parodies and an approachable obby for his daughter, age six. His son, age eleven, prefers FNAF over Skibidi. The current four-model cast is temporary review content, not a permanent child-specific roster. The six creature assets now have an owner-directed friendly role: optional bonuses for the player and recoverable penalties for harming them. PLAN006 replaces the earlier provisional role descriptions.
 
-**The Besties duo is the next collaborative design**, with alternating obstacle tricks and a shared recovery window agreed. Appearance is undecided; no Besties or FNAF asset exists. Read [WO036](work-orders/036-besties-design-brief.md) before discussing the look. Do not resume expensive modeling without an agreed brief. Lifetime difficulty, abilities and returning years later are future [BL06](../docs/BACKLOG.md#bl-06-a-lifetime-campaign-that-grows-with-the-player), not missing work in this bounded playtest.
+**The Besties duo is the next collaborative design**, with alternating obstacle tricks and a shared recovery window agreed. Operation Besties is now authorized under PLAN006; the existing agreed duo routine remains the starting point. Appearance still needs its collaborative concept, and no Besties or FNAF asset exists yet. Read [WO036](work-orders/036-besties-design-brief.md) before discussing the look. Do not resume expensive modeling without an agreed brief. Lifetime difficulty, abilities and returning years later are future [BL06](../docs/BACKLOG.md#bl-06-a-lifetime-campaign-that-grows-with-the-player), not missing work in this bounded playtest.
 
 All final artwork still awaits Tom's exact-version review. Audio auditions exist, but listening review remains open and the game is silent. Physical iPhone/iPad Safari, device performance and child playtests remain open. Concept v002 corrected the keepsake's missing rear wedge; its existing v001 model already had that support.
 
