@@ -1,8 +1,7 @@
 /**
- * WO-033 review regression (finding R-8). Authored enemies lose an HP drop
- * observed during windup/strike because those branches always keep the attack
- * clip active and `lastHp` is updated at the end of the frame. The authored
- * model also skips the procedural squash fallback, so its hit clip never plays.
+ * WO-033 regression (finding R-8). An HP drop observed during windup/strike
+ * keeps the readable attack cue intact, then plays one queued hit reaction as
+ * soon as the simulation leaves the attack phase.
  */
 import { describe, expect, it } from "vitest";
 import * as THREE from "three";
@@ -76,20 +75,39 @@ function frame(
   };
 }
 
-function hitDuring(phase: "windup" | "strike"): number {
+function hitDuring(phase: "windup" | "strike") {
   const rig = makeRig();
   const animation = new EnemyAnimation(rig.root, makeClips(), 0.6);
   animation.update(frame("chasing", 10), 0.016);
   animation.update(frame(phase, 10, phase === "windup" ? 0.1 : 0), 0.016);
   animation.update(frame(phase, 6, phase === "windup" ? 0.2 : 0), 0.05);
   animation.update(frame(phase, 6, phase === "windup" ? 0.3 : 0), 0.05);
-  return rig.head.position.z;
+  const duringAttack = rig.head.position.z;
+  animation.update(frame("cooldown", 6), 0.05);
+  animation.update(frame("cooldown", 6), 0.05);
+  return { duringAttack, afterAttack: rig.head.position.z };
 }
 
 describe("authored enemy hit feedback", () => {
-  it.fails("does not discard the hit reaction when HP drops during an attack", () => {
-    expect(hitDuring("windup")).toBeGreaterThan(0);
-    expect(hitDuring("strike")).toBeGreaterThan(0);
+  it.each(["windup", "strike"] as const)(
+    "queues an HP drop during %s until the attack phase resolves",
+    (phase) => {
+      const result = hitDuring(phase);
+      expect(result.duringAttack).toBe(0);
+      expect(result.afterAttack).toBeGreaterThan(0);
+    },
+  );
+
+  it("drops a queued reaction when the enemy is defeated", () => {
+    const rig = makeRig();
+    const animation = new EnemyAnimation(rig.root, makeClips(), 0.6);
+    animation.update(frame("chasing", 10), 0.016);
+    animation.update(frame("windup", 10, 0.1), 0.016);
+    animation.update(frame("windup", 6, 0.2), 0.05);
+    animation.update(frame("defeated", 0), 0.05);
+    animation.update(frame("chasing", 10), 0.05);
+    animation.update(frame("chasing", 10), 0.05);
+    expect(rig.head.position.z).toBe(0);
   });
 
   it("plays the same hit clip when HP drops during cooldown", () => {

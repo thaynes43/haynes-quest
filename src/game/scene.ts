@@ -85,6 +85,7 @@ export class GardenScene {
   private cameraPlaced = false;
   private previousAttack = false;
   private attackAt = -10;
+  private unsupportedContentCount = 0;
 
   constructor(
     private readonly container: HTMLElement,
@@ -163,6 +164,7 @@ export class GardenScene {
 
   rebuildRoute(level: LevelLayout, save: SaveView): void {
     this.routeGeneration += 1;
+    this.unsupportedContentCount = 0;
     this.save = save;
     for (const photo of this.photos.values()) {
       if (photo.timer) clearTimeout(photo.timer);
@@ -349,6 +351,7 @@ export class GardenScene {
         (item) => item.id === placement.id,
       )?.content;
       const artwork = content ? parodyArtwork(content) : null;
+      if (content && !artwork) this.unsupportedContentCount += 1;
       const model = artwork
         ? new THREE.Group()
         : createEncounterStudy(placement.kind, later);
@@ -448,15 +451,18 @@ export class GardenScene {
 
   getMediaState(): SceneMediaState {
     const assets = this.assets.getState();
-    return {
+    const state: SceneMediaState & { reloadRequired?: boolean } = {
       loading:
         assets.loading +
         [...this.photos.values()].filter((item) => item.loading || item.timer)
           .length,
       failed:
         assets.failed +
-        [...this.photos.values()].filter((item) => item.failed).length,
+        [...this.photos.values()].filter((item) => item.failed).length +
+        this.unsupportedContentCount,
+      reloadRequired: this.unsupportedContentCount > 0,
     };
+    return state;
   }
 
   retryMedia(): void {

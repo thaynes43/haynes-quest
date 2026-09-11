@@ -23,7 +23,7 @@ export function parodyArtwork(content: NonNullable<EncounterView["content"]>) {
       candidate.assetVersion === content.assetVersion,
   );
   const motion = entry && parodyMotion[entry.id];
-  if (!entry || !motion) throw new Error("Unsupported frozen parody artwork");
+  if (!entry || !motion) return null;
   return {
     ...motion,
     id: entry.assetId,

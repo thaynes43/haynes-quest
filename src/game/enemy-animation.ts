@@ -126,6 +126,7 @@ export class EnemyAnimation {
   private currentFadeSeconds = 0;
   private lastPhase: EnemyPhase | null = null;
   private lastHp: number | null = null;
+  private hitQueued = false;
   private vanish = 0;
   private visible = true;
   private disposed = false;
@@ -188,6 +189,7 @@ export class EnemyAnimation {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.hitQueued = false;
     this.mixer.stopAllAction();
     this.mixer.uncacheRoot(this.root);
     this.visible = false;
@@ -195,6 +197,7 @@ export class EnemyAnimation {
   }
 
   private updateDefeated(dt: number): void {
+    this.hitQueued = false;
     if (this.mode === null) {
       // The first frame is already a past victory: never replay it.
       this.mode = "hidden";
@@ -231,21 +234,28 @@ export class EnemyAnimation {
     const hpRose = this.lastHp !== null && frame.hp > this.lastHp;
     // A retry restoring HP ends any hit feedback; the phase switch below
     // cross-fades from the hit pose instead of snapping.
-    if (hpRose && this.mode === "hit") this.mode = "locomotion";
+    if (hpRose) {
+      this.hitQueued = false;
+      if (this.mode === "hit") this.mode = "locomotion";
+    }
+    // Preserve the authored warning/contact pose through the attack, then
+    // acknowledge damage as soon as the simulation leaves windup/strike.
     const attack = this.actions.attack;
     switch (frame.phase) {
       case "windup":
+        if (hpDropped) this.hitQueued = true;
         if (this.mode !== "attack") this.enterAttack();
         attack.paused = true;
         attack.time = clamp01(frame.windupProgress) * this.contactSeconds;
         break;
       case "strike":
+        if (hpDropped) this.hitQueued = true;
         if (this.mode !== "attack") this.enterAttack();
         if (this.lastPhase !== "strike") attack.time = this.contactSeconds;
         this.resumeAttack();
         break;
       case "cooldown":
-        if (hpDropped) this.enterHit();
+        if (hpDropped || this.hitQueued) this.enterHit();
         else if (this.mode === "attack") {
           if (this.lastPhase === "windup") attack.time = this.contactSeconds;
           this.resumeAttack();
@@ -253,7 +263,7 @@ export class EnemyAnimation {
         break;
       case "idle":
       case "chasing":
-        if (hpDropped) this.enterHit();
+        if (hpDropped || this.hitQueued) this.enterHit();
         else if (this.mode !== "hit")
           this.enterLocomotion(locomotionFor(frame.phase));
         break;
@@ -265,6 +275,7 @@ export class EnemyAnimation {
 
   private startFresh(): void {
     this.mixer.stopAllAction();
+    this.hitQueued = false;
     this.current = null;
     this.mode = "locomotion";
     this.visible = true;
@@ -297,6 +308,7 @@ export class EnemyAnimation {
   }
 
   private enterHit(): void {
+    this.hitQueued = false;
     this.mode = "hit";
     this.play(this.actions.hit);
   }
