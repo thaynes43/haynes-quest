@@ -2,6 +2,8 @@
 
 For the current game scope and its exact four-character cast, open the [two-chapter playtest](playtest.md). That page separates what can be assessed in the next test from future family setup, photos and additional content. The archive below also preserves earlier studies and paused candidates.
 
+The [four-character browser audit](media/parody-playtest-audit/v001/report.json) verifies all four model pages, 20 animation clips, 28 videos, 20 stills, four touch orbits and four editable masters. No page, console, asset-response or external-request errors were recorded. This establishes catalog delivery; full game controls and owner artwork decisions are separate checks.
+
 This catalog preserves the original overnight inventory and the required two-era combat expansion below. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The original overnight inventory is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
 
 [Browser delivery audit](media/storybook-reference/v001/browser-intake/catalog-local-report.json): 12 pages, nine models, seven clips and four decoded auditions; zero page/console errors, failed responses or external asset requests. [Combined clearing preview](media/clearing-path-kit/v001/kit-beauty.png).
