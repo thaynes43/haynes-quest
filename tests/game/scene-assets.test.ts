@@ -23,7 +23,26 @@ function expectMatrix(actual: THREE.Matrix4, expected: THREE.Matrix4): void {
   );
 }
 
-afterEach(() => vi.restoreAllMocks());
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
+
+/** Stands in for the browser ImageBitmap that GLTFLoader decodes embedded images into. */
+class FakeImageBitmap {
+  readonly width = 4;
+  readonly height = 4;
+  closed = 0;
+  close(): void {
+    this.closed += 1;
+  }
+}
+
+function bitmapTexture(bitmap: FakeImageBitmap): THREE.Texture {
+  const texture = new THREE.Texture(bitmap as unknown as ImageBitmap);
+  texture.needsUpdate = true;
+  return texture;
+}
 
 describe("SceneAssets.attachInstances", () => {
   it("bakes the complete source hierarchy into every placement and preserves grouped materials", async () => {
@@ -389,5 +408,187 @@ describe("SceneAssets.attachInstances", () => {
     expect(target.children).toHaveLength(0);
     expect(load).toHaveBeenCalledTimes(1);
     expect(assets.getState()).toEqual({ loading: 0, failed: 0 });
+  });
+});
+
+describe("SceneAssets decoded bitmap ownership", () => {
+  it("keeps shared bitmaps open across attachment disposal and closes each exactly once at final disposal", async () => {
+    vi.stubGlobal("ImageBitmap", FakeImageBitmap);
+    const pigment = new FakeImageBitmap();
+    const trim = new FakeImageBitmap();
+    const pigmentTexture = bitmapTexture(pigment);
+    // GLTFLoader hands a second sampler of the same image a clone that shares the decoded bitmap.
+    const pigmentSamplerClone = pigmentTexture.clone();
+    const trimTexture = bitmapTexture(trim);
+    const plainTexture = new THREE.Texture();
+    const sourceScene = new THREE.Group();
+    sourceScene.add(
+      new THREE.Mesh(
+        new THREE.BoxGeometry(),
+        new THREE.MeshStandardMaterial({
+          map: pigmentTexture,
+          emissiveMap: trimTexture,
+          roughnessMap: plainTexture,
+        }),
+      ),
+      new THREE.Mesh(
+        new THREE.BoxGeometry(),
+        new THREE.MeshStandardMaterial({ map: pigmentSamplerClone }),
+      ),
+    );
+    vi.spyOn(GLTFLoader.prototype, "loadAsync").mockResolvedValue(
+      gltf(sourceScene),
+    );
+    const sourceTextureDispose = vi.spyOn(pigmentTexture, "dispose");
+    const assets = new SceneAssets();
+    const first = new THREE.Group();
+    const second = new THREE.Group();
+
+    assets.attach("/pigment.glb", first, () => true);
+    assets.attach("/pigment.glb", second, () => true);
+    await vi.waitFor(() => expect(second.children).toHaveLength(1));
+    await vi.waitFor(() => expect(first.children).toHaveLength(1));
+    const imagesOf = (target: THREE.Group) => {
+      const images: unknown[] = [];
+      target.traverse((object) => {
+        if (!(object instanceof THREE.Mesh)) return;
+        const material = object.material as THREE.MeshStandardMaterial;
+        images.push(material.map?.image);
+      });
+      return images;
+    };
+    expect(imagesOf(first)).toEqual([pigment, pigment]);
+    expect(imagesOf(second)).toEqual([pigment, pigment]);
+
+    disposeTree(first);
+    expect(pigment.closed).toBe(0);
+    expect(trim.closed).toBe(0);
+
+    const third = new THREE.Group();
+    assets.attach("/pigment.glb", third, () => true);
+    await vi.waitFor(() => expect(third.children).toHaveLength(1));
+    expect(imagesOf(third)).toEqual([pigment, pigment]);
+    expect(pigment.closed).toBe(0);
+    disposeTree(second);
+    disposeTree(third);
+    expect(pigment.closed).toBe(0);
+    expect(trim.closed).toBe(0);
+
+    assets.dispose();
+    await vi.waitFor(() => expect(pigment.closed).toBe(1));
+    expect(trim.closed).toBe(1);
+    expect(sourceTextureDispose).toHaveBeenCalledOnce();
+    assets.dispose();
+    const late = new THREE.Group();
+    assets.attach("/pigment.glb", late, () => true);
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(late.children).toHaveLength(0);
+    expect(pigment.closed).toBe(1);
+    expect(trim.closed).toBe(1);
+  });
+
+  it("closes the bitmaps of a load that resolves after disposal without attaching", async () => {
+    vi.stubGlobal("ImageBitmap", FakeImageBitmap);
+    const bitmap = new FakeImageBitmap();
+    const sourceScene = new THREE.Group();
+    sourceScene.add(
+      new THREE.Mesh(
+        new THREE.BoxGeometry(),
+        new THREE.MeshBasicMaterial({ map: bitmapTexture(bitmap) }),
+      ),
+    );
+    const pending = deferred<GLTF>();
+    vi.spyOn(GLTFLoader.prototype, "loadAsync").mockReturnValue(
+      pending.promise,
+    );
+    const assets = new SceneAssets();
+    const target = new THREE.Group();
+    const instanced = new THREE.Group();
+
+    assets.attach("/late.glb", target, () => true);
+    assets.attachInstances(
+      "/late.glb",
+      instanced,
+      [new THREE.Matrix4()],
+      () => true,
+    );
+    assets.dispose();
+    expect(bitmap.closed).toBe(0);
+    pending.resolve(gltf(sourceScene));
+
+    await vi.waitFor(() => expect(bitmap.closed).toBe(1));
+    expect(target.children).toHaveLength(0);
+    expect(instanced.children).toHaveLength(0);
+    await Promise.resolve();
+    expect(bitmap.closed).toBe(1);
+  });
+
+  it("never closes bitmaps when instanced batches or stale assemblies are disposed", async () => {
+    vi.stubGlobal("ImageBitmap", FakeImageBitmap);
+    const bitmap = new FakeImageBitmap();
+    const sourceScene = new THREE.Group();
+    sourceScene.add(
+      new THREE.Mesh(
+        new THREE.BoxGeometry(),
+        new THREE.MeshBasicMaterial({ map: bitmapTexture(bitmap) }),
+      ),
+    );
+    vi.spyOn(GLTFLoader.prototype, "loadAsync").mockResolvedValue(
+      gltf(sourceScene),
+    );
+    const assets = new SceneAssets();
+    const target = new THREE.Group();
+    const staleTarget = new THREE.Group();
+    let validityChecks = 0;
+
+    assets.attachInstances(
+      "/batch.glb",
+      target,
+      [new THREE.Matrix4()],
+      () => true,
+    );
+    assets.attachInstances(
+      "/batch.glb",
+      staleTarget,
+      [new THREE.Matrix4()],
+      () => ++validityChecks < 3,
+    );
+    await vi.waitFor(() => expect(target.children).toHaveLength(1));
+    await vi.waitFor(() => expect(validityChecks).toBeGreaterThanOrEqual(3));
+    expect(staleTarget.children).toHaveLength(0);
+    const batch = target.children[0]!.children[0] as THREE.InstancedMesh;
+    expect((batch.material as THREE.MeshBasicMaterial).map?.image).toBe(bitmap);
+    disposeTree(target);
+    expect(bitmap.closed).toBe(0);
+
+    assets.dispose();
+    await vi.waitFor(() => expect(bitmap.closed).toBe(1));
+  });
+
+  it("leaves non-bitmap texture images untouched at final disposal", async () => {
+    vi.stubGlobal("ImageBitmap", FakeImageBitmap);
+    const image = { width: 2, height: 2, close: vi.fn() };
+    const texture = new THREE.Texture(image as unknown as ImageBitmap);
+    const sourceScene = new THREE.Group();
+    sourceScene.add(
+      new THREE.Mesh(
+        new THREE.BoxGeometry(),
+        new THREE.MeshBasicMaterial({ map: texture }),
+      ),
+    );
+    vi.spyOn(GLTFLoader.prototype, "loadAsync").mockResolvedValue(
+      gltf(sourceScene),
+    );
+    const textureDispose = vi.spyOn(texture, "dispose");
+    const assets = new SceneAssets();
+    const target = new THREE.Group();
+
+    assets.attach("/plain.glb", target, () => true);
+    await vi.waitFor(() => expect(target.children).toHaveLength(1));
+    assets.dispose();
+
+    await vi.waitFor(() => expect(textureDispose).toHaveBeenCalledOnce());
+    expect(image.close).not.toHaveBeenCalled();
   });
 });

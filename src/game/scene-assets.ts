@@ -41,6 +41,35 @@ export function disposeTree(root: THREE.Object3D): void {
     resource.dispose();
 }
 
+function isImageBitmap(image: unknown): image is ImageBitmap {
+  return typeof ImageBitmap !== "undefined" && image instanceof ImageBitmap;
+}
+
+/**
+ * GLTFLoader decodes each embedded image once into an ImageBitmap and every
+ * texture made from it, including our attachment clones, shares that bitmap.
+ * Texture disposal never closes it, so the cache owner closes each one exactly
+ * once at final disposal.
+ */
+function closeDecodedBitmaps(root: THREE.Object3D): void {
+  const bitmaps = new Set<ImageBitmap>();
+  root.traverse((object) => {
+    if (
+      !(object instanceof THREE.Mesh) &&
+      !(object instanceof THREE.Points) &&
+      !(object instanceof THREE.Line)
+    )
+      return;
+    for (const material of Array.isArray(object.material)
+      ? object.material
+      : [object.material])
+      for (const value of Object.values(material))
+        if (value instanceof THREE.Texture && isImageBitmap(value.image))
+          bitmaps.add(value.image);
+  });
+  for (const bitmap of bitmaps) bitmap.close();
+}
+
 type ModelEntry = { promise: Promise<GLTF>; failed: boolean; loading: boolean };
 type RetryJob = { run: () => void; valid: () => boolean };
 
@@ -563,12 +592,21 @@ export class SceneAssets {
       for (const job of jobs) job.run();
   }
 
+  /**
+   * Final release. Cached GLTFs give up their GPU resources and, since every
+   * attachment clone only ever shared the decoded images, each cache-owned
+   * bitmap is closed exactly once here; loads still in flight are released
+   * when they settle. Ordinary `disposeTree` calls never close bitmaps.
+   */
   dispose(): void {
     this.disposed = true;
     this.retryJobs.clear();
     for (const entry of this.entries.values()) {
       void entry.promise
-        .then((gltf) => disposeTree(gltf.scene))
+        .then((gltf) => {
+          disposeTree(gltf.scene);
+          closeDecodedBitmaps(gltf.scene);
+        })
         .catch(() => undefined);
     }
     this.entries.clear();
