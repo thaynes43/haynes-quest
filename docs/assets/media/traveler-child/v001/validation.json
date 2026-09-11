@@ -1,0 +1,163 @@
+{
+  "file": "traveler-child.glb",
+  "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e",
+  "bytes": 460616,
+  "triangles": 11296,
+  "materials": [
+    {
+      "name": "Plum wool",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9399999976158142
+    },
+    {
+      "name": "Hood shadow",
+      "metallicFactor": 0
+    },
+    {
+      "name": "Flax thread",
+      "metallicFactor": 0
+    },
+    {
+      "name": "Leaf linen",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9599999785423279
+    },
+    {
+      "name": "Warm mittens",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9599999785423279
+    },
+    {
+      "name": "Cedar leather",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.8999999761581421
+    },
+    {
+      "name": "Umber sole",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9599999785423279
+    },
+    {
+      "name": "Honey brass",
+      "metallicFactor": 0.41999998688697815,
+      "roughnessFactor": 0.46000000834465027
+    }
+  ],
+  "primitives": 8,
+  "bones": [
+    "root",
+    "pelvis",
+    "spine",
+    "head",
+    "upper_arm.R",
+    "forearm.R",
+    "hand.R",
+    "upper_arm.L",
+    "forearm.L",
+    "hand.L",
+    "thigh.R",
+    "shin.R",
+    "foot.R",
+    "thigh.L",
+    "shin.L",
+    "foot.L"
+  ],
+  "textures": 0,
+  "extensions_required": [],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "rest_bounds_gltf": {
+    "min": [
+      -0.3247092664241791,
+      0,
+      -0.20652365684509277
+    ],
+    "max": [
+      0.3277566134929657,
+      1.1999999284744263,
+      0.1848495453596115
+    ]
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2,
+      "channels": 48
+    },
+    {
+      "name": "move",
+      "duration_s": 1,
+      "channels": 48
+    },
+    {
+      "name": "interact",
+      "duration_s": 2,
+      "channels": 48
+    },
+    {
+      "name": "jump",
+      "duration_s": 1.5,
+      "channels": 48
+    }
+  ],
+  "checks": {
+    "gltf_version_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "exact_clip_names": true,
+    "all_clips_animated": true,
+    "triangle_budget_12000": true,
+    "material_budget_8": true,
+    "glb_budget_2_mib": true,
+    "embedded_resources": true,
+    "no_required_decoders": true,
+    "y_up_ground_origin": true,
+    "physical_height_m": true,
+    "shared_16_joint_rig": true,
+    "vertex_colors": true,
+    "max_4_influences": true,
+    "matte_materials": true
+  },
+  "validator": {
+    "uri": "traveler-child.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T04:27:46.609Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 419856
+        }
+      ],
+      "animationCount": 4,
+      "materialCount": 8,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 8,
+      "totalVertexCount": 5885,
+      "totalTriangleCount": 11296,
+      "maxUVs": 0,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

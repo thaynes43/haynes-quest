@@ -1,0 +1,95 @@
+{
+  "stage": "infant",
+  "tool": "Three.js GLTFLoader + AnimationMixer + CPU skinned bounds",
+  "three_version": "0.186.0",
+  "sha256": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.27218812704086304,
+      1.2993812248396353e-8,
+      -0.18054281175136566
+    ],
+    "max": [
+      0.2722150683403015,
+      0.7500000427961302,
+      0.14433038234710693
+    ]
+  },
+  "animations": {
+    "idle": {
+      "duration_s": 2,
+      "samples": 33,
+      "bounds": {
+        "min": [
+          -0.2754408811764544,
+          2.789497344224401e-8,
+          -0.18054281175136566
+        ],
+        "max": [
+          0.27548524782267336,
+          0.7521161699757922,
+          0.15079484186345957
+        ]
+      },
+      "has_motion": true
+    },
+    "move": {
+      "duration_s": 1,
+      "samples": 33,
+      "bounds": {
+        "min": [
+          -0.2773380402670764,
+          -0.0006982250279364277,
+          -0.18375768608329196
+        ],
+        "max": [
+          0.2773056115148608,
+          0.7635020336897823,
+          0.15383149108459282
+        ]
+      },
+      "has_motion": true
+    },
+    "interact": {
+      "duration_s": 2,
+      "samples": 33,
+      "bounds": {
+        "min": [
+          -0.27875253117334253,
+          2.789497344224401e-8,
+          -0.2248471890279451
+        ],
+        "max": [
+          0.2722150683403015,
+          0.750131022953475,
+          0.14433038234710693
+        ]
+      },
+      "has_motion": true
+    }
+  },
+  "mesh_primitives": 8,
+  "bones_per_primitive": [
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16
+  ],
+  "checks": {
+    "loader_without_decoder": true,
+    "skinned_mesh_present": true,
+    "exact_physical_height": true,
+    "standing_ground_origin": true,
+    "all_expected_clips": true,
+    "all_clips_move_geometry": true,
+    "root_bone_fixed": true,
+    "external_scene_translation_correct": true,
+    "finite_bounds": true,
+    "no_large_floor_penetration": true
+  },
+  "limitations": "No WebGL rasterization, browser, GPU, touch or physical Safari performance is claimed."
+}

@@ -1,0 +1,112 @@
+{
+  "stage": "child",
+  "tool": "Three.js GLTFLoader + AnimationMixer + CPU skinned bounds",
+  "three_version": "0.186.0",
+  "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.3247092664241791,
+      0,
+      -0.20652365684509277
+    ],
+    "max": [
+      0.3277566134929657,
+      1.1999999284744263,
+      0.1848495453596115
+    ]
+  },
+  "animations": {
+    "idle": {
+      "duration_s": 2,
+      "samples": 33,
+      "bounds": {
+        "min": [
+          -0.33004045012732475,
+          0,
+          -0.20652365684509277
+        ],
+        "max": [
+          0.33304717465021744,
+          1.2025301082366242,
+          0.19247563393005973
+        ]
+      },
+      "has_motion": true
+    },
+    "move": {
+      "duration_s": 1,
+      "samples": 33,
+      "bounds": {
+        "min": [
+          -0.326478692603726,
+          -0.0022741046548390292,
+          -0.3570281998003616
+        ],
+        "max": [
+          0.3299306319356011,
+          1.213935809130299,
+          0.3916196540506683
+        ]
+      },
+      "has_motion": true
+    },
+    "interact": {
+      "duration_s": 2,
+      "samples": 33,
+      "bounds": {
+        "min": [
+          -0.3427220909578659,
+          0,
+          -0.34420658615462224
+        ],
+        "max": [
+          0.3277566134929657,
+          1.2002293465177336,
+          0.1848495453596115
+        ]
+      },
+      "has_motion": true
+    },
+    "jump": {
+      "duration_s": 1.5,
+      "samples": 33,
+      "bounds": {
+        "min": [
+          -0.40350219270832155,
+          -0.00017952367135272044,
+          -0.20652365684509277
+        ],
+        "max": [
+          0.40350219270832155,
+          1.3694873253951028,
+          0.1848495453596115
+        ]
+      },
+      "has_motion": true
+    }
+  },
+  "mesh_primitives": 8,
+  "bones_per_primitive": [
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16
+  ],
+  "checks": {
+    "loader_without_decoder": true,
+    "skinned_mesh_present": true,
+    "exact_physical_height": true,
+    "standing_ground_origin": true,
+    "all_expected_clips": true,
+    "all_clips_move_geometry": true,
+    "root_bone_fixed": true,
+    "external_scene_translation_correct": true,
+    "finite_bounds": true,
+    "no_large_floor_penetration": true
+  },
+  "limitations": "No WebGL rasterization, browser, GPU, touch or physical Safari performance is claimed."
+}

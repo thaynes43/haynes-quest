@@ -1,0 +1,496 @@
+{
+  "asset_id": "traveler-child",
+  "version": "v001",
+  "status": "candidate; owner review pending",
+  "authoring": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "work_order": "WO-007",
+    "blender_version": "4.5.13 LTS",
+    "method": "Original procedural mesh, vertex painting, armature and pose animation through native Blender MCP; no image generation by this agent."
+  },
+  "review": {
+    "creator_inspected": true,
+    "coordinator_intake": "pending lead review",
+    "owner_approval": "pending",
+    "gameplay_promotion": false,
+    "physical_safari_validation": false
+  },
+  "reference_set": "storybook-v001",
+  "reference_sha256": {
+    "traveler-ages.png": "4d43c73a80d8f8505cf142f6e6a35703456aba857f19d8d0a2c7a06d25759c84",
+    "environment.png": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908",
+    "props-materials.png": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+  },
+  "source_provenance": "Coordinator-selected fictional reference images were visually inspected. No third-party meshes, textures, facial likeness or family data were imported.",
+  "construction": {
+    "asset_version": "v001",
+    "blender": "4.5.13 LTS",
+    "triangles": 11296,
+    "vertices_blender": 5885,
+    "materials": 8,
+    "bones": 16,
+    "height_m": 1.1999999284744263,
+    "standing_min_z_m": 0.0,
+    "width_m": 0.6524658799171448,
+    "depth_m": 0.3913732022047043,
+    "expected_clips": [
+      "idle",
+      "move",
+      "interact",
+      "jump"
+    ],
+    "coordinate_system": {
+      "blender_up": "+Z",
+      "blender_forward": "+Y",
+      "gltf_up": "+Y",
+      "gltf_forward": "-Z",
+      "unit": "meter",
+      "origin": "feet at ground"
+    },
+    "construction_scale_correction": 0.9999999602635717
+  },
+  "runtime": {
+    "appearance_contract": "synthetic-traveler-v1",
+    "stage": "child",
+    "required_clips": [
+      "idle",
+      "move",
+      "interact",
+      "jump"
+    ],
+    "gltf_up": "+Y",
+    "gltf_forward": "-Z",
+    "unit": "meter",
+    "origin": "feet at ground",
+    "wearer_right_hip_axis": "+X",
+    "root_translation": "fixed; controller/collider movement is external",
+    "jump_local_visual_lift_m": 0.17,
+    "materials": 8,
+    "textures": 0,
+    "external_decoders": false,
+    "external_resources": false
+  },
+  "validation": {
+    "khronos_version": "2.0.0-dev.3.10",
+    "errors": 0,
+    "warnings": 0,
+    "checks": {
+      "gltf_version_2": true,
+      "khronos_no_errors": true,
+      "khronos_no_warnings": true,
+      "exact_clip_names": true,
+      "all_clips_animated": true,
+      "triangle_budget_12000": true,
+      "material_budget_8": true,
+      "glb_budget_2_mib": true,
+      "embedded_resources": true,
+      "no_required_decoders": true,
+      "y_up_ground_origin": true,
+      "physical_height_m": true,
+      "shared_16_joint_rig": true,
+      "vertex_colors": true,
+      "max_4_influences": true,
+      "matte_materials": true
+    },
+    "export_inspection": {
+      "source": "reimported candidate GLB",
+      "blender": "4.5.13 LTS",
+      "rest_bounds_blender": {
+        "min": [
+          -0.3247092664241791,
+          -0.1848495453596115,
+          -6.049072195934293e-25
+        ],
+        "max": [
+          0.3277566134929657,
+          0.20652365684509277,
+          1.1999999284744263
+        ]
+      },
+      "actions": {
+        "idle": {
+          "duration_s": 2.0,
+          "samples": 17,
+          "bounds_min": [
+            -0.33004045486450195,
+            -0.19244655966758728,
+            -6.049072195934293e-25
+          ],
+          "bounds_max": [
+            0.33304715156555176,
+            0.20652365684509277,
+            1.2025301456451416
+          ]
+        },
+        "move": {
+          "duration_s": 1.0,
+          "samples": 17,
+          "bounds_min": [
+            -0.3264787197113037,
+            -0.39161956310272217,
+            -0.002274196594953537
+          ],
+          "bounds_max": [
+            0.3299306035041809,
+            0.35702818632125854,
+            1.2139358520507812
+          ]
+        },
+        "interact": {
+          "duration_s": 2.0,
+          "samples": 17,
+          "bounds_min": [
+            -0.3427221179008484,
+            -0.1848495453596115,
+            -6.049072195934293e-25
+          ],
+          "bounds_max": [
+            0.3277566134929657,
+            0.3442065417766571,
+            1.200229287147522
+          ]
+        },
+        "jump": {
+          "duration_s": 1.5,
+          "samples": 17,
+          "bounds_min": [
+            -0.4035021662712097,
+            -0.1848495453596115,
+            -0.00017960694094654173
+          ],
+          "bounds_max": [
+            0.4035021662712097,
+            0.20652365684509277,
+            1.3694871664047241
+          ]
+        }
+      }
+    },
+    "three_js_inspection": {
+      "stage": "child",
+      "tool": "Three.js GLTFLoader + AnimationMixer + CPU skinned bounds",
+      "three_version": "0.186.0",
+      "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e",
+      "rest_bounds_y_up": {
+        "min": [
+          -0.3247092664241791,
+          0,
+          -0.20652365684509277
+        ],
+        "max": [
+          0.3277566134929657,
+          1.1999999284744263,
+          0.1848495453596115
+        ]
+      },
+      "animations": {
+        "idle": {
+          "duration_s": 2,
+          "samples": 33,
+          "bounds": {
+            "min": [
+              -0.33004045012732475,
+              0,
+              -0.20652365684509277
+            ],
+            "max": [
+              0.33304717465021744,
+              1.2025301082366242,
+              0.19247563393005973
+            ]
+          },
+          "has_motion": true
+        },
+        "move": {
+          "duration_s": 1,
+          "samples": 33,
+          "bounds": {
+            "min": [
+              -0.326478692603726,
+              -0.0022741046548390292,
+              -0.3570281998003616
+            ],
+            "max": [
+              0.3299306319356011,
+              1.213935809130299,
+              0.3916196540506683
+            ]
+          },
+          "has_motion": true
+        },
+        "interact": {
+          "duration_s": 2,
+          "samples": 33,
+          "bounds": {
+            "min": [
+              -0.3427220909578659,
+              0,
+              -0.34420658615462224
+            ],
+            "max": [
+              0.3277566134929657,
+              1.2002293465177336,
+              0.1848495453596115
+            ]
+          },
+          "has_motion": true
+        },
+        "jump": {
+          "duration_s": 1.5,
+          "samples": 33,
+          "bounds": {
+            "min": [
+              -0.40350219270832155,
+              -0.00017952367135272044,
+              -0.20652365684509277
+            ],
+            "max": [
+              0.40350219270832155,
+              1.3694873253951028,
+              0.1848495453596115
+            ]
+          },
+          "has_motion": true
+        }
+      },
+      "mesh_primitives": 8,
+      "bones_per_primitive": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "checks": {
+        "loader_without_decoder": true,
+        "skinned_mesh_present": true,
+        "exact_physical_height": true,
+        "standing_ground_origin": true,
+        "all_expected_clips": true,
+        "all_clips_move_geometry": true,
+        "root_bone_fixed": true,
+        "external_scene_translation_correct": true,
+        "finite_bounds": true,
+        "no_large_floor_penetration": true
+      },
+      "limitations": "No WebGL rasterization, browser, GPU, touch or physical Safari performance is claimed."
+    },
+    "video_streams": {
+      "animations.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 384,
+        "height": 512,
+        "duration_s": 6.5,
+        "frame_rate": "24/1",
+        "audio": false
+      },
+      "idle.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 384,
+        "height": 512,
+        "duration_s": 2.0,
+        "frame_rate": "24/1",
+        "audio": false
+      },
+      "move.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 384,
+        "height": 512,
+        "duration_s": 1.0,
+        "frame_rate": "24/1",
+        "audio": false
+      },
+      "interact.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 384,
+        "height": 512,
+        "duration_s": 2.0,
+        "frame_rate": "24/1",
+        "audio": false
+      },
+      "jump.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 384,
+        "height": 512,
+        "duration_s": 1.5,
+        "frame_rate": "24/1",
+        "audio": false
+      }
+    }
+  },
+  "previews": {
+    "stills_source": "Exact reimported GLB in an isolated Blender background renderer",
+    "lighting": "Cycles CPU, warm broad key, cool fill, parchment ground; 40 samples and denoising",
+    "turnaround": "Orthographic front, wearer-right side and back",
+    "beauty": "Three-quarter orthographic",
+    "motion_grid": "Rows idle, move, interact, jump; four evenly spaced poses per row",
+    "videos": "24 source samples per clip at original GLB duration, H.264/yuv420p at 24 fps; no audio",
+    "age_comparison": "Both exact exported stages at their physical sizes on shared ground"
+  },
+  "deviations_from_reference": [
+    "Broad vertex-painted color washes replace the concept's fine woven/painterly texture; no image textures or UV maps are exported.",
+    "The hood is a more regular rounded triangular shell than the asymmetric cloth folds in the guide; some side-profile faceting remains at close inspection. Its opening is a real concave lining with no facial features.",
+    "Embroidery is reduced to five hood leaf loops and sparse hem/cuff stitches. The crown seam was omitted after it protruded in a close-up.",
+    "Hands are simple rounded mittens. The satchel is a compact rounded box with a simplified flap and round clasp.",
+    "The back mantle is shorter and smoother than the reference; upper corners are tucked toward the shoulders, with a small scarf corner still visible in the three-quarter view.",
+    "The shared 16-joint naming is compatible by contract, but each age has its own rest proportions and authored clips; arbitrary cross-age retargeting is not claimed."
+  ],
+  "limitations": [
+    "First-pass studio candidate, not approved for gameplay.",
+    "No actual iPad/iPhone Safari or production performance measurement.",
+    "Motion bounds are sampled at 17 positions per clip; small interpolated sole penetration remains (see exact bounds).",
+    "Cloth and satchel are skinned geometry with no cloth simulation."
+  ],
+  "scripts": [
+    {
+      "repository_path": "scripts/assets/travelers/build.py",
+      "remote_pvc_path": "/workspace/haynes-quest/travelers/v001/build.py",
+      "sha256": "bd2692f33636ceeb6733d57798df6e59d59ec2ad9f9582897ed27bb0478ea8df"
+    },
+    {
+      "repository_path": "scripts/assets/travelers/render.py",
+      "remote_pvc_path": "/workspace/haynes-quest/travelers/v001/render.py",
+      "sha256": "671ded1dd380ca6b4a9bd78af1f3818532755a23fada364afc1c0b92413cdff9"
+    },
+    {
+      "repository_path": "scripts/assets/travelers/validate.mjs",
+      "remote_pvc_path": "/workspace/haynes-quest/travelers/v001/validate.mjs",
+      "sha256": "94b9f880a1a01a6318d7c3ba646dc528e186127c7ec388fa6a75b4bd14297c88"
+    },
+    {
+      "repository_path": "scripts/assets/travelers/inspect-three.mjs",
+      "remote_pvc_path": "/workspace/haynes-quest/travelers/v001/inspect-three.mjs",
+      "sha256": "23d00d411eaeeccd2b634f3ae0d9e4945b46f7613a76b4fb3ae1df16685343a2"
+    },
+    {
+      "repository_path": "scripts/assets/travelers/delivery.py",
+      "remote_pvc_path": "/workspace/haynes-quest/travelers/v001/delivery.py",
+      "sha256": "2594cde954bf303070a9c7f482def6ae0b3bb6da0c11676e6627c483b6458b4b"
+    }
+  ],
+  "editable_master_storage": "/workspace/haynes-quest/travelers/v001/traveler-child.blend",
+  "previous_iterations": "/workspace/haynes-quest/travelers/v001/iterations/{shape-a,shape-b,shape-c}",
+  "files": [
+    {
+      "remote_relative_path": "traveler-child.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/traveler-child.blend",
+      "local_name": null,
+      "bytes": 3885406,
+      "sha256": "6370d57445e7cc1a42877d9e257f7b37c7b31a051cbb764e373c93270a2a9138"
+    },
+    {
+      "remote_relative_path": "traveler-child.glb",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/traveler-child.glb",
+      "local_name": "traveler-child.glb",
+      "bytes": 460616,
+      "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e"
+    },
+    {
+      "remote_relative_path": "child/front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/front.png",
+      "local_name": "front.png",
+      "bytes": 690993,
+      "sha256": "d2ee4d722aebeea8d1c6f8f583f55010adea94e8e98e55fdba5eac98834c691a"
+    },
+    {
+      "remote_relative_path": "child/side.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/side.png",
+      "local_name": "side.png",
+      "bytes": 658829,
+      "sha256": "9d8dc17c818362612889a2062994b4f4fbf82339080c9a254671b019a93a7e2e"
+    },
+    {
+      "remote_relative_path": "child/back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/back.png",
+      "local_name": "back.png",
+      "bytes": 671538,
+      "sha256": "842808d253e0356689a2030b3c813a1aa4c7c97e8902e4a3943d98e16fdd20cf"
+    },
+    {
+      "remote_relative_path": "child/beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/beauty.png",
+      "local_name": "beauty.png",
+      "bytes": 686355,
+      "sha256": "9307a3c05953a2f82f6794e0b5cf3f6386771681d574eac4f68b75410e0fb9ab"
+    },
+    {
+      "remote_relative_path": "child/motion-grid.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/motion-grid.png",
+      "local_name": "motion-grid.png",
+      "bytes": 354257,
+      "sha256": "e25b3107588f60d5cc8122a176afac78d97e01b8ef7a6582cb475deba3757936"
+    },
+    {
+      "remote_relative_path": "child/animations.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/animations.mp4",
+      "local_name": "animations.mp4",
+      "bytes": 106601,
+      "sha256": "4eb94633a0cfe4f63f630e63d357f8154ac53f064fce669d880e361cf89dff60"
+    },
+    {
+      "remote_relative_path": "child/idle.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/idle.mp4",
+      "local_name": "idle.mp4",
+      "bytes": 20290,
+      "sha256": "024cb6792bc1884620377178735a9fcfeabbdeb7ce367e3c67262ebe983a3c12"
+    },
+    {
+      "remote_relative_path": "child/move.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/move.mp4",
+      "local_name": "move.mp4",
+      "bytes": 30003,
+      "sha256": "f63990a9af8b3eef3fb81bc90f9809ba3f6f6e6f936b3081e55c689105713b78"
+    },
+    {
+      "remote_relative_path": "child/interact.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/interact.mp4",
+      "local_name": "interact.mp4",
+      "bytes": 27768,
+      "sha256": "45482ebafba9819c558b3ae105e70375d4f3e2085f4abd3057b40f2de2df7992"
+    },
+    {
+      "remote_relative_path": "child/jump.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/child/jump.mp4",
+      "local_name": "jump.mp4",
+      "bytes": 31005,
+      "sha256": "70644b28bffd26b54da939c1988fc61629d08ed11d12354f756328efedc11dd4"
+    },
+    {
+      "remote_relative_path": "age-comparison.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/age-comparison.png",
+      "local_name": "age-comparison.png",
+      "bytes": 995772,
+      "sha256": "a302293a55c360e5e3c87495471cae10b5e4fc0b3c1c9b440760c0849139a4ce"
+    },
+    {
+      "remote_relative_path": "validation-child.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/validation-child.json",
+      "local_name": "validation.json",
+      "bytes": 3478,
+      "sha256": "ea032c5a6fca867888a4c6176d5b408a585f79d868651f30dd5a60cf675b5b29"
+    },
+    {
+      "remote_relative_path": "export-inspection-child.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/export-inspection-child.json",
+      "local_name": "export-inspection.json",
+      "bytes": 1530,
+      "sha256": "ba779d293719b638f16af0041674f94bbd5a34a58af786291409cbb7c1742053"
+    },
+    {
+      "remote_relative_path": "three-inspection-child.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/travelers/v001/three-inspection-child.json",
+      "local_name": "three-inspection.json",
+      "bytes": 2427,
+      "sha256": "87ae888cbb4e52c33e8b1472d5acadfcda1a5a0fce05467004ce537c561055e0"
+    }
+  ]
+}
