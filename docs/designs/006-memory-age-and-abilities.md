@@ -55,7 +55,11 @@ The planner uses the explicit fictional birth date for the opening period, and t
 | D-11 | The selected library bounds the ending. A child or single-period journey can finish without adulthood, invented empty years or unrepresented future abilities. |
 | D-12 | The synthetic avatar expresses growth with authored infant/child meshes and clips. It remains separate from person identity; automatic likeness generation and later stages are still additional work. |
 
-The human player's difficulty is independent of the subject's age, gender and photo coverage. The same memory age in different historical periods can have the same learned actions but different eligible enemies.
+For the current bounded slice, the course remains gentle. Tom's future [lifetime campaign direction, BL-06](../BACKLOG.md#bl-06-a-lifetime-campaign-that-grows-with-the-player) supersedes a blanket separation of challenge from recovered age: later recovered life stages should combine more abilities and harder obstacles and encounters. The human player's experience and assistance needs remain distinct from that progression; gender does not determine difficulty. The same recovered age in different calendar periods can use the same learned actions with different era enemies.
+
+## Future real-life continuation
+
+BL-06 adds a future distinction between completing the currently curated journey and having later life chapters available. In a journey through one's own life, recovered age cannot advance into an unlived stage or unsupported future photos. Reaching the current endpoint may mean waiting for real life and new memories, then explicitly extending the saved journey. Time passing alone does not defeat a boss, consume a photo or grant an ability. The existing finite-save behavior remains unchanged until that continuation contract is designed.
 
 ## Real-photo age source and remaining decisions
 
