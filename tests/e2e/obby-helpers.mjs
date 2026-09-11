@@ -192,6 +192,42 @@ function ferryFrom(inspection) {
   );
 }
 
+async function waitForCourseProgress({
+  page,
+  inspectGame,
+  predicate,
+  label,
+  simulationTimeoutSeconds,
+  wallTimeoutMs,
+}) {
+  const startedAt = Date.now();
+  const initial = await inspectGame(page);
+  assert.ok(initial?.obby, `${label} has no active course`);
+  const courseStartedAt = initial.obby.timeSeconds;
+  const deadline = startedAt + wallTimeoutMs;
+  let latest = initial;
+  while (Date.now() < deadline) {
+    if (await predicate(latest)) {
+      return {
+        inspection: latest,
+        simulationElapsed: latest.obby.timeSeconds - courseStartedAt,
+        wallElapsedMs: Date.now() - startedAt,
+      };
+    }
+    if (latest.obby.timeSeconds - courseStartedAt >= simulationTimeoutSeconds)
+      break;
+    await delay(50);
+    latest = await inspectGame(page);
+    assert.ok(latest?.obby, `${label} lost its active course`);
+  }
+  const simulationElapsed = latest.obby.timeSeconds - courseStartedAt;
+  const wallElapsedMs = Date.now() - startedAt;
+  await page.screenshot({ path: `test-results/${label}-failure.png` });
+  throw new Error(
+    `${label} did not reach the expected course state after ${simulationElapsed.toFixed(3)} simulation seconds / ${wallElapsedMs}ms wall time: ${JSON.stringify(latest)}`,
+  );
+}
+
 export async function rideFerry({ page, controls, inspectGame, label }) {
   const current = await inspectGame(page);
   assert.ok(current?.obby);
@@ -209,14 +245,16 @@ export async function rideFerry({ page, controls, inspectGame, label }) {
     async () => (await inspectGame(page))?.status.position.z <= -15.05,
     `${label}-bank`,
   );
-  await waitForInspection(
+  const nearDockWait = await waitForCourseProgress({
     page,
     inspectGame,
-    (inspection) => (ferryFrom(inspection)?.center.z ?? -20) >= -16.72,
-    `${label}-near-dock`,
-    9_000,
-  );
-  const beforeBoardRecoveries = current.obby.recoveries;
+    predicate: (inspection) =>
+      (ferryFrom(inspection)?.center.z ?? -20) >= -16.72,
+    label: `${label}-near-dock`,
+    simulationTimeoutSeconds: 7.25,
+    wallTimeoutMs: 35_000,
+  });
+  const beforeBoardRecoveries = nearDockWait.inspection.obby.recoveries;
   let boarded = null;
   await controls.jumpForwardUntil(async () => {
     const inspection = await inspectGame(page);
@@ -230,10 +268,10 @@ export async function rideFerry({ page, controls, inspectGame, label }) {
   const boardFerry = ferryFrom(boarded);
   assert.ok(boardFerry);
   const riderOffset = boarded.status.position.z - boardFerry.center.z;
-  const ridden = await waitForInspection(
+  const rideWait = await waitForCourseProgress({
     page,
     inspectGame,
-    (inspection) => {
+    predicate: (inspection) => {
       const ferry = ferryFrom(inspection);
       return (
         inspection.obby?.supportId === "ferry-platform" &&
@@ -241,9 +279,11 @@ export async function rideFerry({ page, controls, inspectGame, label }) {
         Math.abs(ferry.center.z - boardFerry.center.z) >= 0.08
       );
     },
-    `${label}-ride`,
-    5_000,
-  );
+    label: `${label}-ride`,
+    simulationTimeoutSeconds: 4,
+    wallTimeoutMs: 25_000,
+  });
+  const ridden = rideWait.inspection;
   const riddenFerry = ferryFrom(ridden);
   assert.ok(riddenFerry);
   assert.ok(
@@ -252,15 +292,17 @@ export async function rideFerry({ page, controls, inspectGame, label }) {
     `${label} player was not carried with the ferry`,
   );
   await page.screenshot({ path: `test-results/${label}.png` });
-  const farDock = await waitForInspection(
+  const farDockWait = await waitForCourseProgress({
     page,
     inspectGame,
-    (inspection) =>
+    predicate: (inspection) =>
       inspection.obby?.supportId === "ferry-platform" &&
       (ferryFrom(inspection)?.center.z ?? 0) <= -17.28,
-    `${label}-far-dock`,
-    9_000,
-  );
+    label: `${label}-far-dock`,
+    simulationTimeoutSeconds: 7.25,
+    wallTimeoutMs: 35_000,
+  });
+  const farDock = farDockWait.inspection;
   const beforeLandingRecoveries = farDock.obby.recoveries;
   let landed = null;
   await controls.jumpForwardUntil(async () => {
@@ -285,6 +327,20 @@ export async function rideFerry({ page, controls, inspectGame, label }) {
     farDockAt: ferryFrom(farDock)?.center.z,
     riderOffsetDrift:
       ridden.status.position.z - riddenFerry.center.z - riderOffset,
+    waits: {
+      nearDock: {
+        simulationSeconds: nearDockWait.simulationElapsed,
+        wallMilliseconds: nearDockWait.wallElapsedMs,
+      },
+      ride: {
+        simulationSeconds: rideWait.simulationElapsed,
+        wallMilliseconds: rideWait.wallElapsedMs,
+      },
+      farDock: {
+        simulationSeconds: farDockWait.simulationElapsed,
+        wallMilliseconds: farDockWait.wallElapsedMs,
+      },
+    },
     checkpointId: landed.obby.checkpointId,
     landingPosition: landed.status.position,
   };

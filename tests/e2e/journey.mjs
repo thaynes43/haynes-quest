@@ -299,17 +299,21 @@ async function touchControls(page, context) {
     },
     async jumpForwardUntil(predicate, label, timeout = 8_000) {
       const forward = directions.forward.touch;
+      const stickOrigin = point(1, center.x, center.y);
       const stickPoint = point(1, center.x + forward.x, center.y + forward.y);
       const jumpPoint = point(
         2,
         jumpButton.x + jumpButton.width / 2,
         jumpButton.y + jumpButton.height / 2,
       );
-      await send("touchStart", [stickPoint, jumpPoint]);
+      // CDP tracks contacts by id. Establish the joystick at its real center,
+      // add Jump as a second contact, then end only Jump so the captured
+      // joystick stays held at its moved position.
+      await send("touchStart", [stickOrigin]);
+      await send("touchStart", [stickOrigin, jumpPoint]);
+      await send("touchMove", [stickPoint, jumpPoint]);
       await delay(80);
-      await send("touchEnd", []);
-      await send("touchStart", [point(1, center.x, center.y)]);
-      await send("touchMove", [stickPoint]);
+      await send("touchEnd", [jumpPoint]);
       const deadline = Date.now() + timeout;
       try {
         while (Date.now() < deadline) {

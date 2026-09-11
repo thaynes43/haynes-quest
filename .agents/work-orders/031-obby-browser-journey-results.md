@@ -52,6 +52,16 @@ After releasing port 4391, `tests/e2e/renderer-probe.mjs` measured the first-per
 
 The measured keyboard input, public inspections, and authenticated reads did not stall. CDP touch dispatches were coupled to the slow rendered frames and took hundreds of milliseconds. In both modes, low RAF throughput made a wall-clock input hold advance materially less game time than elapsed wall time because runtime deltas are capped. The final journey should therefore continue waiting on public position/state with broad overall bounds, as the committed driver does. These measurements describe this headless SwiftShader run only; they do not establish hardware or physical-device performance. A post-probe process audit found no live probe or owned Chromium profile.
 
+## Retained-touch and ferry-wait follow-up
+
+The touch harness now starts the joystick contact at the visible control's center, adds Jump as a second identified contact, moves both contacts, releases only the Jump contact, and keeps the captured joystick contact held at its forward position until the landing predicate completes. The previous sequence began both contacts away from the joystick's required origin, ended every active contact, and paid for another start/move pair before forward motion resumed. At the measured hundreds-of-milliseconds CDP dispatch latency, those extra releases could turn a natural jump chord into a long input gap.
+
+A bounded live diagnostic on `http://127.0.0.1:4391` used the same retained-contact sequence with the enabled Attack action, whose `ActionButton` pointer handling is shared with Jump. The fixture served `/assets/index-CGNcFPvf.js`, 997,940 bytes, SHA-256 `0315900e7ea95224e672f920babcbcb3d1a84b559b01b8e481ffd6544a04b773`; the run used Chrome for Testing 153.0.8010.12 at 390×844 DPR1 with SwiftShader. Stable CDP touch-point IDs were necessary: omitting the second unidentified point from `touchMove` did not emit an action release. Sending `touchEnd` with only identified action point 6 emitted `pointerup` and `lostpointercapture` for Attack while joystick point 5 remained captured. The retained joystick then moved the player 0.6342 m over 0.2166 simulated seconds. The final empty `touchEnd` emitted `pointerup` and `lostpointercapture` for the joystick. Dispatches took 489.19 ms for joystick start, 96.89 ms for action start, 431.57 ms for moving both, 176.92 ms for the action-only release, and 137.86 ms for the final joystick release. Ignored evidence is in `test-results/touch-contact-probe.json`.
+
+The ferry helper no longer assumes that five or nine wall-clock seconds cover enough course motion. It samples `obby.timeSeconds` and allows one complete 7-second ferry period (7.25 simulated seconds) for each dock, with a 35-second wall safety cap. The carry proof allows 4 simulated seconds with a 25-second wall cap. Successful evidence now records both simulated and wall elapsed time for the near dock, carry, and far dock. A bounded low-throughput helper probe advanced 0.02 simulation seconds per 50 ms poll: the near-dock condition took 5.38 simulated seconds and 13.493 wall seconds, which demonstrates why the previous 9-second wall limit was insufficient; carry took 1.70 simulated / 4.266 wall seconds and the far dock took 1.72 simulated / 4.312 wall seconds. It completed in 22.071 seconds with zero rider-offset drift.
+
+Port 4391 was leased only for the retained-touch diagnostic and released afterward. This follow-up did not run the broad journey, a live first-gap crossing, or a live ferry traversal. The current fixture still contains only the three delivered first-period models; it is not evidence for the uncompleted later cast and does not change the partial WO-031 acceptance status.
+
 ## Verification
 
 - `pnpm typecheck` — passed.
@@ -64,6 +74,8 @@ The measured keyboard input, public inspections, and authenticated reads did not
 - `QUEST_E2E_URL=http://127.0.0.1:4391 QUEST_E2E_MODE=keyboard node tests/e2e/journey.mjs` — multiple bounded adaptation runs produced the partial evidence above; none completed, and interrupted over-budget runs are not passes.
 - `QUEST_E2E_URL=http://127.0.0.1:4392 QUEST_E2E_MODE=keyboard node tests/e2e/renderer-probe.mjs` — passed in about 10 s and produced `test-results/renderer-probe-keyboard.{json,png}`.
 - `QUEST_E2E_URL=http://127.0.0.1:4392 QUEST_E2E_MODE=touch node tests/e2e/renderer-probe.mjs` — passed in about 9 s and produced `test-results/renderer-probe-touch.{json,png}`.
+- `QUEST_E2E_URL=http://127.0.0.1:4391 timeout --signal=TERM --kill-after=10s 65s node test-results/touch-contact-probe.mjs` — passed in 12.5 s; actual pointer events proved the action-only release and retained joystick motion described above. The diagnostic script and JSON are ignored artifacts, not product or committed test surfaces.
+- `timeout --signal=TERM --kill-after=5s 35s node test-results/ferry-wait-probe.mjs` — passed in 22.1 s; its low-throughput fake course clock proved the simulation-aware dock/carry waits and the 13.493-second near-dock case. The probe is an ignored diagnostic artifact.
 
 ## Remaining final-build proof
 
