@@ -207,35 +207,35 @@ describe("enemy combat simulation", () => {
     ).toBe("windup");
   });
 
-  it("lets the routed boss threaten the checkpoint without leaving its island", () => {
-    const base = makeEraSave({
-      levelIndex: 1,
-      defeatedIds: [
-        "level-2-2024-ordinary-a",
-        "level-2-2024-ordinary-b",
-      ],
-    });
-    const save = {
-      ...base,
-      adventure: {
-        ...base.adventure!,
-        activeLevel: {
-          ...base.adventure!.activeLevel!,
-          routeId: "gentle-jump-v1" as const,
+  it.each([-19, -18.8])(
+    "lets the routed boss threaten the landing at z=%s without leaving its island",
+    (z) => {
+      const base = makeEraSave({
+        levelIndex: 1,
+        defeatedIds: ["level-2-2024-ordinary-a", "level-2-2024-ordinary-b"],
+      });
+      const save = {
+        ...base,
+        adventure: {
+          ...base.adventure!,
+          activeLevel: {
+            ...base.adventure!.activeLevel!,
+            routeId: "gentle-jump-v1" as const,
+          },
         },
-      },
-    };
-    const simulation = new EnemySimulation(createLevelLayout(save), save);
-    const player = { x: 0, y: 0, z: -19 };
+      };
+      const simulation = new EnemySimulation(createLevelLayout(save), save);
+      const player = { x: 0, y: 0, z };
 
-    const contacts = stepMany(simulation, save, player, 80);
-    const boss = simulation
-      .frames()
-      .find((enemy) => enemy.id === "level-2-2024-boss");
-    expect(contacts).toContain("level-2-2024-boss");
-    expect(boss?.position.z).toBeGreaterThanOrEqual(-24);
-    expect(boss?.position.z).toBeLessThanOrEqual(-21);
-  });
+      const contacts = stepMany(simulation, save, player, 80);
+      const boss = simulation
+        .frames()
+        .find((enemy) => enemy.id === "level-2-2024-boss");
+      expect(contacts).toContain("level-2-2024-boss");
+      expect(boss?.position.z).toBeGreaterThanOrEqual(-24);
+      expect(boss?.position.z).toBeLessThanOrEqual(-21);
+    },
+  );
 
   it("keeps the player outside living enemy colliders", () => {
     const save = makeEraSave();
@@ -369,10 +369,7 @@ describe("attack targeting", () => {
     const prism = makeEraSave({
       levelIndex: 1,
       collectedKinds: ["attack-tool"],
-      defeatedIds: [
-        "level-2-2024-ordinary-a",
-        "level-2-2024-ordinary-b",
-      ],
+      defeatedIds: ["level-2-2024-ordinary-a", "level-2-2024-ordinary-b"],
     });
     expect(
       findAttackTarget(
@@ -395,10 +392,7 @@ describe("attack targeting", () => {
 
     const malletBoss = makeEraSave({
       collectedKinds: ["attack-tool"],
-      defeatedIds: [
-        "level-1-2020-ordinary-a",
-        "level-1-2020-ordinary-b",
-      ],
+      defeatedIds: ["level-1-2020-ordinary-a", "level-1-2020-ordinary-b"],
     });
     expect(
       findAttackTarget(

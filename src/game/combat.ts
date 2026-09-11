@@ -261,7 +261,14 @@ export class EnemySimulation {
           if (playerDistance > enemyActivationRadius || !playerReachable) {
             enemy.phase = "idle";
             enemy.phaseSeconds = 0;
-          } else if (playerDistance <= tuning.stopRange + distanceEpsilon) {
+          } else if (
+            playerDistance <= tuning.stopRange + distanceEpsilon ||
+            // The arena edge can prevent the preferred close approach while
+            // leaving the player inside the visible strike area. Telegraph
+            // there instead of chasing forever against the boundary.
+            (playerDistance <= tuning.attackRange &&
+              !canReachPlayer(options.player, enemy.arena, tuning.stopRange))
+          ) {
             enemy.phase = "windup";
             enemy.phaseSeconds = 0;
           } else {
