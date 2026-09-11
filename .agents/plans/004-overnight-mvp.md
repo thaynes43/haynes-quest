@@ -1,6 +1,6 @@
 # PLAN-004: Overnight MVP with deferred OAuth
 
-- **Status:** Ready for a cold-start Astra lead after the single dev-env activation
+- **Status:** In progress — application integrated; browser/live deployment and scoped candidate catalog in production
 - **Owner direction:** Tom, 2026-09-11: implement overnight, reuse AppDaemon's Immich connection, keep personal configuration server-side, make the avatar grow toward the recovered person's age/likeness, and defer OAuth setup until tomorrow. A placeholder account is explicitly allowed for coding/testing.
 - **Precedence:** This is the current implementation scope. It extends PLAN-002 to implement the Immich adapter and evolving-avatar contract. Older statements that permanently exclude likeness or make live OAuth a prerequisite to starting code do not govern this overnight milestone. Authentik remains the sole eventual player login under ADR-001.
 - **Read with:** [TEAM.md](../TEAM.md), [art direction](../../docs/assets/art-direction.md), [asset studio](../../docs/assets/README.md), [PLAN-003](003-authoring-tool-setup.md), [DESIGN-007](../../docs/designs/007-poc-development-loop.md), [DESIGN-008](../../docs/designs/008-audio-pipeline.md), [Immich source review](../../docs/reference/immich-appdaemon.md).

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "service_version": "0.1.1",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "e3767bc777284577b9466a6018f793e9",
+  "status": "completed",
+  "prompt": "One quiet rounded wooden confirmation tick followed immediately by a tiny warm ping, short, soft, friendly and unobtrusive; an isolated interface confirmation sound effect, no click sequence, no voice, no speech, no music, no ambience, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 104,
+  "created_at": "2026-09-11T04:09:50.713176Z",
+  "started_at": "2026-09-11T04:09:50.726410Z",
+  "finished_at": "2026-09-11T04:09:57.019455Z",
+  "peak_subprocess_rss_bytes": 4066209792,
+  "artifact": "jobs/e3767bc777284577b9466a6018f793e9/output.wav",
+  "audio": {
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_seconds": 5.0,
+    "size_bytes": 882044,
+    "sha256": "177abf2e67e0578be44ed13609ca97b3464b7548bae57ee11e5a32bded68bfa7"
+  },
+  "error": null,
+  "elapsed_seconds": 6.293,
+  "download_url": "/artifacts/e3767bc777284577b9466a6018f793e9/output.wav"
+}

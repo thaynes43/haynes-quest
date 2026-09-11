@@ -22,6 +22,6 @@ Tom’s current overnight directive is [PLAN-004](.agents/plans/004-overnight-mv
 
 ## Verification
 
-Build the MkDocs Material site and check documentation/media links using the commands in [docs/README.md](docs/README.md). Add executable build, lint, and test commands when their tooling exists, then make CI and local verification agree. For gameplay work, document the actual device/browser journeys and frame-time targets the later brief requires.
+Build the MkDocs Material site and check documentation/media links using the commands in [docs/README.md](docs/README.md). Run `pnpm typecheck`, `pnpm lint`, `pnpm test` and `pnpm build`; use a dedicated `QUEST_TEST_DATABASE_URL` for real Postgres tests. The [private-preview runbook](docs/ops/002-private-preview.md) documents browser journeys and the strict docs build. CI runs the same checks. For gameplay work, document the actual device/browser journeys and frame-time targets the later brief requires.
 
 Do not claim a release is deployed or an integration works until the relevant live checks have run.

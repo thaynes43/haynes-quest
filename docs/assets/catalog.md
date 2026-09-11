@@ -1,19 +1,19 @@
 # First-pass catalog
 
-This is the initial inventory for one compact playable slice. **Every entry below is Not started**; there are no finished candidates to review yet. The Astra lead should produce a first pass for every required asset, add links as it works, and adjust the inventory when the implemented slice reveals a real need. Optional full-game content does not expand this overnight inventory automatically.
+This is the initial inventory for one compact playable slice. Concepts and all four audio auditions are complete; the traveler pair is ready for Tom’s review and the clearing props are next. No candidate is approved for gameplay. The Astra lead should produce a first pass for every required asset, add links as it works, and adjust the inventory when the implemented slice reveals a real need. Optional full-game content does not expand this overnight inventory automatically.
 
 ## Images and models
 
 | Stable ID | First-pass deliverable | Status / review |
 | --- | --- | --- |
-| `storybook-reference` | Environment key image, fictional age-stage sheet and prop/material sheet establishing `storybook-v001` | Not started |
-| `traveler-infant` | Synthetic starting avatar concept, model, compatible starting movement/idle clips | Not started |
-| `traveler-child` | Matching visibly older child concept/model and the slice's added movement clip; preserve earlier actions | Not started |
-| `memory-keepsake` | Collectible frame/keepsake concept and model, readable fictional photo surface | Not started |
-| `clearing-path-kit` | Small modular ground/path and step pieces with a common scale and material set | Not started |
-| `clearing-tree` | One stylized tree concept/model with economical variations | Not started |
-| `clearing-stone` | Rounded rock/edge prop concept/model with economical variations | Not started |
-| `arrival-landmark` | A small original landmark communicating the route's finish | Not started |
+| `storybook-reference` | [Environment, traveler ages and prop/material reference set](reviews/storybook-reference/v001.md) | Coordinator selected · Tom review pending |
+| `traveler-infant` | [Starting traveler, model and movement · v001](reviews/traveler-infant/v001.md) | Ready for Tom · No gameplay approval |
+| `traveler-child` | [Older traveler, model and added jump · v001](reviews/traveler-child/v001.md) | Ready for Tom · No gameplay approval |
+| `memory-keepsake` | [A memory worth keeping · v001](reviews/memory-keepsake/v001.md) | Model in production · concept selected |
+| `clearing-path-kit` | [A small path forward · v001](reviews/clearing-path-kit/v001.md) | Model in production · concept selected |
+| `clearing-tree` | [A quiet place in the shade · v001](reviews/clearing-tree/v001.md) | Model in production · concept selected |
+| `clearing-stone` | [A rounded edge to the clearing · v001](reviews/clearing-stone/v001.md) | Model in production · concept selected |
+| `arrival-landmark` | [A lantern at the end of the path · v001](reviews/arrival-landmark/v001.md) | Model in production · concept selected |
 
 Each separately modeled piece in a kit needs an identifiable concept view, model preview and version in its review page. A kit approval must list the included files/checksums. Include both age stages together in a comparison preview. The precise costume, landmark shape and clip names are lead decisions to record before production, not owner-approved designs.
 
@@ -21,10 +21,10 @@ Each separately modeled piece in a kit needs an identifiable concept view, model
 
 | Stable cue ID | First-pass deliverable | Status / review |
 | --- | --- | --- |
-| `memory-collected` | Short warm discovery cue | Not started |
-| `ability-unlocked` | Related but distinct growth/ability cue | Not started |
-| `movement-landed` | Soft contact/landing feedback suited to the chosen motion | Not started |
-| `ui-confirmed` | Quiet confirmation cue | Not started |
+| `memory-collected` | [A memory found · v001](reviews/memory-collected/v001.md) | Audition available · listening and Tom review pending |
+| `ability-unlocked` | [A little more possible · v001](reviews/ability-unlocked/v001.md) | Audition available · listening and Tom review pending |
+| `movement-landed` | [Back on the path · v001](reviews/movement-landed/v001.md) | Audition available · listening and Tom review pending |
+| `ui-confirmed` | [A quiet yes · v001](reviews/ui-confirmed/v001.md) | Audition available · listening and Tom review pending |
 
 Add ambience only after the required cues and runnable slice are complete. Full music, voices, bosses, era rosters and extra biomes remain backlog work. Keep generated originals and processed exports distinct; record processing, license/provenance, waveform/level checks and an audible preview. A metadata check alone is not a listening review.
 

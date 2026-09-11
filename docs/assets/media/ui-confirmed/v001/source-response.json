@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "service_version": "0.1.1",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "b8bf67044e094f4c956397d78ec8391d",
+  "status": "completed",
+  "prompt": "A clearly audible single rounded wooden tick with a small warm bell ping immediately after it, friendly interface confirmation, close-miked clean transient at moderate source volume with short decay; isolated sound effect, no repeated clicks, no voice, no music, no ambience.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 104,
+  "created_at": "2026-09-11T04:11:10.212170Z",
+  "started_at": "2026-09-11T04:11:10.230927Z",
+  "finished_at": "2026-09-11T04:11:16.553670Z",
+  "peak_subprocess_rss_bytes": 4066512896,
+  "artifact": "jobs/b8bf67044e094f4c956397d78ec8391d/output.wav",
+  "audio": {
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_seconds": 5.0,
+    "size_bytes": 882044,
+    "sha256": "416cdbb0fbb82da0b701f7fdac2fb4176b1f5933c4e1a236fab246e130ac941b"
+  },
+  "error": null,
+  "elapsed_seconds": 6.323,
+  "download_url": "/artifacts/b8bf67044e094f4c956397d78ec8391d/output.wav"
+}

@@ -1,0 +1,394 @@
+{
+  "generatedAt": "2026-09-11T04:42:27.926Z",
+  "baseURL": "http://127.0.0.1:4188",
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+  },
+  "artifacts": {
+    "infant": {
+      "file": "/home/dev/work/quest-traveler-browser/test-results/traveler-browser/harness/models/traveler-infant.glb",
+      "bytes": 448656,
+      "sha256": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c"
+    },
+    "child": {
+      "file": "/home/dev/work/quest-traveler-browser/test-results/traveler-browser/harness/models/traveler-child.glb",
+      "bytes": 460616,
+      "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e"
+    },
+    "modelViewer": {
+      "file": "/home/dev/work/quest-traveler-browser/test-results/traveler-browser/harness/model-viewer-4.3.1.min.mjs",
+      "bytes": 1068903,
+      "sha256": "283b0672384614b4847636c306fc93fe4b1fcadc76d668b4e47f0ca76bcf033b"
+    }
+  },
+  "ready": [
+    {
+      "stage": "infant",
+      "animations": [
+        "idle",
+        "move",
+        "interact"
+      ]
+    },
+    {
+      "stage": "child",
+      "animations": [
+        "idle",
+        "move",
+        "interact",
+        "jump"
+      ]
+    }
+  ],
+  "inventory": {
+    "infant": {
+      "loaded": true,
+      "modelIsVisible": true,
+      "animations": [
+        "idle",
+        "move",
+        "interact"
+      ],
+      "dimensions": {
+        "x": 0.5444031953811646,
+        "y": 0.750000029802318,
+        "z": 0.3248731940984726
+      },
+      "center": {
+        "x": 0.000013470649719238281,
+        "y": 0.3750000278949712,
+        "z": -0.018106214702129364
+      },
+      "cameraOrbit": {
+        "theta": 3.141592653589793,
+        "phi": 1.3089969389957472,
+        "radius": 3.2
+      },
+      "cameraTarget": {
+        "x": 0,
+        "y": 0.65,
+        "z": 0
+      },
+      "fieldOfView": 30.000000000000004
+    },
+    "child": {
+      "loaded": true,
+      "modelIsVisible": true,
+      "animations": [
+        "idle",
+        "move",
+        "interact",
+        "jump"
+      ],
+      "dimensions": {
+        "x": 0.6524658799171448,
+        "y": 1.1999999284744263,
+        "z": 0.3913732022047043
+      },
+      "center": {
+        "x": 0.0015236735343933105,
+        "y": 0.5999999642372131,
+        "z": -0.010837055742740631
+      },
+      "cameraOrbit": {
+        "theta": 3.141592653589793,
+        "phi": 1.3089969389957472,
+        "radius": 3.2
+      },
+      "cameraTarget": {
+        "x": 0,
+        "y": 0.65,
+        "z": 0
+      },
+      "fieldOfView": 30.000000000000004
+    }
+  },
+  "animationChecks": {
+    "infant": [
+      {
+        "clip": "idle",
+        "selected": "idle",
+        "propertyAfterSelection": "idle",
+        "playingSample": {
+          "paused": false,
+          "currentTime": 0.4499000000000001,
+          "duration": 2
+        },
+        "pausedAt": 0.8332000000000003,
+        "pausedLater": 0.8332000000000003,
+        "advanced": true,
+        "played": true,
+        "pausedStable": true
+      },
+      {
+        "clip": "move",
+        "selected": "move",
+        "propertyAfterSelection": "move",
+        "playingSample": {
+          "paused": false,
+          "currentTime": 0.7167000000000008,
+          "duration": 1
+        },
+        "pausedAt": 0.966700000000001,
+        "pausedLater": 0.966700000000001,
+        "advanced": true,
+        "played": true,
+        "pausedStable": true
+      },
+      {
+        "clip": "interact",
+        "selected": "interact",
+        "propertyAfterSelection": "interact",
+        "playingSample": {
+          "paused": false,
+          "currentTime": 0.4667000000000007,
+          "duration": 2
+        },
+        "pausedAt": 0.7166000000000005,
+        "pausedLater": 0.7166000000000005,
+        "advanced": true,
+        "played": true,
+        "pausedStable": true
+      }
+    ],
+    "child": [
+      {
+        "clip": "idle",
+        "selected": "idle",
+        "propertyAfterSelection": "idle",
+        "playingSample": {
+          "paused": false,
+          "currentTime": 0.46660000000000035,
+          "duration": 2
+        },
+        "pausedAt": 0.850000000000001,
+        "pausedLater": 0.850000000000001,
+        "advanced": true,
+        "played": true,
+        "pausedStable": true
+      },
+      {
+        "clip": "move",
+        "selected": "move",
+        "propertyAfterSelection": "move",
+        "playingSample": {
+          "paused": false,
+          "currentTime": 0.6998999999999997,
+          "duration": 1
+        },
+        "pausedAt": 0.14979999999999946,
+        "pausedLater": 0.14979999999999946,
+        "advanced": true,
+        "played": true,
+        "pausedStable": true
+      },
+      {
+        "clip": "interact",
+        "selected": "interact",
+        "propertyAfterSelection": "interact",
+        "playingSample": {
+          "paused": false,
+          "currentTime": 0.43329999999999924,
+          "duration": 2
+        },
+        "pausedAt": 0.7498999999999996,
+        "pausedLater": 0.7498999999999996,
+        "advanced": true,
+        "played": true,
+        "pausedStable": true
+      },
+      {
+        "clip": "jump",
+        "selected": "jump",
+        "propertyAfterSelection": "jump",
+        "playingSample": {
+          "paused": false,
+          "currentTime": 0.45000000000000007,
+          "duration": 1.5
+        },
+        "pausedAt": 0.8998999999999999,
+        "pausedLater": 0.8998999999999999,
+        "advanced": true,
+        "played": true,
+        "pausedStable": true
+      }
+    ]
+  },
+  "screenshots": {
+    "orbitScreenshots": [
+      "pair-shared-scale-orbit-000.png",
+      "pair-shared-scale-orbit-090.png",
+      "pair-shared-scale-orbit-180.png",
+      "pair-shared-scale-orbit-270.png"
+    ],
+    "jumpScreenshots": [
+      {
+        "seconds": 0.18,
+        "filename": "child-jump-0_18s.png"
+      },
+      {
+        "seconds": 0.48,
+        "filename": "child-jump-0_48s.png"
+      },
+      {
+        "seconds": 0.78,
+        "filename": "child-jump-0_78s.png"
+      },
+      {
+        "seconds": 1.08,
+        "filename": "child-jump-1_08s.png"
+      },
+      {
+        "seconds": 1.36,
+        "filename": "child-jump-1_36s.png"
+      }
+    ],
+    "mobileScreenshot": "mobile-child-touch-orbit.png"
+  },
+  "mobile": {
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 2
+    },
+    "touchDrag": {
+      "attempted": true,
+      "changed": true,
+      "before": {
+        "theta": 3.141592653589793,
+        "phi": 1.3089969389957472,
+        "radius": 3.2
+      },
+      "after": {
+        "theta": 4.582536707741844,
+        "phi": 1.3089969389957472,
+        "radius": 3.2
+      }
+    },
+    "playPause": {
+      "attempted": true,
+      "playingTime": 0.5999000000000001,
+      "pausedAt": 0.75,
+      "pausedLater": 0.75,
+      "advanced": true,
+      "pausedStable": true
+    }
+  },
+  "network": {
+    "requests": [
+      {
+        "label": "desktop",
+        "requests": [
+          {
+            "method": "GET",
+            "url": "http://127.0.0.1:4188/",
+            "resourceType": "document"
+          },
+          {
+            "method": "GET",
+            "url": "http://127.0.0.1:4188/model-viewer-4.3.1.min.mjs",
+            "resourceType": "script"
+          },
+          {
+            "method": "GET",
+            "url": "http://127.0.0.1:4188/models/traveler-infant.glb",
+            "resourceType": "fetch"
+          },
+          {
+            "method": "GET",
+            "url": "http://127.0.0.1:4188/models/traveler-child.glb",
+            "resourceType": "fetch"
+          }
+        ],
+        "responses": [
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4188/"
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4188/model-viewer-4.3.1.min.mjs"
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4188/models/traveler-infant.glb"
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4188/models/traveler-child.glb"
+          }
+        ],
+        "requestFailures": [],
+        "pageErrors": [],
+        "consoleErrors": []
+      },
+      {
+        "label": "mobile",
+        "requests": [
+          {
+            "method": "GET",
+            "url": "http://127.0.0.1:4188/",
+            "resourceType": "document"
+          },
+          {
+            "method": "GET",
+            "url": "http://127.0.0.1:4188/model-viewer-4.3.1.min.mjs",
+            "resourceType": "script"
+          },
+          {
+            "method": "GET",
+            "url": "http://127.0.0.1:4188/models/traveler-infant.glb",
+            "resourceType": "fetch"
+          },
+          {
+            "method": "GET",
+            "url": "http://127.0.0.1:4188/models/traveler-child.glb",
+            "resourceType": "fetch"
+          }
+        ],
+        "responses": [
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4188/"
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4188/model-viewer-4.3.1.min.mjs"
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4188/models/traveler-infant.glb"
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4188/models/traveler-child.glb"
+          }
+        ],
+        "requestFailures": [],
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    ],
+    "externalRequests": [],
+    "badResponses": [],
+    "selfContained": true
+  },
+  "errors": {
+    "requestFailures": [],
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  "checks": {
+    "bothLoaded": true,
+    "dimensionsExpected": true,
+    "animationControls": true,
+    "noPageErrors": true,
+    "noFailedRequests": true,
+    "selfContainedNetwork": true,
+    "mobileTouchCamera": true,
+    "mobileTouchPlayPause": true
+  },
+  "animationFailures": []
+}

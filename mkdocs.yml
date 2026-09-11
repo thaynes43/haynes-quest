@@ -47,9 +47,11 @@ nav:
       - Memory age and abilities: designs/006-memory-age-and-abilities.md
       - PoC development loop: designs/007-poc-development-loop.md
       - Audio pipeline: designs/008-audio-pipeline.md
+      - Overnight contracts: designs/009-overnight-contracts.md
       - Design template: designs/000-template.md
   - Operations:
       - Hosting context: ops/001-hosting-context.md
+      - Private preview: ops/002-private-preview.md
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
@@ -93,6 +95,7 @@ extra_css:
   - stylesheets/extra.css
 
 extra_javascript:
+  - javascripts/studio.js
   - path: javascripts/vendor/model-viewer-4.3.1.min.mjs
     type: module
 

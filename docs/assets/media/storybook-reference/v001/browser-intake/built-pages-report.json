@@ -1,0 +1,368 @@
+{
+  "generatedAt": "2026-09-11T04:47:53.063Z",
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12"
+  },
+  "results": {
+    "infant": {
+      "pageURL": "http://127.0.0.1:4173/studio/assets/reviews/traveler-infant/v001.html",
+      "navigationStatus": 200,
+      "viewer": {
+        "loaded": true,
+        "visible": true,
+        "src": "../../media/traveler-infant/v001/traveler-infant.glb",
+        "animations": [
+          "idle",
+          "move",
+          "interact"
+        ],
+        "dimensions": {
+          "x": 0.5444031953811646,
+          "y": 0.750000029802318,
+          "z": 0.3248731940984726
+        }
+      },
+      "controls": [
+        {
+          "clip": "idle",
+          "selected": "idle",
+          "advanced": true,
+          "played": true,
+          "pausedStable": true
+        },
+        {
+          "clip": "move",
+          "selected": "move",
+          "advanced": true,
+          "played": true,
+          "pausedStable": true
+        },
+        {
+          "clip": "interact",
+          "selected": "interact",
+          "advanced": true,
+          "played": true,
+          "pausedStable": true
+        }
+      ],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/traveler-infant.glb",
+          "status": 200,
+          "contentType": "model/gltf-binary",
+          "bytes": 448656
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/animations.mp4",
+          "status": 200,
+          "contentType": "video/mp4",
+          "bytes": 92859
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/idle.mp4",
+          "status": 200,
+          "contentType": "video/mp4",
+          "bytes": 26713
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/move.mp4",
+          "status": 200,
+          "contentType": "video/mp4",
+          "bytes": 31427
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/interact.mp4",
+          "status": 200,
+          "contentType": "video/mp4",
+          "bytes": 36344
+        }
+      ],
+      "signals": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/animations.mp4",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "responses": [
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/reviews/traveler-infant/v001.html",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/stylesheets/main.ec1eaa64.min.css",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/stylesheets/palette.ab4e12ef.min.css",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/stylesheets/extra.css",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/storybook-reference/v001/traveler-ages.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/beauty.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/front.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/side.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/back.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/age-comparison.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/motion-grid.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/javascripts/studio.js",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/javascripts/bundle.d7400e89.min.js",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/animations.mp4",
+            "status": 206
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/javascripts/vendor/model-viewer-4.3.1.min.mjs",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/search/search_index.json",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/javascripts/workers/search.2c215733.min.js",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/traveler-infant.glb",
+            "status": 200
+          }
+        ],
+        "benignMediaAborts": [
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/animations.mp4",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "unexpectedFailedRequests": []
+      },
+      "checks": {
+        "pageLoaded": true,
+        "modelLoaded": true,
+        "allControls": true,
+        "allMedia": true,
+        "noErrors": true
+      }
+    },
+    "child": {
+      "pageURL": "http://127.0.0.1:4173/studio/assets/reviews/traveler-child/v001.html",
+      "navigationStatus": 200,
+      "viewer": {
+        "loaded": true,
+        "visible": true,
+        "src": "../../media/traveler-child/v001/traveler-child.glb",
+        "animations": [
+          "idle",
+          "move",
+          "interact",
+          "jump"
+        ],
+        "dimensions": {
+          "x": 0.6524658799171448,
+          "y": 1.1999999284744263,
+          "z": 0.3913732022047043
+        }
+      },
+      "controls": [
+        {
+          "clip": "idle",
+          "selected": "idle",
+          "advanced": true,
+          "played": true,
+          "pausedStable": true
+        },
+        {
+          "clip": "move",
+          "selected": "move",
+          "advanced": true,
+          "played": true,
+          "pausedStable": true
+        },
+        {
+          "clip": "interact",
+          "selected": "interact",
+          "advanced": true,
+          "played": true,
+          "pausedStable": true
+        },
+        {
+          "clip": "jump",
+          "selected": "jump",
+          "advanced": true,
+          "played": true,
+          "pausedStable": true
+        }
+      ],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/traveler-child.glb",
+          "status": 200,
+          "contentType": "model/gltf-binary",
+          "bytes": 460616
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/animations.mp4",
+          "status": 200,
+          "contentType": "video/mp4",
+          "bytes": 106601
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/idle.mp4",
+          "status": 200,
+          "contentType": "video/mp4",
+          "bytes": 20290
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/move.mp4",
+          "status": 200,
+          "contentType": "video/mp4",
+          "bytes": 30003
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/interact.mp4",
+          "status": 200,
+          "contentType": "video/mp4",
+          "bytes": 27768
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/jump.mp4",
+          "status": 200,
+          "contentType": "video/mp4",
+          "bytes": 31005
+        }
+      ],
+      "signals": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/animations.mp4",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "responses": [
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/reviews/traveler-child/v001.html",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/stylesheets/main.ec1eaa64.min.css",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/stylesheets/palette.ab4e12ef.min.css",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/beauty.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/stylesheets/extra.css",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/storybook-reference/v001/traveler-ages.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/front.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/side.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/back.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/age-comparison.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/motion-grid.png",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/javascripts/bundle.d7400e89.min.js",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/animations.mp4",
+            "status": 206
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/javascripts/studio.js",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/javascripts/vendor/model-viewer-4.3.1.min.mjs",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/search/search_index.json",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/javascripts/workers/search.2c215733.min.js",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/traveler-child.glb",
+            "status": 200
+          }
+        ],
+        "benignMediaAborts": [
+          {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/animations.mp4",
+            "error": "net::ERR_ABORTED"
+          }
+        ],
+        "unexpectedFailedRequests": []
+      },
+      "checks": {
+        "pageLoaded": true,
+        "modelLoaded": true,
+        "allControls": true,
+        "allMedia": true,
+        "noErrors": true
+      }
+    }
+  },
+  "passed": true
+}

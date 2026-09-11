@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/ui-confirmed/v001/source-attempt-1.wav",
+    "sha256": "177abf2e67e0578be44ed13609ca97b3464b7548bae57ee11e5a32bded68bfa7",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.0007019,
+    "peak_dbfs": -63.074,
+    "rms_amplitude": 8.022e-05,
+    "rms_dbfs": -81.914,
+    "dc_offset": 2.74e-06,
+    "clipped_sample_count": 0,
+    "non_silent": false
+  },
+  "selection": "rejected before processing",
+  "reason": "Full-file RMS is at or below the script's 0.0001 full-scale non-silence threshold.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

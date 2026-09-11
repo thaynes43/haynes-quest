@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "service_version": "0.1.1",
+  "id": "b8bf67044e094f4c956397d78ec8391d",
+  "status": "queued",
+  "prompt": "A clearly audible single rounded wooden tick with a small warm bell ping immediately after it, friendly interface confirmation, close-miked clean transient at moderate source volume with short decay; isolated sound effect, no repeated clicks, no voice, no music, no ambience.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 104,
+  "created_at": "2026-09-11T04:11:10.212170Z"
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/ability-unlocked/v001/source.wav",
+    "sha256": "c6d084ce680ab407b20c351cb49509ade12290efb291453fdfc350ce3ef7a904",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.33251953,
+    "peak_dbfs": -9.564,
+    "rms_amplitude": 0.05231922,
+    "rms_dbfs": -25.627,
+    "dc_offset": 1.305e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/ability-unlocked/v001/cue.wav",
+    "sha256": "46318afe6c77579a6b063fa704e887cd6112601b4cc4144351fa9085845115c0",
+    "size_bytes": 317564,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 79380,
+    "duration_seconds": 1.8,
+    "peak_amplitude": 0.39810181,
+    "peak_dbfs": -8.0,
+    "rms_amplitude": 0.10406464,
+    "rms_dbfs": -19.654,
+    "dc_offset": 2.73e-06,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}
