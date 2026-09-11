@@ -62,6 +62,11 @@ function tuningFor(role: EncounterView["role"]): EnemyTuning {
   return role === "boss" ? bossTuning : ordinaryTuning;
 }
 
+/** Shared by contact checks and the visible full-reach attack warning. */
+export function enemyAttackRange(role: EncounterView["role"]): number {
+  return tuningFor(role).attackRange;
+}
+
 function distance(first: PositionSnapshot, second: PositionSnapshot): number {
   return Math.hypot(first.x - second.x, first.z - second.z);
 }

@@ -151,6 +151,48 @@ describe("obby game runtime", () => {
     advance();
   };
 
+  it("retains a quick jump tap across the zero-time frame after a save update", () => {
+    const game = createGame({
+      container: document.createElement("div"),
+      save: routedSave({ levelIndex: 1 }),
+      onAction: async () => routedSave({ levelIndex: 1, revision: 1 }),
+      onRefresh: async () => routedSave({ levelIndex: 1 }),
+    });
+    warmRuntime();
+    game.updateSave(routedSave({ levelIndex: 1, revision: 1 }));
+    game.setInput("jump", true);
+    game.setInput("jump", false);
+    advance();
+    expect(game.inspect().status.position.y).toBe(0);
+    advance();
+    expect(game.inspect().status.position.y).toBeGreaterThan(0.1);
+    game.dispose();
+  });
+
+  it.each(["pause", "blur", "pointercancel", "clear"])(
+    "discards a deferred jump on %s instead of jumping when play resumes",
+    (cancellation) => {
+      const game = createGame({
+        container: document.createElement("div"),
+        save: routedSave({ levelIndex: 1 }),
+        onAction: async () => routedSave({ levelIndex: 1 }),
+        onRefresh: async () => routedSave({ levelIndex: 1 }),
+      });
+      game.setInput("jump", true);
+      game.setInput("jump", false);
+      advance();
+      if (cancellation === "pause") {
+        game.setPaused(true);
+        game.setPaused(false);
+      } else if (cancellation === "clear") game.clearInput();
+      else window.dispatchEvent(new Event(cancellation));
+      advance();
+      advance();
+      expect(game.inspect().status.position.y).toBe(0);
+      game.dispose();
+    },
+  );
+
   it("steps and renders the frozen v2 route from the genuine sampled course", () => {
     const game = createGame({
       container: document.createElement("div"),

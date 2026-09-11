@@ -142,14 +142,15 @@ export class GameInputState {
     };
   }
 
-  consumeActions(): Record<ButtonAction, boolean> {
+  consumeActions(deferJump = false): Record<ButtonAction, boolean> {
     const result = { ...this.pendingActions };
     this.pendingActions = {
-      jump: false,
+      jump: deferJump && result.jump,
       interact: false,
       attack: false,
       guard: false,
     };
+    if (deferJump) result.jump = false;
     return result;
   }
 

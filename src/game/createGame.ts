@@ -4,7 +4,12 @@ import type {
   SaveView,
 } from "../shared/contracts";
 import { ActionCoordinator, type ActionRequestState } from "./actions";
-import { bossIsActive, EnemySimulation, findAttackTarget } from "./combat";
+import {
+  bossIsActive,
+  enemyAttackRange,
+  EnemySimulation,
+  findAttackTarget,
+} from "./combat";
 import { getAvatarProportions, stepController } from "./controller";
 import { createObbyState, sampleObby, stepObby } from "./obby";
 import { bindBrowserInput, GameInputState } from "./input";
@@ -423,7 +428,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       return false;
     }
     if (Math.abs(controller.position.y - frame.position.y) > 0.3) return false;
-    const range = encounter.role === "boss" ? 1.75 : 1.35;
+    const range = enemyAttackRange(encounter.role);
     return horizontalDistance(controller.position, frame.position) <= range;
   };
 
@@ -532,7 +537,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
     if (!worldActive) input.clear();
     const currentInput = input.snapshot();
     const pointerLook = input.consumePointerLook();
-    const actions = input.consumeActions();
+    // A save/resume frame resets the clock. Keep a quick tap until physics can step.
+    const actions = input.consumeActions(!!level.course && deltaSeconds === 0);
     if (worldActive) {
       scene.adjustCamera(
         currentInput.lookX,

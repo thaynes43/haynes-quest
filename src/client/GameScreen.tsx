@@ -416,7 +416,8 @@ function Adventure({
               label="Jump"
               symbol="↑"
               disabled={
-                !save.abilities.includes("jump") || view.phase !== "exploring"
+                !save.abilities.includes("jump") ||
+                (view.phase !== "exploring" && view.phase !== "memory-released")
               }
               input={actionInput}
             />

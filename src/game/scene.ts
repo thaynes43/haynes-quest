@@ -21,6 +21,7 @@ import {
 } from "./scene-art";
 import { equipmentArtwork, parodyArtwork } from "./scene-catalog";
 import { EnemyAnimation } from "./enemy-animation";
+import { enemyAttackRange } from "./combat";
 import { TravelerEquipment } from "./traveler-equipment";
 
 type PhotoState = {
@@ -352,7 +353,7 @@ export class GardenScene {
         : createEncounterStudy(placement.kind, later);
       root.add(model);
       const boss = placement.role === "boss";
-      const warning = groundRing(boss ? 1.7 : 1.25, 0xed735d);
+      const warning = groundRing(enemyAttackRange(placement.role), 0xed735d);
       root.add(warning);
       warning.visible = false;
       const marker = groundRing(boss ? 0.9 : 0.5, 0xffdea0, 0.5);
@@ -784,9 +785,8 @@ export class GardenScene {
     visual.marker.visible = targeted && !defeated;
     visual.warning.visible =
       enemy.phase === "windup" || enemy.phase === "strike";
-    visual.warning.scale.setScalar(
-      enemy.phase === "strike" ? 1 : Math.max(0.1, enemy.windupProgress),
-    );
+    // Show the entire danger area from the start of the warning.
+    visual.warning.scale.setScalar(1);
     (visual.warning.material as THREE.MeshBasicMaterial).opacity =
       enemy.phase === "strike" ? 1 : 0.4 + enemy.windupProgress * 0.5;
     visual.hp.visible = !dormant && enemy.hp < enemy.maxHp && !defeated;
