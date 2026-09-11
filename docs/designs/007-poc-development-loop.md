@@ -8,26 +8,21 @@
 
 ## Scope now
 
-The immediate goal is to get the core gameplay flowing and establish a repeatable build, author, review, and test loop. Tom explicitly deferred detailed fighting and additional collectibles. Full story, enemy/boss content, and level dressing are recorded in the [backlog](../BACKLOG.md); finishing those designs is not a prerequisite for starting this narrow PoC.
+Tom's September 11 review corrected the prototype scope: the coming-of-age arc depends on useful equipment, period enemies, a boss, then post-boss memories that advance age and the next period. These are the core playable loop. The earlier collection-and-jump route was technically functional but did not demonstrate that loop; its tests remain historical evidence.
 
-The earlier requirement to finish all technical and nontechnical documentation before any prototype is narrowed to the PoC contracts and workflow. Tom subsequently prioritized PLAN-003 dependency setup before development dispatch. Once that checkpoint is reached, implement the small playable slice with synthetic placeholders while final asset candidates are authored and reviewed. PLAN-003 now targets a dedicated cluster Blender service and explicit remote artifact transfer, with independently upgradeable authoring workloads. Historical tool-image tests do not establish the new service's readiness; final assets and the game remain unimplemented.
+[PLAN-005](../../.agents/plans/005-era-combat-loop.md) and [DESIGN-010](010-era-combat-loop.md) now govern the bounded rebuild. The fixture keeps three fictional memories and demonstrates two periods: age zero in 2020, then age four in 2024, ending at age seven. Exact thresholds and combat balance are provisional. A full lifetime campaign and complete historical catalog are additional work; the current fights and useful pickups cannot be postponed as though they were unrelated polish.
 
-## Proposed first playable slice
+## Corrected playable slice
 
-Use one compact original test level, one generic placeholder/avatar, a synthetic person with an explicit fictional birth date, and three dated synthetic memories. Prototype dates and thresholds are test data, not final developmental milestones or an answer to the product's pending age-source policy.
+1. Start at age zero with movement and interaction.
+2. Explore the period, find an attack tool and optionally a shield, and face two ordinary enemies.
+3. Defeat the boss using available equipment and readable attack warnings. Provide health, avoidance, guarding and a safe retry after defeat.
+4. Show the released pictures after victory. Revealing a picture preserves the current age. Absorb the completed bundle to grow, retain gear and abilities, and enter the next period.
+5. Complete that period and end at the age represented by the last selected memory. Do not invent adulthood or more photos.
+6. Save, leave and resume with the same health, equipment, encounters, phase, pictures, age and abilities. Preserve earlier prototype saves as read-only albums.
+7. Play the sequence through keyboard/mouse and simultaneous touch controls. Use actual browser images and loading-failure checks to assess the result.
 
-1. Start at memory age zero with a small baby movement/interaction set.
-2. Reach the first memory with the starting actions and show visual collection feedback.
-3. Reach the next chronological memory and unlock one new movement action, initially proposed as jumping.
-4. Use the new action and an earlier retained action to reach the final memory and a clear finish point. The route to an unlock never requires that same unlock.
-5. Save, exit, and resume with the same subject, age, abilities, and collected memories.
-6. Complete the same route with iPad/iPhone touch controls and PC keyboard/mouse, including with sound muted.
-
-Three memories, one unlock, and the exact test layout are implementation defaults chosen to keep the probe small. They do not establish the full game's level size, age thresholds, or collectible quota. Use simple geometry and clearly marked synthetic media first; candidate final art is reviewed separately before integration.
-
-The slice needs sound cues for collection, unlocking, movement/landing as appropriate, and UI confirmation. A short ambience loop is optional. Combat, bosses, extra pickups, multiple cultural eras, final music, dialogue, and a full story campaign are not PoC completion criteria.
-
-The existing premise supplies enough story for the slice: a character without memories recovers photos and regains abilities. Keep the objective to recovering the next memory. The avatar's final identity, world history, ending, named characters, and spoken narration remain open.
+The local candidate review may use the catalog's prepared traveler and environment models. Promotion to the normal private demo still requires the existing exact-version owner decision. New encounter/equipment studies are explicitly temporary; their finished asset production remains part of PLAN-005 and must be reported as incomplete if authoring is blocked. Audio remains silent until approved cues are mapped; persistent sound preferences and visible feedback are retained.
 
 ## Development cycle
 
@@ -72,19 +67,19 @@ Tom also authorizes first-pass candidate production and iteration before his rev
 
 Candidates may be shown in an isolated, clearly labeled review preview. Until Tom approves, gameplay uses synthetic placeholders or a previously approved version. Record approval against the exact candidate version; a materially changed candidate returns to review. A rejected or pending asset does not stop unrelated code work.
 
-Normal documentation and code PRs still follow checks and autonomous squash merge. The review gate is promotion of final assets into gameplay, not a new requirement for Tom to approve every PR or implementation choice. No candidate asset is being submitted for approval in this documentation task.
+Normal documentation and code PRs still follow checks and autonomous squash merge. The review gate is promotion of final assets into gameplay, not a new requirement for Tom to approve every PR or implementation choice. Tom has been asked about demo use of the existing exact-version candidates; the handoff records whether a response has arrived.
 
 ## PoC acceptance
 
-The table below describes the eventual player-ready PoC, including OAuth, owner-approved assets and physical-device checks. Those remain follow-on acceptance and do not block tonight. [PLAN-004](../../.agents/plans/completed/004-overnight-mvp.md) governs the overnight checkpoint: a runnable private fixture route, synthetic media, visible growth/unlock, real server-owned persistence, browser-automated input/save checks, identified gameplay placeholders and the scoped first-pass review catalog. Record the table's deferred checks honestly rather than claiming fixture login or emulation satisfies them.
+The table includes eventual player-ready acceptance: OAuth, owner-approved artwork and physical-device checks remain separate from the private synthetic review. PLAN-005 governs the corrected loop. PLAN-004 and its earlier tests do not establish acceptance of that corrected gameplay.
 
 | ID | Observable result |
 | --- | --- |
-| AC-01 | The compact synthetic route runs from age zero through three chronological memories, one new ability, retained earlier actions, and a reachable finish point. |
+| AC-01 | The two-period route runs through useful equipment, ordinary encounters, boss victory, visible released pictures, deliberate bundle consumption and a new age/period. Boss defeat and individual revelation never age the traveler; gear, abilities and saved progress persist. |
 | AC-02 | The route works with touch on actual iPad/iPhone Safari and keyboard/mouse on the selected PC browser; exact tested devices/versions are recorded. |
 | AC-03 | The hosted slice signs in through Authentik only and restores server-owned memory, age, and ability progress after leaving and resuming. Ownership/retry checks pass. |
 | AC-04 | Approved prepared cues play after user interaction, mute persists, and browser interruption/resume produces no duplicate loops or queued bursts. The route is playable muted. |
 | AC-05 | Final integrated visual/audio versions have Tom's recorded review, reproducible source/export metadata, and relevant technical checks. Placeholders are identified honestly and do not stand in for approved final-asset evidence. |
 | AC-06 | The repository has working build/test commands and a reproducible asset/cue handoff. The release is verified through the existing GitOps/browser process; no untested deployment or actual-device claim is made. |
 
-Final combat mechanics, production story, extra collectibles, and the full era catalog remain later work after this loop has been evaluated. PLAN-002 defines the staged delivery. Tom subsequently prioritized [PLAN-003 dependency setup](../../.agents/plans/completed/003-authoring-tool-setup.md) before development dispatch. Once that setup checkpoint is reached, the first coding milestone can use placeholders while candidate assets and their reviews proceed; full game content still does not gate the loop.
+The complete historical catalog, final balance, production story and additional activities remain later work. The current equipment/enemy/boss loop is required now. The dedicated authoring services were established under [completed PLAN-003](../../.agents/plans/completed/003-authoring-tool-setup.md); current resource ownership and tool failures belong in the active work orders.

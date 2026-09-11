@@ -1,91 +1,68 @@
 # DESIGN-006: Memory age and accumulating abilities
 
-- **Status:** Proposed
-- **Last updated:** 2026-09-10
-- **Source:** Tom's age-zero start and memory-driven ability progression brief
-- **Satisfies:** [PRD-001 R-12, R-20–R-24, R-27, R-30–R-34](../prds/001-project-brief.md)
-- **Related:** [Memory journey](004-memory-journey.md), [era enemies](005-era-enemy-catalog.md), [saved games](001-technical-foundation.md), [asset authoring](002-asset-pipeline.md)
+- **Status:** Owner-confirmed loop; provisional age bands and abilities implemented for PLAN-005
+- **Last updated:** 2026-09-11
+- **Source:** Tom's correction: equipment and era combat precede the boss; memories consumed after victory advance age and the next period.
+- **Satisfies:** [PRD-001 R-12, R-20–R-24, R-27, R-30–R-35](../prds/001-project-brief.md)
+- **Related:** [Memory journey](004-memory-journey.md), [era enemies](005-era-enemy-catalog.md), [combat contract](010-era-combat-loop.md), [asset authoring](002-asset-pipeline.md)
 
-## Gameplay loop
+## The coming-of-age arc
 
-Every new game begins with the mysterious avatar at **memory age zero**, no collected memories, and a small set of baby abilities. Recovering photos advances the character through the selected person's life in chronological age order. Each newly reached stage adds abilities appropriate to that stage of the game. Earlier abilities carry forward into later periods.
+Every new journey begins at memory age zero. The player explores the current period, finds useful equipment and uses it against that period's enemies. Defeating the boss releases the level's memories. The player remembers those pictures, then deliberately absorbs enough memories to advance to the next age bracket. The next level takes place in the calendar period corresponding to the age they have reached.
 
 ```mermaid
 flowchart LR
-    A[Age zero and baby abilities] --> B[Reach the next memory]
-    B --> C[Recover the age represented by that photo]
-    C --> D[Keep learned abilities and unlock new ones]
-    D --> E[Use abilities to overcome obstacles and encounters]
-    E --> B
+    A[Current age and period] --> B[Explore and find equipment]
+    B --> C[Face period enemies and the boss]
+    C --> D[Boss releases memories]
+    D --> E[Remember the pictures]
+    E --> F[Absorb the completed bundle]
+    F --> G[Grow and retain abilities]
+    G --> A
 ```
 
-The player grows from simple movement and interaction into more capable traversal, tool use, and puzzle solving. Tom's description of becoming smarter is expressed through new gameplay actions and combinations; photos are not used to measure the real person's intelligence or developmental milestones. The precise abilities and unlock ages will be designed for play.
+**Boss victory alone does not change age. Viewing or revealing one picture does not change age.** Consumption of the completed, released bundle is the age transition. This corrects the earlier prototype, which aged the traveler on individual photo recovery. Those old saves remain readable as legacy records; they are not converted into invented boss victories.
 
-| Illustrative stage | Possible additions | Example use |
-| --- | --- | --- |
-| Baby opening | Scoot/crawl and simple grabbing or pushing | Reach a low memory, move a toy, or pass through a small opening. |
-| Early childhood | Walking, jumping, and carrying objects | Cross a small gap or bring an object to a switch. |
-| Later childhood | Climbing, simple tools, and multi-step interactions | Combine movement with a mechanism to open a route. |
-| Later stages | More complex tools, planning, and ability combinations | Solve encounters using several skills already learned. |
+Equipment and learned abilities have different sources. A tool found during exploration enables attacks in that level. A shield enables guarding. Age-based abilities are retained across periods; the fixture introduces jumping at age four. Finding a weapon never grants age, and beginning a new level never grants the age of its unrecovered final picture.
 
-These are illustrative ideas, not accepted age thresholds or an asset list. A short child journey only reaches its represented ages; it must still offer a complete, playable adventure with the available abilities. No adult stage or adult ability is a prerequisite for finishing a child's journey.
+## Bounded implementation
 
-## Three separate progression inputs
+The provisional age thresholds are **4, 8, 13, 18, 25, 35, 50 and 65**. These are game pacing defaults, not biological milestones or owner-approved final balance. Starting above the current age, the frozen planner assigns consecutive selected memories through the first one reaching the next threshold. If no such memory remains, the final bundle ends at the last selected memory. It does not fabricate pictures or future levels to fill a bracket.
 
-- **Calendar period:** chooses the era-appropriate enemy/boss pool under DESIGN-005.
-- **Recovered memory age:** determines which character abilities have become available.
-- **Player difficulty settings:** tune challenge within the available abilities. Subject age and gender do not establish the human player's skill.
+The current fictional dates demonstrate two levels:
 
-For example, two characters recovering memories at the same age can have the same ability set but face different era-inspired enemies. Entering a level that spans several ages does not immediately grant the abilities associated with its final photos. Age and abilities progress as the relevant memories are recovered within it.
+| Level | Starting state | Released memory ages | State after consumption |
+| --- | --- | --- | --- |
+| The Pixel Orchard | Age 0, period 2020 | 0 and 4 | Age 4, child appearance, jumping; enter 2024 |
+| The Looplight Fair | Age 4, period 2024 | 7 | Age 7; journey complete within childhood |
 
-## Age source and incomplete libraries
-
-Ability age requires an explicit mapping from photo dates to the subject's age. The prior proposal of optional birth information with calendar-year labels alone is no longer sufficient for this mechanic. The recommended setup uses a birth date. Tom has been asked whether that should be required or whether an entered age at the earliest photo may serve as an alternative. This choice is pending; no age is inferred from appearance and the earliest photo is never assumed to depict birth.
-
-Until age can be established under the selected policy, show a setup state for age-gated play. Calendar dates can still support a coverage preview and era selection, but cannot silently substitute for age. If an age-anchor alternative is selected, record its precision and uncertainty and use an explicit threshold policy; do not turn an approximate input into invented exact ages. Month-level progression within age zero may be useful and remains a gameplay choice.
-
-Every save starts at zero even if the earliest available photo is older. The proposed missing-infancy path is a short opening reachable with the baby abilities, followed by the earliest real memory and a guided introduction to the abilities up to its known age. This can cross several stages without fabricating baby photos or requiring empty years. The exact catch-up sequence is proposed, not an owner ruling. Later gaps need the same treatment: each new action required by a route must be introduced before that route demands it.
+The planner uses the explicit fictional birth date for the opening period, and the prior consumed bundle's last photo date for the next period. Actual photo dates determine mapped age; upload time, play time, picture count and the person's present age do not substitute for it. Sparse bundles can cross several thresholds. Every required fight and route must still be possible with the actions already available before that fight.
 
 ## Progression contract
 
 | ID | Rule |
 | --- | --- |
-| D-01 | A new save starts with memory age zero, no collected memories, and an explicitly defined baby ability set. The first memory is reachable using that set. Starting another journey does not inherit abilities from a different save. |
-| D-02 | Only a valid memory recovery under the ordered journey can advance memory age. Use the photo's mapped age, not elapsed play time, photo count, chapter index, or the subject's present-day age. Later-age memories cannot bypass earlier required progression; the next eligible memory may itself raise age. |
-| D-03 | Define stable ability IDs, unlock thresholds/prerequisites, and a versioned progression rule set. An age threshold can unlock several abilities, and many photos can share an age without each creating an unlock. Exact thresholds and within-stage collection order remain for design. |
-| D-04 | Unlock only abilities eligible at the recovered age. Retain previously unlocked abilities across chapter and era transitions. Revisiting older memories cannot reduce age or remove abilities, and duplicate recovery cannot grant progress twice. No automatic age-related skill loss is part of this loop. |
-| D-05 | Chapter entry does not grant the age or abilities of its newest photo. Level paths, objectives, ordinary enemies, and bosses must be completable using abilities available at that encounter, without needing an ability obtained only beyond that obstacle. |
-| D-06 | Introduce newly unlocked actions through readable feedback and an opportunity to use them. Touch and keyboard/mouse expose the same available actions; locked actions cannot be used by calling an API or sending a game command directly. Exact control layouts remain for input design. |
-| D-07 | Save memory age, the age-source revision, unlocked ability IDs, progression-rule version, and introduction/progression state alongside chapter, memory, and encounter progress. The server validates recovery and progression against the saved journey; client-supplied ages or unlock lists are not authoritative. |
-| D-08 | Apply memory collection and its age/unlock changes as one logical save update with existing revision/idempotency rules. Interruptions, retries, stale tabs, and another device cannot award twice, lose an unlock, or save the photo without the corresponding progression. |
-| D-09 | Library date edits, birth/age-source corrections, rule changes, or asset replacement must not silently recalculate an existing journey's age, revoke abilities, or change its subject. Preserve the saved rule/data revisions until an explicit reconciliation policy applies. A revoked photo remains inaccessible while recorded progression is retained. |
-| D-10 | Missing infancy and later gaps must not create impossible ability gates or invented memories. One recovery can cross several thresholds; the proposed catch-up introduction covers required actions before they are needed. Final pacing for these gaps remains to be designed. |
-| D-11 | The final reachable age is bounded by the eligible memories in the journey. A child's, sparse, or single-period library must have a viable endpoint with its available abilities; completion cannot require unrepresented future years or powers. |
-| D-12 | The avatar remains generic and independent of the real person's likeness. Its posture, animation, controls, and abilities can express growth. Exact body changes, multiple age meshes, rig strategy, and final clips are deferred art/technical choices; automatic personal model generation stays outside the PoC. |
+| D-01 | New journeys start at age zero with movement and interaction, no inventory and no remembered pictures. Another save does not supply abilities or equipment. |
+| D-02 | Equipment is collected from the active level. Server-owned definitions determine its attack strength and guard protection. The client never supplies damage values, granted abilities or an age. |
+| D-03 | The active level's ordinary encounters precede boss damage. Only server-confirmed boss defeat releases its bundle. Later-level pictures stay locked. |
+| D-04 | Revealing a released picture records memory recovery without changing age, appearance or abilities. Pictures remain readable after revelation and consumption. |
+| D-05 | Consumption requires boss victory and every required picture in the current bundle to be revealed. One transaction records consumed memories, completed level, mapped age, eligible abilities, appearance and next level or completion. |
+| D-06 | Retain earlier abilities and equipment. Revisiting pictures, retries and stale commands cannot decrease age or grant progress twice. Reaching an era does not grant all abilities of that era's final memory. |
+| D-07 | Expose the same actions on keyboard/mouse and touch. Introduce a newly learned action before a route requires it; an opening boss cannot require jumping earned only after that boss. |
+| D-08 | Save frozen level definitions and mutable combat/progression separately, with rule versions, durable action IDs and expected revisions. Resume restores health, inventory, encounters, phase, revealed/consumed pictures and age. |
+| D-09 | Defeat and retry preserve inventory and earlier completed levels. Retry restores the current fight safely; it does not award memories or erase an earlier bundle. |
+| D-10 | Library edits, age-source corrections, catalog updates and art replacement cannot silently recalculate an existing journey. Revoked source media stays inaccessible without deleting recorded progress. |
+| D-11 | The selected library bounds the ending. A child or single-period journey can finish without adulthood, invented empty years or unrepresented future abilities. |
+| D-12 | The synthetic avatar expresses growth with authored infant/child meshes and clips. It remains separate from person identity; automatic likeness generation and later stages are still additional work. |
 
-## Encounters and assets
+The human player's difficulty is independent of the subject's age, gender and photo coverage. The same memory age in different historical periods can have the same learned actions but different eligible enemies.
 
-The enemy catalog needs encounter variants or solutions compatible with the current ability set. Era eligibility still applies first; a limited baby ability set is not a reason to use an enemy from the wrong period. The selected difficulty setting can tune an encounter, but every required route must remain solvable with the current actions. Boss frequency, victory conditions, and combat/evasion mechanics remain open.
+## Real-photo age source and remaining decisions
 
-Asset authoring follows DESIGN-002 once its specific tools are ready. [DESIGN-007](007-poc-development-loop.md) first validates a small synthetic progression and its controller transitions with placeholders; the chosen initial actions are enough to brief the PoC animation candidates. Full growth animations and enemies follow later, and final asset versions require Tom's review before integration. A shared avatar does not imply one unchanging movement animation throughout the game, and age progression does not require a likeness model per person.
+The fictional fixture has a known birth date. Real-person setup still needs its accepted birth-date/age-anchor policy and authenticated media admission. No age is inferred from appearance, and the earliest available picture is never assumed to depict birth. An approximate anchor would require an explicit precision policy.
 
-## Validation scenarios
+Broader age abilities, within-infancy progression, missing-period introductions, additional appearance stages and final difficulty balance remain to be designed and reviewed. They do not change the owner-confirmed ordering above. [DESIGN-010](010-era-combat-loop.md) records the current combat and persistence implementation; [PLAN-005](../../.agents/plans/005-era-combat-loop.md) records its actual acceptance status.
 
-- A new save starts at zero with no memories and only the baby abilities; it can reach its first collectible with touch and with keyboard/mouse.
-- An ordered set of synthetic photos advances age and grants only eligible abilities. Same-age photos, duplicate requests, older revisits, and attempts to recover a future stage do not bypass the rules.
-- Unlocks persist into later chapters and eras. A new decade does not reset abilities or grant all abilities at the chapter's final age.
-- Sparse timelines, missing baby photos, several thresholds crossed at once, and child/single-period endpoints have reachable paths and introductions for every required action.
-- Enemies and bosses in different eras have solutions compatible with the same available ability set. A required encounter never gates the memory needed to acquire its only solution.
-- Resuming on another device restores age, abilities, memories, and encounters. Failed/retried writes and stale tabs cannot split or duplicate the progression update.
-- Birth-date/age-anchor corrections, date edits, rule updates, unavailable photos, and avatar replacement preserve the saved progression under the explicit reconciliation policy.
+## Validation
 
-## Decisions remaining
-
-| ID | Decision | Status |
-| --- | --- | --- |
-| Q-01 | Require a birth date, or also allow an entered age for the earliest photo? | Asked Tom on 2026-09-10 because ages now unlock abilities. Birth date is recommended; an age-anchor alternative and its precision policy are not yet selected. |
-| Q-02 | Which abilities unlock at which ages, and how does progression work within age zero? | Deferred to gameplay design; examples above do not set biological milestones or exact age bands. |
-| Q-03 | How are missing infancy and large time jumps introduced? | Short baby opening and guided catch-up are proposed. No fabricated memories or mandatory empty chapters. |
-| Q-04 | How does the generic avatar visibly grow? | Deferred to art/controller design; no likeness generation or fixed count of age models is selected. |
-
-The PLAN-004 private slice implements and verifies a synthetic chronological age transition, one later unlock and retained starting actions under DESIGN-009. Broader abilities and player-ready acceptance in DESIGN-007 remain future work. Use a fictional known birth date for that fixture; it does not settle the real-person age-source policy. The full ability catalog and missing-period production policy do not gate this bounded coding milestone.
+Verify age remains unchanged after boss defeat and each picture reveal, then advances exactly once after bundle consumption. Exercise missing infancy, same-age pictures, sparse thresholds and a childhood endpoint. Check forged ages/damage, out-of-order bundles, duplicate/stale commands, simultaneous consumption, defeat/retry and server restart. Play the complete two-period sequence with keyboard and touch, observing the changed appearance, retained gear and next period. Browser emulation does not establish physical iPhone/iPad Safari quality or performance.

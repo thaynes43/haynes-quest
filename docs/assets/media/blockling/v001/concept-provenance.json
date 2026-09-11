@@ -1,0 +1,24 @@
+{
+  "asset_id": "blockling",
+  "concept_version": "v001",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "generation": "Serial lead generation; actual output visually inspected.",
+  "reference_set": "storybook-v001",
+  "source": "Original fictional concept. No family reference or third-party mesh.",
+  "model_id_and_seed": "Not returned by the tool; not claimed.",
+  "status": "Concept selected for authoring; model work blocked by native task capacity; owner approval pending.",
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2586773,
+      "sha256": "ef74355e4f1a328cdab3e454b0964c59ba2a5ff64a85dc9ddf6d6f30ab59e101"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 1879,
+      "sha256": "f027491ac610f1cd52b83f5b9dd8982d61b9f7d84c2b5617963bb47c5f5cfe00"
+    }
+  ]
+}

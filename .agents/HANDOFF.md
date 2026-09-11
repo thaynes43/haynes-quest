@@ -3,11 +3,23 @@
 - **Updated:** 2026-09-11, core gameplay correction after Tom played the demo
 - **Stage:** PLAN-005 in progress. Tom rejected the memory-walking demo as the wrong core loop and inadequate presentation. PLAN-004 remains historical implementation/test evidence, not acceptance of the intended game.
 - **Team:** driving Astra max owns architecture, UI/copy, art judgment and serial image generation. [TEAM.md](TEAM.md): native Sol xhigh for ordinary work, fresh native Astra max for every Blender task, explicitly authorized separate Fable 5.1 xhigh review/coding.
-- **Next work:** OAuth and admitted-player policy, exact-version owner asset review, audio listening and physical iPhone/iPad Safari checks. These were explicitly deferred; no dev-env restart is authorized.
+- **Next work:** Finish PLAN-005 browser play/visual checks, current asset production and review, and checked release handling. OAuth/admission, audio listening and physical iPhone/iPad Safari checks remain deferred. No dev-env restart is authorized.
 
 ## Current task: correct the game loop
 
 [PLAN-005](plans/005-era-combat-loop.md) and [DESIGN-010](../docs/designs/010-era-combat-loop.md) govern the rebuild: find useful equipment, fight period enemies, defeat the boss, then reveal/consume memories to advance age and enter the next period. Root works in `/home/dev/work/quest-era-boss-loop` on `agent/quest-era-boss-loop` from `3502ac7`. Sol `era_loop_code_audit` returned a read-only schema/authority review; Sol `photo_tile_diagnosis` reproduced working fixture images in deployed Chromium and prepared isolated CSP fix `50a738b`, with no physical Safari claim. Root owns contracts, visuals and writing. Demo use of existing candidates was asked through the question tool and is pending; no approval is inferred. Real Immich access remains separate from fixture mode. No dev-env restart.
+
+### Rebuild checkpoint
+
+Root integrated shared contracts `97aab9e`, game interfaces `2649e57`, server/reducer/migration `f7df719`, game loop `4b1bad4`, hidden-frame timing fix `a07db99`, and real PostgreSQL validation/fixes `d25377d`. The current root source also contains the new scene, GLB/texture loading, combat HUD, victory pictures and legacy album UI. Lead-written docs now correct the old per-picture age rule.
+
+Actual checks so far: integrated typecheck/lint/build passed; 65 non-Postgres tests passed; the server lane ran eight integration tests against isolated PostgreSQL 16.14, including migration preservation, races, receipt pruning and invalid persisted data, then deleted its disposable Job and ended activity. Root's Chromium smoke renders the authored infant and six environment/model resources, with zero page errors. Full keyboard/touch boss-to-growth journeys are still being checked; do not infer their success from the smoke test.
+
+Local candidate harness: root-owned `QUEST_E2E_PORT=4390 pnpm exec tsx tests/e2e/serve-fixture.ts`, listening on `127.0.0.1:4390`, memory storage, exec session `23536`. This is a local review, not persistence or private-live release evidence. Source dependencies are installed in the task worktree. Strict docs build passed using the old worktree's Python venv on PATH. Root screenshots are under ignored `test-results/` until selected for the durable verification record.
+
+[WO-013](work-orders/013-era-combat-rebuild.md) owns the code rebuild. [WO-014](work-orders/014-blender-era-2020.md) is blocked before authoring: root and one Sol relay each received `agent thread limit reached` when dispatching the required fresh Astra. No scene owner exists and no Blender scene changed. Blockling and Signal Moth concepts/prompt/provenance are saved; remaining concepts, new enemy/equipment models and their review packages are unfinished. Root's procedural encounter/equipment studies are clearly temporary, not Blender candidate exports. Do not declare PLAN-005's visual acceptance complete.
+
+Candidate demo-use approval remains unanswered. The current private deployment remains the previous `3502ac7` image (wedge catalog correction), digest `sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37`. No PLAN-005 code or assets have been deployed. The new code can be checked and merged without treating that as asset approval; gameplay promotion still waits on the recorded exact-version review boundary.
 
 ## Latest review correction
 

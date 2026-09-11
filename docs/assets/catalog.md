@@ -28,10 +28,19 @@ Each separately modeled piece in a kit needs an identifiable concept view, model
 | `movement-landed` | [Back on the path · v001](reviews/movement-landed/v001.md) | Audition available · listening and Tom review pending |
 | `ui-confirmed` | [A quiet yes · v001](reviews/ui-confirmed/v001.md) | Audition available · listening and Tom review pending |
 
-Add ambience only after the required cues and runnable slice are complete. Full music, voices, bosses, era rosters and extra biomes remain backlog work. Keep generated originals and processed exports distinct; record processing, license/provenance, waveform/level checks and an audible preview. A metadata check alone is not a listening review.
+Add ambience only after the required cues and runnable slice are complete. Full music, voices, wider era rosters and extra biomes remain additional work; the two-period combat rebuild has its own required current asset work below. Keep generated originals and processed exports distinct; record processing, license/provenance, waveform/level checks and an audible preview. A metadata check alone is not a listening review.
 
 ## Adding candidates
 
 Copy the [review template](000-review-template.md) to a versioned review page; replace template paths with real relative media links and link that page here. Retain the source concept alongside its model and all chosen audio takes. Mark unavailable or failed previews explicitly. Update this catalog and the lead handoff after each integrated authoring milestone so a fresh lead can resume without repeating generations.
 
 The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concept v002 with its rear wedge restored in the back view, following Tom’s September 11 feedback. The model remains v001; its support was already present.
+
+## Corrected combat slice: work in progress
+
+Tom’s review expanded the required playable loop to equipment, period enemies and bosses. The earlier nine-model inventory remains preserved, but it does not cover these new needs. The current game review loads the existing traveler/environment GLBs; new encounter and equipment studies remain temporary. No demo-use or final approval has been recorded.
+
+- [Blockling concept · v001](media/blockling/v001/concept.png), [prompt](media/blockling/v001/prompt.txt), [provenance](media/blockling/v001/concept-provenance.json).
+- [Signal Moth concept · v001](media/signal-moth/v001/concept.png), [prompt](media/signal-moth/v001/prompt.txt), [provenance](media/signal-moth/v001/concept-provenance.json).
+
+Both concepts were generated serially with built-in image generation and selected by the lead. [WO-014](../../.agents/work-orders/014-blender-era-2020.md) records the failed native Astra dispatch: task capacity prevented an author from starting. New enemy models, remaining concepts, equipment exports and their review packages are unfinished. No Blender scene change or model-provider fallback occurred. [PLAN-005](../../.agents/plans/005-era-combat-loop.md) remains in progress.

@@ -33,7 +33,7 @@ Tonight demonstrates at least one visible growth transition with fictional refer
 
 ## Era enemies and broader production
 
-Later enemies/bosses follow [DESIGN-005](005-era-enemy-catalog.md): a finite authored catalog, calendar-period eligibility, original names/silhouettes/costumes/sounds, and source or license provenance. Television, games and online culture inform curation; runtime generation or reference-media downloading is not required. Renaming or recoloring a recognizable franchise character does not establish an original design or legal clearance. Full era rosters, bosses and additional worlds do not gate this slice.
+Current and later enemies/bosses follow [DESIGN-005](005-era-enemy-catalog.md): a finite authored catalog, calendar-period eligibility, original names/silhouettes/costumes/sounds, and source or license provenance. Television, games and online culture inform curation; runtime generation or reference-media downloading is not required. Renaming or recoloring a recognizable franchise character does not establish an original design or legal clearance. The current two-period equipment/enemy/boss assets belong to PLAN-005. A complete historical roster and additional worlds remain beyond that bounded slice; they do not remove the current authoring requirement.
 
 ## Runtime contract and trial budgets
 

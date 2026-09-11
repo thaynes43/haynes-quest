@@ -1,6 +1,6 @@
 # Running the private preview
 
-The overnight build uses **fictional memories and temporary game art**. OAuth and real player admission remain tomorrow’s work. The Immich adapter exists behind a private server contract, but the fixture web process cannot receive its credentials or expose a real-photo route.
+The deployed overnight build and corrected PLAN-005 review use **fictional illustrations**. The [handoff](../../.agents/HANDOFF.md) distinguishes their versions and actual release status. OAuth and real-player admission remain deferred. The Immich adapter exists behind a private server contract, but the fixture web process cannot receive its credentials or expose a real-photo route.
 
 ## Private cluster preview
 
@@ -12,17 +12,21 @@ The deployed MVP passed complete keyboard and Chromium touch-emulation journeys 
 
 Use Node 24 and the repository’s pinned pnpm version. Install with `pnpm install --frozen-lockfile`. Start a dedicated disposable PostgreSQL database, then provide `DATABASE_URL`, a randomly generated `BETTER_AUTH_SECRET` (at least 32 characters), `QUEST_FIXTURE_MODE=true`, `NODE_ENV=development` and `QUEST_APP_ORIGIN=http://127.0.0.1:3000` in your shell or an untracked local environment file. Never use a real photo credential in this process.
 
-Run `pnpm build`, then `pnpm start` from the repository root. The server applies checksum-tracked migrations from `migrations/` before listening on port 3000. Open `http://127.0.0.1:3000`. A signed, HttpOnly browser cookie identifies a server-assigned fictional player; clearing it starts another preview player. New fixture sessions are capped globally at 120 per minute. A five-minute bounded maintenance pass removes expired sessions and unused previews, preserving all saves and their referenced previews. This temporary identity is not an additional production login method.
+Build the asset studio first using its documented Python environment and `pnpm docs:build`; the game models are served from `site/`. Run `pnpm build`, then `pnpm start` from the repository root. The server applies checksum-tracked migrations from `migrations/` before listening on port 3000. Open `http://127.0.0.1:3000`. A signed, HttpOnly browser cookie identifies a server-assigned fictional player; clearing it starts another preview player. New fixture sessions are capped globally at 120 per minute. A five-minute bounded maintenance pass removes expired sessions and unused previews, preserving all saves and their referenced previews. This temporary identity is not an additional production login method.
 
 For client development, set the API origin to `http://localhost:5173`, run `pnpm dev:server` and `pnpm dev` in separate terminals, and open that exact origin. Vite proxies the API. Do not mix `localhost` and `127.0.0.1` origins within one session.
 
-## Playing
+## Playing the corrected review
 
-Choose **Start a journey**, preview Demo Adventurer’s memories, select the moments to include and begin. The fictional birth date is January 1, 2020. Move with WASD/arrow keys or the touch stick. Drag the scene to look around. Approach the next glowing frame and press E or **Remember**. Recovering the age-four memory grows the traveler and unlocks Space/**Jump**. Jump over the low step, find the last memory and reach the lantern gate.
+Choose **Start a journey**, preview Demo Adventurer’s fictional memories and begin. Keep all three selected to play both periods. The fictional birth date is January 1, 2020.
 
-Each recovery is saved by the server. **Save & leave** returns to the journey list; **Continue** restores the same frozen memories, age, abilities and safe checkpoint. The scene’s temporary movement shapes may change without changing saved identity or earned progress. A one-memory selection or a journey that never learns to jump uses a reachable flat route.
+Move with WASD/arrows or the touch stick; drag the scene to look. Find the spark mallet and press E/**Take gear**. F/**Attack** strikes a nearby creature. Find the acorn shield and use Shift/**Guard** to soften an incoming hit. Step out of the expanding attack ring before the strike. Defeat both ordinary enemies to wake the boss.
 
-The preview is silent while sound candidates await review. Mute and volume preferences are retained locally; all required feedback is visible.
+After the boss falls, remember the pictures it releases. Their full images are available in the victory review. **Absorb memories** becomes available when every picture in the bundle is remembered; that changes age and the next period. The first bundle produces age four, the child model and Space/**Jump**. Gear and earlier abilities persist into 2024. The final bundle ends at age seven.
+
+The server saves accepted gameplay events. **Save & leave** and resume restore equipment, health, encounters, phase, pictures, age and abilities. A fallen player can retry with full health while preserving gear and previous completed levels. Earlier v1 journeys remain read-only albums; start a new journey for the corrected loop.
+
+Pictures that fail to load show a retry control. The source remains fictional illustrations until authenticated real-photo integration is configured; a working image response does not establish Immich access. The review is silent while audio candidates await approval. Mute and volume preferences remain available and persist locally.
 
 ## Asset studio
 

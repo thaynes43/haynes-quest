@@ -1,0 +1,24 @@
+{
+  "asset_id": "signal-moth",
+  "concept_version": "v001",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "generation": "Serial lead generation; actual output visually inspected.",
+  "reference_set": "storybook-v001",
+  "source": "Original fictional concept. No family reference or third-party mesh.",
+  "model_id_and_seed": "Not returned by the tool; not claimed.",
+  "status": "Concept selected for authoring; model work blocked by native task capacity; owner approval pending.",
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2567931,
+      "sha256": "84b2074b48972569fb858a65dc8e915922a3c5872521a2f2244903ee4b5f4a24"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 1701,
+      "sha256": "82eea421848a142e221b1a14a4d60cca1975a42f94f124cd1f7b074b42da0b0e"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Future backlog
 
-These items do not gate the initial playable loop in [DESIGN-007](designs/007-poc-development-loop.md). BL-01 defers automatic generation while authored age/likeness evolution remains product direction; the later gameplay/content items can return within the family project after the core loop is evaluated.
+The current equipment, enemies and bosses are required by [PLAN-005](../.agents/plans/005-era-combat-loop.md), following Tom’s September 11 correction. The broader items below do not replace that work. BL-01 defers automatic generation while authored age/likeness evolution remains product direction; the later gameplay/content items can return within the family project after the core loop is evaluated.
 
 ## BL-01: Automatic playable-character generation
 
@@ -15,16 +15,16 @@ Later, design the complete private references → geometry → rig/animation →
 
 ## BL-02: Combat, bosses, and encounter content
 
-- **Status:** Detailed fighting deferred by Tom on 2026-09-10; broader encounter production follows the core PoC
-- **Revisit after:** The memory-to-ability loop is playable and evaluated
+- **Status:** Current two-period equipment/combat/boss implementation is in PLAN-005; broader production and final balance remain future work
+- **Revisit after:** The corrected equipment → boss → memories → age/period loop is playable and evaluated
 - **References:** PRD-001 R-27–R-29, R-33; DESIGN-005 and DESIGN-006
 
-Decide how the character fights or avoids enemies, how age abilities affect those interactions, damage/recovery, defeat/respawn, boss rules, rewards, and difficulty. Curate the original era roster and required animations/audio afterward. Preserve historical eligibility and current-ability reachability. Enemies remain part of the game direction; a full combat system is not required to test collection and one movement unlock.
+Extend the bounded health, attack, guard, defeat/retry and boss-release rules in DESIGN-010 after play review. Curate additional historical periods, enemy behaviors, equipment, animation and audio. Preserve period eligibility and current-ability reachability. Finished assets required by the current two levels remain active work; this backlog cannot be used to postpone them.
 
 ## BL-03: Other collectibles and level activities
 
-- **Status:** Deferred by Tom on 2026-09-10
-- **Revisit after:** The initial route establishes movement, collection, and progression feel
+- **Status:** Optional activities remain deferred; useful combat equipment is required in the current levels
+- **Revisit after:** The corrected equipment/combat/growth loop is evaluated
 
 Decide whether levels include secondary pickups, optional objectives, puzzles, secrets, rewards, or other activities. Then define their purpose, saved state, and relationship to memories. Fill out environments after scale, movement, and performance are tested; no currency, crafting system, or collectible quota is established here.
 
