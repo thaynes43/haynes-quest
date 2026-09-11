@@ -1,0 +1,13 @@
+.git
+node_modules
+.env
+.env.*
+local-photos
+site
+.docs-build
+.venv-docs
+dist
+coverage
+playwright-report
+test-results
+*.log

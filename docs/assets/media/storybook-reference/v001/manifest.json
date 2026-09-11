@@ -1,0 +1,32 @@
+{
+  "version": "storybook-v001",
+  "date": "2026-09-11",
+  "generator": "Built-in imagegen; lead GPT-6 Astra max",
+  "ownerApproval": "pending",
+  "files": {
+    "props-prompt.txt": {
+      "bytes": 1672,
+      "sha256": "1b311cf6654d2e45b528421dfb1027d12b80ac7c861e7b6ab5808f4de92b9f23"
+    },
+    "traveler-ages.png": {
+      "bytes": 2137802,
+      "sha256": "4d43c73a80d8f8505cf142f6e6a35703456aba857f19d8d0a2c7a06d25759c84"
+    },
+    "traveler-prompt.txt": {
+      "bytes": 1822,
+      "sha256": "3941b6b853d45a391da6f3a668b129810cf43223fb3e92204bb6d076aad0f34d"
+    },
+    "environment.png": {
+      "bytes": 2678153,
+      "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+    },
+    "environment-prompt.txt": {
+      "bytes": 1500,
+      "sha256": "413386043bfdbd33ed210534640eaa129fc8ceb723d43bb91c70d39586e2c52e"
+    },
+    "props-materials.png": {
+      "bytes": 2384183,
+      "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+    }
+  }
+}

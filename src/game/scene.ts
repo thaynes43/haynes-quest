@@ -1,8 +1,8 @@
-import * as THREE from 'three';
-import type { AppearanceStage, SaveView } from '../shared/contracts';
-import { getAvatarProportions } from './controller';
-import type { LevelLayout } from './level';
-import type { PositionSnapshot } from './types';
+import * as THREE from "three";
+import type { AppearanceStage, SaveView } from "../shared/contracts";
+import { getAvatarProportions } from "./controller";
+import type { LevelLayout } from "./level";
+import type { PositionSnapshot } from "./types";
 
 const palette = {
   parchment: 0xf5ebdc,
@@ -16,7 +16,12 @@ const palette = {
 };
 
 function matte(color: number, emissive = 0x000000): THREE.MeshStandardMaterial {
-  return new THREE.MeshStandardMaterial({ color, emissive, roughness: 0.92, metalness: 0 });
+  return new THREE.MeshStandardMaterial({
+    color,
+    emissive,
+    roughness: 0.92,
+    metalness: 0,
+  });
 }
 
 function mesh(
@@ -35,7 +40,9 @@ function disposeObject(root: THREE.Object3D): void {
   root.traverse((object) => {
     if (!(object instanceof THREE.Mesh)) return;
     object.geometry.dispose();
-    const materials = Array.isArray(object.material) ? object.material : [object.material];
+    const materials = Array.isArray(object.material)
+      ? object.material
+      : [object.material];
     for (const material of materials) {
       for (const value of Object.values(material)) {
         if (value instanceof THREE.Texture) value.dispose();
@@ -56,7 +63,12 @@ function createTraveler(stage: AppearanceStage): THREE.Group {
 
   const hipY = dimensions.legLength + dimensions.torsoHeight * 0.3;
   const torso = mesh(
-    new THREE.CapsuleGeometry(dimensions.colliderRadius * 0.68, dimensions.torsoHeight, 5, 10),
+    new THREE.CapsuleGeometry(
+      dimensions.colliderRadius * 0.68,
+      dimensions.torsoHeight,
+      5,
+      10,
+    ),
     tunicMaterial,
     [0, hipY, 0],
   );
@@ -64,34 +76,52 @@ function createTraveler(stage: AppearanceStage): THREE.Group {
   group.add(torso);
 
   const headY = dimensions.height - dimensions.headRadius;
-  const hood = mesh(new THREE.SphereGeometry(dimensions.headRadius, 16, 12), hoodMaterial, [0, headY, 0]);
+  const hood = mesh(
+    new THREE.SphereGeometry(dimensions.headRadius, 16, 12),
+    hoodMaterial,
+    [0, headY, 0],
+  );
   hood.scale.set(1.05, 1.12, 1);
   group.add(hood);
 
-  const legRadius = stage === 'infant' ? 0.075 : 0.065;
+  const legRadius = stage === "infant" ? 0.075 : 0.065;
   for (const side of [-1, 1]) {
     const leg = mesh(
-      new THREE.CapsuleGeometry(legRadius, Math.max(0.03, dimensions.legLength - legRadius * 2), 4, 8),
+      new THREE.CapsuleGeometry(
+        legRadius,
+        Math.max(0.03, dimensions.legLength - legRadius * 2),
+        4,
+        8,
+      ),
       tunicMaterial.clone(),
       [side * dimensions.colliderRadius * 0.42, dimensions.legLength * 0.48, 0],
     );
-    if (stage === 'infant') leg.rotation.x = 0.2;
+    if (stage === "infant") leg.rotation.x = 0.2;
     group.add(leg);
   }
 
-  const clasp = mesh(new THREE.SphereGeometry(0.045, 10, 8), claspMaterial, [0, headY - dimensions.headRadius * 0.72, -dimensions.headRadius * 0.86]);
+  const clasp = mesh(new THREE.SphereGeometry(0.045, 10, 8), claspMaterial, [
+    0,
+    headY - dimensions.headRadius * 0.72,
+    -dimensions.headRadius * 0.86,
+  ]);
   group.add(clasp);
-  const satchel = mesh(
-    new THREE.BoxGeometry(0.23, 0.2, 0.1),
-    satchelMaterial,
-    [dimensions.colliderRadius * 0.8, hipY, dimensions.colliderRadius * 0.65],
-  );
+  const satchel = mesh(new THREE.BoxGeometry(0.23, 0.2, 0.1), satchelMaterial, [
+    dimensions.colliderRadius * 0.8,
+    hipY,
+    dimensions.colliderRadius * 0.65,
+  ]);
   satchel.rotation.z = -0.1;
   group.add(satchel);
   return group;
 }
 
-function createMemory(id: string, x: number, y: number, z: number): THREE.Group {
+function createMemory(
+  id: string,
+  x: number,
+  y: number,
+  z: number,
+): THREE.Group {
   const group = new THREE.Group();
   group.name = `memory-${id}`;
   group.position.set(x, y + 0.82, z);
@@ -99,24 +129,55 @@ function createMemory(id: string, x: number, y: number, z: number): THREE.Group 
   const wood = matte(palette.timber);
   const glow = matte(palette.honey, 0x6d4617);
   group.add(mesh(new THREE.BoxGeometry(0.76, 0.1, 0.1), wood, [0, 0.43, 0]));
-  group.add(mesh(new THREE.BoxGeometry(0.76, 0.1, 0.1), wood.clone(), [0, -0.43, 0]));
-  group.add(mesh(new THREE.BoxGeometry(0.1, 0.76, 0.1), wood.clone(), [-0.33, 0, 0]));
-  group.add(mesh(new THREE.BoxGeometry(0.1, 0.76, 0.1), wood.clone(), [0.33, 0, 0]));
-  group.add(mesh(new THREE.PlaneGeometry(0.54, 0.64), matte(palette.parchment), [0, 0, 0.055]));
-  group.add(mesh(new THREE.SphereGeometry(0.095, 12, 8), glow, [0.28, 0.38, 0.08]));
+  group.add(
+    mesh(new THREE.BoxGeometry(0.76, 0.1, 0.1), wood.clone(), [0, -0.43, 0]),
+  );
+  group.add(
+    mesh(new THREE.BoxGeometry(0.1, 0.76, 0.1), wood.clone(), [-0.33, 0, 0]),
+  );
+  group.add(
+    mesh(new THREE.BoxGeometry(0.1, 0.76, 0.1), wood.clone(), [0.33, 0, 0]),
+  );
+  const picture = mesh(
+    new THREE.PlaneGeometry(0.54, 0.64),
+    matte(palette.parchment),
+    [0, 0, 0.055],
+  );
+  picture.name = "memory-picture";
+  (picture.material as THREE.MeshStandardMaterial).side = THREE.DoubleSide;
+  group.add(picture);
+  group.add(
+    mesh(new THREE.SphereGeometry(0.095, 12, 8), glow, [0.28, 0.38, 0.08]),
+  );
   return group;
 }
 
 function createGateway(position: PositionSnapshot): THREE.Group {
   const group = new THREE.Group();
-  group.name = 'finish-gateway';
+  group.name = "finish-gateway";
   group.position.set(position.x, position.y, position.z);
   const timber = matte(palette.timber);
-  group.add(mesh(new THREE.BoxGeometry(0.22, 1.75, 0.22), timber, [-0.82, 0.87, 0]));
-  group.add(mesh(new THREE.BoxGeometry(0.22, 1.75, 0.22), timber.clone(), [0.82, 0.87, 0]));
-  const crescent = mesh(new THREE.TorusGeometry(0.82, 0.11, 10, 24, Math.PI), timber.clone(), [0, 1.72, 0]);
+  group.add(
+    mesh(new THREE.BoxGeometry(0.22, 1.75, 0.22), timber, [-0.82, 0.87, 0]),
+  );
+  group.add(
+    mesh(
+      new THREE.BoxGeometry(0.22, 1.75, 0.22),
+      timber.clone(),
+      [0.82, 0.87, 0],
+    ),
+  );
+  const crescent = mesh(
+    new THREE.TorusGeometry(0.82, 0.11, 10, 24, Math.PI),
+    timber.clone(),
+    [0, 1.72, 0],
+  );
   group.add(crescent);
-  const lantern = mesh(new THREE.SphereGeometry(0.14, 12, 8), matte(palette.honey, 0x7a531c), [0, 1.42, 0]);
+  const lantern = mesh(
+    new THREE.SphereGeometry(0.14, 12, 8),
+    matte(palette.honey, 0x7a531c),
+    [0, 1.42, 0],
+  );
   group.add(lantern);
   return group;
 }
@@ -124,21 +185,40 @@ function createGateway(position: PositionSnapshot): THREE.Group {
 function createTree(x: number, z: number, scale: number): THREE.Group {
   const group = new THREE.Group();
   group.position.set(x, 0, z);
-  const trunk = mesh(new THREE.CylinderGeometry(0.12 * scale, 0.18 * scale, 1.05 * scale, 8), matte(palette.timber), [0, 0.52 * scale, 0]);
-  const crown = mesh(new THREE.SphereGeometry(0.6 * scale, 12, 9), matte(palette.leaf), [0, 1.35 * scale, 0]);
+  const trunk = mesh(
+    new THREE.CylinderGeometry(0.12 * scale, 0.18 * scale, 1.05 * scale, 8),
+    matte(palette.timber),
+    [0, 0.52 * scale, 0],
+  );
+  const crown = mesh(
+    new THREE.SphereGeometry(0.6 * scale, 12, 9),
+    matte(palette.leaf),
+    [0, 1.35 * scale, 0],
+  );
   crown.scale.y = 1.15;
   group.add(trunk, crown);
   return group;
 }
 
-function createWorld(level: LevelLayout): { root: THREE.Group; memories: Map<string, THREE.Group> } {
+function createWorld(level: LevelLayout): {
+  root: THREE.Group;
+  memories: Map<string, THREE.Group>;
+} {
   const root = new THREE.Group();
-  root.name = 'temporary-garden-greybox';
+  root.name = "temporary-garden-greybox";
   const routeCenterZ = (level.minZ + level.maxZ) / 2;
   const routeDepth = level.maxZ - level.minZ;
-  const grass = mesh(new THREE.BoxGeometry(18, 0.16, routeDepth + 8), matte(palette.grass), [0, -0.13, routeCenterZ]);
+  const grass = mesh(
+    new THREE.BoxGeometry(18, 0.16, routeDepth + 8),
+    matte(palette.grass),
+    [0, -0.13, routeCenterZ],
+  );
   root.add(grass);
-  const path = mesh(new THREE.BoxGeometry(5.6, 0.08, routeDepth), matte(palette.parchment), [0, -0.035, routeCenterZ]);
+  const path = mesh(
+    new THREE.BoxGeometry(5.6, 0.08, routeDepth),
+    matte(palette.parchment),
+    [0, -0.035, routeCenterZ],
+  );
   root.add(path);
   if (level.step) {
     const raisedDepth = level.step.z - level.minZ;
@@ -152,7 +232,12 @@ function createWorld(level: LevelLayout): { root: THREE.Group; memories: Map<str
 
   const memories = new Map<string, THREE.Group>();
   for (const placement of level.memories) {
-    const keepsake = createMemory(placement.id, placement.position.x, placement.position.y, placement.position.z);
+    const keepsake = createMemory(
+      placement.id,
+      placement.position.x,
+      placement.position.y,
+      placement.position.z,
+    );
     memories.set(placement.id, keepsake);
     root.add(keepsake);
   }
@@ -160,8 +245,18 @@ function createWorld(level: LevelLayout): { root: THREE.Group; memories: Map<str
 
   for (let index = 0, z = 0; z > level.minZ; index += 1, z -= 7) {
     const side = index % 2 === 0 ? -1 : 1;
-    root.add(createTree(side * (4.1 + (index % 3) * 0.55), z - 2, 0.85 + (index % 2) * 0.15));
-    const stone = mesh(new THREE.DodecahedronGeometry(0.26 + (index % 2) * 0.08, 0), matte(palette.stone), [-side * 3.25, 0.2, z - 4.5]);
+    root.add(
+      createTree(
+        side * (4.1 + (index % 3) * 0.55),
+        z - 2,
+        0.85 + (index % 2) * 0.15,
+      ),
+    );
+    const stone = mesh(
+      new THREE.DodecahedronGeometry(0.26 + (index % 2) * 0.08, 0),
+      matte(palette.stone),
+      [-side * 3.25, 0.2, z - 4.5],
+    );
     stone.scale.y = 0.65;
     root.add(stone);
   }
@@ -183,6 +278,7 @@ export class GardenScene {
   private traveler: THREE.Group;
   private stage: AppearanceStage;
   private disposed = false;
+  private routeGeneration = 0;
 
   constructor(
     private readonly container: HTMLElement,
@@ -192,13 +288,17 @@ export class GardenScene {
     this.stage = save.appearance.stage;
     this.scene.background = new THREE.Color(palette.parchment);
     this.scene.fog = new THREE.Fog(palette.parchment, 18, 58);
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: false,
+      powerPreference: "high-performance",
+    });
     this.canvas = this.renderer.domElement;
-    this.canvas.dataset.questCanvas = 'true';
-    this.canvas.style.display = 'block';
-    this.canvas.style.width = '100%';
-    this.canvas.style.height = '100%';
-    this.canvas.style.touchAction = 'none';
+    this.canvas.dataset.questCanvas = "true";
+    this.canvas.style.display = "block";
+    this.canvas.style.width = "100%";
+    this.canvas.style.height = "100%";
+    this.canvas.style.touchAction = "none";
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -226,16 +326,21 @@ export class GardenScene {
     this.scene.add(this.traveler);
     this.updateProgress(save);
 
-    const ResizeObserverConstructor = container.ownerDocument.defaultView?.ResizeObserver;
+    const ResizeObserverConstructor =
+      container.ownerDocument.defaultView?.ResizeObserver;
     this.resizeObserver = ResizeObserverConstructor
       ? new ResizeObserverConstructor(() => this.resize())
       : null;
     this.resizeObserver?.observe(container);
-    container.ownerDocument.defaultView?.addEventListener('resize', this.resize);
+    container.ownerDocument.defaultView?.addEventListener(
+      "resize",
+      this.resize,
+    );
     this.resize();
   }
 
   rebuildRoute(level: LevelLayout, save: SaveView): void {
+    this.routeGeneration += 1;
     this.scene.remove(this.worldRoot);
     disposeObject(this.worldRoot);
     const world = createWorld(level);
@@ -247,11 +352,49 @@ export class GardenScene {
 
   updateProgress(save: SaveView): void {
     const recovered = new Set(save.recoveredIds);
-    for (const [id, memory] of this.memories) memory.visible = !recovered.has(id);
-    if (save.appearance.stage !== this.stage) this.setStage(save.appearance.stage);
+    const nextId = save.memories.find(
+      (memory) => !recovered.has(memory.id),
+    )?.id;
+    for (const [id, memory] of this.memories) {
+      memory.visible = !recovered.has(id);
+      memory.scale.setScalar(id === nextId ? 1 : 0.78);
+      const photo = save.memories.find((item) => item.id === id);
+      const picture = memory.getObjectByName("memory-picture") as
+        THREE.Mesh | undefined;
+      if (photo && picture && memory.userData.photoUrl !== photo.mediaUrl) {
+        memory.userData.photoUrl = photo.mediaUrl;
+        const generation = this.routeGeneration;
+        new THREE.TextureLoader().load(
+          photo.mediaUrl,
+          (texture) => {
+            if (this.disposed || generation !== this.routeGeneration) {
+              texture.dispose();
+              return;
+            }
+            texture.colorSpace = THREE.SRGBColorSpace;
+            const material = picture.material as THREE.MeshStandardMaterial;
+            material.map?.dispose();
+            material.map = texture;
+            material.needsUpdate = true;
+          },
+          undefined,
+          () => {
+            /* Missing media never removes earned progress or blocks the route. */
+          },
+        );
+      }
+    }
+    if (save.appearance.stage !== this.stage)
+      this.setStage(save.appearance.stage);
   }
 
-  adjustCamera(lookX: number, lookY: number, deltaSeconds: number, pointerX: number, pointerY: number): void {
+  adjustCamera(
+    lookX: number,
+    lookY: number,
+    deltaSeconds: number,
+    pointerX: number,
+    pointerY: number,
+  ): void {
     this.cameraYaw -= lookX * deltaSeconds * 1.8 + pointerX * 0.006;
     this.cameraPitch = THREE.MathUtils.clamp(
       this.cameraPitch + lookY * deltaSeconds * 1.25 + pointerY * 0.004,
@@ -260,23 +403,35 @@ export class GardenScene {
     );
   }
 
-  render(position: PositionSnapshot, facing: number, elapsedSeconds: number): void {
+  render(
+    position: PositionSnapshot,
+    facing: number,
+    elapsedSeconds: number,
+  ): void {
     if (this.disposed) return;
     this.traveler.position.set(position.x, position.y, position.z);
     this.traveler.rotation.y = facing;
     const dimensions = getAvatarProportions(this.stage);
-    this.clockTarget.set(position.x, position.y + dimensions.cameraTargetHeight, position.z);
+    this.clockTarget.set(
+      position.x,
+      position.y + dimensions.cameraTargetHeight,
+      position.z,
+    );
     const distance = 4.4;
     const horizontalDistance = Math.cos(this.cameraPitch) * distance;
     this.camera.position.set(
       position.x + Math.sin(this.cameraYaw) * horizontalDistance,
-      position.y + dimensions.cameraTargetHeight + Math.sin(this.cameraPitch) * distance,
+      position.y +
+        dimensions.cameraTargetHeight +
+        Math.sin(this.cameraPitch) * distance,
       position.z + Math.cos(this.cameraYaw) * horizontalDistance,
     );
     this.camera.lookAt(this.clockTarget);
     for (const memory of this.memories.values()) {
       memory.rotation.y = elapsedSeconds * 0.45;
-      memory.position.y = Number(memory.userData.baseY) + Math.sin(elapsedSeconds * 1.8 + memory.position.z) * 0.045;
+      memory.position.y =
+        Number(memory.userData.baseY) +
+        Math.sin(elapsedSeconds * 1.8 + memory.position.z) * 0.045;
     }
     this.renderer.render(this.scene, this.camera);
   }
@@ -285,7 +440,10 @@ export class GardenScene {
     if (this.disposed) return;
     this.disposed = true;
     this.resizeObserver?.disconnect();
-    this.container.ownerDocument.defaultView?.removeEventListener('resize', this.resize);
+    this.container.ownerDocument.defaultView?.removeEventListener(
+      "resize",
+      this.resize,
+    );
     disposeObject(this.worldRoot);
     disposeObject(this.traveler);
     this.renderer.renderLists.dispose();
@@ -310,7 +468,12 @@ export class GardenScene {
     if (this.disposed) return;
     const width = Math.max(1, this.container.clientWidth);
     const height = Math.max(1, this.container.clientHeight);
-    this.renderer.setPixelRatio(Math.min(2, this.container.ownerDocument.defaultView?.devicePixelRatio ?? 1));
+    this.renderer.setPixelRatio(
+      Math.min(
+        2,
+        this.container.ownerDocument.defaultView?.devicePixelRatio ?? 1,
+      ),
+    );
     this.renderer.setSize(width, height, false);
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();

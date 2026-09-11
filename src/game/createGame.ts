@@ -1,16 +1,16 @@
-import type { SaveView } from '../shared/contracts';
-import { createControllerState, stepController } from './controller';
-import { bindBrowserInput, GameInputState } from './input';
+import type { SaveView } from "../shared/contracts";
+import { createControllerState, stepController } from "./controller";
+import { bindBrowserInput, GameInputState } from "./input";
 import {
   checkpointForSave,
   contiguousRecoveredCount,
   createLevelLayout,
   inspectLevel,
   type LevelLayout,
-} from './level';
-import { AuthoritativeProgression, type ProgressionState } from './progression';
-import { GardenScene } from './scene';
-import type { CreateGameOptions, GameHandle, GameStatus } from './types';
+} from "./level";
+import { AuthoritativeProgression, type ProgressionState } from "./progression";
+import { GardenScene } from "./scene";
+import type { CreateGameOptions, GameHandle, GameStatus } from "./types";
 
 const interactionRadius = 1.35;
 const statusIntervalSeconds = 0.1;
@@ -23,7 +23,7 @@ function horizontalDistance(
 }
 
 function routeIdentity(save: SaveView): string {
-  return `${save.id}:${save.memories.map((memory) => memory.id).join(',')}`;
+  return `${save.id}:${save.memories.map((memory) => memory.id).join(",")}`;
 }
 
 export function createGame(options: CreateGameOptions): GameHandle {
@@ -37,27 +37,36 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const windowTarget = options.container.ownerDocument.defaultView;
   if (!windowTarget) {
     scene.dispose();
-    throw new Error('Game requires a window');
+    throw new Error("Game requires a window");
   }
 
   let disposed = false;
+  let paused = false;
   let animationFrame = 0;
   let lastTime = windowTarget.performance.now();
   let elapsed = 0;
   let timeSinceStatus = statusIntervalSeconds;
   let previousJump = false;
   let previousInteract = false;
-  let progressionState: ProgressionState = { requestState: 'idle', requestError: null };
+  let progressionState: ProgressionState = {
+    requestState: "idle",
+    requestError: null,
+  };
 
   const getStatus = (): GameStatus => {
     const recoveredCount = contiguousRecoveredCount(save);
     const nextMemory = level.memories[recoveredCount] ?? null;
     const allRecovered = recoveredCount === level.memories.length;
-    const nearMemoryId = nextMemory && horizontalDistance(controller.position, nextMemory.position) <= interactionRadius
-      ? nextMemory.id
-      : null;
-    const nearFinish = allRecovered
-      && horizontalDistance(controller.position, level.finish) <= interactionRadius;
+    const nearMemoryId =
+      nextMemory &&
+      horizontalDistance(controller.position, nextMemory.position) <=
+        interactionRadius
+        ? nextMemory.id
+        : null;
+    const nearFinish =
+      allRecovered &&
+      horizontalDistance(controller.position, level.finish) <=
+        interactionRadius;
     return {
       nearMemoryId,
       nearFinish,
@@ -66,7 +75,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       appearanceStage: save.appearance.stage,
       abilities: [...save.abilities],
       grounded: controller.grounded,
-      recovering: progressionState.requestState === 'recovering',
+      recovering: progressionState.requestState === "recovering",
       requestState: progressionState.requestState,
       requestError: progressionState.requestError,
     };
@@ -113,24 +122,37 @@ export function createGame(options: CreateGameOptions): GameHandle {
     lastTime = now;
     elapsed += deltaSeconds;
     timeSinceStatus += deltaSeconds;
+    if (paused) input.clear();
     const currentInput = input.snapshot();
     const pointerLook = input.consumePointerLook();
-    scene.adjustCamera(currentInput.lookX, currentInput.lookY, deltaSeconds, pointerLook.x, pointerLook.y);
-    const jumpPressed = currentInput.jump && !previousJump;
-    const interactPressed = currentInput.interact && !previousInteract;
+    scene.adjustCamera(
+      currentInput.lookX,
+      currentInput.lookY,
+      deltaSeconds,
+      pointerLook.x,
+      pointerLook.y,
+    );
+    const actions = input.consumeActions();
+    const jumpPressed = actions.jump || (currentInput.jump && !previousJump);
+    const interactPressed =
+      actions.interact || (currentInput.interact && !previousInteract);
     stepController(
       controller,
       currentInput,
       level,
       deltaSeconds,
       scene.cameraYaw,
-      save.abilities.includes('jump'),
+      save.abilities.includes("jump"),
       jumpPressed,
     );
     previousJump = currentInput.jump;
     previousInteract = currentInput.interact;
 
-    if (interactPressed && progressionState.requestState !== 'recovering' && progressionState.requestState !== 'finishing') {
+    if (
+      interactPressed &&
+      progressionState.requestState !== "recovering" &&
+      progressionState.requestState !== "finishing"
+    ) {
       const status = getStatus();
       if (status.nearMemoryId) progression.recover(status.nearMemoryId);
       else if (status.nearFinish) progression.finish();
@@ -150,6 +172,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
     },
     setInput(action, value): void {
       if (!disposed) input.set(action, value);
+    },
+    setPaused(value): void {
+      paused = value;
+      input.clear();
+      previousJump = false;
+      previousInteract = false;
     },
     clearInput(): void {
       input.clear();

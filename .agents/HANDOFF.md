@@ -2,10 +2,20 @@
 
 - **Project:** Haynes Quest
 - **Last updated:** 2026-09-11
-- **Stage:** Authoring dependencies live and dev-env activated (2026-09-11); PLAN-004 fresh-context game development is ready to start; implementation not started
+- **Stage:** PLAN-004 implementation in progress: integrated runnable fixture app, server and game; browser verification and candidate authoring underway
 - **Driving model and team:** Astra (`max`) coordinates; [TEAM.md](TEAM.md) routes native Sol (`xhigh`), Astra-only Blender and authorized Fable 5.1 (`xhigh`) review/coding sessions
 
 This handoff is for Astra to resume as the Haynes Quest lead with the full project context and decision rationale. Preserve useful planning context; the empty-context requirement applies to delegated development subagents and their bounded work orders.
+
+## Active execution checkpoint — 2026-09-11
+
+Lead worktree `/home/dev/work/haynes-quest-overnight-mvp`, branch `agent/haynes-quest-overnight-mvp`, base main `1b18f48`. Read [WO-004](work-orders/004-coordinator.md) and [DESIGN-009](../docs/designs/009-overnight-contracts.md) for concrete contracts and active ownership. Shared scaffold/types and Sol server/game commits are integrated (`7d00520`, `e01c211`, `e261a41`). Lead client provides home/setup/selection, playable scene, save/resume UI, touch controls and isolated `/studio/`; source/build checks pass. Initial Chromium rendering passed without JS errors; full keyboard/touch journey testing is in progress. Quick action edges between render frames were found and are being buffered/tested.
+
+The dedicated database is live: haynes-ops #2849 `705d49b` and DNS follow-up #2850 `fb7bc56` merged. Flux and provisioning Job passed; app-only login, database ownership and limited privileges verified. A separate disposable PostgreSQL16 Job ran both integration tests successfully (2/2), then was deleted. Runtime image/deployment and actual application-restart persistence still need evidence.
+
+All eight original first-pass concept images are generated serially, inspected and retained under `docs/assets/media/`, with prompts/checksums for the common `storybook-v001` set. [Reference review](../docs/assets/reviews/storybook-reference/v001.md). No final assets are approved or used in gameplay. Fresh Astra traveler modeling owns the Blender scene under [WO-007](work-orders/007-blender-travelers.md), remote `/workspace/haynes-quest/travelers/v001`; it is recovering only the dedicated Blender service after a factory-reset call unloaded the addon. Fresh Sol audio work is producing all four required cues. Prop modeling follows scene release. Lead owns all review pages and selection decisions.
+
+[Run/preview instructions](../docs/ops/002-private-preview.md) distinguish the in-memory browser harness from Postgres evidence. OAuth and physical Safari remain deferred; dev-env has not been restarted by this task. Historical preparation evidence below is retained for recovery.
 
 ## Latest overnight ruling
 

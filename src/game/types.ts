@@ -1,12 +1,7 @@
-import type { Ability, AppearanceStage, SaveView } from '../shared/contracts';
+import type { Ability, AppearanceStage, SaveView } from "../shared/contracts";
 
 export type GameInputAction =
-  | 'moveX'
-  | 'moveY'
-  | 'lookX'
-  | 'lookY'
-  | 'jump'
-  | 'interact';
+  "moveX" | "moveY" | "lookX" | "lookY" | "jump" | "interact";
 
 export interface GameInputSnapshot {
   moveX: number;
@@ -23,8 +18,8 @@ export interface PositionSnapshot {
   z: number;
 }
 
-export type RequestState = 'idle' | 'recovering' | 'finishing' | 'error';
-export type RequestError = 'recover' | 'finish' | null;
+export type RequestState = "idle" | "recovering" | "finishing" | "error";
+export type RequestError = "recover" | "finish" | null;
 
 export interface GameStatus {
   nearMemoryId: string | null;
@@ -66,6 +61,7 @@ export interface GameHandle {
   updateSave(save: SaveView): void;
   setInput(action: GameInputAction, value: number | boolean): void;
   clearInput(): void;
+  setPaused(paused: boolean): void;
   inspect(): GameInspection;
   dispose(): void;
 }
