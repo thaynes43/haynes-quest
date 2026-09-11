@@ -50,7 +50,7 @@ The local greybox can establish feel using development-only synthetic adapters. 
 
 ## Astra team and coordination
 
-**GPT-6 Astra leads; native Codex subagents use GPT-5.6 Sol at `xhigh`**, following Tom's updated instruction. Start development agents with empty conversation windows (`fork_turns: "none"`) and explicit self-contained work orders. Agents read the applicable instructions and documents/inputs listed in their work order. Use bounded parallel tasks and native collaboration tools. Claude Code uses Opus for its own subagents; `agent-run` starts a separate CLI session only when explicitly needed. Available concurrency determines how many lanes run at once. Astra retains architecture, integration judgment, user-facing design/text, and final review.
+**GPT-6 Astra leads; native Codex subagents use GPT-5.6 Sol at `xhigh`**, following Tom's updated instruction. Astra keeps the full project/planning context and a handoff that preserves owner rulings, rationale, verified state, and open decisions. Start delegated development subagents with empty conversation windows (`fork_turns: "none"`) and explicit self-contained work orders. Agents read the applicable instructions and documents/inputs listed in their work order. Use bounded parallel tasks and native collaboration tools. Claude Code uses Opus for its own subagents; `agent-run` starts a separate CLI session only when explicitly needed. Available concurrency determines how many lanes run at once. Astra retains architecture, integration judgment, user-facing design/text, and final review.
 
 | Lane | Responsibility and handoff |
 | --- | --- |
