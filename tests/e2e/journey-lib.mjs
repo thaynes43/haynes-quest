@@ -494,7 +494,7 @@ export function createJourneyDriver({
         );
         continue;
       }
-      await targetHint.waitFor({ state: "visible", timeout: 2_000 });
+      await targetHint.waitFor({ state: "visible", timeout: 8_000 });
 
       await controls.guard();
       await delay(150);
