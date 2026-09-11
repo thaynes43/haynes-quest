@@ -95,6 +95,7 @@ extra_css:
   - stylesheets/extra.css
 
 extra_javascript:
+  - javascripts/studio.js
   - path: javascripts/vendor/model-viewer-4.3.1.min.mjs
     type: module
 

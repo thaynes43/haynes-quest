@@ -87,3 +87,5 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+.studio-model-controls{display:flex;align-items:center;flex-wrap:wrap;gap:1rem;padding:1rem 0;color:var(--hq-ink);font-size:.8rem}.studio-model-controls button,.studio-model-controls select{padding:.5rem .85rem;border:1px solid #c6b697;border-radius:.35rem;background:#fff9ed;color:var(--hq-ink);font:inherit}.studio-model-controls button{background:var(--hq-leaf);color:white;cursor:pointer}.studio-model-controls button:disabled{opacity:.5;cursor:default}.studio-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.studio-comparison figure{margin:0}.studio-comparison figcaption{font-size:.75rem;color:#746750;margin:.5rem 0 1rem}@media(max-width:600px){.studio-comparison{grid-template-columns:1fr}}
