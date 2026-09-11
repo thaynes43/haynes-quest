@@ -24,6 +24,8 @@ Place a safe checkpoint before each new obstacle section and after completing it
 
 On the jumping route, standing on a destination island activates its checkpoint even when the jump lands beyond the painted marker. The marker identifies the safe recovery position; it is not a small target the child must land on or backtrack to touch. Standing on the preceding island or passing over the destination in midair does not activate it. The first flat route retains its visible checkpoint strips.
 
+The second island leaves a safe pause after the gap before its rotating padded bar. The bar sits farther down the island with a short arm, so a natural gap landing does not demand an immediate second jump. The player can watch its slow turn, jump at a clear angle, or use the wide space around it. Leave a safe exit before the moving-platform approach as well.
+
 Obstacle traversal checkpoints may be local within the current session; a persisted resume must start at a safe position derived from saved progression until a versioned checkpoint contract is implemented. Do not imply that an in-memory marker survives reload. The server continues to own combat and memory progression; local movement is not an anti-cheat system.
 
 ## Technical acceptance

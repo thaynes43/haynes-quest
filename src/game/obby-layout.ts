@@ -81,8 +81,8 @@ export function createObbyCourse(routeId: ObbyRouteId): ObbyCourse {
     hazards: [
       {
         id: "runway-sweeper",
-        center: { x: 0, y: 0.2, z: -12.3 },
-        halfLength: 1.15,
+        center: { x: 0, y: 0.2, z: -13.3 },
+        halfLength: 0.75,
         radius: 0.18,
         rotation: { period: 10 },
       },
