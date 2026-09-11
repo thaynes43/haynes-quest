@@ -58,7 +58,7 @@ nav:
       - Current handoff: project/HANDOFF.md
       - Team and routing: project/TEAM.md
       - Current overnight MVP: project/plans/004-overnight-mvp.md
-      - Authoring tool setup: project/plans/003-authoring-tool-setup.md
+      - Authoring tool setup: project/plans/completed/003-authoring-tool-setup.md
       - Foundation prototype: project/plans/002-foundation-prototype.md
       - Completed repository bootstrap: project/plans/completed/001-repository-bootstrap.md
       - Plan template: project/plans/000-template.md

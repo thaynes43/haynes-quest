@@ -1,8 +1,8 @@
 # PLAN-003: Set up authoring dependencies before development
 
-- **Status:** Complete (2026-09-11; single dev-env activation merged and fresh-session discovery verified — see [HANDOFF.md](../HANDOFF.md) for the full evidence)
+- **Status:** Completed (2026-09-11; single dev-env activation merged and fresh-session discovery verified — see [HANDOFF.md](../../HANDOFF.md) for the full evidence)
 - **Owner direction:** Tom, 2026-09-10: prepare missing dependencies such as Blender first; use development agents with empty context windows
-- **Related:** [DESIGN-002](../../docs/designs/002-asset-pipeline.md), [DESIGN-007](../../docs/designs/007-poc-development-loop.md), [DESIGN-008](../../docs/designs/008-audio-pipeline.md), [PLAN-002](002-foundation-prototype.md)
+- **Related:** [DESIGN-002](../../../docs/designs/002-asset-pipeline.md), [DESIGN-007](../../../docs/designs/007-poc-development-loop.md), [DESIGN-008](../../../docs/designs/008-audio-pipeline.md), [PLAN-002](../002-foundation-prototype.md)
 
 ## Scope and sequence
 
@@ -12,7 +12,7 @@ Tom requires independent Blender/audio workloads and **one dev-env restart only 
 2. Deploy the independent audio service using official optimized Stable Audio Small-SFX CPU inference. Pin source/weights, provision the anonymous model downloads through a separate job, mount models read-only at runtime, and keep output/job metadata on a separate PVC. Expose a private asynchronous MCP interface and controlled downloads. No GPU or hosted subscription is needed for this baseline.
 3. Run a real synthetic generation, inspect duration/format/checksum, record generation time and peak memory, and preserve the output for audition. Check asynchronous status/cancellation, artifact confinement, persistence across an audio-pod replacement, and dev-env continuity. Separate infrastructure evidence from final sound quality and Tom's exact-version asset approval.
 4. Stage both verified service endpoints and startup rules while the reload exclusion is live: Codex native subagents use `gpt-5.6-sol` at `xhigh` with `fork_turns: "none"`; Claude Code subagents use `claude-opus-5` at `xhigh`; Astra leads Codex work. Verify the staged ConfigMaps and mounted files match Git while the pod stays unchanged. Then finalize #2833 to remove the temporary exclusion and add one pod-template activation marker. Review the complete diff and required checks before Tom's natural-break merge. That is the one planned dev-env restart.
-5. In the fresh session, verify both generated MCP registrations and live calls. Then execute PLAN-004 under [TEAM.md](../TEAM.md), including its Astra-only Blender and authorized Fable exceptions, with fresh agents and self-contained work orders, required readings, owned paths, stable contracts, and remote artifact conventions. Final asset promotion still needs Tom's review.
+5. In the fresh session, verify both generated MCP registrations and live calls. Then execute PLAN-004 under [TEAM.md](../../TEAM.md), including its Astra-only Blender and authorized Fable exceptions, with fresh agents and self-contained work orders, required readings, owned paths, stable contracts, and remote artifact conventions. Final asset promotion still needs Tom's review.
 
 GPU render/audio jobs, Small-Music, and voice generation remain later options. Existing GPU consumers omit some resource requests, so measure actual free VRAM and workload needs before selecting hardware. Dual GPUs do not imply pooled model memory.
 
@@ -41,7 +41,7 @@ GPU render/audio jobs, Small-Music, and voice generation remain later options. E
 
 ### Single activation and fresh-session evidence (2026-09-11)
 
-- Executed from outside the pod under [the activation runbook](../runbooks/activate-dev-env.md). Preflight confirmed #2833's diff (HelmRelease only, no image bump), nine passing `flux-local` checks, and byte-identical staged files across Git, both live ConfigMaps and the pod mounts. Maintenance was declared on the pod (`act-033026-84136`) and ended after verification.
+- Executed from outside the pod under [the activation runbook](../../runbooks/activate-dev-env.md). Preflight confirmed #2833's diff (HelmRelease only, no image bump), nine passing `flux-local` checks, and byte-identical staged files across Git, both live ConfigMaps and the pod mounts. Maintenance was declared on the pod (`act-033026-84136`) and ended after verification.
 - `flux reconcile kustomization dev-env -n dev --with-source` applied `main@2cbe79be` (Helm release `dev/dev-env.v31`). One ReplicaSet swap (`7778f77687` → `dfdd8c894`), Deployment revision 50 → 51, no extra restart or pod deletion, no second rollout.
 - New pod `dev-env-dfdd8c894-l724p` (UID `c3a94756-af35-405e-93bc-eb05c2979d3a`, `talosw02`) is Ready 3/3 with zero restarts on the same image digest, carries `haynesops.com/config-generation=quest-authoring-2026-09-11`, and the Deployment's exclusion annotation is gone while `reloader.stakater.com/auto` remains. Pre-existing Kyverno image-signature audit warnings are unchanged by this rollout.
 - dev-init registered nine MCP servers including `audio` and `blender`, rendered `~/.codex/config.toml` with both authoring URLs and `~/.codex/AGENTS.md` with the native `gpt-5.6-sol`/`xhigh` and `claude-opus-5`/`xhigh` subagent rules; post-ready brought codex remote-control and the Claude standby session back.

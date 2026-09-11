@@ -1,8 +1,8 @@
 # PLAN-002: Build and validate the playable foundation
 
-- **Status:** Ready
-- **Current milestone:** Dependency setup in PLAN-003 precedes fresh-context development dispatch; game implementation not started
-- **Depends on:** Tom's dependency-first checkpoint in [PLAN-003](003-authoring-tool-setup.md), then slice contracts in DESIGN-007; authoring tools, live admission/provisioning, and owner asset review are dependencies of the later milestones that use them
+- **Status:** In progress
+- **Current milestone:** PLAN-004 delivered the synthetic application and candidate pipeline in PR #21; private deployment/catalog completion is underway. Authentik, physical Safari and approved-asset integration remain later gates.
+- **Depends on:** Tom's dependency-first checkpoint in [PLAN-003](completed/003-authoring-tool-setup.md), then slice contracts in DESIGN-007; authoring tools, live admission/provisioning, and owner asset review are dependencies of the later milestones that use them
 - **Requirements/designs:** [PRD-001 R-01, R-08–R-14, R-16–R-24, R-30–R-39](../../docs/prds/001-project-brief.md), [ADR-002](../../docs/adrs/002-web-game-stack.md), [DESIGN-001](../../docs/designs/001-technical-foundation.md), [DESIGN-002](../../docs/designs/002-asset-pipeline.md), [DESIGN-003](../../docs/designs/003-photo-connections-and-people.md), [DESIGN-004](../../docs/designs/004-memory-journey.md), [DESIGN-006](../../docs/designs/006-memory-age-and-abilities.md), [DESIGN-007](../../docs/designs/007-poc-development-loop.md), [DESIGN-008](../../docs/designs/008-audio-pipeline.md)
 
 ## Current overnight extension
@@ -15,7 +15,7 @@ Build a small playable proof of chronological memory recovery and cumulative abi
 
 Tom's latest direction narrows the earlier blanket documentation prerequisite. Complete the current PLAN-003 dependency checkpoint, define the slice's contracts, then code with clearly synthetic placeholders while authoring candidates. Full fighting, extra collectibles, story, and era content are [later work](../../docs/BACKLOG.md). Real Immich access, complete library reconciliation, multiplayer, gamepad support, and automatic character generation are outside this plan. Preserve integration boundaries; do not present synthetic adapter tests as proof of live Immich compatibility.
 
-This documentation task does not execute the plan, install tools, generate assets, or provision an application. Tom has now prioritized the PLAN-003 dependency checkpoint before this plan starts. After that checkpoint, the first milestone can use placeholders without waiting for final asset production or approval. Later hosted and reviewed-asset milestones have their own prerequisites and completion evidence.
+The initial planning pass did not execute this work. PLAN-003 is now complete, and PLAN-004 implements the private synthetic milestone with placeholders while candidates are produced and reviewed. Later hosted and reviewed-asset milestones have their own prerequisites and completion evidence.
 
 ## Milestones
 
