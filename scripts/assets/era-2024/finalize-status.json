@@ -1,0 +1,8 @@
+{
+  "status": "complete",
+  "started_unix": 1789138563.2282841,
+  "finished_unix": 1789139076.634797,
+  "exit_code": 0,
+  "stdout": "{\"assets\": [\"loop-dancer\", \"prism-mimic\", \"trendweaver\"], \"manifest\": \"/workspace/haynes-quest/era-2024/v001/delivery-manifest.json\", \"sha256\": \"49f4c64f54f8380d090ac5f29135b8b0ffc365e0537b71e7f9d758d7dcd0382c\"}\n",
+  "stderr": ""
+}

@@ -1,0 +1,100 @@
+{
+  "asset_id": "prism-mimic",
+  "version": "v001",
+  "blender": "4.5.13 LTS",
+  "triangles": 14770,
+  "vertices": 7822,
+  "material_count": 6,
+  "bones": [
+    "body",
+    "head",
+    "leg.front.L",
+    "shin.front.L",
+    "foot.front.L",
+    "leg.rear.L",
+    "shin.rear.L",
+    "foot.rear.L",
+    "leg.front.R",
+    "shin.front.R",
+    "foot.front.R",
+    "leg.rear.R",
+    "shin.rear.R",
+    "foot.rear.R",
+    "tail.1",
+    "tail.2",
+    "tail.3"
+  ],
+  "bounds_blender": {
+    "min": [
+      -0.2489950954914093,
+      -0.7812297940254211,
+      0.0
+    ],
+    "max": [
+      0.2489950954914093,
+      0.4890333414077759,
+      1.0499999523162842
+    ]
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.25,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.25,
+      "loop": false,
+      "impact_time_s": 0.625
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.625,
+      "loop": false,
+      "impact_time_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "impact_time_s": null
+    }
+  ],
+  "scale_correction": {
+    "uniform_yz": 0.889268194806181,
+    "width": 0.889268194806181,
+    "source_min_z": 0.010499998927116394
+  },
+  "spec": {
+    "height": 1.05,
+    "floor": 0,
+    "width": null,
+    "impact": 0.625
+  },
+  "pigment_atlas": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+    "bytes": 1135339,
+    "sha256": "cd2ad4683d5c99bfdb1e238b536d850d2806a04ae66b872ed38577c36c96a93d"
+  },
+  "files": {
+    "prism-mimic.blend": {
+      "bytes": 5433886,
+      "sha256": "9279833543039de1a07ab801a07d8db233bd5951a1db7d428e9779d6372ae746"
+    },
+    "prism-mimic.glb": {
+      "bytes": 1079220,
+      "sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
+    }
+  }
+}

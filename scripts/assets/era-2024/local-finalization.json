@@ -1,0 +1,53 @@
+{
+  "loop-dancer": {
+    "glb_sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79",
+    "manifest_sha256": "d2b2ac0fdc210e6002461cd6c4d274867a62b2f45cf4c6ec923945422a967861",
+    "browser_checks": {
+      "exact_glb_hash": true,
+      "six_skinned_draw_primitives": true,
+      "one_embedded_1024_image": true,
+      "expected_color_draws": true,
+      "expected_triangle_count": true,
+      "five_expected_clips": true,
+      "every_clip_changes_actual_raster": true,
+      "webgl_error_free": true,
+      "browser_error_free": true,
+      "no_external_requests": true
+    },
+    "all_transport_file_hashes_verified": true
+  },
+  "prism-mimic": {
+    "glb_sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0",
+    "manifest_sha256": "cd5b50fe38e944ca696a7c44452add465a1df3d7a6c35731474e66fa8947896b",
+    "browser_checks": {
+      "exact_glb_hash": true,
+      "six_skinned_draw_primitives": true,
+      "one_embedded_1024_image": true,
+      "expected_color_draws": true,
+      "expected_triangle_count": true,
+      "five_expected_clips": true,
+      "every_clip_changes_actual_raster": true,
+      "webgl_error_free": true,
+      "browser_error_free": true,
+      "no_external_requests": true
+    },
+    "all_transport_file_hashes_verified": true
+  },
+  "trendweaver": {
+    "glb_sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce",
+    "manifest_sha256": "34014b7452bcac85e157e41fd8771e3ea33cce821c8bb4a54444e584e3afb256",
+    "browser_checks": {
+      "exact_glb_hash": true,
+      "six_skinned_draw_primitives": true,
+      "one_embedded_1024_image": true,
+      "expected_color_draws": true,
+      "expected_triangle_count": true,
+      "five_expected_clips": true,
+      "every_clip_changes_actual_raster": true,
+      "webgl_error_free": true,
+      "browser_error_free": true,
+      "no_external_requests": true
+    },
+    "all_transport_file_hashes_verified": true
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "all_bytes_and_sha256_match_remote_construction": true,
+  "assets": {
+    "loop-dancer": {
+      "loop-dancer.glb": {
+        "bytes": 1096328,
+        "sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
+      },
+      "loop-dancer.blend": {
+        "bytes": 5889460,
+        "sha256": "e1ea1e148f009fe9fd8fa33d44b8895a743a08883091b64b1cfa00a6fde457d0"
+      }
+    },
+    "prism-mimic": {
+      "prism-mimic.glb": {
+        "bytes": 1079220,
+        "sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
+      },
+      "prism-mimic.blend": {
+        "bytes": 5433886,
+        "sha256": "9279833543039de1a07ab801a07d8db233bd5951a1db7d428e9779d6372ae746"
+      }
+    },
+    "trendweaver": {
+      "trendweaver.glb": {
+        "bytes": 1089712,
+        "sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
+      },
+      "trendweaver.blend": {
+        "bytes": 5589689,
+        "sha256": "ab8730924e3b2025bf0185bc129c67a2b1f4e1f916b4e8c2ec53fc195b003c6c"
+      }
+    }
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "remote_manifest_sha256": "49f4c64f54f8380d090ac5f29135b8b0ffc365e0537b71e7f9d758d7dcd0382c",
+  "files": {
+    "loop-dancer": [
+      {
+        "path": "/home/dev/work/quest-era-2024-models/test-results/era-2024-masters/loop-dancer/loop-dancer.blend",
+        "bytes": 5889460,
+        "sha256": "e1ea1e148f009fe9fd8fa33d44b8895a743a08883091b64b1cfa00a6fde457d0"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/loop-dancer.glb",
+        "bytes": 1096328,
+        "sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/pigment.png",
+        "bytes": 1128196,
+        "sha256": "a35d4f81032f384bc40d17c239fb7ea6abda16bca0d4f1cf1c6eda74ba29e41a"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/front.png",
+        "bytes": 547376,
+        "sha256": "8cf0b38f85ba5836729a6e2f6af7dbe74454b62e8b0ab7c51944ec36052cacc2"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/side.png",
+        "bytes": 505139,
+        "sha256": "94d76c5add97f1c7c6a70d2c7b69a56d55ec0559aba1e8da2e97acd09810f09a"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/back.png",
+        "bytes": 542120,
+        "sha256": "49c88ac48fadee3d6e1702e329cfac67d36f0c1628a0e3acf7d149dc26da9b0b"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/beauty.png",
+        "bytes": 537284,
+        "sha256": "0dc4f6a6cdaabf33493b405204634d597895fdcc8b0b7e799ac7192f7db35998"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/motion-grid.png",
+        "bytes": 600766,
+        "sha256": "d57c87c6562464437e78c0a3288006d89fe4151ef7c16266ab295204a5f1f93c"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/animations.mp4",
+        "bytes": 244634,
+        "sha256": "8d01a9913952bc07367d5880cee13ab9468bea07503dd1142275393073bbfb59"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/turntable.mp4",
+        "bytes": 132630,
+        "sha256": "78995cee15c161ad175bcdb51b1ee1b67a093fab190b872f579b8203c4382837"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/idle.mp4",
+        "bytes": 55438,
+        "sha256": "73d642079f831ac8d564f9515cc0aa17b1ef2d1ee3e7e6b45fcfda8e93f2e18b"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/move.mp4",
+        "bytes": 49678,
+        "sha256": "b33777eaf6e140bf27712e16d3bbcf1efcdb9dd2556b25af7e9c093a4f326d75"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/attack.mp4",
+        "bytes": 55155,
+        "sha256": "2fc994a98e0832a271246874c561dc662c76253dddbaf223fa25d337fd6df49f"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/hit.mp4",
+        "bytes": 27761,
+        "sha256": "1ee08e144d3b45a982741a255027c8d3bfec13eecfa65dc941669223fbdb540c"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/defeat.mp4",
+        "bytes": 59907,
+        "sha256": "a864283d4b3171f89dd0c9ef3234ca0e8bf1092f60ce97f8c7ff0d97fff6368e"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/construction.json",
+        "bytes": 2122,
+        "sha256": "6d5c9ee51bd1e30c17711a2d12bd8fc8a38cdeb0199b231f71ac17a444ec2f6c"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/validation.json",
+        "bytes": 4257,
+        "sha256": "ad0abc3134eb002e4ada98967f47b112d9685af3455cd0e46868e6ef19d1b55e"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/export-inspection.json",
+        "bytes": 1922,
+        "sha256": "a886c5f2388d88d7a7f3bbd2e8355af1d76d4d7e95047199fab72319abb14b8b"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/three-inspection.json",
+        "bytes": 4181,
+        "sha256": "4ff1101c8b563aa8a457ba074d85d75c397220d479257fa233f36a03c2ef2726"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/loop-dancer/v001/render-complete.json",
+        "bytes": 223,
+        "sha256": "f1bdb444ca9cbfac032a6df30ea9a108e1636f917a35a4f0925844f4bd8cc2dc"
+      }
+    ],
+    "prism-mimic": [
+      {
+        "path": "/home/dev/work/quest-era-2024-models/test-results/era-2024-masters/prism-mimic/prism-mimic.blend",
+        "bytes": 5433886,
+        "sha256": "9279833543039de1a07ab801a07d8db233bd5951a1db7d428e9779d6372ae746"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/prism-mimic.glb",
+        "bytes": 1079220,
+        "sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/pigment.png",
+        "bytes": 1135339,
+        "sha256": "cd2ad4683d5c99bfdb1e238b536d850d2806a04ae66b872ed38577c36c96a93d"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/front.png",
+        "bytes": 535788,
+        "sha256": "588e2f872fe991bd29bcad470c9292e17d139989c74fe7003b72de7e2aca1543"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/side.png",
+        "bytes": 530468,
+        "sha256": "51cc9408f33fefd504889bab2739e729688558c558f586c7cd986d93e8487ecb"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/back.png",
+        "bytes": 515851,
+        "sha256": "cf5ca84e51cbbca1a50842cc39b77f1860aee3f4d73bc93f72c2196f1fac3eb5"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/beauty.png",
+        "bytes": 558902,
+        "sha256": "02e9d028b5e145ff8a75fb9141a2a5451f5611c9dbe562f1dd394baf29df944d"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/motion-grid.png",
+        "bytes": 724124,
+        "sha256": "b86b95bbb299fca2afbbb8c88d1c0e0aff2a688a98345d74a23544c55c7ada19"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/animations.mp4",
+        "bytes": 257589,
+        "sha256": "dbe1cfe25e0ee74ad1039b14da8a626cf6b1737a9cb293051449cfda4bf8c428"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/turntable.mp4",
+        "bytes": 160036,
+        "sha256": "85da023015cafc34e1b2ba3fcfc0c58391a8abaccfa644d0b38a22a7ee9152a5"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/idle.mp4",
+        "bytes": 52273,
+        "sha256": "30f35512e71991c54087572d1a20ed6f4d89f385fa6b584fa416a577430d199d"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/move.mp4",
+        "bytes": 54246,
+        "sha256": "2b4168b1c107bcc087b9fefe542ea7000f3e84cd48d6f2e831a2e4bc41497231"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/attack.mp4",
+        "bytes": 55212,
+        "sha256": "daa1ec0a3fa565592e89c4e32b827173f633ebfd92d8d3618c81b0bdbc7254ef"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/hit.mp4",
+        "bytes": 31529,
+        "sha256": "600f98101e2811725dbcb502bcb376980d1134304185d45d37b2bd711dc8007f"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/defeat.mp4",
+        "bytes": 67626,
+        "sha256": "56c89edfa1d70336200011b02cb40910483ef94897e84fe6323833134041093b"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/construction.json",
+        "bytes": 2087,
+        "sha256": "2845ec48a9b31b039a1eff12d2ed4e72796cc7c64623506153af3c87c11f1c53"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/validation.json",
+        "bytes": 4223,
+        "sha256": "ed9760597e4ecf25a6335771a1daefa610776e2b16d6be873e4f153cab7b1da8"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/export-inspection.json",
+        "bytes": 1911,
+        "sha256": "c31e7e43aa8f34ea17e979ddadaebb9bd431f71872214d3054ac0337bb34d5cc"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/three-inspection.json",
+        "bytes": 4068,
+        "sha256": "0c956191025d974b95423fd8920d6fcf82b9df26033894e8d991197ce46de879"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/prism-mimic/v001/render-complete.json",
+        "bytes": 222,
+        "sha256": "1d62128c33b0d33d15271e0795822ef741784d3a351bdeeca815157a03dad0d7"
+      }
+    ],
+    "trendweaver": [
+      {
+        "path": "/home/dev/work/quest-era-2024-models/test-results/era-2024-masters/trendweaver/trendweaver.blend",
+        "bytes": 5589689,
+        "sha256": "ab8730924e3b2025bf0185bc129c67a2b1f4e1f916b4e8c2ec53fc195b003c6c"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/trendweaver.glb",
+        "bytes": 1089712,
+        "sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/pigment.png",
+        "bytes": 1160771,
+        "sha256": "a367a3152eb8f9ee8756682cc0b980bf5c439ea5fa7c548d8448b0933074324a"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/front.png",
+        "bytes": 544233,
+        "sha256": "01df22686e1a65f9ce191dd002a52c6c19bfa676974e0e70a58de3106a33af95"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/side.png",
+        "bytes": 504208,
+        "sha256": "d54a35064f9c31d0cc61e08062910d083d05a8a73ca09d4b4918f1ca468ec88b"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/back.png",
+        "bytes": 538007,
+        "sha256": "0ea7c699ac62716bc8f5d52b3e116f4e76ae7f85ba64b6bf169304634fee485d"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/beauty.png",
+        "bytes": 536534,
+        "sha256": "2359c4a3a1d0028af8862b9840f399cb0f35896e12f28500806065604c384dcd"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/motion-grid.png",
+        "bytes": 634414,
+        "sha256": "a8819ccfaf044b60083f5b7b175d4c1d08742c5a07c41cb4bc13a9a0aff5d090"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/animations.mp4",
+        "bytes": 240441,
+        "sha256": "d892e1e6a8b3e72dcab5b1fefc1a586f083acd65fcd99447c42201f827cf9bfc"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/turntable.mp4",
+        "bytes": 131903,
+        "sha256": "43cc7b4b587060b06f8cdeccfa99ddf40ecc67707b5935bafefd9ce9f082b7f5"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/idle.mp4",
+        "bytes": 53868,
+        "sha256": "b22cc565f2593fbbe5113166cffeca73098a547906c105640ae97a1ad851012d"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/move.mp4",
+        "bytes": 41763,
+        "sha256": "a92a20debd2658f1c119f800d4cfea1e9854aab219cfeadd968fb8b8dc3168cd"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/attack.mp4",
+        "bytes": 59472,
+        "sha256": "4458d171269468f9903360794d60392bf11ec53f5cd306c4c3c4f306f72585e5"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/hit.mp4",
+        "bytes": 26271,
+        "sha256": "f5578a3a20bf867650a537fec3ab803327b7a7980eea9edf435c5da91e7cc916"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/defeat.mp4",
+        "bytes": 62364,
+        "sha256": "eec7bef47b615d54fe18d0da10316ecb620a247fdf1f19314edb471dfc6e4a56"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/construction.json",
+        "bytes": 2091,
+        "sha256": "d6fabebc6af8983fffc2555c988cebad942989873eba134b19e61bebc2ddc60d"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/validation.json",
+        "bytes": 4208,
+        "sha256": "6a511339f3efcf25408559de426068d0b020b3c0d51e729402d156f044ae1dba"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/export-inspection.json",
+        "bytes": 1894,
+        "sha256": "f96afe704bdf84afc68f0ae5a740e0b3e5c1a8eba09b0cd6c37bbe2182ef6a1b"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/three-inspection.json",
+        "bytes": 4102,
+        "sha256": "409cf7228e763bd3885b56eaccd11fa4babddc61a92806e177807d9a0dce4a6b"
+      },
+      {
+        "path": "/home/dev/work/quest-era-2024-models/docs/assets/media/trendweaver/v001/render-complete.json",
+        "bytes": 222,
+        "sha256": "106bbf8bea1e4d9428f2944cc9227d2e33adf9a959b84fd5bfef5b11b5978670"
+      }
+    ]
+  },
+  "all_downloads_hash_verified": true
+}

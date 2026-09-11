@@ -1,0 +1,540 @@
+{
+  "asset_id": "trendweaver",
+  "version": "v001",
+  "status": "candidate; owner review pending",
+  "glb_sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce",
+  "work_order": "WO-016",
+  "authoring": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "blender": "4.5.13 LTS",
+    "source_method": "Original scripted rounded meshes, relief, procedural pigment bake, rigid-part and ribbon skinning."
+  },
+  "review": {
+    "creator_inspection": {
+      "selected_concept": true,
+      "exact_glb_front_side_back_beauty": true,
+      "five_clip_motion_grid": true,
+      "software_webgl_raster": true,
+      "date_utc": "2026-09-11T15:07:52.227029+00:00"
+    },
+    "coordinator_selection": "Root selected the final shapes for first-pass packaging; integrated game/studio intake remains root-owned.",
+    "owner_approval": "pending",
+    "gameplay_promotion": false
+  },
+  "concept": {
+    "path": "docs/assets/media/trendweaver/v001/concept.png",
+    "sha256": "ab77f32f89b1d8fca9e8e32743d7f25898b0d581027ccf4a2150c93012aee92e",
+    "visually_inspected": true
+  },
+  "runtime": {
+    "unit": "meter",
+    "gltf_up": "+Y",
+    "gltf_forward": "-Z",
+    "origin": "Ground-centered root at [0, 0, 0]",
+    "root_translation": "Fixed; translation belongs to the gameplay controller",
+    "rest_height_m": 1.9,
+    "rest_underside_clearance_m": 0.12,
+    "hover_offset_embedded": true,
+    "clips": {
+      "idle": {
+        "duration_s": 2.5,
+        "loop": true,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      "move": {
+        "duration_s": 1.25,
+        "loop": true,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      "attack": {
+        "duration_s": 1.875,
+        "loop": false,
+        "playback": "once",
+        "clamp_when_finished": false,
+        "contact_time_s": 1.125,
+        "contact_fraction": 0.6,
+        "timing_source": "Authored strike/pulse peak; root maps gameplay windup, strike and cooldown onto this timeline."
+      },
+      "hit": {
+        "duration_s": 0.625,
+        "loop": false,
+        "playback": "once",
+        "clamp_when_finished": false
+      },
+      "defeat": {
+        "duration_s": 2.0,
+        "loop": false,
+        "playback": "once",
+        "clamp_when_finished": true,
+        "end_behavior": "Tilts and descends with arms and bobbins drooping; final pose is held.",
+        "fade_embedded": false,
+        "root_motion_embedded": false,
+        "remove_after_clip": "Gameplay controller decision; clip holds the terminal pose."
+      }
+    },
+    "textures": "One embedded original 1024 \u00d7 1024 pigment atlas; no external URI or decoder",
+    "materials": 6,
+    "draw_primitives": 6,
+    "minimum_sampled_animated_height_m": 0.00014988512621826044,
+    "rig_bones_including_fixed_root": 18
+  },
+  "construction": {
+    "asset_id": "trendweaver",
+    "version": "v001",
+    "blender": "4.5.13 LTS",
+    "triangles": 14874,
+    "vertices": 7615,
+    "material_count": 6,
+    "bones": [
+      "body",
+      "head",
+      "upper-arm.L",
+      "forearm.L",
+      "hand.L",
+      "upper-arm.R",
+      "forearm.R",
+      "hand.R",
+      "ribbon.L.1",
+      "ribbon.L.2",
+      "ribbon.L.3",
+      "ribbon.R.1",
+      "ribbon.R.2",
+      "ribbon.R.3",
+      "bobbin.1",
+      "bobbin.2",
+      "bobbin.3"
+    ],
+    "bounds_blender": {
+      "min": [
+        -0.6536943912506104,
+        -0.3561664819717407,
+        0.11999999731779099
+      ],
+      "max": [
+        0.6536943912506104,
+        0.35005682706832886,
+        1.899999976158142
+      ]
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.25,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.875,
+        "loop": false,
+        "impact_time_s": 1.125
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.625,
+        "loop": false,
+        "impact_time_s": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "impact_time_s": null
+      }
+    ],
+    "scale_correction": {
+      "uniform_yz": 1.0130904440223532,
+      "width": 1.0130904440223532,
+      "source_min_z": 0.17100000381469727
+    },
+    "spec": {
+      "height": 1.9,
+      "floor": 0.12,
+      "width": null,
+      "impact": 1.125
+    },
+    "pigment_atlas": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+      "bytes": 1160771,
+      "sha256": "a367a3152eb8f9ee8756682cc0b980bf5c439ea5fa7c548d8448b0933074324a"
+    },
+    "files": {
+      "trendweaver.blend": {
+        "bytes": 5589689,
+        "sha256": "ab8730924e3b2025bf0185bc129c67a2b1f4e1f916b4e8c2ec53fc195b003c6c"
+      },
+      "trendweaver.glb": {
+        "bytes": 1089712,
+        "sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
+      }
+    }
+  },
+  "validation": {
+    "khronos_errors": 0,
+    "khronos_warnings": 0,
+    "checks": {
+      "gltf_2": true,
+      "khronos_no_errors": true,
+      "khronos_no_warnings": true,
+      "five_exact_clips": true,
+      "positive_animated_clips": true,
+      "triangle_budget_15000": true,
+      "material_budget_6": true,
+      "primitive_budget_6": true,
+      "glb_budget_2_mib": true,
+      "one_embedded_pigment_image": true,
+      "embedded_resources": true,
+      "no_required_extensions": true,
+      "all_have_vertex_colors": true,
+      "single_skin": true,
+      "at_most_4_influences": true,
+      "opaque_surfaces": true
+    },
+    "three_js_revision": "186",
+    "three_geometry_checks": {
+      "embedded_pigment_decoded": true,
+      "six_or_fewer_draw_primitives": true,
+      "skinned_geometry_loaded": true,
+      "correct_max_height": true,
+      "correct_rest_clearance": true,
+      "correct_wingspan": true,
+      "exact_clip_set": true,
+      "all_clips_move_actual_vertices": true,
+      "idle_move_loop_seams": true,
+      "root_bone_fixed": true,
+      "external_scene_translation_correct": true,
+      "bounded_floor_penetration": true,
+      "finite_geometry": true
+    },
+    "video_streams": {
+      "animations.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 8.25,
+        "audio": false
+      },
+      "turntable.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 3.0,
+        "audio": false
+      },
+      "idle.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 2.5,
+        "audio": false
+      },
+      "move.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 1.25,
+        "audio": false
+      },
+      "attack.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 1.875,
+        "audio": false
+      },
+      "hit.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 0.625,
+        "audio": false
+      },
+      "defeat.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 2.0,
+        "audio": false
+      }
+    },
+    "browser": {
+      "version": "153.0.8010.12",
+      "renderer": "Chromium headless with ANGLE SwiftShader (software WebGL)",
+      "checks": {
+        "exact_glb_hash": true,
+        "six_skinned_draw_primitives": true,
+        "one_embedded_1024_image": true,
+        "expected_color_draws": true,
+        "expected_triangle_count": true,
+        "five_expected_clips": true,
+        "every_clip_changes_actual_raster": true,
+        "webgl_error_free": true,
+        "browser_error_free": true,
+        "no_external_requests": true
+      },
+      "report": "browser-inspection.json",
+      "limitations": "Isolated exact-GLB software WebGL intake; not integrated gameplay, physical Safari, GPU performance or owner approval."
+    }
+  },
+  "editable_master": {
+    "remote_path": "/workspace/haynes-quest/era-2024/v001/trendweaver/trendweaver.blend",
+    "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/trendweaver.blend",
+    "sha256": "ab8730924e3b2025bf0185bc129c67a2b1f4e1f916b4e8c2ec53fc195b003c6c"
+  },
+  "limitations": [
+    "Software review renders and CPU geometry checks do not establish physical-device Safari performance.",
+    "Cloth motion is authored skinning without cloth simulation.",
+    "Faceted colored panels are stylized opaque PBR surfaces.",
+    "Small sampled sole penetration remains: 0.000 mm; collision/movement are external to the GLB."
+  ],
+  "files": [
+    {
+      "remote_relative_path": "trendweaver/trendweaver.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/trendweaver.blend",
+      "local_name": "trendweaver.blend",
+      "role": "editable_master",
+      "bytes": 5589689,
+      "sha256": "ab8730924e3b2025bf0185bc129c67a2b1f4e1f916b4e8c2ec53fc195b003c6c"
+    },
+    {
+      "remote_relative_path": "trendweaver/trendweaver.glb",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/trendweaver.glb",
+      "local_name": "trendweaver.glb",
+      "role": "candidate_or_evidence",
+      "bytes": 1089712,
+      "sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
+    },
+    {
+      "remote_relative_path": "trendweaver/pigment.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/pigment.png",
+      "local_name": "pigment.png",
+      "role": "candidate_or_evidence",
+      "bytes": 1160771,
+      "sha256": "a367a3152eb8f9ee8756682cc0b980bf5c439ea5fa7c548d8448b0933074324a"
+    },
+    {
+      "remote_relative_path": "trendweaver/front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/front.png",
+      "local_name": "front.png",
+      "role": "candidate_or_evidence",
+      "bytes": 544233,
+      "sha256": "01df22686e1a65f9ce191dd002a52c6c19bfa676974e0e70a58de3106a33af95"
+    },
+    {
+      "remote_relative_path": "trendweaver/side.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/side.png",
+      "local_name": "side.png",
+      "role": "candidate_or_evidence",
+      "bytes": 504208,
+      "sha256": "d54a35064f9c31d0cc61e08062910d083d05a8a73ca09d4b4918f1ca468ec88b"
+    },
+    {
+      "remote_relative_path": "trendweaver/back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/back.png",
+      "local_name": "back.png",
+      "role": "candidate_or_evidence",
+      "bytes": 538007,
+      "sha256": "0ea7c699ac62716bc8f5d52b3e116f4e76ae7f85ba64b6bf169304634fee485d"
+    },
+    {
+      "remote_relative_path": "trendweaver/beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/beauty.png",
+      "local_name": "beauty.png",
+      "role": "candidate_or_evidence",
+      "bytes": 536534,
+      "sha256": "2359c4a3a1d0028af8862b9840f399cb0f35896e12f28500806065604c384dcd"
+    },
+    {
+      "remote_relative_path": "trendweaver/motion-grid.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/motion-grid.png",
+      "local_name": "motion-grid.png",
+      "role": "candidate_or_evidence",
+      "bytes": 634414,
+      "sha256": "a8819ccfaf044b60083f5b7b175d4c1d08742c5a07c41cb4bc13a9a0aff5d090"
+    },
+    {
+      "remote_relative_path": "trendweaver/animations.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/animations.mp4",
+      "local_name": "animations.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 240441,
+      "sha256": "d892e1e6a8b3e72dcab5b1fefc1a586f083acd65fcd99447c42201f827cf9bfc"
+    },
+    {
+      "remote_relative_path": "trendweaver/turntable.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/turntable.mp4",
+      "local_name": "turntable.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 131903,
+      "sha256": "43cc7b4b587060b06f8cdeccfa99ddf40ecc67707b5935bafefd9ce9f082b7f5"
+    },
+    {
+      "remote_relative_path": "trendweaver/idle.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/idle.mp4",
+      "local_name": "idle.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 53868,
+      "sha256": "b22cc565f2593fbbe5113166cffeca73098a547906c105640ae97a1ad851012d"
+    },
+    {
+      "remote_relative_path": "trendweaver/move.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/move.mp4",
+      "local_name": "move.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 41763,
+      "sha256": "a92a20debd2658f1c119f800d4cfea1e9854aab219cfeadd968fb8b8dc3168cd"
+    },
+    {
+      "remote_relative_path": "trendweaver/attack.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/attack.mp4",
+      "local_name": "attack.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 59472,
+      "sha256": "4458d171269468f9903360794d60392bf11ec53f5cd306c4c3c4f306f72585e5"
+    },
+    {
+      "remote_relative_path": "trendweaver/hit.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/hit.mp4",
+      "local_name": "hit.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 26271,
+      "sha256": "f5578a3a20bf867650a537fec3ab803327b7a7980eea9edf435c5da91e7cc916"
+    },
+    {
+      "remote_relative_path": "trendweaver/defeat.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/defeat.mp4",
+      "local_name": "defeat.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 62364,
+      "sha256": "eec7bef47b615d54fe18d0da10316ecb620a247fdf1f19314edb471dfc6e4a56"
+    },
+    {
+      "remote_relative_path": "trendweaver/construction.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/construction.json",
+      "local_name": "construction.json",
+      "role": "candidate_or_evidence",
+      "bytes": 2091,
+      "sha256": "d6fabebc6af8983fffc2555c988cebad942989873eba134b19e61bebc2ddc60d"
+    },
+    {
+      "remote_relative_path": "trendweaver/validation.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/validation.json",
+      "local_name": "validation.json",
+      "role": "candidate_or_evidence",
+      "bytes": 4208,
+      "sha256": "6a511339f3efcf25408559de426068d0b020b3c0d51e729402d156f044ae1dba"
+    },
+    {
+      "remote_relative_path": "trendweaver/export-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/export-inspection.json",
+      "local_name": "export-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1894,
+      "sha256": "f96afe704bdf84afc68f0ae5a740e0b3e5c1a8eba09b0cd6c37bbe2182ef6a1b"
+    },
+    {
+      "remote_relative_path": "trendweaver/three-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/three-inspection.json",
+      "local_name": "three-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 4102,
+      "sha256": "409cf7228e763bd3885b56eaccd11fa4babddc61a92806e177807d9a0dce4a6b"
+    },
+    {
+      "remote_relative_path": "trendweaver/render-complete.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/trendweaver/render-complete.json",
+      "local_name": "render-complete.json",
+      "role": "candidate_or_evidence",
+      "bytes": 222,
+      "sha256": "106bbf8bea1e4d9428f2944cc9227d2e33adf9a959b84fd5bfef5b11b5978670"
+    }
+  ],
+  "sources": [
+    {
+      "repository_path": "scripts/assets/era-2024/build.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/build.py",
+      "sha256": "3cc7a28e97ea5011fc9de87ef55a34fe9b6c08bed65a9eded4e02d323354006d"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/collect.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/collect.py",
+      "sha256": "c9385c41f38b640411e9f323f1b52a2ed136d7faec1c31ee1baa33c2d119e938"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/delivery.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/delivery.py",
+      "sha256": "4f08259501ce217b476c8b8f4325b9aa52d7b4d044c352fc8f728c68e00fb1d8"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/finalize-wait.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/finalize-wait.py",
+      "sha256": "acce786c5324449538a161b3a71dce101a25dd2fd3a014326502f4b610da7cd4"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/inspect-three.mjs",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/inspect-three.mjs",
+      "sha256": "5137dc48649de03eb3b3b6271db7bcf0a81f48aa8106dcbf62eab063216dae24"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/render.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/render.py",
+      "sha256": "fd703ed7d61a4758540b9d3018a229033582585b8bb88c26eb8e6d3b37ccdfe8"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/validate.mjs",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/validate.mjs",
+      "sha256": "7d000794f6be4d4d1fbf3c081442f8617c42d45bf8f4085bd982e5c8eab4d205"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/browser-intake.mjs",
+      "sha256": "1a5715947ac8769f6397000b73c929dba7b7757071b7defbf6504931fd07fbd7",
+      "execution": "Local dev-env; no live Blender scene access"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/finalize-local.py",
+      "sha256": "b37db5edbf3def031776e197ac26ac1237263bba41ca5a6fdfb0e0fa5ad0833d",
+      "execution": "Local dev-env; no live Blender scene access"
+    }
+  ],
+  "local_intake": {
+    "source": "Exact downloaded GLB in an isolated Chromium process with embedded texture uploads and four distinct raster samples per clip",
+    "integrated_gameplay": false,
+    "physical_safari": false,
+    "files": [
+      {
+        "repository_path": "docs/assets/media/trendweaver/v001/browser-beauty.png",
+        "bytes": 112669,
+        "sha256": "92df3f3c274844236af5ab95b7e56f9c142ed1eedd803adb7b03d5fbbd51c7c9"
+      },
+      {
+        "repository_path": "docs/assets/media/trendweaver/v001/browser-attack.png",
+        "bytes": 102595,
+        "sha256": "6e9243c2a6a8731ae0ca528e872771773aca1c0cdc9fda7d6dc070a59772c3fa"
+      },
+      {
+        "repository_path": "docs/assets/media/trendweaver/v001/browser-inspection.json",
+        "bytes": 4104,
+        "sha256": "fe37b5e848ddb20893b888c41ec37569f4fdab97822ac816ac996ca7fb345496"
+      }
+    ]
+  }
+}

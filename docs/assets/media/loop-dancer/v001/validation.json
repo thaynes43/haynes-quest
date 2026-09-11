@@ -1,0 +1,199 @@
+{
+  "asset_id": "loop-dancer",
+  "file": "loop-dancer.glb",
+  "sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79",
+  "bytes": 1096328,
+  "triangles": 14848,
+  "draw_primitives": 6,
+  "materials": [
+    {
+      "name": "Walnut",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.7900000214576721
+      }
+    },
+    {
+      "name": "Plum cloth",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8999999761581421
+      }
+    },
+    {
+      "name": "Honey brass",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0.550000011920929,
+        "roughnessFactor": 0.41999998688697815
+      }
+    },
+    {
+      "name": "Carved recess",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8799999952316284
+      }
+    },
+    {
+      "name": "Amber light",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 4
+        },
+        "metallicFactor": 0.23999999463558197,
+        "roughnessFactor": 0.23999999463558197
+      },
+      "emissive": [
+        0.054999999701976776,
+        0.018805292742873903,
+        0.0011670455180200906
+      ]
+    },
+    {
+      "name": "Sage cloth",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 5
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.9300000071525574
+      }
+    }
+  ],
+  "joints": [
+    "root",
+    "body",
+    "head",
+    "scarf.L.1",
+    "scarf.L.2",
+    "scarf.L.3",
+    "scarf.R.1",
+    "scarf.R.2",
+    "scarf.R.3",
+    "winding-key",
+    "upper-arm.L",
+    "forearm.L",
+    "hand.L",
+    "thigh.L",
+    "shin.L",
+    "foot.L",
+    "upper-arm.R",
+    "forearm.R",
+    "hand.R",
+    "thigh.R",
+    "shin.R",
+    "foot.R"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "channels": 66
+    },
+    {
+      "name": "move",
+      "duration_s": 1.25,
+      "channels": 66
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.5,
+      "channels": 66
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.625,
+      "channels": 66
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2,
+      "channels": 66
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "triangle_budget_15000": true,
+    "material_budget_6": true,
+    "primitive_budget_6": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_pigment_image": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "all_have_vertex_colors": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true
+  },
+  "validator": {
+    "uri": "loop-dancer.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T14:43:46.001Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 1024276
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 6,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 6,
+      "totalVertexCount": 11732,
+      "totalTriangleCount": 14848,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 6
+    }
+  }
+}

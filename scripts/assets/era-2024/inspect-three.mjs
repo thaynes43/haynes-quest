@@ -10,7 +10,8 @@ const {GLTFLoader}=await import(pathToFileURL(path.join(three,'examples/jsm/load
 // Node supplies object URLs/fetch. Decode embedded image pixels with the app's
 // pinned Sharp runtime; this is a CPU ImageBitmap shim, not WebGL raster proof.
 const sharpPath=path.resolve(process.env.QUEST_SHARP_ROOT||path.join(three,'..','sharp'));
-const {default:sharp}=await import(pathToFileURL(path.join(sharpPath,'lib/index.js')).href);
+const sharpPackage=JSON.parse(await readFile(path.join(sharpPath,'package.json')));
+const {default:sharp}=await import(pathToFileURL(path.join(sharpPath,sharpPackage.module||sharpPackage.main)).href);
 globalThis.self=globalThis;
 const decodedImages=[];
 globalThis.createImageBitmap=async(blob)=>{

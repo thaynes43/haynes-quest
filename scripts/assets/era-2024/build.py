@@ -13,6 +13,7 @@ PARTS=[]
 MAT={}
 XFORM=Matrix.Identity(4)
 BONES={}
+CURRENT_ASSET=None
 PAL={
  'Walnut':('795136',.79,0),
  'Honey brass':('c79b50',.42,.55),
@@ -153,21 +154,24 @@ def leaf(name,start,end,width,mat='Sage cloth',bone='body',tint=1,bulge=.009):
 def panel(name,poly,depth,mat,bone='body',tint=1,bevel=.012,relief=.0025,bulge=0,pits=()):
  """Closed chamfered polygon shell with a tessellated, carved front surface."""
  cx=sum(p[0] for p in poly)/len(poly);cz=sum(p[1] for p in poly)/len(poly)
+ thin=CURRENT_ASSET in ('prism-mimic','trendweaver') and depth<.061
  contour=[]
  for i,p in enumerate(poly):
   prev=Vector(poly[(i-1)%len(poly)]);mid=Vector(p);nxt=Vector(poly[(i+1)%len(poly)])
   a=mid.lerp(prev,.10);b=mid.lerp(nxt,.10)
-  for j in range(4):
-   t=j/3;contour.append(a*(1-t)**2+mid*2*t*(1-t)+b*t*t)
+  steps=2 if thin else 4
+  for j in range(steps):
+   t=j/(steps-1);contour.append(a*(1-t)**2+mid*2*t*(1-t)+b*t*t)
  rr=[]
- for y,s in [(-depth/2,.86),(-depth/2+bevel*.6,.96),(-depth/2+bevel,1),(depth/2-bevel,1),(depth/2-bevel*.35,.98),(depth/2,.92)]:
+ profile=[(-depth/2,.94),(-depth*.22,1),(depth*.25,1),(depth/2,.92)] if thin else [(-depth/2,.86),(-depth/2+bevel*.6,.96),(-depth/2+bevel,1),(depth/2-bevel,1),(depth/2-bevel*.35,.98),(depth/2,.92)]
+ for y,s in profile:
   rr.append([(cx+(p.x-cx)*s,y,cz+(p.y-cz)*s) for p in contour])
  rings(name+' | chamfered shell',rr,mat,bone,tint,True,True)
  # A regular clipped grid gives directional wood relief without concentric
  # triangulation ridges. Dense front geometry also carries a broad color wash.
  inner=[(cx+(x-cx)*.918,cz+(z-cz)*.918) for x,z in poly]
  zlo=min(z for x,z in inner);zhi=max(z for x,z in inner)
- nu=25 if bulge else 12;nv=17 if bulge else 10
+ nu=6 if thin else 10;nv=6 if thin else 9
  verts=[];faces=[]
  for j in range(nv):
   v=.0001+.9998*j/(nv-1);z=zlo+(zhi-zlo)*v;cross=[]
@@ -240,10 +244,10 @@ def limb(name,a,b,width,depth,bn,tint=1):
  return ob
 
 def cuff(name,c,r,bn,mat='Honey brass'):
- return ball(name,c,(r,r,r),mat,bn,.88,12,7)
+ return ball(name,c,(r,r,r),mat,bn,.88,12,5)
 
 def hand(name,c,s,bn,open_hand=True,sign=1):
- c=Vector(c);ball(name+' | palm',c,(s*.47,s*.35,s*.54),'Walnut',bn,1.08,14,8)
+ c=Vector(c);ball(name+' | palm',c,(s*.47,s*.35,s*.54),'Walnut',bn,1.08,12,7)
  # Three rounded wooden mitten digits, visibly separated but joined at palm.
  for i,(dx,dz,lean) in enumerate([(-.36,.12,-.72),(.02,.36,-.13),(.38,.27,.50)]):
   start=c+Vector((sign*s*dx,.00,s*dz))
@@ -288,7 +292,7 @@ def loop_dancer():
  global XFORM
  bone('body',(0,0,.48),'root');bone('head',(0,0,.72))
  # Barrel chest and small belly remain visible inside the plum tailored coat.
- carved_oval('Body | barrel wood',(0,0,.535),(.121,.080,.142),'body',.95,n=20,k=12)
+ carved_oval('Body | barrel wood',(0,0,.535),(.121,.080,.142),'body',.95,n=20,k=10)
  carved_oval('Pelvis | rounded wood',(0,0,.398),(.103,.075,.075),'body',.90,n=20,k=10)
  # Tailored curved lapels; X/Z outlines are closed, softly chamfered cloth panels.
  for s in [-1,1]:
@@ -304,7 +308,7 @@ def loop_dancer():
   panel('Coat | short rear skirt '+str(s),[(-.056,.065),(.055,.055),(.061,-.108),(-.045,-.064)],.025,'Plum cloth','body',.83,.007,.0002,.006)
  XFORM=Matrix.Identity(4)
  # Walnut oval has actual socket depressions and broad sculpted volume.
- carved_oval('Head | carved oval',(0,.006,.844),(.207,.139,.190),'head',1.12,[(-.079,.842,.040,.014),(.079,.806,.038,.014)],32,20)
+ carved_oval('Head | carved oval',(0,.006,.844),(.207,.139,.190),'head',1.12,[(-.079,.842,.040,.014),(.079,.806,.038,.014)],30,18)
  eye('Eye | left',(-.079,.132,.842),.026,'head',.82)
  eye('Eye | right',(.079,.134,.806),.026,'head',.82)
  for s,z,tilt in [(-1,.918,-.04),(1,.885,-.045)]:
@@ -315,7 +319,7 @@ def loop_dancer():
  tube('Face | carved smile',smile,[.0017]*12,'Carved recess','head',.88,5)
  # Low cap band and exactly two softly bent points, with brass bells.
  rr=[]
- for z,s in [(1.004,.79),(1.014,.98),(1.042,.97),(1.061,.71)]:
+ for z,s in [(1.004,.79),(1.014,.98),(1.042,.97),(1.064,.80),(1.087,.55),(1.091,.18)]:
   rr.append([(.195*s*math.cos(TAU*i/24),.006+.113*s*math.sin(TAU*i/24),z+.009*math.sin(TAU*i/24)) for i in range(24)])
  rings('Cap | gathered base',rr,'Plum cloth','head',.97)
  left=bezier((-.047,.003,1.047),(-.092,-.011,1.153),(-.193,.013,1.105),(-.253,.024,1.061),13)
@@ -325,7 +329,7 @@ def loop_dancer():
  for p in [left[-1],right[-1]]:ball('Cap | bell',p,(.018,.018,.019),'Honey brass','head',1,12,7)
  # Visible wrapped scarf collar, separate sage/plum tail anchors and brass key.
  collar=[]
- for i in range(37):
+ for i in range(36):
   a=TAU*i/36;collar.append((.104*math.cos(a),.071*math.sin(a),.699+.012*math.cos(a+.6)))
  tube('Scarf | rolled sage collar',collar,.026,'Sage cloth','body',1.04,8,True)
  ball('Scarf | rear knot',(-.043,-.078,.696),(.042,.026,.031),'Sage cloth','body',1.02,14,8)
@@ -378,9 +382,10 @@ def prism_mimic():
    limb('Leg | '+tag+' upper',shoulder+Vector((0,0,-.030)),knee+Vector((0,0,.024)),.093,.112,'leg.'+tag,.96)
    cuff('Knee | '+tag,knee,.040,'shin.'+tag,'Plum cloth')
    limb('Leg | '+tag+' lower',knee+Vector((0,0,-.020)),ankle+Vector((0,0,.017)),.091,.104,'shin.'+tag,1.09)
+   cuff('Ankle | '+tag,ankle,.027,'foot.'+tag,'Honey brass')
    box('Paw | '+tag+' base',(s*.207,y+.061,.046),(.146,.180,.071),.030,'Walnut','foot.'+tag,.92)
    for toe in [-1,0,1]:
-    carved_oval('Paw | '+tag+' toe '+str(toe),(s*.207+toe*.044,y+.116,.057),(.028,.052,.045),'foot.'+tag,1.1 if toe==0 else 1.0,n=12,k=7)
+    carved_oval('Paw | '+tag+' toe '+str(toe),(s*.207+toe*.044,y+.116,.057),(.028,.052,.045),'foot.'+tag,1.1 if toe==0 else 1.0,n=10,k=6)
    # A leaf plaque sits over each upper joint, oriented out and slightly forward.
    save=XFORM;angle=-s*.88
    XFORM=Matrix.Translation((s*.204,y+.025,.533 if front else .454))@Euler((-.13,0,angle)).to_matrix().to_4x4()
@@ -396,6 +401,7 @@ def prism_mimic():
  panel('Mask | rounded walnut shell',poly,.245,'Walnut','head',1.08,.039,.0007,.021)
  # Each tall ear is a shaped shell with an inset plum leaf and brass lip.
  for s in [-1,1]:
+  XFORM=frame
   ep=[(s*.070,.135),(s*.112,.385),(s*.201,.495),(s*.239,.209),(s*.187,.111)]
   if s<0:ep.reverse()
   panel('Ear | walnut '+str(s),ep,.093,'Walnut','head',1.0,.019,.0003,.008)
@@ -426,7 +432,8 @@ def prism_mimic():
   if s<0:poly.reverse()
   panel('Mask | lower honey facet '+str(s),poly,.018,'Honey brass','head',.81,.006,0,.006)
   # Lenses settle into the visible dark eye wells, below the brow facets.
-  eye('Eye | fox '+str(s),(s*.112,.158,-.029),.027,'head',.87)
+  XFORM=frame
+  eye('Eye | fox '+str(s),(s*.112,.144,-.029),.030,'head',.87)
  XFORM=frame
  carved_oval('Muzzle | short tapered walnut',(0,.178,-.148),(.096,.109,.065),'head',1.10,n=22,k=12)
  XFORM=frame@Matrix.Translation((0,.282,-.144))
@@ -439,11 +446,28 @@ def prism_mimic():
  pts=bezier((0,-.392,.439),(.052,-.773,.360),(.184,-.778,.667),(.081,-.724,.883),25)
  bn=['tail.1','tail.2','tail.3']
  for k,ident in enumerate(bn):bone(ident,pts[k*8],'body' if k==0 else bn[k-1])
- for k in range(3):
-  local=pts[k*8:k*8+9]
-  radii=[.075+.060*math.sin(math.pi*(k*8+j)/27) for j in range(len(local))]
-  if k==2:radii=[r*(1-.76*j/(len(local)-1)) for j,r in enumerate(radii)]
-  ob=tube('Tail | '+('sage tip' if k==2 else 'carved sweep '+str(k+1)),local,radii,'Sage cloth' if k==2 else 'Walnut',bn[k],.97,16)
+ # One uninterrupted closed surface spans the full tail; changing material
+ # at the sage tip never creates a separate cap, seam gap or detached section.
+ radii=[]
+ for j in range(len(pts)):
+  radius=.075+.060*math.sin(math.pi*j/27)
+  if j>=16:radius*=1-.76*(j-16)/8
+  radii.append(radius)
+ ob=tube('Tail | continuous carved sweep and sage tip',pts,radii,'Walnut','tail.1',.97,16)
+ ob.data.materials.append(MAT['Sage cloth'][0])
+ colors=ob.data.color_attributes['Color']
+ for poly in ob.data.polygons:
+  indices=[ob.data.loops[li].vertex_index for li in poly.loop_indices]
+  if min(indices)>=16*16:
+   poly.material_index=1
+   for li in poly.loop_indices:colors.data[li].color=(*[c*.97 for c in MAT['Sage cloth'][1]],1)
+ ob.vertex_groups.clear()
+ for ident in bn:ob.vertex_groups.new(name=ident)
+ for j in range(len(pts)):
+  q=j/8-.25;left=max(0,min(2,int(math.floor(q))));right=min(2,left+1);mix=max(0,min(1,q-left))
+  indices=list(range(j*16,(j+1)*16))
+  ob.vertex_groups[bn[left]].add(indices,1-mix if left!=right else 1,'REPLACE')
+  if left!=right and mix:ob.vertex_groups[bn[right]].add(indices,mix,'REPLACE')
  # Quiet cheek contours and the neck overlap read as carved plates, not fur.
  for s in [-1,1]:
   XFORM=Matrix.Translation((s*.116,.159,.529))@Euler((0,s*.13,-s*.45)).to_matrix().to_4x4()
@@ -455,24 +479,23 @@ def trendweaver():
  bone('body',(0,0,.908),'root');bone('head',(0,0,1.315))
  # The body is a true hourglass spool: broad rolled walnut flanges and a
  # tapered woven core. A few low raised coils hold the silhouette at game scale.
- lathe('Spool | lower walnut flange',[(.435,.215),(.458,.287),(.482,.329),(.519,.341),(.556,.329),(.591,.270),(.616,.197)],'Walnut','body',.99,36,ribs=.005)
- lathe('Spool | upper walnut flange',[(1.035,.191),(1.073,.274),(1.110,.333),(1.149,.344),(1.187,.331),(1.208,.282),(1.220,.251)],'Walnut','body',1.10,36,ribs=.005)
+ lathe('Spool | lower walnut flange',[(.435,.215),(.458,.287),(.482,.329),(.519,.341),(.556,.329),(.591,.270),(.616,.197)],'Walnut','body',.99,32,ribs=.005)
+ lathe('Spool | upper walnut flange',[(1.035,.191),(1.073,.274),(1.110,.333),(1.149,.344),(1.187,.331),(1.208,.282),(1.220,.251)],'Walnut','body',1.10,32,ribs=.005)
+ # The coil relief is part of a single closed spun surface. The retained
+ # procedural cloth pigment supplies finer fibers without overlapping torus shells.
  profile=[]
- for i in range(19):
-  z=.585+i*(.502/18);t=i/18;r=.158+.040*(abs(t-.5)*2)**1.8+.003*math.sin(i*2.4)
-  profile.append((z,r))
- lathe('Spool | plum thread core',profile,'Plum cloth','body',1.08,32)
- for k in range(13):
-  z=.620+k*.033;r=.160+.036*(abs((z-.585)/.502-.5)*2)**1.8
-  pts=[(r*math.cos(TAU*i/30),r*math.sin(TAU*i/30),z+.004*math.sin(TAU*i/30*2+k*.7)) for i in range(30)]
-  tube('Spool | soft woven coil '+str(k+1),pts,.005,'Plum cloth','body',1.06 if k%2 else .88,5,True)
+ for i in range(53):
+  t=i/52;z=.585+t*.502
+  radius=.158+.040*(abs(t-.5)*2)**1.8+.005*(.5-.5*math.cos(TAU*13*t))
+  profile.append((z,radius))
+ lathe('Spool | continuous ribbed plum winding',profile,'Plum cloth','body',1.08,20)
  # Four large rivets on each flange, sunk into wood rather than extra bolts.
  for z,r in [(1.211,.271),(.574,.286)]:
   for a in [.65,2.49,3.81,5.65]:
-   ball('Flange | inset rivet',(r*math.cos(a),r*math.sin(a),z),(.023,.023,.010),'Honey brass','body',1.0,12,7)
+   ball('Flange | inset rivet',(r*math.cos(a),r*math.sin(a),z),(.023,.023,.010),'Honey brass','body',1.0,8,4)
  # Small wood neck supports an oval carved mask, front and back fully volumetric.
  lathe('Neck | brass collar',[(1.205,.066),(1.232,.070),(1.247,.058),(1.297,.058)],'Honey brass','head',.76,20)
- carved_oval('Face | oval walnut mask',(0,.007,1.471),(.165,.091,.203),'head',1.07,[(-.069,1.485,.037,.010),(.069,1.470,.037,.010)],28,18)
+ carved_oval('Face | oval walnut mask',(0,.007,1.471),(.165,.091,.203),'head',1.07,[(-.069,1.485,.037,.010),(.069,1.470,.037,.010)],26,16)
  for s in [-1,1]:
   eye('Eye | guardian '+str(s),(s*.070,.088,1.480+s*-.006),.028,'head',.81)
   z=1.555+s*-.006
@@ -485,12 +508,12 @@ def trendweaver():
   spread=(i-2)/2
   start=(spread*.10,-.008,1.624-abs(spread)*.018)
   finish=(spread*.306,-.013,1.873-abs(spread)*.130)
-  pts=bezier(start,(spread*.143,-.033,1.737),(spread*.263,-.021,finish[2]-.044),finish,12)
-  tube('Crown | brass arch '+str(i+1),pts,[.012-.003*j/11 for j in range(12)],'Honey brass','head',1.09,7)
-  ring('Crown | cloth loop '+str(i+1),(finish[0],finish[1],finish[2]+.022),.016,.027,.006,'Sage cloth' if i in [0,2,4] else 'Plum cloth','head',1.07,18)
+  pts=bezier(start,(spread*.143,-.033,1.737),(spread*.263,-.021,finish[2]-.044),finish,10)
+  tube('Crown | brass arch '+str(i+1),pts,[.012-.003*j/9 for j in range(10)],'Honey brass','head',1.09,6)
+  tube('Crown | cloth loop '+str(i+1),[(finish[0]+.016*math.cos(TAU*j/16),finish[1],finish[2]+.022+.027*math.sin(TAU*j/16)) for j in range(16)],.006,'Sage cloth' if i in [0,2,4] else 'Plum cloth','head',1.07,4,True)
  # Two arms, posed to make the open hand and the held left shuttle legible.
  for s in [-1,1]:
-  tag='L' if s>0 else 'R' # character left appears on viewer right at the front
+  tag='L' if s<0 else 'R' # +X is wearer right; left shuttle belongs at -X
   shoulder=Vector((s*.231,.008,1.052));elbow=Vector((s*.333,.047,.884));wrist=Vector((s*.438,.116,.980))
   bone('upper-arm.'+tag,shoulder);bone('forearm.'+tag,elbow,'upper-arm.'+tag);bone('hand.'+tag,wrist,'forearm.'+tag)
   cuff('Shoulder | '+tag,shoulder,.043,'upper-arm.'+tag)
@@ -501,7 +524,7 @@ def trendweaver():
   hand('Hand | '+tag,wrist+Vector((s*.029,.019,.024)),.068,'hand.'+tag,tag=='R',s)
   if tag=='L':
    # A pointed-but-blunt hollow wooden shuttle with an inset plum winding.
-   XFORM=Matrix.Translation(wrist+Vector((.049,.041,.140)))@Euler((-.18,-.30,.10)).to_matrix().to_4x4()
+   XFORM=Matrix.Translation(wrist+Vector((s*.049,.041,.140)))@Euler((-.18,-s*.30,s*.10)).to_matrix().to_4x4()
    p=[(0,.151),(.046,.091),(.056,-.041),(.021,-.118),(-.019,-.105),(-.049,-.034),(-.036,.089)]
    panel('Shuttle | carved wooden frame',p,.035,'Honey brass','hand.L',.83,.010,.0002,.004)
    XFORM=XFORM@Matrix.Translation((0,.024,0))
@@ -521,11 +544,11 @@ def trendweaver():
  for i,(x,y,z) in enumerate([(-.150,.010,.336),(.150,.010,.336),(0,.147,.286)]):
   ident='bobbin.'+str(i+1);bone(ident,(x,y,.499))
   cuff('Bobbin | hanging joint '+str(i+1),(x,y,.473),.030,ident)
-  lathe('Bobbin | brass spool '+str(i+1),[(-.115,.045),(-.099,.067),(-.077,.067),(-.064,.045),(.043,.044),(.059,.065),(.081,.065),(.095,.043)],'Honey brass',ident,.94,20,(x,y,z))
-  lathe('Bobbin | plum winding '+str(i+1),[(-.066,.047),(-.060,.052),(.039,.052),(.046,.047)],'Plum cloth',ident,1.00,20,(x,y,z))
-  for k in range(4):
-   zz=z-.049+k*.023
-   tube('Bobbin | thread coil '+str(i+1)+' '+str(k),[(x+.052*math.cos(TAU*j/18),y+.052*math.sin(TAU*j/18),zz) for j in range(18)],.004,'Plum cloth',ident,1.10,4,True)
+  lathe('Bobbin | brass spool '+str(i+1),[(-.115,.045),(-.099,.067),(-.077,.067),(-.064,.045),(.043,.044),(.059,.065),(.081,.065),(.095,.043)],'Honey brass',ident,.94,16,(x,y,z))
+  thread=[]
+  for j in range(17):
+   t=j/16;thread.append((-.066+.112*t,.049+.004*(.5-.5*math.cos(TAU*4*t))))
+  lathe('Bobbin | continuous ribbed plum winding '+str(i+1),thread,'Plum cloth',ident,1.04,12,(x,y,z))
  XFORM=Matrix.Identity(4)
 
 def make_rig(name,spec):
@@ -722,7 +745,7 @@ def bake_pigment(skin,folder,name):
  Surface relief remains mesh geometry; baking keeps browser materials cheap.
  """
  sc=bpy.context.scene;sc.render.engine='CYCLES';sc.cycles.samples=1;sc.cycles.device='CPU'
- sc.render.threads_mode='FIXED';sc.render.threads=6
+ sc.render.threads_mode='FIXED';sc.render.threads=3
  bpy.ops.object.select_all(action='DESELECT');skin.select_set(True);bpy.context.view_layer.objects.active=skin
  bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT')
  bpy.ops.uv.smart_project(angle_limit=1.15,island_margin=.006,area_weight=.5)
@@ -764,6 +787,8 @@ def bake_pigment(skin,folder,name):
 
 def build(name,output=OUTPUT):
  """Author one candidate only while the caller owns the exclusive WO-016 lease."""
+ global CURRENT_ASSET
+ CURRENT_ASSET=name
  clear_scene_objects();palette()
  {'loop-dancer':loop_dancer,'prism-mimic':prism_mimic,'trendweaver':trendweaver}[name]()
  arm,skin,scale=make_rig(name,SPECS[name]);clips=animate(name,arm,skin)

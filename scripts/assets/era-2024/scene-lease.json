@@ -1,9 +1,49 @@
 {
   "work_order": "WO-016",
   "author": "/root/era_2024_authoring",
-  "status": "unclaimed; offline preparation only",
-  "live_scene_owner": "/root/era_2020_authoring",
+  "status": "released; no further live scene access",
+  "granted_by": "/root",
+  "grant_basis": "WO-014 explicit release at 2026-09-11T14:38:57Z",
+  "claimed_utc": "2026-09-11T14:40:05.747671+00:00",
   "remote_directory": "/workspace/haynes-quest/era-2024/v001",
-  "scene_access_or_subprocesses_started": false,
-  "next_gate": "Explicit root lease grant after current owner releases"
+  "previous_scene": "Final Buffer Baron rig and skin; master retained",
+  "prior_owner_immutable_renders": [
+    19688,
+    22588
+  ],
+  "limits": "Three CPU threads per bake/render while prior immutable render jobs finish; no factory reset or addon changes",
+  "released_utc": "2026-09-11T14:57:02.059543+00:00",
+  "release_authority": "Root requested release after exact final views and validation while immutable render processes finish",
+  "final_live_master": "/workspace/haynes-quest/era-2024/v001/prism-mimic/prism-mimic.blend",
+  "final_live_objects": [
+    "prism-mimic | carved skin",
+    "prism-mimic | rig"
+  ],
+  "remaining_work": "None in WO-016 authoring/packaging; integrated game/studio and owner review remain with root.",
+  "isolated_processes": {
+    "loop_dancer_render": {
+      "pid": 27970,
+      "state": "exited, verified at live-scene release"
+    },
+    "prism_mimic_render": {
+      "pid": 31411,
+      "input": "prism-mimic/prism-mimic.glb",
+      "sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
+    },
+    "trendweaver_render": {
+      "pid": 29043,
+      "input": "trendweaver/trendweaver.glb",
+      "sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
+    },
+    "filesystem_finalizer": {
+      "pid": 31918,
+      "script": "finalize-wait.py",
+      "blender_api": false,
+      "timeout_s": 1800
+    }
+  },
+  "render_isolation": "Each render is a separate Blender -b --disable-autoexec process with its own scene, loading an explicit saved GLB and using three CPU threads. No command targets the live addon scene.",
+  "artifact_packages_complete_utc": "2026-09-11T15:07:52.245013+00:00",
+  "all_render_packages_complete": true,
+  "finalizer_result": "delivery.py exit 0; all three exact render completion records and required file hashes verified"
 }

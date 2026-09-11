@@ -1,0 +1,540 @@
+{
+  "asset_id": "prism-mimic",
+  "version": "v001",
+  "status": "candidate; owner review pending",
+  "glb_sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0",
+  "work_order": "WO-016",
+  "authoring": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "blender": "4.5.13 LTS",
+    "source_method": "Original scripted rounded meshes, relief, procedural pigment bake, rigid-part and ribbon skinning."
+  },
+  "review": {
+    "creator_inspection": {
+      "selected_concept": true,
+      "exact_glb_front_side_back_beauty": true,
+      "five_clip_motion_grid": true,
+      "software_webgl_raster": true,
+      "date_utc": "2026-09-11T15:07:52.222284+00:00"
+    },
+    "coordinator_selection": "Root selected the final shapes for first-pass packaging; integrated game/studio intake remains root-owned.",
+    "owner_approval": "pending",
+    "gameplay_promotion": false
+  },
+  "concept": {
+    "path": "docs/assets/media/prism-mimic/v001/concept.png",
+    "sha256": "dac7e3bcc5704ed2b31a343aba866733fe673129730f7e5dd030c5591457e92d",
+    "visually_inspected": true
+  },
+  "runtime": {
+    "unit": "meter",
+    "gltf_up": "+Y",
+    "gltf_forward": "-Z",
+    "origin": "Ground-centered root at [0, 0, 0]",
+    "root_translation": "Fixed; translation belongs to the gameplay controller",
+    "rest_height_m": 1.05,
+    "rest_underside_clearance_m": 0,
+    "hover_offset_embedded": false,
+    "clips": {
+      "idle": {
+        "duration_s": 2.5,
+        "loop": true,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      "move": {
+        "duration_s": 1.25,
+        "loop": true,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      "attack": {
+        "duration_s": 1.25,
+        "loop": false,
+        "playback": "once",
+        "clamp_when_finished": false,
+        "contact_time_s": 0.625,
+        "contact_fraction": 0.5,
+        "timing_source": "Authored strike/pulse peak; root maps gameplay windup, strike and cooldown onto this timeline."
+      },
+      "hit": {
+        "duration_s": 0.625,
+        "loop": false,
+        "playback": "once",
+        "clamp_when_finished": false
+      },
+      "defeat": {
+        "duration_s": 2.0,
+        "loop": false,
+        "playback": "once",
+        "clamp_when_finished": true,
+        "end_behavior": "Rolls onto its side with legs folded and the tail settled; final pose is held.",
+        "fade_embedded": false,
+        "root_motion_embedded": false,
+        "remove_after_clip": "Gameplay controller decision; clip holds the terminal pose."
+      }
+    },
+    "textures": "One embedded original 1024 \u00d7 1024 pigment atlas; no external URI or decoder",
+    "materials": 6,
+    "draw_primitives": 6,
+    "minimum_sampled_animated_height_m": -0.0015355808045372718,
+    "rig_bones_including_fixed_root": 18
+  },
+  "construction": {
+    "asset_id": "prism-mimic",
+    "version": "v001",
+    "blender": "4.5.13 LTS",
+    "triangles": 14770,
+    "vertices": 7822,
+    "material_count": 6,
+    "bones": [
+      "body",
+      "head",
+      "leg.front.L",
+      "shin.front.L",
+      "foot.front.L",
+      "leg.rear.L",
+      "shin.rear.L",
+      "foot.rear.L",
+      "leg.front.R",
+      "shin.front.R",
+      "foot.front.R",
+      "leg.rear.R",
+      "shin.rear.R",
+      "foot.rear.R",
+      "tail.1",
+      "tail.2",
+      "tail.3"
+    ],
+    "bounds_blender": {
+      "min": [
+        -0.2489950954914093,
+        -0.7812297940254211,
+        0.0
+      ],
+      "max": [
+        0.2489950954914093,
+        0.4890333414077759,
+        1.0499999523162842
+      ]
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.25,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.25,
+        "loop": false,
+        "impact_time_s": 0.625
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.625,
+        "loop": false,
+        "impact_time_s": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "impact_time_s": null
+      }
+    ],
+    "scale_correction": {
+      "uniform_yz": 0.889268194806181,
+      "width": 0.889268194806181,
+      "source_min_z": 0.010499998927116394
+    },
+    "spec": {
+      "height": 1.05,
+      "floor": 0,
+      "width": null,
+      "impact": 0.625
+    },
+    "pigment_atlas": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+      "bytes": 1135339,
+      "sha256": "cd2ad4683d5c99bfdb1e238b536d850d2806a04ae66b872ed38577c36c96a93d"
+    },
+    "files": {
+      "prism-mimic.blend": {
+        "bytes": 5433886,
+        "sha256": "9279833543039de1a07ab801a07d8db233bd5951a1db7d428e9779d6372ae746"
+      },
+      "prism-mimic.glb": {
+        "bytes": 1079220,
+        "sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
+      }
+    }
+  },
+  "validation": {
+    "khronos_errors": 0,
+    "khronos_warnings": 0,
+    "checks": {
+      "gltf_2": true,
+      "khronos_no_errors": true,
+      "khronos_no_warnings": true,
+      "five_exact_clips": true,
+      "positive_animated_clips": true,
+      "triangle_budget_15000": true,
+      "material_budget_6": true,
+      "primitive_budget_6": true,
+      "glb_budget_2_mib": true,
+      "one_embedded_pigment_image": true,
+      "embedded_resources": true,
+      "no_required_extensions": true,
+      "all_have_vertex_colors": true,
+      "single_skin": true,
+      "at_most_4_influences": true,
+      "opaque_surfaces": true
+    },
+    "three_js_revision": "186",
+    "three_geometry_checks": {
+      "embedded_pigment_decoded": true,
+      "six_or_fewer_draw_primitives": true,
+      "skinned_geometry_loaded": true,
+      "correct_max_height": true,
+      "correct_rest_clearance": true,
+      "correct_wingspan": true,
+      "exact_clip_set": true,
+      "all_clips_move_actual_vertices": true,
+      "idle_move_loop_seams": true,
+      "root_bone_fixed": true,
+      "external_scene_translation_correct": true,
+      "bounded_floor_penetration": true,
+      "finite_geometry": true
+    },
+    "video_streams": {
+      "animations.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 7.625,
+        "audio": false
+      },
+      "turntable.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 3.0,
+        "audio": false
+      },
+      "idle.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 2.5,
+        "audio": false
+      },
+      "move.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 1.25,
+        "audio": false
+      },
+      "attack.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 1.25,
+        "audio": false
+      },
+      "hit.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 0.625,
+        "audio": false
+      },
+      "defeat.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 2.0,
+        "audio": false
+      }
+    },
+    "browser": {
+      "version": "153.0.8010.12",
+      "renderer": "Chromium headless with ANGLE SwiftShader (software WebGL)",
+      "checks": {
+        "exact_glb_hash": true,
+        "six_skinned_draw_primitives": true,
+        "one_embedded_1024_image": true,
+        "expected_color_draws": true,
+        "expected_triangle_count": true,
+        "five_expected_clips": true,
+        "every_clip_changes_actual_raster": true,
+        "webgl_error_free": true,
+        "browser_error_free": true,
+        "no_external_requests": true
+      },
+      "report": "browser-inspection.json",
+      "limitations": "Isolated exact-GLB software WebGL intake; not integrated gameplay, physical Safari, GPU performance or owner approval."
+    }
+  },
+  "editable_master": {
+    "remote_path": "/workspace/haynes-quest/era-2024/v001/prism-mimic/prism-mimic.blend",
+    "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/prism-mimic.blend",
+    "sha256": "9279833543039de1a07ab801a07d8db233bd5951a1db7d428e9779d6372ae746"
+  },
+  "limitations": [
+    "Software review renders and CPU geometry checks do not establish physical-device Safari performance.",
+    "Cloth motion is authored skinning without cloth simulation.",
+    "Faceted colored panels are stylized opaque PBR surfaces.",
+    "Small sampled sole penetration remains: 1.536 mm; collision/movement are external to the GLB."
+  ],
+  "files": [
+    {
+      "remote_relative_path": "prism-mimic/prism-mimic.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/prism-mimic.blend",
+      "local_name": "prism-mimic.blend",
+      "role": "editable_master",
+      "bytes": 5433886,
+      "sha256": "9279833543039de1a07ab801a07d8db233bd5951a1db7d428e9779d6372ae746"
+    },
+    {
+      "remote_relative_path": "prism-mimic/prism-mimic.glb",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/prism-mimic.glb",
+      "local_name": "prism-mimic.glb",
+      "role": "candidate_or_evidence",
+      "bytes": 1079220,
+      "sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
+    },
+    {
+      "remote_relative_path": "prism-mimic/pigment.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/pigment.png",
+      "local_name": "pigment.png",
+      "role": "candidate_or_evidence",
+      "bytes": 1135339,
+      "sha256": "cd2ad4683d5c99bfdb1e238b536d850d2806a04ae66b872ed38577c36c96a93d"
+    },
+    {
+      "remote_relative_path": "prism-mimic/front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/front.png",
+      "local_name": "front.png",
+      "role": "candidate_or_evidence",
+      "bytes": 535788,
+      "sha256": "588e2f872fe991bd29bcad470c9292e17d139989c74fe7003b72de7e2aca1543"
+    },
+    {
+      "remote_relative_path": "prism-mimic/side.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/side.png",
+      "local_name": "side.png",
+      "role": "candidate_or_evidence",
+      "bytes": 530468,
+      "sha256": "51cc9408f33fefd504889bab2739e729688558c558f586c7cd986d93e8487ecb"
+    },
+    {
+      "remote_relative_path": "prism-mimic/back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/back.png",
+      "local_name": "back.png",
+      "role": "candidate_or_evidence",
+      "bytes": 515851,
+      "sha256": "cf5ca84e51cbbca1a50842cc39b77f1860aee3f4d73bc93f72c2196f1fac3eb5"
+    },
+    {
+      "remote_relative_path": "prism-mimic/beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/beauty.png",
+      "local_name": "beauty.png",
+      "role": "candidate_or_evidence",
+      "bytes": 558902,
+      "sha256": "02e9d028b5e145ff8a75fb9141a2a5451f5611c9dbe562f1dd394baf29df944d"
+    },
+    {
+      "remote_relative_path": "prism-mimic/motion-grid.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/motion-grid.png",
+      "local_name": "motion-grid.png",
+      "role": "candidate_or_evidence",
+      "bytes": 724124,
+      "sha256": "b86b95bbb299fca2afbbb8c88d1c0e0aff2a688a98345d74a23544c55c7ada19"
+    },
+    {
+      "remote_relative_path": "prism-mimic/animations.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/animations.mp4",
+      "local_name": "animations.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 257589,
+      "sha256": "dbe1cfe25e0ee74ad1039b14da8a626cf6b1737a9cb293051449cfda4bf8c428"
+    },
+    {
+      "remote_relative_path": "prism-mimic/turntable.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/turntable.mp4",
+      "local_name": "turntable.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 160036,
+      "sha256": "85da023015cafc34e1b2ba3fcfc0c58391a8abaccfa644d0b38a22a7ee9152a5"
+    },
+    {
+      "remote_relative_path": "prism-mimic/idle.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/idle.mp4",
+      "local_name": "idle.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 52273,
+      "sha256": "30f35512e71991c54087572d1a20ed6f4d89f385fa6b584fa416a577430d199d"
+    },
+    {
+      "remote_relative_path": "prism-mimic/move.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/move.mp4",
+      "local_name": "move.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 54246,
+      "sha256": "2b4168b1c107bcc087b9fefe542ea7000f3e84cd48d6f2e831a2e4bc41497231"
+    },
+    {
+      "remote_relative_path": "prism-mimic/attack.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/attack.mp4",
+      "local_name": "attack.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 55212,
+      "sha256": "daa1ec0a3fa565592e89c4e32b827173f633ebfd92d8d3618c81b0bdbc7254ef"
+    },
+    {
+      "remote_relative_path": "prism-mimic/hit.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/hit.mp4",
+      "local_name": "hit.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 31529,
+      "sha256": "600f98101e2811725dbcb502bcb376980d1134304185d45d37b2bd711dc8007f"
+    },
+    {
+      "remote_relative_path": "prism-mimic/defeat.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/defeat.mp4",
+      "local_name": "defeat.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 67626,
+      "sha256": "56c89edfa1d70336200011b02cb40910483ef94897e84fe6323833134041093b"
+    },
+    {
+      "remote_relative_path": "prism-mimic/construction.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/construction.json",
+      "local_name": "construction.json",
+      "role": "candidate_or_evidence",
+      "bytes": 2087,
+      "sha256": "2845ec48a9b31b039a1eff12d2ed4e72796cc7c64623506153af3c87c11f1c53"
+    },
+    {
+      "remote_relative_path": "prism-mimic/validation.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/validation.json",
+      "local_name": "validation.json",
+      "role": "candidate_or_evidence",
+      "bytes": 4223,
+      "sha256": "ed9760597e4ecf25a6335771a1daefa610776e2b16d6be873e4f153cab7b1da8"
+    },
+    {
+      "remote_relative_path": "prism-mimic/export-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/export-inspection.json",
+      "local_name": "export-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1911,
+      "sha256": "c31e7e43aa8f34ea17e979ddadaebb9bd431f71872214d3054ac0337bb34d5cc"
+    },
+    {
+      "remote_relative_path": "prism-mimic/three-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/three-inspection.json",
+      "local_name": "three-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 4068,
+      "sha256": "0c956191025d974b95423fd8920d6fcf82b9df26033894e8d991197ce46de879"
+    },
+    {
+      "remote_relative_path": "prism-mimic/render-complete.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/prism-mimic/render-complete.json",
+      "local_name": "render-complete.json",
+      "role": "candidate_or_evidence",
+      "bytes": 222,
+      "sha256": "1d62128c33b0d33d15271e0795822ef741784d3a351bdeeca815157a03dad0d7"
+    }
+  ],
+  "sources": [
+    {
+      "repository_path": "scripts/assets/era-2024/build.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/build.py",
+      "sha256": "3cc7a28e97ea5011fc9de87ef55a34fe9b6c08bed65a9eded4e02d323354006d"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/collect.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/collect.py",
+      "sha256": "c9385c41f38b640411e9f323f1b52a2ed136d7faec1c31ee1baa33c2d119e938"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/delivery.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/delivery.py",
+      "sha256": "4f08259501ce217b476c8b8f4325b9aa52d7b4d044c352fc8f728c68e00fb1d8"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/finalize-wait.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/finalize-wait.py",
+      "sha256": "acce786c5324449538a161b3a71dce101a25dd2fd3a014326502f4b610da7cd4"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/inspect-three.mjs",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/inspect-three.mjs",
+      "sha256": "5137dc48649de03eb3b3b6271db7bcf0a81f48aa8106dcbf62eab063216dae24"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/render.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/render.py",
+      "sha256": "fd703ed7d61a4758540b9d3018a229033582585b8bb88c26eb8e6d3b37ccdfe8"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/validate.mjs",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/validate.mjs",
+      "sha256": "7d000794f6be4d4d1fbf3c081442f8617c42d45bf8f4085bd982e5c8eab4d205"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/browser-intake.mjs",
+      "sha256": "1a5715947ac8769f6397000b73c929dba7b7757071b7defbf6504931fd07fbd7",
+      "execution": "Local dev-env; no live Blender scene access"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/finalize-local.py",
+      "sha256": "b37db5edbf3def031776e197ac26ac1237263bba41ca5a6fdfb0e0fa5ad0833d",
+      "execution": "Local dev-env; no live Blender scene access"
+    }
+  ],
+  "local_intake": {
+    "source": "Exact downloaded GLB in an isolated Chromium process with embedded texture uploads and four distinct raster samples per clip",
+    "integrated_gameplay": false,
+    "physical_safari": false,
+    "files": [
+      {
+        "repository_path": "docs/assets/media/prism-mimic/v001/browser-beauty.png",
+        "bytes": 113128,
+        "sha256": "3cc3e750f8121980bcee012a91c001928a015305dc4202773ea40e036631c862"
+      },
+      {
+        "repository_path": "docs/assets/media/prism-mimic/v001/browser-attack.png",
+        "bytes": 117326,
+        "sha256": "5fd288a5a7b38cbd56f6baa330976075263c4205c52f42750010d4b4466beb15"
+      },
+      {
+        "repository_path": "docs/assets/media/prism-mimic/v001/browser-inspection.json",
+        "bytes": 3978,
+        "sha256": "f63d55ac4fefe8b1d74460eda97b35e50c56d3bf423c1fe943d0769ee768cdcc"
+      }
+    ]
+  }
+}

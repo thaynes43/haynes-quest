@@ -103,7 +103,7 @@ def studio(height=1.2,width=800,height_px=900,samples=32):
     sc.cycles.diffuse_bounces=3
     sc.cycles.glossy_bounces=2
     sc.render.threads_mode='FIXED'
-    sc.render.threads=6
+    sc.render.threads=3
     sc.render.resolution_x=width
     sc.render.resolution_y=height_px
     sc.render.resolution_percentage=100

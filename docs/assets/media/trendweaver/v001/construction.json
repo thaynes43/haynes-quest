@@ -1,0 +1,100 @@
+{
+  "asset_id": "trendweaver",
+  "version": "v001",
+  "blender": "4.5.13 LTS",
+  "triangles": 14874,
+  "vertices": 7615,
+  "material_count": 6,
+  "bones": [
+    "body",
+    "head",
+    "upper-arm.L",
+    "forearm.L",
+    "hand.L",
+    "upper-arm.R",
+    "forearm.R",
+    "hand.R",
+    "ribbon.L.1",
+    "ribbon.L.2",
+    "ribbon.L.3",
+    "ribbon.R.1",
+    "ribbon.R.2",
+    "ribbon.R.3",
+    "bobbin.1",
+    "bobbin.2",
+    "bobbin.3"
+  ],
+  "bounds_blender": {
+    "min": [
+      -0.6536943912506104,
+      -0.3561664819717407,
+      0.11999999731779099
+    ],
+    "max": [
+      0.6536943912506104,
+      0.35005682706832886,
+      1.899999976158142
+    ]
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.25,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.875,
+      "loop": false,
+      "impact_time_s": 1.125
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.625,
+      "loop": false,
+      "impact_time_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "impact_time_s": null
+    }
+  ],
+  "scale_correction": {
+    "uniform_yz": 1.0130904440223532,
+    "width": 1.0130904440223532,
+    "source_min_z": 0.17100000381469727
+  },
+  "spec": {
+    "height": 1.9,
+    "floor": 0.12,
+    "width": null,
+    "impact": 1.125
+  },
+  "pigment_atlas": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+    "bytes": 1160771,
+    "sha256": "a367a3152eb8f9ee8756682cc0b980bf5c439ea5fa7c548d8448b0933074324a"
+  },
+  "files": {
+    "trendweaver.blend": {
+      "bytes": 5589689,
+      "sha256": "ab8730924e3b2025bf0185bc129c67a2b1f4e1f916b4e8c2ec53fc195b003c6c"
+    },
+    "trendweaver.glb": {
+      "bytes": 1089712,
+      "sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
+    }
+  }
+}

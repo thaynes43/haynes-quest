@@ -1,0 +1,104 @@
+{
+  "asset_id": "loop-dancer",
+  "version": "v001",
+  "blender": "4.5.13 LTS",
+  "triangles": 14848,
+  "vertices": 7652,
+  "material_count": 6,
+  "bones": [
+    "body",
+    "head",
+    "scarf.L.1",
+    "scarf.L.2",
+    "scarf.L.3",
+    "scarf.R.1",
+    "scarf.R.2",
+    "scarf.R.3",
+    "winding-key",
+    "upper-arm.L",
+    "forearm.L",
+    "hand.L",
+    "thigh.L",
+    "shin.L",
+    "foot.L",
+    "upper-arm.R",
+    "forearm.R",
+    "hand.R",
+    "thigh.R",
+    "shin.R",
+    "foot.R"
+  ],
+  "bounds_blender": {
+    "min": [
+      -0.33441442251205444,
+      -0.16972878575325012,
+      0.0
+    ],
+    "max": [
+      0.3343890309333801,
+      0.14847026765346527,
+      1.100000023841858
+    ]
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.25,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.5,
+      "loop": false,
+      "impact_time_s": 0.75
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.625,
+      "loop": false,
+      "impact_time_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "impact_time_s": null
+    }
+  ],
+  "scale_correction": {
+    "uniform_yz": 0.9505446110615623,
+    "width": 0.9505446110615623,
+    "source_min_z": 0.005000000819563866
+  },
+  "spec": {
+    "height": 1.1,
+    "floor": 0,
+    "width": null,
+    "impact": 0.75
+  },
+  "pigment_atlas": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+    "bytes": 1128196,
+    "sha256": "a35d4f81032f384bc40d17c239fb7ea6abda16bca0d4f1cf1c6eda74ba29e41a"
+  },
+  "files": {
+    "loop-dancer.blend": {
+      "bytes": 5889460,
+      "sha256": "e1ea1e148f009fe9fd8fa33d44b8895a743a08883091b64b1cfa00a6fde457d0"
+    },
+    "loop-dancer.glb": {
+      "bytes": 1096328,
+      "sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
+    }
+  }
+}

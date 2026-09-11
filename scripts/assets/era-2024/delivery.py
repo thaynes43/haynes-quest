@@ -32,9 +32,11 @@ def inventory(root,names):
   validation=json.loads((folder/'validation.json').read_text())
   inspection=json.loads((folder/'export-inspection.json').read_text())
   completion=json.loads((folder/'render-complete.json').read_text())
+  three=json.loads((folder/'three-inspection.json').read_text())
   current=digest(folder/(name+'.glb'))
-  assert current==validation['sha256']==inspection['glb_sha256']==completion['sha256']
+  assert current==validation['sha256']==inspection['glb_sha256']==completion['sha256']==three['glb_sha256']
   assert all(validation['checks'].values()),'Failed exact GLB contract'
+  assert all(three['checks'].values()),'Failed Three geometry contract'
   assert completion['stills'] and completion['video'],'Incomplete review package'
   exported={clip:inspection['actions'][clip]['duration_s'] for clip in CLIPS}
   authored={entry['name']:entry for entry in construction['clips']}
@@ -43,7 +45,7 @@ def inventory(root,names):
   impact=authored['attack']['impact_time_s']
   clips['attack'].update({'contact_time_s':impact,'contact_fraction':impact/exported['attack'],'timing_source':'Authored strike/pulse peak; root maps gameplay windup, strike and cooldown onto this timeline.'})
   clips['defeat'].update({'end_behavior':DEFEAT[name],'fade_embedded':False,'root_motion_embedded':False,'remove_after_clip':'Gameplay controller decision; clip holds the terminal pose.'})
-  paths=[name+'.blend',name+'.glb','pigment.png','front.png','side.png','back.png','beauty.png','motion-grid.png','animations.mp4','turntable.mp4',*[clip+'.mp4' for clip in CLIPS],'construction.json','validation.json','export-inspection.json','render-complete.json']
+  paths=[name+'.blend',name+'.glb','pigment.png','front.png','side.png','back.png','beauty.png','motion-grid.png','animations.mp4','turntable.mp4',*[clip+'.mp4' for clip in CLIPS],'construction.json','validation.json','export-inspection.json','three-inspection.json','render-complete.json']
   files=[];videos={}
   for filename in paths:
    path=folder/filename
@@ -62,7 +64,7 @@ def inventory(root,names):
    'review':{'creator_inspection':'required before handoff','coordinator_selection':'pending','owner_approval':'pending','gameplay_promotion':False},
    'concept':sources['concepts'][name],
    'runtime':{'unit':'meter','gltf_up':'+Y','gltf_forward':'-Z','origin':'Ground-centered root at [0, 0, 0]','root_translation':'Fixed; translation belongs to the gameplay controller','rest_height_m':construction['spec']['height'],'rest_underside_clearance_m':construction['spec']['floor'],'hover_offset_embedded':name=='trendweaver','clips':clips,'textures':'One embedded original 1024 × 1024 pigment atlas; no external URI or decoder','materials':len(validation['materials']),'draw_primitives':validation['draw_primitives']},
-   'construction':construction,'validation':{'khronos_errors':validation['validator']['issues']['numErrors'],'khronos_warnings':validation['validator']['issues']['numWarnings'],'checks':validation['checks'],'video_streams':videos},
+   'construction':construction,'validation':{'khronos_errors':validation['validator']['issues']['numErrors'],'khronos_warnings':validation['validator']['issues']['numWarnings'],'checks':validation['checks'],'three_js_revision':three['three_revision'],'three_geometry_checks':three['checks'],'video_streams':videos},
    'editable_master':{'remote_path':str(folder/(name+'.blend')),'artifact_url':BASE+name+'/'+name+'.blend','sha256':digest(folder/(name+'.blend'))},
    'limitations':['Software review renders and CPU geometry checks do not establish physical-device Safari performance.','Cloth motion is authored skinning without cloth simulation.','Faceted colored panels are stylized opaque PBR surfaces.'],
    'files':files,

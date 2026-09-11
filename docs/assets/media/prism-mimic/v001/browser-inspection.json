@@ -1,0 +1,111 @@
+{
+  "asset_id": "prism-mimic",
+  "glb_sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0",
+  "gltf_clips": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "defeat"
+  ],
+  "skinned_primitives": 6,
+  "embedded_images": [
+    {
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "render": {
+    "calls_including_one_ground": 7,
+    "triangles_including_one_ground": 14772,
+    "textures": 3
+  },
+  "gl_error": 0,
+  "webgl_version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "three_revision": "186",
+  "clips": {
+    "idle": {
+      "duration_s": 2.5,
+      "raster_sha256": [
+        "b842166352b36948d81af71c65b687179217f9c74c5c65f2c1267dd7d784573b",
+        "a447b1bcb2210cea482b98465253a34cd61c44b0150bc9eed8fb39916e30c33d",
+        "69940b23302a1db5bb079e33c8059e4a3bebe36700f215beb986a3fe8079179f",
+        "d4c0752b7b5df7c9d6469364f7b804cfecf7783de1ea026cba34a234bded4373"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "move": {
+      "duration_s": 1.25,
+      "raster_sha256": [
+        "44c8c06b783c2f2765b2256032ff027beaaa6a4778b5b92cceb6cc990b77692f",
+        "ee9c17bc137921601c530428c29679e4764f0642889a4a0ab4634ed05936a7c2",
+        "efb5f08bcfa32d0aab423a99b10b30111310cb5ce061cb58a83c4b6e55a50104",
+        "68d7d9cc1a77ecc1354f7c3c871bec86b61db56a643268a8157504886dbf011c"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "attack": {
+      "duration_s": 1.25,
+      "raster_sha256": [
+        "d4f1387dd8696388ed9186c51e110c3769a6b40caae9401c3215e6578edf0343",
+        "e4b9736cde48d32cb80bb55194790b6a84963845f25d5cbbbfc1a440b07b4c4c",
+        "218c756111532c30b0c0c82123c1d19992b1a20e58ab2b9141476f4e1560347d",
+        "c8b2717308f614dcb5fcfd2af3efc0510ad5dec96b1f9885360794c36c749659"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "hit": {
+      "duration_s": 0.625,
+      "raster_sha256": [
+        "ba89450df7fd91139d2f3e67cd6c84b2170146e708ea055eed9212c6c8f6398b",
+        "b2133b45a53ddcecb5100441f78950a91f14df349d3130286103a450d7e5ac78",
+        "39425ee44e3bd16e574591b762e2342935ed87eaa7715a420f93c52545d6fe59",
+        "be18c921cc86273b1098212b800ca01a97218239767763863b8dba8d41cba393"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "defeat": {
+      "duration_s": 2,
+      "raster_sha256": [
+        "d4f1387dd8696388ed9186c51e110c3769a6b40caae9401c3215e6578edf0343",
+        "ca9f87cfe1b907eaa0c4948497044b4a4371477b8f86e05e08759f92a0690d0d",
+        "a91e309bc96ff555ef9d96163392254340a25f440e08db7d77b77d66841a7b9e",
+        "3240ad72b624b46567e40bbceba23fff2b20befe17e34379d15924898c98c659"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    }
+  },
+  "browser": "153.0.8010.12",
+  "renderer": "Chromium headless with ANGLE SwiftShader (software WebGL)",
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:41139/",
+    "http://127.0.0.1:41139/three/build/three.module.js",
+    "http://127.0.0.1:41139/three/examples/jsm/loaders/GLTFLoader.js",
+    "http://127.0.0.1:41139/three/examples/jsm/utils/BufferGeometryUtils.js",
+    "http://127.0.0.1:41139/three/examples/jsm/utils/SkeletonUtils.js",
+    "http://127.0.0.1:41139/three/build/three.core.js",
+    "http://127.0.0.1:41139/assets/loop-dancer.glb",
+    "blob:http://127.0.0.1:41139/f015e3cb-4ff1-47db-b179-958e7c383b76",
+    "http://127.0.0.1:41139/assets/prism-mimic.glb",
+    "blob:http://127.0.0.1:41139/69154818-6a8d-4d58-b9d8-545f85bfff92"
+  ],
+  "checks": {
+    "exact_glb_hash": true,
+    "six_skinned_draw_primitives": true,
+    "one_embedded_1024_image": true,
+    "expected_color_draws": true,
+    "expected_triangle_count": true,
+    "five_expected_clips": true,
+    "every_clip_changes_actual_raster": true,
+    "webgl_error_free": true,
+    "browser_error_free": true,
+    "no_external_requests": true
+  },
+  "limitations": "Isolated exact-GLB software WebGL intake; not integrated gameplay, physical Safari, GPU performance or owner approval."
+}
