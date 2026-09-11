@@ -1,7 +1,7 @@
 {
   "date": "2026-09-11T21:41:06.767Z",
   "origin": "https://haynes-quest-playtest.haynesops.com",
-  "sourceCommit": "30b15bc98",
+  "sourceCommit": "b15bc98f1a6bec1108815bdea75794f86e1323db",
   "deployedImage": "ghcr.io/thaynes43/haynes-quest:sha-b15bc98f1a6bec1108815bdea75794f86e1323db@sha256:d7eddba8db5ccf60ea03bdcb7ba921e7486106b1ab34e7380c53929a355d4599",
   "scope": "final live catalog delivery; HTTP review/thumbnail/model checks and focused catalog/Nap browser rendering only",
   "excluded": "gameplay replay, video/audio playback, authoring services, art-quality approval and physical Safari",
