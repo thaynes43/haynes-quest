@@ -1,0 +1,25 @@
+{
+  "name": "haynes-quest",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.21.0",
+  "engines": {"node": ">=24.0.0"},
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "dev:server": "tsx watch src/server/index.ts",
+    "build": "vite build && tsup src/server/index.ts --format esm --platform node --target node24 --out-dir dist/server --sourcemap",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests --max-warnings 0",
+    "test": "vitest run",
+    "test:db": "vitest run tests/server --testNamePattern Postgres",
+    "start": "node dist/server/index.js",
+    "docs:build": "scripts/docs/build.sh"
+  },
+  "dependencies": {
+    "@hono/node-server": "latest", "better-auth": "1.7.4", "drizzle-orm": "0.45.2", "hono": "4.13.7", "pg": "latest", "react": "19.3.0", "react-dom": "19.3.0", "three": "0.186.0", "zod": "latest"
+  },
+  "devDependencies": {
+    "@eslint/js": "latest", "@types/node": "latest", "@types/pg": "latest", "@types/react": "latest", "@types/react-dom": "latest", "@types/three": "latest", "@vitejs/plugin-react": "latest", "drizzle-kit": "latest", "eslint": "latest", "globals": "latest", "playwright": "latest", "tsup": "latest", "tsx": "latest", "typescript": "latest", "typescript-eslint": "latest", "vite": "8.3.0", "vitest": "5.0.0"
+  }
+}
