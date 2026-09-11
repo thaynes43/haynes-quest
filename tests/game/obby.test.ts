@@ -1234,3 +1234,122 @@ describe("generous route", () => {
     }
   });
 });
+
+// ---------------------------------------------------------------------------
+// Regressions from the WO-024 adversarial review of 6f6fbc5
+// ---------------------------------------------------------------------------
+
+describe("review regressions", () => {
+  it("D1: duplicate platform ids never carry the rider toward the other box", () => {
+    const layout = course({
+      platforms: [
+        slab("dup", 0, 0, 4, 4),
+        slab("dup", 8, 0, 2, 2, 0, 0.4, { axis: "x", distance: 2, period: 8 }),
+      ],
+    });
+    const sim = createSim(layout, { x: 8, y: 0.5, z: 0 });
+    const dt = 1 / sim.hz;
+    const maxPlatformSpeed = (2 * Math.PI * 2) / 8;
+    let previousX = sim.state.position.x;
+    let largestJump = 0;
+    let landed = false;
+    let offset = 0;
+    let maxDrift = 0;
+    runFor(sim, 3, idle, {}, () => {
+      largestJump = Math.max(largestJump, Math.abs(sim.state.position.x - previousX));
+      previousX = sim.state.position.x;
+      const slab = sampleObby(layout, sim.time).platforms[1]!;
+      if (sim.state.grounded && !landed) {
+        landed = true;
+        offset = sim.state.position.x - slab.center.x;
+      } else if (landed) {
+        maxDrift = Math.max(maxDrift, Math.abs(sim.state.position.x - slab.center.x - offset));
+      }
+    });
+    expect(landed).toBe(true);
+    expect(largestJump).toBeLessThanOrEqual(maxPlatformSpeed * dt + 1e-6);
+    expect(maxDrift).toBeLessThan(1e-6);
+    expect(sim.state.position.x).toBeGreaterThan(5);
+    expect(sim.state.grounded).toBe(true);
+    expect(sim.state.supportId).toBe("dup");
+  });
+
+  it("D2: standing on a floor below the fall line is not a fall, and an unsupported spawn recovers at the cooldown cadence", () => {
+    const pit = course({ platforms: [slab("pit-floor", 0, 0, 4, 4, -2.5)] });
+    const standing = createSim(pit, { x: 0, y: -2.5, z: 0 });
+    let recoveries = 0;
+    runFor(standing, 10, idle, {}, (result) => {
+      if (result.recovered) recoveries += 1;
+    });
+    expect(recoveries).toBe(0);
+    expect(standing.state.grounded).toBe(true);
+    expect(standing.state.position.y).toBe(-2.5);
+    expectFinite(standing.state);
+
+    // Walking off that floor is airborne below the line: one recovery, not one per frame.
+    const times: number[] = [];
+    runFor(standing, 1, backward, {}, (result) => {
+      if (result.recovered) times.push(standing.time);
+    });
+    expect(times.length).toBeGreaterThanOrEqual(1);
+    expect(times.length).toBeLessThanOrEqual(2);
+
+    const nothing = course({ platforms: [] });
+    const hopeless = createSim(nothing, { x: 0, y: -1.9, z: 0 }); // reaches the fall line in one frame
+    const stamps: number[] = [];
+    runFor(hopeless, 4, idle, {}, (result) => {
+      if (result.recovered) stamps.push(hopeless.time);
+    });
+    expect(stamps.length).toBeGreaterThanOrEqual(4);
+    expect(stamps.length).toBeLessThanOrEqual(6);
+    for (let i = 1; i < stamps.length; i += 1) {
+      expect(stamps[i]! - stamps[i - 1]!).toBeGreaterThanOrEqual(OBBY_TUNING.recoverySeconds - 1e-9);
+    }
+    expectFinite(hopeless.state);
+  });
+
+  it("D3: a jump release during paused frames is observed so the next press jumps", () => {
+    const sim = createSim(floor(), { x: 0, y: 0, z: 0 });
+    tick(sim);
+    tick(sim, idle, { jumpPressed: true });
+    runUntil(sim, (state) => state.grounded, idle, { jumpPressed: true }); // held through the whole jump
+    for (let frame = 0; frame < 10; frame += 1) {
+      const result = stepObby(sim.state, idle, sim.course, {
+        deltaSeconds: 0,
+        timeSeconds: sim.time,
+        cameraYaw: 0,
+        canJump: true,
+        jumpPressed: false, // released while paused
+        radius: RADIUS,
+        height: HEIGHT,
+      });
+      expect(result).toEqual({ recovered: false, checkpointChanged: false });
+      expect(sim.state.grounded).toBe(true);
+    }
+    let maxY = 0;
+    runFor(sim, 0.3, idle, { jumpPressed: true }, () => {
+      maxY = Math.max(maxY, sim.state.position.y);
+    });
+    expect(maxY).toBeGreaterThan(0.5);
+  });
+
+  it("D4: a clock rewind re-anchors the rider instead of carrying it by the whole sample delta", () => {
+    const layout = course({ platforms: [slab("ferry", 0, 0, 2, 2, 0, 0.4, { axis: "x", distance: 2, period: 8 })] });
+    const sim = createSim(layout, { x: 0, y: 0, z: 0 });
+    runFor(sim, 2);
+    const before = sim.state.position.x;
+    const dt = 1 / sim.hz;
+    const maxPlatformSpeed = (2 * Math.PI * 2) / 8;
+    stepObby(sim.state, idle, layout, {
+      deltaSeconds: dt,
+      timeSeconds: sim.time - 2,
+      cameraYaw: 0,
+      canJump: true,
+      jumpPressed: false,
+      radius: RADIUS,
+      height: HEIGHT,
+    });
+    expect(Math.abs(sim.state.position.x - before)).toBeLessThanOrEqual(maxPlatformSpeed * dt + 1e-6);
+    expectFinite(sim.state);
+  });
+});

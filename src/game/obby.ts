@@ -114,13 +114,17 @@ export interface ObbyTuning {
   stepTolerance: number;
   /** Seconds of hazard protection after a recovery. */
   recoverySeconds: number;
-  /** Feet below this world Y are a fall. */
+  /** An airborne body with feet below this world Y is a fall; no spawn is placed on a top below it. */
   fallThresholdY: number;
   /** Largest delta accepted per step; larger values are clamped, invalid values are 0. */
   maxDeltaSeconds: number;
   /** Largest integration substep; a step is split so no substep exceeds it. */
   maxSubstepSeconds: number;
-  /** Upper bound on substeps per step, even for extreme geometry. */
+  /**
+   * Upper bound on substeps per step. Beyond it the thin-feature guarantee
+   * degrades: at the 0.05 s delta the floor is 1/640 s, so features thinner
+   * than the fastest relative motion covers in that time may be skipped.
+   */
   maxSubsteps: number;
   /** Fraction of the player radius by which the foot-circle centre may hang past a platform edge and still stand. */
   supportOverhang: number;
@@ -172,8 +176,15 @@ export interface ObbyState {
   coyoteRemaining: number;
   jumpBufferRemaining: number;
   recoveryRemaining: number;
-  /** Whether `jumpPressed` was true on the previous non-empty step; enforces one jump per press. */
+  /** Whether `jumpPressed` was true on the previous step; enforces one jump per press. */
   jumpHeld: boolean;
+  /**
+   * Whether the player has stood on a platform since the last recovery. A
+   * fall recovers immediately when true; when false (the spawn found no
+   * support) a fall waits for the recovery cooldown so a hopeless spawn
+   * cannot re-fire every frame.
+   */
+  settled: boolean;
 }
 
 export interface ObbyStepOptions {
@@ -282,6 +293,8 @@ interface Box {
   bottom: number;
   top: number;
   isStatic: boolean;
+  /** Upper bound on the platform's speed in m/s, from its motion definition. */
+  speed: number;
 }
 
 interface Capsule {
@@ -311,6 +324,7 @@ function sampleBox(platform: ObbyPlatform, time: number): Box {
     bottom: center.y - size.y / 2,
     top: center.y + size.y / 2,
     isStatic: isStaticMotion(platform.motion),
+    speed: motionSpeed(platform.motion),
   };
 }
 
@@ -471,6 +485,21 @@ function capsuleHitsPlayer(
   return distancePointSegmentXZ(position.x, position.z, capsule.start, capsule.end) < reach - EPSILON;
 }
 
+/** The box with this id whose centre is closest to `anchor`; tolerates duplicate ids. */
+function nearestBox(boxes: readonly Box[], id: string, anchor: PositionSnapshot): Box | null {
+  let best: Box | null = null;
+  let bestDistance = Infinity;
+  for (const box of boxes) {
+    if (box.id !== id) continue;
+    const distance = Math.hypot(box.center.x - anchor.x, box.center.z - anchor.z);
+    if (distance < bestDistance) {
+      best = box;
+      bestDistance = distance;
+    }
+  }
+  return best;
+}
+
 /** Highest platform whose top is within the step tolerance of the feet and which supports the foot circle. */
 function findSupport(
   boxes: readonly Box[],
@@ -512,6 +541,7 @@ function findSpawnSupport(
     if (point.x < box.minX || point.x > box.maxX || point.z < box.minZ || point.z > box.maxZ) continue;
     if (box.top > point.y + tuning.stepTolerance) continue;
     if (box.top < point.y - tuning.spawnSearchDepth) continue;
+    if (box.top < tuning.fallThresholdY) continue; // standing below the fall line is not safe
     if (best === null || box.top > best.top) best = box;
   }
   return best;
@@ -584,6 +614,7 @@ function recover(
   state.coyoteRemaining = 0;
   state.jumpBufferRemaining = 0;
   state.recoveryRemaining = tuning.recoverySeconds;
+  state.settled = spawn.support !== null;
   const adopted = spawn.support !== null && spawn.candidate.id !== state.checkpointId;
   if (adopted) {
     // The latest checkpoint was not safe right now; the one actually used
@@ -653,6 +684,7 @@ export function createObbyState(position: PositionSnapshot): ObbyState {
     jumpBufferRemaining: 0,
     recoveryRemaining: 0,
     jumpHeld: false,
+    settled: true,
   };
 }
 
@@ -669,7 +701,12 @@ export function stepObby(
   const result: ObbyStepResult = { recovered: false, checkpointChanged: false };
   const tuning: ObbyTuning = options.tuning ? { ...OBBY_TUNING, ...options.tuning } : OBBY_TUNING;
   const dt = clamp(finiteOr(options.deltaSeconds, 0), 0, Math.max(0, finiteOr(tuning.maxDeltaSeconds, 0)));
-  if (dt <= 0) return result;
+  if (dt <= 0) {
+    // A paused frame simulates nothing and swallows presses, but a release
+    // must still be seen or the next real press after the pause is lost.
+    if (options.jumpPressed !== true) state.jumpHeld = false;
+    return result;
+  }
 
   const radius = positiveOr(options.radius, DEFAULT_RADIUS);
   const height = positiveOr(options.height, DEFAULT_HEIGHT);
@@ -720,10 +757,16 @@ export function stepObby(
     // Ride the support platform by the delta of its sampled centre. Landing
     // re-anchors, so re-entry never applies a stale delta.
     if (state.grounded && state.supportId !== null) {
-      const support = boxes.find((box) => box.id === state.supportId);
+      const support = state.supportAnchor ? nearestBox(boxes, state.supportId, state.supportAnchor) : null;
       if (support && state.supportAnchor) {
-        position.x += support.center.x - state.supportAnchor.x;
-        position.z += support.center.z - state.supportAnchor.z;
+        const carryX = support.center.x - state.supportAnchor.x;
+        const carryZ = support.center.z - state.supportAnchor.z;
+        // A delta the platform could not have produced in one substep means a
+        // clock discontinuity or an id collision: re-anchor without moving.
+        if (Math.hypot(carryX, carryZ) <= support.speed * h + 1e-6) {
+          position.x += carryX;
+          position.z += carryZ;
+        }
         state.supportAnchor = { ...support.center };
       } else {
         state.supportId = null;
@@ -778,12 +821,11 @@ export function stepObby(
         state.supportId,
       );
       if (support) {
-        if (support.id !== state.supportId) {
-          state.supportId = support.id;
-          state.supportAnchor = { ...support.center };
-        }
+        state.supportId = support.id;
+        state.supportAnchor = { ...support.center };
         position.y = support.top;
         state.velocityY = 0;
+        state.settled = true;
       } else {
         state.grounded = false;
         state.supportId = null;
@@ -822,6 +864,7 @@ export function stepObby(
           state.grounded = true;
           state.supportId = landing.id;
           state.supportAnchor = { ...landing.center };
+          state.settled = true;
         }
       }
     }
@@ -829,8 +872,13 @@ export function stepObby(
       ? tuning.coyoteSeconds
       : Math.max(0, state.coyoteRemaining - h);
 
-    // Falls always recover; hazard contact only outside the protection window.
-    let hit = position.y < tuning.fallThresholdY;
+    // A fall is an airborne body below the fall line. It recovers at once
+    // after any landing; straight out of an unsupported spawn it waits for
+    // the cooldown. Hazard contact only counts outside the protection window.
+    let hit =
+      !state.grounded &&
+      position.y < tuning.fallThresholdY &&
+      (state.settled || state.recoveryRemaining <= 0);
     if (!hit && state.recoveryRemaining <= 0) {
       for (const hazard of hazards) {
         if (capsuleHitsPlayer(sampleCapsule(hazard, time), position, radius, height)) {
