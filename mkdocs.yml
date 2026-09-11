@@ -48,6 +48,7 @@ nav:
       - PoC development loop: designs/007-poc-development-loop.md
       - Audio pipeline: designs/008-audio-pipeline.md
       - Overnight contracts: designs/009-overnight-contracts.md
+      - Era combat loop: designs/010-era-combat-loop.md
       - Design template: designs/000-template.md
   - Operations:
       - Hosting context: ops/001-hosting-context.md
@@ -58,6 +59,7 @@ nav:
       - Current handoff: project/HANDOFF.md
       - Team and routing: project/TEAM.md
       - Completed overnight MVP: project/plans/completed/004-overnight-mvp.md
+      - Current era combat rebuild: project/plans/005-era-combat-loop.md
       - Authoring tool setup: project/plans/completed/003-authoring-tool-setup.md
       - Foundation prototype: project/plans/002-foundation-prototype.md
       - Completed repository bootstrap: project/plans/completed/001-repository-bootstrap.md

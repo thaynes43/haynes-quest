@@ -1,9 +1,13 @@
 # Current handoff
 
-- **Updated:** 2026-09-11, keepsake reference correction after owner feedback
-- **Stage:** PLAN-004 complete: private playable MVP and complete first-pass review catalog deployed and verified. PLAN-002 remains in progress for its broader player-ready gates.
+- **Updated:** 2026-09-11, core gameplay correction after Tom played the demo
+- **Stage:** PLAN-005 in progress. Tom rejected the memory-walking demo as the wrong core loop and inadequate presentation. PLAN-004 remains historical implementation/test evidence, not acceptance of the intended game.
 - **Team:** driving Astra max owns architecture, UI/copy, art judgment and serial image generation. [TEAM.md](TEAM.md): native Sol xhigh for ordinary work, fresh native Astra max for every Blender task, explicitly authorized separate Fable 5.1 xhigh review/coding.
 - **Next work:** OAuth and admitted-player policy, exact-version owner asset review, audio listening and physical iPhone/iPad Safari checks. These were explicitly deferred; no dev-env restart is authorized.
+
+## Current task: correct the game loop
+
+[PLAN-005](plans/005-era-combat-loop.md) and [DESIGN-010](../docs/designs/010-era-combat-loop.md) govern the rebuild: find useful equipment, fight period enemies, defeat the boss, then reveal/consume memories to advance age and enter the next period. Root works in `/home/dev/work/quest-era-boss-loop` on `agent/quest-era-boss-loop` from `3502ac7`. Sol `era_loop_code_audit` returned a read-only schema/authority review; Sol `photo_tile_diagnosis` reproduced working fixture images in deployed Chromium and prepared isolated CSP fix `50a738b`, with no physical Safari claim. Root owns contracts, visuals and writing. Demo use of existing candidates was asked through the question tool and is pending; no approval is inferred. Real Immich access remains separate from fixture mode. No dev-env restart.
 
 ## Latest review correction
 

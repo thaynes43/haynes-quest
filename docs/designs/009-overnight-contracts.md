@@ -2,7 +2,8 @@
 
 - **Status:** Accepted for the provisional PLAN-004 implementation defaults by the Astra coordinator; owner product questions remain deferred
 - **Date:** 2026-09-11
-- **Scope:** Private synthetic MVP, adapter implementation, server persistence and isolated asset studio
+- **Scope:** Historical private synthetic MVP, adapter implementation, server persistence and isolated asset studio
+- **Superseded gameplay:** Tom’s later correction in [DESIGN-010](010-era-combat-loop.md) replaces this document’s individual-memory age updates and memory-path-only level. The runtime privacy boundary remains until authenticated integration is authorized/configured.
 
 ## Runtime and identity
 
