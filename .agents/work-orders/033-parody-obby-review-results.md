@@ -6,13 +6,13 @@
 
 ## Confirmed defects
 
-### R-2 — Unknown frozen artwork takes down the scene (medium)
+### R-2 — Unknown frozen artwork takes down the scene (medium; fixed)
 
 `parodyArtwork` throws for an identity/version absent from either the shared catalog or the separate `parodyMotion` table (`src/game/scene-catalog.ts:17-30`). `GardenScene.rebuildRoute` calls it without a recoverable branch (`src/game/scene.ts:344-353`). The review test reproduces a future `mister-hiss` v002 identity throwing even though the chapter-title resolver already degrades unknown content to a generic name.
 
 Same-build saves cannot currently reach this case because the server rejects identities outside its v1 catalog. It remains reachable across a deployment when a stale open client receives a plan from a newer server, and the second hand-maintained motion table can drift when a catalog entry is added. DESIGN-005 D-10 explicitly requires an unavailable asset to have a safe replacement or recoverable state.
 
-**Narrow fix:** make artwork resolution return a recoverable absence, render a visible placeholder, and retain the existing asset retry/error state. Add a completeness check tying every supported catalog identity to runtime motion metadata.
+Fixed in `dd94e13`. Exact mismatches now return `null` without resolving another asset or constructing an arbitrary URL. The scene counts each unsupported encounter separately from retryable asset failures, resets that count on every route rebuild, and reports it through `failed` plus `reloadRequired: true`. Root's status/runtime/UI integration blocks play and asks the player to reload. The completeness regression still requires every supported catalog identity to have runtime motion metadata.
 
 ### R-3 — A held keyboard key becomes a fresh press after input clear (medium; fixed by root)
 
@@ -20,29 +20,29 @@ On the review base, `GameInputState.clear()` empties its physical-key set (`src/
 
 Root fixed this after review in `45425b9`: the binding prevents the browser default and ignores repeated keydown events, with a regression confirming that an actual release and new press still work.
 
-### R-5 — An island enemy can hit a player already falling into the gap (medium)
+### R-5 — An island enemy can hit a player already falling into the gap (medium; fixed by root)
 
 The authored `gentle-jump-v1` reproduction dwells at the south edge of `first-clearing-island`, then steps off during `ordinary-a`'s strike. At 2.45 seconds it records contact at `{ y: -0.0187, z: -9.788 }`, after the player has left every platform. Enemy contact only checks horizontal range and a 0.3 m feet-height delta (`src/game/combat.ts:265-274`). The runtime records and flushes that contact in the same frame (`src/game/createGame.ts:616-630`), well before the local fall threshold at y < -2 can recover the player. The result is a server `take-hit` followed by the local checkpoint reset for one slip.
 
-**Narrow fix:** reject enemy contacts once the player's feet are below the encounter arena floor. This addresses falling without granting general invulnerability to a player jumping above the floor. Apply the same condition in simulation and final strike validation.
+Root fixed this in `06cf31f` by rejecting enemy contacts once the player's feet are below the encounter arena floor, in both simulation and final strike validation. This addresses falling without granting general invulnerability to a player jumping above the floor.
 
-### R-6 — Center-point checkpoints miss safe wide landings (medium; core support implemented)
+### R-6 — Center-point checkpoints miss safe wide landings (medium; fixed)
 
 Every authored checkpoint is circular and center-aligned (`src/game/obby-layout.ts:19-35`). `first-clearing` has a 1.30 m trigger diameter on a 12 m-wide island. The course probe shows only x = 0 and x = 0.3 arm it; x = 0.6 and wider safe lanes reach the second gap without it, then recover to the start and must replay the first gap. This conflicts with DESIGN-011's nearby recovery and broad-landing requirements.
 
-Commit `b13ce75` adds optional axis-aligned `triggerHalfExtents: { x, z }` support to `ObbyCheckpoint`, retaining the circular `triggerRadius` path unchanged. Its unit test proves a broad off-center landing arms while the preceding shore does not. Root integrated that core as `3b957b2`; the authored layout and stripe visual remain root-owned follow-up work.
+Commit `b13ce75` adds optional axis-aligned `triggerHalfExtents: { x, z }` support to `ObbyCheckpoint`, retaining the circular `triggerRadius` path unchanged. Its unit test proves a broad off-center landing arms while the preceding shore does not. Root integrated that core as `3b957b2` and completed the authored trigger strips and matching visuals in `06cf31f`.
 
-### R-7 — Walking backward after boss defeat replaces the reward checkpoint (low)
+### R-7 — Walking backward after boss defeat replaces the reward checkpoint (low; fixed by root)
 
 The transition to `memory-released` sets the safe reward point at z = -23.5 but clears `checkpointId` (`src/game/createGame.ts:348-356`). Since the obby core only skips the currently named checkpoint, walking north for four seconds re-arms `boss-landing` and replaces the reward point with z = -19. A later local recovery puts the child 4.5 m away from the released memory bundle.
 
-**Narrow fix:** keep ordinary traversal and moving obstacles active in `memory-released`, but suppress regular course-checkpoint activation until the bundle is consumed. The safe reward checkpoint should remain the recovery destination.
+Root fixed this in `06cf31f`: ordinary traversal and moving obstacles remain active in `memory-released`, while regular course-checkpoint activation is suppressed until the bundle is consumed. The safe reward checkpoint remains the recovery destination.
 
-### R-8 — Authored enemy hit animation is discarded during windup/strike (low-medium)
+### R-8 — Authored enemy hit animation is discarded during windup/strike (low-medium; fixed)
 
 `EnemyAnimation.updateAlive` detects an HP drop, but its windup and strike branches always keep the attack clip and never use that signal (`src/game/enemy-animation.ts:227-260`). `lastHp` advances after the frame, so the hit is not replayed later. The scene's procedural squash is disabled for authored enemies (`src/game/scene.ts:778-795`). The review rig reproduces no hit-clip motion for HP loss in windup and strike while its cooldown control plays the clip.
 
-The attack warning should remain readable, so blindly interrupting the telegraph is not required. **Narrow fix:** queue the hit reaction until the strike resolves, or add equivalent authored feedback that does not erase the attack tell.
+Fixed in `dd94e13`. HP drops during windup/strike queue one hit reaction without interrupting the warning or contact pose. The reaction starts on the first cooldown, idle or chase frame. Defeat, retry/HP restoration, fresh revival and disposal clear the queue, preventing a delayed reaction after death or reset.
 
 ## Bounded limitations and future constraints
 
@@ -67,7 +67,9 @@ The code does impose a concrete upgrade constraint: the schema accepts only `PAR
 
 ## Evidence and checks
 
-- `pnpm exec vitest run tests/review`: 4 files passed; 3 ordinary assertions passed and 5 review-base defect assertions passed as expected failures (R-2, two R-3 cases, R-5 and R-8).
+- Initial `pnpm exec vitest run tests/review`: 4 files passed; 3 ordinary assertions passed and 5 review-base defect assertions passed as expected failures (R-2, two R-3 cases, R-5 and R-8).
+- After the R-2/R-8 fixes, the focused catalog/scene and animation run passed 23/23 tests. Unknown and mismatched identities return no artwork, blocking media state distinguishes unsupported content from retryable failures, attack timing stays intact, queued reactions play once, and defeat/retry/revival/disposal remain bounded.
+- The final combined review-plus-animation run passed 23 assertions with only the three review-base R-3/R-5 reproductions remaining as expected failures; root's integrated versions convert those to fixed regressions.
 - `pnpm exec vitest run tests/game/obby.test.ts`: 43/43 passed with the rectangular-trigger regression.
 - `pnpm typecheck`: passed.
 - `pnpm lint -- src/game/obby.ts tests/game/obby.test.ts`: passed.
