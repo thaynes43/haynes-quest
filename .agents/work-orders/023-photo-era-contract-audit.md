@@ -8,12 +8,16 @@
 - **Required reading completed:** repository instructions and handoff; PLAN-005; DESIGN-003/004/005/006/009/010; shared adventure/contracts; photo setup, fixture and Immich adapters; stored-data schemas/migrations; client era/scene selection; controller, level and combat runtime; related server/game/E2E tests
 - **Boundaries:** No production data, credentials, Immich calls, Blender, generation, infrastructure, PR, implementation or user-facing copy. The Astra lead owns the design ruling and integration.
 
+## Lead disposition at intake
+
+The auditor's age-zero short-hop / age-four stronger-jump wording below is a **proposed implementation**, not a user ruling. Tom asked for forgiving obby gameplay and timed jumps, without specifying new starting abilities. Root retains the existing age-zero movement tutorial and introduces jumping after first-boss growth, as recorded in DESIGN-011 and WO-024. No ability-version migration is currently selected. The birthday and catalog-identity findings are accepted; the source-local date basis remains a required decision before real Immich admission. The six rejected creatures are not eligible as neutral enemy fallbacks.
+
 ## Owner corrections audited
 
 The current requirements supplied to this audit supersede two assumptions in the reviewed documents and assets:
 
 1. Enemies must read as recognizable pop-culture parodies from the periods represented by the journey, with eligibility driven by photo capture dates and the selected person's birthday. Generic ambient creatures do not meet that content requirement.
-2. Roblox-style obstacle-course play is essential alongside combat. The age-zero traveler has a short hop; consuming the first boss-released memory bundle at age four strengthens jumping. The main path uses forgiving, wide platforms, moving obstacles, checkpoints and fall recovery suitable for a six-year-old player.
+2. Roblox-style obstacle-course play is essential alongside combat. A short hop from age zero and stronger jumping at age four were discussed as a possible implementation; see the lead disposition above. The main path uses forgiving, wide platforms, moving obstacles, checkpoints and fall recovery suitable for a six-year-old player.
 
 OAuth/admission remains deferred. That does not permit fixture-year shortcuts to become the real-photo or production journey contract.
 
@@ -98,7 +102,7 @@ The latter follows the current "fight, then reach that age/period" ordering; a f
 
 ## Concrete obby and jump gaps
 
-### P0: Age zero cannot jump, contrary to the new short-hop requirement
+### Proposal: age-zero hopping would require versioned ability changes
 
 `abilitiesForAge(0)` returns only `move, interact`; age four adds the only `jump` ability (`src/shared/adventure.ts:119-121`). `createGame` passes `save.abilities.includes("jump")` as a boolean to the controller (`src/game/createGame.ts:528-536`), and both keyboard and touch actions are ignored while it is false. The touch button and keyboard hint are disabled/hidden at age zero (`src/client/GameScreen.tsx:394-420`). DESIGN-006/009 and tests explicitly describe jumping as an age-four unlock.
 

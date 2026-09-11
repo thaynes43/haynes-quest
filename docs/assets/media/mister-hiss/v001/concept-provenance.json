@@ -1,0 +1,27 @@
+{
+  "asset_id": "mister-hiss",
+  "version": "v001",
+  "kind": "parody-construction-concept",
+  "created_date": "2026-09-11",
+  "tool": "built-in image_gen",
+  "generation_model_id": null,
+  "seed": null,
+  "reference_target": "Minecraft Creeper",
+  "reference_role": "recognizable visual and behavioral parody",
+  "private_references_used": false,
+  "generation_notes": "No reference images supplied. Root authored the prompt. Model ID and seed were not returned.",
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2262270,
+      "sha256": "6042bcae573864a7b86af00fe91f45a4f30acd1788d9fcf12ccd6799f93208cd"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 2474,
+      "sha256": "4ebdff758c1e6cedf0d2c37177652339001fc4efec8eac5a50c33f036ef8aa0e"
+    }
+  ],
+  "lead_review": "Selected as first replacement direction; consistent four-footed armless Creeper silhouette, paper/confetti joke. Precise ground height and sash/hat anchors must be fixed in 3D brief. Concept-only; no model or runtime exists.",
+  "owner_review": "pending"
+}

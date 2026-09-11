@@ -18,7 +18,7 @@ The six produced creatures are **not selected enemies**. Preserve Blockling, Sig
 
 - Native Sol `parody_period_evidence`, WT `/home/dev/work/quest-parody-period-evidence`, WO-022: primary historical evidence for specific 2020/2024 cultural references, debut versus popularity and within-year eligibility. No art direction or final roster decisions delegated.
 - Native Sol `photo_era_contract_audit`, WT `/home/dev/work/quest-photo-era-audit`, WO-023: actual birthday/photo-date/period contract and selection gaps, plus current controller/ability seams for an obby. Read-only findings; root makes architecture decisions.
-- Native Sol `era_catalog_intake`, WT `/home/dev/work/quest-era-catalog-audit`, WO-020 resumed: full seven-page/ten-model catalog delivery audit against local root site, including thirty clips, exact manifests, internal master downloads and mobile orbit. Script prep `88239e7` is integrated as `99a4fe5`. Full audit result is pending. Explicitly report studies as possible ambient/friendly candidates, not accepted enemies.
+- Native Sol `era_catalog_intake`, WT `/home/dev/work/quest-era-catalog-audit`, WO-020 resumed: full seven-page/ten-model catalog delivery audit against local root site, including thirty clips, exact manifests, internal master downloads and mobile orbit. Script prep `88239e7` is integrated as `99a4fe5`. Full audit passed; source0932355 integrated533f981. Sevenpages/tenmodels/thirtyclips/twotouchorbits/tenmasters verified. Durable report andsafe captures are in docs/assets/media/era-catalog-intake/v001. Six narrowlycheckedvideo metadata cancellations are expected, no unexpectederrors. Explicitly report studies as possible ambient/friendly candidates, not accepted enemies.
 - No live Blender scene owner or running authoring jobs. All scoped model production is preserved below. Replacement enemy briefs must name recognizable references, visual jokes, encounter behaviors and verified historical windows before new modeling.
 
 ## Core code and published image
@@ -83,3 +83,13 @@ Real photos have **not been pulled into the live game**. Fixture access refusesI
 2. FinishWO020deliveryaudit and preserveallcompletedcandidates with correctroles. Commit/check/merge the reusable intake and directioncorrection. Recordfullcommands/evidencehonestly.
 3. Prepare replacementenemyconceptsserially, then freshAstraBlenderownership asneeded. Rootchecksreference recognition, era, joke and combatbehavior beforeexpensiveproduction.
 4. Complete actualgamevisual/obstacle/combat/photoconsumption/resumeverification. CarrycheckedPRstomerge. AuthorizedprivatepromotionrequiresGitOpscheckedopsPR,scopeactivity,exactimage/livechecksandactivityend; nodev-envbounce.
+
+## Latest continuation
+
+Direction checkpointca9c6ae is committed. WO022 basec9449e6/supplement2bb2135 integratedaafe3da/769b3d5. WO02341a0674 integratedcc9939e; rootexplicitlyrejectsitsimpliedownerage0hopruling and retainsage4jumpunderDESIGN011.
+
+WO024 pureobstaclecore is nowrunning as separateFable task **haynes-quest-0911-112809**, WT ofthatname, logPVC. Launcher verified exactFable5.1/xhighcommand andliveprocess; outputmetadata modelstillneedscheck. Ownonlysrc/game/obby.ts,tests/game/obby.test.ts,resultrecord. Rootowns course/layout/scene integration.
+
+NativeSol equipment_game_intake hasbounded currentbundleD5ZBrG7T keyboard/touch/media+actualhandposecaptures; noobbyacceptanceclaim. Rootharnessmustnotrebuilduntilthatauditfinishes.
+
+Firstreplacementconcept **Mister Hiss v001**, explicitrecognizableCreeper/confettiparody, generatedandinspectedbyroot. Savedconcept/prompt/provenance/reviewpageunderstablemister-hisspaths. NoBlenderdispatchyet. Rootstillownsremainingrosterselectionandconcepts.
