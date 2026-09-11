@@ -266,7 +266,8 @@ function fixtureMediaHeaders(): Record<string, string> {
   return {
     'Content-Type': 'image/svg+xml; charset=utf-8',
     'Cache-Control': 'no-store',
-    'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; sandbox",
+    // WebGL can only upload an SVG that remains origin-clean after sandboxing.
+    'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; sandbox allow-same-origin",
     'X-Content-Type-Options': 'nosniff',
   };
 }

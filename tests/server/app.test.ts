@@ -232,7 +232,11 @@ describe('fixture API', () => {
       headers: { cookie: owner.cookie },
     });
     expect(media.status).toBe(200);
+    expect(media.headers.get('content-type')).toBe('image/svg+xml; charset=utf-8');
     expect(media.headers.get('cache-control')).toBe('no-store');
+    expect(media.headers.get('content-security-policy')).toBe(
+      "default-src 'none'; style-src 'unsafe-inline'; sandbox allow-same-origin",
+    );
     expect(media.headers.get('x-content-type-options')).toBe('nosniff');
     expect(await media.text()).toContain('Synthetic memory');
   });
