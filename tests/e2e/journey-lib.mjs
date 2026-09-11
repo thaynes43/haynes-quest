@@ -15,7 +15,11 @@ const delay = (milliseconds) =>
  * and the exploratory probes. `url` is the fixture origin; page errors are
  * pushed into `errors` so callers can assert on them at the end.
  */
-export function createJourneyDriver({ url, errors = [], onPageCreated = () => {} }) {
+export function createJourneyDriver({
+  url,
+  errors = [],
+  onPageCreated = () => {},
+}) {
   const saveIds = new WeakMap();
 
   async function activateSetupControl(page, locator, inputKind) {
@@ -599,7 +603,13 @@ export function createJourneyDriver({ url, errors = [], onPageCreated = () => {}
   }
 
   async function leaveAndResume(page, controls, expected) {
-    await controls.activate(page.getByRole("button", { name: "Save & leave" }));
+    const modalLeave = page
+      .getByRole("dialog")
+      .getByRole("button", { name: "Save & leave" });
+    const leave = (await locatorReady(modalLeave))
+      ? modalLeave
+      : page.getByRole("button", { name: "Save & leave" }).first();
+    await controls.activate(leave);
     await page.locator("canvas").waitFor({ state: "detached" });
     await page.reload();
     await controls.activate(page.locator(".save-card").first());
@@ -1143,7 +1153,7 @@ export function createJourneyDriver({ url, errors = [], onPageCreated = () => {}
       finalInspection.level.id,
       save.adventure.completedLevelIds.at(-1),
     );
-    assert.ok(finalInspection.status.position.z < -20);
+    assert.equal(finalInspection.obby?.checkpointId, "boss-landing");
     await page.screenshot({ path: `test-results/${label}-complete.png` });
     mark("journey complete; age advanced 4 to 7");
     return { save, obbyEvidence };

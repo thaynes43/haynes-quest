@@ -76,6 +76,38 @@ async function start(context, inputKind) {
   return page;
 }
 
+async function proveCompletedResume(page, controls, completedSave) {
+  await controls.activate(
+    page.getByRole("button", { name: "Back to your journeys" }),
+  );
+  await page.locator("canvas").waitFor({ state: "detached" });
+  await controls.activate(
+    page.locator(".save-card").filter({ hasText: "Journey complete" }).first(),
+  );
+  await page.locator("canvas").waitFor();
+  await page
+    .getByRole("dialog", { name: "Every chapter, a little more you." })
+    .waitFor();
+  const resumed = await driver.getSave(page);
+  assert.equal(resumed.id, completedSave.id);
+  assert.equal(resumed.completed, true);
+  assert.equal(resumed.ageYears, completedSave.ageYears);
+  assert.equal(
+    resumed.adventure.completedLevelIds.length,
+    completedSave.adventure.completedLevelIds.length,
+  );
+  assert.equal(resumed.recoveredIds.length, completedSave.recoveredIds.length);
+  await controls.activate(
+    page.getByRole("button", { name: "Back to your journeys" }),
+  );
+  await page.locator("canvas").waitFor({ state: "detached" });
+  return {
+    ageYears: resumed.ageYears,
+    completedLevelCount: resumed.adventure.completedLevelIds.length,
+    recoveredCount: resumed.recoveredIds.length,
+  };
+}
+
 const journeyEvidence = {};
 
 try {
@@ -92,8 +124,11 @@ try {
     const desktopResult = await playJourney(page, keyboard, "keyboard", true);
     assert.equal(desktopResult.save.ageYears, 7);
     journeyEvidence.keyboard = desktopResult.obbyEvidence;
-    await page.getByRole("button", { name: "Back to your journeys" }).click();
-    assert.equal(await page.locator("canvas").count(), 0);
+    journeyEvidence.keyboard.completedResume = await proveCompletedResume(
+      page,
+      keyboard,
+      desktopResult.save,
+    );
     await desktop.close();
   }
 
@@ -152,8 +187,11 @@ try {
     const touchResult = await playJourney(mobile, touch, "touch");
     assert.equal(touchResult.save.ageYears, 7);
     journeyEvidence.touch = touchResult.obbyEvidence;
-    await mobile.getByRole("button", { name: "Back to your journeys" }).tap();
-    assert.equal(await mobile.locator("canvas").count(), 0);
+    journeyEvidence.touch.completedResume = await proveCompletedResume(
+      mobile,
+      touch,
+      touchResult.save,
+    );
     await touchContext.close();
   }
 
