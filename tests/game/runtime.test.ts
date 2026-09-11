@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type {
   GameplayActionRequest,
   SaveView,
@@ -80,6 +80,8 @@ describe("era game runtime", () => {
     });
     vi.spyOn(window, "cancelAnimationFrame").mockImplementation(() => {});
   });
+
+  afterEach(() => vi.unstubAllGlobals());
 
   it("allows paused victory-card actions and resets on the authoritative next level", async () => {
     const released = makeEraSave({
@@ -190,6 +192,34 @@ describe("era game runtime", () => {
     game.dispose();
     game.retryMedia();
     expect(sceneState.instances[0]?.retries).toBe(1);
+  });
+
+  it("surfaces unavailable action ids without stopping the frame loop", () => {
+    vi.stubGlobal("crypto", undefined);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: makeEraSave({ collectedKinds: ["guard-tool"] }),
+      onAction: async () => makeEraSave({ revision: 1 }),
+      onRefresh: async () => makeEraSave(),
+    });
+
+    expect(game.performAction({ type: "guard", levelId: "level-1-2020" })).toBe(
+      false,
+    );
+    expect(game.inspect().status).toMatchObject({
+      requestState: "error",
+      requestError: "guard",
+      requestErrorCode: "SECURE_RANDOM_UNAVAILABLE",
+    });
+    const initialZ = game.inspect().status.position.z;
+    game.setInput("moveY", 1);
+    let now = performance.now();
+    now += 16;
+    nextFrame?.(now);
+    now += 16;
+    nextFrame?.(now);
+    expect(game.inspect().status.position.z).toBeLessThan(initialZ);
+    game.dispose();
   });
 
   it("keeps the final era and victory checkpoint after completion", async () => {
@@ -400,6 +430,63 @@ describe("era game runtime", () => {
       nextFrame?.(now);
     }
     expect(onAction).toHaveBeenCalledTimes(2);
+    game.dispose();
+  });
+
+  it("clears a queued contact when a remote retry revives an enemy", async () => {
+    let resolveGuard!: (save: SaveView) => void;
+    const guardResponse = new Promise<SaveView>((resolve) => {
+      resolveGuard = resolve;
+    });
+    const initial = makeEraSave({
+      revision: 1,
+      defeatedIds: ["level-1-2020-ordinary-b"],
+      collectedKinds: ["guard-tool"],
+    });
+    const remotelyRetried = makeEraSave({
+      revision: 2,
+      collectedKinds: ["guard-tool"],
+    });
+    const onAction = vi.fn((_request: GameplayActionRequest) => guardResponse);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    expect(game.performAction({ type: "guard", levelId: "level-1-2020" })).toBe(
+      true,
+    );
+
+    let now = performance.now();
+    game.setInput("moveX", -0.22);
+    game.setInput("moveY", 1);
+    for (let index = 0; index < 100; index += 1) {
+      now += 16;
+      nextFrame?.(now);
+    }
+    game.setInput("moveX", 0);
+    game.setInput("moveY", 0);
+    for (let index = 0; index < 360; index += 1) {
+      now += 16;
+      nextFrame?.(now);
+      if (game.inspect().enemies.some((enemy) => enemy.phase === "cooldown")) {
+        break;
+      }
+    }
+    expect(onAction).toHaveBeenCalledOnce();
+
+    game.updateSave(remotelyRetried);
+    expect(game.inspect()).toMatchObject({
+      status: { position: { x: 0, y: 0, z: 1 } },
+      enemies: [{ phase: "idle" }, { phase: "idle" }, { phase: "idle" }],
+    });
+    resolveGuard(makeEraSave({ revision: 3 }));
+    await guardResponse;
+    await Promise.resolve();
+    now += 16;
+    nextFrame?.(now);
+    expect(onAction).toHaveBeenCalledOnce();
     game.dispose();
   });
 

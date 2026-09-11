@@ -4,7 +4,7 @@ import type {
   SaveView,
 } from "../shared/contracts";
 import { ActionCoordinator, type ActionRequestState } from "./actions";
-import { EnemySimulation, findAttackTarget } from "./combat";
+import { bossIsActive, EnemySimulation, findAttackTarget } from "./combat";
 import { createControllerState, stepController } from "./controller";
 import { bindBrowserInput, GameInputState } from "./input";
 import {
@@ -276,9 +276,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
       return;
     }
     const previousIdentity = levelIdentity(save);
-    const previousPhase = requireAdventure(save).phase;
+    const previousAdventure = requireAdventure(save);
+    const previousPhase = previousAdventure.phase;
     const nextIdentity = levelIdentity(nextSave);
     const nextAdventure = nextSave.adventure;
+    const revivedEncounter = nextAdventure.activeLevel?.encounters.some(
+      (nextEncounter) =>
+        !nextEncounter.defeated &&
+        previousAdventure.activeLevel?.encounters.find(
+          (previousEncounter) => previousEncounter.id === nextEncounter.id,
+        )?.defeated,
+    );
     if (nextAdventure.activeLevel) {
       retainedActiveLevel = nextAdventure.activeLevel;
     }
@@ -306,7 +314,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const identityChanged =
       !retainCompletedWorld && previousIdentity !== nextIdentity;
     const retried =
-      previousPhase === "fallen" && nextSave.adventure.phase === "exploring";
+      (previousPhase === "fallen" &&
+        nextSave.adventure.phase === "exploring") ||
+      revivedEncounter === true;
     if (identityChanged || retried || nextAdventure.phase !== "exploring") {
       pendingHit = null;
     }
@@ -357,7 +367,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
       adventure.phase !== "exploring" ||
       adventure.currentLevelId !== hit.levelId ||
       !encounter ||
-      encounter.defeated
+      encounter.defeated ||
+      (encounter as { available?: boolean }).available === false ||
+      (encounter.role === "boss" && !bossIsActive(save))
     ) {
       pendingHit = null;
       return;
