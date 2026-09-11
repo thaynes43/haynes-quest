@@ -25,7 +25,7 @@ nav:
   - Asset studio:
       - Overview: assets/README.md
       - Art direction: assets/art-direction.md
-      - First-pass catalog: assets/catalog.md
+      - Browse all assets: assets/catalog.md
       - Two-chapter playtest: assets/playtest.md
       - Review template: assets/000-review-template.md
   - Product:

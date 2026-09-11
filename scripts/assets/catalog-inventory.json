@@ -1,0 +1,720 @@
+{
+  "schema_version": 1,
+  "path_base": "repository-root",
+  "counts": {
+    "entries": 33,
+    "reference_sheet_entries": 4,
+    "model_entries": 24,
+    "model_files": 24,
+    "concept_only_entries": 1,
+    "audio_entries": 4,
+    "completed_model_candidates": 23,
+    "paused_partial_model_candidates": 1,
+    "owner_approved_entries": 0
+  },
+  "assets": [
+    {
+      "id": "storybook-reference-clearing",
+      "title": "The clearing",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/storybook-reference/v001.md#the-clearing",
+      "concept_images": [
+        "docs/assets/media/storybook-reference/v001/environment.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected working reference; Tom review pending",
+      "checksums": {}
+    },
+    {
+      "id": "storybook-reference-traveler-ages",
+      "title": "A traveler who grows",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/storybook-reference/v001.md#a-traveler-who-grows",
+      "concept_images": [
+        "docs/assets/media/storybook-reference/v001/traveler-ages.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected working reference; Tom review pending",
+      "checksums": {}
+    },
+    {
+      "id": "storybook-reference-props-materials",
+      "title": "A shared set of materials",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/storybook-reference/v001.md#a-shared-set-of-materials",
+      "concept_images": [
+        "docs/assets/media/storybook-reference/v001/props-materials.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected working reference; Tom review pending",
+      "checksums": {}
+    },
+    {
+      "id": "era-combat-construction-reference",
+      "title": "Equipment and creatures for two eras",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/era-combat/v001.md",
+      "concept_images": [
+        "docs/assets/media/blockling/v001/concept.png",
+        "docs/assets/media/signal-moth/v001/concept.png",
+        "docs/assets/media/buffer-baron/v001/concept.png",
+        "docs/assets/media/era-equipment/v001/starter-concept.png",
+        "docs/assets/media/loop-dancer/v001/concept.png",
+        "docs/assets/media/prism-mimic/v001/concept.png",
+        "docs/assets/media/trendweaver/v001/concept.png",
+        "docs/assets/media/era-equipment/v001/later-concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "historical construction reference; six creature directions rejected for enemy use; four equipment directions remain unapproved candidates",
+      "checksums": {}
+    },
+    {
+      "id": "traveler-infant",
+      "title": "The first little traveler",
+      "category": "travelers",
+      "review": "docs/assets/reviews/traveler-infant/v001.md",
+      "concept_images": [
+        "docs/assets/media/storybook-reference/v001/traveler-ages.png"
+      ],
+      "model_images": [
+        "docs/assets/media/traveler-infant/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/traveler-infant/v001/traveler-infant.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/traveler-infant/v001/traveler-infant.glb": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c"
+      }
+    },
+    {
+      "id": "traveler-child",
+      "title": "A little taller, a little braver",
+      "category": "travelers",
+      "review": "docs/assets/reviews/traveler-child/v001.md",
+      "concept_images": [
+        "docs/assets/media/storybook-reference/v001/traveler-ages.png"
+      ],
+      "model_images": [
+        "docs/assets/media/traveler-child/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/traveler-child/v001/traveler-child.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/traveler-child/v001/traveler-child.glb": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e"
+      }
+    },
+    {
+      "id": "memory-keepsake",
+      "title": "A memory worth keeping",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/memory-keepsake/v001.md",
+      "concept_images": [
+        "docs/assets/media/memory-keepsake/concept-v002/concept.png",
+        "docs/assets/media/memory-keepsake/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/memory-keepsake/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/memory-keepsake/v001/memory-keepsake.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 model; v002 corrected concept",
+      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/memory-keepsake/v001/memory-keepsake.glb": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137"
+      }
+    },
+    {
+      "id": "ground-tile",
+      "title": "Grass and soil",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/clearing-path-kit/v001.md#grass-and-soil",
+      "concept_images": [
+        "docs/assets/media/clearing-path-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/clearing-path-kit/v001/ground-tile-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/clearing-path-kit/v001/ground-tile.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/clearing-path-kit/v001/ground-tile.glb": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a"
+      }
+    },
+    {
+      "id": "path-tile",
+      "title": "Pale pavers",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/clearing-path-kit/v001.md#pale-pavers",
+      "concept_images": [
+        "docs/assets/media/clearing-path-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/clearing-path-kit/v001/path-tile-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/clearing-path-kit/v001/path-tile.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/clearing-path-kit/v001/path-tile.glb": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f"
+      }
+    },
+    {
+      "id": "low-step",
+      "title": "One low rise",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/clearing-path-kit/v001.md#one-low-rise",
+      "concept_images": [
+        "docs/assets/media/clearing-path-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/clearing-path-kit/v001/low-step-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/clearing-path-kit/v001/low-step.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/clearing-path-kit/v001/low-step.glb": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f"
+      }
+    },
+    {
+      "id": "clearing-tree",
+      "title": "A quiet place in the shade",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/clearing-tree/v001.md",
+      "concept_images": [
+        "docs/assets/media/clearing-tree/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/clearing-tree/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/clearing-tree/v001/clearing-tree.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/clearing-tree/v001/clearing-tree.glb": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9"
+      }
+    },
+    {
+      "id": "clearing-stone",
+      "title": "A rounded edge to the clearing",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/clearing-stone/v001.md",
+      "concept_images": [
+        "docs/assets/media/clearing-stone/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/clearing-stone/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/clearing-stone/v001/clearing-stone.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/clearing-stone/v001/clearing-stone.glb": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7"
+      }
+    },
+    {
+      "id": "arrival-landmark",
+      "title": "A lantern at the end of the path",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/arrival-landmark/v001.md",
+      "concept_images": [
+        "docs/assets/media/arrival-landmark/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/arrival-landmark/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/arrival-landmark/v001/arrival-landmark.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/arrival-landmark/v001/arrival-landmark.glb": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
+      }
+    },
+    {
+      "id": "spark-mallet",
+      "title": "Spark Mallet",
+      "category": "equipment",
+      "review": "docs/assets/reviews/era-equipment/v001.md#spark-mallet",
+      "concept_images": [
+        "docs/assets/media/era-equipment/v001/starter-concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/era-equipment/v001/spark-mallet/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/era-equipment/v001/spark-mallet/spark-mallet.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed equipment candidate; Tom review pending; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/era-equipment/v001/spark-mallet/spark-mallet.glb": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae"
+      }
+    },
+    {
+      "id": "acorn-shield",
+      "title": "Acorn Shield",
+      "category": "equipment",
+      "review": "docs/assets/reviews/era-equipment/v001.md#acorn-shield",
+      "concept_images": [
+        "docs/assets/media/era-equipment/v001/starter-concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/era-equipment/v001/acorn-shield/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/era-equipment/v001/acorn-shield/acorn-shield.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed equipment candidate; Tom review pending; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/era-equipment/v001/acorn-shield/acorn-shield.glb": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6"
+      }
+    },
+    {
+      "id": "prism-wand",
+      "title": "Prism Wand",
+      "category": "equipment",
+      "review": "docs/assets/reviews/era-equipment/v001.md#prism-wand",
+      "concept_images": [
+        "docs/assets/media/era-equipment/v001/later-concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/era-equipment/v001/prism-wand/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/era-equipment/v001/prism-wand/prism-wand.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed equipment candidate; Tom review pending; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/era-equipment/v001/prism-wand/prism-wand.glb": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc"
+      }
+    },
+    {
+      "id": "ribbon-shield",
+      "title": "Ribbon Shield",
+      "category": "equipment",
+      "review": "docs/assets/reviews/era-equipment/v001.md#ribbon-shield",
+      "concept_images": [
+        "docs/assets/media/era-equipment/v001/later-concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/era-equipment/v001/ribbon-shield/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed equipment candidate; Tom review pending; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9"
+      }
+    },
+    {
+      "id": "blockling",
+      "title": "Blockling",
+      "category": "preserved-creature-studies",
+      "review": "docs/assets/reviews/blockling/v001.md",
+      "concept_images": [
+        "docs/assets/media/blockling/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/blockling/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/blockling/v001/blockling.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "checksums": {
+        "docs/assets/media/blockling/v001/blockling.glb": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb"
+      }
+    },
+    {
+      "id": "signal-moth",
+      "title": "Signal Moth",
+      "category": "preserved-creature-studies",
+      "review": "docs/assets/reviews/signal-moth/v001.md",
+      "concept_images": [
+        "docs/assets/media/signal-moth/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/signal-moth/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/signal-moth/v001/signal-moth.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "checksums": {
+        "docs/assets/media/signal-moth/v001/signal-moth.glb": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe"
+      }
+    },
+    {
+      "id": "buffer-baron",
+      "title": "Buffer Baron",
+      "category": "preserved-creature-studies",
+      "review": "docs/assets/reviews/buffer-baron/v001.md",
+      "concept_images": [
+        "docs/assets/media/buffer-baron/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/buffer-baron/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/buffer-baron/v001/buffer-baron.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "checksums": {
+        "docs/assets/media/buffer-baron/v001/buffer-baron.glb": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915"
+      }
+    },
+    {
+      "id": "loop-dancer",
+      "title": "Loop Dancer",
+      "category": "preserved-creature-studies",
+      "review": "docs/assets/reviews/loop-dancer/v001.md",
+      "concept_images": [
+        "docs/assets/media/loop-dancer/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/loop-dancer/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/loop-dancer/v001/loop-dancer.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "checksums": {
+        "docs/assets/media/loop-dancer/v001/loop-dancer.glb": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
+      }
+    },
+    {
+      "id": "prism-mimic",
+      "title": "Prism Mimic",
+      "category": "preserved-creature-studies",
+      "review": "docs/assets/reviews/prism-mimic/v001.md",
+      "concept_images": [
+        "docs/assets/media/prism-mimic/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/prism-mimic/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/prism-mimic/v001/prism-mimic.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "checksums": {
+        "docs/assets/media/prism-mimic/v001/prism-mimic.glb": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
+      }
+    },
+    {
+      "id": "trendweaver",
+      "title": "Trendweaver",
+      "category": "preserved-creature-studies",
+      "review": "docs/assets/reviews/trendweaver/v001.md",
+      "concept_images": [
+        "docs/assets/media/trendweaver/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/trendweaver/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/trendweaver/v001/trendweaver.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed study; rejected for enemy use; possible friendly or ambient role undecided; exact-version approval pending",
+      "checksums": {
+        "docs/assets/media/trendweaver/v001/trendweaver.glb": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
+      }
+    },
+    {
+      "id": "mister-hiss",
+      "title": "Mister Hiss",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/mister-hiss/v001.md",
+      "concept_images": [
+        "docs/assets/media/mister-hiss/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/mister-hiss/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/mister-hiss/v001/mister-hiss.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate with five clips; Tom review pending; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/mister-hiss/v001/mister-hiss.glb": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+      }
+    },
+    {
+      "id": "peel-patrol",
+      "title": "Peel Patrol",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/peel-patrol/v001.md",
+      "concept_images": [
+        "docs/assets/media/peel-patrol/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/peel-patrol/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/peel-patrol/v001/peel-patrol.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate with five clips; Tom review pending; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/peel-patrol/v001/peel-patrol.glb": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5"
+      }
+    },
+    {
+      "id": "drama-dragon",
+      "title": "The Drama Dragon",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/drama-dragon/v001.md",
+      "concept_images": [
+        "docs/assets/media/drama-dragon/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/drama-dragon/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/drama-dragon/v001/drama-dragon.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed candidate with five clips; Tom review pending; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/drama-dragon/v001/drama-dragon.glb": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933"
+      }
+    },
+    {
+      "id": "sir-flush-a-lot",
+      "title": "Sir Flush-a-Lot",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/sir-flush-a-lot/v001.md",
+      "concept_images": [
+        "docs/assets/media/sir-flush-a-lot/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/sir-flush-a-lot/v001/beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/sir-flush-a-lot/v001/sir-flush-a-lot.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed optional candidate with five clips; Tom review pending; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/sir-flush-a-lot/v001/sir-flush-a-lot.glb": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+      }
+    },
+    {
+      "id": "nap-captain",
+      "title": "Nap Captain",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/nap-captain/v001.md#paused-checkpoint",
+      "concept_images": [
+        "docs/assets/media/nap-captain/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/nap-captain/v001/browser-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/nap-captain/v001/nap-captain.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 first-export checkpoint",
+      "state": "paused partial model with five clips; cap bands, paw-to-arm gap, seated hover, and tail-weight comparison need correction; not approved for gameplay",
+      "checksums": {
+        "docs/assets/media/nap-captain/v001/nap-captain.glb": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7"
+      }
+    },
+    {
+      "id": "one-star-diva",
+      "title": "The One-Star Diva",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/one-star-diva/v001.md",
+      "concept_images": [
+        "docs/assets/media/one-star-diva/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 concept",
+      "state": "selected concept; model production paused; no model, rig, animation render, or gameplay approval",
+      "checksums": {}
+    },
+    {
+      "id": "memory-collected",
+      "title": "A memory found · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/memory-collected/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/memory-collected/v001/cue.wav",
+        "docs/assets/media/memory-collected/v001/source.wav"
+      ],
+      "thumbnail": "docs/assets/media/memory-collected/v001/waveform.svg",
+      "version": "v001",
+      "state": "audition available; technical intake passed; listening and Tom review pending; not integrated in gameplay",
+      "checksums": {
+        "docs/assets/media/memory-collected/v001/cue.wav": "86ed72b341775dbb6f60414994912ec0d0292140e6408c20de54e5eb7ba0d358",
+        "docs/assets/media/memory-collected/v001/source.wav": "90dfbc573fbf5923508c025b4e7c33438a166449fbd4c2e3cfb988c164ac526b"
+      }
+    },
+    {
+      "id": "ability-unlocked",
+      "title": "A little more possible · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/ability-unlocked/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/ability-unlocked/v001/cue.wav",
+        "docs/assets/media/ability-unlocked/v001/source.wav"
+      ],
+      "thumbnail": "docs/assets/media/ability-unlocked/v001/waveform.svg",
+      "version": "v001",
+      "state": "audition available; technical intake passed; listening and Tom review pending; not integrated in gameplay",
+      "checksums": {
+        "docs/assets/media/ability-unlocked/v001/cue.wav": "46318afe6c77579a6b063fa704e887cd6112601b4cc4144351fa9085845115c0",
+        "docs/assets/media/ability-unlocked/v001/source.wav": "c6d084ce680ab407b20c351cb49509ade12290efb291453fdfc350ce3ef7a904"
+      }
+    },
+    {
+      "id": "movement-landed",
+      "title": "Back on the path · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/movement-landed/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/movement-landed/v001/cue.wav",
+        "docs/assets/media/movement-landed/v001/source.wav"
+      ],
+      "thumbnail": "docs/assets/media/movement-landed/v001/waveform.svg",
+      "version": "v001",
+      "state": "audition available; technical intake passed; listening and Tom review pending; not integrated in gameplay",
+      "checksums": {
+        "docs/assets/media/movement-landed/v001/cue.wav": "2c869c641b29e5df0ede83ad5dfab63f26a4d41c9b7258b56d3acb4dd71bf127",
+        "docs/assets/media/movement-landed/v001/source.wav": "59661a9bf7f48019d114ce39ba344b5ecf7d69bc4bceb09493ef056cf8aee995"
+      }
+    },
+    {
+      "id": "ui-confirmed",
+      "title": "A quiet yes · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/ui-confirmed/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/ui-confirmed/v001/cue.wav",
+        "docs/assets/media/ui-confirmed/v001/source.wav",
+        "docs/assets/media/ui-confirmed/v001/source-attempt-1.wav"
+      ],
+      "thumbnail": "docs/assets/media/ui-confirmed/v001/waveform.svg",
+      "version": "v001",
+      "state": "audition available; technical intake passed; listening and Tom review pending; first source attempt retained as rejected; not integrated in gameplay",
+      "checksums": {
+        "docs/assets/media/ui-confirmed/v001/cue.wav": "e9a0541c87b518de9b7d989ae4b6ef99d3ee03e40bfc1e65855bfe9069597608",
+        "docs/assets/media/ui-confirmed/v001/source.wav": "416cdbb0fbb82da0b701f7fdac2fb4176b1f5933c4e1a236fab246e130ac941b",
+        "docs/assets/media/ui-confirmed/v001/source-attempt-1.wav": "177abf2e67e0578be44ed13609ca97b3464b7548bae57ee11e5a32bded68bfa7"
+      }
+    }
+  ],
+  "notes": {
+    "primary_thumbnail": "Use model_images[0], otherwise concept_images[0]; audio cards use thumbnail.",
+    "exact_version_gate": "No manifest entry is owner-approved.",
+    "excluded_media": "Evidence screenshots, motion captures, texture internals, and browser-audit captures are intentionally outside this catalog inventory."
+  }
+}
