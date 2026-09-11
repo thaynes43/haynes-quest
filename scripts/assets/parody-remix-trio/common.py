@@ -9,7 +9,7 @@ from mathutils import Vector, Matrix, Euler
 
 BASE=Path('/workspace/haynes-quest/parody/remix-trio/v001')
 PARTS=[]; BONES={}; MATS=[]; CONTACTS=[]; SPEC={}; CURRENT=None
-FPS=24
+FPS=30
 
 def setup(name,height,contact,duration,materials):
  global CURRENT,SPEC
