@@ -124,6 +124,40 @@ position or the centre. After disposal the scene exposes no target. This return
 value is the Besties-first spell endpoint used by `GardenScene` before its
 logical enemy-centre fallback.
 
+## Final review-fix integration pass
+
+The established all-scenarios touch run passed again after the Fable and Sol
+review fixes on exact source commit `5df49dc`. It completed in 83.7 seconds on
+Chromium 153.0.8010.12 against `/assets/index-D3lvcZ1s.js` (1,028,608 bytes,
+SHA-256
+`718cc412a27bb79d768238f6326f154a0cccb52da555a69ed3ec4ce31173cebe`).
+
+- The current V3 friendly flow retained the full-health gift, excluded the
+  friend from normal Attack, applied deliberate harm and its one-time player
+  cost, defeated and repaired the friend, delivered the later two-point heal,
+  and retained the resulting state after reload.
+- Native Web Audio evidence again showed context creation after a gesture, a
+  running/resumed context, two decoded nonzero connected sources, zero master
+  gain while muted, suspension during pause, and saved volume 0.75. The added
+  release/click gesture paths produced additional successful resumes without an
+  error.
+- The immutable V2 age-four checkpoint kept lateral touch input at 0.5 across
+  the wand action, moved the player from x=0 to x=0.439, dealt three Dragon
+  damage, then entered a boundary-safe windup at 2.227 m and dealt four player
+  damage after 2.030 seconds.
+- The current V3 Besties loaded both exact model hashes with zero pending or
+  failed media. A closed-window attack left revision and health unchanged; the
+  routine reached dizzy and an actual touch attack dealt three damage. The
+  phone still shows both full actors and the HUD. The open-hit still captures
+  `Zap!` and the wand/impact glow, though its single frame does not clearly show
+  the complete beam ending on an actor; the exact endpoint remains covered by
+  the composed-world unit regression above.
+
+The final `test-results/feedback/report.json` records zero page errors and zero
+failed HTTP responses. All eight named screenshots were refreshed on this
+exact build. The isolated port 4396 fixture and browser were closed after the
+pass; the port 4395 fixture remained untouched.
+
 ## Verification
 
 - `node tests/e2e/playtest-feedback.mjs`: clean all-scenarios pass against the
@@ -148,3 +182,5 @@ logical enemy-centre fallback.
 - Combined Besties scene, routine and runtime run: three files, 40 tests passed.
 - Besties scene scoped ESLint, full TypeScript and scoped Prettier checks:
   passed.
+- Final `node tests/e2e/playtest-feedback.mjs`: clean all-scenarios pass on
+  commit `5df49dc` and the exact `index-D3lvcZ1s.js` hash above.

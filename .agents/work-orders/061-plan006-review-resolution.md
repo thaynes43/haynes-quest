@@ -1,6 +1,6 @@
 # WO061: Lead resolution of the Fable PLAN006 review
 
-Status: fixes integrated in the task worktree; final focused verification and release gates pending.
+Status: fixes committed at source5df49dc and final focused verification passed; checked release gates remain pending.
 
 Fable5.1 reviewed exact checkpoint `3ba5a0c` under WO056. Its report and 13 executable probes are retained; the completed CLI task was reaped after copying the report, probe sources and logs to `test-results/fable-056/`. This record distinguishes that earlier checkpoint from the final release candidate.
 
@@ -18,3 +18,5 @@ Fable5.1 reviewed exact checkpoint `3ba5a0c` under WO056. Its report and 13 exec
 | F10: authoring helper whitespace | Fixed the trailing blank line and refreshed the source intake and delivery hashes. All 68 delivered file hashes still pass; GLBs, masters and concept are unchanged. |
 
 The safe ranged positions are explicit design decisions, not claims that bosses retaliate from every possible wand position. The user-requested progression and nearby retaliation are the release acceptance criteria. Neither this review nor automated Chromium tests establish physical-device performance, listening approval or the children's response.
+
+Final source verification passed typecheck, lint, build, strict docs/link/media build and 284 local tests (ten PostgreSQL cases require CI). WO055 replayed all three focused touch scenarios on exact client `index-D3lvcZ1s.js`, SHA256 `718cc412a27bb79d768238f6326f154a0cccb52da555a69ed3ec4ce31173cebe`, with zero page/HTTP failures. UI/audio/Besties recovery/actor-targeting regressions also pass. The first PR33 CI run executed all294tests and caught a stale synthetic legacy conversion; its fixture now clears friendly_state alongside the two existing adventure fields. No production validation was loosened.

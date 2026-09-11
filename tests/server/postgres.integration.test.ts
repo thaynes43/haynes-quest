@@ -380,7 +380,8 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
 
       await auditPool.query(
         `UPDATE quest_saves
-         SET save_format = 'legacy-v1', adventure_plan = NULL, adventure_state = NULL
+         SET save_format = 'legacy-v1', adventure_plan = NULL, adventure_state = NULL,
+             friendly_state = NULL
          WHERE id = $1`,
         [save.id],
       );
