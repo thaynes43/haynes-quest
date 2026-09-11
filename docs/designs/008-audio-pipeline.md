@@ -6,6 +6,10 @@
 - **Satisfies:** [PRD-001 R-08, R-09, R-16, R-35–R-39](../prds/001-project-brief.md)
 - **Related:** [PoC development loop](007-poc-development-loop.md), [visual assets](002-asset-pipeline.md), [asset review template](../assets/000-review-template.md)
 
+## Catalog and autonomous first pass
+
+The lead defines the sound palette and scoped cue inventory in the [asset catalog](../assets/catalog.md). Sol can execute independent audio jobs while Astra generates visual concepts or an Astra agent owns Blender; obey the audio service's own single-generation queue. Create the required first-pass cues overnight and catalog original takes, processed exports, native audio auditions, processing recipe, checksum, format/level/loop checks and separate coordinator/owner review. Use the Material [asset studio](../assets/README.md) and [review template](../assets/000-review-template.md). Keep listening claims honest and private/restricted sources out of public site output. Pending Tom review does not block generation or refinement; exact-version approval still precedes final gameplay promotion.
+
 ## Selected authoring route
 
 Tom selected self-hosted audio setup before the one planned dev-env restart. Use **Stable Audio 3 Small-SFX through its official optimized TFLite CPU implementation** in a dedicated cluster service. Its independent image, model cache, output workspace, and lifecycle let us upgrade audio without restarting Blender or dev-env. The game plays prepared, reviewed files; it does not call the generation service during gameplay.

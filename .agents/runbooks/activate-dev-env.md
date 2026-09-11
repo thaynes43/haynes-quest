@@ -1,0 +1,13 @@
+# Activate the prepared dev-env once
+
+**Run this outside the dev-env pod.** Tom authorizes you to finish the prepared Haynes Quest activation now, including merging the held PR and verifying the replacement pod. Do not start game implementation.
+
+Read applicable haynes-ops instructions. Work in a task branch/worktree, never push directly to main. Check current GitHub/live state before acting. The only intended dev-env activation is thaynes43/haynes-ops PR #2833. All earlier Blender/audio/config-staging PRs are merged. Secret preparation is tracked by #2848 and the game handoff by the latest merged haynes-quest main; require their verified completion first. No 1Password or OAuth setup belongs to your task.
+
+Inspect #2833's current diff and checks. It should only remove the temporary two-ConfigMap Reloader exclusion and add the pod annotation haynesops.com/config-generation=quest-authoring-2026-09-11, with no dev-env image bump. Confirm staged startup files/registrations match Git. Record the current pod UID/template/restarts and declare scoped dev-env maintenance using the pod's declare-activity mechanism. If activation is already applied, verify it instead of restarting again.
+
+Mark #2833 ready if needed, wait for all required checks, squash-merge it, and reconcile the dev-env Flux Kustomization. Tom explicitly authorizes this held-draft merge from outside the pod at this break. Do not merge unrelated PRs or add a rollout restart/pod deletion on top of the GitOps rollout. Preserve the one planned dev-env restart; inspect any failure before taking another disruptive action.
+
+Verify the new pod is Ready, startup containers succeeded, the expected image remains, the activation marker is present and normal Reloader behavior is restored. Allow post-ready startup to settle. Verify generated startup policy says Codex native gpt-5.6-sol/xhigh subagents and Claude Code Opus, and both Blender/audio MCP endpoints are registered and callable from fresh sessions. Inspect only safe names/URLs, never dump token-bearing configuration. Confirm both authoring services and the three Haynes Quest ExternalSecrets remain Ready. End the maintenance declaration and report the merge commit, old/new pod identity and checks, plus readiness for Tom to paste the separate Astra implementation prompt.
+
+The new project-specific routing in [TEAM.md](../TEAM.md) adds Astra-only Blender work and explicitly authorized Fable sessions. Keep the staged global Sol/Opus defaults; these project exceptions need no further startup ConfigMap changes. After activation, update the Haynes Quest handoff with actual evidence through a normal checked PR.

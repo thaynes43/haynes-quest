@@ -35,7 +35,7 @@ This documentation task does not execute the plan, install tools, generate asset
 
 ### 3. Repeatable authoring and Tom's review
 
-This milestone can overlap code work once its own tools are ready. Use bounded Sol work orders under Astra with owned files/resources; serialize access to a shared Blender scene or isolate sessions.
+This milestone can overlap code work once its own tools are ready. Use bounded work orders under [TEAM.md](../TEAM.md), with Astra for Blender, Sol for ordinary tasks and authorized Fable review/coding, with owned files/resources; serialize access to a shared Blender scene or isolate sessions.
 
 - Use the dedicated cluster Blender service and explicit remote artifact workflow verified by PLAN-003 and DESIGN-002. Prove scene inspection, viewport capture, editable save/reopen, and GLB export/load with a synthetic object before producing final candidates. Manage homelab tooling through `haynes-ops`.
 - Use the DESIGN-008 self-hosted Small-SFX service verified by PLAN-003. Supply its remote MCP endpoint, job/artifact conventions, pinned provenance, and cue brief in the work order. Generate a bounded candidate set, prepare browser exports, and collect listening/review evidence. The CPU baseline needs no hosted account or GPU; music and narration remain optional later work.
