@@ -352,7 +352,7 @@ export class GardenScene {
       )?.content;
       const artwork = content ? parodyArtwork(content) : null;
       if (content && !artwork) this.unsupportedContentCount += 1;
-      const model = artwork
+      const model = content
         ? new THREE.Group()
         : createEncounterStudy(placement.kind, later);
       root.add(model);
