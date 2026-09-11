@@ -58,4 +58,13 @@ All concepts were generated serially by the lead. Fresh Astra Blender authors co
 
 ## Replacement parody direction
 
-[Mister Hiss](reviews/mister-hiss/v001.md) is the first replacement concept: a recognizable Minecraft Creeper parody with a confetti-sneeze attack. It has a concept sheet and exact prompt, with no model yet. The replacement roster and forgiving obby work remain in progress.
+The replacement cast uses recognizable pop-culture parodies from the selected photo periods. Each page includes its exact concept, prompt, construction corrections and intended encounter. Model production and the forgiving obby game remain in progress; none of these candidates has owner approval for private gameplay.
+
+| Period | Enemy | Reference and joke | Current candidate |
+| --- | --- | --- | --- |
+| The Block Party | [Mister Hiss](reviews/mister-hiss/v001.md) | Creeper with a confetti sneeze | Model intake in progress |
+| The Block Party | [Peel Patrol](reviews/peel-patrol/v001.md) | Peely safety marshal who slips on his own peel | Concept selected; modeling |
+| The Block Party | [The Drama Dragon](reviews/drama-dragon/v001.md) | Ender Dragon as a pompous performer | Concept selected; modeling |
+| The Remix Runway | [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) | Skibidi Toilet opera singer | Concept selected |
+| The Remix Runway | [Nap Captain](reviews/nap-captain/v001.md) | CatNap bedtime inspector with a pillow prank | Concept selected |
+| The Remix Runway | [The One-Star Diva](reviews/one-star-diva/v001.md) | Dress to Impress judge with an oversized outfit | Concept selected |
