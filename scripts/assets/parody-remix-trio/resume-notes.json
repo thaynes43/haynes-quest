@@ -1,0 +1,23 @@
+{
+  "work_order": "WO-032",
+  "production": "paused by user steering; requires root roster instruction and a new exclusive lease to resume",
+  "live_calls_after_release": false,
+  "flush": "Complete increment 33e676b, exact GLB c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49; unchanged.",
+  "nap": {
+    "live_candidate_sha256": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7",
+    "live_candidate_source": "docs/assets/media/nap-captain/v001/authoring-source.json",
+    "unbuilt_local_corrections": {
+      "nap-captain.py": "2055f3f161101260469da4ce29d8bdf5e349eabaf5fe4a6ce0ea777f48a67781",
+      "atlas.py": "b30b66fe6b41f9b28692b4cbd85d13fba693c2ac7ea47ae4d8089e89f3ad2f66"
+    },
+    "changes": [
+      "Cap ring unwrap plus horizontal atlas bands; atlas has not been regenerated.",
+      "Consistent arm ring weights with fully paw-owned terminal rings; both shoulder/body contacts added.",
+      "Tail influences snapped below exporter omission threshold.",
+      "Additional seated body drop; final floor contact remains unverified."
+    ],
+    "checks": "Local syntax only for correction source. Existing actual GLB validator/Three/browser checks concern the original candidate. Construction audit fails original tail weight comparison and actual pose defects remain unresolved.",
+    "next_if_selected": "Regenerate only intended Nap atlas, upload current sources under new lease, build revised candidate, rerun actual validation/attachment/pose checks, root cap/contact/defeat selection before any final media."
+  },
+  "diva": "Prepared source and original atlas only; never built or rendered."
+}

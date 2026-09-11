@@ -3,7 +3,7 @@
   "owner": "/root/remix_trio_authoring",
   "authoring_model": "gpt-6-astra",
   "reasoning_effort": "max",
-  "status": "active; exclusive scene owner",
+  "status": "released; production paused by user steering before roster selection",
   "claimed_utc": "2026-09-11T17:09:10.483651+00:00",
   "remote_root": "/workspace/haynes-quest/parody/remix-trio/v001",
   "prior_checkpoint": "/workspace/haynes-quest/parody/block-party-pair/v001/live-scene-release.blend",
@@ -28,5 +28,19 @@
       "args": "/usr/local/bin/blender --factory-startup --disable-autoexec -noaudio --gpu-backend opengl --python-exit-code 1 --python /opt/blender-authoring/bootstrap.py ",
       "state": "State:\tR (running)"
     }
-  ]
+  ],
+  "released_at_utc": "2026-09-11T17:44:32.601411+00:00",
+  "release_checkpoint": {
+    "path": "/workspace/haynes-quest/parody/remix-trio/v001/live-scene-release.blend",
+    "bytes": 7641662,
+    "sha256": "9a84bd4c72e70292512bd605f4da44f6fcccdca290816d230aa0bc053c972afe"
+  },
+  "current_scene": "Nap Captain first exported candidate; local cap/weight/seated corrections have not been uploaded or built.",
+  "all_owned_jobs_exited_and_reaped": true,
+  "previous_checkpoint_preserved": {
+    "path": "/workspace/haynes-quest/parody/block-party-pair/v001/live-scene-release.blend",
+    "bytes": 13540486,
+    "sha256": "d89132f2ba7526a78b933aca4dea9de248cc7653a710d09e49abd2e5885c7b3c"
+  },
+  "remaining": "Nap final media and corrections unbuilt; Diva unbuilt; further production requires root instruction and a new lease."
 }

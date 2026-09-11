@@ -1,0 +1,13 @@
+{
+  "asset_id": "nap-captain",
+  "selected_checkpoint_sha256": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7",
+  "decision": "Root selected purple grin, left pillow, rear mask strap, curled attached tail and sewn back; cap bands require correction before final selection.",
+  "required_visual_correction": "Replace sharp triangular cap shards with clean broad continuous navy/cream bands around the existing bent cap, retaining pompom.",
+  "additional_engineering_findings": [
+    "First source/export weight comparison caught tail normalization difference 0.0000422597.",
+    "Actual yawn side shows right paw separated from incompletely weighted arm tip.",
+    "Final seated pose hovers above floor."
+  ],
+  "status": "Paused at user direction before corrections were built or final media was started.",
+  "owner_approval": "pending"
+}

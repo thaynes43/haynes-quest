@@ -1,0 +1,50 @@
+{
+  "work_order": "WO-032",
+  "pause_release_sha256": "b40e1378c468c2752a4e9960c5faa0801c61c81be606c87e98e198e0fb14d8e9",
+  "files": [
+    {
+      "remote_path": "/workspace/haynes-quest/parody/remix-trio/v001/live-scene-release.blend",
+      "local_path": ".docs-build/remix-trio-masters/live-scene-release.blend",
+      "bytes": 7641662,
+      "sha256": "9a84bd4c72e70292512bd605f4da44f6fcccdca290816d230aa0bc053c972afe",
+      "transfer_verified": true
+    },
+    {
+      "remote_path": "/workspace/haynes-quest/parody/remix-trio/v001/nap-captain/nap-captain.blend",
+      "local_path": ".docs-build/remix-trio-masters/nap-captain/nap-captain.blend",
+      "bytes": 7634894,
+      "sha256": "dd3d8efcebdda7db6b1381878ec4abdf9a08010c01317822266c07c206a5f7a3",
+      "transfer_verified": true
+    },
+    {
+      "remote_path": "/workspace/haynes-quest/parody/remix-trio/v001/nap-captain/nap-captain.glb",
+      "local_path": "docs/assets/media/nap-captain/v001/nap-captain.glb",
+      "bytes": 789036,
+      "sha256": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7",
+      "transfer_verified": true
+    },
+    {
+      "remote_path": "/workspace/haynes-quest/parody/remix-trio/v001/nap-captain/authoring-source.json",
+      "local_path": "docs/assets/media/nap-captain/v001/authoring-source.json",
+      "bytes": 40779,
+      "sha256": "78b33ed3c0e9055f51e093a7f44b2baa73bf3a60835982b002307a83ad313b6d",
+      "transfer_verified": true
+    },
+    {
+      "remote_path": "/workspace/haynes-quest/parody/remix-trio/v001/scene-lease.json",
+      "local_path": "scripts/assets/parody-remix-trio/scene-lease.json",
+      "bytes": 2197,
+      "sha256": "4cabfb08af76064c1c1d73cd41a42aa937bddfeb1ea95e919603ebe50a56d6fd",
+      "transfer_verified": true
+    },
+    {
+      "remote_path": "/workspace/haynes-quest/parody/remix-trio/v001/render-process-completion.json",
+      "local_path": "scripts/assets/parody-remix-trio/render-process-completion.json",
+      "bytes": 2368,
+      "sha256": "b7948616af022be3d530e1ea0274a9321ec1409f59b34050237671cff5fc7671",
+      "transfer_verified": true
+    }
+  ],
+  "immutable_nap_source_bundle_verified": true,
+  "all_transfer_hashes_match": true
+}

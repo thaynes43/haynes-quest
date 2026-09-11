@@ -2,18 +2,35 @@
 import math
 import common as c
 
-def arm_weight(side):
- def weights(p):
-  d=((p.x-side*.17)**2+p.y*p.y+(p.z-.535)**2)**.5;w=c.smooth((d-.04)/.22)
-  return {'body':1-w,'hand_'+('L' if side<0 else 'R'):w}
- return weights
+def arm_rings(ob,label,n=14):
+ """Keep each sewn cross-section round and the final rings fully on the paw."""
+ for group in list(ob.vertex_groups):ob.vertex_groups.remove(group)
+ body=ob.vertex_groups.new(name='body');hand=ob.vertex_groups.new(name='hand_'+label)
+ count=len(ob.data.vertices)//n
+ for v in ob.data.vertices:
+  w=c.smooth(((v.index//n)/(count-1)-.12)/.66)
+  if w<1:body.add([v.index],1-w,'REPLACE')
+  if w>0:hand.add([v.index],w,'REPLACE')
+ ob['rigid_weight']='weighted'
+
+def cap_bands(ob,n=20):
+ """One unwrap along bent cap rings gives continuous circumferential bands."""
+ uv=ob.data.uv_layers.active;count=len(ob.data.vertices)//n
+ for polygon in ob.data.polygons:
+  for li in polygon.loop_indices:
+   i=ob.data.loops[li].vertex_index;u=(i%n)/n;v=(i//n)/(count-1)
+   uv.data[li].uv=((.025+.950*u)/4,(2+.025+.950*v)/4)
 
 def tail_weight(p):
+ def blend(a,b,w):
+  # Blender's exporter omits sub-0.0001 influences; make the source identical.
+  w=0 if w<.0001 else 1 if w>.9999 else w
+  return {a:1-w,b:w}
  if p.x<.09:
-  w=c.smooth((p.x+.01)/.1);return {'body':1-w,'tail_base':w}
+  w=c.smooth((p.x+.01)/.1);return blend('body','tail_base',w)
  if p.x<.23:
-  w=c.smooth((p.x-.09)/.14);return {'tail_base':1-w,'tail_mid':w}
- w=c.smooth((p.x-.23)/.11);return {'tail_mid':1-w,'tail_tip':w}
+  w=c.smooth((p.x-.09)/.14);return blend('tail_base','tail_mid',w)
+ w=c.smooth((p.x-.23)/.11);return blend('tail_mid','tail_tip',w)
 
 def character():
  c.bone('body',(0,0,.24),'root');c.bone('head',(0,0,.563));c.bone('jaw',(0,.170,.723),'head')
@@ -51,8 +68,8 @@ def character():
  c.ellipsoid('Yawn | small plush tongue',(0,.193,.626),(.044,.011,.019),10,'jaw',n=16,r=8)
  # Arms blend from the sewn shoulder to a hand joint, allowing both paws to
  # converge on the same pillow without detached or duplicated geometry.
- c.curve('Arm | left attached plush arm',[(-.158,0,.550),(-.218,.008,.461),(-.273,.057,.395),(-.356,.193,.410)],[.069,.066,.059,.055],0,'body',n=14,steps=3,weights=arm_weight(-1))
- c.curve('Arm | right attached plush arm',[(.159,0,.548),(.214,.008,.475),(.234,.035,.413),(.246,.072,.386)],[.069,.068,.060,.051],0,'body',n=14,steps=3,weights=arm_weight(1))
+ arm_rings(c.curve('Arm | left attached plush arm',[(-.158,0,.550),(-.218,.008,.461),(-.273,.057,.395),(-.356,.193,.410)],[.069,.066,.059,.055],0,'body',n=14,steps=3),'L')
+ arm_rings(c.curve('Arm | right attached plush arm',[(.159,0,.548),(.214,.008,.475),(.234,.035,.413),(.246,.072,.386)],[.069,.068,.060,.051],0,'body',n=14,steps=3),'R')
  for label,point in [('L',(-.360,.207,.410)),('R',(.246,.072,.386))]:
   c.ellipsoid('Hand | '+label+' rounded plush paw',point,(.058,.045,.059),0,'hand_'+label,n=18,r=10)
   for k in [-1,1]:
@@ -65,6 +82,8 @@ def character():
  c.contact('Hand | L rounded plush paw','Pillow | single yellow quilted cushion')
  c.contact('Arm | left attached plush arm','Hand | L rounded plush paw')
  c.contact('Arm | right attached plush arm','Hand | R rounded plush paw')
+ c.contact('Arm | left attached plush arm','Plush | rounded purple body')
+ c.contact('Arm | right attached plush arm','Plush | rounded purple body')
  # One tail root is visibly sewn into the lower back; one continuous weighted tube.
  c.curve('Tail | single continuous long curling plush tail',[(0,-.113,.319),(.045,-.198,.246),(.133,-.249,.207),(.247,-.268,.256),(.325,-.251,.358),(.341,-.229,.471),(.299,-.204,.515),(.241,-.187,.467)],[.057,.053,.045,.045,.045,.046,.044,.041],0,n=12,steps=3,weights=tail_weight)
  c.ellipsoid('Tail | sewn root patch',(0,-.133,.317),(.071,.021,.073),14,n=18,r=10)
@@ -87,7 +106,7 @@ def character():
  c.contact('Pendant | continuous brown neck cord','Pendant | connected front hanger')
  c.contact('Pendant | connected front hanger','Pendant | one golden crescent moon')
  # Striped nightcap and sewn pom-pom share the head joint and overlap at seams.
- c.curve('Cap | single floppy navy striped nightcap',[(0,-.016,.965),(-.016,-.020,1.043),(-.068,-.019,1.104),(-.130,-.007,1.078),(-.155,.010,1.020)],[.135,.102,.069,.037,.014],4,'head',2,n=20,steps=3)
+ cap_bands(c.curve('Cap | single floppy navy striped nightcap',[(0,-.016,.965),(-.016,-.020,1.043),(-.068,-.019,1.104),(-.130,-.007,1.078),(-.155,.010,1.020)],[.135,.102,.069,.037,.014],4,'head',2,n=20,steps=3))
  c.ellipse_loop('Cap | fitted cream brim',(0,-.016,.960),.134,.122,.009,5,'head',2,n=36,tube_n=6)
  c.ellipsoid('Cap | one sewn cream pom-pom',(-.155,.010,1.012),(.043,.042,.043),5,'head',2,n=20,r=10)
  c.contact('Cap | single floppy navy striped nightcap','Cap | one sewn cream pom-pom')
@@ -120,7 +139,7 @@ def animate(arm,clip,t):
   q=c.bell(t,.24,.3);c.pose(p['body'],rot=(-.07*q,.04*q,0));c.pose(p['head'],rot=(-.13*q,.06*q,0));c.pose(p['tail_base'],rot=(.12*q,0,0))
  elif clip=='defeat':
   s=c.smooth((t-.18)/.62);yawn=c.bell(t,.68,.30)*.85+.28*c.smooth((t-.82)/.18)
-  c.pose(p['body'],loc=(0,0,-.093*s),scale=(1+.11*s,1+.06*s,1-.18*s));c.pose(p['head'],rot=(-.16*yawn,.06*s,0),scale=(1,1,1/(1-.18*s)))
+  c.pose(p['body'],loc=(0,0,-.28*s),scale=(1+.11*s,1+.06*s,1-.18*s));c.pose(p['head'],rot=(-.16*yawn,.06*s,0),scale=(1,1,1/(1-.18*s)))
   for sx,label in [(-1,'L'),(1,'R')]:c.pose(p['foot_'+label],rot=(.72*s,0,0),loc=(sx*.045*s,.074*s,.020*s))
   c.pose(p['hand_L'],loc=(.030*s,.017*s,-.028*s));c.pose(p['hand_R'],loc=(-.117*s,.175*s,.160*s))
   c.pose(p['jaw'],scale=(1-.23*yawn,1,1+.47*yawn));c.pose(p['tail_base'],rot=(-.06*s,0,.21*s));c.pose(p['tail_mid'],rot=(.20*s,0,0))

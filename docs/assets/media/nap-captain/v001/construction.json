@@ -1,0 +1,800 @@
+{
+  "asset_id": "nap-captain",
+  "version": "v001",
+  "work_order": "WO-032",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "blender": "4.5.13 LTS",
+  "reference": "CatNap / Smiling Critters original plush mascot; one left-arm yellow pillow, navy cap and forehead mask.",
+  "private_inputs": false,
+  "downloaded_meshes_or_textures": false,
+  "triangles": 13928,
+  "vertices": 7092,
+  "material_count": 4,
+  "joints": [
+    "root",
+    "body",
+    "head",
+    "jaw",
+    "hand_L",
+    "hand_R",
+    "foot_L",
+    "foot_R",
+    "tail_base",
+    "tail_mid",
+    "tail_tip",
+    "brow_L",
+    "brow_R"
+  ],
+  "spec": {
+    "height": 1.05,
+    "floor": 0,
+    "forward": "glTF -Z",
+    "up": "glTF +Y",
+    "heads": 1,
+    "arms": 2,
+    "legs": 2,
+    "tails": 1,
+    "pillows": 1,
+    "neutral_pillow_hand": "character LEFT"
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.5,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 0.9,
+      "contact_fraction": 0.6
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    }
+  ],
+  "source_scale_factor": 0.8973707396470684,
+  "bounds_blender": {
+    "min": [
+      -0.3888876140117645,
+      -0.2808767557144165,
+      0.0
+    ],
+    "max": [
+      0.3480551540851593,
+      0.2291133850812912,
+      1.0499999523162842
+    ]
+  },
+  "named_source_parts": [
+    {
+      "name": "Plush | rounded purple body",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 286,
+      "triangles": 568,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Plush | oval lavender tummy patch",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 260,
+      "triangles": 516,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Leg | L short plush leg",
+      "bone": "foot_L",
+      "atlas_tile": 0,
+      "vertices": 98,
+      "triangles": 192,
+      "groups": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Paw | L broad stable foot",
+      "bone": "foot_L",
+      "atlas_tile": 0,
+      "vertices": 220,
+      "triangles": 436,
+      "groups": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Paw | L sewn toe division -1",
+      "bone": "foot_L",
+      "atlas_tile": 14,
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Paw | L sewn toe division 0",
+      "bone": "foot_L",
+      "atlas_tile": 14,
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Paw | L sewn toe division 1",
+      "bone": "foot_L",
+      "atlas_tile": 14,
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_L"
+      ]
+    },
+    {
+      "name": "Leg | R short plush leg",
+      "bone": "foot_R",
+      "atlas_tile": 0,
+      "vertices": 98,
+      "triangles": 192,
+      "groups": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Paw | R broad stable foot",
+      "bone": "foot_R",
+      "atlas_tile": 0,
+      "vertices": 220,
+      "triangles": 436,
+      "groups": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Paw | R sewn toe division -1",
+      "bone": "foot_R",
+      "atlas_tile": 14,
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Paw | R sewn toe division 0",
+      "bone": "foot_R",
+      "atlas_tile": 14,
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Paw | R sewn toe division 1",
+      "bone": "foot_R",
+      "atlas_tile": 14,
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_R"
+      ]
+    },
+    {
+      "name": "Head | large familiar purple cat plush head",
+      "bone": "head",
+      "atlas_tile": 0,
+      "vertices": 420,
+      "triangles": 836,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Ear | L triangular sewn outer ear",
+      "bone": "head",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Ear | L lavender inner ear",
+      "bone": "head",
+      "atlas_tile": 10,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Muzzle | L lavender cheek",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 198,
+      "triangles": 392,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Ear | R triangular sewn outer ear",
+      "bone": "head",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Ear | R lavender inner ear",
+      "bone": "head",
+      "atlas_tile": 10,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Muzzle | R lavender cheek",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 198,
+      "triangles": 392,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Smile | one broad soft black grin",
+      "bone": "jaw",
+      "atlas_tile": 2,
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "jaw"
+      ]
+    },
+    {
+      "name": "Smile | continuous lavender plush smile rim",
+      "bone": "jaw",
+      "atlas_tile": 1,
+      "vertices": 200,
+      "triangles": 396,
+      "groups": [
+        "jaw"
+      ]
+    },
+    {
+      "name": "Nose | single dark cat nose",
+      "bone": "head",
+      "atlas_tile": 9,
+      "vertices": 144,
+      "triangles": 284,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Muzzle | tiny nose-to-smile stitch",
+      "bone": "head",
+      "atlas_tile": 14,
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L big black plush eye",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 220,
+      "triangles": 436,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L large bright ivory shine",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 126,
+      "triangles": 248,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Brow | L sleepy serious brow",
+      "bone": "brow_L",
+      "atlas_tile": 14,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "brow_L"
+      ]
+    },
+    {
+      "name": "Eye | R big black plush eye",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 220,
+      "triangles": 436,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | R large bright ivory shine",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 126,
+      "triangles": 248,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Brow | R sleepy serious brow",
+      "bone": "brow_R",
+      "atlas_tile": 14,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "brow_R"
+      ]
+    },
+    {
+      "name": "Yawn | small plush tongue",
+      "bone": "jaw",
+      "atlas_tile": 10,
+      "vertices": 144,
+      "triangles": 284,
+      "groups": [
+        "jaw"
+      ]
+    },
+    {
+      "name": "Arm | left attached plush arm",
+      "bone": "weighted",
+      "atlas_tile": 0,
+      "vertices": 140,
+      "triangles": 276,
+      "groups": [
+        "body",
+        "hand_L"
+      ]
+    },
+    {
+      "name": "Arm | right attached plush arm",
+      "bone": "weighted",
+      "atlas_tile": 0,
+      "vertices": 140,
+      "triangles": 276,
+      "groups": [
+        "body",
+        "hand_R"
+      ]
+    },
+    {
+      "name": "Hand | L rounded plush paw",
+      "bone": "hand_L",
+      "atlas_tile": 0,
+      "vertices": 198,
+      "triangles": 392,
+      "groups": [
+        "hand_L"
+      ]
+    },
+    {
+      "name": "Hand | L sewn finger -1",
+      "bone": "hand_L",
+      "atlas_tile": 14,
+      "vertices": 18,
+      "triangles": 32,
+      "groups": [
+        "hand_L"
+      ]
+    },
+    {
+      "name": "Hand | L sewn finger 1",
+      "bone": "hand_L",
+      "atlas_tile": 14,
+      "vertices": 18,
+      "triangles": 32,
+      "groups": [
+        "hand_L"
+      ]
+    },
+    {
+      "name": "Hand | R rounded plush paw",
+      "bone": "hand_R",
+      "atlas_tile": 0,
+      "vertices": 198,
+      "triangles": 392,
+      "groups": [
+        "hand_R"
+      ]
+    },
+    {
+      "name": "Hand | R sewn finger -1",
+      "bone": "hand_R",
+      "atlas_tile": 14,
+      "vertices": 18,
+      "triangles": 32,
+      "groups": [
+        "hand_R"
+      ]
+    },
+    {
+      "name": "Hand | R sewn finger 1",
+      "bone": "hand_R",
+      "atlas_tile": 14,
+      "vertices": 18,
+      "triangles": 32,
+      "groups": [
+        "hand_R"
+      ]
+    },
+    {
+      "name": "Pillow | single yellow quilted cushion",
+      "bone": "hand_L",
+      "atlas_tile": 7,
+      "vertices": 216,
+      "triangles": 428,
+      "groups": [
+        "hand_L"
+      ]
+    },
+    {
+      "name": "Pillow | continuous chunky piped front seam",
+      "bone": "hand_L",
+      "atlas_tile": 12,
+      "vertices": 102,
+      "triangles": 200,
+      "groups": [
+        "hand_L"
+      ]
+    },
+    {
+      "name": "Pillow | sewn end fold",
+      "bone": "hand_L",
+      "atlas_tile": 12,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "hand_L"
+      ]
+    },
+    {
+      "name": "Tail | single continuous long curling plush tail",
+      "bone": "weighted",
+      "atlas_tile": 0,
+      "vertices": 264,
+      "triangles": 524,
+      "groups": [
+        "body",
+        "tail_base",
+        "tail_mid",
+        "tail_tip"
+      ]
+    },
+    {
+      "name": "Tail | sewn root patch",
+      "bone": "body",
+      "atlas_tile": 14,
+      "vertices": 198,
+      "triangles": 392,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Mask | continuous strap around head",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 160,
+      "triangles": 316,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Mask | single turquoise quilted forehead mask",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 132,
+      "triangles": 260,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Mask | rear strap adjuster",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Pendant | continuous brown neck cord",
+      "bone": "body",
+      "atlas_tile": 11,
+      "vertices": 246,
+      "triangles": 488,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Pendant | connected front hanger",
+      "bone": "body",
+      "atlas_tile": 8,
+      "vertices": 24,
+      "triangles": 44,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Pendant | one golden crescent moon",
+      "bone": "body",
+      "atlas_tile": 8,
+      "vertices": 208,
+      "triangles": 412,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Cap | single floppy navy striped nightcap",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 260,
+      "triangles": 516,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Cap | fitted cream brim",
+      "bone": "head",
+      "atlas_tile": 5,
+      "vertices": 222,
+      "triangles": 440,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Cap | one sewn cream pom-pom",
+      "bone": "head",
+      "atlas_tile": 5,
+      "vertices": 220,
+      "triangles": 436,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 00",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 02",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 04",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 05",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 06",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 07",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 08",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 09",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 10",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Back seam | body stitch 11",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 12,
+      "triangles": 20,
+      "groups": [
+        "body"
+      ]
+    }
+  ],
+  "required_contacts": [
+    {
+      "part_a": "Hand | L rounded plush paw",
+      "part_b": "Pillow | single yellow quilted cushion",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Arm | left attached plush arm",
+      "part_b": "Hand | L rounded plush paw",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Arm | right attached plush arm",
+      "part_b": "Hand | R rounded plush paw",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Tail | single continuous long curling plush tail",
+      "part_b": "Plush | rounded purple body",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Mask | continuous strap around head",
+      "part_b": "Mask | single turquoise quilted forehead mask",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Pendant | continuous brown neck cord",
+      "part_b": "Pendant | connected front hanger",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Pendant | connected front hanger",
+      "part_b": "Pendant | one golden crescent moon",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Cap | single floppy navy striped nightcap",
+      "part_b": "Cap | one sewn cream pom-pom",
+      "required": "overlap"
+    }
+  ],
+  "runtime_construction": "Original named softly beveled shapes retained in excluded source collection. Joined runtime skin uses authored rigid and continuous joint weights. Original embedded 1k material atlas.",
+  "files": {
+    "nap-captain.blend": {
+      "bytes": 7634894,
+      "sha256": "dd3d8efcebdda7db6b1381878ec4abdf9a08010c01317822266c07c206a5f7a3"
+    },
+    "nap-captain.glb": {
+      "bytes": 789036,
+      "sha256": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7"
+    },
+    "pigment.png": {
+      "bytes": 665008,
+      "sha256": "94da21fe68603c90f0ae2507cfc78bba7291f5da349b634444fedd819b64914e"
+    }
+  }
+}

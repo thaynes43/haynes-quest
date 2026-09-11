@@ -1,7 +1,7 @@
 # WO032 authoring evidence
 
 - Fresh native Astra max, owner `/root/remix_trio_authoring`, worktree `/home/dev/work/quest-remix-trio`, branch `agent/quest-remix-trio`, base `d167b41`.
-- Current stage: live WO032 lease granted by root after WO028's release. Claimed at `2026-09-11T17:09:10.483651+00:00`; Sir Flush-a-Lot is complete for coordinator intake, including exact source/media/master transfers. Nap Captain is in its initial correction; Diva remains unbuilt.
+- Current stage: **production paused at user direction** while the root discusses roster preferences and production cost. WO032 lease released at `2026-09-11T17:44:32.601411+00:00`. Sir Flush-a-Lot is complete for coordinator intake, Nap Captain retains a first export and unbuilt local correction source, and Diva remains unbuilt. No additional final render batch was started after the pause.
 - Read AGENTS/TEAM, DESIGN002/005/007/011, prior WO027 delivery and tools; viewed all three exact concept images and read their prompts, provenance and root review corrections.
 - Scope is Sir Flush-a-Lot, Nap Captain and The One-Star Diva v001 only. Root concepts and user-facing review records remain root-owned.
 - Fixed contract planned: heights 1.00/1.05/1.65 m including crown/cap/bow. Attack duration/contact/fraction: Flush 1.6/1.0/0.625; Nap 1.5/0.9/0.6; Diva 2.0/1.25/0.625. Final exported measurements must establish these values before delivery.
@@ -18,7 +18,7 @@ The exact export passes Khronos with zero errors/warnings/infos/hints, actual Th
 
 The first duck tests correctly caught clipping. The final defeat compresses the head to fit inside the bowl and removes pitch under the compressed neck, which otherwise multiplies the head's compensated scale into backward crown travel. Neutral geometry is unchanged. A checker coordinate conversion was also corrected to use imported armature space. Earlier exact sources/renders remain in the asset's remote `iterations/` directories. The editable master keeps its normal armature parent; `export_armature_object_remove` gives a valid root skinned node in GLB without validator warnings.
 
-All owned process handles now live in Blender's persistent driver namespace, with a durable status snapshot in `scripts/assets/parody-remix-trio/render-process-completion.json`. The first quick-render handle was recovered from Python's active-process registry, observed exit0, explicitly waited and reaped. Failed exploratory checker exits are recorded, not described as successful final checks. The sole live lease remains held until the complete trio is delivered and all jobs are reaped.
+All 14 owned background process handles were explicitly waited and reaped, with a durable final snapshot in `scripts/assets/parody-remix-trio/render-process-completion.json`. The first quick-render handle was recovered from Python's active-process registry, observed exit0, explicitly waited and reaped. Five exploratory checker failures are recorded, not described as successful final checks. No owned job remains active. The user-directed pause supersedes the earlier instruction to finish all three models.
 
 ## Offline checkpoint
 
@@ -34,3 +34,13 @@ Local Python syntax, Node syntax and whitespace checks pass. Atlas generation us
 - Manifest: same leaf `manifest.json`; completed-asset delivery: `scripts/assets/parody-remix-trio/delivery-manifest-sir-flush-a-lot.json`. Overall WO032 lease correctly remains active while Nap/Diva are authored.
 - Original master: 7,491,469 bytes SHA `228a8ff41533a830d386ff05bb8ba3367039f22ce8580186423bfd97912cfb30`. Internal saved Flush checkpoint: 7,498,845 bytes SHA `ae7dce0836df8c078730236099126c00e14ea15b54d90215383fd6c64f702d6a`. All three retrieved masters live under ignored `.docs-build/remix-trio-masters/sir-flush-a-lot/`; remote artifact URLs and every checksum are in the manifest.
 - No final owner approval, physical Safari, integrated gameplay or deployment is claimed.
+
+## Paused Nap checkpoint and lease release
+
+Nap’s first GLB is **789,036 bytes**, **13,928 triangles**, **four opaque primitives**, **13 joints**, neutral **1.05m**. SHA256 `e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7`. All five clips exist; attack1.5/contact0.9/fraction0.6 matches the planned registry. Khronos, Three and browser checks pass for this first candidate. This is an unfinished candidate: source-weight comparison fails a 0.0000422597 tail normalization difference, root requires clean continuous cap bands, and actual pose images show a paw/arm gap and a hovering seated pose. Passing budget or sampled contact checks do not override those visible defects.
+
+Root selected the purple grin, left pillow, rear strap, curled tail and sewn back, while withholding final cap selection. Actual early front/back/three-quarter and contact/defeat views are retained. The first complete source, GLB, atlas and previews remain remotely in `nap-captain/iterations/first-cap-and-weights/`. `authoring-source.json` freezes the exact first master inputs. The local edits to `nap-captain.py` and `atlas.py` contain a bounded correction but were **not uploaded, built or rendered**: ring-based cap UVs, broad horizontal bands, consistent arm-ring weights, tiny-tail-weight snapping and additional seated drop. The atlas itself has not been regenerated. Only syntax was checked for those edits; `resume-notes.json` records the exact source hashes and remaining verification.
+
+The exact final released live scene is `/workspace/haynes-quest/parody/remix-trio/v001/live-scene-release.blend`, **7,641,662 bytes**, SHA256 `9a84bd4c72e70292512bd605f4da44f6fcccdca290816d230aa0bc053c972afe`. It contains the first Nap scene, retaining known defects. The prior WO028 checkpoint was rehashed unchanged. The final release scene, original Nap master, GLB, immutable source bundle, lease and process record were retrieved and hash-verified in `pause-collection-verification.json`; masters are under ignored `.docs-build/remix-trio-masters/`.
+
+Root received explicit release at the recorded time. No Blender/live call followed it. No Diva scene or media was created. Further production waits for root’s roster instruction and a new exclusive lease; no owner approval or delivery completeness is implied for Nap or Diva.

@@ -1,0 +1,26 @@
+{
+  "asset_id": "nap-captain",
+  "glb_sha256": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7",
+  "views": [
+    {
+      "file": "contact-pose.png",
+      "clip": "attack",
+      "time_s": 0.9
+    },
+    {
+      "file": "contact-followthrough.png",
+      "clip": "attack",
+      "time_s": 1.02
+    },
+    {
+      "file": "defeat-pose.png",
+      "clip": "defeat",
+      "time_s": 2.0
+    },
+    {
+      "file": "defeat-side.png",
+      "clip": "defeat",
+      "time_s": 2.0
+    }
+  ]
+}

@@ -33,7 +33,7 @@ def main():
      d.line((j,0,j+256,256),fill=line,width=2);d.line((j+3,0,j+259,256),fill=hi,width=1)
      d.line((j,0,j-256,256),fill=line,width=2)
    if name=='nap-captain' and tile==4:
-    for y in range(-80,320,76):d.polygon([(0,y),(256,y+55),(256,y+86),(0,y+31)],fill='#e9dfc6')
+    for y in range(-20,256,76):d.rectangle((0,y,255,y+31),fill='#e9dfc6')
    if name=='sir-flush-a-lot' and tile==13:
     # Restrained original glaze flourish tile: broad enough for a small cistern.
     panel=Image.new('RGB',(256,256),'#eee9df');d=ImageDraw.Draw(panel)

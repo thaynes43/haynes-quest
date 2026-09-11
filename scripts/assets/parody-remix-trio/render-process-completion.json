@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-09-11T17:41:08.599571+00:00",
+  "checked_at": "2026-09-11T17:44:32.601411+00:00",
   "all_owned_jobs_exited_and_reaped": true,
   "jobs": [
     {
@@ -100,5 +100,6 @@
       "exit_code": 0,
       "reaped": true
     }
-  ]
+  ],
+  "note": "Exploratory checker failures retained honestly; no active owned processes."
 }
