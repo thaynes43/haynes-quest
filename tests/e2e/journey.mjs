@@ -48,6 +48,7 @@ const browser = await chromium.launch({
     "--disable-dev-shm-usage",
   ],
 });
+let activePage = null;
 let cleanupStarted = false;
 let forcedExitCode = null;
 const forceCleanup = (reason, exitCode) => {
@@ -70,15 +71,52 @@ const overallTimer = setTimeout(
 const errors = [];
 const saveIds = new WeakMap();
 
-async function start(context) {
+async function activateSetupControl(page, locator, inputKind) {
+  if (inputKind === "touch") await locator.tap();
+  else {
+    await locator.focus();
+    await page.keyboard.press("Enter");
+  }
+}
+
+async function start(context, inputKind) {
   const page = await context.newPage();
+  activePage = page;
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto(url);
-  await page.getByRole("button", { name: "Start a journey" }).click();
-  await page.getByRole("button", { name: "Preview memories" }).click();
-  await page.getByRole("button", { name: "Begin your journey" }).click();
+  await activateSetupControl(
+    page,
+    page.getByRole("button", { name: "Start a journey" }),
+    inputKind,
+  );
+  await activateSetupControl(
+    page,
+    page.getByRole("button", { name: "Preview memories" }),
+    inputKind,
+  );
+  await activateSetupControl(
+    page,
+    page.getByRole("button", { name: "Begin your journey" }),
+    inputKind,
+  );
   await page.locator("canvas").waitFor();
   return page;
+}
+
+async function waitForEnabled(page, locator, label, timeout = 12_000) {
+  const deadline = Date.now() + timeout;
+  while (Date.now() < deadline) {
+    if (
+      (await locatorReady(locator)) &&
+      (await locator.isEnabled({ timeout: 0 }))
+    )
+      return;
+    await delay(50);
+  }
+  await page.screenshot({ path: `test-results/${label}-failure.png` });
+  throw new Error(
+    `${label} did not become enabled: ${JSON.stringify(await inspectGame(page))}`,
+  );
 }
 
 async function readSaveEndpoint(page, path) {
@@ -277,11 +315,17 @@ async function touchControls(page, context) {
       await delay(duration);
       await send("touchEnd", []);
     },
-    async moveUntil(direction, predicate, label, timeout = 10_000) {
+    async moveUntil(
+      direction,
+      predicate,
+      label,
+      timeout = 10_000,
+      strength = 1,
+    ) {
       const delta = directions[direction].touch;
       await send("touchStart", [point(1, center.x, center.y)]);
       await send("touchMove", [
-        point(1, center.x + delta.x, center.y + delta.y),
+        point(1, center.x + delta.x * strength, center.y + delta.y * strength),
       ]);
       const deadline = Date.now() + timeout;
       try {
@@ -346,7 +390,11 @@ async function collectEquipment(page, controls, kind, label) {
   assert.ok(startingInspection?.obby, `${label} course unavailable`);
   const startingRecoveries = startingInspection.obby.recoveries;
   for (let step = 0; step < 40; step += 1) {
-    if (await gearButton.isEnabled().catch(() => false)) break;
+    if (
+      (await locatorReady(gearButton)) &&
+      (await gearButton.isEnabled({ timeout: 0 }))
+    )
+      break;
     const inspection = await inspectGame(page);
     assert.ok(inspection, `${label} inspection unavailable`);
     const pickup = inspection.level.pickupPositions.find(
@@ -451,7 +499,9 @@ async function fightEncounter(page, controls, kind, allowJump, label) {
     if (save.adventure.phase === "fallen") {
       retries += 1;
       assert.ok(retries <= 2, `${label} exceeded bounded retries`);
-      await page.getByRole("button", { name: "Try this level again" }).click();
+      await controls.activate(
+        page.getByRole("button", { name: "Try this level again" }),
+      );
       await waitForSave(
         page,
         (candidate) => candidate.adventure.phase === "exploring",
@@ -501,31 +551,45 @@ async function fightEncounter(page, controls, kind, allowJump, label) {
   throw new Error(`${label} combat timed out`);
 }
 
-async function rememberAndAbsorb(page, expectedAge, nextAge, label) {
+async function rememberAndAbsorb(page, controls, expectedAge, nextAge, label) {
   if (
     !(await page
       .getByRole("dialog", { name: "The memories are yours again." })
       .isVisible())
   )
-    await page.getByRole("button", { name: "Reclaim your memories" }).click();
+    await controls.activate(
+      page.getByRole("button", { name: "Reclaim your memories" }),
+    );
   await page
     .getByRole("dialog", { name: "The memories are yours again." })
     .waitFor();
   let save = await getSave(page);
   assert.equal(save.adventure.phase, "memory-released");
   assert.equal(save.ageYears, expectedAge, "boss defeat must not change age");
-  while (
-    (await page.getByRole("button", { name: "Remember this moment" }).count()) >
-    0
-  ) {
+  const memoryIds = [...save.adventure.activeLevel.memoryIds];
+  while (true) {
+    const pendingId = memoryIds.find(
+      (id) =>
+        save.memories.find((memory) => memory.id === id)?.state === "released",
+    );
+    if (!pendingId) break;
+    const memoryIndex = memoryIds.indexOf(pendingId);
+    const remember = page
+      .locator(".victory-memory")
+      .nth(memoryIndex)
+      .getByRole("button", { name: "Remember this moment", exact: true });
+    await waitForEnabled(page, remember, `${label}-remember-${memoryIndex}`);
     const revision = save.revision;
-    await page
-      .getByRole("button", { name: "Remember this moment" })
-      .first()
-      .click();
+    await controls.activate(remember);
     save = await waitForSave(
       page,
-      (candidate) => candidate.revision > revision,
+      (candidate) =>
+        candidate.revision > revision &&
+        candidate.memories.some(
+          (memory) =>
+            memory.id === pendingId &&
+            (memory.state === "revealed" || memory.state === "consumed"),
+        ),
       `${label}-remember`,
     );
     assert.equal(
@@ -542,11 +606,28 @@ async function rememberAndAbsorb(page, expectedAge, nextAge, label) {
     ),
     true,
   );
+  await page.waitForFunction((expectedCount) => {
+    const cards = [...document.querySelectorAll(".victory-memory")];
+    return (
+      cards.length === expectedCount &&
+      cards.every((card) => {
+        const picture = card.querySelector("img");
+        return (
+          picture?.complete &&
+          picture.naturalWidth > 0 &&
+          !card.textContent?.includes("Opening this memory")
+        );
+      })
+    );
+  }, memoryIds.length);
+  await page.screenshot({
+    path: `test-results/${label}-released-memories.png`,
+  });
   const absorb = page.getByRole("button", {
     name: /Absorb memories · Grow to age/,
   });
-  assert.equal(await absorb.isEnabled(), true);
-  await absorb.click();
+  await waitForEnabled(page, absorb, `${label}-absorb`);
+  await controls.activate(absorb);
   return waitForSave(
     page,
     (candidate) => candidate.ageYears === nextAge,
@@ -554,11 +635,11 @@ async function rememberAndAbsorb(page, expectedAge, nextAge, label) {
   );
 }
 
-async function leaveAndResume(page, expected) {
-  await page.getByRole("button", { name: "Save & leave" }).click();
+async function leaveAndResume(page, controls, expected) {
+  await controls.activate(page.getByRole("button", { name: "Save & leave" }));
   await page.locator("canvas").waitFor({ state: "detached" });
   await page.reload();
-  await page.locator(".save-card").first().click();
+  await controls.activate(page.locator(".save-card").first());
   await page.locator("canvas").waitFor();
   const resumed = await getSave(page);
   assert.equal(resumed.id, expected.id);
@@ -633,28 +714,115 @@ async function jumpRunwaySweeper(page, controls, label) {
   const before = await inspectGame(page);
   assert.ok(before?.obby);
   const recoveries = before.obby.recoveries;
+  if (Math.abs(before.status.position.x) > 0.15) {
+    const direction = before.status.position.x > 0 ? "left" : "right";
+    await controls.moveUntil(
+      direction,
+      async () => {
+        const inspection = await inspectGame(page);
+        return (
+          Math.abs(inspection?.status.position.x ?? 10) <= 0.15 ||
+          (inspection?.obby?.recoveries ?? recoveries) > recoveries
+        );
+      },
+      `${label}-center`,
+    );
+  }
+  const centered = await inspectGame(page);
+  assert.ok(centered?.obby);
+  assert.equal(
+    centered.obby.recoveries,
+    recoveries,
+    `${label} recovered while centering in the safe landing area`,
+  );
+  if (centered.status.position.z > -11.45) {
+    await controls.moveUntil(
+      "forward",
+      async () => {
+        const inspection = await inspectGame(page);
+        return (
+          (inspection?.status.position.z ?? 0) <= -11.45 ||
+          (inspection?.obby?.recoveries ?? recoveries) > recoveries
+        );
+      },
+      `${label}-approach`,
+    );
+  }
+  const waitingPosition = await inspectGame(page);
+  assert.ok(waitingPosition?.obby);
+  assert.equal(
+    waitingPosition.obby.recoveries,
+    recoveries,
+    `${label} recovered before the timed jump`,
+  );
+  const ready = await waitForInspection(
+    page,
+    inspectGame,
+    (inspection) => {
+      const sample = inspection.obby?.hazards.find(
+        (candidate) => candidate.id === "runway-sweeper",
+      );
+      if (!sample) return false;
+      if (controls.kind !== "touch")
+        return Math.abs(sample.end.z - sample.start.z) <= 0.12;
+      const phase = ((sample.angle % Math.PI) + Math.PI) % Math.PI;
+      const untilNextHorizontal = Math.PI - phase;
+      return untilNextHorizontal >= 0.69 && untilNextHorizontal <= 0.81;
+    },
+    `${label}-safe-pose`,
+    20_000,
+  );
+  const approachSamples = [];
   await controls.moveUntil(
     "forward",
-    async () => (await inspectGame(page))?.status.position.z <= -11.35,
-    `${label}-approach`,
+    async () => {
+      const inspection = await inspectGame(page);
+      const sample = inspection?.obby?.hazards.find(
+        (candidate) => candidate.id === "runway-sweeper",
+      );
+      if (inspection?.obby && sample && approachSamples.length < 40)
+        approachSamples.push({
+          timeSeconds: inspection.obby.timeSeconds,
+          position: inspection.status.position,
+          angle: sample.angle,
+          recoveries: inspection.obby.recoveries,
+        });
+      return (
+        (inspection?.status.position.z ?? 0) <= -12.25 ||
+        (inspection?.obby?.recoveries ?? recoveries) > recoveries
+      );
+    },
+    `${label}-takeoff`,
   );
   const takeoff = await inspectGame(page);
+  assert.ok(takeoff?.obby);
+  assert.equal(
+    takeoff.obby.recoveries,
+    recoveries,
+    `${label} recovered while moving to the takeoff point: ${JSON.stringify(approachSamples)}`,
+  );
   const hazard = takeoff.obby.hazards.find(
     (candidate) => candidate.id === "runway-sweeper",
   );
   assert.ok(hazard, `${label} runway sweeper sample missing`);
   let latest = takeoff;
   let jumpApex = 0;
+  let tookOff = false;
+  let landed = null;
   await controls.jumpForwardUntil(async () => {
     latest = await inspectGame(page);
     if (!latest?.obby) return false;
     jumpApex = Math.max(jumpApex, latest.status.position.y);
-    return (
-      (latest.status.grounded && latest.status.position.z <= -12.9) ||
-      latest.obby.recoveries > recoveries
-    );
+    if (!latest.status.grounded) tookOff = true;
+    if (
+      tookOff &&
+      latest.status.grounded &&
+      latest.obby.supportId === "second-clearing-island" &&
+      latest.status.position.z < hazard.center.z
+    )
+      landed = latest;
+    return landed !== null || latest.obby.recoveries > recoveries;
   }, `${label}-jump`);
-  const landed = latest;
   assert.ok(landed?.obby);
   assert.ok(jumpApex > 0.2, `${label} never took off`);
   assert.equal(
@@ -662,12 +830,34 @@ async function jumpRunwaySweeper(page, controls, label) {
     recoveries,
     `${label} hit the runway sweeper instead of clearing it`,
   );
+  await controls.moveUntil(
+    "forward",
+    async () => {
+      const inspection = await inspectGame(page);
+      return (
+        (inspection?.status.position.z ?? 0) <= -14.7 ||
+        (inspection?.obby?.recoveries ?? recoveries) > recoveries
+      );
+    },
+    `${label}-safe-exit`,
+    10_000,
+    controls.kind === "touch" ? 0.35 : 1,
+  );
+  const cleared = await inspectGame(page);
+  assert.ok(cleared?.obby);
+  assert.equal(
+    cleared.obby.recoveries,
+    recoveries,
+    `${label} recovered before reaching the safe far side`,
+  );
   return {
+    waitedAtPosition: ready.status.position,
     takeoffPosition: takeoff.status.position,
     hazardAngle: hazard.angle,
     jumpApex,
     landingPosition: landed.status.position,
-    recoveries: landed.obby.recoveries,
+    safeExitPosition: cleared.status.position,
+    recoveries: cleared.obby.recoveries,
   };
 }
 
@@ -713,6 +903,7 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
     `${label}-era-1-guard-tool`,
   );
   mark("first guard tool collected");
+  await page.screenshot({ path: `test-results/${label}-era-1-equipped.png` });
 
   mark("approaching first-era ordinary-a");
   const ordinaryOneA = await fightEncounter(
@@ -723,7 +914,8 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
     `${label}-era-1-ordinary-a`,
   );
   mark("first-era ordinary-a defeated");
-  await leaveAndResume(page, ordinaryOneA.save);
+  await page.screenshot({ path: `test-results/${label}-era-1-fight.png` });
+  await leaveAndResume(page, controls, ordinaryOneA.save);
   mark("first-era checkpoint save resumed");
   mark("approaching first-era ordinary-b");
   const ordinaryOneB = await fightEncounter(
@@ -748,7 +940,7 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
     true,
   );
 
-  await leaveAndResume(page, ordinaryOneB.save);
+  await leaveAndResume(page, controls, ordinaryOneB.save);
   let failMedia = testMediaFailure;
   if (testMediaFailure) {
     await page.route(/\/api\/saves\/[^/]+\/media\//, (route) =>
@@ -766,7 +958,9 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
   assert.equal(bossOne.save.ageYears, 0);
 
   if (testMediaFailure) {
-    await page.getByRole("button", { name: "Reclaim your memories" }).click();
+    await controls.activate(
+      page.getByRole("button", { name: "Reclaim your memories" }),
+    );
     await page
       .getByText("Some artwork couldn’t load.")
       .waitFor({ timeout: 16_000 });
@@ -782,7 +976,9 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
     const victory = page.getByRole("dialog", {
       name: "The memories are yours again.",
     });
-    await victory.getByRole("button", { name: "Retry artwork" }).click();
+    await controls.activate(
+      victory.getByRole("button", { name: "Retry artwork" }),
+    );
     await page
       .getByText("Some artwork couldn’t load.")
       .waitFor({ state: "hidden", timeout: 16_000 });
@@ -790,7 +986,7 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
       name: "Try the picture again",
     });
     for (let index = 0; index < (await pictureRetries.count()); index += 1) {
-      await pictureRetries.nth(index).click();
+      await controls.activate(pictureRetries.nth(index));
     }
     await page
       .locator(".victory-memory img")
@@ -798,12 +994,14 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
       .waitFor({ state: "visible", timeout: 16_000 });
   }
 
-  save = await rememberAndAbsorb(page, 0, 4, `${label}-era-1`);
+  save = await rememberAndAbsorb(page, controls, 0, 4, `${label}-era-1`);
   mark("first memories revealed; age advanced 0 to 4");
   assert.equal(save.completed, false);
   assert.equal(save.adventure.activeLevel.eraYear, 2024);
   assert.equal(save.adventure.completedLevelIds.length, 1);
-  await page.getByRole("button", { name: "Enter the next era" }).click();
+  await controls.activate(
+    page.getByRole("button", { name: "Enter the next era" }),
+  );
   assert.equal(
     await page.getByRole("button", { name: "Jump", exact: true }).isEnabled(),
     true,
@@ -840,6 +1038,7 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
     inspectGame,
     edgeZ: -2.85,
     checkpointId: "first-clearing",
+    landingSupportId: "first-clearing-island",
     label: `${label}-era-2-first-gap`,
   });
   mark("missed jump recovery and first checkpoint jump proved");
@@ -863,6 +1062,7 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
     inspectGame,
     edgeZ: -8.95,
     checkpointId: "second-clearing",
+    landingSupportId: "second-clearing-island",
     label: `${label}-era-2-second-gap`,
   });
   obbyEvidence.runwaySweeper = await jumpRunwaySweeper(
@@ -870,15 +1070,66 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
     controls,
     `${label}-era-2-runway-sweeper`,
   );
+  assert.equal(
+    obbyEvidence.runwaySweeper.recoveries,
+    obbyEvidence.secondGap.recoveries,
+    `${label} recovered between the second gap and runway landing`,
+  );
   mark("second gap and runway sweeper jump proved");
   const ordinaryTwoB = await fightEncounter(
     page,
     controls,
     "ordinary-b",
-    true,
+    false,
     `${label}-era-2-ordinary-b`,
   );
   mark("second-era second ordinary encounter defeated");
+  const afterOrdinaryTwoB = await inspectGame(page);
+  assert.ok(afterOrdinaryTwoB?.obby);
+  console.log(
+    `[journey:${label}] pre-ferry settle ${JSON.stringify({
+      position: afterOrdinaryTwoB.status.position,
+      grounded: afterOrdinaryTwoB.status.grounded,
+      supportId: afterOrdinaryTwoB.obby.supportId,
+      recoveries: afterOrdinaryTwoB.obby.recoveries,
+    })}`,
+  );
+  assert.equal(
+    afterOrdinaryTwoB.obby.recoveries,
+    obbyEvidence.runwaySweeper.recoveries,
+    `${label} took an unplanned local recovery during the second-era fight`,
+  );
+  const settledAfterOrdinaryTwoB = await waitForInspection(
+    page,
+    inspectGame,
+    (inspection) =>
+      inspection.status.grounded ||
+      (inspection.obby?.recoveries ?? 0) >
+        obbyEvidence.runwaySweeper.recoveries,
+    `${label}-era-2-fight-settle`,
+    20_000,
+  );
+  assert.equal(
+    settledAfterOrdinaryTwoB.obby.recoveries,
+    obbyEvidence.runwaySweeper.recoveries,
+    `${label} recovered instead of landing after the second-era fight`,
+  );
+  obbyEvidence.secondFightSettle = {
+    before: {
+      position: afterOrdinaryTwoB.status.position,
+      grounded: afterOrdinaryTwoB.status.grounded,
+      supportId: afterOrdinaryTwoB.obby.supportId,
+    },
+    after: {
+      position: settledAfterOrdinaryTwoB.status.position,
+      grounded: settledAfterOrdinaryTwoB.status.grounded,
+      supportId: settledAfterOrdinaryTwoB.obby.supportId,
+    },
+    recoveries: settledAfterOrdinaryTwoB.obby.recoveries,
+  };
+  await page.screenshot({
+    path: `test-results/${label}-era-2-before-ferry.png`,
+  });
   assert.equal(ordinaryTwoA.usedGuard || ordinaryTwoB.usedGuard, true);
   obbyEvidence.ferry = await rideFerry({
     page,
@@ -887,7 +1138,10 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
     label: `${label}-era-2-ferry`,
   });
   mark("moving ferry ride and boss checkpoint proved");
-  await leaveAndResume(page, ordinaryTwoB.save);
+  await page.screenshot({
+    path: `test-results/${label}-era-2-boss-landing.png`,
+  });
+  await leaveAndResume(page, controls, ordinaryTwoB.save);
   const bossTwo = await fightEncounter(
     page,
     controls,
@@ -897,7 +1151,7 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
   );
   mark("second boss defeated");
   assert.equal(bossTwo.save.ageYears, 4);
-  save = await rememberAndAbsorb(page, 4, 7, `${label}-era-2`);
+  save = await rememberAndAbsorb(page, controls, 4, 7, `${label}-era-2`);
   assert.equal(save.completed, true);
   assert.equal(save.adventure.phase, "complete");
   assert.equal(save.adventure.completedLevelIds.length, 2);
@@ -941,7 +1195,7 @@ try {
       },
       deviceScaleFactor: viewports.keyboard.deviceScaleFactor,
     });
-    const page = await start(desktop);
+    const page = await start(desktop, "keyboard");
     const keyboard = keyboardControls(page);
     const desktopResult = await playJourney(page, keyboard, "keyboard", true);
     assert.equal(desktopResult.save.ageYears, 7);
@@ -961,7 +1215,7 @@ try {
       hasTouch: true,
       deviceScaleFactor: viewports.touch.deviceScaleFactor,
     });
-    const mobile = await start(touchContext);
+    const mobile = await start(touchContext, "touch");
     const touch = await touchControls(mobile, touchContext);
     for (const control of [
       mobile.getByTestId("joystick"),
@@ -1074,7 +1328,14 @@ try {
   );
   console.log(JSON.stringify(evidence, null, 2));
 } catch (error) {
-  if (forcedExitCode === null) throw error;
+  if (forcedExitCode === null) {
+    if (activePage && !activePage.isClosed()) {
+      await activePage
+        .screenshot({ path: `test-results/journey-${mode}-failure.png` })
+        .catch(() => undefined);
+    }
+    throw error;
+  }
 } finally {
   clearTimeout(overallTimer);
   process.off("SIGINT", onInterrupt);

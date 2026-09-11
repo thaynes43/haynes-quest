@@ -139,6 +139,7 @@ export async function crossShortGap({
   inspectGame,
   edgeZ,
   checkpointId,
+  landingSupportId,
   label,
 }) {
   const before = await inspectGame(page);
@@ -151,6 +152,7 @@ export async function crossShortGap({
   );
   const samples = [];
   let jumpApex = 0;
+  let landed = null;
   await controls.jumpForwardUntil(async () => {
     const inspection = await inspectGame(page);
     if (!inspection?.obby) return false;
@@ -161,25 +163,40 @@ export async function crossShortGap({
         grounded: inspection.status.grounded,
         supportId: inspection.obby.supportId,
       });
-    return (
-      inspection.obby.checkpointId === checkpointId ||
-      inspection.obby.recoveries > recoveries
-    );
+    if (
+      inspection.status.grounded &&
+      inspection.obby.supportId === landingSupportId
+    )
+      landed = inspection;
+    return landed !== null || inspection.obby.recoveries > recoveries;
   }, `${label}-jump`);
-  const checkpointed = await inspectGame(page);
-  assert.ok(checkpointed?.obby);
+  const afterJump = await inspectGame(page);
+  assert.ok(afterJump?.obby);
   assert.ok(
     jumpApex > 0.2,
     `${label} never took off: ${JSON.stringify(samples)}`,
   );
   assert.equal(
-    checkpointed.obby.recoveries,
+    afterJump.obby.recoveries,
     recoveries,
     `${label} recovered instead of clearing the gap: ${JSON.stringify(samples)}`,
+  );
+  assert.ok(
+    landed?.obby,
+    `${label} did not land on ${landingSupportId}: ${JSON.stringify(samples)}`,
+  );
+  const checkpointed = await inspectGame(page);
+  assert.ok(checkpointed?.obby);
+  assert.equal(
+    checkpointed.obby.recoveries,
+    recoveries,
+    `${label} recovered while activating ${checkpointId}`,
   );
   assert.equal(checkpointed.obby.checkpointId, checkpointId);
   return {
     checkpointId,
+    checkpointArmedOnLanding: true,
+    landingPosition: landed.status.position,
     position: checkpointed.status.position,
     recoveries: checkpointed.obby.recoveries,
     jumpApex,
@@ -231,20 +248,52 @@ async function waitForCourseProgress({
 export async function rideFerry({ page, controls, inspectGame, label }) {
   const current = await inspectGame(page);
   assert.ok(current?.obby);
-  if (Math.abs(current.status.position.x) > 0.45) {
-    const direction = current.status.position.x > 0 ? "left" : "right";
-    await controls.moveUntil(
-      direction,
-      async () =>
-        Math.abs((await inspectGame(page))?.status.position.x ?? 10) <= 0.45,
-      `${label}-center`,
-    );
-  }
+  const approachRecoveries = current.obby.recoveries;
   await controls.moveUntil(
     "forward",
-    async () => (await inspectGame(page))?.status.position.z <= -15.05,
+    async () => {
+      const inspection = await inspectGame(page);
+      return (
+        (inspection?.status.position.z ?? 0) <= -15.05 ||
+        (inspection?.obby?.recoveries ?? approachRecoveries) >
+          approachRecoveries
+      );
+    },
     `${label}-bank`,
+    10_000,
+    controls.kind === "touch" ? 0.35 : 1,
   );
+  let bank = await inspectGame(page);
+  assert.ok(bank?.obby);
+  assert.equal(
+    bank.obby.recoveries,
+    approachRecoveries,
+    `${label} recovered while reaching the safe ferry bank`,
+  );
+  if (Math.abs(bank.status.position.x) > 0.45) {
+    const direction = bank.status.position.x > 0 ? "left" : "right";
+    await controls.moveUntil(
+      direction,
+      async () => {
+        const inspection = await inspectGame(page);
+        return (
+          Math.abs(inspection?.status.position.x ?? 10) <= 0.45 ||
+          (inspection?.obby?.recoveries ?? approachRecoveries) >
+            approachRecoveries
+        );
+      },
+      `${label}-center`,
+      10_000,
+      controls.kind === "touch" ? 0.5 : 1,
+    );
+    bank = await inspectGame(page);
+    assert.ok(bank?.obby);
+    assert.equal(
+      bank.obby.recoveries,
+      approachRecoveries,
+      `${label} recovered while centering beyond the sweeper`,
+    );
+  }
   const nearDockWait = await waitForCourseProgress({
     page,
     inspectGame,
