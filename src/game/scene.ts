@@ -11,12 +11,13 @@ import type {
 import { disposeTree, modelUrls, SceneAssets } from "./scene-assets";
 import {
   createEncounterStudy,
-  createEquipmentStudy,
   groundRing,
   material,
   palettes,
   shapeMesh,
 } from "./scene-art";
+import { equipmentArtwork } from "./scene-catalog";
+import { TravelerEquipment } from "./traveler-equipment";
 
 type PhotoState = {
   url: string;
@@ -54,8 +55,9 @@ export class GardenScene {
   private world = new THREE.Group();
   private traveler = new THREE.Group();
   private avatarVisual = new THREE.Group();
-  private weapon: THREE.Group | null = null;
-  private shield: THREE.Group | null = null;
+  private equipment: TravelerEquipment | null = null;
+  private avatarRoot: THREE.Group | null = null;
+  private visualTime = 0;
   private guardRing = groundRing(0.67, 0xadcfe2, 0.8);
   private slash: THREE.Mesh;
   private particles: THREE.Points | null = null;
@@ -72,7 +74,6 @@ export class GardenScene {
   private avatarGeneration = 0;
   private disposed = false;
   private cameraPlaced = false;
-  private equipmentIdentity = "";
   private previousAttack = false;
   private attackAt = -10;
 
@@ -290,7 +291,9 @@ export class GardenScene {
       );
       const pickup = new THREE.Group();
       pickup.position.set(placement.position.x, 0, placement.position.z);
-      const display = createEquipmentStudy(placement.kind, data?.tier ?? 1);
+      const display = new THREE.Group();
+      const artwork = equipmentArtwork(placement.kind, data?.tier ?? 1);
+      this.assets.attach(artwork.url, display, valid);
       display.name = "display";
       display.position.y = 0.85;
       pickup.add(display, groundRing(0.53, 0xffd78c));
@@ -379,37 +382,10 @@ export class GardenScene {
       this.stage = save.appearance.stage;
       this.loadTraveler();
     }
-    const identity = `${save.adventure?.equippedId ?? ""}:${save.adventure?.inventory.some((item) => item.kind === "guard-tool")}:${this.stage}`;
-    if (identity !== this.equipmentIdentity) {
-      this.equipmentIdentity = identity;
-      for (const item of [this.weapon, this.shield])
-        if (item) {
-          this.traveler.remove(item);
-          disposeTree(item);
-        }
-      this.weapon = null;
-      this.shield = null;
-      const tool = save.adventure?.inventory.find(
-        (item) => item.id === save.adventure?.equippedId,
-      );
-      const height = this.stage === "infant" ? 0.4 : 0.7;
-      if (tool) {
-        this.weapon = createEquipmentStudy("attack-tool", tool.tier);
-        this.weapon.position.set(-0.34, height, -0.07);
-        this.weapon.scale.setScalar(0.65);
-        this.weapon.rotation.z = -0.2;
-        this.traveler.add(this.weapon);
-      }
-      if (
-        save.adventure?.inventory.some((item) => item.kind === "guard-tool")
-      ) {
-        this.shield = createEquipmentStudy("guard-tool", 1);
-        this.shield.position.set(0.3, height, -0.07);
-        this.shield.rotation.y = -0.6;
-        this.shield.scale.setScalar(0.6);
-        this.traveler.add(this.shield);
-      }
-    }
+    this.equipment?.update(
+      save.adventure?.inventory ?? [],
+      save.adventure?.equippedId ?? null,
+    );
   }
 
   getMediaState(): SceneMediaState {
@@ -453,11 +429,12 @@ export class GardenScene {
   render(
     position: PositionSnapshot,
     facing: number,
-    elapsed: number,
+    _elapsed: number,
     frame?: SceneFrame,
   ): void {
     if (this.disposed) return;
     const dt = frame?.deltaSeconds ?? 0;
+    const elapsed = (this.visualTime += dt);
     this.traveler.position.set(position.x, position.y, position.z);
     this.traveler.rotation.y = facing;
     if (frame?.attacking && !this.previousAttack) this.attackAt = elapsed;
@@ -465,21 +442,19 @@ export class GardenScene {
     const attackTime = elapsed - this.attackAt;
     this.slash.visible = attackTime < 0.28;
     this.slash.rotation.z = -1.3 + attackTime * 12;
-    if (this.weapon)
-      this.weapon.rotation.x =
-        attackTime < 0.4 ? -Math.sin((attackTime / 0.4) * Math.PI) * 1.3 : 0;
+    this.slash.position.y = this.stage === "infant" ? 0.45 : 0.78;
     this.guardRing.visible = frame?.guarding ?? false;
-    if (this.shield) this.shield.rotation.y = frame?.guarding ? 0 : -0.6;
+
     const desiredClip =
       !frame?.grounded && this.clips.has("jump")
         ? "jump"
-        : frame?.attacking
-          ? "interact"
-          : frame?.moving
-            ? "move"
-            : "idle";
+        : frame?.moving
+          ? "move"
+          : "idle";
+    this.equipment?.resetPose();
     this.playClip(desiredClip);
     this.mixer?.update(dt);
+    this.equipment?.pose(attackTime, frame?.guarding ?? false);
     const dimensions = getAvatarProportions(this.stage);
     this.target.set(
       position.x,
@@ -534,8 +509,11 @@ export class GardenScene {
       "resize",
       this.resize,
     );
+    this.equipment?.dispose();
+    this.equipment = null;
     this.mixer?.stopAllAction();
-    this.mixer?.uncacheRoot(this.avatarVisual);
+    if (this.avatarRoot) this.mixer?.uncacheRoot(this.avatarRoot);
+    this.avatarRoot = null;
     disposeTree(this.world);
     disposeTree(this.traveler);
     this.assets.dispose();
@@ -547,8 +525,11 @@ export class GardenScene {
 
   private loadTraveler(): void {
     const generation = ++this.avatarGeneration;
+    this.equipment?.dispose();
+    this.equipment = null;
     this.mixer?.stopAllAction();
-    this.mixer?.uncacheRoot(this.avatarVisual);
+    if (this.avatarRoot) this.mixer?.uncacheRoot(this.avatarRoot);
+    this.avatarRoot = null;
     this.mixer = null;
     this.clips.clear();
     this.currentClip = "";
@@ -561,6 +542,20 @@ export class GardenScene {
       this.avatarVisual,
       () => !this.disposed && generation === this.avatarGeneration,
       (root, clips) => {
+        const required =
+          this.stage === "child"
+            ? ["idle", "move", "interact", "jump"]
+            : ["idle", "move", "interact"];
+        if (required.some((name) => !clips.some((clip) => clip.name === name)))
+          throw new Error("Traveler is missing a required movement clip");
+        const equipment = new TravelerEquipment(
+          root,
+          this.stage,
+          this.assets,
+          () => !this.disposed && generation === this.avatarGeneration,
+        );
+        this.avatarRoot = root;
+        this.equipment = equipment;
         this.mixer = new THREE.AnimationMixer(root);
         for (const clip of clips) {
           const action = this.mixer.clipAction(clip);
@@ -571,6 +566,10 @@ export class GardenScene {
           this.clips.set(clip.name, action);
         }
         this.playClip("idle");
+        this.equipment.update(
+          this.save.adventure?.inventory ?? [],
+          this.save.adventure?.equippedId ?? null,
+        );
       },
     );
   }

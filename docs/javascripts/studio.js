@@ -20,7 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
       play.disabled = !select.options.length;
     };
     select.addEventListener('change', () => { viewer.pause(); viewer.animationName = select.value; viewer.currentTime = 0; play.textContent = 'Play'; });
-    play.addEventListener('click', () => { if (viewer.paused) { viewer.play(); play.textContent = 'Pause'; } else { viewer.pause(); play.textContent = 'Play'; } });
+    play.addEventListener('click', () => {
+      if (viewer.paused) {
+        if (viewer.currentTime >= viewer.duration - 0.01) viewer.currentTime = 0;
+        const once = ['attack', 'hit', 'defeat', 'jump', 'interact'].includes(viewer.animationName);
+        viewer.play({ repetitions: once ? 1 : Infinity });
+        play.textContent = 'Pause';
+      } else {
+        viewer.pause(); play.textContent = 'Play';
+      }
+    });
+    viewer.addEventListener('finished', () => { play.textContent = 'Play'; });
     viewer.addEventListener('load', reset);
     if (viewer.loaded) reset();
   });

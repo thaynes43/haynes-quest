@@ -322,6 +322,12 @@ async function fightEncounter(page, controls, kind, allowJump, label) {
 }
 
 async function rememberAndAbsorb(page, expectedAge, nextAge, label) {
+  if (
+    !(await page
+      .getByRole("dialog", { name: "The memories are yours again." })
+      .isVisible())
+  )
+    await page.getByRole("button", { name: "Reclaim your memories" }).click();
   await page
     .getByRole("dialog", { name: "The memories are yours again." })
     .waitFor();
@@ -444,6 +450,7 @@ async function playJourney(page, controls, label, testMediaFailure = false) {
   assert.equal(bossOne.save.ageYears, 0);
 
   if (testMediaFailure) {
+    await page.getByRole("button", { name: "Reclaim your memories" }).click();
     await page
       .getByText("Some artwork couldn’t load.")
       .waitFor({ timeout: 16_000 });

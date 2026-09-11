@@ -1,8 +1,8 @@
 # WO-016: The Ribbon Fair enemy candidates
 
-- Status: Queued behind the exclusive WO-014 scene lease. Do not dispatch a second scene writer before that author releases it.
+- Status: Active. Root granted the exclusive live scene to native Astra `era_2024_authoring` after WO-014 release at 2026-09-11 14:38:57 UTC. WO-014 retains only its isolated immutable-GLB render processes and artifact packaging.
 - Required author: fresh native `gpt-6-astra`, `max`, `fork_turns: "none"`.
-- Worktree: create an isolated `agent/` worktree from the lead's current integration commit.
+- Worktree: `/home/dev/work/quest-era-2024-models`, branch `agent/quest-era-2024-models`; offline preparation `fb5851d` / `0eeb260`.
 - Own: `scripts/assets/era-2024/`, generated outputs under `docs/assets/media/{loop-dancer,prism-mimic,trendweaver}/v001/` except lead concept/prompt/provenance, and an evidence sibling to this work order. Root owns UI, art direction and review prose.
 - Remote directory: `/workspace/haynes-quest/era-2024/v001`.
 
