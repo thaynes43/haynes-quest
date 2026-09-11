@@ -1,0 +1,10 @@
+{
+  "work_order": "WO-032",
+  "owner": "/root/remix_trio_authoring",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "status": "offline preparation; no lease granted",
+  "remote_root": "/workspace/haynes-quest/parody/remix-trio/v001",
+  "constraint": "WO028 is the sole live scene owner. No Blender MCP, remote endpoint call, transfer or process is authorized until root grants the lease.",
+  "planned_assets": ["sir-flush-a-lot", "nap-captain", "one-star-diva"]
+}

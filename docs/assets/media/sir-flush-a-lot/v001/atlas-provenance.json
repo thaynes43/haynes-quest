@@ -1,0 +1,32 @@
+{
+  "work_order": "WO-032",
+  "asset_id": "sir-flush-a-lot",
+  "method": "Original deterministic swatches with ceramic glaze, short plush fibres, woven/quilt stitches or satin grain authored procedurally; no input or downloaded textures.",
+  "seed": 32001,
+  "size": [
+    1024,
+    1024
+  ],
+  "palette": [
+    "f0ebe1",
+    "e5e7df",
+    "d69a70",
+    "e6aa83",
+    "29201f",
+    "151e21",
+    "fff5dc",
+    "d9a93d",
+    "279da8",
+    "381714",
+    "bd5960",
+    "cee7e5",
+    "78502c",
+    "4d7baa",
+    "a77425",
+    "f5cb69"
+  ],
+  "pillow": "12.3.0",
+  "numpy": "2.5.2",
+  "sha256": "c4be1356c9b819122c9adad41f850e20d99fda2c5fbaeceb75d5d9ea0678503e",
+  "bytes": 395950
+}

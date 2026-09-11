@@ -1,0 +1,32 @@
+{
+  "work_order": "WO-032",
+  "asset_id": "one-star-diva",
+  "method": "Original deterministic swatches with ceramic glaze, short plush fibres, woven/quilt stitches or satin grain authored procedurally; no input or downloaded textures.",
+  "seed": 32003,
+  "size": [
+    1024,
+    1024
+  ],
+  "palette": [
+    "db3586",
+    "ad80c1",
+    "a56b47",
+    "211d20",
+    "d0a344",
+    "f2e8cd",
+    "299da7",
+    "201721",
+    "fff2dc",
+    "6b402b",
+    "b95150",
+    "e44998",
+    "af2968",
+    "a987c2",
+    "b57b54",
+    "eebb59"
+  ],
+  "pillow": "12.3.0",
+  "numpy": "2.5.2",
+  "sha256": "5f923300b850eb0f6ccc051463c7a215a25bbdb8bd253dbc0a88fca78bc90f90",
+  "bytes": 488441
+}
