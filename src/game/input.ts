@@ -203,6 +203,8 @@ export function bindBrowserInput({
         : null;
     if (source?.closest("input, textarea, select, [role=dialog]")) return;
     event.preventDefault();
+    // Recovery and pause clear held inputs; OS repeats must not re-arm them.
+    if (event.repeat) return;
     input.setKey(event.code, true);
   };
   const onKeyUp = (event: KeyboardEvent): void =>

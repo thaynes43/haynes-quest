@@ -111,6 +111,21 @@ describe("game input", () => {
     expect(input.snapshot().moveX).toBe(0);
     expect(input.snapshot().jump).toBe(false);
 
+    fakeWindow.dispatch("keydown", keyEvent("KeyW"));
+    fakeWindow.dispatch("keydown", keyEvent("Space"));
+    expect(input.consumeActions().jump).toBe(true);
+    input.clear();
+    fakeWindow.dispatch("keydown", { ...keyEvent("KeyW"), repeat: true });
+    fakeWindow.dispatch("keydown", { ...keyEvent("Space"), repeat: true });
+    expect(input.snapshot().moveY).toBe(0);
+    expect(input.consumeActions().jump).toBe(false);
+    fakeWindow.dispatch("keyup", keyEvent("KeyW"));
+    fakeWindow.dispatch("keyup", keyEvent("Space"));
+    fakeWindow.dispatch("keydown", keyEvent("KeyW"));
+    fakeWindow.dispatch("keydown", keyEvent("Space"));
+    expect(input.snapshot().moveY).toBe(1);
+    expect(input.consumeActions().jump).toBe(true);
+
     input.set("moveY", 1);
     input.set("interact", true);
     input.set("attack", true);
