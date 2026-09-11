@@ -5,7 +5,8 @@ import type {
 } from "../shared/contracts";
 import { ActionCoordinator, type ActionRequestState } from "./actions";
 import { bossIsActive, EnemySimulation, findAttackTarget } from "./combat";
-import { createControllerState, stepController } from "./controller";
+import { getAvatarProportions, stepController } from "./controller";
+import { createObbyState, sampleObby, stepObby } from "./obby";
 import { bindBrowserInput, GameInputState } from "./input";
 import {
   checkpointForSave,
@@ -110,7 +111,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let level = createLevelLayout(save);
   let retainedActiveLevel = requireAdventure(save).activeLevel;
   let checkpoint = checkpointForSave(save, level);
-  const controller = createControllerState(checkpoint);
+  let controller = createObbyState(checkpoint);
+  controller.grounded = true;
+  let courseTime = 0;
+  let traversalRecoveries = 0;
   const input = new GameInputState();
   const scene = new GardenScene(options.container, level, save) as RuntimeScene;
   const stopBrowserInput = bindBrowserInput({ target: scene.canvas, input });
@@ -261,10 +265,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
   };
 
   const resetController = (nextCheckpoint: PositionSnapshot): void => {
-    controller.position = { ...nextCheckpoint };
-    controller.velocityY = 0;
+    controller = createObbyState(nextCheckpoint);
     controller.grounded = true;
-    controller.facing = 0;
   };
 
   const applySave = (nextSave: SaveView): void => {
@@ -321,8 +323,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
       pendingHit = null;
     }
     level = nextLevel;
-    checkpoint = nextCheckpoint;
+    if (
+      !level.course ||
+      identityChanged ||
+      retried ||
+      nextAdventure.phase === "memory-released"
+    ) {
+      checkpoint = nextCheckpoint;
+    }
     if (identityChanged || retried) {
+      courseTime = 0;
+      traversalRecoveries = 0;
       resetController(checkpoint);
       enemies.reset(level, save);
       scene.rebuildRoute(level, save);
@@ -392,7 +403,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     action.levelId === requireAdventure(save).currentLevelId;
 
   const validStrike = (encounterId: string): boolean => {
-    if (controller.position.y > 0.3) return false;
+    if (controller.recoveryRemaining > 0) return false;
     const encounter = requireAdventure(save).activeLevel?.encounters.find(
       (candidate) => candidate.id === encounterId,
     );
@@ -407,6 +418,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
     ) {
       return false;
     }
+    if (
+      controller.position.y - frame.position.y > 0.3 ||
+      controller.position.y +
+        getAvatarProportions(save.appearance.stage).height <
+        frame.position.y
+    )
+      return false;
     const range = encounter.role === "boss" ? 1.75 : 1.35;
     return horizontalDistance(controller.position, frame.position) <= range;
   };
@@ -525,16 +543,41 @@ export function createGame(options: CreateGameOptions): GameHandle {
         pointerLook.x,
         pointerLook.y,
       );
-      stepController(
-        controller,
-        currentInput,
-        level,
-        deltaSeconds,
-        scene.cameraYaw,
-        save.abilities.includes("jump"),
-        actions.jump,
-      );
-      enemies.resolvePlayerCollision(controller.position, level);
+      if (level.course) {
+        courseTime += deltaSeconds;
+        const dimensions = getAvatarProportions(save.appearance.stage);
+        const traversal = stepObby(controller, currentInput, level.course, {
+          deltaSeconds,
+          timeSeconds: courseTime,
+          cameraYaw: scene.cameraYaw,
+          canJump: save.abilities.includes("jump"),
+          jumpPressed: actions.jump,
+          radius: dimensions.colliderRadius,
+          height: dimensions.height,
+        });
+        if (traversal.checkpointChanged || traversal.recovered) {
+          checkpoint = { ...controller.checkpoint };
+        }
+        if (traversal.recovered) {
+          traversalRecoveries++;
+          input.clear();
+          pendingHit = null;
+          enemies.restartThreatenedAttacks();
+        }
+      } else {
+        stepController(
+          controller,
+          currentInput,
+          level,
+          deltaSeconds,
+          scene.cameraYaw,
+          save.abilities.includes("jump"),
+          actions.jump,
+        );
+      }
+      if (controller.recoveryRemaining <= 0) {
+        enemies.resolvePlayerCollision(controller.position, level);
+      }
       if (actions.interact) {
         const pickupId = nearestPickupId();
         const memoryId = nearestMemoryId();
@@ -567,7 +610,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
         performAction({ type: "guard", levelId: adventure.currentLevelId });
       }
       const contacts = enemies.step(
-        { player: controller.position, deltaSeconds, active: combatActive },
+        {
+          player: controller.position,
+          deltaSeconds,
+          active: combatActive && controller.recoveryRemaining <= 0,
+        },
         save,
       );
       if (!pendingHit && contacts[0] && adventure.currentLevelId) {
@@ -576,7 +623,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
           encounterId: contacts[0],
         };
       }
-      flushPendingHit();
+      if (controller.recoveryRemaining <= 0) flushPendingHit();
     } else {
       enemies.step(
         { player: controller.position, deltaSeconds: 0, active: false },
@@ -595,6 +642,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
       guarding: now < guardActiveUntil,
       enemies: frames,
       currentTarget: target?.id ?? null,
+      obby: level.course ? sampleObby(level.course, courseTime) : undefined,
+      checkpointId: controller.checkpointId,
+      recovering: controller.recoveryRemaining > 0,
     });
     emitStatus();
     animationFrame = windowTarget.requestAnimationFrame(frame);
@@ -658,6 +708,16 @@ export function createGame(options: CreateGameOptions): GameHandle {
         checkpoint: { ...checkpoint },
         level: levelInspection,
         enemies: frames,
+        obby: level.course
+          ? {
+              ...sampleObby(level.course, courseTime),
+              routeId: level.routeId!,
+              checkpointId: controller.checkpointId,
+              supportId: controller.supportId,
+              recoveryRemaining: controller.recoveryRemaining,
+              recoveries: traversalRecoveries,
+            }
+          : undefined,
         disposed,
       };
     },

@@ -1,0 +1,25 @@
+{
+  "asset_id": "sir-flush-a-lot",
+  "version": "v001",
+  "kind": "parody-construction-concept",
+  "created_date": "2026-09-11",
+  "tool": "built-in image_gen",
+  "generation_model_id": null,
+  "seed": null,
+  "reference_target": "Skibidi Toilet (original human-head-in-toilet silhouette)",
+  "private_references_used": false,
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2004993,
+      "sha256": "11de6c89c08ea5be66833f2c60669926cea29e77346fa53ab3b71749967793eb"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 2811,
+      "sha256": "f643ee509e3786028a9cde5d8ca707cf0891dafd33c1ba151080c8918bc44397"
+    }
+  ],
+  "lead_review": "Selected recognizable head-in-toilet silhouette and opera-singer gag. Final modeled total height includes crown despite approximate drawn dimension. One head, lid hinge and stable closed plinth must survive export. Sheet typography is not a game logo approval.",
+  "owner_review": "pending"
+}

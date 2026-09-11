@@ -21,17 +21,17 @@ export function createObbyCourse(routeId: ObbyRouteId): ObbyCourse {
     {
       id: "first-clearing",
       position: { x: 0, y: 0, z: -4.8 },
-      triggerRadius: 1.25,
+      triggerRadius: 0.65,
     },
     {
       id: "second-clearing",
       position: { x: 0, y: 0, z: -10.6 },
-      triggerRadius: 1.1,
+      triggerRadius: 0.55,
     },
     {
       id: "boss-landing",
       position: { x: 0, y: 0, z: -19 },
-      triggerRadius: 1.25,
+      triggerRadius: 0.65,
     },
   ];
   if (routeId === "gentle-intro-v1") {
