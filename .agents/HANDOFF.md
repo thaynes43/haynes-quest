@@ -1,6 +1,6 @@
 # Current handoff
 
-- **Updated:** September 11, 2026 at 18:23 UTC. PLAN-005 remains active and unaccepted; PLAN-004 is historical/completed.
+- **Updated:** September 11, 2026 at 18:41 UTC. PLAN-005 remains active and unaccepted; PLAN-004 is historical/completed.
 - **Root:** `/home/dev/work/quest-parody-obby`, branch `agent/quest-parody-obby`, now includes main `0ef6214` (checked future-backlog PR29). Earlier implementation checkpoint `1e3281f` preserves the current design/catalog and owner steering.
 - **Routing:** AGENTS/TEAM govern. Root Astra max owns architecture, UI/copy, art direction, integration and serial imagegen. Ordinary native Sol xhigh. Every Blender task uses fresh native Astra max and one exclusive live-scene lease. Separate Fable 5.1 xhigh is authorized for coding/review.
 - **Limits:** OAuth/admission deferred; no dev-env restart. Synthetic fixtures only; no private photos, dates, names or credentials in git/logs/art prompts. Exact owner asset review precedes private gameplay promotion. Ordinary checked code/docs PRs must be squash-merged autonomously. Audio remains silent/unmapped; auditions have not been listened to.
@@ -88,9 +88,13 @@ PLAN-004 nine models/four audio and its evidence remain. Keepsake concept v002 f
 
 ## Next work
 
+**Current frozen browser build:** `index-CDDBh9ai.js`, 999,034 bytes, SHA `43c348ae44b72dff1f860a1b754d0edffc53e899b5d6e0b561fa7b014f07e487`, served on4391. Root `6070cc1` fixes a real child-playability problem: a successful natural jump could land past a narrow checkpoint strip; jump-course checkpoints now arm anywhere on their destination supporting island. Marker/reset positions and intro strips are unchanged. Regression source `2413c57`, root `30f2b02`, proves the exact second-gap trajectory, no premature airborne/preceding-shore activation and safe recovery. WO040 is rerunning actual keyboard then touch against this build. No full journey has passed yet.
+
+WO040 also fixed two harness defects: absent Take gear queries waited30s per step, and the remember loop raced server progress against a disappearing UI button. Before the checkpoint fix, actual keyboard completed first-era equipment, safe/failed hazard traversal, all fights and boss, media failure/retry, decoded pictures and growth0→4, then both gaps; checkpoint overshoot stopped acceptance. Screens remain synthetic in its worktree. Its final harness/source/evidence are not yet intaken.
+
 Finish WO037 first. Current native Sol lanes: WO038 in `/home/dev/work/quest-playtest-artifacts` owns actual four-model contract and combined catalog audit; WO039 in `/home/dev/work/quest-playtest-catalog` owns archived catalog parsing/planning and regressions; WO040 in `/home/dev/work/quest-playtest-controls` owns actual keyboard/touch route proof after root build freeze. Root owns integration, client copy, final visuals, required checks, application merge and exact release preparation.
 
-The studio `site/` is frozen for WO038's four-model browser audit on4392. After release and WO039 intake, root must run combined checks/build/docs and restart only owned `main:quest-parody-fixture` on4391 to load new server imports. Then freeze4391 for full WO040 keyboard and emulated touch, including both bosses/photos/growth0→4→7, gaps/ferry, recovery and save/resume. No full route pass exists yet. Do not confuse focused input tests or historical partial evidence with completion.
+WO038 four-model audit is complete and intaken (`5c55740`), as is actual artifact contract (`0112543`) and default-four audit selection (`87d67ac`). WO039 archive parsing/planning/regressions are intaken (`a6e4142`, `f37b81a`). Root server4391 was restarted at18:21 with v2 catalog and is healthy; latest checkpoint client/site rebuilt at18:38. Dist/client and site are currently frozen for WO040. Root/source docs may change, but do not rebuild or restart its fixture until it releases the freeze.
 
 Rewrite PR28 around the final two-chapter playtest; push and inspect all required CI, squash-merge ordinary application changes, verify immutable image publication, and finish the concrete operations PR. Exact candidate artwork remains pending owner review before normal private promotion. Expanded setup, next enemy design and lifetime backlog follow the first playtest. No dev-env restart.
 
