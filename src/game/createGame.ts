@@ -139,6 +139,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
     requestError: null,
     requestErrorCode: null,
   };
+  const suspendWorldClock = (): void => {
+    worldWasActive = false;
+    lastTime = windowTarget.performance.now();
+  };
+  options.container.ownerDocument.addEventListener(
+    "visibilitychange",
+    suspendWorldClock,
+  );
 
   const mediaState = (): SceneMediaState =>
     scene.getMediaState?.() ?? { loading: 0, failed: 0 };
@@ -418,9 +426,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       (adventure.phase === "exploring" ||
         adventure.phase === "memory-released");
     const combatActive = worldActive && adventure.phase === "exploring";
-    const resumedAfterGap = rawDeltaSeconds > 0.25;
-    const deltaSeconds =
-      worldActive && worldWasActive && !resumedAfterGap ? wallDeltaSeconds : 0;
+    const deltaSeconds = worldActive && worldWasActive ? wallDeltaSeconds : 0;
     worldWasActive = worldActive;
     if (!worldActive) input.clear();
     const currentInput = input.snapshot();
@@ -573,6 +579,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
       if (disposed) return;
       disposed = true;
       windowTarget.cancelAnimationFrame(animationFrame);
+      options.container.ownerDocument.removeEventListener(
+        "visibilitychange",
+        suspendWorldClock,
+      );
       coordinator.dispose();
       stopBrowserInput();
       input.clear();

@@ -265,10 +265,6 @@ describe("era game runtime", () => {
     const afterResume = game.inspect().enemies;
     expect(afterResume).not.toEqual(before);
 
-    now += 5_000;
-    nextFrame?.(now);
-    expect(game.inspect().enemies).toEqual(afterResume);
-
     Object.defineProperty(document, "visibilityState", {
       configurable: true,
       value: "hidden",
