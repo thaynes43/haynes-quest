@@ -606,7 +606,8 @@ export function createJourneyDriver({
     const modalLeave = page
       .getByRole("dialog")
       .getByRole("button", { name: "Save & leave" });
-    const leave = (await locatorReady(modalLeave))
+    const startedInModal = await locatorReady(modalLeave);
+    const leave = startedInModal
       ? modalLeave
       : page.getByRole("button", { name: "Save & leave" }).first();
     await controls.activate(leave);
@@ -614,7 +615,7 @@ export function createJourneyDriver({
     await canvas
       .waitFor({ state: "detached", timeout: 1_000 })
       .catch(async (error) => {
-        if (!(await locatorReady(modalLeave))) throw error;
+        if (startedInModal || !(await locatorReady(modalLeave))) throw error;
         await controls.activate(modalLeave);
       });
     await canvas.waitFor({ state: "detached" });
