@@ -1,0 +1,120 @@
+{
+  "asset_id": "drama-dragon",
+  "version": "v001",
+  "glb": "drama-dragon.glb",
+  "glb_sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933",
+  "runtime_scale": 1,
+  "units": "meters",
+  "up": "+Y",
+  "forward": "-Z",
+  "origin": [
+    0,
+    0,
+    0
+  ],
+  "ground_to_top_m": 1.8,
+  "rest_ground_y_m": 0,
+  "root_motion": "Caller-controlled scene root and root joint remain fixed; articulated in-place clips.",
+  "attack_contact_time_s": 1.25,
+  "attack_contact_fraction": 0.625,
+  "clips": {
+    "idle": {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "repeat"
+    },
+    "move": {
+      "name": "move",
+      "duration_s": 1.6,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "repeat"
+    },
+    "attack": {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "playback": "once"
+    },
+    "hit": {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "once"
+    },
+    "defeat": {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "once",
+      "end_behavior": "Seated intact; terminal pose holds.",
+      "remove_only_after_duration_s": 2.4,
+      "embedded_fade": false
+    }
+  },
+  "triangles": 11960,
+  "materials": 3,
+  "draw_primitives": 3,
+  "joints": [
+    "root",
+    "body",
+    "neck",
+    "head",
+    "jaw",
+    "brow_L",
+    "brow_R",
+    "thigh_front_L",
+    "shin_front_L",
+    "foot_front_L",
+    "thigh_front_R",
+    "shin_front_R",
+    "foot_front_R",
+    "thigh_rear_L",
+    "shin_rear_L",
+    "foot_rear_L",
+    "thigh_rear_R",
+    "shin_rear_R",
+    "foot_rear_R",
+    "wing_L",
+    "wing_R",
+    "tail_00",
+    "tail_01",
+    "tail_02",
+    "tail_03",
+    "tail_04",
+    "tail_05",
+    "tail_06",
+    "tail_07"
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -1.3000000715255737,
+      0,
+      -1.1067246198654175
+    ],
+    "max": [
+      1.3000000715255737,
+      1.7999999523162842,
+      1.893275499343872
+    ]
+  },
+  "texture": "One original embedded 1024px JPEG atlas; no external decoder, images or network resources.",
+  "rest_wingspan_m": 2.6,
+  "rest_nose_to_tail_m": 3.0,
+  "ordinary_idle_wings": "Folded from the dimensioned authored rest; measured animated bounds remain in three-inspection.json."
+}

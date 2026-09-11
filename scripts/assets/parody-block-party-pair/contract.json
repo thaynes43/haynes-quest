@@ -1,0 +1,42 @@
+{
+  "work_order": "WO-028",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "initial_mode": "offline preparation; explicit root lease required before service access",
+  "remote_root": "/workspace/haynes-quest/parody/block-party-pair/v001",
+  "units": "meters",
+  "export_up": "+Y",
+  "export_forward": "-Z",
+  "root_scale": [1, 1, 1],
+  "feet_y": 0,
+  "triangle_ceiling": 15000,
+  "glb_byte_ceiling": 2097152,
+  "opaque_material_primitive_ceiling": 6,
+  "atlas_dimensions": [1024, 1024],
+  "animation_fps": 40,
+  "preview_fps": 20,
+  "assets": {
+    "peel-patrol": {
+      "concept_sha256": "4ce40a6669cec9ad87e249c877c7c73cf8633369bd0ae30ee3ffcdadc6f60be5",
+      "height_m": 1.15,
+      "anatomy": {"arms": 2, "legs": 2, "fingers_per_hand": 4, "whistles": 1, "left_belt_trailing_peels": 1},
+      "clips": {"idle": 2.5, "move": 1.2, "attack": 1.6, "hit": 0.6, "defeat": 2.0},
+      "attack_contact_s": 1.0,
+      "attack_contact_fraction": 0.625,
+      "loop_clips": ["idle", "move"],
+      "once_clamped_clips": ["attack", "hit", "defeat"]
+    },
+    "drama-dragon": {
+      "concept_sha256": "d4983359fa757c7a5aa647117ece7d29553061dd38386ba03fb23ab6749af7c8",
+      "height_m": 1.8,
+      "rest_wingspan_m": 2.6,
+      "rest_nose_to_tail_m": 3.0,
+      "anatomy": {"legs": 4, "wings": 2, "tails": 1, "crown_points": 3, "ruff_back_clasps": 1},
+      "clips": {"idle": 3.0, "move": 1.6, "attack": 2.0, "hit": 0.7, "defeat": 2.4},
+      "attack_contact_s": 1.25,
+      "attack_contact_fraction": 0.625,
+      "loop_clips": ["idle", "move"],
+      "once_clamped_clips": ["attack", "hit", "defeat"]
+    }
+  }
+}

@@ -1,0 +1,587 @@
+{
+  "work_order": "WO-028",
+  "artifact_files": [
+    {
+      "path": "scripts/assets/parody-block-party-pair/masters/peel-patrol/peel-patrol.blend",
+      "bytes": 9172051,
+      "sha256": "d9dacbbee93b4b660e64ed351092731016a184fc38a64eb45b73dabe76628e5e",
+      "transfer_verified": true
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/masters/peel-patrol/peel-patrol-export-review.blend",
+      "bytes": 3965412,
+      "sha256": "157836f2b755b23e90913f4592b2955b662f7e12279de905842c0e51fe89e283",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/peel-patrol.glb",
+      "bytes": 652424,
+      "sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/pigment.png",
+      "bytes": 645627,
+      "sha256": "9d81346b3c208ff30de2bfd29637d9fa1f27ebecf02ab34c8495d5223809bca0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/atlas-source.json",
+      "bytes": 580,
+      "sha256": "b8e81aaa550a1b32ac5d452af5bf094ad34a493b9613fbf7cdc498dea4725d2a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/source-build.json",
+      "bytes": 47706,
+      "sha256": "4dc0bb57671a93256a276d9136241b559b79f09f6b8156cf6d8609567e7af82f",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/front.png",
+      "bytes": 773180,
+      "sha256": "4715eb760747c49e982616d5cd6fab4c4748d190427e5ad3d638e5fa02a2c5f3",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/side.png",
+      "bytes": 726610,
+      "sha256": "2c596cf7b175e2633ebd6696ff41a68b5485eb255a016bb8a64838fe9d700fb8",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/back.png",
+      "bytes": 737368,
+      "sha256": "194bb829c93207ebb0970b23bdb61473ecc22ac54cb3cb8e9ac642f87fc7dbf9",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/beauty.png",
+      "bytes": 831893,
+      "sha256": "87d45146116bc08da9fad907258e0e8bef0546eacf29f5f362d3b4a5ba5b2027",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/motion-grid.png",
+      "bytes": 590673,
+      "sha256": "ea67e69ac460f33ee6c0ce6e7b0c4e818e4084553d12d3e166bef049c7757994",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/animations.mp4",
+      "bytes": 166568,
+      "sha256": "f62af53bc6fc570e074f70e139e885a96a3b3b1ef1f75ef27c7a223e82cb09bb",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/turntable.mp4",
+      "bytes": 111634,
+      "sha256": "9bce7424b4b9330720271694849cf8421c20cbe7c210f1d80637e450b181eabf",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/idle.mp4",
+      "bytes": 32146,
+      "sha256": "95e61337e4a758250fce3e21c4b2c2fee03735afae153ecb5b8b1da3f569c23a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/move.mp4",
+      "bytes": 29989,
+      "sha256": "79ad09845fdbc1cf0674d04d365ae4e53165e2edac1d3adec118640c5ed530a2",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/attack.mp4",
+      "bytes": 41130,
+      "sha256": "2335db4ce489ab891cfcfd2e6e57dd4e51b41ea87008cbddd9fbe7371876d98b",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/hit.mp4",
+      "bytes": 17375,
+      "sha256": "cf06cfb9890ec2c8a935886d2a78cfd81cd1631fab7c1384872716b0df81dd52",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/defeat.mp4",
+      "bytes": 49217,
+      "sha256": "7cec44236686dd7cc255b35bd24c8a04815df56bda978ccb2097feb0c3e92f59",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/browser-beauty.png",
+      "bytes": 82948,
+      "sha256": "06e7479ce09a70418977045ed1d6e1cfd598683eb56d4556822eba8cdf99b201",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/browser-attack.png",
+      "bytes": 83594,
+      "sha256": "1afa3f84a6bce7b76e8478fb4cd98b72fd2e20ee5f4fa6417ab1f3a4c06de707",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/quick.png",
+      "bytes": 534173,
+      "sha256": "4600f9e497da7fec9dbefc0cd9cbd2d35b8a326d2a09ec088eaf02a775a9de09",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/checkpoint-front.png",
+      "bytes": 500587,
+      "sha256": "1c517a05de6047fd99f4aceabf32c5ab14e2cfb14d68e5235cb7bc5cbd078f9c",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/checkpoint-back.png",
+      "bytes": 473198,
+      "sha256": "e512b2533779f58025bfa3310a621115ebe3ba35786ff67f71f6f9fa791aae0c",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/checkpoint-complete.json",
+      "bytes": 116,
+      "sha256": "16fd1b0c8049fb01023e6ec744e75d2ca75c7e3ade6553bb06d5b5c79f388026",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/construction.json",
+      "bytes": 34695,
+      "sha256": "7e8ce9607c22ec769a12ec94d889b011d43fe6d75e1cedd85ca33787172f31fa",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/construction-survival.json",
+      "bytes": 16049,
+      "sha256": "1c4e6b2a795fecd61c8c7558ea62b942ff6f30387cd37ebd05234026bb800a99",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/validation.json",
+      "bytes": 3695,
+      "sha256": "fc2b21b7bb0fbbee8e811ff011d773dcc1d7748d0d2b5988da7111e5673983b0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/export-inspection.json",
+      "bytes": 1916,
+      "sha256": "a47d20a8c46d7761087bbf708b832cfeb5cee14c53138589342d5b66783605f0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/three-inspection.json",
+      "bytes": 59101,
+      "sha256": "1bb544f9a348879ad5092662443c30acd11c0f0b8d280317c49c082afc6e3f74",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/browser-inspection.json",
+      "bytes": 3897,
+      "sha256": "f4c4fc33e1fec1bda357c66f75103a6d4d10e50b9c7f71e3fb8f91331a6fe123",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/rig-ground-inspection.json",
+      "bytes": 49074,
+      "sha256": "c18290144aef564490b091770ed16cd5e487018e473d20cb54a5edb8937833c2",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/pose-attack.png",
+      "bytes": 530705,
+      "sha256": "280a9047e53fed2ce8a8daf035b82d696e4e7e3b39aabf2f42e53010122429e0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/pose-defeat.png",
+      "bytes": 524955,
+      "sha256": "05e471e44083897d2ed6325065da71fb75d6c8bd974e6856caa3cf3e96518372",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/render-complete.json",
+      "bytes": 223,
+      "sha256": "0b19c844a55d82d8cebc2ee651d811acd855d0511f99ed956083ada20b310ab8",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/runtime.json",
+      "bytes": 2435,
+      "sha256": "ff716c4096039796a3203dffa2fe7651f96df19f182474f21e9e6bb13c8069d0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/lead-checkpoint-review.json",
+      "bytes": 762,
+      "sha256": "7831b8ae4e3e4c9c2ea1d29721e61a3e96fac22611f0a4e6d624cebd970c93e5",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/peel-patrol/v001/manifest.json",
+      "bytes": 65809,
+      "sha256": "350734a909e7043e5093a503a03361cea5030d08b8bfa009f57a636ca28e97b9",
+      "transfer_verified": true
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/snapshots/peel-patrol-build.py",
+      "bytes": 35669,
+      "sha256": "e42e8c561403f2e7d58d58981cb1d81ad1168771f8090c3e96fbf5ade2eb7653",
+      "transfer_verified": true,
+      "transfer_encoding": "source-build.json base64 envelope"
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/masters/drama-dragon/drama-dragon.blend",
+      "bytes": 13530294,
+      "sha256": "59a45076f2cc5ab6f12b135b8272cbd771a25724d9275cfb98f24948f2fd9561",
+      "transfer_verified": true
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/masters/drama-dragon/drama-dragon-export-review.blend",
+      "bytes": 5737075,
+      "sha256": "639a51f4a6f3e42cc834deded5fec31e01903a9c5303e20a3171780140c89090",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/drama-dragon.glb",
+      "bytes": 917980,
+      "sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/pigment.png",
+      "bytes": 654814,
+      "sha256": "ee9cee8bb697fb23cf03b6eb3dcee258f6bf213f031a344d25d053ac6a2927db",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/atlas-source.json",
+      "bytes": 581,
+      "sha256": "148465aaee204e294d08da861a3c90dae339ffdae3299a95bfe5da3dde900e30",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/source-build.json",
+      "bytes": 47986,
+      "sha256": "3ac37bbadc6a6ee194b93d1f3ed4272b1d531551a838eb2ee7434726ac83d0cf",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/front.png",
+      "bytes": 867364,
+      "sha256": "9ac01dc7f5e372a527f442e93480903e56db467f22483db9a570ad54b5e21ccc",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/side.png",
+      "bytes": 840082,
+      "sha256": "0b34e03be633f9809b449c7006bc2f8c987ec797536f0ff7b0fd21b83ce2d96a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/back.png",
+      "bytes": 861300,
+      "sha256": "14f66e2ef0a6da2a7ee98aa0a93b1c3066a0c28b68454e0b7bb6e859a738f8f9",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/beauty.png",
+      "bytes": 937757,
+      "sha256": "a4c8ca350df9156b1a06af4d94f30a4e9abfda66cfde53cb1feb4b90a4a0ae0e",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/motion-grid.png",
+      "bytes": 404494,
+      "sha256": "153bc0db531d5a52c8c51dc6aaeabd82a19101052b6ce556821a295abe19bcf5",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/animations.mp4",
+      "bytes": 254748,
+      "sha256": "4df3010b9f7df05470c7cf50bb21fb37ed6c526bf448e41de11efde895625c77",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/turntable.mp4",
+      "bytes": 198496,
+      "sha256": "075c75d1ac2f30374a49d6b7e94a4630c7aeafcf8c55f9bfc6b904ba4151db64",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/idle.mp4",
+      "bytes": 51005,
+      "sha256": "9e02abc8d090fab239a8352e550096802809b0af4cee9994a811e8f8995c6729",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/move.mp4",
+      "bytes": 48743,
+      "sha256": "5c67d75cd468983a46706c8bd9a78cb72e2245cdaf05c0ea026ec5d8fe1ab89e",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/attack.mp4",
+      "bytes": 69870,
+      "sha256": "f18b8155f4a6352157b8da38c265bb7928780140411b91a84971cf54137719a1",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/hit.mp4",
+      "bytes": 27762,
+      "sha256": "8bb9c6dfefd73d8c4c6fdc2e0aa7364ba4ec66eb50091995e078c3662edf82b6",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/defeat.mp4",
+      "bytes": 60665,
+      "sha256": "da76e1a8fd6caa1a08858504c022f87bb1337072a1e8ae5b77bf0aa6b19090cf",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/browser-beauty.png",
+      "bytes": 70461,
+      "sha256": "5b1d695e73cfcafb7f71aedfd7353a5ae99a20d4bd24a238beba86953d753a2f",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/browser-attack.png",
+      "bytes": 72279,
+      "sha256": "7992bc332c005fc1a271cf6fec131ce2a2e37a47afe918bf89f5b150dcb62358",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/quick.png",
+      "bytes": 631553,
+      "sha256": "baf28a497294d3087a9c6ef9973739ca2fc0140bf4ddfab15ef4b7045e3a9803",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/checkpoint-front.png",
+      "bytes": 585280,
+      "sha256": "24bf9459185e20347b1b2392cd3f8e9dc452c06bf7b2d647f34653064021b10e",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/checkpoint-back.png",
+      "bytes": 580496,
+      "sha256": "77c12f6de9d36cd08d85e45140d4f1d4810ee02df4f977e72aa51b44c056cded",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/checkpoint-complete.json",
+      "bytes": 116,
+      "sha256": "40ff3deea85fa2c28a118a6abb1dcd9a00902ce6de51590f2088096f996c678b",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/construction.json",
+      "bytes": 51529,
+      "sha256": "176277693d07321bc825ffa8ea7cc8f38ae36d6825ea42825d4dd8fe3c9b242f",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/construction-survival.json",
+      "bytes": 23860,
+      "sha256": "177f22d6493b4889745e1af4c7604a40510d7629cd570ca2a53ecb2bb4868c24",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/validation.json",
+      "bytes": 3719,
+      "sha256": "cda290e1735c23b35ca94609605db4483c916e80bb0a2751b8378d19d220fd97",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/export-inspection.json",
+      "bytes": 1907,
+      "sha256": "0b11dc8cd7febec3cc94e26cf41ddacfcdc776384d0c09e46a3e5e82d872248a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/three-inspection.json",
+      "bytes": 80980,
+      "sha256": "4278d70b06194b232e34da673499d2c55601a85f11d18c86f23ac002da28643d",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/browser-inspection.json",
+      "bytes": 3897,
+      "sha256": "b2fe67abb45ebbd3dc6b2b0710cdeba062f7d8f995e94f0c16bdb713acf8ad42",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/rig-ground-inspection.json",
+      "bytes": 72013,
+      "sha256": "a17850eafdaf8113c093ed2807c764475dedbc6d68cb37e37276c3abf293b7a0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/pose-attack.png",
+      "bytes": 636380,
+      "sha256": "31d1d691a86bd7316073af92eb4c7908db0a83f42c377f83bd7655f9d5bdbf67",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/pose-defeat.png",
+      "bytes": 622431,
+      "sha256": "294359a311ac2cd05cb0855aea1e9e0b880f5c61dda873c2e49160b7166633fa",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/render-complete.json",
+      "bytes": 224,
+      "sha256": "c001639779216cb7c326d02d8aae780cd592f9db7186b320f09e27ca0286d996",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/runtime.json",
+      "bytes": 2777,
+      "sha256": "6e4e4d22caef209cf96639f7f2dad7282e87fb5bcb1975bd302835d5905efbdc",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/lead-checkpoint-review.json",
+      "bytes": 599,
+      "sha256": "26f1066fc499d60c2c4fece8eb0901ea5d5fe45042dcb0f0e93dd73dc02e00da",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/drama-dragon/v001/manifest.json",
+      "bytes": 84422,
+      "sha256": "ac5b4c432518f7f1e9275cc6b9a95f30ab2fe0955c8e055da4cdca1c9ced9281",
+      "transfer_verified": true
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/snapshots/drama-dragon-build.py",
+      "bytes": 35878,
+      "sha256": "f3e70a157e627ebf8bf0d2b5a18df8502f89ec08cd4c9e298f5a0239fe566fdd",
+      "transfer_verified": true,
+      "transfer_encoding": "source-build.json base64 envelope"
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/masters/live-scene-release.blend",
+      "bytes": 13540486,
+      "sha256": "d89132f2ba7526a78b933aca4dea9de248cc7653a710d09e49abd2e5885c7b3c",
+      "transfer_verified": true
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/scene-lease.json",
+      "bytes": 1039,
+      "sha256": "89167a54bac5bf6795c4b3a24d9b7fd1eb72b6475bf3d350a9cb72b03701f204",
+      "transfer_verified": true
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/render-process-completion.json",
+      "bytes": 7396,
+      "sha256": "054d309be773be2862b8e429809ddaeb445ed3768dbbc218bfc7f227310e3f8d",
+      "transfer_verified": true
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/source-bundle.json",
+      "bytes": 144525,
+      "sha256": "54ac55e387bd10537972bd1b558a554af3fef51d3925aab6ffc30cb2c9db5bda",
+      "transfer_verified": true
+    },
+    {
+      "path": "scripts/assets/parody-block-party-pair/delivery-manifest.json",
+      "bytes": 192326,
+      "sha256": "c8718f39d1690941555b6131d4dd650e8eeb4b9b4e28b2664f4b993993efc7c1",
+      "transfer_verified": true
+    }
+  ],
+  "source_files": [
+    {
+      "file": "atlas.py",
+      "bytes": 3828,
+      "sha256": "f159219907f957d5c71f2cfac261c0ef7ca40bf0284bf52cae05fa08fbaf3610",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "build.py",
+      "bytes": 35878,
+      "sha256": "f3e70a157e627ebf8bf0d2b5a18df8502f89ec08cd4c9e298f5a0239fe566fdd",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "collect.py",
+      "bytes": 4036,
+      "sha256": "1a5d728abf0dce87103219143ab8829bc993dae33c48793119c4f264dd7af20b",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "compare-construction.py",
+      "bytes": 8434,
+      "sha256": "5bbfca43b5f2f04b08c23b3d6e598739d4d8ad7faf35be948b7bde0c4900f7e4",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "contract.json",
+      "bytes": 1629,
+      "sha256": "18fc4b6dd5feb2c7d18e5c39724c8c39360bdd37bcc652a72de6cc30282b6197",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "delivery.py",
+      "bytes": 9250,
+      "sha256": "dddfc8b0b0773161e54e31710ff4e4765db474a60712e35c47d8f685f73c7fa0",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "inspect-browser.mjs",
+      "bytes": 8934,
+      "sha256": "86a7f979e39237b24be57a26c9ce8aeee30eb641a341bcd998c4b91b97db8608",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "inspect-ground.mjs",
+      "bytes": 2775,
+      "sha256": "a5922631808a4922c6d164460f8f40774ff8534d8db4c3a836aa2b11e69ed6d9",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "inspect-rig.mjs",
+      "bytes": 5593,
+      "sha256": "80b3a199beec06f289388f39e5591be4df6c05cbc692af93d4044ea4a23c312a",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "inspect-three.mjs",
+      "bytes": 8683,
+      "sha256": "b63c0a4d6c1c6ee794910fb6a7833198db9493067d4b0c8c9f431a6b48500683",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "release.py",
+      "bytes": 2735,
+      "sha256": "57a449bf19bc41ef25c565f3089e99c7f3a367152b93fb4f7903d6a9432b7d69",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "render.py",
+      "bytes": 11225,
+      "sha256": "dc7b214dcc89e38e6e6ef0cf1139019d0dbc7ed0a24a90bc543008cd36efb73d",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "validate.mjs",
+      "bytes": 2909,
+      "sha256": "40277cb4a1b96a0ce18eb61b6980f113c9a426b02142da36f28faed058b45c4b",
+      "roundtrip_verified": true
+    }
+  ],
+  "preserved_root_files": {
+    "peel-patrol": {
+      "concept-provenance.json": "a321a51f869ce0a8872e9242b0bdc5ce3599e46632c1b304db2f0af712a67aa5",
+      "concept.png": "4ce40a6669cec9ad87e249c877c7c73cf8633369bd0ae30ee3ffcdadc6f60be5",
+      "prompt.txt": "a2bfb47edcbac2292c7f67cbffe8e721f484315820604fd30794953515d9486c"
+    },
+    "drama-dragon": {
+      "concept-provenance.json": "f89a5836ea4fe408b63a3ac88f57fbbd2893b838133065482f1637288671e3a9",
+      "concept.png": "d4983359fa757c7a5aa647117ece7d29553061dd38386ba03fb23ab6749af7c8",
+      "prompt.txt": "aaa94467a67adeb9f06501e31328ea33981e0eab104d97cd62e9dacad443314e"
+    }
+  },
+  "all_transfer_hashes_match": true,
+  "master_directory": "/home/dev/work/quest-block-party-pair/scripts/assets/parody-block-party-pair/masters"
+}

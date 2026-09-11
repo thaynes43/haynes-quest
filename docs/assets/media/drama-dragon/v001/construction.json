@@ -1,0 +1,2344 @@
+{
+  "asset_id": "drama-dragon",
+  "version": "v001",
+  "work_order": "WO-028",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "blender": "4.5.13 LTS",
+  "private_inputs": false,
+  "downloaded_meshes_or_textures": false,
+  "triangles": 11960,
+  "vertices": 6200,
+  "material_count": 3,
+  "joints": [
+    "root",
+    "body",
+    "neck",
+    "head",
+    "jaw",
+    "brow_L",
+    "brow_R",
+    "thigh_front_L",
+    "shin_front_L",
+    "foot_front_L",
+    "thigh_front_R",
+    "shin_front_R",
+    "foot_front_R",
+    "thigh_rear_L",
+    "shin_rear_L",
+    "foot_rear_L",
+    "thigh_rear_R",
+    "shin_rear_R",
+    "foot_rear_R",
+    "wing_L",
+    "wing_R",
+    "tail_00",
+    "tail_01",
+    "tail_02",
+    "tail_03",
+    "tail_04",
+    "tail_05",
+    "tail_06",
+    "tail_07"
+  ],
+  "spec": {
+    "height": 1.8,
+    "floor": 0,
+    "forward": "glTF -Z",
+    "up": "glTF +Y",
+    "concept_sha256": "d4983359fa757c7a5aa647117ece7d29553061dd38386ba03fb23ab6749af7c8",
+    "height_m": 1.8,
+    "rest_wingspan_m": 2.6,
+    "rest_nose_to_tail_m": 3.0,
+    "anatomy": {
+      "legs": 4,
+      "wings": 2,
+      "tails": 1,
+      "crown_points": 3,
+      "ruff_back_clasps": 1
+    },
+    "clips": {
+      "idle": 3.0,
+      "move": 1.6,
+      "attack": 2.0,
+      "hit": 0.7,
+      "defeat": 2.4
+    },
+    "attack_contact_s": 1.25,
+    "attack_contact_fraction": 0.625,
+    "loop_clips": [
+      "idle",
+      "move"
+    ],
+    "once_clamped_clips": [
+      "attack",
+      "hit",
+      "defeat"
+    ]
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.6,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    }
+  ],
+  "source_scale_xyz": [
+    0.9219858646392822,
+    0.9308028221130371,
+    0.9777294993400574
+  ],
+  "animation_fps": 40,
+  "bounds_blender": {
+    "min": [
+      -1.3000000715255737,
+      -1.893275499343872,
+      0.0
+    ],
+    "max": [
+      1.3000000715255737,
+      1.1067246198654175,
+      1.7999999523162842
+    ]
+  },
+  "rig_limb_contract": {
+    "leg_front_L": {
+      "rest_points": [
+        [
+          0.21851065754890442,
+          0.214084655046463,
+          0.7196089029312134
+        ],
+        [
+          0.29687944054603577,
+          0.3630130887031555,
+          0.3764258623123169
+        ],
+        [
+          0.29042553901672363,
+          0.3909371793270111,
+          0.11439435184001923
+        ]
+      ],
+      "joints": [
+        "thigh_front_L",
+        "shin_front_L",
+        "foot_front_L"
+      ]
+    },
+    "leg_front_R": {
+      "rest_points": [
+        [
+          -0.21851065754890442,
+          0.214084655046463,
+          0.7196089029312134
+        ],
+        [
+          -0.29687944054603577,
+          0.3630130887031555,
+          0.3764258623123169
+        ],
+        [
+          -0.29042553901672363,
+          0.3909371793270111,
+          0.11439435184001923
+        ]
+      ],
+      "joints": [
+        "thigh_front_R",
+        "shin_front_R",
+        "foot_front_R"
+      ]
+    },
+    "leg_rear_L": {
+      "rest_points": [
+        [
+          0.21851065754890442,
+          -0.3909371793270111,
+          0.6707224249839783
+        ],
+        [
+          0.29687944054603577,
+          -0.4840174615383148,
+          0.3764258623123169
+        ],
+        [
+          0.29042553901672363,
+          -0.4467853307723999,
+          0.11439435184001923
+        ]
+      ],
+      "joints": [
+        "thigh_rear_L",
+        "shin_rear_L",
+        "foot_rear_L"
+      ]
+    },
+    "leg_rear_R": {
+      "rest_points": [
+        [
+          -0.21851065754890442,
+          -0.3909371793270111,
+          0.6707224249839783
+        ],
+        [
+          -0.29687944054603577,
+          -0.4840174615383148,
+          0.3764258623123169
+        ],
+        [
+          -0.29042553901672363,
+          -0.4467853307723999,
+          0.11439435184001923
+        ]
+      ],
+      "joints": [
+        "thigh_rear_R",
+        "shin_rear_R",
+        "foot_rear_R"
+      ]
+    }
+  },
+  "named_source_parts": [
+    {
+      "name": "Torso | angular black voxel chest",
+      "weighting": "body",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.27198582887649536,
+          -0.49332547187805176,
+          0.43997830152511597
+        ],
+        "max": [
+          0.27198582887649536,
+          0.325780987739563,
+          0.9875068068504333
+        ]
+      }
+    },
+    {
+      "name": "Torso | softer belly plate",
+      "weighting": "body",
+      "atlas_tile": 3,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.20744681358337402,
+          0.20710362493991852,
+          0.420423686504364
+        ],
+        "max": [
+          0.20744681358337402,
+          0.23968172073364258,
+          0.7919608950614929
+        ]
+      }
+    },
+    {
+      "name": "Torso | stepped belly tile 0",
+      "weighting": "body",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.18439717590808868,
+          0.23828551173210144,
+          0.4126018285751343
+        ],
+        "max": [
+          0.18439717590808868,
+          0.2550399601459503,
+          0.4966866075992584
+        ]
+      }
+    },
+    {
+      "name": "Torso | stepped belly tile 1",
+      "weighting": "body",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.18439717590808868,
+          0.23828551173210144,
+          0.5103747844696045
+        ],
+        "max": [
+          0.18439717590808868,
+          0.2550399601459503,
+          0.5944595336914062
+        ]
+      }
+    },
+    {
+      "name": "Torso | stepped belly tile 2",
+      "weighting": "body",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.18439717590808868,
+          0.23828551173210144,
+          0.6081477999687195
+        ],
+        "max": [
+          0.18439717590808868,
+          0.2550399601459503,
+          0.6922324895858765
+        ]
+      }
+    },
+    {
+      "name": "Torso | stepped belly tile 3",
+      "weighting": "body",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.18439717590808868,
+          0.23828551173210144,
+          0.7059206962585449
+        ],
+        "max": [
+          0.18439717590808868,
+          0.2550399601459503,
+          0.7900053858757019
+        ]
+      }
+    },
+    {
+      "name": "Neck | connected voxel segment 0",
+      "weighting": "neck",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.1244681105017662,
+          0.10062997043132782,
+          0.7715667486190796
+        ],
+        "max": [
+          0.1244681105017662,
+          0.39269551634788513,
+          1.066564679145813
+        ]
+      }
+    },
+    {
+      "name": "Neck | connected voxel segment 1",
+      "weighting": "neck",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.11294329166412354,
+          0.20382119715213776,
+          0.9406363368034363
+        ],
+        "max": [
+          0.11294329166412354,
+          0.4756648540496826,
+          1.210368275642395
+        ]
+      }
+    },
+    {
+      "name": "Neck | connected voxel segment 2",
+      "weighting": "head",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.10141845792531967,
+          0.2940007150173187,
+          1.1000573635101318
+        ],
+        "max": [
+          0.10141845792531967,
+          0.5437217950820923,
+          1.344266414642334
+        ]
+      }
+    },
+    {
+      "name": "Head | oversized square black head",
+      "weighting": "head",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.2397163212299347,
+          0.4467853605747223,
+          1.2026071548461914
+        ],
+        "max": [
+          0.2397163212299347,
+          0.8935707211494446,
+          1.6034764051437378
+        ]
+      }
+    },
+    {
+      "name": "Head | long rectangular muzzle",
+      "weighting": "head",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.21205675601959229,
+          0.7725663185119629,
+          1.197718620300293
+        ],
+        "max": [
+          0.21205675601959229,
+          1.0983473062515259,
+          1.4128191471099854
+        ]
+      }
+    },
+    {
+      "name": "Jaw | attached blunt lower jaw",
+      "weighting": "jaw",
+      "atlas_tile": 2,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.19592200219631195,
+          0.7492963075637817,
+          1.1669201850891113
+        ],
+        "max": [
+          0.19592200219631195,
+          1.056461215019226,
+          1.2480716705322266
+        ]
+      }
+    },
+    {
+      "name": "Face | purple rectangular eye L",
+      "weighting": "head",
+      "atlas_tile": 10,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.07836880534887314,
+          0.892174482345581,
+          1.3873982429504395
+        ],
+        "max": [
+          0.1982269585132599,
+          0.9098597764968872,
+          1.4851710796356201
+        ]
+      }
+    },
+    {
+      "name": "Face | purple inner eye glow L",
+      "weighting": "head",
+      "atlas_tile": 11,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.096808522939682,
+          0.9098597764968872,
+          1.3986420631408691
+        ],
+        "max": [
+          0.14843972027301788,
+          0.9182369709014893,
+          1.460239052772522
+        ]
+      }
+    },
+    {
+      "name": "Face | expressive block brow L",
+      "weighting": "brow_L",
+      "atlas_tile": 2,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.04693441465497017,
+          0.8814703226089478,
+          1.4838347434997559
+        ],
+        "max": [
+          0.22044147551059723,
+          0.9280104041099548,
+          1.5608149766921997
+        ]
+      }
+    },
+    {
+      "name": "Face | square nostril L",
+      "weighting": "head",
+      "atlas_tile": 12,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.11340425908565521,
+          1.0974165201187134,
+          1.3414448499679565
+        ],
+        "max": [
+          0.15397164225578308,
+          1.1067246198654175,
+          1.3727322816848755
+        ]
+      }
+    },
+    {
+      "name": "Jaw | blunt square tooth L0",
+      "weighting": "jaw",
+      "atlas_tile": 13,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.08343971520662308,
+          1.0164366960525513,
+          1.2241172790527344
+        ],
+        "max": [
+          0.11939717084169388,
+          1.0648385286331177,
+          1.2651820182800293
+        ]
+      }
+    },
+    {
+      "name": "Jaw | blunt square tooth L1",
+      "weighting": "jaw",
+      "atlas_tile": 13,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.14429078996181488,
+          1.0164366960525513,
+          1.2241172790527344
+        ],
+        "max": [
+          0.1802482306957245,
+          1.0648385286331177,
+          1.2651820182800293
+        ]
+      }
+    },
+    {
+      "name": "Horn | attached lower L",
+      "weighting": "head",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.12060269713401794,
+          0.5035958290100098,
+          1.553048849105835
+        ],
+        "max": [
+          0.2389717698097229,
+          0.6087134480476379,
+          1.6900798082351685
+        ]
+      }
+    },
+    {
+      "name": "Horn | blunt upper L",
+      "weighting": "head",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.1502794325351715,
+          0.4905282258987427,
+          1.6457865238189697
+        ],
+        "max": [
+          0.24894042313098907,
+          0.5910646319389343,
+          1.7469348907470703
+        ]
+      }
+    },
+    {
+      "name": "Face | purple rectangular eye R",
+      "weighting": "head",
+      "atlas_tile": 10,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.1982269585132599,
+          0.892174482345581,
+          1.3873982429504395
+        ],
+        "max": [
+          -0.07836880534887314,
+          0.9098597764968872,
+          1.4851710796356201
+        ]
+      }
+    },
+    {
+      "name": "Face | purple inner eye glow R",
+      "weighting": "head",
+      "atlas_tile": 11,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.14843972027301788,
+          0.9098597764968872,
+          1.3986420631408691
+        ],
+        "max": [
+          -0.096808522939682,
+          0.9182369709014893,
+          1.460239052772522
+        ]
+      }
+    },
+    {
+      "name": "Face | expressive block brow R",
+      "weighting": "brow_R",
+      "atlas_tile": 2,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.22044147551059723,
+          0.8814703226089478,
+          1.4838347434997559
+        ],
+        "max": [
+          -0.04693441465497017,
+          0.9280104041099548,
+          1.5608149766921997
+        ]
+      }
+    },
+    {
+      "name": "Face | square nostril R",
+      "weighting": "head",
+      "atlas_tile": 12,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.15397164225578308,
+          1.0974165201187134,
+          1.3414448499679565
+        ],
+        "max": [
+          -0.11340425908565521,
+          1.1067246198654175,
+          1.3727322816848755
+        ]
+      }
+    },
+    {
+      "name": "Jaw | blunt square tooth R0",
+      "weighting": "jaw",
+      "atlas_tile": 13,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.11939717084169388,
+          1.0164366960525513,
+          1.2241172790527344
+        ],
+        "max": [
+          -0.08343971520662308,
+          1.0648385286331177,
+          1.2651820182800293
+        ]
+      }
+    },
+    {
+      "name": "Jaw | blunt square tooth R1",
+      "weighting": "jaw",
+      "atlas_tile": 13,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.1802482306957245,
+          1.0164366960525513,
+          1.2241172790527344
+        ],
+        "max": [
+          -0.14429078996181488,
+          1.0648385286331177,
+          1.2651820182800293
+        ]
+      }
+    },
+    {
+      "name": "Horn | attached lower R",
+      "weighting": "head",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.2389717698097229,
+          0.5035958290100098,
+          1.553048849105835
+        ],
+        "max": [
+          -0.12060269713401794,
+          0.6087134480476379,
+          1.6900798082351685
+        ]
+      }
+    },
+    {
+      "name": "Horn | blunt upper R",
+      "weighting": "head",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.24894042313098907,
+          0.4905282258987427,
+          1.6457865238189697
+        ],
+        "max": [
+          -0.1502794325351715,
+          0.5910646319389343,
+          1.7469348907470703
+        ]
+      }
+    },
+    {
+      "name": "Crown | connected cardboard lower band",
+      "weighting": "head",
+      "atlas_tile": 8,
+      "vertices": 132,
+      "triangles": 260,
+      "bounds": {
+        "min": [
+          -0.09404255449771881,
+          0.587336540222168,
+          1.5966322422027588
+        ],
+        "max": [
+          0.09404255449771881,
+          0.7474346160888672,
+          1.6543183326721191
+        ]
+      }
+    },
+    {
+      "name": "Crown | exactly three cardboard points",
+      "weighting": "head",
+      "atlas_tile": 8,
+      "vertices": 24,
+      "triangles": 44,
+      "bounds": {
+        "min": [
+          -0.09865248948335648,
+          0.7115987539291382,
+          1.6367192268371582
+        ],
+        "max": [
+          0.10049645602703094,
+          0.7292840480804443,
+          1.7999999523162842
+        ]
+      }
+    },
+    {
+      "name": "Crown | embossed cardboard score -0.083",
+      "weighting": "head",
+      "atlas_tile": 9,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.08205673843622208,
+          0.7302148342132568,
+          1.719826102256775
+        ],
+        "max": [
+          -0.07099290937185287,
+          0.7348688244819641,
+          1.7452471256256104
+        ]
+      }
+    },
+    {
+      "name": "Crown | embossed cardboard score 0",
+      "weighting": "head",
+      "atlas_tile": 9,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.0055319154635071754,
+          0.7302148342132568,
+          1.7472025156021118
+        ],
+        "max": [
+          0.0055319154635071754,
+          0.7348688244819641,
+          1.7726235389709473
+        ]
+      }
+    },
+    {
+      "name": "Crown | embossed cardboard score 0.088",
+      "weighting": "head",
+      "atlas_tile": 9,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.07560284435749054,
+          0.7302148342132568,
+          1.7120044231414795
+        ],
+        "max": [
+          0.08666666597127914,
+          0.7348688244819641,
+          1.737425446510315
+        ]
+      }
+    },
+    {
+      "name": "Ruff | continuous plum inner collar",
+      "weighting": "neck",
+      "atlas_tile": 6,
+      "vertices": 132,
+      "triangles": 260,
+      "bounds": {
+        "min": [
+          -0.12815603613853455,
+          0.2150154560804367,
+          1.020749568939209
+        ],
+        "max": [
+          0.12815603613853455,
+          0.4551626145839691,
+          1.0979902744293213
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 00",
+      "weighting": "neck",
+      "atlas_tile": 7,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.04932624474167824,
+          0.44042661786079407,
+          0.9842765927314758
+        ],
+        "max": [
+          0.04932624474167824,
+          0.5964877605438232,
+          1.1178418397903442
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 01",
+      "weighting": "neck",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.0137283680960536,
+          0.40616968274116516,
+          0.9822558760643005
+        ],
+        "max": [
+          0.17527873814105988,
+          0.5816112756729126,
+          1.1198625564575195
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 02",
+      "weighting": "neck",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.07467786967754364,
+          0.34671223163604736,
+          0.9835289120674133
+        ],
+        "max": [
+          0.2526920437812805,
+          0.5068340301513672,
+          1.1185895204544067
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 03",
+      "weighting": "neck",
+      "atlas_tile": 7,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.11801417917013168,
+          0.2786867320537567,
+          0.987710177898407
+        ],
+        "max": [
+          0.2600000202655792,
+          0.3914913237094879,
+          1.114408254623413
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 04",
+      "weighting": "neck",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.07467787712812424,
+          0.16334405541419983,
+          0.9835289120674133
+        ],
+        "max": [
+          0.2526920437812805,
+          0.32346582412719727,
+          1.1185895204544067
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 05",
+      "weighting": "neck",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.0137283680960536,
+          0.08856672793626785,
+          0.9822558760643005
+        ],
+        "max": [
+          0.17527873814105988,
+          0.2640083432197571,
+          1.1198625564575195
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 06",
+      "weighting": "neck",
+      "atlas_tile": 7,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.049326252192258835,
+          0.07369031757116318,
+          0.9842765927314758
+        ],
+        "max": [
+          0.049326252192258835,
+          0.22975140810012817,
+          1.1178418397903442
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 07",
+      "weighting": "neck",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.17527873814105988,
+          0.08856672793626785,
+          0.9822558760643005
+        ],
+        "max": [
+          -0.013728371821343899,
+          0.2640083432197571,
+          1.1198625564575195
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 08",
+      "weighting": "neck",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.2526920437812805,
+          0.16334407031536102,
+          0.9835289120674133
+        ],
+        "max": [
+          -0.07467787712812424,
+          0.32346582412719727,
+          1.1185895204544067
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 09",
+      "weighting": "neck",
+      "atlas_tile": 7,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.2600000202655792,
+          0.2786867320537567,
+          0.987710177898407
+        ],
+        "max": [
+          -0.11801417917013168,
+          0.3914912939071655,
+          1.114408254623413
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 10",
+      "weighting": "neck",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.2526920437812805,
+          0.34671223163604736,
+          0.9835289120674133
+        ],
+        "max": [
+          -0.07467787712812424,
+          0.5068339705467224,
+          1.1185895204544067
+        ]
+      }
+    },
+    {
+      "name": "Ruff | broad cloth pleat 11",
+      "weighting": "neck",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.17527873814105988,
+          0.40616968274116516,
+          0.9822558760643005
+        ],
+        "max": [
+          -0.013728361576795578,
+          0.5816112756729126,
+          1.1198625564575195
+        ]
+      }
+    },
+    {
+      "name": "Ruff | secure back brass clasp",
+      "weighting": "neck",
+      "atlas_tile": 8,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.029964540153741837,
+          0.0679486021399498,
+          1.035415530204773
+        ],
+        "max": [
+          0.029964540153741837,
+          0.09959590435028076,
+          1.1058120727539062
+        ]
+      }
+    },
+    {
+      "name": "Ruff | back clasp inset",
+      "weighting": "neck",
+      "atlas_tile": 14,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.01659574545919895,
+          0.05957137793302536,
+          1.0505703687667847
+        ],
+        "max": [
+          0.01659574545919895,
+          0.07074102014303207,
+          1.0906572341918945
+        ]
+      }
+    },
+    {
+      "name": "Leg | front_L thigh block",
+      "weighting": "thigh_front_L",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.10673927515745163,
+          0.10137899219989777,
+          0.3293851613998413
+        ],
+        "max": [
+          0.40865084528923035,
+          0.47571873664855957,
+          0.7666496634483337
+        ]
+      }
+    },
+    {
+      "name": "Leg | front_L square knee",
+      "weighting": "shin_front_L",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.20836880803108215,
+          0.2717944085597992,
+          0.301140695810318
+        ],
+        "max": [
+          0.3853900730609894,
+          0.45423176884651184,
+          0.4517109990119934
+        ]
+      }
+    },
+    {
+      "name": "Leg | front_L shin block",
+      "weighting": "shin_front_L",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.2054426223039627,
+          0.2737969160079956,
+          0.10170524567365646
+        ],
+        "max": [
+          0.3818623423576355,
+          0.48015332221984863,
+          0.38911494612693787
+        ]
+      }
+    },
+    {
+      "name": "Foot | front_L broad dark foot",
+      "weighting": "foot_front_L",
+      "atlas_tile": 2,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.17287234961986542,
+          0.27644842863082886,
+          0.0
+        ],
+        "max": [
+          0.40797874331474304,
+          0.5743053555488586,
+          0.1662140190601349
+        ]
+      }
+    },
+    {
+      "name": "Foot | front_L blunt grey toe 0",
+      "weighting": "foot_front_L",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.18946808576583862,
+          0.5389348268508911,
+          0.0
+        ],
+        "max": [
+          0.25124111771583557,
+          0.6115373969078064,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Foot | front_L blunt grey toe 1",
+      "weighting": "foot_front_L",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.25953900814056396,
+          0.5389348268508911,
+          0.0
+        ],
+        "max": [
+          0.3213120996952057,
+          0.6115373969078064,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Foot | front_L blunt grey toe 2",
+      "weighting": "foot_front_L",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.3296099603176117,
+          0.5389348268508911,
+          0.0
+        ],
+        "max": [
+          0.39138299226760864,
+          0.6115373969078064,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Leg | front_R thigh block",
+      "weighting": "thigh_front_R",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.40865084528923035,
+          0.10137899965047836,
+          0.3293851613998413
+        ],
+        "max": [
+          -0.10673927515745163,
+          0.47571876645088196,
+          0.7666496634483337
+        ]
+      }
+    },
+    {
+      "name": "Leg | front_R square knee",
+      "weighting": "shin_front_R",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.3853900730609894,
+          0.2717944085597992,
+          0.301140695810318
+        ],
+        "max": [
+          -0.20836880803108215,
+          0.45423176884651184,
+          0.4517109990119934
+        ]
+      }
+    },
+    {
+      "name": "Leg | front_R shin block",
+      "weighting": "shin_front_R",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.3818623423576355,
+          0.2737969160079956,
+          0.10170524567365646
+        ],
+        "max": [
+          -0.2054426223039627,
+          0.48015332221984863,
+          0.38911494612693787
+        ]
+      }
+    },
+    {
+      "name": "Foot | front_R broad dark foot",
+      "weighting": "foot_front_R",
+      "atlas_tile": 2,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.40797874331474304,
+          0.27644842863082886,
+          0.0
+        ],
+        "max": [
+          -0.17287234961986542,
+          0.5743053555488586,
+          0.1662140190601349
+        ]
+      }
+    },
+    {
+      "name": "Foot | front_R blunt grey toe 0",
+      "weighting": "foot_front_R",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.39138299226760864,
+          0.5389348268508911,
+          0.0
+        ],
+        "max": [
+          -0.3296099603176117,
+          0.6115373969078064,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Foot | front_R blunt grey toe 1",
+      "weighting": "foot_front_R",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.3213120996952057,
+          0.5389348268508911,
+          0.0
+        ],
+        "max": [
+          -0.25953900814056396,
+          0.6115373969078064,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Foot | front_R blunt grey toe 2",
+      "weighting": "foot_front_R",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.25124111771583557,
+          0.5389348268508911,
+          0.0
+        ],
+        "max": [
+          -0.18946808576583862,
+          0.6115373969078064,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Leg | rear_L thigh block",
+      "weighting": "thigh_rear_L",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.1003655418753624,
+          -0.6034030914306641,
+          0.3352977931499481
+        ],
+        "max": [
+          0.4150245487689972,
+          -0.2715515196323395,
+          0.7118504643440247
+        ]
+      }
+    },
+    {
+      "name": "Leg | rear_L square knee",
+      "weighting": "shin_rear_L",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.20836880803108215,
+          -0.5752361416816711,
+          0.301140695810318
+        ],
+        "max": [
+          0.3853900730609894,
+          -0.3927987813949585,
+          0.4517109990119934
+        ]
+      }
+    },
+    {
+      "name": "Leg | rear_L shin block",
+      "weighting": "shin_rear_L",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.20844155550003052,
+          -0.5700848698616028,
+          0.0991317555308342
+        ],
+        "max": [
+          0.3788634240627289,
+          -0.36071789264678955,
+          0.39168840646743774
+        ]
+      }
+    },
+    {
+      "name": "Foot | rear_L broad dark foot",
+      "weighting": "foot_rear_L",
+      "atlas_tile": 2,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.17287234961986542,
+          -0.5612741112709045,
+          0.0
+        ],
+        "max": [
+          0.40797874331474304,
+          -0.26341718435287476,
+          0.1662140190601349
+        ]
+      }
+    },
+    {
+      "name": "Foot | rear_L blunt grey toe 0",
+      "weighting": "foot_rear_L",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.18946808576583862,
+          -0.2987877130508423,
+          0.0
+        ],
+        "max": [
+          0.25124111771583557,
+          -0.22618508338928223,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Foot | rear_L blunt grey toe 1",
+      "weighting": "foot_rear_L",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.25953900814056396,
+          -0.2987877130508423,
+          0.0
+        ],
+        "max": [
+          0.3213120996952057,
+          -0.22618508338928223,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Foot | rear_L blunt grey toe 2",
+      "weighting": "foot_rear_L",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.3296099603176117,
+          -0.2987877130508423,
+          0.0
+        ],
+        "max": [
+          0.39138299226760864,
+          -0.22618508338928223,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Leg | rear_R thigh block",
+      "weighting": "thigh_rear_R",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.4150245785713196,
+          -0.6034030914306641,
+          0.3352977931499481
+        ],
+        "max": [
+          -0.1003655418753624,
+          -0.2715514898300171,
+          0.7118504643440247
+        ]
+      }
+    },
+    {
+      "name": "Leg | rear_R square knee",
+      "weighting": "shin_rear_R",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.3853900730609894,
+          -0.5752361416816711,
+          0.301140695810318
+        ],
+        "max": [
+          -0.20836880803108215,
+          -0.3927987813949585,
+          0.4517109990119934
+        ]
+      }
+    },
+    {
+      "name": "Leg | rear_R shin block",
+      "weighting": "shin_rear_R",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.3788634240627289,
+          -0.5700848698616028,
+          0.0991317555308342
+        ],
+        "max": [
+          -0.20844155550003052,
+          -0.36071789264678955,
+          0.39168840646743774
+        ]
+      }
+    },
+    {
+      "name": "Foot | rear_R broad dark foot",
+      "weighting": "foot_rear_R",
+      "atlas_tile": 2,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.40797874331474304,
+          -0.5612741112709045,
+          0.0
+        ],
+        "max": [
+          -0.17287234961986542,
+          -0.26341718435287476,
+          0.1662140190601349
+        ]
+      }
+    },
+    {
+      "name": "Foot | rear_R blunt grey toe 0",
+      "weighting": "foot_rear_R",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.39138299226760864,
+          -0.2987877130508423,
+          0.0
+        ],
+        "max": [
+          -0.3296099603176117,
+          -0.22618508338928223,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Foot | rear_R blunt grey toe 1",
+      "weighting": "foot_rear_R",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.3213120996952057,
+          -0.2987877130508423,
+          0.0
+        ],
+        "max": [
+          -0.25953900814056396,
+          -0.22618508338928223,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Foot | rear_R blunt grey toe 2",
+      "weighting": "foot_rear_R",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.25124111771583557,
+          -0.2987877130508423,
+          0.0
+        ],
+        "max": [
+          -0.18946808576583862,
+          -0.22618508338928223,
+          0.11928299814462662
+        ]
+      }
+    },
+    {
+      "name": "Wing | L angular opaque membrane",
+      "weighting": "wing_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28,
+      "bounds": {
+        "min": [
+          0.21666668355464935,
+          -0.4560934007167816,
+          0.5817490816116333
+        ],
+        "max": [
+          1.3000000715255737,
+          -0.06515619903802872,
+          1.4519283771514893
+        ]
+      }
+    },
+    {
+      "name": "Wing | L attached grey strut 0",
+      "weighting": "wing_L",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.19665147364139557,
+          -0.15783032774925232,
+          0.9607176780700684
+        ],
+        "max": [
+          0.6607953906059265,
+          -0.032984256744384766,
+          1.468940258026123
+        ]
+      }
+    },
+    {
+      "name": "Wing | L attached grey strut 1",
+      "weighting": "wing_L",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.6226890683174133,
+          -0.36618688702583313,
+          1.1947953701019287
+        ],
+        "max": [
+          1.248942255973816,
+          -0.08525249361991882,
+          1.47342848777771
+        ]
+      }
+    },
+    {
+      "name": "Wing | L attached grey strut 2",
+      "weighting": "wing_L",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.6182702779769897,
+          -0.339150071144104,
+          0.9079568386077881
+        ],
+        "max": [
+          1.022864580154419,
+          -0.09367325901985168,
+          1.4679259061813354
+        ]
+      }
+    },
+    {
+      "name": "Wing | L attached grey strut 3",
+      "weighting": "wing_L",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.6143853068351746,
+          -0.30574730038642883,
+          0.5719136595726013
+        ],
+        "max": [
+          0.8838417530059814,
+          -0.08984389156103134,
+          1.461763620376587
+        ]
+      }
+    },
+    {
+      "name": "Wing | L attached grey strut 4",
+      "weighting": "wing_L",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.3426935374736786,
+          -0.137630432844162,
+          0.6009522080421448
+        ],
+        "max": [
+          0.6622710824012756,
+          -0.07180019468069077,
+          1.462057113647461
+        ]
+      }
+    },
+    {
+      "name": "Wing | L block elbow joint",
+      "weighting": "wing_L",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.5863829851150513,
+          -0.1568402796983719,
+          1.393264651298523
+        ],
+        "max": [
+          0.6951773762702942,
+          -0.07586043328046799,
+          1.510591983795166
+        ]
+      }
+    },
+    {
+      "name": "Wing | R angular opaque membrane",
+      "weighting": "wing_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28,
+      "bounds": {
+        "min": [
+          -1.3000000715255737,
+          -0.4560934007167816,
+          0.5817490816116333
+        ],
+        "max": [
+          -0.21666668355464935,
+          -0.06515619903802872,
+          1.4519283771514893
+        ]
+      }
+    },
+    {
+      "name": "Wing | R attached grey strut 0",
+      "weighting": "wing_R",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.6607953906059265,
+          -0.15783032774925232,
+          0.9607176780700684
+        ],
+        "max": [
+          -0.19665147364139557,
+          -0.032984256744384766,
+          1.468940258026123
+        ]
+      }
+    },
+    {
+      "name": "Wing | R attached grey strut 1",
+      "weighting": "wing_R",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -1.248942255973816,
+          -0.36618688702583313,
+          1.1947953701019287
+        ],
+        "max": [
+          -0.6226890683174133,
+          -0.08525249361991882,
+          1.47342848777771
+        ]
+      }
+    },
+    {
+      "name": "Wing | R attached grey strut 2",
+      "weighting": "wing_R",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -1.022864580154419,
+          -0.339150071144104,
+          0.9079568386077881
+        ],
+        "max": [
+          -0.6182702779769897,
+          -0.09367325901985168,
+          1.4679259061813354
+        ]
+      }
+    },
+    {
+      "name": "Wing | R attached grey strut 3",
+      "weighting": "wing_R",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.8838417530059814,
+          -0.30574730038642883,
+          0.5719136595726013
+        ],
+        "max": [
+          -0.6143853068351746,
+          -0.08984389156103134,
+          1.461763620376587
+        ]
+      }
+    },
+    {
+      "name": "Wing | R attached grey strut 4",
+      "weighting": "wing_R",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.6622710824012756,
+          -0.137630432844162,
+          0.6009522080421448
+        ],
+        "max": [
+          -0.3426935374736786,
+          -0.07180019468069077,
+          1.462057113647461
+        ]
+      }
+    },
+    {
+      "name": "Wing | R block elbow joint",
+      "weighting": "wing_R",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.6951773762702942,
+          -0.1568402796983719,
+          1.393264651298523
+        ],
+        "max": [
+          -0.5863829851150513,
+          -0.07586043328046799,
+          1.510591983795166
+        ]
+      }
+    },
+    {
+      "name": "Tail | single chain segment 00",
+      "weighting": "tail_00",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.11248227953910828,
+          -0.7102702260017395,
+          0.5012158155441284
+        ],
+        "max": [
+          0.11248227953910828,
+          -0.4253092110157013,
+          0.7649439573287964
+        ]
+      }
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 00",
+      "weighting": "tail_00",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.04836737737059593,
+          -0.6082796454429626,
+          0.7489408254623413
+        ],
+        "max": [
+          0.04836737737059593,
+          -0.5272998213768005,
+          0.8183596134185791
+        ]
+      }
+    },
+    {
+      "name": "Tail | single chain segment 01",
+      "weighting": "tail_01",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.10141844302415848,
+          -0.9194726347923279,
+          0.44632425904273987
+        ],
+        "max": [
+          0.10141844302415848,
+          -0.6535842418670654,
+          0.6829532980918884
+        ]
+      }
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 01",
+      "weighting": "tail_01",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.04360993206501007,
+          -0.8270183205604553,
+          0.668766975402832
+        ],
+        "max": [
+          0.04360993206501007,
+          -0.7460384964942932,
+          0.7381857633590698
+        ]
+      }
+    },
+    {
+      "name": "Tail | single chain segment 02",
+      "weighting": "tail_02",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.09035461395978928,
+          -1.1187642812728882,
+          0.40402957797050476
+        ],
+        "max": [
+          0.09035461395978928,
+          -0.8731536269187927,
+          0.6108536720275879
+        ]
+      }
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 02",
+      "weighting": "tail_02",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.03885248303413391,
+          -1.0364488363265991,
+          0.599837064743042
+        ],
+        "max": [
+          0.03885248303413391,
+          -0.9554690718650818,
+          0.669255793094635
+        ]
+      }
+    },
+    {
+      "name": "Tail | single chain segment 03",
+      "weighting": "tail_03",
+      "atlas_tile": 2,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.07929078489542007,
+          -1.3001989126205444,
+          0.3895055949687958
+        ],
+        "max": [
+          0.07929078489542007,
+          -1.0873104333877563,
+          0.5520479083061218
+        ]
+      }
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 03",
+      "weighting": "tail_03",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.03409503772854805,
+          -1.234244465827942,
+          0.5514394640922546
+        ],
+        "max": [
+          0.03409503772854805,
+          -1.1532647609710693,
+          0.6208582520484924
+        ]
+      }
+    },
+    {
+      "name": "Tail | single chain segment 04",
+      "weighting": "tail_04",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.06822695583105087,
+          -1.4791178703308105,
+          0.39908069372177124
+        ],
+        "max": [
+          0.06822695583105087,
+          -1.280712604522705,
+          0.5356287360191345
+        ]
+      }
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 04",
+      "weighting": "tail_04",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.02933758869767189,
+          -1.4204051494598389,
+          0.5362846255302429
+        ],
+        "max": [
+          0.02933758869767189,
+          -1.3394253253936768,
+          0.6057034134864807
+        ]
+      }
+    },
+    {
+      "name": "Tail | single chain segment 05",
+      "weighting": "tail_05",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.05716312304139137,
+          -1.6492516994476318,
+          0.42777082324028015
+        ],
+        "max": [
+          0.05716312304139137,
+          -1.4521832466125488,
+          0.5832014083862305
+        ]
+      }
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 05",
+      "weighting": "tail_05",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.02458014339208603,
+          -1.5912073850631714,
+          0.5626832842826843
+        ],
+        "max": [
+          0.02458014339208603,
+          -1.5102276802062988,
+          0.6321020722389221
+        ]
+      }
+    },
+    {
+      "name": "Tail | single chain segment 06",
+      "weighting": "tail_06",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.04609929397702217,
+          -1.7843679189682007,
+          0.5018290877342224
+        ],
+        "max": [
+          0.04609929397702217,
+          -1.6074776649475098,
+          0.6636244058609009
+        ]
+      }
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 06",
+      "weighting": "tail_06",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.01982269622385502,
+          -1.7364126443862915,
+          0.6281911730766296
+        ],
+        "max": [
+          0.01982269622385502,
+          -1.655432939529419,
+          0.6976099610328674
+        ]
+      }
+    },
+    {
+      "name": "Tail | single chain segment 07",
+      "weighting": "tail_07",
+      "atlas_tile": 2,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.03503546118736267,
+          -1.893275499343872,
+          0.6057798862457275
+        ],
+        "max": [
+          0.03503546118736267,
+          -1.7405786514282227,
+          0.757175087928772
+        ]
+      }
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 07",
+      "weighting": "tail_07",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.015065249986946583,
+          -1.8574169874191284,
+          0.7152091860771179
+        ],
+        "max": [
+          0.015065249986946583,
+          -1.7764372825622559,
+          0.7846279144287109
+        ]
+      }
+    },
+    {
+      "name": "Back | attached grey dorsal tile 0",
+      "weighting": "body",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.04609929397702217,
+          0.04886715114116669,
+          0.9747962951660156
+        ],
+        "max": [
+          0.04609929397702217,
+          0.13729342818260193,
+          1.054970145225525
+        ]
+      }
+    },
+    {
+      "name": "Back | attached grey dorsal tile 1",
+      "weighting": "body",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.04609929397702217,
+          -0.1279853880405426,
+          0.9747962951660156
+        ],
+        "max": [
+          0.04609929397702217,
+          -0.039559122174978256,
+          1.054970145225525
+        ]
+      }
+    },
+    {
+      "name": "Back | attached grey dorsal tile 2",
+      "weighting": "body",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.04609929397702217,
+          -0.3048379123210907,
+          0.9747962951660156
+        ],
+        "max": [
+          0.04609929397702217,
+          -0.21641166508197784,
+          1.054970145225525
+        ]
+      }
+    },
+    {
+      "name": "Back | attached grey dorsal tile 3",
+      "weighting": "body",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.04609929397702217,
+          -0.4816904366016388,
+          0.9747962951660156
+        ],
+        "max": [
+          0.04609929397702217,
+          -0.39326420426368713,
+          1.054970145225525
+        ]
+      }
+    }
+  ],
+  "runtime_construction": "Editable named sources retained; single skin, opaque original-atlas materials, rigid parts plus smooth banana/cord/peel attachment weights.",
+  "files": {
+    "drama-dragon.blend": {
+      "bytes": 13530294,
+      "sha256": "59a45076f2cc5ab6f12b135b8272cbd771a25724d9275cfb98f24948f2fd9561"
+    },
+    "drama-dragon.glb": {
+      "bytes": 917980,
+      "sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933"
+    },
+    "pigment.png": {
+      "bytes": 654814,
+      "sha256": "ee9cee8bb697fb23cf03b6eb3dcee258f6bf213f031a344d25d053ac6a2927db"
+    }
+  }
+}

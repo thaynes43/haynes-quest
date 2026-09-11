@@ -1,0 +1,176 @@
+{
+  "asset_id": "drama-dragon",
+  "file": "drama-dragon.glb",
+  "sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933",
+  "bytes": 917980,
+  "triangles": 11960,
+  "draw_primitives": 3,
+  "materials": [
+    {
+      "name": "Soft voxel scale and cardboard",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.800000011920929
+      }
+    },
+    {
+      "name": "Purple eye glow",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.33000001311302185
+      },
+      "emissive": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    {
+      "name": "Wing and ruff fabric",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.9200000166893005
+      }
+    }
+  ],
+  "joints": [
+    "root",
+    "body",
+    "neck",
+    "head",
+    "jaw",
+    "brow_L",
+    "brow_R",
+    "thigh_front_L",
+    "shin_front_L",
+    "foot_front_L",
+    "thigh_front_R",
+    "shin_front_R",
+    "foot_front_R",
+    "thigh_rear_L",
+    "shin_rear_L",
+    "foot_rear_L",
+    "thigh_rear_R",
+    "shin_rear_R",
+    "foot_rear_R",
+    "wing_L",
+    "wing_R",
+    "tail_00",
+    "tail_01",
+    "tail_02",
+    "tail_03",
+    "tail_04",
+    "tail_05",
+    "tail_06",
+    "tail_07"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3,
+      "channels": 87
+    },
+    {
+      "name": "move",
+      "duration_s": 1.6,
+      "channels": 87
+    },
+    {
+      "name": "attack",
+      "duration_s": 2,
+      "channels": 87
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "channels": 87
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "channels": 87
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "triangle_budget_15000": true,
+    "material_budget_6": true,
+    "primitive_budget_6": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_pigment_image": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "all_have_uvs": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true
+  },
+  "validator": {
+    "uri": "drama-dragon.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T16:48:45.981Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 831380
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 3,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 3,
+      "totalVertexCount": 10804,
+      "totalTriangleCount": 11960,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

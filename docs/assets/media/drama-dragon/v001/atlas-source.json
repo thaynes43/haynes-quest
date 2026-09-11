@@ -1,0 +1,30 @@
+{
+  "asset_id": "drama-dragon",
+  "method": "Original deterministic pigment, banana speckle / cloth weave / voxel wash atlas; standard-library PNG writer.",
+  "seed": 28002,
+  "dimensions": [
+    1024,
+    1024
+  ],
+  "colors": [
+    "252330",
+    "312d3b",
+    "1b1924",
+    "484451",
+    "85808a",
+    "696774",
+    "71375f",
+    "944c80",
+    "d5a758",
+    "f3d184",
+    "ad42e3",
+    "e794ff",
+    "100f19",
+    "ada5aa",
+    "593451",
+    "43404a"
+  ],
+  "bytes": 654814,
+  "sha256": "ee9cee8bb697fb23cf03b6eb3dcee258f6bf213f031a344d25d053ac6a2927db",
+  "source_images": []
+}
