@@ -2,7 +2,7 @@
 
 This is the inventory record from before the visual catalog was organized on September 11, 2026. For current thumbnails, models and paused candidates, use [Browse all assets](catalog.md). The dated production and delivery evidence below is retained for traceability.
 
-For the current game scope and its exact four-character cast, open the [two-chapter playtest](playtest.md). That page separates what can be assessed in the next test from future family setup, photos and additional content. The archive below also preserves earlier studies and paused candidates.
+For the current game scope and its current cast, open the [two-chapter playtest](playtest.md). That page separates what can be assessed in the next test from future family setup, photos and additional content. The archive below also preserves friendly characters and paused candidates.
 
 The [four-character browser audit](media/parody-playtest-audit/v001/report.json) verifies all four model pages, 20 animation clips, 28 videos, 20 stills, four touch orbits and four editable masters. No page, console, asset-response or external-request errors were recorded. This establishes catalog delivery; full game controls and owner artwork decisions are separate checks.
 
@@ -42,29 +42,29 @@ Copy the [review template](000-review-template.md) to a versioned review page; r
 
 The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concept v002 with its rear wedge restored in the back view, following Tom’s September 11 feedback. The model remains v001; its support was already present.
 
-## Equipment and preserved creature studies
+## Equipment and friendly characters
 
-The correction produced ten additional models: six animated creature studies and four tools. Tom found the creature models useful as possible friendly or ambient characters, but **they do not fit his enemy vision**. They are not selected for enemy use. Actual enemies must be recognizable pop-culture parodies; [DESIGN-005](../designs/005-era-enemy-catalog.md) records that correction.
+The equipment and friendly-character production added ten models: six animated residents and four tools. [DESIGN013](../designs/013-friendly-characters.md) defines their current healing gifts, harm penalties and making amends. [DESIGN005](../designs/005-era-enemy-catalog.md) governs the separately curated pop-culture enemies.
 
-That earlier production brought the archive to nineteen model candidates, including the original nine. All exact-version approvals remain pending. The creature studies' thirty animation clips and source masters remain useful production artifacts; no friendly role is automatically approved or placed in the game.
+That production brought the archive to nineteen model candidates, including the original nine. The six residents have thirty authored animation clips and retained source masters. Exact final-art review remains open.
 
-[Original construction sheets](reviews/era-combat/v001.md) retain the lead's earlier direction for traceability. Review the actual exports separately:
+[Original construction sheets](reviews/era-combat/v001.md) show the source designs. Review the actual exports separately:
 
 | Candidate | Actual model review | Current role / review |
 | --- | --- | --- |
-| Blockling | [Model and five clips](reviews/blockling/v001.md) | Possible friendly/ambient study · not an enemy |
-| Signal Moth | [Model and five clips](reviews/signal-moth/v001.md) | Possible friendly/ambient study · not an enemy |
-| Buffer Baron | [Model and five clips](reviews/buffer-baron/v001.md) | Possible friendly/ambient study · not an enemy |
-| Loop Dancer | [Model and five clips](reviews/loop-dancer/v001.md) | Possible friendly/ambient study · not an enemy |
-| Prism Mimic | [Model and five clips](reviews/prism-mimic/v001.md) | Possible friendly/ambient study · not an enemy |
-| Trendweaver | [Model and five clips](reviews/trendweaver/v001.md) | Possible friendly/ambient study · not an enemy |
+| Blockling | [Model and five clips](reviews/blockling/v001.md) | Friendly character · healing gift and recoverable harm penalty |
+| Signal Moth | [Model and five clips](reviews/signal-moth/v001.md) | Friendly character · healing gift and recoverable harm penalty |
+| Buffer Baron | [Model and five clips](reviews/buffer-baron/v001.md) | Friendly character · healing gift and recoverable harm penalty |
+| Loop Dancer | [Model and five clips](reviews/loop-dancer/v001.md) | Friendly character · healing gift and recoverable harm penalty |
+| Prism Mimic | [Model and five clips](reviews/prism-mimic/v001.md) | Friendly character · healing gift and recoverable harm penalty |
+| Trendweaver | [Model and five clips](reviews/trendweaver/v001.md) | Friendly character · healing gift and recoverable harm penalty |
 | Spark Mallet, Acorn Shield, Prism Wand, Ribbon Shield | [Four tools, including rear grips](reviews/era-equipment/v001.md) | Equipment candidates · Tom review pending |
 
 All concepts were generated serially by the lead. Fresh Astra Blender authors completed the [first creature set](../../.agents/work-orders/014-blender-era-2020-evidence.md), [later creature set](../../.agents/work-orders/016-blender-era-2024-evidence.md) and [equipment](../../.agents/work-orders/017-blender-era-equipment-evidence.md), preserving exact exports and masters. All scene leases and render jobs have ended. Their individual format, animation and browser checks are recorded; the [combined catalog audit](media/era-catalog-intake/v001/report.json) passed seven pages, ten models, thirty clips, two touch orbits and ten independently retrieved masters. No unexpected HTTP, request, console or page failures occurred. Chromium emulation does not establish physical Safari performance.
 
-## Replacement parody direction
+## Pop-culture parody characters
 
-The replacement cast uses recognizable pop-culture parodies from the selected photo periods. Each page includes its exact concept, prompt, construction corrections and intended encounter. Model production and the forgiving obby game remain in progress; none of these candidates has owner approval for private gameplay.
+The enemy cast uses recognizable pop-culture parodies from the selected photo periods. Each page includes its exact concept, prompt, construction corrections and intended encounter. Model production and the forgiving obby game remain in progress; none of these candidates has owner approval for private gameplay.
 
 | Period | Enemy | Reference and joke | Current candidate |
 | --- | --- | --- | --- |
@@ -79,4 +79,4 @@ The replacement cast uses recognizable pop-culture parodies from the selected ph
 
 [Player setup](../designs/012-player-journey-curation.md) will let a parent select photos and encounters for each level, with era suggestions, favorites, exclusions and explicit admin period overrides. Completed models are optional library entries. The former fixed roster is not mandatory for every child.
 
-Tom selected **The Besties duo first** for the next design discussion, based on Mackenzie Turner and Lael’s Roblox personas. FNAF-inspired characters are a later interest for his son. No Besties or FNAF model has been generated. New production is paused while the next brief is agreed; Nap’s partial source and Diva’s unbuilt source are preserved.
+Tom selected **The Besties duo first** for the next design discussion, based on Mackenzie Turner and Lael’s Roblox personas. FNAF-inspired characters are a later interest for his son. The approved Besties concept and current model production are recorded in [their review](reviews/bickering-besties/v001.md). FNAF remains later work; Nap’s partial source and Diva’s unbuilt source are preserved.

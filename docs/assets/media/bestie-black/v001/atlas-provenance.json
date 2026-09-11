@@ -1,0 +1,31 @@
+{
+  "work_order": "WO051",
+  "asset_id": "bestie-black",
+  "version": "v001",
+  "seed": 51001,
+  "size": [
+    1024,
+    1024
+  ],
+  "palette": [
+    "e8ad79",
+    "c88054",
+    "fff4e9",
+    "211c27",
+    "2e2831",
+    "423845",
+    "231e2b",
+    "43394c",
+    "a56bd3",
+    "30232b",
+    "713a2e",
+    "db7776",
+    "e8e4e9",
+    "8250ae",
+    "de8b79",
+    "615369"
+  ],
+  "method": "Original deterministic pigment swatches; subtle woven cloth and hair color variation. No sampled media.",
+  "sha256": "891c3d353b7516b3392b2ee6768c4cd8b4eea5ce8fc031f34fc720f581610d8c",
+  "bytes": 20663
+}

@@ -222,7 +222,11 @@ export function applyGameplayActionToSave(
   }
 
   let adventureState: AdventureState;
-  let friendlyState = effectiveFriendlyState(save.adventurePlan, save.friendlyState);
+  let friendlyState = effectiveFriendlyState(
+    save.adventurePlan,
+    save.adventureState,
+    save.friendlyState,
+  );
   try {
     if (isFriendlyAction(request.action)) {
       ({ adventureState, friendlyState } = reduceFriendlyAction(
@@ -277,7 +281,11 @@ export function toSaveView(save: SaveRecord, now: Date): SaveView {
     ? toAdventureView(save.adventurePlan, save.adventureState, now.valueOf())
     : null;
   if (adventure?.activeLevel && save.adventurePlan) {
-    const friendlyState = effectiveFriendlyState(save.adventurePlan, save.friendlyState);
+    const friendlyState = effectiveFriendlyState(
+      save.adventurePlan,
+      save.adventureState!,
+      save.friendlyState,
+    );
     adventure = {
       ...adventure,
       activeLevel: {
@@ -389,7 +397,7 @@ export function validateSaveRecord(save: SaveRecord): SaveRecord {
   const { plan, state } = parseStoredAdventure(normalized.adventurePlan, normalized.adventureState);
   const friendlyState = normalized.friendlyState == null
     ? null
-    : parseStoredFriendlyState(normalized.friendlyState, plan);
+    : parseStoredFriendlyState(normalized.friendlyState, plan, state);
   const plannedMemoryIds = plan.levels.flatMap((level) => level.memoryIds);
   const savedMemoryIds = normalized.memories.map((memory) => memory.id);
   if (
@@ -423,11 +431,12 @@ export function validateSaveRecord(save: SaveRecord): SaveRecord {
 
 function effectiveFriendlyState(
   plan: AdventurePlan,
+  adventureState: AdventureState,
   stored: FriendlyState | null | undefined,
 ): FriendlyState {
   return stored == null
     ? createInitialFriendlyState(plan)
-    : parseStoredFriendlyState(stored, plan);
+    : parseStoredFriendlyState(stored, plan, adventureState);
 }
 
 function isFriendlyAction(action: GameplayActionRequest['action']): action is FriendlyAction {

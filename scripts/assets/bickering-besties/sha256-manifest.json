@@ -1,0 +1,345 @@
+{
+  "work_order": "WO051",
+  "files": [
+    {
+      "path": "docs/assets/media/bestie-pink/v001/atlas-provenance.json",
+      "bytes": 591,
+      "sha256": "a6d31c8878f835538415e3984888ad838411766eaf25f5d795940e2a76621649"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/attachment-foot-inspection.json",
+      "bytes": 121413,
+      "sha256": "7dec4e162f9b884eec78c89c80735efe1504c083800edc2d641f56af224fd5b4"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/authoring-source.json",
+      "bytes": 1007,
+      "sha256": "d0f26764c53111c3dca65e01d7c799d9de6dd3c25e76df6dd9478e9f929c2be4"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/back.png",
+      "bytes": 655476,
+      "sha256": "79caf8ad72e1d464345869b97b82253db8fbf9e0d9d88cd91003cb15390f7e1c"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/beauty.png",
+      "bytes": 670219,
+      "sha256": "3a372d117b76252181ffc599d3acc8d097fba863fab5e025e5992e31e0a96e2a"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/bestie-pink-export-review.blend",
+      "bytes": 975784,
+      "sha256": "3b30debe763835db11680fcacad6027cf696c1c840f57e65fa3621a29b6a79d6"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/bestie-pink.blend",
+      "bytes": 1269272,
+      "sha256": "c4f1b422552a64e8fdc283425b753c30f84e90d31e81aae54010ad046d30f0a2"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/bestie-pink.glb",
+      "bytes": 956924,
+      "sha256": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/browser-attack.png",
+      "bytes": 119147,
+      "sha256": "9a7d4d726d2c53d48500d9c3e0da3d1dade9e93817ea9863984caa6d17a90c9d"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/browser-beauty.png",
+      "bytes": 117309,
+      "sha256": "e394e80b84ef32a3195fb5b268eb1376c0ecf0c546016c1d31b2d01e7f735e01"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/browser-inspection.json",
+      "bytes": 5287,
+      "sha256": "65bc53384f8dda1522130014f415b72501fb1bfb5ea308efe675db5574efb08f"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/construction-survival.json",
+      "bytes": 115260,
+      "sha256": "0a79324a7c5c37682ea76c2fe3fabc0c72f3f624aac48894e69d8ac1950b35ff"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/construction.json",
+      "bytes": 27398,
+      "sha256": "30aea385bc733ade5b9e5eacff7d8af445425e1e4b2675e300a65598b2bedde5"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/front.png",
+      "bytes": 675688,
+      "sha256": "6fb34f87fbecb2558371d1bd20b2810db977f09ccf5be479a45f1cdbd1357fd0"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/joint-animations.mp4",
+      "bytes": 602737,
+      "sha256": "214b423c6c7aeaa73743665feb31952256a5df31b6a68557f2d0fa0bd5d8cdc7"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/joint-export-review.blend",
+      "bytes": 1798858,
+      "sha256": "d9062511a34e80b92cfda507128424788a268033cf412850fbb79cc2db7d6d43"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/joint-motion-grid.png",
+      "bytes": 853529,
+      "sha256": "6f4d79074d0fd0b669819d703fcd2f90eb71babd69cd53d0b4fb8f190e056a03"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/joint-pose.png",
+      "bytes": 782122,
+      "sha256": "78aefb78444a5266ed208385eeaa975373d20c7cd35af279e98605f35e18e1f0"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/manifest.json",
+      "bytes": 14291,
+      "sha256": "ac568397996c3ba3b6b47adea815651c19a62ce566d7227b3c562e27499087a4"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/pigment.png",
+      "bytes": 20686,
+      "sha256": "371513afa54d0182c17bb20f94b2d1abf7086deefdc5e666bf3c5e711dad6d27"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/render-complete.json",
+      "bytes": 1680,
+      "sha256": "0dccdea5a69de1c45c12bbdde994a46cb865446946bceaeb373c6a19d99398c4"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/runtime.json",
+      "bytes": 2924,
+      "sha256": "b2fb2445924432d7f83de7bf0f252bfc36795b8f6ec8d937bbc809443d409eb9"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/side.png",
+      "bytes": 643268,
+      "sha256": "ab9212db284daa16542b205d443f34c78cacdf72f9b4843ca26ed2613b8cd531"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/three-inspection.json",
+      "bytes": 93356,
+      "sha256": "e5bc815d26d3dad64c13cf91be3271e8df28c8eb942ec39d7646c940fa5c1588"
+    },
+    {
+      "path": "docs/assets/media/bestie-pink/v001/validation.json",
+      "bytes": 4216,
+      "sha256": "9669a068d55c69f8807d4a1e8eb30008f916046505a4da733f3074fda0500acb"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/atlas-provenance.json",
+      "bytes": 592,
+      "sha256": "a2dcb4a8771c30dc82749a5d9be4e786552d9c95100c93ffc4fe80e939cc48b7"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/attachment-foot-inspection.json",
+      "bytes": 121354,
+      "sha256": "16a0ea70d8f4ddde26a4a9d38fa953fb7221fc4c6e0f4050fd9eeea2a4513e27"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/authoring-source.json",
+      "bytes": 1008,
+      "sha256": "ce59470cc2feb05fe56d633e26ed7d26e59fb9946e6fad74f0f796dae2122a73"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/back.png",
+      "bytes": 659271,
+      "sha256": "f86f800a9c395fe09021637f00941a9ee5b5b44f3c702ebaa0ee63603a34264f"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/beauty.png",
+      "bytes": 666904,
+      "sha256": "a8fd3da8abad904af15c649f0b737e0255e078bdc71101e0d5301fca5aa05a02"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/bestie-black-export-review.blend",
+      "bytes": 992871,
+      "sha256": "f436df08957eee05a10d750399ff619c2e291bbebdbf7e5b5ca97a42b49cccf9"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/bestie-black.blend",
+      "bytes": 1270681,
+      "sha256": "f4e43b9061ead88e7bd90ce34669ccb66c08b8330ce854789cde7478c6468b85"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/bestie-black.glb",
+      "bytes": 928000,
+      "sha256": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/browser-attack.png",
+      "bytes": 101985,
+      "sha256": "f69abac315243308c0a21936dbef3a237136c45fa1c8ef030ce4983c23ef9818"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/browser-beauty.png",
+      "bytes": 102247,
+      "sha256": "2842a94d6515e93fd77340d9335d7bf8805341262226114c522024dcfc7f3750"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/browser-inspection.json",
+      "bytes": 5289,
+      "sha256": "66995114c89b1dfa0de6fcbc53a257a454ccb0b72a96ba0c249295b67f05b152"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/construction-survival.json",
+      "bytes": 112274,
+      "sha256": "3f68411f4e15d2c855c8314773fabd1ef3c7828e9efba0e8e3a4df2392877611"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/construction.json",
+      "bytes": 25145,
+      "sha256": "88af1a653a17de729b0b90b9c00027e89863b33df56ca23f49f6695a1441b8f6"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/front.png",
+      "bytes": 668734,
+      "sha256": "069cb01ba6ae6062d40a414504db7f55cbba1f236e4d7f49de011edf59a4959f"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/manifest.json",
+      "bytes": 13549,
+      "sha256": "59ef554e88cf8a68945387a2c0d820c4e99cb2dd8b3771cfd49b4dfa47e29631"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/pigment.png",
+      "bytes": 20663,
+      "sha256": "891c3d353b7516b3392b2ee6768c4cd8b4eea5ce8fc031f34fc720f581610d8c"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/render-complete.json",
+      "bytes": 1682,
+      "sha256": "062a3c209315ef2c9b371994aabe4fe5ffd38e4e5a7bfa424cf40ac28abcb80b"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/runtime.json",
+      "bytes": 2925,
+      "sha256": "deee3b297cbce1ec0850e8b14874812d08cc45c5da645e0de17d70f6f1be0e9c"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/side.png",
+      "bytes": 646917,
+      "sha256": "992b4dd08f44a217170a74997a404ad22669ee102a004c4aee0ac76b7855a8ca"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/three-inspection.json",
+      "bytes": 93349,
+      "sha256": "f73fd0d97e0881364ce639ef5dadb720bb5a5aa19a5d03f40e02a22bdbb058d7"
+    },
+    {
+      "path": "docs/assets/media/bestie-black/v001/validation.json",
+      "bytes": 4219,
+      "sha256": "990a63b7b4cff93900041431ea54646e9237c8d8778221154fa207ece3e1fbdd"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/atlas.py",
+      "bytes": 2409,
+      "sha256": "5b965cb45783ca257601efdb85d8ef23fe1d1f4cfe884559e26623b63a02cf0d"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/build.py",
+      "bytes": 898,
+      "sha256": "b7d0bfc53ec66a43553768600579a1b238762dfd267e4f473e28cdc82cf894c0"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/catalog-intake.json",
+      "bytes": 17135,
+      "sha256": "c8c35d763f1bce2c377952f1173ad1022d6532800b1b2d41eab3bc01dffd1831"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/collect.py",
+      "bytes": 7386,
+      "sha256": "b5884b118796601938976665909bf3e96c4c011c062cda7acf16822355431e14"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/common.py",
+      "bytes": 8505,
+      "sha256": "fcb38b74bb2d9b277382c97f6daeb0d2a1a734beb4c10892fe53ef4da5494a19"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/compare-construction.py",
+      "bytes": 5676,
+      "sha256": "d4735d4745359c2a3a10d528147a41984e1d95edb9c7fc7dedc765bcb8cdb142"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/evidence-complete.json",
+      "bytes": 4116,
+      "sha256": "047c2d2478c418560ce5b368e011181862facd518b1c749e012768a4bae1d0e5"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/evidence.py",
+      "bytes": 5091,
+      "sha256": "a26aa563257dd1beb51ac0bf541b6ad6611d42c2fe95cc6fb8827fa3db89cbb4"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/inspect-attachments.mjs",
+      "bytes": 5682,
+      "sha256": "1acbdb1147c346baffa6e148a82e73965d6008332c9b5b3fabd10b626e0756fb"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/inspect-browser.mjs",
+      "bytes": 8857,
+      "sha256": "6fc4bb2deb4a75cd3028eaaf995ea2afcabab2b3a24ce0ed71c13508ab15a40e"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/inspect-pair.py",
+      "bytes": 2649,
+      "sha256": "67cdfc7fbaf76d486e2997ca92cca09cc96392e3387caaab164b0a225fb423a6"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/inspect-three.mjs",
+      "bytes": 8789,
+      "sha256": "7713032e377553680b2d0886d75c9f5861762e2cdbca199966c951c6be519429"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/model.py",
+      "bytes": 15014,
+      "sha256": "fdeabfa1ad43713002db616346b7293fea7f9910efaf622cf8521ab722161b24"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/pair-inspection.json",
+      "bytes": 999,
+      "sha256": "569c8beb7b383b0bcf6750ea77e99504d3fd057f657fe2dcf855c9ee717cff89"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/processes.json",
+      "bytes": 1190,
+      "sha256": "fb2f8d8e5960231b5d2c34a1c4279df8a77973bf8edc6ce8b37e07856bd850c3"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/render.py",
+      "bytes": 6408,
+      "sha256": "e26155d019284707b6e1b78d7fc3740edfdfd4470bb3e8202fee86b1aabb8930"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/rig.py",
+      "bytes": 15285,
+      "sha256": "aa95b3c996de892e543aa1207fdfd42addeb4ad79a2532712e9792ad80f6a49a"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/scene-lease.json",
+      "bytes": 1044,
+      "sha256": "7a18bb5196ee885973e8c6451ec03295637de86501e4508b8a2e23645939b461"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/transfer.py",
+      "bytes": 4326,
+      "sha256": "d5d9847d4972fd1d10a9968b7f819aa754e90b03817f3f7296a7ef2c76ae025b"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/validate.mjs",
+      "bytes": 2942,
+      "sha256": "fa8d4983e87f1d7e8cae3cb96954603f72563baa7e72512e5f8815debb54f22c"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/video-inspection.json",
+      "bytes": 339,
+      "sha256": "9e39bef21fd8af55e45e5eda336a43fe45a95dab655b9cbfc5718db32d4d328b"
+    },
+    {
+      "path": "scripts/assets/bickering-besties/visual-review.json",
+      "bytes": 791,
+      "sha256": "8fa797bb8ddba97ecf73fd61d9bdbc388059b17de0ca0c48731fc1f456267b20"
+    }
+  ]
+}

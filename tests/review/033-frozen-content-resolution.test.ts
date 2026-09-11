@@ -1,7 +1,7 @@
 /**
  * WO-033 review regression (finding R-2). The scene resolves a frozen v2
  * encounter identity through `parodyArtwork`, which consults two hand-maintained
- * tables: `PARODY_CANDIDATES` (shared with the server) and the scene-only
+ * tables: `ALL_PARODY_CANDIDATES` (shared with the server) and the scene-only
  * `parodyMotion` map. The first cases guard the two tables against drifting
  * apart. Unknown exact identities must never resolve a different asset or an
  * arbitrary URL; the scene counts them as a blocking reload state.
@@ -17,7 +17,7 @@ import {
 import type { ActiveLevelView } from "../../src/shared/contracts";
 
 describe("frozen parody content resolution", () => {
-  it("resolves every catalog identity to a versioned asset URL, a height and a contact fraction", () => {
+  it("resolves every catalog identity to versioned model files, a height and a contact fraction", () => {
     for (const entry of ALL_PARODY_CANDIDATES) {
       const artwork = parodyArtwork({
         catalogEntryId: entry.id,
@@ -28,9 +28,21 @@ describe("frozen parody content resolution", () => {
       expect(artwork).not.toBeNull();
       if (!artwork) throw new Error(`Missing artwork for ${entry.id}`);
       expect(artwork.id).toBe(entry.assetId);
-      expect(artwork.url).toBe(
-        `/studio/assets/media/${entry.assetId}/${entry.assetVersion}/${entry.assetId}.glb`,
-      );
+      if (artwork.kind === "single")
+        expect(artwork.url).toBe(
+          `/studio/assets/media/${entry.assetId}/${entry.assetVersion}/${entry.assetId}.glb`,
+        );
+      else
+        expect(artwork.models).toEqual([
+          {
+            id: "bestie-pink",
+            url: "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+          },
+          {
+            id: "bestie-black",
+            url: "/studio/assets/media/bestie-black/v001/bestie-black.glb",
+          },
+        ]);
       expect(artwork.height).toBeGreaterThan(0);
       expect(artwork.contactFraction).toBeGreaterThan(0);
       expect(artwork.contactFraction).toBeLessThan(1);
@@ -44,15 +56,19 @@ describe("frozen parody content resolution", () => {
       "drama-dragon-encore": "drama-dragon",
     } as const;
     for (const [entryId, assetId] of Object.entries(expectedAssets)) {
-      const entry = PARODY_CANDIDATES.find((candidate) => candidate.id === entryId);
+      const entry = PARODY_CANDIDATES.find(
+        (candidate) => candidate.id === entryId,
+      );
       expect(entry).toMatchObject({ assetId });
       if (!entry) throw new Error(`Missing encore entry ${entryId}`);
-      expect(parodyArtwork({
-        catalogEntryId: entry.id,
-        catalogEntryVersion: entry.version,
-        assetId: entry.assetId,
-        assetVersion: entry.assetVersion,
-      })).toMatchObject({
+      expect(
+        parodyArtwork({
+          catalogEntryId: entry.id,
+          catalogEntryVersion: entry.version,
+          assetId: entry.assetId,
+          assetVersion: entry.assetVersion,
+        }),
+      ).toMatchObject({
         id: assetId,
         url: `/studio/assets/media/${assetId}/v001/${assetId}.glb`,
       });
@@ -83,7 +99,8 @@ describe("frozen parody content resolution", () => {
         })),
       } as unknown as ActiveLevelView;
       const story = eraStory(2021, level);
-      for (const entry of entries) expect(story.enemies[entry.kind]).toBe(entry.title);
+      for (const entry of entries)
+        expect(story.enemies[entry.kind]).toBe(entry.title);
     }
   });
 
@@ -111,7 +128,8 @@ describe("frozen parody content resolution", () => {
     } as unknown as ActiveLevelView;
 
     const story = eraStory(2024, level);
-    for (const entry of entries) expect(story.enemies[entry.kind]).toBe(entry.title);
+    for (const entry of entries)
+      expect(story.enemies[entry.kind]).toBe(entry.title);
   });
 
   it("returns no artwork for an identity this bundle does not know", () => {
@@ -132,8 +150,12 @@ describe("frozen parody content resolution", () => {
       assetId: "mister-hiss",
       assetVersion: "v001",
     } as const;
-    expect(parodyArtwork({ ...content, catalogEntryVersion: "v002" })).toBeNull();
-    expect(parodyArtwork({ ...content, assetId: "untrusted-model" })).toBeNull();
+    expect(
+      parodyArtwork({ ...content, catalogEntryVersion: "v002" }),
+    ).toBeNull();
+    expect(
+      parodyArtwork({ ...content, assetId: "untrusted-model" }),
+    ).toBeNull();
     expect(parodyArtwork({ ...content, assetVersion: "v002" })).toBeNull();
   });
 

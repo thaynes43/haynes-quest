@@ -3,6 +3,7 @@ import type {
   GameplayAction,
   SaveView,
 } from "../shared/contracts";
+import { BestiesSimulation, BESTIES_ARENA_CENTER } from "./besties";
 import { ActionCoordinator, type ActionRequestState } from "./actions";
 import {
   bossIsActive,
@@ -131,6 +132,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
   }
 
   const enemies = new EnemySimulation(level, save);
+  let besties = new BestiesSimulation();
+  const bestiesEncounter = () =>
+    requireAdventure(save).activeLevel?.encounters.find(
+      (entry) => entry.content?.assetId === "bickering-besties",
+    );
   let pendingHit: { levelId: string; encounterId: string } | null = null;
   let disposed = false;
   let paused = false;
@@ -174,7 +180,36 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const mediaState = (): SceneMediaState =>
     scene.getMediaState?.() ?? { loading: 0, failed: 0 };
 
-  const enemyFrames = (): EnemyFrame[] => enemies.frames();
+  const enemyFrames = (): EnemyFrame[] =>
+    enemies.frames().map((enemy) => {
+      if (enemy.id !== bestiesEncounter()?.id) return enemy;
+      const routine = besties.frame();
+      return {
+        ...enemy,
+        position: { ...BESTIES_ARENA_CENTER },
+        facing: Math.PI,
+        phase:
+          enemy.hp === 0
+            ? "defeated"
+            : routine.vulnerable
+              ? "cooldown"
+              : "idle",
+      };
+    });
+  const nearestFriendlyId = (): string | null => {
+    if (
+      !["exploring", "memory-released"].includes(requireAdventure(save).phase)
+    )
+      return null;
+    if (!controller.grounded || controller.recoveryRemaining > 0) return null;
+    return (
+      nearestWithin(
+        controller.position,
+        level.friendlies ?? [],
+        interactionRadius + 0.3,
+      )?.id ?? null
+    );
+  };
 
   const nearestPickupId = (): string | null => {
     if (requireAdventure(save).phase !== "exploring") return null;
@@ -227,6 +262,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const media = mediaState();
     const requestBusy = requestState.requestState === "acting";
     return {
+      nearFriendlyId: nearestFriendlyId(),
+      bestiesPhase: bestiesEncounter() ? besties.frame().phase : undefined,
       nearPickupId: nearestPickupId(),
       nearEncounterId: target?.id ?? null,
       nearMemoryId: nearestMemoryId(),
@@ -249,6 +286,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         adventure.phase === "exploring" &&
         hasEquipment(save, "attack-tool") &&
         Boolean(target) &&
+        (target?.id !== bestiesEncounter()?.id || besties.frame().vulnerable) &&
         now >= attackCooldownUntil &&
         !requestBusy,
       attackFeedback,
@@ -358,6 +396,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       attackFeedback = null;
       resetController(checkpoint);
       enemies.reset(level, save);
+      besties = new BestiesSimulation();
       scene.rebuildRoute(level, save);
       scene.cameraYaw = 0;
     } else {
@@ -464,13 +503,24 @@ export function createGame(options: CreateGameOptions): GameHandle {
       paused &&
       action.type !== "recover-memory" &&
       action.type !== "consume-memory-bundle" &&
-      action.type !== "retry-level"
+      action.type !== "retry-level" &&
+      action.type !== "interact-friendly" &&
+      action.type !== "attack-friendly"
     ) {
       return action.type === "attack"
         ? recordAttackFeedback("unavailable")
         : false;
     }
     switch (action.type) {
+      case "interact-friendly":
+      case "attack-friendly":
+        if (nearestFriendlyId() !== action.friendlyId) return false;
+        if (
+          action.type === "attack-friendly" &&
+          windowTarget.performance.now() < attackCooldownUntil
+        )
+          return false;
+        break;
       case "collect-equipment":
         if (
           adventure.phase !== "exploring" ||
@@ -491,6 +541,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
         const target = nearestEncounter(false);
         if (target?.id !== action.encounterId)
           return recordAttackFeedback("no-target");
+        if (target.id === bestiesEncounter()?.id && !besties.frame().vulnerable)
+          return recordAttackFeedback("guarded");
         break;
       }
       case "take-hit":
@@ -531,11 +583,22 @@ export function createGame(options: CreateGameOptions): GameHandle {
         break;
     }
     const accepted = coordinator.perform(action);
-    if (action.type === "attack") {
+    if (action.type === "attack" || action.type === "attack-friendly") {
       if (!accepted) return recordAttackFeedback("unavailable");
       attackAnimationUntil =
         windowTarget.performance.now() + attackAnimationSeconds * 1000;
-      attackTargetId = action.encounterId;
+      attackTargetId =
+        action.type === "attack" ? action.encounterId : action.friendlyId;
+      if (action.type === "attack-friendly") {
+        const friend = level.friendlies?.find(
+          (entry) => entry.id === action.friendlyId,
+        );
+        if (friend)
+          controller.facing = Math.atan2(
+            controller.position.x - friend.position.x,
+            controller.position.z - friend.position.z,
+          );
+      }
       attackFeedback = {
         sequence: ++attackFeedbackSequence,
         outcome: "accepted",
@@ -626,12 +689,28 @@ export function createGame(options: CreateGameOptions): GameHandle {
       if (actions.interact) {
         const pickupId = nearestPickupId();
         const memoryId = nearestMemoryId();
+        const friendlyId = nearestFriendlyId();
         if (pickupId && adventure.currentLevelId) {
           performAction({
             type: "collect-equipment",
             levelId: adventure.currentLevelId,
             pickupId,
           });
+        } else if (friendlyId && adventure.currentLevelId) {
+          const friend = adventure.activeLevel?.friendlies?.find(
+            (entry) => entry.id === friendlyId,
+          );
+          if (
+            friend &&
+            (friend.penaltyActive ||
+              (!friend.boonClaimed &&
+                adventure.playerHp < adventure.maxPlayerHp))
+          )
+            performAction({
+              type: "interact-friendly",
+              levelId: adventure.currentLevelId,
+              friendlyId,
+            });
         } else if (memoryId && adventure.currentLevelId) {
           performAction({
             type: "recover-memory",
@@ -654,6 +733,19 @@ export function createGame(options: CreateGameOptions): GameHandle {
       if (actions.guard && adventure.currentLevelId) {
         performAction({ type: "guard", levelId: adventure.currentLevelId });
       }
+      const duo = bestiesEncounter();
+      const duoStep = besties.step({
+        player: controller.position,
+        deltaSeconds,
+        active: Boolean(
+          duo &&
+          combatActive &&
+          bossIsActive(save) &&
+          controller.position.z < -17.5,
+        ),
+        paused: controller.recoveryRemaining > 0,
+        defeated: duo?.defeated ?? false,
+      });
       const contacts = enemies.step(
         {
           player: controller.position,
@@ -662,6 +754,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
         },
         save,
       );
+      if (duoStep.hit && duo && !pendingHit && adventure.currentLevelId)
+        pendingHit = { levelId: adventure.currentLevelId, encounterId: duo.id };
       if (!pendingHit && contacts[0] && adventure.currentLevelId) {
         pendingHit = {
           levelId: adventure.currentLevelId,
@@ -688,6 +782,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       guarding: now < guardActiveUntil,
       enemies: frames,
       currentTarget: target?.id ?? null,
+      besties: bestiesEncounter() ? besties.frame() : undefined,
       obby: level.course ? sampleObby(level.course, courseTime) : undefined,
       checkpointId: controller.checkpointId,
       recovering: controller.recoveryRemaining > 0,

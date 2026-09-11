@@ -1,0 +1,33 @@
+{
+  "work_order": "WO051",
+  "asset_id": "bestie-black",
+  "master_sha256": "f4e43b9061ead88e7bd90ce34669ccb66c08b8330ce854789cde7478c6468b85",
+  "glb_sha256": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05",
+  "embedded_build_sources": [
+    {
+      "name": "WO051 atlas.py",
+      "sha256": "5b965cb45783ca257601efdb85d8ef23fe1d1f4cfe884559e26623b63a02cf0d",
+      "bytes": 2409
+    },
+    {
+      "name": "WO051 build.py",
+      "sha256": "b7d0bfc53ec66a43553768600579a1b238762dfd267e4f473e28cdc82cf894c0",
+      "bytes": 898
+    },
+    {
+      "name": "WO051 common.py",
+      "sha256": "fcb38b74bb2d9b277382c97f6daeb0d2a1a734beb4c10892fe53ef4da5494a19",
+      "bytes": 8505
+    },
+    {
+      "name": "WO051 model.py",
+      "sha256": "fdeabfa1ad43713002db616346b7293fea7f9910efaf622cf8521ab722161b24",
+      "bytes": 15014
+    },
+    {
+      "name": "WO051 rig.py",
+      "sha256": "aa95b3c996de892e543aa1207fdfd42addeb4ad79a2532712e9792ad80f6a49a",
+      "bytes": 15285
+    }
+  ]
+}

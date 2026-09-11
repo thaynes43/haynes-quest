@@ -1,0 +1,34 @@
+{
+  "work_order": "WO051",
+  "source": "exact reimported GLBs",
+  "glb_sha256": {
+    "bestie-pink": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+    "bestie-black": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05"
+  },
+  "centre_spacing_m": 0.9,
+  "no_added_depth_offset": true,
+  "samples": [
+    {
+      "time_s": 0.85,
+      "hand_surface_intersections": 0,
+      "closest_hand_vertex_to_other_surface_m": 0.07835721969604492,
+      "whole_pair_surface_intersections": 0
+    },
+    {
+      "time_s": 1.0,
+      "hand_surface_intersections": 0,
+      "closest_hand_vertex_to_other_surface_m": 0.07562769949436188,
+      "whole_pair_surface_intersections": 0
+    },
+    {
+      "time_s": 1.15,
+      "hand_surface_intersections": 0,
+      "closest_hand_vertex_to_other_surface_m": 0.07780802249908447,
+      "whole_pair_surface_intersections": 0
+    }
+  ],
+  "checks": {
+    "both_hands_visibly_miss": true,
+    "no_pair_surface_intersections": true
+  }
+}

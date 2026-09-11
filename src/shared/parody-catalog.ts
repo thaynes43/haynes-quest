@@ -4,11 +4,12 @@ import type { Ability, EncounterKind, EncounterRole } from "./contracts.js";
 export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v1",
   "parody-catalog-v2",
+  "parody-catalog-v3",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
-export const PARODY_CATALOG_VERSION = "parody-catalog-v2" as const;
+export const PARODY_CATALOG_VERSION = "parody-catalog-v3" as const;
 export type ParodyPeriodId =
-  "block-party-v1" | "remix-runway-v1" | "remix-runway-v2";
+  "block-party-v1" | "remix-runway-v1" | "remix-runway-v2" | "besties-obby-v1";
 export type ObbyRouteId = "gentle-intro-v1" | "gentle-jump-v1";
 export interface ParodyCatalogEntry {
   readonly id: string;
@@ -44,6 +45,12 @@ export const PARODY_PERIODS = {
     subtitle: "Bubble notes, slippery stunts and a dragon encore",
     description:
       "Hop between the stages, dodge the silly stunts and face the returning party guests.",
+  },
+  "besties-obby-v1": {
+    title: "Besties Obby",
+    subtitle: "Pink, black and one missed high-five",
+    description:
+      "Two rivals take turns building obstacle tricks. Their missed high-five leaves them dizzy.",
   },
 } as const;
 
@@ -163,11 +170,52 @@ const PARODY_CANDIDATES_V2: readonly ParodyCatalogEntry[] = [
   }),
 ];
 
+/** New journeys retain the authored cast and replace only chapter two's boss. */
+function freezeV3Entry(entry: ParodyCatalogEntry): ParodyCatalogEntry {
+  return Object.freeze({
+    ...entry,
+    requiredAbilities: Object.freeze([...entry.requiredAbilities]),
+  });
+}
+
+const PARODY_CANDIDATES_V3: readonly ParodyCatalogEntry[] = Object.freeze([
+  ...PARODY_CANDIDATES_V2.map(freezeV3Entry),
+  ...PARODY_CANDIDATES_V2.filter(
+    (entry) =>
+      entry.periodId === "remix-runway-v2" && entry.role === "ordinary",
+  ).map((entry) =>
+    freezeV3Entry({
+      ...entry,
+      id:
+        entry.kind === "ordinary-a"
+          ? "sir-flush-a-lot-besties"
+          : "peel-patrol-besties",
+      periodId: "besties-obby-v1" as const,
+    }),
+  ),
+  freezeV3Entry({
+    id: "bickering-besties",
+    version: "v001",
+    title: "The Bickering Besties",
+    reference: "Mackenzie Turner and Lael Roblox personas",
+    role: "boss",
+    kind: "boss",
+    periodId: "besties-obby-v1",
+    eligibleFrom: "2024-01-01",
+    eligibleThrough: "2026-12-31",
+    referenceAvailableBy: "2022-07-31",
+    requiredAbilities: ["move", "jump"],
+    assetId: "bickering-besties",
+    assetVersion: "v001",
+  }),
+]);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
   "parody-catalog-v1": PARODY_CANDIDATES_V1,
   "parody-catalog-v2": PARODY_CANDIDATES_V2,
+  "parody-catalog-v3": PARODY_CANDIDATES_V3,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();

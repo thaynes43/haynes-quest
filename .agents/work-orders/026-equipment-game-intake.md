@@ -11,7 +11,7 @@
 
 Run the existing browser journeys sequentially in independent browser contexts: keyboard, touch and media. Verify the current reusable gear/media intake through both era transitions, including retained inventory, upgraded equipment, actual traveler/environment/equipment model delivery, and absence of unexpected texture/bitmap errors. Capture safe current-game evidence for the coordinator's art judgment, including infant equipment, retained and upgraded child equipment, and combat poses where practical.
 
-The six authored creature studies remain rejected as enemies and are not an acceptance target. Enemies in this fixture may remain procedural. Obby/controller work is a separate active lane, so this audit does not establish obby acceptance or final game acceptance. Visual findings must be limited to evidenced clipping or intersection; all art judgment remains with the coordinator.
+Friendly-character integration is outside this equipment audit’s acceptance scope. Enemies in this fixture may remain procedural. Obby/controller work is a separate active lane, so this audit does not establish obby acceptance or final game acceptance. Visual findings must be limited to evidenced clipping or intersection; all art judgment remains with the coordinator.
 
 ## Deliverables and verification
 
@@ -70,4 +70,4 @@ The compact ignored evidence report is `/home/dev/work/quest-equipment-game-inta
 
 ## Handoff and recovery
 
-This is reusable equipment/media intake, not final game acceptance. The six authored creature studies were not integrated or accepted as enemies. Obby/controller work was outside this audit. Browser touch emulation is not physical iPhone/iPad Safari evidence, and SwiftShader is not device GPU or performance certification. The visual staging pass used direct same-origin fixture actions to reach exact inventory checkpoints; keyboard and touch play claims come only from the separate unmodified journey runs. No source, test, server, UI, copy, asset, game-command, Blender, real-photo, authentication, database, deployment or pull-request change was made. The temporary dependency link was removed after verification; the root fixture was left running and untouched.
+This is reusable equipment/media intake, not final game acceptance. This equipment audit did not integrate the friendly cast. Obby/controller work was outside this audit. Browser touch emulation is not physical iPhone/iPad Safari evidence, and SwiftShader is not device GPU or performance certification. The visual staging pass used direct same-origin fixture actions to reach exact inventory checkpoints; keyboard and touch play claims come only from the separate unmodified journey runs. No source, test, server, UI, copy, asset, game-command, Blender, real-photo, authentication, database, deployment or pull-request change was made. The temporary dependency link was removed after verification; the root fixture was left running and untouched.

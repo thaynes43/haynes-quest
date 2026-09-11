@@ -16,6 +16,10 @@ const inventoryPath = path.resolve(
   process.env.QUEST_CATALOG_INVENTORY ??
     path.join(repoRoot, "scripts/assets/catalog-inventory.json"),
 );
+const thumbnailManifestPath = path.join(
+  repoRoot,
+  "docs/assets/media/catalog-thumbnails/v001/manifest.json",
+);
 const overallTimeoutMs = Number(
   process.env.QUEST_E2E_OVERALL_TIMEOUT_MS ?? 240_000,
 );
@@ -35,6 +39,31 @@ const viewports = [
 ];
 const requiredNapClips = ["idle", "move", "attack", "hit", "defeat"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
+const expectedInventoryCounts = {
+  entries: 36,
+  reference_sheet_entries: 5,
+  model_entries: 26,
+  model_files: 26,
+  completed_model_candidates: 25,
+  paused_partial_model_candidates: 1,
+  concept_only_entries: 1,
+  audio_entries: 4,
+  owner_approved_entries: 1,
+};
+const integratedAssetIds = [
+  "bestie-pink",
+  "bestie-black",
+  "blockling",
+  "signal-moth",
+  "buffer-baron",
+  "loop-dancer",
+  "prism-mimic",
+  "trendweaver",
+  "memory-collected",
+  "ability-unlocked",
+  "movement-landed",
+  "ui-confirmed",
+];
 
 function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
@@ -133,6 +162,53 @@ function normalizeInventory(value) {
     "inventory stable IDs are unique",
   );
   return assets;
+}
+
+async function verifyThumbnailManifest(value, inventory) {
+  assert.equal(value?.version, "v001", "thumbnail manifest version");
+  assert.ok(Array.isArray(value?.files), "thumbnail manifest has files");
+  const expectedSources = new Set();
+  for (const asset of inventory) {
+    expectedSources.add(asset.thumbnail);
+    if (asset.models.length && asset.inspirationImages.length) {
+      expectedSources.add(asset.inspirationImages[0].path);
+    }
+  }
+  const records = new Map();
+  for (const file of value.files) {
+    assert.equal(typeof file.source, "string", "thumbnail source path");
+    assert.equal(typeof file.path, "string", `${file.source}: thumbnail path`);
+    assert.equal(
+      records.has(file.source),
+      false,
+      `${file.source}: unique source`,
+    );
+    assert.equal(
+      [...records.values()].some((record) => record.path === file.path),
+      false,
+      `${file.path}: unique derivative path`,
+    );
+    const source = await fs.readFile(path.join(repoRoot, file.source));
+    const derivative = await fs.readFile(path.join(repoRoot, file.path));
+    assert.equal(
+      sha256(source),
+      file.source_sha256,
+      `${file.source}: source SHA-256`,
+    );
+    assert.equal(derivative.length, file.bytes, `${file.path}: exact bytes`);
+    assert.equal(
+      sha256(derivative),
+      file.sha256,
+      `${file.path}: derivative SHA-256`,
+    );
+    records.set(file.source, file);
+  }
+  assert.deepEqual(
+    [...records.keys()].sort(),
+    [...expectedSources].sort(),
+    "thumbnail manifest exactly covers current inventory sources",
+  );
+  return records;
 }
 
 function sitePrefix() {
@@ -282,7 +358,13 @@ function cardTitleLink(card) {
   );
 }
 
-async function inspectLanding(browser, inventory, viewport, report) {
+async function inspectLanding(
+  browser,
+  inventory,
+  thumbnailRecords,
+  viewport,
+  report,
+) {
   const context = await browser.newContext({
     viewport: { width: viewport.width, height: viewport.height },
     hasTouch: viewport.hasTouch,
@@ -360,6 +442,20 @@ async function inspectLanding(browser, inventory, viewport, report) {
         1,
         `${scope}: ${asset.id} has one primary thumbnail`,
       );
+      const primaryThumbnail = thumbnailRecords.get(asset.thumbnail);
+      assert.ok(
+        primaryThumbnail,
+        `${scope}: ${asset.id} primary source is in the thumbnail manifest`,
+      );
+      assert.equal(
+        comparableUrl(
+          await card
+            .locator("img.catalog-preview")
+            .evaluate((element) => element.src),
+        ),
+        comparableUrl(repositoryPathToUrl(primaryThumbnail.path)),
+        `${scope}: ${asset.id} card uses its inventory thumbnail source`,
+      );
       assert.equal(
         await card.locator(".catalog-state").count(),
         1,
@@ -376,6 +472,24 @@ async function inspectLanding(browser, inventory, viewport, report) {
         asset.models.length > 0 ? 1 : 0,
         `${scope}: ${asset.id} has the expected small inspiration image`,
       );
+      if (asset.models.length > 0) {
+        const inspirationThumbnail = thumbnailRecords.get(
+          asset.inspirationImages[0].path,
+        );
+        assert.ok(
+          inspirationThumbnail,
+          `${scope}: ${asset.id} inspiration is in the thumbnail manifest`,
+        );
+        assert.equal(
+          comparableUrl(
+            await card
+              .locator(".catalog-inspiration img")
+              .evaluate((element) => element.src),
+          ),
+          comparableUrl(repositoryPathToUrl(inspirationThumbnail.path)),
+          `${scope}: ${asset.id} card uses its inventory inspiration source`,
+        );
+      }
       const bounds = await card.boundingBox();
       assert.ok(bounds, `${scope}: ${asset.id} has bounds`);
       assert.ok(bounds.x >= -1, `${scope}: ${asset.id} begins inside viewport`);
@@ -409,20 +523,39 @@ async function inspectLanding(browser, inventory, viewport, report) {
     }
 
     const modelAssets = inventory.filter((entry) => entry.models.length > 0);
-    assert.equal(modelAssets.length, 24, `${scope}: all 24 models have cards`);
+    assert.equal(modelAssets.length, 26, `${scope}: all 26 models have cards`);
     const nap = modelAssets.find((entry) => entry.id === "nap-captain");
     assert.ok(nap, `${scope}: Nap Captain model card exists`);
     assert.equal(
       modelAssets.filter((entry) => entry.id !== "nap-captain").length,
-      23,
-      `${scope}: 23 other completed model candidates`,
+      25,
+      `${scope}: 25 other completed model candidates`,
     );
     assert.ok(
       modelAssets
         .filter((entry) => entry.id !== "nap-captain")
-        .every((entry) => /completed/i.test(entry.stateText)),
-      `${scope}: the other 23 model records are completed candidates`,
+        .every(
+          (entry) =>
+            /completed/i.test(entry.stateText) ||
+            /in PLAN006 playtest/i.test(entry.stateText),
+        ),
+      `${scope}: the other 25 model records are completed or in the current playtest`,
     );
+    for (const id of integratedAssetIds) {
+      const asset = inventory.find((entry) => entry.id === id);
+      assert.ok(asset, `${scope}: ${id} gameplay asset is inventoried`);
+      assert.match(
+        asset.stateText,
+        /in PLAN006 playtest/i,
+        `${scope}: ${id} inventory records current gameplay use`,
+      );
+      const cardState = cardInspections.find((entry) => entry.id === id)?.state;
+      assert.match(
+        cardState ?? "",
+        /in playtest/i,
+        `${scope}: ${id} card records current gameplay use`,
+      );
+    }
     const napState = await page
       .locator('.catalog-card[data-asset-id="nap-captain"] .catalog-state')
       .innerText();
@@ -691,7 +824,7 @@ async function verifyModelDeliveries(inventory, report) {
   const models = inventory.flatMap((asset) =>
     asset.models.map((model) => ({ assetId: asset.id, ...model })),
   );
-  assert.equal(models.length, 24, "inventory declares exactly 24 model files");
+  assert.equal(models.length, 26, "inventory declares exactly 26 model files");
   assert.equal(
     new Set(models.map((model) => model.path)).size,
     models.length,
@@ -1010,8 +1143,28 @@ const timeout = setTimeout(() => {
 }, overallTimeoutMs);
 
 try {
-  const inventory = normalizeInventory(
-    JSON.parse(await fs.readFile(inventoryPath, "utf8")),
+  const inventoryDocument = JSON.parse(
+    await fs.readFile(inventoryPath, "utf8"),
+  );
+  assert.deepEqual(
+    Object.fromEntries(
+      Object.keys(expectedInventoryCounts).map((key) => [
+        key,
+        inventoryDocument.counts?.[key],
+      ]),
+    ),
+    expectedInventoryCounts,
+    "inventory declares the expected current coverage counts",
+  );
+  const inventory = normalizeInventory(inventoryDocument);
+  assert.equal(
+    inventory.length,
+    expectedInventoryCounts.entries,
+    "inventory entry count matches its current contract",
+  );
+  const thumbnailRecords = await verifyThumbnailManifest(
+    JSON.parse(await fs.readFile(thumbnailManifestPath, "utf8")),
+    inventory,
   );
   report.inventoryEntries = inventory.length;
   browser = await chromium.launch({
@@ -1031,7 +1184,13 @@ try {
 
   for (const viewport of viewports) {
     report.landing.push(
-      await inspectLanding(browser, inventory, viewport, report),
+      await inspectLanding(
+        browser,
+        inventory,
+        thumbnailRecords,
+        viewport,
+        report,
+      ),
     );
   }
   report.reviews = await inspectReviewPages(browser, inventory, report);

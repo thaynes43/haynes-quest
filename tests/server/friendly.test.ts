@@ -16,6 +16,7 @@ import { InMemoryQuestStore } from '../../src/server/db/memory-store.js';
 import {
   RULE_VERSIONS,
   toSaveView,
+  validateSaveRecord,
   type SaveRecord,
 } from '../../src/server/domain.js';
 import { gameplayActionRequestSchema } from '../../src/server/validation.js';
@@ -280,6 +281,36 @@ describe('friendly save sidecar', () => {
     expect(() => new InMemoryQuestStore([malformed])).toThrow(expect.objectContaining({
       code: 'SAVE_DATA_INVALID',
     }));
+  });
+
+  it('rejects impossible future-chapter progress while preserving current progress', () => {
+    const plan = fixturePlan();
+    const sidecar = createInitialFriendlyState(plan);
+    const currentFriendlyId = friendlyDefinitionsForLevel(
+      plan.levels[0]!.id,
+      plan.levels[0]!.index,
+    )[0]!.id;
+    sidecar.friendlies[currentFriendlyId] = {
+      hp: 2,
+      defeated: false,
+      boonClaimed: true,
+      penaltyActive: true,
+    };
+    expect(validateSaveRecord(eraSave(plan, sidecar)).friendlyState).toEqual(sidecar);
+
+    const futureFriendlyId = friendlyDefinitionsForLevel(
+      plan.levels[1]!.id,
+      plan.levels[1]!.index,
+    )[0]!.id;
+    sidecar.friendlies[futureFriendlyId] = {
+      hp: 0,
+      defeated: true,
+      boonClaimed: true,
+      penaltyActive: true,
+    };
+    expect(() => validateSaveRecord(eraSave(plan, sidecar))).toThrow(
+      expect.objectContaining({ code: 'SAVE_DATA_INVALID' }),
+    );
   });
 
   it('preserves friendly harm through retry and never makes it a chapter gate', async () => {

@@ -1,6 +1,6 @@
 # WO051: Operation Besties — approved joint look, two models
 
-- **Status:** Ready for author dispatch. Tom approved the shown pink/black concept on September 11: “Use this look for the duo.” This authorizes this visual brief and modeling, not final acceptance of unseen exports.
+- **Status:** In production under the exclusive native Astra `besties_models` lease. Tom approved the shown pink/black concept on September 11: “Use this look for the duo.” This authorizes this visual brief and modeling, not final acceptance of unseen exports.
 - **Model:** fresh native GPT-6 Astra, max, empty context. All Blender work stays on Astra under TEAM.
 - **Root/worktree:** `/home/dev/work/quest-playtest-feedback`; root owns integration/UI/copy/catalog. Agent owns `scripts/assets/bickering-besties/`, model media directories below, and its technical result record. Do not edit current game/client/shared contracts.
 - **Input:** `docs/assets/media/bickering-besties/v001/concept.png`, SHA256 `1fb8f525b23c811dd1c3946faca219224bb10800c2517ae87ffdb40beaa0aee1`. Inspect this actual image. Follow both front/back designs; the pink-white varsity outfit, large pink bow and blonde hair contrast with black hoodie/trousers, purple star/streak/laces and black hair. Retain sturdy footwear and mitt-like hands. No extra hats, props, weapons or competing art direction.

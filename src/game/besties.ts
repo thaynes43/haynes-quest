@@ -116,8 +116,8 @@ interface BestiesState {
   contactedDuringTrick: boolean;
 }
 
-const pinkActorOffset = Object.freeze({ x: -1.25, y: 0, z: 0 });
-const blackActorOffset = Object.freeze({ x: 1.25, y: 0, z: 0 });
+const pinkActorOffset = Object.freeze({ x: 1.25, y: 0, z: 0 });
+const blackActorOffset = Object.freeze({ x: -1.25, y: 0, z: 0 });
 const pinkSweepFrom = Object.freeze({ x: -2.7, y: 0.2, z: -20.4 });
 const pinkSweepTo = Object.freeze({ x: 2.7, y: 0.2, z: -20.4 });
 const foamHalfExtents = Object.freeze({ x: 0.3, y: 0.2, z: 1.35 });

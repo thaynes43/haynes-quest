@@ -1,0 +1,16 @@
+{
+  "asset_id": "bickering-besties",
+  "version": "v001",
+  "role": "shared duo concept",
+  "generator": "built-in image generation tool",
+  "prompt": "prompt.txt",
+  "concept": "concept.png",
+  "concept_sha256": "1fb8f525b23c811dd1c3946faca219224bb10800c2517ae87ffdb40beaa0aee1",
+  "reference": "https://www.youtube.com/watch?v=DeiKPCTH0l4",
+  "reference_use": "Pink-versus-black challenge theme; original proposed costumes, not an asserted copy of exact Roblox avatars",
+  "owner_look_decision": {
+    "date": "2026-09-11",
+    "text": "Use this look for the duo"
+  },
+  "final_model_review": "pending; concept approval authorizes production, not unseen final exports"
+}

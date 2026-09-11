@@ -2,6 +2,7 @@ import type {
   EncounterKind,
   EncounterRole,
   EquipmentKind,
+  FriendlyView,
   MemoryState,
   SaveView,
 } from "../shared/contracts";
@@ -46,6 +47,7 @@ export interface LevelLayout {
   memories: MemoryPlacement[];
   pickups: PickupPlacement[];
   encounters: EncounterPlacement[];
+  friendlies?: Array<FriendlyView & { position: PositionSnapshot }>;
   checkpoint: PositionSnapshot;
   finish: PositionSnapshot;
   step: StepPlacement | null;
@@ -169,6 +171,14 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
         }
       : {}),
     memories,
+    friendlies: (activeLevel.friendlies ?? []).map((friendly, index) => ({
+      ...friendly,
+      position: [
+        { x: 3.7, y: 0, z: 0.2 },
+        { x: -4.1, y: 0, z: -7.4 },
+        { x: 4.1, y: 0, z: -20.2 },
+      ][index % 3]!,
+    })),
     pickups: activeLevel.pickups.map((pickup) => ({
       id: pickup.pickupId,
       equipmentId: pickup.id,
@@ -290,6 +300,11 @@ export function inspectLevel(level: LevelLayout): LevelInspection {
       maxHp: 0,
       localPhase: "idle",
       ...encounter.position,
+    })),
+    friendlyPositions: (level.friendlies ?? []).map((friend) => ({
+      id: friend.id,
+      assetId: friend.assetId,
+      ...friend.position,
     })),
     finishPosition: { ...level.finish },
     step: level.step ? { ...level.step } : null,

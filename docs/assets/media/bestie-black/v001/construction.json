@@ -1,0 +1,1336 @@
+{
+  "asset_id": "bestie-black",
+  "version": "v001",
+  "work_order": "WO051",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "blender": "4.5.13 LTS",
+  "reference": {
+    "path": "docs/assets/media/bickering-besties/v001/concept.png",
+    "sha256": "1fb8f525b23c811dd1c3946faca219224bb10800c2517ae87ffdb40beaa0aee1",
+    "approval": "Tom approved the look September 11, 2026; final exports await review"
+  },
+  "private_inputs": false,
+  "downloaded_meshes_or_textures": false,
+  "triangles": 14056,
+  "vertices": 7214,
+  "material_count": 5,
+  "joints": [
+    "root",
+    "hips",
+    "spine",
+    "neck",
+    "head",
+    "clavicle_R",
+    "upper_arm_R",
+    "forearm_R",
+    "hand_R",
+    "clavicle_L",
+    "upper_arm_L",
+    "forearm_L",
+    "hand_L",
+    "pelvis_R",
+    "thigh_R",
+    "shin_R",
+    "foot_R",
+    "pelvis_L",
+    "thigh_L",
+    "shin_L",
+    "foot_L"
+  ],
+  "spec": {
+    "height": 1.4,
+    "floor": 0,
+    "forward": "glTF -Z",
+    "up": "glTF +Y"
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.2,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.0,
+      "contact_fraction": 0.625,
+      "paired_hand": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "cheer",
+      "duration_s": 2.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    },
+    {
+      "name": "high-five",
+      "duration_s": 1.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": "left"
+    },
+    {
+      "name": "dizzy",
+      "duration_s": 2.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "paired_hand": null
+    }
+  ],
+  "source_scale_factor": 0.9846464242667333,
+  "source_floor": 0.0,
+  "bounds_blender": {
+    "min": [
+      -0.43694737553596497,
+      -0.25614190101623535,
+      0.0
+    ],
+    "max": [
+      0.43694737553596497,
+      0.2131759524345398,
+      1.399999976158142
+    ]
+  },
+  "named_source_parts": [
+    {
+      "name": "Soft hoodie body",
+      "vertices": 80,
+      "triangles": 156,
+      "groups": [
+        "hips",
+        "spine"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Ribbed waist band",
+      "vertices": 48,
+      "triangles": 92,
+      "groups": [
+        "hips"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Visible neck",
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "neck"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Soft trouser seat",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "hips"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Continuous cargo trouser leg R",
+      "vertices": 96,
+      "triangles": 188,
+      "groups": [
+        "hips",
+        "thigh_R",
+        "shin_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Rolled trouser hem R",
+      "vertices": 48,
+      "triangles": 92,
+      "groups": [
+        "shin_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Cargo pocket R",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "thigh_R"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Cargo pocket flap R",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "thigh_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Pocket snap R",
+      "vertices": 40,
+      "triangles": 76,
+      "groups": [
+        "thigh_R"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Continuous attached sleeve R",
+      "vertices": 96,
+      "triangles": 188,
+      "groups": [
+        "clavicle_R",
+        "upper_arm_R",
+        "forearm_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Rib cuff R",
+      "vertices": 36,
+      "triangles": 68,
+      "groups": [
+        "forearm_R"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Connected mitt palm R",
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "hand_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Rounded thumb R",
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "hand_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Rubber outsole R",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "White midsole R",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Sculpted sneaker upper R",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Sneaker ankle collar R",
+      "vertices": 36,
+      "triangles": 68,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Rounded sneaker toe R",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Padded sneaker tongue R",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Contrasting lace R0",
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Contrasting lace R1",
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Contrasting lace R2",
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Shoe outer accent R",
+      "vertices": 60,
+      "triangles": 116,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Heel panel R",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Continuous cargo trouser leg L",
+      "vertices": 96,
+      "triangles": 188,
+      "groups": [
+        "hips",
+        "thigh_L",
+        "shin_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Rolled trouser hem L",
+      "vertices": 48,
+      "triangles": 92,
+      "groups": [
+        "shin_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Cargo pocket L",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "thigh_L"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Cargo pocket flap L",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "thigh_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Pocket snap L",
+      "vertices": 40,
+      "triangles": 76,
+      "groups": [
+        "thigh_L"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Continuous attached sleeve L",
+      "vertices": 96,
+      "triangles": 188,
+      "groups": [
+        "clavicle_L",
+        "upper_arm_L",
+        "forearm_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Rib cuff L",
+      "vertices": 36,
+      "triangles": 68,
+      "groups": [
+        "forearm_L"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Connected mitt palm L",
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Rounded thumb L",
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Rubber outsole L",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "White midsole L",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Sculpted sneaker upper L",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Sneaker ankle collar L",
+      "vertices": 36,
+      "triangles": 68,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Rounded sneaker toe L",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Padded sneaker tongue L",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Contrasting lace L0",
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Contrasting lace L1",
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Contrasting lace L2",
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Shoe outer accent L",
+      "vertices": 60,
+      "triangles": 116,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Heel panel L",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Hood padded opening",
+      "vertices": 232,
+      "triangles": 460,
+      "groups": [
+        "spine"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Hood front V seam",
+      "vertices": 72,
+      "triangles": 140,
+      "groups": [
+        "spine"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Kangaroo pocket",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "hips",
+        "spine"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Pocket entry seam -1",
+      "vertices": 10,
+      "triangles": 16,
+      "groups": [
+        "hips",
+        "spine"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Hood drawstring -1",
+      "vertices": 42,
+      "triangles": 80,
+      "groups": [
+        "spine"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Drawstring tip -1",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "spine"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Pocket entry seam 1",
+      "vertices": 10,
+      "triangles": 16,
+      "groups": [
+        "hips",
+        "spine"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Hood drawstring 1",
+      "vertices": 42,
+      "triangles": 80,
+      "groups": [
+        "spine"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Drawstring tip 1",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "spine"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Purple star badge",
+      "vertices": 140,
+      "triangles": 276,
+      "groups": [
+        "spine"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Rounded expressive head",
+      "vertices": 216,
+      "triangles": 428,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Ear -1",
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Inner ear -1",
+      "vertices": 40,
+      "triangles": 76,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Rosy cheek -1",
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 14
+    },
+    {
+      "name": "Ear 1",
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Inner ear 1",
+      "vertices": 40,
+      "triangles": 76,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Rosy cheek 1",
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 14
+    },
+    {
+      "name": "Small button nose",
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Skeptical eye white -1",
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Side eye pupil -1",
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Eye glint -1",
+      "vertices": 40,
+      "triangles": 76,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Heavy upper eyelid -1",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Dry upper eye line -1",
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Skeptical eye white 1",
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Side eye pupil 1",
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Eye glint 1",
+      "vertices": 40,
+      "triangles": 76,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Heavy upper eyelid 1",
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Dry upper eye line 1",
+      "vertices": 30,
+      "triangles": 56,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Raised doubtful brow",
+      "vertices": 42,
+      "triangles": 80,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Low doubtful brow",
+      "vertices": 42,
+      "triangles": 80,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Tiny unimpressed frown",
+      "vertices": 60,
+      "triangles": 116,
+      "groups": [
+        "head"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Parted sculpted crown",
+      "vertices": 288,
+      "triangles": 572,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Back hair lock 00",
+      "vertices": 110,
+      "triangles": 216,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Back hair lock 01",
+      "vertices": 110,
+      "triangles": 216,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Back hair lock 02",
+      "vertices": 110,
+      "triangles": 216,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Back hair lock 03",
+      "vertices": 110,
+      "triangles": 216,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Back hair lock 04",
+      "vertices": 110,
+      "triangles": 216,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Back hair lock 05",
+      "vertices": 110,
+      "triangles": 216,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Back hair lock 06",
+      "vertices": 110,
+      "triangles": 216,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Back hair lock 07",
+      "vertices": 110,
+      "triangles": 216,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Back hair lock 08",
+      "vertices": 110,
+      "triangles": 216,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Swept fringe -1",
+      "vertices": 130,
+      "triangles": 256,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Face framing wave -1",
+      "vertices": 130,
+      "triangles": 256,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Outer flowing wave -1",
+      "vertices": 160,
+      "triangles": 316,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Swept fringe 1",
+      "vertices": 130,
+      "triangles": 256,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Face framing wave 1",
+      "vertices": 130,
+      "triangles": 256,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Outer flowing wave 1",
+      "vertices": 160,
+      "triangles": 316,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Purple front streak",
+      "vertices": 130,
+      "triangles": 256,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Purple rear streak",
+      "vertices": 130,
+      "triangles": 256,
+      "groups": [
+        "head",
+        "spine"
+      ],
+      "atlas_tile": 8
+    }
+  ],
+  "required_contacts": [
+    {
+      "part_a": "Continuous attached sleeve R",
+      "part_b": "Rib cuff R",
+      "required": "shared wrist chain and overlapping sleeve"
+    },
+    {
+      "part_a": "Rib cuff R",
+      "part_b": "Connected mitt palm R",
+      "required": "wrist centres coincide; visible overlap"
+    },
+    {
+      "part_a": "Continuous cargo trouser leg R",
+      "part_b": "Sneaker ankle collar R",
+      "required": "continuous hip-knee-ankle chain; hem encloses shoe collar"
+    },
+    {
+      "part_a": "Sneaker ankle collar R",
+      "part_b": "Sculpted sneaker upper R",
+      "required": "shoe collar embedded in sneaker upper"
+    },
+    {
+      "part_a": "Continuous attached sleeve L",
+      "part_b": "Rib cuff L",
+      "required": "shared wrist chain and overlapping sleeve"
+    },
+    {
+      "part_a": "Rib cuff L",
+      "part_b": "Connected mitt palm L",
+      "required": "wrist centres coincide; visible overlap"
+    },
+    {
+      "part_a": "Continuous cargo trouser leg L",
+      "part_b": "Sneaker ankle collar L",
+      "required": "continuous hip-knee-ankle chain; hem encloses shoe collar"
+    },
+    {
+      "part_a": "Sneaker ankle collar L",
+      "part_b": "Sculpted sneaker upper L",
+      "required": "shoe collar embedded in sneaker upper"
+    }
+  ],
+  "rig_anatomy_rest_blender": {
+    "root": {
+      "head": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.06892524969867134
+      ],
+      "parent": null
+    },
+    "hips": {
+      "head": [
+        0.0,
+        0.0,
+        0.5563252297107043
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.679406032744046
+      ],
+      "parent": "root"
+    },
+    "spine": {
+      "head": [
+        0.0,
+        0.0,
+        0.679406032744046
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.9058747103253947
+      ],
+      "parent": "hips"
+    },
+    "neck": {
+      "head": [
+        0.0,
+        0.0,
+        0.9058747103253947
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.9905543028123337
+      ],
+      "parent": "spine"
+    },
+    "head": {
+      "head": [
+        0.0,
+        0.0,
+        0.9905543028123337
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        1.2948100479107543
+      ],
+      "parent": "neck"
+    },
+    "clavicle_R": {
+      "head": [
+        0.0,
+        0.0,
+        0.9058747103253947
+      ],
+      "tail": [
+        0.2313919097026823,
+        0.0,
+        0.9107979424467284
+      ],
+      "parent": "spine"
+    },
+    "upper_arm_R": {
+      "head": [
+        0.2313919097026823,
+        0.0,
+        0.9107979424467284
+      ],
+      "tail": [
+        0.31705614861388814,
+        0.0,
+        0.7325769396544496
+      ],
+      "parent": "clavicle_R"
+    },
+    "forearm_R": {
+      "head": [
+        0.31705614861388814,
+        0.0,
+        0.7325769396544496
+      ],
+      "tail": [
+        0.3643191769786913,
+        0.0,
+        0.5582945225592377
+      ],
+      "parent": "upper_arm_R"
+    },
+    "hand_R": {
+      "head": [
+        0.3643191769786913,
+        0.0,
+        0.5582945225592377
+      ],
+      "tail": [
+        0.3771195804941589,
+        0.0,
+        0.4982310906789671
+      ],
+      "parent": "forearm_R"
+    },
+    "pelvis_R": {
+      "head": [
+        0.0,
+        0.0,
+        0.5563252297107043
+      ],
+      "tail": [
+        0.12603474230614187,
+        0.0,
+        0.5563252297107043
+      ],
+      "parent": "hips"
+    },
+    "thigh_R": {
+      "head": [
+        0.12603474230614187,
+        0.0,
+        0.5563252297107043
+      ],
+      "tail": [
+        0.12603474230614187,
+        0.0,
+        0.3495494806146903
+      ],
+      "parent": "pelvis_R"
+    },
+    "shin_R": {
+      "head": [
+        0.12603474230614187,
+        0.0,
+        0.3495494806146903
+      ],
+      "tail": [
+        0.12603474230614187,
+        0.0,
+        0.1427737315186763
+      ],
+      "parent": "thigh_R"
+    },
+    "foot_R": {
+      "head": [
+        0.12603474230614187,
+        0.0,
+        0.1427737315186763
+      ],
+      "tail": [
+        0.12603474230614187,
+        0.15754342788267733,
+        0.0768024210928052
+      ],
+      "parent": "shin_R"
+    },
+    "clavicle_L": {
+      "head": [
+        0.0,
+        0.0,
+        0.9058747103253947
+      ],
+      "tail": [
+        -0.2313919097026823,
+        0.0,
+        0.9107979424467284
+      ],
+      "parent": "spine"
+    },
+    "upper_arm_L": {
+      "head": [
+        -0.2313919097026823,
+        0.0,
+        0.9107979424467284
+      ],
+      "tail": [
+        -0.31705614861388814,
+        0.0,
+        0.7325769396544496
+      ],
+      "parent": "clavicle_L"
+    },
+    "forearm_L": {
+      "head": [
+        -0.31705614861388814,
+        0.0,
+        0.7325769396544496
+      ],
+      "tail": [
+        -0.3643191769786913,
+        0.0,
+        0.5582945225592377
+      ],
+      "parent": "upper_arm_L"
+    },
+    "hand_L": {
+      "head": [
+        -0.3643191769786913,
+        0.0,
+        0.5582945225592377
+      ],
+      "tail": [
+        -0.3771195804941589,
+        0.0,
+        0.4982310906789671
+      ],
+      "parent": "forearm_L"
+    },
+    "pelvis_L": {
+      "head": [
+        0.0,
+        0.0,
+        0.5563252297107043
+      ],
+      "tail": [
+        -0.12603474230614187,
+        0.0,
+        0.5563252297107043
+      ],
+      "parent": "hips"
+    },
+    "thigh_L": {
+      "head": [
+        -0.12603474230614187,
+        0.0,
+        0.5563252297107043
+      ],
+      "tail": [
+        -0.12603474230614187,
+        0.0,
+        0.3495494806146903
+      ],
+      "parent": "pelvis_L"
+    },
+    "shin_L": {
+      "head": [
+        -0.12603474230614187,
+        0.0,
+        0.3495494806146903
+      ],
+      "tail": [
+        -0.12603474230614187,
+        0.0,
+        0.1427737315186763
+      ],
+      "parent": "thigh_L"
+    },
+    "foot_L": {
+      "head": [
+        -0.12603474230614187,
+        0.0,
+        0.1427737315186763
+      ],
+      "tail": [
+        -0.12603474230614187,
+        0.15754342788267733,
+        0.0768024210928052
+      ],
+      "parent": "shin_L"
+    }
+  },
+  "rig": "One connected skeleton. Continuous sleeves and trouser legs use blended shoulder/elbow/hip/knee weights. Explicit two-bone targets are baked; shoes stay level. Caller owns root translation/facing.",
+  "files": {
+    "bestie-black.blend": {
+      "bytes": 1270681,
+      "sha256": "f4e43b9061ead88e7bd90ce34669ccb66c08b8330ce854789cde7478c6468b85"
+    },
+    "bestie-black.glb": {
+      "bytes": 928000,
+      "sha256": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05"
+    },
+    "pigment.png": {
+      "bytes": 20663,
+      "sha256": "891c3d353b7516b3392b2ee6768c4cd8b4eea5ce8fc031f34fc720f581610d8c"
+    }
+  }
+}

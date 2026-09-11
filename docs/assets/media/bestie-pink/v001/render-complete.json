@@ -1,0 +1,76 @@
+{
+  "asset_id": "bestie-pink",
+  "source": "exact reimported GLB",
+  "glb_sha256": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+  "views": [
+    "beauty.png",
+    "front.png",
+    "side.png",
+    "back.png"
+  ],
+  "joint_pose": "bestie-pink/joint-pose.png",
+  "joint_reel": "bestie-pink/joint-animations.mp4",
+  "joint_motion_grid": "bestie-pink/joint-motion-grid.png",
+  "joint_reel_native_render_fps": 10,
+  "joint_reel_encoded_fps": 30,
+  "segments": [
+    {
+      "clip": "idle",
+      "start_s": 0.0,
+      "duration_s": 2.4,
+      "frames": 24,
+      "representative_frame": 6
+    },
+    {
+      "clip": "move",
+      "start_s": 2.4,
+      "duration_s": 1.2,
+      "frames": 12,
+      "representative_frame": 27
+    },
+    {
+      "clip": "attack",
+      "start_s": 3.6,
+      "duration_s": 1.6,
+      "frames": 16,
+      "representative_frame": 46
+    },
+    {
+      "clip": "hit",
+      "start_s": 5.2,
+      "duration_s": 0.6,
+      "frames": 6,
+      "representative_frame": 53
+    },
+    {
+      "clip": "defeat",
+      "start_s": 5.8,
+      "duration_s": 2.0,
+      "frames": 20,
+      "representative_frame": 77
+    },
+    {
+      "clip": "cheer",
+      "start_s": 7.8,
+      "duration_s": 2.0,
+      "frames": 20,
+      "representative_frame": 83
+    },
+    {
+      "clip": "high-five",
+      "start_s": 9.8,
+      "duration_s": 1.6,
+      "frames": 16,
+      "representative_frame": 108
+    },
+    {
+      "clip": "dizzy",
+      "start_s": 11.4,
+      "duration_s": 2.4,
+      "frames": 24,
+      "representative_frame": 120
+    }
+  ],
+  "all_clip_geometry": "both independently skinned exact exports",
+  "completed_unix": 1789167534.20957
+}

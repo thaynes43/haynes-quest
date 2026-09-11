@@ -1,0 +1,145 @@
+{
+  "asset_id": "bestie-pink",
+  "glb_sha256": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+  "gltf_clips": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "defeat",
+    "cheer",
+    "high-five",
+    "dizzy"
+  ],
+  "skinned_primitives": 5,
+  "embedded_images": [
+    {
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "render": {
+    "calls_including_one_ground": 6,
+    "triangles_including_one_ground": 14590,
+    "textures": 3
+  },
+  "gl_error": 0,
+  "webgl_version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "three_revision": "186",
+  "clips": {
+    "idle": {
+      "duration_s": 2.4000000953674316,
+      "raster_sha256": [
+        "bdf0b4f04f35d693c170ac3bab407f3328904733daa6079fc2e34fa68792a0ea",
+        "d96199d52bc2263f40743e46624b2b4e48d0b531d9c7c02162d5254a4a6d2c2c",
+        "f9946159dce018a2733f2b10c10da1db7d59a47b87cc4c0a77cdcdd6d520b642",
+        "567581d69428e28f798897fbde5f0ba2f8ef7faa92c72dade6a93868362c09d0"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "move": {
+      "duration_s": 1.2000000476837158,
+      "raster_sha256": [
+        "aaecfe36fc09c9b202401c62d182e527647c4a844bad1e876bd114da96cf9668",
+        "b80f464c33c3bec86e6186c8c78db64e146bfd3fe3a92a57af13e1d19a750fac",
+        "70c3d2fd09af85d42c52d0ab3843e2040ae25bf34a61dd0dd9a23c5dec0c217b",
+        "f12a21935afc0c7e465b385bf254648bac07fd84b3367c245abd9b78b24809f3"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "attack": {
+      "duration_s": 1.600000023841858,
+      "raster_sha256": [
+        "226b0f997134abe4a0d78a1108b91d22bf1ffdc038c76ebc7617ffe5db39dd58",
+        "5a87d3726c85babce1ad3833006a76e8556fcdbfbe95748789c6cd00663b5133",
+        "f3ab389d846bcc1d5a20727103d34c701fd60ca16c3982aecc3939496710e654",
+        "9782afec90d672683c66fd3e19c464cfab7f8d5d82e7a1c77838a5d5ffd3e669"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "hit": {
+      "duration_s": 0.6000000238418579,
+      "raster_sha256": [
+        "e8e9c0212ef7f0f1aaaea790205e3b512869bbcdf36a7b70ad0053ec558bfa48",
+        "3f83ccd29407c0e434e373d7401daf38e554cac44ab2baba4d7aa526ed702be2",
+        "e988ca6b0ee4dc5f8a9325e8d1a3c995dcaafdcd2c250a56fac1f72cc44ba563",
+        "3b504f3fa122b274e6427dc0bf7417f41c82f959ebd8165f85ce77b90353f459"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "defeat": {
+      "duration_s": 2,
+      "raster_sha256": [
+        "fa310fff801d239ec0a53fed89852cb32151a435a2eca8dbcc5d2d6247ed0524",
+        "6c7449bfbefe2908a3c7f8d298e9f1372bfab58b7da2e97b293ede4e67c5e1a5",
+        "860695c9a2a5d6d88cd722d4bd3ef23c7ceaafa65e9aa25aa02e95e96b41b554",
+        "d05bc546e70cf60eb36ff57f3ee8949730246c3388936451ad550bef87ffdd12"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "cheer": {
+      "duration_s": 2,
+      "raster_sha256": [
+        "c20a02c183dc33707282382343a2333bf39dd95b05f7081e2ab7cf4dacf21b85",
+        "34570ce2399a06d972975726c69798635b77b7742743110f5f9309834125bcf3",
+        "78674df87dfe498d3ea3ca38cbd7753ce42d29be6ae6a4bc59545a9dbe01f595",
+        "ea06e7946848fab424313fc57a0f07115ce81d93c4fbda4fa9b2e5292f5d95eb"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "high-five": {
+      "duration_s": 1.600000023841858,
+      "raster_sha256": [
+        "f9e9118e81724d25a04a10f2b6b73c407c2312048fa6278024b24de8c91f5007",
+        "37dea49ad84e33bc85b47ecb7155e1ace24d81b72bc85962e90267cbfbe5b225",
+        "e4fac8f87f73cb3786254ab659c26f354996415fb813fd350a2e1c849b140637",
+        "e4600a0986bed92f65fdce0c5ff66c512192c3e8e845c1a4cd42836d91c76607"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "dizzy": {
+      "duration_s": 2.4000000953674316,
+      "raster_sha256": [
+        "fc68632bece50d0472c8eda870597f95349382aa06cdbb29882cade359fca2ba",
+        "6943fd20db193a765c5bc08ceee32bf8a194c022a9a3d0e78cb2fbccf68829e2",
+        "331f825fa7b2591f719a1710cf37131111fa6d6fb0d2018ba3c94d91d0470562",
+        "51981fe2586dbc82ae60ab0263c3e6b2599dae855b31306eda1369480201da43"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    }
+  },
+  "browser": "153.0.8010.12",
+  "renderer": "Chromium headless with ANGLE SwiftShader (software WebGL)",
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:39933/",
+    "http://127.0.0.1:39933/three/build/three.module.js",
+    "http://127.0.0.1:39933/three/examples/jsm/loaders/GLTFLoader.js",
+    "http://127.0.0.1:39933/three/examples/jsm/utils/BufferGeometryUtils.js",
+    "http://127.0.0.1:39933/three/examples/jsm/utils/SkeletonUtils.js",
+    "http://127.0.0.1:39933/three/build/three.core.js",
+    "http://127.0.0.1:39933/assets/bestie-pink.glb",
+    "blob:http://127.0.0.1:39933/050c492d-4dae-46cd-b242-f79b122a165a"
+  ],
+  "checks": {
+    "exact_glb_hash": true,
+    "expected_skinned_draw_primitives": true,
+    "one_embedded_1024_image": true,
+    "expected_color_draws": true,
+    "expected_triangle_count": true,
+    "eight_expected_clips": true,
+    "every_clip_changes_actual_raster": true,
+    "webgl_error_free": true,
+    "browser_error_free": true,
+    "no_external_requests": true
+  },
+  "limitations": "Isolated exact-GLB software WebGL intake; not integrated gameplay, physical Safari, GPU performance or owner approval."
+}

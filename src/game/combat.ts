@@ -36,6 +36,7 @@ interface LocalEnemy {
   hp: number;
   maxHp: number;
   defeated: boolean;
+  scripted: boolean;
 }
 
 export interface EnemyStepOptions {
@@ -240,6 +241,7 @@ export class EnemySimulation {
         enemy.contactedDuringStrike = false;
         continue;
       }
+      if (enemy.scripted) continue;
       const tuning = tuningFor(enemy.role);
       const playerDistance = distance(enemy.position, options.player);
       const playerReachable = canReachPlayer(
@@ -348,7 +350,7 @@ export class EnemySimulation {
 
   resolvePlayerCollision(position: PositionSnapshot, level: LevelLayout): void {
     for (const enemy of this.enemies.values()) {
-      if (enemy.defeated) continue;
+      if (enemy.defeated || enemy.scripted) continue;
       if (verticalDistance(position, enemy.position) > maxEnemyContactFeetDelta)
         continue;
       const minimumDistance = tuningFor(enemy.role).collisionRadius + 0.25;
@@ -388,6 +390,7 @@ export class EnemySimulation {
       hp: encounter.hp,
       maxHp: encounter.maxHp,
       defeated: encounter.defeated,
+      scripted: encounter.content?.assetId === "bickering-besties",
     });
   }
 }

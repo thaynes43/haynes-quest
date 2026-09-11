@@ -5,6 +5,7 @@ const parodyMotion: Record<
   string,
   { contactFraction: number; height: number }
 > = {
+  "bickering-besties": { contactFraction: 0.625, height: 1.4 },
   "mister-hiss": { contactFraction: 0.6, height: 1 },
   "peel-patrol": { contactFraction: 0.625, height: 1.15 },
   "drama-dragon": { contactFraction: 0.625, height: 1.8 },
@@ -13,8 +14,31 @@ const parodyMotion: Record<
   "one-star-diva": { contactFraction: 0.625, height: 1.65 },
 };
 
+interface ParodyArtworkBase {
+  readonly contactFraction: number;
+  readonly height: number;
+  readonly id: string;
+}
+
+export interface SingleParodyArtwork extends ParodyArtworkBase {
+  readonly kind: "single";
+  readonly url: string;
+}
+
+export interface DuoParodyArtwork extends ParodyArtworkBase {
+  readonly kind: "duo";
+  readonly models: readonly [
+    { readonly id: "bestie-pink"; readonly url: string },
+    { readonly id: "bestie-black"; readonly url: string },
+  ];
+}
+
+export type ParodyArtwork = SingleParodyArtwork | DuoParodyArtwork;
+
 /** Candidate identities are frozen by the server; legacy saves retain their old renderer. */
-export function parodyArtwork(content: NonNullable<EncounterView["content"]>) {
+export function parodyArtwork(
+  content: NonNullable<EncounterView["content"]>,
+): ParodyArtwork | null {
   const entry = ALL_PARODY_CANDIDATES.find(
     (candidate) =>
       candidate.id === content.catalogEntryId &&
@@ -24,9 +48,26 @@ export function parodyArtwork(content: NonNullable<EncounterView["content"]>) {
   );
   const motion = entry && parodyMotion[entry.assetId];
   if (!entry || !motion) return null;
+  if (entry.assetId === "bickering-besties")
+    return {
+      ...motion,
+      id: entry.assetId,
+      kind: "duo",
+      models: [
+        {
+          id: "bestie-pink",
+          url: "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+        },
+        {
+          id: "bestie-black",
+          url: "/studio/assets/media/bestie-black/v001/bestie-black.glb",
+        },
+      ],
+    };
   return {
     ...motion,
     id: entry.assetId,
+    kind: "single",
     url: `/studio/assets/media/${entry.assetId}/${entry.assetVersion}/${entry.assetId}.glb`,
   };
 }

@@ -88,7 +88,12 @@ const levelV1Schema = z.object({
 }).strict();
 const levelV2Schema = z.object({
   ...levelShape,
-  periodId: z.enum(['block-party-v1', 'remix-runway-v1', 'remix-runway-v2']),
+  periodId: z.enum([
+    'block-party-v1',
+    'remix-runway-v1',
+    'remix-runway-v2',
+    'besties-obby-v1',
+  ]),
   routeId: z.enum(['gentle-intro-v1', 'gentle-jump-v1']),
   encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
 }).strict();
@@ -188,12 +193,14 @@ export function parseStoredAdventure(
 export function parseStoredFriendlyState(
   raw: unknown,
   plan: AdventurePlan,
+  adventureState: AdventureState,
 ): FriendlyState {
   const parsed = friendlyStateSchema.safeParse(raw);
   if (!parsed.success) invalid();
   const state = parsed.data as FriendlyState;
   const definitions = friendlyDefinitionsForPlan(plan, state.catalogVersion);
   const expected = new Map(definitions.map((definition) => [definition.id, definition]));
+  const levelIndexes = new Map(plan.levels.map((level) => [level.id, level.index]));
   const ids = Object.keys(state.friendlies);
   if (
     ids.length !== expected.size ||
@@ -205,7 +212,13 @@ export function parseStoredFriendlyState(
       !progress ||
       progress.hp > definition.maxHp ||
       progress.defeated !== (progress.hp === 0) ||
-      progress.penaltyActive !== (progress.hp < definition.maxHp)
+      progress.penaltyActive !== (progress.hp < definition.maxHp) ||
+      ((levelIndexes.get(definition.levelId) ?? Number.MAX_SAFE_INTEGER) >
+        adventureState.activeLevelIndex &&
+        (progress.hp !== definition.maxHp ||
+          progress.defeated ||
+          progress.boonClaimed ||
+          progress.penaltyActive))
     ) invalid();
   }
   return state;

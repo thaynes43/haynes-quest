@@ -1,0 +1,36 @@
+{
+  "work_order": "WO-032",
+  "files": [
+    {
+      "file": "collect.py",
+      "bytes": 7386,
+      "sha256": "b5884b118796601938976665909bf3e96c4c011c062cda7acf16822355431e14",
+      "remote_verified": true
+    },
+    {
+      "file": "bestie-pink/browser-beauty.png",
+      "bytes": 117309,
+      "sha256": "e394e80b84ef32a3195fb5b268eb1376c0ecf0c546016c1d31b2d01e7f735e01",
+      "remote_verified": true
+    },
+    {
+      "file": "bestie-pink/browser-attack.png",
+      "bytes": 119147,
+      "sha256": "9a7d4d726d2c53d48500d9c3e0da3d1dade9e93817ea9863984caa6d17a90c9d",
+      "remote_verified": true
+    },
+    {
+      "file": "bestie-black/browser-beauty.png",
+      "bytes": 102247,
+      "sha256": "2842a94d6515e93fd77340d9335d7bf8805341262226114c522024dcfc7f3750",
+      "remote_verified": true
+    },
+    {
+      "file": "bestie-black/browser-attack.png",
+      "bytes": 101985,
+      "sha256": "f69abac315243308c0a21936dbef3a237136c45fa1c8ef030ce4983c23ef9818",
+      "remote_verified": true
+    }
+  ],
+  "all_remote_hashes_match": true
+}

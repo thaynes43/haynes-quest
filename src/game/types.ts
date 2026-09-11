@@ -64,6 +64,7 @@ export interface SceneFrame {
   guarding: boolean;
   enemies: EnemyFrame[];
   currentTarget: string | null;
+  besties?: import("./besties").BestiesFrame;
   obby?: ObbySample;
   checkpointId?: string | null;
   recovering?: boolean;
@@ -71,6 +72,7 @@ export interface SceneFrame {
 
 export type AttackAttemptOutcome =
   | "accepted"
+  | "guarded"
   | "no-target"
   | "unarmed"
   | "cooldown"
@@ -89,6 +91,8 @@ export interface SceneMediaState {
 }
 
 export interface GameStatus {
+  nearFriendlyId?: string | null;
+  bestiesPhase?: import("./besties").BestiesPhase;
   nearPickupId: string | null;
   nearEncounterId: string | null;
   nearMemoryId: string | null;
@@ -144,6 +148,7 @@ export interface LevelInspection {
   memoryPositions: MemoryPlacementInspection[];
   pickupPositions: PickupInspection[];
   encounterPositions: EncounterInspection[];
+  friendlyPositions?: Array<PositionSnapshot & { id: string; assetId: string }>;
   finishPosition: PositionSnapshot;
   step: null | { z: number; height: number; unlockMemoryId: string };
 }
