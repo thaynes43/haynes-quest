@@ -1,0 +1,283 @@
+import { randomUUID } from 'node:crypto';
+import { and, desc, eq, gt } from 'drizzle-orm';
+import { drizzle, type NodePgDatabase } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
+import {
+  abilitiesForAge,
+  appearanceForAge,
+  isValidFrozenManifest,
+  RULE_VERSIONS,
+  type CreateSaveCommand,
+  type NewPreviewRecord,
+  type PlayerRecord,
+  type PreviewRecord,
+  type QuestStore,
+  type SaveRecord,
+} from '../domain.js';
+import { AppError } from '../errors.js';
+import { fixtureSessions, players, questSchema, saves, setupPreviews } from './schema.js';
+import { migrateQuestDatabase } from './migrate.js';
+
+type Database = NodePgDatabase<typeof questSchema>;
+type PreviewRow = typeof setupPreviews.$inferSelect;
+type SaveRow = typeof saves.$inferSelect;
+
+export class PostgresQuestStore implements QuestStore {
+  readonly db: Database;
+
+  constructor(private readonly pool: Pool) {
+    this.db = drizzle(pool, { schema: questSchema });
+  }
+
+  static connect(databaseUrl: string): PostgresQuestStore {
+    return new PostgresQuestStore(
+      new Pool({
+        connectionString: databaseUrl,
+        max: 10,
+        connectionTimeoutMillis: 5_000,
+        idleTimeoutMillis: 30_000,
+      }),
+    );
+  }
+
+  async migrate(directory = 'migrations'): Promise<number> {
+    return migrateQuestDatabase(this.pool, directory);
+  }
+
+  async ready(): Promise<boolean> {
+    try {
+      const result = await this.pool.query<{ ready: boolean }>(
+        `select to_regclass('quest_saves') is not null and to_regclass('quest_fixture_sessions') is not null as ready`,
+      );
+      return result.rows[0]?.ready === true;
+    } catch {
+      return false;
+    }
+  }
+
+  async getSession(sessionId: string, now: Date): Promise<PlayerRecord | null> {
+    const [row] = await this.db
+      .select({ id: players.id, label: players.label })
+      .from(fixtureSessions)
+      .innerJoin(players, eq(players.id, fixtureSessions.playerId))
+      .where(and(eq(fixtureSessions.id, sessionId), gt(fixtureSessions.expiresAt, now)))
+      .limit(1);
+    return row ?? null;
+  }
+
+  async createFixtureSession(sessionId: string, expiresAt: Date): Promise<PlayerRecord> {
+    return this.db.transaction(async (transaction) => {
+      const player: PlayerRecord = { id: randomUUID(), label: 'Preview player' };
+      await transaction.insert(players).values(player);
+      await transaction.insert(fixtureSessions).values({ id: sessionId, playerId: player.id, expiresAt });
+      return player;
+    });
+  }
+
+  async putPreview(input: NewPreviewRecord): Promise<PreviewRecord> {
+    if (!isValidFrozenManifest(input.birthDate, input.memories)) {
+      throw new AppError(422, 'INVALID_MANIFEST', 'Invalid memory manifest');
+    }
+    const id = randomUUID();
+    const [row] = await this.db
+      .insert(setupPreviews)
+      .values({
+        id,
+        ownerId: input.ownerId,
+        birthDate: input.birthDate,
+        subjects: input.subjects,
+        chosenSubject: input.chosenSubject,
+        memories: input.memories,
+        selectedIds: input.selectedIds,
+        coverage: input.coverage,
+        expiresAt: input.expiresAt,
+      })
+      .returning();
+    if (!row) throw new AppError(503, 'STORE_WRITE_FAILED', 'Save failed');
+    return mapPreview(row);
+  }
+
+  async createSave(command: CreateSaveCommand): Promise<SaveRecord> {
+    return this.db.transaction(async (transaction) => {
+      const [preview] = await transaction
+        .select()
+        .from(setupPreviews)
+        .where(and(eq(setupPreviews.id, command.previewId), eq(setupPreviews.ownerId, command.ownerId)))
+        .for('update')
+        .limit(1);
+      if (!preview || preview.expiresAt <= new Date()) {
+        throw new AppError(404, 'PREVIEW_NOT_FOUND', 'Preview not found');
+      }
+
+      const [existing] = await transaction
+        .select()
+        .from(saves)
+        .where(and(eq(saves.previewId, command.previewId), eq(saves.ownerId, command.ownerId)))
+        .limit(1);
+      if (existing) {
+        if (!sameSelection(existing.memories, command.selectedIds)) {
+          throw new AppError(409, 'PREVIEW_ALREADY_USED', 'Preview already used');
+        }
+        return mapSave(existing);
+      }
+
+      if (!preview.chosenSubject) throw new AppError(422, 'SUBJECT_UNRESOLVED', 'Subject unresolved');
+      if (!isValidFrozenManifest(preview.birthDate, preview.memories)) {
+        throw new AppError(422, 'INVALID_MANIFEST', 'Invalid memory manifest');
+      }
+      const issued = new Set(preview.memories.map((memory) => memory.id));
+      if (command.selectedIds.some((id) => !issued.has(id))) {
+        throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
+      }
+      const selected = new Set(command.selectedIds);
+      const memories = preview.memories.filter((memory) => selected.has(memory.id));
+      if (memories.length < 1 || memories.length > 24) {
+        throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
+      }
+
+      const [created] = await transaction
+        .insert(saves)
+        .values({
+          id: randomUUID(),
+          ownerId: command.ownerId,
+          previewId: command.previewId,
+          title: command.title ?? 'The first clearing',
+          subject: preview.chosenSubject,
+          birthDate: preview.birthDate,
+          memories,
+          recoveredIds: [],
+          ageYears: 0,
+          abilities: abilitiesForAge(0),
+          appearanceStage: appearanceForAge(0),
+          completed: false,
+          revision: 0,
+          versions: RULE_VERSIONS,
+        })
+        .returning();
+      if (!created) throw new AppError(503, 'STORE_WRITE_FAILED', 'Save failed');
+      return mapSave(created);
+    });
+  }
+
+  async listSaves(ownerId: string): Promise<SaveRecord[]> {
+    const rows = await this.db
+      .select()
+      .from(saves)
+      .where(eq(saves.ownerId, ownerId))
+      .orderBy(desc(saves.updatedAt));
+    return rows.map(mapSave);
+  }
+
+  async getSave(ownerId: string, saveId: string): Promise<SaveRecord | null> {
+    const [row] = await this.db
+      .select()
+      .from(saves)
+      .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId)))
+      .limit(1);
+    return row ? mapSave(row) : null;
+  }
+
+  async recoverMemory(ownerId: string, saveId: string, memoryId: string): Promise<SaveRecord> {
+    return this.db.transaction(async (transaction) => {
+      const [row] = await transaction
+        .select()
+        .from(saves)
+        .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId)))
+        .for('update')
+        .limit(1);
+      if (!row) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
+      if (row.recoveredIds.includes(memoryId)) return mapSave(row);
+
+      const memoryIndex = row.memories.findIndex((memory) => memory.id === memoryId);
+      if (memoryIndex < 0) throw new AppError(404, 'MEMORY_NOT_FOUND', 'Memory not found');
+      if (memoryIndex !== row.recoveredIds.length) {
+        throw new AppError(409, 'MEMORY_OUT_OF_ORDER', 'Memory is out of order');
+      }
+
+      const ageYears = Math.max(row.ageYears, row.memories[memoryIndex]!.ageYears);
+      const [updated] = await transaction
+        .update(saves)
+        .set({
+          recoveredIds: [...row.recoveredIds, memoryId],
+          ageYears,
+          abilities: abilitiesForAge(ageYears),
+          appearanceStage: appearanceForAge(ageYears),
+          revision: row.revision + 1,
+          updatedAt: new Date(),
+        })
+        .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId), eq(saves.revision, row.revision)))
+        .returning();
+      if (!updated) throw new AppError(409, 'SAVE_CONFLICT', 'Save changed');
+      return mapSave(updated);
+    });
+  }
+
+  async finishSave(ownerId: string, saveId: string): Promise<SaveRecord> {
+    return this.db.transaction(async (transaction) => {
+      const [row] = await transaction
+        .select()
+        .from(saves)
+        .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId)))
+        .for('update')
+        .limit(1);
+      if (!row) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
+      if (row.completed) return mapSave(row);
+      if (row.recoveredIds.length !== row.memories.length) {
+        throw new AppError(409, 'JOURNEY_INCOMPLETE', 'Journey incomplete');
+      }
+      const [updated] = await transaction
+        .update(saves)
+        .set({ completed: true, revision: row.revision + 1, updatedAt: new Date() })
+        .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId), eq(saves.revision, row.revision)))
+        .returning();
+      if (!updated) throw new AppError(409, 'SAVE_CONFLICT', 'Save changed');
+      return mapSave(updated);
+    });
+  }
+
+  async close(): Promise<void> {
+    await this.pool.end();
+  }
+}
+
+function sameSelection(memories: { id: string }[], selectedIds: string[]): boolean {
+  const selected = new Set(selectedIds);
+  return memories.length === selected.size && memories.every((memory) => selected.has(memory.id));
+}
+
+function mapPreview(row: PreviewRow): PreviewRecord {
+  return {
+    previewId: row.id,
+    ownerId: row.ownerId,
+    birthDate: row.birthDate,
+    subjects: row.subjects,
+    chosenSubject: row.chosenSubject,
+    candidates: row.memories.map(({ source: _source, ...memory }) => memory),
+    memories: row.memories,
+    selectedIds: row.selectedIds,
+    coverage: row.coverage,
+    createdAt: row.createdAt,
+    expiresAt: row.expiresAt,
+  };
+}
+
+function mapSave(row: SaveRow): SaveRecord {
+  return {
+    id: row.id,
+    ownerId: row.ownerId,
+    previewId: row.previewId,
+    title: row.title,
+    subject: row.subject,
+    birthDate: row.birthDate,
+    memories: row.memories,
+    recoveredIds: row.recoveredIds,
+    ageYears: row.ageYears,
+    abilities: row.abilities,
+    appearanceStage: row.appearanceStage,
+    completed: row.completed,
+    revision: row.revision,
+    createdAt: row.createdAt,
+    updatedAt: row.updatedAt,
+    versions: row.versions,
+  };
+}

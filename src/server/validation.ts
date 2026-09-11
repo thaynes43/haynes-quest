@@ -1,0 +1,75 @@
+import type { Context } from 'hono';
+import { z } from 'zod';
+import { AppError } from './errors.js';
+import { parseDateOnly } from './domain.js';
+
+const dateOnly = z.string().refine((value) => {
+  try {
+    parseDateOnly(value);
+    return true;
+  } catch {
+    return false;
+  }
+}, 'Invalid date');
+
+export const previewRequestSchema = z
+  .object({
+    name: z.string().trim().min(1).max(120),
+    birthDate: dateOnly,
+    fromDate: dateOnly.optional(),
+    toDate: dateOnly.optional(),
+    limit: z.number().int().min(1).max(24).optional(),
+    subjectId: z.string().min(1).max(128).optional(),
+  })
+  .strict()
+  .superRefine((value, context) => {
+    if (value.fromDate && value.toDate && value.fromDate > value.toDate) {
+      context.addIssue({ code: 'custom', message: 'Invalid date range' });
+    }
+    if (value.fromDate && value.fromDate < value.birthDate) {
+      context.addIssue({ code: 'custom', message: 'Range precedes birth date' });
+    }
+    if (value.toDate && value.toDate < value.birthDate) {
+      context.addIssue({ code: 'custom', message: 'Range precedes birth date' });
+    }
+  });
+
+export const createSaveSchema = z
+  .object({
+    previewId: z.string().uuid(),
+    selectedIds: z.array(z.string().min(1).max(128)).min(1).max(24),
+    title: z.string().trim().min(1).max(80).optional(),
+  })
+  .strict()
+  .superRefine((value, context) => {
+    if (new Set(value.selectedIds).size !== value.selectedIds.length) {
+      context.addIssue({ code: 'custom', message: 'Duplicate selection' });
+    }
+  });
+
+export const recoverSchema = z.object({ memoryId: z.string().min(1).max(128) }).strict();
+export const finishSchema = z.object({}).strict();
+
+export async function parseJson<T>(context: Context, schema: z.ZodType<T>, maxBytes = 16_384): Promise<T> {
+  const contentType = context.req.header('content-type')?.split(';', 1)[0]?.trim().toLowerCase();
+  if (contentType !== 'application/json') {
+    throw new AppError(415, 'JSON_REQUIRED', 'JSON required');
+  }
+  const declaredLength = Number(context.req.header('content-length') ?? 0);
+  if (Number.isFinite(declaredLength) && declaredLength > maxBytes) {
+    throw new AppError(413, 'REQUEST_TOO_LARGE', 'Request too large');
+  }
+
+  const bytes = await context.req.arrayBuffer();
+  if (bytes.byteLength > maxBytes) throw new AppError(413, 'REQUEST_TOO_LARGE', 'Request too large');
+
+  let json: unknown;
+  try {
+    json = JSON.parse(new TextDecoder().decode(bytes));
+  } catch {
+    throw new AppError(400, 'INVALID_JSON', 'Invalid JSON');
+  }
+  const result = schema.safeParse(json);
+  if (!result.success) throw new AppError(422, 'INVALID_REQUEST', 'Invalid request');
+  return result.data;
+}
