@@ -304,6 +304,7 @@ function Adventure({
       <header className="game-header" data-quest-ui>
         <button
           className="glass-button leave-button"
+          aria-label="Save & leave"
           disabled={busy || requestBusy.current}
           onClick={onLeave}
         >
