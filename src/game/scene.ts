@@ -178,17 +178,28 @@ export class GardenScene {
       [0, -0.045, -13],
     );
     ground.rotation.x = -Math.PI / 2;
+    ground.castShadow = false;
     this.world.add(ground);
+    const pathPlacements: THREE.Matrix4[] = [];
     for (let z = 4; z >= -26; z -= 2) {
       const xs = z < -18 ? [-2, 0, 2] : [Math.sin(z * 0.22) * 0.45];
       for (const x of xs) {
         const tile = new THREE.Group();
         tile.position.set(x, -0.012, z);
         tile.rotation.y = z % 4 ? Math.PI : 0;
-        this.world.add(tile);
-        this.assets.attach(modelUrls.path, tile, valid);
+        tile.updateMatrix();
+        pathPlacements.push(tile.matrix.clone());
       }
     }
+    this.assets.attachInstances(
+      modelUrls.path,
+      this.world,
+      pathPlacements,
+      valid,
+      {
+        castShadow: false,
+      },
+    );
     const groundColor = new THREE.Color(palette.grass);
     const groundPositions = ground.geometry.getAttribute("position");
     const colors = new Float32Array(groundPositions.count * 3);
@@ -205,7 +216,9 @@ export class GardenScene {
     ground.geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
     (ground.material as THREE.MeshStandardMaterial).color.setHex(0xffffff);
     (ground.material as THREE.MeshStandardMaterial).vertexColors = true;
-    // Authored landmarks frame the route; their actual meshes are shared with the catalog.
+    // Repeat the catalog geometry in batches while preserving every placement.
+    const treePlacements: THREE.Matrix4[] = [];
+    const stonePlacements: THREE.Matrix4[] = [];
     for (let i = 0; i < 16; i++) {
       const side = i % 2 ? 1 : -1;
       const tree = new THREE.Group();
@@ -216,17 +229,29 @@ export class GardenScene {
       );
       tree.scale.setScalar(1.1 + (i % 4) * 0.13);
       tree.rotation.y = i * 1.7;
-      this.world.add(tree);
-      this.assets.attach(modelUrls.tree, tree, valid);
+      tree.updateMatrix();
+      treePlacements.push(tree.matrix.clone());
       if (i % 2 === 0) {
         const stone = new THREE.Group();
         stone.position.set(-side * 6.5, -0.04, tree.position.z - 2.2);
         stone.rotation.y = i * 2.1;
         stone.scale.setScalar(0.8 + (i % 3) * 0.1);
-        this.world.add(stone);
-        this.assets.attach(modelUrls.stone, stone, valid);
+        stone.updateMatrix();
+        stonePlacements.push(stone.matrix.clone());
       }
     }
+    this.assets.attachInstances(
+      modelUrls.tree,
+      this.world,
+      treePlacements,
+      valid,
+    );
+    this.assets.attachInstances(
+      modelUrls.stone,
+      this.world,
+      stonePlacements,
+      valid,
+    );
     for (let i = 0; i < 8; i++) {
       const hill = shapeMesh(
         new THREE.SphereGeometry(5 + (i % 3), 16, 8),
@@ -234,6 +259,8 @@ export class GardenScene {
         [(i % 2 ? 1 : -1) * (16 + (i % 3)), -2, 10 - Math.floor(i / 2) * 14],
       );
       hill.scale.y = 0.7;
+      hill.castShadow = false;
+      hill.receiveShadow = false;
       this.world.add(hill);
     }
     this.addMeadow(later);

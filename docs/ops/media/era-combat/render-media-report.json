@@ -1,0 +1,153 @@
+{
+  "scope": {
+    "scene": "fresh synthetic fixture initial scene",
+    "browser": "Chromium 153.0.8010.12",
+    "renderer": "ANGLE SwiftShader software renderer",
+    "sample": "two independent 8-second samples per viewport",
+    "limits": "No physical-device or Safari performance inference."
+  },
+  "performance": {
+    "desktop1440x1000": {
+      "before": {
+        "fpsSamples": [
+          8.1,
+          7.6
+        ],
+        "drawCalls": 360,
+        "triangles": 147016,
+        "buffers": 826,
+        "textures": 15,
+        "framebuffers": 4,
+        "programs": 13,
+        "vertexArrays": 455,
+        "callbackCpuP50MsSamples": [
+          2.5,
+          2.6
+        ]
+      },
+      "after": {
+        "fpsSamples": [
+          10.8,
+          9.9
+        ],
+        "drawCalls": 222,
+        "triangles": 163088,
+        "buffers": 487,
+        "textures": 15,
+        "framebuffers": 4,
+        "renderbuffers": 0,
+        "programs": 15,
+        "shaders": 0,
+        "vertexArrays": 312,
+        "callbackCpuP50MsSamples": [
+          1.5,
+          1.4
+        ],
+        "frameDeltaP50MsSamples": [
+          100,
+          100
+        ],
+        "frameDeltaP95MsSamples": [
+          116.8,
+          183.3
+        ],
+        "frameDeltaOver250MsSamples": [
+          0,
+          1
+        ]
+      },
+      "changePercent": {
+        "meanFps": 31.8,
+        "drawCalls": -38.3,
+        "triangles": 10.9,
+        "buffers": -41.0,
+        "textures": 0.0,
+        "vertexArrays": -31.4
+      }
+    },
+    "touch844x390": {
+      "before": {
+        "fpsSamples": [
+          11.2,
+          14.6
+        ],
+        "drawCalls": 366,
+        "triangles": 152620,
+        "buffers": 826,
+        "textures": 15,
+        "framebuffers": 4,
+        "programs": 13,
+        "vertexArrays": 461,
+        "callbackCpuP50MsSamples": [
+          2.4,
+          2.0
+        ]
+      },
+      "after": {
+        "fpsSamples": [
+          16.2,
+          14.3
+        ],
+        "drawCalls": 225,
+        "triangles": 163548,
+        "buffers": 495,
+        "textures": 15,
+        "framebuffers": 4,
+        "renderbuffers": 0,
+        "programs": 15,
+        "shaders": 0,
+        "vertexArrays": 315,
+        "callbackCpuP50MsSamples": [
+          1.3,
+          1.4
+        ],
+        "frameDeltaP50MsSamples": [
+          66.6,
+          66.7
+        ],
+        "frameDeltaP95MsSamples": [
+          116.7,
+          100
+        ],
+        "frameDeltaOver250MsSamples": [
+          0,
+          0
+        ]
+      },
+      "changePercent": {
+        "meanFps": 18.2,
+        "drawCalls": -38.5,
+        "triangles": 7.2,
+        "buffers": -40.1,
+        "textures": 0.0,
+        "vertexArrays": -31.7
+      }
+    },
+    "observation": "Batching reduced draw calls and GPU object counts. Triangle submissions increased because each visible InstancedMesh batch uses batch-level frustum culling."
+  },
+  "mediaRegression": {
+    "browser": "153.0.8010.12",
+    "previewImages": 3,
+    "attacks": 9,
+    "releasedImages": 2,
+    "savedMediaResponses": 2,
+    "photoCanvasUploads": 2,
+    "sceneAutomaticRetries": 4,
+    "imageManualRetries": 1,
+    "avatarRequests": 2,
+    "expectedRequestFailures": 8,
+    "expectedConsoleMessages": 11,
+    "unexpected": [],
+    "result": "pass",
+    "expectedFailuresAreInjected": true
+  },
+  "visualCheck": {
+    "result": "pass",
+    "note": "Desktop and touch initial-scene captures show the path, trees, stones, targets, enemies, player, and controls present without obvious missing batches.",
+    "desktopScreenshot": "/home/dev/work/quest-scene-instancing/test-results/initial-desktop.png",
+    "touchScreenshot": "/home/dev/work/quest-scene-instancing/test-results/initial-touch.png"
+  },
+  "unexpectedFailures": [],
+  "baselineBundle": "index-B9Quey_b.js",
+  "candidateBundle": "index-BXPUs-MN.js"
+}

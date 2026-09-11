@@ -135,6 +135,7 @@ function Adventure({
 
   useEffect(() => {
     mounted.current = true;
+    let previousRequestError: string | null = null;
     const sound = new QuestAudio();
     soundRef.current = sound;
     setMuted(sound.preferences().muted);
@@ -181,7 +182,7 @@ function Adventure({
         setPhotoDetail(null);
         if (!next.completed)
           setChapterNotice(
-            `Age ${next.ageYears}. A new chapter begins in ${next.adventure?.activeLevel?.eraYear}. You can now jump, and your equipment stays with you.`,
+            `Age ${next.ageYears}. A new chapter begins in ${next.adventure?.activeLevel?.eraYear}. ${!before.abilities.includes("jump") && next.abilities.includes("jump") ? "You can now jump. " : ""}Your equipment and earlier abilities stay with you.`,
           );
       }
       return next;
@@ -206,7 +207,14 @@ function Adventure({
           onRefresh: async () =>
             update(await api<SaveView>(`/saves/${initialSave.id}`)),
           onStatus: (next) => {
-            if (mounted.current) setStatus(next);
+            if (!mounted.current) return;
+            if (
+              next.requestErrorCode &&
+              next.requestErrorCode !== previousRequestError
+            )
+              setError(friendlyError(new Error(next.requestErrorCode)));
+            previousRequestError = next.requestErrorCode;
+            setStatus(next);
           },
         });
       } catch {
@@ -246,10 +254,6 @@ function Adventure({
   useEffect(() => {
     game.current?.setPaused(modalOpen);
   }, [modalOpen]);
-  useEffect(() => {
-    if (status?.requestErrorCode)
-      setError(friendlyError(new Error(status.requestErrorCode)));
-  }, [status?.requestErrorCode]);
 
   const feedback = (
     <>

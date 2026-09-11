@@ -33,7 +33,19 @@ export function friendlyError(error: unknown): string {
     return "That photo selection has expired. Preview the memories again.";
   if (code === "RATE_LIMITED") return "Take a short pause, then try again.";
   if (code === "SAVE_REVISION_STALE")
-    return "This journey changed in another window. The latest progress has been loaded; try your action again.";
+    return "The latest saved progress has been loaded. Try your action again.";
+  if (code === "SECURE_RANDOM_UNAVAILABLE")
+    return "This browser can’t safely identify game actions. Reopen the private game in an up-to-date browser.";
+  if (code === "PICKUP_ALREADY_COLLECTED")
+    return "That tool is already in your equipment. Follow your current objective.";
+  if (code === "MEMORY_ALREADY_REVEALED")
+    return "You have already remembered this picture.";
+  if (code === "ENCOUNTER_NOT_FOUND")
+    return "That creature is no longer part of this level. Follow your current objective.";
+  if (code === "ENEMY_HIT_COOLDOWN")
+    return "Keep moving while you recover from that hit.";
+  if (code === "ACTION_ID_REUSED" || code === "STALE_ACTION_RESPONSE")
+    return "We couldn’t confirm that action. Reopen this journey to load its latest progress.";
   if (code === "ATTACK_COOLDOWN")
     return "Let your attack settle, then strike again.";
   if (code === "GUARD_COOLDOWN")

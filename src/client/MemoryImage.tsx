@@ -1,16 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { MemoryPreview } from "../shared/contracts";
 
 /** A failed photograph stays visible as an actionable error, never an empty tile. */
 export function MemoryImage({ memory }: { memory: MemoryPreview }) {
+  return (
+    <MemoryPicture key={`${memory.id}:${memory.mediaUrl}`} memory={memory} />
+  );
+}
+
+function MemoryPicture({ memory }: { memory: MemoryPreview }) {
+  const image = useRef<HTMLImageElement>(null);
   const [attempt, setAttempt] = useState(0);
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    setAttempt(0);
-    setFailed(false);
-    setLoaded(false);
-  }, [memory.mediaUrl]);
+  useLayoutEffect(() => {
+    const current = image.current;
+    if (!current?.complete) return;
+    if (current.naturalWidth > 0) setLoaded(true);
+    else setFailed(true);
+  }, [attempt, failed]);
   useEffect(() => {
     if (!failed || attempt >= 2) return;
     const timer = window.setTimeout(
@@ -32,6 +40,7 @@ export function MemoryImage({ memory }: { memory: MemoryPreview }) {
     <div className={`memory-image ${loaded ? "is-loaded" : ""}`}>
       {!failed && (
         <img
+          ref={image}
           key={`${memory.id}:${attempt}`}
           src={memory.mediaUrl}
           alt={memory.label}

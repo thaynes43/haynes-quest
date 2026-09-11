@@ -37,4 +37,17 @@ This test used API commands to arrange post-boss state solely for media delivery
 
 Before static-model batching, two eight-second samples per viewport on build `index-B9Quey_b.js` measured 360 draw calls and 147,016 triangles per desktop frame (1440 × 1000, DPR 1), and 366 calls / 152,620 triangles in touch landscape (844 × 390, DPR 1). Desktop mean was 7.6–8.1 FPS; touch landscape was 11.2–14.6 FPS. Median callback CPU time was approximately 2–3 ms. The repeated static models and their shadow passes were the principal measured draw-call target.
 
-These are Chromium SwiftShader software-rendering measurements. They are not physical-device acceptance or a claim of playable hardware performance. Batching verification and actual device checks remain outstanding.
+These are Chromium SwiftShader software-rendering measurements. They are not physical-device acceptance or a claim of playable hardware performance. The measured batching result is below; actual device checks remain outstanding.
+
+
+After batching repeated static GLBs, desktop draw calls fell from 360 to 222 and touch landscape from 366 to 225. Buffers fell about 40%; texture count remained 15. Two samples measured desktop 9.9–10.8 FPS and touch landscape 14.3–16.2 FPS. Submitted triangles increased by 10.9% / 7.2% because an instanced batch has a shared visibility bound. This trades fewer draw calls for coarser culling; spatial batches remain an option if real-device measurements warrant them.
+
+[Exact sanitized renderer/media report](media/era-combat/render-media-report.json). Baseline bundle: `index-B9Quey_b.js`; batched candidate: `index-BXPUs-MN.js`. The media regression passed again on the candidate with no unexpected failures. These initial-scene captures confirm batch delivery; they show temporary encounter/equipment studies and do not establish finished art quality.
+
+![Actual isolated desktop game capture with temporary encounter studies](media/era-combat/initial-desktop.png)
+
+![Actual isolated touch landscape game capture](media/era-combat/initial-touch.png)
+
+## Adversarial review and later corrections
+
+[WO-015 results](../../.agents/work-orders/015-era-adversarial-results.md) records recovered independent client/server findings and lead dispositions. The Fable parent timed out waiting for its browser lane; that lane is not claimed complete. Concrete fixes cover secure UUID availability, stale-tab enemy revival, retained pending contact, fair pause telegraphs, cached-picture display, model retry/texture ownership, and dialog feedback. The subsequent combined local suite passed 82 tests with eight database tests skipped. Further remote-retry regressions and the bounded server follow-up are being integrated before final evidence and PR completion.
