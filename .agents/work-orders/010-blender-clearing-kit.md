@@ -1,6 +1,6 @@
 # WO-010: First-pass clearing prop kit
 
-- **Status:** Queued. WO-007 released the scene at 2026-09-11 04:37:50 UTC. Fresh native dispatch returned `agent thread limit reached` twice; waiting for verification capacity to release. No Blender writer is active. This work order owns the next lease only when dispatch succeeds.
+- **Status:** In progress. Fresh native Astra `blender_clearing` dispatch succeeded after the browser verification lane completed. WO-007 released the scene at2026-09-11 04:37:50UTC; WO-010 now exclusively owns it. Three earlier capacity errors were temporary; no model downgrade or CLI substitution occurred.
 - **Author:** fresh native GPT-6 Astra, max; all Blender modeling/scripts/materials/export/render/optimization stay in that lane.
 - **Scope:** one coherent bounded static prop kit covering the five remaining catalog IDs. No extra biome, character, texture generation, gameplay integration or user-facing page writing.
 - **Inputs:** exact selected `storybook-reference/v001/{environment,props-materials}.png` plus each asset's `v001/concept.png` and retained prompt in `docs/assets/media/`. Inspect actual images before authoring. Original fictional content only.
