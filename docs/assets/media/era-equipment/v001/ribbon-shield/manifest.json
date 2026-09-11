@@ -1,0 +1,200 @@
+{
+  "asset_id": "ribbon-shield",
+  "version": "v001",
+  "candidate_status": "unapproved",
+  "coordinator_review": "selected for candidate catalog/intake by lead Astra on 2026-09-11",
+  "tom_review": "pending",
+  "concept_reference": {
+    "repository_path": "docs/assets/media/era-equipment/v001/later-concept.png",
+    "sha256": "8edaa696b2d7e7b27a65dc2ee94a1deaa73e845e3529483b43f390776d9bfb2f"
+  },
+  "glb_sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9",
+  "glb_bytes": 197244,
+  "triangles": 4128,
+  "materials": 4,
+  "draw_primitives": 4,
+  "dimensions_gltf_m": [
+    0.3033766373991966,
+    0.47999998927116394,
+    0.16333667002618313
+  ],
+  "attachment": {
+    "origin_gltf_m": [
+      0,
+      0,
+      0
+    ],
+    "meaning": "Physical center of the usable hand grip, not mesh bounding-box center",
+    "grip_axis_gltf": [
+      0,
+      1,
+      0
+    ],
+    "grip_diameter_m": 0.02697303543430263,
+    "grip_measurement": {
+      "method": "Maximum radius of actual hand-grip mesh edges intersected with the plane through the origin perpendicular to the grip axis; includes raised wrapping.",
+      "source_parts": [
+        "Ribbon shield separate rear vertical grip"
+      ],
+      "cross_section_samples": 12
+    },
+    "ground_display": {
+      "position_m": [
+        0,
+        0.23999999463558197,
+        0
+      ],
+      "quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "meaning": "Standing orientation with lowest geometry at Y=0; use a display stand for physical balancing."
+    },
+    "left_hand": {
+      "bone": "hand.L",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "right_hand": {
+      "bone": "hand.R",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "traveler_socket_report": "scripts/assets/era-equipment/traveler-sockets.json",
+    "hand_guidance": "Parent the complete prop to a socket under authored hand.L or hand.R; Three.js GLTFLoader retains these in userData.name while sanitizing object.name to handL/handR. Use the stage-specific mitten-center translation from traveler-sockets.json. Keep meter scale. Arm pose supplies all motion. For the oval Ribbon Shield, a 180-degree rotation around local forward Z swaps the offset grip to the opposite side while preserving the -Z-facing shield. Acorn Shield remains upright in both hands.",
+    "rear_geometry": "Shields face glTF -Z; actual straps and hand grips lie behind the walnut body toward +Z. Grip origin can be behind the front surface."
+  },
+  "editable_masters": [
+    {
+      "file": "ribbon-shield/ribbon-shield.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/ribbon-shield/ribbon-shield.blend",
+      "sha256": "6d4cf8de5781564cd1315b510627f8255102394ef2d3fee37425d6c58c8f25ae",
+      "bytes": 609919,
+      "saved_in_repository": false
+    },
+    {
+      "file": "ribbon-shield/ribbon-shield-export-review.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/ribbon-shield/ribbon-shield-export-review.blend",
+      "sha256": "3c7e2bc3dfe0c702dc28254f4a3d61044342aa0cf6fd37d3231e5fb13d96afb7",
+      "bytes": 271777,
+      "saved_in_repository": false
+    }
+  ],
+  "files": [
+    {
+      "file": "back.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/back.png",
+      "sha256": "85cb14ce24d160da654f2ec6695a522c37726b86ce9f0e6d2e153b93b8d4963a",
+      "bytes": 747684
+    },
+    {
+      "file": "beauty.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/beauty.png",
+      "sha256": "d06df7ffe4274d330c56bc4a1afd60623d86c3ee6289b54c52b37becb6380315",
+      "bytes": 773424
+    },
+    {
+      "file": "browser-back.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/browser-back.png",
+      "sha256": "4c70b74171053a997f5dfe1b0144a64f5685b393eb7d1c9aa48b1b7577adc31e",
+      "bytes": 161740
+    },
+    {
+      "file": "browser-beauty.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/browser-beauty.png",
+      "sha256": "894f6509a5ba79222fbc224a2021c6c21a6ace833714582c5fa649fd132a0954",
+      "bytes": 171036
+    },
+    {
+      "file": "browser-front.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/browser-front.png",
+      "sha256": "a4d3daab615bb2029da3639bf566b80ed1efec448094f4df129efe679b2d06d2",
+      "bytes": 197878
+    },
+    {
+      "file": "browser-rear-grip.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/browser-rear-grip.png",
+      "sha256": "9cba85d1b4b324127f6e7e63d404845b3ffc81f09e5f1cdc3d47d07a47fcf9b5",
+      "bytes": 162378
+    },
+    {
+      "file": "browser-side.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/browser-side.png",
+      "sha256": "e7224fe976be0b3d68e49ebaa59fff83364996c1cfb1b6a277dbbdc4b53c632b",
+      "bytes": 64831
+    },
+    {
+      "file": "construction.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/construction.json",
+      "sha256": "2f294d44d6f4bf0fa482da57eb85f9df26890f1cdfa54c735f792e4b51930103",
+      "bytes": 21258
+    },
+    {
+      "file": "front.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/front.png",
+      "sha256": "c690bf642e9031013a9ecbc4e28fe07ef812cd46708d0898b7592e1e46184454",
+      "bytes": 794329
+    },
+    {
+      "file": "rear-grip.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/rear-grip.png",
+      "sha256": "cb9011b2e289d25e313ad4af1c8ead736b51a39f71521f4fd9bdff1700f9e4b1",
+      "bytes": 762040
+    },
+    {
+      "file": "reimport.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/reimport.json",
+      "sha256": "8fb09baef43bc76df6601335d083951c705f0585ba5f90979b32ef52c18e3eab",
+      "bytes": 6526
+    },
+    {
+      "file": "render-complete.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/render-complete.json",
+      "sha256": "d2cb64e9aaeeee1e3742a20fcf2c1d498e2843abbc0f430f3f674a6a08692457",
+      "bytes": 272
+    },
+    {
+      "file": "ribbon-shield.glb",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb",
+      "sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9",
+      "bytes": 197244
+    },
+    {
+      "file": "side.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/side.png",
+      "sha256": "1ff5d9894a33501a434562f71b53f752278d3479b3e0643dbd3f0cb84f635d96",
+      "bytes": 684096
+    },
+    {
+      "file": "three-inspection.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/three-inspection.json",
+      "sha256": "dc1f3cf6655a61212690da4a1b7da3f9609377405bdefcd0221d0d8eb3423db2",
+      "bytes": 2130
+    },
+    {
+      "file": "validation.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/ribbon-shield/validation.json",
+      "sha256": "97b1378d69f736f28676f6ab5d3e8664283389ab8a77000a7c89981dde794803",
+      "bytes": 4662
+    }
+  ],
+  "limitations": [
+    "Chromium with SwiftShader, not a physical device or Safari measurement.",
+    "Studio intake only; no gameplay approval or final hand pose is claimed."
+  ]
+}

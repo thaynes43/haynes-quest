@@ -1,0 +1,13 @@
+{
+  "pid": 37134,
+  "waited_pid": 37134,
+  "exit_code": 0,
+  "running": false,
+  "all_render_records_complete": true,
+  "starter_quick_job": {
+    "pid": 32174,
+    "already_reaped": true,
+    "running": false
+  },
+  "all_owned_render_processes_finished": true
+}

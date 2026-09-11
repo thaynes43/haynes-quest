@@ -10,6 +10,9 @@
         "L": {
           "hand_bone": "hand.L",
           "forearm_bone": "forearm.L",
+          "three_loader_hand_name": "handL",
+          "three_loader_forearm_name": "forearmL",
+          "three_loader_authored_name_key": "userData.name",
           "hand_node_index": 4,
           "forearm_node_index": 5,
           "wrist_rest_world_m": [
@@ -71,6 +74,9 @@
         "R": {
           "hand_bone": "hand.R",
           "forearm_bone": "forearm.R",
+          "three_loader_hand_name": "handR",
+          "three_loader_forearm_name": "forearmR",
+          "three_loader_authored_name_key": "userData.name",
           "hand_node_index": 1,
           "forearm_node_index": 2,
           "wrist_rest_world_m": [
@@ -138,6 +144,9 @@
         "L": {
           "hand_bone": "hand.L",
           "forearm_bone": "forearm.L",
+          "three_loader_hand_name": "handL",
+          "three_loader_forearm_name": "forearmL",
+          "three_loader_authored_name_key": "userData.name",
           "hand_node_index": 4,
           "forearm_node_index": 5,
           "wrist_rest_world_m": [
@@ -199,6 +208,9 @@
         "R": {
           "hand_bone": "hand.R",
           "forearm_bone": "forearm.R",
+          "three_loader_hand_name": "handR",
+          "three_loader_forearm_name": "forearmR",
+          "three_loader_authored_name_key": "userData.name",
           "hand_node_index": 1,
           "forearm_node_index": 2,
           "wrist_rest_world_m": [
@@ -260,6 +272,7 @@
       }
     }
   },
+  "three_loader_name_guidance": "Verified with Three.js GLTFLoader 0.186.0 against both exact local traveler exports: hand.R becomes object.name handR, forearm.R becomes forearmR, with the original authored names retained as object.userData.name. Resolve the authored names through userData.name when attaching equipment; direct getObjectByName(\"hand.R\") does not find the loaded hand.",
   "limitations": [
     "Rest-space socket guidance only; existing mittens do not have articulated fingers.",
     "Combat poses must be authored or applied to the traveler arms; existing interact is not a verified combat clip.",

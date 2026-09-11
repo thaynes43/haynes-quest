@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "asset_id": "ribbon-shield",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender_version": "4.5.13 LTS",
+  "glb_sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9",
+  "bounds_blender": {
+    "min": [
+      -0.22661340236663818,
+      -0.016983022913336754,
+      -0.23999999463558197
+    ],
+    "max": [
+      0.07676323503255844,
+      0.14635364711284637,
+      0.23999999463558197
+    ],
+    "dimensions": [
+      0.3033766373991966,
+      0.16333667002618313,
+      0.47999998927116394
+    ]
+  },
+  "source_dimension_error_m": 0.0,
+  "all_named_source_parts_preserved": true,
+  "source_parts": {
+    "Ribbon shield convex solid walnut body": {
+      "source_vertices_checked": 322,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield soft hammered brass rim": {
+      "source_vertices_checked": 288,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield front rim rivet 0": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield back rim rivet 0": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield front rim rivet 1": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield front rim rivet 2": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield back rim rivet 2": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield front rim rivet 3": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield front rim rivet 4": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield back rim rivet 4": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield front rim rivet 5": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield front rim rivet 6": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield back rim rivet 6": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield front rim rivet 7": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield crossed plum inlay": {
+      "source_vertices_checked": 66,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield crossed sage inlay": {
+      "source_vertices_checked": 66,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield central brass medallion": {
+      "source_vertices_checked": 144,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield medallion carved spiral": {
+      "source_vertices_checked": 116,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield open rear forearm strap": {
+      "source_vertices_checked": 36,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield strap left walnut anchor": {
+      "source_vertices_checked": 56,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield strap left fixing": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield strap left fixing.001": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield strap right walnut anchor": {
+      "source_vertices_checked": 56,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield strap right fixing": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield strap right fixing.001": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield rear hand grip walnut anchor": {
+      "source_vertices_checked": 56,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield rear hand grip anchor stud": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield rear hand grip walnut anchor.001": {
+      "source_vertices_checked": 56,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield rear hand grip anchor stud.001": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield separate rear vertical grip": {
+      "source_vertices_checked": 48,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield grip brass ferrule": {
+      "source_vertices_checked": 48,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Ribbon shield grip brass ferrule.001": {
+      "source_vertices_checked": 48,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    }
+  },
+  "mesh_objects": [
+    {
+      "name": "ribbon-shield_grip",
+      "vertices": 3037,
+      "triangles": 4128,
+      "materials": [
+        "Walnut",
+        "Brass",
+        "Plum",
+        "Sage"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    }
+  ],
+  "checks": {
+    "source_geometry_preserved": true,
+    "source_dimensions_preserved": true,
+    "height_contract": true,
+    "separate_forearm_and_hand_geometry": true
+  },
+  "rear_attachment_parts": [
+    "Ribbon shield open rear forearm strap",
+    "Ribbon shield separate rear vertical grip"
+  ]
+}

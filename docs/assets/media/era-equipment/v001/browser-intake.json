@@ -1,0 +1,77 @@
+{
+  "date_utc": "2026-09-11T15:04:36.647Z",
+  "assets": [
+    {
+      "asset_id": "spark-mallet",
+      "glb_sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae",
+      "checks": {
+        "exact_height_m": true,
+        "source_bounds_match": true,
+        "runtime_triangle_budget": true,
+        "runtime_primitive_budget": true,
+        "runtime_material_budget": true,
+        "all_maps_512px": true,
+        "no_clips_required": true,
+        "no_page_errors": true,
+        "no_console_errors": true,
+        "no_failed_responses": true,
+        "no_external_requests": true
+      }
+    },
+    {
+      "asset_id": "acorn-shield",
+      "glb_sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6",
+      "checks": {
+        "exact_height_m": true,
+        "source_bounds_match": true,
+        "runtime_triangle_budget": true,
+        "runtime_primitive_budget": true,
+        "runtime_material_budget": true,
+        "all_maps_512px": true,
+        "no_clips_required": true,
+        "no_page_errors": true,
+        "no_console_errors": true,
+        "no_failed_responses": true,
+        "no_external_requests": true
+      }
+    },
+    {
+      "asset_id": "prism-wand",
+      "glb_sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc",
+      "checks": {
+        "exact_height_m": true,
+        "source_bounds_match": true,
+        "runtime_triangle_budget": true,
+        "runtime_primitive_budget": true,
+        "runtime_material_budget": true,
+        "all_maps_512px": true,
+        "no_clips_required": true,
+        "no_page_errors": true,
+        "no_console_errors": true,
+        "no_failed_responses": true,
+        "no_external_requests": true
+      }
+    },
+    {
+      "asset_id": "ribbon-shield",
+      "glb_sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9",
+      "checks": {
+        "exact_height_m": true,
+        "source_bounds_match": true,
+        "runtime_triangle_budget": true,
+        "runtime_primitive_budget": true,
+        "runtime_material_budget": true,
+        "all_maps_512px": true,
+        "no_clips_required": true,
+        "no_page_errors": true,
+        "no_console_errors": true,
+        "no_failed_responses": true,
+        "no_external_requests": true
+      }
+    }
+  ],
+  "page_errors": [],
+  "console_errors": [],
+  "failed_responses": [],
+  "external_requests": []
+}

@@ -1,0 +1,907 @@
+{
+  "schema_version": 1,
+  "asset_id": "ribbon-shield",
+  "version": "v001",
+  "author": "native gpt-6-astra, max",
+  "blender_version": "4.5.13 LTS",
+  "candidate_status": "unapproved",
+  "coordinate_system": {
+    "units": "meters",
+    "blender_up": "+Z",
+    "blender_front": "+Y",
+    "gltf_up": "+Y",
+    "gltf_front": "-Z"
+  },
+  "bounds_blender": {
+    "min": [
+      -0.22661340236663818,
+      -0.016983022913336754,
+      -0.23999999463558197
+    ],
+    "max": [
+      0.07676323503255844,
+      0.14635364711284637,
+      0.23999999463558197
+    ],
+    "dimensions": [
+      0.3033766373991966,
+      0.16333667002618313,
+      0.47999998927116394
+    ]
+  },
+  "bounds_gltf": {
+    "min": [
+      -0.22661340236663818,
+      -0.23999999463558197,
+      -0.14635364711284637
+    ],
+    "max": [
+      0.07676323503255844,
+      0.23999999463558197,
+      0.016983022913336754
+    ],
+    "dimensions": [
+      0.3033766373991966,
+      0.47999998927116394,
+      0.16333667002618313
+    ]
+  },
+  "exact_height_m": 0.48,
+  "scale_correction": 0.9990010291998633,
+  "triangles": 4128,
+  "material_count": 4,
+  "draw_primitives_target": 4,
+  "parts": [
+    {
+      "name": "Ribbon shield convex solid walnut body",
+      "triangles": 640,
+      "bounds_blender": {
+        "min": [
+          -0.22077922523021698,
+          0.05137934163212776,
+          -0.23076924681663513
+        ],
+        "max": [
+          0.07092906534671783,
+          0.10889110714197159,
+          0.23076924681663513
+        ],
+        "dimensions": [
+          0.2917082905769348,
+          0.057511765509843826,
+          0.46153849363327026
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Ribbon shield soft hammered brass rim",
+      "triangles": 576,
+      "bounds_blender": {
+        "min": [
+          -0.22661340236663818,
+          0.05495771765708923,
+          -0.23999999463558197
+        ],
+        "max": [
+          0.07676323503255844,
+          0.10498069226741791,
+          0.23999999463558197
+        ],
+        "dimensions": [
+          0.3033766373991966,
+          0.050022974610328674,
+          0.47999998927116394
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield front rim rivet 0",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.08291708678007126,
+          0.09914430230855942,
+          0.21324530243873596
+        ],
+        "max": [
+          -0.06693307310342789,
+          0.10613731294870377,
+          0.22844702005386353
+        ],
+        "dimensions": [
+          0.01598401367664337,
+          0.006993010640144348,
+          0.015201717615127563
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield back rim rivet 0",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.08091908693313599,
+          0.04719625040888786,
+          0.2151455134153366
+        ],
+        "max": [
+          -0.06893107295036316,
+          0.05418925732374191,
+          0.22654679417610168
+        ],
+        "dimensions": [
+          0.011988013982772827,
+          0.00699300691485405,
+          0.011401280760765076
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield front rim rivet 1",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.015782585367560387,
+          0.09919292479753494,
+          0.14856097102165222
+        ],
+        "max": [
+          0.031766604632139206,
+          0.1061859279870987,
+          0.1637626737356186
+        ],
+        "dimensions": [
+          0.01598401926457882,
+          0.006993003189563751,
+          0.01520170271396637
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield front rim rivet 2",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.0566653348505497,
+          0.09924153238534927,
+          -0.007600851822644472
+        ],
+        "max": [
+          0.07264935225248337,
+          0.10623455047607422,
+          0.007600851822644472
+        ],
+        "dimensions": [
+          0.01598401740193367,
+          0.006993018090724945,
+          0.015201703645288944
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield back rim rivet 2",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.05866334214806557,
+          0.04729348421096802,
+          -0.005700638517737389
+        ],
+        "max": [
+          0.0706513524055481,
+          0.05428649112582207,
+          0.005700638517737389
+        ],
+        "dimensions": [
+          0.011988010257482529,
+          0.00699300691485405,
+          0.011401277035474777
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield front rim rivet 3",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.015782585367560387,
+          0.09919292479753494,
+          -0.1637626737356186
+        ],
+        "max": [
+          0.031766604632139206,
+          0.1061859279870987,
+          -0.14856097102165222
+        ],
+        "dimensions": [
+          0.01598401926457882,
+          0.006993003189563751,
+          0.01520170271396637
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield front rim rivet 4",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.08291708678007126,
+          0.09914430230855942,
+          -0.22844702005386353
+        ],
+        "max": [
+          -0.06693307310342789,
+          0.10613731294870377,
+          -0.21324530243873596
+        ],
+        "dimensions": [
+          0.01598401367664337,
+          0.006993010640144348,
+          0.015201717615127563
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield back rim rivet 4",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.08091908693313599,
+          0.04719625040888786,
+          -0.22654679417610168
+        ],
+        "max": [
+          -0.06893107295036316,
+          0.05418925732374191,
+          -0.2151455134153366
+        ],
+        "dimensions": [
+          0.011988013982772827,
+          0.00699300691485405,
+          0.011401280760765076
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield front rim rivet 5",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.18161675333976746,
+          0.09919292479753494,
+          -0.1637626737356186
+        ],
+        "max": [
+          -0.16563273966312408,
+          0.1061859279870987,
+          -0.14856097102165222
+        ],
+        "dimensions": [
+          0.01598401367664337,
+          0.006993003189563751,
+          0.01520170271396637
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield front rim rivet 6",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.2224995195865631,
+          0.09924153238534927,
+          -0.007600851822644472
+        ],
+        "max": [
+          -0.20651549100875854,
+          0.10623455047607422,
+          0.007600851822644472
+        ],
+        "dimensions": [
+          0.015984028577804565,
+          0.006993018090724945,
+          0.015201703645288944
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield back rim rivet 6",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.22050151228904724,
+          0.04729348421096802,
+          -0.005700638517737389
+        ],
+        "max": [
+          -0.20851349830627441,
+          0.05428649112582207,
+          0.005700638517737389
+        ],
+        "dimensions": [
+          0.011988013982772827,
+          0.00699300691485405,
+          0.011401277035474777
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield front rim rivet 7",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.18161675333976746,
+          0.09919292479753494,
+          0.14856097102165222
+        ],
+        "max": [
+          -0.16563273966312408,
+          0.1061859279870987,
+          0.1637626737356186
+        ],
+        "dimensions": [
+          0.01598401367664337,
+          0.006993003189563751,
+          0.01520170271396637
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield crossed plum inlay",
+      "triangles": 128,
+      "bounds_blender": {
+        "min": [
+          -0.17544624209403992,
+          0.09172449260950089,
+          -0.1535186469554901
+        ],
+        "max": [
+          0.02559608779847622,
+          0.11838161945343018,
+          0.1535186469554901
+        ],
+        "dimensions": [
+          0.20104232989251614,
+          0.02665712684392929,
+          0.3070372939109802
+        ]
+      },
+      "material_names": [
+        "Plum"
+      ]
+    },
+    {
+      "name": "Ribbon shield crossed sage inlay",
+      "triangles": 128,
+      "bounds_blender": {
+        "min": [
+          -0.17544624209403992,
+          0.09671949595212936,
+          -0.1535186469554901
+        ],
+        "max": [
+          0.02559608779847622,
+          0.12337662279605865,
+          0.1535186469554901
+        ],
+        "dimensions": [
+          0.20104232989251614,
+          0.02665712684392929,
+          0.3070372939109802
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Ribbon shield central brass medallion",
+      "triangles": 284,
+      "bounds_blender": {
+        "min": [
+          -0.13686314225196838,
+          0.11588411778211594,
+          -0.06193806231021881
+        ],
+        "max": [
+          -0.012987017631530762,
+          0.14485514163970947,
+          0.06193806231021881
+        ],
+        "dimensions": [
+          0.12387612462043762,
+          0.028971023857593536,
+          0.12387612462043762
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield medallion carved spiral",
+      "triangles": 228,
+      "bounds_blender": {
+        "min": [
+          -0.11223548650741577,
+          0.14335665106773376,
+          -0.039155419915914536
+        ],
+        "max": [
+          -0.048107560724020004,
+          0.14635364711284637,
+          0.032059334218502045
+        ],
+        "dimensions": [
+          0.06412792578339577,
+          0.00299699604511261,
+          0.07121475413441658
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield open rear forearm strap",
+      "triangles": 68,
+      "bounds_blender": {
+        "min": [
+          -0.16683316230773926,
+          -0.005994010716676712,
+          -0.033466536551713943
+        ],
+        "max": [
+          -0.0419580452144146,
+          0.05394605174660683,
+          0.033466536551713943
+        ],
+        "dimensions": [
+          0.12487511709332466,
+          0.05994006246328354,
+          0.06693307310342789
+        ]
+      },
+      "material_names": [
+        "Plum"
+      ]
+    },
+    {
+      "name": "Ribbon shield strap left walnut anchor",
+      "triangles": 108,
+      "bounds_blender": {
+        "min": [
+          -0.18181820213794708,
+          0.038461536169052124,
+          -0.0434565432369709
+        ],
+        "max": [
+          -0.15184816718101501,
+          0.05544455349445343,
+          0.0434565432369709
+        ],
+        "dimensions": [
+          0.029970034956932068,
+          0.016983017325401306,
+          0.0869130864739418
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Ribbon shield strap left fixing",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.17182818055152893,
+          0.028971029445528984,
+          -0.024830453097820282
+        ],
+        "max": [
+          -0.16183817386627197,
+          0.035964034497737885,
+          -0.015329387970268726
+        ],
+        "dimensions": [
+          0.009990006685256958,
+          0.0069930050522089005,
+          0.009501065127551556
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield strap left fixing.001",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.17182818055152893,
+          0.028971029445528984,
+          0.015329387970268726
+        ],
+        "max": [
+          -0.16183817386627197,
+          0.035964034497737885,
+          0.024830453097820282
+        ],
+        "dimensions": [
+          0.009990006685256958,
+          0.0069930050522089005,
+          0.009501065127551556
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield strap right walnut anchor",
+      "triangles": 108,
+      "bounds_blender": {
+        "min": [
+          -0.05694306269288063,
+          0.038461536169052124,
+          -0.0434565432369709
+        ],
+        "max": [
+          -0.026973029598593712,
+          0.05544455349445343,
+          0.0434565432369709
+        ],
+        "dimensions": [
+          0.02997003309428692,
+          0.016983017325401306,
+          0.0869130864739418
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Ribbon shield strap right fixing",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.046953048557043076,
+          0.028971029445528984,
+          -0.024830453097820282
+        ],
+        "max": [
+          -0.03696304187178612,
+          0.035964034497737885,
+          -0.015329387970268726
+        ],
+        "dimensions": [
+          0.009990006685256958,
+          0.0069930050522089005,
+          0.009501065127551556
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield strap right fixing.001",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.046953048557043076,
+          0.028971029445528984,
+          0.015329387970268726
+        ],
+        "max": [
+          -0.03696304187178612,
+          0.035964034497737885,
+          0.024830453097820282
+        ],
+        "dimensions": [
+          0.009990006685256958,
+          0.0069930050522089005,
+          0.009501065127551556
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield rear hand grip walnut anchor",
+      "triangles": 108,
+      "bounds_blender": {
+        "min": [
+          -0.017482515424489975,
+          0.0014984970912337303,
+          -0.07692307978868484
+        ],
+        "max": [
+          0.017482515424489975,
+          0.05244754999876022,
+          -0.048951052129268646
+        ],
+        "dimensions": [
+          0.03496503084897995,
+          0.05094905290752649,
+          0.0279720276594162
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Ribbon shield rear hand grip anchor stud",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.005994003266096115,
+          -0.00899101234972477,
+          -0.06863770633935928
+        ],
+        "max": [
+          0.005994003266096115,
+          -0.001998006133362651,
+          -0.05723642557859421
+        ],
+        "dimensions": [
+          0.01198800653219223,
+          0.006993006216362119,
+          0.011401280760765076
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield rear hand grip walnut anchor.001",
+      "triangles": 108,
+      "bounds_blender": {
+        "min": [
+          -0.017482515424489975,
+          0.0014984970912337303,
+          0.048951052129268646
+        ],
+        "max": [
+          0.017482515424489975,
+          0.05244754999876022,
+          0.07692307978868484
+        ],
+        "dimensions": [
+          0.03496503084897995,
+          0.05094905290752649,
+          0.0279720276594162
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Ribbon shield rear hand grip anchor stud.001",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.005994003266096115,
+          -0.00899101234972477,
+          0.05723642557859421
+        ],
+        "max": [
+          0.005994003266096115,
+          -0.001998006133362651,
+          0.06863770633935928
+        ],
+        "dimensions": [
+          0.01198800653219223,
+          0.006993006216362119,
+          0.011401280760765076
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield separate rear vertical grip",
+      "triangles": 92,
+      "bounds_blender": {
+        "min": [
+          -0.013486514799296856,
+          -0.013486511074006557,
+          -0.06293706595897675
+        ],
+        "max": [
+          0.013486511074006557,
+          0.013486514799296856,
+          0.06293706595897675
+        ],
+        "dimensions": [
+          0.026973025873303413,
+          0.026973025873303413,
+          0.1258741319179535
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Ribbon shield grip brass ferrule",
+      "triangles": 92,
+      "bounds_blender": {
+        "min": [
+          -0.016983019188046455,
+          -0.016983022913336754,
+          -0.060939062386751175
+        ],
+        "max": [
+          0.016983022913336754,
+          0.016983019188046455,
+          -0.04895104840397835
+        ],
+        "dimensions": [
+          0.03396604210138321,
+          0.03396604210138321,
+          0.011988013982772827
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Ribbon shield grip brass ferrule.001",
+      "triangles": 92,
+      "bounds_blender": {
+        "min": [
+          -0.016983019188046455,
+          -0.016983022913336754,
+          0.04895104840397835
+        ],
+        "max": [
+          0.016983022913336754,
+          0.016983019188046455,
+          0.060939062386751175
+        ],
+        "dimensions": [
+          0.03396604210138321,
+          0.03396604210138321,
+          0.011988013982772827
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    }
+  ],
+  "attachment": {
+    "origin_gltf_m": [
+      0,
+      0,
+      0
+    ],
+    "meaning": "Physical center of the usable hand grip, not mesh bounding-box center",
+    "grip_axis_gltf": [
+      0,
+      1,
+      0
+    ],
+    "grip_diameter_m": 0.02697303543430263,
+    "grip_measurement": {
+      "method": "Maximum radius of actual hand-grip mesh edges intersected with the plane through the origin perpendicular to the grip axis; includes raised wrapping.",
+      "source_parts": [
+        "Ribbon shield separate rear vertical grip"
+      ],
+      "cross_section_samples": 12
+    },
+    "ground_display": {
+      "position_m": [
+        0,
+        0.23999999463558197,
+        0
+      ],
+      "quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "meaning": "Standing orientation with lowest geometry at Y=0; use a display stand for physical balancing."
+    },
+    "left_hand": {
+      "bone": "hand.L",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "right_hand": {
+      "bone": "hand.R",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "traveler_socket_report": "scripts/assets/era-equipment/traveler-sockets.json",
+    "hand_guidance": "Parent the complete prop to a socket under authored hand.L or hand.R; Three.js GLTFLoader retains these in userData.name while sanitizing object.name to handL/handR. Use the stage-specific mitten-center translation from traveler-sockets.json. Keep meter scale. Arm pose supplies all motion. For the oval Ribbon Shield, a 180-degree rotation around local forward Z swaps the offset grip to the opposite side while preserving the -Z-facing shield. Acorn Shield remains upright in both hands.",
+    "rear_geometry": "Shields face glTF -Z; actual straps and hand grips lie behind the walnut body toward +Z. Grip origin can be behind the front surface."
+  },
+  "files": {
+    "ribbon-shield.blend": {
+      "bytes": 609919,
+      "sha256": "6d4cf8de5781564cd1315b510627f8255102394ef2d3fee37425d6c58c8f25ae"
+    },
+    "ribbon-shield.glb": {
+      "bytes": 197244,
+      "sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9"
+    }
+  },
+  "pigment": {
+    "kind": "Original deterministic color fields rasterized into 512px maps; directional wood grain follows explicit UVs",
+    "source": "pigment.py",
+    "embedded_format": "JPEG quality 90",
+    "external_dependencies": false
+  },
+  "budgets": {
+    "triangles_max": 5000,
+    "materials_max": 5,
+    "glb_bytes_max": 1048576
+  },
+  "clips": []
+}

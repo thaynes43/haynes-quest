@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "asset_id": "prism-wand",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender_version": "4.5.13 LTS",
+  "glb_sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc",
+  "bounds_blender": {
+    "min": [
+      -0.0778963565826416,
+      -0.0689999982714653,
+      -0.10999999940395355
+    ],
+    "max": [
+      0.07707476615905762,
+      0.0689999982714653,
+      0.5399999618530273
+    ],
+    "dimensions": [
+      0.15497112274169922,
+      0.1379999965429306,
+      0.6499999612569809
+    ]
+  },
+  "source_dimension_error_m": 0.0,
+  "all_named_source_parts_preserved": true,
+  "source_parts": {
+    "Wand tapered walnut staff": {
+      "source_vertices_checked": 80,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand sage linen soft grip body": {
+      "source_vertices_checked": 64,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand sage linen broad wrap overlap": {
+      "source_vertices_checked": 260,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand brass pommel": {
+      "source_vertices_checked": 100,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand brass cradle collar": {
+      "source_vertices_checked": 80,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand separate walnut cradle prong 1": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand prong brass pin 1": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand separate walnut cradle prong 2": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand prong brass pin 2": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand separate walnut cradle prong 3": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand prong brass pin 3": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand separate walnut cradle prong 4": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand prong brass pin 4": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand blunt amber and plum prism": {
+      "source_vertices_checked": 56,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand plum ribbon collar knot": {
+      "source_vertices_checked": 64,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand attached plum ribbon tail -1": {
+      "source_vertices_checked": 24,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Wand attached plum ribbon tail 1": {
+      "source_vertices_checked": 24,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    }
+  },
+  "mesh_objects": [
+    {
+      "name": "prism-wand_grip",
+      "vertices": 1707,
+      "triangles": 2076,
+      "materials": [
+        "Walnut",
+        "Sage",
+        "Brass",
+        "Amber",
+        "Plum"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    }
+  ],
+  "checks": {
+    "source_geometry_preserved": true,
+    "source_dimensions_preserved": true,
+    "height_contract": true
+  }
+}

@@ -72,7 +72,7 @@ def inspect(folder, name, objects):
 def studio(samples, size):
     scene = bpy.context.scene; scene.render.engine = 'CYCLES'; scene.cycles.device = 'CPU'; scene.cycles.samples = samples
     scene.cycles.use_denoising = True; scene.cycles.max_bounces = 5
-    scene.render.threads_mode = 'FIXED'; scene.render.threads = 6
+    scene.render.threads_mode = 'FIXED'; scene.render.threads = 3
     scene.render.resolution_x = size; scene.render.resolution_y = size; scene.render.resolution_percentage = 100
     scene.render.image_settings.file_format = 'PNG'; scene.render.image_settings.color_mode = 'RGB'
     scene.view_settings.view_transform = 'AgX'; scene.view_settings.look = 'AgX - Medium High Contrast'; scene.view_settings.exposure = .15
@@ -114,6 +114,8 @@ def render(name, root=ROOT, quick=False):
     center = [(box['min'][k] + box['max'][k]) / 2 for k in range(3)]; h = box['dimensions'][2]; span = max(box['dimensions'])
     camera = studio(16 if quick else 32, 640 if quick else 900)
     shot(folder, 'quick' if quick else 'beauty', camera, (center[0] + .85, center[1] + 1.4, center[2] + .63), center, span * 1.28)
+    if quick:
+        shot(folder, 'quick-back', camera, (center[0], center[1] - 2, center[2]), center, span * 1.21)
     if not quick:
         shot(folder, 'front', camera, (center[0], center[1] + 2, center[2]), center, span * 1.21)
         shot(folder, 'side', camera, (center[0] + 2, center[1], center[2]), center, span * 1.21)
@@ -121,7 +123,7 @@ def render(name, root=ROOT, quick=False):
         if 'shield' in name:
             shot(folder, 'rear-grip', camera, (center[0] + .75, center[1] - 1.3, center[2] + .32), center, span * 1.21)
         bpy.ops.wm.save_as_mainfile(filepath=str(folder / (name + '-export-review.blend')), compress=True)
-    (folder / ('quick-complete.json' if quick else 'render-complete.json')).write_text(json.dumps({'asset_id': name, 'source_sha256': report['glb_sha256'], 'all_complete': True, 'quick': quick, 'resolution_px': 640 if quick else 900, 'views': ['quick'] if quick else ['beauty', 'front', 'side', 'back'] + (['rear-grip'] if 'shield' in name else [])}, indent=2) + '\n')
+    (folder / ('quick-complete.json' if quick else 'render-complete.json')).write_text(json.dumps({'asset_id': name, 'source_sha256': report['glb_sha256'], 'all_complete': True, 'quick': quick, 'resolution_px': 640 if quick else 900, 'views': ['quick', 'quick-back'] if quick else ['beauty', 'front', 'side', 'back'] + (['rear-grip'] if 'shield' in name else [])}, indent=2) + '\n')
     print(json.dumps({'rendered': name, 'quick': quick}), flush=True)
 
 

@@ -92,6 +92,8 @@ def finish_mesh(obj, material, smooth=True):
         face.use_smooth = smooth
     # Stable box projection is readable on shield faces and end grain. Tube
     # builders replace this with continuous longitudinal coordinates below.
+    for old_uv in list(obj.data.uv_layers):
+        obj.data.uv_layers.remove(old_uv)
     uv = obj.data.uv_layers.new(name='PigmentUV')
     for face in obj.data.polygons:
         axis = max(range(3), key=lambda k: abs(face.normal[k]))
@@ -213,7 +215,7 @@ def mallet():
             q = Vector((0, math.cos(a), math.sin(a))).to_track_quat('Y', 'Z')
             for v in obj.data.vertices:
                 v.co = q @ v.co + p
-    lathe('Mallet through-handle walnut', (0, 0, 0), [(.025, .019), (.070, .020), (.208, .025), (.304, .029), (.353, .027)], 'walnut', sides=16)
+    lathe('Mallet through-handle walnut', (0, 0, 0), [(.025, .016), (.070, .017), (.185, .018), (.208, .025), (.304, .029), (.353, .027)], 'walnut', sides=16)
     wrapped_grip('Mallet plum leather', .042, .180, .023, 'plum', 4.1)
     lathe('Mallet rounded brass pommel', (0, 0, 0), [(0, .020), (.004, .031), (.014, .033), (.032, .029), (.039, .022)], 'brass', sides=20)
     lathe('Mallet brass neck ferrule', (0, 0, 0), [(.284, .025), (.289, .036), (.301, .037), (.309, .030)], 'brass', sides=20)
@@ -362,7 +364,7 @@ def ribbon_shield():
     for sign, material in [(-1, 'plum'), (1, 'sage')]:
         centers = []
         for j in range(11):
-            t = j / 10; x, z = -.103 + .206 * t, sign * (-.161 + .322 * t)
+            t = j / 10; x, z = -.086 + .172 * t, sign * (-.145 + .290 * t)
             centers.append((x, front_y(x, z, .152, .240) + .007 + (material == 'sage') * .005, z))
         ribbon_strip('Ribbon shield crossed ' + material + ' inlay', centers, [.034 if j in [0, 10] else .047 for j in range(11)], material, .005)
     lathe('Ribbon shield central brass medallion', (0, 0, 0), [(.044, .050), (.049, .061), (.056, .062), (.063, .054), (.071, .031), (.073, .004)], 'brass', 'y', 24)
@@ -410,6 +412,17 @@ def build(name, root=ROOT):
         for vertex in obj.data.vertices: vertex.co = (vertex.co - grip) * factor
         obj.data.update()
     source_bounds = bounds(PARTS)
+    grip_parts = [obj for obj in PARTS if ('Mallet plum leather' in obj.name or 'Wand sage linen' in obj.name or 'distinct rear hand grip' in obj.name or 'separate rear vertical grip' in obj.name)]
+    grip_axis_blender = Vector((SPECS[name]['grip_axis_gltf'][0], -SPECS[name]['grip_axis_gltf'][2], SPECS[name]['grip_axis_gltf'][1]))
+    grip_cross_section = []
+    for obj in grip_parts:
+        for edge in obj.data.edges:
+            a, b = [obj.data.vertices[i].co for i in edge.vertices]
+            da, db = a.dot(grip_axis_blender), b.dot(grip_axis_blender)
+            if abs(da) < .000001: grip_cross_section.append(a.copy())
+            if da * db < 0: grip_cross_section.append(a.lerp(b, -da / (db - da)))
+    assert grip_cross_section, name
+    measured_grip_diameter = max((p - grip_axis_blender * p.dot(grip_axis_blender)).length for p in grip_cross_section) * 2
     part_records = []
     for obj in PARTS:
         obj.data.calc_loop_triangles()
@@ -439,12 +452,13 @@ def build(name, root=ROOT):
     gltf_bounds['dimensions'] = [gltf_bounds['max'][k] - gltf_bounds['min'][k] for k in range(3)]
     attachment = {
         'origin_gltf_m': [0, 0, 0], 'meaning': 'Physical center of the usable hand grip, not mesh bounding-box center',
-        'grip_axis_gltf': SPECS[name]['grip_axis_gltf'], 'grip_diameter_m': SPECS[name]['grip_diameter_m'] * factor,
+        'grip_axis_gltf': SPECS[name]['grip_axis_gltf'], 'grip_diameter_m': measured_grip_diameter,
+        'grip_measurement': {'method': 'Maximum radius of actual hand-grip mesh edges intersected with the plane through the origin perpendicular to the grip axis; includes raised wrapping.', 'source_parts': [obj.name for obj in grip_parts], 'cross_section_samples': len(grip_cross_section)},
         'ground_display': {'position_m': [0, -gltf_bounds['min'][1], 0], 'quaternion_xyzw': [0, 0, 0, 1], 'scale': [1, 1, 1], 'meaning': 'Standing orientation with lowest geometry at Y=0; use a display stand for physical balancing.'},
         'left_hand': {'bone': 'hand.L', 'prop_quaternion_xyzw': [0, 0, 0, 1]},
         'right_hand': {'bone': 'hand.R', 'prop_quaternion_xyzw': [0, 0, 1, 0] if name == 'ribbon-shield' else [0, 0, 0, 1]},
         'traveler_socket_report': 'scripts/assets/era-equipment/traveler-sockets.json',
-        'hand_guidance': 'Parent the complete prop to a socket under hand.L or hand.R; use the stage-specific mitten-center translation from traveler-sockets.json. Keep meter scale. Arm pose supplies all motion. For the oval Ribbon Shield, a 180-degree rotation around local forward Z swaps the offset grip to the opposite side while preserving the -Z-facing shield. Acorn Shield remains upright in both hands.',
+        'hand_guidance': 'Parent the complete prop to a socket under authored hand.L or hand.R; Three.js GLTFLoader retains these in userData.name while sanitizing object.name to handL/handR. Use the stage-specific mitten-center translation from traveler-sockets.json. Keep meter scale. Arm pose supplies all motion. For the oval Ribbon Shield, a 180-degree rotation around local forward Z swaps the offset grip to the opposite side while preserving the -Z-facing shield. Acorn Shield remains upright in both hands.',
         'rear_geometry': 'Shields face glTF -Z; actual straps and hand grips lie behind the walnut body toward +Z. Grip origin can be behind the front surface.' if 'shield' in name else None,
     }
     record = {'schema_version': 1, 'asset_id': name, 'version': 'v001', 'author': 'native gpt-6-astra, max', 'blender_version': bpy.app.version_string,

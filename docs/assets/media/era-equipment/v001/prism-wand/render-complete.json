@@ -1,0 +1,13 @@
+{
+  "asset_id": "prism-wand",
+  "source_sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc",
+  "all_complete": true,
+  "quick": false,
+  "resolution_px": 900,
+  "views": [
+    "beauty",
+    "front",
+    "side",
+    "back"
+  ]
+}

@@ -1,0 +1,955 @@
+{
+  "schema_version": 1,
+  "asset_id": "acorn-shield",
+  "version": "v001",
+  "author": "native gpt-6-astra, max",
+  "blender_version": "4.5.13 LTS",
+  "candidate_status": "unapproved",
+  "coordinate_system": {
+    "units": "meters",
+    "blender_up": "+Z",
+    "blender_front": "+Y",
+    "gltf_up": "+Y",
+    "gltf_front": "-Z"
+  },
+  "bounds_blender": {
+    "min": [
+      -0.14317315816879272,
+      -0.011844933032989502,
+      -0.12172707170248032
+    ],
+    "max": [
+      0.14317315816879272,
+      0.12478292733430862,
+      0.27827292680740356
+    ],
+    "dimensions": [
+      0.28634631633758545,
+      0.13662786036729813,
+      0.3999999985098839
+    ]
+  },
+  "bounds_gltf": {
+    "min": [
+      -0.14317315816879272,
+      -0.12172707170248032,
+      -0.12478292733430862
+    ],
+    "max": [
+      0.14317315816879272,
+      0.27827292680740356,
+      0.011844933032989502
+    ],
+    "dimensions": [
+      0.28634631633758545,
+      0.3999999985098839,
+      0.13662786036729813
+    ]
+  },
+  "exact_height_m": 0.4,
+  "scale_correction": 0.9902951206148523,
+  "triangles": 3624,
+  "material_count": 4,
+  "draw_primitives_target": 4,
+  "parts": [
+    {
+      "name": "Acorn shield convex solid walnut body",
+      "triangles": 640,
+      "bounds_blender": {
+        "min": [
+          -0.1376664936542511,
+          0.04689120873808861,
+          -0.11388394236564636
+        ],
+        "max": [
+          0.1376664936542511,
+          0.10603805631399155,
+          0.24460290372371674
+        ],
+        "dimensions": [
+          0.2753329873085022,
+          0.05914684757590294,
+          0.3584868460893631
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Acorn shield soft hammered brass rim",
+      "triangles": 576,
+      "bounds_blender": {
+        "min": [
+          -0.14317315816879272,
+          0.051495347172021866,
+          -0.12172707170248032
+        ],
+        "max": [
+          0.14317315816879272,
+          0.10799167305231094,
+          0.25109922885894775
+        ],
+        "dimensions": [
+          0.28634631633758545,
+          0.05649632588028908,
+          0.37282630056142807
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield front rim rivet 0",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.007922361604869366,
+          0.10341323912143707,
+          0.23008470237255096
+        ],
+        "max": [
+          0.007922361604869366,
+          0.11034530401229858,
+          0.24515393376350403
+        ],
+        "dimensions": [
+          0.01584472320973873,
+          0.006932064890861511,
+          0.015069231390953064
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield back rim rivet 0",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.005941770505160093,
+          0.05191789194941521,
+          0.23196837306022644
+        ],
+        "max": [
+          0.005941770505160093,
+          0.05884995684027672,
+          0.24327029287815094
+        ],
+        "dimensions": [
+          0.011883541010320187,
+          0.006932064890861511,
+          0.0113019198179245
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield front rim rivet 1",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.1020122766494751,
+          0.09600295126438141,
+          0.18175137042999268
+        ],
+        "max": [
+          0.11785700172185898,
+          0.10293501615524292,
+          0.19682061672210693
+        ],
+        "dimensions": [
+          0.01584472507238388,
+          0.006932064890861511,
+          0.015069246292114258
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield front rim rivet 2",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.12380965799093246,
+          0.09614302963018417,
+          0.10593438893556595
+        ],
+        "max": [
+          0.13965438306331635,
+          0.10307509452104568,
+          0.12100361287593842
+        ],
+        "dimensions": [
+          0.01584472507238388,
+          0.006932064890861511,
+          0.015069223940372467
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield back rim rivet 2",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.12579025328159332,
+          0.04464768245816231,
+          0.10781803727149963
+        ],
+        "max": [
+          0.13767379522323608,
+          0.05157974734902382,
+          0.11911996454000473
+        ],
+        "dimensions": [
+          0.011883541941642761,
+          0.006932064890861511,
+          0.011301927268505096
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield front rim rivet 3",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.09727372229099274,
+          0.09928648918867111,
+          -0.01821593940258026
+        ],
+        "max": [
+          0.11311844736337662,
+          0.10621855407953262,
+          -0.003146715695038438
+        ],
+        "dimensions": [
+          0.01584472507238388,
+          0.006932064890861511,
+          0.015069223707541823
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield front rim rivet 4",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.007922361604869366,
+          0.09590265899896622,
+          -0.11298718303442001
+        ],
+        "max": [
+          0.007922361604869366,
+          0.10283472388982773,
+          -0.09791794419288635
+        ],
+        "dimensions": [
+          0.01584472320973873,
+          0.006932064890861511,
+          0.015069238841533661
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield back rim rivet 4",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.005941770505160093,
+          0.04440730810165405,
+          -0.11110352724790573
+        ],
+        "max": [
+          0.005941770505160093,
+          0.05133937671780586,
+          -0.09980160742998123
+        ],
+        "dimensions": [
+          0.011883541010320187,
+          0.00693206861615181,
+          0.0113019198179245
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield front rim rivet 5",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.11311844736337662,
+          0.09928648918867111,
+          -0.01821593940258026
+        ],
+        "max": [
+          -0.09727372229099274,
+          0.10621855407953262,
+          -0.003146715695038438
+        ],
+        "dimensions": [
+          0.01584472507238388,
+          0.006932064890861511,
+          0.015069223707541823
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield front rim rivet 6",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.13965438306331635,
+          0.09614302963018417,
+          0.10593438893556595
+        ],
+        "max": [
+          -0.12380965799093246,
+          0.10307509452104568,
+          0.12100361287593842
+        ],
+        "dimensions": [
+          0.01584472507238388,
+          0.006932064890861511,
+          0.015069223940372467
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield back rim rivet 6",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.13767379522323608,
+          0.04464768245816231,
+          0.10781803727149963
+        ],
+        "max": [
+          -0.12579025328159332,
+          0.05157974734902382,
+          0.11911996454000473
+        ],
+        "dimensions": [
+          0.011883541941642761,
+          0.006932064890861511,
+          0.011301927268505096
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield front rim rivet 7",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.11785700172185898,
+          0.09600295126438141,
+          0.18175137042999268
+        ],
+        "max": [
+          -0.1020122766494751,
+          0.10293501615524292,
+          0.19682061672210693
+        ],
+        "dimensions": [
+          0.01584472507238388,
+          0.006932064890861511,
+          0.015069246292114258
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn sprout center leaf",
+      "triangles": 52,
+      "bounds_blender": {
+        "min": [
+          -0.035650622099637985,
+          0.1068602129817009,
+          0.026737963780760765
+        ],
+        "max": [
+          0.035650622099637985,
+          0.1216462254524231,
+          0.16835016012191772
+        ],
+        "dimensions": [
+          0.07130124419927597,
+          0.014786012470722198,
+          0.14161219634115696
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Acorn sprout center leaf carved midrib",
+      "triangles": 46,
+      "bounds_blender": {
+        "min": [
+          -0.002376708434894681,
+          0.11728456616401672,
+          0.02664145454764366
+        ],
+        "max": [
+          0.0019227974116802216,
+          0.12478292733430862,
+          0.16839377582073212
+        ],
+        "dimensions": [
+          0.0042995058465749025,
+          0.007498361170291901,
+          0.14175232127308846
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Acorn sprout left leaf",
+      "triangles": 52,
+      "bounds_blender": {
+        "min": [
+          -0.06809195876121521,
+          0.10553588718175888,
+          0.028074080124497414
+        ],
+        "max": [
+          -0.0012287022545933723,
+          0.12005271762609482,
+          0.10561574995517731
+        ],
+        "dimensions": [
+          0.06686325650662184,
+          0.014516830444335938,
+          0.0775416698306799
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Acorn sprout left leaf carved midrib",
+      "triangles": 46,
+      "bounds_blender": {
+        "min": [
+          -0.06771601736545563,
+          0.11596135050058365,
+          0.027429603040218353
+        ],
+        "max": [
+          -0.000742946402169764,
+          0.1238071620464325,
+          0.10525739192962646
+        ],
+        "dimensions": [
+          0.06697307096328586,
+          0.007845811545848846,
+          0.07782778888940811
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Acorn sprout right leaf",
+      "triangles": 52,
+      "bounds_blender": {
+        "min": [
+          0.0012287022545933723,
+          0.10553588718175888,
+          0.028074080124497414
+        ],
+        "max": [
+          0.06809195876121521,
+          0.12005271762609482,
+          0.10561574995517731
+        ],
+        "dimensions": [
+          0.06686325650662184,
+          0.014516830444335938,
+          0.0775416698306799
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Acorn sprout right leaf carved midrib",
+      "triangles": 46,
+      "bounds_blender": {
+        "min": [
+          0.0004768140206579119,
+          0.11596135050058365,
+          0.027651198208332062
+        ],
+        "max": [
+          0.06766600906848907,
+          0.1238071620464325,
+          0.10529351234436035
+        ],
+        "dimensions": [
+          0.06718919504783116,
+          0.007845811545848846,
+          0.07764231413602829
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Acorn sprout stem",
+      "triangles": 38,
+      "bounds_blender": {
+        "min": [
+          -0.004951475653797388,
+          0.10876816511154175,
+          0.0009261873201467097
+        ],
+        "max": [
+          0.0044611250050365925,
+          0.12458071857690811,
+          0.06739978492259979
+        ],
+        "dimensions": [
+          0.00941260065883398,
+          0.015812553465366364,
+          0.06647359760245308
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Acorn crown cap",
+      "triangles": 116,
+      "bounds_blender": {
+        "min": [
+          -0.026737969368696213,
+          0.038621507585048676,
+          0.24064171314239502
+        ],
+        "max": [
+          0.026737969368696213,
+          0.0920974463224411,
+          0.27827292680740356
+        ],
+        "dimensions": [
+          0.053475938737392426,
+          0.053475938737392426,
+          0.037631213665008545
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield open rear forearm strap",
+      "triangles": 68,
+      "bounds_blender": {
+        "min": [
+          -0.07922361046075821,
+          -0.009902949444949627,
+          0.11239849776029587
+        ],
+        "max": [
+          0.07922361046075821,
+          0.051495347172021866,
+          0.15696175396442413
+        ],
+        "dimensions": [
+          0.15844722092151642,
+          0.06139829661697149,
+          0.044563256204128265
+        ]
+      },
+      "material_names": [
+        "Plum"
+      ]
+    },
+    {
+      "name": "Acorn shield strap left walnut anchor",
+      "triangles": 108,
+      "bounds_blender": {
+        "min": [
+          -0.09407803416252136,
+          0.03614577278494835,
+          0.10249553620815277
+        ],
+        "max": [
+          -0.06436917930841446,
+          0.05298078805208206,
+          0.16686473786830902
+        ],
+        "dimensions": [
+          0.029708854854106903,
+          0.016835015267133713,
+          0.06436920166015625
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Acorn shield strap left fixing",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.08417508751153946,
+          0.026737971231341362,
+          0.11660201847553253
+        ],
+        "max": [
+          -0.07427212595939636,
+          0.033670034259557724,
+          0.12602029740810394
+        ],
+        "dimensions": [
+          0.009902961552143097,
+          0.006932063028216362,
+          0.009418278932571411
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield strap left fixing.001",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.08417508751153946,
+          0.026737971231341362,
+          0.14333999156951904
+        ],
+        "max": [
+          -0.07427212595939636,
+          0.033670034259557724,
+          0.15275824069976807
+        ],
+        "dimensions": [
+          0.009902961552143097,
+          0.006932063028216362,
+          0.009418249130249023
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield strap right walnut anchor",
+      "triangles": 108,
+      "bounds_blender": {
+        "min": [
+          0.06436917930841446,
+          0.03614577278494835,
+          0.10249553620815277
+        ],
+        "max": [
+          0.09407803416252136,
+          0.05298078805208206,
+          0.16686473786830902
+        ],
+        "dimensions": [
+          0.029708854854106903,
+          0.016835015267133713,
+          0.06436920166015625
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Acorn shield strap right fixing",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.07427212595939636,
+          0.026737971231341362,
+          0.11660201847553253
+        ],
+        "max": [
+          0.08417508751153946,
+          0.033670034259557724,
+          0.12602029740810394
+        ],
+        "dimensions": [
+          0.009902961552143097,
+          0.006932063028216362,
+          0.009418278932571411
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn shield strap right fixing.001",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.07427212595939636,
+          0.026737971231341362,
+          0.14333999156951904
+        ],
+        "max": [
+          0.08417508751153946,
+          0.033670034259557724,
+          0.15275824069976807
+        ],
+        "dimensions": [
+          0.009902961552143097,
+          0.006932063028216362,
+          0.009418249130249023
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn rear hand grip solid mount",
+      "triangles": 108,
+      "bounds_blender": {
+        "min": [
+          -0.06981580704450607,
+          0.007427213713526726,
+          -0.018320459872484207
+        ],
+        "max": [
+          -0.04307783767580986,
+          0.05199049413204193,
+          0.018320459872484207
+        ],
+        "dimensions": [
+          0.026737969368696213,
+          0.044563280418515205,
+          0.036640919744968414
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Acorn rear hand grip fixing",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.0623885914683342,
+          -0.00396118126809597,
+          -0.005650960840284824
+        ],
+        "max": [
+          -0.05050504952669144,
+          0.0029708840884268284,
+          0.005650960840284824
+        ],
+        "dimensions": [
+          0.011883541941642761,
+          0.0069320653565227985,
+          0.011301921680569649
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn rear hand grip solid mount.001",
+      "triangles": 108,
+      "bounds_blender": {
+        "min": [
+          0.04307783767580986,
+          0.007427213713526726,
+          -0.018320459872484207
+        ],
+        "max": [
+          0.06981580704450607,
+          0.05199049413204193,
+          0.018320459872484207
+        ],
+        "dimensions": [
+          0.026737969368696213,
+          0.044563280418515205,
+          0.036640919744968414
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Acorn rear hand grip fixing.001",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.05050504952669144,
+          -0.00396118126809597,
+          -0.005650960840284824
+        ],
+        "max": [
+          0.0623885914683342,
+          0.0029708840884268284,
+          0.005650960840284824
+        ],
+        "dimensions": [
+          0.011883541941642761,
+          0.0069320653565227985,
+          0.011301921680569649
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Acorn distinct rear hand grip",
+      "triangles": 92,
+      "bounds_blender": {
+        "min": [
+          -0.06064664199948311,
+          -0.011844933032989502,
+          -0.011883542872965336
+        ],
+        "max": [
+          0.06064664199948311,
+          0.016356293112039566,
+          0.011883542872965336
+        ],
+        "dimensions": [
+          0.12129328399896622,
+          0.028201226145029068,
+          0.02376708574593067
+        ]
+      },
+      "material_names": [
+        "Plum"
+      ]
+    }
+  ],
+  "attachment": {
+    "origin_gltf_m": [
+      0,
+      0,
+      0
+    ],
+    "meaning": "Physical center of the usable hand grip, not mesh bounding-box center",
+    "grip_axis_gltf": [
+      1,
+      0,
+      0
+    ],
+    "grip_diameter_m": 0.0237670861211381,
+    "grip_measurement": {
+      "method": "Maximum radius of actual hand-grip mesh edges intersected with the plane through the origin perpendicular to the grip axis; includes raised wrapping.",
+      "source_parts": [
+        "Acorn distinct rear hand grip"
+      ],
+      "cross_section_samples": 12
+    },
+    "ground_display": {
+      "position_m": [
+        0,
+        0.12172707170248032,
+        0
+      ],
+      "quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "meaning": "Standing orientation with lowest geometry at Y=0; use a display stand for physical balancing."
+    },
+    "left_hand": {
+      "bone": "hand.L",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "right_hand": {
+      "bone": "hand.R",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "traveler_socket_report": "scripts/assets/era-equipment/traveler-sockets.json",
+    "hand_guidance": "Parent the complete prop to a socket under authored hand.L or hand.R; Three.js GLTFLoader retains these in userData.name while sanitizing object.name to handL/handR. Use the stage-specific mitten-center translation from traveler-sockets.json. Keep meter scale. Arm pose supplies all motion. For the oval Ribbon Shield, a 180-degree rotation around local forward Z swaps the offset grip to the opposite side while preserving the -Z-facing shield. Acorn Shield remains upright in both hands.",
+    "rear_geometry": "Shields face glTF -Z; actual straps and hand grips lie behind the walnut body toward +Z. Grip origin can be behind the front surface."
+  },
+  "files": {
+    "acorn-shield.blend": {
+      "bytes": 605496,
+      "sha256": "911ae6b54cefc02622ac9d5682846de355c0dc8237cbbe0514875cd839f31a3b"
+    },
+    "acorn-shield.glb": {
+      "bytes": 184460,
+      "sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6"
+    }
+  },
+  "pigment": {
+    "kind": "Original deterministic color fields rasterized into 512px maps; directional wood grain follows explicit UVs",
+    "source": "pigment.py",
+    "embedded_format": "JPEG quality 90",
+    "external_dependencies": false
+  },
+  "budgets": {
+    "triangles_max": 5000,
+    "materials_max": 5,
+    "glb_bytes_max": 1048576
+  },
+  "clips": []
+}

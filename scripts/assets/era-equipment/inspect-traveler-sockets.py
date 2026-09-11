@@ -40,6 +40,8 @@ def inspect():
             local_offset = [offset[k] / scale[k] for k in range(3)]
             stage_record['hands'][side] = {
                 'hand_bone': 'hand.' + side, 'forearm_bone': 'forearm.' + side,
+                'three_loader_hand_name': 'hand' + side, 'three_loader_forearm_name': 'forearm' + side,
+                'three_loader_authored_name_key': 'userData.name',
                 'hand_node_index': hand_id, 'forearm_node_index': forearm_id,
                 'wrist_rest_world_m': wrist, 'elbow_rest_world_m': elbow,
                 'bone_rest_world_scale': scale, 'bone_rest_world_quaternion_xyzw': [0, 0, 0, 1],
@@ -50,6 +52,7 @@ def inspect():
                 'method': 'Follow the hand bone; offset from wrist along forearm by 0.027 × authored stage scale, then 0.009 × stage scale toward -Z. This is the source mitten-center formula converted to glTF coordinates.',
             }
         result['stages'][stage] = stage_record
+    result['three_loader_name_guidance'] = 'Verified with Three.js GLTFLoader 0.186.0 against both exact local traveler exports: hand.R becomes object.name handR, forearm.R becomes forearmR, with the original authored names retained as object.userData.name. Resolve the authored names through userData.name when attaching equipment; direct getObjectByName("hand.R") does not find the loaded hand.'
     result['limitations'] = ['Rest-space socket guidance only; existing mittens do not have articulated fingers.', 'Combat poses must be authored or applied to the traveler arms; existing interact is not a verified combat clip.', 'Do not attach to the avatar scene root or copy static world positions during animation.', 'Keep standard meter-scale equipment for both stages. Scale changes need explicit design and renewed placement checks.']
     output = Path(__file__).with_name('traveler-sockets.json')
     output.write_text(json.dumps(result, indent=2) + '\n')

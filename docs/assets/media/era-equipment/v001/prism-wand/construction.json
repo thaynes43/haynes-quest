@@ -1,0 +1,549 @@
+{
+  "schema_version": 1,
+  "asset_id": "prism-wand",
+  "version": "v001",
+  "author": "native gpt-6-astra, max",
+  "blender_version": "4.5.13 LTS",
+  "candidate_status": "unapproved",
+  "coordinate_system": {
+    "units": "meters",
+    "blender_up": "+Z",
+    "blender_front": "+Y",
+    "gltf_up": "+Y",
+    "gltf_front": "-Z"
+  },
+  "bounds_blender": {
+    "min": [
+      -0.0778963565826416,
+      -0.0689999982714653,
+      -0.10999999940395355
+    ],
+    "max": [
+      0.07707476615905762,
+      0.0689999982714653,
+      0.5399999618530273
+    ],
+    "dimensions": [
+      0.15497112274169922,
+      0.1379999965429306,
+      0.6499999612569809
+    ]
+  },
+  "bounds_gltf": {
+    "min": [
+      -0.0778963565826416,
+      -0.10999999940395355,
+      -0.0689999982714653
+    ],
+    "max": [
+      0.07707476615905762,
+      0.5399999618530273,
+      0.0689999982714653
+    ],
+    "dimensions": [
+      0.15497112274169922,
+      0.6499999612569809,
+      0.1379999965429306
+    ]
+  },
+  "exact_height_m": 0.65,
+  "scale_correction": 1.0000000366797828,
+  "triangles": 2076,
+  "material_count": 5,
+  "draw_primitives_target": 5,
+  "parts": [
+    {
+      "name": "Wand tapered walnut staff",
+      "triangles": 156,
+      "bounds_blender": {
+        "min": [
+          -0.026000000536441803,
+          -0.026000000536441803,
+          -0.09399999678134918
+        ],
+        "max": [
+          0.026000000536441803,
+          0.026000000536441803,
+          0.25
+        ],
+        "dimensions": [
+          0.052000001072883606,
+          0.052000001072883606,
+          0.3439999967813492
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Wand sage linen soft grip body",
+      "triangles": 124,
+      "bounds_blender": {
+        "min": [
+          -0.01899999938905239,
+          -0.01899999938905239,
+          -0.07199999690055847
+        ],
+        "max": [
+          0.01899999938905239,
+          0.01899999938905239,
+          0.07000000774860382
+        ],
+        "dimensions": [
+          0.03799999877810478,
+          0.03799999877810478,
+          0.1420000046491623
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Wand sage linen broad wrap overlap",
+      "triangles": 516,
+      "bounds_blender": {
+        "min": [
+          -0.021783318370580673,
+          -0.021800000220537186,
+          -0.06671798974275589
+        ],
+        "max": [
+          0.021783318370580673,
+          0.021733295172452927,
+          0.06466414034366608
+        ],
+        "dimensions": [
+          0.043566636741161346,
+          0.04353329539299011,
+          0.13138213008642197
+        ]
+      },
+      "material_names": [
+        "Sage"
+      ]
+    },
+    {
+      "name": "Wand brass pommel",
+      "triangles": 196,
+      "bounds_blender": {
+        "min": [
+          -0.02800000086426735,
+          -0.02800000086426735,
+          -0.10999999940395355
+        ],
+        "max": [
+          0.02800000086426735,
+          0.02800000086426735,
+          -0.07000000029802322
+        ],
+        "dimensions": [
+          0.0560000017285347,
+          0.0560000017285347,
+          0.03999999910593033
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Wand brass cradle collar",
+      "triangles": 156,
+      "bounds_blender": {
+        "min": [
+          -0.03500000014901161,
+          -0.03500000014901161,
+          0.20600001513957977
+        ],
+        "max": [
+          0.03500000014901161,
+          0.03500000014901161,
+          0.23499999940395355
+        ],
+        "dimensions": [
+          0.07000000029802322,
+          0.07000000029802322,
+          0.02899998426437378
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Wand separate walnut cradle prong 1",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.0043226201087236404,
+          -0.0002995189279317856,
+          0.21916134655475616
+        ],
+        "max": [
+          0.07137216627597809,
+          0.06663365662097931,
+          0.3503651022911072
+        ],
+        "dimensions": [
+          0.07569478638470173,
+          0.0669331755489111,
+          0.131203755736351
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Wand prong brass pin 1",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.02252691052854061,
+          0.03252691030502319,
+          0.2534894347190857
+        ],
+        "max": [
+          0.042526908218860626,
+          0.039526909589767456,
+          0.2725105881690979
+        ],
+        "dimensions": [
+          0.019999997690320015,
+          0.006999999284744263,
+          0.019021153450012207
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Wand separate walnut cradle prong 2",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.0043226201087236404,
+          -0.06663365662097931,
+          0.21916134655475616
+        ],
+        "max": [
+          0.07137216627597809,
+          0.0002995189279317856,
+          0.3503651022911072
+        ],
+        "dimensions": [
+          0.07569478638470173,
+          0.0669331755489111,
+          0.131203755736351
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Wand prong brass pin 2",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          0.02252691052854061,
+          -0.03252691030502319,
+          0.2534894347190857
+        ],
+        "max": [
+          0.042526908218860626,
+          -0.02552691102027893,
+          0.2725105881690979
+        ],
+        "dimensions": [
+          0.019999997690320015,
+          0.006999999284744263,
+          0.019021153450012207
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Wand separate walnut cradle prong 3",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.07137216627597809,
+          -0.06663365662097931,
+          0.21916134655475616
+        ],
+        "max": [
+          0.0043226201087236404,
+          0.0002995189279317856,
+          0.3503651022911072
+        ],
+        "dimensions": [
+          0.07569478638470173,
+          0.0669331755489111,
+          0.131203755736351
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Wand prong brass pin 3",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.042526908218860626,
+          -0.03252691030502319,
+          0.2534894347190857
+        ],
+        "max": [
+          -0.02252691052854061,
+          -0.02552691102027893,
+          0.2725105881690979
+        ],
+        "dimensions": [
+          0.019999997690320015,
+          0.006999999284744263,
+          0.019021153450012207
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Wand separate walnut cradle prong 4",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.07137216627597809,
+          -0.0002995189279317856,
+          0.21916134655475616
+        ],
+        "max": [
+          0.0043226201087236404,
+          0.06663365662097931,
+          0.3503651022911072
+        ],
+        "dimensions": [
+          0.07569478638470173,
+          0.0669331755489111,
+          0.131203755736351
+        ]
+      },
+      "material_names": [
+        "Walnut"
+      ]
+    },
+    {
+      "name": "Wand prong brass pin 4",
+      "triangles": 76,
+      "bounds_blender": {
+        "min": [
+          -0.042526908218860626,
+          0.03252691030502319,
+          0.2534894347190857
+        ],
+        "max": [
+          -0.02252691052854061,
+          0.039526909589767456,
+          0.2725105881690979
+        ],
+        "dimensions": [
+          0.019999997690320015,
+          0.006999999284744263,
+          0.019021153450012207
+        ]
+      },
+      "material_names": [
+        "Brass"
+      ]
+    },
+    {
+      "name": "Wand blunt amber and plum prism",
+      "triangles": 108,
+      "bounds_blender": {
+        "min": [
+          -0.0689999982714653,
+          -0.0689999982714653,
+          0.23400001227855682
+        ],
+        "max": [
+          0.0689999982714653,
+          0.0689999982714653,
+          0.5399999618530273
+        ],
+        "dimensions": [
+          0.1379999965429306,
+          0.1379999965429306,
+          0.3059999495744705
+        ]
+      },
+      "material_names": [
+        "Amber",
+        "Plum"
+      ]
+    },
+    {
+      "name": "Wand plum ribbon collar knot",
+      "triangles": 124,
+      "bounds_blender": {
+        "min": [
+          -0.029999999329447746,
+          -0.029999999329447746,
+          0.1849999874830246
+        ],
+        "max": [
+          0.029999999329447746,
+          0.029999999329447746,
+          0.20600001513957977
+        ],
+        "dimensions": [
+          0.05999999865889549,
+          0.05999999865889549,
+          0.021000027656555176
+        ]
+      },
+      "material_names": [
+        "Plum"
+      ]
+    },
+    {
+      "name": "Wand attached plum ribbon tail -1",
+      "triangles": 44,
+      "bounds_blender": {
+        "min": [
+          -0.0778963565826416,
+          0.0030000002589076757,
+          0.10100828111171722
+        ],
+        "max": [
+          -0.012582299299538136,
+          0.025499999523162842,
+          0.20343266427516937
+        ],
+        "dimensions": [
+          0.06531405728310347,
+          0.022499999264255166,
+          0.10242438316345215
+        ]
+      },
+      "material_names": [
+        "Plum"
+      ]
+    },
+    {
+      "name": "Wand attached plum ribbon tail 1",
+      "triangles": 44,
+      "bounds_blender": {
+        "min": [
+          0.012582299299538136,
+          0.0030000002589076757,
+          0.1149626225233078
+        ],
+        "max": [
+          0.07707476615905762,
+          0.025499999523162842,
+          0.20343266427516937
+        ],
+        "dimensions": [
+          0.06449246685951948,
+          0.022499999264255166,
+          0.08847004175186157
+        ]
+      },
+      "material_names": [
+        "Plum"
+      ]
+    }
+  ],
+  "attachment": {
+    "origin_gltf_m": [
+      0,
+      0,
+      0
+    ],
+    "meaning": "Physical center of the usable hand grip, not mesh bounding-box center",
+    "grip_axis_gltf": [
+      0,
+      1,
+      0
+    ],
+    "grip_diameter_m": 0.04259889752633007,
+    "grip_measurement": {
+      "method": "Maximum radius of actual hand-grip mesh edges intersected with the plane through the origin perpendicular to the grip axis; includes raised wrapping.",
+      "source_parts": [
+        "Wand sage linen soft grip body",
+        "Wand sage linen broad wrap overlap"
+      ],
+      "cross_section_samples": 24
+    },
+    "ground_display": {
+      "position_m": [
+        0,
+        0.10999999940395355,
+        0
+      ],
+      "quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "meaning": "Standing orientation with lowest geometry at Y=0; use a display stand for physical balancing."
+    },
+    "left_hand": {
+      "bone": "hand.L",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "right_hand": {
+      "bone": "hand.R",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "traveler_socket_report": "scripts/assets/era-equipment/traveler-sockets.json",
+    "hand_guidance": "Parent the complete prop to a socket under authored hand.L or hand.R; Three.js GLTFLoader retains these in userData.name while sanitizing object.name to handL/handR. Use the stage-specific mitten-center translation from traveler-sockets.json. Keep meter scale. Arm pose supplies all motion. For the oval Ribbon Shield, a 180-degree rotation around local forward Z swaps the offset grip to the opposite side while preserving the -Z-facing shield. Acorn Shield remains upright in both hands.",
+    "rear_geometry": null
+  },
+  "files": {
+    "prism-wand.blend": {
+      "bytes": 586817,
+      "sha256": "ed65e04ebaf8382bf445d923c5840d9292e617f7edd7a8dbca589c89ee153374"
+    },
+    "prism-wand.glb": {
+      "bytes": 143444,
+      "sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc"
+    }
+  },
+  "pigment": {
+    "kind": "Original deterministic color fields rasterized into 512px maps; directional wood grain follows explicit UVs",
+    "source": "pigment.py",
+    "embedded_format": "JPEG quality 90",
+    "external_dependencies": false
+  },
+  "budgets": {
+    "triangles_max": 5000,
+    "materials_max": 5,
+    "glb_bytes_max": 1048576
+  },
+  "clips": []
+}

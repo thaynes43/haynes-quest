@@ -1,0 +1,189 @@
+{
+  "asset_id": "prism-wand",
+  "version": "v001",
+  "candidate_status": "unapproved",
+  "coordinator_review": "selected for candidate catalog/intake by lead Astra on 2026-09-11",
+  "tom_review": "pending",
+  "concept_reference": {
+    "repository_path": "docs/assets/media/era-equipment/v001/later-concept.png",
+    "sha256": "8edaa696b2d7e7b27a65dc2ee94a1deaa73e845e3529483b43f390776d9bfb2f"
+  },
+  "glb_sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc",
+  "glb_bytes": 143444,
+  "triangles": 2076,
+  "materials": 5,
+  "draw_primitives": 5,
+  "dimensions_gltf_m": [
+    0.15497112274169922,
+    0.6499999612569809,
+    0.1379999965429306
+  ],
+  "attachment": {
+    "origin_gltf_m": [
+      0,
+      0,
+      0
+    ],
+    "meaning": "Physical center of the usable hand grip, not mesh bounding-box center",
+    "grip_axis_gltf": [
+      0,
+      1,
+      0
+    ],
+    "grip_diameter_m": 0.04259889752633007,
+    "grip_measurement": {
+      "method": "Maximum radius of actual hand-grip mesh edges intersected with the plane through the origin perpendicular to the grip axis; includes raised wrapping.",
+      "source_parts": [
+        "Wand sage linen soft grip body",
+        "Wand sage linen broad wrap overlap"
+      ],
+      "cross_section_samples": 24
+    },
+    "ground_display": {
+      "position_m": [
+        0,
+        0.10999999940395355,
+        0
+      ],
+      "quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "meaning": "Standing orientation with lowest geometry at Y=0; use a display stand for physical balancing."
+    },
+    "left_hand": {
+      "bone": "hand.L",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "right_hand": {
+      "bone": "hand.R",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "traveler_socket_report": "scripts/assets/era-equipment/traveler-sockets.json",
+    "hand_guidance": "Parent the complete prop to a socket under authored hand.L or hand.R; Three.js GLTFLoader retains these in userData.name while sanitizing object.name to handL/handR. Use the stage-specific mitten-center translation from traveler-sockets.json. Keep meter scale. Arm pose supplies all motion. For the oval Ribbon Shield, a 180-degree rotation around local forward Z swaps the offset grip to the opposite side while preserving the -Z-facing shield. Acorn Shield remains upright in both hands.",
+    "rear_geometry": null
+  },
+  "editable_masters": [
+    {
+      "file": "prism-wand/prism-wand.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/prism-wand/prism-wand.blend",
+      "sha256": "ed65e04ebaf8382bf445d923c5840d9292e617f7edd7a8dbca589c89ee153374",
+      "bytes": 586817,
+      "saved_in_repository": false
+    },
+    {
+      "file": "prism-wand/prism-wand-export-review.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/prism-wand/prism-wand-export-review.blend",
+      "sha256": "36d301685e23326e49bbf9d5b08d6ae2e86e5a252fc77813b9eafdb0c61c39d4",
+      "bytes": 224972,
+      "saved_in_repository": false
+    }
+  ],
+  "files": [
+    {
+      "file": "back.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/back.png",
+      "sha256": "91ba7b72a4bb8c349aa3b6b6e4d1feadb9af9aca678b57496b83342efd10215c",
+      "bytes": 688508
+    },
+    {
+      "file": "beauty.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/beauty.png",
+      "sha256": "20301f64de56b0a97cf075f37837906ea7583fcde9c2c107519abe926c554cbc",
+      "bytes": 702362
+    },
+    {
+      "file": "browser-back.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/browser-back.png",
+      "sha256": "0fd8d5be3e6e5b6f89b7e74ada323af9bef89970697ebdfcb6c387c8f964e79e",
+      "bytes": 50873
+    },
+    {
+      "file": "browser-beauty.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/browser-beauty.png",
+      "sha256": "f54e8e5001f4d5cfa71d7790be1bec0e55f04abbecadcc422a18af543189cdb4",
+      "bytes": 61458
+    },
+    {
+      "file": "browser-front.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/browser-front.png",
+      "sha256": "28c936bf7127d9cf3de595752a8971aaac3edbafc5eb401aad4cd9b5c610cd68",
+      "bytes": 51992
+    },
+    {
+      "file": "browser-side.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/browser-side.png",
+      "sha256": "e5fb95b226f9117dc132a419c3d359a81077e50b11be8b291267bc015a95d9fd",
+      "bytes": 52795
+    },
+    {
+      "file": "construction.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/construction.json",
+      "sha256": "9e85a9d51f61fd0768d2f854021bddc9eb0ba54e85807a3b655b696b6ee53ad3",
+      "bytes": 12816
+    },
+    {
+      "file": "front.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/front.png",
+      "sha256": "5ef101ff4ed6eaad5cd63973bd3bca4c4437392f69c597adccf48306b3f661cc",
+      "bytes": 688467
+    },
+    {
+      "file": "prism-wand.glb",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/prism-wand.glb",
+      "sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc",
+      "bytes": 143444
+    },
+    {
+      "file": "reimport.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/reimport.json",
+      "sha256": "87e376763dffb0352e08d93c387ee2f2abae620a1cf96daaf4f3bd42bc593e44",
+      "bytes": 3776
+    },
+    {
+      "file": "render-complete.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/render-complete.json",
+      "sha256": "f34f07458c7cca86464af26eaf980220213c5841ec5d90fe8ce9a1c2cc0da98c",
+      "bytes": 252
+    },
+    {
+      "file": "side.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/side.png",
+      "sha256": "8ddc081377d8c0573fbbb06d8d5c1c994834250d555840e160f4558f23c74c08",
+      "bytes": 685512
+    },
+    {
+      "file": "three-inspection.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/three-inspection.json",
+      "sha256": "63f00e1362ba314dd7052eea74ed9a404d4e159c0b0f5997491b3ab4428e16cc",
+      "bytes": 2093
+    },
+    {
+      "file": "validation.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/prism-wand/validation.json",
+      "sha256": "1c2be86046c6ca5869c0b4317793614776f18be003692fbd4b5e903e92c9e6f6",
+      "bytes": 5438
+    }
+  ],
+  "limitations": [
+    "Chromium with SwiftShader, not a physical device or Safari measurement.",
+    "Studio intake only; no gameplay approval or final hand pose is claimed."
+  ]
+}

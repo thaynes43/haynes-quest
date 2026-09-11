@@ -1,0 +1,200 @@
+{
+  "asset_id": "acorn-shield",
+  "version": "v001",
+  "candidate_status": "unapproved",
+  "coordinator_review": "selected for candidate catalog/intake by lead Astra on 2026-09-11",
+  "tom_review": "pending",
+  "concept_reference": {
+    "repository_path": "docs/assets/media/era-equipment/v001/starter-concept.png",
+    "sha256": "62af0571853a0f8d9231984c09c1ddb9e25f0beae2704591dc7e7ec20c02d85e"
+  },
+  "glb_sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6",
+  "glb_bytes": 184460,
+  "triangles": 3624,
+  "materials": 4,
+  "draw_primitives": 4,
+  "dimensions_gltf_m": [
+    0.28634631633758545,
+    0.3999999985098839,
+    0.13662786036729813
+  ],
+  "attachment": {
+    "origin_gltf_m": [
+      0,
+      0,
+      0
+    ],
+    "meaning": "Physical center of the usable hand grip, not mesh bounding-box center",
+    "grip_axis_gltf": [
+      1,
+      0,
+      0
+    ],
+    "grip_diameter_m": 0.0237670861211381,
+    "grip_measurement": {
+      "method": "Maximum radius of actual hand-grip mesh edges intersected with the plane through the origin perpendicular to the grip axis; includes raised wrapping.",
+      "source_parts": [
+        "Acorn distinct rear hand grip"
+      ],
+      "cross_section_samples": 12
+    },
+    "ground_display": {
+      "position_m": [
+        0,
+        0.12172707170248032,
+        0
+      ],
+      "quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "meaning": "Standing orientation with lowest geometry at Y=0; use a display stand for physical balancing."
+    },
+    "left_hand": {
+      "bone": "hand.L",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "right_hand": {
+      "bone": "hand.R",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "traveler_socket_report": "scripts/assets/era-equipment/traveler-sockets.json",
+    "hand_guidance": "Parent the complete prop to a socket under authored hand.L or hand.R; Three.js GLTFLoader retains these in userData.name while sanitizing object.name to handL/handR. Use the stage-specific mitten-center translation from traveler-sockets.json. Keep meter scale. Arm pose supplies all motion. For the oval Ribbon Shield, a 180-degree rotation around local forward Z swaps the offset grip to the opposite side while preserving the -Z-facing shield. Acorn Shield remains upright in both hands.",
+    "rear_geometry": "Shields face glTF -Z; actual straps and hand grips lie behind the walnut body toward +Z. Grip origin can be behind the front surface."
+  },
+  "editable_masters": [
+    {
+      "file": "acorn-shield/acorn-shield.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/acorn-shield/acorn-shield.blend",
+      "sha256": "911ae6b54cefc02622ac9d5682846de355c0dc8237cbbe0514875cd839f31a3b",
+      "bytes": 605496,
+      "saved_in_repository": false
+    },
+    {
+      "file": "acorn-shield/acorn-shield-export-review.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/acorn-shield/acorn-shield-export-review.blend",
+      "sha256": "344aeee430c723ab6d9035a0e0860c7418f5b095049acc85e3a6e08a7f92fb66",
+      "bytes": 268919,
+      "saved_in_repository": false
+    }
+  ],
+  "files": [
+    {
+      "file": "acorn-shield.glb",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/acorn-shield.glb",
+      "sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6",
+      "bytes": 184460
+    },
+    {
+      "file": "back.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/back.png",
+      "sha256": "ba3e94bab408d0bd6132c3786cc554a8d21152485c55cb9653d39546d1dfaa80",
+      "bytes": 755071
+    },
+    {
+      "file": "beauty.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/beauty.png",
+      "sha256": "0c69e6927d25de0091e331501e3d0c9559db6c344c173322ff7708eb2f245401",
+      "bytes": 771094
+    },
+    {
+      "file": "browser-back.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/browser-back.png",
+      "sha256": "a609e3d1edb26abba354c15d46fc9ad8c9205e0c6f016c8d31c316cf5a6b3c68",
+      "bytes": 173736
+    },
+    {
+      "file": "browser-beauty.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/browser-beauty.png",
+      "sha256": "f74c0697823198003f9a3e175de8236b56c08011bad2c2a33b85383820f4d782",
+      "bytes": 170723
+    },
+    {
+      "file": "browser-front.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/browser-front.png",
+      "sha256": "7a75056fb0215fed0f6ae9ae2ce5cf3e63135671b6aab75b8d03875522488f54",
+      "bytes": 190361
+    },
+    {
+      "file": "browser-rear-grip.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/browser-rear-grip.png",
+      "sha256": "55a7ab12d27e647c0e564354f5224e3f8a3421c07e86a4b42c0b750b33201fd9",
+      "bytes": 174882
+    },
+    {
+      "file": "browser-side.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/browser-side.png",
+      "sha256": "14ef6fdac98af4fcfb31aa1e5e178d03a9940a66c01d39a9cd6feebeeea944c4",
+      "bytes": 69493
+    },
+    {
+      "file": "construction.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/construction.json",
+      "sha256": "0d140a7ea2a572224746d7e0da0152f56065af5b7e1cdc5cc427bb783f34bd29",
+      "bytes": 22162
+    },
+    {
+      "file": "front.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/front.png",
+      "sha256": "b6fac863c629a8df57f6c6bc7d1f1ef1ef24ef76b479aa50951e712fcbd2e268",
+      "bytes": 781354
+    },
+    {
+      "file": "rear-grip.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/rear-grip.png",
+      "sha256": "668671ed67edfe5cc4e02a34c2925f9b64798a35039f7160c394af38d673d04c",
+      "bytes": 766940
+    },
+    {
+      "file": "reimport.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/reimport.json",
+      "sha256": "6c17862610605f027f8a973334bbf3ddf9db1588f94ef2248705d53e37af09a2",
+      "bytes": 6696
+    },
+    {
+      "file": "render-complete.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/render-complete.json",
+      "sha256": "2e376a3b658f01a7bb415c117760932755bdd7c4da181d6f51967792bd597cc8",
+      "bytes": 271
+    },
+    {
+      "file": "side.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/side.png",
+      "sha256": "65810da50b19184d8ffb2e34c4e0b7dd2e2964e910e53ce14f5a1cd0f754da64",
+      "bytes": 688594
+    },
+    {
+      "file": "three-inspection.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/three-inspection.json",
+      "sha256": "693ed2dcead55f14722b7918bdb77f6c7e8a378dc687948eb80882328c9b5915",
+      "bytes": 2129
+    },
+    {
+      "file": "validation.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/acorn-shield/validation.json",
+      "sha256": "f8d1ee94666d80b5650fc5eb4a4559d7291a0d67bb26e4da96f5452b97fe197d",
+      "bytes": 4659
+    }
+  ],
+  "limitations": [
+    "Chromium with SwiftShader, not a physical device or Safari measurement.",
+    "Studio intake only; no gameplay approval or final hand pose is claimed."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "asset_id": "ribbon-shield",
+  "source_sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9",
+  "all_complete": true,
+  "quick": false,
+  "resolution_px": 900,
+  "views": [
+    "beauty",
+    "front",
+    "side",
+    "back",
+    "rear-grip"
+  ]
+}

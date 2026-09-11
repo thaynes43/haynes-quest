@@ -1,0 +1,14 @@
+{
+  "work_order": "WO-017",
+  "scene_owner": "released",
+  "released_at_utc": "2026-09-11T15:08:52.583102+00:00",
+  "live_checkpoint": "haynes-quest/era-equipment/v001/live-scene-release.blend",
+  "last_source_asset": "ribbon-shield",
+  "remaining_job": {
+    "pid": 37134,
+    "threads": 3,
+    "kind": "isolated immutable-GLB final renders",
+    "log": "haynes-quest/era-equipment/v001/final-render.log"
+  },
+  "policy": "No further live scene mutation by this author; artifact transfer and existing isolated render completion only."
+}

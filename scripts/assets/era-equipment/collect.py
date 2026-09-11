@@ -40,6 +40,11 @@ def collect():
                 assert hash_value == construction['files'][file]['sha256'] and len(data) == construction['files'][file]['bytes']
             verified.append({'file': name + '/' + file, 'artifact_id': 'haynes-quest/era-equipment/v001/' + name + '/' + file, 'sha256': hash_value, 'bytes': len(data), 'saved_in_repository': False})
         print(name, 'collected and master byte streams verified')
+    for file in ['live-scene-release.blend', 'scene-release.json', 'source-bundle.json', 'render-job-completion.json']:
+        data = fetch(file); hash_value = hashlib.sha256(data).hexdigest()
+        saved = file.endswith('.json')
+        if saved: Path(__file__).with_name(file).write_bytes(data)
+        verified.append({'file': file, 'artifact_id': 'haynes-quest/era-equipment/v001/' + file, 'sha256': hash_value, 'bytes': len(data), 'saved_in_repository': saved})
     (Path(__file__).with_name('collection-verification.json')).write_text(json.dumps({'artifact_root': 'haynes-quest/era-equipment/v001', 'files': verified}, indent=2) + '\n')
 
 
