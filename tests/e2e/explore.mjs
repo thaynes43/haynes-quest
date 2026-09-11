@@ -241,8 +241,10 @@ async function fillSetup(page, { name, birthDate, fromDate, toDate, limit }) {
     const details = page.locator("details");
     if (!(await details.evaluate((element) => element.open)))
       await page.getByText("Choose a date range").click();
-    if (fromDate !== undefined) await page.getByLabel("From").fill(fromDate);
-    if (toDate !== undefined) await page.getByLabel("Through").fill(toDate);
+    if (fromDate !== undefined)
+      await page.getByLabel("From", { exact: true }).fill(fromDate);
+    if (toDate !== undefined)
+      await page.getByLabel("Through", { exact: true }).fill(toDate);
     if (limit !== undefined)
       await page.getByLabel("Maximum memories").fill(String(limit));
   }
@@ -663,6 +665,17 @@ await probe(
     ]);
     entry.observed.beginOutcome = outcome;
     entry.observed.savesCreated = (await saveCount(page)) - before;
+    if (outcome === "game") {
+      const save = await driver.getSave(page);
+      entry.observed.save = {
+        ageYears: save.ageYears,
+        eraYear: save.adventure.activeLevel.eraYear,
+        periodId: save.adventure.activeLevel.periodId,
+        targetAgeYears: save.adventure.activeLevel.targetAgeYears,
+        totalLevels: save.adventure.activeLevel.totalLevels,
+        memoryCount: save.memories.length,
+      };
+    }
     await shot(page, "setup-only-last-memory");
     await context.close();
   },
@@ -723,7 +736,7 @@ await probe(
 await probe(
   "setup-preview-twice",
   "setup",
-  "repeated preview clicks keep one grid and a working begin",
+  "repeated preview taps keep one grid and a working begin",
   async (entry) => {
     const { context, page } = await newPage();
     await openSetup(page);
@@ -732,23 +745,24 @@ await probe(
     page.on("request", (request) => {
       if (request.url().includes("/api/setup/preview")) requests += 1;
     });
+    // Two taps in separate tasks, the fastest a person can produce.
     await preview.evaluate((button) => {
       button.click();
-      button.click();
-      button.click();
+      setTimeout(() => button.click(), 0);
     });
     await page.locator(".memory-choice").first().waitFor();
-    await delay(300);
-    entry.observed.previewRequestsAfterTripleClick = requests;
+    await delay(400);
+    entry.observed.previewRequestsAfterRapidDoubleTap = requests;
     entry.observed.candidates = await page.locator(".memory-choice").count();
     await preview.click();
+    await page.locator(".memory-choice").first().waitFor();
     await delay(300);
     entry.observed.previewRequestsAfterSecondPreview = requests;
-    await page.locator(".memory-choice").first().waitFor();
     const before = await saveCount(page);
     await page.getByRole("button", { name: "Begin your journey" }).click();
     await page.locator("canvas").waitFor({ timeout: 15_000 });
     entry.observed.savesCreated = (await saveCount(page)) - before;
+    assert.equal(entry.observed.previewRequestsAfterRapidDoubleTap, 1);
     assert.equal(entry.observed.candidates, 3);
     assert.equal(entry.observed.savesCreated, 1);
     await context.close();
@@ -758,7 +772,7 @@ await probe(
 await probe(
   "setup-double-begin",
   "setup",
-  "a synchronous double click on begin creates one journey",
+  "a rapid double tap on begin creates one journey",
   async (entry) => {
     const { context, page } = await newPage();
     await openSetup(page);
@@ -774,12 +788,13 @@ await probe(
       .getByRole("button", { name: "Begin your journey" })
       .evaluate((button) => {
         button.click();
-        button.click();
+        setTimeout(() => button.click(), 0);
       });
     await page.locator("canvas").waitFor({ timeout: 15_000 });
     await delay(500);
     entry.observed.postRequests = requests;
     entry.observed.savesCreated = (await saveCount(page)) - before;
+    assert.equal(entry.observed.postRequests, 1);
     assert.equal(entry.observed.savesCreated, 1);
     await context.close();
   },
@@ -1006,28 +1021,38 @@ await probe(
   "keyboard movement, blocked jump, weaponless keys, blur and hidden-tab clearing",
   async (entry) => {
     const { page, controls } = await startGame("keyboard");
+    // Models and shaders load after the canvas appears and can stall the
+    // software renderer for whole seconds, so hold each key until the
+    // traveler has clearly moved instead of trusting a fixed window.
     const moves = {};
-    for (const [key, axis] of [
-      ["w", "dz"],
-      ["s", "dz"],
-      ["a", "dx"],
-      ["d", "dx"],
-      ["ArrowUp", "dz"],
-      ["ArrowLeft", "dx"],
+    for (const [key, axis, sign] of [
+      ["w", "z", -1],
+      ["s", "z", 1],
+      ["a", "x", -1],
+      ["d", "x", 1],
+      ["ArrowUp", "z", -1],
+      ["ArrowLeft", "x", -1],
     ]) {
+      const before = await positionOf(page);
       await page.keyboard.down(key);
-      const delta = await positionDelta(page, 350);
+      const startedAt = Date.now();
+      let delta = 0;
+      while (Date.now() - startedAt < 4_000) {
+        delta = (await positionOf(page))[axis] - before[axis];
+        if (delta * sign >= 0.1) break;
+        await delay(60);
+      }
       await page.keyboard.up(key);
-      moves[key] = { [axis]: Number(delta[axis].toFixed(3)) };
+      moves[key] = {
+        [`d${axis}`]: Number(delta.toFixed(3)),
+        ms: Date.now() - startedAt,
+      };
+      assert.ok(
+        delta * sign >= 0.1,
+        `${key} did not move the traveler: ${JSON.stringify(moves)}`,
+      );
     }
     entry.observed.moves = moves;
-    assert.ok(
-      moves.w.dz < -0.05 &&
-        moves.s.dz > 0.05 &&
-        moves.a.dx < -0.05 &&
-        moves.d.dx > 0.05,
-    );
-    assert.ok(moves.ArrowUp.dz < -0.05 && moves.ArrowLeft.dx < -0.05);
     let maxY = 0;
     await page.keyboard.down("Space");
     for (let index = 0; index < 8; index += 1) {
@@ -1062,7 +1087,8 @@ await probe(
       Math.abs(entry.observed.afterBlur.dz) < 0.001,
       "kept moving after blur",
     );
-    // Labelled DOM fault injection: pretend the tab is hidden, the course clock must freeze.
+    // Labelled DOM fault injection: pretend the tab is hidden; the course
+    // clock must freeze, then run again once the tab is visible.
     const courseBefore = (await driver.inspectGame(page)).obby.timeSeconds;
     await page.evaluate(() => {
       Object.defineProperty(document, "visibilityState", {
@@ -1082,8 +1108,15 @@ await probe(
       delete document.hidden;
       document.dispatchEvent(new Event("visibilitychange"));
     });
-    await delay(400);
-    const courseVisible = (await driver.inspectGame(page)).obby.timeSeconds;
+    const resumedAt = Date.now();
+    let courseVisible = courseHidden;
+    while (
+      Date.now() - resumedAt < 4_000 &&
+      courseVisible - courseHidden < 0.05
+    ) {
+      await delay(80);
+      courseVisible = (await driver.inspectGame(page)).obby.timeSeconds;
+    }
     entry.observed.hiddenTab = {
       advanceWhileHidden: courseHidden - courseBefore,
       advanceAfterReturn: courseVisible - courseHidden,
@@ -1094,7 +1127,7 @@ await probe(
       "course advanced while hidden",
     );
     assert.ok(
-      entry.observed.hiddenTab.advanceAfterReturn > 0.05,
+      entry.observed.hiddenTab.advanceAfterReturn >= 0.05,
       "course did not resume",
     );
     // Mouse camera drag on the right half of the canvas.
@@ -1119,7 +1152,7 @@ await probe(
 await probe(
   "game-touch-controls",
   "game",
-  "touch: disabled states, joystick, second finger, held stick while help opens",
+  "touch: disabled states, joystick, second finger, taps while another finger rests",
   async (entry) => {
     const { page, controls } = await startGame("touch");
     const names = ["Jump", "Attack", "Guard", "Remember"];
@@ -1138,6 +1171,18 @@ await probe(
       Remember: true,
     });
     const { send, point, center } = controls;
+    const centerOf = async (locator) => {
+      const box = await locator.boundingBox();
+      assert.ok(box, "control has no box");
+      return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+    };
+    const tapWhileHeld = async (held, id, locator) => {
+      const target = await centerOf(locator);
+      const contact = point(id, target.x, target.y);
+      await send("touchStart", [held, contact]);
+      await delay(60);
+      await send("touchEnd", [contact]);
+    };
     const stickHeld = point(1, center.x, center.y - 30);
     await send("touchStart", [point(1, center.x, center.y)]);
     await send("touchMove", [stickHeld]);
@@ -1164,21 +1209,21 @@ await probe(
     );
     await send("touchEnd", [second]);
     await delay(100);
-    // Held stick while a second finger opens the help modal.
-    const helpBox = await page
-      .getByRole("button", { name: "How to play" })
-      .boundingBox();
-    const helpPoint = point(
-      3,
-      helpBox.x + helpBox.width / 2,
-      helpBox.y + helpBox.height / 2,
-    );
-    await send("touchStart", [stickHeld, helpPoint]);
-    await send("touchEnd", [helpPoint]);
+    // Thumb parked on the stick, other hand taps "?": the dialog must open.
+    const help = page.getByRole("button", { name: "How to play" });
+    await tapWhileHeld(stickHeld, 3, help);
     const dialog = page.getByRole("dialog", {
       name: "Explore. Prepare. Face the era.",
     });
-    await dialog.waitFor({ timeout: 5_000 });
+    entry.observed.helpOpenedWithStickHeld = await dialog
+      .waitFor({ timeout: 4_000 })
+      .then(() => true)
+      .catch(() => false);
+    assert.equal(
+      entry.observed.helpOpenedWithStickHeld,
+      true,
+      "help button dead while the stick is held",
+    );
     await delay(150);
     const paused = await driver.inspectGame(page);
     entry.observed.whileHelpOpen = {
@@ -1186,17 +1231,17 @@ await probe(
       delta: await positionDelta(page, 400),
     };
     assert.equal(paused.input.moveY, 0);
-    const backBox = await dialog
-      .getByRole("button", { name: "Back to the adventure" })
-      .boundingBox();
-    const backPoint = point(
+    // Same thumb still down; close the dialog with the other hand.
+    await tapWhileHeld(
+      stickHeld,
       4,
-      backBox.x + backBox.width / 2,
-      backBox.y + backBox.height / 2,
+      dialog.getByRole("button", { name: "Back to the adventure" }),
     );
-    await send("touchStart", [stickHeld, backPoint]);
-    await send("touchEnd", [backPoint]);
-    await dialog.waitFor({ state: "detached" });
+    entry.observed.helpClosedWithStickHeld = await dialog
+      .waitFor({ state: "detached", timeout: 4_000 })
+      .then(() => true)
+      .catch(() => false);
+    assert.equal(entry.observed.helpClosedWithStickHeld, true);
     await delay(150);
     const resumed = await driver.inspectGame(page);
     entry.observed.afterHelpClosedStillHeld = {
@@ -1221,6 +1266,43 @@ await probe(
       entry.observed.freshStickAfterModal > 0.5,
       "stick dead after the modal",
     );
+    // A single-finger tap must activate exactly once (no duplicate click).
+    const sound = page.locator(".game-tools button").first();
+    const soundLabels = [await sound.getAttribute("aria-label")];
+    const soundPoint = await centerOf(sound);
+    await send("touchStart", [point(5, soundPoint.x, soundPoint.y)]);
+    await delay(60);
+    await send("touchEnd", [point(5, soundPoint.x, soundPoint.y)]);
+    await delay(300);
+    soundLabels.push(await sound.getAttribute("aria-label"));
+    await send("touchStart", [point(6, soundPoint.x, soundPoint.y)]);
+    await delay(60);
+    await send("touchEnd", [point(6, soundPoint.x, soundPoint.y)]);
+    await delay(300);
+    soundLabels.push(await sound.getAttribute("aria-label"));
+    entry.observed.singleTapSoundLabels = soundLabels;
+    assert.deepEqual(soundLabels, [
+      "Enable sound",
+      "Mute sound",
+      "Enable sound",
+    ]);
+    // A finger resting on the scene while the other taps a dialog button.
+    await help.tap();
+    await dialog.waitFor();
+    const resting = point(7, 40, 420);
+    await send("touchStart", [resting]);
+    await delay(120);
+    await tapWhileHeld(
+      resting,
+      8,
+      dialog.getByRole("button", { name: "Back to the adventure" }),
+    );
+    entry.observed.dialogClosedWithRestingFinger = await dialog
+      .waitFor({ state: "detached", timeout: 4_000 })
+      .then(() => true)
+      .catch(() => false);
+    await send("touchEnd", []);
+    assert.equal(entry.observed.dialogClosedWithRestingFinger, true);
     await page
       .getByRole("button", { name: "Attack", exact: true })
       .tap({ force: true })
@@ -1321,9 +1403,9 @@ await probe(
 );
 
 await probe(
-  "game-victory-and-fallen",
+  "game-victory",
   "game",
-  "boss release: dialog open/close, in-world remember, double taps, reload, absorb, chapter, fallen retry",
+  "boss release: dialog open/close, in-world remember, double taps, reload, absorb, chapter, era-two resume",
   async (entry) => {
     const { page, controls } = await startGame("keyboard");
     await playChapterOne(page, controls, "explore-victory");
@@ -1451,7 +1533,7 @@ await probe(
       button.click();
       button.click();
     });
-    save = await driver.waitForSave(
+    await driver.waitForSave(
       page,
       (candidate) => candidate.ageYears === 4,
       "absorb",
@@ -1494,17 +1576,44 @@ await probe(
       .trim();
     await page.locator(".save-card").first().click();
     await page.locator("canvas").waitFor();
-    // Fallen: stand by the first guest without guarding until health runs out.
-    const enemyId = save.adventure.activeLevel.encounters.find(
+    entry.observed.resumedEraTwo = (
+      await driver.getSave(page)
+    ).adventure.activeLevel.eraYear;
+    await shot(page, "game-era-two-resumed");
+  },
+);
+
+await probe(
+  "game-fallen-retry",
+  "game",
+  "fallen: modal, controls hidden, reload, save & leave, retry restores health and keeps gear",
+  async (entry) => {
+    const { page, controls } = await startGame("keyboard");
+    await driver.collectEquipment(
+      page,
+      controls,
+      "attack-tool",
+      "fallen-attack-tool",
+    );
+    await driver.passFirstSweeperSafely(page, controls, "fallen-sweeper");
+    await driver.collectEquipment(
+      page,
+      controls,
+      "guard-tool",
+      "fallen-guard-tool",
+    );
+    const armed = await driver.getSave(page);
+    const enemyId = armed.adventure.activeLevel.encounters.find(
       (enemy) => enemy.kind === "ordinary-a",
     ).id;
     await driver.approachEncounter(page, controls, enemyId, "fallen-approach");
     const hpTimeline = [];
-    const fallenDeadline = Date.now() + 120_000;
+    const deadline = Date.now() + 150_000;
     let fallenSave = null;
-    while (Date.now() < fallenDeadline) {
+    while (Date.now() < deadline) {
       const sample = await driver.getSave(page);
-      hpTimeline.push(sample.adventure.playerHp);
+      if (hpTimeline.at(-1) !== sample.adventure.playerHp)
+        hpTimeline.push(sample.adventure.playerHp);
       if (sample.adventure.phase === "fallen") {
         fallenSave = sample;
         break;
@@ -1514,7 +1623,7 @@ await probe(
         await driver
           .approachEncounter(page, controls, enemyId, "fallen-reapproach")
           .catch(() => undefined);
-      await delay(900);
+      await delay(700);
     }
     entry.observed.hpTimeline = hpTimeline;
     assert.ok(fallenSave, "never fell");
@@ -1525,15 +1634,24 @@ await probe(
     entry.observed.fallenEyebrow = (
       await fallen.locator(".eyebrow").textContent()
     )?.trim();
+    entry.observed.fallenButtons = (await buttonInventory(page)).filter(
+      (button) => button.visible,
+    );
     entry.observed.controlsHiddenWhileFallen =
       (await page.locator(".game-bottom").count()) === 0;
+    const courseBefore = (await driver.inspectGame(page)).obby.timeSeconds;
+    await delay(600);
+    entry.observed.courseAdvanceWhileFallen =
+      (await driver.inspectGame(page)).obby.timeSeconds - courseBefore;
     await shot(page, "game-fallen");
     await page.reload();
     await page.locator(".save-card").first().click();
     await page.locator("canvas").waitFor();
     entry.observed.fallenAfterReload = await fallen
-      .isVisible({ timeout: 5_000 })
+      .waitFor({ timeout: 8_000 })
+      .then(() => true)
       .catch(() => false);
+    assert.equal(entry.observed.fallenAfterReload, true);
     await fallen.getByRole("button", { name: "Save & leave" }).click();
     await page.locator("canvas").waitFor({ state: "detached" });
     entry.observed.cardWhileFallen = (
@@ -1544,7 +1662,6 @@ await probe(
     await page.locator(".save-card").first().click();
     await page.locator("canvas").waitFor();
     await fallen.waitFor();
-    const inventoryBefore = fallenSave.adventure.inventory.length;
     await fallen.getByRole("button", { name: "Try this level again" }).click();
     const retried = await driver.waitForSave(
       page,
@@ -1557,9 +1674,14 @@ await probe(
       age: retried.ageYears,
       completedLevels: retried.adventure.completedLevelIds.length,
       position: await positionOf(page),
+      objective: (await page.locator(".era-objective p").textContent())?.trim(),
     };
     assert.equal(retried.adventure.playerHp, retried.adventure.maxPlayerHp);
-    assert.equal(retried.adventure.inventory.length, inventoryBefore);
+    assert.equal(
+      retried.adventure.inventory.length,
+      fallenSave.adventure.inventory.length,
+    );
+    assert.equal(retried.adventure.inventory.length, 2);
     await shot(page, "game-after-retry");
   },
 );

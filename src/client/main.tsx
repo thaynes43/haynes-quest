@@ -9,7 +9,10 @@ import type {
 import { GameScreen } from "./GameScreen";
 import { MemoryImage } from "./MemoryImage";
 import { api, friendlyError } from "./api";
+import { installMultiTouchActivation } from "./touch-activation";
 import "./styles.css";
+
+installMultiTouchActivation(document);
 
 function Sprout({ className = "" }: { className?: string }) {
   return (
