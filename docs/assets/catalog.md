@@ -1,14 +1,14 @@
 # First-pass catalog
 
-This is the initial inventory for one compact playable slice. Concept production is complete; model and audio production are underway. No candidate is approved for gameplay. The Astra lead should produce a first pass for every required asset, add links as it works, and adjust the inventory when the implemented slice reveals a real need. Optional full-game content does not expand this overnight inventory automatically.
+This is the initial inventory for one compact playable slice. Concepts and all four audio auditions are complete; the traveler pair is in browser intake and the clearing props are next. No candidate is approved for gameplay. The Astra lead should produce a first pass for every required asset, add links as it works, and adjust the inventory when the implemented slice reveals a real need. Optional full-game content does not expand this overnight inventory automatically.
 
 ## Images and models
 
 | Stable ID | First-pass deliverable | Status / review |
 | --- | --- | --- |
 | `storybook-reference` | [Environment, traveler ages and prop/material reference set](reviews/storybook-reference/v001.md) | Coordinator selected · Tom review pending |
-| `traveler-infant` | Synthetic starting avatar concept, model, compatible starting movement/idle clips | In production · concept selected |
-| `traveler-child` | Matching visibly older child concept/model and the slice's added movement clip; preserve earlier actions | In production · concept selected |
+| `traveler-infant` | [Starting traveler, model and movement · v001](reviews/traveler-infant/v001.md) | Coordinator intake · Tom review pending |
+| `traveler-child` | [Older traveler, model and added jump · v001](reviews/traveler-child/v001.md) | Coordinator intake · Tom review pending |
 | `memory-keepsake` | Collectible frame/keepsake concept and model, readable fictional photo surface | In production · concept selected |
 | `clearing-path-kit` | Small modular ground/path and step pieces with a common scale and material set | In production · concept selected |
 | `clearing-tree` | One stylized tree concept/model with economical variations | In production · concept selected |
