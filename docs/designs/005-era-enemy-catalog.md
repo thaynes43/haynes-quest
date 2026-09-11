@@ -86,3 +86,26 @@ Author the game models, animation, effects and sound deliberately; preserve the 
 | Q-04 | How do enemy encounters and bosses work? | Owner-confirmed equipment → combat → boss → memories → age/period loop. DESIGN-010 implements provisional health, guard, attack, defeat/retry and one boss after two ordinary encounters per current level. Final balance remains open. |
 
 The current combat implementation and unfinished required assets belong to PLAN-005. [BL-02](../BACKLOG.md#bl-02-combat-bosses-and-encounter-content) covers broader roster production and final balance after the corrected slice; it does not defer the boss or equipment needed by the current coming-of-age arc.
+
+## Ratified replacement slice and frozen selection
+
+The lead's replacement candidates below name concrete recognizable references. These are production briefs, not owner approvals. [WO-022](../../.agents/work-orders/022-parody-period-evidence.md) records primary historical sources. The initial catalog supports bounded 2020–2023 and 2024–2026 curation windows; those are authored coverage choices, not claims that a reference debuted or peaked at either boundary. References are available before every supported day. Broader coverage must be curated explicitly; unknown dates cannot silently borrow a modern cast.
+
+| Candidate | Recognizable target and joke | Readable encounter |
+| --- | --- | --- |
+| Mister Hiss | Minecraft Creeper as an overconfident paper party popper; cuboid head, tall armless body, four feet and pixel face | Puff-up, short confetti sneeze, dizzy recovery; sidestep without jumping |
+| Peel Patrol | Fortnite Peely as a self-important banana patrol officer; banana head/peel, oval dark eyes and skinny limbs | Points sternly, slips into a clumsy lunge, regains balance |
+| The Drama Dragon | Minecraft Ender Dragon as a crown-wearing tantrum thrower; black voxel dragon, purple eyes, broad angular wings and long tail | Obvious wing-raise before an oversized landing stomp; lengthy sulking recovery |
+| Sir Flush-a-Lot | Skibidi Toilet as an operatic toilet-head show-off; porcelain bowl, human head emerging from it and exaggerated grin | Leans back theatrically, splutters a short bubble burst, ducks into the bowl |
+| Nap Captain | CatNap / Smiling Critters as an overenthusiastic naptime monitor; purple plush cat, crescent pendant, long limbs and broad grin | Squashes into a sleepy crouch, pillow-like pounce, sits down yawning; playful rather than frightening |
+| The One-Star Diva | Dress to Impress voting and runway behavior exaggerated into a fussy fashion boss; Roblox-style fashion proportions, enormous outfit and one-star paddle | Prolonged runway pose, big sweeping twirl, trips over her own pose and fusses with the outfit |
+
+Different materials preserve each reference: paper/voxel, banana, dark angular dragon, porcelain, plush and fashion cloth. A common lighting/rendering treatment unifies the world; the palette must not erase their recognizable identities. The first concept is [Mister Hiss](../assets/reviews/mister-hiss/v001.md). The remaining briefs require their own serial lead concepts before Blender production.
+
+### Plan v2 contract
+
+New saves use `era-level-plan-v2` and pin `parody-catalog-v1`. Each level freezes its exact `startDate`, derived year, period/environment ID, `gentle-intro-v1` or `gentle-jump-v1` route ID, and selected encounter content identities (catalog entry/version and asset ID/version). Select by exact date window and available starting abilities; then deterministic kind/role coverage. No client `>=2024` decision can choose enemy identity. Required ordinary-a, ordinary-b and boss coverage must all exist before creating the journey. Missing coverage yields `ERA_CATALOG_UNAVAILABLE`, without allocating a partial save or selecting a later reference.
+
+Preserve `era-level-plan-v1` and `era-combat-state-v2` records. Existing state shape, age-zero no-jump and age-four jump rules stay unchanged. No in-place historical plan rewrite or invented asset selection occurs. New content fields are required only by the new strict plan schema and are exposed in save views. Resolve new UI titles and models from the frozen identity, with recoverable missing assets; keep old technical prototypes readable. Pin source selections rather than rerolling against the newest catalog on resume.
+
+The birthday is the explicit age source. This change retains the currently versioned gameplay date already frozen by the adapter; source-local timestamp/precision mapping remains a separate required decision before real Immich admission. An obby fall is local recovery and must not call the combat `retry-level` action. Session checkpoints remain local; persisted resume uses safe progression-derived positions until a durable checkpoint version is explicitly introduced.
