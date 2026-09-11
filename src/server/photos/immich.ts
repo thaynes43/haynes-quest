@@ -148,6 +148,7 @@ export class ImmichPhotoSource implements JourneyPhotoSource {
         peopleResponseSchema,
         deadline,
       );
+      if (response.people.length > this.limits.peoplePageSize) throw upstreamInvalid();
       for (const person of response.people) {
         if (
           !person.isHidden &&
@@ -204,6 +205,7 @@ export class ImmichPhotoSource implements JourneyPhotoSource {
         deadline,
       );
       const assets = response.assets;
+      if (assets.items.length > this.limits.assetPageSize) throw upstreamInvalid();
       scanned += assets.items.length;
       for (const asset of assets.items) {
         if (seen.has(asset.id)) continue;
@@ -217,10 +219,6 @@ export class ImmichPhotoSource implements JourneyPhotoSource {
           label: `Memory ${memories.length + 1}`,
           source: { kind: 'immich', assetId: asset.id, personId: subject.sourceId },
         });
-        if (memories.length === this.limits.candidates) {
-          incomplete = assets.nextPage !== null || assets.items.at(-1)?.id !== asset.id;
-          return { memories: sortedMemories(memories), scanned, incomplete };
-        }
       }
 
       const nextPage = parseNextPage(assets.nextPage, page);
@@ -231,7 +229,14 @@ export class ImmichPhotoSource implements JourneyPhotoSource {
         break;
       }
     }
-    return { memories: sortedMemories(memories), scanned, incomplete };
+    // Sample the entire bounded scan, including its latest represented age,
+    // rather than stopping after the first 96 eligible photos.
+    const ordered = sortedMemories(memories);
+    const sampled = ordered.length <= this.limits.candidates ? ordered :
+      Array.from({ length: this.limits.candidates }, (_, index) => ordered[
+        this.limits.candidates === 1 ? 0 : Math.round(index * (ordered.length - 1) / (this.limits.candidates - 1))
+      ]!);
+    return { memories: sampled, scanned, incomplete };
   }
 
   async fetchMedia(memory: FrozenMemory): Promise<{ bytes: Uint8Array; contentType: string }> {
@@ -244,12 +249,9 @@ export class ImmichPhotoSource implements JourneyPhotoSource {
       assetSchema,
       deadline,
     );
-    const date = eligibleDate(asset, memory.source.personId, {
-      birthDate: memory.date,
-      fromDate: memory.date,
-      toDate: memory.date,
-    });
-    if (!date || asset.id !== memory.source.assetId) {
+    // Dates/age remain frozen in the save. A metadata date correction is not
+    // permission revocation; person membership and visibility still are.
+    if (!isEligibleAsset(asset, memory.source.personId) || asset.id !== memory.source.assetId) {
       throw new AppError(404, 'MEDIA_REVOKED', 'Media unavailable');
     }
 
@@ -316,16 +318,7 @@ function eligibleDate(
   personId: string,
   request: Pick<PreviewRequest, 'birthDate' | 'fromDate' | 'toDate'>,
 ): string | null {
-  if (
-    asset.type !== 'IMAGE' ||
-    asset.isArchived ||
-    asset.isTrashed ||
-    asset.isOffline ||
-    asset.visibility !== 'timeline' ||
-    !asset.people.some((person) => person.id === personId)
-  ) {
-    return null;
-  }
+  if (!isEligibleAsset(asset, personId)) return null;
   const instant = new Date(asset.fileCreatedAt);
   if (Number.isNaN(instant.valueOf())) return null;
   const date = instant.toISOString().slice(0, 10);
@@ -337,6 +330,12 @@ function eligibleDate(
     return null;
   }
   return date;
+}
+
+function isEligibleAsset(asset: z.infer<typeof assetSchema>, personId: string): boolean {
+  return asset.type === 'IMAGE' && !asset.isArchived && !asset.isTrashed &&
+    !asset.isOffline && asset.visibility === 'timeline' &&
+    asset.people.some((person) => person.id === personId);
 }
 
 function parseNextPage(value: string | number | null, current: number): number | null {

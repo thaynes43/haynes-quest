@@ -22,7 +22,7 @@ The preview is silent while sound candidates await review. Mute and volume prefe
 
 Build the documentation using [the documented commands](../README.md#build-and-preview-the-site). The app serves the generated `site/` directory at `/studio/`; its catalog is `/studio/assets/catalog.html`. The standalone MkDocs preview is also available through `scripts/docs/serve.sh` at loopback port 8000.
 
-The static studio contains only original fictional references and candidate media. It is isolated from application records and has no database or Immich access. Tom’s exact-version approval is required before any candidate model, animation, material or sound enters gameplay. Pending approval does not prevent browsing or downloading the candidate package.
+The static studio contains original fictional references, candidate media and the repository’s public-safe project documentation. It is isolated from application records and has no database or Immich access. Tom’s exact-version approval is required before any candidate model, animation, material or sound enters gameplay. Pending approval does not prevent browsing or downloading the candidate package.
 
 ## Verification commands
 
@@ -38,6 +38,8 @@ The GitHub Application workflow runs these source/unit/database/build checks aga
 ## Hosting boundary and remaining work
 
 Database preparation merged in haynes-ops [#2849](https://github.com/thaynes43/haynes-ops/pull/2849), with a pod-local DNS fix in [#2850](https://github.com/thaynes43/haynes-ops/pull/2850). The dedicated `haynes_quest` role owns its database and has no superuser/create-role/create-database privileges. Provisioning alone receives the administrator Secret. The fixture runtime receives only the prepared application Secret; it never receives the separate Immich Secret.
+
+The deployment deliberately sets both `NODE_ENV=development` and `QUEST_FIXTURE_MODE=true`, with the exact HTTPS application origin. The default image refuses fixture mode under production. This is a private synthetic development workload; its ingress and Secret mounts enforce the additional separation from real photos.
 
 The private route is intended for `https://haynes-quest.haynesops.com` behind `traefik-internal`, whose LoadBalancer is LAN-only at `192.168.40.203`. The zone is managed by UniFi DNS and excluded from the public Cloudflare DNS controller. Check the [handoff](../../.agents/HANDOFF.md) for the actual deployed image and live evidence; a planned hostname is not a claim of deployment.
 

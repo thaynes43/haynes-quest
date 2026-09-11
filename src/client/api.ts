@@ -25,6 +25,14 @@ export function friendlyError(error: unknown): string {
     return "Demo Adventurer’s fictional birth date is January 1, 2020.";
   if (code.includes("SUBJECT_UNRESOLVED"))
     return "Use Demo Adventurer for this fictional preview.";
+  if (code === "INVALID_REQUEST")
+    return "Check the name, birth date and date range. Choose a photo limit from 1 to 24.";
+  if (code === "NO_USABLE_PHOTOS")
+    return "No memories fall within those dates. Try a wider date range.";
+  if (code === "PREVIEW_NOT_FOUND")
+    return "That photo selection has expired. Preview the memories again.";
+  if (code === "RATE_LIMITED")
+    return "Take a short pause, then try again.";
   if (code.includes("NOT_FOUND") || code.includes("NO_MATCH"))
     return "We couldn’t find that journey. Try Demo Adventurer in this preview.";
   if (code.includes("ORDER"))

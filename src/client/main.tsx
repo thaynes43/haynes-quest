@@ -282,7 +282,7 @@ function Setup({
   const [birthDate, setBirthDate] = useState("2020-01-01");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [limit, setLimit] = useState(24);
+  const [limit, setLimit] = useState<number | "">(24);
   const [preview, setPreview] = useState<PreviewResponse>();
   const [selected, setSelected] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
@@ -296,7 +296,7 @@ function Setup({
         birthDate,
         ...(fromDate ? { fromDate } : {}),
         ...(toDate ? { toDate } : {}),
-        limit,
+        limit: limit === "" ? 24 : limit,
         ...(subjectId ? { subjectId } : {}),
       });
       setPreview(result);
@@ -411,9 +411,10 @@ function Setup({
                 type="number"
                 min="1"
                 max="24"
+                required
                 value={limit}
                 onChange={(e) => {
-                  setLimit(Number(e.target.value));
+                  setLimit(e.target.value === "" ? "" : Number(e.target.value));
                   changed();
                 }}
               />
@@ -472,7 +473,7 @@ function Setup({
                   </p>
                   {preview.coverage.incomplete && (
                     <p className="inline-note">
-                      This is a limited preview. More memories may be available.
+                      This preview covers only the dates shown. More memories may be available; choose a narrower date range to explore later years.
                     </p>
                   )}
                   <div className="memory-grid">

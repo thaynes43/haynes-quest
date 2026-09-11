@@ -95,5 +95,9 @@ export function stepController(
     state.position.y = ground;
     state.velocityY = 0;
     state.grounded = true;
+  } else {
+    // Leaving a raised surface removes support even without a jump. Gravity
+    // must resume so returning along the route cannot leave the avatar hovering.
+    state.grounded = false;
   }
 }

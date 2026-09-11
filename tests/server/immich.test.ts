@@ -134,6 +134,40 @@ describe('Immich photo source', () => {
     }
   });
 
+  it('samples across all bounded pages instead of losing the later years after 96 photos', async () => {
+    const history = Array.from({ length: 500 }, (_, index) => asset(`history-${index}`, {
+      fileCreatedAt: new Date(Date.UTC(2016, 0, 1 + index * 7)).toISOString(),
+    }));
+    const caller = new QueueCaller([
+      json({ people: [person(PERSON_A, 'Demo Adventurer')], total: 1, hasNextPage: false }),
+      ...Array.from({ length: 5 }, (_, page) => json({ assets: {
+        items: history.slice(page * 100, (page + 1) * 100),
+        nextPage: page === 4 ? null : page + 2,
+      } })),
+    ]);
+    const photoSource = source(caller);
+    const result = await photoSource.discover(await resolvedSubject(photoSource), {
+      name: 'Demo Adventurer', birthDate: '2010-01-01',
+    });
+    expect(result.scanned).toBe(500);
+    expect(result.incomplete).toBe(false);
+    expect(result.memories).toHaveLength(96);
+    expect(result.memories[0]!.date).toBe(history[0]!.fileCreatedAt.slice(0, 10));
+    expect(result.memories.at(-1)!.date).toBe(history.at(-1)!.fileCreatedAt.slice(0, 10));
+    expect(caller.calls).toHaveLength(6);
+  });
+
+  it('rejects an upstream page larger than the requested scan budget', async () => {
+    const caller = new QueueCaller([
+      json({ people: [person(PERSON_A, 'Demo Adventurer')], total: 1, hasNextPage: false }),
+      json({ assets: { items: [asset('one'), asset('two')], nextPage: null } }),
+    ]);
+    const photoSource = source(caller, undefined, { assetPageSize: 1 });
+    await expect(photoSource.discover(await resolvedSubject(photoSource), {
+      name: 'Demo Adventurer', birthDate: '2020-01-01',
+    })).rejects.toMatchObject({ code: 'IMMICH_RESPONSE_INVALID' });
+  });
+
   it('marks discovery incomplete at the asset page cap and rejects malformed pagination', async () => {
     const cappedCaller = new QueueCaller([
       json({ people: [person(PERSON_A, 'Demo Adventurer')], total: 1, hasNextPage: false }),
@@ -155,13 +189,13 @@ describe('Immich photo source', () => {
     })).rejects.toMatchObject({ code: 'IMMICH_RESPONSE_INVALID' });
   });
 
-  it('revalidates person/date/state and sanitizes bounded media before returning it', async () => {
+  it('revalidates permission and sanitizes media while preserving frozen ages after date corrections', async () => {
     const jpeg = new Uint8Array([0xff, 0xd8, 0x01, 0xff, 0xd9]);
     const sanitizer: ImageSanitizer = {
       sanitize: vi.fn(async (bytes, contentType) => ({ bytes, contentType })),
     };
     const caller = new QueueCaller([
-      json(asset('source-asset', { fileCreatedAt: '2024-01-01T12:00:00.000Z' })),
+      json(asset('source-asset', { fileCreatedAt: '2023-12-31T12:00:00.000Z' })),
       new Response(jpeg, { headers: { 'content-type': 'image/jpeg', 'content-length': String(jpeg.byteLength) } }),
     ]);
     const photoSource = source(caller, sanitizer);
@@ -172,6 +206,8 @@ describe('Immich photo source', () => {
     const result = await photoSource.fetchMedia(memory);
     expect(result.contentType).toBe('image/jpeg');
     expect(sanitizer.sanitize).toHaveBeenCalledOnce();
+    expect(memory.date).toBe('2024-01-01');
+    expect(memory.ageYears).toBe(4);
 
     const revoked = source(new QueueCaller([
       json(asset('source-asset', { isTrashed: true })),

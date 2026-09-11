@@ -53,6 +53,27 @@ describe('garden controller and route', () => {
     expect(controller.position.y).toBeCloseTo(0.32, 5);
   });
 
+  it('falls when walking off the step and needs another jump to climb back', () => {
+    const level = createLevelLayout(makeSave([0, 4, 7]));
+    const step = level.step!;
+    const controller = createControllerState({ x: 0, y: step.height, z: step.z - 0.01 });
+    const backward = { ...forwardInput, moveY: -1 };
+
+    stepController(controller, backward, level, 1 / 60, 0, true, false);
+    expect(controller.position.z).toBeGreaterThan(step.z);
+    expect(controller.grounded).toBe(false);
+    for (let frame = 0; frame < 90; frame += 1) {
+      stepController(controller, backward, level, 1 / 60, 0, true, false);
+    }
+    expect(controller.position.y).toBe(0);
+    expect(controller.grounded).toBe(true);
+    for (let frame = 0; frame < 180; frame += 1) {
+      stepController(controller, forwardInput, level, 1 / 60, 0, false, false);
+    }
+    expect(controller.position.z).toBeGreaterThanOrEqual(step.z);
+    expect(controller.position.y).toBe(0);
+  });
+
   it('places all 24 memories in manifest order and keeps a no-unlock journey flat', () => {
     const save = makeSave(Array.from({ length: 24 }, () => 0));
     const level = createLevelLayout(save);
