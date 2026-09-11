@@ -10,7 +10,7 @@
 
 The immediate goal is to get the core gameplay flowing and establish a repeatable build, author, review, and test loop. Tom explicitly deferred detailed fighting and additional collectibles. Full story, enemy/boss content, and level dressing are recorded in the [backlog](../BACKLOG.md); finishing those designs is not a prerequisite for starting this narrow PoC.
 
-The earlier requirement to finish all technical and nontechnical documentation before any prototype is narrowed to the PoC contracts and workflow. Tom subsequently prioritized PLAN-003 dependency setup before development dispatch. Once that checkpoint is reached, implement the small playable slice with synthetic placeholders while final asset candidates are authored and reviewed. The current task documents that scope and researches audio; it does not claim that tools, final assets, or a game have already been created.
+The earlier requirement to finish all technical and nontechnical documentation before any prototype is narrowed to the PoC contracts and workflow. Tom subsequently prioritized PLAN-003 dependency setup before development dispatch. Once that checkpoint is reached, implement the small playable slice with synthetic placeholders while final asset candidates are authored and reviewed. PLAN-003 now targets a dedicated cluster Blender service and explicit remote artifact transfer, with independently upgradeable authoring workloads. Historical tool-image tests do not establish the new service's readiness; final assets and the game remain unimplemented.
 
 ## Proposed first playable slice
 
@@ -61,7 +61,7 @@ All project development lanes use **GPT-6 Astra**, following Tom's current instr
 | Story/design Astra | Maintain the small premise and objective text; record later story and level ideas in the backlog. Draft user-facing text at Astra quality for the driving Astra's review. Full narrative production is deferred. |
 | Verification Astra | Independently check the slice, asset contracts, save behavior, audio lifecycle, and reported evidence. Distinguish automated checks from actual device or owner playtests. |
 
-Use the [work-order template](../../.agents/work-orders/000-template.md) for scope, owned paths, dependencies, outputs, and acceptance. Avoid concurrent edits to shared files; use a worktree/branch per implementation task and communicate contract changes through the driving agent. A shared Blender session is a mutable resource: serialize its use or use isolated sessions/files. Do not run competing authoring commands against one scene.
+Use the [work-order template](../../.agents/work-orders/000-template.md) for scope, owned paths, dependencies, outputs, and acceptance. Avoid concurrent edits to shared files; use a worktree/branch per implementation task and communicate contract changes through the driving agent. Work orders must supply the verified remote MCP endpoint, remote workspace and artifact upload/download conventions, and exact input versions; local worktree paths are not service paths. A shared Blender session is a mutable resource: serialize its use or use isolated sessions/files. Do not run competing authoring commands against one scene.
 
 ## Tom's asset-review requirement
 

@@ -7,7 +7,8 @@
 - **Input artifacts:** <exact versions/paths available without this planning conversation>
 - **Worktree/branch:** <isolated task location>
 - **Depends on:** <contract, tool, or prior artifact>
-- **Owned paths/resources:** <files; include exclusive Blender session if relevant>
+- **Owned paths/resources:** <files; include exclusive remote Blender session if relevant>
+- **Remote authoring access:** <verified MCP endpoint, remote workspace, artifact upload/download method, input checksums; local worktree paths are not automatically visible to the service>
 
 ## Outcome and scope
 
