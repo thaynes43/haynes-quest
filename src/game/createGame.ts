@@ -344,7 +344,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
         previousPhase !== "memory-released" &&
         nextSave.adventure.phase === "memory-released"
       ) {
-        resetController(checkpoint);
+        if (level.course) {
+          // Let the player see the boss's defeat. Only recovery/reload moves to the safe reward area.
+          controller.checkpoint = { ...checkpoint };
+          controller.checkpointId = null;
+        } else resetController(checkpoint);
       }
       scene.updateProgress(sceneSave);
     }

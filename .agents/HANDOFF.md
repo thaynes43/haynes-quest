@@ -1,120 +1,65 @@
 # Current handoff
 
-## Active continuation — September 11, 16:08 UTC
+- **Updated:** September11,2026 at16:38UTC. **PLAN005 is active and unaccepted.** Original PLAN004 is historical/completed.
+- **Root:** `/home/dev/work/quest-parody-obby`, branch `agent/quest-parody-obby`, based on main94aedfb. Prior clean root `/home/dev/work/quest-era-boss-loop` atbd217f5 retains earlier details.
+- **Routing:** AGENTS/TEAM govern. Root Astra max owns architecture, UI/copy/art direction/integration and serial imagegen. Ordinary native Sol xhigh. Every Blender task is a fresh native Astra max with a single exclusive live scene lease. Separate Fable5.1 xhigh is explicitly authorized for coding/adversarial review.
+- **Limits:** OAuth/admission remains deferred; no dev-env restart. No private photos/birthdates/credentials in fixtures, public files, logs or art prompts. Exact owner review still precedes private gameplay promotion. Ordinary checked code/docs PRs must be squash-merged autonomously. Audio stays silent/unmapped; auditions not listened.
 
-This section supersedes stale active-work claims below. PLAN005 remains in progress and unaccepted. Root is now `/home/dev/work/quest-parody-obby`, branch `agent/quest-parody-obby`, rebased onto main94aedfb. Previous root `/home/dev/work/quest-era-boss-loop` is clean at bd217f5. OAuth remains deferred; do not restart dev-env.
+## Owner-corrected experience
 
-[PR27](https://github.com/thaynes43/haynes-quest/pull/27) squash-merged **94aedfb69e0611cc3ad4e383f561fd0411ecd3ec** at15:44:30UTC. All133tests including PostgreSQL, strictdocs and container passed; Application34617242419/Docs34617242218. Main publication34617924277 succeeded, digest not yet retrieved; **not deployed**. Private live remains the old rejected prototype described below. PR27 preserves all ten studies/tools, corrects enemy/obby direction and includes equipment/media fixes plus the first Mister Hiss concept.
+Find useful gear in the photo period, alternate forgiving obby sections and goofy fights, beat the boss, then reveal and consume its released memories. Only consumption grows the avatar and opens the next age/calendar period. Enemies must be recognizable pop-culture parodies based on capture dates and birthday-derived progression. Root's former broad-inspiration-only restriction was wrong and removed. The six generic wooden creatures are rejected as enemies; preserve them only as possible friendly/ambient studies, with that alternate role unapproved.
 
-WO020 full catalog audit completed sevenpages/tenmodels/thirtyclips/twotouchorbits/tenexactmasters; evidence in docs/assets/media/era-catalog-intake/v001. WO026 actual keyboard/touch/media journeys passed D5ZBrG7T, all11GLBs loaded, allthree synthetic photos rendered, equipment persisted/upgraded; report and four safe captures now docs/ops/media/equipment-intake. Sourceafef9b1 integratedfa6e243. All audit jobs ended; old port4390 harness still serves old planv1/server and can be intentionally replaced for the new combined fixture.
+The route must suit a six-year-old: broad platforms, short jumps, slow predictable sweepers, clear landings and nearby recovery without losing gear or victories. Age0 introduces movement timing without requiring the jump unlocked at age4 after the first boss. Traversal recovery never calls server combat retry. Physical child/iPhone/iPad playtests remain unperformed.
 
-Current root commits: 62e2366 lead frozen catalog/design; f208922 WO027; fa6e243 equipment proof; 591daad/c46a554 Sol WO025 intake; 6698ce7 early Fable obby core; **43aee32** concepts/draft route layout/equipment evidence. Combined new runtime is not yet implemented/tested.
+## Checked merges and private live
 
-- **SOLE LIVE BLENDER OWNER** native Astra `mister_hiss_authoring`, WT `/home/dev/work/quest-mister-hiss-model`, WO027, remote `/workspace/haynes-quest/parody/mister-hiss/v001`. Root selected actual early front/back/threequarter model; author finalizes hat-contact measurement, motion/media and clone evidence. Early model1196852B/12784tri/3opaque primitives/16joints/1m, fiveclips, attack1.5s/contact0.9s. No next live writer until explicit release. Preserve prior scene checkpoints; no reset/addon unload.
-- Separate Fable **haynes-quest-0911-112809**, WO024, exact Fable5.1 verified in assistant metadata; source6f6fbc5 integrated6698ce7. Pure obby core and tests are committed; final adversarial evidence/results/TASK-EXIT still pending. Do not reap before completion. Owns only obby.ts/tests/resultrecord.
-- Sol WO025 `frozen_parody_catalog` completed sourcefe7c9e1/294fc2c. Newplanv2 freezes catalogVersion/periodId/routeId/encounter content IDs. Exact date windows, deterministic complete cast, explicit422 ERA_CATALOG_UNAVAILABLE without partial save, v1 preservation. Agent133tests pass/9PGskip; combinedCI pending. No SQL migration required for existing object JSONB columns.
-- WO022 primary era research and WO023 birthday/photo audit completed and in PR27. Actual source-local/precision policy remains a pre-OAuth issue. Age0 short-hop was an unratified audit proposal; root retains movement introduction then age4 jump unlock under DESIGN011.
+- [PR26](https://github.com/thaynes43/haynes-quest/pull/26) squashf6a8f0d: authoritative equipment/health/encounters/bosses, postboss consumption/growth, idempotent actions, PostgreSQL persistence and preserved legacy saves. All99tests includingPG/docs/container passed. Published, not deployed.
+- [PR27](https://github.com/thaynes43/haynes-quest/pull/27) squash **94aedfb69e0611cc3ad4e383f561fd0411ecd3ec**, merged15:44:30UTC. All133tests includingPG/strictdocs/container passed (Application34617242419,Docs34617242218). Main publication34617924277 succeeded; digest still needs retrieval. Preserves ten studies/tools, sevenreviewpages, equipment hand attachments, transactional media retry, reusable EnemyAnimation, explicit reward opening, corrected direction and first Mister Hiss concept. **Not deployed.**
+- [Private game](https://haynes-quest.haynesops.com) still has rejected old memory-walking prototype, fictionalSVGs/proceduralgraphics, silent. Image sha3502ac7120f6d7741a1a209415f4c9eeb33f826b digest743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37. No PLAN005 release/live approval. No active activity declaration.
 
-Selected recognizable cast: Block Party curated2020–2023: Creeper **Mister Hiss**, Peely **Peel Patrol**, Ender Dragon **The Drama Dragon**. Remix Runway curated2024–2026: Skibidi Toilet **Sir Flush-a-Lot**, CatNap **Nap Captain**, Dress To Impress **The One-Star Diva**. Availability evidence in WO022; curation windows are not debut/peak claims. Synthetic third2027memory completes the journey without selecting a thirdlevel. Rejected wooden cast stays out of enemies.
+Owner's earlier pending visual question predates explicit rejection and cannot authorize rejected enemies. Finish concrete candidates/tests before any final exact-version promotion question. GitOps opsPR/Flux and scoped activity/live-image verification apply to authorized promotion; no dev-env resource merge/restart.
 
-Concepts/prompt/provenance saved for MisterHiss, PeelPatrol and DramaDragon. Peel must have one whistle (source action thumbnails duplicate it), final1.15m inclcap/stem. Dragon1.8mheight/2.6mspan/3mlength, fourlegs/twowings/onetail. No Peel/Dragon model workorder yet. Remaining three concepts not generated.
+## Current integrated code
 
-Draft level.ts/obby-layout.ts define shared course boxes, two0.7m gaps, slow ferry and visible sweepers with local recovery; enemy arena bounds are added. Root must wire createGame/scene, preserve gear/progress on falls, update frozen-content UI labels and actual model loading. Checkpoint trigger radii still need tightening so they cannot activate from the near side of gaps. No new complete gameplay/browser check has run. Future actual keyboard/touch route proof must cover hazard recovery, jumps, ferry, battles and post-boss growth; API setup alone is insufficient. Physical child/iOS playtests remain unperformed.
+- Root62e2366/3985dbe/5151183: six recognizable catalog entries, finalconcepts/pages, historical date floors and WO028/032 model briefs.
+- Sol WO025 fe7c9e1/294fc2c integrated591daad/c46a554: new era-level-plan-v2 freezes catalogVersion, periodId, routeId and per-encounter content identity/version. Strict complete cast selection with actual capture-date eligibility, deterministic order, explicit422 ERA_CATALOG_UNAVAILABLE with no partialsave. V1 plans remain readable/actionable; state/save format era-combat-v2 unchanged and JSONB schema accepts both. Agent133tests/9PGskip; combinedCI pending.
+- Fable WO024 source6f6fbc5/283949c/4804eac integrated6698ce7/61cdd87/603e2e9: pure sampled platform/hazard movement, carry, jump grace/buffer, fall/hazard recovery and checkpoints. Final42numeric cases passed, actualOpus5 adversarial review fixed duplicate-ID carry teleport, bad-spawn reset loop, paused jump release and clock rewind. Separate sessionhaynes-quest-0911-112809 finishedTASKEXIT0 and was reaped; branch/log retained, WT removed. ExactFable5.1 model metadata verified. See WO024results.
+- Root43aee32/cca0ea3/16d0561: broad intro/jump courses, runtime integration, matching rendered platform/hazard samples, lighting environment, frozen chapter/encounter names and obby help. Two0.7m gaps, slow ferry, broad combat islands; topY0 shared boxes. Checkpoint trigger radii tightened so they cannot activate from near shore. Recovery clears pendinghit/input and freezes enemies during0.8s protection, retaining authoritative gear/HP/progress. Level/resume clock bounded/paused. Per-obstacle checkpoints remain local; reload derives safe position from saved combat progression.
+- Sol WO029 source0b1b461/dfcc6ad3 integrated1319607/3741b75: enemy centers obey inset arena bounds on chase/sync/reset; legacy remains unbounded. Relative feet-height strike/collision and bounded player attackheight. Full175tests/9PGskip inagentWT.
+- Sol WO030 sourceacc471e/8181af4 integratedc383602/c556175: six public runtime regressions verify real local hazard/fall recovery with no unintended actions/progress loss, jump/checkpoint persistence, pause/visibility and level reset. Coupled70tests pass; no production defect. Own report inWO030.
+- Root latest integration draft binds all frozen parody identities to actual GLB URLs/contact metadata and EnemyAnimation, replacing procedural foes for planv2; only MisterHiss asset currently delivered. Boss defeat preserves camera/player position in v2 so animation remains visible. Lower exposure/environment after washed-out actual capture. Root checked typecheck and30related runtime/animationtests; complete combined suite/browser remains pending. Do not treat missing pending GLBs as finished art delivery.
 
-Next: finish these active lanes and all six recognizable candidates, keep exact review pages/evidence, test and squash-merge checked code/docs PRs. Exact owner asset approval still precedes private gameplay promotion, but production/integration/testing must be concrete before asking. Prior pending visual question cannot authorize the subsequently rejected cast.
+## Active native lanes and scarce resource
 
-## Prior checkpoint (historical detail)
+1. **SOLE LIVE BLENDER OWNER:** fresh Astra `block_party_pair_authoring`, WT `/home/dev/work/quest-block-party-pair`, branchsame, WO028. Lease granted after MisterHiss release16:20:52.953UTC. Remote `/workspace/haynes-quest/parody/block-party-pair/v001`. Peel actual views selected byroot; grounding corrected, finalcandidate652700B/9084tri/4opaqueprimitives/21joints/1.15m; attack1.6/contact1.0,fraction.625. Final20fpsmedia PID41934 currentlyrunning; author finishes before Dragon geometry. Dragon brief1.8mheight/2.6span/3length, fourlegs/twowings/onetail, attack2/contact1.25. Root must inspect its earlyactualviews. No nextlivewriter until explicitrelease; nofactoryreset/addonunload.
+2. Fresh Astra `remix_trio_authoring`, WT `/home/dev/work/quest-remix-trio`, branchsame, WO032, **OFFLINE ONLY, NO LIVE LEASE**. Concepts read, preparing local scripts/atlases for Flush/Nap/Diva; noauthoringendpointcalls permitted untilrootgrants afterWO028release. Full direction/corrections inWO032. Planned heights1.0/1.05/1.65m; contactfractions.625/.6/.625. Rootregistry currentlyuses those assumptions andmustupdateifauthorchanges.
+3. NativeSol `obby_combat_bounds`, now WO031actualbrowserjourney, WT `/home/dev/work/quest-obby-browser-journey`, branchsame, basec556175. Owntests/e2e/journey.mjs, optionalobby-helpers.mjs, WO031results/ignoredcaptures. Adaptsactualkeyboard/CDPtouchcontrols to hazards/gaps/ferry and bothbosses/all3photos/age0→4→7; no API-arranged gamecompletion. Currentearlyfailures are driveradaptations (blinddiagonalintosweeper, selectedwrongnearbyenemytarget), notconfirmedproductionblocks. Coarse steering required, notframeperfect automation. **Port4391bundleisfrozen for thisaudit.** Root mayedit but mustcoordinatebefore rebuilding dist/client. No finalevidenceyet.
 
-- **Updated:** 2026-09-11 after Tom's enemy-parody and obby corrections
-- **Stage:** PLAN-005 in progress. The original demo and the generic creature roster do not meet the intended game. Technical checks are not product acceptance.
-- **Root:** `/home/dev/work/quest-era-boss-loop`, branch `agent/quest-era-asset-intake`, based on merged core `f6a8f0d`.
-- **Team:** [TEAM](TEAM.md). Root Astra max owns architecture, UI/copy, art direction and serial image generation. Ordinary native Sol xhigh; all Blender tasks fresh native Astra max with exclusive lease. Separate Fable5.1 xhigh coding/review explicitly authorized.
-- **Limits:** OAuth/admission deferred; no dev-env restart. No real photos in public files or fixture credentials. Exact visual/audio owner approval remains required for gameplay promotion.
+Completed nativeAstra `mister_hiss_authoring`, WT `/home/dev/work/quest-mister-hiss-model`, source **d042faa** integrated **d167b41**. Clean/sourcelease released16:20:52.953UTC, all8ownedprocesses exited/reaped; finalPID38372exit0. Checkpoint `/workspace/haynes-quest/parody/mister-hiss/v001/live-scene-release.blend`; oldWO017hashunchanged. No further livecalls. Rootinspectedactualfront/back/side/beauty andfive-rowmotiongrid.
 
-## Latest owner rulings: read before work
+## Exact new asset state
 
-1. Find useful equipment in each period level, fight its enemies and boss, then reveal and consume the released memory bundle. Only then advance the age bracket and enter its corresponding calendar period. A photo reveal cannot grow the avatar mid-level.
-2. Enemies must be **recognizable, funny pop-culture parodies**, using photo capture metadata and the person's birthday to establish period and age. Tom cited the loose, recognizable references in Roblox and South Park; the intended game is for his kids. Root had incorrectly written a broad-inspiration-only rule. That restriction is removed from the brief and DESIGN-002/005. Generic wood creatures with vague cultural labels miss the vision.
-3. **Roblox-style obby play is core**, mixed with goofy fights: hazards, movement timing and jumps, approachable for Tom's six-year-old daughter. [DESIGN-011](../docs/designs/011-forgiving-obby.md) specifies forgiving routes and recovery. Flat corridor combat is insufficient.
+All six concepts with exact prompts/provenance are saved androotselected: MisterHiss,PeelPatrol,DramaDragon,SirFlush-a-Lot,NapCaptain,One-StarDiva. Corresponding reviewpages/catalog exist. Rootimagegeneration for thisroster is complete; don'tregeneratewithouta concretefinding.
 
-The six produced creatures are **not selected enemies**. Preserve Blockling, Signal Moth, Buffer Baron, Loop Dancer, Prism Mimic and Trendweaver only as possible ambient/friendly studies. That alternative role is not automatically approved or placed in the game. Root discarded its uncommitted enemy scene wiring and removed the enemy art registry mapping. Equipment and reusable loading/animation work remain useful. Do not regenerate, deploy or continue integrating the rejected cast as enemies.
+- MisterHiss **v001 GLB14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f**,1202456B/12872tri/3opaqueprimitives/16joints/1m. Clipsidle2.5,move1,attack1.5/contact.9(.6),hit.5,defeat2. All359parts surviveexactly;4feet/continuoussash/fasteningtabs/hat12mmoverlapchecked. Khronos/Threeclone/binding/ground/realWebGL pass;34artifacts including3masters plus9sources hashverified. Actual24fps5clips/reel/turntable. Rootreviewpage updated to model; masterlocations inmanifest/WO027evidence. Stillownerapprovalpending/notlive.
+- Peel currentlyWO028, one whistle, coherent singlebeltpeel, groundedboots. Finalhash/manifests/mediahandoffpending.
+- Dragon WO028notyetearlyreview. Keep4legs evenwhenoccluded inillustration.
+- Flush/Nap/Diva modelsnotstartedlive. Flushonehead/crown/lidclearance; NappillowmuststaycharacterLEFT despitewrongrearillustration; DivapaddlemustbephysicallyinRIGHT handthroughallclips despiteomittedtwirlthumbnail. Seeconceptprovenance/WO032.
 
-## Current independent work
+Curatedcoverage: BlockParty2020–2023 usesCreeper/Peely/EnderDragon; RemixRunway2024–2026 usesSkibidi/CatNaprevealedtoy/DTI. WO022primarysourcesdistinguishdebut,availability,popularity. Thesearecuratedcoveragewindows, nothistoricalpeakclaims. Synthetic2020DOB/photos0,4,7endat2027withouta thirdlevel. RealImmichsource-localdate/precisionpolicy is pre-OAuthfollowup (WO023).
 
-- Native Sol `parody_period_evidence`, WT `/home/dev/work/quest-parody-period-evidence`, WO-022: primary historical evidence for specific 2020/2024 cultural references, debut versus popularity and within-year eligibility. No art direction or final roster decisions delegated.
-- Native Sol `photo_era_contract_audit`, WT `/home/dev/work/quest-photo-era-audit`, WO-023: actual birthday/photo-date/period contract and selection gaps, plus current controller/ability seams for an obby. Read-only findings; root makes architecture decisions.
-- Native Sol `era_catalog_intake`, WT `/home/dev/work/quest-era-catalog-audit`, WO-020 resumed: full seven-page/ten-model catalog delivery audit against local root site, including thirty clips, exact manifests, internal master downloads and mobile orbit. Script prep `88239e7` is integrated as `99a4fe5`. Full audit passed; source0932355 integrated533f981. Sevenpages/tenmodels/thirtyclips/twotouchorbits/tenmasters verified. Durable report andsafe captures are in docs/assets/media/era-catalog-intake/v001. Six narrowlycheckedvideo metadata cancellations are expected, no unexpectederrors. Explicitly report studies as possible ambient/friendly candidates, not accepted enemies.
-- No live Blender scene owner or running authoring jobs. All scoped model production is preserved below. Replacement enemy briefs must name recognizable references, visual jokes, encounter behaviors and verified historical windows before new modeling.
+## Browser harnesses and current visual checks
 
-## Core code and published image
+- Old port4390, tmuxmain:quest-era-fixture, oldWTquest-era-boss-loop, log/tmp/quest-era-fixture.log, bundleD5ZBrG7T. WO026 actualkeyboard/touch/media passed all11GLBs/all3syntheticimages/gearretention+upgrade, foursettledstates0pending/failed. Durableproofdocs/ops/media/equipment-intake andWO026. Noactiveauditor depends onthisoldharness.
+- **Port4391 frozen:** tmuxmain:quest-parody-fixture, currentrootWT, `/tmp/quest-parody-fixture.log`, `QUEST_E2E_PORT=4391 pnpm exec tsx tests/e2e/serve-fixture.ts`, inmemory. Newplanv2server, `dist/client` bundle **index-kSVHgsz1.js**, current`site`. Stillproceduralfoesinthisfrozenbundle; WO031coverscontrols/route/progression, notfinalart. Coordinatebeforechangingdist/client.
+- Port4392 visualexperiment: tmuxmain:quest-lighting-fixture, rootignoredtest-results/lighting/serve-fixture.ts, `/tmp/quest-lighting-fixture.log`, serves `test-results/lighting-client`, bundle **index-BMvv-VJx.js**. NewactualenemyloaderonlyMisteravailable; missingPeel/Dragon causes visibleartfailure, expecteduntilproductioncomplete andnotfinalacceptance. Rootcapturedsafeinitialviews in test-results/root-obby. No pageerrors. Lowerexposure.82/.85, env.3,hemi1.15, sun2.1 selectedaslesswashedout; fullvisualqualitystillneedscompletedcast/coursecaptures.
 
-[PR26](https://github.com/thaynes43/haynes-quest/pull/26) squash-merged **f6a8f0de4a6b132ef5d4244a8bf5f1e37d56d531** at 14:27:55 UTC September11. Final PR head231b4f7 passed all99 tests including isolated PostgreSQL, strictdocs and container. Application run34609792353, docs34609792372. Main publication34610279261 succeeded with provenance/signing.
+`pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm build`; strictdocs `PATH=/home/dev/work/haynes-quest-overnight-mvp/.venv-docs/bin:$PATH pnpm docs:build`. Last strictdocs pass is beforelatestMisterreviewpage. No active rootPTYprocess exceptbrowser/authorownedones namedabove. Do notconfusesoftwareSwiftShaderwithphysicalhardware/frame-timeacceptance.
 
-Published, **not deployed**:
-`ghcr.io/thaynes43/haynes-quest:sha-f6a8f0de4a6b132ef5d4244a8bf5f1e37d56d531@sha256:be36615ae6e44a8e4e20ef3c4197aaec1772eafbba302a63d7f089bd1551b3d2`.
+## Historical catalog preserved
 
-Core v2 has server-owned equipment, health, encounter/boss progression, bundle release/consumption and age transitions; idempotent revisioned actions; transactional PostgreSQL saves and preserved v1 legacy records. Spatial movement remains local, not anti-cheat. Fictional2020 birthday/photos0,4,7 demonstrate age0→4→7, two bosses. This finite fixture's generic roster is not a real historical-selection catalog. Date/age audit is now active.
-
-Keyboard and real emulated-touch journeys completed both levels on **index-C3rM52AX.js**, showing allthree synthetic images. The media regression checked actual WebGL photo uploads and automatic/manual retries. [Verification](../docs/ops/005-era-combat-verification.md) preserves exact older evidence and limits. New equipment/client edits require a new actual-browser pass; obby and recognizable enemy acceptance remain outstanding.
-
-## Asset intake branch
-
-- Root checkpoints6c4917a/19fea76; gear registry, actual hand sockets/poses and explicit reward opening **eb4931d**. Root owns scene/UI changes. Three real-child-GLB tests caught dotted joint-name sanitization and verify attachments, replacement and pose restoration.
-- 2020 studies **42debaa/feae9e1** from01ac98c/55c0d50; review pages765fdfa.
-- 2024 studies **cc821f5/0ab5e6d/d160f20** fromfb5851d/0eeb260/a170a7a.
-- Equipment **880d955/e1c2c13** fromd7ef884/fe09318.
-- Transactional attachment recovery **d9e2774** fromSolfeaf7fe, WO021. Failed callbacks roll back clones without disposing cached source resources; retry is visible and reuses cachedGLTF.
-- Fable WO019 **47db0e9/806b540/fc4791f** fromd31c4c3/aa6b664/206a13f: reusable EnemyAnimation helper and final cache-owned ImageBitmap closure. Separate sessionhaynes-quest-0911-103230 used verifiedFable5.1 and Opus5 review, finishedTASK-EXIT0, reaped. Log remainsPVC. Helper is deliberately not wired to rejected models. Root added a mixed-track regression: validation must inspect all tracks so a valid bone track cannot hide later root motion.
-- Root latest changes remove enemy registry mapping, preserve all ten new models in sevenreview pages with corrected roles, fix model-viewer one-shot button/end/replay behavior, and record parody/obby requirements. These need checkpoint commit and checked PR after audit; no asset-intakePR exists yet.
-
-Local combined application suite after integration: **125 passed,8 PostgreSQL skipped**. New10model tests verify embedded GLB resources, six study rigs/clipsets and four rigid tool exports. Strictdocs passed with all sevenpages; typecheck/lint/full client+server build passed; client bundle is `index-D5ZBrG7T.js`. Final CI must run PostgreSQL.
-
-## Local review harness and commands
-
-Root-owned tmux `main:quest-era-fixture`, pane89840:
-`QUEST_E2E_PORT=4390 pnpm exec tsx tests/e2e/serve-fixture.ts`, log `/tmp/quest-era-fixture.log`, **127.0.0.1:4390**, in-memory. Serves **dist/client** and **site/**. It started with final core server; source server has not changed. Root may rebuild static client/docs without restarting this process. Preserve it for independent audits; do not restart dev-env.
-
-Strictdocs:
-`PATH=/home/dev/work/haynes-quest-overnight-mvp/.venv-docs/bin:$PATH pnpm docs:build`.
-Application: `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm build`.
-Browser: `QUEST_E2E_URL=http://127.0.0.1:4390 node tests/e2e/journey.mjs` and`tests/e2e/media.mjs` after finalcandidatebuild. Catalog command is inWO020; resultsroot can be overridden. Avoid independent full-suite repetition without a change or concern.
-
-Model-viewer one-shots require `repetitions:1`; a small playing-only RAF watcher finishes at duration because model-viewer4.3.1 sometimes does not emitfinished. `viewer.currentTime=viewer.duration` wraps tozero—do not use it for the held pose. Root actualBlockling smoke passed hold/replay; fullallclipaudit pending.
-
-## Completed model packages
-
-All leases released, all renders ended. Exact manifests and source evidence are preserved:
-
-- [WO014](work-orders/014-blender-era-2020-evidence.md): Blockling14930tri/1121948B, Moth13520/1083900, Baron14840/1195688; sixmaterials/primitives and fiveclips each. Root inspected finalviews/motions.75artifacts hashed. Remote `/workspace/haynes-quest/era-2020/v001`; lease released14:38:57.
-- [WO016](work-orders/016-blender-era-2024-evidence.md): Loop14848tri/1096328B, Prism14770/1079220, Trend14874/1089712; sixmaterials/primitives/fiveclips each. Root inspected correctedcapjoin, fox tailjoin, continuous spoolcoils and finalmotiongrids.60artifacts hashed. Remote `/workspace/haynes-quest/era-2024/v001`; lease released14:57:02.
-- [WO017](work-orders/017-blender-era-equipment-evidence.md): Mallet3728tri/161872B, Acorn3624/184460, Wand2076/143444, Ribbon4128/197244;4–5materials/primitives, rigidprops. Root selected finalviews including shieldbacks.105namedparts survivedexportexactly;60runtime/artifacts+9sourcefileshashverified. Remote `/workspace/haynes-quest/era-equipment/v001`; lease released15:08:52. Finalrender37134exit0/reaped, quick32174gone.
-
-All source `.blend` masters are onauthoringPVC and hashed, with local ignored verifiedcopies. Their exactversions are immutable; do not overwrite them with a new direction. No authoring process remains. NewBlender task requires freshAstra max and explicitexclusivelease; neverfactoryreset/unloadaddon.
-
-## Private live and remaining boundary
-
-[Private game](https://haynes-quest.haynesops.com) still serves the **old rejected memory-walking prototype**, with fictional SVGs, procedural graphics and no audio. [Studio](https://haynes-quest.haynesops.com/studio/assets/catalog.html) has the originalcatalog/wedgecorrection. Currentlive image:
-`ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37`.
-
-No PLAN005 code/assets deployed. The prior question about using currentvisuals predates the explicit enemy rejection; it cannot authorize the rejectedcast. Ordinary code/docsPR merges remain authorized and must be squashmerged aftergreenchecks. Deployment of candidate gameplay remains subject to applicableexactversionreview. No currentactivitydeclaration.
-
-OriginalPLAN004 is historical: [completedplan](plans/completed/004-overnight-mvp.md), [verification](../docs/ops/004-overnight-verification.md). Original9models+4auditions retain exactmanifests/masters/reviews. Keepsakeconceptv002 fixesmissingrearwedge; itsv001modelalreadyhadit. No regeneration needed. Audio was decoded/measured but not listened; cues remainunmapped/silent.
-
-Real photos have **not been pulled into the live game**. Fixture access refusesImmichcredentials. A separateboundedadapter exists, but OAuth/admissionandrealplayerjourney aredeferred. Familyphotos,names,IDs,birthdates,secrets stay out ofgit/staticart/prompts/logs. PhysicalSafari/selectedhardware and daughter'splaytestareunperformed.
+OriginalPLAN004 nine models/fouraudio, itsverification andcompletedplan remain. Keepsakeconceptv002 fixesmissingrearwedge; actualv001modelalreadyhadit. No regenerationneeded. LaterWO014/016sixrejectedcreatures andWO017fourtools retainimmutableexactmasters/manifests/media. All oldleasesended beforeWO027. FullWO020sevenpage/tenmodel/thirtyclip/twotouchorbit/teninternalmasteraudit passed, docs/assets/media/era-catalog-intake/v001. SixexpectedMP4metadatacancellations recovered; no unexpectederrors. These checks do not approve enemies/physicaldevices.
 
 ## Next bounded work
 
-1. ConsumeWO022/023 findings; ratify specific recognizable parody briefs and actualmetadata-driveneligibility. Implement the forgivingobby underDESIGN011 with realkeyboard/touchproof. Do not resume genericenemyproduction.
-2. FinishWO020deliveryaudit and preserveallcompletedcandidates with correctroles. Commit/check/merge the reusable intake and directioncorrection. Recordfullcommands/evidencehonestly.
-3. Prepare replacementenemyconceptsserially, then freshAstraBlenderownership asneeded. Rootchecksreference recognition, era, joke and combatbehavior beforeexpensiveproduction.
-4. Complete actualgamevisual/obstacle/combat/photoconsumption/resumeverification. CarrycheckedPRstomerge. AuthorizedprivatepromotionrequiresGitOpscheckedopsPR,scopeactivity,exactimage/livechecksandactivityend; nodev-envbounce.
-
-## Latest continuation
-
-Direction checkpointca9c6ae is committed. WO022 basec9449e6/supplement2bb2135 integratedaafe3da/769b3d5. WO02341a0674 integratedcc9939e; rootexplicitlyrejectsitsimpliedownerage0hopruling and retainsage4jumpunderDESIGN011.
-
-WO024 pureobstaclecore is nowrunning as separateFable task **haynes-quest-0911-112809**, WT ofthatname, logPVC. Launcher verified exactFable5.1/xhighcommand andliveprocess; outputmetadata modelstillneedscheck. Ownonlysrc/game/obby.ts,tests/game/obby.test.ts,resultrecord. Rootowns course/layout/scene integration.
-
-NativeSol equipment_game_intake hasbounded currentbundleD5ZBrG7T keyboard/touch/media+actualhandposecaptures; noobbyacceptanceclaim. Rootharnessmustnotrebuilduntilthatauditfinishes.
-
-Firstreplacementconcept **Mister Hiss v001**, explicitrecognizableCreeper/confettiparody, generatedandinspectedbyroot. Savedconcept/prompt/provenance/reviewpageunderstablemister-hisspaths. NoBlenderdispatchyet. Rootstillownsremainingrosterselectionandconcepts.
+FinishWO031 genuinekeyboard/touch route, flag/fix actualplayability problems. Finish allfive pendingmodels under serialleases, inspecteachactualexport/motion, update exactreviewpages/metadata andrunfullnewcatalogintake. Complete actualnewart/media/gear/obby/boss/photo/growth/reload journeys; noemptyfailedtiles. Run fullrequiredchecks plusbounded adversarialreview, recordevidence andsquashmergecheckedPR. No currentnewPR exists. Mainpublishedcandidate/privatepromotioncomes afterconcretereview; preserve pendingownergatehonestly. Keepthischeckpointcurrent throughcontextorquotaboundaries.

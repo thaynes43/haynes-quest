@@ -19,7 +19,8 @@ import {
   palettes,
   shapeMesh,
 } from "./scene-art";
-import { equipmentArtwork } from "./scene-catalog";
+import { equipmentArtwork, parodyArtwork } from "./scene-catalog";
+import { EnemyAnimation } from "./enemy-animation";
 import { TravelerEquipment } from "./traveler-equipment";
 
 type PhotoState = {
@@ -41,6 +42,8 @@ type EncounterVisual = {
   boss: boolean;
   lastHp: number;
   hitUntil: number;
+  authored: boolean;
+  animation?: EnemyAnimation;
 };
 
 export class GardenScene {
@@ -54,7 +57,7 @@ export class GardenScene {
   private readonly environment: THREE.WebGLRenderTarget;
   private obbyVisual: ObbyScene | null = null;
   private readonly resizeObserver: ResizeObserver | null;
-  private readonly sun = new THREE.DirectionalLight(0xffdc9b, 2.7);
+  private readonly sun = new THREE.DirectionalLight(0xffedce, 2.1);
   private readonly target = new THREE.Vector3();
   private readonly desiredCamera = new THREE.Vector3();
   private world = new THREE.Group();
@@ -111,11 +114,11 @@ export class GardenScene {
     const generator = new THREE.PMREMGenerator(this.renderer);
     this.environment = generator.fromScene(room, 0.04);
     this.scene.environment = this.environment.texture;
-    this.scene.environmentIntensity = 0.65;
+    this.scene.environmentIntensity = 0.3;
     room.dispose();
     generator.dispose();
     container.append(this.canvas);
-    this.scene.add(new THREE.HemisphereLight(0xffedce, 0x617284, 1.5));
+    this.scene.add(new THREE.HemisphereLight(0xfff5e5, 0x607c8c, 1.15));
     this.sun.castShadow = true;
     this.sun.shadow.mapSize.set(2048, 2048);
     Object.assign(this.sun.shadow.camera, {
@@ -168,6 +171,7 @@ export class GardenScene {
     this.photos.clear();
     this.memories.clear();
     this.pickups.clear();
+    for (const enemy of this.enemies.values()) enemy.animation?.dispose();
     this.enemies.clear();
     this.obbyVisual = null;
     this.scene.remove(this.world);
@@ -186,7 +190,7 @@ export class GardenScene {
     this.scene.background = new THREE.Color(palette.sky);
     this.scene.fog = new THREE.Fog(palette.sky, 15, 45);
     this.sun.color.setHex(palette.light);
-    this.renderer.toneMappingExposure = later ? 1.23 : 1.12;
+    this.renderer.toneMappingExposure = later ? 0.85 : 0.82;
     const generation = this.routeGeneration;
     const valid = () => !this.disposed && generation === this.routeGeneration;
     const ground = shapeMesh(
@@ -339,7 +343,13 @@ export class GardenScene {
     for (const placement of level.encounters) {
       const root = new THREE.Group();
       root.position.set(placement.position.x, 0, placement.position.z);
-      const model = createEncounterStudy(placement.kind, later);
+      const content = save.adventure?.activeLevel?.encounters.find(
+        (item) => item.id === placement.id,
+      )?.content;
+      const artwork = content ? parodyArtwork(content) : null;
+      const model = artwork
+        ? new THREE.Group()
+        : createEncounterStudy(placement.kind, later);
       root.add(model);
       const boss = placement.role === "boss";
       const warning = groundRing(boss ? 1.7 : 1.25, 0xed735d);
@@ -354,11 +364,11 @@ export class GardenScene {
           color: 0xf0c778,
           side: THREE.DoubleSide,
         }),
-        [0, boss ? 2.25 : 1.45, 0],
+        [0, artwork ? artwork.height + 0.2 : boss ? 2.25 : 1.45, 0],
       );
       root.add(hp);
       this.world.add(root);
-      this.enemies.set(placement.id, {
+      const visual: EncounterVisual = {
         root,
         model,
         warning,
@@ -367,7 +377,17 @@ export class GardenScene {
         boss,
         lastHp: -1,
         hitUntil: 0,
-      });
+        authored: Boolean(artwork),
+      };
+      this.enemies.set(placement.id, visual);
+      if (artwork)
+        this.assets.attach(artwork.url, model, valid, (loaded, clips) => {
+          visual.animation = new EnemyAnimation(
+            loaded,
+            clips,
+            artwork.contactFraction,
+          );
+        });
     }
     this.updateProgress(save);
   }
@@ -527,7 +547,7 @@ export class GardenScene {
       }
     }
     for (const enemy of frame?.enemies ?? [])
-      this.animateEnemy(enemy, elapsed, frame?.currentTarget === enemy.id);
+      this.animateEnemy(enemy, elapsed, frame?.currentTarget === enemy.id, dt);
     if (this.particles)
       this.particles.rotation.y = Math.sin(elapsed * 0.03) * 0.02;
     this.renderer.render(this.scene, this.camera);
@@ -554,6 +574,7 @@ export class GardenScene {
     this.mixer?.stopAllAction();
     if (this.avatarRoot) this.mixer?.uncacheRoot(this.avatarRoot);
     this.avatarRoot = null;
+    for (const enemy of this.enemies.values()) enemy.animation?.dispose();
     disposeTree(this.world);
     disposeTree(this.traveler);
     this.assets.dispose();
@@ -737,6 +758,7 @@ export class GardenScene {
     enemy: EnemyFrame,
     elapsed: number,
     targeted: boolean,
+    deltaSeconds: number,
   ): void {
     const visual = this.enemies.get(enemy.id);
     if (!visual) return;
@@ -752,10 +774,13 @@ export class GardenScene {
         (item) => item.role === "ordinary" && !item.defeated,
       );
     const defeated = enemy.phase === "defeated";
-    visual.root.visible = !defeated;
+    const animation = visual.animation?.update(enemy, deltaSeconds);
+    visual.root.visible = animation?.visible ?? !defeated;
     if (enemy.hp < visual.lastHp) visual.hitUntil = elapsed + 0.2;
     visual.lastHp = enemy.hp;
-    visual.model.scale.setScalar(elapsed < visual.hitUntil ? 0.9 : 1);
+    visual.model.scale.setScalar(
+      animation ? 1 - animation.vanish : elapsed < visual.hitUntil ? 0.9 : 1,
+    );
     visual.marker.visible = targeted && !defeated;
     visual.warning.visible =
       enemy.phase === "windup" || enemy.phase === "strike";
@@ -767,6 +792,7 @@ export class GardenScene {
     visual.hp.visible = !dormant && enemy.hp < enemy.maxHp && !defeated;
     visual.hp.scale.x = Math.max(0.01, enemy.hp / enemy.maxHp);
     visual.hp.quaternion.copy(this.camera.quaternion);
+    if (visual.authored) return;
     const motion = visual.model.getObjectByName("motion");
     if (motion) {
       motion.position.y =

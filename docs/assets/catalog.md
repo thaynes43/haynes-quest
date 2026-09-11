@@ -62,7 +62,7 @@ The replacement cast uses recognizable pop-culture parodies from the selected ph
 
 | Period | Enemy | Reference and joke | Current candidate |
 | --- | --- | --- | --- |
-| The Block Party | [Mister Hiss](reviews/mister-hiss/v001.md) | Creeper with a confetti sneeze | Model intake in progress |
+| The Block Party | [Mister Hiss](reviews/mister-hiss/v001.md) | Creeper with a confetti sneeze | Exported model and five clips |
 | The Block Party | [Peel Patrol](reviews/peel-patrol/v001.md) | Peely safety marshal who slips on his own peel | Concept selected; modeling |
 | The Block Party | [The Drama Dragon](reviews/drama-dragon/v001.md) | Ender Dragon as a pompous performer | Concept selected; modeling |
 | The Remix Runway | [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) | Skibidi Toilet opera singer | Concept selected |
