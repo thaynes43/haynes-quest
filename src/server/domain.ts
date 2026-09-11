@@ -1,13 +1,29 @@
+import { createHash } from 'node:crypto';
+import {
+  AdventureRuleError,
+  MAX_ACTION_RECEIPTS,
+  abilitiesForAge,
+  appearanceForAge,
+  memoryIsReleased,
+  reduceAdventureAction,
+  toAdventureView,
+  type AdventurePlan,
+  type AdventureState,
+} from '../shared/adventure.js';
 import type {
   Ability,
   AppearanceStage,
+  GameplayActionRequest,
   MemoryPreview,
   PreviewResponse,
   RuleVersions,
+  SaveFormat,
   SaveSummary,
   SaveView,
   SubjectOption,
 } from '../shared/contracts.js';
+import { AppError } from './errors.js';
+import { parseStoredAdventure, parseStoredSaveJson } from './adventure-schema.js';
 
 export const FIXTURE_SUBJECT: SubjectOption = {
   id: 'demo-adventurer-v1',
@@ -15,10 +31,12 @@ export const FIXTURE_SUBJECT: SubjectOption = {
 };
 
 export const RULE_VERSIONS: RuleVersions = {
-  journey: 'garden-path-v1',
+  journey: 'era-level-plan-v1',
   age: 'birth-date-whole-years-v1',
-  progression: 'memory-abilities-v1',
+  progression: 'boss-memory-consume-v2',
   appearance: 'synthetic-traveler-v1',
+  catalog: 'generic-era-catalog-v1',
+  combat: 'discrete-combat-v1',
 };
 
 export interface PlayerRecord {
@@ -56,6 +74,9 @@ export interface SaveRecord {
   abilities: Ability[];
   appearanceStage: AppearanceStage;
   completed: boolean;
+  saveFormat: SaveFormat;
+  adventurePlan: AdventurePlan | null;
+  adventureState: AdventureState | null;
   revision: number;
   createdAt: Date;
   updatedAt: Date;
@@ -93,19 +114,17 @@ export interface QuestStore {
   createSave(command: CreateSaveCommand): Promise<SaveRecord>;
   listSaves(ownerId: string): Promise<SaveRecord[]>;
   getSave(ownerId: string, saveId: string): Promise<SaveRecord | null>;
-  recoverMemory(ownerId: string, saveId: string, memoryId: string): Promise<SaveRecord>;
-  finishSave(ownerId: string, saveId: string): Promise<SaveRecord>;
+  applyGameplayAction(
+    ownerId: string,
+    saveId: string,
+    request: GameplayActionRequest,
+    now: Date,
+  ): Promise<SaveRecord>;
   maintainFixtureRecords(now: Date): Promise<FixtureMaintenanceResult>;
   close?(): Promise<void>;
 }
 
-export function abilitiesForAge(ageYears: number): Ability[] {
-  return ageYears >= 4 ? ['move', 'interact', 'jump'] : ['move', 'interact'];
-}
-
-export function appearanceForAge(ageYears: number): AppearanceStage {
-  return ageYears >= 4 ? 'child' : 'infant';
-}
+export { abilitiesForAge, appearanceForAge };
 
 export function wholeYearsAt(birthDate: string, eventDate: string): number {
   const birth = parseDateOnly(birthDate);
@@ -148,18 +167,95 @@ export function isValidFrozenManifest(birthDate: string, memories: FrozenMemory[
   return true;
 }
 
-export function toSaveView(save: SaveRecord): SaveView {
+export function applyGameplayActionToSave(
+  save: SaveRecord,
+  request: GameplayActionRequest,
+  now: Date,
+): { save: SaveRecord; replay: boolean } {
+  if (save.saveFormat !== 'era-combat-v2' || !save.adventurePlan || !save.adventureState) {
+    throw new AppError(409, 'LEGACY_SAVE_READ_ONLY', 'Legacy save is read only');
+  }
+  const payloadHash = gameplayActionHash(request);
+  const receipt = save.adventureState.actionReceipts.find(
+    (candidate) => candidate.actionId === request.actionId,
+  );
+  if (receipt) {
+    if (receipt.payloadHash !== payloadHash) {
+      throw new AppError(409, 'ACTION_ID_REUSED', 'Action ID already used');
+    }
+    return { save, replay: true };
+  }
+  if (request.expectedRevision !== save.revision) {
+    throw new AppError(409, 'SAVE_REVISION_STALE', 'Save changed');
+  }
+
+  let adventureState: AdventureState;
+  try {
+    adventureState = reduceAdventureAction(
+      save.adventurePlan,
+      save.adventureState,
+      request.action,
+      now.valueOf(),
+    );
+  } catch (error) {
+    if (error instanceof AdventureRuleError) {
+      throw new AppError(409, error.code, 'Action unavailable');
+    }
+    throw error;
+  }
+  const revision = save.revision + 1;
+  adventureState.actionReceipts = [
+    ...adventureState.actionReceipts,
+    { actionId: request.actionId, payloadHash, appliedRevision: revision },
+  ].slice(-MAX_ACTION_RECEIPTS);
+  // Validate the reduced record before any store writes it: an impossible
+  // reducer result must fail the transaction rather than persist a record the
+  // read path can no longer load. This re-checks structure and invariants only;
+  // the frozen plan stays the authority for its own combat numbers.
+  const next = validateSaveRecord({
+    ...save,
+    recoveredIds: [...adventureState.revealedMemoryIds],
+    ageYears: adventureState.ageYears,
+    abilities: [...adventureState.abilities],
+    appearanceStage: adventureState.appearanceStage,
+    completed: adventureState.phase === 'complete',
+    adventureState,
+    revision,
+    updatedAt: now,
+  });
+  return { replay: false, save: next };
+}
+
+/** `now` must be the application clock that also governs gameplay actions. */
+export function toSaveView(save: SaveRecord, now: Date): SaveView {
+  const legacy = save.saveFormat === 'legacy-v1';
+  const adventure = !legacy && save.adventurePlan && save.adventureState
+    ? toAdventureView(save.adventurePlan, save.adventureState, now.valueOf())
+    : null;
   return {
     id: save.id,
     title: save.title,
     subject: save.subject,
-    memories: save.memories.map(({ id, date, ageYears, label }) => ({
-      id,
-      date,
-      ageYears,
-      label,
-      mediaUrl: `/api/saves/${encodeURIComponent(save.id)}/media/${encodeURIComponent(id)}`,
-    })),
+    memories: save.memories.map(({ id, date, ageYears, label }) => {
+      const recovered = save.recoveredIds.includes(id);
+      const consumed = save.adventureState?.consumedMemoryIds.includes(id) ?? false;
+      const released = legacy || (
+        save.adventurePlan !== null &&
+        save.adventureState !== null &&
+        memoryIsReleased(save.adventurePlan, save.adventureState, id)
+      );
+      const state = consumed ? 'consumed' : recovered ? 'revealed' : released ? 'released' : 'locked';
+      return {
+        id,
+        date,
+        ageYears,
+        label,
+        state,
+        ...(released ? {
+          mediaUrl: `/api/saves/${encodeURIComponent(save.id)}/media/${encodeURIComponent(id)}`,
+        } : {}),
+      };
+    }),
     recoveredIds: [...save.recoveredIds],
     ageYears: save.ageYears,
     abilities: [...save.abilities],
@@ -169,6 +265,8 @@ export function toSaveView(save: SaveRecord): SaveView {
       stage: save.appearanceStage,
     },
     completed: save.completed,
+    format: save.saveFormat,
+    adventure,
     revision: save.revision,
     createdAt: save.createdAt.toISOString(),
     updatedAt: save.updatedAt.toISOString(),
@@ -185,7 +283,92 @@ export function toSaveSummary(save: SaveRecord): SaveSummary {
     recoveredCount: save.recoveredIds.length,
     memoryCount: save.memories.length,
     completed: save.completed,
+    format: save.saveFormat,
     createdAt: save.createdAt.toISOString(),
     updatedAt: save.updatedAt.toISOString(),
   };
+}
+
+export function canAccessSaveMemory(save: SaveRecord, memoryId: string): boolean {
+  if (!save.memories.some((memory) => memory.id === memoryId)) return false;
+  if (save.saveFormat === 'legacy-v1') return true;
+  return Boolean(
+    save.adventurePlan &&
+    save.adventureState &&
+    memoryIsReleased(save.adventurePlan, save.adventureState, memoryId)
+  );
+}
+
+export function validateSaveRecord(save: SaveRecord): SaveRecord {
+  const stored = parseStoredSaveJson({
+    subject: save.subject,
+    memories: save.memories,
+    recoveredIds: save.recoveredIds,
+    abilities: save.abilities,
+    versions: save.versions,
+  });
+  const normalized = { ...save, ...stored };
+  if (
+    !isValidFrozenManifest(normalized.birthDate, normalized.memories) ||
+    new Set(normalized.recoveredIds).size !== normalized.recoveredIds.length ||
+    normalized.recoveredIds.some(
+      (id) => !normalized.memories.some((memory) => memory.id === id),
+    ) ||
+    new Set(normalized.abilities).size !== normalized.abilities.length ||
+    normalized.ageYears < 0 || normalized.ageYears > 150 ||
+    !Number.isInteger(normalized.ageYears) ||
+    normalized.revision < 0 || !Number.isInteger(normalized.revision)
+  ) invalidSave();
+  if (normalized.saveFormat === 'legacy-v1') {
+    if (normalized.adventurePlan !== null || normalized.adventureState !== null) invalidSave();
+    return normalized;
+  }
+  if (normalized.saveFormat !== 'era-combat-v2') invalidSave();
+  const { plan, state } = parseStoredAdventure(normalized.adventurePlan, normalized.adventureState);
+  const plannedMemoryIds = plan.levels.flatMap((level) => level.memoryIds);
+  const savedMemoryIds = normalized.memories.map((memory) => memory.id);
+  if (
+    plannedMemoryIds.length !== savedMemoryIds.length ||
+    plannedMemoryIds.some((id, index) => id !== savedMemoryIds[index]) ||
+    plan.levels[0]?.startDate !== normalized.birthDate ||
+    plan.levels.some((level, index) => {
+      const lastMemoryId = level.memoryIds.at(-1);
+      const lastMemory = normalized.memories.find((memory) => memory.id === lastMemoryId);
+      const priorLevel = plan.levels[index - 1];
+      const priorLastId = priorLevel?.memoryIds.at(-1);
+      const priorLast = normalized.memories.find((memory) => memory.id === priorLastId);
+      return !lastMemory ||
+        lastMemory.ageYears !== level.targetAgeYears ||
+        (index > 0 && level.startDate !== priorLast?.date);
+    }) ||
+    normalized.recoveredIds.length !== state.revealedMemoryIds.length ||
+    normalized.recoveredIds.some((id, index) => id !== state.revealedMemoryIds[index]) ||
+    normalized.ageYears !== state.ageYears ||
+    normalized.appearanceStage !== state.appearanceStage ||
+    normalized.completed !== (state.phase === 'complete') ||
+    normalized.abilities.length !== state.abilities.length ||
+    normalized.abilities.some((ability, index) => ability !== state.abilities[index]) ||
+    (normalized.revision === 0) !== (state.actionReceipts.length === 0) ||
+    (normalized.revision > 0 && state.actionReceipts.at(-1)?.appliedRevision !== normalized.revision)
+  ) invalidSave();
+  return { ...normalized, adventurePlan: plan, adventureState: state };
+}
+
+function gameplayActionHash(request: GameplayActionRequest): string {
+  return createHash('sha256').update(stableJson(request)).digest('hex');
+}
+
+function stableJson(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
+  if (value && typeof value === 'object') {
+    return `{${Object.entries(value)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([key, nested]) => `${JSON.stringify(key)}:${stableJson(nested)}`)
+      .join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
+function invalidSave(): never {
+  throw new AppError(503, 'SAVE_DATA_INVALID', 'Save unavailable');
 }

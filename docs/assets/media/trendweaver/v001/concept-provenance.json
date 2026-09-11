@@ -1,0 +1,24 @@
+{
+  "asset_id": "trendweaver",
+  "concept_version": "v001",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "generation": "Serial lead generation; actual output visually inspected.",
+  "reference_set": "storybook-v001; Blockling concept v001 used for material and presentation continuity",
+  "source": "Original fictional concept. No family reference or third-party mesh.",
+  "model_id_and_seed": "Not returned by the tool; not claimed.",
+  "status": "Concept selected for authoring; model production awaits its exclusive Astra scene lease; owner approval pending.",
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2606755,
+      "sha256": "ab77f32f89b1d8fca9e8e32743d7f25898b0d581027ccf4a2150c93012aee92e"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 2141,
+      "sha256": "248c783e01550823f925ea9da15d5ddd0805bc335b62205a866846daa50724cd"
+    }
+  ]
+}

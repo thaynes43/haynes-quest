@@ -1,0 +1,24 @@
+{
+  "asset_id": "buffer-baron",
+  "concept_version": "v001",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "generation": "Serial lead generation; actual output visually inspected.",
+  "reference_set": "storybook-v001; Blockling concept v001 used for material and presentation continuity",
+  "source": "Original fictional concept. No family reference or third-party mesh.",
+  "model_id_and_seed": "Not returned by the tool; not claimed.",
+  "status": "Concept selected for authoring; native Astra model production in progress; owner approval pending.",
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2462502,
+      "sha256": "20a7378128badc5600ab646d7b1ef40bce0f97bd614f07a7ccd92dc434aa93ef"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 1906,
+      "sha256": "667a56ddceddd0097001d0a4f0e3c0d85b3e3ed0a6e5c31ccdceb668f830da12"
+    }
+  ]
+}

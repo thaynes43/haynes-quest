@@ -58,6 +58,38 @@ export const recoverSchema = z
   .strict();
 export const finishSchema = z.object({}).strict();
 
+const gameplayLevelId = z.string().min(1).max(160);
+const gameplayActionSchema = z.discriminatedUnion('type', [
+  z.object({
+    type: z.literal('collect-equipment'),
+    levelId: gameplayLevelId,
+    pickupId: z.string().min(1).max(160),
+  }).strict(),
+  z.object({
+    type: z.literal('attack'),
+    levelId: gameplayLevelId,
+    encounterId: z.string().min(1).max(160),
+  }).strict(),
+  z.object({
+    type: z.literal('take-hit'),
+    levelId: gameplayLevelId,
+    encounterId: z.string().min(1).max(160),
+  }).strict(),
+  z.object({ type: z.literal('guard'), levelId: gameplayLevelId }).strict(),
+  z.object({
+    type: z.literal('recover-memory'),
+    levelId: gameplayLevelId,
+    memoryId: z.string().min(1).max(128),
+  }).strict(),
+  z.object({ type: z.literal('consume-memory-bundle'), levelId: gameplayLevelId }).strict(),
+  z.object({ type: z.literal('retry-level'), levelId: gameplayLevelId }).strict(),
+]);
+export const gameplayActionRequestSchema = z.object({
+  actionId: z.string().uuid(),
+  expectedRevision: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
+  action: gameplayActionSchema,
+}).strict();
+
 export async function parseJson<T>(
   context: Context,
   schema: z.ZodType<T>,

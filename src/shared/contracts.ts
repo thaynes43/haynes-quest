@@ -1,5 +1,11 @@
 export type Ability = "move" | "interact" | "jump";
 export type AppearanceStage = "infant" | "child";
+export type SaveFormat = "legacy-v1" | "era-combat-v2";
+export type MemoryState = "locked" | "released" | "revealed" | "consumed";
+export type AdventurePhase = "exploring" | "memory-released" | "fallen" | "complete";
+export type EquipmentKind = "attack-tool" | "guard-tool";
+export type EncounterRole = "ordinary" | "boss";
+export type EncounterKind = "ordinary-a" | "ordinary-b" | "boss";
 export interface SubjectOption {
   id: string;
   label: string;
@@ -12,7 +18,8 @@ export interface MemoryPreview {
   mediaUrl?: string;
 }
 export interface MemoryView extends MemoryPreview {
-  mediaUrl: string;
+  state: MemoryState;
+  mediaUrl?: string;
 }
 export interface Appearance {
   contractVersion: string;
@@ -24,6 +31,55 @@ export interface RuleVersions {
   age: string;
   progression: string;
   appearance: string;
+  catalog?: string;
+  combat?: string;
+}
+export interface EquipmentView {
+  id: string;
+  pickupId: string;
+  kind: EquipmentKind;
+  tier: number;
+  damage: number;
+  guardReduction: number;
+  collected: boolean;
+}
+export interface EncounterView {
+  id: string;
+  role: EncounterRole;
+  kind: EncounterKind;
+  maxHp: number;
+  hp: number;
+  attackDamage: number;
+  defeated: boolean;
+  available: boolean;
+}
+export interface ActiveLevelView {
+  id: string;
+  index: number;
+  totalLevels: number;
+  startAgeYears: number;
+  targetAgeYears: number;
+  startDate: string;
+  eraYear: number;
+  memoryIds: string[];
+  pickups: EquipmentView[];
+  encounters: EncounterView[];
+  bossId: string;
+}
+export interface AdventureView {
+  phase: AdventurePhase;
+  activeLevelIndex: number;
+  currentLevelId: string | null;
+  activeLevel: ActiveLevelView | null;
+  completedLevelIds: string[];
+  consumedMemoryIds: string[];
+  inventory: EquipmentView[];
+  equippedId: string | null;
+  playerHp: number;
+  maxPlayerHp: number;
+  attackCooldownRemainingMs: number;
+  guardActiveRemainingMs: number;
+  guardCooldownRemainingMs: number;
 }
 export interface SaveView {
   id: string;
@@ -35,10 +91,25 @@ export interface SaveView {
   abilities: Ability[];
   appearance: Appearance;
   completed: boolean;
+  format: SaveFormat;
+  adventure: AdventureView | null;
   revision: number;
   createdAt: string;
   updatedAt: string;
   versions: RuleVersions;
+}
+export type GameplayAction =
+  | { type: "collect-equipment"; levelId: string; pickupId: string }
+  | { type: "attack"; levelId: string; encounterId: string }
+  | { type: "take-hit"; levelId: string; encounterId: string }
+  | { type: "guard"; levelId: string }
+  | { type: "recover-memory"; levelId: string; memoryId: string }
+  | { type: "consume-memory-bundle"; levelId: string }
+  | { type: "retry-level"; levelId: string };
+export interface GameplayActionRequest {
+  actionId: string;
+  expectedRevision: number;
+  action: GameplayAction;
 }
 export interface SaveSummary {
   id: string;
@@ -48,6 +119,7 @@ export interface SaveSummary {
   recoveredCount: number;
   memoryCount: number;
   completed: boolean;
+  format: SaveFormat;
   createdAt: string;
   updatedAt: string;
 }

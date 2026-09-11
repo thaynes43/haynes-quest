@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import type {
   PreviewResponse,
@@ -6,10 +6,9 @@ import type {
   SaveView,
   SessionView,
 } from "../shared/contracts";
-import { createGame } from "../game/index";
-import type { GameHandle, GameStatus } from "../game/index";
+import { GameScreen } from "./GameScreen";
+import { MemoryImage } from "./MemoryImage";
 import { api, friendlyError } from "./api";
-import { QuestAudio } from "./audio";
 import "./styles.css";
 
 function Sprout({ className = "" }: { className?: string }) {
@@ -138,15 +137,15 @@ function App() {
           <>
             <section className="welcome">
               <div className="welcome-copy">
-                <span className="eyebrow">EVERY MEMORY IS A BEGINNING</span>
+                <span className="eyebrow">A LIFE WORTH FIGHTING FOR</span>
                 <h1>
-                  A little journey
-                  <br />
-                  through <em>memories.</em>
+                  Every age.
+                  <br />A new <em>adventure.</em>
                 </h1>
                 <p>
-                  Follow a glowing path. Find the moments you’ve forgotten. Grow
-                  a little with every discovery.
+                  Explore the worlds you grew up in. Find useful gear, face the
+                  pop culture of each era and defeat its boss. Then reclaim your
+                  memories and grow into the next chapter.
                 </p>
                 <button
                   className="primary"
@@ -156,7 +155,7 @@ function App() {
                   Start a journey <Arrow />
                 </button>
                 <div className="welcome-note">
-                  <span>01</span> A clearing. Three memories. A little more you.
+                  <span>01</span> Two eras. Two bosses. One growing adventurer.
                 </div>
               </div>
               <div
@@ -202,7 +201,7 @@ function App() {
                   <h2>Your journeys</h2>
                 </div>
                 <span className="small-note">
-                  Progress saved as you remember
+                  Equipment, battles and memories saved
                 </span>
               </div>
               {saves.length ? (
@@ -249,15 +248,15 @@ function App() {
             </section>
             <div className="how-it-feels">
               <span>
-                <b>01</b> Find a memory
+                <b>01</b> Explore and find equipment
               </span>
               <i />
               <span>
-                <b>02</b> Remember who you are
+                <b>02</b> Face the era’s boss
               </span>
               <i />
               <span>
-                <b>03</b> Discover what you can do
+                <b>03</b> Reclaim memories and grow
               </span>
             </div>
           </>
@@ -266,7 +265,7 @@ function App() {
       <footer>
         <span>Made for small adventures.</span>
         <span>Keyboard & mouse · Touch controls</span>
-        <span>Preview art and characters are temporary.</span>
+        <span>Private fixture · Your photo library is not connected.</span>
       </footer>
     </div>
   );
@@ -316,7 +315,7 @@ function Setup({
         await api<SaveView>("/saves", {
           previewId: preview.previewId,
           selectedIds: selected,
-          title: "The first clearing",
+          title: "A life in chapters",
         }),
       );
     } catch (e) {
@@ -473,7 +472,9 @@ function Setup({
                   </p>
                   {preview.coverage.incomplete && (
                     <p className="inline-note">
-                      This preview covers only the dates shown. More memories may be available; choose a narrower date range to explore later years.
+                      This preview covers only the dates shown. More memories
+                      may be available; choose a narrower date range to explore
+                      later years.
                     </p>
                   )}
                   <div className="memory-grid">
@@ -494,7 +495,7 @@ function Setup({
                           }
                         />
                         {m.mediaUrl ? (
-                          <img src={m.mediaUrl} alt={m.label} />
+                          <MemoryImage memory={m} />
                         ) : (
                           <MemoryDrawing index={i} />
                         )}
@@ -531,457 +532,4 @@ function Setup({
     </section>
   );
 }
-function GameScreen({
-  initialSave,
-  onLeave,
-}: {
-  initialSave: SaveView;
-  onLeave: () => void;
-}) {
-  const container = useRef<HTMLDivElement>(null);
-  const game = useRef<GameHandle | undefined>(undefined);
-  const audio = useRef<QuestAudio | undefined>(undefined);
-  const [save, setSave] = useState(initialSave);
-  const [status, setStatus] = useState<GameStatus>();
-  const [error, setError] = useState("");
-  const [notice, setNotice] = useState("Follow the glow to your next memory.");
-  const [muted, setMuted] = useState(true);
-  const [volume, setVolume] = useState(0.45);
-  const [showHelp, setShowHelp] = useState(false);
-  const [showAlbum, setShowAlbum] = useState(false);
-  const mounted = useRef(true);
-  const leaveRef = useRef(onLeave);
-  leaveRef.current = onLeave;
-  useEffect(() => {
-    mounted.current = true;
-    const sound = new QuestAudio();
-    audio.current = sound;
-    setMuted(sound.preferences().muted);
-    setVolume(sound.preferences().volume);
-    void sound.start();
-    const update = (next: SaveView) => {
-      if (mounted.current) setSave(next);
-      return next;
-    };
-    if (!container.current) return;
-    try {
-      game.current = createGame({
-        container: container.current,
-        save: initialSave,
-        onRecover: async (id) => {
-          try {
-            const next = await api<SaveView>(
-              `/saves/${initialSave.id}/recover`,
-              { memoryId: id },
-            );
-            if (mounted.current) {
-              setError("");
-              const index = next.memories.findIndex((m) => m.id === id);
-              const before = index > 0 ? next.memories[index - 1].ageYears : 0;
-              setNotice(
-                next.ageYears >= 4 && before < 4
-                  ? "You remembered how to jump."
-                  : "A memory found. A little more of you.",
-              );
-              void sound.cue("memory-collected");
-            }
-            return update(next);
-          } catch (e) {
-            if (mounted.current) setError(friendlyError(e));
-            throw e;
-          }
-        },
-        onFinish: async () => {
-          try {
-            return update(
-              await api<SaveView>(`/saves/${initialSave.id}/finish`, {}),
-            );
-          } catch (e) {
-            if (mounted.current) setError(friendlyError(e));
-            throw e;
-          }
-        },
-        onStatus: (s) => {
-          if (mounted.current) setStatus(s);
-        },
-      });
-    } catch {
-      setError(
-        "This browser couldn’t open the 3D clearing. Try a browser with WebGL enabled.",
-      );
-    }
-    const hidden = () => {
-      if (document.hidden) {
-        sound.suspend();
-        game.current?.clearInput();
-      }
-    };
-    document.addEventListener("visibilitychange", hidden);
-    return () => {
-      mounted.current = false;
-      document.removeEventListener("visibilitychange", hidden);
-      game.current?.dispose();
-      game.current = undefined;
-      sound.dispose();
-    };
-  }, [initialSave]);
-  useEffect(() => {
-    game.current?.setPaused(showHelp || showAlbum || save.completed);
-  }, [showHelp, showAlbum, save.completed]);
-  const nextMemory = save.memories.find(
-    (m) => !save.recoveredIds.includes(m.id),
-  );
-  const input = (action: "jump" | "interact", value: boolean) => {
-    void audio.current?.start();
-    game.current?.setInput(action, value);
-  };
-  return (
-    <div className="game-screen">
-      <div className="game-canvas" ref={container} />
-      <div className="game-vignette" />
-      <header className="game-header" data-quest-ui>
-        <button
-          className="glass-button leave-button"
-          onClick={() => leaveRef.current()}
-        >
-          ← <span>Save & leave</span>
-        </button>
-        <div className="chapter-pill">
-          <Sprout />
-          <span>THE FIRST CLEARING</span>
-        </div>
-        <div className="game-tools">
-          <button
-            className="glass-button"
-            aria-label={muted ? "Enable sound" : "Mute sound"}
-            onClick={() => {
-              const value = !muted;
-              setMuted(value);
-              audio.current?.setPreferences(value);
-              void audio.current?.start();
-            }}
-          >
-            {muted ? "♪̸" : "♪"}
-          </button>
-          <button
-            className="glass-button"
-            aria-label="How to play"
-            onClick={() => setShowHelp((v) => !v)}
-          >
-            ?
-          </button>
-        </div>
-      </header>
-      <div className="journey-hud" data-quest-ui>
-        <span className="eyebrow">{save.subject.label}</span>
-        <div>
-          <strong>Age {save.ageYears}</strong>
-          <span>
-            {save.appearance.stage === "infant"
-              ? "A small beginning"
-              : "Growing into yourself"}
-          </span>
-        </div>
-        <button
-          className="memory-counter"
-          onClick={() => setShowAlbum(true)}
-          aria-label="Open remembered memories"
-        >
-          <span>
-            {save.memories.map((m) => (
-              <i
-                key={m.id}
-                className={save.recoveredIds.includes(m.id) ? "filled" : ""}
-              />
-            ))}
-          </span>
-          <small>
-            {save.recoveredIds.length} / {save.memories.length} memories
-          </small>
-        </button>
-      </div>
-      <div className="objective-pill" aria-live="polite">
-        {save.completed
-          ? "Journey complete"
-          : nextMemory
-            ? `Find memory ${save.recoveredIds.length + 1} · ${nextMemory.date.slice(0, 4)}`
-            : "Follow the path to the lantern"}
-      </div>
-      <div className="game-notice" role="status">
-        {notice}
-      </div>
-      {error && (
-        <div className="game-error" role="alert" data-quest-ui>
-          {error}
-          <button onClick={() => setError("")} aria-label="Dismiss message">
-            ×
-          </button>
-        </div>
-      )}
-      <div className="game-bottom" data-quest-ui>
-        <Joystick game={game} onStart={() => void audio.current?.start()} />
-        <div className="keyboard-hint">
-          <span>W A S D</span> move <span>DRAG</span> look <span>E</span>{" "}
-          remember{" "}
-          {save.abilities.includes("jump") && (
-            <>
-              <span>SPACE</span> jump
-            </>
-          )}
-        </div>
-        <div className="action-buttons">
-          <button
-            className="action-button jump"
-            aria-label="Jump"
-            disabled={!save.abilities.includes("jump") || save.completed}
-            onPointerDown={(e) => {
-              e.currentTarget.setPointerCapture(e.pointerId);
-              input("jump", true);
-            }}
-            onPointerUp={() => input("jump", false)}
-            onPointerCancel={() => input("jump", false)}
-            onLostPointerCapture={() => input("jump", false)}
-          >
-            ↑
-            <small>
-              {save.abilities.includes("jump") ? "Jump" : "Still learning"}
-            </small>
-          </button>
-          <button
-            className={`action-button remember ${status?.nearMemoryId || status?.nearFinish ? "available" : ""}`}
-            disabled={
-              (!status?.nearMemoryId && !status?.nearFinish) ||
-              status?.recovering ||
-              save.completed
-            }
-            onPointerDown={(e) => {
-              e.currentTarget.setPointerCapture(e.pointerId);
-              input("interact", true);
-            }}
-            onPointerUp={() => input("interact", false)}
-            onPointerCancel={() => input("interact", false)}
-            onLostPointerCapture={() => input("interact", false)}
-            onClick={(e) => {
-              if (e.detail === 0) {
-                input("interact", true);
-                setTimeout(() => input("interact", false), 80);
-              }
-            }}
-          >
-            <Sprout />
-            <small>
-              {status?.nearFinish ? "Complete journey" : "Remember"}
-            </small>
-          </button>
-        </div>
-      </div>
-      <div className="placeholder-label" data-quest-ui>
-        Private preview · Temporary art · Fictional memories
-      </div>
-      {showHelp && (
-        <div className="modal-scrim" data-quest-ui>
-          <section
-            className="game-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="help-title"
-          >
-            <button
-              className="close-modal"
-              onClick={() => setShowHelp(false)}
-              aria-label="Close help"
-            >
-              ×
-            </button>
-            <span className="eyebrow">A LITTLE GUIDANCE</span>
-            <h2 id="help-title">Follow the glow.</h2>
-            <p>
-              Move close to the next golden memory and choose Remember. Each
-              memory brings back a little of who you are.
-            </p>
-            <dl>
-              <dt>On a touchscreen</dt>
-              <dd>
-                Move with the left circle. Drag the open scene to look around.
-                Use the buttons on the right to remember and jump.
-              </dd>
-              <dt>With a keyboard & mouse</dt>
-              <dd>
-                WASD or arrow keys move. Drag to look. E remembers. Space jumps
-                once you’ve learned how.
-              </dd>
-            </dl>
-            <label className="volume-label">
-              Sound volume
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step=".05"
-                value={volume}
-                onChange={(e) => {
-                  setVolume(Number(e.target.value));
-                  audio.current?.setPreferences(muted, Number(e.target.value));
-                }}
-              />
-            </label>
-            <small>
-              Sound candidates are waiting in the asset studio. This preview
-              plays quietly.
-            </small>
-            <button className="primary" onClick={() => setShowHelp(false)}>
-              Back to the clearing <Arrow />
-            </button>
-          </section>
-        </div>
-      )}
-      {showAlbum && (
-        <div className="modal-scrim" data-quest-ui>
-          <section
-            className="game-modal album"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="album-title"
-          >
-            <button
-              className="close-modal"
-              onClick={() => setShowAlbum(false)}
-              aria-label="Close memories"
-            >
-              ×
-            </button>
-            <span className="eyebrow">MOMENTS YOU’VE FOUND</span>
-            <h2 id="album-title">Your remembered world.</h2>
-            <div className="memory-grid">
-              {save.memories
-                .filter((m) => save.recoveredIds.includes(m.id))
-                .map((m) => (
-                  <figure key={m.id}>
-                    <img src={m.mediaUrl} alt={m.label} />
-                    <figcaption>
-                      {m.label}
-                      <small>
-                        {m.date} · Age {m.ageYears}
-                      </small>
-                    </figcaption>
-                  </figure>
-                ))}
-            </div>
-            {!save.recoveredIds.length && (
-              <p>Your first memory is waiting along the path.</p>
-            )}
-            <button className="primary" onClick={() => setShowAlbum(false)}>
-              Keep exploring <Arrow />
-            </button>
-          </section>
-        </div>
-      )}
-      {save.completed && (
-        <div className="modal-scrim finish-scrim" data-quest-ui>
-          <section
-            className="game-modal completion"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="finish-title"
-          >
-            <span className="finish-seal">
-              <Sprout />
-            </span>
-            <span className="eyebrow">THE FIRST CLEARING · COMPLETE</span>
-            <h1 id="finish-title">
-              A little more of you,
-              <br />
-              <em>remembered.</em>
-            </h1>
-            <p>
-              {save.recoveredIds.length} memories found. Your traveler reached
-              age {save.ageYears}.
-            </p>
-            <div className="finish-memories">
-              {save.memories.map((m) => (
-                <img key={m.id} src={m.mediaUrl} alt={m.label} />
-              ))}
-            </div>
-            <button className="primary" onClick={() => leaveRef.current()}>
-              Back to your journeys <Arrow />
-            </button>
-            <small>Your journey is saved.</small>
-          </section>
-        </div>
-      )}
-    </div>
-  );
-}
-function Joystick({
-  game,
-  onStart,
-}: {
-  game: React.RefObject<GameHandle | undefined>;
-  onStart: () => void;
-}) {
-  const pointer = useRef<number | undefined>(undefined);
-  const origin = useRef({ x: 0, y: 0 });
-  const [knob, setKnob] = useState({ x: 0, y: 0 });
-  const clear = () => {
-    pointer.current = undefined;
-    setKnob({ x: 0, y: 0 });
-    game.current?.setInput("moveX", 0);
-    game.current?.setInput("moveY", 0);
-  };
-  useEffect(() => {
-    window.addEventListener("blur", clear);
-    const visibility = () => {
-      if (document.hidden) clear();
-    };
-    document.addEventListener("visibilitychange", visibility);
-    return () => {
-      window.removeEventListener("blur", clear);
-      document.removeEventListener("visibilitychange", visibility);
-    };
-  }, []);
-  return (
-    <div
-      className="joystick"
-      role="group"
-      aria-label="Touch movement control"
-      data-testid="joystick"
-      onPointerDown={(e) => {
-        if (pointer.current !== undefined) return;
-        onStart();
-        pointer.current = e.pointerId;
-        e.currentTarget.setPointerCapture(e.pointerId);
-        const b = e.currentTarget.getBoundingClientRect();
-        origin.current = { x: b.x + b.width / 2, y: b.y + b.height / 2 };
-      }}
-      onPointerMove={(e) => {
-        if (e.pointerId !== pointer.current) return;
-        const x = e.clientX - origin.current.x,
-          y = e.clientY - origin.current.y;
-        const r = Math.max(1, Math.hypot(x, y) / 36);
-        const dx = x / r,
-          dy = y / r;
-        setKnob({ x: dx, y: dy });
-        game.current?.setInput("moveX", dx / 36);
-        game.current?.setInput("moveY", -dy / 36);
-      }}
-      onPointerUp={(e) => {
-        if (e.pointerId === pointer.current) clear();
-      }}
-      onPointerCancel={(e) => {
-        if (e.pointerId === pointer.current) clear();
-      }}
-      onLostPointerCapture={(e) => {
-        if (e.pointerId === pointer.current) clear();
-      }}
-    >
-      <span className="stick-mark top">↑</span>
-      <span className="stick-mark bottom">↓</span>
-      <span className="stick-mark left">‹</span>
-      <span className="stick-mark right">›</span>
-      <i style={{ transform: `translate(${knob.x}px,${knob.y}px)` }} />
-      <small>MOVE</small>
-    </div>
-  );
-}
-
 createRoot(document.getElementById("root")!).render(<App />);

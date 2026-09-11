@@ -1,7 +1,24 @@
-import type { Ability, AppearanceStage, SaveView } from "../shared/contracts";
+import type {
+  Ability,
+  AdventurePhase,
+  AppearanceStage,
+  EncounterKind,
+  EncounterRole,
+  EquipmentKind,
+  GameplayAction,
+  GameplayActionRequest,
+  SaveView,
+} from "../shared/contracts";
 
 export type GameInputAction =
-  "moveX" | "moveY" | "lookX" | "lookY" | "jump" | "interact";
+  | "moveX"
+  | "moveY"
+  | "lookX"
+  | "lookY"
+  | "jump"
+  | "interact"
+  | "attack"
+  | "guard";
 
 export interface GameInputSnapshot {
   moveX: number;
@@ -10,6 +27,8 @@ export interface GameInputSnapshot {
   lookY: number;
   jump: boolean;
   interact: boolean;
+  attack: boolean;
+  guard: boolean;
 }
 
 export interface PositionSnapshot {
@@ -18,25 +37,91 @@ export interface PositionSnapshot {
   z: number;
 }
 
-export type RequestState = "idle" | "recovering" | "finishing" | "error";
-export type RequestError = "recover" | "finish" | null;
+export type RequestState = "idle" | "acting" | "error";
+export type RequestError = GameplayAction["type"] | null;
+
+export type EnemyPhase =
+  "idle" | "chasing" | "windup" | "strike" | "cooldown" | "defeated";
+
+export interface EnemyFrame {
+  id: string;
+  position: PositionSnapshot;
+  facing: number;
+  phase: EnemyPhase;
+  windupProgress: number;
+  hp: number;
+  maxHp: number;
+}
+
+export interface SceneFrame {
+  deltaSeconds: number;
+  moving: boolean;
+  grounded: boolean;
+  attacking: boolean;
+  guarding: boolean;
+  enemies: EnemyFrame[];
+  currentTarget: string | null;
+}
+
+export interface SceneMediaState {
+  loading: number;
+  failed: number;
+}
 
 export interface GameStatus {
+  nearPickupId: string | null;
+  nearEncounterId: string | null;
   nearMemoryId: string | null;
   nearFinish: boolean;
+  canConsume: boolean;
   position: PositionSnapshot;
   ageYears: number;
   appearanceStage: AppearanceStage;
   abilities: Ability[];
   grounded: boolean;
-  recovering: boolean;
+  playerHp: number;
+  maxPlayerHp: number;
+  phase: AdventurePhase;
+  activeLevelId: string | null;
+  eraYear: number | null;
+  attackReady: boolean;
+  guardActive: boolean;
+  guardReady: boolean;
+  requestBusy: boolean;
   requestState: RequestState;
   requestError: RequestError;
+  requestErrorCode: string | null;
+  mediaLoading: number;
+  mediaFailed: number;
+}
+
+export interface MemoryPlacementInspection extends PositionSnapshot {
+  id: string;
+  state: "locked" | "released" | "revealed" | "consumed";
+}
+
+export interface PickupInspection extends PositionSnapshot {
+  id: string;
+  equipmentId: string;
+  kind: EquipmentKind;
+  collected: boolean;
+}
+
+export interface EncounterInspection extends PositionSnapshot {
+  id: string;
+  role: EncounterRole;
+  kind: EncounterKind;
+  hp: number;
+  maxHp: number;
+  localPhase: EnemyPhase;
 }
 
 export interface LevelInspection {
+  id: string | null;
   memoryIds: string[];
-  memoryPositions: Array<PositionSnapshot & { id: string }>;
+  memoryPositions: MemoryPlacementInspection[];
+  pickupPositions: PickupInspection[];
+  encounterPositions: EncounterInspection[];
   finishPosition: PositionSnapshot;
   step: null | { z: number; height: number; unlockMemoryId: string };
 }
@@ -46,14 +131,15 @@ export interface GameInspection {
   input: GameInputSnapshot;
   checkpoint: PositionSnapshot;
   level: LevelInspection;
+  enemies: EnemyFrame[];
   disposed: boolean;
 }
 
 export interface CreateGameOptions {
   container: HTMLElement;
   save: SaveView;
-  onRecover: (memoryId: string) => Promise<SaveView>;
-  onFinish: () => Promise<SaveView>;
+  onAction: (request: GameplayActionRequest) => Promise<SaveView>;
+  onRefresh: () => Promise<SaveView>;
   onStatus?: (status: GameStatus) => void;
 }
 
@@ -62,6 +148,8 @@ export interface GameHandle {
   setInput(action: GameInputAction, value: number | boolean): void;
   clearInput(): void;
   setPaused(paused: boolean): void;
+  performAction(action: GameplayAction): boolean;
+  retryMedia(): void;
   inspect(): GameInspection;
   dispose(): void;
 }

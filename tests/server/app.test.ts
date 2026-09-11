@@ -1,14 +1,16 @@
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { randomUUID } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { createApp } from '../../src/server/app.js';
 import { InMemoryQuestStore } from '../../src/server/db/memory-store.js';
+import type { SaveRecord } from '../../src/server/domain.js';
 
 const ORIGIN = 'https://quest.test';
 const SECRET = 'fixture-session-secret-that-is-at-least-32-characters';
 
-function makeApp(store = new InMemoryQuestStore()) {
+function makeApp(store = new InMemoryQuestStore(), now?: () => Date) {
   return {
     store,
     app: createApp({
@@ -18,6 +20,7 @@ function makeApp(store = new InMemoryQuestStore()) {
       appOrigin: ORIGIN,
       clientDir: '/tmp/quest-client-not-present',
       studioDir: '/tmp/quest-studio-not-present',
+      now,
     }),
   };
 }
@@ -157,43 +160,47 @@ describe('fixture API', () => {
     expect(unissued.status).toBe(422);
   });
 
-  it('recovers memories monotonically and idempotently with server-derived progression', async () => {
+  it('freezes the two-level fixture arc and rejects forged or retired progression commands', async () => {
     const { app } = makeApp();
     const { cookie } = await startSession(app);
     const save = await createJourney(app, cookie);
-    expect(save).toMatchObject({ ageYears: 0, abilities: ['move', 'interact'], revision: 0 });
-
-    const outOfOrder = await app.request(
-      `/api/saves/${save.id}/recover`,
-      mutation(cookie, { memoryId: save.memories[1].id }),
-    );
-    expect(outOfOrder.status).toBe(409);
-    expect((await outOfOrder.json()).error.code).toBe('MEMORY_OUT_OF_ORDER');
+    expect(save).toMatchObject({
+      format: 'era-combat-v2',
+      ageYears: 0,
+      abilities: ['move', 'interact'],
+      revision: 0,
+      adventure: {
+        phase: 'exploring',
+        activeLevel: { eraYear: 2020, startAgeYears: 0, targetAgeYears: 4 },
+      },
+    });
+    expect(save.adventure.activeLevel.memoryIds).toEqual([
+      'demo-memory-2020-07',
+      'demo-memory-2024-01',
+    ]);
+    expect(save.memories.map((memory: { state: string }) => memory.state)).toEqual([
+      'locked', 'locked', 'locked',
+    ]);
 
     const forged = await app.request(
-      `/api/saves/${save.id}/recover`,
-      mutation(cookie, { memoryId: save.memories[0].id, ageYears: 99, abilities: ['jump'] }),
+      `/api/saves/${save.id}/actions`,
+      mutation(cookie, {
+        actionId: randomUUID(),
+        expectedRevision: 0,
+        action: { type: 'attack', levelId: save.adventure.currentLevelId, encounterId: 'forged', damage: 999 },
+      }),
     );
     expect(forged.status).toBe(422);
 
-    const [first, duplicate] = await Promise.all([
-      app.request(`/api/saves/${save.id}/recover`, mutation(cookie, { memoryId: save.memories[0].id })),
-      app.request(`/api/saves/${save.id}/recover`, mutation(cookie, { memoryId: save.memories[0].id })),
-    ]);
-    const firstView = await first.json();
-    const duplicateView = await duplicate.json();
-    expect(firstView.revision).toBe(1);
-    expect(duplicateView.revision).toBe(1);
-    expect(firstView.recoveredIds).toEqual([save.memories[0].id]);
-
-    const second = await app.request(
+    const retired = await app.request(
       `/api/saves/${save.id}/recover`,
-      mutation(cookie, { memoryId: save.memories[1].id }),
+      mutation(cookie, { memoryId: save.memories[0].id }),
     );
-    expect(await second.json()).toMatchObject({ ageYears: 4, abilities: ['move', 'interact', 'jump'], revision: 2 });
+    expect(retired.status).toBe(409);
+    expect((await retired.json()).error.code).toBe('ACTION_ROUTE_RETIRED');
   });
 
-  it('makes save creation and finishing recoverable idempotent operations', async () => {
+  it('keeps save creation idempotent while the old finish route cannot bypass combat', async () => {
     const { app } = makeApp();
     const { cookie } = await startSession(app);
     const preview = await (
@@ -204,15 +211,9 @@ describe('fixture API', () => {
     const retried = await (await app.request('/api/saves', mutation(cookie, command))).json();
     expect(retried.id).toBe(first.id);
 
-    const tooSoon = await app.request(`/api/saves/${first.id}/finish`, mutation(cookie, {}));
-    expect(tooSoon.status).toBe(409);
-    for (const memory of first.memories) {
-      await app.request(`/api/saves/${first.id}/recover`, mutation(cookie, { memoryId: memory.id }));
-    }
-    const finished = await (await app.request(`/api/saves/${first.id}/finish`, mutation(cookie, {}))).json();
-    const finishedAgain = await (await app.request(`/api/saves/${first.id}/finish`, mutation(cookie, {}))).json();
-    expect(finished.completed).toBe(true);
-    expect(finishedAgain.revision).toBe(finished.revision);
+    const retired = await app.request(`/api/saves/${first.id}/finish`, mutation(cookie, {}));
+    expect(retired.status).toBe(409);
+    expect((await retired.json()).error.code).toBe('ACTION_ROUTE_RETIRED');
   });
 
   it('hides saves and media from another fixture identity', async () => {
@@ -227,14 +228,25 @@ describe('fixture API', () => {
       headers: { cookie: stranger.cookie },
     });
     expect(hiddenMedia.status).toBe(404);
+    const hiddenAction = await app.request(
+      `/api/saves/${save.id}/actions`,
+      mutation(stranger.cookie, {
+        actionId: randomUUID(),
+        expectedRevision: save.revision,
+        action: {
+          type: 'collect-equipment',
+          levelId: save.adventure.currentLevelId,
+          pickupId: save.adventure.activeLevel.pickups[0].pickupId,
+        },
+      }),
+    );
+    expect(hiddenAction.status).toBe(404);
 
     const media = await app.request(`/api/saves/${save.id}/media/${save.memories[0].id}`, {
       headers: { cookie: owner.cookie },
     });
-    expect(media.status).toBe(200);
-    expect(media.headers.get('cache-control')).toBe('no-store');
-    expect(media.headers.get('x-content-type-options')).toBe('nosniff');
-    expect(await media.text()).toContain('Synthetic memory');
+    expect(media.status).toBe(409);
+    expect((await media.json()).error.code).toBe('MEDIA_LOCKED');
   });
 
   it('serves studio WAV files with their audio MIME across full and range responses', async () => {
@@ -335,5 +347,46 @@ describe('fixture API', () => {
     expect(serialized).not.toContain(sentinel);
     expect(serialized).not.toContain(privateRouteValue);
     expect(serialized).not.toContain(cookie);
+  });
+  it('records a bounded diagnostic for server-side AppError failures and none for client errors', async () => {
+    const diagnostics: unknown[] = [];
+    const store = new InMemoryQuestStore();
+    const app = createApp({
+      store,
+      fixtureMode: true,
+      sessionSecret: SECRET,
+      appOrigin: ORIGIN,
+      clientDir: '/tmp/quest-client-not-present',
+      studioDir: '/tmp/quest-studio-not-present',
+      diagnosticSink: (diagnostic) => diagnostics.push(diagnostic),
+    });
+    const { cookie } = await startSession(app);
+    const save = await createJourney(app, cookie);
+
+    expect((await app.request('/api/saves/missing-save', { headers: { cookie } })).status).toBe(404);
+    expect((await app.request(`/api/saves/${save.id}/actions`, mutation(cookie, {}))).status).toBe(422);
+    expect(diagnostics).toEqual([]);
+
+    // Corrupt the stored record so the read path's own validation fails closed.
+    const records = (store as unknown as { saves: Map<string, SaveRecord> }).saves;
+    records.get(save.id)!.adventureState!.playerHp = 999;
+    const response = await app.request(`/api/saves/${save.id}`, { headers: { cookie } });
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({
+      error: { code: 'SAVE_DATA_INVALID', message: 'Save unavailable' },
+    });
+    expect(diagnostics).toEqual([{
+      event: 'api_request_failed',
+      errorClass: 'app-error',
+      method: 'GET',
+      route: '/api/saves/:id',
+      code: 'SAVE_DATA_INVALID',
+      status: 503,
+    }]);
+    const serialized = JSON.stringify(diagnostics);
+    expect(serialized).not.toContain(save.id);
+    expect(serialized).not.toContain(cookie);
+    expect(serialized).not.toContain('2020');
+    expect(serialized).not.toContain('Demo Adventurer');
   });
 });

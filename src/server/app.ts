@@ -4,6 +4,7 @@ import { secureHeaders } from 'hono/secure-headers';
 import { serveStatic } from '@hono/node-server/serve-static';
 import type { ApiError, SessionView } from '../shared/contracts.js';
 import {
+  canAccessSaveMemory,
   toSaveSummary,
   toSaveView,
   type PlayerRecord,
@@ -18,6 +19,7 @@ import { enforceMutationSecurity, FixtureSessions, RequestLimiter } from './secu
 import {
   createSaveSchema,
   finishSchema,
+  gameplayActionRequestSchema,
   parseJson,
   previewRequestSchema,
   recoverSchema,
@@ -33,9 +35,11 @@ export interface AppOptions {
   photoSource?: JourneyPhotoSource;
   privateMedia?: PrivateMediaProvider;
   diagnosticSink?: DiagnosticSink;
+  now?: () => Date;
 }
 
 export type SafeErrorClass =
+  | 'app-error'
   | 'aggregate-error'
   | 'eval-error'
   | 'range-error'
@@ -52,6 +56,9 @@ export interface SafeDiagnostic {
   method?: string;
   route?: string;
   phase?: 'scheduled' | 'startup';
+  /** Fixed application error code (never request-derived), for server-side AppError failures. */
+  code?: string;
+  status?: number;
 }
 
 export type DiagnosticSink = (diagnostic: SafeDiagnostic) => void;
@@ -66,6 +73,7 @@ const DIAGNOSTIC_ROUTES = new Set([
   '/api/saves/:id',
   '/api/saves/:id/recover',
   '/api/saves/:id/finish',
+  '/api/saves/:id/actions',
   '/api/saves/:id/media/:memoryId',
 ]);
 
@@ -83,7 +91,10 @@ export function createApp(options: AppOptions): Hono {
     : null;
   const photoSource = options.fixtureMode ? (options.photoSource ?? new FixturePhotoSource()) : options.photoSource;
   const limiter = new RequestLimiter(120, 60_000);
+  const actionLimiter = new RequestLimiter(360, 60_000);
   const diagnosticSink = options.diagnosticSink ?? writeSafeDiagnostic;
+  // One application clock for action authority and every save view it renders.
+  const now = (): Date => options.now?.() ?? new Date();
 
   app.use('*', secureHeaders({
     crossOriginResourcePolicy: 'same-origin',
@@ -138,7 +149,7 @@ export function createApp(options: AppOptions): Hono {
     limiter.take(`write:${player.id}`);
     const command = await parseJson(context, createSaveSchema);
     const save = await options.store.createSave({ ownerId: player.id, ...command });
-    return context.json(toSaveView(save), 201);
+    return context.json(toSaveView(save, now()), 201);
   });
 
   app.get('/api/saves/:id', async (context) => {
@@ -146,16 +157,15 @@ export function createApp(options: AppOptions): Hono {
     limiter.take(`read:${player.id}`);
     const save = await options.store.getSave(player.id, context.req.param('id'));
     if (!save) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
-    return context.json(toSaveView(save));
+    return context.json(toSaveView(save, now()));
   });
 
   app.post('/api/saves/:id/recover', async (context) => {
     enforceMutationSecurity(context, options.appOrigin);
     const player = await requirePlayer(context, sessions);
     limiter.take(`write:${player.id}`);
-    const { memoryId } = await parseJson(context, recoverSchema);
-    const save = await options.store.recoverMemory(player.id, context.req.param('id'), memoryId);
-    return context.json(toSaveView(save));
+    await parseJson(context, recoverSchema);
+    await rejectRetiredSaveMutation(options.store, player.id, context.req.param('id'));
   });
 
   app.post('/api/saves/:id/finish', async (context) => {
@@ -163,8 +173,22 @@ export function createApp(options: AppOptions): Hono {
     const player = await requirePlayer(context, sessions);
     limiter.take(`write:${player.id}`);
     await parseJson(context, finishSchema);
-    const save = await options.store.finishSave(player.id, context.req.param('id'));
-    return context.json(toSaveView(save));
+    await rejectRetiredSaveMutation(options.store, player.id, context.req.param('id'));
+  });
+
+  app.post('/api/saves/:id/actions', async (context) => {
+    enforceMutationSecurity(context, options.appOrigin);
+    const player = await requirePlayer(context, sessions);
+    actionLimiter.take(`action:${player.id}`);
+    const request = await parseJson(context, gameplayActionRequestSchema);
+    const actionTime = now();
+    const save = await options.store.applyGameplayAction(
+      player.id,
+      context.req.param('id'),
+      request,
+      actionTime,
+    );
+    return context.json(toSaveView(save, actionTime));
   });
 
   app.get('/api/saves/:id/media/:memoryId', async (context) => {
@@ -173,6 +197,9 @@ export function createApp(options: AppOptions): Hono {
     const save = await options.store.getSave(player.id, context.req.param('id'));
     const memory = save?.memories.find((candidate) => candidate.id === context.req.param('memoryId'));
     if (!save || !memory) throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
+    if (!canAccessSaveMemory(save, memory.id)) {
+      throw new AppError(409, 'MEDIA_LOCKED', 'Memory is locked');
+    }
     if (memory.source.kind === 'fixture') {
       if (!options.fixtureMode) throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
       const svg = fixtureSvg(memory.source.key);
@@ -207,21 +234,26 @@ export function createApp(options: AppOptions): Hono {
     return errorResponse(context, 404, 'NOT_FOUND', 'Not found');
   });
   app.onError((error, context) => {
-    if (!(error instanceof AppError)) {
+    const failure = asAppError(error);
+    // Every server-side failure (5xx) is diagnosable, including AppError ones
+    // such as SAVE_DATA_INVALID. Client errors (4xx) stay quiet as before. The
+    // record carries only fixed identifiers: no body, ids, dates or exception text.
+    if (failure.status >= 500) {
       emitSafeDiagnostic(diagnosticSink, {
         event: 'api_request_failed',
         errorClass: classifyError(error),
         method: context.req.method,
         route: diagnosticRoute(context),
+        ...(error instanceof AppError ? { code: error.code, status: error.status } : {}),
       });
     }
-    const failure = asAppError(error);
     return errorResponse(context, failure.status, failure.code, failure.message);
   });
   return app;
 }
 
 export function classifyError(error: unknown): SafeErrorClass {
+  if (error instanceof AppError) return 'app-error';
   if (error instanceof AggregateError) return 'aggregate-error';
   if (error instanceof EvalError) return 'eval-error';
   if (error instanceof RangeError) return 'range-error';
@@ -257,6 +289,19 @@ async function requirePlayer(context: Context, sessions: FixtureSessions | null)
   return player;
 }
 
+async function rejectRetiredSaveMutation(
+  store: QuestStore,
+  ownerId: string,
+  saveId: string,
+): Promise<never> {
+  const save = await store.getSave(ownerId, saveId);
+  if (!save) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
+  if (save.saveFormat === 'legacy-v1') {
+    throw new AppError(409, 'LEGACY_SAVE_READ_ONLY', 'Legacy save is read only');
+  }
+  throw new AppError(409, 'ACTION_ROUTE_RETIRED', 'Use gameplay actions');
+}
+
 function errorResponse(context: Context, status: AppError['status'], code: string, message: string) {
   const body: ApiError = { error: { code, message } };
   return context.json(body, status);
@@ -266,7 +311,8 @@ function fixtureMediaHeaders(): Record<string, string> {
   return {
     'Content-Type': 'image/svg+xml; charset=utf-8',
     'Cache-Control': 'no-store',
-    'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; sandbox",
+    // WebGL can only upload an SVG that remains origin-clean after sandboxing.
+    'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; sandbox allow-same-origin",
     'X-Content-Type-Options': 'nosniff',
   };
 }

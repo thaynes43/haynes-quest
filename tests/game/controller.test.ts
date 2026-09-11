@@ -1,12 +1,12 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 import {
   createControllerState,
   getAvatarProportions,
   stepController,
-} from '../../src/game/controller';
-import { checkpointForSave, createLevelLayout } from '../../src/game/level';
-import type { GameInputSnapshot } from '../../src/game/types';
-import { makeSave } from './fixtures';
+} from "../../src/game/controller";
+import { checkpointForSave, createLevelLayout } from "../../src/game/level";
+import type { GameInputSnapshot } from "../../src/game/types";
+import { makeEraSave, makeSave } from "./fixtures";
 
 const forwardInput: GameInputSnapshot = {
   moveX: 0,
@@ -15,10 +15,12 @@ const forwardInput: GameInputSnapshot = {
   lookY: 0,
   jump: false,
   interact: false,
+  attack: false,
+  guard: false,
 };
 
-describe('garden controller and route', () => {
-  it('keeps both pre-unlock memories reachable on flat ground and requires the unlocked jump for the step', () => {
+describe("garden controller and route", () => {
+  it("keeps both pre-unlock memories reachable on flat ground and requires the unlocked jump for the step", () => {
     const save = makeSave([0, 4, 7]);
     const level = createLevelLayout(save);
     const controller = createControllerState({ x: 0, y: 0, z: 0 });
@@ -27,25 +29,42 @@ describe('garden controller and route', () => {
     for (let frame = 0; frame < 360; frame += 1) {
       stepController(controller, forwardInput, level, 1 / 60, 0, false, false);
       level.memories.forEach((memory, index) => {
-        closest[index] = Math.min(closest[index] ?? Infinity, Math.hypot(
-          controller.position.x - memory.position.x,
-          controller.position.z - memory.position.z,
-        ));
+        closest[index] = Math.min(
+          closest[index] ?? Infinity,
+          Math.hypot(
+            controller.position.x - memory.position.x,
+            controller.position.z - memory.position.z,
+          ),
+        );
       });
     }
 
-    expect(level.step).toMatchObject({ unlockMemoryId: 'memory-2', height: 0.32 });
+    expect(level.step).toMatchObject({
+      unlockMemoryId: "memory-2",
+      height: 0.32,
+    });
     expect(closest[0]).toBeLessThan(0.75);
     expect(closest[1]).toBeLessThan(0.75);
     expect(controller.position.z).toBeGreaterThan(level.step?.z ?? -Infinity);
     expect(closest[2]).toBeGreaterThan(1.5);
 
     for (let frame = 0; frame < 180; frame += 1) {
-      stepController(controller, forwardInput, level, 1 / 60, 0, true, frame === 0);
-      closest[2] = Math.min(closest[2] ?? Infinity, Math.hypot(
-        controller.position.x - (level.memories[2]?.position.x ?? 0),
-        controller.position.z - (level.memories[2]?.position.z ?? 0),
-      ));
+      stepController(
+        controller,
+        forwardInput,
+        level,
+        1 / 60,
+        0,
+        true,
+        frame === 0,
+      );
+      closest[2] = Math.min(
+        closest[2] ?? Infinity,
+        Math.hypot(
+          controller.position.x - (level.memories[2]?.position.x ?? 0),
+          controller.position.z - (level.memories[2]?.position.z ?? 0),
+        ),
+      );
     }
 
     expect(closest[2]).toBeLessThan(0.9);
@@ -53,10 +72,14 @@ describe('garden controller and route', () => {
     expect(controller.position.y).toBeCloseTo(0.32, 5);
   });
 
-  it('falls when walking off the step and needs another jump to climb back', () => {
+  it("falls when walking off the step and needs another jump to climb back", () => {
     const level = createLevelLayout(makeSave([0, 4, 7]));
     const step = level.step!;
-    const controller = createControllerState({ x: 0, y: step.height, z: step.z - 0.01 });
+    const controller = createControllerState({
+      x: 0,
+      y: step.height,
+      z: step.z - 0.01,
+    });
     const backward = { ...forwardInput, moveY: -1 };
 
     stepController(controller, backward, level, 1 / 60, 0, true, false);
@@ -74,48 +97,141 @@ describe('garden controller and route', () => {
     expect(controller.position.y).toBe(0);
   });
 
-  it('places all 24 memories in manifest order and keeps a no-unlock journey flat', () => {
+  it("places all 24 memories in manifest order and keeps a no-unlock journey flat", () => {
     const save = makeSave(Array.from({ length: 24 }, () => 0));
     const level = createLevelLayout(save);
     expect(level.memories).toHaveLength(24);
-    expect(level.memories.map((memory) => memory.id)).toEqual(save.memories.map((memory) => memory.id));
+    expect(level.memories.map((memory) => memory.id)).toEqual(
+      save.memories.map((memory) => memory.id),
+    );
     for (let index = 1; index < level.memories.length; index += 1) {
-      expect(level.memories[index]?.position.z).toBeLessThan(level.memories[index - 1]?.position.z ?? -Infinity);
+      expect(level.memories[index]?.position.z).toBeLessThan(
+        level.memories[index - 1]?.position.z ?? -Infinity,
+      );
       expect(level.memories[index]?.position.y).toBe(0);
     }
     expect(level.step).toBeNull();
     expect(level.finish.y).toBe(0);
   });
 
-  it('resumes behind the last contiguous recovered memory at a safe surface height', () => {
-    const save = makeSave([0, 4, 7], { recoveredCount: 3, abilities: ['move', 'interact', 'jump'], stage: 'child' });
+  it("resumes behind the last contiguous recovered memory at a safe surface height", () => {
+    const save = makeSave([0, 4, 7], {
+      recoveredCount: 3,
+      abilities: ["move", "interact", "jump"],
+      stage: "child",
+    });
     const level = createLevelLayout(save);
     const checkpoint = checkpointForSave(save, level);
     expect(checkpoint.z).toBeGreaterThan(level.memories[2]?.position.z ?? 0);
     expect(checkpoint.y).toBe(level.step?.height);
 
-    const forgedGap = { ...save, recoveredIds: ['memory-1', 'memory-3'] };
+    const forgedGap = { ...save, recoveredIds: ["memory-1", "memory-3"] };
     const guardedCheckpoint = checkpointForSave(forgedGap, level);
-    expect(guardedCheckpoint.z).toBeGreaterThan(level.memories[0]?.position.z ?? 0);
+    expect(guardedCheckpoint.z).toBeGreaterThan(
+      level.memories[0]?.position.z ?? 0,
+    );
     expect(guardedCheckpoint.z).toBeGreaterThan(level.step?.z ?? 0);
   });
 
-  it('changes visible age proportions while retaining the same foot-anchored controller scale', () => {
-    const infant = getAvatarProportions('infant');
-    const child = getAvatarProportions('child');
+  it("changes visible age proportions while retaining the same foot-anchored controller scale", () => {
+    const infant = getAvatarProportions("infant");
+    const child = getAvatarProportions("child");
     expect(child.height).toBeGreaterThan(infant.height);
-    expect(infant.headRadius / infant.height).toBeGreaterThan(child.headRadius / child.height);
+    expect(infant.headRadius / infant.height).toBeGreaterThan(
+      child.headRadius / child.height,
+    );
     expect(infant.legLength).toBeLessThan(child.legLength);
     expect(infant.posture).toBeGreaterThan(child.posture);
     expect(infant.colliderRadius).toBeCloseTo(child.colliderRadius, 1);
   });
 
-  it('moves relative to camera yaw and caps a stalled-frame delta', () => {
+  it("moves relative to camera yaw and caps a stalled-frame delta", () => {
     const level = createLevelLayout(makeSave([0, 0, 0]));
     const controller = createControllerState({ x: 0, y: 0, z: 0 });
-    stepController(controller, forwardInput, level, 1, Math.PI / 2, false, false);
+    stepController(
+      controller,
+      forwardInput,
+      level,
+      1,
+      Math.PI / 2,
+      false,
+      false,
+    );
     expect(controller.position.x).toBeLessThan(-0.14);
     expect(controller.position.x).toBeGreaterThan(-0.17);
     expect(controller.position.z).toBeCloseTo(0, 5);
+  });
+
+  it("lays out each era with fixed combat landmarks and no required step", () => {
+    const save = makeEraSave();
+    const level = createLevelLayout(save);
+    expect(level).toMatchObject({
+      id: "level-1-2020",
+      checkpoint: { x: 0, y: 0, z: 1 },
+      finish: { x: 0, y: 0, z: -25 },
+      minX: -6,
+      maxX: 6,
+      minZ: -27,
+      maxZ: 3,
+      step: null,
+    });
+    expect(
+      level.pickups.map((pickup) => [pickup.kind, pickup.position]),
+    ).toEqual([
+      ["attack-tool", { x: -2, y: 0, z: -2 }],
+      ["guard-tool", { x: 3, y: 0, z: -6 }],
+    ]);
+    expect(
+      level.encounters.map((encounter) => [encounter.kind, encounter.position]),
+    ).toEqual([
+      ["ordinary-a", { x: -2, y: 0, z: -8 }],
+      ["ordinary-b", { x: 2, y: 0, z: -13 }],
+      ["boss", { x: 0, y: 0, z: -21 }],
+    ]);
+    expect(level.memories.map((memory) => memory.position)).toEqual([
+      { x: -1.1, y: 0, z: -22 },
+      { x: 1.1, y: 0, z: -22 },
+    ]);
+  });
+
+  it("keeps age fixed through boss release and reveal, then resets the next authoritative level", () => {
+    const released = makeEraSave({
+      phase: "memory-released",
+      defeatedIds: [
+        "level-1-2020-ordinary-a",
+        "level-1-2020-ordinary-b",
+        "level-1-2020-boss",
+      ],
+    });
+    const revealed = makeEraSave({
+      phase: "memory-released",
+      defeatedIds: [
+        "level-1-2020-ordinary-a",
+        "level-1-2020-ordinary-b",
+        "level-1-2020-boss",
+      ],
+      revealedCount: 2,
+      revision: 4,
+    });
+    expect(released.ageYears).toBe(0);
+    expect(revealed.ageYears).toBe(0);
+    expect(checkpointForSave(released, createLevelLayout(released))).toEqual({
+      x: 0,
+      y: 0,
+      z: -23.5,
+    });
+
+    const nextLevel = makeEraSave({ levelIndex: 1, revision: 5 });
+    const nextLayout = createLevelLayout(nextLevel);
+    expect(nextLevel.ageYears).toBe(4);
+    expect(nextLayout.id).toBe("level-2-2024");
+    expect(checkpointForSave(nextLevel, nextLayout)).toEqual({
+      x: 0,
+      y: 0,
+      z: 1,
+    });
+    expect(
+      nextLayout.encounters.map((encounter) => encounter.position.z),
+    ).toEqual([-8, -13, -21]);
   });
 });

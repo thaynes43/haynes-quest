@@ -1,0 +1,24 @@
+{
+  "asset_id": "prism-mimic",
+  "concept_version": "v001",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "generation": "Serial lead generation; actual output visually inspected.",
+  "reference_set": "storybook-v001; Blockling concept v001 used for material and presentation continuity",
+  "source": "Original fictional concept. No family reference or third-party mesh.",
+  "model_id_and_seed": "Not returned by the tool; not claimed.",
+  "status": "Concept selected for authoring; model production awaits its exclusive Astra scene lease; owner approval pending.",
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2432967,
+      "sha256": "dac7e3bcc5704ed2b31a343aba866733fe673129730f7e5dd030c5591457e92d"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 1831,
+      "sha256": "a989f4858f92d80667e31971f7aa4aa0c5a6513481c0e60445b0abedf5c12bad"
+    }
+  ]
+}

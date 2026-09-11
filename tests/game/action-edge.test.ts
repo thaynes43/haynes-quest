@@ -6,7 +6,12 @@ describe("brief actions between rendering frames", () => {
     input.setKey("Space", true);
     input.setKey("Space", false);
     expect(input.snapshot().jump).toBe(false);
-    expect(input.consumeActions()).toEqual({ jump: true, interact: false });
+    expect(input.consumeActions()).toEqual({
+      jump: true,
+      interact: false,
+      attack: false,
+      guard: false,
+    });
     expect(input.consumeActions().jump).toBe(false);
   });
   it("retains a quick touch action while independent movement continues", () => {
@@ -18,6 +23,24 @@ describe("brief actions between rendering frames", () => {
     expect(input.snapshot().moveY).toBe(1);
     input.set("jump", true);
     input.clear();
-    expect(input.consumeActions()).toEqual({ jump: false, interact: false });
+    expect(input.consumeActions()).toEqual({
+      jump: false,
+      interact: false,
+      attack: false,
+      guard: false,
+    });
+  });
+
+  it("retains attack and guard taps independently between frames", () => {
+    const input = new GameInputState();
+    input.setKey("KeyF", true);
+    input.setKey("KeyF", false);
+    input.set("guard", true);
+    input.set("guard", false);
+    expect(input.consumeActions()).toMatchObject({ attack: true, guard: true });
+    expect(input.consumeActions()).toMatchObject({
+      attack: false,
+      guard: false,
+    });
   });
 });

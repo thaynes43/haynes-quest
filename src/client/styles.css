@@ -1777,3 +1777,625 @@ footer {
     padding: 10px 16px;
   }
 }
+
+/* Era combat review: keep the scene open and the current objective readable. */
+.era-game .chapter-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #302d43df;
+  border-color: #efd9b75c;
+  padding: 10px 24px;
+  color: #fff0d4;
+}
+.era-game .chapter-pill > span {
+  color: #ddc492;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+.era-game .chapter-pill strong {
+  font:
+    18px Georgia,
+    serif;
+  font-weight: normal;
+}
+.era-hud {
+  position: absolute;
+  top: 105px;
+  left: max(26px, env(safe-area-inset-left));
+  width: 224px;
+  padding: 16px 18px;
+  border-radius: 13px;
+  background: #302d43e0;
+  border: 1px solid #dbc69550;
+  backdrop-filter: blur(8px);
+  color: #fff0d4;
+}
+.age-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.age-line strong {
+  font:
+    29px Georgia,
+    serif;
+  white-space: nowrap;
+}
+.age-line > span {
+  font-size: 10px;
+  color: #d0c4bc;
+}
+.health-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 12px;
+}
+.health-line > span {
+  font-size: 14px;
+  color: #ed9b8e;
+}
+.health-line meter {
+  width: 128px;
+  height: 11px;
+}
+.health-line b {
+  font-size: 9px;
+  color: #e4d5c3;
+  white-space: nowrap;
+}
+.health-line meter::-webkit-meter-bar,
+.boss-hud meter::-webkit-meter-bar {
+  background: #171724;
+  border: 0;
+  border-radius: 8px;
+}
+.health-line meter::-webkit-meter-optimum-value {
+  background: #d28c80;
+  border-radius: 8px;
+}
+.health-line meter::-moz-meter-bar {
+  background: #d28c80;
+  border-radius: 8px;
+}
+.equipment-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  color: #e4c988;
+}
+.era-objective {
+  position: absolute;
+  top: 108px;
+  right: max(26px, env(safe-area-inset-right));
+  width: 235px;
+  padding: 13px 17px;
+  border: 1px solid #e0c99142;
+  border-radius: 10px;
+  color: #f7e9d3;
+  background: #302d43d9;
+}
+.era-objective small {
+  color: #d9bd85;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+.era-objective p {
+  margin: 7px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.boss-hud {
+  position: absolute;
+  top: 110px;
+  width: min(27vw, 340px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff0d4;
+  text-align: center;
+  background: #302d43df;
+  padding: 12px 20px;
+  border-radius: 9px;
+}
+.boss-hud span {
+  display: block;
+  font:
+    18px Georgia,
+    serif;
+  margin-bottom: 7px;
+}
+.boss-hud meter {
+  display: block;
+  width: 100%;
+  height: 9px;
+}
+.boss-hud meter::-webkit-meter-optimum-value {
+  background: #cc837d;
+  border-radius: 8px;
+}
+.boss-hud meter::-moz-meter-bar {
+  background: #cc837d;
+}
+.target-hint {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 190px;
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: #302d43d9;
+  color: #fff0d4;
+  font-size: 12px;
+  pointer-events: none;
+}
+.combat-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 70px);
+  gap: 9px;
+  align-items: end;
+}
+.combat-actions .action-button {
+  width: 70px;
+  height: 70px;
+  background: #302d43d9;
+  border-color: #efd9b794;
+  color: #fff0d4;
+}
+.combat-actions .combat-attack {
+  background: #725046ed;
+}
+.combat-actions .action-button.available {
+  background: #8c6838ed;
+  border-color: #ffe0a2;
+}
+.combat-actions .action-button:disabled {
+  opacity: 0.48;
+}
+.combat-actions .action-button small {
+  font-size: 10px;
+}
+.era-game .keyboard-hint {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -14px;
+  margin: 0;
+  white-space: nowrap;
+  font-size: 9px;
+  background: #302d43cc;
+  padding: 10px 13px;
+}
+.era-game .keyboard-hint span {
+  margin-left: 7px;
+  padding: 3px 4px;
+}
+.era-game .joystick {
+  background: #302d43b8;
+}
+.era-game .game-bottom {
+  bottom: max(45px, env(safe-area-inset-bottom));
+}
+.pickup-prompt {
+  position: absolute;
+  bottom: 205px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 310px;
+  padding: 12px 21px;
+  border-radius: 12px;
+  text-align: center;
+  background: #f7e8cbee;
+  color: #493d41;
+}
+.pickup-prompt strong {
+  font:
+    21px Georgia,
+    serif;
+}
+.pickup-prompt span {
+  font-size: 10px;
+  line-height: 1.5;
+}
+.open-victory {
+  position: absolute;
+  bottom: 205px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.media-warning {
+  position: absolute;
+  bottom: 215px;
+  left: 22px;
+  max-width: 215px;
+  padding: 10px 14px;
+  background: #f8e6d5;
+  color: #604941;
+  border-radius: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.media-warning button {
+  display: block;
+  margin-top: 8px;
+  text-decoration: underline;
+  color: inherit;
+  background: none;
+  padding: 0;
+  font: inherit;
+}
+.era-game .game-error {
+  z-index: 30;
+  top: auto;
+  bottom: 240px;
+  box-shadow: 0 5px 30px #211c3544;
+}
+.era-modal-scrim {
+  background: #231f36ad;
+}
+.era-modal {
+  width: min(100%, 560px);
+  max-width: 560px;
+  padding: 35px;
+  border-color: #f8e5b5;
+  background: #f4ead9;
+}
+.era-modal.wide {
+  width: min(100%, 910px);
+  max-width: 910px;
+}
+.era-modal h2 {
+  font-size: 34px;
+  line-height: 1.12;
+}
+.era-modal p,
+.era-modal dl {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #675f5c;
+}
+.era-modal > .small-note {
+  max-width: none;
+  text-align: left;
+}
+.era-modal .memory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
+.victory-memory {
+  margin: 0;
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid #c6b48f70;
+  background: #fff9ed;
+  border-radius: 9px;
+  box-shadow: 0 3px 12px #7053390a;
+}
+.victory-memory figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 5px 6px;
+}
+.victory-memory figcaption strong {
+  font:
+    20px Georgia,
+    serif;
+  color: #433847;
+}
+.victory-memory figcaption small {
+  font-size: 9px;
+  color: #80746a;
+}
+.memory-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #e6d9c3;
+  display: grid;
+  place-items: center;
+  color: #6e6053;
+}
+.memory-image img,
+.memory-grid .memory-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  aspect-ratio: auto;
+}
+.memory-image:not(.is-loaded) > img {
+  opacity: 0;
+}
+.memory-image > span {
+  position: absolute;
+  padding: 12px;
+  font-size: 12px;
+}
+.memory-image-unavailable {
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  text-align: center;
+  font-size: 12px;
+}
+.memory-image-unavailable p {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+.memory-image-unavailable button {
+  background: #5b4c65;
+  color: #fff6e2;
+  padding: 9px 13px;
+  border-radius: 5px;
+  font-size: 11px;
+}
+.victory-memory .secondary {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
+.remembered-mark {
+  display: block;
+  padding: 13px 5px 5px;
+  color: #56734f;
+  font-size: 11px;
+}
+.era-modal .absorb-memories {
+  margin-top: 0;
+}
+.era-modal > small {
+  display: block;
+  margin-top: 14px;
+  font-size: 11px;
+}
+.era-modal .primary:disabled {
+  opacity: 0.55;
+}
+.era-modal > .secondary {
+  margin-left: 12px;
+}
+.legacy-journey {
+  max-width: 980px;
+  padding: 55px 24px;
+  margin: 0 auto;
+}
+.legacy-journey > p {
+  max-width: 650px;
+  line-height: 1.8;
+  color: #746654;
+}
+.legacy-journey .memory-grid {
+  margin: 25px 0;
+}
+.memory-choice > .memory-image {
+  border-radius: 0;
+}
+@media (max-width: 900px) {
+  .era-game .keyboard-hint {
+    display: none;
+  }
+  .era-hud {
+    width: 195px;
+    padding: 12px 14px;
+  }
+  .era-objective {
+    width: 210px;
+  }
+  .boss-hud {
+    top: 235px;
+    width: 280px;
+  }
+}
+@media (max-width: 600px) {
+  .era-game .game-header {
+    top: max(14px, env(safe-area-inset-top));
+  }
+  .era-game .chapter-pill {
+    padding: 7px 10px;
+    margin: 0 7px;
+    max-width: 150px;
+  }
+  .era-game .chapter-pill > span {
+    font-size: 8px;
+  }
+  .era-game .chapter-pill strong {
+    font-size: 13px;
+  }
+  .era-game .leave-button span {
+    display: none;
+  }
+  .era-hud {
+    top: 83px;
+    left: 14px;
+    width: 164px;
+    padding: 11px 12px;
+  }
+  .age-line {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .age-line strong {
+    font-size: 24px;
+  }
+  .age-line > span {
+    display: none;
+  }
+  .health-line {
+    margin: 9px 0;
+    gap: 5px;
+  }
+  .health-line meter {
+    width: 85px;
+  }
+  .health-line b {
+    font-size: 8px;
+  }
+  .equipment-line {
+    font-size: 8px;
+    gap: 5px;
+  }
+  .era-objective {
+    top: 83px;
+    right: 14px;
+    width: calc(100% - 208px);
+    padding: 10px 11px;
+  }
+  .era-objective small {
+    font-size: 7px;
+    letter-spacing: 0.08em;
+  }
+  .era-objective p {
+    font-size: 10px;
+    line-height: 1.45;
+    margin-top: 5px;
+  }
+  .boss-hud {
+    top: 210px;
+    width: min(70%, 270px);
+    padding: 9px 15px;
+  }
+  .boss-hud span {
+    font-size: 15px;
+  }
+  .era-game .game-bottom {
+    left: 17px;
+    right: 17px;
+    bottom: max(45px, env(safe-area-inset-bottom));
+  }
+  .combat-actions {
+    grid-template-columns: repeat(2, 62px);
+    gap: 7px;
+  }
+  .combat-actions .action-button {
+    width: 62px;
+    height: 62px;
+    font-size: 24px;
+  }
+  .combat-actions .action-button small {
+    font-size: 9px;
+  }
+  .target-hint {
+    bottom: 197px;
+    font-size: 10px;
+  }
+  .pickup-prompt {
+    bottom: 200px;
+    min-width: 200px;
+    padding: 10px 16px;
+  }
+  .pickup-prompt strong {
+    font-size: 18px;
+  }
+  .pickup-prompt span {
+    font-size: 9px;
+  }
+  .open-victory {
+    bottom: 203px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .media-warning {
+    left: 15px;
+    bottom: 205px;
+    max-width: 160px;
+    font-size: 10px;
+  }
+  .era-modal-scrim {
+    padding: 14px;
+  }
+  .era-modal {
+    padding: 28px 20px;
+  }
+  .era-modal h2 {
+    font-size: 28px;
+  }
+  .era-modal p {
+    font-size: 12px;
+  }
+  .era-modal .memory-grid {
+    grid-template-columns: 1fr;
+    margin: 18px 0;
+  }
+  .era-modal .primary {
+    font-size: 11px;
+    padding: 13px 17px;
+  }
+  .era-game .game-error {
+    bottom: 195px;
+    font-size: 11px;
+  }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  .era-hud {
+    top: 68px;
+    width: 175px;
+    padding: 8px 12px;
+  }
+  .age-line strong {
+    font-size: 22px;
+  }
+  .health-line {
+    margin: 7px 0;
+  }
+  .equipment-line {
+    font-size: 9px;
+  }
+  .era-objective {
+    top: 67px;
+    width: 205px;
+  }
+  .era-objective p {
+    font-size: 10px;
+  }
+  .boss-hud {
+    top: 74px;
+    width: 235px;
+  }
+  .boss-hud span {
+    font-size: 15px;
+  }
+  .era-game .game-bottom {
+    bottom: 25px;
+  }
+  .combat-actions {
+    grid-template-columns: repeat(2, 52px);
+    gap: 5px;
+  }
+  .combat-actions .action-button {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+  .combat-actions .action-button small {
+    font-size: 8px;
+  }
+  .pickup-prompt,
+  .open-victory {
+    bottom: 57px;
+  }
+  .target-hint {
+    bottom: 27px;
+  }
+}
+
+.era-game .era-modal .game-error,
+.era-game .era-modal .media-warning {
+  position: relative;
+  inset: auto;
+  transform: none;
+  width: auto;
+  max-width: none;
+  margin: 0 0 16px;
+  box-shadow: none;
+}

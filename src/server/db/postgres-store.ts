@@ -2,7 +2,10 @@ import { randomUUID } from 'node:crypto';
 import { and, desc, eq, gt } from 'drizzle-orm';
 import { drizzle, type NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
+import { createAdventurePlan, createInitialAdventureState } from '../../shared/adventure.js';
+import type { GameplayActionRequest } from '../../shared/contracts.js';
 import {
+  applyGameplayActionToSave,
   abilitiesForAge,
   appearanceForAge,
   isValidFrozenManifest,
@@ -14,6 +17,7 @@ import {
   type PreviewRecord,
   type QuestStore,
   type SaveRecord,
+  validateSaveRecord,
 } from '../domain.js';
 import { AppError } from '../errors.js';
 import { fixtureSessions, players, questSchema, saves, setupPreviews } from './schema.js';
@@ -136,6 +140,8 @@ export class PostgresQuestStore implements QuestStore {
       if (memories.length < 1 || memories.length > 24) {
         throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
       }
+      const adventurePlan = createAdventurePlan(preview.birthDate, memories);
+      const adventureState = createInitialAdventureState(adventurePlan);
 
       const [created] = await transaction
         .insert(saves)
@@ -152,6 +158,9 @@ export class PostgresQuestStore implements QuestStore {
           abilities: abilitiesForAge(0),
           appearanceStage: appearanceForAge(0),
           completed: false,
+          saveFormat: 'era-combat-v2',
+          adventurePlan,
+          adventureState,
           revision: 0,
           versions: RULE_VERSIONS,
         })
@@ -179,7 +188,12 @@ export class PostgresQuestStore implements QuestStore {
     return row ? mapSave(row) : null;
   }
 
-  async recoverMemory(ownerId: string, saveId: string, memoryId: string): Promise<SaveRecord> {
+  async applyGameplayAction(
+    ownerId: string,
+    saveId: string,
+    request: GameplayActionRequest,
+    now: Date,
+  ): Promise<SaveRecord> {
     return this.db.transaction(async (transaction) => {
       const [row] = await transaction
         .select()
@@ -188,48 +202,22 @@ export class PostgresQuestStore implements QuestStore {
         .for('update')
         .limit(1);
       if (!row) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
-      if (row.recoveredIds.includes(memoryId)) return mapSave(row);
-
-      const memoryIndex = row.memories.findIndex((memory) => memory.id === memoryId);
-      if (memoryIndex < 0) throw new AppError(404, 'MEMORY_NOT_FOUND', 'Memory not found');
-      if (memoryIndex !== row.recoveredIds.length) {
-        throw new AppError(409, 'MEMORY_OUT_OF_ORDER', 'Memory is out of order');
-      }
-
-      const ageYears = Math.max(row.ageYears, row.memories[memoryIndex]!.ageYears);
+      const current = mapSave(row);
+      const result = applyGameplayActionToSave(current, request, now);
+      if (result.replay) return result.save;
+      const next = result.save;
       const [updated] = await transaction
         .update(saves)
         .set({
-          recoveredIds: [...row.recoveredIds, memoryId],
-          ageYears,
-          abilities: abilitiesForAge(ageYears),
-          appearanceStage: appearanceForAge(ageYears),
-          revision: row.revision + 1,
-          updatedAt: new Date(),
+          recoveredIds: next.recoveredIds,
+          ageYears: next.ageYears,
+          abilities: next.abilities,
+          appearanceStage: next.appearanceStage,
+          completed: next.completed,
+          adventureState: next.adventureState,
+          revision: next.revision,
+          updatedAt: next.updatedAt,
         })
-        .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId), eq(saves.revision, row.revision)))
-        .returning();
-      if (!updated) throw new AppError(409, 'SAVE_CONFLICT', 'Save changed');
-      return mapSave(updated);
-    });
-  }
-
-  async finishSave(ownerId: string, saveId: string): Promise<SaveRecord> {
-    return this.db.transaction(async (transaction) => {
-      const [row] = await transaction
-        .select()
-        .from(saves)
-        .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId)))
-        .for('update')
-        .limit(1);
-      if (!row) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
-      if (row.completed) return mapSave(row);
-      if (row.recoveredIds.length !== row.memories.length) {
-        throw new AppError(409, 'JOURNEY_INCOMPLETE', 'Journey incomplete');
-      }
-      const [updated] = await transaction
-        .update(saves)
-        .set({ completed: true, revision: row.revision + 1, updatedAt: new Date() })
         .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId), eq(saves.revision, row.revision)))
         .returning();
       if (!updated) throw new AppError(409, 'SAVE_CONFLICT', 'Save changed');
@@ -310,7 +298,7 @@ function mapPreview(row: PreviewRow): PreviewRecord {
 }
 
 function mapSave(row: SaveRow): SaveRecord {
-  return {
+  return validateSaveRecord({
     id: row.id,
     ownerId: row.ownerId,
     previewId: row.previewId,
@@ -323,9 +311,12 @@ function mapSave(row: SaveRow): SaveRecord {
     abilities: row.abilities,
     appearanceStage: row.appearanceStage,
     completed: row.completed,
+    saveFormat: row.saveFormat,
+    adventurePlan: row.adventurePlan,
+    adventureState: row.adventureState,
     revision: row.revision,
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
     versions: row.versions,
-  };
+  });
 }

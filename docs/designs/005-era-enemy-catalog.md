@@ -1,10 +1,23 @@
 # DESIGN-005: Era-based enemies and bosses
 
-- **Status:** Proposed
-- **Last updated:** 2026-09-10
+- **Status:** Current two-period combat implemented for review; broader catalog proposed
+- **Last updated:** 2026-09-11
 - **Source:** Tom's era-based pop-culture enemy and boss brief
 - **Satisfies:** [PRD-001 R-20–R-34](../prds/001-project-brief.md)
 - **Related:** [Memory journey](004-memory-journey.md), [saved games](001-technical-foundation.md), [asset authoring](002-asset-pipeline.md), [memory-age abilities](006-memory-age-and-abilities.md)
+
+## Current correction and roster studies
+
+[DESIGN-010](010-era-combat-loop.md) and [PLAN-005](../../.agents/plans/005-era-combat-loop.md) supersede the earlier decision to postpone all combat. Each current level needs useful equipment, two ordinary encounters and a boss. Boss victory releases the memories; consuming their completed bundle changes age and the next period. Exact roster balance and broader history coverage are not established by this two-period fixture.
+
+| Period | Ordinary studies | Boss study | Curation basis |
+| --- | --- | --- | --- |
+| 2020 | Blockling; Signal Moth | The Buffer Baron | Building-block play and livestreaming culture |
+| 2024 | Loop Dancer; Prism Mimic | The Trendweaver | Short-form remix, performance and participatory media culture |
+
+These are original lead-authored directions, not licensed franchise characters or claims about the subject's interests. The 2020 direction is informed by [YouTube's 2020 gaming report](https://blog.youtube/news-and-events/youtube-gaming-2020/), which describes block-building content and livestream growth. The 2024 direction draws on the platform's contemporary [culture report](https://blog.youtube/culture-and-trends/2024-top-trends/) and [TikTok's year review](https://newsroom.tiktok.com/year-on-tiktok-2024?lang=en). Those reports support period curation, not an assertion that the game designs themselves existed historically.
+
+The [catalog](../assets/catalog.md) has selected Blockling and Signal Moth concepts. New Blender model dispatch is blocked by native task capacity in [WO-014](../../.agents/work-orders/014-blender-era-2020.md); no author started or scene changed. The local game uses clearly identified encounter/equipment studies while that production is outstanding. Do not label the new roster as finished or owner-approved. The finite server plans currently freeze generic encounter IDs, roles, kinds and values for the synthetic fixture; this is not a full historically eligible production catalog.
 
 ## Player experience
 
@@ -71,6 +84,6 @@ The U.S. Copyright Office distinguishes ideas from their protected expression an
 | Q-01 | Which references and original enemies/bosses cover the initial eras? | Deferred to content curation after the core PoC is evaluated; no historical roster has been selected or verified. |
 | Q-02 | How should gender/interests influence selection, and which setup fields are required? | Manual entry for the journey subject is the direction; exact UI, weighting, and overrides remain proposed. |
 | Q-03 | How do decade/proportional chapters transition between enemy eras? | Calendar-period matching is required; exact chapter grouping and encounter transitions remain for level design. |
-| Q-04 | How do enemy encounters and bosses work? | Deferred; no combat mechanics, boss-per-level quota, or difficulty curve is selected. |
+| Q-04 | How do enemy encounters and bosses work? | Owner-confirmed equipment → combat → boss → memories → age/period loop. DESIGN-010 implements provisional health, guard, attack, defeat/retry and one boss after two ordinary encounters per current level. Final balance remains open. |
 
-This catalog design remains documentation only. Detailed fighting and broader encounter production are [BL-02](../BACKLOG.md#bl-02-combat-bosses-and-encounter-content). The bounded PoC in [DESIGN-007](007-poc-development-loop.md) can proceed with a synthetic collection/ability route without enemies; the catalog remains part of the later game direction.
+The current combat implementation and unfinished required assets belong to PLAN-005. [BL-02](../BACKLOG.md#bl-02-combat-bosses-and-encounter-content) covers broader roster production and final balance after the corrected slice; it does not defer the boss or equipment needed by the current coming-of-age arc.
