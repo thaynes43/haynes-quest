@@ -1,5 +1,8 @@
 import { randomUUID } from 'node:crypto';
+import { createAdventurePlan, createInitialAdventureState } from '../../shared/adventure.js';
+import type { GameplayActionRequest } from '../../shared/contracts.js';
 import {
+  applyGameplayActionToSave,
   abilitiesForAge,
   appearanceForAge,
   isValidFrozenManifest,
@@ -11,6 +14,7 @@ import {
   type PreviewRecord,
   type QuestStore,
   type SaveRecord,
+  validateSaveRecord,
 } from '../domain.js';
 import { AppError } from '../errors.js';
 
@@ -19,6 +23,19 @@ export class InMemoryQuestStore implements QuestStore {
   private readonly previews = new Map<string, PreviewRecord>();
   private readonly saves = new Map<string, SaveRecord>();
   private locked: Promise<void> = Promise.resolve();
+
+  constructor(
+    initialSaves: SaveRecord[] = [],
+    initialSessions: Array<{ sessionId: string; player: PlayerRecord; expiresAt: Date }> = [],
+  ) {
+    for (const save of initialSaves) this.saves.set(save.id, cloneSave(validateSaveRecord(save)));
+    for (const session of initialSessions) {
+      this.sessions.set(session.sessionId, {
+        player: { ...session.player },
+        expiresAt: new Date(session.expiresAt),
+      });
+    }
+  }
 
   async ready(): Promise<boolean> {
     return true;
@@ -80,6 +97,8 @@ export class InMemoryQuestStore implements QuestStore {
         throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
       }
       const now = new Date();
+      const adventurePlan = createAdventurePlan(preview.birthDate, memories);
+      const adventureState = createInitialAdventureState(adventurePlan);
       const save: SaveRecord = {
         id: randomUUID(),
         ownerId: command.ownerId,
@@ -93,6 +112,9 @@ export class InMemoryQuestStore implements QuestStore {
         abilities: abilitiesForAge(0),
         appearanceStage: appearanceForAge(0),
         completed: false,
+        saveFormat: 'era-combat-v2',
+        adventurePlan,
+        adventureState,
         revision: 0,
         createdAt: now,
         updatedAt: now,
@@ -115,39 +137,18 @@ export class InMemoryQuestStore implements QuestStore {
     return save?.ownerId === ownerId ? cloneSave(save) : null;
   }
 
-  async recoverMemory(ownerId: string, saveId: string, memoryId: string): Promise<SaveRecord> {
+  async applyGameplayAction(
+    ownerId: string,
+    saveId: string,
+    request: GameplayActionRequest,
+    now: Date,
+  ): Promise<SaveRecord> {
     return this.exclusive(() => {
       const save = this.saves.get(saveId);
       if (!save || save.ownerId !== ownerId) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
-      if (save.recoveredIds.includes(memoryId)) return cloneSave(save);
-      const index = save.memories.findIndex((memory) => memory.id === memoryId);
-      if (index < 0) throw new AppError(404, 'MEMORY_NOT_FOUND', 'Memory not found');
-      if (index !== save.recoveredIds.length) {
-        throw new AppError(409, 'MEMORY_OUT_OF_ORDER', 'Memory is out of order');
-      }
-      const ageYears = Math.max(save.ageYears, save.memories[index]!.ageYears);
-      save.recoveredIds.push(memoryId);
-      save.ageYears = ageYears;
-      save.abilities = abilitiesForAge(ageYears);
-      save.appearanceStage = appearanceForAge(ageYears);
-      save.revision += 1;
-      save.updatedAt = new Date();
-      return cloneSave(save);
-    });
-  }
-
-  async finishSave(ownerId: string, saveId: string): Promise<SaveRecord> {
-    return this.exclusive(() => {
-      const save = this.saves.get(saveId);
-      if (!save || save.ownerId !== ownerId) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
-      if (save.completed) return cloneSave(save);
-      if (save.recoveredIds.length !== save.memories.length) {
-        throw new AppError(409, 'JOURNEY_INCOMPLETE', 'Journey incomplete');
-      }
-      save.completed = true;
-      save.revision += 1;
-      save.updatedAt = new Date();
-      return cloneSave(save);
+      const result = applyGameplayActionToSave(validateSaveRecord(save), request, now);
+      if (!result.replay) this.saves.set(saveId, result.save);
+      return cloneSave(result.save);
     });
   }
 
@@ -196,7 +197,11 @@ function sameSelection(memories: { id: string }[], selectedIds: string[]): boole
 }
 
 function cloneSave(save: SaveRecord): SaveRecord {
-  return { ...structuredClone(save), createdAt: new Date(save.createdAt), updatedAt: new Date(save.updatedAt) };
+  return validateSaveRecord({
+    ...structuredClone(save),
+    createdAt: new Date(save.createdAt),
+    updatedAt: new Date(save.updatedAt),
+  });
 }
 
 function clonePreview(preview: PreviewRecord): PreviewRecord {

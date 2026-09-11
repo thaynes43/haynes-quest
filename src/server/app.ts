@@ -4,6 +4,7 @@ import { secureHeaders } from 'hono/secure-headers';
 import { serveStatic } from '@hono/node-server/serve-static';
 import type { ApiError, SessionView } from '../shared/contracts.js';
 import {
+  canAccessSaveMemory,
   toSaveSummary,
   toSaveView,
   type PlayerRecord,
@@ -18,6 +19,7 @@ import { enforceMutationSecurity, FixtureSessions, RequestLimiter } from './secu
 import {
   createSaveSchema,
   finishSchema,
+  gameplayActionRequestSchema,
   parseJson,
   previewRequestSchema,
   recoverSchema,
@@ -33,6 +35,7 @@ export interface AppOptions {
   photoSource?: JourneyPhotoSource;
   privateMedia?: PrivateMediaProvider;
   diagnosticSink?: DiagnosticSink;
+  now?: () => Date;
 }
 
 export type SafeErrorClass =
@@ -66,6 +69,7 @@ const DIAGNOSTIC_ROUTES = new Set([
   '/api/saves/:id',
   '/api/saves/:id/recover',
   '/api/saves/:id/finish',
+  '/api/saves/:id/actions',
   '/api/saves/:id/media/:memoryId',
 ]);
 
@@ -83,6 +87,7 @@ export function createApp(options: AppOptions): Hono {
     : null;
   const photoSource = options.fixtureMode ? (options.photoSource ?? new FixturePhotoSource()) : options.photoSource;
   const limiter = new RequestLimiter(120, 60_000);
+  const actionLimiter = new RequestLimiter(360, 60_000);
   const diagnosticSink = options.diagnosticSink ?? writeSafeDiagnostic;
 
   app.use('*', secureHeaders({
@@ -153,9 +158,8 @@ export function createApp(options: AppOptions): Hono {
     enforceMutationSecurity(context, options.appOrigin);
     const player = await requirePlayer(context, sessions);
     limiter.take(`write:${player.id}`);
-    const { memoryId } = await parseJson(context, recoverSchema);
-    const save = await options.store.recoverMemory(player.id, context.req.param('id'), memoryId);
-    return context.json(toSaveView(save));
+    await parseJson(context, recoverSchema);
+    await rejectRetiredSaveMutation(options.store, player.id, context.req.param('id'));
   });
 
   app.post('/api/saves/:id/finish', async (context) => {
@@ -163,8 +167,22 @@ export function createApp(options: AppOptions): Hono {
     const player = await requirePlayer(context, sessions);
     limiter.take(`write:${player.id}`);
     await parseJson(context, finishSchema);
-    const save = await options.store.finishSave(player.id, context.req.param('id'));
-    return context.json(toSaveView(save));
+    await rejectRetiredSaveMutation(options.store, player.id, context.req.param('id'));
+  });
+
+  app.post('/api/saves/:id/actions', async (context) => {
+    enforceMutationSecurity(context, options.appOrigin);
+    const player = await requirePlayer(context, sessions);
+    actionLimiter.take(`action:${player.id}`);
+    const request = await parseJson(context, gameplayActionRequestSchema);
+    const now = options.now?.() ?? new Date();
+    const save = await options.store.applyGameplayAction(
+      player.id,
+      context.req.param('id'),
+      request,
+      now,
+    );
+    return context.json(toSaveView(save, now));
   });
 
   app.get('/api/saves/:id/media/:memoryId', async (context) => {
@@ -173,6 +191,9 @@ export function createApp(options: AppOptions): Hono {
     const save = await options.store.getSave(player.id, context.req.param('id'));
     const memory = save?.memories.find((candidate) => candidate.id === context.req.param('memoryId'));
     if (!save || !memory) throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
+    if (!canAccessSaveMemory(save, memory.id)) {
+      throw new AppError(409, 'MEDIA_LOCKED', 'Memory is locked');
+    }
     if (memory.source.kind === 'fixture') {
       if (!options.fixtureMode) throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
       const svg = fixtureSvg(memory.source.key);
@@ -255,6 +276,19 @@ async function requirePlayer(context: Context, sessions: FixtureSessions | null)
   const player = await sessions?.current(context);
   if (!player) throw new AppError(401, 'AUTH_REQUIRED', 'Authentication required');
   return player;
+}
+
+async function rejectRetiredSaveMutation(
+  store: QuestStore,
+  ownerId: string,
+  saveId: string,
+): Promise<never> {
+  const save = await store.getSave(ownerId, saveId);
+  if (!save) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
+  if (save.saveFormat === 'legacy-v1') {
+    throw new AppError(409, 'LEGACY_SAVE_READ_ONLY', 'Legacy save is read only');
+  }
+  throw new AppError(409, 'ACTION_ROUTE_RETIRED', 'Use gameplay actions');
 }
 
 function errorResponse(context: Context, status: AppError['status'], code: string, message: string) {

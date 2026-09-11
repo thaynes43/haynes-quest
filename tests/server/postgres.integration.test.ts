@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { Pool } from 'pg';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { PostgresQuestStore } from '../../src/server/db/postgres-store.js';
@@ -43,13 +44,19 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
     try {
       expect(await restartedStore.getSession(sessionId, new Date())).toEqual(player);
       const resumed = await restartedStore.getSave(player.id, created.id);
-      expect(resumed).toMatchObject({ id: created.id, recoveredIds: [], revision: 0 });
+      expect(resumed).toMatchObject({
+        id: created.id,
+        recoveredIds: [],
+        revision: 0,
+        saveFormat: 'era-combat-v2',
+        adventureState: { phase: 'exploring', ageYears: 0 },
+      });
     } finally {
       await restartedStore.close();
     }
   });
 
-  it('Postgres serializes concurrent recovery and scopes every query by owner', async () => {
+  it('Postgres serializes idempotent combat actions and scopes every query by owner', async () => {
     const store = PostgresQuestStore.connect(testDatabaseUrl!);
     try {
       const owner = await store.createFixtureSession(
@@ -67,15 +74,37 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
         selectedIds: preview.selectedIds,
       });
 
+      const level = save.adventurePlan!.levels[0]!;
+      const attackTool = level.pickups.find((pickup) => pickup.kind === 'attack-tool')!;
+      const equipped = await store.applyGameplayAction(owner.id, save.id, {
+        actionId: randomUUID(),
+        expectedRevision: 0,
+        action: { type: 'collect-equipment', levelId: level.id, pickupId: attackTool.pickupId },
+      }, new Date());
+      const actionId = randomUUID();
+      const attack = {
+        actionId,
+        expectedRevision: equipped.revision,
+        action: { type: 'attack' as const, levelId: level.id, encounterId: level.encounters[0]!.id },
+      };
       const [first, retried] = await Promise.all([
-        store.recoverMemory(owner.id, save.id, save.memories[0]!.id),
-        store.recoverMemory(owner.id, save.id, save.memories[0]!.id),
+        store.applyGameplayAction(owner.id, save.id, attack, new Date()),
+        store.applyGameplayAction(owner.id, save.id, attack, new Date()),
       ]);
-      expect(first.revision).toBe(1);
-      expect(retried.revision).toBe(1);
-      expect(first.recoveredIds).toEqual([save.memories[0]!.id]);
+      expect(first.revision).toBe(2);
+      expect(retried.revision).toBe(2);
+      expect(first.adventureState!.encounters[level.encounters[0]!.id]!.hp).toBe(
+        level.encounters[0]!.maxHp - attackTool.damage,
+      );
+      expect(retried.adventureState!.encounters[level.encounters[0]!.id]!.hp).toBe(
+        first.adventureState!.encounters[level.encounters[0]!.id]!.hp,
+      );
       expect(await store.getSave(stranger.id, save.id)).toBeNull();
-      await expect(store.recoverMemory(stranger.id, save.id, save.memories[1]!.id))
+      await expect(store.applyGameplayAction(stranger.id, save.id, {
+        actionId: randomUUID(),
+        expectedRevision: first.revision,
+        action: { type: 'attack', levelId: level.id, encounterId: level.encounters[1]!.id },
+      }, new Date()))
         .rejects.toMatchObject({ code: 'SAVE_NOT_FOUND' });
     } finally {
       await store.close();

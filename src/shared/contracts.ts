@@ -51,6 +51,7 @@ export interface EncounterView {
   hp: number;
   attackDamage: number;
   defeated: boolean;
+  available: boolean;
 }
 export interface ActiveLevelView {
   id: string;
@@ -118,6 +119,7 @@ export interface SaveSummary {
   recoveredCount: number;
   memoryCount: number;
   completed: boolean;
+  format: SaveFormat;
   createdAt: string;
   updatedAt: string;
 }
