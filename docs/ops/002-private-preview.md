@@ -6,7 +6,7 @@ The overnight build uses **fictional memories and temporary game art**. OAuth an
 
 Use Node 24 and the repository’s pinned pnpm version. Install with `pnpm install --frozen-lockfile`. Start a dedicated disposable PostgreSQL database, then provide `DATABASE_URL`, a randomly generated `BETTER_AUTH_SECRET` (at least 32 characters), `QUEST_FIXTURE_MODE=true`, `NODE_ENV=development` and `QUEST_APP_ORIGIN=http://127.0.0.1:3000` in your shell or an untracked local environment file. Never use a real photo credential in this process.
 
-Run `pnpm build`, then `pnpm start` from the repository root. The server applies checksum-tracked migrations from `migrations/` before listening on port 3000. Open `http://127.0.0.1:3000`. A signed, HttpOnly browser cookie identifies a server-assigned fictional player; clearing it starts another preview player. This temporary identity is not an additional production login method.
+Run `pnpm build`, then `pnpm start` from the repository root. The server applies checksum-tracked migrations from `migrations/` before listening on port 3000. Open `http://127.0.0.1:3000`. A signed, HttpOnly browser cookie identifies a server-assigned fictional player; clearing it starts another preview player. New fixture sessions are capped globally at120 per minute. A five-minute bounded maintenance pass removes expired sessions and unused previews, preserving all saves and their referenced previews. This temporary identity is not an additional production login method.
 
 For client development, set the API origin to `http://localhost:5173`, run `pnpm dev:server` and `pnpm dev` in separate terminals, and open that exact origin. Vite proxies the API. Do not mix `localhost` and `127.0.0.1` origins within one session.
 
