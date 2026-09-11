@@ -15,7 +15,7 @@ const delay = (milliseconds) =>
  * and the exploratory probes. `url` is the fixture origin; page errors are
  * pushed into `errors` so callers can assert on them at the end.
  */
-export function createJourneyDriver({ url, errors = [] }) {
+export function createJourneyDriver({ url, errors = [], onPageCreated = () => {} }) {
   const saveIds = new WeakMap();
 
   async function activateSetupControl(page, locator, inputKind) {
@@ -28,6 +28,7 @@ export function createJourneyDriver({ url, errors = [] }) {
 
   async function start(context, inputKind) {
     const page = await context.newPage();
+    onPageCreated(page);
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto(url);
     await activateSetupControl(

@@ -63,11 +63,16 @@ const overallTimer = setTimeout(
   overallTimeoutMs,
 );
 const errors = [];
-const driver = createJourneyDriver({ url, errors });
+const driver = createJourneyDriver({
+  url,
+  errors,
+  onPageCreated: (page) => {
+    activePage = page;
+  },
+});
 const { keyboardControls, touchControls, playJourney } = driver;
 async function start(context, inputKind) {
   const page = await driver.start(context, inputKind);
-  activePage = page;
   return page;
 }
 
