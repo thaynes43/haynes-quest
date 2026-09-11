@@ -5,6 +5,8 @@
 - **Stage:** Authoring dependency setup in progress before fresh-context game development; implementation not started
 - **Driving model and team:** GPT-6 Astra (`max`) leads; native Codex subagents use GPT-5.6 Sol (`xhigh`) with empty conversation context and self-contained work orders
 
+This handoff is for Astra to resume as the Haynes Quest lead with the full project context and decision rationale. Preserve useful planning context; the empty-context requirement applies to delegated Sol subagents and their bounded work orders.
+
 ## Established
 
 A novelty Roblox-style 3D browser game, initially for Tom's family, hosted through `haynes-ops`. Required targets are iPad/iPhone Safari with on-screen touch controls and PC keyboard/mouse. It opens as a normal HTTPS web app; no native iOS, TestFlight, or required installation. Gamepad is later work.
@@ -27,7 +29,7 @@ The agreed visual workflow is image-generated concepts followed by Blender throu
 
 [DESIGN-008](../docs/designs/008-audio-pipeline.md) selects self-hosted Stable Audio Small-SFX through the official optimized CPU implementation. Its published optimized files support anonymous download; the gated PyTorch checkpoint is not required. Audio gets its own service, model cache, workspace, and private asynchronous MCP endpoint. GPU/music/narration remain later options. A real 10-second stereo test completed on CPU in 7.3 seconds with about 3.9 GiB peak process memory. PLAN-003 records the infrastructure checks; no game audio is approved.
 
-Astra owns architecture, integration, user-facing design/text, and final review. Native Codex Sol subagents at `xhigh` handle bounded code, authoring implementation, and verification tasks. Claude Code uses Opus for its own subagents. Each development task starts with `fork_turns: "none"`, the applicable repo instructions, and a self-contained [work order](work-orders/000-template.md); do not inherit the planning conversation or reuse an unrelated research session. Give each task owned paths and stable contracts; serialize shared Blender use or isolate sessions. The team size follows available concurrency rather than requiring permanent agents for every role.
+Astra owns architecture, integration, user-facing design/text, and final review. Native Codex Sol subagents at `xhigh` handle bounded code, authoring implementation, and verification tasks. Claude Code uses Opus for its own subagents. Each delegated Sol development task starts with `fork_turns: "none"`, the applicable repo instructions, and a self-contained [work order](work-orders/000-template.md); do not inherit the planning conversation or reuse an unrelated research session. Give each task owned paths and stable contracts; serialize shared Blender use or isolate sessions. The team size follows available concurrency rather than requiring permanent agents for every role.
 
 ## Readiness and next step
 
