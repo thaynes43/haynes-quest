@@ -1,4 +1,5 @@
 import { Hono, type Context } from 'hono';
+import { routePath } from 'hono/route';
 import { secureHeaders } from 'hono/secure-headers';
 import { serveStatic } from '@hono/node-server/serve-static';
 import type { ApiError, SessionView } from '../shared/contracts.js';
@@ -31,7 +32,42 @@ export interface AppOptions {
   studioDir: string;
   photoSource?: JourneyPhotoSource;
   privateMedia?: PrivateMediaProvider;
+  diagnosticSink?: DiagnosticSink;
 }
+
+export type SafeErrorClass =
+  | 'aggregate-error'
+  | 'eval-error'
+  | 'range-error'
+  | 'reference-error'
+  | 'syntax-error'
+  | 'type-error'
+  | 'uri-error'
+  | 'error'
+  | 'non-error';
+
+export interface SafeDiagnostic {
+  event: 'api_request_failed' | 'maintenance_failed' | 'shutdown_failed' | 'startup_failed';
+  errorClass: SafeErrorClass;
+  method?: string;
+  route?: string;
+  phase?: 'scheduled' | 'startup';
+}
+
+export type DiagnosticSink = (diagnostic: SafeDiagnostic) => void;
+
+const DIAGNOSTIC_ROUTES = new Set([
+  '/healthz',
+  '/readyz',
+  '/api/session',
+  '/api/fixture-media/:memoryId',
+  '/api/saves',
+  '/api/setup/preview',
+  '/api/saves/:id',
+  '/api/saves/:id/recover',
+  '/api/saves/:id/finish',
+  '/api/saves/:id/media/:memoryId',
+]);
 
 export function createApp(options: AppOptions): Hono {
   if (options.fixtureMode && options.photoSource && !(options.photoSource instanceof FixturePhotoSource)) {
@@ -47,6 +83,7 @@ export function createApp(options: AppOptions): Hono {
     : null;
   const photoSource = options.fixtureMode ? (options.photoSource ?? new FixturePhotoSource()) : options.photoSource;
   const limiter = new RequestLimiter(120, 60_000);
+  const diagnosticSink = options.diagnosticSink ?? writeSafeDiagnostic;
 
   app.use('*', secureHeaders({
     crossOriginResourcePolicy: 'same-origin',
@@ -161,10 +198,48 @@ export function createApp(options: AppOptions): Hono {
     return errorResponse(context, 404, 'NOT_FOUND', 'Not found');
   });
   app.onError((error, context) => {
+    if (!(error instanceof AppError)) {
+      emitSafeDiagnostic(diagnosticSink, {
+        event: 'api_request_failed',
+        errorClass: classifyError(error),
+        method: context.req.method,
+        route: diagnosticRoute(context),
+      });
+    }
     const failure = asAppError(error);
     return errorResponse(context, failure.status, failure.code, failure.message);
   });
   return app;
+}
+
+export function classifyError(error: unknown): SafeErrorClass {
+  if (error instanceof AggregateError) return 'aggregate-error';
+  if (error instanceof EvalError) return 'eval-error';
+  if (error instanceof RangeError) return 'range-error';
+  if (error instanceof ReferenceError) return 'reference-error';
+  if (error instanceof SyntaxError) return 'syntax-error';
+  if (error instanceof TypeError) return 'type-error';
+  if (error instanceof URIError) return 'uri-error';
+  if (error instanceof Error) return 'error';
+  return 'non-error';
+}
+
+export function writeSafeDiagnostic(diagnostic: SafeDiagnostic): void {
+  process.stderr.write(`${JSON.stringify(diagnostic)}\n`);
+}
+
+export function emitSafeDiagnostic(sink: DiagnosticSink, diagnostic: SafeDiagnostic): void {
+  try {
+    sink(diagnostic);
+  } catch {
+    // Diagnostics must not change the response or expose the original failure.
+  }
+}
+
+function diagnosticRoute(context: Context): string {
+  const matched = routePath(context, -1);
+  if (DIAGNOSTIC_ROUTES.has(matched)) return matched;
+  return context.req.path.startsWith('/api/') ? '/api/*' : '/*';
 }
 
 async function requirePlayer(context: Context, sessions: FixtureSessions | null): Promise<PlayerRecord> {

@@ -5,6 +5,7 @@ import {
   isValidFrozenManifest,
   RULE_VERSIONS,
   type CreateSaveCommand,
+  type FixtureMaintenanceResult,
   type NewPreviewRecord,
   type PlayerRecord,
   type PreviewRecord,
@@ -147,6 +148,30 @@ export class InMemoryQuestStore implements QuestStore {
       save.revision += 1;
       save.updatedAt = new Date();
       return cloneSave(save);
+    });
+  }
+
+  async maintainFixtureRecords(now: Date): Promise<FixtureMaintenanceResult> {
+    return this.exclusive(() => {
+      let sessionsDeleted = 0;
+      for (const [sessionId, session] of this.sessions) {
+        if (sessionsDeleted >= 1_000) break;
+        if (session.expiresAt <= now) {
+          this.sessions.delete(sessionId);
+          sessionsDeleted += 1;
+        }
+      }
+
+      const referencedPreviews = new Set([...this.saves.values()].map((save) => save.previewId));
+      let previewsDeleted = 0;
+      for (const [previewId, preview] of this.previews) {
+        if (previewsDeleted >= 1_000) break;
+        if (preview.expiresAt <= now && !referencedPreviews.has(previewId)) {
+          this.previews.delete(previewId);
+          previewsDeleted += 1;
+        }
+      }
+      return { sessionsDeleted, previewsDeleted };
     });
   }
 

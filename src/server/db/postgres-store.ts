@@ -8,6 +8,7 @@ import {
   isValidFrozenManifest,
   RULE_VERSIONS,
   type CreateSaveCommand,
+  type FixtureMaintenanceResult,
   type NewPreviewRecord,
   type PlayerRecord,
   type PreviewRecord,
@@ -21,6 +22,7 @@ import { migrateQuestDatabase } from './migrate.js';
 type Database = NodePgDatabase<typeof questSchema>;
 type PreviewRow = typeof setupPreviews.$inferSelect;
 type SaveRow = typeof saves.$inferSelect;
+const MAINTENANCE_BATCH_SIZE = 1_000;
 
 export class PostgresQuestStore implements QuestStore {
   readonly db: Database;
@@ -233,6 +235,52 @@ export class PostgresQuestStore implements QuestStore {
       if (!updated) throw new AppError(409, 'SAVE_CONFLICT', 'Save changed');
       return mapSave(updated);
     });
+  }
+
+  async maintainFixtureRecords(now: Date): Promise<FixtureMaintenanceResult> {
+    const expiredSessions = await this.pool.query<{ id: string }>(
+      `
+        WITH candidates AS (
+          SELECT id
+          FROM quest_fixture_sessions
+          WHERE expires_at <= $1
+          ORDER BY expires_at, id
+          LIMIT $2
+          FOR UPDATE SKIP LOCKED
+        )
+        DELETE FROM quest_fixture_sessions AS fixture_session
+        USING candidates
+        WHERE fixture_session.id = candidates.id
+        RETURNING fixture_session.id
+      `,
+      [now, MAINTENANCE_BATCH_SIZE],
+    );
+    const expiredPreviews = await this.pool.query<{ id: string }>(
+      `
+        WITH candidates AS (
+          SELECT setup_preview.id
+          FROM quest_setup_previews AS setup_preview
+          WHERE setup_preview.expires_at <= $1
+            AND NOT EXISTS (
+              SELECT 1
+              FROM quest_saves AS quest_save
+              WHERE quest_save.preview_id = setup_preview.id
+            )
+          ORDER BY setup_preview.expires_at, setup_preview.id
+          LIMIT $2
+          FOR UPDATE OF setup_preview SKIP LOCKED
+        )
+        DELETE FROM quest_setup_previews AS setup_preview
+        USING candidates
+        WHERE setup_preview.id = candidates.id
+        RETURNING setup_preview.id
+      `,
+      [now, MAINTENANCE_BATCH_SIZE],
+    );
+    return {
+      sessionsDeleted: expiredSessions.rowCount ?? expiredSessions.rows.length,
+      previewsDeleted: expiredPreviews.rowCount ?? expiredPreviews.rows.length,
+    };
   }
 
   async close(): Promise<void> {

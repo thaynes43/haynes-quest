@@ -70,6 +70,41 @@ describe('fixture API', () => {
     expect(forged.status).toBe(401);
   });
 
+  it('globally caps new fixture identities while established sessions still resume', async () => {
+    const { app } = makeApp();
+    const establishedResponse = await app.request('/api/session', {
+      headers: { 'user-agent': 'fixture-client-established' },
+    });
+    expect(establishedResponse.status).toBe(200);
+    const establishedCookie = establishedResponse.headers.get('set-cookie')!.split(';', 1)[0]!;
+    const establishedPlayer = (await establishedResponse.json()).player;
+
+    for (let index = 1; index < 120; index += 1) {
+      const response = await app.request('/api/session', {
+        headers: { 'user-agent': `rotating-fixture-client-${index}` },
+      });
+      expect(response.status).toBe(200);
+    }
+
+    const capped = await app.request('/api/session', {
+      headers: { 'user-agent': 'rotating-fixture-client-over-limit' },
+    });
+    expect(capped.status).toBe(429);
+    expect(await capped.json()).toEqual({
+      error: { code: 'RATE_LIMITED', message: 'Too many requests' },
+    });
+
+    const resumed = await app.request('/api/session', {
+      headers: {
+        cookie: establishedCookie,
+        'user-agent': 'fixture-client-resuming-after-limit',
+      },
+    });
+    expect(resumed.status).toBe(200);
+    expect((await resumed.json()).player).toEqual(establishedPlayer);
+    expect(resumed.headers.get('set-cookie')).toBeNull();
+  });
+
   it('requires same-origin JSON and the explicit CSRF header for mutations', async () => {
     const { app } = makeApp();
     const { cookie } = await startSession(app);
@@ -221,5 +256,43 @@ describe('fixture API', () => {
     });
     expect((await production.request('/api/session')).status).toBe(404);
     expect((await production.request('/api/saves')).status).toBe(401);
+  });
+
+  it('returns a safe 503 and records only bounded diagnostics for unexpected failures', async () => {
+    const sentinel = 'postgres://private:credential@db/source-person-id?cookie=secret';
+    const privateRouteValue = 'private-save-id-from-request-url';
+    class FailingStore extends InMemoryQuestStore {
+      override async getSave(): Promise<never> {
+        throw new TypeError(sentinel);
+      }
+    }
+    const diagnostics: unknown[] = [];
+    const store = new FailingStore();
+    const app = createApp({
+      store,
+      fixtureMode: true,
+      sessionSecret: SECRET,
+      appOrigin: ORIGIN,
+      clientDir: '/tmp/quest-client-not-present',
+      studioDir: '/tmp/quest-studio-not-present',
+      diagnosticSink: (diagnostic) => diagnostics.push(diagnostic),
+    });
+    const { cookie } = await startSession(app);
+
+    const response = await app.request(`/api/saves/${privateRouteValue}`, { headers: { cookie } });
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({
+      error: { code: 'SERVICE_UNAVAILABLE', message: 'Service unavailable' },
+    });
+    expect(diagnostics).toEqual([{
+      event: 'api_request_failed',
+      errorClass: 'type-error',
+      method: 'GET',
+      route: '/api/saves/:id',
+    }]);
+    const serialized = JSON.stringify(diagnostics);
+    expect(serialized).not.toContain(sentinel);
+    expect(serialized).not.toContain(privateRouteValue);
+    expect(serialized).not.toContain(cookie);
   });
 });

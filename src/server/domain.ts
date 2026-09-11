@@ -80,6 +80,11 @@ export interface CreateSaveCommand {
   title?: string;
 }
 
+export interface FixtureMaintenanceResult {
+  sessionsDeleted: number;
+  previewsDeleted: number;
+}
+
 export interface QuestStore {
   ready(): Promise<boolean>;
   getSession(sessionId: string, now: Date): Promise<PlayerRecord | null>;
@@ -90,6 +95,7 @@ export interface QuestStore {
   getSave(ownerId: string, saveId: string): Promise<SaveRecord | null>;
   recoverMemory(ownerId: string, saveId: string, memoryId: string): Promise<SaveRecord>;
   finishSave(ownerId: string, saveId: string): Promise<SaveRecord>;
+  maintainFixtureRecords(now: Date): Promise<FixtureMaintenanceResult>;
   close?(): Promise<void>;
 }
 

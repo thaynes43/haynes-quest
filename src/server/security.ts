@@ -6,8 +6,15 @@ import { AppError } from "./errors.js";
 
 const SESSION_COOKIE = "quest_fixture_session";
 const SESSION_LIFETIME_SECONDS = 7 * 24 * 60 * 60;
+const NEW_SESSION_LIMIT = 120;
+const NEW_SESSION_WINDOW_MS = 60_000;
 
 export class FixtureSessions {
+  private readonly issuanceLimiter = new RequestLimiter(
+    NEW_SESSION_LIMIT,
+    NEW_SESSION_WINDOW_MS,
+  );
+
   constructor(
     private readonly store: QuestStore,
     private readonly secret: string,
@@ -25,6 +32,7 @@ export class FixtureSessions {
   async establish(context: Context): Promise<PlayerRecord> {
     const current = await this.current(context);
     if (current) return current;
+    this.issuanceLimiter.take("new-session");
     const sessionId = randomUUID();
     const expiresAt = new Date(Date.now() + SESSION_LIFETIME_SECONDS * 1_000);
     const player = await this.store.createFixtureSession(sessionId, expiresAt);
