@@ -3,7 +3,7 @@ import type {
   EncounterKind,
   EquipmentView,
 } from "../shared/contracts";
-import { PARODY_CANDIDATES, PARODY_PERIODS } from "../shared/parody-catalog";
+import { ALL_PARODY_CANDIDATES, PARODY_PERIODS } from "../shared/parody-catalog";
 
 export function eraStory(year = 2020, level?: ActiveLevelView | null) {
   const period =
@@ -21,7 +21,7 @@ export function eraStory(year = 2020, level?: ActiveLevelView | null) {
       const identity = encounter.content;
       const entry =
         identity &&
-        PARODY_CANDIDATES.find(
+        ALL_PARODY_CANDIDATES.find(
           (candidate) =>
             candidate.id === identity.catalogEntryId &&
             candidate.version === identity.catalogEntryVersion &&

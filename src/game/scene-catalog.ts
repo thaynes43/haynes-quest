@@ -1,5 +1,5 @@
 import type { EncounterView, EquipmentKind } from "../shared/contracts";
-import { PARODY_CANDIDATES } from "../shared/parody-catalog";
+import { ALL_PARODY_CANDIDATES } from "../shared/parody-catalog";
 
 const parodyMotion: Record<
   string,
@@ -15,14 +15,14 @@ const parodyMotion: Record<
 
 /** Candidate identities are frozen by the server; legacy saves retain their old renderer. */
 export function parodyArtwork(content: NonNullable<EncounterView["content"]>) {
-  const entry = PARODY_CANDIDATES.find(
+  const entry = ALL_PARODY_CANDIDATES.find(
     (candidate) =>
       candidate.id === content.catalogEntryId &&
       candidate.version === content.catalogEntryVersion &&
       candidate.assetId === content.assetId &&
       candidate.assetVersion === content.assetVersion,
   );
-  const motion = entry && parodyMotion[entry.id];
+  const motion = entry && parodyMotion[entry.assetId];
   if (!entry || !motion) return null;
   return {
     ...motion,
