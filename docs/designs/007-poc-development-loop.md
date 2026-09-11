@@ -1,7 +1,7 @@
 # DESIGN-007: Playable proof of concept and development loop
 
 - **Status:** Proposed
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Source:** Tom's instruction to defer level detail and focus on a playable PoC, an Astra development team, audio tooling, and owner review of final assets
 - **Satisfies:** [PRD-001 R-06, R-08, R-09, R-13, R-16, R-30–R-39](../prds/001-project-brief.md)
 - **Related:** [Stack](../adrs/002-web-game-stack.md), [asset pipeline](002-asset-pipeline.md), [age and abilities](006-memory-age-and-abilities.md), [audio](008-audio-pipeline.md), [PLAN-002](../../.agents/plans/002-foundation-prototype.md)

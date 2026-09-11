@@ -1,7 +1,7 @@
 # DESIGN-008: Audio authoring and browser playback
 
 - **Status:** Proposed
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Source:** Tom's request for audio tooling and an Astra asset-development workflow
 - **Satisfies:** [PRD-001 R-08, R-09, R-16, R-35–R-39](../prds/001-project-brief.md)
 - **Related:** [PoC development loop](007-poc-development-loop.md), [visual assets](002-asset-pipeline.md), [asset review template](../assets/000-review-template.md)

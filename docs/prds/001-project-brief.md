@@ -2,7 +2,7 @@
 
 - **Status:** Draft
 - **Owner:** Tom Haynes
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Source:** Owner's project kickoff and subsequent platform, memory-journey, era/ability, and playable-PoC/Astra-team/audio brief on 2026-09-10
 
 ## Summary

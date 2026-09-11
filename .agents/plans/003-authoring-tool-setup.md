@@ -17,7 +17,9 @@
 
 - Planning/docs PR #14 is merged at `e19c6224c35c1f94c58b5ad035d2f1999ad3c5bd`.
 - Before this setup, the live pod has Xvfb/Mesa, Node, pnpm, Python, and uv; Blender, FFmpeg/ffprobe, xauth, and glTF tooling are missing from PATH. No GPU is assigned to the pod. Main-container memory limit is 64Gi; rootfs is read-only, home PVC/tmp writable.
-- Image build/test: [haynes-ops PR #2831](https://github.com/thaynes43/haynes-ops/pull/2831). Activation and actual build/live outcomes will be recorded before handoff; no runtime readiness is claimed yet.
+- [Image PR #2831](https://github.com/thaynes43/haynes-ops/pull/2831) merged at `ec05e47e13ef61f75a4fe7cd79611ac66364ea82`; [offline container smoke passed](https://github.com/thaynes43/haynes-ops/actions/runs/34544394268). It proved MCP, screenshot, save/reopen, GLB validation, restart, and audio encoding. [Main build/publication/signing passed](https://github.com/thaynes43/haynes-ops/actions/runs/34544898212), and the registry manifest hash was independently verified. Image `0.6.0@sha256:22029f8ffb0652c1caca744db9e97c3e4d874a6bd5253a6555254b2b2d541ea1` is ready for activation; no live readiness is claimed yet.
+- [Activation PR #2833](https://github.com/thaynes43/haynes-ops/pull/2833) pins that image and registers Blender for both agents. It remains a held draft for Tom's natural-break merge because it restarts dev-env. Local manifest/render checks passed; see the PR for final Flux checks. Post-roll MCP/PVC checks are outstanding.
+- [Log-access fix #2832](https://github.com/thaynes43/haynes-ops/pull/2832) merged and reconciled; the exact GitHub Actions log hostname now works from the pod.
 - Audio selection/access is pending; the researched free/self-hosted choices and their conditions are in DESIGN-008. No generated audio is approved.
 
 ## Completion

@@ -1,7 +1,7 @@
 # Current handoff
 
 - **Project:** Haynes Quest
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Stage:** Authoring dependency setup in progress before fresh-context game development; implementation not started
 - **Driving model and team:** GPT-6 Astra; new development agents start with empty conversation context and self-contained work orders
 
@@ -31,7 +31,7 @@ Astra lanes cover code, visuals, audio, story/design, and independent verificati
 
 ## Readiness and next step
 
-Finish PLAN-003's dependency checkpoint first. The image build is [haynes-ops PR #2831](https://github.com/thaynes43/haynes-ops/pull/2831); runtime activation will be a separate held draft because changing this pod's image/MCP config restarts the session. Record build, activation, and live verification separately. Then start PLAN-002 in a fresh worktree with new-context Astra agents: record the small action/camera/cue contracts, scaffold the stack, and produce a runnable synthetic collection/unlock route. Stage durable saves, hosted Authentik, reviewed-asset integration, and physical-device validation separately. A local development fixture identity is never an alternative hosted login; a temporary save is not durable persistence evidence. Live Immich integration is later work.
+Finish PLAN-003's dependency checkpoint first. The toolchain in [haynes-ops PR #2831](https://github.com/thaynes43/haynes-ops/pull/2831) is merged, and image 0.6.0 was smoke-tested, published, signed, and verified in the registry. [Activation PR #2833](https://github.com/thaynes43/haynes-ops/pull/2833) remains a held draft because changing this pod's image/MCP config restarts the session. Tom merges it at a natural break; a fresh session then verifies live MCP and persistent-file behavior. PLAN-003 records the digest and test links. Then start PLAN-002 in a fresh worktree with new-context Astra agents: record the small action/camera/cue contracts, scaffold the stack, and produce a runnable synthetic collection/unlock route. Stage durable saves, hosted Authentik, reviewed-asset integration, and physical-device validation separately. A local development fixture identity is never an alternative hosted login; a temporary save is not durable persistence evidence. Live Immich integration is later work.
 
 Image generation is available. No Blender MCP or audio-generation tool is connected in this session. Node, pnpm, Python, uv, and Xvfb/Mesa are available; Blender, xauth, glTF Transform, FFmpeg, and ffprobe are missing from PATH in the currently running image. The new image adds those tools with a lazy, loopback-only Blender session on a virtual display, persistent shared files, and no GPU allocation. No app, database, Authentik client, photo connection, or final game asset has been provisioned by this documentation work. Tool setup and any pod-restarting changes follow `haynes-ops` rules when that milestone is undertaken.
 

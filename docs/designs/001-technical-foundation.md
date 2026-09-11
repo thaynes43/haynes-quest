@@ -1,7 +1,7 @@
 # DESIGN-001: Technical foundation and saved-game flow
 
 - **Status:** Proposed
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Satisfies:** [PRD-001 R-01, R-08, R-09, R-11–R-14, R-16–R-24, R-30–R-34](../prds/001-project-brief.md)
 - **Governed by:** [ADR-001](../adrs/001-authentik-sign-in.md); [proposed ADR-002](../adrs/002-web-game-stack.md)
 

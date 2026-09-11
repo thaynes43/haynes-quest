@@ -1,7 +1,7 @@
 # DESIGN-002: Character and world asset pipeline
 
 - **Status:** Proposed
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Satisfies:** [PRD-001 R-03, R-07–R-09, R-12, R-14, R-16–R-18, R-20–R-34](../prds/001-project-brief.md)
 - **Governed by:** [Proposed ADR-002](../adrs/002-web-game-stack.md)
 
@@ -87,7 +87,7 @@ Record each asset's source, license or generation provenance, tools/versions, ed
 
 Image generation is available in the current agent session. No Blender MCP tools are connected. The dev pod provides Node, pnpm, and Python; Blender, glTF Transform, and a KTX texture encoder were not available on PATH when checked on 2026-09-10. Tom's current sequence puts the PLAN-003 dependency checkpoint before development dispatch; final asset production and owner review can then proceed alongside placeholder gameplay code. No images, models, software installations, or connections were created during this workflow review.
 
-The pinned setup trial uses [ahujasid/blender-mcp](https://github.com/ahujasid/blender-mcp/tree/5f8ddaf6e987c4aa0c3467fcc548838b28f64477). Its [MCP implementation](https://github.com/ahujasid/blender-mcp/blob/5f8ddaf6e987c4aa0c3467fcc548838b28f64477/src/blender_mcp/server.py) supports scene/object inspection, viewport screenshots, and Python execution. This supplies the build/inspect/adjust loop; Blender's Python operators provide the modeling and export operations. It is a third-party bridge, not a model-generation guarantee. The [haynes-ops authoring runbook](https://github.com/thaynes43/haynes-ops/blob/main/.agents/runbooks/blender-authoring.md) records the implemented launcher, version pins, and verification commands once its image PR is merged; live readiness still requires activation and checks.
+The pinned setup trial uses [ahujasid/blender-mcp](https://github.com/ahujasid/blender-mcp/tree/5f8ddaf6e987c4aa0c3467fcc548838b28f64477). Its [MCP implementation](https://github.com/ahujasid/blender-mcp/blob/5f8ddaf6e987c4aa0c3467fcc548838b28f64477/src/blender_mcp/server.py) supports scene/object inspection, viewport screenshots, and Python execution. This supplies the build/inspect/adjust loop; Blender's Python operators provide the modeling and export operations. It is a third-party bridge, not a model-generation guarantee. The [haynes-ops authoring runbook](https://github.com/thaynes43/haynes-ops/blob/main/.agents/runbooks/blender-authoring.md) records the implemented launcher, version pins, and verification commands. Image 0.6.0 passed offline smoke and was published under haynes-ops #2831; live readiness still requires the held #2833 activation and post-roll checks.
 
 Record these requirements for later setup:
 

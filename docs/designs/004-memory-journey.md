@@ -1,7 +1,7 @@
 # DESIGN-004: Memory journey and life chapters
 
 - **Status:** Proposed
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Source:** Tom's generic-avatar, chronological-photo, decade/proportional level, era-based enemy, and memory-age ability brief
 - **Satisfies:** [PRD-001 R-03, R-12–R-14, R-18, R-20–R-34](../prds/001-project-brief.md)
 - **Related:** [Saved games](001-technical-foundation.md), [photo connections and people](003-photo-connections-and-people.md), [asset authoring](002-asset-pipeline.md), [era enemy catalog](005-era-enemy-catalog.md), [memory age and abilities](006-memory-age-and-abilities.md)
