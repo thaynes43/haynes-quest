@@ -3,7 +3,7 @@
 - **Status:** Complete on `agent/quest-playtest-artifacts`.
 - **Owner:** Native GPT-5.6 Sol, xhigh; bounded artifact-test lane.
 - **Base:** `35c6c62f43697b73cb29ea3dcb62dc90c978fe0b` from `agent/quest-parody-obby`.
-- **Owned files:** `tests/game/parody-artifact-contract.test.ts` and this result.
+- **Owned files:** `tests/game/parody-artifact-contract.test.ts`, this result, and `docs/assets/media/parody-playtest-audit/v001/`.
 
 ## Result
 
@@ -61,4 +61,56 @@ Attack contact time must equal the attack duration times the production resolver
 - `pnpm typecheck` — passed.
 - `git diff --check` — passed.
 
-This is local artifact-contract evidence. It does not build or freeze the root site, run a browser/device journey, approve asset art, publish a private release, or touch authoring/private resources.
+## Four-asset frozen-site browser audit
+
+After the focused contract commit, the existing catalog harness audited the root worktree's unchanged built site at `http://127.0.0.1:4392` with source commit `356791d911b4a7835d16d24990fceb89814bb3d9`. The bounded run finished in 34 seconds, closed its own Playwright browser, and released the exclusive site freeze.
+
+The audit passed in Chromium 153.0.8010.12 with requested SwiftShader rendering at a 390 × 844 touch viewport:
+
+- four review pages returned 200 and loaded their exact same-origin GLB in one working WebGL 2 viewer;
+- all 20 clips advanced and paused; eight repeating actions used infinite repetitions, while 12 one-shots finished, held their terminal time, and restored the Play label;
+- all 28 exact MP4s matched their manifest bytes/hashes, decoded a presented frame, and had positive duration and dimensions;
+- all 20 expected stills decoded with positive dimensions, and all eight model/reel posters were present;
+- all four viewers rendered varied pixels at 356 × 356, fit the portrait viewport without horizontal overflow, and changed camera orbit under real CDP touch drags;
+- all four GLBs had embedded image/texture resources and no external URI;
+- all four main editable masters were retrieved from their declared internal artifact paths and matched exact manifest bytes/hashes;
+- page errors, console errors, HTTP error responses, unexpected failed requests, external requests, and audit failures were all zero.
+
+Four `animations.mp4` page requests recorded `net::ERR_ABORTED` only after successful 206 metadata responses. Each corresponding video had fired `loadedmetadata`, reached ready state 4, and had no media error; the separate full-byte fetch and frame decode passed. The harness classified these as expected metadata cancellations.
+
+| Editable master |      Bytes | SHA-256                                                            |
+| --------------- | ---------: | ------------------------------------------------------------------ |
+| Mister Hiss     |  8,218,611 | `18781a327b2aba9387308daacf5f6e5aaf62851eae5a00e47fb15a2e93bf266a` |
+| Peel Patrol     |  9,172,051 | `d9dacbbee93b4b660e64ed351092731016a184fc38a64eb45b73dabe76628e5e` |
+| Drama Dragon    | 13,530,294 | `59a45076f2cc5ab6f12b135b8272cbd771a25724d9275cfb98f24948f2fd9561` |
+| Sir Flush-a-Lot |  7,491,469 | `228a8ff41533a830d386ff05bb8ba3367039f22ce8580186423bfd97912cfb30` |
+
+The four masters total 38,412,425 bytes.
+
+### Reports and captures
+
+The full ignored report is `/home/dev/work/quest-playtest-artifacts/test-results/playtest-parody-catalog/report.json`, 34,256 bytes, SHA-256 `ad2b21a23d6cb74f14bc91a15fa231ac6dfa35736f395100576edf7383d51e6c`. Its directory also contains four viewer crops used by the varied-pixel checks.
+
+The sanitized tracked report is `docs/assets/media/parody-playtest-audit/v001/report.json`, 33,033 bytes, SHA-256 `728ad04d7f6330da9a2787d6d77c90594b092027aa7d61f548cc55355d017bec`. Its four sanitized full-page captures are:
+
+| Capture                          |     Bytes | SHA-256                                                            |
+| -------------------------------- | --------: | ------------------------------------------------------------------ |
+| `mister-hiss-page-phone.png`     | 1,310,216 | `c98b030dc3738c06c9d484161cf9ef704a1aa8082aee0276397a3d7468239526` |
+| `peel-patrol-page-phone.png`     | 1,183,570 | `56bbfc67f705e2fa5b9dfd2ef448ad3a6a20ae926c5fc0cb1e819302b12655eb` |
+| `drama-dragon-page-phone.png`    | 1,029,063 | `e76dead1398146a518805fcfb154382b9dc2982e1e757581bbbb324533036771` |
+| `sir-flush-a-lot-page-phone.png` | 1,192,260 | `4d1a67153d9d1ca470b78aad73aa97b1b6ad318383acbda65eb4a0359a109c9c` |
+
+Audit command:
+
+```bash
+QUEST_E2E_URL=http://127.0.0.1:4392 \
+QUEST_REPO_ROOT=/home/dev/work/quest-parody-obby \
+QUEST_E2E_RESULTS_DIR=/home/dev/work/quest-playtest-artifacts/test-results/playtest-parody-catalog \
+QUEST_E2E_EVIDENCE_DIR=/home/dev/work/quest-playtest-artifacts/docs/assets/media/parody-playtest-audit/v001 \
+QUEST_PARODY_IDS=mister-hiss,peel-patrol,drama-dragon,sir-flush-a-lot \
+QUEST_SOURCE_COMMIT=356791d911b4a7835d16d24990fceb89814bb3d9 \
+QUEST_E2E_OVERALL_TIMEOUT_MS=240000 \
+node tests/e2e/parody-catalog.mjs
+```
+
+This evidence covers the frozen software-rendered catalog pages and exact public/internal asset delivery. It does not constitute physical iPhone/iPad Safari evidence, gameplay-path evidence, owner art approval, or release promotion. No site build, deployment, authoring mutation, or private-data access occurred in this lane.
