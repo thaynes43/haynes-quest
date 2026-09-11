@@ -71,6 +71,11 @@ function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
 }
 
+function publicRequestLocation(value) {
+  const url = new URL(value);
+  return url.origin === base ? url.pathname : `${url.origin}${url.pathname}`;
+}
+
 function manifestAsset(manifest, modelId) {
   if (
     manifest.asset_id === modelId ||
@@ -580,6 +585,23 @@ await context.addInitScript(() => {
     successfulContexts: 0,
     types: [],
   };
+  globalThis.__questLoadedMetadata = [];
+  document.addEventListener(
+    "loadedmetadata",
+    (event) => {
+      if (!(event.target instanceof HTMLVideoElement)) return;
+      const source =
+        event.target.currentSrc ||
+        event.target.querySelector("source")?.src ||
+        event.target.src;
+      if (source) {
+        globalThis.__questLoadedMetadata.push(
+          new URL(source, location.href).pathname,
+        );
+      }
+    },
+    true,
+  );
   for (const constructor of [
     globalThis.HTMLCanvasElement,
     globalThis.OffscreenCanvas,
@@ -614,12 +636,15 @@ const report = {
   consoleErrors: [],
   badResponses: [],
   failedRequests: [],
+  expectedMetadataAborts: [],
   externalRequests: [],
 };
 
 try {
   for (const pageSpec of pages) {
     const page = await context.newPage();
+    const successfulMetadataMedia = new Map();
+    const observedFailedRequests = [];
     page.on("pageerror", (error) =>
       report.pageErrors.push({ page: pageSpec.id, message: error.message }),
     );
@@ -632,27 +657,36 @@ try {
       }
     });
     page.on("response", (response) => {
+      if (
+        response.status() < 400 &&
+        response.request().resourceType() === "media" &&
+        new URL(response.url()).origin === base &&
+        new URL(response.url()).pathname.endsWith(".mp4")
+      ) {
+        successfulMetadataMedia.set(response.url(), response.status());
+      }
       if (response.status() >= 400) {
         report.badResponses.push({
           page: pageSpec.id,
           status: response.status(),
-          url: response.url(),
+          url: publicRequestLocation(response.url()),
         });
       }
     });
-    page.on("requestfailed", (request) =>
-      report.failedRequests.push({
+    page.on("requestfailed", (request) => {
+      observedFailedRequests.push({
         page: pageSpec.id,
         error: request.failure()?.errorText,
         url: request.url(),
-      }),
-    );
+        resourceType: request.resourceType(),
+      });
+    });
     page.on("request", (request) => {
       if (new URL(request.url()).origin !== base) {
         report.externalRequests.push({
           page: pageSpec.id,
           method: request.method(),
-          url: request.url(),
+          url: publicRequestLocation(request.url()),
         });
       }
     });
@@ -716,7 +750,7 @@ try {
 
     const pageResult = {
       id: pageSpec.id,
-      url: pageUrl,
+      url: new URL(pageUrl).pathname,
       manifest: path.relative(
         repoRoot,
         manifests.get(pageSpec.manifestId).manifestPath,
@@ -771,7 +805,7 @@ try {
       const pixels = await inspectVisiblePixels(viewer, modelId);
       pageResult.models.push({
         id: modelId,
-        src: model.src,
+        src: new URL(model.src).pathname,
         dimensions: model.dimensions,
         webgl: model.webgl,
         renderSurface: model.renderSurface,
@@ -796,6 +830,63 @@ try {
     await page.screenshot({
       path: path.join(resultsDir, pageResult.screenshot),
     });
+    for (const failure of observedFailedRequests) {
+      const url = new URL(failure.url);
+      let mediaState;
+      if (
+        failure.error === "net::ERR_ABORTED" &&
+        failure.resourceType === "media" &&
+        url.origin === base &&
+        url.pathname.endsWith(".mp4") &&
+        successfulMetadataMedia.has(failure.url)
+      ) {
+        mediaState = await page
+          .locator("video")
+          .evaluateAll((videos, pathname) => {
+            const player = videos.find((video) => {
+              const source =
+                video.currentSrc ||
+                video.querySelector("source")?.src ||
+                video.src;
+              return (
+                source && new URL(source, location.href).pathname === pathname
+              );
+            });
+            return player
+              ? {
+                  readyState: player.readyState,
+                  errorCode: player.error?.code ?? null,
+                  loadedMetadata:
+                    globalThis.__questLoadedMetadata.includes(pathname),
+                }
+              : undefined;
+          }, url.pathname);
+      }
+      if (
+        mediaState?.loadedMetadata === true &&
+        mediaState.readyState >= 1 &&
+        mediaState.errorCode === null
+      ) {
+        report.expectedMetadataAborts.push({
+          page: failure.page,
+          error: failure.error,
+          path: url.pathname,
+          responseStatus: successfulMetadataMedia.get(failure.url),
+          loadedMetadata: true,
+          readyState: mediaState.readyState,
+          mediaError: null,
+        });
+      } else {
+        report.failedRequests.push({
+          page: failure.page,
+          error: failure.error,
+          path: publicRequestLocation(failure.url),
+          resourceType: failure.resourceType,
+          responseStatus: successfulMetadataMedia.get(failure.url),
+          mediaState,
+        });
+      }
+    }
     report.pages.push(pageResult);
     await page.close();
   }
@@ -823,14 +914,14 @@ try {
       0,
     ),
     30,
-    "six enemies expose five clips each",
+    "six creature studies expose five clips each",
   );
   assert.deepEqual(
     report.pages
       .filter((page) => page.touchOrbit?.changed)
       .map((page) => page.touchOrbit.modelId),
     ["blockling", "spark-mallet"],
-    "one enemy and one prop pass touch orbit",
+    "one creature study and one prop pass touch orbit",
   );
   assert.equal(report.masters.length, 10, "ten editable masters retrieved");
   assert.ok(report.masters.every((master) => master.verified));
@@ -849,6 +940,7 @@ try {
       masters: report.masters.length,
       pageErrors: 0,
       failedRequests: 0,
+      expectedMetadataAborts: report.expectedMetadataAborts.length,
       externalRequests: 0,
       browser: report.browser,
     }),
