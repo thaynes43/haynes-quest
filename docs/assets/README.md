@@ -4,16 +4,18 @@ Browse the [asset catalog](catalog.md) by picture to choose what to review. Each
 
 The catalog includes travelers, world pieces, equipment, parody characters, earlier creature studies, reference images and sound auditions. Finished candidates and paused work are labeled separately. The [two-chapter playtest](playtest.md) identifies the temporary cast used in the isolated review game; no final artwork approval is implied.
 
-Each finished candidate gets a page with its source concepts, model views or audio player, exact version, technical results and feedback history. The [review template](000-review-template.md) defines that record. The coordinator can create and refine the whole first pass before Tom reviews it.
+Every candidate gets a review record, including concepts and paused or partial work. Show its source images, available model views or audio player, exact version, actual checks and feedback history; label what is still missing. The [review template](000-review-template.md) defines the record, and the [catalog maintenance rule](../PROCESS.md#asset-catalog-must-stay-current) requires matching inventory and thumbnail navigation with every asset change. Catalog inclusion does not require final artwork approval.
 
 | Label | Meaning |
 | --- | --- |
 | Not started | Planned in the current slice; no candidate exists yet. |
 | In production | Concept or model/audio work is underway. |
+| Paused | Work has stopped at a preserved checkpoint; show available artifacts and remaining work. |
 | Needs iteration | The coordinator found a concrete issue to correct. |
 | Ready for Tom | The coordinator selected this candidate and attached its checks/previews. |
 | Changes requested | Tom reviewed the version and requested revisions. |
 | Approved | Tom approved this exact version for gameplay. |
+| Rejected | This version was rejected for its stated role; record the decision and any separately proposed use. |
 | Superseded | Retained for history; a newer version is current. |
 
 Coordinator acceptance and Tom's approval are separate fields. An isolated candidate viewer can show unapproved assets; ordinary gameplay uses identified placeholders or previously approved versions. Feedback names the asset ID and version so improvements remain traceable.
