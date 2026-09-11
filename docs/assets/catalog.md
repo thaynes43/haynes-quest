@@ -1,6 +1,6 @@
 # First-pass catalog
 
-This is the initial inventory for one compact playable slice. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The original overnight inventory is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
+This catalog preserves the original overnight inventory and the required two-era combat expansion below. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The original overnight inventory is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
 
 [Browser delivery audit](media/storybook-reference/v001/browser-intake/catalog-local-report.json): 12 pages, nine models, seven clips and four decoded auditions; zero page/console errors, failed responses or external asset requests. [Combined clearing preview](media/clearing-path-kit/v001/kit-beauty.png).
 
@@ -38,8 +38,16 @@ The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concep
 
 ## Corrected combat slice: work in progress
 
-Tom’s review expanded the required playable loop to equipment, period enemies and bosses. The earlier nine-model inventory remains preserved, but it does not cover these new needs. The current game review loads the existing traveler/environment GLBs; new encounter and equipment studies remain temporary. No demo-use or final approval has been recorded.
+Tom’s review expanded the required playable loop to equipment, period enemies and bosses. The earlier nine-model inventory remains preserved, but it does not cover these new needs. The isolated game review loads the existing traveler/environment GLBs; the new authored enemies and equipment are being integrated as their checked packages arrive. No demo-use or final approval has been recorded.
 
 [Review the complete concept set](reviews/era-combat/v001.md): Blockling, Signal Moth, Buffer Baron, Loop Dancer, Prism Mimic and Trendweaver, plus Spark Mallet, Acorn Shield, Prism Wand and Ribbon Shield. Eight sheets show the six creatures and four tools with source prompts, exact hashes and rear construction views.
 
-All concepts were generated serially with built-in image generation and selected by the lead. [WO-014](../../.agents/work-orders/014-blender-era-2020.md) records the initial task-capacity failure and the subsequent successful fresh Astra dispatch after a code lane completed. The 2020 creature models are now in production. New enemy models, equipment exports and their animation/review packages are unfinished. The assigned Astra author owns the scene exclusively; no model-provider fallback is used. [PLAN-005](../../.agents/plans/005-era-combat-loop.md) remains in progress.
+| Candidate | Actual model review | Production status |
+| --- | --- | --- |
+| Blockling | [Model and five clips](reviews/blockling/v001.md) | Lead selected · Tom review pending |
+| Signal Moth | [Model and five clips](reviews/signal-moth/v001.md) | Lead selected · Tom review pending |
+| Buffer Baron | [Model and five clips](reviews/buffer-baron/v001.md) | Lead selected · Tom review pending |
+| Loop Dancer, Prism Mimic, Trendweaver | Concepts above | Final authoring and review in progress |
+| Spark Mallet, Acorn Shield, Prism Wand, Ribbon Shield | Concepts above | Offline preparation complete; scene work queued |
+
+All concepts were generated serially with built-in image generation and selected by the lead. [WO-014](../../.agents/work-orders/014-blender-era-2020-evidence.md) delivered three textured GLBs, fifteen clips, exact re-imported views and hash-verified masters. The live scene has passed to the 2024 author. Later-era creatures and four tools remain required current work under PLAN-005; none has gameplay approval.
