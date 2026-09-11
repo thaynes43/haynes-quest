@@ -1,10 +1,10 @@
 # WO-010: First-pass clearing prop kit
 
-- **Status:** Prepared; not dispatched. WO-007 retains the live scene until explicit release.
+- **Status:** Dispatch authorized after WO-007 released the scene at 2026-09-11 04:37:50 UTC. This work order owns the next exclusive scene lease.
 - **Author:** fresh native GPT-6 Astra, max; all Blender modeling/scripts/materials/export/render/optimization stay in that lane.
 - **Scope:** one coherent bounded static prop kit covering the five remaining catalog IDs. No extra biome, character, texture generation, gameplay integration or user-facing page writing.
 - **Inputs:** exact selected `storybook-reference/v001/{environment,props-materials}.png` plus each asset's `v001/concept.png` and retained prompt in `docs/assets/media/`. Inspect actual images before authoring. Original fictional content only.
-- **Scene lease:** assigned only after WO-007 explicitly releases. Dedicated endpoint `http://blender-authoring.dev.svc.cluster.local:8000/mcp`. Save all masters/scripts/checks under `/workspace/haynes-quest/clearing-kit/v001`; transfer via `/artifacts/haynes-quest/clearing-kit/v001/<file>`. Never factory-reset Blender: that unloads the MCP addon. Clear only authored scene objects/data as needed. No dev-env restart.
+- **Scene lease:** WO-010 is the sole writer from dispatch until its explicit saved release. WO-007 masters, exports and media were saved and SHA-verified before handoff. Dedicated endpoint `http://blender-authoring.dev.svc.cluster.local:8000/mcp`. Save all masters/scripts/checks under `/workspace/haynes-quest/clearing-kit/v001`; transfer via `/artifacts/haynes-quest/clearing-kit/v001/<file>`. Never factory-reset Blender: that unloads the MCP addon. Clear only authored scene objects/data as needed. No dev-env restart.
 
 ## Lead construction decisions
 
