@@ -1,0 +1,83 @@
+{
+  "scope": "Two-chapter synthetic playtest",
+  "catalog_version": "parody-catalog-v2",
+  "review_status": "pending-owner-review",
+  "audio": "silent; no cues mapped",
+  "files": [
+    {
+      "path": "traveler-infant/v001/traveler-infant.glb",
+      "bytes": 448656,
+      "sha256": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c"
+    },
+    {
+      "path": "traveler-child/v001/traveler-child.glb",
+      "bytes": 460616,
+      "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e"
+    },
+    {
+      "path": "clearing-tree/v001/clearing-tree.glb",
+      "bytes": 71316,
+      "sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9"
+    },
+    {
+      "path": "clearing-stone/v001/clearing-stone.glb",
+      "bytes": 41284,
+      "sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7"
+    },
+    {
+      "path": "memory-keepsake/v001/memory-keepsake.glb",
+      "bytes": 116304,
+      "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137"
+    },
+    {
+      "path": "arrival-landmark/v001/arrival-landmark.glb",
+      "bytes": 118348,
+      "sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
+    },
+    {
+      "path": "mister-hiss/v001/mister-hiss.glb",
+      "bytes": 1202456,
+      "sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "path": "peel-patrol/v001/peel-patrol.glb",
+      "bytes": 652424,
+      "sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5"
+    },
+    {
+      "path": "drama-dragon/v001/drama-dragon.glb",
+      "bytes": 917980,
+      "sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933"
+    },
+    {
+      "path": "sir-flush-a-lot/v001/sir-flush-a-lot.glb",
+      "bytes": 782488,
+      "sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "path": "clearing-path-kit/v001/path-tile.glb",
+      "bytes": 30084,
+      "sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f"
+    },
+    {
+      "path": "era-equipment/v001/spark-mallet/spark-mallet.glb",
+      "bytes": 161872,
+      "sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae"
+    },
+    {
+      "path": "era-equipment/v001/acorn-shield/acorn-shield.glb",
+      "bytes": 184460,
+      "sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6"
+    },
+    {
+      "path": "era-equipment/v001/prism-wand/prism-wand.glb",
+      "bytes": 143444,
+      "sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc"
+    },
+    {
+      "path": "era-equipment/v001/ribbon-shield/ribbon-shield.glb",
+      "bytes": 197244,
+      "sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9"
+    }
+  ]
+}

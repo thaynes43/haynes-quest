@@ -3,12 +3,16 @@ import type {
   EncounterKind,
   EquipmentView,
 } from "../shared/contracts";
-import { ALL_PARODY_CANDIDATES, PARODY_PERIODS } from "../shared/parody-catalog";
+import {
+  ALL_PARODY_CANDIDATES,
+  PARODY_PERIODS,
+} from "../shared/parody-catalog";
 
 export function eraStory(year = 2020, level?: ActiveLevelView | null) {
   const period =
     level?.periodId === "block-party-v1" ||
-    level?.periodId === "remix-runway-v1"
+    level?.periodId === "remix-runway-v1" ||
+    level?.periodId === "remix-runway-v2"
       ? PARODY_PERIODS[level.periodId]
       : null;
   if (period && level) {

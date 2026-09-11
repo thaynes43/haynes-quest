@@ -265,7 +265,9 @@ function App() {
       <footer>
         <span>Made for small adventures.</span>
         <span>Keyboard & mouse · Touch controls</span>
-        <span>Your photos, family setup and more chapters are still to come.</span>
+        <span>
+          Your photos, family setup and more chapters are still to come.
+        </span>
       </footer>
     </div>
   );

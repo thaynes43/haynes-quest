@@ -26,6 +26,7 @@ nav:
       - Overview: assets/README.md
       - Art direction: assets/art-direction.md
       - First-pass catalog: assets/catalog.md
+      - Two-chapter playtest: assets/playtest.md
       - Review template: assets/000-review-template.md
   - Product:
       - Project brief: prds/001-project-brief.md

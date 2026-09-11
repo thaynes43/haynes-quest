@@ -1,10 +1,14 @@
 import type { Ability, EncounterKind, EncounterRole } from "./contracts.js";
 
 /** Lead-authored candidates. Versioned selection is separate from gameplay approval. */
-export const PARODY_CATALOG_VERSIONS = ["parody-catalog-v1", "parody-catalog-v2"] as const;
+export const PARODY_CATALOG_VERSIONS = [
+  "parody-catalog-v1",
+  "parody-catalog-v2",
+] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
 export const PARODY_CATALOG_VERSION = "parody-catalog-v2" as const;
-export type ParodyPeriodId = "block-party-v1" | "remix-runway-v1" | "remix-runway-v2";
+export type ParodyPeriodId =
+  "block-party-v1" | "remix-runway-v1" | "remix-runway-v2";
 export type ObbyRouteId = "gentle-intro-v1" | "gentle-jump-v1";
 export interface ParodyCatalogEntry {
   readonly id: string;
@@ -139,7 +143,9 @@ const PARODY_CANDIDATES_V1: readonly ParodyCatalogEntry[] = [
 
 /** A complete playtest cast, reusing finished characters for the encore chapter. */
 const PARODY_CANDIDATES_V2: readonly ParodyCatalogEntry[] = [
-  ...PARODY_CANDIDATES_V1.filter((entry) => entry.periodId === "block-party-v1"),
+  ...PARODY_CANDIDATES_V1.filter(
+    (entry) => entry.periodId === "block-party-v1",
+  ),
   ...[
     { sourceId: "sir-flush-a-lot", id: "sir-flush-a-lot-encore" },
     { sourceId: "peel-patrol", id: "peel-patrol-encore" },
@@ -157,7 +163,9 @@ const PARODY_CANDIDATES_V2: readonly ParodyCatalogEntry[] = [
   }),
 ];
 
-export const PARODY_CATALOGS: Readonly<Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>> = {
+export const PARODY_CATALOGS: Readonly<
+  Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
+> = {
   "parody-catalog-v1": PARODY_CANDIDATES_V1,
   "parody-catalog-v2": PARODY_CANDIDATES_V2,
 };

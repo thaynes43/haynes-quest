@@ -187,7 +187,7 @@ export class GardenScene {
     this.cameraPlaced = false;
     const period = save.adventure?.activeLevel?.periodId;
     const later = period
-      ? period === "remix-runway-v1"
+      ? period === "remix-runway-v1" || period === "remix-runway-v2"
       : (save.adventure?.activeLevel?.eraYear ?? 2020) >= 2024;
     const palette = later ? palettes.fair : palettes.orchard;
     const sky = level.course && !later ? 0xcde5ef : palette.sky;
