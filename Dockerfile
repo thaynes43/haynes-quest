@@ -13,7 +13,7 @@ COPY requirements-docs.txt ./
 RUN pip install --no-cache-dir -r requirements-docs.txt
 COPY docs ./docs
 COPY .agents ./.agents
-COPY scripts/docs ./scripts/docs
+COPY scripts ./scripts
 COPY AGENTS.md mkdocs.yml ./
 RUN scripts/docs/build.sh
 
