@@ -64,3 +64,7 @@ These journeys ran on the in-memory harness before the final server clock/write-
 ![Touch completion with all three fictional pictures visibly loaded](media/era-combat/touch-complete.png)
 
 These captures show fixture illustrations, not imported family photographs. The completion dialog scrolls within the touch viewport to reveal its captions and return control.
+
+## Checked code merge
+
+[PR #26](https://github.com/thaynes43/haynes-quest/pull/26) squash-merged at `f6a8f0de4a6b132ef5d4244a8bf5f1e37d56d531` on September 11, 2026 at 14:27:55 UTC. The final reviewed head `231b4f74a6492cac700e5b829fa5c935ff77f4e1` passed [application verification and container build](https://github.com/thaynes43/haynes-quest/actions/runs/34609792353), including all 99 tests against the dedicated CI database, and the [strict documentation build](https://github.com/thaynes43/haynes-quest/actions/runs/34609792372). A source-file link that escaped the standalone documentation build was corrected before the green container check. This merge does not establish asset approval or private deployment.
