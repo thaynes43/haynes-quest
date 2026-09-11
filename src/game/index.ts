@@ -6,6 +6,8 @@ export { getJoystickVector, GameInputState } from "./input";
 export { checkpointForSave, createLevelLayout } from "./level";
 export type {
   AvatarProportions,
+  AttackAttemptOutcome,
+  AttackFeedback,
   CreateGameOptions,
   EnemyFrame,
   EnemyPhase,

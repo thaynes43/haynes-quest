@@ -121,7 +121,7 @@ describe("enemy combat simulation", () => {
     );
   });
 
-  it("keeps bounded enemies on their combat island while legacy enemies keep chasing", () => {
+  it("keeps bounded enemies idle across gaps while legacy enemies keep chasing", () => {
     const save = makeEraSave();
     const arena = { minX: -2.25, maxX: -1.75, minZ: -8.5, maxZ: -7.5 };
     const boundedLevel = levelWithFirstOrdinary(save, { arena });
@@ -129,13 +129,16 @@ describe("enemy combat simulation", () => {
     const bounded = new EnemySimulation(boundedLevel, save);
 
     stepMany(bounded, save, playerAcrossGap, 40);
-    expect(bounded.frames()[0]?.position).toEqual({ x: -2, y: 0, z: -7.5 });
+    expect(bounded.frames()[0]).toMatchObject({
+      position: { x: -2, y: 0, z: -8 },
+      phase: "idle",
+    });
 
     const narrowedLevel = levelWithFirstOrdinary(save, {
       arena: { ...arena, maxZ: -7.75 },
     });
     bounded.sync(narrowedLevel, save);
-    expect(bounded.frames()[0]?.position.z).toBe(-7.75);
+    expect(bounded.frames()[0]?.position.z).toBe(-8);
     bounded.reset(boundedLevel, save);
     expect(bounded.frames()[0]?.position).toEqual({ x: -2, y: 0, z: -8 });
 
@@ -202,6 +205,36 @@ describe("enemy combat simulation", () => {
     expect(
       simulation.frames().find((enemy) => enemy.id.endsWith("boss"))?.phase,
     ).toBe("windup");
+  });
+
+  it("lets the routed boss threaten the checkpoint without leaving its island", () => {
+    const base = makeEraSave({
+      levelIndex: 1,
+      defeatedIds: [
+        "level-2-2024-ordinary-a",
+        "level-2-2024-ordinary-b",
+      ],
+    });
+    const save = {
+      ...base,
+      adventure: {
+        ...base.adventure!,
+        activeLevel: {
+          ...base.adventure!.activeLevel!,
+          routeId: "gentle-jump-v1" as const,
+        },
+      },
+    };
+    const simulation = new EnemySimulation(createLevelLayout(save), save);
+    const player = { x: 0, y: 0, z: -19 };
+
+    const contacts = stepMany(simulation, save, player, 80);
+    const boss = simulation
+      .frames()
+      .find((enemy) => enemy.id === "level-2-2024-boss");
+    expect(contacts).toContain("level-2-2024-boss");
+    expect(boss?.position.z).toBeGreaterThanOrEqual(-24);
+    expect(boss?.position.z).toBeLessThanOrEqual(-21);
   });
 
   it("keeps the player outside living enemy colliders", () => {
@@ -327,6 +360,53 @@ describe("attack targeting", () => {
         { x: 0, y: 0, z: 0 },
         0,
         false,
+      ),
+    ).toBeNull();
+  });
+
+  it("gives the Prism wand ranged reach while retaining the mallet's melee reach", () => {
+    const bossId = "level-2-2024-boss";
+    const prism = makeEraSave({
+      levelIndex: 1,
+      collectedKinds: ["attack-tool"],
+      defeatedIds: [
+        "level-2-2024-ordinary-a",
+        "level-2-2024-ordinary-b",
+      ],
+    });
+    expect(
+      findAttackTarget(
+        prism,
+        [frame(bossId, 0, -4.2)],
+        { x: 0, y: 0, z: 0 },
+        0,
+        true,
+      )?.id,
+    ).toBe(bossId);
+    expect(
+      findAttackTarget(
+        prism,
+        [frame(bossId, 0, -4.26)],
+        { x: 0, y: 0, z: 0 },
+        0,
+        true,
+      ),
+    ).toBeNull();
+
+    const malletBoss = makeEraSave({
+      collectedKinds: ["attack-tool"],
+      defeatedIds: [
+        "level-1-2020-ordinary-a",
+        "level-1-2020-ordinary-b",
+      ],
+    });
+    expect(
+      findAttackTarget(
+        malletBoss,
+        [frame("level-1-2020-boss", 0, -2.01)],
+        { x: 0, y: 0, z: 0 },
+        0,
+        true,
       ),
     ).toBeNull();
   });

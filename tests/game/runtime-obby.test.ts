@@ -239,7 +239,7 @@ describe("obby game runtime", () => {
     game.dispose();
   });
 
-  it.each(["pause", "blur", "pointercancel", "clear"])(
+  it.each(["pause", "blur", "clear"])(
     "discards a deferred jump on %s instead of jumping when play resumes",
     (cancellation) => {
       const game = createGame({
@@ -262,6 +262,93 @@ describe("obby game runtime", () => {
       game.dispose();
     },
   );
+
+  it("cancels a touch action without cancelling held movement", () => {
+    const game = createGame({
+      container: document.createElement("div"),
+      save: routedSave({ levelIndex: 1 }),
+      onAction: async () => routedSave({ levelIndex: 1, revision: 1 }),
+      onRefresh: async () => routedSave({ levelIndex: 1 }),
+    });
+    game.setInput("moveY", 1);
+    game.setInput("attack", true);
+    game.cancelInput("attack");
+    advance();
+    advance();
+    expect(game.inspect().status.position.z).toBeLessThan(1);
+    expect(game.inspect().status.attackFeedback).toBeNull();
+    game.dispose();
+  });
+
+  it("casts the Prism wand at the routed boss while the joystick stays held", () => {
+    const initial = routedSave({
+      levelIndex: 1,
+      collectedKinds: ["attack-tool"],
+      defeatedIds: [
+        "level-2-2024-ordinary-a",
+        "level-2-2024-ordinary-b",
+      ],
+    });
+    const onAction = vi.fn(
+      (_request: GameplayActionRequest) =>
+        new Promise<SaveView>(() => undefined),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    warmRuntime();
+    game.setInput("moveX", 0.4);
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+
+    expect(game.inspect().status.position.x).toBeGreaterThan(0);
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+      action: {
+        type: "attack",
+        levelId: "level-2-2024",
+        encounterId: "level-2-2024-boss",
+      },
+    });
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "accepted",
+    });
+    expect(sceneState.instances[0]?.frames.at(-1)).toMatchObject({
+      attacking: true,
+      attackTargetId: "level-2-2024-boss",
+    });
+    expect(game.inspect().input.moveX).toBe(0.4);
+    game.dispose();
+  });
+
+  it("reports an empty attack tap without dispatching a command", () => {
+    const initial = routedSave({
+      levelIndex: 1,
+      collectedKinds: ["attack-tool"],
+    });
+    const onAction = vi.fn(async () => initial);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    warmRuntime();
+
+    expect(onAction).not.toHaveBeenCalled();
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "no-target",
+    });
+    game.dispose();
+  });
 
   it("steps and renders the frozen v2 route from the genuine sampled course", () => {
     const game = createGame({
@@ -346,7 +433,7 @@ describe("obby game runtime", () => {
     ).toBe(true);
     expect(
       recovered.enemies.find((enemy) => enemy.id.endsWith("ordinary-a"))?.phase,
-    ).toBe("chasing");
+    ).toBe("idle");
     expect(onAction).not.toHaveBeenCalled();
 
     for (let frame = 0; frame < 15; frame += 1) advance();

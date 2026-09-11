@@ -60,12 +60,26 @@ export interface SceneFrame {
   moving: boolean;
   grounded: boolean;
   attacking: boolean;
+  attackTargetId: string | null;
   guarding: boolean;
   enemies: EnemyFrame[];
   currentTarget: string | null;
   obby?: ObbySample;
   checkpointId?: string | null;
   recovering?: boolean;
+}
+
+export type AttackAttemptOutcome =
+  | "accepted"
+  | "no-target"
+  | "unarmed"
+  | "cooldown"
+  | "busy"
+  | "unavailable";
+
+export interface AttackFeedback {
+  sequence: number;
+  outcome: AttackAttemptOutcome;
 }
 
 export interface SceneMediaState {
@@ -91,6 +105,7 @@ export interface GameStatus {
   activeLevelId: string | null;
   eraYear: number | null;
   attackReady: boolean;
+  attackFeedback: AttackFeedback | null;
   guardActive: boolean;
   guardReady: boolean;
   requestBusy: boolean;
@@ -160,6 +175,7 @@ export interface CreateGameOptions {
 export interface GameHandle {
   updateSave(save: SaveView): void;
   setInput(action: GameInputAction, value: number | boolean): void;
+  cancelInput(action: GameInputAction): void;
   clearInput(): void;
   setPaused(paused: boolean): void;
   performAction(action: GameplayAction): boolean;

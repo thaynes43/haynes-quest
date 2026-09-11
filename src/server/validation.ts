@@ -75,6 +75,16 @@ const gameplayActionSchema = z.discriminatedUnion('type', [
     levelId: gameplayLevelId,
     encounterId: z.string().min(1).max(160),
   }).strict(),
+  z.object({
+    type: z.literal('interact-friendly'),
+    levelId: gameplayLevelId,
+    friendlyId: z.string().min(1).max(360),
+  }).strict(),
+  z.object({
+    type: z.literal('attack-friendly'),
+    levelId: gameplayLevelId,
+    friendlyId: z.string().min(1).max(360),
+  }).strict(),
   z.object({ type: z.literal('guard'), levelId: gameplayLevelId }).strict(),
   z.object({
     type: z.literal('recover-memory'),

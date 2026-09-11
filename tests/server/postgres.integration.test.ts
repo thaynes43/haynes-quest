@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { Pool } from 'pg';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import type { GameplayAction, GameplayActionRequest } from '../../src/shared/contracts.js';
+import { friendlyDefinitionsForLevel } from '../../src/shared/friendly.js';
 import { PostgresQuestStore } from '../../src/server/db/postgres-store.js';
 import {
   FIXTURE_SUBJECT,
@@ -135,6 +136,62 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
         action: { type: 'attack', levelId: level.id, encounterId: level.encounters[1]!.id },
       }, new Date()))
         .rejects.toMatchObject({ code: 'SAVE_NOT_FOUND' });
+    } finally {
+      await store.close();
+    }
+  });
+
+  it('Postgres atomically persists and replays friendly health and penalty changes', async () => {
+    const store = PostgresQuestStore.connect(testDatabaseUrl!);
+    try {
+      const owner = await store.createFixtureSession(
+        '77777777-7777-4777-8777-777777777777',
+        new Date(Date.now() + 60_000),
+      );
+      const stranger = await store.createFixtureSession(
+        '88888888-8888-4888-8888-888888888888',
+        new Date(Date.now() + 60_000),
+      );
+      const preview = await store.putPreview(previewInput(owner.id));
+      let save = await store.createSave({
+        ownerId: owner.id,
+        previewId: preview.previewId,
+        selectedIds: preview.selectedIds,
+      });
+      const level = save.adventurePlan!.levels[0]!;
+      const attackTool = level.pickups.find((pickup) => pickup.kind === 'attack-tool')!;
+      const friendlyId = friendlyDefinitionsForLevel(level.id, level.index)[0]!.id;
+      const nowMs = Date.parse('2026-09-11T12:00:00.000Z');
+      save = await applyStoreAction(store, owner.id, save, {
+        type: 'collect-equipment', levelId: level.id, pickupId: attackTool.pickupId,
+      }, nowMs);
+      const attack: GameplayActionRequest = {
+        actionId: randomUUID(),
+        expectedRevision: save.revision,
+        action: { type: 'attack-friendly', levelId: level.id, friendlyId },
+      };
+      const [first, replay] = await Promise.all([
+        store.applyGameplayAction(owner.id, save.id, attack, new Date(nowMs)),
+        store.applyGameplayAction(owner.id, save.id, attack, new Date(nowMs)),
+      ]);
+      expect(replay).toEqual(first);
+      expect(first.adventureState!.playerHp).toBe(8);
+      expect(first.friendlyState!.friendlies[friendlyId]).toEqual({
+        hp: 2,
+        defeated: false,
+        boonClaimed: false,
+        penaltyActive: true,
+      });
+      expect(await store.getSave(owner.id, save.id)).toMatchObject({
+        revision: first.revision,
+        adventureState: { playerHp: 8 },
+        friendlyState: { friendlies: { [friendlyId]: { hp: 2, penaltyActive: true } } },
+      });
+      await expect(store.applyGameplayAction(stranger.id, save.id, {
+        actionId: randomUUID(),
+        expectedRevision: first.revision,
+        action: { type: 'attack-friendly', levelId: level.id, friendlyId },
+      }, new Date(nowMs + 600))).rejects.toMatchObject({ code: 'SAVE_NOT_FOUND' });
     } finally {
       await store.close();
     }
@@ -345,17 +402,18 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
     }
   });
 
-  it('Postgres 0003 migration preserves an existing v1 row as legacy', async () => {
+  it('Postgres 0003/0004 migrations preserve an existing v1 row with a null friendly sidecar', async () => {
     const pool = new Pool({ connectionString: testDatabaseUrl, max: 1 });
     const client = await pool.connect();
     const schema = `quest_migration_${randomUUID().replaceAll('-', '')}`;
     try {
       await client.query(`CREATE SCHEMA "${schema}"`);
       await client.query(`SET search_path TO "${schema}"`);
-      const [migrationOne, migrationTwo, migrationThree] = await Promise.all([
+      const [migrationOne, migrationTwo, migrationThree, migrationFour] = await Promise.all([
         readFile('migrations/0001_quest_server.sql', 'utf8'),
         readFile('migrations/0002_fixture_expiry_indexes.sql', 'utf8'),
         readFile('migrations/0003_era_combat_saves.sql', 'utf8'),
+        readFile('migrations/0004_friendly_state.sql', 'utf8'),
       ]);
       await client.query(migrationOne);
       await client.query(migrationTwo);
@@ -404,18 +462,21 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
         ],
       );
       await client.query(migrationThree);
+      await client.query(migrationFour);
       const migrated = await client.query<{
         adventure_plan: unknown;
         adventure_state: unknown;
+        friendly_state: unknown;
         save_format: string;
       }>(
-        'SELECT save_format, adventure_plan, adventure_state FROM quest_saves WHERE id = $1',
+        'SELECT save_format, adventure_plan, adventure_state, friendly_state FROM quest_saves WHERE id = $1',
         [saveId],
       );
       expect(migrated.rows[0]).toEqual({
         save_format: 'legacy-v1',
         adventure_plan: null,
         adventure_state: null,
+        friendly_state: null,
       });
     } finally {
       await client.query('SET search_path TO public');

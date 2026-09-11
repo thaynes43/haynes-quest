@@ -91,6 +91,16 @@ export class GameInputState {
     this.external[button] = Boolean(value);
   }
 
+  cancel(action: GameInputAction): void {
+    if (analogActions.has(action)) {
+      this.external[action as "moveX" | "moveY" | "lookX" | "lookY"] = 0;
+      return;
+    }
+    const button = action as ButtonAction;
+    this.external[button] = false;
+    this.pendingActions[button] = false;
+  }
+
   setKey(code: string, pressed: boolean): void {
     if (!movementCodes.has(code) && !actionCodes.has(code)) return;
     if (pressed && !this.keys.has(code)) {
@@ -243,6 +253,9 @@ export function bindBrowserInput({
     cameraPointers.clear();
     input.clear();
   };
+  const cancelCameraPointer = (event: PointerEvent): void => {
+    cameraPointers.delete(event.pointerId);
+  };
   const onVisibility = (): void => {
     if (documentTarget.visibilityState !== "visible") clearAll();
   };
@@ -250,7 +263,10 @@ export function bindBrowserInput({
   windowTarget.addEventListener("keydown", onKeyDown, { passive: false });
   windowTarget.addEventListener("keyup", onKeyUp);
   windowTarget.addEventListener("blur", clearAll);
-  windowTarget.addEventListener("pointercancel", clearAll, true);
+  // A browser can cancel one touch in a multi-contact gesture. Each gameplay
+  // control owns its pointer, so cancelling one must not erase a still-held
+  // joystick or a separate queued action.
+  windowTarget.addEventListener("pointercancel", cancelCameraPointer, true);
   target.addEventListener("pointerdown", onPointerDown, { passive: false });
   target.addEventListener("pointermove", onPointerMove, { passive: false });
   target.addEventListener("pointerup", stopPointer);
@@ -262,7 +278,7 @@ export function bindBrowserInput({
     windowTarget.removeEventListener("keydown", onKeyDown);
     windowTarget.removeEventListener("keyup", onKeyUp);
     windowTarget.removeEventListener("blur", clearAll);
-    windowTarget.removeEventListener("pointercancel", clearAll, true);
+    windowTarget.removeEventListener("pointercancel", cancelCameraPointer, true);
     target.removeEventListener("pointerdown", onPointerDown);
     target.removeEventListener("pointermove", onPointerMove);
     target.removeEventListener("pointerup", stopPointer);

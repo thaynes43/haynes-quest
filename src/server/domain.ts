@@ -14,6 +14,13 @@ import {
 } from '../shared/adventure.js';
 import { PARODY_CATALOG_VERSION } from '../shared/parody-catalog.js';
 import { ParodyCatalogUnavailableError } from '../shared/parody-selection.js';
+import {
+  createInitialFriendlyState,
+  friendlyViewsForLevel,
+  reduceFriendlyAction,
+  type FriendlyAction,
+  type FriendlyState,
+} from '../shared/friendly.js';
 import type {
   Ability,
   AppearanceStage,
@@ -27,7 +34,11 @@ import type {
   SubjectOption,
 } from '../shared/contracts.js';
 import { AppError } from './errors.js';
-import { parseStoredAdventure, parseStoredSaveJson } from './adventure-schema.js';
+import {
+  parseStoredAdventure,
+  parseStoredFriendlyState,
+  parseStoredSaveJson,
+} from './adventure-schema.js';
 
 export const FIXTURE_SUBJECT: SubjectOption = {
   id: 'demo-adventurer-v1',
@@ -81,6 +92,8 @@ export interface SaveRecord {
   saveFormat: SaveFormat;
   adventurePlan: AdventurePlan | null;
   adventureState: AdventureState | null;
+  /** Null or absent on saves created before the friendly sidecar was introduced. */
+  friendlyState?: FriendlyState | null;
   revision: number;
   createdAt: Date;
   updatedAt: Date;
@@ -209,13 +222,24 @@ export function applyGameplayActionToSave(
   }
 
   let adventureState: AdventureState;
+  let friendlyState = effectiveFriendlyState(save.adventurePlan, save.friendlyState);
   try {
-    adventureState = reduceAdventureAction(
-      save.adventurePlan,
-      save.adventureState,
-      request.action,
-      now.valueOf(),
-    );
+    if (isFriendlyAction(request.action)) {
+      ({ adventureState, friendlyState } = reduceFriendlyAction(
+        save.adventurePlan,
+        save.adventureState,
+        friendlyState,
+        request.action,
+        now.valueOf(),
+      ));
+    } else {
+      adventureState = reduceAdventureAction(
+        save.adventurePlan,
+        save.adventureState,
+        request.action,
+        now.valueOf(),
+      );
+    }
   } catch (error) {
     if (error instanceof AdventureRuleError) {
       throw new AppError(409, error.code, 'Action unavailable');
@@ -239,6 +263,7 @@ export function applyGameplayActionToSave(
     appearanceStage: adventureState.appearanceStage,
     completed: adventureState.phase === 'complete',
     adventureState,
+    friendlyState,
     revision,
     updatedAt: now,
   });
@@ -248,9 +273,23 @@ export function applyGameplayActionToSave(
 /** `now` must be the application clock that also governs gameplay actions. */
 export function toSaveView(save: SaveRecord, now: Date): SaveView {
   const legacy = save.saveFormat === 'legacy-v1';
-  const adventure = !legacy && save.adventurePlan && save.adventureState
+  let adventure = !legacy && save.adventurePlan && save.adventureState
     ? toAdventureView(save.adventurePlan, save.adventureState, now.valueOf())
     : null;
+  if (adventure?.activeLevel && save.adventurePlan) {
+    const friendlyState = effectiveFriendlyState(save.adventurePlan, save.friendlyState);
+    adventure = {
+      ...adventure,
+      activeLevel: {
+        ...adventure.activeLevel,
+        friendlies: friendlyViewsForLevel(
+          adventure.activeLevel.id,
+          adventure.activeLevel.index,
+          friendlyState,
+        ),
+      },
+    };
+  }
   return {
     id: save.id,
     title: save.title,
@@ -339,11 +378,18 @@ export function validateSaveRecord(save: SaveRecord): SaveRecord {
     normalized.revision < 0 || !Number.isInteger(normalized.revision)
   ) invalidSave();
   if (normalized.saveFormat === 'legacy-v1') {
-    if (normalized.adventurePlan !== null || normalized.adventureState !== null) invalidSave();
-    return normalized;
+    if (
+      normalized.adventurePlan !== null ||
+      normalized.adventureState !== null ||
+      normalized.friendlyState != null
+    ) invalidSave();
+    return { ...normalized, friendlyState: null };
   }
   if (normalized.saveFormat !== 'era-combat-v2') invalidSave();
   const { plan, state } = parseStoredAdventure(normalized.adventurePlan, normalized.adventureState);
+  const friendlyState = normalized.friendlyState == null
+    ? null
+    : parseStoredFriendlyState(normalized.friendlyState, plan);
   const plannedMemoryIds = plan.levels.flatMap((level) => level.memoryIds);
   const savedMemoryIds = normalized.memories.map((memory) => memory.id);
   if (
@@ -372,7 +418,20 @@ export function validateSaveRecord(save: SaveRecord): SaveRecord {
     (normalized.revision === 0) !== (state.actionReceipts.length === 0) ||
     (normalized.revision > 0 && state.actionReceipts.at(-1)?.appliedRevision !== normalized.revision)
   ) invalidSave();
-  return { ...normalized, adventurePlan: plan, adventureState: state };
+  return { ...normalized, adventurePlan: plan, adventureState: state, friendlyState };
+}
+
+function effectiveFriendlyState(
+  plan: AdventurePlan,
+  stored: FriendlyState | null | undefined,
+): FriendlyState {
+  return stored == null
+    ? createInitialFriendlyState(plan)
+    : parseStoredFriendlyState(stored, plan);
+}
+
+function isFriendlyAction(action: GameplayActionRequest['action']): action is FriendlyAction {
+  return action.type === 'interact-friendly' || action.type === 'attack-friendly';
 }
 
 function gameplayActionHash(request: GameplayActionRequest): string {

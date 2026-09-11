@@ -62,6 +62,16 @@ export interface EncounterView {
   defeated: boolean;
   available: boolean;
 }
+export interface FriendlyView {
+  id: string;
+  assetId: string;
+  assetVersion: string;
+  maxHp: number;
+  hp: number;
+  defeated: boolean;
+  boonClaimed: boolean;
+  penaltyActive: boolean;
+}
 export interface ActiveLevelView {
   id: string;
   index: number;
@@ -75,6 +85,8 @@ export interface ActiveLevelView {
   memoryIds: string[];
   pickups: EquipmentView[];
   encounters: EncounterView[];
+  /** Added after the initial combat contract; absent in older serialized fixtures. */
+  friendlies?: FriendlyView[];
   bossId: string;
 }
 export interface AdventureView {
@@ -115,6 +127,8 @@ export type GameplayAction =
   | { type: "collect-equipment"; levelId: string; pickupId: string }
   | { type: "attack"; levelId: string; encounterId: string }
   | { type: "take-hit"; levelId: string; encounterId: string }
+  | { type: "interact-friendly"; levelId: string; friendlyId: string }
+  | { type: "attack-friendly"; levelId: string; friendlyId: string }
   | { type: "guard"; levelId: string }
   | { type: "recover-memory"; levelId: string; memoryId: string }
   | { type: "consume-memory-bundle"; levelId: string }

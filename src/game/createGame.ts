@@ -141,6 +141,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let timeSinceStatus = statusIntervalSeconds;
   let worldWasActive = false;
   let attackAnimationUntil = 0;
+  let attackTargetId: string | null = null;
+  let attackFeedback: GameStatus["attackFeedback"] = null;
+  let attackFeedbackSequence = 0;
   let attackCooldownUntil =
     lastTime + requireAdventure(save).attackCooldownRemainingMs;
   let guardActiveUntil =
@@ -248,6 +251,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         Boolean(target) &&
         now >= attackCooldownUntil &&
         !requestBusy,
+      attackFeedback,
       guardActive: now < guardActiveUntil,
       guardReady:
         adventure.phase === "exploring" &&
@@ -269,6 +273,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
     if (!force && timeSinceStatus < statusIntervalSeconds) return;
     timeSinceStatus = 0;
     options.onStatus(getStatus());
+  };
+
+  const recordAttackFeedback = (
+    outcome: NonNullable<GameStatus["attackFeedback"]>["outcome"],
+  ): false => {
+    attackFeedback = { sequence: ++attackFeedbackSequence, outcome };
+    emitStatus(true);
+    return false;
   };
 
   const resetController = (nextCheckpoint: PositionSnapshot): void => {
@@ -341,6 +353,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
     if (identityChanged || retried) {
       courseTime = 0;
       traversalRecoveries = 0;
+      attackAnimationUntil = 0;
+      attackTargetId = null;
+      attackFeedback = null;
       resetController(checkpoint);
       enemies.reset(level, save);
       scene.rebuildRoute(level, save);
@@ -436,16 +451,24 @@ export function createGame(options: CreateGameOptions): GameHandle {
   };
 
   const performAction = (action: GameplayAction): boolean => {
-    if (mediaState().reloadRequired) return false;
+    if (mediaState().reloadRequired)
+      return action.type === "attack"
+        ? recordAttackFeedback("unavailable")
+        : false;
     const adventure = requireAdventure(save);
-    if (!validLevelAction(action)) return false;
+    if (!validLevelAction(action))
+      return action.type === "attack"
+        ? recordAttackFeedback("unavailable")
+        : false;
     if (
       paused &&
       action.type !== "recover-memory" &&
       action.type !== "consume-memory-bundle" &&
       action.type !== "retry-level"
     ) {
-      return false;
+      return action.type === "attack"
+        ? recordAttackFeedback("unavailable")
+        : false;
     }
     switch (action.type) {
       case "collect-equipment":
@@ -457,15 +480,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
         }
         break;
       case "attack": {
-        if (
-          adventure.phase !== "exploring" ||
-          !hasEquipment(save, "attack-tool") ||
-          windowTarget.performance.now() < attackCooldownUntil
-        ) {
-          return false;
-        }
+        if (adventure.phase !== "exploring")
+          return recordAttackFeedback("unavailable");
+        if (!hasEquipment(save, "attack-tool"))
+          return recordAttackFeedback("unarmed");
+        if (requestState.requestState === "acting")
+          return recordAttackFeedback("busy");
+        if (windowTarget.performance.now() < attackCooldownUntil)
+          return recordAttackFeedback("cooldown");
         const target = nearestEncounter(false);
-        if (target?.id !== action.encounterId) return false;
+        if (target?.id !== action.encounterId)
+          return recordAttackFeedback("no-target");
         break;
       }
       case "take-hit":
@@ -506,9 +531,16 @@ export function createGame(options: CreateGameOptions): GameHandle {
         break;
     }
     const accepted = coordinator.perform(action);
-    if (accepted && action.type === "attack") {
+    if (action.type === "attack") {
+      if (!accepted) return recordAttackFeedback("unavailable");
       attackAnimationUntil =
         windowTarget.performance.now() + attackAnimationSeconds * 1000;
+      attackTargetId = action.encounterId;
+      attackFeedback = {
+        sequence: ++attackFeedbackSequence,
+        outcome: "accepted",
+      };
+      emitStatus(true);
     }
     return accepted;
   };
@@ -617,7 +649,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
             levelId: adventure.currentLevelId,
             encounterId: target.id,
           });
-        }
+        } else recordAttackFeedback("no-target");
       }
       if (actions.guard && adventure.currentLevelId) {
         performAction({ type: "guard", levelId: adventure.currentLevelId });
@@ -652,6 +684,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         Math.hypot(currentInput.moveX, currentInput.moveY) > 0.01,
       grounded: controller.grounded,
       attacking: now < attackAnimationUntil,
+      attackTargetId: now < attackAnimationUntil ? attackTargetId : null,
       guarding: now < guardActiveUntil,
       enemies: frames,
       currentTarget: target?.id ?? null,
@@ -673,6 +706,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
     },
     setInput(action, value): void {
       if (!disposed) input.set(action, value);
+    },
+    cancelInput(action): void {
+      if (!disposed) input.cancel(action);
     },
     setPaused(value): void {
       if (paused === value) return;

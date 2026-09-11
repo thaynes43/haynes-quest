@@ -3,6 +3,7 @@ import { and, desc, eq, gt } from 'drizzle-orm';
 import { drizzle, type NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import type { GameplayActionRequest } from '../../shared/contracts.js';
+import { createInitialFriendlyState } from '../../shared/friendly.js';
 import {
   applyGameplayActionToSave,
   abilitiesForAge,
@@ -163,6 +164,7 @@ export class PostgresQuestStore implements QuestStore {
           saveFormat: 'era-combat-v2',
           adventurePlan,
           adventureState,
+          friendlyState: createInitialFriendlyState(adventurePlan),
           revision: 0,
           versions: RULE_VERSIONS,
         })
@@ -217,6 +219,7 @@ export class PostgresQuestStore implements QuestStore {
           appearanceStage: next.appearanceStage,
           completed: next.completed,
           adventureState: next.adventureState,
+          friendlyState: next.friendlyState,
           revision: next.revision,
           updatedAt: next.updatedAt,
         })
@@ -316,6 +319,7 @@ function mapSave(row: SaveRow): SaveRecord {
     saveFormat: row.saveFormat,
     adventurePlan: row.adventurePlan,
     adventureState: row.adventureState,
+    friendlyState: row.friendlyState,
     revision: row.revision,
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
