@@ -462,7 +462,7 @@ function Adventure({
         </button>
       )}
       <div className="placeholder-label" data-quest-ui>
-        Private review · Fictional illustrations · Candidate artwork
+        Two-chapter playtest · Fictional memories · Candidate artwork
       </div>
 
       {activeModal === "artwork-update" && (

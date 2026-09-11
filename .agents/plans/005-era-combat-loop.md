@@ -8,7 +8,7 @@
 
 ## Enemy direction correction
 
-Tom rejected the six generic creature studies as enemies. The new requirement is recognizable pop-culture parody, using capture-date metadata and the person's birthday to establish period and age progression. The coordinator's unrequested broad-inspiration-only restriction is removed. All six existing models remain available for possible friendly/ambient use; none is selected as an enemy. Their live Blender leases and render jobs have ended. Root has now written six specific recognizable references, primary-sourced historical eligibility, visual jokes and encounter behaviors. All six construction concepts are selected and saved; replacement models are in active production under WO027/028/032. Preserve useful equipment and reusable animation/loading work.
+Tom rejected the six generic creature studies as enemies. The new requirement is recognizable pop-culture parody, using capture-date metadata and the person's birthday to establish period and age progression. The coordinator's unrequested broad-inspiration-only restriction is removed. All six existing models remain available for possible friendly/ambient use; none is selected as an enemy. Their live Blender leases and render jobs have ended. Six specific reference concepts are saved; four replacement models are complete. New production is paused under Tom's later cost/curation direction. Preserve useful equipment and reusable animation/loading work.
 
 ## Player curation and production correction
 
@@ -17,6 +17,10 @@ Tom's later September 11 request adds configurable parent setup: full-name Immic
 ## Obby requirement
 
 Tom explicitly requires Roblox-style obstacle-course play mixed with goofy fights, approachable for his six-year-old daughter. [DESIGN-011](../../docs/designs/011-forgiving-obby.md) defines the main-route approach and acceptance: visible hazards, forgiving timing, jumps after the age-based unlock, safe checkpoints and no loss of equipment or memory progress from missed traversal. A flat combat corridor fails the intended loop.
+
+## Immediate playtest
+
+Tom asked to assess progress by playing. [WO037](../work-orders/037-playtest-release.md) bounds the first test to two synthetic chapters using four completed candidate models: Mister Hiss, Peel Patrol and Drama Dragon first, then Sir Flush-a-Lot with returning Peel Patrol and Drama Dragon. New plans use immutable catalog v2; historical v1 saves retain their exact identities. Nap Captain and One-Star Diva remain outside new playtest selection. The returning cast is temporary playtest curation, not a permanent family roster. No new modeling, parent/admin setup, Besties encounter or future lifetime campaign should delay this test. Complete actual controls/media checks, ordinary checked merge and exact release preparation; keep the existing owner asset-promotion gate explicit.
 
 ## Required result
 
@@ -32,10 +36,10 @@ The current fixture deployment intentionally cannot retrieve real Immich photos.
 2. Diagnose the current media path and retain browser-specific evidence and limits.
 3. Ratify a finite level/encounter/equipment/command contract, implement persistence and boss-gated progression, and test forged/duplicate/stale/out-of-order operations.
 4. Rebuild the actual scene, input, combat and UI around the new loop, including forgiving obstacle sections, timed jumps after the ability unlock, matching visible/collision geometry and local recovery that preserves saved progress. The lead owns visual design and writing. Native Sol handles bounded logic and verification; every Blender task remains fresh Astra max with one scene owner.
-5. Complete the recognizable replacement cast and its exact model/animation review catalog. Prepare and test the concrete rebuilt game before a final promotion question. The earlier pending visual question predates Tom’s explicit rejection of the generic cast and cannot authorize those enemies. DESIGN-002 still requires exact-version owner approval before private gameplay promotion; ordinary checked code/docs merges remain authorized.
+5. Complete integration and exact model/animation review for the four-model playtest cast above. Prepare and test the concrete rebuilt game before a final promotion question. The earlier pending visual question predates Tom’s explicit rejection of the generic cast and cannot authorize those enemies. DESIGN-002 still requires exact-version owner approval before private gameplay promotion; ordinary checked code/docs merges remain authorized.
 6. Verify actual image decoding/rendering, combat interaction, defeat/retry, boss-before-growth, photo reveal/consumption, next-period transition and server-owned resume. Test keyboard and simultaneous touch through actual obstacles and fights, including deliberate missed jumps, hazard recovery and a moving-platform crossing; distinguish emulation from physical Safari.
 7. Review actual game captures against the intended look and loop; fix material quality problems before declaring completion. Carry checked PRs through merge and private GitOps release, scoped activity and live checks. Do not restart dev-env.
 
 ## Deferred boundaries
 
-The broader lifetime campaign, full historical rosters, automatic likeness generation and physical-device performance certification are not claimed by this bounded slice. Exact age brackets and combat numbers are explicit implementation defaults, not developmental facts or new owner rulings. Required current equipment/enemy/boss production belongs to this plan; it cannot be silently moved back to the backlog.
+The broader lifetime campaign, parent/admin curation setup, Besties and further enemy production, full historical rosters, automatic likeness generation and physical-device performance certification are not claimed by this bounded slice. Exact age brackets and combat numbers are explicit implementation defaults, not developmental facts or new owner rulings. The completed four-model cast and useful equipment must be delivered and verified in the playtest; deferred work does not replace that requirement.
