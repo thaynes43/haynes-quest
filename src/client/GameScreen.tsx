@@ -789,6 +789,7 @@ function ActionButton({
   return (
     <button
       className={`action-button combat-${action} ${active ? "available" : ""}`}
+      data-quest-pointer-action
       aria-label={label}
       disabled={disabled}
       onPointerDown={(event) => {

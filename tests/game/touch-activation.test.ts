@@ -82,16 +82,37 @@ describe("multi-touch button activation", () => {
     expect(clicks).toBe(0);
   });
 
-  it("never activates a disabled button or a control holding pointer capture", () => {
+  it("never activates a disabled button or an explicitly pointer-driven control", () => {
     pointer("pointerdown", elsewhere, 1);
     button.disabled = true;
     tap(button, 2);
     button.disabled = false;
+    button.setAttribute("data-quest-pointer-action", "");
+    tap(button, 3);
+    expect(clicks).toBe(0);
+  });
+
+  it("activates ordinary buttons even when direct touch implicitly captures their pointer", () => {
+    pointer("pointerdown", elsewhere, 1);
     Object.defineProperty(button, "hasPointerCapture", {
       configurable: true,
       value: () => true,
     });
     tap(button, 3);
+    expect(clicks).toBe(1);
+  });
+
+  it("rejects a displaced release even if the browser did not deliver a move event", () => {
+    pointer("pointerdown", elsewhere, 1);
+    pointer("pointerdown", button, 2);
+    pointer("pointerup", button, 2, { clientX: 130 });
+    expect(clicks).toBe(0);
+  });
+
+  it("forgets interrupted contacts on window blur", () => {
+    pointer("pointerdown", elsewhere, 1);
+    window.dispatchEvent(new Event("blur"));
+    tap(button, 2);
     expect(clicks).toBe(0);
   });
 

@@ -12,7 +12,8 @@ import { api, friendlyError } from "./api";
 import { installMultiTouchActivation } from "./touch-activation";
 import "./styles.css";
 
-installMultiTouchActivation(document);
+const disposeMultiTouchActivation = installMultiTouchActivation(document);
+import.meta.hot?.dispose(disposeMultiTouchActivation);
 
 function Sprout({ className = "" }: { className?: string }) {
   return (
