@@ -40,6 +40,127 @@ export function disposeTree(root: THREE.Object3D): void {
 
 type ModelEntry = { promise: Promise<GLTF>; failed: boolean; loading: boolean };
 
+export interface InstanceAttachOptions {
+  castShadow?: boolean;
+  receiveShadow?: boolean;
+}
+
+function disposeInstanceBatch(root: THREE.Object3D): void {
+  const geometries = new Set<THREE.BufferGeometry>();
+  const materials = new Set<THREE.Material>();
+  root.traverse((object) => {
+    if (!(object instanceof THREE.InstancedMesh)) return;
+    geometries.add(object.geometry);
+    for (const material of Array.isArray(object.material)
+      ? object.material
+      : [object.material])
+      materials.add(material);
+  });
+  for (const resource of [...geometries, ...materials]) resource.dispose();
+}
+
+function sourceVisible(object: THREE.Object3D): boolean {
+  let current: THREE.Object3D | null = object;
+  while (current) {
+    if (!current.visible) return false;
+    current = current.parent;
+  }
+  return true;
+}
+
+type SourcePrimitive = {
+  geometry: THREE.BufferGeometry;
+  material: THREE.Material | THREE.Material[];
+  transform: THREE.Matrix4;
+  name: string;
+  visible: boolean;
+  renderOrder: number;
+  layerMask: number;
+  frustumCulled: boolean;
+};
+
+function createInstanceBatch(
+  gltf: GLTF,
+  placements: readonly THREE.Matrix4[],
+  options: InstanceAttachOptions,
+): THREE.Group {
+  const assembly = new THREE.Group();
+  const ownedGeometries = new Set<THREE.BufferGeometry>();
+  const ownedMaterials = new Set<THREE.Material>();
+  const geometryClones = new Map<THREE.BufferGeometry, THREE.BufferGeometry>();
+  const materialClones = new Map<THREE.Material, THREE.Material>();
+  assembly.name = `${gltf.scene.name || "model"}-instances`;
+  gltf.scene.updateWorldMatrix(true, true);
+  try {
+    const primitives: SourcePrimitive[] = [];
+    gltf.scene.traverse((object) => {
+      if (!(object instanceof THREE.Mesh)) return;
+      if (
+        object instanceof THREE.SkinnedMesh ||
+        object instanceof THREE.InstancedMesh ||
+        object.morphTargetInfluences !== undefined
+      )
+        return;
+      const visible = sourceVisible(object);
+      primitives.push({
+        geometry: object.geometry,
+        material: object.material,
+        transform: object.matrixWorld.clone(),
+        name: object.name,
+        visible,
+        renderOrder: object.renderOrder,
+        layerMask: object.layers.mask,
+        frustumCulled: object.frustumCulled,
+      });
+    });
+    const cloneMaterial = (source: THREE.Material): THREE.Material => {
+      const material = materialClones.get(source) ?? source.clone();
+      materialClones.set(source, material);
+      ownedMaterials.add(material);
+      return material;
+    };
+    for (const primitive of primitives) {
+      const geometry =
+        geometryClones.get(primitive.geometry) ?? primitive.geometry.clone();
+      geometryClones.set(primitive.geometry, geometry);
+      ownedGeometries.add(geometry);
+      const material = Array.isArray(primitive.material)
+        ? primitive.material.map(cloneMaterial)
+        : cloneMaterial(primitive.material);
+      const batch = new THREE.InstancedMesh(
+        geometry,
+        material,
+        placements.length,
+      );
+      batch.name = primitive.name;
+      batch.castShadow = options.castShadow ?? true;
+      batch.receiveShadow = options.receiveShadow ?? true;
+      batch.visible = primitive.visible;
+      batch.renderOrder = primitive.renderOrder;
+      batch.layers.mask = primitive.layerMask;
+      batch.frustumCulled = primitive.frustumCulled;
+      const instanceTransform = new THREE.Matrix4();
+      for (let index = 0; index < placements.length; index++)
+        batch.setMatrixAt(
+          index,
+          instanceTransform.multiplyMatrices(
+            placements[index]!,
+            primitive.transform,
+          ),
+        );
+      batch.instanceMatrix.needsUpdate = true;
+      batch.computeBoundingBox();
+      batch.computeBoundingSphere();
+      assembly.add(batch);
+    }
+    return assembly;
+  } catch (error) {
+    for (const resource of [...ownedGeometries, ...ownedMaterials])
+      resource.dispose();
+    throw error;
+  }
+}
+
 export class SceneAssets {
   private readonly loader = new GLTFLoader();
   private readonly entries = new Map<string, ModelEntry>();
@@ -96,6 +217,62 @@ export class SceneAssets {
           jobs.add(run);
           this.retryJobs.set(url, jobs);
         });
+    };
+    run();
+  }
+
+  /** Flattens a static GLTF into one instanced batch per compatible source mesh. */
+  attachInstances(
+    url: string,
+    target: THREE.Object3D,
+    placements: readonly THREE.Matrix4[],
+    valid: () => boolean,
+    options: InstanceAttachOptions = {},
+  ): void {
+    if (placements.length === 0) return;
+    const placementSnapshot = placements.map((placement) => placement.clone());
+    const optionSnapshot = { ...options };
+    let inFlight = false;
+    let finished = false;
+    const run = () => {
+      if (this.disposed || !valid()) {
+        this.retryJobs.get(url)?.delete(run);
+        if (this.retryJobs.get(url)?.size === 0) this.retryJobs.delete(url);
+        return;
+      }
+      if (inFlight || finished) return;
+      inFlight = true;
+      void this.load(url).then(
+        (gltf) => {
+          inFlight = false;
+          this.retryJobs.get(url)?.delete(run);
+          if (this.disposed || !valid()) return;
+          let assembly: THREE.Group;
+          try {
+            assembly = createInstanceBatch(
+              gltf,
+              placementSnapshot,
+              optionSnapshot,
+            );
+          } catch {
+            finished = true;
+            return;
+          }
+          if (this.disposed || !valid()) {
+            disposeInstanceBatch(assembly);
+            return;
+          }
+          target.add(assembly);
+          finished = true;
+        },
+        () => {
+          inFlight = false;
+          if (this.disposed || !valid()) return;
+          const jobs = this.retryJobs.get(url) ?? new Set<() => void>();
+          jobs.add(run);
+          this.retryJobs.set(url, jobs);
+        },
+      );
     };
     run();
   }
