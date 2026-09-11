@@ -1,0 +1,3308 @@
+{
+  "asset_id": "mister-hiss",
+  "version": "v001",
+  "work_order": "WO-027",
+  "status": "candidate; exact owner approval pending",
+  "glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+  "remote_directory": "/workspace/haynes-quest/parody/mister-hiss/v001",
+  "authoring": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "blender": "4.5.13 LTS",
+    "method": "Original cuboid paper/toy meshes, attached shallow fringe, original deterministic atlas, rigid skinning and authored clips."
+  },
+  "source_concept": {
+    "repository_path": "docs/assets/media/mister-hiss/v001/concept.png",
+    "bytes": 2262270,
+    "sha256": "6042bcae573864a7b86af00fe91f45a4f30acd1788d9fcf12ccd6799f93208cd",
+    "reference": "Minecraft Creeper; recognizable paper/confetti parody. Exact lead concept inspected before construction; no private inputs."
+  },
+  "review": {
+    "lead_checkpoint": {
+      "reviewer": "/root",
+      "selected_checkpoint_sha256": "cef78f61877fdfd763a031c23bacab285c7ebe1445fb4741c360bcd845029b97",
+      "selected_utc": "2026-09-11T16:03:07.826409+00:00",
+      "decision": "Proceed with final packaging and animation/browser evidence; actual front/back/three-quarter clearly read as intended Creeper party-popper parody. Verify physical hat attachment; preserve four feet and continuous sash. No broader visual redesign.",
+      "owner_approval": "pending",
+      "final_hidden_fastening_correction": {
+        "description": "Two concealed glued plum tabs physically bridge torso to sash; no visible redesign. Sash intersects canister.",
+        "final_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+        "root_notified": true
+      },
+      "final_art_review": {
+        "reviewer": "/root",
+        "glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+        "recorded_utc": "2026-09-11T16:21:31.327666+00:00",
+        "decision": "Inspected final side and five-row motion grid. Visible construction matches selected parody direction, with readable puff/sneeze and intact seated defeat. Proceed to final package; no further art revision.",
+        "owner_approval": "pending"
+      }
+    },
+    "owner_approval": "pending",
+    "gameplay_promotion": false
+  },
+  "runtime": {
+    "asset_id": "mister-hiss",
+    "version": "v001",
+    "glb": "mister-hiss.glb",
+    "glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+    "runtime_scale": 1,
+    "units": "meters",
+    "up": "+Y",
+    "forward": "-Z",
+    "origin": [
+      0,
+      0,
+      0
+    ],
+    "ground_to_top_m": 1,
+    "rest_ground_y_m": 0,
+    "root_motion": "No caller scene translation; root joint fixed.",
+    "attack_contact_time_s": 0.9,
+    "attack_contact_fraction": 0.6,
+    "clips": {
+      "idle": {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "repeat"
+      },
+      "move": {
+        "name": "move",
+        "duration_s": 1.0,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "repeat"
+      },
+      "attack": {
+        "name": "attack",
+        "duration_s": 1.5,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": 0.9,
+        "contact_fraction": 0.6,
+        "playback": "once"
+      },
+      "hit": {
+        "name": "hit",
+        "duration_s": 0.5,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "once"
+      },
+      "defeat": {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "once",
+        "end_behavior": "Wobbles and sits down intact; terminal pose holds.",
+        "remove_only_after_duration_s": 2.0,
+        "embedded_fade": false
+      }
+    },
+    "triangles": 12872,
+    "materials": 3,
+    "draw_primitives": 3,
+    "joints": [
+      "root",
+      "body",
+      "head",
+      "brow_L",
+      "brow_R",
+      "hat",
+      "confetti_0",
+      "confetti_1",
+      "confetti_2",
+      "confetti_3",
+      "confetti_4",
+      "confetti_5",
+      "foot_front_L",
+      "foot_rear_L",
+      "foot_front_R",
+      "foot_rear_R"
+    ],
+    "texture": "One original embedded 1024px JPEG atlas; no external decoder or resources."
+  },
+  "construction": {
+    "asset_id": "mister-hiss",
+    "version": "v001",
+    "work_order": "WO-027",
+    "authoring_model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "blender": "4.5.13 LTS",
+    "reference": "Minecraft Creeper confetti parody; exact root concept retained",
+    "private_inputs": false,
+    "downloaded_meshes_or_textures": false,
+    "triangles": 12872,
+    "vertices": 7152,
+    "material_count": 3,
+    "joints": [
+      "root",
+      "body",
+      "head",
+      "foot_front_L",
+      "foot_rear_L",
+      "foot_front_R",
+      "foot_rear_R",
+      "brow_L",
+      "brow_R",
+      "hat",
+      "confetti_0",
+      "confetti_1",
+      "confetti_2",
+      "confetti_3",
+      "confetti_4",
+      "confetti_5"
+    ],
+    "spec": {
+      "height": 1.0,
+      "floor": 0,
+      "forward": "glTF -Z",
+      "up": "glTF +Y",
+      "feet": 4,
+      "arms": 0
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.0,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.5,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": 0.9,
+        "contact_fraction": 0.6
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.5,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null
+      }
+    ],
+    "source_scale_factor": 0.9603341372553217,
+    "bounds_blender": {
+      "min": [
+        -0.22106891870498657,
+        -0.19465972483158112,
+        0.0
+      ],
+      "max": [
+        0.22106891870498657,
+        0.27218297123908997,
+        1.0
+      ]
+    },
+    "named_source_parts": [
+      {
+        "name": "Torso | tall narrow armless paper core",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Torso | layered paper | front tab r00c00",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r00c01",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r00c02",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r00c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r01c00",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r01c01",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r01c02",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r01c03",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r02c00",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r02c01",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r02c02",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r02c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r03c00",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r03c01",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r03c02",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r03c03",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r04c00",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r04c01",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r04c02",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r04c03",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r05c00",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r05c01",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r05c02",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | front tab r05c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r00c00",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r00c01",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r00c02",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r00c03",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r01c00",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r01c01",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r01c02",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r01c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r02c00",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r02c01",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r02c02",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r02c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r03c00",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r03c01",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r03c02",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r03c03",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r04c00",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r04c01",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r04c02",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r04c03",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r05c00",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r05c01",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r05c02",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | back tab r05c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r00c00",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r00c01",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r00c02",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r00c03",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r01c00",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r01c01",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r01c02",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r01c03",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r02c00",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r02c01",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r02c02",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r02c03",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r03c00",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r03c01",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r03c02",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r03c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r04c00",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r04c01",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r04c02",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r04c03",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r05c00",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r05c01",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r05c02",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | right tab r05c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r00c00",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r00c01",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r00c02",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r00c03",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r01c00",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r01c01",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r01c02",
+        "bone": "body",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r01c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r02c00",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r02c01",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r02c02",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r02c03",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r03c00",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r03c01",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r03c02",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r03c03",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r04c00",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r04c01",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r04c02",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r04c03",
+        "bone": "body",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r05c00",
+        "bone": "body",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r05c01",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r05c02",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Torso | layered paper | left tab r05c03",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L dark sole",
+        "bone": "foot_front_L",
+        "atlas_tile": 5,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Foot | front L green cuboid",
+        "bone": "foot_front_L",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Foot | front L | front tab r00c00",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | front tab r00c01",
+        "bone": "foot_front_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | front tab r00c02",
+        "bone": "foot_front_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | front tab r01c00",
+        "bone": "foot_front_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | front tab r01c01",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | front tab r01c02",
+        "bone": "foot_front_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | back tab r00c00",
+        "bone": "foot_front_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | back tab r00c01",
+        "bone": "foot_front_L",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | back tab r00c02",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | back tab r01c00",
+        "bone": "foot_front_L",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | back tab r01c01",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | back tab r01c02",
+        "bone": "foot_front_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | right tab r00c00",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | right tab r00c01",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | right tab r00c02",
+        "bone": "foot_front_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | right tab r01c00",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | right tab r01c01",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | right tab r01c02",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | left tab r00c00",
+        "bone": "foot_front_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | left tab r00c01",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | left tab r00c02",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | left tab r01c00",
+        "bone": "foot_front_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | left tab r01c01",
+        "bone": "foot_front_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front L | left tab r01c02",
+        "bone": "foot_front_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L dark sole",
+        "bone": "foot_rear_L",
+        "atlas_tile": 5,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Foot | rear L green cuboid",
+        "bone": "foot_rear_L",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Foot | rear L | front tab r00c00",
+        "bone": "foot_rear_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | front tab r00c01",
+        "bone": "foot_rear_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | front tab r00c02",
+        "bone": "foot_rear_L",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | front tab r01c00",
+        "bone": "foot_rear_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | front tab r01c01",
+        "bone": "foot_rear_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | front tab r01c02",
+        "bone": "foot_rear_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | back tab r00c00",
+        "bone": "foot_rear_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | back tab r00c01",
+        "bone": "foot_rear_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | back tab r00c02",
+        "bone": "foot_rear_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | back tab r01c00",
+        "bone": "foot_rear_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | back tab r01c01",
+        "bone": "foot_rear_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | back tab r01c02",
+        "bone": "foot_rear_L",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | right tab r00c00",
+        "bone": "foot_rear_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | right tab r00c01",
+        "bone": "foot_rear_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | right tab r00c02",
+        "bone": "foot_rear_L",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | right tab r01c00",
+        "bone": "foot_rear_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | right tab r01c01",
+        "bone": "foot_rear_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | right tab r01c02",
+        "bone": "foot_rear_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | left tab r00c00",
+        "bone": "foot_rear_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | left tab r00c01",
+        "bone": "foot_rear_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | left tab r00c02",
+        "bone": "foot_rear_L",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | left tab r01c00",
+        "bone": "foot_rear_L",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | left tab r01c01",
+        "bone": "foot_rear_L",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear L | left tab r01c02",
+        "bone": "foot_rear_L",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R dark sole",
+        "bone": "foot_front_R",
+        "atlas_tile": 5,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Foot | front R green cuboid",
+        "bone": "foot_front_R",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Foot | front R | front tab r00c00",
+        "bone": "foot_front_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | front tab r00c01",
+        "bone": "foot_front_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | front tab r00c02",
+        "bone": "foot_front_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | front tab r01c00",
+        "bone": "foot_front_R",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | front tab r01c01",
+        "bone": "foot_front_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | front tab r01c02",
+        "bone": "foot_front_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | back tab r00c00",
+        "bone": "foot_front_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | back tab r00c01",
+        "bone": "foot_front_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | back tab r00c02",
+        "bone": "foot_front_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | back tab r01c00",
+        "bone": "foot_front_R",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | back tab r01c01",
+        "bone": "foot_front_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | back tab r01c02",
+        "bone": "foot_front_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | right tab r00c00",
+        "bone": "foot_front_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | right tab r00c01",
+        "bone": "foot_front_R",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | right tab r00c02",
+        "bone": "foot_front_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | right tab r01c00",
+        "bone": "foot_front_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | right tab r01c01",
+        "bone": "foot_front_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | right tab r01c02",
+        "bone": "foot_front_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | left tab r00c00",
+        "bone": "foot_front_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | left tab r00c01",
+        "bone": "foot_front_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | left tab r00c02",
+        "bone": "foot_front_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | left tab r01c00",
+        "bone": "foot_front_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | left tab r01c01",
+        "bone": "foot_front_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | front R | left tab r01c02",
+        "bone": "foot_front_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R dark sole",
+        "bone": "foot_rear_R",
+        "atlas_tile": 5,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Foot | rear R green cuboid",
+        "bone": "foot_rear_R",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Foot | rear R | front tab r00c00",
+        "bone": "foot_rear_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | front tab r00c01",
+        "bone": "foot_rear_R",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | front tab r00c02",
+        "bone": "foot_rear_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | front tab r01c00",
+        "bone": "foot_rear_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | front tab r01c01",
+        "bone": "foot_rear_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | front tab r01c02",
+        "bone": "foot_rear_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | back tab r00c00",
+        "bone": "foot_rear_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | back tab r00c01",
+        "bone": "foot_rear_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | back tab r00c02",
+        "bone": "foot_rear_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | back tab r01c00",
+        "bone": "foot_rear_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | back tab r01c01",
+        "bone": "foot_rear_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | back tab r01c02",
+        "bone": "foot_rear_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | right tab r00c00",
+        "bone": "foot_rear_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | right tab r00c01",
+        "bone": "foot_rear_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | right tab r00c02",
+        "bone": "foot_rear_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | right tab r01c00",
+        "bone": "foot_rear_R",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | right tab r01c01",
+        "bone": "foot_rear_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | right tab r01c02",
+        "bone": "foot_rear_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | left tab r00c00",
+        "bone": "foot_rear_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | left tab r00c01",
+        "bone": "foot_rear_R",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | left tab r00c02",
+        "bone": "foot_rear_R",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | left tab r01c00",
+        "bone": "foot_rear_R",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | left tab r01c01",
+        "bone": "foot_rear_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Foot | rear R | left tab r01c02",
+        "bone": "foot_rear_R",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | broad cuboid core",
+        "bone": "head",
+        "atlas_tile": 0,
+        "vertices": 96,
+        "triangles": 188
+      },
+      {
+        "name": "Head | layered paper | front tab r00c00",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r00c01",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r00c02",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r00c03",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r00c04",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r00c05",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r00c06",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r01c00",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r01c06",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r02c00",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r02c06",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r03c00",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r03c06",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r04c00",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | front tab r04c06",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r00c00",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r00c01",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r00c02",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r00c03",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r00c04",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r00c05",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r00c06",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r01c00",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r01c01",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r01c02",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r01c03",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r01c04",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r01c05",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r01c06",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r02c00",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r02c01",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r02c02",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r02c03",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r02c04",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r02c05",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r02c06",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r03c00",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r03c01",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r03c02",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r03c03",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r03c04",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r03c05",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r03c06",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r04c00",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r04c01",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r04c02",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r04c03",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r04c04",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r04c05",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | back tab r04c06",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r00c00",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r00c01",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r00c02",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r00c03",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r00c04",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r00c05",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r01c00",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r01c01",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r01c02",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r01c03",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r01c04",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r01c05",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r02c00",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r02c01",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r02c02",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r02c03",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r02c04",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r02c05",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r03c00",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r03c01",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r03c02",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r03c03",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r03c04",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r03c05",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r04c00",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r04c01",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r04c02",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r04c03",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r04c04",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | right tab r04c05",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r00c00",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r00c01",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r00c02",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r00c03",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r00c04",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r00c05",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r01c00",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r01c01",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r01c02",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r01c03",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r01c04",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r01c05",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r02c00",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r02c01",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r02c02",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r02c03",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r02c04",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r02c05",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r03c00",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r03c01",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r03c02",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r03c03",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r03c04",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r03c05",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r04c00",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r04c01",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r04c02",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r04c03",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r04c04",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | layered paper | left tab r04c05",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Head | crown paper strip 00",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Head | crown paper strip 01",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Head | crown paper strip 02",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Head | crown paper strip 03",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Head | crown paper strip 04",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Head | crown paper strip 05",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Head | crown paper strip 06",
+        "bone": "head",
+        "atlas_tile": 1,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Face | unmistakable black pixel frown",
+        "bone": "head",
+        "atlas_tile": 9,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Face | L cream pixel eye",
+        "bone": "head",
+        "atlas_tile": 10,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Face | L amber iris",
+        "bone": "head",
+        "atlas_tile": 11,
+        "vertices": 72,
+        "triangles": 140
+      },
+      {
+        "name": "Face | L black pupil",
+        "bone": "head",
+        "atlas_tile": 9,
+        "vertices": 72,
+        "triangles": 140
+      },
+      {
+        "name": "Face | L catchlight",
+        "bone": "head",
+        "atlas_tile": 10,
+        "vertices": 36,
+        "triangles": 68
+      },
+      {
+        "name": "Face | L lopsided black eyebrow",
+        "bone": "brow_L",
+        "atlas_tile": 9,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Face | R cream pixel eye",
+        "bone": "head",
+        "atlas_tile": 10,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Face | R amber iris",
+        "bone": "head",
+        "atlas_tile": 11,
+        "vertices": 72,
+        "triangles": 140
+      },
+      {
+        "name": "Face | R black pupil",
+        "bone": "head",
+        "atlas_tile": 9,
+        "vertices": 72,
+        "triangles": 140
+      },
+      {
+        "name": "Face | R catchlight",
+        "bone": "head",
+        "atlas_tile": 10,
+        "vertices": 36,
+        "triangles": 68
+      },
+      {
+        "name": "Face | R lopsided black eyebrow",
+        "bone": "brow_R",
+        "atlas_tile": 9,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Sash | continuous diagonal plum wrap front sides back",
+        "bone": "body",
+        "atlas_tile": 6,
+        "vertices": 16,
+        "triangles": 32
+      },
+      {
+        "name": "Sash | concealed glued fastening tab L",
+        "bone": "body",
+        "atlas_tile": 6,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Sash | concealed glued fastening tab R",
+        "bone": "body",
+        "atlas_tile": 6,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Popper | strapped printed plum canister",
+        "bone": "body",
+        "atlas_tile": 7,
+        "vertices": 96,
+        "triangles": 188
+      },
+      {
+        "name": "Popper | lower plum folded rim",
+        "bone": "body",
+        "atlas_tile": 6,
+        "vertices": 96,
+        "triangles": 188
+      },
+      {
+        "name": "Popper | tiny brass mouth rim",
+        "bone": "body",
+        "atlas_tile": 8,
+        "vertices": 96,
+        "triangles": 188
+      },
+      {
+        "name": "Popper | recessed dark open mouth",
+        "bone": "body",
+        "atlas_tile": 9,
+        "vertices": 48,
+        "triangles": 92
+      },
+      {
+        "name": "Popper | secure plum retaining band",
+        "bone": "body",
+        "atlas_tile": 6,
+        "vertices": 48,
+        "triangles": 92
+      },
+      {
+        "name": "Popper | brass clasp plate",
+        "bone": "body",
+        "atlas_tile": 8,
+        "vertices": 56,
+        "triangles": 108
+      },
+      {
+        "name": "Popper | clasp inset",
+        "bone": "body",
+        "atlas_tile": 6,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Popper | clasp smile eye -0.01",
+        "bone": "body",
+        "atlas_tile": 9,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Popper | clasp smile eye 0.01",
+        "bone": "body",
+        "atlas_tile": 9,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Popper | clasp smile",
+        "bone": "body",
+        "atlas_tile": 9,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Hat | plum cone with original party print",
+        "bone": "hat",
+        "atlas_tile": 7,
+        "vertices": 48,
+        "triangles": 92
+      },
+      {
+        "name": "Hat | rolled plum brim",
+        "bone": "hat",
+        "atlas_tile": 6,
+        "vertices": 80,
+        "triangles": 156
+      },
+      {
+        "name": "Hat | paper pompom fold 00",
+        "bone": "hat",
+        "atlas_tile": 12,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Hat | paper pompom fold 01",
+        "bone": "hat",
+        "atlas_tile": 12,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Hat | paper pompom fold 02",
+        "bone": "hat",
+        "atlas_tile": 12,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Hat | paper pompom fold 03",
+        "bone": "hat",
+        "atlas_tile": 12,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Hat | paper pompom fold 04",
+        "bone": "hat",
+        "atlas_tile": 12,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Hat | paper pompom fold 05",
+        "bone": "hat",
+        "atlas_tile": 12,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Hat | paper pompom fold 06",
+        "bone": "hat",
+        "atlas_tile": 12,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Hat | paper pompom fold 07",
+        "bone": "hat",
+        "atlas_tile": 12,
+        "vertices": 24,
+        "triangles": 44
+      },
+      {
+        "name": "Confetti | folded paper bit 0",
+        "bone": "confetti_0",
+        "atlas_tile": 12,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Confetti | folded paper bit 1",
+        "bone": "confetti_1",
+        "atlas_tile": 13,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Confetti | folded paper bit 2",
+        "bone": "confetti_2",
+        "atlas_tile": 14,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Confetti | folded paper bit 3",
+        "bone": "confetti_3",
+        "atlas_tile": 15,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Confetti | folded paper bit 4",
+        "bone": "confetti_4",
+        "atlas_tile": 13,
+        "vertices": 16,
+        "triangles": 28
+      },
+      {
+        "name": "Confetti | folded paper bit 5",
+        "bone": "confetti_5",
+        "atlas_tile": 12,
+        "vertices": 16,
+        "triangles": 28
+      }
+    ],
+    "runtime_construction": "Named editable parts retained in excluded source collection; joined into one runtime skin and three opaque material primitives.",
+    "files": {
+      "mister-hiss.blend": {
+        "bytes": 8218611,
+        "sha256": "18781a327b2aba9387308daacf5f6e5aaf62851eae5a00e47fb15a2e93bf266a"
+      },
+      "mister-hiss.glb": {
+        "bytes": 1202456,
+        "sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+      },
+      "pigment.png": {
+        "bytes": 763241,
+        "sha256": "b2f3a67995e3eb4be8d641911dd1c73a45eb53fdb213fa528ea67c831534f5f1"
+      }
+    }
+  },
+  "validation": {
+    "khronos_issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "resource_and_budget_checks": {
+      "gltf_2": true,
+      "khronos_no_errors": true,
+      "khronos_no_warnings": true,
+      "five_exact_clips": true,
+      "positive_animated_clips": true,
+      "triangle_budget_15000": true,
+      "material_budget_6": true,
+      "primitive_budget_6": true,
+      "glb_budget_2_mib": true,
+      "one_embedded_pigment_image": true,
+      "embedded_resources": true,
+      "no_required_extensions": true,
+      "all_have_uvs": true,
+      "single_skin": true,
+      "at_most_4_influences": true,
+      "opaque_surfaces": true
+    },
+    "three_revision": "186",
+    "three_checks": {
+      "embedded_pigment_decoded": true,
+      "six_or_fewer_draw_primitives": true,
+      "skinned_geometry_loaded": true,
+      "correct_max_height": true,
+      "correct_rest_clearance": true,
+      "correct_wingspan": true,
+      "exact_clip_set": true,
+      "all_clips_move_actual_vertices": true,
+      "idle_move_loop_seams": true,
+      "root_bone_fixed": true,
+      "external_scene_translation_correct": true,
+      "bounded_floor_penetration": true,
+      "finite_geometry": true,
+      "independent_skeleton_clone": true,
+      "all_tracks_bind_below_attachment_root": true,
+      "unit_attachment_root_scale": true,
+      "attack_clamps_after_end": true,
+      "clone_animation_does_not_translate_attachment_root": true,
+      "exact_contact_timing": true
+    },
+    "browser": "153.0.8010.12",
+    "browser_checks": {
+      "exact_glb_hash": true,
+      "three_skinned_draw_primitives": true,
+      "one_embedded_1024_image": true,
+      "expected_color_draws": true,
+      "expected_triangle_count": true,
+      "five_expected_clips": true,
+      "every_clip_changes_actual_raster": true,
+      "webgl_error_free": true,
+      "browser_error_free": true,
+      "no_external_requests": true
+    },
+    "construction_checks": {
+      "all_source_parts_survive": true,
+      "one_full_weight_per_exported_vertex": true,
+      "exactly_four_distinct_foot_cores": true,
+      "continuous_sash_and_strapped_canister_on_body": true,
+      "hat_crown_parented_to_hat_joint": true,
+      "hat_brim_physically_intersects_head": true,
+      "sash_tabs_physically_connect_to_body": true,
+      "canister_physically_connects_to_sash": true
+    },
+    "hat_contact": {
+      "head_core_top_m": 0.869102418422699,
+      "brim_lowest_inside_head_xy_m": 0.8571481108665466,
+      "physical_overlap_m": 0.011954307556152344,
+      "hat_parent_joint": "head"
+    },
+    "video_streams": {
+      "animations.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "24/1",
+        "frames": 180,
+        "duration_s": 7.5,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "turntable.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "24/1",
+        "frames": 72,
+        "duration_s": 3.0,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "idle.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "24/1",
+        "frames": 60,
+        "duration_s": 2.5,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "move.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "24/1",
+        "frames": 24,
+        "duration_s": 1.0,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "attack.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "24/1",
+        "frames": 36,
+        "duration_s": 1.5,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "hit.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "24/1",
+        "frames": 12,
+        "duration_s": 0.5,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "defeat.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "24/1",
+        "frames": 48,
+        "duration_s": 2.0,
+        "audio": false,
+        "full_decode_passed": true
+      }
+    }
+  },
+  "editable_master": {
+    "remote_path": "/workspace/haynes-quest/parody/mister-hiss/v001/mister-hiss.blend",
+    "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/mister-hiss.blend",
+    "sha256": "18781a327b2aba9387308daacf5f6e5aaf62851eae5a00e47fb15a2e93bf266a"
+  },
+  "files": [
+    {
+      "local_name": "mister-hiss.blend",
+      "remote_relative_path": "mister-hiss.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/mister-hiss.blend",
+      "role": "editable_master",
+      "bytes": 8218611,
+      "sha256": "18781a327b2aba9387308daacf5f6e5aaf62851eae5a00e47fb15a2e93bf266a",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "mister-hiss-export-review.blend",
+      "remote_relative_path": "mister-hiss-export-review.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/mister-hiss-export-review.blend",
+      "role": "editable_master",
+      "bytes": 3842200,
+      "sha256": "bc9df8ee7a9344aa2710b4782299ed2d756bc8ab9b2e20b8259454cff8be9b9d",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "live-scene-release.blend",
+      "remote_relative_path": "live-scene-release.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/live-scene-release.blend",
+      "role": "editable_master",
+      "bytes": 8246307,
+      "sha256": "d44ef91177adcc469431efa2310b56384bc37d168aabeea0671effaf54e9871f",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "mister-hiss.glb",
+      "remote_relative_path": "mister-hiss.glb",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/mister-hiss.glb",
+      "role": "candidate_or_evidence",
+      "bytes": 1202456,
+      "sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "pigment.png",
+      "remote_relative_path": "pigment.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/pigment.png",
+      "role": "candidate_or_evidence",
+      "bytes": 763241,
+      "sha256": "b2f3a67995e3eb4be8d641911dd1c73a45eb53fdb213fa528ea67c831534f5f1",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "front.png",
+      "remote_relative_path": "front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/front.png",
+      "role": "candidate_or_evidence",
+      "bytes": 799798,
+      "sha256": "7d682167cf487a85601d6efc33d0fc63a407d30530aea8f1ed0214681cb67b65",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "side.png",
+      "remote_relative_path": "side.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/side.png",
+      "role": "candidate_or_evidence",
+      "bytes": 788210,
+      "sha256": "f919b84f5b090eba417fd67977fb6f1813f2f5f16d1024ca0dcfb4fde69c9d55",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "back.png",
+      "remote_relative_path": "back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/back.png",
+      "role": "candidate_or_evidence",
+      "bytes": 778614,
+      "sha256": "ef57c0d81283d4916f81e99f7a1ce9362b81413974d4ede31e9a34b5fec2739f",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "beauty.png",
+      "remote_relative_path": "beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/beauty.png",
+      "role": "candidate_or_evidence",
+      "bytes": 912150,
+      "sha256": "b7bb218ec5436a8288a51f8f64da960d0b1d79ddb62d3c505a011ec38e1f007a",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "motion-grid.png",
+      "remote_relative_path": "motion-grid.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/motion-grid.png",
+      "role": "candidate_or_evidence",
+      "bytes": 821658,
+      "sha256": "7a1e61a2a5cc500957e6a30609cdff7d8c8b939ba9eb63058645c0befa239ad0",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "animations.mp4",
+      "remote_relative_path": "animations.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/animations.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 257041,
+      "sha256": "f504be34567c826a97fb83c8a5310addd605887ff991dd4c6c55c00ae0a1ac36",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "turntable.mp4",
+      "remote_relative_path": "turntable.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/turntable.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 197055,
+      "sha256": "66a77a988c776cd4f9e9620edaaf0de6c6015472b0fb1cadf31dbf56cdba98f1",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "idle.mp4",
+      "remote_relative_path": "idle.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/idle.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 53759,
+      "sha256": "0fc9b1949607bb2327259de7a13bef6fd4de1c60bfd7a98459d48868b1597c8a",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "move.mp4",
+      "remote_relative_path": "move.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/move.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 42816,
+      "sha256": "6845517c02c7a15031eccb5a151d2a69461bcd95b6f892407c046c16d082156e",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "attack.mp4",
+      "remote_relative_path": "attack.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/attack.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 64459,
+      "sha256": "46c5851d94e30ec262374859da6a5556599bc7eff2e67e00eaedde992db7384d",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "hit.mp4",
+      "remote_relative_path": "hit.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/hit.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 23954,
+      "sha256": "a7636714ed8e02026895ecc7799f2d5c35b38c06d0ac79bb1cf5675f3ed4db18",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "defeat.mp4",
+      "remote_relative_path": "defeat.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/defeat.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 75342,
+      "sha256": "e424126e6757b5a8ffa9ca4ccc6de2c6555fe5a9cd52f12722ae10ab983fcd4a",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "browser-beauty.png",
+      "remote_relative_path": "browser-beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/browser-beauty.png",
+      "role": "candidate_or_evidence",
+      "bytes": 119493,
+      "sha256": "ea3262e67f5fe2bc3d6418b6e9550a3985ad1cfaea57831156c763591f66e662",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "browser-attack.png",
+      "remote_relative_path": "browser-attack.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/browser-attack.png",
+      "role": "candidate_or_evidence",
+      "bytes": 126493,
+      "sha256": "ad93aaa997dd31c7602309a5c9429e2322e3685186cb8f83c95478375cbc18de",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "quick.png",
+      "remote_relative_path": "quick.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/quick.png",
+      "role": "candidate_or_evidence",
+      "bytes": 581553,
+      "sha256": "506ba0d2bc77e3a6e3dd159d97132820d4d28b22bc4794a5c7a541e6f85dfff6",
+      "source_glb_sha256": "cef78f61877fdfd763a031c23bacab285c7ebe1445fb4741c360bcd845029b97"
+    },
+    {
+      "local_name": "checkpoint-front.png",
+      "remote_relative_path": "checkpoint-front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/checkpoint-front.png",
+      "role": "candidate_or_evidence",
+      "bytes": 510853,
+      "sha256": "4fe777932118fa17f9af2ab0f750364f31bcd5691cc19f3d675af43a0254e6c5",
+      "source_glb_sha256": "cef78f61877fdfd763a031c23bacab285c7ebe1445fb4741c360bcd845029b97"
+    },
+    {
+      "local_name": "checkpoint-back.png",
+      "remote_relative_path": "checkpoint-back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/checkpoint-back.png",
+      "role": "candidate_or_evidence",
+      "bytes": 492227,
+      "sha256": "e53bcfc556d31dbd7582750ce6443faee301f86d8a69ac6cac633dd614da2e66",
+      "source_glb_sha256": "cef78f61877fdfd763a031c23bacab285c7ebe1445fb4741c360bcd845029b97"
+    },
+    {
+      "local_name": "checkpoint-complete.json",
+      "remote_relative_path": "checkpoint-complete.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/checkpoint-complete.json",
+      "role": "candidate_or_evidence",
+      "bytes": 116,
+      "sha256": "9c2793b5a93a1634e7c4e072aff1a3e3c89a84edf2cb810cd94d9b5ee43c5dec",
+      "source_glb_sha256": "cef78f61877fdfd763a031c23bacab285c7ebe1445fb4741c360bcd845029b97"
+    },
+    {
+      "local_name": "construction.json",
+      "remote_relative_path": "construction.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/construction.json",
+      "role": "candidate_or_evidence",
+      "bytes": 59154,
+      "sha256": "42074cb6a5b1d1d565f1b1f7e1f4e9b7035131aab4ad2e5e88037eec2976f0c0",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "construction-survival.json",
+      "remote_relative_path": "construction-survival.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/construction-survival.json",
+      "role": "candidate_or_evidence",
+      "bytes": 55716,
+      "sha256": "cb49f0b0de6b96a5fb4603cf4c7956e74f7276aa450edf5007666ef5c174b3bc",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "validation.json",
+      "remote_relative_path": "validation.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/validation.json",
+      "role": "candidate_or_evidence",
+      "bytes": 3440,
+      "sha256": "201f9f69458bff956207cc6b3a61f3d559ecd7a1752467f53675e28306b74d3c",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "export-inspection.json",
+      "remote_relative_path": "export-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/export-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1831,
+      "sha256": "76ee4e4b00255fd413f41624ab429db3c1552ebac74f2bdda33d5d18166e610e",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "three-inspection.json",
+      "remote_relative_path": "three-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/three-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 46507,
+      "sha256": "0d31dc8371de6f42928c422e0ca318e8f1e2b72403c22727a43b3dce809c218f",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "browser-inspection.json",
+      "remote_relative_path": "browser-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/browser-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 3849,
+      "sha256": "f15313bc177d149032d51cb77c6d7218ce47525591acfbb6bf5aec2cd04cb99b",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "render-complete.json",
+      "remote_relative_path": "render-complete.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/render-complete.json",
+      "role": "candidate_or_evidence",
+      "bytes": 223,
+      "sha256": "6e4b23e587c4a65fad6b65ed3c60e48cd517de01000363b131d4489da67752b6",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "runtime.json",
+      "remote_relative_path": "runtime.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/runtime.json",
+      "role": "candidate_or_evidence",
+      "bytes": 2124,
+      "sha256": "b103bc28cc41e20d02f805a5edd535f71fb39d85dc18b9964c3e0cc468b0e970",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "lead-checkpoint-review.json",
+      "remote_relative_path": "lead-checkpoint-review.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/lead-checkpoint-review.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1224,
+      "sha256": "8debbc08774a0ee209c25ab35a33310c7b87aa8883c7fbcf44291a2e161310d1",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "render-process-completion.json",
+      "remote_relative_path": "render-process-completion.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/render-process-completion.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1242,
+      "sha256": "11bec6f4d88b743c33d7b5a2009d1eeb9b5c0c850d64746f27a9d7068cfb2bd4",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "local_name": "scene-lease.json",
+      "remote_relative_path": "scene-lease.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/scene-lease.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1681,
+      "sha256": "afed2be5a8aba7c39d4c2f729c0f43c7862157634f88f507988ca2d8a582e479",
+      "source_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    }
+  ],
+  "sources": [
+    {
+      "file": "atlas.py",
+      "repository_path": "scripts/assets/parody-mister-hiss/atlas.py",
+      "bytes": 2184,
+      "sha256": "f040e91a2608d137643eb188bb6fe3a8e1b119fe4176501eee31e91a94dc2697"
+    },
+    {
+      "file": "build.py",
+      "repository_path": "scripts/assets/parody-mister-hiss/build.py",
+      "bytes": 22718,
+      "sha256": "0dfc99a6098119120b6e733a7c7dcf0830e85df3a379436329b01635c939ba29"
+    },
+    {
+      "file": "collect.py",
+      "repository_path": "scripts/assets/parody-mister-hiss/collect.py",
+      "bytes": 2780,
+      "sha256": "0df963851eae14a699f4f773adf10d47cd28708b8198c543f90163729199a334"
+    },
+    {
+      "file": "compare-construction.py",
+      "repository_path": "scripts/assets/parody-mister-hiss/compare-construction.py",
+      "bytes": 4608,
+      "sha256": "e8261897715309ff3551223e0aa7ac9fdb7d284d76db80a65da1793ab8a575f9"
+    },
+    {
+      "file": "delivery.py",
+      "repository_path": "scripts/assets/parody-mister-hiss/delivery.py",
+      "bytes": 8334,
+      "sha256": "64f5ebd1a984aed56b9ca378c955f3eccff7c84c8da4970fc014fbd55b0b6db7"
+    },
+    {
+      "file": "inspect-browser.mjs",
+      "repository_path": "scripts/assets/parody-mister-hiss/inspect-browser.mjs",
+      "bytes": 8708,
+      "sha256": "463796a5dd0ce9fb13bc1474bc4dae2af71a7e46562c1c1191ebc035f295418c"
+    },
+    {
+      "file": "inspect-three.mjs",
+      "repository_path": "scripts/assets/parody-mister-hiss/inspect-three.mjs",
+      "bytes": 8484,
+      "sha256": "5dc8fe85749d8a963f3b692996f1a33cf9a7cf5cf6a7ad87a3ccebdc50418caf"
+    },
+    {
+      "file": "render.py",
+      "repository_path": "scripts/assets/parody-mister-hiss/render.py",
+      "bytes": 10387,
+      "sha256": "ad9fc6807a7d901d0819bcb9272ad2bb5f339902edc3154d87f6698e897c353c"
+    },
+    {
+      "file": "validate.mjs",
+      "repository_path": "scripts/assets/parody-mister-hiss/validate.mjs",
+      "bytes": 2873,
+      "sha256": "6c20d3e087a8c4f6146b588c0af3d91cb84dd8c35f1b197ab2d5c22cc3a0cef0"
+    }
+  ],
+  "source_bundle": {
+    "file": "source-bundle.json",
+    "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/mister-hiss/v001/source-bundle.json",
+    "bytes": 97020,
+    "sha256": "129f26b163ac65cdb30f44c4a244b8abb098bae4f37dac0d1941f5c282fe693a"
+  },
+  "retained_iterations": [
+    {
+      "path": "/workspace/haynes-quest/parody/mister-hiss/v001/iterations/initial-uv-check",
+      "reason": "Actual GLB render detected default primitive UV layer; corrected before lead selection. Earlier exported sources and three images retained."
+    },
+    {
+      "path": "/workspace/haynes-quest/parody/mister-hiss/v001/iterations/selected-before-fastening-tabs",
+      "glb_sha256": "cef78f61877fdfd763a031c23bacab285c7ebe1445fb4741c360bcd845029b97",
+      "reason": "Lead-selected shape retained; two hidden glued fastening tabs subsequently added to physically connect sash and torso. All final named views/videos use the new exact GLB."
+    }
+  ],
+  "limitations": [
+    "No physical iPhone/iPad Safari, device GPU performance, integrated gameplay or owner approval claim.",
+    "Confetti is six small opaque skinned paper bits; no runtime particle system or sound is embedded."
+  ]
+}

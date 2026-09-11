@@ -1,0 +1,158 @@
+{
+  "asset_id": "mister-hiss",
+  "file": "mister-hiss.glb",
+  "sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+  "bytes": 1202456,
+  "triangles": 12872,
+  "draw_primitives": 3,
+  "materials": [
+    {
+      "name": "Paper and printed pigment",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8600000143051147
+      }
+    },
+    {
+      "name": "Eye glaze",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.3400000035762787
+      }
+    },
+    {
+      "name": "Small brass clasp",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0.6499999761581421,
+        "roughnessFactor": 0.41999998688697815
+      }
+    }
+  ],
+  "joints": [
+    "root",
+    "body",
+    "head",
+    "brow_L",
+    "brow_R",
+    "hat",
+    "confetti_0",
+    "confetti_1",
+    "confetti_2",
+    "confetti_3",
+    "confetti_4",
+    "confetti_5",
+    "foot_front_L",
+    "foot_rear_L",
+    "foot_front_R",
+    "foot_rear_R"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "channels": 48
+    },
+    {
+      "name": "move",
+      "duration_s": 1,
+      "channels": 48
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.5,
+      "channels": 48
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5,
+      "channels": 48
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2,
+      "channels": 48
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "triangle_budget_15000": true,
+    "material_budget_6": true,
+    "primitive_budget_6": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_pigment_image": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "all_have_uvs": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true
+  },
+  "validator": {
+    "uri": "mister-hiss.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T16:09:36.131Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 1145660
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 3,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 3,
+      "totalVertexCount": 18843,
+      "totalTriangleCount": 12872,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

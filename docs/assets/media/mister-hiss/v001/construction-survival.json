@@ -1,0 +1,2192 @@
+{
+  "asset_id": "mister-hiss",
+  "glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+  "method": "Every original named construction vertex matched to actual re-imported GLB coordinates within the same exported rigid bone weight.",
+  "named_source_parts": 359,
+  "exported_vertices": 18843,
+  "parts": [
+    {
+      "name": "Torso | tall narrow armless paper core",
+      "bone": "body",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r00c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r00c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r00c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r00c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r01c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r01c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r01c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r01c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r02c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r02c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r02c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r02c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r03c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r03c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r03c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r03c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r04c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r04c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r04c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r04c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r05c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r05c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r05c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | front tab r05c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r00c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r00c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r00c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r00c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r01c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r01c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r01c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r01c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r02c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r02c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r02c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r02c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r03c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r03c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r03c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r03c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r04c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r04c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r04c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r04c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r05c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r05c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r05c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | back tab r05c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r00c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r00c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r00c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r00c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r01c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r01c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r01c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r01c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r02c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r02c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r02c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r02c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r03c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r03c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r03c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r03c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r04c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r04c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r04c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r04c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r05c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r05c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r05c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | right tab r05c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r00c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r00c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r00c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r00c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r01c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r01c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r01c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r01c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r02c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r02c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r02c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r02c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r03c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r03c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r03c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r03c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r04c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r04c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r04c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r04c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r05c00",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r05c01",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r05c02",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Torso | layered paper | left tab r05c03",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L dark sole",
+      "bone": "foot_front_L",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L green cuboid",
+      "bone": "foot_front_L",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | front tab r00c00",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | front tab r00c01",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | front tab r00c02",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | front tab r01c00",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | front tab r01c01",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | front tab r01c02",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | back tab r00c00",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | back tab r00c01",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | back tab r00c02",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | back tab r01c00",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | back tab r01c01",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | back tab r01c02",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | right tab r00c00",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | right tab r00c01",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | right tab r00c02",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | right tab r01c00",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | right tab r01c01",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | right tab r01c02",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | left tab r00c00",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | left tab r00c01",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | left tab r00c02",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | left tab r01c00",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | left tab r01c01",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front L | left tab r01c02",
+      "bone": "foot_front_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L dark sole",
+      "bone": "foot_rear_L",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L green cuboid",
+      "bone": "foot_rear_L",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | front tab r00c00",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | front tab r00c01",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | front tab r00c02",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | front tab r01c00",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | front tab r01c01",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | front tab r01c02",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | back tab r00c00",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | back tab r00c01",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | back tab r00c02",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | back tab r01c00",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | back tab r01c01",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | back tab r01c02",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | right tab r00c00",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | right tab r00c01",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | right tab r00c02",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | right tab r01c00",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | right tab r01c01",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | right tab r01c02",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | left tab r00c00",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | left tab r00c01",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | left tab r00c02",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | left tab r01c00",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | left tab r01c01",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear L | left tab r01c02",
+      "bone": "foot_rear_L",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R dark sole",
+      "bone": "foot_front_R",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R green cuboid",
+      "bone": "foot_front_R",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | front tab r00c00",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | front tab r00c01",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | front tab r00c02",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | front tab r01c00",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | front tab r01c01",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | front tab r01c02",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | back tab r00c00",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | back tab r00c01",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | back tab r00c02",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | back tab r01c00",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | back tab r01c01",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | back tab r01c02",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | right tab r00c00",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | right tab r00c01",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | right tab r00c02",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | right tab r01c00",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | right tab r01c01",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | right tab r01c02",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | left tab r00c00",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | left tab r00c01",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | left tab r00c02",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | left tab r01c00",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | left tab r01c01",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | front R | left tab r01c02",
+      "bone": "foot_front_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R dark sole",
+      "bone": "foot_rear_R",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R green cuboid",
+      "bone": "foot_rear_R",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | front tab r00c00",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | front tab r00c01",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | front tab r00c02",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | front tab r01c00",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | front tab r01c01",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | front tab r01c02",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | back tab r00c00",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | back tab r00c01",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | back tab r00c02",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | back tab r01c00",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | back tab r01c01",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | back tab r01c02",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | right tab r00c00",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | right tab r00c01",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | right tab r00c02",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | right tab r01c00",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | right tab r01c01",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | right tab r01c02",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | left tab r00c00",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | left tab r00c01",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | left tab r00c02",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | left tab r01c00",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | left tab r01c01",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Foot | rear R | left tab r01c02",
+      "bone": "foot_rear_R",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | broad cuboid core",
+      "bone": "head",
+      "vertices": 96,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r00c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r00c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r00c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r00c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r00c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r00c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r00c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r01c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r01c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r02c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r02c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r03c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r03c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r04c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | front tab r04c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r00c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r00c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r00c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r00c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r00c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r00c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r00c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r01c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r01c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r01c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r01c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r01c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r01c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r01c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r02c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r02c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r02c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r02c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r02c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r02c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r02c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r03c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r03c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r03c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r03c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r03c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r03c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r03c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r04c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r04c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r04c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r04c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r04c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r04c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | back tab r04c06",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r00c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r00c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r00c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r00c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r00c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r00c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r01c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r01c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r01c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r01c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r01c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r01c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r02c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r02c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r02c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r02c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r02c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r02c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r03c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r03c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r03c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r03c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r03c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r03c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r04c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r04c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r04c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r04c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r04c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | right tab r04c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r00c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r00c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r00c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r00c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r00c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r00c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r01c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r01c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r01c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r01c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r01c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r01c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r02c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r02c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r02c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r02c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r02c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r02c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r03c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r03c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r03c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r03c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r03c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r03c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r04c00",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r04c01",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r04c02",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r04c03",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r04c04",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | layered paper | left tab r04c05",
+      "bone": "head",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | crown paper strip 00",
+      "bone": "head",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | crown paper strip 01",
+      "bone": "head",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | crown paper strip 02",
+      "bone": "head",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | crown paper strip 03",
+      "bone": "head",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | crown paper strip 04",
+      "bone": "head",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | crown paper strip 05",
+      "bone": "head",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Head | crown paper strip 06",
+      "bone": "head",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | unmistakable black pixel frown",
+      "bone": "head",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | L cream pixel eye",
+      "bone": "head",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | L amber iris",
+      "bone": "head",
+      "vertices": 72,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | L black pupil",
+      "bone": "head",
+      "vertices": 72,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | L catchlight",
+      "bone": "head",
+      "vertices": 36,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | L lopsided black eyebrow",
+      "bone": "brow_L",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | R cream pixel eye",
+      "bone": "head",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | R amber iris",
+      "bone": "head",
+      "vertices": 72,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | R black pupil",
+      "bone": "head",
+      "vertices": 72,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | R catchlight",
+      "bone": "head",
+      "vertices": 36,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Face | R lopsided black eyebrow",
+      "bone": "brow_R",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Sash | continuous diagonal plum wrap front sides back",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Sash | concealed glued fastening tab L",
+      "bone": "body",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Sash | concealed glued fastening tab R",
+      "bone": "body",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | strapped printed plum canister",
+      "bone": "body",
+      "vertices": 96,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | lower plum folded rim",
+      "bone": "body",
+      "vertices": 96,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | tiny brass mouth rim",
+      "bone": "body",
+      "vertices": 96,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | recessed dark open mouth",
+      "bone": "body",
+      "vertices": 48,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | secure plum retaining band",
+      "bone": "body",
+      "vertices": 48,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | brass clasp plate",
+      "bone": "body",
+      "vertices": 56,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | clasp inset",
+      "bone": "body",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | clasp smile eye -0.01",
+      "bone": "body",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | clasp smile eye 0.01",
+      "bone": "body",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Popper | clasp smile",
+      "bone": "body",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | plum cone with original party print",
+      "bone": "hat",
+      "vertices": 48,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | rolled plum brim",
+      "bone": "hat",
+      "vertices": 80,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | paper pompom fold 00",
+      "bone": "hat",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | paper pompom fold 01",
+      "bone": "hat",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | paper pompom fold 02",
+      "bone": "hat",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | paper pompom fold 03",
+      "bone": "hat",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | paper pompom fold 04",
+      "bone": "hat",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | paper pompom fold 05",
+      "bone": "hat",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | paper pompom fold 06",
+      "bone": "hat",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Hat | paper pompom fold 07",
+      "bone": "hat",
+      "vertices": 24,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Confetti | folded paper bit 0",
+      "bone": "confetti_0",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Confetti | folded paper bit 1",
+      "bone": "confetti_1",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Confetti | folded paper bit 2",
+      "bone": "confetti_2",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Confetti | folded paper bit 3",
+      "bone": "confetti_3",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Confetti | folded paper bit 4",
+      "bone": "confetti_4",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    },
+    {
+      "name": "Confetti | folded paper bit 5",
+      "bone": "confetti_5",
+      "vertices": 16,
+      "maximum_export_distance_m": 0.0
+    }
+  ],
+  "hat_contact": {
+    "head_core_top_m": 0.869102418422699,
+    "brim_lowest_inside_head_xy_m": 0.8571481108665466,
+    "physical_overlap_m": 0.011954307556152344,
+    "hat_parent_joint": "head"
+  },
+  "sash_fastening_tabs": [
+    {
+      "name": "Sash | concealed glued fastening tab L",
+      "torso_surface_intersections": 8,
+      "sash_surface_intersections": 8
+    },
+    {
+      "name": "Sash | concealed glued fastening tab R",
+      "torso_surface_intersections": 8,
+      "sash_surface_intersections": 8
+    }
+  ],
+  "sash_canister_surface_intersections": 6,
+  "checks": {
+    "all_source_parts_survive": true,
+    "one_full_weight_per_exported_vertex": true,
+    "exactly_four_distinct_foot_cores": true,
+    "continuous_sash_and_strapped_canister_on_body": true,
+    "hat_crown_parented_to_hat_joint": true,
+    "hat_brim_physically_intersects_head": true,
+    "sash_tabs_physically_connect_to_body": true,
+    "canister_physically_connects_to_sash": true
+  }
+}

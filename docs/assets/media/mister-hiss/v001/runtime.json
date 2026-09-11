@@ -1,0 +1,92 @@
+{
+  "asset_id": "mister-hiss",
+  "version": "v001",
+  "glb": "mister-hiss.glb",
+  "glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+  "runtime_scale": 1,
+  "units": "meters",
+  "up": "+Y",
+  "forward": "-Z",
+  "origin": [
+    0,
+    0,
+    0
+  ],
+  "ground_to_top_m": 1,
+  "rest_ground_y_m": 0,
+  "root_motion": "No caller scene translation; root joint fixed.",
+  "attack_contact_time_s": 0.9,
+  "attack_contact_fraction": 0.6,
+  "clips": {
+    "idle": {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "repeat"
+    },
+    "move": {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "repeat"
+    },
+    "attack": {
+      "name": "attack",
+      "duration_s": 1.5,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 0.9,
+      "contact_fraction": 0.6,
+      "playback": "once"
+    },
+    "hit": {
+      "name": "hit",
+      "duration_s": 0.5,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "once"
+    },
+    "defeat": {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "once",
+      "end_behavior": "Wobbles and sits down intact; terminal pose holds.",
+      "remove_only_after_duration_s": 2.0,
+      "embedded_fade": false
+    }
+  },
+  "triangles": 12872,
+  "materials": 3,
+  "draw_primitives": 3,
+  "joints": [
+    "root",
+    "body",
+    "head",
+    "brow_L",
+    "brow_R",
+    "hat",
+    "confetti_0",
+    "confetti_1",
+    "confetti_2",
+    "confetti_3",
+    "confetti_4",
+    "confetti_5",
+    "foot_front_L",
+    "foot_rear_L",
+    "foot_front_R",
+    "foot_rear_R"
+  ],
+  "texture": "One original embedded 1024px JPEG atlas; no external decoder or resources."
+}
