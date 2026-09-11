@@ -41,3 +41,27 @@ Develop the world, narrative arc, characters, dialogue, chapter transitions, and
 - **Revisit when:** Scene/story/combat needs justify audio beyond the cues in [DESIGN-008](designs/008-audio-pipeline.md)
 
 Choose music direction, any fictional/stock narration, enemy voices, and additional effects after their triggers and creative purpose are defined. Check the selected service's specific game-use/API/export terms before producing final music. The first PoC needs only a small prepared cue set; music and spoken dialogue are optional. Every final version still receives Tom's review before integration.
+
+## BL-06: A lifetime campaign that grows with the player
+
+- **Status:** Owner-confirmed future direction, September 11, 2026; deferred from the current MVP
+- **Revisit after:** The bounded obby, equipment, boss and post-victory memory loop is playable and evaluated
+- **References:** [PRD-001 R-42–R-43](prds/001-project-brief.md), [memory journey](designs/004-memory-journey.md), [abilities](designs/006-memory-age-and-abilities.md)
+
+The player's actual life supplies the campaign. Recovering older memories grows the character, unlocks lasting abilities and makes later levels more demanding. Childhood and adulthood should offer meaningfully different challenges. Tom's eleven-year-old son is an experienced gamer: later childhood chapters should give him more engaging play than the gentle opening intended for his younger sister. Adults should have a longer and richer progression through their own history.
+
+Increase the complexity of obby routes, enemy patterns and combinations of learned abilities as recovered age advances. Teach an ability before requiring it, retain earlier actions and preserve the boss → released memories → consumption → age/period transition. Exact age bands, mechanics, difficulty curves and assistance settings remain future design; these examples do not establish biological skill milestones or make chronological age a substitute for the human player's experience. Gender does not determine difficulty.
+
+For a journey through one's own life, distinguish three values:
+
+- **Recovered age:** earned through consuming boss-released memories; controls current progression and abilities.
+- **Real current age:** derived from the birthday and current date; bounds the life that has actually happened.
+- **Curated photo coverage:** the dated memories available to support chapters; a birthday alone does not create a new memory.
+
+A child can catch up to the available part of their life and reach a satisfying stopping point. Continuing into a later life stage may require waiting a couple of real years and then curating new photos. This is a future continuation state, not an invented adult chapter or an artificial cooldown on memories that already exist. An adult with decades of dated photos can play from infancy through those existing adult years without waiting those years again.
+
+Design continuation as an explicit extension of the same journey: preview and confirm newly available chapters, retain completed memories, abilities and victories, and version the added photo/encounter selections. New uploads or catalog edits must not silently rewrite the frozen past. Distinguish a life stage not yet lived from missing photos and unavailable authored game content; those situations need different explanations and remedies. Handle later-life photos, older photos uploaded late, corrected dates and revoked photos separately; saved progress never restores access to revoked media. The birthday/date evaluation policy, when an extension becomes eligible, and rules for playing someone else's history remain deferred decisions. The signed-in player, selected photo subject and avatar remain separate concepts; a self-journey is the motivating case, not a change to that identity contract.
+
+**Future validation:** use a synthetic archive spanning 37 years to exercise infancy, childhood, adolescence and adulthood, escalating challenge and accumulated abilities. Tom has offered his own 37-year photo archive for a later private full-life playthrough; record this as a prospective test, not a completed import or evidence of continuous coverage. Use his real photos only through the separately prepared private setup and admission flow. Also test a child reaching the current endpoint, waiting across a real-age boundary without automatically gaining memories, and explicitly extending the save when appropriate photos and content are available.
+
+This backlog entry authorizes documentation of the vision. It does not add runtime age gates, change the current gentle course, start historical asset production, query the real photo library or make the lifetime campaign an MVP acceptance requirement.
