@@ -352,9 +352,7 @@ export async function rideFerry({ page, controls, inspectGame, label }) {
   assert.ok(boardFerry);
   const riderOffset = settled.status.position.z - boardFerry.center.z;
   const boardingDrift =
-    boarded.status.position.z -
-    ferryFrom(boarded).center.z -
-    riderOffset;
+    boarded.status.position.z - ferryFrom(boarded).center.z - riderOffset;
   const rideWait = await waitForCourseProgress({
     page,
     inspectGame,
