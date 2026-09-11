@@ -260,6 +260,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       requestErrorCode: requestState.requestErrorCode,
       mediaLoading: media.loading,
       mediaFailed: media.failed,
+      mediaReloadRequired: media.reloadRequired ?? false,
     };
   };
 
@@ -435,6 +436,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
   };
 
   const performAction = (action: GameplayAction): boolean => {
+    if (mediaState().reloadRequired) return false;
     const adventure = requireAdventure(save);
     if (!validLevelAction(action)) return false;
     if (
@@ -524,6 +526,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const worldActive =
       !paused &&
       visible &&
+      !mediaState().reloadRequired &&
       (adventure.phase === "exploring" ||
         adventure.phase === "memory-released");
     const combatActive = worldActive && adventure.phase === "exploring";

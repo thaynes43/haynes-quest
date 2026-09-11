@@ -232,21 +232,23 @@ function Adventure({
     };
   }, [initialSave]);
 
-  const activeModal = save.completed
-    ? "complete"
-    : view.phase === "fallen"
-      ? "fallen"
-      : showVictory && level && view.phase === "memory-released"
-        ? "victory"
-        : chapterNotice
-          ? "chapter"
-          : photoDetail
-            ? "photo"
-            : showHelp
-              ? "help"
-              : showAlbum
-                ? "album"
-                : null;
+  const activeModal = status?.mediaReloadRequired
+    ? "artwork-update"
+    : save.completed
+      ? "complete"
+      : view.phase === "fallen"
+        ? "fallen"
+        : showVictory && level && view.phase === "memory-released"
+          ? "victory"
+          : chapterNotice
+            ? "chapter"
+            : photoDetail
+              ? "photo"
+              : showHelp
+                ? "help"
+                : showAlbum
+                  ? "album"
+                  : null;
   const modalOpen = activeModal !== null;
   useEffect(() => {
     game.current?.setPaused(modalOpen);
@@ -262,7 +264,7 @@ function Adventure({
           </button>
         </div>
       )}
-      {Boolean(status?.mediaFailed) && (
+      {Boolean(status?.mediaFailed) && !status?.mediaReloadRequired && (
         <div className="media-warning" role="status" data-quest-ui>
           Some artwork couldn’t load.
           <button onClick={() => game.current?.retryMedia()}>
@@ -463,6 +465,21 @@ function Adventure({
         Private review · Fictional illustrations · Candidate artwork
       </div>
 
+      {activeModal === "artwork-update" && (
+        <Modal title="Let’s reopen this journey." eyebrow="ARTWORK UPDATE">
+          <p>
+            A newer set of artwork is needed to continue. Your saved progress is
+            safe.
+          </p>
+          <button className="primary" onClick={() => window.location.reload()}>
+            Reload journey
+          </button>
+          <button className="secondary" onClick={onLeave}>
+            Save &amp; leave
+          </button>
+        </Modal>
+      )}
+
       {activeModal === "help" && (
         <Modal
           notice={feedback}
@@ -482,8 +499,8 @@ function Adventure({
           <p>
             Take your time with the obstacles. Watch a padded sweeper pass, then
             walk around it. When you learn to jump, hop over the short gaps and
-            ride the yellow platform. Glowing circles mark safe places: a slip
-            brings you back nearby with your gear and victories.
+            ride the yellow platform. Glowing landing strips mark safe places: a
+            slip brings you back nearby with your gear and victories.
           </p>
           <dl>
             <dt>Touch</dt>

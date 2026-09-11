@@ -40,7 +40,7 @@ The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concep
 
 The correction produced ten additional models: six animated creature studies and four tools. Tom found the creature models useful as possible friendly or ambient characters, but **they do not fit his enemy vision**. They are not selected for enemy use. Actual enemies must be recognizable pop-culture parodies; [DESIGN-005](../designs/005-era-enemy-catalog.md) records that correction.
 
-The full catalog now preserves nineteen model candidates, including the original nine. All exact-version approvals remain pending. The creature studies' thirty animation clips and source masters remain useful production artifacts; no friendly role is automatically approved or placed in the game.
+That earlier production brought the archive to nineteen model candidates, including the original nine. All exact-version approvals remain pending. The creature studies' thirty animation clips and source masters remain useful production artifacts; no friendly role is automatically approved or placed in the game.
 
 [Original construction sheets](reviews/era-combat/v001.md) retain the lead's earlier direction for traceability. Review the actual exports separately:
 
@@ -63,8 +63,8 @@ The replacement cast uses recognizable pop-culture parodies from the selected ph
 | Period | Enemy | Reference and joke | Current candidate |
 | --- | --- | --- | --- |
 | The Block Party | [Mister Hiss](reviews/mister-hiss/v001.md) | Creeper with a confetti sneeze | Exported model and five clips |
-| The Block Party | [Peel Patrol](reviews/peel-patrol/v001.md) | Peely safety marshal who slips on his own peel | Concept selected; modeling |
-| The Block Party | [The Drama Dragon](reviews/drama-dragon/v001.md) | Ender Dragon as a pompous performer | Concept selected; modeling |
+| The Block Party | [Peel Patrol](reviews/peel-patrol/v001.md) | Peely safety marshal who slips on his own peel | Exported model and five clips |
+| The Block Party | [The Drama Dragon](reviews/drama-dragon/v001.md) | Ender Dragon as a pompous performer | Exported model and five clips |
 | The Remix Runway | [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) | Skibidi Toilet opera singer | Concept selected |
 | The Remix Runway | [Nap Captain](reviews/nap-captain/v001.md) | CatNap bedtime inspector with a pillow prank | Concept selected |
 | The Remix Runway | [The One-Star Diva](reviews/one-star-diva/v001.md) | Dress to Impress judge with an oversized outfit | Concept selected |

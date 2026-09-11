@@ -33,7 +33,7 @@ describe("held keys across an input clear", () => {
     return input;
   }
 
-  it.fails("does not turn the auto-repeat of a still-held Space into a second jump press", () => {
+  it("does not turn the auto-repeat of a still-held Space into a second jump press", () => {
     const input = bound();
     window.dispatchEvent(key("Space", false));
     expect(input.consumeActions().jump).toBe(true);
@@ -45,7 +45,7 @@ describe("held keys across an input clear", () => {
     expect(input.consumeActions().jump).toBe(false);
   });
 
-  it.fails("keeps a held movement key cleared until it is released and pressed again", () => {
+  it("keeps a held movement key cleared until it is released and pressed again", () => {
     const input = bound();
     window.dispatchEvent(key("KeyW", false));
     expect(input.snapshot().moveY).toBe(1);

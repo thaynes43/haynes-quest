@@ -91,7 +91,7 @@ function stepOffLipAfter(dwellSeconds: number): AirborneContact[] {
 }
 
 describe("enemy strikes and gap falls", () => {
-  it.fails("does not record a contact against a player who has already left the island", () => {
+  it("does not record a contact against a player who has already left the island", () => {
     // 2.35 s of dwell lines the step-off up with ordinary-a's strike frame.
     const contacts = stepOffLipAfter(2.35);
     expect(contacts.filter((contact) => !contact.supported)).toEqual([]);

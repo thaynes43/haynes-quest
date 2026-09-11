@@ -71,6 +71,7 @@ export interface SceneFrame {
 export interface SceneMediaState {
   loading: number;
   failed: number;
+  reloadRequired?: boolean;
 }
 
 export interface GameStatus {
@@ -98,6 +99,7 @@ export interface GameStatus {
   requestErrorCode: string | null;
   mediaLoading: number;
   mediaFailed: number;
+  mediaReloadRequired?: boolean;
 }
 
 export interface MemoryPlacementInspection extends PositionSnapshot {

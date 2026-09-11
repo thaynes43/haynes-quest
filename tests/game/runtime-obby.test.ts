@@ -12,6 +12,7 @@ import type { SceneFrame } from "../../src/game/types";
 import { makeEraSave, type EraSaveOptions } from "./fixtures";
 
 const sceneState = vi.hoisted(() => ({
+  reloadRequired: false,
   instances: [] as Array<{
     rebuilds: string[];
     updates: number[];
@@ -42,6 +43,14 @@ vi.mock("../../src/game/scene", () => ({
 
     updateProgress(save: SaveView): void {
       this.state.updates.push(save.revision);
+    }
+
+    getMediaState() {
+      return {
+        loading: 0,
+        failed: Number(sceneState.reloadRequired),
+        reloadRequired: sceneState.reloadRequired,
+      };
     }
 
     render(
@@ -116,6 +125,7 @@ describe("obby game runtime", () => {
 
   beforeEach(() => {
     sceneState.instances.length = 0;
+    sceneState.reloadRequired = false;
     nextFrame = undefined;
     now = 1_000;
     Object.defineProperty(document, "visibilityState", {
@@ -150,6 +160,29 @@ describe("obby game runtime", () => {
     advance();
     advance();
   };
+
+  it("holds movement and actions when the scene needs newer frozen artwork", () => {
+    sceneState.reloadRequired = true;
+    const save = routedSave({ levelIndex: 1, collectedKinds: ["guard-tool"] });
+    const onAction = vi.fn(async () => save);
+    const game = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction,
+      onRefresh: async () => save,
+    });
+    game.setInput("moveY", 1);
+    warmRuntime();
+    expect(game.inspect().status).toMatchObject({
+      position: { x: 0, y: 0, z: 1 },
+      mediaReloadRequired: true,
+    });
+    expect(game.performAction({ type: "guard", levelId: "level-2-2024" })).toBe(
+      false,
+    );
+    expect(onAction).not.toHaveBeenCalled();
+    game.dispose();
+  });
 
   it("retains a quick jump tap across the zero-time frame after a save update", () => {
     const game = createGame({
