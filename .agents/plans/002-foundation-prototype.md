@@ -61,4 +61,4 @@ All [DESIGN-007 PoC acceptance criteria](../../docs/designs/007-poc-development-
 
 ## Result
 
-Not started. The bounded coding scope is defined, but Tom now wants PLAN-003 dependency setup first; fresh-session native tool discovery, owner asset reviews, live admission/provisioning, and actual-device testing remain milestone dependencies. The separate authoring services have passed live checks under PLAN-003. The current repository remains documentation-only.
+In progress. PLAN-003 authoring setup and the PLAN-004 private playable MVP with its complete first-pass candidate catalog are finished. Live game journeys, PostgreSQL persistence across application replacement and complete catalog browser delivery passed; the [handoff](../HANDOFF.md) links exact versions and evidence. Authentik/admitted-player access, exact-version owner review and approved gameplay integration, audio listening and actual-device testing remain prerequisites to completing this broader plan.
