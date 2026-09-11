@@ -34,7 +34,7 @@ The [Astra workflow review](../reference/astra-game-workflows.md) records creato
 
 ## Recommended outcome
 
-Use the following stack for the bounded foundation prototype under [DESIGN-007](../designs/007-poc-development-loop.md): define its contracts, then code with synthetic placeholders while arranging authoring tools for later milestones. Accept or revise the browser/API/storage and authored-asset choices after their integration and device trial. Automatic character generation is conditional future work under [BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
+Use the following stack for the bounded foundation prototype under [DESIGN-007](../designs/007-poc-development-loop.md): complete the current PLAN-003 dependency checkpoint, define the slice contracts, then code with synthetic placeholders while final candidates are produced and reviewed. Accept or revise the browser/API/storage and authored-asset choices after their integration and device trial. Automatic character generation is conditional future work under [BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
 
 | Layer | Recommendation | Reason |
 | --- | --- | --- |

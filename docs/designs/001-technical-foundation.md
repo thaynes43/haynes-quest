@@ -1,13 +1,13 @@
 # DESIGN-001: Technical foundation and saved-game flow
 
 - **Status:** Proposed
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Satisfies:** [PRD-001 R-01, R-08, R-09, R-11–R-14, R-16–R-24, R-30–R-34](../prds/001-project-brief.md)
 - **Governed by:** [ADR-001](../adrs/001-authentik-sign-in.md); [proposed ADR-002](../adrs/002-web-game-stack.md)
 
 ## Overview
 
-The staged prototype in [DESIGN-007](007-poc-development-loop.md) first proves a small collection/ability route with synthetic placeholders, then validates authored assets, authenticated save ownership, and resuming a memory journey. Define the current slice contracts before code; final-asset tool setup is a dependency of authoring, not of the initial greybox. It uses synthetic photo connections and a prepared shared avatar to establish the data and asset contracts. The family PoC uses a generic mysterious avatar, independent of the selected person; automatic person-specific generation is [conditional future backlog BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
+The staged prototype in [DESIGN-007](007-poc-development-loop.md) first proves a small collection/ability route with synthetic placeholders, then validates authored assets, authenticated save ownership, and resuming a memory journey. Complete Tom's current PLAN-003 dependency checkpoint and define the slice contracts before code; then the initial greybox can use placeholders while final assets are produced and reviewed. It uses synthetic photo connections and a prepared shared avatar to establish the data and asset contracts. The family PoC uses a generic mysterious avatar, independent of the selected person; automatic person-specific generation is [conditional future backlog BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
 
 ```mermaid
 flowchart TB

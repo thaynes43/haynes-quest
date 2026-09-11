@@ -1,7 +1,7 @@
 # DESIGN-007: Playable proof of concept and development loop
 
 - **Status:** Proposed
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Source:** Tom's instruction to defer level detail and focus on a playable PoC, an Astra development team, audio tooling, and owner review of final assets
 - **Satisfies:** [PRD-001 R-06, R-08, R-09, R-13, R-16, R-30–R-39](../prds/001-project-brief.md)
 - **Related:** [Stack](../adrs/002-web-game-stack.md), [asset pipeline](002-asset-pipeline.md), [age and abilities](006-memory-age-and-abilities.md), [audio](008-audio-pipeline.md), [PLAN-002](../../.agents/plans/002-foundation-prototype.md)
@@ -10,7 +10,7 @@
 
 The immediate goal is to get the core gameplay flowing and establish a repeatable build, author, review, and test loop. Tom explicitly deferred detailed fighting and additional collectibles. Full story, enemy/boss content, and level dressing are recorded in the [backlog](../BACKLOG.md); finishing those designs is not a prerequisite for starting this narrow PoC.
 
-The earlier requirement to finish all technical and nontechnical documentation before any prototype is narrowed: define the PoC contracts and workflow, then implement its small playable slice. Tool setup is needed for the authoring steps that use it, while clearly synthetic placeholders allow coding to proceed. The current task documents that scope and researches audio; it does not claim that tools, final assets, or a game have already been created.
+The earlier requirement to finish all technical and nontechnical documentation before any prototype is narrowed to the PoC contracts and workflow. Tom subsequently prioritized PLAN-003 dependency setup before development dispatch. Once that checkpoint is reached, implement the small playable slice with synthetic placeholders while final asset candidates are authored and reviewed. PLAN-003 now targets a dedicated cluster Blender service and explicit remote artifact transfer, with independently upgradeable authoring workloads. Historical tool-image tests do not establish the new service's readiness; final assets and the game remain unimplemented.
 
 ## Proposed first playable slice
 
@@ -50,7 +50,7 @@ The local greybox can establish feel using development-only synthetic adapters. 
 
 ## Astra team and coordination
 
-All project development lanes use **GPT-6 Astra**, following Tom's current instruction. Use native Codex agents for bounded parallel work; separate Claude sessions are not the default team for this project. The available concurrency determines how many lanes run at once, not a promise to keep a permanent agent for every role.
+All project development lanes use **GPT-6 Astra**, following Tom's current instruction. Start native Codex development agents with empty conversation windows (`fork_turns: "none"`) and explicit self-contained work orders; do not inherit this planning thread. Agents read the applicable instructions and the documents/inputs listed in their work order. Use bounded parallel tasks; separate Claude sessions are not the default team for this project. The available concurrency determines how many lanes run at once, not a promise to keep a permanent agent for every role.
 
 | Lane | Responsibility and handoff |
 | --- | --- |
@@ -61,7 +61,7 @@ All project development lanes use **GPT-6 Astra**, following Tom's current instr
 | Story/design Astra | Maintain the small premise and objective text; record later story and level ideas in the backlog. Draft user-facing text at Astra quality for the driving Astra's review. Full narrative production is deferred. |
 | Verification Astra | Independently check the slice, asset contracts, save behavior, audio lifecycle, and reported evidence. Distinguish automated checks from actual device or owner playtests. |
 
-Use the [work-order template](../../.agents/work-orders/000-template.md) for scope, owned paths, dependencies, outputs, and acceptance. Avoid concurrent edits to shared files; use a worktree/branch per implementation task and communicate contract changes through the driving agent. A shared Blender session is a mutable resource: serialize its use or use isolated sessions/files. Do not run competing authoring commands against one scene.
+Use the [work-order template](../../.agents/work-orders/000-template.md) for scope, owned paths, dependencies, outputs, and acceptance. Avoid concurrent edits to shared files; use a worktree/branch per implementation task and communicate contract changes through the driving agent. Work orders must supply the verified remote MCP endpoint, remote workspace and artifact upload/download conventions, and exact input versions; local worktree paths are not service paths. A shared Blender session is a mutable resource: serialize its use or use isolated sessions/files. Do not run competing authoring commands against one scene.
 
 ## Tom's asset-review requirement
 
@@ -84,4 +84,4 @@ Normal documentation and code PRs still follow checks and autonomous squash merg
 | AC-05 | Final integrated visual/audio versions have Tom's recorded review, reproducible source/export metadata, and relevant technical checks. Placeholders are identified honestly and do not stand in for approved final-asset evidence. |
 | AC-06 | The repository has working build/test commands and a reproducible asset/cue handoff. The release is verified through the existing GitOps/browser process; no untested deployment or actual-device claim is made. |
 
-Final combat mechanics, production story, extra collectibles, and the full era catalog remain later work after this loop has been evaluated. PLAN-002 defines the staged delivery; its first coding milestone can use placeholders while authoring connections and final-asset reviews are completed for later milestones.
+Final combat mechanics, production story, extra collectibles, and the full era catalog remain later work after this loop has been evaluated. PLAN-002 defines the staged delivery. Tom subsequently prioritized [PLAN-003 dependency setup](../../.agents/plans/003-authoring-tool-setup.md) before development dispatch. Once that setup checkpoint is reached, the first coding milestone can use placeholders while candidate assets and their reviews proceed; full game content still does not gate the loop.

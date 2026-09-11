@@ -8,7 +8,7 @@ PRD → ADR → domain language → design → plan → implementation → valid
 
 A change should use the existing documents where they already cover its requirements and decisions. Create a new ADR when a significant choice needs a durable rationale. A small correction does not need a new set of documents.
 
-Apply this progression to the next bounded slice. Tom's current priority is the playable PoC in [DESIGN-007](designs/007-poc-development-loop.md); unfinished full-game story, combat, or content design does not block it. Specify the slice's contracts, use synthetic placeholders for code experiments, and arrange authoring tools before their dependent steps.
+Apply this progression to the next bounded slice. Tom's current priority is the playable PoC in [DESIGN-007](designs/007-poc-development-loop.md); unfinished full-game story, combat, or content design does not block it. Complete Tom's current PLAN-003 dependency checkpoint before development dispatch, then specify the slice's contracts and use synthetic placeholders while final candidates are produced and reviewed.
 
 ## Document conventions
 
@@ -27,4 +27,4 @@ For an implementation task, follow the authorized scope through docs, code, rele
 
 The bootstrap is complete. [PLAN-002](../.agents/plans/002-foundation-prototype.md) stages the playable foundation; documentation of that plan does not claim its code or deployment exists.
 
-Use the [Astra work-order template](../.agents/work-orders/000-template.md) for bounded parallel tasks and the [asset-review template](assets/000-review-template.md) for final visual/audio candidates. Tom's explicit instruction requires his review before final assets enter gameplay. Technical checks and agent review precede that concrete review package; record his decision against the exact version. This requirement governs asset promotion, not ordinary documentation/code PR merges. Pending assets leave placeholders or the prior approved version usable.
+Start development agents with empty conversation context (`fork_turns: "none"`) and the named repository readings/inputs. Use the [Astra work-order template](../.agents/work-orders/000-template.md) for self-contained bounded parallel tasks and the [asset-review template](assets/000-review-template.md) for final visual/audio candidates. Tom's explicit instruction requires his review before final assets enter gameplay. Technical checks and agent review precede that concrete review package; record his decision against the exact version. This requirement governs asset promotion, not ordinary documentation/code PR merges. Pending assets leave placeholders or the prior approved version usable.

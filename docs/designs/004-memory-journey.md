@@ -1,7 +1,7 @@
 # DESIGN-004: Memory journey and life chapters
 
 - **Status:** Proposed
-- **Last updated:** 2026-09-10
+- **Last updated:** 2026-09-11
 - **Source:** Tom's generic-avatar, chronological-photo, decade/proportional level, era-based enemy, and memory-age ability brief
 - **Satisfies:** [PRD-001 R-03, R-12–R-14, R-18, R-20–R-34](../prds/001-project-brief.md)
 - **Related:** [Saved games](001-technical-foundation.md), [photo connections and people](003-photo-connections-and-people.md), [asset authoring](002-asset-pipeline.md), [era enemy catalog](005-era-enemy-catalog.md), [memory age and abilities](006-memory-age-and-abilities.md)
@@ -100,4 +100,4 @@ The underlying source library can change while a game is in progress. The propos
 | Q-04 | How are timeline previews corrected and existing saves refreshed after library changes? | Deferred to setup/collection design; preserve identities and progress under D-07–D-09. |
 | Q-05 | Whose gender or preferences choose the enemy set? | Direction clarified by Tom on 2026-09-10: the selected person's gender can be entered at game setup; use explicit input. The era selects the eligible enemy/boss catalog, with variety across genders. Input options, requiredness, preference weighting, and overrides remain for DESIGN-005/setup design. |
 
-This design remains documentation only. [DESIGN-007](007-poc-development-loop.md) now prioritizes a bounded synthetic PoC; define its contracts and proceed with placeholders without waiting for all chapter, combat, or story decisions. Arrange asset tools and Tom's review before the later authoring/integration steps that depend on them. Automatic person-specific character generation remains conditional future [BL-01](../BACKLOG.md), and would require a new product decision about its fit with this premise.
+This design remains documentation only. [DESIGN-007](007-poc-development-loop.md) now prioritizes a bounded synthetic PoC; complete the current PLAN-003 dependency checkpoint, define the slice contracts, and proceed with placeholders without waiting for all chapter, combat, or story decisions. Tom's final-asset review still precedes gameplay promotion. Automatic person-specific character generation remains conditional future [BL-01](../BACKLOG.md), and would require a new product decision about its fit with this premise.
