@@ -237,13 +237,16 @@ try {
             );
           }),
       );
-      const model = await viewer.evaluate((element) => ({
-        src: element.src,
-        poster: element.poster,
-        dimensions: element.getDimensions(),
-        clips: [...element.availableAnimations],
-        paused: element.paused,
-      }));
+      const model = await viewer.evaluate((element) => {
+        const { x, y, z } = element.getDimensions();
+        return {
+          src: element.src,
+          poster: element.poster,
+          dimensions: { x, y, z },
+          clips: [...element.availableAnimations],
+          paused: element.paused,
+        };
+      });
       assert.ok(model.poster, `${id}: model ${index + 1} has a poster`);
       assert.ok(
         Object.values(model.dimensions).every(
