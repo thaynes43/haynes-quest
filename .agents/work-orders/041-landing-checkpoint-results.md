@@ -27,3 +27,14 @@ Verification in `/home/dev/work/quest-landing-checkpoint`:
 - Focused ESLint for both test files: passed with zero warnings.
 
 Root owns the source architecture, combined build and resumed browser journey. This task changed no runtime source or live process.
+
+## Relocated runway-bar follow-up
+
+Root commit `c6945d3` moved and shortened the production runway bar after the actual browser jump showed that the former placement could hit immediately after landing. A follow-up production-course regression repeats the observed `x=0.724`, `z=-9.075` jump, then waits without moving at its natural landing for the bar's complete 10-second rotation. It separately waits through a full rotation at `z=-15.1` near the island's far shore. Both positions remain supported with zero recoveries, proving the player has safe setup space on both sides of the bar.
+
+The same production course also proves the intended active crossing with the real child collider (`0.24` m radius, `1.22` m height). From the observed gap approach it lands, moves to the safe setup point, waits for the next horizontal bar phase, walks to approximately `z=-12.3`, and jumps forward. It clears without recovery and lands around `z=-14.4`, on the same island and before its `z=-15.5` edge.
+
+Follow-up verification:
+
+- `pnpm exec vitest run tests/game/obby.test.ts tests/game/runtime-obby.test.ts`: 2 files and 60 tests passed.
+- Focused ESLint for `tests/game/obby.test.ts`: passed with zero warnings.

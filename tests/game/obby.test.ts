@@ -864,6 +864,106 @@ describe("checkpoints", () => {
     expect(sim.state.checkpointId).toBe("second-clearing");
   });
 
+  it("leaves full-rotation rest zones before and after the relocated runway bar", () => {
+    const layout = createObbyCourse("gentle-jump-v1");
+    const landing = createSim(layout, { x: 0.724, y: 0, z: -9.075 });
+    tick(landing);
+    tick(landing, forward, { jumpPressed: true });
+    runUntil(
+      landing,
+      (state) =>
+        state.grounded && state.supportId === "second-clearing-island",
+      forward,
+      {},
+      2,
+    );
+
+    const naturalLanding = { ...landing.state.position };
+    expect(naturalLanding.z).toBeLessThan(-10.95);
+    expect(naturalLanding.z).toBeGreaterThan(-12.12);
+    let landingRecoveries = 0;
+    runFor(landing, 10, idle, {}, (result) => {
+      if (result.recovered) landingRecoveries += 1;
+    });
+    expect(landingRecoveries).toBe(0);
+    expect(landing.state.position).toEqual(naturalLanding);
+    expect(landing.state.supportId).toBe("second-clearing-island");
+
+    const farShore = createSim(layout, { x: 0.724, y: 0, z: -15.1 });
+    tick(farShore);
+    expect(farShore.state.supportId).toBe("second-clearing-island");
+    let farShoreRecoveries = 0;
+    runFor(farShore, 10, idle, {}, (result) => {
+      if (result.recovered) farShoreRecoveries += 1;
+    });
+    expect(farShoreRecoveries).toBe(0);
+    expect(farShore.state.position).toEqual({ x: 0.724, y: 0, z: -15.1 });
+    expect(farShore.state.supportId).toBe("second-clearing-island");
+  });
+
+  it("lets the child-sized player set up and jump the relocated runway bar", () => {
+    const layout = createObbyCourse("gentle-jump-v1");
+    const childCollider = { radius: 0.24, height: 1.22 };
+    const sim = createSim(layout, { x: 0.724, y: 0, z: -9.075 });
+
+    tick(sim, idle, childCollider);
+    tick(sim, forward, { ...childCollider, jumpPressed: true });
+    runUntil(
+      sim,
+      (state) =>
+        state.grounded && state.supportId === "second-clearing-island",
+      forward,
+      childCollider,
+      2,
+    );
+    runUntil(
+      sim,
+      (state) => state.position.z <= -11.5,
+      forward,
+      childCollider,
+      1,
+    );
+
+    const horizontalAt = Math.ceil(sim.time / 5) * 5;
+    runUntil(sim, () => sim.time >= horizontalAt, idle, childCollider, 5);
+    const horizontalBar = sampleObby(layout, sim.time).hazards[0]!;
+    expect(Math.abs(horizontalBar.start.z - horizontalBar.end.z)).toBeLessThan(0.02);
+
+    runUntil(
+      sim,
+      (state) => state.position.z <= -12.3,
+      forward,
+      childCollider,
+      1,
+    );
+    const launchZ = sim.state.position.z;
+    expect(launchZ).toBeGreaterThan(-12.36);
+    const launch = tick(sim, forward, {
+      ...childCollider,
+      jumpPressed: true,
+    });
+    expect(launch.recovered).toBe(false);
+    expect(sim.state.grounded).toBe(false);
+
+    let recoveries = 0;
+    let landed = false;
+    for (let frame = 0; frame < sim.hz * 2; frame += 1) {
+      const result = tick(sim, forward, childCollider);
+      if (result.recovered) recoveries += 1;
+      if (sim.state.grounded) {
+        landed = true;
+        break;
+      }
+    }
+
+    expect(landed).toBe(true);
+    expect(recoveries).toBe(0);
+    expect(sim.state.supportId).toBe("second-clearing-island");
+    expect(sim.state.position.z).toBeGreaterThan(-15.5);
+    expect(sim.state.position.z).toBeGreaterThan(-14.6);
+    expect(sim.state.position.z).toBeLessThan(-14.1);
+  });
+
   it("keeps the intro clearing checkpoint bounded to its existing strip", () => {
     const layout = createObbyCourse("gentle-intro-v1");
     const insideStrip = createSim(layout, { x: 5.5, y: 0, z: -4.8 });
