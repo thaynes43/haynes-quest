@@ -6,6 +6,9 @@ import type {
   SaveView,
 } from "../shared/contracts";
 import type { LevelInspection, PositionSnapshot } from "./types";
+import type { ObbyCourse } from "./obby";
+import type { ObbyRouteId } from "../shared/parody-catalog";
+import { createObbyCourse } from "./obby-layout";
 
 export interface MemoryPlacement {
   id: string;
@@ -27,6 +30,7 @@ export interface EncounterPlacement {
   role: EncounterRole;
   kind: EncounterKind;
   position: PositionSnapshot;
+  arena?: { minX: number; maxX: number; minZ: number; maxZ: number };
 }
 
 export interface StepPlacement {
@@ -37,6 +41,8 @@ export interface StepPlacement {
 
 export interface LevelLayout {
   id: string | null;
+  routeId?: ObbyRouteId;
+  course?: ObbyCourse;
   memories: MemoryPlacement[];
   pickups: PickupPlacement[];
   encounters: EncounterPlacement[];
@@ -156,6 +162,12 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
   }));
   return {
     id: activeLevel.id,
+    ...(activeLevel.routeId
+      ? {
+          routeId: activeLevel.routeId,
+          course: createObbyCourse(activeLevel.routeId),
+        }
+      : {}),
     memories,
     pickups: activeLevel.pickups.map((pickup) => ({
       id: pickup.pickupId,
@@ -168,7 +180,27 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
       id: encounter.id,
       role: encounter.role,
       kind: encounter.kind,
-      position: { ...eraEncounterPositions[encounter.kind] },
+      position: activeLevel.routeId
+        ? {
+            ...eraEncounterPositions[encounter.kind],
+            z:
+              encounter.kind === "boss"
+                ? -22
+                : encounter.kind === "ordinary-b"
+                  ? -14
+                  : -8,
+          }
+        : { ...eraEncounterPositions[encounter.kind] },
+      ...(activeLevel.routeId
+        ? {
+            arena:
+              encounter.kind === "boss"
+                ? { minX: -3.8, maxX: 3.8, minZ: -24, maxZ: -21 }
+                : encounter.kind === "ordinary-b"
+                  ? { minX: -4.5, maxX: 4.5, minZ: -15, maxZ: -13.5 }
+                  : { minX: -4.5, maxX: 4.5, minZ: -8.9, maxZ: -6.3 },
+          }
+        : {}),
     })),
     checkpoint: { ...eraCheckpoint },
     finish: { ...eraFinish },
@@ -208,9 +240,23 @@ export function checkpointForSave(
   level: LevelLayout,
 ): PositionSnapshot {
   if (save.format === "era-combat-v2") {
-    return save.adventure?.phase === "memory-released"
-      ? { x: 0, y: 0, z: -23.5 }
-      : { ...level.checkpoint };
+    if (save.adventure?.phase === "memory-released")
+      return { x: 0, y: 0, z: -23.5 };
+    if (level.course) {
+      const ordinary =
+        save.adventure?.activeLevel?.encounters.filter(
+          (entry) => entry.role === "ordinary",
+        ) ?? [];
+      const id =
+        ordinary.length === 2 && ordinary.every((entry) => entry.defeated)
+          ? "boss-landing"
+          : ordinary.find((entry) => entry.kind === "ordinary-a")?.defeated
+            ? "second-clearing"
+            : "start";
+      const safe = level.course.checkpoints.find((entry) => entry.id === id);
+      if (safe) return { ...safe.position };
+    }
+    return { ...level.checkpoint };
   }
   const recoveredCount = contiguousRecoveredCount(save);
   if (recoveredCount === 0) return { x: 0, y: 0, z: 0 };

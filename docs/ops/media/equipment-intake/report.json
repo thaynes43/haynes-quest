@@ -1,0 +1,232 @@
+{
+  "date": "2026-09-11T15:45:21.124Z",
+  "browser": "153.0.8010.12",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "bundle": "index-D5ZBrG7T.js",
+  "modelResponses": [
+    {
+      "path": "/studio/assets/media/traveler-infant/v001/traveler-infant.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 448656
+    },
+    {
+      "path": "/studio/assets/media/traveler-child/v001/traveler-child.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 460616
+    },
+    {
+      "path": "/studio/assets/media/clearing-tree/v001/clearing-tree.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 71316
+    },
+    {
+      "path": "/studio/assets/media/clearing-stone/v001/clearing-stone.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 41284
+    },
+    {
+      "path": "/studio/assets/media/clearing-path-kit/v001/path-tile.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 30084
+    },
+    {
+      "path": "/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 116304
+    },
+    {
+      "path": "/studio/assets/media/arrival-landmark/v001/arrival-landmark.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 118348
+    },
+    {
+      "path": "/studio/assets/media/era-equipment/v001/spark-mallet/spark-mallet.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 161872
+    },
+    {
+      "path": "/studio/assets/media/era-equipment/v001/acorn-shield/acorn-shield.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 184460
+    },
+    {
+      "path": "/studio/assets/media/era-equipment/v001/prism-wand/prism-wand.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 143444
+    },
+    {
+      "path": "/studio/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary",
+      "bytes": 197244
+    }
+  ],
+  "inventory": {
+    "infant": [
+      {
+        "kind": "attack-tool",
+        "tier": 1,
+        "damage": 2,
+        "guardReduction": 0,
+        "equipped": true
+      },
+      {
+        "kind": "guard-tool",
+        "tier": 1,
+        "damage": 0,
+        "guardReduction": 2,
+        "equipped": false
+      }
+    ],
+    "childRetained": [
+      {
+        "kind": "attack-tool",
+        "tier": 1,
+        "damage": 2,
+        "guardReduction": 0,
+        "equipped": true
+      },
+      {
+        "kind": "guard-tool",
+        "tier": 1,
+        "damage": 0,
+        "guardReduction": 2,
+        "equipped": false
+      }
+    ],
+    "childUpgraded": [
+      {
+        "kind": "attack-tool",
+        "tier": 1,
+        "damage": 2,
+        "guardReduction": 0,
+        "equipped": false
+      },
+      {
+        "kind": "guard-tool",
+        "tier": 1,
+        "damage": 0,
+        "guardReduction": 2,
+        "equipped": false
+      },
+      {
+        "kind": "attack-tool",
+        "tier": 2,
+        "damage": 3,
+        "guardReduction": 0,
+        "equipped": true
+      },
+      {
+        "kind": "guard-tool",
+        "tier": 2,
+        "damage": 0,
+        "guardReduction": 3,
+        "equipped": false
+      }
+    ],
+    "complete": [
+      {
+        "kind": "attack-tool",
+        "tier": 1,
+        "damage": 2,
+        "guardReduction": 0,
+        "equipped": false
+      },
+      {
+        "kind": "guard-tool",
+        "tier": 1,
+        "damage": 0,
+        "guardReduction": 2,
+        "equipped": false
+      },
+      {
+        "kind": "attack-tool",
+        "tier": 2,
+        "damage": 3,
+        "guardReduction": 0,
+        "equipped": true
+      },
+      {
+        "kind": "guard-tool",
+        "tier": 2,
+        "damage": 0,
+        "guardReduction": 3,
+        "equipped": false
+      }
+    ]
+  },
+  "sceneStates": [
+    {
+      "label": "infant-start",
+      "appearanceStage": "infant",
+      "ageYears": 0,
+      "eraYear": 2020,
+      "phase": "exploring",
+      "mediaLoading": 0,
+      "mediaFailed": 0
+    },
+    {
+      "label": "infant-equipped",
+      "appearanceStage": "infant",
+      "ageYears": 0,
+      "eraYear": 2020,
+      "phase": "exploring",
+      "mediaLoading": 0,
+      "mediaFailed": 0
+    },
+    {
+      "label": "child-retained",
+      "appearanceStage": "child",
+      "ageYears": 4,
+      "eraYear": 2024,
+      "phase": "exploring",
+      "mediaLoading": 0,
+      "mediaFailed": 0
+    },
+    {
+      "label": "child-upgraded",
+      "appearanceStage": "child",
+      "ageYears": 4,
+      "eraYear": 2024,
+      "phase": "exploring",
+      "mediaLoading": 0,
+      "mediaFailed": 0
+    }
+  ],
+  "screenshots": [
+    "infant-mallet-acorn-idle.png",
+    "infant-mallet-acorn-guard.png",
+    "infant-mallet-acorn-attack.png",
+    "child-retained-mallet-acorn.png",
+    "child-wand-ribbon-idle.png",
+    "child-wand-ribbon-guard.png",
+    "child-wand-ribbon-attack.png"
+  ],
+  "expectedConsole": [
+    "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+    "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+    "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+    "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+  ],
+  "unexpected": [],
+  "boundary": {
+    "storage": "fixture memory harness",
+    "progression": "direct same-origin fixture actions were used only to stage visual evidence; keyboard and touch play are established by the separate journey runs",
+    "enemies": "procedural studies in this fixture; rejected authored creatures were not an acceptance target",
+    "obby": "not assessed",
+    "physicalDevices": "not tested"
+  }
+}
