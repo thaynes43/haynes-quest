@@ -149,7 +149,9 @@ async function inspectRenderedModel(page, viewer, id, index) {
     `${id}: model uses its square portrait frame`,
   );
 
-  const screenshot = await viewer.screenshot();
+  const screenshot = await viewer.screenshot({
+    path: `test-results/studio/${id}-model-${index + 1}-phone.png`,
+  });
   const metadata = await sharp(screenshot).metadata();
   assert.ok(metadata.width && metadata.height);
   const insetX = Math.max(1, Math.floor(metadata.width * 0.08));
