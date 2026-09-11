@@ -3,7 +3,7 @@
   "catalog_id": "memory-keepsake",
   "version": "v001",
   "candidate_status": "unapproved",
-  "coordinator_review": "pending",
+  "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
   "tom_review": "pending",
   "source_concepts": {
     "work_order": "WO-010",
@@ -78,7 +78,7 @@
     "memory-keepsake": {
       "catalog_id": "memory-keepsake",
       "candidate_status": "unapproved",
-      "coordinator_review": "pending",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
       "tom_review": "pending",
       "glb_sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137",
       "triangles": 1741,

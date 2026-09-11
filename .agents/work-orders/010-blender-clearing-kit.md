@@ -1,6 +1,7 @@
 # WO-010: First-pass clearing prop kit
 
-- **Status:** In progress. Fresh native Astra `blender_clearing` dispatch succeeded after the browser verification lane completed. WO-007 released the scene at2026-09-11 04:37:50UTC; WO-010 now exclusively owns it. Three earlier capacity errors were temporary; no model downgrade or CLI substitution occurred.
+- **Status:** Completed authoring; coordinator selected all seven models after exact render/concept, master-checksum and validator intake. Final browser delivery and private publication follow under WO-011. Author commit `c08909b52c88a8a327723bad4311ef6be26b1603`, integrated as `fb3b2cc`. [Complete authoring evidence](010-blender-clearing-kit-evidence.md).
+- **Release:** Scene saved and released at 2026-09-11 05:33:31 UTC; no rendering or authoring process remains. Masters, source scripts and exact exports are durable.
 - **Author:** fresh native GPT-6 Astra, max; all Blender modeling/scripts/materials/export/render/optimization stay in that lane.
 - **Scope:** one coherent bounded static prop kit covering the five remaining catalog IDs. No extra biome, character, texture generation, gameplay integration or user-facing page writing.
 - **Inputs:** exact selected `storybook-reference/v001/{environment,props-materials}.png` plus each asset's `v001/concept.png` and retained prompt in `docs/assets/media/`. Inspect actual images before authoring. Original fictional content only.

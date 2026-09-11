@@ -3,7 +3,7 @@
   "catalog_id": "clearing-tree",
   "version": "v001",
   "candidate_status": "unapproved",
-  "coordinator_review": "pending",
+  "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
   "tom_review": "pending",
   "source_concepts": {
     "work_order": "WO-010",
@@ -78,7 +78,7 @@
     "clearing-tree": {
       "catalog_id": "clearing-tree",
       "candidate_status": "unapproved",
-      "coordinator_review": "pending",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
       "tom_review": "pending",
       "glb_sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
       "triangles": 2840,

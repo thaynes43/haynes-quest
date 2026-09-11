@@ -3,7 +3,7 @@
   "catalog_id": "clearing-path-kit",
   "version": "v001",
   "candidate_status": "unapproved",
-  "coordinator_review": "pending",
+  "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
   "tom_review": "pending",
   "source_concepts": {
     "work_order": "WO-010",
@@ -78,7 +78,7 @@
     "ground-tile": {
       "catalog_id": "clearing-path-kit",
       "candidate_status": "unapproved",
-      "coordinator_review": "pending",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
       "tom_review": "pending",
       "glb_sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
       "triangles": 702,
@@ -213,7 +213,7 @@
     "path-tile": {
       "catalog_id": "clearing-path-kit",
       "candidate_status": "unapproved",
-      "coordinator_review": "pending",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
       "tom_review": "pending",
       "glb_sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
       "triangles": 392,
@@ -348,7 +348,7 @@
     "low-step": {
       "catalog_id": "clearing-path-kit",
       "candidate_status": "unapproved",
-      "coordinator_review": "pending",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
       "tom_review": "pending",
       "glb_sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
       "triangles": 188,

@@ -3,7 +3,7 @@
   "catalog_id": "arrival-landmark",
   "version": "v001",
   "candidate_status": "unapproved",
-  "coordinator_review": "pending",
+  "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
   "tom_review": "pending",
   "source_concepts": {
     "work_order": "WO-010",
@@ -78,7 +78,7 @@
     "arrival-landmark": {
       "catalog_id": "arrival-landmark",
       "candidate_status": "unapproved",
-      "coordinator_review": "pending",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
       "tom_review": "pending",
       "glb_sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
       "triangles": 1880,

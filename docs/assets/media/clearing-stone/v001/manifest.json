@@ -3,7 +3,7 @@
   "catalog_id": "clearing-stone",
   "version": "v001",
   "candidate_status": "unapproved",
-  "coordinator_review": "pending",
+  "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
   "tom_review": "pending",
   "source_concepts": {
     "work_order": "WO-010",
@@ -78,7 +78,7 @@
     "clearing-stone": {
       "catalog_id": "clearing-stone",
       "candidate_status": "unapproved",
-      "coordinator_review": "pending",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
       "tom_review": "pending",
       "glb_sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
       "triangles": 348,
