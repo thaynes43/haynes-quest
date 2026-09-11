@@ -98,11 +98,24 @@ export class ObbyScene {
       this.root.add(root);
     }
     for (const checkpoint of course.checkpoints) {
-      const marker = groundRing(checkpoint.triggerRadius, 0xfff1a6, 0.65);
+      const strip = checkpoint.triggerHalfExtents;
+      const marker = strip
+        ? new THREE.Mesh(
+            new THREE.PlaneGeometry(strip.x * 2, strip.z * 2),
+            new THREE.MeshBasicMaterial({
+              color: 0xfff1a6,
+              transparent: true,
+              opacity: 0.35,
+              depthWrite: false,
+            }),
+          )
+        : groundRing(checkpoint.triggerRadius, 0xfff1a6, 0.65);
+      if (strip) marker.rotation.x = -Math.PI / 2;
+      marker.userData.strip = Boolean(strip);
       marker.name = `checkpoint-${checkpoint.id}`;
       marker.position.set(
         checkpoint.position.x,
-        checkpoint.position.y + 0.012,
+        checkpoint.position.y + (strip ? 0.045 : 0.012),
         checkpoint.position.z,
       );
       this.checkpoints.set(checkpoint.id, marker);
@@ -126,7 +139,13 @@ export class ObbyScene {
     for (const [id, marker] of this.checkpoints) {
       const surface = marker.material as THREE.MeshBasicMaterial;
       surface.color.setHex(id === checkpointId ? 0x8ce6b7 : 0xfff1a6);
-      surface.opacity = id === checkpointId ? 0.9 : 0.65;
+      surface.opacity = marker.userData.strip
+        ? id === checkpointId
+          ? 0.55
+          : 0.35
+        : id === checkpointId
+          ? 0.9
+          : 0.65;
     }
   }
 }

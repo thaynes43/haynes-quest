@@ -9,6 +9,7 @@ import {
   enemyAttackRange,
   EnemySimulation,
   findAttackTarget,
+  withinEnemyStrikeHeight,
 } from "./combat";
 import { getAvatarProportions, stepController } from "./controller";
 import { createObbyState, sampleObby, stepObby } from "./obby";
@@ -427,7 +428,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
     ) {
       return false;
     }
-    if (Math.abs(controller.position.y - frame.position.y) > 0.3) return false;
+    if (!withinEnemyStrikeHeight(controller.position, frame.position))
+      return false;
     const range = enemyAttackRange(encounter.role);
     return horizontalDistance(controller.position, frame.position) <= range;
   };
@@ -550,7 +552,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
       if (level.course) {
         courseTime += deltaSeconds;
         const dimensions = getAvatarProportions(save.appearance.stage);
-        const traversal = stepObby(controller, currentInput, level.course, {
+        const course =
+          adventure.phase === "memory-released"
+            ? { ...level.course, checkpoints: [] }
+            : level.course;
+        const traversal = stepObby(controller, currentInput, course, {
           deltaSeconds,
           timeSeconds: courseTime,
           cameraYaw: scene.cameraYaw,

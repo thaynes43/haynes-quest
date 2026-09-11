@@ -111,6 +111,10 @@ describe("enemy combat simulation", () => {
 
     const belowIsland = new EnemySimulation(elevatedLevel, save);
     expect(stepMany(belowIsland, save, { x: -2, y: 0, z: -7 }, 24)).toEqual([]);
+    const justFellOff = new EnemySimulation(elevatedLevel, save);
+    expect(stepMany(justFellOff, save, { x: -2, y: 1.98, z: -7 }, 24)).toEqual(
+      [],
+    );
     const aboveContact = new EnemySimulation(elevatedLevel, save);
     expect(stepMany(aboveContact, save, { x: -2, y: 2.31, z: -7 }, 24)).toEqual(
       [],

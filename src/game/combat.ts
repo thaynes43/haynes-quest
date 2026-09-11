@@ -67,6 +67,15 @@ export function enemyAttackRange(role: EncounterView["role"]): number {
   return tuningFor(role).attackRange;
 }
 
+/** Once a fall takes the player below the fight floor, recovery owns the miss. */
+export function withinEnemyStrikeHeight(
+  player: PositionSnapshot,
+  enemy: PositionSnapshot,
+): boolean {
+  const feetDelta = player.y - enemy.y;
+  return feetDelta >= -0.000001 && feetDelta <= maxEnemyContactFeetDelta;
+}
+
 function distance(first: PositionSnapshot, second: PositionSnapshot): number {
   return Math.hypot(first.x - second.x, first.z - second.z);
 }
@@ -266,8 +275,7 @@ export class EnemySimulation {
           if (
             !enemy.contactedDuringStrike &&
             playerDistance <= tuning.attackRange &&
-            verticalDistance(options.player, enemy.position) <=
-              maxEnemyContactFeetDelta &&
+            withinEnemyStrikeHeight(options.player, enemy.position) &&
             this.hitCooldownSeconds <= 0
           ) {
             contacts.push(enemy.id);

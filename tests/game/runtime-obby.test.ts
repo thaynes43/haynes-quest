@@ -169,6 +169,31 @@ describe("obby game runtime", () => {
     game.dispose();
   });
 
+  it("keeps the safe reward checkpoint when walking back across a course marker after victory", () => {
+    const reward = routedSave({
+      levelIndex: 1,
+      phase: "memory-released",
+      defeatedIds: [
+        "level-2-2024-ordinary-a",
+        "level-2-2024-ordinary-b",
+        "level-2-2024-boss",
+      ],
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: reward,
+      onAction: async () => reward,
+      onRefresh: async () => reward,
+    });
+    warmRuntime();
+    game.setInput("moveY", -1);
+    for (let frame = 0; frame < 29; frame++) advance();
+    game.clearInput();
+    expect(game.inspect().status.position.z).toBeCloseTo(-19.005, 5);
+    expect(game.inspect().checkpoint).toEqual({ x: 0, y: 0, z: -23.5 });
+    game.dispose();
+  });
+
   it.each(["pause", "blur", "pointercancel", "clear"])(
     "discards a deferred jump on %s instead of jumping when play resumes",
     (cancellation) => {
