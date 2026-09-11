@@ -23,7 +23,7 @@ import type {
   SubjectOption,
 } from '../shared/contracts.js';
 import { AppError } from './errors.js';
-import { parseStoredAdventure } from './adventure-schema.js';
+import { parseStoredAdventure, parseStoredSaveJson } from './adventure-schema.js';
 
 export const FIXTURE_SUBJECT: SubjectOption = {
   id: 'demo-adventurer-v1',
@@ -297,38 +297,58 @@ export function canAccessSaveMemory(save: SaveRecord, memoryId: string): boolean
 }
 
 export function validateSaveRecord(save: SaveRecord): SaveRecord {
-  if (save.saveFormat === 'legacy-v1') {
-    if (save.adventurePlan !== null || save.adventureState !== null) invalidSave();
-    return save;
+  const stored = parseStoredSaveJson({
+    subject: save.subject,
+    memories: save.memories,
+    recoveredIds: save.recoveredIds,
+    abilities: save.abilities,
+    versions: save.versions,
+  });
+  const normalized = { ...save, ...stored };
+  if (
+    !isValidFrozenManifest(normalized.birthDate, normalized.memories) ||
+    new Set(normalized.recoveredIds).size !== normalized.recoveredIds.length ||
+    normalized.recoveredIds.some(
+      (id) => !normalized.memories.some((memory) => memory.id === id),
+    ) ||
+    new Set(normalized.abilities).size !== normalized.abilities.length ||
+    normalized.ageYears < 0 || normalized.ageYears > 150 ||
+    !Number.isInteger(normalized.ageYears) ||
+    normalized.revision < 0 || !Number.isInteger(normalized.revision)
+  ) invalidSave();
+  if (normalized.saveFormat === 'legacy-v1') {
+    if (normalized.adventurePlan !== null || normalized.adventureState !== null) invalidSave();
+    return normalized;
   }
-  if (save.saveFormat !== 'era-combat-v2') invalidSave();
-  const { plan, state } = parseStoredAdventure(save.adventurePlan, save.adventureState);
+  if (normalized.saveFormat !== 'era-combat-v2') invalidSave();
+  const { plan, state } = parseStoredAdventure(normalized.adventurePlan, normalized.adventureState);
   const plannedMemoryIds = plan.levels.flatMap((level) => level.memoryIds);
-  const savedMemoryIds = save.memories.map((memory) => memory.id);
+  const savedMemoryIds = normalized.memories.map((memory) => memory.id);
   if (
     plannedMemoryIds.length !== savedMemoryIds.length ||
     plannedMemoryIds.some((id, index) => id !== savedMemoryIds[index]) ||
-    plan.levels[0]?.startDate !== save.birthDate ||
+    plan.levels[0]?.startDate !== normalized.birthDate ||
     plan.levels.some((level, index) => {
       const lastMemoryId = level.memoryIds.at(-1);
-      const lastMemory = save.memories.find((memory) => memory.id === lastMemoryId);
+      const lastMemory = normalized.memories.find((memory) => memory.id === lastMemoryId);
       const priorLevel = plan.levels[index - 1];
       const priorLastId = priorLevel?.memoryIds.at(-1);
-      const priorLast = save.memories.find((memory) => memory.id === priorLastId);
+      const priorLast = normalized.memories.find((memory) => memory.id === priorLastId);
       return !lastMemory ||
         lastMemory.ageYears !== level.targetAgeYears ||
         (index > 0 && level.startDate !== priorLast?.date);
     }) ||
-    save.recoveredIds.length !== state.revealedMemoryIds.length ||
-    save.recoveredIds.some((id, index) => id !== state.revealedMemoryIds[index]) ||
-    save.ageYears !== state.ageYears ||
-    save.appearanceStage !== state.appearanceStage ||
-    save.completed !== (state.phase === 'complete') ||
-    save.abilities.length !== state.abilities.length ||
-    save.abilities.some((ability, index) => ability !== state.abilities[index]) ||
-    state.actionReceipts.some((receipt) => receipt.appliedRevision > save.revision)
+    normalized.recoveredIds.length !== state.revealedMemoryIds.length ||
+    normalized.recoveredIds.some((id, index) => id !== state.revealedMemoryIds[index]) ||
+    normalized.ageYears !== state.ageYears ||
+    normalized.appearanceStage !== state.appearanceStage ||
+    normalized.completed !== (state.phase === 'complete') ||
+    normalized.abilities.length !== state.abilities.length ||
+    normalized.abilities.some((ability, index) => ability !== state.abilities[index]) ||
+    (normalized.revision === 0) !== (state.actionReceipts.length === 0) ||
+    (normalized.revision > 0 && state.actionReceipts.at(-1)?.appliedRevision !== normalized.revision)
   ) invalidSave();
-  return { ...save, adventurePlan: plan, adventureState: state };
+  return { ...normalized, adventurePlan: plan, adventureState: state };
 }
 
 function gameplayActionHash(request: GameplayActionRequest): string {

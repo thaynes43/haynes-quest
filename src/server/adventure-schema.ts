@@ -5,10 +5,37 @@ import {
   type AdventurePlan,
   type AdventureState,
 } from '../shared/adventure.js';
+import type { Ability, RuleVersions, SubjectOption } from '../shared/contracts.js';
+import type { FrozenMemory } from './domain.js';
 import { AppError } from './errors.js';
 
 const identifier = z.string().min(1).max(160);
 const dateOnly = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+const subjectSchema = z.object({
+  id: identifier,
+  label: z.string().min(1).max(160),
+}).strict();
+const memorySourceSchema = z.discriminatedUnion('kind', [
+  z.object({ kind: z.literal('fixture'), key: identifier }).strict(),
+  z.object({ kind: z.literal('immich'), assetId: identifier, personId: identifier }).strict(),
+]);
+const frozenMemorySchema = z.object({
+  id: z.string().min(1).max(128),
+  date: dateOnly,
+  ageYears: z.number().int().min(0).max(150),
+  label: z.string().min(1).max(160),
+  mediaUrl: z.string().min(1).max(2_048).optional(),
+  source: memorySourceSchema,
+}).strict();
+const abilitySchema = z.enum(['move', 'interact', 'jump']);
+const ruleVersionsSchema = z.object({
+  journey: identifier,
+  age: identifier,
+  progression: identifier,
+  appearance: identifier,
+  catalog: identifier.optional(),
+  combat: identifier.optional(),
+}).strict();
 const equipmentSchema = z.object({
   id: identifier,
   pickupId: identifier,
@@ -71,6 +98,32 @@ const stateSchema = z.object({
   guardReadyAtMs: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
   actionReceipts: z.array(receiptSchema).max(128),
 }).strict();
+
+const storedSaveJsonSchema = z.object({
+  subject: subjectSchema,
+  memories: z.array(frozenMemorySchema).min(1).max(240),
+  recoveredIds: z.array(z.string().min(1).max(128)).max(240),
+  abilities: z.array(abilitySchema).min(1).max(3),
+  versions: ruleVersionsSchema,
+}).strict();
+
+export function parseStoredSaveJson(raw: unknown): {
+  subject: SubjectOption;
+  memories: FrozenMemory[];
+  recoveredIds: string[];
+  abilities: Ability[];
+  versions: RuleVersions;
+} {
+  const parsed = storedSaveJsonSchema.safeParse(raw);
+  if (!parsed.success) invalid();
+  return parsed.data as {
+    subject: SubjectOption;
+    memories: FrozenMemory[];
+    recoveredIds: string[];
+    abilities: Ability[];
+    versions: RuleVersions;
+  };
+}
 
 export function parseStoredAdventure(
   rawPlan: unknown,
@@ -143,6 +196,18 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
     levels.slice(0, state.completedLevelIds.length).flatMap((level) => level.memoryIds),
   );
   const activeLevel = levels[state.activeLevelIndex];
+  const availableEquipment = new Set(
+    levels
+      .slice(0, Math.min(state.activeLevelIndex + 1, levels.length))
+      .flatMap((level) => level.pickups)
+      .map((item) => item.id),
+  );
+  const availablePickups = new Set(
+    levels
+      .slice(0, Math.min(state.activeLevelIndex + 1, levels.length))
+      .flatMap((level) => level.pickups)
+      .map((item) => item.pickupId),
+  );
   const revealableMemoryIds = new Set([
     ...completedMemoryIds,
     ...(activeLevel && state.phase === 'memory-released' ? activeLevel.memoryIds : []),
@@ -162,7 +227,9 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
     hasDuplicates(state.actionReceipts.map((receipt) => receipt.actionId)) ||
     state.playerHp > state.maxPlayerHp ||
     state.inventoryIds.some((id) => !equipmentIds.has(id)) ||
+    state.inventoryIds.some((id) => !availableEquipment.has(id)) ||
     state.collectedPickupIds.some((id) => !pickupIds.has(id)) ||
+    state.collectedPickupIds.some((id) => !availablePickups.has(id)) ||
     state.revealedMemoryIds.some((id) => !memories.has(id)) ||
     state.revealedMemoryIds.some((id) => !revealableMemoryIds.has(id)) ||
     state.consumedMemoryIds.some(
@@ -187,7 +254,7 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
       (!equipped || equipped.kind !== 'attack-tool' || !state.inventoryIds.includes(equipped.id)) ||
     state.actionReceipts.some(
       (receipt, index) => index > 0 &&
-        receipt.appliedRevision <= state.actionReceipts[index - 1]!.appliedRevision,
+        receipt.appliedRevision !== state.actionReceipts[index - 1]!.appliedRevision + 1,
     )
   ) return false;
   for (const [id, definition] of definitions) {
@@ -205,7 +272,10 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
     ) return false;
     if (
       level.index > state.activeLevelIndex &&
-      progresses.some(({ definition, progress }) => progress.defeated || progress.hp !== definition.maxHp)
+      progresses.some(
+        ({ definition, progress }) =>
+          progress.defeated || progress.hp !== definition.maxHp || progress.nextReportedHitAtMs !== 0,
+      )
     ) return false;
   }
   if (state.phase === 'complete') {
@@ -215,7 +285,13 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
   }
   if (state.activeLevelIndex >= levels.length) return false;
   const active = levels[state.activeLevelIndex]!;
+  const ordinaryDefeated = active.encounters
+    .filter((encounter) => encounter.role === 'ordinary')
+    .every((encounter) => state.encounters[encounter.id]?.defeated);
+  const bossDefinition = active.encounters.find((encounter) => encounter.id === active.bossId)!;
+  const bossProgress = state.encounters[active.bossId]!;
   const bossDefeated = state.encounters[active.bossId]?.defeated === true;
+  if (!ordinaryDefeated && (bossProgress.defeated || bossProgress.hp !== bossDefinition.maxHp)) return false;
   if (state.phase === 'memory-released' && !bossDefeated) return false;
   if (
     state.phase === 'memory-released' &&

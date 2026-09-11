@@ -1,8 +1,15 @@
 import { randomUUID } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
 import { Pool } from 'pg';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import type { GameplayAction, GameplayActionRequest } from '../../src/shared/contracts.js';
 import { PostgresQuestStore } from '../../src/server/db/postgres-store.js';
-import { FIXTURE_SUBJECT, wholeYearsAt, type NewPreviewRecord } from '../../src/server/domain.js';
+import {
+  FIXTURE_SUBJECT,
+  wholeYearsAt,
+  type NewPreviewRecord,
+  type SaveRecord,
+} from '../../src/server/domain.js';
 
 const testDatabaseUrl = process.env.QUEST_TEST_DATABASE_URL;
 
@@ -111,6 +118,291 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
     }
   });
 
+  it('Postgres scopes receipts by save and rejects one of two stale-tab writes', async () => {
+    const store = PostgresQuestStore.connect(testDatabaseUrl!);
+    try {
+      const owner = await store.createFixtureSession(randomUUID(), new Date(Date.now() + 60_000));
+      const saves: SaveRecord[] = [];
+      for (let index = 0; index < 2; index += 1) {
+        const preview = await store.putPreview(previewInput(owner.id));
+        saves.push(await store.createSave({
+          ownerId: owner.id,
+          previewId: preview.previewId,
+          selectedIds: preview.selectedIds,
+        }));
+      }
+      const sharedActionId = randomUUID();
+      const level = saves[0]!.adventurePlan!.levels[0]!;
+      const attackTool = level.pickups.find((pickup) => pickup.kind === 'attack-tool')!;
+      const collectRequest: GameplayActionRequest = {
+        actionId: sharedActionId,
+        expectedRevision: 0,
+        action: { type: 'collect-equipment', levelId: level.id, pickupId: attackTool.pickupId },
+      };
+      const [first, second] = await Promise.all(saves.map((save) =>
+        store.applyGameplayAction(owner.id, save.id, collectRequest, new Date()),
+      ));
+      expect(first.revision).toBe(1);
+      expect(second.revision).toBe(1);
+
+      const ordinary = level.encounters.filter((encounter) => encounter.role === 'ordinary');
+      const sameRevisionActions = ordinary.map((encounter) => ({
+        actionId: randomUUID(),
+        expectedRevision: first.revision,
+        action: { type: 'attack' as const, levelId: level.id, encounterId: encounter.id },
+      }));
+      const raced = await Promise.allSettled(sameRevisionActions.map((request) =>
+        store.applyGameplayAction(owner.id, first.id, request, new Date(Date.now() + 600)),
+      ));
+      expect(raced.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+      const rejected = raced.find((result) => result.status === 'rejected');
+      expect(rejected).toMatchObject({ reason: { code: 'SAVE_REVISION_STALE' } });
+      expect((await store.getSave(owner.id, first.id))!.revision).toBe(2);
+      expect((await store.getSave(owner.id, second.id))!.revision).toBe(1);
+    } finally {
+      await store.close();
+    }
+  });
+
+  it('Postgres commits a concurrent consume once and resumes the next frozen level', async () => {
+    const store = PostgresQuestStore.connect(testDatabaseUrl!);
+    try {
+      const owner = await store.createFixtureSession(randomUUID(), new Date(Date.now() + 60_000));
+      const preview = await store.putPreview(previewInput(owner.id));
+      let save = await store.createSave({
+        ownerId: owner.id,
+        previewId: preview.previewId,
+        selectedIds: preview.selectedIds,
+      });
+      let nowMs = Date.parse('2026-09-11T12:00:00.000Z');
+      const level = save.adventurePlan!.levels[0]!;
+      const attackTool = level.pickups.find((pickup) => pickup.kind === 'attack-tool')!;
+      save = await applyStoreAction(store, owner.id, save, {
+        type: 'collect-equipment', levelId: level.id, pickupId: attackTool.pickupId,
+      }, nowMs);
+      for (const encounter of level.encounters) {
+        while (!save.adventureState!.encounters[encounter.id]!.defeated) {
+          nowMs += 600;
+          save = await applyStoreAction(store, owner.id, save, {
+            type: 'attack', levelId: level.id, encounterId: encounter.id,
+          }, nowMs);
+        }
+      }
+      expect(save).toMatchObject({ ageYears: 0, adventureState: { phase: 'memory-released' } });
+      for (const memoryId of level.memoryIds) {
+        save = await applyStoreAction(store, owner.id, save, {
+          type: 'recover-memory', levelId: level.id, memoryId,
+        }, nowMs);
+      }
+      expect(save.ageYears).toBe(0);
+      const consumeRequest: GameplayActionRequest = {
+        actionId: randomUUID(),
+        expectedRevision: save.revision,
+        action: { type: 'consume-memory-bundle', levelId: level.id },
+      };
+      const [first, retry] = await Promise.all([
+        store.applyGameplayAction(owner.id, save.id, consumeRequest, new Date(nowMs)),
+        store.applyGameplayAction(owner.id, save.id, consumeRequest, new Date(nowMs)),
+      ]);
+      expect(first.revision).toBe(retry.revision);
+      expect(first).toMatchObject({
+        ageYears: 4,
+        abilities: ['move', 'interact', 'jump'],
+        appearanceStage: 'child',
+        completed: false,
+        adventureState: {
+          activeLevelIndex: 1,
+          phase: 'exploring',
+          completedLevelIds: [level.id],
+        },
+      });
+      const resumed = await store.getSave(owner.id, save.id);
+      expect(resumed).toMatchObject({
+        revision: first.revision,
+        ageYears: 4,
+        adventureState: { activeLevelIndex: 1, phase: 'exploring' },
+      });
+      expect(resumed!.adventurePlan!.levels[1]).toMatchObject({ eraYear: 2024, startAgeYears: 4 });
+    } finally {
+      await store.close();
+    }
+  });
+
+  it('Postgres bounds durable receipts and never reapplies a pruned retry', async () => {
+    const store = PostgresQuestStore.connect(testDatabaseUrl!);
+    try {
+      const owner = await store.createFixtureSession(randomUUID(), new Date(Date.now() + 60_000));
+      const preview = await store.putPreview(previewInput(owner.id));
+      let save = await store.createSave({
+        ownerId: owner.id,
+        previewId: preview.previewId,
+        selectedIds: preview.selectedIds,
+      });
+      const level = save.adventurePlan!.levels[0]!;
+      const guardTool = level.pickups.find((pickup) => pickup.kind === 'guard-tool')!;
+      let nowMs = Date.parse('2026-09-11T12:00:00.000Z');
+      save = await applyStoreAction(store, owner.id, save, {
+        type: 'collect-equipment', levelId: level.id, pickupId: guardTool.pickupId,
+      }, nowMs);
+      const oldRequest: GameplayActionRequest = {
+        actionId: randomUUID(),
+        expectedRevision: save.revision,
+        action: { type: 'guard', levelId: level.id },
+      };
+      save = await store.applyGameplayAction(owner.id, save.id, oldRequest, new Date(nowMs));
+      for (let index = 0; index < 128; index += 1) {
+        nowMs += 1_500;
+        save = await applyStoreAction(store, owner.id, save, {
+          type: 'guard', levelId: level.id,
+        }, nowMs);
+      }
+      expect(save.adventureState!.actionReceipts).toHaveLength(128);
+      expect(save.adventureState!.actionReceipts.some(
+        (receipt) => receipt.actionId === oldRequest.actionId,
+      )).toBe(false);
+      await expect(store.applyGameplayAction(owner.id, save.id, oldRequest, new Date(nowMs)))
+        .rejects.toMatchObject({ code: 'SAVE_REVISION_STALE' });
+      expect((await store.getSave(owner.id, save.id))!.revision).toBe(save.revision);
+    } finally {
+      await store.close();
+    }
+  });
+
+  it('Postgres rejects impossible v2 state and malformed legacy JSON at load', async () => {
+    const store = PostgresQuestStore.connect(testDatabaseUrl!);
+    const auditPool = new Pool({ connectionString: testDatabaseUrl, max: 1 });
+    try {
+      const owner = await store.createFixtureSession(randomUUID(), new Date(Date.now() + 60_000));
+      const preview = await store.putPreview(previewInput(owner.id));
+      const save = await store.createSave({
+        ownerId: owner.id,
+        previewId: preview.previewId,
+        selectedIds: preview.selectedIds,
+      });
+      const futureEquipment = save.adventurePlan!.levels[1]!.pickups[0]!;
+      const futureInventory = structuredClone(save.adventureState!);
+      futureInventory.inventoryIds.push(futureEquipment.id);
+      futureInventory.collectedPickupIds.push(futureEquipment.pickupId);
+      futureInventory.equippedId = futureEquipment.id;
+      await auditPool.query(
+        'UPDATE quest_saves SET adventure_state = $2::jsonb WHERE id = $1',
+        [save.id, JSON.stringify(futureInventory)],
+      );
+      await expect(store.getSave(owner.id, save.id)).rejects.toMatchObject({ code: 'SAVE_DATA_INVALID' });
+
+      const earlyBossDamage = structuredClone(save.adventureState!);
+      const firstLevel = save.adventurePlan!.levels[0]!;
+      earlyBossDamage.encounters[firstLevel.bossId]!.hp -= 1;
+      await auditPool.query(
+        'UPDATE quest_saves SET adventure_state = $2::jsonb WHERE id = $1',
+        [save.id, JSON.stringify(earlyBossDamage)],
+      );
+      await expect(store.getSave(owner.id, save.id)).rejects.toMatchObject({ code: 'SAVE_DATA_INVALID' });
+
+      await auditPool.query(
+        `UPDATE quest_saves
+         SET save_format = 'legacy-v1', adventure_plan = NULL, adventure_state = NULL
+         WHERE id = $1`,
+        [save.id],
+      );
+      expect(await store.getSave(owner.id, save.id)).toMatchObject({ saveFormat: 'legacy-v1' });
+      await expect(store.applyGameplayAction(owner.id, save.id, {
+        actionId: randomUUID(),
+        expectedRevision: 0,
+        action: { type: 'retry-level', levelId: 'legacy' },
+      }, new Date())).rejects.toMatchObject({ code: 'LEGACY_SAVE_READ_ONLY' });
+
+      await auditPool.query(
+        `UPDATE quest_saves SET memories = '[{"id": 42}]'::jsonb WHERE id = $1`,
+        [save.id],
+      );
+      await expect(store.getSave(owner.id, save.id)).rejects.toMatchObject({ code: 'SAVE_DATA_INVALID' });
+    } finally {
+      await auditPool.end();
+      await store.close();
+    }
+  });
+
+  it('Postgres 0003 migration preserves an existing v1 row as legacy', async () => {
+    const pool = new Pool({ connectionString: testDatabaseUrl, max: 1 });
+    const client = await pool.connect();
+    const schema = `quest_migration_${randomUUID().replaceAll('-', '')}`;
+    try {
+      await client.query(`CREATE SCHEMA "${schema}"`);
+      await client.query(`SET search_path TO "${schema}"`);
+      const [migrationOne, migrationTwo, migrationThree] = await Promise.all([
+        readFile('migrations/0001_quest_server.sql', 'utf8'),
+        readFile('migrations/0002_fixture_expiry_indexes.sql', 'utf8'),
+        readFile('migrations/0003_era_combat_saves.sql', 'utf8'),
+      ]);
+      await client.query(migrationOne);
+      await client.query(migrationTwo);
+      const ownerId = randomUUID();
+      const previewId = randomUUID();
+      const saveId = randomUUID();
+      const preview = previewInput(ownerId);
+      await client.query('INSERT INTO quest_players (id, label) VALUES ($1, $2)', [ownerId, 'Legacy']);
+      await client.query(
+        `INSERT INTO quest_setup_previews (
+           id, owner_id, birth_date, subjects, chosen_subject, memories, selected_ids, coverage, expires_at
+         ) VALUES ($1, $2, $3, $4::jsonb, $5::jsonb, $6::jsonb, $7::jsonb, $8::jsonb, $9)`,
+        [
+          previewId,
+          ownerId,
+          preview.birthDate,
+          JSON.stringify(preview.subjects),
+          JSON.stringify(preview.chosenSubject),
+          JSON.stringify(preview.memories),
+          JSON.stringify(preview.selectedIds),
+          JSON.stringify(preview.coverage),
+          preview.expiresAt,
+        ],
+      );
+      await client.query(
+        `INSERT INTO quest_saves (
+           id, owner_id, preview_id, title, subject, birth_date, memories, recovered_ids,
+           age_years, abilities, appearance_stage, completed, revision, versions
+         ) VALUES (
+           $1, $2, $3, 'Legacy journey', $4::jsonb, $5, $6::jsonb, '[]'::jsonb,
+           0, '["move", "interact"]'::jsonb, 'infant', false, 0, $7::jsonb
+         )`,
+        [
+          saveId,
+          ownerId,
+          previewId,
+          JSON.stringify(FIXTURE_SUBJECT),
+          preview.birthDate,
+          JSON.stringify(preview.memories),
+          JSON.stringify({
+            journey: 'legacy-v1',
+            age: 'birth-date-whole-years-v1',
+            progression: 'memory-recovery-v1',
+            appearance: 'synthetic-traveler-v1',
+          }),
+        ],
+      );
+      await client.query(migrationThree);
+      const migrated = await client.query<{
+        adventure_plan: unknown;
+        adventure_state: unknown;
+        save_format: string;
+      }>(
+        'SELECT save_format, adventure_plan, adventure_state FROM quest_saves WHERE id = $1',
+        [saveId],
+      );
+      expect(migrated.rows[0]).toEqual({
+        save_format: 'legacy-v1',
+        adventure_plan: null,
+        adventure_state: null,
+      });
+    } finally {
+      await client.query('SET search_path TO public');
+      await client.query(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);
+      client.release();
+      await pool.end();
+    }
+  });
+
   it('Postgres cleanup preserves saves, referenced previews, and active records', async () => {
     const store = PostgresQuestStore.connect(testDatabaseUrl!);
     const now = new Date(Date.now() + 2 * 60 * 60 * 1_000);
@@ -192,11 +484,26 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
   });
 });
 
+async function applyStoreAction(
+  store: PostgresQuestStore,
+  ownerId: string,
+  save: SaveRecord,
+  action: GameplayAction,
+  nowMs: number,
+): Promise<SaveRecord> {
+  return store.applyGameplayAction(ownerId, save.id, {
+    actionId: randomUUID(),
+    expectedRevision: save.revision,
+    action,
+  }, new Date(nowMs));
+}
+
 function previewInput(ownerId: string, expiresAt = new Date(Date.now() + 60_000)): NewPreviewRecord {
   const birthDate = '2020-01-01';
   const memories = [
     { id: 'memory-one', date: '2020-07-01', label: 'Memory 1' },
     { id: 'memory-two', date: '2024-01-01', label: 'Memory 2' },
+    { id: 'memory-three', date: '2027-01-01', label: 'Memory 3' },
   ].map(({ id, date, label }) => ({
     id,
     date,
@@ -211,7 +518,7 @@ function previewInput(ownerId: string, expiresAt = new Date(Date.now() + 60_000)
     chosenSubject: FIXTURE_SUBJECT,
     memories,
     selectedIds: memories.map((memory) => memory.id),
-    coverage: { fromDate: memories[0]!.date, toDate: memories.at(-1)!.date, incomplete: false, scanned: 2 },
+    coverage: { fromDate: memories[0]!.date, toDate: memories.at(-1)!.date, incomplete: false, scanned: 3 },
     expiresAt,
   };
 }
