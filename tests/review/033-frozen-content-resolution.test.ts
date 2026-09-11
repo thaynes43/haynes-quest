@@ -87,6 +87,33 @@ describe("frozen parody content resolution", () => {
     }
   });
 
+  it("names the current v2 encore identities instead of generic fallback creatures", () => {
+    const entries = PARODY_CANDIDATES.filter(
+      (entry) => entry.periodId === "remix-runway-v2",
+    );
+    const level = {
+      periodId: "remix-runway-v2",
+      encounters: entries.map((entry, index) => ({
+        id: `encore-${index}`,
+        role: entry.role,
+        kind: entry.kind,
+        maxHp: 1,
+        hp: 1,
+        attackDamage: 1,
+        defeated: false,
+        content: {
+          catalogEntryId: entry.id,
+          catalogEntryVersion: entry.version,
+          assetId: entry.assetId,
+          assetVersion: entry.assetVersion,
+        },
+      })),
+    } as unknown as ActiveLevelView;
+
+    const story = eraStory(2024, level);
+    for (const entry of entries) expect(story.enemies[entry.kind]).toBe(entry.title);
+  });
+
   it("returns no artwork for an identity this bundle does not know", () => {
     expect(
       parodyArtwork({
