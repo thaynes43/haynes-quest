@@ -18,6 +18,19 @@ The intended loop is **gear → obstacles and fights → boss → memories → g
 
 Sound is currently off while the sound candidates await listening review.
 
+## Actual game views
+
+These captures show the running candidate. They are game screenshots, not concept images or studio renders.
+
+<div class="studio-comparison">
+<figure><img src="media/playtest/v001/keyboard-era-1-equipped.png" alt="Starting traveler with the collected mallet and shield, looking toward the first chapter's guests"><figcaption>Equipment and the first chapter</figcaption></figure>
+<figure><img src="media/playtest/v001/keyboard-era-2-boss-landing.png" alt="Older traveler facing the returning Drama Dragon after crossing the moving platform"><figcaption>Older traveler at the second boss</figcaption></figure>
+</div>
+
+[Released fictional pictures](media/playtest/v001/keyboard-era-1-released-memories.png) · [Completed two-chapter journey](media/playtest/v001/keyboard-complete.png) · [Keyboard verification](media/playtest/v001/journey-keyboard-evidence.json)
+
+The complete keyboard check passed both chapters, both bosses, decoded pictures, age 0 → 4 → 7, saving and resuming, hazard recovery, jumps and the moving platform. Touch verification is still in progress. Physical iPhone/iPad Safari and child playtests remain open.
+
 ## The playtest cast
 
 | Chapter | Ordinary enemies | Boss |
