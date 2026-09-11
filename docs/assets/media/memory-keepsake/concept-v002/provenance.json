@@ -1,0 +1,63 @@
+{
+  "asset_id": "memory-keepsake",
+  "concept_version": "v002",
+  "model_version": "v001 unchanged",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "reason": "Tom identified the missing integral wedge in the original BACK illustration. The model already contains it.",
+  "selected": "concept.png",
+  "scope": "Local correction to the back-view illustration; original source and exact GLB remain preserved.",
+  "model_id_and_seed": "Not returned by tool; not claimed.",
+  "source": "Original fictional Haynes Quest art; no personal reference or third-party mesh.",
+  "inputs": [
+    {
+      "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+      "bytes": 2089695,
+      "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+    },
+    {
+      "path": "docs/assets/media/memory-keepsake/v001/back.png",
+      "bytes": 546837,
+      "sha256": "4920110db07f1502df4ab56c7128640d7c9d57c96b8cdffdd1525cf56bcc4c77"
+    }
+  ],
+  "iterations": [
+    {
+      "file": "iteration-01.png",
+      "decision": "Superseded: rear support was too narrow; revised using the actual model back render as geometry evidence."
+    },
+    {
+      "file": "concept.png",
+      "decision": "Selected by lead: broad centered wedge visible in BACK. Illustration remains a concept, not a dimensionally exact orthographic export."
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/assets/media/memory-keepsake/concept-v002/concept.png",
+      "bytes": 1798690,
+      "sha256": "35ac17215c2c359142519b806e68e502aac2ad0580269e3a1e0d610f38a0c20c"
+    },
+    {
+      "path": "docs/assets/media/memory-keepsake/concept-v002/iteration-01.png",
+      "bytes": 1885160,
+      "sha256": "88b03f25e5ec13ebbb38b32ef531f5544038b9b616653f934cda8c5d6471cb5c"
+    },
+    {
+      "path": "docs/assets/media/memory-keepsake/concept-v002/prompt.txt",
+      "bytes": 1331,
+      "sha256": "52330217e13e5b253bc082d1b3ab9e28a51f5011b7c528c9f8ce0df599ad2aa9"
+    },
+    {
+      "path": "docs/assets/media/memory-keepsake/concept-v002/revision-prompt.txt",
+      "bytes": 1154,
+      "sha256": "e012ba218058bcc9761dbbc8f5a3be6aae2934a3681e00a9e3d41c21d6a1ebe3"
+    }
+  ],
+  "unchanged_glb": {
+    "path": "docs/assets/media/memory-keepsake/v001/memory-keepsake.glb",
+    "bytes": 116304,
+    "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137"
+  },
+  "owner_approval": "Pending; feedback identifies a correction and does not approve an asset."
+}

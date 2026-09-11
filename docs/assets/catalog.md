@@ -33,3 +33,5 @@ Add ambience only after the required cues and runnable slice are complete. Full 
 ## Adding candidates
 
 Copy the [review template](000-review-template.md) to a versioned review page; replace template paths with real relative media links and link that page here. Retain the source concept alongside its model and all chosen audio takes. Mark unavailable or failed previews explicitly. Update this catalog and the lead handoff after each integrated authoring milestone so a fresh lead can resume without repeating generations.
+
+The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concept v002 with its rear wedge restored in the back view, following Tom’s September 11 feedback. The model remains v001; its support was already present.
