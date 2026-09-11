@@ -192,6 +192,68 @@ describe("era game runtime", () => {
     expect(sceneState.instances[0]?.retries).toBe(1);
   });
 
+  it("keeps the final era and victory checkpoint after completion", async () => {
+    const defeatedIds = [
+      "level-2-2024-ordinary-a",
+      "level-2-2024-ordinary-b",
+      "level-2-2024-boss",
+    ];
+    const released = makeEraSave({
+      levelIndex: 1,
+      phase: "memory-released",
+      revealedCount: 1,
+      defeatedIds,
+      collectedKinds: ["attack-tool", "guard-tool"],
+      revision: 5,
+    });
+    const completed = {
+      ...makeEraSave({
+        levelIndex: 1,
+        phase: "complete",
+        completed: true,
+        defeatedIds,
+        collectedKinds: ["attack-tool", "guard-tool"],
+        revision: 6,
+      }),
+      ageYears: 7,
+    };
+    const game = createGame({
+      container: document.createElement("div"),
+      save: released,
+      onAction: async () => completed,
+      onRefresh: async () => released,
+    });
+
+    expect(
+      game.performAction({
+        type: "consume-memory-bundle",
+        levelId: "level-2-2024",
+      }),
+    ).toBe(true);
+    await vi.waitFor(() =>
+      expect(game.inspect().status.phase).toBe("complete"),
+    );
+    expect(game.inspect()).toMatchObject({
+      status: {
+        activeLevelId: null,
+        ageYears: 7,
+        phase: "complete",
+        position: { x: 0, y: 0, z: -23.5 },
+      },
+      checkpoint: { x: 0, y: 0, z: -23.5 },
+      level: { id: "level-2-2024" },
+      enemies: [
+        { phase: "defeated" },
+        { phase: "defeated" },
+        { phase: "defeated" },
+      ],
+    });
+    game.updateSave({ ...completed, revision: 7 });
+    expect(game.inspect().level.id).toBe("level-2-2024");
+    expect(sceneState.instances[0]?.rebuilds).toEqual([]);
+    game.dispose();
+  });
+
   it("restores the player checkpoint and enemy spawns after an authoritative retry", async () => {
     const initial = makeEraSave();
     const fallen = makeEraSave({ phase: "fallen", playerHp: 0, revision: 1 });
@@ -276,6 +338,51 @@ describe("era game runtime", () => {
       configurable: true,
       value: "visible",
     });
+    game.dispose();
+  });
+
+  it("advances one bounded simulation step on slow visible frames", async () => {
+    const onAction = vi.fn(async (_request: GameplayActionRequest) =>
+      makeEraSave({ revision: 1 }),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: makeEraSave(),
+      onAction,
+      onRefresh: async () => makeEraSave(),
+    });
+    let now = performance.now();
+    game.setInput("moveY", 1);
+    now += 300;
+    nextFrame?.(now);
+    const beforeSlowStep = game.inspect().status.position.z;
+    now += 300;
+    nextFrame?.(now);
+    const afterSlowStep = game.inspect().status.position.z;
+    expect(beforeSlowStep - afterSlowStep).toBeCloseTo(0.155, 3);
+
+    for (let index = 0; index < 44; index += 1) {
+      now += 300;
+      nextFrame?.(now);
+    }
+    game.setInput("moveY", 0);
+    for (let index = 0; index < 240; index += 1) {
+      now += 300;
+      nextFrame?.(now);
+      await Promise.resolve();
+      if (
+        onAction.mock.calls.some(
+          ([request]) => request.action.type === "take-hit",
+        )
+      ) {
+        break;
+      }
+    }
+    expect(
+      onAction.mock.calls.some(
+        ([request]) => request.action.type === "take-hit",
+      ),
+    ).toBe(true);
     game.dispose();
   });
 });

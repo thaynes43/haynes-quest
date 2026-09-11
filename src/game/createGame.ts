@@ -108,6 +108,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
   requireAdventure(options.save);
   let save = options.save;
   let level = createLevelLayout(save);
+  let retainedActiveLevel = requireAdventure(save).activeLevel;
   let checkpoint = checkpointForSave(save, level);
   const controller = createControllerState(checkpoint);
   const input = new GameInputState();
@@ -268,10 +269,33 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const previousIdentity = levelIdentity(save);
     const previousPhase = requireAdventure(save).phase;
     const nextIdentity = levelIdentity(nextSave);
+    const nextAdventure = nextSave.adventure;
+    if (nextAdventure.activeLevel) {
+      retainedActiveLevel = nextAdventure.activeLevel;
+    }
+    const retainCompletedWorld =
+      nextAdventure.phase === "complete" &&
+      !nextAdventure.activeLevel &&
+      level.id !== null &&
+      retainedActiveLevel !== null;
     save = nextSave;
-    const nextLevel = createLevelLayout(save);
-    const nextCheckpoint = checkpointForSave(save, nextLevel);
-    const identityChanged = previousIdentity !== nextIdentity;
+    const sceneSave = retainCompletedWorld
+      ? {
+          ...nextSave,
+          adventure: {
+            ...nextAdventure,
+            activeLevel: retainedActiveLevel,
+          },
+        }
+      : nextSave;
+    const nextLevel = retainCompletedWorld
+      ? level
+      : createLevelLayout(nextSave);
+    const nextCheckpoint = retainCompletedWorld
+      ? checkpoint
+      : checkpointForSave(save, nextLevel);
+    const identityChanged =
+      !retainCompletedWorld && previousIdentity !== nextIdentity;
     const retried =
       previousPhase === "fallen" && nextSave.adventure.phase === "exploring";
     level = nextLevel;
@@ -282,14 +306,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
       scene.rebuildRoute(level, save);
       scene.cameraYaw = 0;
     } else {
-      enemies.sync(level, save);
+      enemies.sync(level, sceneSave);
       if (
         previousPhase !== "memory-released" &&
         nextSave.adventure.phase === "memory-released"
       ) {
         resetController(checkpoint);
       }
-      scene.updateProgress(save);
+      scene.updateProgress(sceneSave);
     }
     const now = windowTarget.performance.now();
     attackCooldownUntil = now + nextSave.adventure.attackCooldownRemainingMs;
