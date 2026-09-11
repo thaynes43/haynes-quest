@@ -42,6 +42,16 @@ The frozen audit did not reach the second short-gap proof, runway hazard proof, 
 
 During this audit, the coordinator independently reproduced a zero-delta quick-tap input seam and a narrow checkpoint-trigger issue and prepared production fixes outside this branch. Neither fix is present in `index-kSVHgsz1.js`, and this partial record does not validate them. The coordinator also stated that this frozen bundle still used temporary procedural foes, so it is not final enemy/media acceptance.
 
+## Interim renderer throughput diagnostic
+
+After releasing port 4391, `tests/e2e/renderer-probe.mjs` measured the first-period scene on the isolated `http://127.0.0.1:4392` fixture. This was a diagnostic only: it started a new journey through the UI, stayed in the first era, used public inspection plus real keyboard or CDP touch movement, and closed within its fixed 60 s overall deadline. Both modes used DPR1 and wrote ignored JSON/screenshots. They loaded `/assets/index-CGNcFPvf.js`, 997,940 bytes, SHA-256 `0315900e7ea95224e672f920babcbcb3d1a84b559b01b8e481ffd6544a04b773` in Chrome for Testing 153.0.8010.12 with explicit SwiftShader flags.
+
+- Keyboard at 1024×768: startup took 673.25 ms. A 4.098 s sample delivered 34 RAF callbacks, 8.30 frames/s, with a 400 ms largest gap. Five public inspections took 2.87–5.41 ms, the authenticated save-list read took 10.62 ms, and key down/up took 1.22/1.42 ms. The 700.35 ms held input advanced 0.15 course seconds and moved 0.465 m, exactly 3.1 m/s in simulated time.
+- Touch at 390×844: startup took 704.20 ms. A 4.012 s sample delivered 37 RAF callbacks, 9.22 frames/s, with a 383.4 ms largest gap. Five public inspections took 2.72–6.84 ms and the authenticated read took 6.32 ms. CDP touch start/move/end calls took 231.62/345.12/308.32 ms; the requested 701.68 ms hold plus those dispatches advanced 0.6166 course seconds and moved 1.2197 m at the joystick's partial input magnitude.
+- Both probes received HTTP 200 for `mister-hiss.glb`, `peel-patrol.glb`, and `drama-dragon.glb`, plus the traveler, course, equipment, and set-dressing GLBs. Both had zero page errors. The screenshots visibly show the three first-period models.
+
+The measured keyboard input, public inspections, and authenticated reads did not stall. CDP touch dispatches were coupled to the slow rendered frames and took hundreds of milliseconds. In both modes, low RAF throughput made a wall-clock input hold advance materially less game time than elapsed wall time because runtime deltas are capped. The final journey should therefore continue waiting on public position/state with broad overall bounds, as the committed driver does. These measurements describe this headless SwiftShader run only; they do not establish hardware or physical-device performance. A post-probe process audit found no live probe or owned Chromium profile.
+
 ## Verification
 
 - `pnpm typecheck` — passed.
@@ -52,6 +62,8 @@ During this audit, the coordinator independently reproduced a zero-delta quick-t
 - `git diff --check` — passed.
 - `QUEST_E2E_URL=http://127.0.0.1:4391 QUEST_E2E_MODE=keyboard QUEST_E2E_TIMEOUT_MS=1000 node tests/e2e/journey.mjs` — deliberately exited 124 with `overall timeout 1000ms exceeded; closing Chromium`; follow-up process inspection found no live journey or owned Playwright profile.
 - `QUEST_E2E_URL=http://127.0.0.1:4391 QUEST_E2E_MODE=keyboard node tests/e2e/journey.mjs` — multiple bounded adaptation runs produced the partial evidence above; none completed, and interrupted over-budget runs are not passes.
+- `QUEST_E2E_URL=http://127.0.0.1:4392 QUEST_E2E_MODE=keyboard node tests/e2e/renderer-probe.mjs` — passed in about 10 s and produced `test-results/renderer-probe-keyboard.{json,png}`.
+- `QUEST_E2E_URL=http://127.0.0.1:4392 QUEST_E2E_MODE=touch node tests/e2e/renderer-probe.mjs` — passed in about 9 s and produced `test-results/renderer-probe-touch.{json,png}`.
 
 ## Remaining final-build proof
 
