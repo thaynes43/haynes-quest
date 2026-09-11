@@ -17,7 +17,7 @@ export class ObbyScene {
       const ferry = Boolean(platform.motion);
       const { x: width, y: depth, z: length } = platform.size;
       const side = material(ferry ? 0x38a9b5 : later ? 0xb787b3 : 0xb98b55);
-      const top = material(ferry ? 0xffd669 : later ? 0xf6ddcf : 0xb9cf82);
+      const top = material(ferry ? 0xffd669 : later ? 0xf6ddcf : 0x8fbb70);
       const floor = shapeMesh(new THREE.BoxGeometry(width, depth, length), [
         side,
         side,

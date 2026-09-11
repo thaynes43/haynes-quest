@@ -188,9 +188,10 @@ export class GardenScene {
       ? period === "remix-runway-v1"
       : (save.adventure?.activeLevel?.eraYear ?? 2020) >= 2024;
     const palette = later ? palettes.fair : palettes.orchard;
-    this.scene.background = new THREE.Color(palette.sky);
-    this.scene.fog = new THREE.Fog(palette.sky, 15, 45);
-    this.sun.color.setHex(palette.light);
+    const sky = level.course && !later ? 0xcde5ef : palette.sky;
+    this.scene.background = new THREE.Color(sky);
+    this.scene.fog = new THREE.Fog(sky, 20, 52);
+    this.sun.color.setHex(level.course ? 0xfff4df : palette.light);
     this.renderer.toneMappingExposure = later ? 0.85 : 0.82;
     const generation = this.routeGeneration;
     const valid = () => !this.disposed && generation === this.routeGeneration;
@@ -872,7 +873,11 @@ export class GardenScene {
       // Keep the final battle floor clear and readable.
       if (
         (z < -18 && Math.abs(x) < 3.2) ||
-        (course && (later || !this.onIsland(course, x, z, 0.3)))
+        (course &&
+          (later ||
+            Math.abs(x) < 4.5 ||
+            i % 3 !== 0 ||
+            !this.onIsland(course, x, z, 0.3)))
       )
         dummy.scale.setScalar(0);
       dummy.updateMatrix();
