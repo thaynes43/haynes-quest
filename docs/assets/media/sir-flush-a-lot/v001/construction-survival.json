@@ -1,0 +1,2344 @@
+{
+  "asset_id": "sir-flush-a-lot",
+  "glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+  "method": "Source vertex/weight matching against actual re-imported GLB; contact surfaces reconstructed with imported bone matrices at six times in each clip.",
+  "named_source_parts": 69,
+  "exported_vertices": 11625,
+  "parts": [
+    {
+      "name": "Pedestal | broad closed floor plinth",
+      "vertices": 96,
+      "maximum_export_distance_m": 1.4901161193847656e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Pedestal | tapered closed ceramic column",
+      "vertices": 120,
+      "maximum_export_distance_m": 1.4901161193847656e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Bowl | continuous ceramic outer inner shell",
+      "vertices": 384,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Bowl | substantial pearly seat rim",
+      "vertices": 222,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Bowl | clean shadowed interior well",
+      "vertices": 56,
+      "maximum_export_distance_m": 2.9802322387695312e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Cistern | complete rounded rear ceramic tank",
+      "vertices": 96,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Cistern | oversized fitted tank top",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Cistern | rear original blue glaze flourish",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Cistern | structural bowl-to-tank bridge",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Lever | mounted flush axle",
+      "vertices": 24,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Lever | one rear flush handle",
+      "vertices": 144,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Hinge | single fixed cross axle",
+      "vertices": 24,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Hinge | ceramic bearing -0.133",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Hinge | ceramic bearing 0.133",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "body"
+      ]
+    },
+    {
+      "name": "Lid | one raised oval ceramic lid",
+      "vertices": 264,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "lid"
+      ]
+    },
+    {
+      "name": "Lid | integral ceramic hinge tongue",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "lid"
+      ]
+    },
+    {
+      "name": "Lid | softly rounded single rim",
+      "vertices": 198,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "lid"
+      ]
+    },
+    {
+      "name": "Neck | single flexible opera neck",
+      "vertices": 120,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Head | single male cartoon cranium",
+      "vertices": 420,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | proud rounded chin",
+      "vertices": 144,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Head | L ear",
+      "vertices": 144,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Head | L inner ear",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | L expressive cheek",
+      "vertices": 144,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "cheek_L"
+      ]
+    },
+    {
+      "name": "Head | R ear",
+      "vertices": 144,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Head | R inner ear",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | R expressive cheek",
+      "vertices": 144,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "cheek_R"
+      ]
+    },
+    {
+      "name": "Face | broad open opera grin",
+      "vertices": 100,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 1.1920928955078125e-07,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | lower smiling lip",
+      "vertices": 104,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 1",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 2",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 3",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 4",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 5",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 6",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | warm tongue inside smile",
+      "vertices": 112,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | pompous broad nose",
+      "vertices": 144,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L cream sclera",
+      "vertices": 112,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L warm iris",
+      "vertices": 112,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L black pupil",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L bright catchlight",
+      "vertices": 70,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Brow | L dramatic swept eyebrow",
+      "vertices": 80,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "brow_L"
+      ]
+    },
+    {
+      "name": "Moustache | L curled opera point",
+      "vertices": 104,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | R cream sclera",
+      "vertices": 112,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | R warm iris",
+      "vertices": 112,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | R black pupil",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | R bright catchlight",
+      "vertices": 70,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Brow | R dramatic swept eyebrow",
+      "vertices": 80,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "brow_R"
+      ]
+    },
+    {
+      "name": "Moustache | R curled opera point",
+      "vertices": 104,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | fitted swept dark cap",
+      "vertices": 288,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 0",
+      "vertices": 90,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 1",
+      "vertices": 90,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 2",
+      "vertices": 90,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 3",
+      "vertices": 90,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 4",
+      "vertices": 90,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | L sculpted sideburn",
+      "vertices": 63,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | R sculpted sideburn",
+      "vertices": 63,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | attached small gold band",
+      "vertices": 96,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | three pompous front points",
+      "vertices": 98,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 1.1920928955078125e-07,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | rounded point 0",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | rounded point 1",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | rounded point 2",
+      "vertices": 84,
+      "maximum_export_distance_m": 1.1920928955078125e-07,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "head"
+      ]
+    },
+    {
+      "name": "Bow tie | continuous turquoise neck band",
+      "vertices": 198,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Bow tie | small opera bow | left folded loop",
+      "vertices": 84,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Bow tie | small opera bow | right folded loop",
+      "vertices": 84,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Bow tie | small opera bow | sewn center knot",
+      "vertices": 56,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Bubble | opaque pearly soap sphere 0",
+      "vertices": 108,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "bubble_0"
+      ]
+    },
+    {
+      "name": "Bubble | opaque pearly soap sphere 1",
+      "vertices": 108,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "bubble_1"
+      ]
+    },
+    {
+      "name": "Bubble | opaque pearly soap sphere 2",
+      "vertices": 108,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "bubble_2"
+      ]
+    },
+    {
+      "name": "Bubble | opaque pearly soap sphere 3",
+      "vertices": 108,
+      "maximum_export_distance_m": 5.960464477539063e-08,
+      "maximum_weight_error": 0,
+      "joint_names": [
+        "bubble_3"
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "part_a": "Pedestal | broad closed floor plinth",
+      "part_b": "Pedestal | tapered closed ceramic column",
+      "required": "overlap",
+      "rest": {
+        "surface_intersections": 24,
+        "nearest_surface_distance_m": 0.006685771048069,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685761269181967,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685769185423851,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685769185423851,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685764994472265,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685767322778702,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685767322778702,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685767322778702,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 24,
+            "nearest_surface_distance_m": 0.006685771048069,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Pedestal | tapered closed ceramic column",
+      "part_b": "Bowl | continuous ceramic outer inner shell",
+      "required": "overlap",
+      "rest": {
+        "surface_intersections": 42,
+        "nearest_surface_distance_m": 0.0002893487398978323,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.00028934286092408,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893466444220394,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893437631428242,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.00028934780857525766,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.00028934681904502213,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.00028934242436662316,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893452765420079,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 42,
+            "nearest_surface_distance_m": 0.0002893487398978323,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Cistern | complete rounded rear ceramic tank",
+      "part_b": "Cistern | structural bowl-to-tank bridge",
+      "required": "overlap",
+      "rest": {
+        "surface_intersections": 20,
+        "nearest_surface_distance_m": 0.004775539040565491,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775538574904203,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775543697178364,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775543697178364,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775538574904203,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775532521307468,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775529727339745,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775550682097673,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 20,
+            "nearest_surface_distance_m": 0.004775539040565491,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Neck | single flexible opera neck",
+      "part_b": "Head | single male cartoon cranium",
+      "required": "overlap",
+      "rest": {
+        "surface_intersections": 56,
+        "nearest_surface_distance_m": 0.00013860457693226635,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00015103434270713478,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 57,
+            "nearest_surface_distance_m": 9.411269275005907e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 8.623761823400855e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.0002232799306511879,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00036559547879733145,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 55,
+            "nearest_surface_distance_m": 0.0002607754722703248,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.0005706849042326212,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00018516099953558296,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 54,
+            "nearest_surface_distance_m": 0.00017475435743108392,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 54,
+            "nearest_surface_distance_m": 0.00035867610131390393,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 54,
+            "nearest_surface_distance_m": 0.0003171872813254595,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 57,
+            "nearest_surface_distance_m": 0.0001038353075273335,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00041372652049176395,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00017369048146065325,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.0004160365497227758,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 56,
+            "nearest_surface_distance_m": 0.00013860457693226635,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 55,
+            "nearest_surface_distance_m": 0.00014850015577394515,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 49,
+            "nearest_surface_distance_m": 0.0003788539906963706,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 47,
+            "nearest_surface_distance_m": 0.000147411716170609,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 50,
+            "nearest_surface_distance_m": 9.125180804403499e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 50,
+            "nearest_surface_distance_m": 9.12617688300088e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Hair | fitted swept dark cap",
+      "part_b": "Crown | attached small gold band",
+      "required": "overlap",
+      "rest": {
+        "surface_intersections": 51,
+        "nearest_surface_distance_m": 4.648367394111119e-05,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.647194145945832e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.6486333303619176e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.6478915464831516e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.6483171900035813e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.6477623982355e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.6479781303787604e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648086178349331e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.647502282750793e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.51934574812185e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.30756808782462e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.26370206696447e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.6472563553834334e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.6478427975671366e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.6482382458634675e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648117828764953e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.648367394111119e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 4.588234151015058e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 3.9930677303345874e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 3.4094024158548564e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 3.346374796819873e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 51,
+            "nearest_surface_distance_m": 3.346374796819873e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Hinge | single fixed cross axle",
+      "part_b": "Lid | integral ceramic hinge tongue",
+      "required": "overlap",
+      "rest": {
+        "surface_intersections": 34,
+        "nearest_surface_distance_m": 0.007693943101912737,
+        "embedded_vertex": false,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.00769396498799324,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693963125348091,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693970110267401,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693958468735218,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 32,
+            "nearest_surface_distance_m": 0.007700756192207336,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 32,
+            "nearest_surface_distance_m": 0.007692068349570036,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 32,
+            "nearest_surface_distance_m": 0.007707335986196995,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693931460380554,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693931460380554,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 34,
+            "nearest_surface_distance_m": 0.007693960331380367,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 32,
+            "nearest_surface_distance_m": 0.0072564841248095036,
+            "embedded_vertex": false,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 32,
+            "nearest_surface_distance_m": 0.007696314249187708,
+            "embedded_vertex": false,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "part_a": "Lid | integral ceramic hinge tongue",
+      "part_b": "Lid | one raised oval ceramic lid",
+      "required": "overlap",
+      "rest": {
+        "surface_intersections": 68,
+        "nearest_surface_distance_m": 7.67657911637798e-05,
+        "embedded_vertex": true,
+        "connected": true
+      },
+      "clips": {
+        "idle": [
+          {
+            "fraction": 0,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "move": [
+          {
+            "fraction": 0,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.677086250623688e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.676588575122878e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.676588575122878e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.676742097828537e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "attack": [
+          {
+            "fraction": 0,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "hit": [
+          {
+            "fraction": 0,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.676249515498057e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.676603854633868e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.676662062294781e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ],
+        "defeat": [
+          {
+            "fraction": 0,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.2,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.4,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.6,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.67657911637798e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 0.8,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.676453969907016e-05,
+            "embedded_vertex": true,
+            "connected": true
+          },
+          {
+            "fraction": 1,
+            "surface_intersections": 68,
+            "nearest_surface_distance_m": 7.675735832890496e-05,
+            "embedded_vertex": true,
+            "connected": true
+          }
+        ]
+      }
+    }
+  ],
+  "special": {
+    "defeat_lid_clears_head_hair_crown": true,
+    "defeat_lid_samples": [
+      {
+        "time_s": 0.0,
+        "intersections": []
+      },
+      {
+        "time_s": 0.125,
+        "intersections": []
+      },
+      {
+        "time_s": 0.25,
+        "intersections": []
+      },
+      {
+        "time_s": 0.375,
+        "intersections": []
+      },
+      {
+        "time_s": 0.5,
+        "intersections": []
+      },
+      {
+        "time_s": 0.625,
+        "intersections": []
+      },
+      {
+        "time_s": 0.75,
+        "intersections": []
+      },
+      {
+        "time_s": 0.875,
+        "intersections": []
+      },
+      {
+        "time_s": 1.0,
+        "intersections": []
+      },
+      {
+        "time_s": 1.125,
+        "intersections": []
+      },
+      {
+        "time_s": 1.25,
+        "intersections": []
+      },
+      {
+        "time_s": 1.375,
+        "intersections": []
+      },
+      {
+        "time_s": 1.5,
+        "intersections": []
+      },
+      {
+        "time_s": 1.625,
+        "intersections": []
+      },
+      {
+        "time_s": 1.75,
+        "intersections": []
+      },
+      {
+        "time_s": 1.875,
+        "intersections": []
+      },
+      {
+        "time_s": 2.0,
+        "intersections": []
+      }
+    ]
+  },
+  "checks": {
+    "every_named_source_part_survives": true,
+    "all_exported_weights_match_source": true,
+    "all_vertices_have_normalized_at_most_four_weights": true,
+    "every_required_rest_attachment_connected": true,
+    "every_required_attachment_connected_across_all_clips": true,
+    "defeat_lid_clears_head_hair_crown": true
+  }
+}

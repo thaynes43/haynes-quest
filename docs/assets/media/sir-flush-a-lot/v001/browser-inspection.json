@@ -1,0 +1,109 @@
+{
+  "asset_id": "sir-flush-a-lot",
+  "glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+  "gltf_clips": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "defeat"
+  ],
+  "skinned_primitives": 5,
+  "embedded_images": [
+    {
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "render": {
+    "calls_including_one_ground": 6,
+    "triangles_including_one_ground": 14678,
+    "textures": 3
+  },
+  "gl_error": 0,
+  "webgl_version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "three_revision": "186",
+  "clips": {
+    "idle": {
+      "duration_s": 2.5,
+      "raster_sha256": [
+        "1d93cfa54a7223c0778b710a16904384872eed7d7d25d0dbbc37ebd5563c297d",
+        "274d9a086be8beb97c2e1ced14dabf8625390986deaa3b40ad25d91fe90f265a",
+        "aaca91a02abc1c7f2f4565e381fbf0c13554fa8cebd2da183eadc5875fe5486e",
+        "eafa0a84f1800ece2924104b495a88f9c60f3efdbc565b339785156e97d8a280"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "move": {
+      "duration_s": 1,
+      "raster_sha256": [
+        "1d93cfa54a7223c0778b710a16904384872eed7d7d25d0dbbc37ebd5563c297d",
+        "16fd8ccf49e79985364e4eb08965b706d75ff044b24111849e2289187be255f0",
+        "1d93cfa54a7223c0778b710a16904384872eed7d7d25d0dbbc37ebd5563c297d",
+        "ea5ae24e6988ef68bb8b836a85857d670860ae46da9bc83fc4a82ef8ebe30792"
+      ],
+      "distinct_rasters": 3,
+      "gl_error": 0
+    },
+    "attack": {
+      "duration_s": 1.600000023841858,
+      "raster_sha256": [
+        "1d93cfa54a7223c0778b710a16904384872eed7d7d25d0dbbc37ebd5563c297d",
+        "635693a5a5e55d04a112170ae8c3f94472b83b89f109f511f63e629e8fd39c21",
+        "15f0c26fdcc18486a8215aad7ab05f0da0127122b0abf350d8085b80fae00a99",
+        "e590873d49bf2a7d0c0d7af897069eabc415c50420a6e5b6113007111bcb3419"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "hit": {
+      "duration_s": 0.5,
+      "raster_sha256": [
+        "7c5262c68dbf3cbf4e21efcb9e482bd29a60b933a42c263a7ba223ff07aed0fe",
+        "cba12e40358e86880f9e3e15b195418d2f6c28a9394fb33901b98aa337086667",
+        "c854d4271156f61157ac50c277156b5abdfbfecdd1f84c4696728b745b1a644e",
+        "1d93cfa54a7223c0778b710a16904384872eed7d7d25d0dbbc37ebd5563c297d"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "defeat": {
+      "duration_s": 2,
+      "raster_sha256": [
+        "1d93cfa54a7223c0778b710a16904384872eed7d7d25d0dbbc37ebd5563c297d",
+        "55ea5868069f32d541f6368989f6b20de8864b0cc89b9cc09ffc2db8fa7b96c6",
+        "bd123504e0b5d085bfe4eccb9e7518a67bfba7d8568b4dfac0125d98c4efbe2a",
+        "7a2d48ddc1ce173740eb5e33952a7baf3f0871990ce230d3609fbfa702a2e74a"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    }
+  },
+  "browser": "153.0.8010.12",
+  "renderer": "Chromium headless with ANGLE SwiftShader (software WebGL)",
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:34193/",
+    "http://127.0.0.1:34193/three/build/three.module.js",
+    "http://127.0.0.1:34193/three/examples/jsm/loaders/GLTFLoader.js",
+    "http://127.0.0.1:34193/three/examples/jsm/utils/BufferGeometryUtils.js",
+    "http://127.0.0.1:34193/three/examples/jsm/utils/SkeletonUtils.js",
+    "http://127.0.0.1:34193/three/build/three.core.js",
+    "http://127.0.0.1:34193/assets/sir-flush-a-lot.glb",
+    "blob:http://127.0.0.1:34193/cdfcaa8e-5df8-42d2-bf2d-d87b56a11625"
+  ],
+  "checks": {
+    "exact_glb_hash": true,
+    "expected_skinned_draw_primitives": true,
+    "one_embedded_1024_image": true,
+    "expected_color_draws": true,
+    "expected_triangle_count": true,
+    "five_expected_clips": true,
+    "every_clip_changes_actual_raster": true,
+    "webgl_error_free": true,
+    "browser_error_free": true,
+    "no_external_requests": true
+  },
+  "limitations": "Isolated exact-GLB software WebGL intake; not integrated gameplay, physical Safari, GPU performance or owner approval."
+}

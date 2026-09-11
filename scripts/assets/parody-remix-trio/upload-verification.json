@@ -1,0 +1,18 @@
+{
+  "work_order": "WO-032",
+  "files": [
+    {
+      "file": "compare-construction.py",
+      "bytes": 7679,
+      "sha256": "cee43e514e4b91a9242880243f3284100ea6fc04faa3856deda487dce680e0a3",
+      "remote_verified": true
+    },
+    {
+      "file": "sir-flush-a-lot/lead-checkpoint-review.json",
+      "bytes": 868,
+      "sha256": "240510e26b4fed9543de4ff906308ec78de41d3c4c8a126d35124641557f8d5f",
+      "remote_verified": true
+    }
+  ],
+  "all_remote_hashes_match": true
+}

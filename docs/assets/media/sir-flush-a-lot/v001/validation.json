@@ -1,0 +1,175 @@
+{
+  "asset_id": "sir-flush-a-lot",
+  "file": "sir-flush-a-lot.glb",
+  "sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+  "bytes": 782488,
+  "triangles": 14676,
+  "draw_primitives": 5,
+  "materials": [
+    {
+      "name": "Pearly glazed ceramic",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.25
+      }
+    },
+    {
+      "name": "Painted crown and hardware",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0.550000011920929,
+        "roughnessFactor": 0.3199999928474426
+      }
+    },
+    {
+      "name": "Warm matte skin",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.6600000262260437
+      }
+    },
+    {
+      "name": "Sculpted hair and eyes",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.3400000035762787
+      }
+    },
+    {
+      "name": "Woven turquoise bow",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 4
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8399999737739563
+      }
+    }
+  ],
+  "joints": [
+    "root",
+    "body",
+    "neck",
+    "head",
+    "brow_L",
+    "brow_R",
+    "cheek_L",
+    "cheek_R",
+    "bubble_0",
+    "bubble_1",
+    "bubble_2",
+    "bubble_3",
+    "lid"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "channels": 39
+    },
+    {
+      "name": "move",
+      "duration_s": 1,
+      "channels": 39
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.6,
+      "channels": 39
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5,
+      "channels": 39
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2,
+      "channels": 39
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "triangle_budget_15000": true,
+    "material_budget_6": true,
+    "primitive_budget_6": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_pigment_image": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "all_have_uvs": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true
+  },
+  "validator": {
+    "uri": "sir-flush-a-lot.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T17:20:06.241Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 741444
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 5,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 5,
+      "totalVertexCount": 11625,
+      "totalTriangleCount": 14676,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

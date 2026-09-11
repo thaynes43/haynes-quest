@@ -1,0 +1,26 @@
+{
+  "asset_id": "sir-flush-a-lot",
+  "glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+  "views": [
+    {
+      "file": "contact-pose.png",
+      "clip": "attack",
+      "time_s": 1.0
+    },
+    {
+      "file": "contact-followthrough.png",
+      "clip": "attack",
+      "time_s": 1.12
+    },
+    {
+      "file": "defeat-pose.png",
+      "clip": "defeat",
+      "time_s": 2.0
+    },
+    {
+      "file": "defeat-side.png",
+      "clip": "defeat",
+      "time_s": 2.0
+    }
+  ]
+}

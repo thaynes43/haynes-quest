@@ -3,8 +3,30 @@
   "owner": "/root/remix_trio_authoring",
   "authoring_model": "gpt-6-astra",
   "reasoning_effort": "max",
-  "status": "offline preparation; no lease granted",
+  "status": "active; exclusive scene owner",
+  "claimed_utc": "2026-09-11T17:09:10.483651+00:00",
   "remote_root": "/workspace/haynes-quest/parody/remix-trio/v001",
-  "constraint": "WO028 is the sole live scene owner. No Blender MCP, remote endpoint call, transfer or process is authorized until root grants the lease.",
-  "planned_assets": ["sir-flush-a-lot", "nap-captain", "one-star-diva"]
+  "prior_checkpoint": "/workspace/haynes-quest/parody/block-party-pair/v001/live-scene-release.blend",
+  "prior_bytes": 13540486,
+  "prior_sha256": "d89132f2ba7526a78b933aca4dea9de248cc7653a710d09e49abd2e5885c7b3c",
+  "grant_basis": "Root explicit grant after WO028 released 2026-09-11T17:05:53.540911Z; all11ownedjobs exited0/waited/reaped",
+  "blender": "4.5.13 LTS",
+  "binary": "/opt/blender/blender",
+  "processes_at_intake": [
+    {
+      "pid": 1,
+      "args": "/opt/blender-authoring/blender-mcp/.venv/bin/python /opt/blender-authoring/service.py ",
+      "state": "State:\tS (sleeping)"
+    },
+    {
+      "pid": 9,
+      "args": "Xvfb :90 -screen 0 1280x720x24 -nolisten tcp -auth /tmp/blender-authoring-1000/Xauthority -noreset ",
+      "state": "State:\tS (sleeping)"
+    },
+    {
+      "pid": 12,
+      "args": "/usr/local/bin/blender --factory-startup --disable-autoexec -noaudio --gpu-backend opengl --python-exit-code 1 --python /opt/blender-authoring/bootstrap.py ",
+      "state": "State:\tR (running)"
+    }
+  ]
 }

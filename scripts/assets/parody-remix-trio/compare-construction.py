@@ -62,7 +62,8 @@ def main(name):
   ob=byname[name];points=[]
   for v in ob['verified_vertices']:
    out=Vector((0,0,0))
-   for bn,w in v['weights'].items():out+=(arm.pose.bones[bn].matrix@arm.data.bones[bn].matrix_local.inverted()@v['point'])*w
+   local=arm.matrix_world.inverted()@v['point']
+   for bn,w in v['weights'].items():out+=(arm.pose.bones[bn].matrix@arm.data.bones[bn].matrix_local.inverted()@local)*w
    points.append(arm.matrix_world@out)
   return {'points':points,'faces':ob['faces']}
  contacts=[]
@@ -76,12 +77,15 @@ def main(name):
   contacts.append(entry)
  special={}
  if name=='sir-flush-a-lot':
-  set_pose(arm,'defeat',48);lid=posed('Lid | one raised oval ceramic lid');lid_bvh=collider(lid['points'],lid['faces']);collisions=[]
-  for part in source:
-   if not (part['name'].startswith(('Head |','Hair |','Crown |','Face |','Eye |','Moustache |'))):continue
-   partpose=posed(part['name']);n=len(lid_bvh.overlap(collider(partpose['points'],partpose['faces'])))
-   if n:collisions.append({'part':part['name'],'surface_intersections':n})
-  special['defeat_lid_clears_head_hair_crown']=not collisions;special['defeat_lid_intersections']=collisions
+  samples=[]
+  for i in range(17):
+   set_pose(arm,'defeat',48*i/16);lid=posed('Lid | one raised oval ceramic lid');lid_bvh=collider(lid['points'],lid['faces']);collisions=[]
+   for part in source:
+    if not (part['name'].startswith(('Head |','Hair |','Crown |','Face |','Eye |','Moustache |'))):continue
+    partpose=posed(part['name']);n=len(lid_bvh.overlap(collider(partpose['points'],partpose['faces'])))
+    if n:collisions.append({'part':part['name'],'surface_intersections':n})
+   samples.append({'time_s':2*i/16,'intersections':collisions})
+  special['defeat_lid_clears_head_hair_crown']=all(not s['intersections'] for s in samples);special['defeat_lid_samples']=samples
  if name=='nap-captain':
   pillowparts=[p for p in parts if p['name'].startswith('Pillow |')];special['one_pillow_always_owned_by_left_hand']=all(p['joint_names']==['hand_L'] for p in pillowparts)
   set_pose(arm);pillow=posed('Pillow | single yellow quilted cushion');special['neutral_pillow_on_character_left']=sum(p.x for p in pillow['points'])/len(pillow['points'])<0

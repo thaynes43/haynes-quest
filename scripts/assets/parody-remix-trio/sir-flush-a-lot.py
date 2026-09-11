@@ -104,8 +104,9 @@ def animate(arm,clip,t):
   q=c.bell(t,.22,.28);c.pose(p['body'],rot=(-.04*q,0,0));c.pose(p['neck'],rot=(-.15*q,0,0));c.pose(p['head'],rot=(-.09*q,.08*q,0));c.pose(p['lid'],rot=(.08*q,0,0))
  elif clip=='defeat':
   duck=c.smooth((t-.13)/.54);w=math.sin(math.tau*t*3)*(1-c.smooth((t-.2)/.52));stretch=1-.85*duck
-  c.pose(p['neck'],loc=(0,0,-.220*duck),scale=(1,1,stretch));c.pose(p['head'],rot=(.08*duck,.045*w,0),scale=(1,1,1/stretch))
-  c.pose(p['lid'],rot=(-.57*c.smooth((t-.66)/.32),0,0))
+  shrink=1-.28*duck
+  c.pose(p['neck'],loc=(0,0,-.160*duck),scale=(1,1,stretch));c.pose(p['head'],rot=(0,.025*w,0),scale=(shrink,shrink,shrink/stretch))
+  c.pose(p['lid'],rot=(-.45*c.smooth((t-.66)/.32),0,0))
   for label in ['L','R']:c.pose(p['brow_'+label],rot=(0,(.12 if label=='L' else -.12)*duck,0))
 
 def main():

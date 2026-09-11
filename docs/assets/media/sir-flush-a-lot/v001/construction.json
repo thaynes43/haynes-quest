@@ -1,0 +1,839 @@
+{
+  "asset_id": "sir-flush-a-lot",
+  "version": "v001",
+  "work_order": "WO-032",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "blender": "4.5.13 LTS",
+  "reference": "Skibidi Toilet original head-in-toilet silhouette; one pompous opera head, crown, bow tie and soap notes.",
+  "private_inputs": false,
+  "downloaded_meshes_or_textures": false,
+  "triangles": 14676,
+  "vertices": 7476,
+  "material_count": 5,
+  "joints": [
+    "root",
+    "body",
+    "neck",
+    "head",
+    "lid",
+    "brow_L",
+    "brow_R",
+    "cheek_L",
+    "cheek_R",
+    "bubble_0",
+    "bubble_1",
+    "bubble_2",
+    "bubble_3"
+  ],
+  "spec": {
+    "height": 1.0,
+    "floor": 0,
+    "forward": "glTF -Z",
+    "up": "glTF +Y",
+    "heads": 1,
+    "arms": 0,
+    "legs": 0,
+    "lids": 1,
+    "bubbles": 4
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.0,
+      "contact_fraction": 0.625
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    }
+  ],
+  "source_scale_factor": 0.9551099002695246,
+  "bounds_blender": {
+    "min": [
+      -0.24698039889335632,
+      -0.32951292395591736,
+      0.0
+    ],
+    "max": [
+      0.2531041204929352,
+      0.26226216554641724,
+      1.0
+    ]
+  },
+  "named_source_parts": [
+    {
+      "name": "Pedestal | broad closed floor plinth",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 96,
+      "triangles": 188,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Pedestal | tapered closed ceramic column",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 120,
+      "triangles": 236,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Bowl | continuous ceramic outer inner shell",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 384,
+      "triangles": 764,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Bowl | substantial pearly seat rim",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 222,
+      "triangles": 440,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Bowl | clean shadowed interior well",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Cistern | complete rounded rear ceramic tank",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 96,
+      "triangles": 188,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Cistern | oversized fitted tank top",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Cistern | rear original blue glaze flourish",
+      "bone": "body",
+      "atlas_tile": 13,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Cistern | structural bowl-to-tank bridge",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Lever | mounted flush axle",
+      "bone": "body",
+      "atlas_tile": 14,
+      "vertices": 24,
+      "triangles": 44,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Lever | one rear flush handle",
+      "bone": "body",
+      "atlas_tile": 7,
+      "vertices": 144,
+      "triangles": 284,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Hinge | single fixed cross axle",
+      "bone": "body",
+      "atlas_tile": 14,
+      "vertices": 24,
+      "triangles": 44,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Hinge | ceramic bearing -0.133",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Hinge | ceramic bearing 0.133",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "body"
+      ]
+    },
+    {
+      "name": "Lid | one raised oval ceramic lid",
+      "bone": "lid",
+      "atlas_tile": 0,
+      "vertices": 264,
+      "triangles": 524,
+      "groups": [
+        "lid"
+      ]
+    },
+    {
+      "name": "Lid | integral ceramic hinge tongue",
+      "bone": "lid",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "lid"
+      ]
+    },
+    {
+      "name": "Lid | softly rounded single rim",
+      "bone": "lid",
+      "atlas_tile": 1,
+      "vertices": 198,
+      "triangles": 392,
+      "groups": [
+        "lid"
+      ]
+    },
+    {
+      "name": "Neck | single flexible opera neck",
+      "bone": "neck",
+      "atlas_tile": 2,
+      "vertices": 120,
+      "triangles": 236,
+      "groups": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Head | single male cartoon cranium",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 420,
+      "triangles": 836,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | proud rounded chin",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 144,
+      "triangles": 284,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Head | L ear",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 144,
+      "triangles": 284,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Head | L inner ear",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | L expressive cheek",
+      "bone": "cheek_L",
+      "atlas_tile": 3,
+      "vertices": 144,
+      "triangles": 284,
+      "groups": [
+        "cheek_L"
+      ]
+    },
+    {
+      "name": "Head | R ear",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 144,
+      "triangles": 284,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Head | R inner ear",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | R expressive cheek",
+      "bone": "cheek_R",
+      "atlas_tile": 3,
+      "vertices": 144,
+      "triangles": 284,
+      "groups": [
+        "cheek_R"
+      ]
+    },
+    {
+      "name": "Face | broad open opera grin",
+      "bone": "head",
+      "atlas_tile": 9,
+      "vertices": 100,
+      "triangles": 196,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | lower smiling lip",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 104,
+      "triangles": 204,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 1",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 2",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 3",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 4",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 5",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | upper tooth 6",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | warm tongue inside smile",
+      "bone": "head",
+      "atlas_tile": 10,
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Face | pompous broad nose",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 144,
+      "triangles": 284,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L cream sclera",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L warm iris",
+      "bone": "head",
+      "atlas_tile": 12,
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L black pupil",
+      "bone": "head",
+      "atlas_tile": 5,
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | L bright catchlight",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 70,
+      "triangles": 136,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Brow | L dramatic swept eyebrow",
+      "bone": "brow_L",
+      "atlas_tile": 4,
+      "vertices": 80,
+      "triangles": 156,
+      "groups": [
+        "brow_L"
+      ]
+    },
+    {
+      "name": "Moustache | L curled opera point",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 104,
+      "triangles": 204,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | R cream sclera",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | R warm iris",
+      "bone": "head",
+      "atlas_tile": 12,
+      "vertices": 112,
+      "triangles": 220,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | R black pupil",
+      "bone": "head",
+      "atlas_tile": 5,
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Eye | R bright catchlight",
+      "bone": "head",
+      "atlas_tile": 6,
+      "vertices": 70,
+      "triangles": 136,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Brow | R dramatic swept eyebrow",
+      "bone": "brow_R",
+      "atlas_tile": 4,
+      "vertices": 80,
+      "triangles": 156,
+      "groups": [
+        "brow_R"
+      ]
+    },
+    {
+      "name": "Moustache | R curled opera point",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 104,
+      "triangles": 204,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | fitted swept dark cap",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 288,
+      "triangles": 572,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 0",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 90,
+      "triangles": 176,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 1",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 90,
+      "triangles": 176,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 2",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 90,
+      "triangles": 176,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 3",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 90,
+      "triangles": 176,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | broad swept quiff lock 4",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 90,
+      "triangles": 176,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | L sculpted sideburn",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 63,
+      "triangles": 122,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Hair | R sculpted sideburn",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 63,
+      "triangles": 122,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | attached small gold band",
+      "bone": "head",
+      "atlas_tile": 7,
+      "vertices": 96,
+      "triangles": 188,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | three pompous front points",
+      "bone": "head",
+      "atlas_tile": 7,
+      "vertices": 98,
+      "triangles": 192,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | rounded point 0",
+      "bone": "head",
+      "atlas_tile": 15,
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | rounded point 1",
+      "bone": "head",
+      "atlas_tile": 15,
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Crown | rounded point 2",
+      "bone": "head",
+      "atlas_tile": 15,
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Bow tie | continuous turquoise neck band",
+      "bone": "neck",
+      "atlas_tile": 8,
+      "vertices": 198,
+      "triangles": 392,
+      "groups": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Bow tie | small opera bow | left folded loop",
+      "bone": "neck",
+      "atlas_tile": 8,
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Bow tie | small opera bow | right folded loop",
+      "bone": "neck",
+      "atlas_tile": 8,
+      "vertices": 84,
+      "triangles": 164,
+      "groups": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Bow tie | small opera bow | sewn center knot",
+      "bone": "neck",
+      "atlas_tile": 8,
+      "vertices": 56,
+      "triangles": 108,
+      "groups": [
+        "neck"
+      ]
+    },
+    {
+      "name": "Bubble | opaque pearly soap sphere 0",
+      "bone": "bubble_0",
+      "atlas_tile": 11,
+      "vertices": 108,
+      "triangles": 212,
+      "groups": [
+        "bubble_0"
+      ]
+    },
+    {
+      "name": "Bubble | opaque pearly soap sphere 1",
+      "bone": "bubble_1",
+      "atlas_tile": 11,
+      "vertices": 108,
+      "triangles": 212,
+      "groups": [
+        "bubble_1"
+      ]
+    },
+    {
+      "name": "Bubble | opaque pearly soap sphere 2",
+      "bone": "bubble_2",
+      "atlas_tile": 11,
+      "vertices": 108,
+      "triangles": 212,
+      "groups": [
+        "bubble_2"
+      ]
+    },
+    {
+      "name": "Bubble | opaque pearly soap sphere 3",
+      "bone": "bubble_3",
+      "atlas_tile": 11,
+      "vertices": 108,
+      "triangles": 212,
+      "groups": [
+        "bubble_3"
+      ]
+    }
+  ],
+  "required_contacts": [
+    {
+      "part_a": "Pedestal | broad closed floor plinth",
+      "part_b": "Pedestal | tapered closed ceramic column",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Pedestal | tapered closed ceramic column",
+      "part_b": "Bowl | continuous ceramic outer inner shell",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Cistern | complete rounded rear ceramic tank",
+      "part_b": "Cistern | structural bowl-to-tank bridge",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Neck | single flexible opera neck",
+      "part_b": "Head | single male cartoon cranium",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Hair | fitted swept dark cap",
+      "part_b": "Crown | attached small gold band",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Hinge | single fixed cross axle",
+      "part_b": "Lid | integral ceramic hinge tongue",
+      "required": "overlap"
+    },
+    {
+      "part_a": "Lid | integral ceramic hinge tongue",
+      "part_b": "Lid | one raised oval ceramic lid",
+      "required": "overlap"
+    }
+  ],
+  "runtime_construction": "Original named softly beveled shapes retained in excluded source collection. Joined runtime skin uses authored rigid and continuous joint weights. Original embedded 1k material atlas.",
+  "files": {
+    "sir-flush-a-lot.blend": {
+      "bytes": 7491469,
+      "sha256": "228a8ff41533a830d386ff05bb8ba3367039f22ce8580186423bfd97912cfb30"
+    },
+    "sir-flush-a-lot.glb": {
+      "bytes": 782488,
+      "sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    "pigment.png": {
+      "bytes": 395950,
+      "sha256": "c4be1356c9b819122c9adad41f850e20d99fda2c5fbaeceb75d5d9ea0678503e"
+    }
+  }
+}

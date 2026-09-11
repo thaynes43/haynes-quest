@@ -1,0 +1,9 @@
+{
+  "asset_id": "sir-flush-a-lot",
+  "selected_checkpoint_sha256": "5895d84aa2c41a5d1bb80d9ec28f16861bdd6969c593a89c0c979b209095da66",
+  "decision": "Root selected actual front/back/three-quarter recognizable toilet-head, opera face/moustache, crown/bowtie, cistern/plinth and rear emblem; retain shape/style.",
+  "correction": "Defeat-only head compression and removal of pitch under compressed neck; actual end lid/crown clearance passes. Armature object is removed only in GLB export so skinned node is root; no validator warnings.",
+  "corrected_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+  "corrected_pose_review": "Root inspected contact, bubble followthrough, defeat front and side; selected the duck-into-bowl gag and clear lid/head/crown separation. No further shape revision requested.",
+  "owner_approval": "pending"
+}
