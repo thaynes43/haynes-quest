@@ -404,10 +404,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
 
   const frame = (now: number): void => {
     if (disposed) return;
-    const wallDeltaSeconds = Math.min(
-      0.05,
-      Math.max(0, (now - lastTime) / 1000),
-    );
+    const rawDeltaSeconds = Math.max(0, (now - lastTime) / 1000);
+    const wallDeltaSeconds = Math.min(0.05, rawDeltaSeconds);
     lastTime = now;
     elapsed += wallDeltaSeconds;
     timeSinceStatus += wallDeltaSeconds;
@@ -420,7 +418,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
       (adventure.phase === "exploring" ||
         adventure.phase === "memory-released");
     const combatActive = worldActive && adventure.phase === "exploring";
-    const deltaSeconds = worldActive && worldWasActive ? wallDeltaSeconds : 0;
+    const resumedAfterGap = rawDeltaSeconds > 0.25;
+    const deltaSeconds =
+      worldActive && worldWasActive && !resumedAfterGap ? wallDeltaSeconds : 0;
     worldWasActive = worldActive;
     if (!worldActive) input.clear();
     const currentInput = input.snapshot();
