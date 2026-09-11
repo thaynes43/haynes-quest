@@ -208,23 +208,26 @@ export function applyGameplayActionToSave(
     ...adventureState.actionReceipts,
     { actionId: request.actionId, payloadHash, appliedRevision: revision },
   ].slice(-MAX_ACTION_RECEIPTS);
-  return {
-    replay: false,
-    save: {
-      ...save,
-      recoveredIds: [...adventureState.revealedMemoryIds],
-      ageYears: adventureState.ageYears,
-      abilities: [...adventureState.abilities],
-      appearanceStage: adventureState.appearanceStage,
-      completed: adventureState.phase === 'complete',
-      adventureState,
-      revision,
-      updatedAt: now,
-    },
-  };
+  // Validate the reduced record before any store writes it: an impossible
+  // reducer result must fail the transaction rather than persist a record the
+  // read path can no longer load. This re-checks structure and invariants only;
+  // the frozen plan stays the authority for its own combat numbers.
+  const next = validateSaveRecord({
+    ...save,
+    recoveredIds: [...adventureState.revealedMemoryIds],
+    ageYears: adventureState.ageYears,
+    abilities: [...adventureState.abilities],
+    appearanceStage: adventureState.appearanceStage,
+    completed: adventureState.phase === 'complete',
+    adventureState,
+    revision,
+    updatedAt: now,
+  });
+  return { replay: false, save: next };
 }
 
-export function toSaveView(save: SaveRecord, now = new Date()): SaveView {
+/** `now` must be the application clock that also governs gameplay actions. */
+export function toSaveView(save: SaveRecord, now: Date): SaveView {
   const legacy = save.saveFormat === 'legacy-v1';
   const adventure = !legacy && save.adventurePlan && save.adventureState
     ? toAdventureView(save.adventurePlan, save.adventureState, now.valueOf())

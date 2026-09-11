@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { createApp } from '../../src/server/app.js';
 import { InMemoryQuestStore } from '../../src/server/db/memory-store.js';
+import type { SaveRecord } from '../../src/server/domain.js';
 
 const ORIGIN = 'https://quest.test';
 const SECRET = 'fixture-session-secret-that-is-at-least-32-characters';
@@ -346,5 +347,46 @@ describe('fixture API', () => {
     expect(serialized).not.toContain(sentinel);
     expect(serialized).not.toContain(privateRouteValue);
     expect(serialized).not.toContain(cookie);
+  });
+  it('records a bounded diagnostic for server-side AppError failures and none for client errors', async () => {
+    const diagnostics: unknown[] = [];
+    const store = new InMemoryQuestStore();
+    const app = createApp({
+      store,
+      fixtureMode: true,
+      sessionSecret: SECRET,
+      appOrigin: ORIGIN,
+      clientDir: '/tmp/quest-client-not-present',
+      studioDir: '/tmp/quest-studio-not-present',
+      diagnosticSink: (diagnostic) => diagnostics.push(diagnostic),
+    });
+    const { cookie } = await startSession(app);
+    const save = await createJourney(app, cookie);
+
+    expect((await app.request('/api/saves/missing-save', { headers: { cookie } })).status).toBe(404);
+    expect((await app.request(`/api/saves/${save.id}/actions`, mutation(cookie, {}))).status).toBe(422);
+    expect(diagnostics).toEqual([]);
+
+    // Corrupt the stored record so the read path's own validation fails closed.
+    const records = (store as unknown as { saves: Map<string, SaveRecord> }).saves;
+    records.get(save.id)!.adventureState!.playerHp = 999;
+    const response = await app.request(`/api/saves/${save.id}`, { headers: { cookie } });
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({
+      error: { code: 'SAVE_DATA_INVALID', message: 'Save unavailable' },
+    });
+    expect(diagnostics).toEqual([{
+      event: 'api_request_failed',
+      errorClass: 'app-error',
+      method: 'GET',
+      route: '/api/saves/:id',
+      code: 'SAVE_DATA_INVALID',
+      status: 503,
+    }]);
+    const serialized = JSON.stringify(diagnostics);
+    expect(serialized).not.toContain(save.id);
+    expect(serialized).not.toContain(cookie);
+    expect(serialized).not.toContain('2020');
+    expect(serialized).not.toContain('Demo Adventurer');
   });
 });

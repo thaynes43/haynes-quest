@@ -206,6 +206,19 @@ export function createInitialAdventureState(plan: AdventurePlan): AdventureState
   };
 }
 
+/**
+ * Remaining time on a persisted deadline, bounded by the longest interval the
+ * action could have granted. A deadline in the past has expired. A remaining
+ * interval longer than `maxDurationMs` cannot come from normal play, only from a
+ * backward wall-clock step after the deadline was written, so it is also
+ * treated as expired instead of locking the save until the clock catches up.
+ */
+export function boundedRemainingMs(deadlineMs: number, nowMs: number, maxDurationMs: number): number {
+  const remainingMs = Math.ceil(deadlineMs - nowMs);
+  if (remainingMs <= 0 || remainingMs > maxDurationMs) return 0;
+  return remainingMs;
+}
+
 export function reduceAdventureAction(
   plan: AdventurePlan,
   current: AdventureState,
@@ -256,7 +269,9 @@ export function reduceAdventureAction(
   if (action.type === 'attack') {
     requirePhase(state, 'exploring');
     const encounter = requireCurrentEncounter(level, state, action.encounterId);
-    if (nowMs < state.attackReadyAtMs) throw new AdventureRuleError('ATTACK_COOLDOWN');
+    if (boundedRemainingMs(state.attackReadyAtMs, nowMs, ATTACK_COOLDOWN_MS) > 0) {
+      throw new AdventureRuleError('ATTACK_COOLDOWN');
+    }
     const equipment = findEquipment(plan, state.equippedId);
     if (!equipment || equipment.kind !== 'attack-tool' || !state.inventoryIds.includes(equipment.id)) {
       throw new AdventureRuleError('ATTACK_TOOL_REQUIRED');
@@ -273,9 +288,12 @@ export function reduceAdventureAction(
     requirePhase(state, 'exploring');
     const encounter = requireCurrentEncounter(level, state, action.encounterId);
     const progress = state.encounters[encounter.id]!;
-    if (nowMs < progress.nextReportedHitAtMs) throw new AdventureRuleError('ENEMY_HIT_COOLDOWN');
+    if (boundedRemainingMs(progress.nextReportedHitAtMs, nowMs, ENEMY_HIT_COOLDOWN_MS) > 0) {
+      throw new AdventureRuleError('ENEMY_HIT_COOLDOWN');
+    }
     const guard = strongestGuard(plan, state.inventoryIds);
-    const reduction = guard && nowMs < state.guardActiveUntilMs ? guard.guardReduction : 0;
+    const guardActive = boundedRemainingMs(state.guardActiveUntilMs, nowMs, GUARD_ACTIVE_MS) > 0;
+    const reduction = guard && guardActive ? guard.guardReduction : 0;
     state.playerHp = Math.max(0, state.playerHp - Math.max(0, encounter.attackDamage - reduction));
     progress.nextReportedHitAtMs = nowMs + ENEMY_HIT_COOLDOWN_MS;
     if (state.playerHp === 0) state.phase = 'fallen';
@@ -288,7 +306,9 @@ export function reduceAdventureAction(
     if (!level.encounters.some((encounter) => !state.encounters[encounter.id]?.defeated)) {
       throw new AdventureRuleError('ENCOUNTER_NOT_ACTIVE');
     }
-    if (nowMs < state.guardReadyAtMs) throw new AdventureRuleError('GUARD_COOLDOWN');
+    if (boundedRemainingMs(state.guardReadyAtMs, nowMs, GUARD_COOLDOWN_MS) > 0) {
+      throw new AdventureRuleError('GUARD_COOLDOWN');
+    }
     state.guardActiveUntilMs = nowMs + GUARD_ACTIVE_MS;
     state.guardReadyAtMs = nowMs + GUARD_COOLDOWN_MS;
     return state;
@@ -351,9 +371,9 @@ export function toAdventureView(
     equippedId: state.equippedId,
     playerHp: state.playerHp,
     maxPlayerHp: state.maxPlayerHp,
-    attackCooldownRemainingMs: remaining(state.attackReadyAtMs, nowMs),
-    guardActiveRemainingMs: remaining(state.guardActiveUntilMs, nowMs),
-    guardCooldownRemainingMs: remaining(state.guardReadyAtMs, nowMs),
+    attackCooldownRemainingMs: boundedRemainingMs(state.attackReadyAtMs, nowMs, ATTACK_COOLDOWN_MS),
+    guardActiveRemainingMs: boundedRemainingMs(state.guardActiveUntilMs, nowMs, GUARD_ACTIVE_MS),
+    guardCooldownRemainingMs: boundedRemainingMs(state.guardReadyAtMs, nowMs, GUARD_COOLDOWN_MS),
   };
 }
 
@@ -502,8 +522,4 @@ function levelView(
     }),
     bossId: level.bossId,
   };
-}
-
-function remaining(deadlineMs: number, nowMs: number): number {
-  return Math.max(0, Math.ceil(deadlineMs - nowMs));
 }

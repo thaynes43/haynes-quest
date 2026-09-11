@@ -39,6 +39,7 @@ export interface AppOptions {
 }
 
 export type SafeErrorClass =
+  | 'app-error'
   | 'aggregate-error'
   | 'eval-error'
   | 'range-error'
@@ -55,6 +56,9 @@ export interface SafeDiagnostic {
   method?: string;
   route?: string;
   phase?: 'scheduled' | 'startup';
+  /** Fixed application error code (never request-derived), for server-side AppError failures. */
+  code?: string;
+  status?: number;
 }
 
 export type DiagnosticSink = (diagnostic: SafeDiagnostic) => void;
@@ -89,6 +93,8 @@ export function createApp(options: AppOptions): Hono {
   const limiter = new RequestLimiter(120, 60_000);
   const actionLimiter = new RequestLimiter(360, 60_000);
   const diagnosticSink = options.diagnosticSink ?? writeSafeDiagnostic;
+  // One application clock for action authority and every save view it renders.
+  const now = (): Date => options.now?.() ?? new Date();
 
   app.use('*', secureHeaders({
     crossOriginResourcePolicy: 'same-origin',
@@ -143,7 +149,7 @@ export function createApp(options: AppOptions): Hono {
     limiter.take(`write:${player.id}`);
     const command = await parseJson(context, createSaveSchema);
     const save = await options.store.createSave({ ownerId: player.id, ...command });
-    return context.json(toSaveView(save), 201);
+    return context.json(toSaveView(save, now()), 201);
   });
 
   app.get('/api/saves/:id', async (context) => {
@@ -151,7 +157,7 @@ export function createApp(options: AppOptions): Hono {
     limiter.take(`read:${player.id}`);
     const save = await options.store.getSave(player.id, context.req.param('id'));
     if (!save) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
-    return context.json(toSaveView(save));
+    return context.json(toSaveView(save, now()));
   });
 
   app.post('/api/saves/:id/recover', async (context) => {
@@ -175,14 +181,14 @@ export function createApp(options: AppOptions): Hono {
     const player = await requirePlayer(context, sessions);
     actionLimiter.take(`action:${player.id}`);
     const request = await parseJson(context, gameplayActionRequestSchema);
-    const now = options.now?.() ?? new Date();
+    const actionTime = now();
     const save = await options.store.applyGameplayAction(
       player.id,
       context.req.param('id'),
       request,
-      now,
+      actionTime,
     );
-    return context.json(toSaveView(save, now));
+    return context.json(toSaveView(save, actionTime));
   });
 
   app.get('/api/saves/:id/media/:memoryId', async (context) => {
@@ -228,21 +234,26 @@ export function createApp(options: AppOptions): Hono {
     return errorResponse(context, 404, 'NOT_FOUND', 'Not found');
   });
   app.onError((error, context) => {
-    if (!(error instanceof AppError)) {
+    const failure = asAppError(error);
+    // Every server-side failure (5xx) is diagnosable, including AppError ones
+    // such as SAVE_DATA_INVALID. Client errors (4xx) stay quiet as before. The
+    // record carries only fixed identifiers: no body, ids, dates or exception text.
+    if (failure.status >= 500) {
       emitSafeDiagnostic(diagnosticSink, {
         event: 'api_request_failed',
         errorClass: classifyError(error),
         method: context.req.method,
         route: diagnosticRoute(context),
+        ...(error instanceof AppError ? { code: error.code, status: error.status } : {}),
       });
     }
-    const failure = asAppError(error);
     return errorResponse(context, failure.status, failure.code, failure.message);
   });
   return app;
 }
 
 export function classifyError(error: unknown): SafeErrorClass {
+  if (error instanceof AppError) return 'app-error';
   if (error instanceof AggregateError) return 'aggregate-error';
   if (error instanceof EvalError) return 'eval-error';
   if (error instanceof RangeError) return 'range-error';
