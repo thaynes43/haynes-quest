@@ -1,9 +1,13 @@
 # Current handoff
 
-- **Updated:** 2026-09-11, after the 06:15 UTC live catalog audit
+- **Updated:** 2026-09-11, keepsake reference correction after owner feedback
 - **Stage:** PLAN-004 complete: private playable MVP and complete first-pass review catalog deployed and verified. PLAN-002 remains in progress for its broader player-ready gates.
 - **Team:** driving Astra max owns architecture, UI/copy, art judgment and serial image generation. [TEAM.md](TEAM.md): native Sol xhigh for ordinary work, fresh native Astra max for every Blender task, explicitly authorized separate Fable 5.1 xhigh review/coding.
 - **Next work:** OAuth and admitted-player policy, exact-version owner asset review, audio listening and physical iPhone/iPad Safari checks. These were explicitly deferred; no dev-env restart is authorized.
+
+## Latest review correction
+
+[WO-012](work-orders/012-keepsake-wedge-reference.md) corrects the keepsake concept’s missing rear support in the BACK view. Root selected concept v002 after serial built-in image edits and independent Astra inspection confirmed the existing v001 GLB already has the grounded wedge. The original concept, exact model and its pending owner approval remain preserved. The correction branch is `agent/quest-keepsake-wedge-review` in `/home/dev/work/quest-keepsake-wedge-review`; checked image publication updates the private catalog through haynes-ops. This changes review material only. The [current GitOps image pin](https://github.com/thaynes43/haynes-ops/blob/main/kubernetes/main/apps/frontend/haynes-quest/app/helmrelease.yaml) and its deployment work order track subsequent catalog releases; the overnight audit below names its tested baseline.
 
 ## Open and play
 
@@ -11,16 +15,16 @@ From the home network, open the [private game](https://haynes-quest.haynesops.co
 
 The fictional journey starts at memory age zero, collects three chronological memories, grows from infant to child, unlocks jumping while retaining earlier actions, and reaches a finish. Keyboard/mouse and simultaneous touch controls, finite setup/selection, album, server-owned saves/resume and mute/volume preferences are implemented. Gameplay uses code-built placeholders and remains silent: no catalog candidate has Tom's approval.
 
-## Exact deployed release and verification
+## Verified overnight release baseline
 
 - Application [PR #21](https://github.com/thaynes43/haynes-quest/pull/21) delivered the playable MVP as `6263dc42443eb5c33943d26f668da386df4900d4`. Catalog [PR #23](https://github.com/thaynes43/haynes-quest/pull/23) delivered all candidates, complete review pages and WAV/viewer delivery fixes as **`71c45b5fdba69cb38c59ccd336935218b322cd5c`**.
-- Current immutable image: `ghcr.io/thaynes43/haynes-quest:sha-71c45b5fdba69cb38c59ccd336935218b322cd5c@sha256:2129b02e1d1804ffe3a89edc7e9e2e3eca9258cf18cdaca762130680d8f78675`. [Main workflow 34568145769](https://github.com/thaynes43/haynes-quest/actions/runs/34568145769) passed verification, publication, provenance and signing. Anonymous image manifest/configuration/layer retrieval passed.
+- Overnight baseline image: `ghcr.io/thaynes43/haynes-quest:sha-71c45b5fdba69cb38c59ccd336935218b322cd5c@sha256:2129b02e1d1804ffe3a89edc7e9e2e3eca9258cf18cdaca762130680d8f78675`. [Main workflow 34568145769](https://github.com/thaynes43/haynes-quest/actions/runs/34568145769) passed verification, publication, provenance and signing. Anonymous image manifest/configuration/layer retrieval passed.
 - Final deployment [haynes-ops #2853](https://github.com/thaynes43/haynes-ops/pull/2853) merged `026deb4584dac21532547ec174f3a8c36058d66d`. Flux Kustomization Ready/Healthy at that exact revision, HelmRelease Ready, one Ready pod with zero restarts and matching image digest. Health/readiness/catalog, nine GLBs and four WAV MIME checks passed. [Ops evidence #2854](https://github.com/thaynes43/haynes-ops/pull/2854) merged `17ac580cea032b91a720043b35865df541214e06`; activity ended.
 - PR #23 passed typecheck, lint, all **46 tests including three fresh PostgreSQL 16 integration tests**, client/server build, strict docs/media links and container build. Earlier Fable 5.1 xhigh adversarial findings and lead fixes are in [WO-009](work-orders/009-fable-review.md); its separate CLI session was reaped.
 - Live PostgreSQL-backed keyboard/touch journeys passed at 05:13:46 UTC on the initial MVP image, including growth, jump, finish, refresh/resume, simultaneous touch inputs, pointer cancellation/blur, portrait layout and scene cleanup. Separate same-cookie application-pod replacement preserved identical saved state and then completed the route; another session received 404 for that save/media. [Ops evidence #2852](https://github.com/thaynes43/haynes-ops/pull/2852) records the persistence audit. Catalog changes did not change the game client.
 - Full **live final-image studio audit** passed at 06:15:02 UTC: 12 pages, nine visible GLBs, seven playable/pausable clips, four decoded WAVs, 112 media files and seven exact manifests. Model hashes/sizes matched; every phone viewer measured 358 × 358 within 390 × 844. Two real touch-orbit checks passed; no page/console errors, failed responses or external requests. [WO-011](work-orders/011-catalog-verification.md) links evidence. Chromium 153 / Playwright 1.63 with SwiftShader establishes functional emulation, not physical Safari or performance.
 
-This completion record was written after deployment. Later documentation-only commits are not a claim that a different application image was deployed; keep the runtime pin above until a substantive release needs another rollout.
+The overnight completion record was written after its deployment. Later review-material releases keep their own image and live evidence in GitOps; the baseline image above identifies the original full audit.
 
 ## Privacy and persistence boundary
 
