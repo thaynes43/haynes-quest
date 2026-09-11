@@ -825,6 +825,33 @@ describe("hazards", () => {
 // ---------------------------------------------------------------------------
 
 describe("checkpoints", () => {
+  it("arms a broad landing strip across its safe width without reaching the preceding shore", () => {
+    const layout = course({
+      platforms: [
+        slab("approach", 0, 0, 10, 4),
+        slab("landing", 0, -5, 10, 4),
+      ],
+      checkpoints: [
+        {
+          id: "landing",
+          position: { x: 0, y: 0, z: -3.5 },
+          triggerRadius: 0.65,
+          triggerHalfExtents: { x: 4.5, z: 0.35 },
+        },
+      ],
+    });
+    const precedingShore = createSim(layout, { x: 4, y: 0, z: -2 });
+    const wideLanding = createSim(layout, { x: 4, y: 0, z: -3.4 });
+
+    tick(precedingShore);
+    expect(precedingShore.state.checkpointId).toBeNull();
+
+    expect(tick(wideLanding).checkpointChanged).toBe(true);
+    expect(wideLanding.state.position.x).toBe(4);
+    expect(wideLanding.state.checkpointId).toBe("landing");
+    expect(wideLanding.state.checkpoint).toEqual({ x: 0, y: 0, z: -3.5 });
+  });
+
   it("activates only from a grounded player inside the trigger and records the declared position", () => {
     const layout = course({
       platforms: [slab("floor", 0, 0, 4, 8)],

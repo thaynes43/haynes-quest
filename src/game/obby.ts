@@ -55,11 +55,14 @@ export interface ObbyHazard {
   motion?: ObbyMotion;
 }
 
-/** A local safe point. `position` is a feet position; the trigger is a short vertical cylinder around it. */
+/** A local safe point. `position` is a feet position; the trigger is a short vertical volume around it. */
 export interface ObbyCheckpoint {
   id: string;
   position: PositionSnapshot;
+  /** Circular horizontal trigger used when `triggerHalfExtents` is absent. */
   triggerRadius: number;
+  /** Optional axis-aligned horizontal half extents for broad landing strips. */
+  triggerHalfExtents?: { x: number; z: number };
 }
 
 export interface ObbyCourse {
@@ -900,11 +903,25 @@ export function stepObby(
       for (const checkpoint of checkpoints) {
         const id = String(checkpoint.id);
         if (id === state.checkpointId) continue;
-        const triggerRadius = finiteOr(checkpoint.triggerRadius, 0);
-        if (triggerRadius <= 0) continue;
         const target = sanitizePoint(checkpoint.position);
         if (Math.abs(position.y - target.y) > tuning.checkpointHeightTolerance) continue;
-        if (Math.hypot(position.x - target.x, position.z - target.z) > triggerRadius) continue;
+        const halfExtents = checkpoint.triggerHalfExtents;
+        if (halfExtents) {
+          const halfX = finiteOr(halfExtents.x, 0);
+          const halfZ = finiteOr(halfExtents.z, 0);
+          if (
+            halfX <= 0 ||
+            halfZ <= 0 ||
+            Math.abs(position.x - target.x) > halfX ||
+            Math.abs(position.z - target.z) > halfZ
+          ) continue;
+        } else {
+          const triggerRadius = finiteOr(checkpoint.triggerRadius, 0);
+          if (
+            triggerRadius <= 0 ||
+            Math.hypot(position.x - target.x, position.z - target.z) > triggerRadius
+          ) continue;
+        }
         state.checkpointId = id;
         assign(state.checkpoint, target.x, target.y, target.z);
         result.checkpointChanged = true;
