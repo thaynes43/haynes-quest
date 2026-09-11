@@ -11,6 +11,7 @@ import {
   type ObbyStepOptions,
   type ObbyStepResult,
 } from "../../src/game/obby";
+import { createObbyCourse } from "../../src/game/obby-layout";
 import type { PositionSnapshot } from "../../src/game/types";
 
 // ---------------------------------------------------------------------------
@@ -825,6 +826,58 @@ describe("hazards", () => {
 // ---------------------------------------------------------------------------
 
 describe("checkpoints", () => {
+  it("arms the second clearing from its natural landing island and recovers there after a miss", () => {
+    const layout = createObbyCourse("gentle-jump-v1");
+    const sim = createSim(layout, { x: 0.724, y: 0, z: -9.075 });
+
+    expect(tick(sim).checkpointChanged).toBe(true);
+    expect(sim.state.supportId).toBe("first-clearing-island");
+    expect(sim.state.checkpointId).toBe("first-clearing");
+
+    const launch = tick(sim, forward, { jumpPressed: true });
+    expect(launch.checkpointChanged).toBe(false);
+    expect(sim.state.grounded).toBe(false);
+    expect(sim.state.checkpointId).toBe("first-clearing");
+
+    let landingResult: ObbyStepResult | undefined;
+    for (let frame = 0; frame < sim.hz; frame += 1) {
+      const result = tick(sim, forward);
+      if (!sim.state.grounded) {
+        expect(result.checkpointChanged).toBe(false);
+        expect(sim.state.checkpointId).toBe("first-clearing");
+        continue;
+      }
+      landingResult = result;
+      break;
+    }
+
+    expect(landingResult?.checkpointChanged).toBe(true);
+    expect(sim.state.supportId).toBe("second-clearing-island");
+    expect(sim.state.position.x).toBeCloseTo(0.724, 6);
+    expect(sim.state.position.z).toBeLessThan(-10.95);
+    expect(sim.state.checkpointId).toBe("second-clearing");
+    expect(sim.state.checkpoint).toEqual({ x: 0, y: 0, z: -10.6 });
+
+    runUntil(sim, (_state, result) => result.recovered, backward, {}, 4);
+    expect(sim.state.position).toEqual({ x: 0, y: 0, z: -10.6 });
+    expect(sim.state.supportId).toBe("second-clearing-island");
+    expect(sim.state.checkpointId).toBe("second-clearing");
+  });
+
+  it("keeps the intro clearing checkpoint bounded to its existing strip", () => {
+    const layout = createObbyCourse("gentle-intro-v1");
+    const insideStrip = createSim(layout, { x: 5.5, y: 0, z: -4.8 });
+    const outsideStrip = createSim(layout, { x: 5.5, y: 0, z: -5.3 });
+
+    expect(tick(insideStrip).checkpointChanged).toBe(true);
+    expect(insideStrip.state.supportId).toBe("intro-ground");
+    expect(insideStrip.state.checkpointId).toBe("first-clearing");
+
+    expect(tick(outsideStrip).checkpointChanged).toBe(false);
+    expect(outsideStrip.state.supportId).toBe("intro-ground");
+    expect(outsideStrip.state.checkpointId).toBeNull();
+  });
+
   it("arms a broad landing strip across its safe width without reaching the preceding shore", () => {
     const layout = course({
       platforms: [
