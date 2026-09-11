@@ -2388,3 +2388,14 @@ footer {
     bottom: 27px;
   }
 }
+
+.era-game .era-modal .game-error,
+.era-game .era-modal .media-warning {
+  position: relative;
+  inset: auto;
+  transform: none;
+  width: auto;
+  max-width: none;
+  margin: 0 0 16px;
+  box-shadow: none;
+}

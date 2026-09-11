@@ -1,0 +1,24 @@
+{
+  "asset_id": "loop-dancer",
+  "concept_version": "v001",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "generation": "Serial lead generation; actual output visually inspected.",
+  "reference_set": "storybook-v001; Blockling concept v001 used for material and presentation continuity",
+  "source": "Original fictional concept. No family reference or third-party mesh.",
+  "model_id_and_seed": "Not returned by the tool; not claimed.",
+  "status": "Concept selected for authoring; model work blocked by native task capacity; owner approval pending.",
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2504947,
+      "sha256": "258db12b6472e09f2c0b4ec2d038b4f942643d94410a2f1b24979c16dc8860ba"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 1920,
+      "sha256": "e1ea79d66a2bd3c4a1e4df25b5cbbc6663b8ce65f83fa28d184b3ff28f095e09"
+    }
+  ]
+}

@@ -251,6 +251,27 @@ function Adventure({
       setError(friendlyError(new Error(status.requestErrorCode)));
   }, [status?.requestErrorCode]);
 
+  const feedback = (
+    <>
+      {error && (
+        <div className="game-error" role="alert" data-quest-ui>
+          {error}
+          <button onClick={() => setError("")} aria-label="Dismiss message">
+            ×
+          </button>
+        </div>
+      )}
+      {Boolean(status?.mediaFailed) && (
+        <div className="media-warning" role="status" data-quest-ui>
+          Some artwork couldn’t load.
+          <button onClick={() => game.current?.retryMedia()}>
+            Retry artwork
+          </button>
+        </div>
+      )}
+    </>
+  );
+
   const perform = (action: GameplayAction) => {
     setError("");
     game.current?.performAction(action);
@@ -367,22 +388,7 @@ function Adventure({
           {story.enemies[target.kind]} · {target.hp}/{target.maxHp}
         </div>
       )}
-      {error && (
-        <div className="game-error" role="alert" data-quest-ui>
-          {error}
-          <button onClick={() => setError("")} aria-label="Dismiss message">
-            ×
-          </button>
-        </div>
-      )}
-      {Boolean(status?.mediaFailed) && (
-        <div className="media-warning" role="status" data-quest-ui>
-          Some artwork couldn’t load.
-          <button onClick={() => game.current?.retryMedia()}>
-            Retry artwork
-          </button>
-        </div>
-      )}
+      {!modalOpen && feedback}
       {!modalOpen && (
         <div className="game-bottom" data-quest-ui>
           <Joystick game={game} />
@@ -457,6 +463,7 @@ function Adventure({
 
       {activeModal === "help" && (
         <Modal
+          notice={feedback}
           title="Explore. Prepare. Face the era."
           eyebrow="HOW TO PLAY"
           onClose={() => setShowHelp(false)}
@@ -510,6 +517,7 @@ function Adventure({
 
       {activeModal === "victory" && level && (
         <Modal
+          notice={feedback}
           title="The memories are yours again."
           eyebrow={`${story.enemies.boss.toUpperCase()} · DEFEATED`}
           onClose={() => {
@@ -568,6 +576,7 @@ function Adventure({
 
       {activeModal === "photo" && activePhoto && (
         <Modal
+          notice={feedback}
           title={activePhoto.label}
           eyebrow="A MEMORY RECLAIMED"
           onClose={() => setPhotoDetail(null)}
@@ -580,6 +589,7 @@ function Adventure({
       )}
       {activeModal === "chapter" && (
         <Modal
+          notice={feedback}
           title={`Welcome to ${level?.eraYear}.`}
           eyebrow={`AGE ${save.ageYears} · ${story.title.toUpperCase()}`}
           onClose={() => setChapterNotice("")}
@@ -592,7 +602,11 @@ function Adventure({
         </Modal>
       )}
       {activeModal === "fallen" && level && (
-        <Modal title="Take a breath. Try again." eyebrow="YOUR JOURNEY IS SAFE">
+        <Modal
+          notice={feedback}
+          title="Take a breath. Try again."
+          eyebrow="YOUR JOURNEY IS SAFE"
+        >
           <p>
             Your equipment and earlier memories are saved. Return with full
             health and another chance to face this era.
@@ -611,6 +625,7 @@ function Adventure({
       )}
       {activeModal === "album" && (
         <Modal
+          notice={feedback}
           title="Your remembered world."
           eyebrow={`${save.recoveredIds.length} OF ${save.memories.length} MEMORIES`}
           onClose={() => setShowAlbum(false)}
@@ -632,6 +647,7 @@ function Adventure({
       )}
       {activeModal === "complete" && (
         <Modal
+          notice={feedback}
           title="Every chapter, a little more you."
           eyebrow="JOURNEY COMPLETE"
           wide
@@ -657,12 +673,14 @@ function Adventure({
 }
 
 function Modal({
+  notice,
   title,
   eyebrow,
   onClose,
   wide,
   children,
 }: {
+  notice?: React.ReactNode;
   title: string;
   eyebrow: string;
   onClose?: () => void;
@@ -721,6 +739,7 @@ function Modal({
         )}
         <span className="eyebrow">{eyebrow}</span>
         <h2>{title}</h2>
+        {notice}
         {children}
       </section>
     </div>

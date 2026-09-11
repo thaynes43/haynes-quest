@@ -1,6 +1,6 @@
 # First-pass catalog
 
-This is the initial inventory for one compact playable slice. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The scoped first pass is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
+This is the initial inventory for one compact playable slice. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The original overnight inventory is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
 
 [Browser delivery audit](media/storybook-reference/v001/browser-intake/catalog-local-report.json): 12 pages, nine models, seven clips and four decoded auditions; zero page/console errors, failed responses or external asset requests. [Combined clearing preview](media/clearing-path-kit/v001/kit-beauty.png).
 
@@ -40,7 +40,6 @@ The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concep
 
 Tom’s review expanded the required playable loop to equipment, period enemies and bosses. The earlier nine-model inventory remains preserved, but it does not cover these new needs. The current game review loads the existing traveler/environment GLBs; new encounter and equipment studies remain temporary. No demo-use or final approval has been recorded.
 
-- [Blockling concept · v001](media/blockling/v001/concept.png), [prompt](media/blockling/v001/prompt.txt), [provenance](media/blockling/v001/concept-provenance.json).
-- [Signal Moth concept · v001](media/signal-moth/v001/concept.png), [prompt](media/signal-moth/v001/prompt.txt), [provenance](media/signal-moth/v001/concept-provenance.json).
+[Review the complete concept set](reviews/era-combat/v001.md): Blockling, Signal Moth, Buffer Baron, Loop Dancer, Prism Mimic and Trendweaver, plus Spark Mallet, Acorn Shield, Prism Wand and Ribbon Shield. Eight sheets show the six creatures and four tools with source prompts, exact hashes and rear construction views.
 
-Both concepts were generated serially with built-in image generation and selected by the lead. [WO-014](../../.agents/work-orders/014-blender-era-2020.md) records the failed native Astra dispatch: task capacity prevented an author from starting. New enemy models, remaining concepts, equipment exports and their review packages are unfinished. No Blender scene change or model-provider fallback occurred. [PLAN-005](../../.agents/plans/005-era-combat-loop.md) remains in progress.
+All concepts were generated serially with built-in image generation and selected by the lead. [WO-014](../../.agents/work-orders/014-blender-era-2020.md) records the failed native Astra dispatch: task capacity prevented an author from starting. New enemy models, equipment exports and their animation/review packages are unfinished. No Blender scene change or model-provider fallback occurred. [PLAN-005](../../.agents/plans/005-era-combat-loop.md) remains in progress.

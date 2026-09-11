@@ -1,0 +1,40 @@
+{
+  "asset_id": "era-equipment",
+  "concept_version": "v001",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "generation": "Serial lead generation; actual output visually inspected.",
+  "reference_set": "storybook-v001; Blockling concept v001 used for material and presentation continuity",
+  "source": "Original fictional concept. No family reference or third-party mesh.",
+  "model_id_and_seed": "Not returned by the tool; not claimed.",
+  "status": "Concept selected for authoring; model work blocked by native task capacity; owner approval pending.",
+  "files": [
+    {
+      "file": "starter-concept.png",
+      "bytes": 2448981,
+      "sha256": "62af0571853a0f8d9231984c09c1ddb9e25f0beae2704591dc7e7ec20c02d85e"
+    },
+    {
+      "file": "starter-prompt.txt",
+      "bytes": 1798,
+      "sha256": "eb42c53cda7b632b53834db2dbb1895203dda37fc4f9001a19589f088fb3e4df"
+    },
+    {
+      "file": "later-concept.png",
+      "bytes": 2422187,
+      "sha256": "8edaa696b2d7e7b27a65dc2ee94a1deaa73e845e3529483b43f390776d9bfb2f"
+    },
+    {
+      "file": "later-prompt.txt",
+      "bytes": 2004,
+      "sha256": "28699e6290cfa8c7e590349581ca71423af2301bec55ea2d48e2eac51bdb8495"
+    }
+  ],
+  "items": [
+    "spark-mallet",
+    "acorn-shield",
+    "prism-wand",
+    "ribbon-shield"
+  ]
+}

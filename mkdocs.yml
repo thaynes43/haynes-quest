@@ -53,6 +53,7 @@ nav:
   - Operations:
       - Hosting context: ops/001-hosting-context.md
       - Private preview: ops/002-private-preview.md
+      - Era combat verification: ops/005-era-combat-verification.md
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
