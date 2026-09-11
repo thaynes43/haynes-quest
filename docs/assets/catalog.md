@@ -9,11 +9,11 @@ This is the initial inventory for one compact playable slice. Concepts and all f
 | `storybook-reference` | [Environment, traveler ages and prop/material reference set](reviews/storybook-reference/v001.md) | Coordinator selected · Tom review pending |
 | `traveler-infant` | [Starting traveler, model and movement · v001](reviews/traveler-infant/v001.md) | Ready for Tom · No gameplay approval |
 | `traveler-child` | [Older traveler, model and added jump · v001](reviews/traveler-child/v001.md) | Ready for Tom · No gameplay approval |
-| `memory-keepsake` | Collectible frame/keepsake concept and model, readable fictional photo surface | In production · concept selected |
-| `clearing-path-kit` | Small modular ground/path and step pieces with a common scale and material set | In production · concept selected |
-| `clearing-tree` | One stylized tree concept/model with economical variations | In production · concept selected |
-| `clearing-stone` | Rounded rock/edge prop concept/model with economical variations | In production · concept selected |
-| `arrival-landmark` | A small original landmark communicating the route's finish | In production · concept selected |
+| `memory-keepsake` | [A memory worth keeping · v001](reviews/memory-keepsake/v001.md) | Model in production · concept selected |
+| `clearing-path-kit` | [A small path forward · v001](reviews/clearing-path-kit/v001.md) | Model in production · concept selected |
+| `clearing-tree` | [A quiet place in the shade · v001](reviews/clearing-tree/v001.md) | Model in production · concept selected |
+| `clearing-stone` | [A rounded edge to the clearing · v001](reviews/clearing-stone/v001.md) | Model in production · concept selected |
+| `arrival-landmark` | [A lantern at the end of the path · v001](reviews/arrival-landmark/v001.md) | Model in production · concept selected |
 
 Each separately modeled piece in a kit needs an identifiable concept view, model preview and version in its review page. A kit approval must list the included files/checksums. Include both age stages together in a comparison preview. The precise costume, landmark shape and clip names are lead decisions to record before production, not owner-approved designs.
 

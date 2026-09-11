@@ -1,0 +1,24 @@
+{
+  "asset_id": "memory-keepsake",
+  "concept_version": "v001",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "generation": "Serial lead generation, actual output visually inspected before Blender dispatch.",
+  "source": "Original fictional Haynes Quest art; no private family reference or third-party mesh.",
+  "art_direction_reference_set": "storybook-v001",
+  "model_id_and_seed": "Not supplied by the generation tool; not claimed.",
+  "coordinator_selection": "Selected for WO-010 construction; exact-version Tom approval pending.",
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2089695,
+      "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 1184,
+      "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+    }
+  ]
+}

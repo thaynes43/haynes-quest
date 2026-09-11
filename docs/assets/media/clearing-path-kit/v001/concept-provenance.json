@@ -1,0 +1,24 @@
+{
+  "asset_id": "clearing-path-kit",
+  "concept_version": "v001",
+  "generated_on": "2026-09-11",
+  "tool": "built-in imagegen",
+  "coordinator": "GPT-6 Astra, max",
+  "generation": "Serial lead generation, actual output visually inspected before Blender dispatch.",
+  "source": "Original fictional Haynes Quest art; no private family reference or third-party mesh.",
+  "art_direction_reference_set": "storybook-v001",
+  "model_id_and_seed": "Not supplied by the generation tool; not claimed.",
+  "coordinator_selection": "Selected for WO-010 construction; exact-version Tom approval pending.",
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2201520,
+      "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 1171,
+      "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+    }
+  ]
+}
