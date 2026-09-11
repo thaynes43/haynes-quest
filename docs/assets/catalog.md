@@ -1,80 +1,473 @@
-# First-pass catalog
+---
+hide:
+  - toc
+---
 
-For the current game scope and its exact four-character cast, open the [two-chapter playtest](playtest.md). That page separates what can be assessed in the next test from future family setup, photos and additional content. The archive below also preserves earlier studies and paused candidates.
+# Browse all assets
 
-The [four-character browser audit](media/parody-playtest-audit/v001/report.json) verifies all four model pages, 20 animation clips, 28 videos, 20 stills, four touch orbits and four editable masters. No page, console, asset-response or external-request errors were recorded. This establishes catalog delivery; full game controls and owner artwork decisions are separate checks.
+Choose a picture to review its inspiration, 3D model and available animations.
 
-This catalog preserves the original overnight inventory and the required two-era combat expansion below. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The original overnight inventory is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
+**23 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions**
 
-[Browser delivery audit](media/storybook-reference/v001/browser-intake/catalog-local-report.json): 12 pages, nine models, seven clips and four decoded auditions; zero page/console errors, failed responses or external asset requests. [Combined clearing preview](media/clearing-path-kit/v001/kit-beauty.png).
+All versions await your review. [See what is in the playtest](playtest.md).
 
-## Images and models
+<nav class="catalog-jumps" aria-label="Asset categories">
+<a href="#parody-characters">Parody characters</a>
+<a href="#travelers">Travelers</a>
+<a href="#world-and-keepsakes">World and keepsakes</a>
+<a href="#equipment">Equipment</a>
+<a href="#preserved-creature-studies">Preserved creature studies</a>
+<a href="#reference-sheets">Reference sheets</a>
+<a href="#sound-auditions">Sound auditions</a>
+</nav>
 
-| Stable ID | First-pass deliverable | Status / review |
-| --- | --- | --- |
-| `storybook-reference` | [Environment, traveler ages and prop/material reference set](reviews/storybook-reference/v001.md) | Coordinator selected · Tom review pending |
-| `traveler-infant` | [Starting traveler, model and movement · v001](reviews/traveler-infant/v001.md) | Ready for Tom · No gameplay approval |
-| `traveler-child` | [Older traveler, model and added jump · v001](reviews/traveler-child/v001.md) | Ready for Tom · No gameplay approval |
-| `memory-keepsake` | [A memory worth keeping · v001](reviews/memory-keepsake/v001.md) | Ready for Tom · No gameplay approval |
-| `clearing-path-kit` | [A small path forward · v001](reviews/clearing-path-kit/v001.md) | Ready for Tom · No gameplay approval |
-| `clearing-tree` | [A quiet place in the shade · v001](reviews/clearing-tree/v001.md) | Ready for Tom · No gameplay approval |
-| `clearing-stone` | [A rounded edge to the clearing · v001](reviews/clearing-stone/v001.md) | Ready for Tom · No gameplay approval |
-| `arrival-landmark` | [A lantern at the end of the path · v001](reviews/arrival-landmark/v001.md) | Ready for Tom · No gameplay approval |
+<span id="images-and-models"></span>
+<span id="replacement-parody-direction"></span>
 
-Each separately modeled piece in a kit needs an identifiable concept view, model preview and version in its review page. A kit approval must list the included files/checksums. Include both age stages together in a comparison preview. The precise costume, landmark shape and clip names are lead decisions to record before production, not owner-approved designs.
+## Parody characters {#parody-characters}
 
-## Audio
+Four completed characters form the temporary playtest cast. Nap Captain and The One-Star Diva are paused.
 
-| Stable cue ID | First-pass deliverable | Status / review |
-| --- | --- | --- |
-| `memory-collected` | [A memory found · v001](reviews/memory-collected/v001.md) | Audition available · listening and Tom review pending |
-| `ability-unlocked` | [A little more possible · v001](reviews/ability-unlocked/v001.md) | Audition available · listening and Tom review pending |
-| `movement-landed` | [Back on the path · v001](reviews/movement-landed/v001.md) | Audition available · listening and Tom review pending |
-| `ui-confirmed` | [A quiet yes · v001](reviews/ui-confirmed/v001.md) | Audition available · listening and Tom review pending |
+<div class="catalog-grid" markdown="1">
 
-Add ambience only after the required cues and runnable slice are complete. Full music, voices, wider era rosters and extra biomes remain additional work; the two-period combat rebuild has its own required current asset work below. Keep generated originals and processed exports distinct; record processing, license/provenance, waveform/level checks and an audible preview. A metadata check alone is not a listening review.
+<div class="catalog-card" data-asset-id="mister-hiss" markdown="1">
 
-## Adding candidates
+[![Model render: Mister Hiss](media/catalog-thumbnails/v001/c165726c58d4ded7.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/mister-hiss/v001.md)
 
-Copy the [review template](000-review-template.md) to a versioned review page; replace template paths with real relative media links and link that page here. Retain the source concept alongside its model and all chosen audio takes. Mark unavailable or failed previews explicitly. Update this catalog and the lead handoff after each integrated authoring milestone so a fresh lead can resume without repeating generations.
+### [Mister Hiss](reviews/mister-hiss/v001.md)
 
-The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concept v002 with its rear wedge restored in the back view, following Tom’s September 11 feedback. The model remains v001; its support was already present.
+<span class="catalog-state">3D model · v001 · In playtest</span>
 
-## Equipment and preserved creature studies
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/c0f599cff0b1bb03.webp" alt="Inspiration for Mister Hiss" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
-The correction produced ten additional models: six animated creature studies and four tools. Tom found the creature models useful as possible friendly or ambient characters, but **they do not fit his enemy vision**. They are not selected for enemy use. Actual enemies must be recognizable pop-culture parodies; [DESIGN-005](../designs/005-era-enemy-catalog.md) records that correction.
+</div>
 
-That earlier production brought the archive to nineteen model candidates, including the original nine. All exact-version approvals remain pending. The creature studies' thirty animation clips and source masters remain useful production artifacts; no friendly role is automatically approved or placed in the game.
+<div class="catalog-card" data-asset-id="peel-patrol" markdown="1">
 
-[Original construction sheets](reviews/era-combat/v001.md) retain the lead's earlier direction for traceability. Review the actual exports separately:
+[![Model render: Peel Patrol](media/catalog-thumbnails/v001/2b2d450c186751ff.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/peel-patrol/v001.md)
 
-| Candidate | Actual model review | Current role / review |
-| --- | --- | --- |
-| Blockling | [Model and five clips](reviews/blockling/v001.md) | Possible friendly/ambient study · not an enemy |
-| Signal Moth | [Model and five clips](reviews/signal-moth/v001.md) | Possible friendly/ambient study · not an enemy |
-| Buffer Baron | [Model and five clips](reviews/buffer-baron/v001.md) | Possible friendly/ambient study · not an enemy |
-| Loop Dancer | [Model and five clips](reviews/loop-dancer/v001.md) | Possible friendly/ambient study · not an enemy |
-| Prism Mimic | [Model and five clips](reviews/prism-mimic/v001.md) | Possible friendly/ambient study · not an enemy |
-| Trendweaver | [Model and five clips](reviews/trendweaver/v001.md) | Possible friendly/ambient study · not an enemy |
-| Spark Mallet, Acorn Shield, Prism Wand, Ribbon Shield | [Four tools, including rear grips](reviews/era-equipment/v001.md) | Equipment candidates · Tom review pending |
+### [Peel Patrol](reviews/peel-patrol/v001.md)
 
-All concepts were generated serially by the lead. Fresh Astra Blender authors completed the [first creature set](../../.agents/work-orders/014-blender-era-2020-evidence.md), [later creature set](../../.agents/work-orders/016-blender-era-2024-evidence.md) and [equipment](../../.agents/work-orders/017-blender-era-equipment-evidence.md), preserving exact exports and masters. All scene leases and render jobs have ended. Their individual format, animation and browser checks are recorded; the [combined catalog audit](media/era-catalog-intake/v001/report.json) passed seven pages, ten models, thirty clips, two touch orbits and ten independently retrieved masters. No unexpected HTTP, request, console or page failures occurred. Chromium emulation does not establish physical Safari performance.
+<span class="catalog-state">3D model · v001 · In playtest</span>
 
-## Replacement parody direction
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/3571a2e20985a4d6.webp" alt="Inspiration for Peel Patrol" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
-The replacement cast uses recognizable pop-culture parodies from the selected photo periods. Each page includes its exact concept, prompt, construction corrections and intended encounter. Model production and the forgiving obby game remain in progress; none of these candidates has owner approval for private gameplay.
+</div>
 
-| Period | Enemy | Reference and joke | Current candidate |
-| --- | --- | --- | --- |
-| The Block Party | [Mister Hiss](reviews/mister-hiss/v001.md) | Creeper with a confetti sneeze | Exported model and five clips |
-| The Block Party | [Peel Patrol](reviews/peel-patrol/v001.md) | Peely safety marshal who slips on his own peel | Exported model and five clips |
-| The Block Party | [The Drama Dragon](reviews/drama-dragon/v001.md) | Ender Dragon as a pompous performer | Exported model and five clips |
-| The Remix Runway | [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) | Skibidi Toilet opera singer | Exported model and five clips · optional candidate · Tom review pending |
-| The Remix Runway | [Nap Captain](reviews/nap-captain/v001.md) | CatNap bedtime inspector with a pillow prank | First model checkpoint · corrections and final media paused |
-| The Remix Runway | [The One-Star Diva](reviews/one-star-diva/v001.md) | Dress to Impress judge with an oversized outfit | Concept selected · model production paused |
+<div class="catalog-card" data-asset-id="drama-dragon" markdown="1">
 
-## Child-specific curation and the next design
+[![Model render: The Drama Dragon](media/catalog-thumbnails/v001/62fa384f6bfe5cde.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/drama-dragon/v001.md)
 
-[Player setup](../designs/012-player-journey-curation.md) will let a parent select photos and encounters for each level, with era suggestions, favorites, exclusions and explicit admin period overrides. Completed models are optional library entries. The former fixed roster is not mandatory for every child.
+### [The Drama Dragon](reviews/drama-dragon/v001.md)
 
-Tom selected **The Besties duo first** for the next design discussion, based on Mackenzie Turner and Lael’s Roblox personas. FNAF-inspired characters are a later interest for his son. No Besties or FNAF model has been generated. New production is paused while the next brief is agreed; Nap’s partial source and Diva’s unbuilt source are preserved.
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/2cd76be82656194c.webp" alt="Inspiration for The Drama Dragon" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="sir-flush-a-lot" markdown="1">
+
+[![Model render: Sir Flush-a-Lot](media/catalog-thumbnails/v001/88c279d44cad8b1a.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/sir-flush-a-lot/v001.md)
+
+### [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/6b744e6e7e7e2580.webp" alt="Inspiration for Sir Flush-a-Lot" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="nap-captain" markdown="1">
+
+[![Model render: Nap Captain](media/catalog-thumbnails/v001/38db3a49b0b39b9d.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/nap-captain/v001.md#paused-checkpoint)
+
+### [Nap Captain](reviews/nap-captain/v001.md#paused-checkpoint)
+
+<span class="catalog-state">Partial model · v001 · Paused</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/6ea69d7607adba1a.webp" alt="Inspiration for Nap Captain" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="one-star-diva" markdown="1">
+
+[![Inspiration image: The One-Star Diva](media/catalog-thumbnails/v001/9691450911f42c9c.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/one-star-diva/v001.md)
+
+### [The One-Star Diva](reviews/one-star-diva/v001.md)
+
+<span class="catalog-state">Concept only · v001 · Paused</span>
+
+</div>
+
+</div>
+
+## Travelers {#travelers}
+
+The two existing age stages share a costume and a common inspiration sheet. Each review includes movement previews and a comparison of both ages.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="traveler-infant" markdown="1">
+
+[![Model render: Infant traveler](media/catalog-thumbnails/v001/cc99287ad93a182c.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/traveler-infant/v001.md)
+
+### [Infant traveler](reviews/traveler-infant/v001.md)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp" alt="Inspiration for Infant traveler" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="traveler-child" markdown="1">
+
+[![Model render: Child traveler](media/catalog-thumbnails/v001/0fe12aa71f9ecf4c.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/traveler-child/v001.md)
+
+### [Child traveler](reviews/traveler-child/v001.md)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp" alt="Inspiration for Child traveler" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+</div>
+
+## World and keepsakes {#world-and-keepsakes}
+
+Browse every clearing piece separately. The keepsake review uses the corrected inspiration image with the rear wedge visible.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="memory-keepsake" markdown="1">
+
+[![Model render: Memory keepsake](media/catalog-thumbnails/v001/9e05ff122c19097e.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/memory-keepsake/v001.md)
+
+### [Memory keepsake](reviews/memory-keepsake/v001.md)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/c6c9f76a3eab3e16.webp" alt="Inspiration for Memory keepsake" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="ground-tile" markdown="1">
+
+[![Model render: Grass tile](media/catalog-thumbnails/v001/0ac411d78aaa2f5c.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/clearing-path-kit/v001.md#grass-and-soil)
+
+### [Grass tile](reviews/clearing-path-kit/v001.md#grass-and-soil)
+
+<span class="catalog-state">3D model · v001 · Ready to review</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/bb4f038050d6453a.webp" alt="Inspiration for Grass tile" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="path-tile" markdown="1">
+
+[![Model render: Path tile](media/catalog-thumbnails/v001/2ae2bfed9f0b7f10.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/clearing-path-kit/v001.md#pale-pavers)
+
+### [Path tile](reviews/clearing-path-kit/v001.md#pale-pavers)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/bb4f038050d6453a.webp" alt="Inspiration for Path tile" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="low-step" markdown="1">
+
+[![Model render: Low step](media/catalog-thumbnails/v001/c869a55a9607c6c5.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/clearing-path-kit/v001.md#one-low-rise)
+
+### [Low step](reviews/clearing-path-kit/v001.md#one-low-rise)
+
+<span class="catalog-state">3D model · v001 · Ready to review</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/bb4f038050d6453a.webp" alt="Inspiration for Low step" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="clearing-tree" markdown="1">
+
+[![Model render: Clearing tree](media/catalog-thumbnails/v001/e6d09d9446175b04.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/clearing-tree/v001.md)
+
+### [Clearing tree](reviews/clearing-tree/v001.md)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/176a4cd8fee82ca6.webp" alt="Inspiration for Clearing tree" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="clearing-stone" markdown="1">
+
+[![Model render: Clearing stone](media/catalog-thumbnails/v001/5b126701683fc06f.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/clearing-stone/v001.md)
+
+### [Clearing stone](reviews/clearing-stone/v001.md)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/785a4385ffe5c8f6.webp" alt="Inspiration for Clearing stone" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="arrival-landmark" markdown="1">
+
+[![Model render: Lantern gateway](media/catalog-thumbnails/v001/ea05da55c11ace56.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/arrival-landmark/v001.md)
+
+### [Lantern gateway](reviews/arrival-landmark/v001.md)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/6ea1ca071b476e9c.webp" alt="Inspiration for Lantern gateway" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+</div>
+
+<span id="equipment-and-preserved-creature-studies"></span>
+
+## Equipment {#equipment}
+
+Four tools to find during a level. Each review includes the inspiration sheet, an interactive model and front/back views.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="spark-mallet" markdown="1">
+
+[![Model render: Spark Mallet](media/catalog-thumbnails/v001/9e1d5796c0bf9914.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/era-equipment/v001.md#spark-mallet)
+
+### [Spark Mallet](reviews/era-equipment/v001.md#spark-mallet)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/d850335c11eca920.webp" alt="Inspiration for Spark Mallet" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="acorn-shield" markdown="1">
+
+[![Model render: Acorn Shield](media/catalog-thumbnails/v001/693235231cf7caf8.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/era-equipment/v001.md#acorn-shield)
+
+### [Acorn Shield](reviews/era-equipment/v001.md#acorn-shield)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/d850335c11eca920.webp" alt="Inspiration for Acorn Shield" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="prism-wand" markdown="1">
+
+[![Model render: Prism Wand](media/catalog-thumbnails/v001/6818fa09d4f95587.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/era-equipment/v001.md#prism-wand)
+
+### [Prism Wand](reviews/era-equipment/v001.md#prism-wand)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/d05c26a1fbc716ba.webp" alt="Inspiration for Prism Wand" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="ribbon-shield" markdown="1">
+
+[![Model render: Ribbon Shield](media/catalog-thumbnails/v001/63523c42b1660131.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/era-equipment/v001.md#ribbon-shield)
+
+### [Ribbon Shield](reviews/era-equipment/v001.md#ribbon-shield)
+
+<span class="catalog-state">3D model · v001 · In playtest</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/d05c26a1fbc716ba.webp" alt="Inspiration for Ribbon Shield" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+</div>
+
+## Preserved creature studies {#preserved-creature-studies}
+
+These six models missed the enemy brief. They remain possible friendly or ambient studies; no new role has been selected.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="blockling" markdown="1">
+
+[![Model render: Blockling](media/catalog-thumbnails/v001/3f329aa3e54bf29d.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/blockling/v001.md)
+
+### [Blockling](reviews/blockling/v001.md)
+
+<span class="catalog-state">3D model · v001 · Preserved study</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/96f8449e34bb7d10.webp" alt="Inspiration for Blockling" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="signal-moth" markdown="1">
+
+[![Model render: Signal Moth](media/catalog-thumbnails/v001/b50a0119ee089f01.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/signal-moth/v001.md)
+
+### [Signal Moth](reviews/signal-moth/v001.md)
+
+<span class="catalog-state">3D model · v001 · Preserved study</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/801894826980aaa1.webp" alt="Inspiration for Signal Moth" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="buffer-baron" markdown="1">
+
+[![Model render: Buffer Baron](media/catalog-thumbnails/v001/de0597a895152a79.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/buffer-baron/v001.md)
+
+### [Buffer Baron](reviews/buffer-baron/v001.md)
+
+<span class="catalog-state">3D model · v001 · Preserved study</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/1ee8a794a04f24f4.webp" alt="Inspiration for Buffer Baron" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="loop-dancer" markdown="1">
+
+[![Model render: Loop Dancer](media/catalog-thumbnails/v001/d3ea5ccdf2a63a03.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/loop-dancer/v001.md)
+
+### [Loop Dancer](reviews/loop-dancer/v001.md)
+
+<span class="catalog-state">3D model · v001 · Preserved study</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/945ff0da4bf9513b.webp" alt="Inspiration for Loop Dancer" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="prism-mimic" markdown="1">
+
+[![Model render: Prism Mimic](media/catalog-thumbnails/v001/7408095b1dcf7b88.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/prism-mimic/v001.md)
+
+### [Prism Mimic](reviews/prism-mimic/v001.md)
+
+<span class="catalog-state">3D model · v001 · Preserved study</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/4000f4ebcc9e87e6.webp" alt="Inspiration for Prism Mimic" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="trendweaver" markdown="1">
+
+[![Model render: Trendweaver](media/catalog-thumbnails/v001/00475838c055ccac.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/trendweaver/v001.md)
+
+### [Trendweaver](reviews/trendweaver/v001.md)
+
+<span class="catalog-state">3D model · v001 · Preserved study</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/ef135449b5393682.webp" alt="Inspiration for Trendweaver" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+</div>
+
+## Reference sheets {#reference-sheets}
+
+Original inspiration and construction images. These are illustrations; related model reviews appear in the groups above.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="storybook-reference-clearing" markdown="1">
+
+[![Inspiration image: The storybook clearing](media/catalog-thumbnails/v001/2d37bec7a280121c.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/storybook-reference/v001.md#the-clearing)
+
+### [The storybook clearing](reviews/storybook-reference/v001.md#the-clearing)
+
+<span class="catalog-state">Inspiration sheet · v001</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="storybook-reference-traveler-ages" markdown="1">
+
+[![Inspiration image: Traveler age reference](media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/storybook-reference/v001.md#a-traveler-who-grows)
+
+### [Traveler age reference](reviews/storybook-reference/v001.md#a-traveler-who-grows)
+
+<span class="catalog-state">Inspiration sheet · v001</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="storybook-reference-props-materials" markdown="1">
+
+[![Inspiration image: Props and materials](media/catalog-thumbnails/v001/d9f37cae29190e89.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/storybook-reference/v001.md#a-shared-set-of-materials)
+
+### [Props and materials](reviews/storybook-reference/v001.md#a-shared-set-of-materials)
+
+<span class="catalog-state">Inspiration sheet · v001</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="era-combat-construction-reference" markdown="1">
+
+[![Inspiration image: Earlier construction sheets](media/catalog-thumbnails/v001/96f8449e34bb7d10.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/era-combat/v001.md)
+
+### [Earlier construction sheets](reviews/era-combat/v001.md)
+
+<span class="catalog-state">Inspiration sheet · v001</span>
+
+</div>
+
+</div>
+
+<span id="audio"></span>
+
+## Sound auditions {#sound-auditions}
+
+Four existing sound candidates, with waveform thumbnails and playable reviews. Listening review is still open, and the game remains silent.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="memory-collected" markdown="1">
+
+[![Sound waveform: A memory found · v001](media/catalog-thumbnails/v001/0021a7a547506c07.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/memory-collected/v001.md#audition)
+
+### [A memory found · v001](reviews/memory-collected/v001.md#audition)
+
+<span class="catalog-state">Sound audition · v001 · Listening review</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="ability-unlocked" markdown="1">
+
+[![Sound waveform: A little more possible · v001](media/catalog-thumbnails/v001/4df9117f24ee064b.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/ability-unlocked/v001.md#audition)
+
+### [A little more possible · v001](reviews/ability-unlocked/v001.md#audition)
+
+<span class="catalog-state">Sound audition · v001 · Listening review</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="movement-landed" markdown="1">
+
+[![Sound waveform: Back on the path · v001](media/catalog-thumbnails/v001/cd8bcf785cf094f2.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/movement-landed/v001.md#audition)
+
+### [Back on the path · v001](reviews/movement-landed/v001.md#audition)
+
+<span class="catalog-state">Sound audition · v001 · Listening review</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="ui-confirmed" markdown="1">
+
+[![Sound waveform: A quiet yes · v001](media/catalog-thumbnails/v001/162c610bb3eaa15d.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/ui-confirmed/v001.md#audition)
+
+### [A quiet yes · v001](reviews/ui-confirmed/v001.md#audition)
+
+<span class="catalog-state">Sound audition · v001 · Listening review</span>
+
+</div>
+
+</div>
+
+<span id="child-specific-curation-and-the-next-design"></span>
+
+## What comes next
+
+The Besties duo is next for collaborative design, with alternating obstacle tricks and a shared recovery window agreed. Its appearance is still to be decided. No Besties or FNAF model has been generated. [Player and encounter curation](../designs/012-player-journey-curation.md) remains future work.
+
+<span id="adding-candidates"></span>
+
+For production history and earlier delivery checks, see the [catalog history](catalog-history.md). Exact files, versions, source images, downloads and decisions remain on each review page.

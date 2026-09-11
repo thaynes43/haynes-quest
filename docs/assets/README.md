@@ -1,8 +1,8 @@
 # Asset studio
 
-Review the images, models and sounds that will make Haynes Quest's storybook world. Start with the [art direction](art-direction.md), then browse the [first-pass catalog](catalog.md).
+Browse the [asset catalog](catalog.md) by picture to choose what to review. Each model entry keeps its inspiration image, interactive 3D view and exact version together. The [art direction](art-direction.md) explains the common storybook style.
 
-The common reference set, both travelers, seven clearing prop models and all four sound auditions are available in the completed first-pass catalog. The private game remains playable with temporary art while these candidates await exact-version review. Infrastructure test meshes and sounds are not game candidates or approved assets.
+The catalog includes travelers, world pieces, equipment, parody characters, earlier creature studies, reference images and sound auditions. Finished candidates and paused work are labeled separately. The [two-chapter playtest](playtest.md) identifies the temporary cast used in the isolated review game; no final artwork approval is implied.
 
 Each finished candidate gets a page with its source concepts, model views or audio player, exact version, technical results and feedback history. The [review template](000-review-template.md) defines that record. The coordinator can create and refine the whole first pass before Tom reviews it.
 

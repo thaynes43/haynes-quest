@@ -1,0 +1,2004 @@
+{
+  "date": "2026-09-11T21:19:30.028Z",
+  "catalogUrl": "http://127.0.0.1:4394/assets/catalog.html",
+  "inventory": "scripts/assets/catalog-inventory.json",
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software (requested)"
+  },
+  "landing": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "hasTouch": false,
+      "cards": [
+        {
+          "id": "storybook-reference-clearing",
+          "review": "/assets/reviews/storybook-reference/v001.html#the-clearing",
+          "state": "Inspiration sheet · v001"
+        },
+        {
+          "id": "storybook-reference-traveler-ages",
+          "review": "/assets/reviews/storybook-reference/v001.html#a-traveler-who-grows",
+          "state": "Inspiration sheet · v001"
+        },
+        {
+          "id": "storybook-reference-props-materials",
+          "review": "/assets/reviews/storybook-reference/v001.html#a-shared-set-of-materials",
+          "state": "Inspiration sheet · v001"
+        },
+        {
+          "id": "era-combat-construction-reference",
+          "review": "/assets/reviews/era-combat/v001.html",
+          "state": "Inspiration sheet · v001"
+        },
+        {
+          "id": "traveler-infant",
+          "review": "/assets/reviews/traveler-infant/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "traveler-child",
+          "review": "/assets/reviews/traveler-child/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "memory-keepsake",
+          "review": "/assets/reviews/memory-keepsake/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "ground-tile",
+          "review": "/assets/reviews/clearing-path-kit/v001.html#grass-and-soil",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "path-tile",
+          "review": "/assets/reviews/clearing-path-kit/v001.html#pale-pavers",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "low-step",
+          "review": "/assets/reviews/clearing-path-kit/v001.html#one-low-rise",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "clearing-tree",
+          "review": "/assets/reviews/clearing-tree/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "clearing-stone",
+          "review": "/assets/reviews/clearing-stone/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "arrival-landmark",
+          "review": "/assets/reviews/arrival-landmark/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "spark-mallet",
+          "review": "/assets/reviews/era-equipment/v001.html#spark-mallet",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "acorn-shield",
+          "review": "/assets/reviews/era-equipment/v001.html#acorn-shield",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "prism-wand",
+          "review": "/assets/reviews/era-equipment/v001.html#prism-wand",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "ribbon-shield",
+          "review": "/assets/reviews/era-equipment/v001.html#ribbon-shield",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "blockling",
+          "review": "/assets/reviews/blockling/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "signal-moth",
+          "review": "/assets/reviews/signal-moth/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "buffer-baron",
+          "review": "/assets/reviews/buffer-baron/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "loop-dancer",
+          "review": "/assets/reviews/loop-dancer/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "prism-mimic",
+          "review": "/assets/reviews/prism-mimic/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "trendweaver",
+          "review": "/assets/reviews/trendweaver/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "mister-hiss",
+          "review": "/assets/reviews/mister-hiss/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "peel-patrol",
+          "review": "/assets/reviews/peel-patrol/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "drama-dragon",
+          "review": "/assets/reviews/drama-dragon/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "sir-flush-a-lot",
+          "review": "/assets/reviews/sir-flush-a-lot/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "nap-captain",
+          "review": "/assets/reviews/nap-captain/v001.html#paused-checkpoint",
+          "state": "Partial model · v001 · Paused"
+        },
+        {
+          "id": "one-star-diva",
+          "review": "/assets/reviews/one-star-diva/v001.html",
+          "state": "Concept only · v001 · Paused"
+        },
+        {
+          "id": "memory-collected",
+          "review": "/assets/reviews/memory-collected/v001.html#audition",
+          "state": "Sound audition · v001 · Listening review"
+        },
+        {
+          "id": "ability-unlocked",
+          "review": "/assets/reviews/ability-unlocked/v001.html#audition",
+          "state": "Sound audition · v001 · Listening review"
+        },
+        {
+          "id": "movement-landed",
+          "review": "/assets/reviews/movement-landed/v001.html#audition",
+          "state": "Sound audition · v001 · Listening review"
+        },
+        {
+          "id": "ui-confirmed",
+          "review": "/assets/reviews/ui-confirmed/v001.html#audition",
+          "state": "Sound audition · v001 · Listening review"
+        }
+      ],
+      "categoryJumps": [
+        {
+          "href": "#parody-characters",
+          "text": "Parody characters"
+        },
+        {
+          "href": "#travelers",
+          "text": "Travelers"
+        },
+        {
+          "href": "#world-and-keepsakes",
+          "text": "World and keepsakes"
+        },
+        {
+          "href": "#equipment",
+          "text": "Equipment"
+        },
+        {
+          "href": "#preserved-creature-studies",
+          "text": "Preserved creature studies"
+        },
+        {
+          "href": "#reference-sheets",
+          "text": "Reference sheets"
+        },
+        {
+          "href": "#sound-auditions",
+          "text": "Sound auditions"
+        }
+      ],
+      "images": [
+        {
+          "alt": "Model render: Mister Hiss",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/c165726c58d4ded7.webp",
+          "width": 432
+        },
+        {
+          "alt": "Inspiration for Mister Hiss",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/c0f599cff0b1bb03.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Peel Patrol",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/2b2d450c186751ff.webp",
+          "width": 432
+        },
+        {
+          "alt": "Inspiration for Peel Patrol",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/3571a2e20985a4d6.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: The Drama Dragon",
+          "complete": true,
+          "height": 453,
+          "src": "/assets/media/catalog-thumbnails/v001/62fa384f6bfe5cde.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration for The Drama Dragon",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/2cd76be82656194c.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Sir Flush-a-Lot",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/88c279d44cad8b1a.webp",
+          "width": 432
+        },
+        {
+          "alt": "Inspiration for Sir Flush-a-Lot",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/6b744e6e7e7e2580.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Nap Captain",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/38db3a49b0b39b9d.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Nap Captain",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/6ea69d7607adba1a.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: The One-Star Diva",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/9691450911f42c9c.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Infant traveler",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/cc99287ad93a182c.webp",
+          "width": 400
+        },
+        {
+          "alt": "Inspiration for Infant traveler",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Child traveler",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/0fe12aa71f9ecf4c.webp",
+          "width": 400
+        },
+        {
+          "alt": "Inspiration for Child traveler",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Memory keepsake",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/9e05ff122c19097e.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Memory keepsake",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/c6c9f76a3eab3e16.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Grass tile",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/0ac411d78aaa2f5c.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Grass tile",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/bb4f038050d6453a.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Path tile",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/2ae2bfed9f0b7f10.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Path tile",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/bb4f038050d6453a.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Low step",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/c869a55a9607c6c5.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Low step",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/bb4f038050d6453a.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Clearing tree",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/e6d09d9446175b04.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Clearing tree",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/176a4cd8fee82ca6.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Clearing stone",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/5b126701683fc06f.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Clearing stone",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/785a4385ffe5c8f6.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Lantern gateway",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/ea05da55c11ace56.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Lantern gateway",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/6ea1ca071b476e9c.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Spark Mallet",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/9e1d5796c0bf9914.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Spark Mallet",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d850335c11eca920.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Acorn Shield",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/693235231cf7caf8.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Acorn Shield",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d850335c11eca920.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Prism Wand",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/6818fa09d4f95587.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Prism Wand",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d05c26a1fbc716ba.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Ribbon Shield",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/63523c42b1660131.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Ribbon Shield",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d05c26a1fbc716ba.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Blockling",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/3f329aa3e54bf29d.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Blockling",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/96f8449e34bb7d10.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Signal Moth",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/b50a0119ee089f01.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Signal Moth",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/801894826980aaa1.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Buffer Baron",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/de0597a895152a79.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Buffer Baron",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/1ee8a794a04f24f4.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Loop Dancer",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/d3ea5ccdf2a63a03.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Loop Dancer",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/945ff0da4bf9513b.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Prism Mimic",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/7408095b1dcf7b88.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Prism Mimic",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/4000f4ebcc9e87e6.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Trendweaver",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/00475838c055ccac.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Trendweaver",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/ef135449b5393682.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: The storybook clearing",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/2d37bec7a280121c.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: Traveler age reference",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: Props and materials",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d9f37cae29190e89.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: Earlier construction sheets",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/96f8449e34bb7d10.webp",
+          "width": 640
+        },
+        {
+          "alt": "Sound waveform: A memory found · v001",
+          "complete": true,
+          "height": 147,
+          "src": "/assets/media/catalog-thumbnails/v001/0021a7a547506c07.webp",
+          "width": 640
+        },
+        {
+          "alt": "Sound waveform: A little more possible · v001",
+          "complete": true,
+          "height": 147,
+          "src": "/assets/media/catalog-thumbnails/v001/4df9117f24ee064b.webp",
+          "width": 640
+        },
+        {
+          "alt": "Sound waveform: Back on the path · v001",
+          "complete": true,
+          "height": 147,
+          "src": "/assets/media/catalog-thumbnails/v001/cd8bcf785cf094f2.webp",
+          "width": 640
+        },
+        {
+          "alt": "Sound waveform: A quiet yes · v001",
+          "complete": true,
+          "height": 147,
+          "src": "/assets/media/catalog-thumbnails/v001/162c610bb3eaa15d.webp",
+          "width": 640
+        }
+      ],
+      "noHeavyLandingRequests": true,
+      "noHorizontalOverflow": true,
+      "screenshot": "catalog-desktop.png",
+      "viewportScreenshot": "catalog-desktop-viewport.png",
+      "keyboardDestination": "/assets/reviews/mister-hiss/v001.html"
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "hasTouch": true,
+      "cards": [
+        {
+          "id": "storybook-reference-clearing",
+          "review": "/assets/reviews/storybook-reference/v001.html#the-clearing",
+          "state": "Inspiration sheet · v001"
+        },
+        {
+          "id": "storybook-reference-traveler-ages",
+          "review": "/assets/reviews/storybook-reference/v001.html#a-traveler-who-grows",
+          "state": "Inspiration sheet · v001"
+        },
+        {
+          "id": "storybook-reference-props-materials",
+          "review": "/assets/reviews/storybook-reference/v001.html#a-shared-set-of-materials",
+          "state": "Inspiration sheet · v001"
+        },
+        {
+          "id": "era-combat-construction-reference",
+          "review": "/assets/reviews/era-combat/v001.html",
+          "state": "Inspiration sheet · v001"
+        },
+        {
+          "id": "traveler-infant",
+          "review": "/assets/reviews/traveler-infant/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "traveler-child",
+          "review": "/assets/reviews/traveler-child/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "memory-keepsake",
+          "review": "/assets/reviews/memory-keepsake/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "ground-tile",
+          "review": "/assets/reviews/clearing-path-kit/v001.html#grass-and-soil",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "path-tile",
+          "review": "/assets/reviews/clearing-path-kit/v001.html#pale-pavers",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "low-step",
+          "review": "/assets/reviews/clearing-path-kit/v001.html#one-low-rise",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "clearing-tree",
+          "review": "/assets/reviews/clearing-tree/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "clearing-stone",
+          "review": "/assets/reviews/clearing-stone/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "arrival-landmark",
+          "review": "/assets/reviews/arrival-landmark/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "spark-mallet",
+          "review": "/assets/reviews/era-equipment/v001.html#spark-mallet",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "acorn-shield",
+          "review": "/assets/reviews/era-equipment/v001.html#acorn-shield",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "prism-wand",
+          "review": "/assets/reviews/era-equipment/v001.html#prism-wand",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "ribbon-shield",
+          "review": "/assets/reviews/era-equipment/v001.html#ribbon-shield",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "blockling",
+          "review": "/assets/reviews/blockling/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "signal-moth",
+          "review": "/assets/reviews/signal-moth/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "buffer-baron",
+          "review": "/assets/reviews/buffer-baron/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "loop-dancer",
+          "review": "/assets/reviews/loop-dancer/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "prism-mimic",
+          "review": "/assets/reviews/prism-mimic/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "trendweaver",
+          "review": "/assets/reviews/trendweaver/v001.html",
+          "state": "3D model · v001 · Preserved study"
+        },
+        {
+          "id": "mister-hiss",
+          "review": "/assets/reviews/mister-hiss/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "peel-patrol",
+          "review": "/assets/reviews/peel-patrol/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "drama-dragon",
+          "review": "/assets/reviews/drama-dragon/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "sir-flush-a-lot",
+          "review": "/assets/reviews/sir-flush-a-lot/v001.html",
+          "state": "3D model · v001 · Ready to review"
+        },
+        {
+          "id": "nap-captain",
+          "review": "/assets/reviews/nap-captain/v001.html#paused-checkpoint",
+          "state": "Partial model · v001 · Paused"
+        },
+        {
+          "id": "one-star-diva",
+          "review": "/assets/reviews/one-star-diva/v001.html",
+          "state": "Concept only · v001 · Paused"
+        },
+        {
+          "id": "memory-collected",
+          "review": "/assets/reviews/memory-collected/v001.html#audition",
+          "state": "Sound audition · v001 · Listening review"
+        },
+        {
+          "id": "ability-unlocked",
+          "review": "/assets/reviews/ability-unlocked/v001.html#audition",
+          "state": "Sound audition · v001 · Listening review"
+        },
+        {
+          "id": "movement-landed",
+          "review": "/assets/reviews/movement-landed/v001.html#audition",
+          "state": "Sound audition · v001 · Listening review"
+        },
+        {
+          "id": "ui-confirmed",
+          "review": "/assets/reviews/ui-confirmed/v001.html#audition",
+          "state": "Sound audition · v001 · Listening review"
+        }
+      ],
+      "categoryJumps": [
+        {
+          "href": "#parody-characters",
+          "text": "Parody characters"
+        },
+        {
+          "href": "#travelers",
+          "text": "Travelers"
+        },
+        {
+          "href": "#world-and-keepsakes",
+          "text": "World and keepsakes"
+        },
+        {
+          "href": "#equipment",
+          "text": "Equipment"
+        },
+        {
+          "href": "#preserved-creature-studies",
+          "text": "Preserved creature studies"
+        },
+        {
+          "href": "#reference-sheets",
+          "text": "Reference sheets"
+        },
+        {
+          "href": "#sound-auditions",
+          "text": "Sound auditions"
+        }
+      ],
+      "images": [
+        {
+          "alt": "Model render: Mister Hiss",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/c165726c58d4ded7.webp",
+          "width": 432
+        },
+        {
+          "alt": "Inspiration for Mister Hiss",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/c0f599cff0b1bb03.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Peel Patrol",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/2b2d450c186751ff.webp",
+          "width": 432
+        },
+        {
+          "alt": "Inspiration for Peel Patrol",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/3571a2e20985a4d6.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: The Drama Dragon",
+          "complete": true,
+          "height": 453,
+          "src": "/assets/media/catalog-thumbnails/v001/62fa384f6bfe5cde.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration for The Drama Dragon",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/2cd76be82656194c.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Sir Flush-a-Lot",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/88c279d44cad8b1a.webp",
+          "width": 432
+        },
+        {
+          "alt": "Inspiration for Sir Flush-a-Lot",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/6b744e6e7e7e2580.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Nap Captain",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/38db3a49b0b39b9d.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Nap Captain",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/6ea69d7607adba1a.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: The One-Star Diva",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/9691450911f42c9c.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Infant traveler",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/cc99287ad93a182c.webp",
+          "width": 400
+        },
+        {
+          "alt": "Inspiration for Infant traveler",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Child traveler",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/0fe12aa71f9ecf4c.webp",
+          "width": 400
+        },
+        {
+          "alt": "Inspiration for Child traveler",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Memory keepsake",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/9e05ff122c19097e.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Memory keepsake",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/c6c9f76a3eab3e16.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Grass tile",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/0ac411d78aaa2f5c.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Grass tile",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/bb4f038050d6453a.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Path tile",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/2ae2bfed9f0b7f10.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Path tile",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/bb4f038050d6453a.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Low step",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/c869a55a9607c6c5.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Low step",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/bb4f038050d6453a.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Clearing tree",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/e6d09d9446175b04.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Clearing tree",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/176a4cd8fee82ca6.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Clearing stone",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/5b126701683fc06f.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Clearing stone",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/785a4385ffe5c8f6.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Lantern gateway",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/ea05da55c11ace56.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Lantern gateway",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/6ea1ca071b476e9c.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Spark Mallet",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/9e1d5796c0bf9914.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Spark Mallet",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d850335c11eca920.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Acorn Shield",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/693235231cf7caf8.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Acorn Shield",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d850335c11eca920.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Prism Wand",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/6818fa09d4f95587.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Prism Wand",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d05c26a1fbc716ba.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Ribbon Shield",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/63523c42b1660131.webp",
+          "width": 480
+        },
+        {
+          "alt": "Inspiration for Ribbon Shield",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d05c26a1fbc716ba.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Blockling",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/3f329aa3e54bf29d.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Blockling",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/96f8449e34bb7d10.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Signal Moth",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/b50a0119ee089f01.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Signal Moth",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/801894826980aaa1.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Buffer Baron",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/de0597a895152a79.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Buffer Baron",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/1ee8a794a04f24f4.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Loop Dancer",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/d3ea5ccdf2a63a03.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Loop Dancer",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/945ff0da4bf9513b.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Prism Mimic",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/7408095b1dcf7b88.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Prism Mimic",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/4000f4ebcc9e87e6.webp",
+          "width": 640
+        },
+        {
+          "alt": "Model render: Trendweaver",
+          "complete": true,
+          "height": 480,
+          "src": "/assets/media/catalog-thumbnails/v001/00475838c055ccac.webp",
+          "width": 420
+        },
+        {
+          "alt": "Inspiration for Trendweaver",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/ef135449b5393682.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: The storybook clearing",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/2d37bec7a280121c.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: Traveler age reference",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: Props and materials",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/d9f37cae29190e89.webp",
+          "width": 640
+        },
+        {
+          "alt": "Inspiration image: Earlier construction sheets",
+          "complete": true,
+          "height": 427,
+          "src": "/assets/media/catalog-thumbnails/v001/96f8449e34bb7d10.webp",
+          "width": 640
+        },
+        {
+          "alt": "Sound waveform: A memory found · v001",
+          "complete": true,
+          "height": 147,
+          "src": "/assets/media/catalog-thumbnails/v001/0021a7a547506c07.webp",
+          "width": 640
+        },
+        {
+          "alt": "Sound waveform: A little more possible · v001",
+          "complete": true,
+          "height": 147,
+          "src": "/assets/media/catalog-thumbnails/v001/4df9117f24ee064b.webp",
+          "width": 640
+        },
+        {
+          "alt": "Sound waveform: Back on the path · v001",
+          "complete": true,
+          "height": 147,
+          "src": "/assets/media/catalog-thumbnails/v001/cd8bcf785cf094f2.webp",
+          "width": 640
+        },
+        {
+          "alt": "Sound waveform: A quiet yes · v001",
+          "complete": true,
+          "height": 147,
+          "src": "/assets/media/catalog-thumbnails/v001/162c610bb3eaa15d.webp",
+          "width": 640
+        }
+      ],
+      "noHeavyLandingRequests": true,
+      "noHorizontalOverflow": true,
+      "screenshot": "catalog-phone.png",
+      "viewportScreenshot": "catalog-phone-viewport.png",
+      "categoryJump": {
+        "href": "#sound-auditions",
+        "headingVisible": true
+      },
+      "tapDestination": "/assets/reviews/mister-hiss/v001.html"
+    }
+  ],
+  "reviews": [
+    {
+      "url": "/assets/reviews/storybook-reference/v001.html",
+      "entries": [
+        {
+          "id": "storybook-reference-clearing",
+          "fragment": "#the-clearing",
+          "inspirationImages": [
+            "docs/assets/media/storybook-reference/v001/environment.png"
+          ],
+          "models": []
+        },
+        {
+          "id": "storybook-reference-traveler-ages",
+          "fragment": "#a-traveler-who-grows",
+          "inspirationImages": [
+            "docs/assets/media/storybook-reference/v001/traveler-ages.png"
+          ],
+          "models": []
+        },
+        {
+          "id": "storybook-reference-props-materials",
+          "fragment": "#a-shared-set-of-materials",
+          "inspirationImages": [
+            "docs/assets/media/storybook-reference/v001/props-materials.png"
+          ],
+          "models": []
+        }
+      ],
+      "imageCount": 3,
+      "modelViewerCount": 0
+    },
+    {
+      "url": "/assets/reviews/era-combat/v001.html",
+      "entries": [
+        {
+          "id": "era-combat-construction-reference",
+          "inspirationImages": [
+            "docs/assets/media/blockling/v001/concept.png",
+            "docs/assets/media/signal-moth/v001/concept.png",
+            "docs/assets/media/buffer-baron/v001/concept.png",
+            "docs/assets/media/era-equipment/v001/starter-concept.png",
+            "docs/assets/media/loop-dancer/v001/concept.png",
+            "docs/assets/media/prism-mimic/v001/concept.png",
+            "docs/assets/media/trendweaver/v001/concept.png",
+            "docs/assets/media/era-equipment/v001/later-concept.png"
+          ],
+          "models": []
+        }
+      ],
+      "imageCount": 8,
+      "modelViewerCount": 0
+    },
+    {
+      "url": "/assets/reviews/traveler-infant/v001.html",
+      "entries": [
+        {
+          "id": "traveler-infant",
+          "inspirationImages": [
+            "docs/assets/media/storybook-reference/v001/traveler-ages.png"
+          ],
+          "models": [
+            "docs/assets/media/traveler-infant/v001/traveler-infant.glb"
+          ]
+        }
+      ],
+      "imageCount": 6,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/traveler-child/v001.html",
+      "entries": [
+        {
+          "id": "traveler-child",
+          "inspirationImages": [
+            "docs/assets/media/storybook-reference/v001/traveler-ages.png"
+          ],
+          "models": [
+            "docs/assets/media/traveler-child/v001/traveler-child.glb"
+          ]
+        }
+      ],
+      "imageCount": 6,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/memory-keepsake/v001.html",
+      "entries": [
+        {
+          "id": "memory-keepsake",
+          "inspirationImages": [
+            "docs/assets/media/memory-keepsake/concept-v002/concept.png",
+            "docs/assets/media/memory-keepsake/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/memory-keepsake/v001/memory-keepsake.glb"
+          ]
+        }
+      ],
+      "imageCount": 4,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/clearing-path-kit/v001.html",
+      "entries": [
+        {
+          "id": "ground-tile",
+          "fragment": "#grass-and-soil",
+          "inspirationImages": [
+            "docs/assets/media/clearing-path-kit/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/clearing-path-kit/v001/ground-tile.glb"
+          ]
+        },
+        {
+          "id": "path-tile",
+          "fragment": "#pale-pavers",
+          "inspirationImages": [
+            "docs/assets/media/clearing-path-kit/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/clearing-path-kit/v001/path-tile.glb"
+          ]
+        },
+        {
+          "id": "low-step",
+          "fragment": "#one-low-rise",
+          "inspirationImages": [
+            "docs/assets/media/clearing-path-kit/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/clearing-path-kit/v001/low-step.glb"
+          ]
+        }
+      ],
+      "imageCount": 9,
+      "modelViewerCount": 3
+    },
+    {
+      "url": "/assets/reviews/clearing-tree/v001.html",
+      "entries": [
+        {
+          "id": "clearing-tree",
+          "inspirationImages": [
+            "docs/assets/media/clearing-tree/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/clearing-tree/v001/clearing-tree.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/clearing-stone/v001.html",
+      "entries": [
+        {
+          "id": "clearing-stone",
+          "inspirationImages": [
+            "docs/assets/media/clearing-stone/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/clearing-stone/v001/clearing-stone.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/arrival-landmark/v001.html",
+      "entries": [
+        {
+          "id": "arrival-landmark",
+          "inspirationImages": [
+            "docs/assets/media/arrival-landmark/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/arrival-landmark/v001/arrival-landmark.glb"
+          ]
+        }
+      ],
+      "imageCount": 4,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/era-equipment/v001.html",
+      "entries": [
+        {
+          "id": "spark-mallet",
+          "fragment": "#spark-mallet",
+          "inspirationImages": [
+            "docs/assets/media/era-equipment/v001/starter-concept.png"
+          ],
+          "models": [
+            "docs/assets/media/era-equipment/v001/spark-mallet/spark-mallet.glb"
+          ]
+        },
+        {
+          "id": "acorn-shield",
+          "fragment": "#acorn-shield",
+          "inspirationImages": [
+            "docs/assets/media/era-equipment/v001/starter-concept.png"
+          ],
+          "models": [
+            "docs/assets/media/era-equipment/v001/acorn-shield/acorn-shield.glb"
+          ]
+        },
+        {
+          "id": "prism-wand",
+          "fragment": "#prism-wand",
+          "inspirationImages": [
+            "docs/assets/media/era-equipment/v001/later-concept.png"
+          ],
+          "models": [
+            "docs/assets/media/era-equipment/v001/prism-wand/prism-wand.glb"
+          ]
+        },
+        {
+          "id": "ribbon-shield",
+          "fragment": "#ribbon-shield",
+          "inspirationImages": [
+            "docs/assets/media/era-equipment/v001/later-concept.png"
+          ],
+          "models": [
+            "docs/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb"
+          ]
+        }
+      ],
+      "imageCount": 10,
+      "modelViewerCount": 4
+    },
+    {
+      "url": "/assets/reviews/blockling/v001.html",
+      "entries": [
+        {
+          "id": "blockling",
+          "inspirationImages": [
+            "docs/assets/media/blockling/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/blockling/v001/blockling.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/signal-moth/v001.html",
+      "entries": [
+        {
+          "id": "signal-moth",
+          "inspirationImages": [
+            "docs/assets/media/signal-moth/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/signal-moth/v001/signal-moth.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/buffer-baron/v001.html",
+      "entries": [
+        {
+          "id": "buffer-baron",
+          "inspirationImages": [
+            "docs/assets/media/buffer-baron/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/buffer-baron/v001/buffer-baron.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/loop-dancer/v001.html",
+      "entries": [
+        {
+          "id": "loop-dancer",
+          "inspirationImages": [
+            "docs/assets/media/loop-dancer/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/loop-dancer/v001/loop-dancer.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/prism-mimic/v001.html",
+      "entries": [
+        {
+          "id": "prism-mimic",
+          "inspirationImages": [
+            "docs/assets/media/prism-mimic/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/prism-mimic/v001/prism-mimic.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/trendweaver/v001.html",
+      "entries": [
+        {
+          "id": "trendweaver",
+          "inspirationImages": [
+            "docs/assets/media/trendweaver/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/trendweaver/v001/trendweaver.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/mister-hiss/v001.html",
+      "entries": [
+        {
+          "id": "mister-hiss",
+          "inspirationImages": [
+            "docs/assets/media/mister-hiss/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/mister-hiss/v001/mister-hiss.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/peel-patrol/v001.html",
+      "entries": [
+        {
+          "id": "peel-patrol",
+          "inspirationImages": [
+            "docs/assets/media/peel-patrol/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/peel-patrol/v001/peel-patrol.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/drama-dragon/v001.html",
+      "entries": [
+        {
+          "id": "drama-dragon",
+          "inspirationImages": [
+            "docs/assets/media/drama-dragon/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/drama-dragon/v001/drama-dragon.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/sir-flush-a-lot/v001.html",
+      "entries": [
+        {
+          "id": "sir-flush-a-lot",
+          "inspirationImages": [
+            "docs/assets/media/sir-flush-a-lot/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/sir-flush-a-lot/v001/sir-flush-a-lot.glb"
+          ]
+        }
+      ],
+      "imageCount": 5,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/nap-captain/v001.html",
+      "entries": [
+        {
+          "id": "nap-captain",
+          "fragment": "#paused-checkpoint",
+          "inspirationImages": [
+            "docs/assets/media/nap-captain/v001/concept.png"
+          ],
+          "models": [
+            "docs/assets/media/nap-captain/v001/nap-captain.glb"
+          ]
+        }
+      ],
+      "imageCount": 3,
+      "modelViewerCount": 1
+    },
+    {
+      "url": "/assets/reviews/one-star-diva/v001.html",
+      "entries": [
+        {
+          "id": "one-star-diva",
+          "inspirationImages": [
+            "docs/assets/media/one-star-diva/v001/concept.png"
+          ],
+          "models": []
+        }
+      ],
+      "imageCount": 1,
+      "modelViewerCount": 0
+    },
+    {
+      "url": "/assets/reviews/memory-collected/v001.html",
+      "entries": [
+        {
+          "id": "memory-collected",
+          "fragment": "#audition",
+          "inspirationImages": [],
+          "models": []
+        }
+      ],
+      "imageCount": 1,
+      "modelViewerCount": 0
+    },
+    {
+      "url": "/assets/reviews/ability-unlocked/v001.html",
+      "entries": [
+        {
+          "id": "ability-unlocked",
+          "fragment": "#audition",
+          "inspirationImages": [],
+          "models": []
+        }
+      ],
+      "imageCount": 1,
+      "modelViewerCount": 0
+    },
+    {
+      "url": "/assets/reviews/movement-landed/v001.html",
+      "entries": [
+        {
+          "id": "movement-landed",
+          "fragment": "#audition",
+          "inspirationImages": [],
+          "models": []
+        }
+      ],
+      "imageCount": 1,
+      "modelViewerCount": 0
+    },
+    {
+      "url": "/assets/reviews/ui-confirmed/v001.html",
+      "entries": [
+        {
+          "id": "ui-confirmed",
+          "fragment": "#audition",
+          "inspirationImages": [],
+          "models": []
+        }
+      ],
+      "imageCount": 1,
+      "modelViewerCount": 0
+    }
+  ],
+  "modelDeliveries": [
+    {
+      "assetId": "traveler-infant",
+      "url": "/assets/media/traveler-infant/v001/traveler-infant.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 448656,
+      "sha256": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c"
+    },
+    {
+      "assetId": "traveler-child",
+      "url": "/assets/media/traveler-child/v001/traveler-child.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 460616,
+      "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e"
+    },
+    {
+      "assetId": "memory-keepsake",
+      "url": "/assets/media/memory-keepsake/v001/memory-keepsake.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 116304,
+      "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137"
+    },
+    {
+      "assetId": "ground-tile",
+      "url": "/assets/media/clearing-path-kit/v001/ground-tile.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 50724,
+      "sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a"
+    },
+    {
+      "assetId": "path-tile",
+      "url": "/assets/media/clearing-path-kit/v001/path-tile.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 30084,
+      "sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f"
+    },
+    {
+      "assetId": "low-step",
+      "url": "/assets/media/clearing-path-kit/v001/low-step.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 15968,
+      "sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f"
+    },
+    {
+      "assetId": "clearing-tree",
+      "url": "/assets/media/clearing-tree/v001/clearing-tree.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 71316,
+      "sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9"
+    },
+    {
+      "assetId": "clearing-stone",
+      "url": "/assets/media/clearing-stone/v001/clearing-stone.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 41284,
+      "sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7"
+    },
+    {
+      "assetId": "arrival-landmark",
+      "url": "/assets/media/arrival-landmark/v001/arrival-landmark.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 118348,
+      "sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
+    },
+    {
+      "assetId": "spark-mallet",
+      "url": "/assets/media/era-equipment/v001/spark-mallet/spark-mallet.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 161872,
+      "sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae"
+    },
+    {
+      "assetId": "acorn-shield",
+      "url": "/assets/media/era-equipment/v001/acorn-shield/acorn-shield.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 184460,
+      "sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6"
+    },
+    {
+      "assetId": "prism-wand",
+      "url": "/assets/media/era-equipment/v001/prism-wand/prism-wand.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 143444,
+      "sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc"
+    },
+    {
+      "assetId": "ribbon-shield",
+      "url": "/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 197244,
+      "sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9"
+    },
+    {
+      "assetId": "blockling",
+      "url": "/assets/media/blockling/v001/blockling.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 1121948,
+      "sha256": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb"
+    },
+    {
+      "assetId": "signal-moth",
+      "url": "/assets/media/signal-moth/v001/signal-moth.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 1083900,
+      "sha256": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe"
+    },
+    {
+      "assetId": "buffer-baron",
+      "url": "/assets/media/buffer-baron/v001/buffer-baron.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 1195688,
+      "sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915"
+    },
+    {
+      "assetId": "loop-dancer",
+      "url": "/assets/media/loop-dancer/v001/loop-dancer.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 1096328,
+      "sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
+    },
+    {
+      "assetId": "prism-mimic",
+      "url": "/assets/media/prism-mimic/v001/prism-mimic.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 1079220,
+      "sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
+    },
+    {
+      "assetId": "trendweaver",
+      "url": "/assets/media/trendweaver/v001/trendweaver.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 1089712,
+      "sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
+    },
+    {
+      "assetId": "mister-hiss",
+      "url": "/assets/media/mister-hiss/v001/mister-hiss.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 1202456,
+      "sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    {
+      "assetId": "peel-patrol",
+      "url": "/assets/media/peel-patrol/v001/peel-patrol.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 652424,
+      "sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5"
+    },
+    {
+      "assetId": "drama-dragon",
+      "url": "/assets/media/drama-dragon/v001/drama-dragon.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 917980,
+      "sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933"
+    },
+    {
+      "assetId": "sir-flush-a-lot",
+      "url": "/assets/media/sir-flush-a-lot/v001/sir-flush-a-lot.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 782488,
+      "sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "assetId": "nap-captain",
+      "url": "/assets/media/nap-captain/v001/nap-captain.glb",
+      "contentType": "model/gltf-binary",
+      "bytes": 789036,
+      "sha256": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7"
+    }
+  ],
+  "napCaptain": {
+    "clips": [
+      "idle",
+      "move",
+      "attack",
+      "hit",
+      "defeat"
+    ],
+    "dimensions": {
+      "x": 0.7369427680969238,
+      "y": 1.049999937415123,
+      "z": 0.5099901449810975
+    },
+    "loaded": true,
+    "modelIsVisible": true,
+    "renderSurface": {
+      "width": 356,
+      "height": 356
+    },
+    "src": "/assets/media/nap-captain/v001/nap-captain.glb",
+    "webgl": {
+      "calls": 1,
+      "successfulContexts": 1
+    },
+    "orbit": {
+      "before": {
+        "theta": 2.705260340591211,
+        "phi": 1.3089969389957472,
+        "radius": 2.2416684051091025
+      },
+      "after": {
+        "theta": 4.727175479143135,
+        "phi": 1.3089969389957472,
+        "radius": 2.2416684051091025
+      },
+      "changed": true
+    },
+    "screenshot": "nap-captain-viewer-phone.png",
+    "state": "paused partial model; corrections remain",
+    "qualityAssessment": "not performed"
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "badResponses": [],
+  "failedRequests": [],
+  "expectedMetadataAborts": [
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/traveler-child/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/blockling/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/signal-moth/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/buffer-baron/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/loop-dancer/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/prism-mimic/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/trendweaver/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/mister-hiss/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/peel-patrol/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/drama-dragon/v001/animations.mp4"
+    },
+    {
+      "scope": "reviews-no-javascript",
+      "resourceType": "media",
+      "error": "net::ERR_ABORTED",
+      "url": "/assets/media/sir-flush-a-lot/v001/animations.mp4"
+    }
+  ],
+  "externalRequests": [],
+  "physicalSafari": "not tested",
+  "scope": "catalog delivery, responsive navigation, exact model files and Nap Captain partial-model interaction; no final art-quality claim",
+  "harnessNotes": [
+    "The current first inspiration image must be displayed inline; retained superseded concepts may instead remain reachable as local links.",
+    "Eleven raw MP4 preload-metadata requests were cancelled during the serial no-JavaScript review pass. They are reported separately because video playback was outside this audit; their cancellation cause was not independently verified."
+  ],
+  "inventoryEntries": 33,
+  "outcome": "passed"
+}
