@@ -1,0 +1,54 @@
+{
+  "date": "2026-09-11T21:24:36.009Z",
+  "scope": "Final labels and compact views after the full catalog audit",
+  "views": [
+    {
+      "name": "desktop",
+      "cards": 33,
+      "inPlaytest": [
+        "mister-hiss",
+        "peel-patrol",
+        "drama-dragon",
+        "sir-flush-a-lot",
+        "traveler-infant",
+        "traveler-child",
+        "memory-keepsake",
+        "path-tile",
+        "clearing-tree",
+        "clearing-stone",
+        "arrival-landmark",
+        "spark-mallet",
+        "acorn-shield",
+        "prism-wand",
+        "ribbon-shield"
+      ],
+      "width": 1440,
+      "viewport": 1440
+    },
+    {
+      "name": "phone",
+      "cards": 33,
+      "inPlaytest": [
+        "mister-hiss",
+        "peel-patrol",
+        "drama-dragon",
+        "sir-flush-a-lot",
+        "traveler-infant",
+        "traveler-child",
+        "memory-keepsake",
+        "path-tile",
+        "clearing-tree",
+        "clearing-stone",
+        "arrival-landmark",
+        "spark-mallet",
+        "acorn-shield",
+        "prism-wand",
+        "ribbon-shield"
+      ],
+      "width": 390,
+      "viewport": 390
+    }
+  ],
+  "pageErrors": [],
+  "outcome": "passed"
+}
