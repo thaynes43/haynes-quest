@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import { chromium } from "playwright";
+import sharp from "sharp";
 
 const base = new URL(process.env.QUEST_E2E_URL ?? "http://127.0.0.1:4173")
   .origin;
@@ -119,6 +120,59 @@ async function exerciseTouchOrbit(context, page, viewer, id) {
     Math.abs(after.phi - before.phi) > 0.01;
   assert.equal(changed, true, `${id}: touch drag changes camera orbit`);
   return { before, after, changed };
+}
+
+async function inspectRenderedModel(page, viewer, id, index) {
+  await viewer.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(500);
+  await viewer.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve)),
+      ),
+  );
+  assert.equal(
+    await viewer.evaluate((element) => element.modelIsVisible),
+    true,
+    `${id}: model ${index + 1} is visible after portrait resize`,
+  );
+
+  const box = await viewer.boundingBox();
+  assert.ok(box, `${id}: model ${index + 1} has portrait bounds`);
+  assert.ok(box.x >= -1 && box.x + box.width <= 391, `${id}: model fits width`);
+  assert.ok(
+    box.y >= -1 && box.y + box.height <= 845,
+    `${id}: model fits height`,
+  );
+  assert.ok(
+    Math.abs(box.width - box.height) <= 2,
+    `${id}: model uses its square portrait frame`,
+  );
+
+  const screenshot = await viewer.screenshot();
+  const metadata = await sharp(screenshot).metadata();
+  assert.ok(metadata.width && metadata.height);
+  const insetX = Math.max(1, Math.floor(metadata.width * 0.08));
+  const insetY = Math.max(1, Math.floor(metadata.height * 0.08));
+  const stats = await sharp(screenshot)
+    .extract({
+      left: insetX,
+      top: insetY,
+      width: metadata.width - insetX * 2,
+      height: metadata.height - insetY * 2,
+    })
+    .stats();
+  const maxRgbStandardDeviation = Math.max(
+    ...stats.channels.slice(0, 3).map((channel) => channel.stdev),
+  );
+  assert.ok(
+    maxRgbStandardDeviation > 4,
+    `${id}: model ${index + 1} produces visible pixels`,
+  );
+  return {
+    bounds: box,
+    maxRgbStandardDeviation,
+  };
 }
 
 const browser = await chromium.launch({
@@ -261,18 +315,20 @@ try {
         assert.deepEqual(model.clips, expectedClips, `${id}: exact clips`);
       }
       for (const clip of model.clips) {
-        await viewer.evaluate((element, name) => {
+        await viewer.evaluate(async (element, name) => {
+          element.pause();
           element.animationName = name;
+          await element.updateComplete;
           element.currentTime = 0;
           element.play();
         }, clip);
-        await page.waitForTimeout(180);
+        await page.waitForTimeout(320);
         const running = await viewer.evaluate((element) => ({
           paused: element.paused,
           time: element.currentTime,
         }));
         assert.equal(running.paused, false);
-        assert.ok(running.time > 0, `${id}: ${clip} advances`);
+        assert.ok(running.time > 0.05, `${id}: ${clip} advances`);
         await viewer.evaluate((element) => element.pause());
         const paused = await viewer.evaluate((element) => element.currentTime);
         await page.waitForTimeout(100);
@@ -408,10 +464,20 @@ try {
       true,
       `${id}: portrait overflow`,
     );
-    if (models)
+    for (let index = 0; index < models; index++) {
+      report.models[index].render = await inspectRenderedModel(
+        page,
+        page.locator("model-viewer").nth(index),
+        id,
+        index,
+      );
+    }
+    if (models) {
       await page.locator("model-viewer").first().scrollIntoViewIfNeeded();
-    else if (audio)
+      await page.waitForTimeout(500);
+    } else if (audio) {
       await page.locator("audio").first().scrollIntoViewIfNeeded();
+    }
     if (touchOrbitPages.has(id)) {
       report.touchOrbit = await exerciseTouchOrbit(
         context,
