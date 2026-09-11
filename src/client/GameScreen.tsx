@@ -110,7 +110,7 @@ function Adventure({
   victoryOpen.current = showVictory;
   const view = save.adventure!;
   const level = view.activeLevel;
-  const story = eraStory(level?.eraYear);
+  const story = eraStory(level?.eraYear, level);
   const bundle = save.memories.filter((memory) =>
     level?.memoryIds.includes(memory.id),
   );
@@ -120,7 +120,9 @@ function Adventure({
       (memory) => memory.state === "revealed" || memory.state === "consumed",
     );
   const weapon = view.inventory.find((item) => item.id === view.equippedId);
-  const shield = view.inventory.find((item) => item.kind === "guard-tool");
+  const shield = view.inventory
+    .filter((item) => item.kind === "guard-tool" && item.collected)
+    .sort((a, b) => b.tier - a.tier)[0];
   const boss = level?.encounters.find((enemy) => enemy.role === "boss");
   const ordinaryLeft =
     level?.encounters.filter(
@@ -284,9 +286,9 @@ function Adventure({
         ? `Absorb the memories to grow to age ${level?.targetAgeYears}.`
         : "The boss has fallen. Reclaim the memories it held."
       : !weapon
-        ? "Find the spark mallet before facing the orchard’s creatures."
+        ? "Find the spark mallet, then follow the course to the party."
         : ordinaryLeft > 0
-          ? `${ordinaryLeft} ${ordinaryLeft === 1 ? "creature stands" : "creatures stand"} between you and the boss.`
+          ? `${ordinaryLeft} ${ordinaryLeft === 1 ? "goofy guest stands" : "goofy guests stand"} between you and the boss.`
           : `Face ${story.enemies.boss}. Watch its attack warning.`;
   const activePhoto = save.memories.find((memory) => memory.id === photoDetail);
 
@@ -361,7 +363,7 @@ function Adventure({
         </div>
         <div className="equipment-line">
           <span>✦ {equipmentName(weapon)}</span>
-          {shield && <span>◈ Shield</span>}
+          {shield && <span>◈ {equipmentName(shield)}</span>}
         </div>
       </aside>
       <div className="era-objective" aria-live="polite">
@@ -468,14 +470,19 @@ function Adventure({
           onClose={() => setShowHelp(false)}
         >
           <p>
-            Find equipment in the level and use it against the creatures. Defeat
-            both creatures to wake the boss. Step out of the red attack circle,
-            or use your shield to soften the hit.
+            Find tools and shields, dodge the silly guests and beat the boss.
+            Step out of a red attack circle, or guard with your shield.
           </p>
           <p>
             After the boss falls, remember the pictures it releases. Absorb that
             bundle to grow older and enter the next period. Your gear and
             learned abilities stay with you.
+          </p>
+          <p>
+            Take your time with the obstacles. Watch a padded sweeper pass, then
+            walk around it. When you learn to jump, hop over the short gaps and
+            ride the yellow platform. Glowing circles mark safe places: a slip
+            brings you back nearby with your gear and victories.
           </p>
           <dl>
             <dt>Touch</dt>

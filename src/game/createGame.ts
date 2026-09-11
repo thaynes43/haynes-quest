@@ -418,13 +418,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     ) {
       return false;
     }
-    if (
-      controller.position.y - frame.position.y > 0.3 ||
-      controller.position.y +
-        getAvatarProportions(save.appearance.stage).height <
-        frame.position.y
-    )
-      return false;
+    if (Math.abs(controller.position.y - frame.position.y) > 0.3) return false;
     const range = encounter.role === "boss" ? 1.75 : 1.35;
     return horizontalDistance(controller.position, frame.position) <= range;
   };

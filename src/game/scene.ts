@@ -1,4 +1,7 @@
 import * as THREE from "three";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { ObbyScene } from "./obby-scene";
+import type { ObbyCourse } from "./obby";
 import type { AppearanceStage, SaveView } from "../shared/contracts";
 import { getAvatarProportions } from "./controller";
 import type { LevelLayout } from "./level";
@@ -48,6 +51,8 @@ export class GardenScene {
   private readonly camera = new THREE.PerspectiveCamera(48, 1, 0.08, 100);
   private readonly renderer: THREE.WebGLRenderer;
   private readonly assets = new SceneAssets();
+  private readonly environment: THREE.WebGLRenderTarget;
+  private obbyVisual: ObbyScene | null = null;
   private readonly resizeObserver: ResizeObserver | null;
   private readonly sun = new THREE.DirectionalLight(0xffdc9b, 2.7);
   private readonly target = new THREE.Vector3();
@@ -98,10 +103,17 @@ export class GardenScene {
       touchAction: "none",
     });
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.15;
+    const room = new RoomEnvironment();
+    const generator = new THREE.PMREMGenerator(this.renderer);
+    this.environment = generator.fromScene(room, 0.04);
+    this.scene.environment = this.environment.texture;
+    this.scene.environmentIntensity = 0.65;
+    room.dispose();
+    generator.dispose();
     container.append(this.canvas);
     this.scene.add(new THREE.HemisphereLight(0xffedce, 0x617284, 1.5));
     this.sun.castShadow = true;
@@ -157,6 +169,7 @@ export class GardenScene {
     this.memories.clear();
     this.pickups.clear();
     this.enemies.clear();
+    this.obbyVisual = null;
     this.scene.remove(this.world);
     disposeTree(this.world);
     this.world = new THREE.Group();
@@ -165,7 +178,10 @@ export class GardenScene {
     this.cameraYaw = 0;
     this.cameraPitch = 0.4;
     this.cameraPlaced = false;
-    const later = (save.adventure?.activeLevel?.eraYear ?? 2020) >= 2024;
+    const period = save.adventure?.activeLevel?.periodId;
+    const later = period
+      ? period === "remix-runway-v1"
+      : (save.adventure?.activeLevel?.eraYear ?? 2020) >= 2024;
     const palette = later ? palettes.fair : palettes.orchard;
     this.scene.background = new THREE.Color(palette.sky);
     this.scene.fog = new THREE.Fog(palette.sky, 15, 45);
@@ -175,16 +191,30 @@ export class GardenScene {
     const valid = () => !this.disposed && generation === this.routeGeneration;
     const ground = shapeMesh(
       new THREE.PlaneGeometry(64, 110, 48, 80),
-      material(palette.grass),
-      [0, -0.045, -13],
+      material(level.course ? 0x88c1c5 : palette.grass),
+      [0, level.course ? -1.4 : -0.045, -13],
     );
     ground.rotation.x = -Math.PI / 2;
     ground.castShadow = false;
     this.world.add(ground);
+    if (level.course) {
+      this.obbyVisual = new ObbyScene(level.course, later);
+      this.world.add(this.obbyVisual.root);
+      for (const side of [-1, 1])
+        this.world.add(
+          shapeMesh(
+            new THREE.BoxGeometry(16, 1.4, 80),
+            material(palette.grass),
+            [side * 17.5, -0.7, -13],
+          ),
+        );
+    }
     const pathPlacements: THREE.Matrix4[] = [];
     for (let z = 4; z >= -26; z -= 2) {
       const xs = z < -18 ? [-2, 0, 2] : [Math.sin(z * 0.22) * 0.45];
       for (const x of xs) {
+        if (level.course && (later || !this.onIsland(level.course, x, z, 1.05)))
+          continue;
         const tile = new THREE.Group();
         tile.position.set(x, -0.012, z);
         tile.rotation.y = z % 4 ? Math.PI : 0;
@@ -201,7 +231,9 @@ export class GardenScene {
         castShadow: false,
       },
     );
-    const groundColor = new THREE.Color(palette.grass);
+    const groundColor = new THREE.Color(
+      level.course ? 0x88c1c5 : palette.grass,
+    );
     const groundPositions = ground.geometry.getAttribute("position");
     const colors = new Float32Array(groundPositions.count * 3);
     for (let i = 0; i < groundPositions.count; i++) {
@@ -224,7 +256,7 @@ export class GardenScene {
       const side = i % 2 ? 1 : -1;
       const tree = new THREE.Group();
       tree.position.set(
-        side * (7.1 + (i % 3) * 0.85),
+        side * ((level.course ? 10.1 : 7.1) + (i % 3) * 0.85),
         0,
         4 - Math.floor(i / 2) * 4.8,
       );
@@ -234,7 +266,11 @@ export class GardenScene {
       treePlacements.push(tree.matrix.clone());
       if (i % 2 === 0) {
         const stone = new THREE.Group();
-        stone.position.set(-side * 6.5, -0.04, tree.position.z - 2.2);
+        stone.position.set(
+          -side * (level.course ? 9.9 : 6.5),
+          -0.04,
+          tree.position.z - 2.2,
+        );
         stone.rotation.y = i * 2.1;
         stone.scale.setScalar(0.8 + (i % 3) * 0.1);
         stone.updateMatrix();
@@ -264,8 +300,8 @@ export class GardenScene {
       hill.receiveShadow = false;
       this.world.add(hill);
     }
-    this.addMeadow(later);
-    this.addEraDetails(later);
+    this.addMeadow(later, level.course);
+    if (!level.course) this.addEraDetails(later);
     const gate = new THREE.Group();
     gate.position.set(level.finish.x, 0, level.finish.z);
     gate.scale.setScalar(1.4);
@@ -435,6 +471,10 @@ export class GardenScene {
     if (this.disposed) return;
     const dt = frame?.deltaSeconds ?? 0;
     const elapsed = (this.visualTime += dt);
+    if (frame?.obby)
+      this.obbyVisual?.update(frame.obby, frame.checkpointId ?? null);
+    (this.guardRing.material as THREE.MeshBasicMaterial).opacity =
+      frame?.recovering ? 0.6 : 0.8;
     this.traveler.position.set(position.x, position.y, position.z);
     this.traveler.rotation.y = facing;
     if (frame?.attacking && !this.previousAttack) this.attackAt = elapsed;
@@ -443,7 +483,7 @@ export class GardenScene {
     this.slash.visible = attackTime < 0.28;
     this.slash.rotation.z = -1.3 + attackTime * 12;
     this.slash.position.y = this.stage === "infant" ? 0.45 : 0.78;
-    this.guardRing.visible = frame?.guarding ?? false;
+    this.guardRing.visible = Boolean(frame?.guarding || frame?.recovering);
 
     const desiredClip =
       !frame?.grounded && this.clips.has("jump")
@@ -517,6 +557,7 @@ export class GardenScene {
     disposeTree(this.world);
     disposeTree(this.traveler);
     this.assets.dispose();
+    this.environment.dispose();
     this.renderer.renderLists.dispose();
     this.renderer.dispose();
     this.renderer.forceContextLoss();
@@ -758,7 +799,21 @@ export class GardenScene {
     }
   }
 
-  private addMeadow(later: boolean): void {
+  private onIsland(
+    course: ObbyCourse,
+    x: number,
+    z: number,
+    inset = 0,
+  ): boolean {
+    return course.platforms.some(
+      (platform) =>
+        !platform.motion &&
+        Math.abs(x - platform.center.x) <= platform.size.x / 2 - inset &&
+        Math.abs(z - platform.center.z) <= platform.size.z / 2 - inset,
+    );
+  }
+
+  private addMeadow(later: boolean, course?: ObbyCourse): void {
     const bladeGeometry = new THREE.BufferGeometry();
     bladeGeometry.setAttribute(
       "position",
@@ -789,7 +844,11 @@ export class GardenScene {
       dummy.rotation.set(0, i * 1.7, 0);
       dummy.scale.setScalar(0.55 + (i % 9) / 11);
       // Keep the final battle floor clear and readable.
-      if (z < -18 && Math.abs(x) < 3.2) dummy.scale.setScalar(0);
+      if (
+        (z < -18 && Math.abs(x) < 3.2) ||
+        (course && (later || !this.onIsland(course, x, z, 0.3)))
+      )
+        dummy.scale.setScalar(0);
       dummy.updateMatrix();
       grass.setMatrixAt(i, dummy.matrix);
       if (i < 160) {

@@ -34,7 +34,7 @@ export function material(
 
 export function shapeMesh(
   geometry: THREE.BufferGeometry,
-  mat: THREE.Material,
+  mat: THREE.Material | THREE.Material[],
   position: [number, number, number] = [0, 0, 0],
 ): THREE.Mesh {
   const object = new THREE.Mesh(geometry, mat);
