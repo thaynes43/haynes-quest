@@ -1,0 +1,33 @@
+/** Exact-byte Khronos validation and WO-014 resource/clip contract. */
+import {createRequire} from 'node:module';
+import {readFile,writeFile} from 'node:fs/promises';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+const require=createRequire(import.meta.url);
+const validator=require(process.env.GLTF_VALIDATOR_PATH||'gltf-validator');
+const root=process.argv[2]||'/workspace/haynes-quest/era-2020/v001';
+const names=process.argv.slice(3);if(!names.length)names.push('blockling','signal-moth','buffer-baron');
+let failed=false;
+for(const name of names){
+ const folder=path.join(root,name),file=name+'.glb',data=await readFile(path.join(folder,file));
+ const gltf=JSON.parse(data.subarray(20,20+data.readUInt32LE(12)).toString());
+ const report=await validator.validateBytes(new Uint8Array(data),{uri:file,maxIssues:200,externalResourceFunction:async uri=>{throw Error('Unexpected external URI '+uri);}});
+ const prim=gltf.meshes.flatMap(m=>m.primitives);
+ const triangles=prim.reduce((n,p)=>n+gltf.accessors[p.indices].count/3,0);
+ const clips=(gltf.animations||[]).map(a=>({name:a.name,duration_s:Math.max(...a.samplers.map(s=>gltf.accessors[s.input].max[0])),channels:a.channels.length}));
+ const checks={gltf_2:gltf.asset.version==='2.0',khronos_no_errors:report.issues.numErrors===0,khronos_no_warnings:report.issues.numWarnings===0,
+  five_exact_clips:clips.map(c=>c.name).sort().join()===['idle','move','attack','hit','defeat'].sort().join(),
+  positive_animated_clips:clips.every(c=>c.duration_s>0&&c.channels>0),triangle_budget_15000:triangles<=15000,material_budget_6:gltf.materials.length<=6,
+  primitive_budget_6:prim.length<=6,glb_budget_2_mib:data.length<=2097152,one_embedded_pigment_image:gltf.images?.length===1,
+  embedded_resources:[...(gltf.buffers||[]),...(gltf.images||[])].every(r=>!r.uri),no_required_extensions:!(gltf.extensionsRequired?.length),
+  all_have_vertex_colors:prim.every(p=>p.attributes.COLOR_0!==undefined),all_have_atlas_uv:prim.every(p=>p.attributes.TEXCOORD_0!==undefined),single_skin:gltf.skins.length===1,
+  at_most_4_influences:prim.every(p=>p.attributes.JOINTS_0!==undefined&&p.attributes.JOINTS_1===undefined),
+  opaque_surfaces:gltf.materials.every(m=>!m.alphaMode||m.alphaMode==='OPAQUE')};
+ const record={asset_id:name,file,sha256:createHash('sha256').update(data).digest('hex'),bytes:data.length,triangles,draw_primitives:prim.length,
+  materials:gltf.materials.map(m=>({name:m.name,pbr:m.pbrMetallicRoughness,emissive:m.emissiveFactor})),joints:gltf.skins[0].joints.map(j=>gltf.nodes[j].name),
+  clips,extensions_used:gltf.extensionsUsed||[],checks,validator:report};
+ await writeFile(path.join(folder,'validation.json'),JSON.stringify(record,null,2)+'\n');
+ const failures=Object.entries(checks).filter(([,v])=>!v).map(([k])=>k);failed||=failures.length>0;
+ console.log(JSON.stringify({name,triangles,bytes:data.length,primitives:prim.length,issues:report.issues,failures}));
+}
+process.exitCode=failed?1:0;

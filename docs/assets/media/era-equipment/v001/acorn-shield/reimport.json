@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "asset_id": "acorn-shield",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender_version": "4.5.13 LTS",
+  "glb_sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6",
+  "bounds_blender": {
+    "min": [
+      -0.14317315816879272,
+      -0.011844933032989502,
+      -0.12172707170248032
+    ],
+    "max": [
+      0.14317315816879272,
+      0.12478292733430862,
+      0.27827292680740356
+    ],
+    "dimensions": [
+      0.28634631633758545,
+      0.13662786036729813,
+      0.3999999985098839
+    ]
+  },
+  "source_dimension_error_m": 0.0,
+  "all_named_source_parts_preserved": true,
+  "source_parts": {
+    "Acorn shield convex solid walnut body": {
+      "source_vertices_checked": 322,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield soft hammered brass rim": {
+      "source_vertices_checked": 288,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield front rim rivet 0": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield back rim rivet 0": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield front rim rivet 1": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield front rim rivet 2": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield back rim rivet 2": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield front rim rivet 3": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield front rim rivet 4": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield back rim rivet 4": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield front rim rivet 5": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield front rim rivet 6": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield back rim rivet 6": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield front rim rivet 7": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn sprout center leaf": {
+      "source_vertices_checked": 28,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn sprout center leaf carved midrib": {
+      "source_vertices_checked": 25,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn sprout left leaf": {
+      "source_vertices_checked": 28,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn sprout left leaf carved midrib": {
+      "source_vertices_checked": 25,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn sprout right leaf": {
+      "source_vertices_checked": 28,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn sprout right leaf carved midrib": {
+      "source_vertices_checked": 25,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn sprout stem": {
+      "source_vertices_checked": 21,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn crown cap": {
+      "source_vertices_checked": 60,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield open rear forearm strap": {
+      "source_vertices_checked": 36,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield strap left walnut anchor": {
+      "source_vertices_checked": 56,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield strap left fixing": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield strap left fixing.001": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield strap right walnut anchor": {
+      "source_vertices_checked": 56,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield strap right fixing": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn shield strap right fixing.001": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn rear hand grip solid mount": {
+      "source_vertices_checked": 56,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn rear hand grip fixing": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn rear hand grip solid mount.001": {
+      "source_vertices_checked": 56,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn rear hand grip fixing.001": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Acorn distinct rear hand grip": {
+      "source_vertices_checked": 48,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    }
+  },
+  "mesh_objects": [
+    {
+      "name": "acorn-shield_grip",
+      "vertices": 2732,
+      "triangles": 3624,
+      "materials": [
+        "Walnut",
+        "Brass",
+        "Sage",
+        "Plum"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    }
+  ],
+  "checks": {
+    "source_geometry_preserved": true,
+    "source_dimensions_preserved": true,
+    "height_contract": true,
+    "separate_forearm_and_hand_geometry": true
+  },
+  "rear_attachment_parts": [
+    "Acorn shield open rear forearm strap",
+    "Acorn distinct rear hand grip"
+  ]
+}

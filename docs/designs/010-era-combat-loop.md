@@ -25,9 +25,9 @@ A photo pickup or reveal cannot change age mid-level. Boss defeat alone cannot s
 
 Equipment must be visible and useful: a starting attack tool, protective equipment and later improvement demonstrate a reason to explore. Enemies need readable attack preparation, hits, health and defeat feedback, with a larger boss that changes the level's objective. Touch movement, camera and combat actions must work together. Failure offers a clear retry without deleting acquired equipment, finished levels or remembered photos.
 
-The victory reward gives the actual memory pictures space on screen. Distinguish locked, revealed and consumed states; communicate failed image loads and offer retry instead of showing an unexplained blank tile. The next period is visibly introduced with its age/year and changed enemies/environment accents. The character remains at the level's starting age throughout combat.
+After victory, the boss’s defeat motion plays in the world. The player can choose **Reclaim your memories** to open the reward. The reward panel gives the actual memory pictures space on screen. It does not automatically pause the world in the middle of the boss's defeat. Distinguish locked, revealed and consumed states; communicate failed image loads and offer retry instead of showing an unexplained blank tile. The next period is visibly introduced with its age/year and changed enemies/environment accents. The character remains at the level's starting age throughout combat.
 
-The authored traveler and clearing candidates can materially improve the current scene; demo integration is awaiting the explicit owner decision recorded in PLAN-005. Creature/equipment direction remains original and consistent with the storybook palette. Preserve exact asset versions and avoid treating a gameplay code merge as final art approval.
+The authored traveler and clearing candidates can materially improve the current scene; demo integration is awaiting the explicit owner decision recorded in PLAN-005. Enemies must be recognizable pop-culture parodies under DESIGN-005; the rejected wooden creature studies are preserved only for possible friendly/ambient use. Equipment and environment art may retain the storybook palette. Preserve exact asset versions and avoid treating a gameplay code merge as final art approval.
 
 ## Persistence and authority
 
@@ -44,3 +44,11 @@ Prototype v1 records used incompatible age/completion semantics. Preserve them a
 The deployed Chromium reproduction retrieved and decoded all three fixture SVGs, including three successful WebGL uploads. These are simple fictional drawings, not photographs pulled from Immich. That successful desktop result does not reproduce or dismiss Tom's blank tiles on his browser. The current loader swallows failures and marks the URL attempted before success, preventing a useful retry. A fixture SVG CSP change that preserves its same origin addresses a compatibility risk; actual WebKit execution was unavailable in the pod, so it is not a proven Safari root cause.
 
 Real private photos still need admitted-player access and connection/subject configuration. The fixture web process must not receive the Immich secret or gain a placeholder route to family media. Keep this limitation explicit until the actual integration is exercised.
+
+## Authored visual intake
+
+The isolated candidate scene uses the existing traveler/clearing models and hand-attached equipment for technical review. The six newly authored wooden creature studies are removed from enemy integration after Tom's direction correction. Their archived model pages do not demonstrate that the intended enemy vision is fulfilled. The reusable animation adapter and asset loading/ownership fixes remain useful for the replacement parody cast.
+
+## Obstacle-course play
+
+[DESIGN-011](011-forgiving-obby.md) adds Tom's explicit requirement for Roblox-style obby play woven through combat: visible hazards, movement timing and jumps, with a main route appropriate for his six-year-old daughter. A flat combat corridor is not sufficient. Keep hazards solvable with the current abilities, and preserve equipment, memories and finished fights through a missed jump or local checkpoint recovery.

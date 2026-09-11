@@ -1,0 +1,14 @@
+{
+  "asset_id": "acorn-shield",
+  "source_sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6",
+  "all_complete": true,
+  "quick": false,
+  "resolution_px": 900,
+  "views": [
+    "beauty",
+    "front",
+    "side",
+    "back",
+    "rear-grip"
+  ]
+}

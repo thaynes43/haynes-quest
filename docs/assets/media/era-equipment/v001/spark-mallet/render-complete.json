@@ -1,0 +1,13 @@
+{
+  "asset_id": "spark-mallet",
+  "source_sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae",
+  "all_complete": true,
+  "quick": false,
+  "resolution_px": 900,
+  "views": [
+    "beauty",
+    "front",
+    "side",
+    "back"
+  ]
+}

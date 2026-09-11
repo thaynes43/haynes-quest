@@ -1,6 +1,6 @@
 # First-pass catalog
 
-This is the initial inventory for one compact playable slice. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The original overnight inventory is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
+This catalog preserves the original overnight inventory and the required two-era combat expansion below. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The original overnight inventory is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
 
 [Browser delivery audit](media/storybook-reference/v001/browser-intake/catalog-local-report.json): 12 pages, nine models, seven clips and four decoded auditions; zero page/console errors, failed responses or external asset requests. [Combined clearing preview](media/clearing-path-kit/v001/kit-beauty.png).
 
@@ -36,10 +36,26 @@ Copy the [review template](000-review-template.md) to a versioned review page; r
 
 The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concept v002 with its rear wedge restored in the back view, following Tom’s September 11 feedback. The model remains v001; its support was already present.
 
-## Corrected combat slice: work in progress
+## Equipment and preserved creature studies
 
-Tom’s review expanded the required playable loop to equipment, period enemies and bosses. The earlier nine-model inventory remains preserved, but it does not cover these new needs. The current game review loads the existing traveler/environment GLBs; new encounter and equipment studies remain temporary. No demo-use or final approval has been recorded.
+The correction produced ten additional models: six animated creature studies and four tools. Tom found the creature models useful as possible friendly or ambient characters, but **they do not fit his enemy vision**. They are not selected for enemy use. Actual enemies must be recognizable pop-culture parodies; [DESIGN-005](../designs/005-era-enemy-catalog.md) records that correction.
 
-[Review the complete concept set](reviews/era-combat/v001.md): Blockling, Signal Moth, Buffer Baron, Loop Dancer, Prism Mimic and Trendweaver, plus Spark Mallet, Acorn Shield, Prism Wand and Ribbon Shield. Eight sheets show the six creatures and four tools with source prompts, exact hashes and rear construction views.
+The full catalog now preserves nineteen model candidates, including the original nine. All exact-version approvals remain pending. The creature studies' thirty animation clips and source masters remain useful production artifacts; no friendly role is automatically approved or placed in the game.
 
-All concepts were generated serially with built-in image generation and selected by the lead. [WO-014](../../.agents/work-orders/014-blender-era-2020.md) records the initial task-capacity failure and the subsequent successful fresh Astra dispatch after a code lane completed. The 2020 creature models are now in production. New enemy models, equipment exports and their animation/review packages are unfinished. The assigned Astra author owns the scene exclusively; no model-provider fallback is used. [PLAN-005](../../.agents/plans/005-era-combat-loop.md) remains in progress.
+[Original construction sheets](reviews/era-combat/v001.md) retain the lead's earlier direction for traceability. Review the actual exports separately:
+
+| Candidate | Actual model review | Current role / review |
+| --- | --- | --- |
+| Blockling | [Model and five clips](reviews/blockling/v001.md) | Possible friendly/ambient study · not an enemy |
+| Signal Moth | [Model and five clips](reviews/signal-moth/v001.md) | Possible friendly/ambient study · not an enemy |
+| Buffer Baron | [Model and five clips](reviews/buffer-baron/v001.md) | Possible friendly/ambient study · not an enemy |
+| Loop Dancer | [Model and five clips](reviews/loop-dancer/v001.md) | Possible friendly/ambient study · not an enemy |
+| Prism Mimic | [Model and five clips](reviews/prism-mimic/v001.md) | Possible friendly/ambient study · not an enemy |
+| Trendweaver | [Model and five clips](reviews/trendweaver/v001.md) | Possible friendly/ambient study · not an enemy |
+| Spark Mallet, Acorn Shield, Prism Wand, Ribbon Shield | [Four tools, including rear grips](reviews/era-equipment/v001.md) | Equipment candidates · Tom review pending |
+
+All concepts were generated serially by the lead. Fresh Astra Blender authors completed the [first creature set](../../.agents/work-orders/014-blender-era-2020-evidence.md), [later creature set](../../.agents/work-orders/016-blender-era-2024-evidence.md) and [equipment](../../.agents/work-orders/017-blender-era-equipment-evidence.md), preserving exact exports and masters. All scene leases and render jobs have ended. Their individual format, animation and browser checks are recorded; the [combined catalog audit](media/era-catalog-intake/v001/report.json) passed seven pages, ten models, thirty clips, two touch orbits and ten independently retrieved masters. No unexpected HTTP, request, console or page failures occurred. Chromium emulation does not establish physical Safari performance.
+
+## Replacement parody direction
+
+[Mister Hiss](reviews/mister-hiss/v001.md) is the first replacement concept: a recognizable Minecraft Creeper parody with a confetti-sneeze attack. It has a concept sheet and exact prompt, with no model yet. The replacement roster and forgiving obby work remain in progress.

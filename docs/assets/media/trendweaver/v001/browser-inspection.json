@@ -1,0 +1,113 @@
+{
+  "asset_id": "trendweaver",
+  "glb_sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce",
+  "gltf_clips": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "defeat"
+  ],
+  "skinned_primitives": 6,
+  "embedded_images": [
+    {
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "render": {
+    "calls_including_one_ground": 7,
+    "triangles_including_one_ground": 14876,
+    "textures": 3
+  },
+  "gl_error": 0,
+  "webgl_version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "three_revision": "186",
+  "clips": {
+    "idle": {
+      "duration_s": 2.5,
+      "raster_sha256": [
+        "f5ce3ed730cc5cb168433d435e0189692615a3108a30112b9b025f4f0d684f5c",
+        "f85b695ca6f509b58753545ecb50210012d42a9071654d242f1e749e09c80dcc",
+        "5181a1014dc3f2044469d32e628a4e31f66342a42da27caf79721f8b768e3f57",
+        "82eb495e0896f8cdc6784294afe751ea259a5df62c5dce38193f79f73058a76c"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "move": {
+      "duration_s": 1.25,
+      "raster_sha256": [
+        "5dc7539f7ada1725d01e721f63b5f52fc0807f6898d49b09c1696d54a2ce0cc9",
+        "fb3db2dd67067f1a80add50b30630cafa805566e9279a3a02f4e063ddb63d47f",
+        "f01e385499ad2b1ef8372645360496506d6ee3d3615e0768d39b1d005c1cb46b",
+        "cd912becc03829db14d6321843701fd3f1ecb698b472f6f4bbe5374af7be7387"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "attack": {
+      "duration_s": 1.875,
+      "raster_sha256": [
+        "218daa50af9bea44a56780457cfbc82e432ce88ffcf2ec39045de66e23f60c2e",
+        "6eddbc7bca313e5bbc1a5edd2d77bad2228af337a779c711dc449528c8d5c7b4",
+        "b796f3e99eaa8a00739b00597d4221cd05648ecc9220139a91d69505c8a34e3e",
+        "d08710a5136fdde0cc109b2a6fa8bf3cef616bb66e542c1ba93774e581a62b49"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "hit": {
+      "duration_s": 0.625,
+      "raster_sha256": [
+        "2808df212f48afbb84addeb7d90464d41a52a4fd37af459c42b7c8c77692e724",
+        "1520208f468e4eaf17158efd7ab94360e76075ffb90c2179aea2f253a03afc72",
+        "f3b572d76cdf11b70fd780f4bab2ef2be75b48b256e7983eb1e7d17c9a34dae9",
+        "f797ae747092233980d5b580003625c56c02878fef7385df78eb2ff96c5367d1"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "defeat": {
+      "duration_s": 2,
+      "raster_sha256": [
+        "587b949cd50055a28c40907a8552ca1fd3699dd5eccde77eff7ca374c7b4ca0f",
+        "d29473109d925218cf03305d585770439a8a4693232f31e38ea1583e417720be",
+        "f22f6f9717f9aa38e2d7d95b8b15dd86fda2d4ee20283393a487b1d3cc2e93ed",
+        "7a7280e48e6f3cbaf96b16de72f6d16405844243d6cb3f8b1943fb1e42c19fa6"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    }
+  },
+  "browser": "153.0.8010.12",
+  "renderer": "Chromium headless with ANGLE SwiftShader (software WebGL)",
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:41139/",
+    "http://127.0.0.1:41139/three/build/three.module.js",
+    "http://127.0.0.1:41139/three/examples/jsm/loaders/GLTFLoader.js",
+    "http://127.0.0.1:41139/three/examples/jsm/utils/BufferGeometryUtils.js",
+    "http://127.0.0.1:41139/three/examples/jsm/utils/SkeletonUtils.js",
+    "http://127.0.0.1:41139/three/build/three.core.js",
+    "http://127.0.0.1:41139/assets/loop-dancer.glb",
+    "blob:http://127.0.0.1:41139/f015e3cb-4ff1-47db-b179-958e7c383b76",
+    "http://127.0.0.1:41139/assets/prism-mimic.glb",
+    "blob:http://127.0.0.1:41139/69154818-6a8d-4d58-b9d8-545f85bfff92",
+    "http://127.0.0.1:41139/assets/trendweaver.glb",
+    "blob:http://127.0.0.1:41139/fb01d3a8-f24f-490a-a573-c7dd81a516c0"
+  ],
+  "checks": {
+    "exact_glb_hash": true,
+    "six_skinned_draw_primitives": true,
+    "one_embedded_1024_image": true,
+    "expected_color_draws": true,
+    "expected_triangle_count": true,
+    "five_expected_clips": true,
+    "every_clip_changes_actual_raster": true,
+    "webgl_error_free": true,
+    "browser_error_free": true,
+    "no_external_requests": true
+  },
+  "limitations": "Isolated exact-GLB software WebGL intake; not integrated gameplay, physical Safari, GPU performance or owner approval."
+}

@@ -1,0 +1,65 @@
+{
+  "asset_id": "buffer-baron",
+  "version": "v001",
+  "glb": "buffer-baron.glb",
+  "glb_sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915",
+  "runtime_scale": 1.0,
+  "units": "meters",
+  "up": "+Y",
+  "forward": "-Z",
+  "root_origin": "ground; fixed local translation",
+  "ground_to_top_m": 1.85,
+  "lowest_rest_geometry_y_m": 0.1,
+  "wingspan_m": null,
+  "clip_playback": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "impact_time_s": null,
+      "playback": "repeat",
+      "clamp_when_finished": false
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "impact_time_s": null,
+      "playback": "repeat",
+      "clamp_when_finished": false
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.75,
+      "loop": false,
+      "impact_time_s": 1.05,
+      "playback": "once",
+      "clamp_when_finished": true
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5833333333333334,
+      "loop": false,
+      "impact_time_s": null,
+      "playback": "once",
+      "clamp_when_finished": true
+    },
+    {
+      "name": "defeat",
+      "duration_s": 1.75,
+      "loop": false,
+      "impact_time_s": null,
+      "playback": "once",
+      "clamp_when_finished": true
+    }
+  ],
+  "attack": {
+    "duration_s": 1.75,
+    "contact_time_s": 1.05,
+    "contact_fraction": 0.6,
+    "windup_to_contact_s": 1.05,
+    "follow_through_s": 0.7
+  },
+  "defeat_end": "Collapsed/drooping pose; play once and clamp the last frame until removal. Do not reset to bind pose.",
+  "lifecycle": "Stop actions, uncache mixer root and dispose resources when the owning encounter is removed; controller movement stays external."
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "source": "Exact delivered GLB loaded and rasterized by Three.js GLTFLoader in headless Chromium",
+  "three_version": "0.186.0",
+  "browser_version": "153.0.8010.12",
+  "glb_sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae",
+  "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "asset_id": "spark-mallet",
+  "bounds_gltf": {
+    "min": [
+      -0.17106689512729645,
+      -0.1103978231549263,
+      -0.11437612026929855
+    ],
+    "max": [
+      0.17106689512729645,
+      0.43960216641426086,
+      0.11437612026929855
+    ],
+    "dimensions": [
+      0.3421337902545929,
+      0.5499999895691872,
+      0.2287522405385971
+    ]
+  },
+  "triangles": 3728,
+  "draw_primitives": 4,
+  "material_count": 4,
+  "images": [
+    {
+      "material": "Walnut",
+      "width": 512,
+      "height": 512,
+      "colorSpace": "srgb"
+    },
+    {
+      "material": "Brass",
+      "width": 512,
+      "height": 512,
+      "colorSpace": "srgb"
+    },
+    {
+      "material": "Plum",
+      "width": 512,
+      "height": 512,
+      "colorSpace": "srgb"
+    }
+  ],
+  "clips": [],
+  "render": {
+    "calls": 9,
+    "triangles": 7458,
+    "textures": 6,
+    "geometries": 5
+  },
+  "screenshots": [
+    "browser-beauty.png",
+    "browser-front.png",
+    "browser-side.png",
+    "browser-back.png"
+  ],
+  "checks": {
+    "exact_height_m": true,
+    "source_bounds_match": true,
+    "runtime_triangle_budget": true,
+    "runtime_primitive_budget": true,
+    "runtime_material_budget": true,
+    "all_maps_512px": true,
+    "no_clips_required": true,
+    "no_page_errors": true,
+    "no_console_errors": true,
+    "no_failed_responses": true,
+    "no_external_requests": true
+  },
+  "page_errors": [],
+  "console_errors": [],
+  "failed_responses": [],
+  "external_requests": [],
+  "limitations": [
+    "Chromium with SwiftShader, not a physical device or Safari measurement.",
+    "Studio intake only; no gameplay approval or final hand pose is claimed."
+  ]
+}

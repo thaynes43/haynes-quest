@@ -1,0 +1,544 @@
+{
+  "asset_id": "loop-dancer",
+  "version": "v001",
+  "status": "candidate; owner review pending",
+  "glb_sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79",
+  "work_order": "WO-016",
+  "authoring": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "blender": "4.5.13 LTS",
+    "source_method": "Original scripted rounded meshes, relief, procedural pigment bake, rigid-part and ribbon skinning."
+  },
+  "review": {
+    "creator_inspection": {
+      "selected_concept": true,
+      "exact_glb_front_side_back_beauty": true,
+      "five_clip_motion_grid": true,
+      "software_webgl_raster": true,
+      "date_utc": "2026-09-11T15:07:52.216368+00:00"
+    },
+    "coordinator_selection": "Root selected the final shapes for first-pass packaging; integrated game/studio intake remains root-owned.",
+    "owner_approval": "pending",
+    "gameplay_promotion": false
+  },
+  "concept": {
+    "path": "docs/assets/media/loop-dancer/v001/concept.png",
+    "sha256": "258db12b6472e09f2c0b4ec2d038b4f942643d94410a2f1b24979c16dc8860ba",
+    "visually_inspected": true
+  },
+  "runtime": {
+    "unit": "meter",
+    "gltf_up": "+Y",
+    "gltf_forward": "-Z",
+    "origin": "Ground-centered root at [0, 0, 0]",
+    "root_translation": "Fixed; translation belongs to the gameplay controller",
+    "rest_height_m": 1.1,
+    "rest_underside_clearance_m": 0,
+    "hover_offset_embedded": false,
+    "clips": {
+      "idle": {
+        "duration_s": 2.5,
+        "loop": true,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      "move": {
+        "duration_s": 1.25,
+        "loop": true,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      "attack": {
+        "duration_s": 1.5,
+        "loop": false,
+        "playback": "once",
+        "clamp_when_finished": false,
+        "contact_time_s": 0.75,
+        "contact_fraction": 0.5,
+        "timing_source": "Authored strike/pulse peak; root maps gameplay windup, strike and cooldown onto this timeline."
+      },
+      "hit": {
+        "duration_s": 0.625,
+        "loop": false,
+        "playback": "once",
+        "clamp_when_finished": false
+      },
+      "defeat": {
+        "duration_s": 2.0,
+        "loop": false,
+        "playback": "once",
+        "clamp_when_finished": true,
+        "end_behavior": "Slumps into a folded puppet collapse; final pose is held.",
+        "fade_embedded": false,
+        "root_motion_embedded": false,
+        "remove_after_clip": "Gameplay controller decision; clip holds the terminal pose."
+      }
+    },
+    "textures": "One embedded original 1024 \u00d7 1024 pigment atlas; no external URI or decoder",
+    "materials": 6,
+    "draw_primitives": 6,
+    "minimum_sampled_animated_height_m": -0.00037328402266369187,
+    "rig_bones_including_fixed_root": 22
+  },
+  "construction": {
+    "asset_id": "loop-dancer",
+    "version": "v001",
+    "blender": "4.5.13 LTS",
+    "triangles": 14848,
+    "vertices": 7652,
+    "material_count": 6,
+    "bones": [
+      "body",
+      "head",
+      "scarf.L.1",
+      "scarf.L.2",
+      "scarf.L.3",
+      "scarf.R.1",
+      "scarf.R.2",
+      "scarf.R.3",
+      "winding-key",
+      "upper-arm.L",
+      "forearm.L",
+      "hand.L",
+      "thigh.L",
+      "shin.L",
+      "foot.L",
+      "upper-arm.R",
+      "forearm.R",
+      "hand.R",
+      "thigh.R",
+      "shin.R",
+      "foot.R"
+    ],
+    "bounds_blender": {
+      "min": [
+        -0.33441442251205444,
+        -0.16972878575325012,
+        0.0
+      ],
+      "max": [
+        0.3343890309333801,
+        0.14847026765346527,
+        1.100000023841858
+      ]
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.25,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.5,
+        "loop": false,
+        "impact_time_s": 0.75
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.625,
+        "loop": false,
+        "impact_time_s": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "impact_time_s": null
+      }
+    ],
+    "scale_correction": {
+      "uniform_yz": 0.9505446110615623,
+      "width": 0.9505446110615623,
+      "source_min_z": 0.005000000819563866
+    },
+    "spec": {
+      "height": 1.1,
+      "floor": 0,
+      "width": null,
+      "impact": 0.75
+    },
+    "pigment_atlas": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+      "bytes": 1128196,
+      "sha256": "a35d4f81032f384bc40d17c239fb7ea6abda16bca0d4f1cf1c6eda74ba29e41a"
+    },
+    "files": {
+      "loop-dancer.blend": {
+        "bytes": 5889460,
+        "sha256": "e1ea1e148f009fe9fd8fa33d44b8895a743a08883091b64b1cfa00a6fde457d0"
+      },
+      "loop-dancer.glb": {
+        "bytes": 1096328,
+        "sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
+      }
+    }
+  },
+  "validation": {
+    "khronos_errors": 0,
+    "khronos_warnings": 0,
+    "checks": {
+      "gltf_2": true,
+      "khronos_no_errors": true,
+      "khronos_no_warnings": true,
+      "five_exact_clips": true,
+      "positive_animated_clips": true,
+      "triangle_budget_15000": true,
+      "material_budget_6": true,
+      "primitive_budget_6": true,
+      "glb_budget_2_mib": true,
+      "one_embedded_pigment_image": true,
+      "embedded_resources": true,
+      "no_required_extensions": true,
+      "all_have_vertex_colors": true,
+      "single_skin": true,
+      "at_most_4_influences": true,
+      "opaque_surfaces": true
+    },
+    "three_js_revision": "186",
+    "three_geometry_checks": {
+      "embedded_pigment_decoded": true,
+      "six_or_fewer_draw_primitives": true,
+      "skinned_geometry_loaded": true,
+      "correct_max_height": true,
+      "correct_rest_clearance": true,
+      "correct_wingspan": true,
+      "exact_clip_set": true,
+      "all_clips_move_actual_vertices": true,
+      "idle_move_loop_seams": true,
+      "root_bone_fixed": true,
+      "external_scene_translation_correct": true,
+      "bounded_floor_penetration": true,
+      "finite_geometry": true
+    },
+    "video_streams": {
+      "animations.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 7.875,
+        "audio": false
+      },
+      "turntable.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 3.0,
+        "audio": false
+      },
+      "idle.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 2.5,
+        "audio": false
+      },
+      "move.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 1.25,
+        "audio": false
+      },
+      "attack.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 1.5,
+        "audio": false
+      },
+      "hit.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 0.625,
+        "audio": false
+      },
+      "defeat.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "duration_s": 2.0,
+        "audio": false
+      }
+    },
+    "browser": {
+      "version": "153.0.8010.12",
+      "renderer": "Chromium headless with ANGLE SwiftShader (software WebGL)",
+      "checks": {
+        "exact_glb_hash": true,
+        "six_skinned_draw_primitives": true,
+        "one_embedded_1024_image": true,
+        "expected_color_draws": true,
+        "expected_triangle_count": true,
+        "five_expected_clips": true,
+        "every_clip_changes_actual_raster": true,
+        "webgl_error_free": true,
+        "browser_error_free": true,
+        "no_external_requests": true
+      },
+      "report": "browser-inspection.json",
+      "limitations": "Isolated exact-GLB software WebGL intake; not integrated gameplay, physical Safari, GPU performance or owner approval."
+    }
+  },
+  "editable_master": {
+    "remote_path": "/workspace/haynes-quest/era-2024/v001/loop-dancer/loop-dancer.blend",
+    "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/loop-dancer.blend",
+    "sha256": "e1ea1e148f009fe9fd8fa33d44b8895a743a08883091b64b1cfa00a6fde457d0"
+  },
+  "limitations": [
+    "Software review renders and CPU geometry checks do not establish physical-device Safari performance.",
+    "Cloth motion is authored skinning without cloth simulation.",
+    "Faceted colored panels are stylized opaque PBR surfaces.",
+    "Small sampled sole penetration remains: 0.373 mm; collision/movement are external to the GLB."
+  ],
+  "files": [
+    {
+      "remote_relative_path": "loop-dancer/loop-dancer.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/loop-dancer.blend",
+      "local_name": "loop-dancer.blend",
+      "role": "editable_master",
+      "bytes": 5889460,
+      "sha256": "e1ea1e148f009fe9fd8fa33d44b8895a743a08883091b64b1cfa00a6fde457d0"
+    },
+    {
+      "remote_relative_path": "loop-dancer/loop-dancer.glb",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/loop-dancer.glb",
+      "local_name": "loop-dancer.glb",
+      "role": "candidate_or_evidence",
+      "bytes": 1096328,
+      "sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
+    },
+    {
+      "remote_relative_path": "loop-dancer/pigment.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/pigment.png",
+      "local_name": "pigment.png",
+      "role": "candidate_or_evidence",
+      "bytes": 1128196,
+      "sha256": "a35d4f81032f384bc40d17c239fb7ea6abda16bca0d4f1cf1c6eda74ba29e41a"
+    },
+    {
+      "remote_relative_path": "loop-dancer/front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/front.png",
+      "local_name": "front.png",
+      "role": "candidate_or_evidence",
+      "bytes": 547376,
+      "sha256": "8cf0b38f85ba5836729a6e2f6af7dbe74454b62e8b0ab7c51944ec36052cacc2"
+    },
+    {
+      "remote_relative_path": "loop-dancer/side.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/side.png",
+      "local_name": "side.png",
+      "role": "candidate_or_evidence",
+      "bytes": 505139,
+      "sha256": "94d76c5add97f1c7c6a70d2c7b69a56d55ec0559aba1e8da2e97acd09810f09a"
+    },
+    {
+      "remote_relative_path": "loop-dancer/back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/back.png",
+      "local_name": "back.png",
+      "role": "candidate_or_evidence",
+      "bytes": 542120,
+      "sha256": "49c88ac48fadee3d6e1702e329cfac67d36f0c1628a0e3acf7d149dc26da9b0b"
+    },
+    {
+      "remote_relative_path": "loop-dancer/beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/beauty.png",
+      "local_name": "beauty.png",
+      "role": "candidate_or_evidence",
+      "bytes": 537284,
+      "sha256": "0dc4f6a6cdaabf33493b405204634d597895fdcc8b0b7e799ac7192f7db35998"
+    },
+    {
+      "remote_relative_path": "loop-dancer/motion-grid.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/motion-grid.png",
+      "local_name": "motion-grid.png",
+      "role": "candidate_or_evidence",
+      "bytes": 600766,
+      "sha256": "d57c87c6562464437e78c0a3288006d89fe4151ef7c16266ab295204a5f1f93c"
+    },
+    {
+      "remote_relative_path": "loop-dancer/animations.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/animations.mp4",
+      "local_name": "animations.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 244634,
+      "sha256": "8d01a9913952bc07367d5880cee13ab9468bea07503dd1142275393073bbfb59"
+    },
+    {
+      "remote_relative_path": "loop-dancer/turntable.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/turntable.mp4",
+      "local_name": "turntable.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 132630,
+      "sha256": "78995cee15c161ad175bcdb51b1ee1b67a093fab190b872f579b8203c4382837"
+    },
+    {
+      "remote_relative_path": "loop-dancer/idle.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/idle.mp4",
+      "local_name": "idle.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 55438,
+      "sha256": "73d642079f831ac8d564f9515cc0aa17b1ef2d1ee3e7e6b45fcfda8e93f2e18b"
+    },
+    {
+      "remote_relative_path": "loop-dancer/move.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/move.mp4",
+      "local_name": "move.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 49678,
+      "sha256": "b33777eaf6e140bf27712e16d3bbcf1efcdb9dd2556b25af7e9c093a4f326d75"
+    },
+    {
+      "remote_relative_path": "loop-dancer/attack.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/attack.mp4",
+      "local_name": "attack.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 55155,
+      "sha256": "2fc994a98e0832a271246874c561dc662c76253dddbaf223fa25d337fd6df49f"
+    },
+    {
+      "remote_relative_path": "loop-dancer/hit.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/hit.mp4",
+      "local_name": "hit.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 27761,
+      "sha256": "1ee08e144d3b45a982741a255027c8d3bfec13eecfa65dc941669223fbdb540c"
+    },
+    {
+      "remote_relative_path": "loop-dancer/defeat.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/defeat.mp4",
+      "local_name": "defeat.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 59907,
+      "sha256": "a864283d4b3171f89dd0c9ef3234ca0e8bf1092f60ce97f8c7ff0d97fff6368e"
+    },
+    {
+      "remote_relative_path": "loop-dancer/construction.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/construction.json",
+      "local_name": "construction.json",
+      "role": "candidate_or_evidence",
+      "bytes": 2122,
+      "sha256": "6d5c9ee51bd1e30c17711a2d12bd8fc8a38cdeb0199b231f71ac17a444ec2f6c"
+    },
+    {
+      "remote_relative_path": "loop-dancer/validation.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/validation.json",
+      "local_name": "validation.json",
+      "role": "candidate_or_evidence",
+      "bytes": 4257,
+      "sha256": "ad0abc3134eb002e4ada98967f47b112d9685af3455cd0e46868e6ef19d1b55e"
+    },
+    {
+      "remote_relative_path": "loop-dancer/export-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/export-inspection.json",
+      "local_name": "export-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1922,
+      "sha256": "a886c5f2388d88d7a7f3bbd2e8355af1d76d4d7e95047199fab72319abb14b8b"
+    },
+    {
+      "remote_relative_path": "loop-dancer/three-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/three-inspection.json",
+      "local_name": "three-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 4181,
+      "sha256": "4ff1101c8b563aa8a457ba074d85d75c397220d479257fa233f36a03c2ef2726"
+    },
+    {
+      "remote_relative_path": "loop-dancer/render-complete.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/era-2024/v001/loop-dancer/render-complete.json",
+      "local_name": "render-complete.json",
+      "role": "candidate_or_evidence",
+      "bytes": 223,
+      "sha256": "f1bdb444ca9cbfac032a6df30ea9a108e1636f917a35a4f0925844f4bd8cc2dc"
+    }
+  ],
+  "sources": [
+    {
+      "repository_path": "scripts/assets/era-2024/build.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/build.py",
+      "sha256": "3cc7a28e97ea5011fc9de87ef55a34fe9b6c08bed65a9eded4e02d323354006d"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/collect.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/collect.py",
+      "sha256": "c9385c41f38b640411e9f323f1b52a2ed136d7faec1c31ee1baa33c2d119e938"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/delivery.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/delivery.py",
+      "sha256": "4f08259501ce217b476c8b8f4325b9aa52d7b4d044c352fc8f728c68e00fb1d8"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/finalize-wait.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/finalize-wait.py",
+      "sha256": "acce786c5324449538a161b3a71dce101a25dd2fd3a014326502f4b610da7cd4"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/inspect-three.mjs",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/inspect-three.mjs",
+      "sha256": "5137dc48649de03eb3b3b6271db7bcf0a81f48aa8106dcbf62eab063216dae24"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/render.py",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/render.py",
+      "sha256": "fd703ed7d61a4758540b9d3018a229033582585b8bb88c26eb8e6d3b37ccdfe8"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/validate.mjs",
+      "remote_path": "/workspace/haynes-quest/era-2024/v001/validate.mjs",
+      "sha256": "7d000794f6be4d4d1fbf3c081442f8617c42d45bf8f4085bd982e5c8eab4d205"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/browser-intake.mjs",
+      "sha256": "1a5715947ac8769f6397000b73c929dba7b7757071b7defbf6504931fd07fbd7",
+      "execution": "Local dev-env; no live Blender scene access"
+    },
+    {
+      "repository_path": "scripts/assets/era-2024/finalize-local.py",
+      "sha256": "b37db5edbf3def031776e197ac26ac1237263bba41ca5a6fdfb0e0fa5ad0833d",
+      "execution": "Local dev-env; no live Blender scene access"
+    }
+  ],
+  "local_intake": {
+    "source": "Exact downloaded GLB in an isolated Chromium process with embedded texture uploads and four distinct raster samples per clip",
+    "integrated_gameplay": false,
+    "physical_safari": false,
+    "files": [
+      {
+        "repository_path": "docs/assets/media/loop-dancer/v001/browser-beauty.png",
+        "bytes": 121131,
+        "sha256": "a311b2c883d00cb4a4449cfd13838dd35803cb26b548b03698c9848e727de692"
+      },
+      {
+        "repository_path": "docs/assets/media/loop-dancer/v001/browser-attack.png",
+        "bytes": 92314,
+        "sha256": "3cb1dde3441ddca7455b21656fe7481bbb0074dac49c008372fcb0570f88966a"
+      },
+      {
+        "repository_path": "docs/assets/media/loop-dancer/v001/browser-inspection.json",
+        "bytes": 3852,
+        "sha256": "307be1efb8ed442f5d25da1221dd84af2eb6bf4b3a286e7b544481793c200386"
+      }
+    ]
+  }
+}

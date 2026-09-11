@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "asset_id": "spark-mallet",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender_version": "4.5.13 LTS",
+  "glb_sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae",
+  "bounds_blender": {
+    "min": [
+      -0.17106689512729645,
+      -0.11437612026929855,
+      -0.1103978231549263
+    ],
+    "max": [
+      0.17106689512729645,
+      0.11437612026929855,
+      0.43960216641426086
+    ],
+    "dimensions": [
+      0.3421337902545929,
+      0.2287522405385971,
+      0.5499999895691872
+    ]
+  },
+  "source_dimension_error_m": 0.0,
+  "all_named_source_parts_preserved": true,
+  "source_parts": {
+    "Mallet barrel carved walnut": {
+      "source_vertices_checked": 216,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet left rounded brass hoop": {
+      "source_vertices_checked": 144,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet left lens socket": {
+      "source_vertices_checked": 120,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet left inset amber lens": {
+      "source_vertices_checked": 80,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet left hoop peg 0": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet left hoop peg 1": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet left hoop peg 2": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet left hoop peg 3": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet left hoop peg 4": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet right rounded brass hoop": {
+      "source_vertices_checked": 144,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet right lens socket": {
+      "source_vertices_checked": 120,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet right inset amber lens": {
+      "source_vertices_checked": 80,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet right hoop peg 0": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet right hoop peg 1": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet right hoop peg 2": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet right hoop peg 3": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet right hoop peg 4": {
+      "source_vertices_checked": 40,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet through-handle walnut": {
+      "source_vertices_checked": 96,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet plum leather soft grip body": {
+      "source_vertices_checked": 64,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet plum leather broad wrap overlap": {
+      "source_vertices_checked": 260,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet rounded brass pommel": {
+      "source_vertices_checked": 100,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    },
+    "Mallet brass neck ferrule": {
+      "source_vertices_checked": 80,
+      "max_nearest_export_vertex_error_m": 0.0,
+      "all_preserved": true
+    }
+  },
+  "mesh_objects": [
+    {
+      "name": "spark-mallet_grip",
+      "vertices": 2643,
+      "triangles": 3728,
+      "materials": [
+        "Walnut",
+        "Brass",
+        "Amber",
+        "Plum"
+      ],
+      "uv_layers": [
+        "UVMap"
+      ]
+    }
+  ],
+  "checks": {
+    "source_geometry_preserved": true,
+    "source_dimensions_preserved": true,
+    "height_contract": true
+  }
+}

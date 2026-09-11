@@ -164,11 +164,6 @@ function Adventure({
       if (action?.type === "consume-memory-bundle")
         void sound.cue("ability-unlocked");
       if (
-        before.adventure?.phase !== "memory-released" &&
-        next.adventure?.phase === "memory-released"
-      )
-        setShowVictory(true);
-      if (
         action?.type === "recover-memory" &&
         before.adventure?.phase === "memory-released" &&
         !victoryOpen.current

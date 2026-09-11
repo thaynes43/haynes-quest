@@ -6,24 +6,23 @@
 - **Satisfies:** [PRD-001 R-20–R-34](../prds/001-project-brief.md)
 - **Related:** [Memory journey](004-memory-journey.md), [saved games](001-technical-foundation.md), [asset authoring](002-asset-pipeline.md), [memory-age abilities](006-memory-age-and-abilities.md)
 
-## Current correction and roster studies
+## Owner correction: recognizable parody
 
-[DESIGN-010](010-era-combat-loop.md) and [PLAN-005](../../.agents/plans/005-era-combat-loop.md) supersede the earlier decision to postpone all combat. Each current level needs useful equipment, two ordinary encounters and a boss. Boss victory releases the memories; consuming their completed bundle changes age and the next period. Exact roster balance and broader history coverage are not established by this two-period fixture.
+Tom clarified on September 11 that the enemies must be **recognizable, funny pop-culture parodies** from the periods represented by the photos, like the playful use of recognizable references he sees in Roblox. His South Park comparison describes the freedom and recognizability of parody; it does not request adult humor. The intended family game uses playful exaggeration and slapstick.
 
-| Period | Ordinary studies | Boss study | Curation basis |
-| --- | --- | --- | --- |
-| 2020 | Blockling; Signal Moth | The Buffer Baron | Building-block play and livestreaming culture |
-| 2024 | Loop Dancer; Prism Mimic | The Trendweaver | Short-form remix, performance and participatory media culture |
+The lead incorrectly replaced this with a broad-inspiration-only rule and authored generic storybook creatures. That restriction was the coordinator's interpretation, not an owner requirement. The six resulting models—Blockling, Signal Moth, Buffer Baron, Loop Dancer, Prism Mimic and Trendweaver—are removed from enemy selection. Their completed masters and previews are retained as **possible friendly or ambient candidates**. Their production quality does not make them suitable enemies for this brief. No friendly role is approved or implemented by this reclassification.
 
-These are original lead-authored directions, not licensed franchise characters or claims about the subject's interests. The 2020 direction is informed by [YouTube's 2020 gaming report](https://blog.youtube/news-and-events/youtube-gaming-2020/), which describes block-building content and livestream growth. The 2024 direction draws on the platform's contemporary [culture report](https://blog.youtube/culture-and-trends/2024-top-trends/) and [TikTok's year review](https://newsroom.tiktok.com/year-on-tiktok-2024?lang=en). Those reports support period curation, not an assertion that the game designs themselves existed historically.
+[DESIGN-010](010-era-combat-loop.md) retains the correct gameplay order: useful equipment, period enemies, boss victory, released memory bundle, consumption, age advancement and the next period. The replacement roster must name the specific cultural reference and supported dates, explain the recognizable visual joke and express it in the encounter behavior before modeling starts. Broad labels such as livestreaming or remix culture are insufficient.
 
-The [catalog](../assets/catalog.md) has selected Blockling and Signal Moth concepts. New Blender model dispatch is blocked by native task capacity in [WO-014](../../.agents/work-orders/014-blender-era-2020.md); no author started or scene changed. The local game uses clearly identified encounter/equipment studies while that production is outstanding. Do not label the new roster as finished or owner-approved. The finite server plans currently freeze generic encounter IDs, roles, kinds and values for the synthetic fixture; this is not a full historically eligible production catalog.
+Photo capture metadata establishes the represented calendar period. The person's birthday establishes their age at capture and the age brackets through which the journey progresses. A birthday does not by itself identify pop culture; an upload timestamp does not date the photographed memory. Selection must use those facts together and preserve them with the saved journey.
+
+The current 2020/2024 fictional fixture is a test library, not the only supported date rule. Root is auditing the actual date/age/selection contract before replacing the cast. A year threshold that sends every later photograph to the same generic trio is not a finished era catalog.
 
 ## Player experience
 
 The player recovers memories while encountering enemies and bosses inspired by the culture of the years those memories represent. Someone whose baby photos are from the 1990s begins with that period's influences; a childhood in a later decade draws from a different set. As the journey reaches later photos, its enemy cast changes with the calendar era. The game ends at the latest available memories, which need not be the present day.
 
-Tom cited Ninja Turtles and Power Rangers as examples of the kind of nostalgic association he means. The intended assets are original Haynes Quest characters inspired by broad period influences, rather than imported franchise characters. Television, animation, games, and historically relevant YouTube or other internet culture can inform the authored catalog. Specific references, enemies, and boss designs will be selected later.
+Tom cited Ninja Turtles and Power Rangers as examples of the kind of nostalgic association he means. The intended enemies are authored parodies whose specific pop-culture references are recognizable in their appearance and behavior. Television, animation, games, and historically relevant YouTube or other internet culture can inform the authored catalog. Specific references, enemies, and boss designs will be selected later.
 
 The catalog is a finite, static collection of prepared characters and behaviors. The game dynamically selects and arranges entries using the journey's dates and setup choices. It does not scrape trends, contact YouTube, or generate a new enemy model during play. This keeps era coverage and asset quality reviewable before release while allowing different people to experience different journeys.
 
@@ -60,11 +59,11 @@ The fields below are a proposed implementation contract. The final schema and co
 
 The final content plan must bound how many assets are loaded at once and reuse prepared behaviors where useful. A static catalog does not imply loading every decade's models or running every enemy at the same time. Difficulty, combat/evasion, checkpoints, respawn, boss rewards, and whether bosses gate chapters still need functional requirements.
 
-## Originality and reference handling
+## Parody and reference handling
 
-Use references to identify broad ideas—team action, transformation spectacles, collectible creatures, toy adventures, internet absurdity—and develop original names, silhouettes, costumes, personalities, effects, and sound. The asset brief should describe the intended era feeling and the game's own design. A renamed or recolored recognizable franchise character is not the authoring target.
+Each enemy brief names its target reference and the joke: what is being exaggerated, how a player will recognize it, and how that exaggeration changes the fight. The model should retain enough recognizable visual language for the reference to read without an explanatory caption. Inventing a generic creature and attaching a cultural label afterward fails this requirement.
 
-The U.S. Copyright Office distinguishes ideas from their protected expression and notes that adaptations can fall within a copyright owner's rights. Consequently, “loosely based on” is not a guarantee that a finished design is cleared. This is an original-art production rule, not a legal determination about an unmade asset. See the [Copyright Office protection FAQ](https://www.copyright.gov/help/faq/faq-protect.html) and [derivative-work guidance](https://www.copyright.gov/eco/help-limitation.html), reviewed 2026-09-10. DESIGN-002 applies the rule during authoring and records source/licensing provenance.
+Author the game models, animation, effects and sound deliberately; preserve the concept references and production provenance. A coherent world palette may unify rendering without turning every reference into the same wooden woodland creature. Do not substitute a blanket rule against recognizable franchise parody for Tom's direction, and do not represent the comparison to another game or show as a legal clearance determination.
 
 ## Validation scenarios
 
@@ -75,13 +74,13 @@ The U.S. Copyright Office distinguishes ideas from their protected expression an
 - An age-zero ability set can reach its first memory; required later encounters have solutions using the abilities already unlocked. Test an apparent ability/obstacle dependency cycle and a child journey without adult abilities.
 - Ordinary enemies and bosses obey the same date rules. Missing coverage uses the designed fallback or clear setup state without removing memories or making up a reference.
 - Save/resume, another device, updated preferences, and catalog releases preserve the chosen encounter identities and photo/boss progress. Withdrawn assets do not bypass their availability checks.
-- Each authored entry has period evidence, original design/provenance records, prepared asset versions, and the asset validation required by DESIGN-002. Runtime play needs no trend feed, reference-media download, or generation job.
+- Each authored entry has period evidence, parody design/provenance records, prepared asset versions, and the asset validation required by DESIGN-002. Runtime play needs no trend feed, reference-media download, or generation job.
 
 ## Decisions remaining
 
 | ID | Decision | Status |
 | --- | --- | --- |
-| Q-01 | Which references and original enemies/bosses cover the initial eras? | Deferred to content curation after the core PoC is evaluated; no historical roster has been selected or verified. |
+| Q-01 | Which references and original enemies/bosses cover the initial eras? | Active correction: replace the rejected generic cast with dated, recognizable parody briefs before new enemy modeling. |
 | Q-02 | How should gender/interests influence selection, and which setup fields are required? | Manual entry for the journey subject is the direction; exact UI, weighting, and overrides remain proposed. |
 | Q-03 | How do decade/proportional chapters transition between enemy eras? | Calendar-period matching is required; exact chapter grouping and encounter transitions remain for level design. |
 | Q-04 | How do enemy encounters and bosses work? | Owner-confirmed equipment → combat → boss → memories → age/period loop. DESIGN-010 implements provisional health, guard, attack, defeat/retry and one boss after two ordinary encounters per current level. Final balance remains open. |

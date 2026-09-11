@@ -1,0 +1,435 @@
+{
+  "delivery_manifest": {
+    "bytes": 34193,
+    "sha256": "f2947beeea0f02d247f4f04b79f040663f9a2ce2f764b6260ae77fc3a4fa51e1"
+  },
+  "assets": {
+    "blockling": {
+      "blockling.glb": {
+        "bytes": 1121948,
+        "sha256": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb",
+        "local_path": "docs/assets/media/blockling/v001/blockling.glb"
+      },
+      "blockling.blend": {
+        "bytes": 5103852,
+        "sha256": "ea7075a8729424bb476c8ee103bee654df2bae077c764d768a1d1dafcc4d52a9",
+        "local_path": "test-results/era-2020-masters/blockling.blend"
+      },
+      "pigment.png": {
+        "bytes": 1242799,
+        "sha256": "e47ede0de639da19da8e024bd911aeea3fcc59fe3dfc811523a0d618d3344829",
+        "local_path": "docs/assets/media/blockling/v001/pigment.png"
+      },
+      "construction-source.py": {
+        "bytes": 43925,
+        "sha256": "2b35aae2e43a80d765ef7ffa29a9cd71b9cd503e1f649348da2c3991bb6c4303",
+        "local_path": "scripts/assets/era-2020/snapshots/blockling-build.py"
+      },
+      "construction.json": {
+        "bytes": 2205,
+        "sha256": "d54675731fe74bd94e4f8865469ae28935365ade3af0452dcaf2633d5c7f1888",
+        "local_path": "docs/assets/media/blockling/v001/construction.json"
+      },
+      "validation.json": {
+        "bytes": 4236,
+        "sha256": "664a65e320602aee1947bd141a9369ba7f0cfe439a0f9e7bb4351853e22f9cf1",
+        "local_path": "docs/assets/media/blockling/v001/validation.json"
+      },
+      "three-inspection.json": {
+        "bytes": 4106,
+        "sha256": "f0ca47699ec65d4e3631e9bdcc35c2955508fe69dd71f6e009c17f6c72693640",
+        "local_path": "docs/assets/media/blockling/v001/three-inspection.json"
+      },
+      "browser-inspection.json": {
+        "bytes": 1224,
+        "sha256": "9807cfe48fb0fcc60869d6081eb4007397dcff3a7af9c1c001b0811ea7c05b82",
+        "local_path": "docs/assets/media/blockling/v001/browser-inspection.json"
+      },
+      "export-inspection.json": {
+        "bytes": 1938,
+        "sha256": "59d0e195b375cc95c5827bbf8fce35d048d1fcc69c6a368da87419811af224a9",
+        "local_path": "docs/assets/media/blockling/v001/export-inspection.json"
+      },
+      "render-complete.json": {
+        "bytes": 221,
+        "sha256": "c05d5d8b4f14ed040a3bd7d353110128ef777e47a707a12ac683b1f6aefddcb3",
+        "local_path": "docs/assets/media/blockling/v001/render-complete.json"
+      },
+      "runtime.json": {
+        "bytes": 1702,
+        "sha256": "8b9cb9ae1f9c256b32fb2d8ab0143cf8cb922164d3a8a105c7b487f6a8e662f2",
+        "local_path": "docs/assets/media/blockling/v001/runtime.json"
+      },
+      "beauty.png": {
+        "bytes": 597110,
+        "sha256": "5b98e243a42d3a5a48d7798dc336af4b9800669074f116c95a81e0ad98c03bb9",
+        "local_path": "docs/assets/media/blockling/v001/beauty.png"
+      },
+      "front.png": {
+        "bytes": 566399,
+        "sha256": "b70c221dd76ed92ee36d982457d1609fc2aa62367fd3ac2257a7bbb6aebcd0aa",
+        "local_path": "docs/assets/media/blockling/v001/front.png"
+      },
+      "side.png": {
+        "bytes": 542782,
+        "sha256": "e12845474526914fa75f477c1fd15336e456bf0641d4a2a2bbb43fec26579094",
+        "local_path": "docs/assets/media/blockling/v001/side.png"
+      },
+      "back.png": {
+        "bytes": 547256,
+        "sha256": "17bb73bd1e31be98c9d39f4db1cfb4e4d03691e74643f9d72b6a1483fc2e89a3",
+        "local_path": "docs/assets/media/blockling/v001/back.png"
+      },
+      "browser-beauty.png": {
+        "bytes": 200101,
+        "sha256": "d3cab2edde3262aa8f99853e3cbc579615bce9021dade60366dbfef6cbd25d59",
+        "local_path": "docs/assets/media/blockling/v001/browser-beauty.png"
+      },
+      "motion-grid.png": {
+        "bytes": 941645,
+        "sha256": "13157fd9e1d1ecf118aabdac42f107bf9b05f8da9d263dedc0c3a3917e5bb2ff",
+        "local_path": "docs/assets/media/blockling/v001/motion-grid.png"
+      },
+      "animations.mp4": {
+        "bytes": 276916,
+        "sha256": "44ecf320d03cf510ec571b9a987a578241119b2764dbdb214d12e1018fe5eaaf",
+        "local_path": "docs/assets/media/blockling/v001/animations.mp4"
+      },
+      "turntable.mp4": {
+        "bytes": 208011,
+        "sha256": "5bc92a59f57ca686cf0130be9765cfe634979f0d76d0549d4b9861299e437b99",
+        "local_path": "docs/assets/media/blockling/v001/turntable.mp4"
+      },
+      "idle.mp4": {
+        "bytes": 54517,
+        "sha256": "e79f6c46e50b9a2148e83615bcce498f221abae9f91c532b18e20ff5238bdad9",
+        "local_path": "docs/assets/media/blockling/v001/idle.mp4"
+      },
+      "move.mp4": {
+        "bytes": 52550,
+        "sha256": "bbe5e6e75c55eff04f9aeb700eb4d81e00c0e1a5bbcb17675698bc11b7a6d91d",
+        "local_path": "docs/assets/media/blockling/v001/move.mp4"
+      },
+      "attack.mp4": {
+        "bytes": 63238,
+        "sha256": "873d30adb1e39682e1a02de44b174acfb04ce74ef64c50fcfb5956c79da4a128",
+        "local_path": "docs/assets/media/blockling/v001/attack.mp4"
+      },
+      "hit.mp4": {
+        "bytes": 34773,
+        "sha256": "163ea69380f0204650307b93ac8dc02ee2c864b758934f4bad58d50fc210bcb0",
+        "local_path": "docs/assets/media/blockling/v001/hit.mp4"
+      },
+      "defeat.mp4": {
+        "bytes": 75119,
+        "sha256": "591c64906abdcbd639b25156e9f18fd3982b7b7747749ffb03f9bc1bc738b30b",
+        "local_path": "docs/assets/media/blockling/v001/defeat.mp4"
+      },
+      "manifest.json": {
+        "bytes": 9326,
+        "sha256": "e6c8bd826b2276185e0237b86bc8b1cea38eb439f6c86bbad0ea5c085b8b3796",
+        "local_path": "docs/assets/media/blockling/v001/manifest.json"
+      }
+    },
+    "signal-moth": {
+      "signal-moth.glb": {
+        "bytes": 1083900,
+        "sha256": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe",
+        "local_path": "docs/assets/media/signal-moth/v001/signal-moth.glb"
+      },
+      "signal-moth.blend": {
+        "bytes": 4665008,
+        "sha256": "eec5407e9dd891dcfe2ee7617fed4f771f5e92668f3a2e17b454c69e17b8d22f",
+        "local_path": "test-results/era-2020-masters/signal-moth.blend"
+      },
+      "pigment.png": {
+        "bytes": 1112387,
+        "sha256": "3013946c707312591a55b56572dfa99b4b0fc2fa263128235fb87be3ca497a35",
+        "local_path": "docs/assets/media/signal-moth/v001/pigment.png"
+      },
+      "construction-source.py": {
+        "bytes": 43925,
+        "sha256": "2b35aae2e43a80d765ef7ffa29a9cd71b9cd503e1f649348da2c3991bb6c4303",
+        "local_path": "scripts/assets/era-2020/snapshots/signal-moth-build.py"
+      },
+      "construction.json": {
+        "bytes": 2205,
+        "sha256": "88dcd719375848e8822cdaef149611089de38b762e138e3cecf8c23128b27ff0",
+        "local_path": "docs/assets/media/signal-moth/v001/construction.json"
+      },
+      "validation.json": {
+        "bytes": 4203,
+        "sha256": "b497d7d4b45b8f9832d92dabbfb398407df1e4dbe5fa3bc53ebe1b4e6d6c978e",
+        "local_path": "docs/assets/media/signal-moth/v001/validation.json"
+      },
+      "three-inspection.json": {
+        "bytes": 4053,
+        "sha256": "4f11aff3a58d1559cbdcc790e18faa919e434ab3996aa21fd3aa36dcf9b771d1",
+        "local_path": "docs/assets/media/signal-moth/v001/three-inspection.json"
+      },
+      "browser-inspection.json": {
+        "bytes": 1226,
+        "sha256": "be17bc5eb7a72acb5397adabb479ad0aaf9f8c8c408ced8b6a09b7705ff8c0ef",
+        "local_path": "docs/assets/media/signal-moth/v001/browser-inspection.json"
+      },
+      "export-inspection.json": {
+        "bytes": 1914,
+        "sha256": "3ae06dc3009ed58bb080a720a01d4bfe867a53eb5c81c8edf8ff500e836debd0",
+        "local_path": "docs/assets/media/signal-moth/v001/export-inspection.json"
+      },
+      "render-complete.json": {
+        "bytes": 223,
+        "sha256": "de5cf67e6b2d7a3831b3c2bfc418b4292c7a66ca9b7e69db292d7b22692ac700",
+        "local_path": "docs/assets/media/signal-moth/v001/render-complete.json"
+      },
+      "runtime.json": {
+        "bytes": 1720,
+        "sha256": "0388e2effead11a793f03175dd248b921a2a7547e6fd02d8ec7306ae7d7b892d",
+        "local_path": "docs/assets/media/signal-moth/v001/runtime.json"
+      },
+      "beauty.png": {
+        "bytes": 576085,
+        "sha256": "47fd5059603291c0036fa709add8a16668399f5d758b08968d0fd830c61b0359",
+        "local_path": "docs/assets/media/signal-moth/v001/beauty.png"
+      },
+      "front.png": {
+        "bytes": 595780,
+        "sha256": "8494cd03648c1d611386760ef9100f3aa4577d67205eac2519e946280024da03",
+        "local_path": "docs/assets/media/signal-moth/v001/front.png"
+      },
+      "side.png": {
+        "bytes": 492611,
+        "sha256": "395baea43d436a5c9556223178397b4200addd6d361b35de810f0716bcbb210b",
+        "local_path": "docs/assets/media/signal-moth/v001/side.png"
+      },
+      "back.png": {
+        "bytes": 570831,
+        "sha256": "d3de733d034cea0e1843f4f45799b264c6bc12102d42d40453491df82b97898c",
+        "local_path": "docs/assets/media/signal-moth/v001/back.png"
+      },
+      "browser-beauty.png": {
+        "bytes": 143688,
+        "sha256": "193064601b08e1dd7f6ab9e62219094ad7b256ab34abdf7edae44d0589add1cd",
+        "local_path": "docs/assets/media/signal-moth/v001/browser-beauty.png"
+      },
+      "motion-grid.png": {
+        "bytes": 734302,
+        "sha256": "35f04b51a1750612b8068fb76d51844d4fae45ac0c514ccda9be6a746f962df5",
+        "local_path": "docs/assets/media/signal-moth/v001/motion-grid.png"
+      },
+      "animations.mp4": {
+        "bytes": 371197,
+        "sha256": "4208a0ab5ffab8fe15cd4de9efd29fd440789c0c1d5509770c36721b6336fb48",
+        "local_path": "docs/assets/media/signal-moth/v001/animations.mp4"
+      },
+      "turntable.mp4": {
+        "bytes": 163969,
+        "sha256": "4ca902823147656b42f58a83d4f12dc34d3cc9857b86eca351d1343999527496",
+        "local_path": "docs/assets/media/signal-moth/v001/turntable.mp4"
+      },
+      "idle.mp4": {
+        "bytes": 105634,
+        "sha256": "8f34182db279223d80d689064b91481f36bc1d0bdc13206e3c644374b7d13354",
+        "local_path": "docs/assets/media/signal-moth/v001/idle.mp4"
+      },
+      "move.mp4": {
+        "bytes": 71073,
+        "sha256": "feb9a7f83f7a602124b1475b205508771c19e11261029bfdd12ba753f0e4114c",
+        "local_path": "docs/assets/media/signal-moth/v001/move.mp4"
+      },
+      "attack.mp4": {
+        "bytes": 75601,
+        "sha256": "1c50bac00809630a233e4fece5ad202bcb1300d81fb2aca3a0c216e9de1e5d03",
+        "local_path": "docs/assets/media/signal-moth/v001/attack.mp4"
+      },
+      "hit.mp4": {
+        "bytes": 41466,
+        "sha256": "99cff4fa10a4af44d83654e3431da804c5cbe5a78c11bc3df612be957c788931",
+        "local_path": "docs/assets/media/signal-moth/v001/hit.mp4"
+      },
+      "defeat.mp4": {
+        "bytes": 80704,
+        "sha256": "aaffdc05152d3ab1decccd55eb35e0dc0cad0fe742f489ae76696ba615a4ac8a",
+        "local_path": "docs/assets/media/signal-moth/v001/defeat.mp4"
+      },
+      "manifest.json": {
+        "bytes": 9353,
+        "sha256": "0208a26b4a1ef2b78eed10489c8b484432266fe32bd63747c0f0e87e638550d8",
+        "local_path": "docs/assets/media/signal-moth/v001/manifest.json"
+      }
+    },
+    "buffer-baron": {
+      "buffer-baron.glb": {
+        "bytes": 1195688,
+        "sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915",
+        "local_path": "docs/assets/media/buffer-baron/v001/buffer-baron.glb"
+      },
+      "buffer-baron.blend": {
+        "bytes": 4966578,
+        "sha256": "5b262f65de2ccd65c5c65c970088e81fa72b8f14c4eb30e5714d7611c9a9172c",
+        "local_path": "test-results/era-2020-masters/buffer-baron.blend"
+      },
+      "pigment.png": {
+        "bytes": 1137911,
+        "sha256": "6959553fe5632b00cc8e21e7467b373a539fc0b7596c5751d2f47e67c420980a",
+        "local_path": "docs/assets/media/buffer-baron/v001/pigment.png"
+      },
+      "construction-source.py": {
+        "bytes": 44286,
+        "sha256": "9b1c871724f7a4c5129cdecacac7502dabe8b9fe8be789dfaa80c2ba20305f38",
+        "local_path": "scripts/assets/era-2020/snapshots/buffer-baron-build.py"
+      },
+      "construction.json": {
+        "bytes": 2191,
+        "sha256": "60099b0e3eda614370f3b0f0d7e207ec774ab141c1a11a371c8363190d042a0f",
+        "local_path": "docs/assets/media/buffer-baron/v001/construction.json"
+      },
+      "validation.json": {
+        "bytes": 4187,
+        "sha256": "fe276b0fade54f2f3057b0feede73ed1d841cddcd207f4b7911f34d5c9ff78e2",
+        "local_path": "docs/assets/media/buffer-baron/v001/validation.json"
+      },
+      "three-inspection.json": {
+        "bytes": 4039,
+        "sha256": "a9b75982a617d73ac31147b87c0726f7502d299fac7ff5b27df30a997933c21e",
+        "local_path": "docs/assets/media/buffer-baron/v001/three-inspection.json"
+      },
+      "browser-inspection.json": {
+        "bytes": 1227,
+        "sha256": "b302bbc0a3ee083109ee2502884cdc96781dad512b1e3dddb4307c8c8c52240d",
+        "local_path": "docs/assets/media/buffer-baron/v001/browser-inspection.json"
+      },
+      "export-inspection.json": {
+        "bytes": 1904,
+        "sha256": "a66a34ffd8d70497f18170473f9b6b816248c0020bca93b0a02615f0e59a7879",
+        "local_path": "docs/assets/media/buffer-baron/v001/export-inspection.json"
+      },
+      "render-complete.json": {
+        "bytes": 223,
+        "sha256": "0e3aa5bc8bd823b309b45c3891b93fee6d1db9c98c4635bed69e9c6ed0c3021b",
+        "local_path": "docs/assets/media/buffer-baron/v001/render-complete.json"
+      },
+      "runtime.json": {
+        "bytes": 1709,
+        "sha256": "087824ecd18d35679a70edbe55507352933be6027f0ff9928ecbe5d86fc93c4b",
+        "local_path": "docs/assets/media/buffer-baron/v001/runtime.json"
+      },
+      "beauty.png": {
+        "bytes": 581249,
+        "sha256": "5be862cace7d88045899e7423bda32b0638d09f669b742ed69e754d7d57d0d66",
+        "local_path": "docs/assets/media/buffer-baron/v001/beauty.png"
+      },
+      "front.png": {
+        "bytes": 595167,
+        "sha256": "a133e2809d616a691fc1c0b9cbeea83d0027f70d3c46daaef4da31d9ddd825ba",
+        "local_path": "docs/assets/media/buffer-baron/v001/front.png"
+      },
+      "side.png": {
+        "bytes": 522058,
+        "sha256": "7516f9822e7f92337e60458f4a7e8a5f0794f0e5f7463fec3c72b2cfda35b15c",
+        "local_path": "docs/assets/media/buffer-baron/v001/side.png"
+      },
+      "back.png": {
+        "bytes": 563703,
+        "sha256": "cd60e6b09e3f801d4721ce185637b4d6ef09eb197a536278059e0ed5187b88d5",
+        "local_path": "docs/assets/media/buffer-baron/v001/back.png"
+      },
+      "browser-beauty.png": {
+        "bytes": 145140,
+        "sha256": "df3dfe064a45aef1d4c97b9ae348db0b031a0e59e912ed997cf186b36ecfc27b",
+        "local_path": "docs/assets/media/buffer-baron/v001/browser-beauty.png"
+      },
+      "motion-grid.png": {
+        "bytes": 707098,
+        "sha256": "7ba26fca94aab6a6e732cb72e8e50dc714ed653a4feebac6041d681b71e0a9b2",
+        "local_path": "docs/assets/media/buffer-baron/v001/motion-grid.png"
+      },
+      "animations.mp4": {
+        "bytes": 285303,
+        "sha256": "fd355275e05f80bffb385fc36024984a9ff74c2c645fc2422568524770466ee1",
+        "local_path": "docs/assets/media/buffer-baron/v001/animations.mp4"
+      },
+      "turntable.mp4": {
+        "bytes": 164603,
+        "sha256": "c2951ff9bf7e1122ec7916c6f3b650c4d58e43e3e6efb788e0985d11b0c2a0ab",
+        "local_path": "docs/assets/media/buffer-baron/v001/turntable.mp4"
+      },
+      "idle.mp4": {
+        "bytes": 69891,
+        "sha256": "2b7d6bac27f199fa50ab98fcdd9b8b5d945431a923d48b016a49d52308ca148d",
+        "local_path": "docs/assets/media/buffer-baron/v001/idle.mp4"
+      },
+      "move.mp4": {
+        "bytes": 43390,
+        "sha256": "09ef6041b29adee52afb71c7dd72600280ac303d274c1e0af07518218e5313c9",
+        "local_path": "docs/assets/media/buffer-baron/v001/move.mp4"
+      },
+      "attack.mp4": {
+        "bytes": 76721,
+        "sha256": "9222928ffdcc5ce7127df83906e8347fa16fea0feaf0c6ad77ccd92de1e301e0",
+        "local_path": "docs/assets/media/buffer-baron/v001/attack.mp4"
+      },
+      "hit.mp4": {
+        "bytes": 32112,
+        "sha256": "0e064603f649624ddf3ff4e1e9fc70f096d4e05db53222e56c687cf4cf71758a",
+        "local_path": "docs/assets/media/buffer-baron/v001/hit.mp4"
+      },
+      "defeat.mp4": {
+        "bytes": 66470,
+        "sha256": "b81c12e27d03850a81cf365bd537b7e2185a5ffd3e81fa8db5308521f2cd7c85",
+        "local_path": "docs/assets/media/buffer-baron/v001/defeat.mp4"
+      },
+      "manifest.json": {
+        "bytes": 9332,
+        "sha256": "97118028514ba28075a4b9a3d1e01044f9508454ab6572f009a39ef72c6bdbb1",
+        "local_path": "docs/assets/media/buffer-baron/v001/manifest.json"
+      }
+    }
+  },
+  "scripts": {
+    "build.py": {
+      "bytes": 43652,
+      "sha256": "5cf246a969b7d0b70667f456fd5bc3121f2394d4b542e283fff09f1616ad3a1b"
+    },
+    "render.py": {
+      "bytes": 9857,
+      "sha256": "efecdf68f4e08341822526ec79fe13f1c33f282c8d1bc4ffbb6e63007d5ac0b7"
+    },
+    "validate.mjs": {
+      "bytes": 2982,
+      "sha256": "f592be2d6f06cae22942f19cf9100e2e4d537abb21f1f2eac02779012225bca6"
+    },
+    "inspect-three.mjs": {
+      "bytes": 5861,
+      "sha256": "78c832fa5ed53501be2fa8e57a5ff8df522c66b71563f93ac2d4a57b757355e4"
+    },
+    "inspect-browser.mjs": {
+      "bytes": 6359,
+      "sha256": "bce13186d9233dcb187606dce03c112cb80a0cbbbc4a416ad2620209d5fa5509"
+    },
+    "delivery.py": {
+      "bytes": 5229,
+      "sha256": "9a811cba73089ca9b29d40c4f67da31f7a4e622b61f1d2d8b8b74d3680dd5226"
+    },
+    "collect.py": {
+      "bytes": 2204,
+      "sha256": "6bf451ac63c5087650b0a8a6b2cda78c6343dd0aff3990f830ca2d59cdb11a60"
+    },
+    "source-concepts.json": {
+      "bytes": 1003,
+      "sha256": "0f0f6fae5fee5cbfff56c8bba2c6673c7dfb664e5b6d1a15bf779b1785a4660f"
+    },
+    "scene-lease.json": {
+      "bytes": 921,
+      "sha256": "23551c5d1f5ae149a4d11871162059b7f541c17a0ce03de3c89c9d642dba78cf"
+    },
+    "render-process-completion.json": {
+      "bytes": 909,
+      "sha256": "88af7bf6bee1461055a14eb94a89831994c89a36057d0256fa0c0e9f6c2e4266"
+    },
+    "source-bundle.json": {
+      "bytes": 279337,
+      "sha256": "35e8daaae9435f193ac626106dd05a822a0f4a7c7694bbeaf71fddbcbd2c1a31"
+    }
+  }
+}

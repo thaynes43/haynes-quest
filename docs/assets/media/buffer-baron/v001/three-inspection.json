@@ -1,0 +1,162 @@
+{
+  "asset_id": "buffer-baron",
+  "tool": "Three GLTFLoader + AnimationMixer + actual sampled skinned vertices + precise bounds",
+  "three_revision": "186",
+  "glb_sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5436704158782959,
+      0.10000000149011612,
+      -0.3025277554988861
+    ],
+    "max": [
+      0.5436704158782959,
+      1.850000023841858,
+      0.26676517724990845
+    ]
+  },
+  "mesh_primitives": 6,
+  "draw_call_expectation": {
+    "opaque_color_pass": 6,
+    "shadow_pass_if_enabled": 6,
+    "note": "Per-pass primitive count; actual renderer statistics depend on lights, shadows, instancing and passes."
+  },
+  "bones": [
+    "root",
+    "body",
+    "head",
+    "halo",
+    "armL",
+    "forearmL",
+    "handL",
+    "finger0L",
+    "finger1L",
+    "armR",
+    "forearmR",
+    "handR",
+    "finger0R",
+    "finger1R"
+  ],
+  "decoded_images": [
+    {
+      "encoded_bytes": 209613,
+      "width": 1024,
+      "height": 1024,
+      "channels": 4,
+      "rgba_bytes": 4194304
+    }
+  ],
+  "animations": {
+    "idle": {
+      "duration_s": 2.5,
+      "samples": 49,
+      "sampled_vertices": 594,
+      "max_vertex_displacement_m": 0.11217836123626501,
+      "bounds": {
+        "min": [
+          -0.5450358093030631,
+          0.07904120770154206,
+          -0.3035318884834058
+        ],
+        "max": [
+          0.5452103179308481,
+          1.8750541652850166,
+          0.2688464010912174
+        ]
+      },
+      "loop_seam_max_m": 2.797157557069881e-17
+    },
+    "move": {
+      "duration_s": 1,
+      "samples": 49,
+      "sampled_vertices": 594,
+      "max_vertex_displacement_m": 0.15231427769101832,
+      "bounds": {
+        "min": [
+          -0.5458210898270391,
+          0.07936488265902061,
+          -0.3085395533863057
+        ],
+        "max": [
+          0.5461869875503309,
+          1.8756688501117884,
+          0.27945540205733
+        ]
+      },
+      "loop_seam_max_m": 1.7438791442781083e-9
+    },
+    "attack": {
+      "duration_s": 1.75,
+      "samples": 49,
+      "sampled_vertices": 594,
+      "max_vertex_displacement_m": 0.8416728992896854,
+      "bounds": {
+        "min": [
+          -0.7518892751440727,
+          0.07169391126315723,
+          -0.5628963338661843
+        ],
+        "max": [
+          0.7508033651799444,
+          1.910723992866654,
+          0.4695234413534303
+        ]
+      },
+      "loop_seam_max_m": 2.1836147351020715e-10
+    },
+    "hit": {
+      "duration_s": 0.5833333134651184,
+      "samples": 49,
+      "sampled_vertices": 594,
+      "max_vertex_displacement_m": 0.19330152829989894,
+      "bounds": {
+        "min": [
+          -0.5436704158782959,
+          0.09999149292402895,
+          -0.3025277554988861
+        ],
+        "max": [
+          0.5542989710457807,
+          1.8546032463139628,
+          0.306495792734743
+        ]
+      },
+      "loop_seam_max_m": 2.7755575615628914e-17
+    },
+    "defeat": {
+      "duration_s": 1.75,
+      "samples": 49,
+      "sampled_vertices": 594,
+      "max_vertex_displacement_m": 0.5825705901682587,
+      "bounds": {
+        "min": [
+          -0.6391753674132294,
+          0.00014160570527156635,
+          -0.6571661318443605
+        ],
+        "max": [
+          0.5436704158782959,
+          1.850000023841858,
+          0.388084155562187
+        ]
+      },
+      "loop_seam_max_m": 0.5474710135517695
+    }
+  },
+  "checks": {
+    "embedded_image_decoded": true,
+    "six_or_fewer_draw_primitives": true,
+    "skinned_geometry_loaded": true,
+    "correct_max_height": true,
+    "correct_rest_clearance": true,
+    "correct_wingspan": true,
+    "exact_clip_set": true,
+    "all_clips_move_actual_vertices": true,
+    "idle_move_loop_seams": true,
+    "root_bone_fixed": true,
+    "external_scene_translation_correct": true,
+    "bounded_floor_penetration": true,
+    "finite_geometry": true
+  },
+  "limitations": "CPU loader, real image decode and geometry evidence; no WebGL raster, physical Safari or frame-time claim."
+}

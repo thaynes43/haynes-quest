@@ -1,0 +1,317 @@
+{
+  "artifact_root": "haynes-quest/era-equipment/v001",
+  "files": [
+    {
+      "file": "spark-mallet/spark-mallet.glb",
+      "sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae",
+      "bytes": 161872,
+      "saved_in_repository": true
+    },
+    {
+      "file": "spark-mallet/construction.json",
+      "sha256": "e2a291e9770f02865fc79b1646354f418f93334c9ead9c3295b6c75a47f60bf3",
+      "bytes": 15431,
+      "saved_in_repository": true
+    },
+    {
+      "file": "spark-mallet/validation.json",
+      "sha256": "3fe1dc63717b83ad291921371648e945e0e7435acc3e1384025ee1d55ce76457",
+      "bytes": 4819,
+      "saved_in_repository": true
+    },
+    {
+      "file": "spark-mallet/reimport.json",
+      "sha256": "3b2efb6fa752a5b9552de00b4d2e321620daf72dc74e7d8d45c94c16098f06ae",
+      "bytes": 4508,
+      "saved_in_repository": true
+    },
+    {
+      "file": "spark-mallet/render-complete.json",
+      "sha256": "6fd21840b8d79ff5a1c4a06b61dd55ee2d603c66b980a9d30af4a804f5cf0c04",
+      "bytes": 254,
+      "saved_in_repository": true
+    },
+    {
+      "file": "spark-mallet/beauty.png",
+      "sha256": "85371f9efd4607d6d44ac552f60bedbc6d4182950776f19c35f21bf027fcb13f",
+      "bytes": 752067,
+      "saved_in_repository": true
+    },
+    {
+      "file": "spark-mallet/front.png",
+      "sha256": "b93928d513d31e23f2839503be1d375780f4d774eab7bcacbf517e11f8043529",
+      "bytes": 718102,
+      "saved_in_repository": true
+    },
+    {
+      "file": "spark-mallet/side.png",
+      "sha256": "4750b61a40efe64a2de0aae7e4085fcf1574ae11eb615ccdc6b5f938b7ea3767",
+      "bytes": 724591,
+      "saved_in_repository": true
+    },
+    {
+      "file": "spark-mallet/back.png",
+      "sha256": "840f475276dc28a33c5f7275b699fdca9d9d337514b5e81771df43e17b285ea3",
+      "bytes": 715543,
+      "saved_in_repository": true
+    },
+    {
+      "file": "spark-mallet/spark-mallet.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/spark-mallet/spark-mallet.blend",
+      "sha256": "b794e64fc21cb39fd40ba2845c64f435a57f0d0e410b8021c2431ee4c85922c1",
+      "bytes": 594982,
+      "saved_in_repository": false
+    },
+    {
+      "file": "spark-mallet/spark-mallet-export-review.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/spark-mallet/spark-mallet-export-review.blend",
+      "sha256": "659e4ac309ee16a226cbbc525a72f4ff1ddd9c7fab187bbb0bc21f4e2c8be055",
+      "bytes": 239443,
+      "saved_in_repository": false
+    },
+    {
+      "file": "acorn-shield/acorn-shield.glb",
+      "sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6",
+      "bytes": 184460,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/construction.json",
+      "sha256": "0d140a7ea2a572224746d7e0da0152f56065af5b7e1cdc5cc427bb783f34bd29",
+      "bytes": 22162,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/validation.json",
+      "sha256": "f8d1ee94666d80b5650fc5eb4a4559d7291a0d67bb26e4da96f5452b97fe197d",
+      "bytes": 4659,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/reimport.json",
+      "sha256": "6c17862610605f027f8a973334bbf3ddf9db1588f94ef2248705d53e37af09a2",
+      "bytes": 6696,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/render-complete.json",
+      "sha256": "2e376a3b658f01a7bb415c117760932755bdd7c4da181d6f51967792bd597cc8",
+      "bytes": 271,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/beauty.png",
+      "sha256": "0c69e6927d25de0091e331501e3d0c9559db6c344c173322ff7708eb2f245401",
+      "bytes": 771094,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/front.png",
+      "sha256": "b6fac863c629a8df57f6c6bc7d1f1ef1ef24ef76b479aa50951e712fcbd2e268",
+      "bytes": 781354,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/side.png",
+      "sha256": "65810da50b19184d8ffb2e34c4e0b7dd2e2964e910e53ce14f5a1cd0f754da64",
+      "bytes": 688594,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/back.png",
+      "sha256": "ba3e94bab408d0bd6132c3786cc554a8d21152485c55cb9653d39546d1dfaa80",
+      "bytes": 755071,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/rear-grip.png",
+      "sha256": "668671ed67edfe5cc4e02a34c2925f9b64798a35039f7160c394af38d673d04c",
+      "bytes": 766940,
+      "saved_in_repository": true
+    },
+    {
+      "file": "acorn-shield/acorn-shield.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/acorn-shield/acorn-shield.blend",
+      "sha256": "911ae6b54cefc02622ac9d5682846de355c0dc8237cbbe0514875cd839f31a3b",
+      "bytes": 605496,
+      "saved_in_repository": false
+    },
+    {
+      "file": "acorn-shield/acorn-shield-export-review.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/acorn-shield/acorn-shield-export-review.blend",
+      "sha256": "344aeee430c723ab6d9035a0e0860c7418f5b095049acc85e3a6e08a7f92fb66",
+      "bytes": 268919,
+      "saved_in_repository": false
+    },
+    {
+      "file": "prism-wand/prism-wand.glb",
+      "sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc",
+      "bytes": 143444,
+      "saved_in_repository": true
+    },
+    {
+      "file": "prism-wand/construction.json",
+      "sha256": "9e85a9d51f61fd0768d2f854021bddc9eb0ba54e85807a3b655b696b6ee53ad3",
+      "bytes": 12816,
+      "saved_in_repository": true
+    },
+    {
+      "file": "prism-wand/validation.json",
+      "sha256": "1c2be86046c6ca5869c0b4317793614776f18be003692fbd4b5e903e92c9e6f6",
+      "bytes": 5438,
+      "saved_in_repository": true
+    },
+    {
+      "file": "prism-wand/reimport.json",
+      "sha256": "87e376763dffb0352e08d93c387ee2f2abae620a1cf96daaf4f3bd42bc593e44",
+      "bytes": 3776,
+      "saved_in_repository": true
+    },
+    {
+      "file": "prism-wand/render-complete.json",
+      "sha256": "f34f07458c7cca86464af26eaf980220213c5841ec5d90fe8ce9a1c2cc0da98c",
+      "bytes": 252,
+      "saved_in_repository": true
+    },
+    {
+      "file": "prism-wand/beauty.png",
+      "sha256": "20301f64de56b0a97cf075f37837906ea7583fcde9c2c107519abe926c554cbc",
+      "bytes": 702362,
+      "saved_in_repository": true
+    },
+    {
+      "file": "prism-wand/front.png",
+      "sha256": "5ef101ff4ed6eaad5cd63973bd3bca4c4437392f69c597adccf48306b3f661cc",
+      "bytes": 688467,
+      "saved_in_repository": true
+    },
+    {
+      "file": "prism-wand/side.png",
+      "sha256": "8ddc081377d8c0573fbbb06d8d5c1c994834250d555840e160f4558f23c74c08",
+      "bytes": 685512,
+      "saved_in_repository": true
+    },
+    {
+      "file": "prism-wand/back.png",
+      "sha256": "91ba7b72a4bb8c349aa3b6b6e4d1feadb9af9aca678b57496b83342efd10215c",
+      "bytes": 688508,
+      "saved_in_repository": true
+    },
+    {
+      "file": "prism-wand/prism-wand.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/prism-wand/prism-wand.blend",
+      "sha256": "ed65e04ebaf8382bf445d923c5840d9292e617f7edd7a8dbca589c89ee153374",
+      "bytes": 586817,
+      "saved_in_repository": false
+    },
+    {
+      "file": "prism-wand/prism-wand-export-review.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/prism-wand/prism-wand-export-review.blend",
+      "sha256": "36d301685e23326e49bbf9d5b08d6ae2e86e5a252fc77813b9eafdb0c61c39d4",
+      "bytes": 224972,
+      "saved_in_repository": false
+    },
+    {
+      "file": "ribbon-shield/ribbon-shield.glb",
+      "sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9",
+      "bytes": 197244,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/construction.json",
+      "sha256": "2f294d44d6f4bf0fa482da57eb85f9df26890f1cdfa54c735f792e4b51930103",
+      "bytes": 21258,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/validation.json",
+      "sha256": "97b1378d69f736f28676f6ab5d3e8664283389ab8a77000a7c89981dde794803",
+      "bytes": 4662,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/reimport.json",
+      "sha256": "8fb09baef43bc76df6601335d083951c705f0585ba5f90979b32ef52c18e3eab",
+      "bytes": 6526,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/render-complete.json",
+      "sha256": "d2cb64e9aaeeee1e3742a20fcf2c1d498e2843abbc0f430f3f674a6a08692457",
+      "bytes": 272,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/beauty.png",
+      "sha256": "d06df7ffe4274d330c56bc4a1afd60623d86c3ee6289b54c52b37becb6380315",
+      "bytes": 773424,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/front.png",
+      "sha256": "c690bf642e9031013a9ecbc4e28fe07ef812cd46708d0898b7592e1e46184454",
+      "bytes": 794329,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/side.png",
+      "sha256": "1ff5d9894a33501a434562f71b53f752278d3479b3e0643dbd3f0cb84f635d96",
+      "bytes": 684096,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/back.png",
+      "sha256": "85cb14ce24d160da654f2ec6695a522c37726b86ce9f0e6d2e153b93b8d4963a",
+      "bytes": 747684,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/rear-grip.png",
+      "sha256": "cb9011b2e289d25e313ad4af1c8ead736b51a39f71521f4fd9bdff1700f9e4b1",
+      "bytes": 762040,
+      "saved_in_repository": true
+    },
+    {
+      "file": "ribbon-shield/ribbon-shield.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/ribbon-shield/ribbon-shield.blend",
+      "sha256": "6d4cf8de5781564cd1315b510627f8255102394ef2d3fee37425d6c58c8f25ae",
+      "bytes": 609919,
+      "saved_in_repository": false
+    },
+    {
+      "file": "ribbon-shield/ribbon-shield-export-review.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/ribbon-shield/ribbon-shield-export-review.blend",
+      "sha256": "3c7e2bc3dfe0c702dc28254f4a3d61044342aa0cf6fd37d3231e5fb13d96afb7",
+      "bytes": 271777,
+      "saved_in_repository": false
+    },
+    {
+      "file": "live-scene-release.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/live-scene-release.blend",
+      "sha256": "6ebc393a8b1197e9e0422af04a4fecd8bbf95f52aa6aba7c1ee22df5b5b9649d",
+      "bytes": 610126,
+      "saved_in_repository": false
+    },
+    {
+      "file": "scene-release.json",
+      "artifact_id": "haynes-quest/era-equipment/v001/scene-release.json",
+      "sha256": "7a17452eb9b18c81125e3cf97738992e0089adb79d88dc028028abedd592c4e3",
+      "bytes": 538,
+      "saved_in_repository": true
+    },
+    {
+      "file": "source-bundle.json",
+      "artifact_id": "haynes-quest/era-equipment/v001/source-bundle.json",
+      "sha256": "eb3447d49c3d59b773a0c6cbbb03b120bc4118c009b4d585f44a807512aa58b2",
+      "bytes": 99433,
+      "saved_in_repository": true
+    },
+    {
+      "file": "render-job-completion.json",
+      "artifact_id": "haynes-quest/era-equipment/v001/render-job-completion.json",
+      "sha256": "9bb94bb3ec2ebf1c370c1da21c9442ffa908dd3d822bb7e30947a71cc79e5f50",
+      "bytes": 263,
+      "saved_in_repository": true
+    }
+  ]
+}

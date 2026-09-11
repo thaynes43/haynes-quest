@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "coordinate_system": "+Y up, forward -Z, meters",
+  "source": "Existing exact traveler v001 GLB JSON and scripts/assets/travelers/build.py mitten-center formula",
+  "stages": {
+    "infant": {
+      "file": "docs/assets/media/traveler-infant/v001/traveler-infant.glb",
+      "sha256": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c",
+      "hands": {
+        "L": {
+          "hand_bone": "hand.L",
+          "forearm_bone": "forearm.L",
+          "three_loader_hand_name": "handL",
+          "three_loader_forearm_name": "forearmL",
+          "three_loader_authored_name_key": "userData.name",
+          "hand_node_index": 4,
+          "forearm_node_index": 5,
+          "wrist_rest_world_m": [
+            -0.22200000286102295,
+            0.2900000320672964,
+            -0.05199999921023846
+          ],
+          "elbow_rest_world_m": [
+            -0.1899999976158142,
+            0.3380000370740861,
+            -0.01899999938905239
+          ],
+          "bone_rest_world_scale": [
+            1,
+            0.9999999403953552,
+            1
+          ],
+          "bone_rest_world_quaternion_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "bone_local_axes_at_rest": {
+            "x": [
+              1,
+              0,
+              0
+            ],
+            "y": [
+              0,
+              1,
+              0
+            ],
+            "z": [
+              0,
+              0,
+              1
+            ]
+          },
+          "suggested_grip_socket_local_m": [
+            -0.010140156952023374,
+            -0.015210235428035061,
+            -0.01747703508606994
+          ],
+          "suggested_grip_socket_rest_world_m": [
+            -0.2321401598130463,
+            0.274789797545862,
+            -0.0694770342963084
+          ],
+          "socket_local_quaternion_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "method": "Follow the hand bone; offset from wrist along forearm by 0.027 \u00d7 authored stage scale, then 0.009 \u00d7 stage scale toward -Z. This is the source mitten-center formula converted to glTF coordinates."
+        },
+        "R": {
+          "hand_bone": "hand.R",
+          "forearm_bone": "forearm.R",
+          "three_loader_hand_name": "handR",
+          "three_loader_forearm_name": "forearmR",
+          "three_loader_authored_name_key": "userData.name",
+          "hand_node_index": 1,
+          "forearm_node_index": 2,
+          "wrist_rest_world_m": [
+            0.22200000286102295,
+            0.2900000320672964,
+            -0.05199999921023846
+          ],
+          "elbow_rest_world_m": [
+            0.1899999976158142,
+            0.3380000370740861,
+            -0.01899999938905239
+          ],
+          "bone_rest_world_scale": [
+            1,
+            0.9999999403953552,
+            1
+          ],
+          "bone_rest_world_quaternion_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "bone_local_axes_at_rest": {
+            "x": [
+              1,
+              0,
+              0
+            ],
+            "y": [
+              0,
+              1,
+              0
+            ],
+            "z": [
+              0,
+              0,
+              1
+            ]
+          },
+          "suggested_grip_socket_local_m": [
+            0.010140156952023374,
+            -0.015210235428035061,
+            -0.01747703508606994
+          ],
+          "suggested_grip_socket_rest_world_m": [
+            0.2321401598130463,
+            0.274789797545862,
+            -0.0694770342963084
+          ],
+          "socket_local_quaternion_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "method": "Follow the hand bone; offset from wrist along forearm by 0.027 \u00d7 authored stage scale, then 0.009 \u00d7 stage scale toward -Z. This is the source mitten-center formula converted to glTF coordinates."
+        }
+      }
+    },
+    "child": {
+      "file": "docs/assets/media/traveler-child/v001/traveler-child.glb",
+      "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e",
+      "hands": {
+        "L": {
+          "hand_bone": "hand.L",
+          "forearm_bone": "forearm.L",
+          "three_loader_hand_name": "handL",
+          "three_loader_forearm_name": "forearmL",
+          "three_loader_authored_name_key": "userData.name",
+          "hand_node_index": 4,
+          "forearm_node_index": 5,
+          "wrist_rest_world_m": [
+            -0.2669999599456787,
+            0.5519999265670776,
+            -0.037999995751306415
+          ],
+          "elbow_rest_world_m": [
+            -0.2199999839067459,
+            0.656999945640564,
+            -0.016999999759718776
+          ],
+          "bone_rest_world_scale": [
+            1,
+            1,
+            1
+          ],
+          "bone_rest_world_quaternion_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "bone_local_axes_at_rest": {
+            "x": [
+              1,
+              0,
+              0
+            ],
+            "y": [
+              0,
+              1,
+              0
+            ],
+            "z": [
+              0,
+              0,
+              1
+            ]
+          },
+          "suggested_grip_socket_local_m": [
+            -0.01085169822656668,
+            -0.024243172375776632,
+            -0.013848632668898558
+          ],
+          "suggested_grip_socket_rest_world_m": [
+            -0.2778516581722454,
+            0.527756754191301,
+            -0.051848628420204976
+          ],
+          "socket_local_quaternion_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "method": "Follow the hand bone; offset from wrist along forearm by 0.027 \u00d7 authored stage scale, then 0.009 \u00d7 stage scale toward -Z. This is the source mitten-center formula converted to glTF coordinates."
+        },
+        "R": {
+          "hand_bone": "hand.R",
+          "forearm_bone": "forearm.R",
+          "three_loader_hand_name": "handR",
+          "three_loader_forearm_name": "forearmR",
+          "three_loader_authored_name_key": "userData.name",
+          "hand_node_index": 1,
+          "forearm_node_index": 2,
+          "wrist_rest_world_m": [
+            0.2669999599456787,
+            0.5519999265670776,
+            -0.037999995751306415
+          ],
+          "elbow_rest_world_m": [
+            0.2199999839067459,
+            0.656999945640564,
+            -0.016999999759718776
+          ],
+          "bone_rest_world_scale": [
+            1,
+            1,
+            1
+          ],
+          "bone_rest_world_quaternion_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "bone_local_axes_at_rest": {
+            "x": [
+              1,
+              0,
+              0
+            ],
+            "y": [
+              0,
+              1,
+              0
+            ],
+            "z": [
+              0,
+              0,
+              1
+            ]
+          },
+          "suggested_grip_socket_local_m": [
+            0.01085169822656668,
+            -0.024243172375776632,
+            -0.013848632668898558
+          ],
+          "suggested_grip_socket_rest_world_m": [
+            0.2778516581722454,
+            0.527756754191301,
+            -0.051848628420204976
+          ],
+          "socket_local_quaternion_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "method": "Follow the hand bone; offset from wrist along forearm by 0.027 \u00d7 authored stage scale, then 0.009 \u00d7 stage scale toward -Z. This is the source mitten-center formula converted to glTF coordinates."
+        }
+      }
+    }
+  },
+  "three_loader_name_guidance": "Verified with Three.js GLTFLoader 0.186.0 against both exact local traveler exports: hand.R becomes object.name handR, forearm.R becomes forearmR, with the original authored names retained as object.userData.name. Resolve the authored names through userData.name when attaching equipment; direct getObjectByName(\"hand.R\") does not find the loaded hand.",
+  "limitations": [
+    "Rest-space socket guidance only; existing mittens do not have articulated fingers.",
+    "Combat poses must be authored or applied to the traveler arms; existing interact is not a verified combat clip.",
+    "Do not attach to the avatar scene root or copy static world positions during animation.",
+    "Keep standard meter-scale equipment for both stages. Scale changes need explicit design and renewed placement checks."
+  ]
+}

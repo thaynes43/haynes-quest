@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "asset_id": "prism-wand",
+  "file": "prism-wand.glb",
+  "sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc",
+  "bytes": 143444,
+  "triangles": 2076,
+  "draw_primitives": 5,
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularFactor": 0.7200000286102295
+        }
+      },
+      "name": "Walnut",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.7599999904632568
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularFactor": 0.7200000286102295
+        }
+      },
+      "name": "Sage",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8799999952316284
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularFactor": 0.7200000286102295
+        }
+      },
+      "name": "Brass",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0.6600000262260437,
+        "roughnessFactor": 0.4300000071525574
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0.21502841952156793,
+        0.0726756187315658,
+        0.00539330308197139
+      ],
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularFactor": 0.7200000286102295
+        }
+      },
+      "name": "Amber",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.9774019122123718,
+          0.33034372329711914,
+          0.02451501414179802,
+          1
+        ],
+        "metallicFactor": 0.03999999910593033,
+        "roughnessFactor": 0.27000001072883606
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularFactor": 0.7200000286102295
+        }
+      },
+      "name": "Plum",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.6399999856948853
+      }
+    }
+  ],
+  "image_count": 4,
+  "bounds_gltf": {
+    "min": [
+      -0.0778963565826416,
+      -0.10999999940395355,
+      -0.0689999982714653
+    ],
+    "max": [
+      0.07707476615905762,
+      0.5399999618530273,
+      0.0689999982714653
+    ],
+    "dimensions": [
+      0.15497112274169922,
+      0.6499999612569809,
+      0.1379999965429306
+    ]
+  },
+  "checks": {
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "triangles_under_5000": true,
+    "material_count_under_5": true,
+    "draw_primitives_under_5": true,
+    "bytes_under_1_mib": true,
+    "embedded_resources": true,
+    "no_required_decoders": true,
+    "exact_y_up_height": true,
+    "matching_source_bounds": true,
+    "declared_grip_origin": true,
+    "source_hash_matches": true,
+    "rigid_no_skin_or_clips": true,
+    "all_geometry_indexed_triangles": true
+  },
+  "validator": {
+    "uri": "prism-wand.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T15:04:34.098Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 1,
+      "numHints": 0,
+      "messages": [
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/0/primitives/3/attributes/TEXCOORD_0"
+        }
+      ],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 136844
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/1",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/2",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/3",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 5,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 5,
+      "totalVertexCount": 1707,
+      "totalTriangleCount": 2076,
+      "maxUVs": 1,
+      "maxInfluences": 0,
+      "maxAttributes": 3
+    }
+  }
+}

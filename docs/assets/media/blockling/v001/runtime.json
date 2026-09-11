@@ -1,0 +1,65 @@
+{
+  "asset_id": "blockling",
+  "version": "v001",
+  "glb": "blockling.glb",
+  "glb_sha256": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb",
+  "runtime_scale": 1.0,
+  "units": "meters",
+  "up": "+Y",
+  "forward": "-Z",
+  "root_origin": "ground; fixed local translation",
+  "ground_to_top_m": 0.85,
+  "lowest_rest_geometry_y_m": 0,
+  "wingspan_m": null,
+  "clip_playback": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "impact_time_s": null,
+      "playback": "repeat",
+      "clamp_when_finished": false
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "impact_time_s": null,
+      "playback": "repeat",
+      "clamp_when_finished": false
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.25,
+      "loop": false,
+      "impact_time_s": 0.65,
+      "playback": "once",
+      "clamp_when_finished": true
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5833333333333334,
+      "loop": false,
+      "impact_time_s": null,
+      "playback": "once",
+      "clamp_when_finished": true
+    },
+    {
+      "name": "defeat",
+      "duration_s": 1.75,
+      "loop": false,
+      "impact_time_s": null,
+      "playback": "once",
+      "clamp_when_finished": true
+    }
+  ],
+  "attack": {
+    "duration_s": 1.25,
+    "contact_time_s": 0.65,
+    "contact_fraction": 0.52,
+    "windup_to_contact_s": 0.65,
+    "follow_through_s": 0.6
+  },
+  "defeat_end": "Collapsed/drooping pose; play once and clamp the last frame until removal. Do not reset to bind pose.",
+  "lifecycle": "Stop actions, uncache mixer root and dispose resources when the owning encounter is removed; controller movement stays external."
+}

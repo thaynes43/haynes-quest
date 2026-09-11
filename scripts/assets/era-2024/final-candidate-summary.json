@@ -1,0 +1,215 @@
+{
+  "loop-dancer": {
+    "triangles": 14848,
+    "bytes": 1096328,
+    "primitives": 6,
+    "bones_including_root": 22,
+    "root_fixed": true,
+    "khronos_issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "bounds": {
+      "min": [
+        -0.33441442623734474,
+        -8.810747242904426e-09,
+        -0.14847026765346527
+      ],
+      "max": [
+        0.3343890346586704,
+        1.100000023841858,
+        0.16972878575325012
+      ]
+    },
+    "minimum_animated_height_m": -0.00037328402266369187,
+    "loop_seams_m": {
+      "idle": 0.00015005491993355373,
+      "move": 1.7435382606307255e-09
+    },
+    "motion_displacements_m": {
+      "idle": 0.034037557642258555,
+      "move": 0.20183909443513154,
+      "attack": 0.38209352283921005,
+      "hit": 0.22938786638809158,
+      "defeat": 0.6462898185463098
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.25,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.5,
+        "loop": false,
+        "impact_time_s": 0.75
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.625,
+        "loop": false,
+        "impact_time_s": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "impact_time_s": null
+      }
+    ]
+  },
+  "prism-mimic": {
+    "triangles": 14770,
+    "bytes": 1079220,
+    "primitives": 6,
+    "bones_including_root": 18,
+    "root_fixed": true,
+    "khronos_issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "bounds": {
+      "min": [
+        -0.2489950954914093,
+        0,
+        -0.4890333414077759
+      ],
+      "max": [
+        0.2489950954914093,
+        1.0499999523162842,
+        0.7812298089265823
+      ]
+    },
+    "minimum_animated_height_m": -0.0015355808045372718,
+    "loop_seams_m": {
+      "idle": 9.007282343879688e-10,
+      "move": 2.857616666941626e-09
+    },
+    "motion_displacements_m": {
+      "idle": 0.05606288520542524,
+      "move": 0.19807458071269038,
+      "attack": 0.35713035773479007,
+      "hit": 0.2702141863221874,
+      "defeat": 0.6729185307868039
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.25,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.25,
+        "loop": false,
+        "impact_time_s": 0.625
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.625,
+        "loop": false,
+        "impact_time_s": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "impact_time_s": null
+      }
+    ]
+  },
+  "trendweaver": {
+    "triangles": 14874,
+    "bytes": 1089712,
+    "primitives": 6,
+    "bones_including_root": 18,
+    "root_fixed": true,
+    "khronos_issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "bounds": {
+      "min": [
+        -0.6536943717689994,
+        0.11999999731779099,
+        -0.35005682706832886
+      ],
+      "max": [
+        0.6536943717689994,
+        1.899999976158142,
+        0.3561664819717407
+      ]
+    },
+    "minimum_animated_height_m": 0.00014988512621826044,
+    "loop_seams_m": {
+      "idle": 2.6419603079584308e-09,
+      "move": 7.074424561885114e-09
+    },
+    "motion_displacements_m": {
+      "idle": 0.1000751772063962,
+      "move": 0.22620937021304782,
+      "attack": 0.610918679760279,
+      "hit": 0.24429997660698793,
+      "defeat": 0.7415935627309251
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.25,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.875,
+        "loop": false,
+        "impact_time_s": 1.125
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.625,
+        "loop": false,
+        "impact_time_s": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "impact_time_s": null
+      }
+    ]
+  }
+}

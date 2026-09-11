@@ -1,0 +1,1004 @@
+{
+  "date": "2026-09-11T15:30:49.093Z",
+  "base": "http://127.0.0.1:4390",
+  "repoRoot": "/home/dev/work/quest-era-boss-loop",
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software (requested)",
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "hasTouch": true
+    }
+  },
+  "physicalSafari": "not tested",
+  "pages": [
+    {
+      "id": "blockling",
+      "url": "/studio/assets/reviews/blockling/v001.html",
+      "manifest": "docs/assets/media/blockling/v001/manifest.json",
+      "overflow": false,
+      "models": [
+        {
+          "id": "blockling",
+          "src": "/studio/assets/media/blockling/v001/blockling.glb",
+          "dimensions": {
+            "x": 0.5313896536827087,
+            "y": 0.850000104308122,
+            "z": 0.6068388670682907
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [
+            "idle",
+            "move",
+            "attack",
+            "hit",
+            "defeat"
+          ],
+          "animations": [
+            {
+              "clip": "idle",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.05,
+              "pausedTime": 0.08329999999999996,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "move",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.049999999999999996,
+              "pausedTime": 0.1,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "attack",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05,
+              "pausedTime": 0.09999999999999999,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.25,
+                "heldTime": 1.25,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "hit",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.050099999999999915,
+              "pausedTime": 0.0834000000000001,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 0.5833333134651184,
+                "heldTime": 0.5833333134651184,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "defeat",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05,
+              "pausedTime": 0.08329999999999972,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.75,
+                "heldTime": 1.75,
+                "playLabel": "Play"
+              }
+            }
+          ],
+          "delivery": {
+            "bytes": 1121948,
+            "sha256": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 243.046875,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "blockling-viewer-phone.png",
+            "maxRgbStandardDeviation": 74.68792631744506
+          }
+        }
+      ],
+      "touchOrbit": {
+        "modelId": "blockling",
+        "before": {
+          "theta": 2.7052603405912126,
+          "phi": 1.3089969389957472,
+          "radius": 2.204483029664742
+        },
+        "after": {
+          "theta": 4.717737237869895,
+          "phi": 1.3089969389957472,
+          "radius": 2.204483029664742
+        },
+        "changed": true
+      },
+      "screenshot": "blockling-page-phone.png"
+    },
+    {
+      "id": "signal-moth",
+      "url": "/studio/assets/reviews/signal-moth/v001.html",
+      "manifest": "docs/assets/media/signal-moth/v001/manifest.json",
+      "overflow": false,
+      "models": [
+        {
+          "id": "signal-moth",
+          "src": "/studio/assets/media/signal-moth/v001/signal-moth.glb",
+          "dimensions": {
+            "x": 1.25,
+            "y": 0.7799999788403511,
+            "z": 0.297808438539505
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [
+            "idle",
+            "move",
+            "attack",
+            "hit",
+            "defeat"
+          ],
+          "animations": [
+            {
+              "clip": "idle",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.049999999999999996,
+              "pausedTime": 0.08339999999999997,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "move",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.049899999999999986,
+              "pausedTime": 0.08329999999999996,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "attack",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.049999999999999996,
+              "pausedTime": 0.1,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.25,
+                "heldTime": 1.25,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "hit",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05,
+              "pausedTime": 0.08330000000000018,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 0.5833333134651184,
+                "heldTime": 0.5833333134651184,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "defeat",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05,
+              "pausedTime": 0.08330000000000018,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.75,
+                "heldTime": 1.75,
+                "playLabel": "Play"
+              }
+            }
+          ],
+          "delivery": {
+            "bytes": 1083900,
+            "sha256": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 243.046875,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "signal-moth-viewer-phone.png",
+            "maxRgbStandardDeviation": 57.50784959731687
+          }
+        }
+      ],
+      "screenshot": "signal-moth-page-phone.png"
+    },
+    {
+      "id": "buffer-baron",
+      "url": "/studio/assets/reviews/buffer-baron/v001.html",
+      "manifest": "docs/assets/media/buffer-baron/v001/manifest.json",
+      "overflow": false,
+      "models": [
+        {
+          "id": "buffer-baron",
+          "src": "/studio/assets/media/buffer-baron/v001/buffer-baron.glb",
+          "dimensions": {
+            "x": 1.0873408317565918,
+            "y": 1.7500000223517418,
+            "z": 0.5692929327487946
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [
+            "idle",
+            "move",
+            "attack",
+            "hit",
+            "defeat"
+          ],
+          "animations": [
+            {
+              "clip": "idle",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.049999999999999996,
+              "pausedTime": 0.08330000000000007,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "move",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.049999999999999996,
+              "pausedTime": 0.10010000000000002,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "attack",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.049999999999999996,
+              "pausedTime": 0.08329999999999994,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.75,
+                "heldTime": 1.75,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "hit",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.0499000000000001,
+              "pausedTime": 0.09990000000000009,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 0.5833333134651184,
+                "heldTime": 0.5833333134651184,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "defeat",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.050100000000000366,
+              "pausedTime": 0.10010000000000036,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.75,
+                "heldTime": 1.75,
+                "playLabel": "Play"
+              }
+            }
+          ],
+          "delivery": {
+            "bytes": 1195688,
+            "sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 243.046875,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "buffer-baron-viewer-phone.png",
+            "maxRgbStandardDeviation": 75.003254566352
+          }
+        }
+      ],
+      "screenshot": "buffer-baron-page-phone.png"
+    },
+    {
+      "id": "loop-dancer",
+      "url": "/studio/assets/reviews/loop-dancer/v001.html",
+      "manifest": "docs/assets/media/loop-dancer/v001/manifest.json",
+      "overflow": false,
+      "models": [
+        {
+          "id": "loop-dancer",
+          "src": "/studio/assets/media/loop-dancer/v001/loop-dancer.glb",
+          "dimensions": {
+            "x": 0.6688034608960152,
+            "y": 1.1000000326526052,
+            "z": 0.3181990534067154
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [
+            "idle",
+            "move",
+            "attack",
+            "hit",
+            "defeat"
+          ],
+          "animations": [
+            {
+              "clip": "idle",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.04990000000000004,
+              "pausedTime": 0.08330000000000001,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "move",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.049999999999999996,
+              "pausedTime": 0.08339999999999997,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "attack",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05,
+              "pausedTime": 0.1,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.5,
+                "heldTime": 1.5,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "hit",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05,
+              "pausedTime": 0.10009999999999991,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 0.625,
+                "heldTime": 0.625,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "defeat",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05009999999999991,
+              "pausedTime": 0.1,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 2,
+                "heldTime": 2,
+                "playLabel": "Play"
+              }
+            }
+          ],
+          "delivery": {
+            "bytes": 1096328,
+            "sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 243.046875,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "loop-dancer-viewer-phone.png",
+            "maxRgbStandardDeviation": 59.76654198100729
+          }
+        }
+      ],
+      "screenshot": "loop-dancer-page-phone.png"
+    },
+    {
+      "id": "prism-mimic",
+      "url": "/studio/assets/reviews/prism-mimic/v001.html",
+      "manifest": "docs/assets/media/prism-mimic/v001/manifest.json",
+      "overflow": false,
+      "models": [
+        {
+          "id": "prism-mimic",
+          "src": "/studio/assets/media/prism-mimic/v001/prism-mimic.glb",
+          "dimensions": {
+            "x": 0.4979901909828186,
+            "y": 1.0499999523162842,
+            "z": 1.2702631503343582
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [
+            "idle",
+            "move",
+            "attack",
+            "hit",
+            "defeat"
+          ],
+          "animations": [
+            {
+              "clip": "idle",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.05,
+              "pausedTime": 0.08339999999999997,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "move",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.04989999999999997,
+              "pausedTime": 0.08330000000000007,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "attack",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05,
+              "pausedTime": 0.0834000000000001,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.25,
+                "heldTime": 1.25,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "hit",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.0499000000000001,
+              "pausedTime": 0.08330000000000018,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 0.625,
+                "heldTime": 0.625,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "defeat",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.050100000000000366,
+              "pausedTime": 0.08340000000000009,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.9999999999999976,
+                "heldTime": 1.9999999999999976,
+                "playLabel": "Play"
+              }
+            }
+          ],
+          "delivery": {
+            "bytes": 1079220,
+            "sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 243.046875,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "prism-mimic-viewer-phone.png",
+            "maxRgbStandardDeviation": 64.91167138178771
+          }
+        }
+      ],
+      "screenshot": "prism-mimic-page-phone.png"
+    },
+    {
+      "id": "trendweaver",
+      "url": "/studio/assets/reviews/trendweaver/v001.html",
+      "manifest": "docs/assets/media/trendweaver/v001/manifest.json",
+      "overflow": false,
+      "models": [
+        {
+          "id": "trendweaver",
+          "src": "/studio/assets/media/trendweaver/v001/trendweaver.glb",
+          "dimensions": {
+            "x": 1.3073887435379987,
+            "y": 1.779999978840351,
+            "z": 0.7062233090400696
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [
+            "idle",
+            "move",
+            "attack",
+            "hit",
+            "defeat"
+          ],
+          "animations": [
+            {
+              "clip": "idle",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.049999999999999996,
+              "pausedTime": 0.08339999999999997,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "move",
+              "playback": "repeat",
+              "repetitions": "Infinity",
+              "runningTime": 0.05,
+              "pausedTime": 0.1,
+              "advanced": true,
+              "playLabelAfterPause": "Play"
+            },
+            {
+              "clip": "attack",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05009999999999991,
+              "pausedTime": 0.1,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 1.875,
+                "heldTime": 1.875,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "hit",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.05,
+              "pausedTime": 0.08329999999999972,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 0.625,
+                "heldTime": 0.625,
+                "playLabel": "Play"
+              }
+            },
+            {
+              "clip": "defeat",
+              "playback": "once",
+              "repetitions": 1,
+              "runningTime": 0.04990000000000055,
+              "pausedTime": 0.08330000000000018,
+              "advanced": true,
+              "playLabelAfterPause": "Play",
+              "finished": {
+                "time": 2,
+                "heldTime": 2,
+                "playLabel": "Play"
+              }
+            }
+          ],
+          "delivery": {
+            "bytes": 1089712,
+            "sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 243.046875,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "trendweaver-viewer-phone.png",
+            "maxRgbStandardDeviation": 62.66195178815708
+          }
+        }
+      ],
+      "screenshot": "trendweaver-page-phone.png"
+    },
+    {
+      "id": "era-equipment",
+      "url": "/studio/assets/reviews/era-equipment/v001.html",
+      "manifest": "docs/assets/media/era-equipment/v001/manifest.json",
+      "overflow": false,
+      "models": [
+        {
+          "id": "spark-mallet",
+          "src": "/studio/assets/media/era-equipment/v001/spark-mallet/spark-mallet.glb",
+          "dimensions": {
+            "x": 0.3421337902545929,
+            "y": 0.5499999895691872,
+            "z": 0.2287522405385971
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [],
+          "animations": [],
+          "delivery": {
+            "bytes": 161872,
+            "sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 243.34375,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "spark-mallet-viewer-phone.png",
+            "maxRgbStandardDeviation": 70.87561864820057
+          }
+        },
+        {
+          "id": "acorn-shield",
+          "src": "/studio/assets/media/era-equipment/v001/acorn-shield/acorn-shield.glb",
+          "dimensions": {
+            "x": 0.28634631633758545,
+            "y": 0.3999999985098839,
+            "z": 0.13662786036729813
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [],
+          "animations": [],
+          "delivery": {
+            "bytes": 184460,
+            "sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 243.0625,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "acorn-shield-viewer-phone.png",
+            "maxRgbStandardDeviation": 85.03342214862664
+          }
+        },
+        {
+          "id": "prism-wand",
+          "src": "/studio/assets/media/era-equipment/v001/prism-wand/prism-wand.glb",
+          "dimensions": {
+            "x": 0.15497112274169922,
+            "y": 0.6499999612569809,
+            "z": 0.1379999965429306
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [],
+          "animations": [],
+          "delivery": {
+            "bytes": 143444,
+            "sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 243.375,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "prism-wand-viewer-phone.png",
+            "maxRgbStandardDeviation": 47.07519268206368
+          }
+        },
+        {
+          "id": "ribbon-shield",
+          "src": "/studio/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb",
+          "dimensions": {
+            "x": 0.3033766373991966,
+            "y": 0.47999998927116394,
+            "z": 0.16333667002618313
+          },
+          "webgl": {
+            "calls": 1,
+            "successfulContexts": 1,
+            "types": [
+              "webgl2"
+            ]
+          },
+          "renderSurface": {
+            "width": 356,
+            "height": 356
+          },
+          "clips": [],
+          "animations": [],
+          "delivery": {
+            "bytes": 197244,
+            "sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9"
+          },
+          "portrait": {
+            "x": 16,
+            "y": 242.6875,
+            "width": 358,
+            "height": 358
+          },
+          "pixels": {
+            "file": "ribbon-shield-viewer-phone.png",
+            "maxRgbStandardDeviation": 83.35900773658256
+          }
+        }
+      ],
+      "touchOrbit": {
+        "modelId": "spark-mallet",
+        "before": {
+          "theta": 2.705260340591211,
+          "phi": 1.3089969389957472,
+          "radius": 1.2568865941453427
+        },
+        "after": {
+          "theta": 4.720124041266436,
+          "phi": 1.3089969389957472,
+          "radius": 1.2568865941453427
+        },
+        "changed": true
+      },
+      "screenshot": "era-equipment-page-phone.png"
+    }
+  ],
+  "masters": [
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-2020/v001/blockling/blockling.blend",
+      "bytes": 5103852,
+      "sha256": "ea7075a8729424bb476c8ee103bee654df2bae077c764d768a1d1dafcc4d52a9",
+      "verified": true,
+      "modelId": "blockling"
+    },
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-2020/v001/signal-moth/signal-moth.blend",
+      "bytes": 4665008,
+      "sha256": "eec5407e9dd891dcfe2ee7617fed4f771f5e92668f3a2e17b454c69e17b8d22f",
+      "verified": true,
+      "modelId": "signal-moth"
+    },
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-2020/v001/buffer-baron/buffer-baron.blend",
+      "bytes": 4966578,
+      "sha256": "5b262f65de2ccd65c5c65c970088e81fa72b8f14c4eb30e5714d7611c9a9172c",
+      "verified": true,
+      "modelId": "buffer-baron"
+    },
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-2024/v001/loop-dancer/loop-dancer.blend",
+      "bytes": 5889460,
+      "sha256": "e1ea1e148f009fe9fd8fa33d44b8895a743a08883091b64b1cfa00a6fde457d0",
+      "verified": true,
+      "modelId": "loop-dancer"
+    },
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-2024/v001/prism-mimic/prism-mimic.blend",
+      "bytes": 5433886,
+      "sha256": "9279833543039de1a07ab801a07d8db233bd5951a1db7d428e9779d6372ae746",
+      "verified": true,
+      "modelId": "prism-mimic"
+    },
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-2024/v001/trendweaver/trendweaver.blend",
+      "bytes": 5589689,
+      "sha256": "ab8730924e3b2025bf0185bc129c67a2b1f4e1f916b4e8c2ec53fc195b003c6c",
+      "verified": true,
+      "modelId": "trendweaver"
+    },
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-equipment/v001/spark-mallet/spark-mallet.blend",
+      "bytes": 594982,
+      "sha256": "b794e64fc21cb39fd40ba2845c64f435a57f0d0e410b8021c2431ee4c85922c1",
+      "verified": true,
+      "modelId": "spark-mallet"
+    },
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-equipment/v001/acorn-shield/acorn-shield.blend",
+      "bytes": 605496,
+      "sha256": "911ae6b54cefc02622ac9d5682846de355c0dc8237cbbe0514875cd839f31a3b",
+      "verified": true,
+      "modelId": "acorn-shield"
+    },
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-equipment/v001/prism-wand/prism-wand.blend",
+      "bytes": 586817,
+      "sha256": "ed65e04ebaf8382bf445d923c5840d9292e617f7edd7a8dbca589c89ee153374",
+      "verified": true,
+      "modelId": "prism-wand"
+    },
+    {
+      "artifactPath": "/artifacts/haynes-quest/era-equipment/v001/ribbon-shield/ribbon-shield.blend",
+      "bytes": 609919,
+      "sha256": "6d4cf8de5781564cd1315b510627f8255102394ef2d3fee37425d6c58c8f25ae",
+      "verified": true,
+      "modelId": "ribbon-shield"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "badResponses": [],
+  "failedRequests": [],
+  "expectedMetadataAborts": [
+    {
+      "page": "blockling",
+      "error": "net::ERR_ABORTED",
+      "path": "/studio/assets/media/blockling/v001/animations.mp4",
+      "responseStatus": 206,
+      "loadedMetadata": true,
+      "readyState": 4,
+      "mediaError": null
+    },
+    {
+      "page": "signal-moth",
+      "error": "net::ERR_ABORTED",
+      "path": "/studio/assets/media/signal-moth/v001/animations.mp4",
+      "responseStatus": 206,
+      "loadedMetadata": true,
+      "readyState": 4,
+      "mediaError": null
+    },
+    {
+      "page": "buffer-baron",
+      "error": "net::ERR_ABORTED",
+      "path": "/studio/assets/media/buffer-baron/v001/animations.mp4",
+      "responseStatus": 206,
+      "loadedMetadata": true,
+      "readyState": 4,
+      "mediaError": null
+    },
+    {
+      "page": "loop-dancer",
+      "error": "net::ERR_ABORTED",
+      "path": "/studio/assets/media/loop-dancer/v001/animations.mp4",
+      "responseStatus": 206,
+      "loadedMetadata": true,
+      "readyState": 4,
+      "mediaError": null
+    },
+    {
+      "page": "prism-mimic",
+      "error": "net::ERR_ABORTED",
+      "path": "/studio/assets/media/prism-mimic/v001/animations.mp4",
+      "responseStatus": 206,
+      "loadedMetadata": true,
+      "readyState": 4,
+      "mediaError": null
+    },
+    {
+      "page": "trendweaver",
+      "error": "net::ERR_ABORTED",
+      "path": "/studio/assets/media/trendweaver/v001/animations.mp4",
+      "responseStatus": 206,
+      "loadedMetadata": true,
+      "readyState": 4,
+      "mediaError": null
+    }
+  ],
+  "externalRequests": []
+}

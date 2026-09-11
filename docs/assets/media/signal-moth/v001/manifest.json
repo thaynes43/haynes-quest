@@ -1,0 +1,334 @@
+{
+  "asset_id": "signal-moth",
+  "version": "v001",
+  "approval": "candidate; owner approval pending",
+  "remote_directory": "/workspace/haynes-quest/era-2020/v001/signal-moth",
+  "source_concept": {
+    "concept_path": "docs/assets/media/signal-moth/v001/concept.png",
+    "sha256": "84b2074b48972569fb858a65dc8e915922a3c5872521a2f2244903ee4b5f4a24",
+    "bytes": 2567931,
+    "inspection": "Actual selected concept inspected with image viewer before authoring; no regenerated reference or third-party mesh."
+  },
+  "construction": {
+    "asset_id": "signal-moth",
+    "version": "v001",
+    "blender": "4.5.13 LTS",
+    "triangles": 13520,
+    "vertices": 6990,
+    "material_count": 6,
+    "bones": [
+      "body",
+      "head",
+      "abdomen",
+      "wing.upper.L",
+      "wing.lower.L",
+      "wing.upper.R",
+      "wing.lower.R",
+      "claw.0.L",
+      "claw.1.L",
+      "claw.2.L",
+      "claw.0.R",
+      "claw.1.R",
+      "claw.2.R"
+    ],
+    "bounds_blender": {
+      "min": [
+        -0.6253380179405212,
+        -0.1284576952457428,
+        0.11999999731779099
+      ],
+      "max": [
+        0.6246619820594788,
+        0.1693507432937622,
+        0.8999999761581421
+      ]
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.0,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.25,
+        "loop": false,
+        "impact_time_s": 0.7
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.5833333333333334,
+        "loop": false,
+        "impact_time_s": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 1.75,
+        "loop": false,
+        "impact_time_s": null
+      }
+    ],
+    "scale_correction": {
+      "uniform_yz": 1.0650990314816484,
+      "width": 0.9595654604532573,
+      "source_min_z": 0.19499999284744263
+    },
+    "spec": {
+      "height": 0.9,
+      "floor": 0.12,
+      "width": 1.25,
+      "impact": 0.7
+    },
+    "pigment_atlas": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+      "bytes": 1112387,
+      "sha256": "3013946c707312591a55b56572dfa99b4b0fc2fa263128235fb87be3ca497a35"
+    },
+    "files": {
+      "signal-moth.blend": {
+        "bytes": 4665008,
+        "sha256": "eec5407e9dd891dcfe2ee7617fed4f771f5e92668f3a2e17b454c69e17b8d22f"
+      },
+      "signal-moth.glb": {
+        "bytes": 1083900,
+        "sha256": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe"
+      }
+    },
+    "construction_source": {
+      "file": "construction-source.py",
+      "bytes": 43925,
+      "sha256": "2b35aae2e43a80d765ef7ffa29a9cd71b9cd503e1f649348da2c3991bb6c4303"
+    }
+  },
+  "runtime": {
+    "asset_id": "signal-moth",
+    "version": "v001",
+    "glb": "signal-moth.glb",
+    "glb_sha256": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe",
+    "runtime_scale": 1.0,
+    "units": "meters",
+    "up": "+Y",
+    "forward": "-Z",
+    "root_origin": "ground; fixed local translation",
+    "ground_to_top_m": 0.9,
+    "lowest_rest_geometry_y_m": 0.12,
+    "wingspan_m": 1.25,
+    "clip_playback": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      {
+        "name": "move",
+        "duration_s": 1.0,
+        "loop": true,
+        "impact_time_s": null,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.25,
+        "loop": false,
+        "impact_time_s": 0.7,
+        "playback": "once",
+        "clamp_when_finished": true
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.5833333333333334,
+        "loop": false,
+        "impact_time_s": null,
+        "playback": "once",
+        "clamp_when_finished": true
+      },
+      {
+        "name": "defeat",
+        "duration_s": 1.75,
+        "loop": false,
+        "impact_time_s": null,
+        "playback": "once",
+        "clamp_when_finished": true
+      }
+    ],
+    "attack": {
+      "duration_s": 1.25,
+      "contact_time_s": 0.7,
+      "contact_fraction": 0.5599999999999999,
+      "windup_to_contact_s": 0.7,
+      "follow_through_s": 0.55
+    },
+    "defeat_end": "Collapsed/drooping pose; play once and clamp the last frame until removal. Do not reset to bind pose.",
+    "lifecycle": "Stop actions, uncache mixer root and dispose resources when the owning encounter is removed; controller movement stays external."
+  },
+  "videos": {
+    "animations.mp4": {
+      "duration_s": 7.084,
+      "expected_s": 7.083333333333333,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "turntable.mp4": {
+      "duration_s": 3.0,
+      "expected_s": 3.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "idle.mp4": {
+      "duration_s": 2.5,
+      "expected_s": 2.5,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "move.mp4": {
+      "duration_s": 1.0,
+      "expected_s": 1.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "attack.mp4": {
+      "duration_s": 1.25,
+      "expected_s": 1.25,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "hit.mp4": {
+      "duration_s": 0.584,
+      "expected_s": 0.5833333333333334,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "defeat.mp4": {
+      "duration_s": 1.75,
+      "expected_s": 1.75,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    }
+  },
+  "files": {
+    "signal-moth.glb": {
+      "bytes": 1083900,
+      "sha256": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe"
+    },
+    "signal-moth.blend": {
+      "bytes": 4665008,
+      "sha256": "eec5407e9dd891dcfe2ee7617fed4f771f5e92668f3a2e17b454c69e17b8d22f"
+    },
+    "pigment.png": {
+      "bytes": 1112387,
+      "sha256": "3013946c707312591a55b56572dfa99b4b0fc2fa263128235fb87be3ca497a35"
+    },
+    "construction-source.py": {
+      "bytes": 43925,
+      "sha256": "2b35aae2e43a80d765ef7ffa29a9cd71b9cd503e1f649348da2c3991bb6c4303"
+    },
+    "construction.json": {
+      "bytes": 2205,
+      "sha256": "88dcd719375848e8822cdaef149611089de38b762e138e3cecf8c23128b27ff0"
+    },
+    "validation.json": {
+      "bytes": 4203,
+      "sha256": "b497d7d4b45b8f9832d92dabbfb398407df1e4dbe5fa3bc53ebe1b4e6d6c978e"
+    },
+    "three-inspection.json": {
+      "bytes": 4053,
+      "sha256": "4f11aff3a58d1559cbdcc790e18faa919e434ab3996aa21fd3aa36dcf9b771d1"
+    },
+    "browser-inspection.json": {
+      "bytes": 1226,
+      "sha256": "be17bc5eb7a72acb5397adabb479ad0aaf9f8c8c408ced8b6a09b7705ff8c0ef"
+    },
+    "export-inspection.json": {
+      "bytes": 1914,
+      "sha256": "3ae06dc3009ed58bb080a720a01d4bfe867a53eb5c81c8edf8ff500e836debd0"
+    },
+    "render-complete.json": {
+      "bytes": 223,
+      "sha256": "de5cf67e6b2d7a3831b3c2bfc418b4292c7a66ca9b7e69db292d7b22692ac700"
+    },
+    "runtime.json": {
+      "bytes": 1720,
+      "sha256": "0388e2effead11a793f03175dd248b921a2a7547e6fd02d8ec7306ae7d7b892d"
+    },
+    "beauty.png": {
+      "bytes": 576085,
+      "sha256": "47fd5059603291c0036fa709add8a16668399f5d758b08968d0fd830c61b0359"
+    },
+    "front.png": {
+      "bytes": 595780,
+      "sha256": "8494cd03648c1d611386760ef9100f3aa4577d67205eac2519e946280024da03"
+    },
+    "side.png": {
+      "bytes": 492611,
+      "sha256": "395baea43d436a5c9556223178397b4200addd6d361b35de810f0716bcbb210b"
+    },
+    "back.png": {
+      "bytes": 570831,
+      "sha256": "d3de733d034cea0e1843f4f45799b264c6bc12102d42d40453491df82b97898c"
+    },
+    "browser-beauty.png": {
+      "bytes": 143688,
+      "sha256": "193064601b08e1dd7f6ab9e62219094ad7b256ab34abdf7edae44d0589add1cd"
+    },
+    "motion-grid.png": {
+      "bytes": 734302,
+      "sha256": "35f04b51a1750612b8068fb76d51844d4fae45ac0c514ccda9be6a746f962df5"
+    },
+    "animations.mp4": {
+      "bytes": 371197,
+      "sha256": "4208a0ab5ffab8fe15cd4de9efd29fd440789c0c1d5509770c36721b6336fb48"
+    },
+    "turntable.mp4": {
+      "bytes": 163969,
+      "sha256": "4ca902823147656b42f58a83d4f12dc34d3cc9857b86eca351d1343999527496"
+    },
+    "idle.mp4": {
+      "bytes": 105634,
+      "sha256": "8f34182db279223d80d689064b91481f36bc1d0bdc13206e3c644374b7d13354"
+    },
+    "move.mp4": {
+      "bytes": 71073,
+      "sha256": "feb9a7f83f7a602124b1475b205508771c19e11261029bfdd12ba753f0e4114c"
+    },
+    "attack.mp4": {
+      "bytes": 75601,
+      "sha256": "1c50bac00809630a233e4fece5ad202bcb1300d81fb2aca3a0c216e9de1e5d03"
+    },
+    "hit.mp4": {
+      "bytes": 41466,
+      "sha256": "99cff4fa10a4af44d83654e3431da804c5cbe5a78c11bc3df612be957c788931"
+    },
+    "defeat.mp4": {
+      "bytes": 80704,
+      "sha256": "aaffdc05152d3ab1decccd55eb35e0dc0cad0fe742f489ae76696ba615a4ac8a"
+    }
+  }
+}

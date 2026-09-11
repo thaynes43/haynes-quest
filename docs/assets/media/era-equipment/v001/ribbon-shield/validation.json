@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "asset_id": "ribbon-shield",
+  "file": "ribbon-shield.glb",
+  "sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9",
+  "bytes": 197244,
+  "triangles": 4128,
+  "draw_primitives": 4,
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularFactor": 0.7200000286102295
+        }
+      },
+      "name": "Walnut",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.7599999904632568
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularFactor": 0.7200000286102295
+        }
+      },
+      "name": "Brass",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0.6600000262260437,
+        "roughnessFactor": 0.4300000071525574
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularFactor": 0.7200000286102295
+        }
+      },
+      "name": "Plum",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.6399999856948853
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularFactor": 0.7200000286102295
+        }
+      },
+      "name": "Sage",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8799999952316284
+      }
+    }
+  ],
+  "image_count": 4,
+  "bounds_gltf": {
+    "min": [
+      -0.22661340236663818,
+      -0.23999999463558197,
+      -0.14635364711284637
+    ],
+    "max": [
+      0.07676323503255844,
+      0.23999999463558197,
+      0.016983022913336754
+    ],
+    "dimensions": [
+      0.3033766373991966,
+      0.47999998927116394,
+      0.16333667002618313
+    ]
+  },
+  "checks": {
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "triangles_under_5000": true,
+    "material_count_under_5": true,
+    "draw_primitives_under_5": true,
+    "bytes_under_1_mib": true,
+    "embedded_resources": true,
+    "no_required_decoders": true,
+    "exact_y_up_height": true,
+    "matching_source_bounds": true,
+    "declared_grip_origin": true,
+    "source_hash_matches": true,
+    "rigid_no_skin_or_clips": true,
+    "all_geometry_indexed_triangles": true
+  },
+  "validator": {
+    "uri": "ribbon-shield.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T15:04:34.108Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 191716
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/1",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/2",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/3",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 4,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 4,
+      "totalVertexCount": 3037,
+      "totalTriangleCount": 4128,
+      "maxUVs": 1,
+      "maxInfluences": 0,
+      "maxAttributes": 3
+    }
+  }
+}

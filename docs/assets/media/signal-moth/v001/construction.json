@@ -1,0 +1,101 @@
+{
+  "asset_id": "signal-moth",
+  "version": "v001",
+  "blender": "4.5.13 LTS",
+  "triangles": 13520,
+  "vertices": 6990,
+  "material_count": 6,
+  "bones": [
+    "body",
+    "head",
+    "abdomen",
+    "wing.upper.L",
+    "wing.lower.L",
+    "wing.upper.R",
+    "wing.lower.R",
+    "claw.0.L",
+    "claw.1.L",
+    "claw.2.L",
+    "claw.0.R",
+    "claw.1.R",
+    "claw.2.R"
+  ],
+  "bounds_blender": {
+    "min": [
+      -0.6253380179405212,
+      -0.1284576952457428,
+      0.11999999731779099
+    ],
+    "max": [
+      0.6246619820594788,
+      0.1693507432937622,
+      0.8999999761581421
+    ]
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "impact_time_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.25,
+      "loop": false,
+      "impact_time_s": 0.7
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5833333333333334,
+      "loop": false,
+      "impact_time_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 1.75,
+      "loop": false,
+      "impact_time_s": null
+    }
+  ],
+  "scale_correction": {
+    "uniform_yz": 1.0650990314816484,
+    "width": 0.9595654604532573,
+    "source_min_z": 0.19499999284744263
+  },
+  "spec": {
+    "height": 0.9,
+    "floor": 0.12,
+    "width": 1.25,
+    "impact": 0.7
+  },
+  "pigment_atlas": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+    "bytes": 1112387,
+    "sha256": "3013946c707312591a55b56572dfa99b4b0fc2fa263128235fb87be3ca497a35"
+  },
+  "files": {
+    "signal-moth.blend": {
+      "bytes": 4665008,
+      "sha256": "eec5407e9dd891dcfe2ee7617fed4f771f5e92668f3a2e17b454c69e17b8d22f"
+    },
+    "signal-moth.glb": {
+      "bytes": 1083900,
+      "sha256": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe"
+    }
+  },
+  "construction_source": {
+    "file": "construction-source.py",
+    "bytes": 43925,
+    "sha256": "2b35aae2e43a80d765ef7ffa29a9cd71b9cd503e1f649348da2c3991bb6c4303"
+  }
+}

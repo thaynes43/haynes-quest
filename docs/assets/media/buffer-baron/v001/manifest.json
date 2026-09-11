@@ -1,0 +1,334 @@
+{
+  "asset_id": "buffer-baron",
+  "version": "v001",
+  "approval": "candidate; owner approval pending",
+  "remote_directory": "/workspace/haynes-quest/era-2020/v001/buffer-baron",
+  "source_concept": {
+    "concept_path": "docs/assets/media/buffer-baron/v001/concept.png",
+    "sha256": "20a7378128badc5600ab646d7b1ef40bce0f97bd614f07a7ccd92dc434aa93ef",
+    "bytes": 2462502,
+    "inspection": "Actual selected concept inspected with image viewer before authoring; no regenerated reference or third-party mesh."
+  },
+  "construction": {
+    "asset_id": "buffer-baron",
+    "version": "v001",
+    "blender": "4.5.13 LTS",
+    "triangles": 14840,
+    "vertices": 7734,
+    "material_count": 6,
+    "bones": [
+      "body",
+      "head",
+      "halo",
+      "arm.L",
+      "forearm.L",
+      "hand.L",
+      "finger.0.L",
+      "finger.1.L",
+      "arm.R",
+      "forearm.R",
+      "hand.R",
+      "finger.0.R",
+      "finger.1.R"
+    ],
+    "bounds_blender": {
+      "min": [
+        -0.5436704158782959,
+        -0.26676517724990845,
+        0.10000000149011612
+      ],
+      "max": [
+        0.5436704158782959,
+        0.3025277554988861,
+        1.850000023841858
+      ]
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.0,
+        "loop": true,
+        "impact_time_s": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.75,
+        "loop": false,
+        "impact_time_s": 1.05
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.5833333333333334,
+        "loop": false,
+        "impact_time_s": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 1.75,
+        "loop": false,
+        "impact_time_s": null
+      }
+    ],
+    "scale_correction": {
+      "uniform_yz": 0.9337276826172947,
+      "width": 0.9337276826172947,
+      "source_min_z": 0.10499999672174454
+    },
+    "spec": {
+      "height": 1.85,
+      "floor": 0.1,
+      "width": null,
+      "impact": 1.05
+    },
+    "pigment_atlas": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "source": "Original Blender Noise Texture fields multiplied by retained SourcePigment vertex washes; diffuse-color-only bake",
+      "bytes": 1137911,
+      "sha256": "6959553fe5632b00cc8e21e7467b373a539fc0b7596c5751d2f47e67c420980a"
+    },
+    "files": {
+      "buffer-baron.blend": {
+        "bytes": 4966578,
+        "sha256": "5b262f65de2ccd65c5c65c970088e81fa72b8f14c4eb30e5714d7611c9a9172c"
+      },
+      "buffer-baron.glb": {
+        "bytes": 1195688,
+        "sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915"
+      }
+    },
+    "construction_source": {
+      "file": "construction-source.py",
+      "bytes": 44286,
+      "sha256": "9b1c871724f7a4c5129cdecacac7502dabe8b9fe8be789dfaa80c2ba20305f38"
+    }
+  },
+  "runtime": {
+    "asset_id": "buffer-baron",
+    "version": "v001",
+    "glb": "buffer-baron.glb",
+    "glb_sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915",
+    "runtime_scale": 1.0,
+    "units": "meters",
+    "up": "+Y",
+    "forward": "-Z",
+    "root_origin": "ground; fixed local translation",
+    "ground_to_top_m": 1.85,
+    "lowest_rest_geometry_y_m": 0.1,
+    "wingspan_m": null,
+    "clip_playback": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "impact_time_s": null,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      {
+        "name": "move",
+        "duration_s": 1.0,
+        "loop": true,
+        "impact_time_s": null,
+        "playback": "repeat",
+        "clamp_when_finished": false
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.75,
+        "loop": false,
+        "impact_time_s": 1.05,
+        "playback": "once",
+        "clamp_when_finished": true
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.5833333333333334,
+        "loop": false,
+        "impact_time_s": null,
+        "playback": "once",
+        "clamp_when_finished": true
+      },
+      {
+        "name": "defeat",
+        "duration_s": 1.75,
+        "loop": false,
+        "impact_time_s": null,
+        "playback": "once",
+        "clamp_when_finished": true
+      }
+    ],
+    "attack": {
+      "duration_s": 1.75,
+      "contact_time_s": 1.05,
+      "contact_fraction": 0.6,
+      "windup_to_contact_s": 1.05,
+      "follow_through_s": 0.7
+    },
+    "defeat_end": "Collapsed/drooping pose; play once and clamp the last frame until removal. Do not reset to bind pose.",
+    "lifecycle": "Stop actions, uncache mixer root and dispose resources when the owning encounter is removed; controller movement stays external."
+  },
+  "videos": {
+    "animations.mp4": {
+      "duration_s": 7.584,
+      "expected_s": 7.583333333333333,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "turntable.mp4": {
+      "duration_s": 3.0,
+      "expected_s": 3.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "idle.mp4": {
+      "duration_s": 2.5,
+      "expected_s": 2.5,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "move.mp4": {
+      "duration_s": 1.0,
+      "expected_s": 1.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "attack.mp4": {
+      "duration_s": 1.75,
+      "expected_s": 1.75,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "hit.mp4": {
+      "duration_s": 0.584,
+      "expected_s": 0.5833333333333334,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    },
+    "defeat.mp4": {
+      "duration_s": 1.75,
+      "expected_s": 1.75,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 480,
+      "height": 560
+    }
+  },
+  "files": {
+    "buffer-baron.glb": {
+      "bytes": 1195688,
+      "sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915"
+    },
+    "buffer-baron.blend": {
+      "bytes": 4966578,
+      "sha256": "5b262f65de2ccd65c5c65c970088e81fa72b8f14c4eb30e5714d7611c9a9172c"
+    },
+    "pigment.png": {
+      "bytes": 1137911,
+      "sha256": "6959553fe5632b00cc8e21e7467b373a539fc0b7596c5751d2f47e67c420980a"
+    },
+    "construction-source.py": {
+      "bytes": 44286,
+      "sha256": "9b1c871724f7a4c5129cdecacac7502dabe8b9fe8be789dfaa80c2ba20305f38"
+    },
+    "construction.json": {
+      "bytes": 2191,
+      "sha256": "60099b0e3eda614370f3b0f0d7e207ec774ab141c1a11a371c8363190d042a0f"
+    },
+    "validation.json": {
+      "bytes": 4187,
+      "sha256": "fe276b0fade54f2f3057b0feede73ed1d841cddcd207f4b7911f34d5c9ff78e2"
+    },
+    "three-inspection.json": {
+      "bytes": 4039,
+      "sha256": "a9b75982a617d73ac31147b87c0726f7502d299fac7ff5b27df30a997933c21e"
+    },
+    "browser-inspection.json": {
+      "bytes": 1227,
+      "sha256": "b302bbc0a3ee083109ee2502884cdc96781dad512b1e3dddb4307c8c8c52240d"
+    },
+    "export-inspection.json": {
+      "bytes": 1904,
+      "sha256": "a66a34ffd8d70497f18170473f9b6b816248c0020bca93b0a02615f0e59a7879"
+    },
+    "render-complete.json": {
+      "bytes": 223,
+      "sha256": "0e3aa5bc8bd823b309b45c3891b93fee6d1db9c98c4635bed69e9c6ed0c3021b"
+    },
+    "runtime.json": {
+      "bytes": 1709,
+      "sha256": "087824ecd18d35679a70edbe55507352933be6027f0ff9928ecbe5d86fc93c4b"
+    },
+    "beauty.png": {
+      "bytes": 581249,
+      "sha256": "5be862cace7d88045899e7423bda32b0638d09f669b742ed69e754d7d57d0d66"
+    },
+    "front.png": {
+      "bytes": 595167,
+      "sha256": "a133e2809d616a691fc1c0b9cbeea83d0027f70d3c46daaef4da31d9ddd825ba"
+    },
+    "side.png": {
+      "bytes": 522058,
+      "sha256": "7516f9822e7f92337e60458f4a7e8a5f0794f0e5f7463fec3c72b2cfda35b15c"
+    },
+    "back.png": {
+      "bytes": 563703,
+      "sha256": "cd60e6b09e3f801d4721ce185637b4d6ef09eb197a536278059e0ed5187b88d5"
+    },
+    "browser-beauty.png": {
+      "bytes": 145140,
+      "sha256": "df3dfe064a45aef1d4c97b9ae348db0b031a0e59e912ed997cf186b36ecfc27b"
+    },
+    "motion-grid.png": {
+      "bytes": 707098,
+      "sha256": "7ba26fca94aab6a6e732cb72e8e50dc714ed653a4feebac6041d681b71e0a9b2"
+    },
+    "animations.mp4": {
+      "bytes": 285303,
+      "sha256": "fd355275e05f80bffb385fc36024984a9ff74c2c645fc2422568524770466ee1"
+    },
+    "turntable.mp4": {
+      "bytes": 164603,
+      "sha256": "c2951ff9bf7e1122ec7916c6f3b650c4d58e43e3e6efb788e0985d11b0c2a0ab"
+    },
+    "idle.mp4": {
+      "bytes": 69891,
+      "sha256": "2b7d6bac27f199fa50ab98fcdd9b8b5d945431a923d48b016a49d52308ca148d"
+    },
+    "move.mp4": {
+      "bytes": 43390,
+      "sha256": "09ef6041b29adee52afb71c7dd72600280ac303d274c1e0af07518218e5313c9"
+    },
+    "attack.mp4": {
+      "bytes": 76721,
+      "sha256": "9222928ffdcc5ce7127df83906e8347fa16fea0feaf0c6ad77ccd92de1e301e0"
+    },
+    "hit.mp4": {
+      "bytes": 32112,
+      "sha256": "0e064603f649624ddf3ff4e1e9fc70f096d4e05db53222e56c687cf4cf71758a"
+    },
+    "defeat.mp4": {
+      "bytes": 66470,
+      "sha256": "b81c12e27d03850a81cf365bd537b7e2185a5ffd3e81fa8db5308521f2cd7c85"
+    }
+  }
+}

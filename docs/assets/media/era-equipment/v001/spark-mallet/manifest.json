@@ -1,0 +1,189 @@
+{
+  "asset_id": "spark-mallet",
+  "version": "v001",
+  "candidate_status": "unapproved",
+  "coordinator_review": "selected for candidate catalog/intake by lead Astra on 2026-09-11",
+  "tom_review": "pending",
+  "concept_reference": {
+    "repository_path": "docs/assets/media/era-equipment/v001/starter-concept.png",
+    "sha256": "62af0571853a0f8d9231984c09c1ddb9e25f0beae2704591dc7e7ec20c02d85e"
+  },
+  "glb_sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae",
+  "glb_bytes": 161872,
+  "triangles": 3728,
+  "materials": 4,
+  "draw_primitives": 4,
+  "dimensions_gltf_m": [
+    0.3421337902545929,
+    0.5499999895691872,
+    0.2287522405385971
+  ],
+  "attachment": {
+    "origin_gltf_m": [
+      0,
+      0,
+      0
+    ],
+    "meaning": "Physical center of the usable hand grip, not mesh bounding-box center",
+    "grip_axis_gltf": [
+      0,
+      1,
+      0
+    ],
+    "grip_diameter_m": 0.05098859145046861,
+    "grip_measurement": {
+      "method": "Maximum radius of actual hand-grip mesh edges intersected with the plane through the origin perpendicular to the grip axis; includes raised wrapping.",
+      "source_parts": [
+        "Mallet plum leather soft grip body",
+        "Mallet plum leather broad wrap overlap"
+      ],
+      "cross_section_samples": 26
+    },
+    "ground_display": {
+      "position_m": [
+        0,
+        0.1103978231549263,
+        0
+      ],
+      "quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "meaning": "Standing orientation with lowest geometry at Y=0; use a display stand for physical balancing."
+    },
+    "left_hand": {
+      "bone": "hand.L",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "right_hand": {
+      "bone": "hand.R",
+      "prop_quaternion_xyzw": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "traveler_socket_report": "scripts/assets/era-equipment/traveler-sockets.json",
+    "hand_guidance": "Parent the complete prop to a socket under authored hand.L or hand.R; Three.js GLTFLoader retains these in userData.name while sanitizing object.name to handL/handR. Use the stage-specific mitten-center translation from traveler-sockets.json. Keep meter scale. Arm pose supplies all motion. For the oval Ribbon Shield, a 180-degree rotation around local forward Z swaps the offset grip to the opposite side while preserving the -Z-facing shield. Acorn Shield remains upright in both hands.",
+    "rear_geometry": null
+  },
+  "editable_masters": [
+    {
+      "file": "spark-mallet/spark-mallet.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/spark-mallet/spark-mallet.blend",
+      "sha256": "b794e64fc21cb39fd40ba2845c64f435a57f0d0e410b8021c2431ee4c85922c1",
+      "bytes": 594982,
+      "saved_in_repository": false
+    },
+    {
+      "file": "spark-mallet/spark-mallet-export-review.blend",
+      "artifact_id": "haynes-quest/era-equipment/v001/spark-mallet/spark-mallet-export-review.blend",
+      "sha256": "659e4ac309ee16a226cbbc525a72f4ff1ddd9c7fab187bbb0bc21f4e2c8be055",
+      "bytes": 239443,
+      "saved_in_repository": false
+    }
+  ],
+  "files": [
+    {
+      "file": "back.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/back.png",
+      "sha256": "840f475276dc28a33c5f7275b699fdca9d9d337514b5e81771df43e17b285ea3",
+      "bytes": 715543
+    },
+    {
+      "file": "beauty.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/beauty.png",
+      "sha256": "85371f9efd4607d6d44ac552f60bedbc6d4182950776f19c35f21bf027fcb13f",
+      "bytes": 752067
+    },
+    {
+      "file": "browser-back.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/browser-back.png",
+      "sha256": "4a2b1530cd6181484beb2c02bfad3fa4be82a805046564ccad788090b6606db5",
+      "bytes": 103164
+    },
+    {
+      "file": "browser-beauty.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/browser-beauty.png",
+      "sha256": "a352830435a30162b808f06f7f6d78250c8edb931ff29aa577e5b226a0168201",
+      "bytes": 138975
+    },
+    {
+      "file": "browser-front.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/browser-front.png",
+      "sha256": "c4d32d3bb470a648e6ff8e2a77b0a644b7df918945c5c48434b05ab07841e3d1",
+      "bytes": 108659
+    },
+    {
+      "file": "browser-side.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/browser-side.png",
+      "sha256": "fc25233db8f67c8b59165fefc0fbd63a4ee8187a77ad3b3cc15cd23b45c3c4d4",
+      "bytes": 95193
+    },
+    {
+      "file": "construction.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/construction.json",
+      "sha256": "e2a291e9770f02865fc79b1646354f418f93334c9ead9c3295b6c75a47f60bf3",
+      "bytes": 15431
+    },
+    {
+      "file": "front.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/front.png",
+      "sha256": "b93928d513d31e23f2839503be1d375780f4d774eab7bcacbf517e11f8043529",
+      "bytes": 718102
+    },
+    {
+      "file": "reimport.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/reimport.json",
+      "sha256": "3b2efb6fa752a5b9552de00b4d2e321620daf72dc74e7d8d45c94c16098f06ae",
+      "bytes": 4508
+    },
+    {
+      "file": "render-complete.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/render-complete.json",
+      "sha256": "6fd21840b8d79ff5a1c4a06b61dd55ee2d603c66b980a9d30af4a804f5cf0c04",
+      "bytes": 254
+    },
+    {
+      "file": "side.png",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/side.png",
+      "sha256": "4750b61a40efe64a2de0aae7e4085fcf1574ae11eb615ccdc6b5f938b7ea3767",
+      "bytes": 724591
+    },
+    {
+      "file": "spark-mallet.glb",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/spark-mallet.glb",
+      "sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae",
+      "bytes": 161872
+    },
+    {
+      "file": "three-inspection.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/three-inspection.json",
+      "sha256": "73b7fab031fa9bea57669052191e70438f7a510deeabd47b2d9833520176cd60",
+      "bytes": 1989
+    },
+    {
+      "file": "validation.json",
+      "repository_path": "docs/assets/media/era-equipment/v001/spark-mallet/validation.json",
+      "sha256": "3fe1dc63717b83ad291921371648e945e0e7435acc3e1384025ee1d55ce76457",
+      "bytes": 4819
+    }
+  ],
+  "limitations": [
+    "Chromium with SwiftShader, not a physical device or Safari measurement.",
+    "Studio intake only; no gameplay approval or final hand pose is claimed."
+  ]
+}

@@ -1,8 +1,8 @@
 # WO-016: The Ribbon Fair enemy candidates
 
-- Status: Queued behind the exclusive WO-014 scene lease. Do not dispatch a second scene writer before that author releases it.
+- Status: Active. Root granted the exclusive live scene to native Astra `era_2024_authoring` after WO-014 release at 2026-09-11 14:38:57 UTC. WO-014 retains only its isolated immutable-GLB render processes and artifact packaging.
 - Required author: fresh native `gpt-6-astra`, `max`, `fork_turns: "none"`.
-- Worktree: create an isolated `agent/` worktree from the lead's current integration commit.
+- Worktree: `/home/dev/work/quest-era-2024-models`, branch `agent/quest-era-2024-models`; offline preparation `fb5851d` / `0eeb260`.
 - Own: `scripts/assets/era-2024/`, generated outputs under `docs/assets/media/{loop-dancer,prism-mimic,trendweaver}/v001/` except lead concept/prompt/provenance, and an evidence sibling to this work order. Root owns UI, art direction and review prose.
 - Remote directory: `/workspace/haynes-quest/era-2024/v001`.
 
@@ -15,3 +15,8 @@ Inspect the actual selected sheets in [the concept review](../../docs/assets/rev
 Use the full export, rig, material, source/master, render, motion, validation and Three intake contract in [WO-014](014-blender-era-2020.md). Required clips are `idle`, `move`, `attack`, `hit`, `defeat`; root fixed, meters, +Y up and forward -Z. Record impact time and clip duration. Target under 15k triangles, six materials and 2 MiB per GLB; measured exceptions require justification.
 
 Claim and record the one live Blender scene before mutation. Never reset the application or unload its addon, and never touch completed remote masters. Keep durable checkpoints and return actual files/hashes, not promises of later exports. Send the first completed model and beauty render to the lead for early inspection while continuing the remaining owned work. Release the scene explicitly at the end. No new image generation, private media, OAuth or dev-env changes. Candidate production is authorized; exact-version owner review still precedes gameplay promotion.
+
+
+## Final continuation status
+
+WO-016 completed: source commits fb5851d/0eeb260/a170a7a, integrated cc821f5/0ab5e6d/d160f20. Live scene released 14:57:02 UTC; all isolated renders and packaging finished. Later owner ruling rejects these as enemies; preserve possible ambient/friendly studies.

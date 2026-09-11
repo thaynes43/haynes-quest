@@ -1,0 +1,193 @@
+{
+  "asset_id": "blockling",
+  "file": "blockling.glb",
+  "sha256": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb",
+  "bytes": 1121948,
+  "triangles": 14930,
+  "draw_primitives": 6,
+  "materials": [
+    {
+      "name": "Walnut",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.7900000214576721
+      }
+    },
+    {
+      "name": "Honey brass",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0.550000011920929,
+        "roughnessFactor": 0.41999998688697815
+      }
+    },
+    {
+      "name": "Plum inlay",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0.11999999731779099,
+        "roughnessFactor": 0.4300000071525574
+      }
+    },
+    {
+      "name": "Carved recess",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8799999952316284
+      }
+    },
+    {
+      "name": "Amber light",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 4
+        },
+        "metallicFactor": 0.23999999463558197,
+        "roughnessFactor": 0.23999999463558197
+      },
+      "emissive": [
+        0.054999999701976776,
+        0.018805292742873903,
+        0.0011670455180200906
+      ]
+    },
+    {
+      "name": "Sage moss",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 5
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.9399999976158142
+      }
+    }
+  ],
+  "joints": [
+    "root",
+    "body",
+    "head",
+    "leg.front.L",
+    "shin.front.L",
+    "foot.front.L",
+    "leg.back.L",
+    "shin.back.L",
+    "foot.back.L",
+    "leg.front.R",
+    "shin.front.R",
+    "foot.front.R",
+    "leg.back.R",
+    "shin.back.R",
+    "foot.back.R"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "channels": 45
+    },
+    {
+      "name": "move",
+      "duration_s": 1,
+      "channels": 45
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.25,
+      "channels": 45
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5833333333333334,
+      "channels": 45
+    },
+    {
+      "name": "defeat",
+      "duration_s": 1.75,
+      "channels": 45
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "triangle_budget_15000": true,
+    "material_budget_6": true,
+    "primitive_budget_6": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_pigment_image": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "all_have_vertex_colors": true,
+    "all_have_atlas_uv": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true
+  },
+  "validator": {
+    "uri": "blockling.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T14:41:08.570Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 1078180
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 6,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 6,
+      "totalVertexCount": 12975,
+      "totalTriangleCount": 14930,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 6
+    }
+  }
+}

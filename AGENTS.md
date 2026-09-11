@@ -8,6 +8,10 @@ Read [`.agents/HANDOFF.md`](.agents/HANDOFF.md) for the current stage, then the 
 
 Tom’s later gameplay correction is now [PLAN-005](.agents/plans/005-era-combat-loop.md): equipment and era enemies lead to a boss; only after victory does consuming the memory bundle advance age and unlock the next period. This supersedes the coordinator’s memory-by-memory growth and combat-deferred interpretation in PLAN-004. The earlier demo’s passing tests do not establish the intended gameplay or visual quality.
 
+Tom's subsequent enemy-art correction is binding: **recognizable, funny pop-culture parodies**, selected by photo capture dates and birthday-derived age/period progression. Generic creatures with broad cultural labels miss the brief. Preserve the six rejected creature studies only as possible ambient/friendly candidates; do not integrate them as enemies or treat their completed authoring as acceptance. Read DESIGN-005 before any further enemy brief or Blender dispatch.
+
+Tom also requires forgiving Roblox-style obby sections alongside goofy fights, designed for his six-year-old daughter. Read DESIGN-011; the flat corridor and a single step are not acceptance of that gameplay pillar.
+
 ## Working rules
 
 - Follow [`.agents/TEAM.md`](.agents/TEAM.md) for Tom's latest project routing: Astra (`gpt-6-astra`, `max`) coordinates and retains full lead context. Native Sol (`gpt-5.6-sol`, `xhigh`) handles ordinary bounded tasks with `fork_turns: "none"`. **All Blender work uses fresh native Astra subagents at `max`.** Driving Astra alone generates concept images, one at a time, and owns art direction, user-facing text, integration and final review. Tom explicitly authorizes separate Fable 5.1 (`claude-fable-5-1`, `xhigh`) sessions through `agent-run` for adversarial reviews and coding to balance plan use. Claude Code uses Opus for its own subagents. These project exceptions take precedence over generic pod defaults. Give every task a self-contained work order and owned paths/resources; keep checkpoints durable through context or quota limits.
