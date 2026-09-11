@@ -74,24 +74,32 @@ function createLegacyLevelLayout(
   save: Pick<SaveView, "memories" | "recoveredIds">,
 ): LevelLayout {
   if (save.memories.length < 1 || save.memories.length > 24) {
-    throw new RangeError('A garden route requires between 1 and 24 memories');
+    throw new RangeError("A garden route requires between 1 and 24 memories");
   }
   const unlockIndex = save.memories.findIndex((memory) => memory.ageYears >= 4);
-  const hasPostUnlockMemory = unlockIndex >= 0 && unlockIndex < save.memories.length - 1;
+  const hasPostUnlockMemory =
+    unlockIndex >= 0 && unlockIndex < save.memories.length - 1;
   const stepZ = hasPostUnlockMemory
     ? -4 - (unlockIndex + 0.5) * memorySpacing
     : null;
-  const step: StepPlacement | null = stepZ === null ? null : {
-    z: stepZ,
-    height: stepHeight,
-    unlockMemoryId: save.memories[unlockIndex]?.id ?? '',
-  };
-  const memories = save.memories.map((memory, index) => {
+  const step: StepPlacement | null =
+    stepZ === null
+      ? null
+      : {
+          z: stepZ,
+          height: stepHeight,
+          unlockMemoryId: save.memories[unlockIndex]?.id ?? "",
+        };
+  const memories: MemoryPlacement[] = save.memories.map((memory, index) => {
     const z = -4 - index * memorySpacing;
     return {
       id: memory.id,
       index,
-      position: { x: memoryX(index), y: step && z < step.z ? step.height : 0, z },
+      position: {
+        x: memoryX(index),
+        y: step && z < step.z ? step.height : 0,
+        z,
+      },
       state: save.recoveredIds.includes(memory.id) ? "revealed" : "released",
     };
   });
@@ -133,7 +141,9 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
       maxZ: 3,
     };
   }
-  const memoriesById = new Map(save.memories.map((memory) => [memory.id, memory]));
+  const memoriesById = new Map(
+    save.memories.map((memory) => [memory.id, memory]),
+  );
   const memories = activeLevel.memoryIds.map((id, index) => ({
     id,
     index,
@@ -181,11 +191,15 @@ export function groundHeightAt(level: LevelLayout, z: number): number {
 }
 
 export function contiguousRecoveredCount(
-  save: Pick<SaveView, 'memories' | 'recoveredIds'>,
+  save: Pick<SaveView, "memories" | "recoveredIds">,
 ): number {
   const recovered = new Set(save.recoveredIds);
   let count = 0;
-  while (count < save.memories.length && recovered.has(save.memories[count]?.id ?? '')) count += 1;
+  while (
+    count < save.memories.length &&
+    recovered.has(save.memories[count]?.id ?? "")
+  )
+    count += 1;
   return count;
 }
 

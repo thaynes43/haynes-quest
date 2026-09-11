@@ -41,12 +41,7 @@ export type RequestState = "idle" | "acting" | "error";
 export type RequestError = GameplayAction["type"] | null;
 
 export type EnemyPhase =
-  | "idle"
-  | "chasing"
-  | "windup"
-  | "strike"
-  | "cooldown"
-  | "defeated";
+  "idle" | "chasing" | "windup" | "strike" | "cooldown" | "defeated";
 
 export interface EnemyFrame {
   id: string;

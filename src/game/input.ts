@@ -17,6 +17,16 @@ const movementCodes = new Set([
   "ArrowRight",
 ]);
 const actionCodes = new Set(["KeyE", "Space"]);
+const buttonForCode: Partial<Record<string, ButtonAction>> = {
+  KeyE: "interact",
+  Space: "jump",
+  KeyF: "attack",
+  ShiftLeft: "guard",
+  ShiftRight: "guard",
+};
+type ButtonAction = "jump" | "interact" | "attack" | "guard";
+
+for (const code of Object.keys(buttonForCode)) actionCodes.add(code);
 
 function clampUnit(value: number): number {
   return Math.max(-1, Math.min(1, Number.isFinite(value) ? value : 0));
@@ -56,10 +66,17 @@ export class GameInputState {
     lookY: 0,
     jump: false,
     interact: false,
+    attack: false,
+    guard: false,
   };
 
   private readonly keys = new Set<string>();
-  private pendingActions = { jump: false, interact: false };
+  private pendingActions: Record<ButtonAction, boolean> = {
+    jump: false,
+    interact: false,
+    attack: false,
+    guard: false,
+  };
   private pointerLookX = 0;
   private pointerLookY = 0;
 
@@ -69,7 +86,7 @@ export class GameInputState {
         clampUnit(Number(value));
       return;
     }
-    const button = action as "jump" | "interact";
+    const button = action as ButtonAction;
     if (value && !this.external[button]) this.pendingActions[button] = true;
     this.external[button] = Boolean(value);
   }
@@ -77,8 +94,8 @@ export class GameInputState {
   setKey(code: string, pressed: boolean): void {
     if (!movementCodes.has(code) && !actionCodes.has(code)) return;
     if (pressed && !this.keys.has(code)) {
-      if (code === "Space") this.pendingActions.jump = true;
-      if (code === "KeyE") this.pendingActions.interact = true;
+      const button = buttonForCode[code];
+      if (button) this.pendingActions[button] = true;
     }
     if (pressed) this.keys.add(code);
     else this.keys.delete(code);
@@ -117,23 +134,40 @@ export class GameInputState {
       lookY: this.external.lookY,
       jump: this.external.jump || this.keys.has("Space"),
       interact: this.external.interact || this.keys.has("KeyE"),
+      attack: this.external.attack || this.keys.has("KeyF"),
+      guard:
+        this.external.guard ||
+        this.keys.has("ShiftLeft") ||
+        this.keys.has("ShiftRight"),
     };
   }
 
-  consumeActions(): { jump: boolean; interact: boolean } {
+  consumeActions(): Record<ButtonAction, boolean> {
     const result = { ...this.pendingActions };
-    this.pendingActions = { jump: false, interact: false };
+    this.pendingActions = {
+      jump: false,
+      interact: false,
+      attack: false,
+      guard: false,
+    };
     return result;
   }
 
   clear(): void {
-    this.pendingActions = { jump: false, interact: false };
+    this.pendingActions = {
+      jump: false,
+      interact: false,
+      attack: false,
+      guard: false,
+    };
     this.external.moveX = 0;
     this.external.moveY = 0;
     this.external.lookX = 0;
     this.external.lookY = 0;
     this.external.jump = false;
     this.external.interact = false;
+    this.external.attack = false;
+    this.external.guard = false;
     this.keys.clear();
     this.pointerLookX = 0;
     this.pointerLookY = 0;
@@ -161,7 +195,11 @@ export function bindBrowserInput({
   const cameraPointers = new Map<number, PointerRecord>();
   const onKeyDown = (event: KeyboardEvent): void => {
     if (!movementCodes.has(event.code) && !actionCodes.has(event.code)) return;
-    const source = event.target instanceof Element ? event.target : null;
+    const source =
+      typeof windowTarget.Element === "function" &&
+      event.target instanceof windowTarget.Element
+        ? event.target
+        : null;
     if (source?.closest("input, textarea, select, [role=dialog]")) return;
     event.preventDefault();
     input.setKey(event.code, true);
@@ -169,7 +207,11 @@ export function bindBrowserInput({
   const onKeyUp = (event: KeyboardEvent): void =>
     input.setKey(event.code, false);
   const onPointerDown = (event: PointerEvent): void => {
-    const element = event.target instanceof Element ? event.target : null;
+    const element =
+      typeof windowTarget.Element === "function" &&
+      event.target instanceof windowTarget.Element
+        ? event.target
+        : null;
     if (element?.closest("[data-quest-ui]")) return;
     if (event.pointerType === "touch") {
       const rect = target.getBoundingClientRect();
