@@ -9,6 +9,11 @@ export const enemyStrikeSeconds = 0.18;
 export const enemyCooldownSeconds = 1.4;
 export const playerHitCooldownSeconds = 0.9;
 
+const maxEnemyContactFeetDelta = 0.3;
+const maxPlayerAttackFeetDelta = 1;
+
+type EnemyArena = NonNullable<EncounterPlacement["arena"]>;
+
 interface EnemyTuning {
   speed: number;
   stopRange: number;
@@ -20,6 +25,7 @@ interface EnemyTuning {
 interface LocalEnemy {
   id: string;
   role: EncounterView["role"];
+  arena?: EnemyArena;
   spawn: PositionSnapshot;
   position: PositionSnapshot;
   facing: number;
@@ -58,6 +64,32 @@ function tuningFor(role: EncounterView["role"]): EnemyTuning {
 
 function distance(first: PositionSnapshot, second: PositionSnapshot): number {
   return Math.hypot(first.x - second.x, first.z - second.z);
+}
+
+function verticalDistance(
+  first: PositionSnapshot,
+  second: PositionSnapshot,
+): number {
+  return Math.abs(first.y - second.y);
+}
+
+function copyArena(arena: EncounterPlacement["arena"]): EnemyArena | undefined {
+  return arena ? { ...arena } : undefined;
+}
+
+function clampToArena(position: PositionSnapshot, arena?: EnemyArena): void {
+  if (!arena) return;
+  position.x = Math.max(arena.minX, Math.min(arena.maxX, position.x));
+  position.z = Math.max(arena.minZ, Math.min(arena.maxZ, position.z));
+}
+
+function spawnFor(
+  placement: EncounterPlacement,
+  arena?: EnemyArena,
+): PositionSnapshot {
+  const spawn = { ...placement.position };
+  clampToArena(spawn, arena);
+  return spawn;
 }
 
 function facingToward(from: PositionSnapshot, to: PositionSnapshot): number {
@@ -104,19 +136,7 @@ export class EnemySimulation {
     for (const placement of level.encounters) {
       const encounter = authoritative.get(placement.id);
       if (!encounter) continue;
-      this.enemies.set(placement.id, {
-        id: placement.id,
-        role: placement.role,
-        spawn: { ...placement.position },
-        position: { ...placement.position },
-        facing: 0,
-        phase: encounter.defeated ? "defeated" : "idle",
-        phaseSeconds: 0,
-        contactedDuringStrike: false,
-        hp: encounter.hp,
-        maxHp: encounter.maxHp,
-        defeated: encounter.defeated,
-      });
+      this.addEnemy(placement, encounter);
     }
     this.hitCooldownSeconds = 0;
   }
@@ -138,6 +158,11 @@ export class EnemySimulation {
         this.addEnemy(placement, encounter);
         continue;
       }
+      current.arena = copyArena(placement.arena);
+      if (current.arena) {
+        current.spawn = spawnFor(placement, current.arena);
+        clampToArena(current.position, current.arena);
+      }
       const revived = current.defeated && !encounter.defeated;
       current.hp = encounter.hp;
       current.maxHp = encounter.maxHp;
@@ -147,8 +172,8 @@ export class EnemySimulation {
         current.phaseSeconds = 0;
         current.contactedDuringStrike = false;
       } else if (revived) {
-        current.spawn = { ...placement.position };
-        current.position = { ...placement.position };
+        current.spawn = spawnFor(placement, current.arena);
+        current.position = { ...current.spawn };
         current.facing = 0;
         current.phase = "idle";
         current.phaseSeconds = 0;
@@ -180,6 +205,7 @@ export class EnemySimulation {
       }
       if (enemy.role === "boss" && !bossActive) {
         enemy.position = { ...enemy.spawn };
+        clampToArena(enemy.position, enemy.arena);
         enemy.phase = "idle";
         enemy.phaseSeconds = 0;
         enemy.contactedDuringStrike = false;
@@ -214,6 +240,7 @@ export class EnemySimulation {
               enemy.position.z +=
                 ((options.player.z - enemy.position.z) / playerDistance) *
                 travel;
+              clampToArena(enemy.position, enemy.arena);
             }
           }
           break;
@@ -234,7 +261,8 @@ export class EnemySimulation {
           if (
             !enemy.contactedDuringStrike &&
             playerDistance <= tuning.attackRange &&
-            options.player.y <= 0.3 &&
+            verticalDistance(options.player, enemy.position) <=
+              maxEnemyContactFeetDelta &&
             this.hitCooldownSeconds <= 0
           ) {
             contacts.push(enemy.id);
@@ -286,6 +314,8 @@ export class EnemySimulation {
   resolvePlayerCollision(position: PositionSnapshot, level: LevelLayout): void {
     for (const enemy of this.enemies.values()) {
       if (enemy.defeated) continue;
+      if (verticalDistance(position, enemy.position) > maxEnemyContactFeetDelta)
+        continue;
       const minimumDistance = tuningFor(enemy.role).collisionRadius + 0.25;
       const dx = position.x - enemy.position.x;
       const dz = position.z - enemy.position.z;
@@ -308,11 +338,14 @@ export class EnemySimulation {
     placement: EncounterPlacement,
     encounter: EncounterView,
   ): void {
+    const arena = copyArena(placement.arena);
+    const spawn = spawnFor(placement, arena);
     this.enemies.set(placement.id, {
       id: placement.id,
       role: placement.role,
-      spawn: { ...placement.position },
-      position: { ...placement.position },
+      arena,
+      spawn,
+      position: { ...spawn },
       facing: 0,
       phase: encounter.defeated ? "defeated" : "idle",
       phaseSeconds: 0,
@@ -347,6 +380,8 @@ export function findAttackTarget(
     const targetDistance = distance(player, enemy.position);
     const range = encounter.role === "boss" ? 2 : 1.7;
     if (targetDistance > range) return [];
+    if (verticalDistance(player, enemy.position) > maxPlayerAttackFeetDelta)
+      return [];
     const facing = facingToward(player, enemy.position);
     const inArc =
       Math.abs(normalizedAngle(facing - playerFacing)) <= Math.PI / 3;

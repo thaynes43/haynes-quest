@@ -4,7 +4,11 @@ import {
   bossIsActive,
   findAttackTarget,
 } from "../../src/game/combat";
-import { createLevelLayout } from "../../src/game/level";
+import {
+  createLevelLayout,
+  type EncounterPlacement,
+  type LevelLayout,
+} from "../../src/game/level";
 import type { EnemyFrame } from "../../src/game/types";
 import { makeEraSave } from "./fixtures";
 
@@ -21,6 +25,29 @@ function stepMany(
     );
   }
   return contacts;
+}
+
+function levelWithFirstOrdinary(
+  save: ReturnType<typeof makeEraSave>,
+  changes: Partial<EncounterPlacement> = {},
+): LevelLayout {
+  const level = createLevelLayout(save);
+  const placement = level.encounters.find((enemy) =>
+    enemy.id.endsWith("ordinary-a"),
+  );
+  if (!placement) throw new Error("Fixture has no first ordinary encounter");
+  return {
+    ...level,
+    encounters: [
+      {
+        ...placement,
+        ...changes,
+        position: changes.position
+          ? { ...changes.position }
+          : { ...placement.position },
+      },
+    ],
+  };
 }
 
 describe("enemy combat simulation", () => {
@@ -70,6 +97,48 @@ describe("enemy combat simulation", () => {
       simulation.frames().find((enemy) => enemy.id.endsWith("ordinary-a"))
         ?.phase,
     ).toBe("cooldown");
+  });
+
+  it("uses the enemy floor height for strike contact", () => {
+    const save = makeEraSave();
+    const elevatedLevel = levelWithFirstOrdinary(save, {
+      position: { x: -2, y: 2, z: -8 },
+    });
+    const sameFloor = new EnemySimulation(elevatedLevel, save);
+    expect(stepMany(sameFloor, save, { x: -2, y: 2, z: -7 }, 24)).toEqual([
+      "level-1-2020-ordinary-a",
+    ]);
+
+    const belowIsland = new EnemySimulation(elevatedLevel, save);
+    expect(stepMany(belowIsland, save, { x: -2, y: 0, z: -7 }, 24)).toEqual([]);
+    const aboveContact = new EnemySimulation(elevatedLevel, save);
+    expect(stepMany(aboveContact, save, { x: -2, y: 2.31, z: -7 }, 24)).toEqual(
+      [],
+    );
+  });
+
+  it("keeps bounded enemies on their combat island while legacy enemies keep chasing", () => {
+    const save = makeEraSave();
+    const arena = { minX: -2.25, maxX: -1.75, minZ: -8.5, maxZ: -7.5 };
+    const boundedLevel = levelWithFirstOrdinary(save, { arena });
+    const playerAcrossGap = { x: -2, y: 0, z: -3 };
+    const bounded = new EnemySimulation(boundedLevel, save);
+
+    stepMany(bounded, save, playerAcrossGap, 40);
+    expect(bounded.frames()[0]?.position).toEqual({ x: -2, y: 0, z: -7.5 });
+
+    const narrowedLevel = levelWithFirstOrdinary(save, {
+      arena: { ...arena, maxZ: -7.75 },
+    });
+    bounded.sync(narrowedLevel, save);
+    expect(bounded.frames()[0]?.position.z).toBe(-7.75);
+    bounded.reset(boundedLevel, save);
+    expect(bounded.frames()[0]?.position).toEqual({ x: -2, y: 0, z: -8 });
+
+    const legacy = new EnemySimulation(levelWithFirstOrdinary(save), save);
+    stepMany(legacy, save, playerAcrossGap, 40);
+    expect(legacy.frames()[0]?.position.z).toBeCloseTo(-6.3425, 6);
+    expect(legacy.frames()[0]?.position.z).toBeGreaterThan(arena.maxZ);
   });
 
   it("restarts a threatened attack with a full telegraph after resume", () => {
@@ -162,12 +231,32 @@ describe("enemy combat simulation", () => {
       Math.hypot(throughDefeated.x + 2, throughDefeated.z + 8),
     ).toBeCloseTo(0.67, 6);
   });
+
+  it("does not push a player whose feet are vertically clear of an enemy", () => {
+    const save = makeEraSave();
+    const level = levelWithFirstOrdinary(save, {
+      position: { x: -2, y: 2, z: -8 },
+    });
+    const simulation = new EnemySimulation(level, save);
+
+    const sameFloor = { x: -2, y: 2, z: -8 };
+    simulation.resolvePlayerCollision(sameFloor, level);
+    expect(sameFloor).toEqual({ x: -2, y: 2, z: -7.33 });
+
+    const airborne = { x: -2, y: 2.31, z: -8 };
+    simulation.resolvePlayerCollision(airborne, level);
+    expect(airborne).toEqual({ x: -2, y: 2.31, z: -8 });
+
+    const belowIsland = { x: -2, y: 0, z: -8 };
+    simulation.resolvePlayerCollision(belowIsland, level);
+    expect(belowIsland).toEqual({ x: -2, y: 0, z: -8 });
+  });
 });
 
 describe("attack targeting", () => {
-  const frame = (id: string, x: number, z: number): EnemyFrame => ({
+  const frame = (id: string, x: number, z: number, y = 0): EnemyFrame => ({
     id,
-    position: { x, y: 0, z },
+    position: { x, y, z },
     facing: 0,
     phase: "idle",
     windupProgress: 0,
@@ -212,5 +301,29 @@ describe("attack targeting", () => {
         false,
       )?.id,
     ).toBe("level-1-2020-boss");
+  });
+
+  it("allows normal jumping attacks but rejects targets on another height", () => {
+    const save = makeEraSave();
+    const id = "level-1-2020-ordinary-a";
+
+    expect(
+      findAttackTarget(
+        save,
+        [frame(id, 0, -1.5, 0)],
+        { x: 0, y: 0.84, z: 0 },
+        0,
+        false,
+      )?.id,
+    ).toBe(id);
+    expect(
+      findAttackTarget(
+        save,
+        [frame(id, 0, -1.5, 2)],
+        { x: 0, y: 0, z: 0 },
+        0,
+        false,
+      ),
+    ).toBeNull();
   });
 });
