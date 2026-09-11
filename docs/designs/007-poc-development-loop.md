@@ -46,20 +46,21 @@ flowchart LR
 
 Code and candidate authoring can progress independently behind stable asset, ability, memory, and cue IDs. Changes to those contracts are agreed by the driving Astra before parallel implementation diverges. Keep iterations reviewable: one mechanic or small asset set, its evidence, and a runnable checkpoint.
 
-The local greybox can establish feel using development-only synthetic adapters. A temporary fixture save is not evidence of durable persistence, and a development identity is never an alternative player login. The hosted PoC uses the game's Authentik-only admission and server-owned saves under DESIGN-001 before it is presented as the homelab game. Real Immich access is a later integration milestone.
+The local greybox can establish feel using development-only synthetic adapters. A temporary fixture save is not evidence of durable persistence, and a development identity is never an alternative player login. The eventual player release uses Authentik-only admission and server-owned saves under DESIGN-001. PLAN-004 now implements the Immich adapter overnight and permits a private synthetic fixture demo while OAuth waits until tomorrow; that fixture process must not receive the live Immich secret.
 
 ## Astra team and coordination
 
-**GPT-6 Astra leads; native Codex subagents use GPT-5.6 Sol at `xhigh`**, following Tom's updated instruction. Astra keeps the full project/planning context and a handoff that preserves owner rulings, rationale, verified state, and open decisions. Start delegated development subagents with empty conversation windows (`fork_turns: "none"`) and explicit self-contained work orders. Agents read the applicable instructions and documents/inputs listed in their work order. Use bounded parallel tasks and native collaboration tools. Claude Code uses Opus for its own subagents; `agent-run` starts a separate CLI session only when explicitly needed. Available concurrency determines how many lanes run at once. Astra retains architecture, integration judgment, user-facing design/text, and final review.
+[TEAM.md](../../.agents/TEAM.md) is the canonical model/dispatch and recovery policy. Astra coordinates with full project context; bounded development agents start fresh with self-contained work orders. Tom's latest project exceptions require Astra for all Blender tasks and authorize separate Fable sessions for review/coding. The lead owns style, user-facing design/text, architecture, integration and final review.
 
 | Lane | Responsibility and handoff |
 | --- | --- |
-| Driving Astra / integration | Own scope, architecture, shared contracts, user-facing design, and the current runnable checkpoint. Review findings and integrate work without waiting for unrelated backlog items. |
-| Gameplay/code Sol | Implement the scene, input, chronology, unlocks, save boundaries, and focused verification. Return a branch/diff, commands/results, and a runnable demonstration. |
-| Visual authoring Sol, Astra art direction | Use image generation for concept/reference sheets, then Blender for authored geometry, materials, rigs, animations, and GLB export. Return editable masters, validated candidates, and a review package. |
-| Audio authoring Sol, Astra direction | Author cue candidates, clean/export them, retain provenance, and map them to stable cue IDs. Return audition files and processing/level notes under DESIGN-008. |
-| Story/design, driving Astra | Maintain the small premise and objective text; record later story and level ideas in the backlog. Draft user-facing text at Astra quality for the driving Astra's review. Full narrative production is deferred. |
-| Verification Sol | Independently check the slice, asset contracts, save behavior, audio lifecycle, and reported evidence. Distinguish automated checks from actual device or owner playtests. |
+| Driving Astra / art direction | Scope, shared contracts, story/text, sequential image generation, coherent references, model intake/iteration and final integration. |
+| Native Sol coding/verification | Bounded game/server/tooling code and independent focused checks; return branch/diff, real commands/results and runnable evidence. |
+| Native Astra Blender | Model, materials, rigs, animations, renders and exports from the lead's exact references; return editable masters, GLBs and previews. One exclusive scene owner. |
+| Native Sol audio, Astra direction | Generate/process cue candidates, retain sources/terms and checksums, prepare audible catalog entries under DESIGN-008. |
+| Separate Fable 5.1 at xhigh | Adversarial review or coding via `agent-run` to balance the plans; use a fresh scoped work order, verify actual session startup, and integrate evidenced findings. |
+
+Astra generates images one at a time. Modeling an already selected concept, coding and audio may proceed in parallel; competing image generations or Blender scene mutations may not. Record working reference versions and lease ownership in work orders, then release the scene at handoff.
 
 Use the [work-order template](../../.agents/work-orders/000-template.md) for scope, owned paths, dependencies, outputs, and acceptance. Avoid concurrent edits to shared files; use a worktree/branch per implementation task and communicate contract changes through the driving agent. Work orders must supply the verified remote MCP endpoint, remote workspace and artifact upload/download conventions, and exact input versions; local worktree paths are not service paths. A shared Blender session is a mutable resource: serialize its use or use isolated sessions/files. Do not run competing authoring commands against one scene.
 
@@ -67,13 +68,15 @@ Use the [work-order template](../../.agents/work-orders/000-template.md) for sco
 
 Tom reviews final assets **before they are used in gameplay**. This applies to the version being promoted: models, materials, animation, sounds, and any later music/voice. A successful export, automated check, or another agent's review does not substitute for his review.
 
-Prepare a [review record](../assets/000-review-template.md) with a stable asset/cue ID, version/checksum, purpose, source/license or generation provenance, technical results, and concrete previews. Visual review includes useful stills/turntable and animation examples; audio review includes an isolated audition and, where useful, a short contextual preview. Include a focused list of requested judgments. Do not ask Tom to approve an abstract asset plan instead of a viewable/listenable candidate.
+Tom also authorizes first-pass candidate production and iteration before his review: coordinator-selected concepts may proceed directly to Astra Blender modeling. Use the MkDocs Material [asset studio](../assets/README.md) to catalog every scoped source image, model and sound. Prepare a [review record](../assets/000-review-template.md) with a stable asset/cue ID, version/checksum, purpose, source/license or generation provenance, technical results, and concrete previews. Visual review includes useful stills/turntable and animation examples; audio review includes an isolated audition and, where useful, a short contextual preview. Include a focused list of requested judgments. Do not ask Tom to approve an abstract asset plan instead of a viewable/listenable candidate.
 
 Candidates may be shown in an isolated, clearly labeled review preview. Until Tom approves, gameplay uses synthetic placeholders or a previously approved version. Record approval against the exact candidate version; a materially changed candidate returns to review. A rejected or pending asset does not stop unrelated code work.
 
 Normal documentation and code PRs still follow checks and autonomous squash merge. The review gate is promotion of final assets into gameplay, not a new requirement for Tom to approve every PR or implementation choice. No candidate asset is being submitted for approval in this documentation task.
 
 ## PoC acceptance
+
+The table below describes the eventual player-ready PoC, including OAuth, owner-approved assets and physical-device checks. Those remain follow-on acceptance and do not block tonight. [PLAN-004](../../.agents/plans/004-overnight-mvp.md) governs the overnight checkpoint: a runnable private fixture route, synthetic media, visible growth/unlock, real server-owned persistence, browser-automated input/save checks, identified gameplay placeholders and the scoped first-pass review catalog. Record the table's deferred checks honestly rather than claiming fixture login or emulation satisfies them.
 
 | ID | Observable result |
 | --- | --- |

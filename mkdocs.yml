@@ -1,0 +1,104 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+site_name: Haynes Quest
+use_directory_urls: false
+
+# `scripts/docs/prepare.py` creates this tree from docs/ and linked project records.
+docs_dir: .docs-build
+site_dir: site
+
+theme:
+  name: material
+  language: en
+  font: false
+  palette:
+    scheme: default
+    primary: custom
+    accent: custom
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Asset studio:
+      - Overview: assets/README.md
+      - Art direction: assets/art-direction.md
+      - First-pass catalog: assets/catalog.md
+      - Review template: assets/000-review-template.md
+  - Product:
+      - Project brief: prds/001-project-brief.md
+      - PRD template: prds/000-template.md
+      - Backlog: BACKLOG.md
+  - Architecture:
+      - Authentik sign-in: adrs/001-authentik-sign-in.md
+      - Proposed web game stack: adrs/002-web-game-stack.md
+      - ADR template: adrs/000-template.md
+  - Domain language:
+      - Ubiquitous language: domain-driven-design/001-ubiquitous-language.md
+      - Domain template: domain-driven-design/000-template.md
+  - Designs:
+      - Technical foundation: designs/001-technical-foundation.md
+      - Asset pipeline: designs/002-asset-pipeline.md
+      - Photo connections and people: designs/003-photo-connections-and-people.md
+      - Memory journey: designs/004-memory-journey.md
+      - Era enemy catalog: designs/005-era-enemy-catalog.md
+      - Memory age and abilities: designs/006-memory-age-and-abilities.md
+      - PoC development loop: designs/007-poc-development-loop.md
+      - Audio pipeline: designs/008-audio-pipeline.md
+      - Design template: designs/000-template.md
+  - Operations:
+      - Hosting context: ops/001-hosting-context.md
+      - Activate dev-env: project/runbooks/activate-dev-env.md
+      - Runbook template: ops/000-template.md
+  - Project records:
+      - Current handoff: project/HANDOFF.md
+      - Team and routing: project/TEAM.md
+      - Current overnight MVP: project/plans/004-overnight-mvp.md
+      - Authoring tool setup: project/plans/003-authoring-tool-setup.md
+      - Foundation prototype: project/plans/002-foundation-prototype.md
+      - Completed repository bootstrap: project/plans/completed/001-repository-bootstrap.md
+      - Plan template: project/plans/000-template.md
+      - Work-order template: project/work-orders/000-template.md
+      - Dev-env activation prompt: project/prompts/001-activate-dev-env.md
+      - Overnight MVP prompt: project/prompts/002-overnight-mvp.md
+      - Contributor guide: project/contributor-guide.md
+  - References:
+      - Astra game workflows: reference/astra-game-workflows.md
+      - Immich AppDaemon review: reference/immich-appdaemon.md
+      - Repository conventions: reference/repository-conventions.md
+  - Documentation process: PROCESS.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - path: javascripts/vendor/model-viewer-4.3.1.min.mjs
+    type: module
+
+validation:
+  links:
+    not_found: warn
+    anchors: warn
+    absolute_links: warn
+    unrecognized_links: warn

@@ -1,6 +1,6 @@
 # Future backlog
 
-These items do not gate the initial playable loop in [DESIGN-007](designs/007-poc-development-loop.md). BL-01 is conditional work beyond the family PoC; the later gameplay/content items can return within the family project after the core loop is evaluated.
+These items do not gate the initial playable loop in [DESIGN-007](designs/007-poc-development-loop.md). BL-01 defers automatic generation while authored age/likeness evolution remains product direction; the later gameplay/content items can return within the family project after the core loop is evaluated.
 
 ## BL-01: Automatic playable-character generation
 

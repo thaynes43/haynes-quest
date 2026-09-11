@@ -1,0 +1,13 @@
+Vendored dependency: @google/model-viewer 4.3.1
+Source: https://registry.npmjs.org/@google/model-viewer/-/model-viewer-4.3.1.tgz
+Source file: package/dist/model-viewer.min.js
+Package integrity: sha512-GP+inXhAtY31E8rILVmByA6z8CZZjdlNajddppyI1/j1eIaSQiZcMRaUqTFe7+jv4mzRzwKIOiKBud0apiv+WQ==
+Package SHA-1: 2c9f2e9828544fe9fde59e05f1c1b42a59561cc9
+Vendored bundle SHA-256: 283b0672384614b4847636c306fc93fe4b1fcadc76d668b4e47f0ca76bcf033b
+Vendored license SHA-256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
+Package license: Apache-2.0; see model-viewer-4.3.1.LICENSE
+
+The documentation uses the self-contained browser bundle. Its optional remote
+decoder paths are not used: scripts/docs/check_links.py rejects GLBs that use
+Draco, Meshopt or Basis Universal compression and rejects external buffer or
+image URIs. Review models must therefore be standalone, embedded GLB files.

@@ -12,6 +12,9 @@ coverage/
 playwright-report/
 test-results/
 .playwright-mcp/
+.docs-build/
+site/
+.venv-docs/
 *.log
 .DS_Store
 
