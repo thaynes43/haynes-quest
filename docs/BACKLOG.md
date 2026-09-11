@@ -4,18 +4,14 @@ These items do not gate the initial playable loop in [DESIGN-007](designs/007-po
 
 ## BL-01: Automatic playable-character generation
 
-- **Status:** Deferred by Tom on 2026-09-10
-- **Revisit if:** Tom chooses a broader release and separately decides to reintroduce person-specific playable avatars
+- **Status:** Automatic generation remains deferred; Tom has now reintroduced age/likeness evolution as product direction for the family game.
+- **Revisit after:** The overnight age-growth and private appearance-variant contract in [PLAN-004](../.agents/plans/004-overnight-mvp.md) is playable.
 - **Requirement:** [PRD-001 R-15](prds/001-project-brief.md)
 - **Future acceptance criterion:** PRD-001 AC-10
 
-Let the application retrieve a configured person's photos and produce a usable playable-character model without developer authoring for each person. This would reuse the photo/person integration but also change the current generic-avatar premise; a broader release alone does not require it.
+The mysterious avatar should evolve toward the recovered person's age and likeness. The overnight MVP uses synthetic authored age stages and a versioned private appearance mapping. This establishes progression without requiring automatic photo-to-3D generation or a new likeness model before adding a test subject.
 
-The family PoC uses a shared generic mysterious avatar authored with image-generated concepts and Blender MCP. Configured people supply chronological photo journeys. Adding an eligible person needs no new model. No generation worker, queue, job-state simulator, provider comparison, or real-generation trial is required for the PoC.
-
-If revisited, evaluate the complete references → geometry → rig/animation → validated GLB workflow. Establish quality, latency, compute/cost, private-data handling, and a suitable generation service before choosing infrastructure. Interactive authoring tools alone do not establish this runtime capability.
-
-Retain these design considerations for that future work: private source/output storage; persisted progress and recoverable failures; deduplicated requests; bounded concurrency and restart-safe retries; access checks after connection/key changes; versioned output published only after validation; and failed regeneration preserving an existing usable asset and save. These are notes for future design, not PoC implementation work.
+Later, design the complete private references → geometry → rig/animation → validated age variants workflow. Image generation and Blender support developer authoring; they do not by themselves establish automatic runtime generation. Evaluate quality, compute, privacy, saved-variant compatibility, failures and the owner-review workflow before introducing a worker or provider. Keep likeness references and artifacts out of public repositories. The former broader-release-only condition is superseded by the new product direction; automatic generation remains a later implementation choice.
 
 ## BL-02: Combat, bosses, and encounter content
 

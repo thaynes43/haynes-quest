@@ -7,6 +7,8 @@
 
 ## Overview
 
+**Latest direction:** [PLAN-004](../../.agents/plans/004-overnight-mvp.md) supersedes the generic-only premise below: the avatar should evolve toward the recovered person’s age and likeness. Tonight proves visible growth with synthetic age variants and a private versioned appearance contract. Exact photo-derived likeness and final assets remain for design/review; automatic generation does not gate coding.
+
 The family PoC uses a shared generic, mysterious avatar: create concept references, build and rig the model in Blender through MCP, validate it, obtain Tom's review of the final version, and publish the approved reusable GLB. The avatar needs no real-person likeness or personal photo reference. [DESIGN-003](003-photo-connections-and-people.md) owns photo connections and people; [DESIGN-004](004-memory-journey.md) defines their memory timelines independently of avatar artwork.
 
 **Current phase:** Tom has prioritized [PLAN-003 dependency setup](../../.agents/plans/003-authoring-tool-setup.md) before fresh-context development of the bounded playable loop in [DESIGN-007](007-poc-development-loop.md). After the dependency checkpoint, code can use synthetic memories and a generic placeholder while final candidates are authored and reviewed. Validate the small authoring loop before broader avatar/world production; Tom reviews final visual and audio versions before they enter gameplay. Automatic person-specific character generation is deferred to [BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation), conditional on a broader release and a separate decision to reintroduce person-specific avatars. Image generation alone does not establish working geometry, rigging, or animation.

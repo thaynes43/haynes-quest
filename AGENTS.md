@@ -1,8 +1,10 @@
 # Contributor and agent guide
 
-This project is a novelty 3D browser game, initially a family PoC for Tom Haynes's kids. Users configure a self-hosted photo-service URL, API key, and people; their photos supply chronological memory journeys. The PoC uses a shared generic, mysterious avatar who starts at memory age zero with no memories and baby abilities, independently of the selected person. Immich is the first integration. The planned hosting target is the local cluster through `haynes-ops`.
+This project is a novelty 3D browser game, initially a family PoC for Tom Haynes's kids. Users configure a self-hosted photo-service URL, API key, and people; their photos supply chronological memory journeys. The avatar starts mysterious at memory age zero with no memories and baby abilities; the newer direction makes its appearance evolve toward the recovered person’s age and likeness. Synthetic age variants serve the overnight MVP. Immich is the first integration. The planned hosting target is the local cluster through `haynes-ops`.
 
 Read [`.agents/HANDOFF.md`](.agents/HANDOFF.md) for the current stage, then the [project brief](docs/prds/001-project-brief.md) and the documents named by the active plan.
+
+Tom’s current overnight directive is [PLAN-004](.agents/plans/004-overnight-mvp.md): Astra leads a private MVP using a placeholder account while OAuth is deferred until tomorrow. Implement the Immich adapter and visible age progression; preserve the new likeness direction. Its milestone scope supersedes older generic-only and synthetic-adapter-only limitations.
 
 ## Working rules
 

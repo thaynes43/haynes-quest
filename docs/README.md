@@ -16,3 +16,5 @@ Read [PROCESS.md](PROCESS.md) for the workflow and the [project brief](prds/001-
 | References | Conventions borrowed from sibling repos | [Repository review](reference/repository-conventions.md) |
 
 The resume point is [`.agents/HANDOFF.md`](../.agents/HANDOFF.md). Plans live only in `.agents/plans/`; sequences belong in designs. Add release automation when there is a versioned application to release.
+
+Current implementation order: [Overnight MVP with deferred OAuth](../.agents/plans/004-overnight-mvp.md). Adapter source notes: [AppDaemon Immich reference](reference/immich-appdaemon.md).

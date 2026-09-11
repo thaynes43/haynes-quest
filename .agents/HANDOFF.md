@@ -7,6 +7,12 @@
 
 This handoff is for Astra to resume as the Haynes Quest lead with the full project context and decision rationale. Preserve useful planning context; the empty-context requirement applies to delegated Sol subagents and their bounded work orders.
 
+## Latest overnight ruling
+
+[PLAN-004](plans/004-overnight-mvp.md) is the current cold-start implementation order and takes precedence over older milestone exclusions below. Tom authorizes a placeholder account for coding/testing and defers OAuth until tomorrow. No new 1Password item is needed to start; later cluster secrets always use ExternalSecrets from 1Password. Reuse AppDaemon’s existing Immich source reference when enabling private integration; never expose real family data through the fixture demo. Implement finite photo configuration and the adapter now, with synthetic fixtures and private server storage for entered person names. Avatar age/likeness evolution is now product direction; overnight defaults prove visible age growth and a future private likeness-variant contract. Final photo-derived likeness and asset review remain separate work.
+
+The unseen question cards did not obtain owner decisions. PLAN-004 labels birth-date input, photo limits and placeholder age variants as provisional defaults. Authentik admission is deferred with OAuth, so it does not block tonight’s private coding milestone. Keep the Astra lead’s full context and use fresh Sol subagents. The external activation agent only merges/verifies the single restart; it does not provision 1Password or OAuth.
+
 ## Established
 
 A novelty Roblox-style 3D browser game, initially for Tom's family, hosted through `haynes-ops`. Required targets are iPad/iPhone Safari with on-screen touch controls and PC keyboard/mouse. It opens as a normal HTTPS web app; no native iOS, TestFlight, or required installation. Gamepad is later work.
