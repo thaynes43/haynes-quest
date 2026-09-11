@@ -1,0 +1,196 @@
+{
+  "triangles": 1741,
+  "materials": [
+    "Honey bronze",
+    "PhotoSurface",
+    "Walnut"
+  ],
+  "bounds_blender": {
+    "min": [
+      -0.20999999344348907,
+      -0.05000000074505806,
+      0.0
+    ],
+    "max": [
+      0.20999999344348907,
+      0.05000000074505806,
+      0.6499999761581421
+    ]
+  },
+  "dimensions_blender": [
+    0.41999998688697815,
+    0.10000000149011612,
+    0.6499999761581421
+  ],
+  "ground_contact_area_m2": 0.009601946454495192,
+  "topology": {
+    "Plain closed walnut backing": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Left walnut cheek": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Right walnut cheek": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Pointed rounded arch": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Lower crosspiece": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Base corner brace": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Shoulder brace": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Discreet bronze peg": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Base corner brace.001": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Shoulder brace.001": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Discreet bronze peg.001": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Apex token seat": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Honey token": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Token sprout": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Token leaf": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Token leaf.001": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Integral stable rear wedge": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "PhotoSurface": {
+      "boundary_edges": 9,
+      "nonmanifold_edges": 9
+    }
+  },
+  "asset_id": "memory-keepsake",
+  "spec": {
+    "catalog_id": "memory-keepsake",
+    "dimensions_xyz": [
+      0.42,
+      0.65,
+      0.1
+    ],
+    "triangles_max": 3000,
+    "materials_max": 6,
+    "bytes_max": 1048576
+  },
+  "source_blender": "4.5.13 LTS",
+  "front_blender": "+Y",
+  "front_gltf": "-Z",
+  "ground_gltf_y": 0,
+  "source_concepts": {
+    "work_order": "WO-010",
+    "inspected_actual_images": true,
+    "references": [
+      {
+        "path": "docs/assets/media/storybook-reference/v001/environment.png",
+        "bytes": 2678153,
+        "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+      },
+      {
+        "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+        "bytes": 2384183,
+        "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+        "bytes": 2089695,
+        "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+        "bytes": 1184,
+        "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+        "bytes": 2201520,
+        "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+        "bytes": 1171,
+        "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/concept.png",
+        "bytes": 2213940,
+        "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+        "bytes": 1117,
+        "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/concept.png",
+        "bytes": 2058864,
+        "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+        "bytes": 978,
+        "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+        "bytes": 2075973,
+        "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+        "bytes": 1233,
+        "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+      }
+    ],
+    "external_inputs": [],
+    "private_inputs": false,
+    "candidate_status": "unapproved"
+  },
+  "master": {
+    "file": "memory-keepsake.blend",
+    "bytes": 209594,
+    "sha256": "a9fbeead38391f6a0c39a0c7b7c6a5031ffccf9fc9bac965031d49b9ed39cf37"
+  },
+  "glb": {
+    "file": "memory-keepsake.glb",
+    "bytes": 116304,
+    "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137"
+  },
+  "intentional_open_surface": "PhotoSurface is a flat, front-facing UV insert backed by closed wood."
+}

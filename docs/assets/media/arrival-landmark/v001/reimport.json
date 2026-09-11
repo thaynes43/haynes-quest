@@ -1,0 +1,65 @@
+{
+  "asset_id": "arrival-landmark",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender": "4.5.13 LTS",
+  "glb_sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
+  "bounds_blender": {
+    "min": [
+      -1.2000000476837158,
+      -0.2750000059604645,
+      0.0
+    ],
+    "max": [
+      1.2000000476837158,
+      0.2750000059604645,
+      2.799999952316284
+    ],
+    "dimensions": [
+      2.4000000953674316,
+      0.550000011920929,
+      2.799999952316284
+    ]
+  },
+  "meshes": [
+    {
+      "name": "arrival-landmark",
+      "vertices": 2844,
+      "triangles": 1880,
+      "materials": [
+        "Walnut",
+        "Sandstone",
+        "Dark bronze",
+        "Amber lantern"
+      ],
+      "uv_layers": [],
+      "color_layers": [
+        "Color"
+      ]
+    }
+  ],
+  "external_image_count": 0,
+  "front_blender": "+Y",
+  "front_gltf": "-Z",
+  "passage": {
+    "method": "65 horizontal center-plane rays over 0.005\u20131.60 m height plus five downward rays",
+    "minimum_opening_m": 1.5999996662139893,
+    "sampled_height_m": 1.6,
+    "all_65_rays_hit_uprights": true,
+    "clear_width_at_least_1_6m": true,
+    "central_floor_unblocked": true
+  },
+  "scale_reference_m": 1,
+  "turntable": {
+    "file": "turntable.png",
+    "angles_degrees": [
+      0,
+      60,
+      120,
+      180,
+      240,
+      300
+    ],
+    "layout": "left to right, top row then bottom row",
+    "source": "six exact-GLB renders"
+  }
+}

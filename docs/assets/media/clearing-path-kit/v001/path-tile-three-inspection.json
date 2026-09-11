@@ -1,0 +1,51 @@
+{
+  "asset_id": "path-tile",
+  "three_revision": "186",
+  "glb_sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
+  "loader": "Three.js GLTFLoader; CPU geometry and ray checks",
+  "bounds": {
+    "min": [
+      -1,
+      0,
+      -1
+    ],
+    "max": [
+      1,
+      0.07999999821186066,
+      1
+    ],
+    "dimensions": [
+      2,
+      0.07999999821186066,
+      2
+    ]
+  },
+  "meshes": 2,
+  "material_primitives": 2,
+  "animations": 0,
+  "external_fetches": 0,
+  "checks": {
+    "static_mesh_loaded": true,
+    "ground_y_zero": true,
+    "no_animations": true,
+    "all_have_vertex_colors": true,
+    "stable_flat_ground_contact": true,
+    "no_tile_seam_holes": true,
+    "joined_4m_footprint": true
+  },
+  "ground_contact_area_m2": 4,
+  "tile_join_check": {
+    "instances": 4,
+    "spacing_m": 2,
+    "samples": 164,
+    "misses": 0,
+    "sampled_top_height_min_m": 0.06700000166892994,
+    "sampled_top_height_max_m": 0.07401074627556459,
+    "joined_dimensions": [
+      4,
+      0.07999999821186066,
+      4
+    ],
+    "method": "Downward rays at ±10 micrometers beside both shared seams, 41 positions per side"
+  }
+}

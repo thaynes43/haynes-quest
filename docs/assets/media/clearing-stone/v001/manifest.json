@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "catalog_id": "clearing-stone",
+  "version": "v001",
+  "candidate_status": "unapproved",
+  "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+  "tom_review": "pending",
+  "source_concepts": {
+    "work_order": "WO-010",
+    "inspected_actual_images": true,
+    "references": [
+      {
+        "path": "docs/assets/media/storybook-reference/v001/environment.png",
+        "bytes": 2678153,
+        "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+      },
+      {
+        "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+        "bytes": 2384183,
+        "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+        "bytes": 2089695,
+        "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+        "bytes": 1184,
+        "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+        "bytes": 2201520,
+        "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+        "bytes": 1171,
+        "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/concept.png",
+        "bytes": 2213940,
+        "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+        "bytes": 1117,
+        "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/concept.png",
+        "bytes": 2058864,
+        "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+        "bytes": 978,
+        "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+        "bytes": 2075973,
+        "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+        "bytes": 1233,
+        "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+      }
+    ],
+    "external_inputs": [],
+    "private_inputs": false,
+    "candidate_status": "unapproved"
+  },
+  "assets": {
+    "clearing-stone": {
+      "catalog_id": "clearing-stone",
+      "candidate_status": "unapproved",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+      "tom_review": "pending",
+      "glb_sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+      "triangles": 348,
+      "material_count": 1,
+      "draw_primitives": 1,
+      "dimensions_gltf_m": [
+        1.0499999523162842,
+        0.800000011920929,
+        0.75
+      ],
+      "files": [
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/clearing-stone.glb",
+          "file": "clearing-stone/clearing-stone.glb",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/clearing-stone.glb",
+          "sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+          "bytes": 41284,
+          "repository_path": "docs/assets/media/clearing-stone/v001/clearing-stone.glb"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/beauty.png",
+          "file": "clearing-stone/beauty.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/beauty.png",
+          "sha256": "7b82a1143171e1dde0dff70b2e0c49769f5eadfde7f82bb31dc12919d3ade28b",
+          "bytes": 537305,
+          "repository_path": "docs/assets/media/clearing-stone/v001/beauty.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/front.png",
+          "file": "clearing-stone/front.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/front.png",
+          "sha256": "9808672759bfad6ef5eb6930c251e1ae43f2f1803b9aca640d6a37f366452e9d",
+          "bytes": 551287,
+          "repository_path": "docs/assets/media/clearing-stone/v001/front.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/side.png",
+          "file": "clearing-stone/side.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/side.png",
+          "sha256": "35086f535cde4ed7b6d7fd2416ab795466ff1c40b2d17036b83fd67c5c986f33",
+          "bytes": 549156,
+          "repository_path": "docs/assets/media/clearing-stone/v001/side.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/back.png",
+          "file": "clearing-stone/back.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/back.png",
+          "sha256": "f3a4322aa911a1938877816ab14d19d2a5c03635c7a50ac18ef417e50512f1c8",
+          "bytes": 551005,
+          "repository_path": "docs/assets/media/clearing-stone/v001/back.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/top.png",
+          "file": "clearing-stone/top.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/top.png",
+          "sha256": "35a779b674ce4f805d9d2708b150ee83334f5b1f0231ac3c67117fcc4ff039ec",
+          "bytes": 536898,
+          "repository_path": "docs/assets/media/clearing-stone/v001/top.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/scale.png",
+          "file": "clearing-stone/scale.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/scale.png",
+          "sha256": "b80728306bdb118dfa2c0c454cee666d81126f5a5534bd47687666edc6dabded",
+          "bytes": 539672,
+          "repository_path": "docs/assets/media/clearing-stone/v001/scale.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/turntable.png",
+          "file": "clearing-stone/turntable.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/turntable.png",
+          "sha256": "38df9d6be8562b431f2b586c5dbd21661f5f1c621764de17e5bdfc10befc02c4",
+          "bytes": 646295,
+          "repository_path": "docs/assets/media/clearing-stone/v001/turntable.png",
+          "width": 1152,
+          "height": 768
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/validation.json",
+          "file": "clearing-stone/validation.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/validation.json",
+          "sha256": "f3a2fdf06656aadcffc07e942cf180fe65472559aed4d83a7c2c80dfe6b0f1ec",
+          "bytes": 2362,
+          "repository_path": "docs/assets/media/clearing-stone/v001/validation.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/reimport.json",
+          "file": "clearing-stone/reimport.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/reimport.json",
+          "sha256": "ac0ebeee6a9cd8edc1fbff23ab8e1786b06302c23a5aa4eb7af3f87801b24b8a",
+          "bytes": 1064,
+          "repository_path": "docs/assets/media/clearing-stone/v001/reimport.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/three-inspection.json",
+          "file": "clearing-stone/three-inspection.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/three-inspection.json",
+          "sha256": "747dd5e79211146be78005ac71dee50c9c0b77d2b66b90119a7a1878214bbf22",
+          "bytes": 784,
+          "repository_path": "docs/assets/media/clearing-stone/v001/three-inspection.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/construction.json",
+          "file": "clearing-stone/construction.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/construction.json",
+          "sha256": "e62cb36788ab97c53bf78d762cedd2e3663ff8482a19ba56489a586d231442a7",
+          "bytes": 3772,
+          "repository_path": "docs/assets/media/clearing-stone/v001/construction.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/reuse.png",
+          "file": "clearing-stone/reuse.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/reuse.png",
+          "sha256": "bdf4e2d8dab055c604bde930ee71cdff243e5068086d7afa0139245a4945b6d7",
+          "bytes": 553604,
+          "repository_path": "docs/assets/media/clearing-stone/v001/reuse.png",
+          "width": 1000,
+          "height": 650
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/clearing-stone/clearing-stone.blend",
+          "file": "clearing-stone/clearing-stone.blend",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/clearing-stone/clearing-stone.blend",
+          "sha256": "2e26ac4613f7c7a5a165fb1abd956af211ca0568ee88714a04f334f294d60f8a",
+          "bytes": 187725,
+          "repository_path": null
+        }
+      ]
+    }
+  },
+  "shared_kit_files": []
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "catalog_id": "arrival-landmark",
+  "version": "v001",
+  "candidate_status": "unapproved",
+  "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+  "tom_review": "pending",
+  "source_concepts": {
+    "work_order": "WO-010",
+    "inspected_actual_images": true,
+    "references": [
+      {
+        "path": "docs/assets/media/storybook-reference/v001/environment.png",
+        "bytes": 2678153,
+        "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+      },
+      {
+        "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+        "bytes": 2384183,
+        "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+        "bytes": 2089695,
+        "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+        "bytes": 1184,
+        "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+        "bytes": 2201520,
+        "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+        "bytes": 1171,
+        "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/concept.png",
+        "bytes": 2213940,
+        "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+        "bytes": 1117,
+        "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/concept.png",
+        "bytes": 2058864,
+        "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+        "bytes": 978,
+        "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+        "bytes": 2075973,
+        "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+        "bytes": 1233,
+        "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+      }
+    ],
+    "external_inputs": [],
+    "private_inputs": false,
+    "candidate_status": "unapproved"
+  },
+  "assets": {
+    "arrival-landmark": {
+      "catalog_id": "arrival-landmark",
+      "candidate_status": "unapproved",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+      "tom_review": "pending",
+      "glb_sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
+      "triangles": 1880,
+      "material_count": 4,
+      "draw_primitives": 4,
+      "dimensions_gltf_m": [
+        2.4000000953674316,
+        2.799999952316284,
+        0.550000011920929
+      ],
+      "files": [
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/arrival-landmark.glb",
+          "file": "arrival-landmark/arrival-landmark.glb",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/arrival-landmark.glb",
+          "sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
+          "bytes": 118348,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/arrival-landmark.glb"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/beauty.png",
+          "file": "arrival-landmark/beauty.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/beauty.png",
+          "sha256": "2b13751a48433515c12bc303b1280c3f5007cf6eacbdd8e13bcd3c9ccd9e3139",
+          "bytes": 557714,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/beauty.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/front.png",
+          "file": "arrival-landmark/front.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/front.png",
+          "sha256": "606402ca4ef097ede9aa36ccf32169d8695e562ea5edd33e207601801356504b",
+          "bytes": 565798,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/front.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/side.png",
+          "file": "arrival-landmark/side.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/side.png",
+          "sha256": "bade86a06f95cb9d4f24b73223c977acebcb2a46d5e62329c718e34745dc4300",
+          "bytes": 535626,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/side.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/back.png",
+          "file": "arrival-landmark/back.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/back.png",
+          "sha256": "35d918ec7351c993bf9f178ab1e53b96a2f1c52c6e873c013eaec820e3920247",
+          "bytes": 567080,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/back.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/top.png",
+          "file": "arrival-landmark/top.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/top.png",
+          "sha256": "ecf658d63450cbbe98506c64467ab90e1a3427f6502f94f593695e30100a6051",
+          "bytes": 522493,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/top.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/scale.png",
+          "file": "arrival-landmark/scale.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/scale.png",
+          "sha256": "1ade4e3397458f26b8b2be5e005f579094bdf9acaa09ea96e1ed4914b1a61c7d",
+          "bytes": 549808,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/scale.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/turntable.png",
+          "file": "arrival-landmark/turntable.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/turntable.png",
+          "sha256": "b287039e2f18257fac2aee1fd02a6a08dcf87b4b47192fcef2f591f8f0ddcd70",
+          "bytes": 710455,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/turntable.png",
+          "width": 1152,
+          "height": 768
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/validation.json",
+          "file": "arrival-landmark/validation.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/validation.json",
+          "sha256": "a1c08f36216d46aaf0941fb9893671cb09bdb829aa7be2467279d3393514d57d",
+          "bytes": 2880,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/validation.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/reimport.json",
+          "file": "arrival-landmark/reimport.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/reimport.json",
+          "sha256": "8f67e13102ff99403f9f9c3e441a63878a7463367144f14db6d19630a3ae06ec",
+          "bytes": 1479,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/reimport.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/three-inspection.json",
+          "file": "arrival-landmark/three-inspection.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/three-inspection.json",
+          "sha256": "882b588e98f1d28633a117fb153532d006f577e9271e18c47b34882235e65552",
+          "bytes": 997,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/three-inspection.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/construction.json",
+          "file": "arrival-landmark/construction.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/construction.json",
+          "sha256": "e05cb6fc6905a01a5fa4bf404073a6dc5e66fd44acd896fb9f960dc144a93d2c",
+          "bytes": 5659,
+          "repository_path": "docs/assets/media/arrival-landmark/v001/construction.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/arrival-landmark/arrival-landmark.blend",
+          "file": "arrival-landmark/arrival-landmark.blend",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/arrival-landmark/arrival-landmark.blend",
+          "sha256": "6787f0f78b03c10f092f59a886934aaf01e23f4975dd5566c90292adf57d4b0a",
+          "bytes": 203825,
+          "repository_path": null
+        }
+      ]
+    }
+  },
+  "shared_kit_files": []
+}

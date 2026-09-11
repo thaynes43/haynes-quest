@@ -1,0 +1,55 @@
+{
+  "asset_id": "path-tile",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender": "4.5.13 LTS",
+  "glb_sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
+  "bounds_blender": {
+    "min": [
+      -1.0,
+      -1.0,
+      0.0
+    ],
+    "max": [
+      1.0,
+      1.0,
+      0.07999999821186066
+    ],
+    "dimensions": [
+      2.0,
+      2.0,
+      0.07999999821186066
+    ]
+  },
+  "meshes": [
+    {
+      "name": "path-tile",
+      "vertices": 704,
+      "triangles": 392,
+      "materials": [
+        "Stone joints",
+        "Sandstone"
+      ],
+      "uv_layers": [],
+      "color_layers": [
+        "Color"
+      ]
+    }
+  ],
+  "external_image_count": 0,
+  "front_blender": "+Y",
+  "front_gltf": "-Z",
+  "scale_reference_m": 0.5,
+  "turntable": {
+    "file": "turntable.png",
+    "angles_degrees": [
+      0,
+      60,
+      120,
+      180,
+      240,
+      300
+    ],
+    "layout": "left to right, top row then bottom row",
+    "source": "six exact-GLB renders"
+  }
+}

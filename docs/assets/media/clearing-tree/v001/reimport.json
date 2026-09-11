@@ -1,0 +1,55 @@
+{
+  "asset_id": "clearing-tree",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender": "4.5.13 LTS",
+  "glb_sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+  "bounds_blender": {
+    "min": [
+      -1.25,
+      -0.7731931209564209,
+      0.0
+    ],
+    "max": [
+      1.25,
+      0.7731931209564209,
+      3.0
+    ],
+    "dimensions": [
+      2.5,
+      1.5463862419128418,
+      3.0
+    ]
+  },
+  "meshes": [
+    {
+      "name": "clearing-tree",
+      "vertices": 1436,
+      "triangles": 2840,
+      "materials": [
+        "Walnut",
+        "Leaf"
+      ],
+      "uv_layers": [],
+      "color_layers": [
+        "Color"
+      ]
+    }
+  ],
+  "external_image_count": 0,
+  "front_blender": "+Y",
+  "front_gltf": "-Z",
+  "scale_reference_m": 1,
+  "turntable": {
+    "file": "turntable.png",
+    "angles_degrees": [
+      0,
+      60,
+      120,
+      180,
+      240,
+      300
+    ],
+    "layout": "left to right, top row then bottom row",
+    "source": "six exact-GLB renders"
+  }
+}

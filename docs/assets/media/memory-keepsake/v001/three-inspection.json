@@ -1,0 +1,40 @@
+{
+  "asset_id": "memory-keepsake",
+  "three_revision": "186",
+  "glb_sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137",
+  "loader": "Three.js GLTFLoader; CPU geometry and ray checks",
+  "bounds": {
+    "min": [
+      -0.20999999344348907,
+      0,
+      -0.05000000074505806
+    ],
+    "max": [
+      0.20999999344348907,
+      0.6499999761581421,
+      0.05000000074505806
+    ],
+    "dimensions": [
+      0.41999998688697815,
+      0.6499999761581421,
+      0.10000000149011612
+    ]
+  },
+  "meshes": 3,
+  "material_primitives": 3,
+  "animations": 0,
+  "external_fetches": 0,
+  "checks": {
+    "static_mesh_loaded": true,
+    "ground_y_zero": true,
+    "no_animations": true,
+    "all_have_vertex_colors": true,
+    "stable_flat_ground_contact": true,
+    "photo_surface_named": true,
+    "photo_material_named": true,
+    "photo_uv_present": true,
+    "photo_uv_reads_from_minus_z_front": true,
+    "photo_replacement_material_assignable": true
+  },
+  "ground_contact_area_m2": 0.009601946364798164
+}

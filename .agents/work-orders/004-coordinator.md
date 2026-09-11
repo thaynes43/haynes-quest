@@ -33,3 +33,17 @@ Read HANDOFF, this work order, PLAN-004 and TEAM. Preserve all artifact versions
 - Isolated Immich 3.1.0 metadata and one thumbnail smoke passed (JPEG, 289945 bytes, valid signature). No private values/media retained, temporary Jobs deleted. No fixture route uses that source.
 - All eight concepts selected and retained; all four audio auditions retained with source/processed checksums and honest listening limits. Audio queue released. Blender WO-007 owns traveler scene until explicit release; rendering exported clips/stills. Next bounded scene owner produces the static prop kit.
 - Fable review session `haynes-quest-0911-001603` active, actual `claude-fable-5-1` verified; exact target `ad4eedc`, findings file per WO-009. Lead will reconcile against subsequent changes.
+
+### Checkpoint: merged MVP and active final lanes
+
+- App PR #21 merged as `6263dc42443eb5c33943d26f668da386df4900d4` at2026-09-11T04:55:40Z; exact-head source/PG45/45/docs/container checks passed. Main image/signing workflow34564020967 succeeded, digest `sha256:36b363a9e43912691d93a65c776cc9d958101a9d3a4379b7e1f4737e0a3f23b0` verified anonymously by deployment lane.
+- Root remains in the original task worktree, now on `agent/quest-catalog` from merged main; first follow-up checkpoint69971b5 pushed. Completed PLAN-003 moved to `plans/completed/` with links fixed. Pre-MVP activation history separated from the concise current handoff.
+- Ops PR #2851 from `/home/dev/work/quest-private-deploy` final-reviewed by root: exact immutable image, app-only Secret, internal ingress, no Immich/admin/network access, scoped chart/Flux configuration. Fresh Sol `deploy_preview` carries checks/merge/Flux and actual same-cookie pod-replacement persistence next; no dev-env change.
+- Traveler candidates integrated and selected for Tom after real exported-model browser/motion intake. All audio auditions available, listening not claimed. Fresh Astra `blender_clearing` now exclusively owns WO-010 after three transient capacity errors cleared; seven prop exports are being corrected/validated. Root owns final review pages/copy and intake.
+
+### Checkpoint: private live MVP verified
+
+- Ops #2851 merged `6622a9b`; evidence #2852 merged `8a37feb`. Flux/Helm Ready and normal private HTTPS health/readiness/studio passed. Same signed cookie preserved identical player/save state across actual application pod replacement, then completed the route; a fresh session received 404 for the other save and media. Audit artifacts cleaned, scoped activity ended.
+- Root completed live keyboard and touch-emulation journeys at 05:13:46.653 UTC with PostgreSQL-backed storage, including growth, jump, finish, refresh/resume, pointer cleanup, local audio preferences and portrait layout. Zero page errors. Safe evidence and synthetic screenshots are in `docs/ops/004-overnight-verification.md` and its linked media; physical Safari remains untested.
+- Dev-env retained its original pod UID and zero container restart counts. No activation or configuration changes were made.
+- Root checkpoint `c6cf561` preserves live evidence and the new complete-catalog browser script. Sol deployment lane finalized and can be reactivated for the final image bump. Fresh Sol WO-011 now reviews/tests catalog delivery while root intakes WO-010 renders. Seven prop exports are within their technical budgets; final creator render inspection and root selection remain before publication.

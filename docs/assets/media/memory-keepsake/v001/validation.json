@@ -1,0 +1,119 @@
+{
+  "asset_id": "memory-keepsake",
+  "file": "memory-keepsake.glb",
+  "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137",
+  "bytes": 116304,
+  "triangles": 1741,
+  "materials": [
+    {
+      "name": "Walnut",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.9200000166893005
+    },
+    {
+      "name": "Honey bronze",
+      "metallicFactor": 0.47999998927116394,
+      "roughnessFactor": 0.5600000023841858
+    },
+    {
+      "name": "PhotoSurface",
+      "metallicFactor": 0
+    }
+  ],
+  "draw_primitives": 3,
+  "bounds_gltf": {
+    "min": [
+      -0.20999999344348907,
+      0,
+      -0.05000000074505806
+    ],
+    "max": [
+      0.20999999344348907,
+      0.6499999761581421,
+      0.05000000074505806
+    ],
+    "dimensions": [
+      0.41999998688697815,
+      0.6499999761581421,
+      0.10000000149011612
+    ]
+  },
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "extensions_required": [],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "identity_node_transforms": true,
+    "triangle_budget": true,
+    "material_budget": true,
+    "file_budget": true,
+    "exact_dimensions": true,
+    "ground_y_zero": true,
+    "centered_footprint": true,
+    "no_external_resources": true,
+    "no_textures": true,
+    "no_required_extensions": true,
+    "opaque_surfaces": true,
+    "matte_materials": true,
+    "vertex_colors": true,
+    "all_triangle_primitives": true,
+    "no_skin_or_animation": true,
+    "closed_source_shells": true,
+    "stable_flat_ground_contact": true,
+    "photo_surface_named": true,
+    "photo_material_named": true,
+    "photo_surface_has_uv": true,
+    "photo_surface_flat": true
+  },
+  "validator": {
+    "uri": "memory-keepsake.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-11T05:22:27.389Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 1,
+      "numHints": 0,
+      "messages": [
+        {
+          "code": "UNUSED_OBJECT",
+          "message": "This object may be unused.",
+          "severity": 2,
+          "pointer": "/meshes/1/primitives/0/attributes/TEXCOORD_0"
+        }
+      ],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 112224
+        }
+      ],
+      "animationCount": 0,
+      "materialCount": 3,
+      "hasMorphTargets": false,
+      "hasSkins": false,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 3,
+      "totalVertexCount": 2764,
+      "totalTriangleCount": 1741,
+      "maxUVs": 1,
+      "maxInfluences": 0,
+      "maxAttributes": 4
+    }
+  }
+}

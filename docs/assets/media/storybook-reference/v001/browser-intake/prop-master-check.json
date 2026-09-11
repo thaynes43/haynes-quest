@@ -1,0 +1,105 @@
+{
+  "date": "2026-09-11",
+  "reviewer": "Driving GPT-6 Astra, max",
+  "method": "Retrieved every editable master over the dedicated artifact route; recomputed bytes and SHA-256. Read matching exact-GLB validator records. No Blender scene mutations.",
+  "assets": [
+    {
+      "asset": "memory-keepsake",
+      "masterHashVerified": true,
+      "checksPassed": 24,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 1,
+      "master": {
+        "file": "memory-keepsake.blend",
+        "bytes": 209594,
+        "sha256": "a9fbeead38391f6a0c39a0c7b7c6a5031ffccf9fc9bac965031d49b9ed39cf37"
+      },
+      "glbSha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137"
+    },
+    {
+      "asset": "ground-tile",
+      "masterHashVerified": true,
+      "checksPassed": 20,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "master": {
+        "file": "ground-tile.blend",
+        "bytes": 189932,
+        "sha256": "960399fcb147db3cb54cbcd786007ffbaf7f85e794b636c1e3f5e23e96b2ed08"
+      },
+      "glbSha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a"
+    },
+    {
+      "asset": "path-tile",
+      "masterHashVerified": true,
+      "checksPassed": 20,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "master": {
+        "file": "path-tile.blend",
+        "bytes": 185406,
+        "sha256": "daba9a1f42a0cd6d9811f5f9a11b212e0aafacf01673060a468c7afd1b9f1a91"
+      },
+      "glbSha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f"
+    },
+    {
+      "asset": "low-step",
+      "masterHashVerified": true,
+      "checksPassed": 20,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "master": {
+        "file": "low-step.blend",
+        "bytes": 182356,
+        "sha256": "355722f90edf9d712825c938fe8b61f0299991aba781a5cd1b4c5bce505b6ff5"
+      },
+      "glbSha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f"
+    },
+    {
+      "asset": "clearing-tree",
+      "masterHashVerified": true,
+      "checksPassed": 20,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "master": {
+        "file": "clearing-tree.blend",
+        "bytes": 218629,
+        "sha256": "839ce2438106d8cea9f562a90c082c82049689cc56e44868473cb0bbffc9022b"
+      },
+      "glbSha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9"
+    },
+    {
+      "asset": "clearing-stone",
+      "masterHashVerified": true,
+      "checksPassed": 20,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "master": {
+        "file": "clearing-stone.blend",
+        "bytes": 187725,
+        "sha256": "2e26ac4613f7c7a5a165fb1abd956af211ca0568ee88714a04f334f294d60f8a"
+      },
+      "glbSha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7"
+    },
+    {
+      "asset": "arrival-landmark",
+      "masterHashVerified": true,
+      "checksPassed": 20,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "master": {
+        "file": "arrival-landmark.blend",
+        "bytes": 203825,
+        "sha256": "6787f0f78b03c10f092f59a886934aaf01e23f4975dd5566c90292adf57d4b0a"
+      },
+      "glbSha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
+    }
+  ]
+}

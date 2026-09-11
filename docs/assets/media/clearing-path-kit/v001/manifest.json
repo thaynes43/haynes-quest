@@ -1,0 +1,514 @@
+{
+  "schema_version": 1,
+  "catalog_id": "clearing-path-kit",
+  "version": "v001",
+  "candidate_status": "unapproved",
+  "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+  "tom_review": "pending",
+  "source_concepts": {
+    "work_order": "WO-010",
+    "inspected_actual_images": true,
+    "references": [
+      {
+        "path": "docs/assets/media/storybook-reference/v001/environment.png",
+        "bytes": 2678153,
+        "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+      },
+      {
+        "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+        "bytes": 2384183,
+        "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+        "bytes": 2089695,
+        "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+        "bytes": 1184,
+        "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+        "bytes": 2201520,
+        "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+        "bytes": 1171,
+        "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/concept.png",
+        "bytes": 2213940,
+        "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+        "bytes": 1117,
+        "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/concept.png",
+        "bytes": 2058864,
+        "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+        "bytes": 978,
+        "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+        "bytes": 2075973,
+        "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+        "bytes": 1233,
+        "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+      }
+    ],
+    "external_inputs": [],
+    "private_inputs": false,
+    "candidate_status": "unapproved"
+  },
+  "assets": {
+    "ground-tile": {
+      "catalog_id": "clearing-path-kit",
+      "candidate_status": "unapproved",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+      "tom_review": "pending",
+      "glb_sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
+      "triangles": 702,
+      "material_count": 2,
+      "draw_primitives": 2,
+      "dimensions_gltf_m": [
+        2,
+        0.11999999731779099,
+        2
+      ],
+      "files": [
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/ground-tile.glb",
+          "file": "ground-tile/ground-tile.glb",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/ground-tile.glb",
+          "sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
+          "bytes": 50724,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile.glb"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/beauty.png",
+          "file": "ground-tile/beauty.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/beauty.png",
+          "sha256": "5947ae801f0abeab7f1d1e3c5b82795ad72f11fffb561bd839bf420193cd618e",
+          "bytes": 530216,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-beauty.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/front.png",
+          "file": "ground-tile/front.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/front.png",
+          "sha256": "62b070caed7b84037c1bd76e0d18e3e3a71d15fa34e1c6e2c4ab3eebd7215ee8",
+          "bytes": 532743,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-front.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/side.png",
+          "file": "ground-tile/side.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/side.png",
+          "sha256": "1dba0117ae9898e925362cf892f7abc05a8e541393d3c1f7cca4f0e0f284ee5c",
+          "bytes": 533606,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-side.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/back.png",
+          "file": "ground-tile/back.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/back.png",
+          "sha256": "f4665f739668227c2a99c0c1e6914a1241001eaa71019f72ff4bd57361b13e3c",
+          "bytes": 533900,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-back.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/top.png",
+          "file": "ground-tile/top.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/top.png",
+          "sha256": "b8545c4560e41fd7252d8541d4510cc3380ccbb9c2bb7c0c60ed1f98482b1fb9",
+          "bytes": 518849,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-top.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/scale.png",
+          "file": "ground-tile/scale.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/scale.png",
+          "sha256": "9a27bc6cf8c5991d8fd21a8323f89e12059a4f2fdcbc76546248deb2fe960d33",
+          "bytes": 528156,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-scale.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/turntable.png",
+          "file": "ground-tile/turntable.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/turntable.png",
+          "sha256": "4d2a5c31c46ade69a2e79c9cf9190c4a0a0c95b2cbff3e0873efc13c61bd1b12",
+          "bytes": 619986,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-turntable.png",
+          "width": 1152,
+          "height": 768
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/validation.json",
+          "file": "ground-tile/validation.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/validation.json",
+          "sha256": "e13cdf1f77a5bde0299e3e0ccd949df215f3abd4e219b1ffdd1dccec3beff148",
+          "bytes": 2347,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-validation.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/reimport.json",
+          "file": "ground-tile/reimport.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/reimport.json",
+          "sha256": "8f3d535249553b63fc665aea226eaee7c186373eb556b63424562871b3e43c9a",
+          "bytes": 1021,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-reimport.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/three-inspection.json",
+          "file": "ground-tile/three-inspection.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/three-inspection.json",
+          "sha256": "f6df929e2e56360221a4f1ea0c5faf328e2355557a60066f6fa63483804355f3",
+          "bytes": 1158,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-three-inspection.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/construction.json",
+          "file": "ground-tile/construction.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/construction.json",
+          "sha256": "b883348fe448036a618951d7c9ac49e0bb681d9f9b6c9b660e235cfc12cb46b1",
+          "bytes": 3704,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/ground-tile-construction.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/ground-tile/ground-tile.blend",
+          "file": "ground-tile/ground-tile.blend",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/ground-tile/ground-tile.blend",
+          "sha256": "960399fcb147db3cb54cbcd786007ffbaf7f85e794b636c1e3f5e23e96b2ed08",
+          "bytes": 189932,
+          "repository_path": null
+        }
+      ]
+    },
+    "path-tile": {
+      "catalog_id": "clearing-path-kit",
+      "candidate_status": "unapproved",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+      "tom_review": "pending",
+      "glb_sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
+      "triangles": 392,
+      "material_count": 2,
+      "draw_primitives": 2,
+      "dimensions_gltf_m": [
+        2,
+        0.07999999821186066,
+        2
+      ],
+      "files": [
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/path-tile.glb",
+          "file": "path-tile/path-tile.glb",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/path-tile.glb",
+          "sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
+          "bytes": 30084,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile.glb"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/beauty.png",
+          "file": "path-tile/beauty.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/beauty.png",
+          "sha256": "b7533b3f0516c6c5b082ab0fbaac8a4db900c712b57afdcf527b2f1247096322",
+          "bytes": 531613,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-beauty.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/front.png",
+          "file": "path-tile/front.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/front.png",
+          "sha256": "3ed0384dc8424f69ea47c1d78ef6fad7f93a289b0e3071cb3993de7004dc1573",
+          "bytes": 532964,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-front.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/side.png",
+          "file": "path-tile/side.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/side.png",
+          "sha256": "ed6967021cbb06df99bf547324b0bcb266728d3969ba3f4942f147cdd8092c0f",
+          "bytes": 533038,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-side.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/back.png",
+          "file": "path-tile/back.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/back.png",
+          "sha256": "2ed2c0feeac47b2fe26ea952e98ea7f857f43d63f7464a24f40e0e6868789d2b",
+          "bytes": 533131,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-back.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/top.png",
+          "file": "path-tile/top.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/top.png",
+          "sha256": "67fa4740ed3e2947e0a664b1f38164813a0ab2ccf1320cb09e308ea50a32d046",
+          "bytes": 525863,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-top.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/scale.png",
+          "file": "path-tile/scale.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/scale.png",
+          "sha256": "523e66f2a079e8716902a7217336c72b0a8c56f8f138034dd2ba446d536933c9",
+          "bytes": 523443,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-scale.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/turntable.png",
+          "file": "path-tile/turntable.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/turntable.png",
+          "sha256": "879cb625c4327a9a92cde3760839cfcc6f645590b48d54150a633bec616f6781",
+          "bytes": 547450,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-turntable.png",
+          "width": 1152,
+          "height": 768
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/validation.json",
+          "file": "path-tile/validation.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/validation.json",
+          "sha256": "1b051e970ef134fad5472ce49c6d067b3a89153b1f3836330d0fd579a356bbbd",
+          "bytes": 2352,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-validation.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/reimport.json",
+          "file": "path-tile/reimport.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/reimport.json",
+          "sha256": "a53284b16320c07598013e22d66dc6f1fedb35563019364685ee4206263e65f9",
+          "bytes": 1028,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-reimport.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/three-inspection.json",
+          "file": "path-tile/three-inspection.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/three-inspection.json",
+          "sha256": "a290949084841b7f1a2f109b6b2c040f74e3b1d98630bf2f49fd97951232504a",
+          "bytes": 1156,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-three-inspection.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/construction.json",
+          "file": "path-tile/construction.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/construction.json",
+          "sha256": "be63902132da52d095350f650fc7dca7b74a4ced10059177d97a14e5118006b1",
+          "bytes": 4388,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/path-tile-construction.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/path-tile/path-tile.blend",
+          "file": "path-tile/path-tile.blend",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/path-tile/path-tile.blend",
+          "sha256": "daba9a1f42a0cd6d9811f5f9a11b212e0aafacf01673060a468c7afd1b9f1a91",
+          "bytes": 185406,
+          "repository_path": null
+        }
+      ]
+    },
+    "low-step": {
+      "catalog_id": "clearing-path-kit",
+      "candidate_status": "unapproved",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+      "tom_review": "pending",
+      "glb_sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+      "triangles": 188,
+      "material_count": 2,
+      "draw_primitives": 2,
+      "dimensions_gltf_m": [
+        2,
+        0.2199999988079071,
+        0.6000000238418579
+      ],
+      "files": [
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/low-step.glb",
+          "file": "low-step/low-step.glb",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/low-step.glb",
+          "sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+          "bytes": 15968,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step.glb"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/beauty.png",
+          "file": "low-step/beauty.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/beauty.png",
+          "sha256": "5ea2c3dbcc6f086b10049e3f4c4a245e8a61c9958886960d102299fadf7b482a",
+          "bytes": 519762,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-beauty.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/front.png",
+          "file": "low-step/front.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/front.png",
+          "sha256": "f4a69da005adce3973bb6a232feb3ea729f4820a93ea870e3719c834ab700fd4",
+          "bytes": 531708,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-front.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/side.png",
+          "file": "low-step/side.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/side.png",
+          "sha256": "76777762cfbb3a34562edbe0b9dda103a6be599ea22933ee562adca13385e9b7",
+          "bytes": 531576,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-side.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/back.png",
+          "file": "low-step/back.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/back.png",
+          "sha256": "9d4a5de4453598174fd44eb91687af6d9f6cb0a66805feb7daef5edd9b0fc37d",
+          "bytes": 531976,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-back.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/top.png",
+          "file": "low-step/top.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/top.png",
+          "sha256": "4c4f9f680c6901dbc24ef6a2eecc64fbb09fa30cb25ba43a1f31ff7d08406fc0",
+          "bytes": 517318,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-top.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/scale.png",
+          "file": "low-step/scale.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/scale.png",
+          "sha256": "8dc001c026e6c75d0d571b3be9ef71145c6335c2ff7e52fef61b8220ae87fcae",
+          "bytes": 517178,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-scale.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/turntable.png",
+          "file": "low-step/turntable.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/turntable.png",
+          "sha256": "cbe8d9f8c96c090cf22f3006af26c9e0fa3e1d61f1ebb4bde21bd7d628bc7ca6",
+          "bytes": 518920,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-turntable.png",
+          "width": 1152,
+          "height": 768
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/validation.json",
+          "file": "low-step/validation.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/validation.json",
+          "sha256": "0cea9be9b0fdade2e8397bc721419855a362ef523d10c707f3ba8dd3688473a8",
+          "bytes": 2400,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-validation.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/reimport.json",
+          "file": "low-step/reimport.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/reimport.json",
+          "sha256": "87940257e199d8aa10cb84fd29750d6e5f15afebd5cb51201bddc1a411767121",
+          "bytes": 1071,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-reimport.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/three-inspection.json",
+          "file": "low-step/three-inspection.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/three-inspection.json",
+          "sha256": "cbd78a5994af5b0528c864496832406ee184b4be9de77ccfdcf844ef2df0721b",
+          "bytes": 771,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-three-inspection.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/construction.json",
+          "file": "low-step/construction.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/construction.json",
+          "sha256": "1d27a79047b9df633320d7eb0b5beb953a6a7b8df63220ed44a580694b642134",
+          "bytes": 4156,
+          "repository_path": "docs/assets/media/clearing-path-kit/v001/low-step-construction.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/low-step/low-step.blend",
+          "file": "low-step/low-step.blend",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/low-step/low-step.blend",
+          "sha256": "355722f90edf9d712825c938fe8b61f0299991aba781a5cd1b4c5bce505b6ff5",
+          "bytes": 182356,
+          "repository_path": null
+        }
+      ]
+    }
+  },
+  "shared_kit_files": [
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/tile-joins.png",
+      "file": "tile-joins.png",
+      "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/tile-joins.png",
+      "sha256": "96b7de35041bdf0d2b6376ec4376d72b82762c2128ecde263899f2a48d9fd9f1",
+      "bytes": 883478,
+      "repository_path": "docs/assets/media/clearing-path-kit/v001/tile-joins.png",
+      "width": 1400,
+      "height": 760
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/tile-joins.json",
+      "file": "tile-joins.json",
+      "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/tile-joins.json",
+      "sha256": "7429be1cec7939fc54a09a09f79653af51c177b61bc76052ce423b3a6189abd2",
+      "bytes": 355,
+      "repository_path": "docs/assets/media/clearing-path-kit/v001/tile-joins.json"
+    },
+    {
+      "artifact_id": "haynes-quest/clearing-kit/v001/kit-beauty.png",
+      "file": "kit-beauty.png",
+      "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/kit-beauty.png",
+      "sha256": "9f1b40427fd8d295802396b2630cc37d0f3508bb205a14cc6386c10ddad2f102",
+      "bytes": 1343204,
+      "repository_path": "docs/assets/media/clearing-path-kit/v001/kit-beauty.png",
+      "width": 1400,
+      "height": 1050
+    }
+  ]
+}

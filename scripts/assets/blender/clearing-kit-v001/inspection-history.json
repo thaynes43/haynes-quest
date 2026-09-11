@@ -1,0 +1,135 @@
+{
+  "work_order": "WO-010",
+  "creator": "native gpt-6-astra, max",
+  "candidate_status": "unapproved",
+  "source_images_inspected": [
+    "storybook-reference/v001/environment.png",
+    "storybook-reference/v001/props-materials.png",
+    "memory-keepsake/v001/concept.png",
+    "clearing-path-kit/v001/concept.png",
+    "clearing-tree/v001/concept.png",
+    "clearing-stone/v001/concept.png",
+    "arrival-landmark/v001/concept.png"
+  ],
+  "iterations": {
+    "shape-a": {
+      "artifact_directory": "haynes-quest/clearing-kit/v001/iterations/shape-a",
+      "status": "superseded after exact-GLB quick renders",
+      "glb_sha256s": {
+        "memory-keepsake": "8a12a465d11f737a224fbb075cc6f0c3f1b395a136b7a81f76e0bc71dcb5b21a",
+        "ground-tile": "55d539d401d473be55a36c30eadf69a010a8368bb7760ce91010e6fb53a5c028",
+        "path-tile": "3e07d34aae633f03b7a872f5e979136f61b5bc1056b9752e9440ae29b613d289",
+        "low-step": "f540abc0fc7711c01006a0c992b0904ac6834deffd1661d74a72c2720cf1a1ef",
+        "clearing-tree": "ebbbd35843798bdc1dd19b17a2589565211c1fc108707acc4916345b7c33a8e0",
+        "clearing-stone": "e644e00569cb6efaf5bdd66d31661751931a73b51a18f2040f64e934854bc716",
+        "arrival-landmark": "31adfe6e6808f5df6509f69e2bceeab86a015e7feef0065e3a6ab469b173a4be"
+      }
+    },
+    "shape-b": {
+      "artifact_directory": "haynes-quest/clearing-kit/v001/iterations/shape-b",
+      "status": "superseded keepsake support and review-label setup; six non-keepsake GLBs unchanged in final",
+      "glb_sha256s": {
+        "memory-keepsake": "df1603f24620a7ad27d7ce3348be063774236618f5c93ed21404876445c90c44",
+        "ground-tile": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
+        "path-tile": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
+        "low-step": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+        "clearing-tree": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+        "clearing-stone": "4387bc0fb403e5183e2afc344e7748f72b2976bbe0b1878e0705cc38092e7a1a",
+        "arrival-landmark": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
+      }
+    },
+    "final": {
+      "artifact_directory": "haynes-quest/clearing-kit/v001",
+      "status": "Creator inspected exact exported GLB views, matching orthographic views, compact turns, corrected ground contacts, metric references, reuse and complete kit. Ready for lead intake; unapproved.",
+      "glb_sha256s": {
+        "memory-keepsake": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137",
+        "ground-tile": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
+        "path-tile": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
+        "low-step": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+        "clearing-tree": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+        "clearing-stone": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+        "arrival-landmark": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
+      }
+    },
+    "shape-c": {
+      "artifact_directory": "haynes-quest/clearing-kit/v001/iterations/shape-c",
+      "status": "Retained stone underside dip and review-label framing issue before final corrections."
+    }
+  },
+  "issues": [
+    {
+      "id": "CK-01",
+      "found_in": "shape-a/memory-keepsake/quick.png",
+      "issue": "The illustrated insert left dark gaps below the rounded arch.",
+      "correction": "Extended the flat image polygon behind the wood frame and recessed it behind the cheek faces.",
+      "status": "corrected and visually inspected"
+    },
+    {
+      "id": "CK-02",
+      "found_in": "shape-a/clearing-stone/quick.png",
+      "issue": "Regular ring geometry made conspicuous horizontal bands.",
+      "correction": "Varied ring phases and heights, triangulated the broad facets and applied sparse face-color variation.",
+      "status": "corrected and visually inspected"
+    },
+    {
+      "id": "CK-03",
+      "found_in": "shape-a/arrival-landmark/quick.png",
+      "issue": "Walnut intersected the visible inner side of a narrowing foot course.",
+      "correction": "Used full-width stone courses that enclose the upright, preserving the 1.6 m opening.",
+      "status": "corrected and visually inspected"
+    },
+    {
+      "id": "CK-04",
+      "found_in": "shape-a/path-tile/quick.png",
+      "issue": "Sharp paver junctions and a dark exterior horizontal band looked too mechanical. Source also overlapped exterior bed and paver side faces.",
+      "correction": "Chamfered broad corners, moved paver bottoms to the joint-bed top and gave exposed bed sides matching sandstone.",
+      "status": "corrected and visually inspected; exact-GLB seam rays pass"
+    },
+    {
+      "id": "CK-05",
+      "found_in": "shape-a/clearing-tree/quick.png",
+      "issue": "The leaf anchor and cool studio fill produced an overly blue canopy.",
+      "correction": "Added a broad warm olive vertex-color wash while retaining the shared leaf-green anchor.",
+      "status": "corrected and visually inspected"
+    },
+    {
+      "id": "CK-06",
+      "found_in": "shape-b/memory-keepsake/side.png",
+      "issue": "The rear wedge was detached from the backing by about 12 mm; front braces sat above the wedge ground plane.",
+      "correction": "Moved the wedge front into the backing and lowered both front corner feet to zero.",
+      "status": "Corrected; final exact-GLB side/back views and flat exported support-area check inspected."
+    },
+    {
+      "id": "CK-07",
+      "found_in": "shape-b/memory-keepsake/scale.png",
+      "issue": "The review-only metric label faced away from the front camera and appeared reversed.",
+      "correction": "Rotated labels to face +Y and centered their alignment above the rulers; re-rendered all seven scale stills after noticing the first corrected label extended beyond the frame.",
+      "status": "Corrected and final readable label framing inspected."
+    },
+    {
+      "id": "CK-08",
+      "found_in": "PhotoSurface UV audit from the -Z front",
+      "issue": "World-X UV progression would mirror a replacement image when viewed from the designated front.",
+      "correction": "Reversed U; Three.js verifies U=0 at the screen-left edge and replacement material assignment.",
+      "status": "Corrected; re-imported and re-rendered the exact updated keepsake GLB and kit."
+    },
+    {
+      "id": "CK-09",
+      "found_in": "shape-c/clearing-stone/front.png",
+      "issue": "The first irregular stone ring dipped below the intended flat bottom cap.",
+      "correction": "Clamped the first shoulder above the bottom plane. Added stable planar ground-area checks for all source models and exact exported Three.js meshes.",
+      "status": "Corrected; stone has 0.320786 m\u00b2 flat support and final front/side, turntable, reuse and kit views were inspected."
+    }
+  ],
+  "design_limits": [
+    "Static mobile candidates use sparse matte vertex colors, not the illustrated fine wood grain, individual leaves or stone texture.",
+    "PhotoSurface is one flat material/UV mesh; a runtime replacement material must ignore COLOR_0. Its original amber tree uses no external image or overlay object.",
+    "Ground/path/step rectangular beds are closed. Path paver grooves reach the bed at 0.067 m; adjoining tiles have no missing surface.",
+    "Gateway width is measured over 0.005\u20131.60 m height. Its crescent silhouette narrows above that height; the lantern is overhead.",
+    "Tree and stone reuse views use rotation and scale of their sole GLB exports.",
+    "No browser/WebGL/Safari performance, gameplay integration, coordinator selection or Tom approval is claimed."
+  ],
+  "creator_inspection_complete": true,
+  "runtime_checks": "Khronos validator and Three.js CPU loader/geometry/ray checks only. No browser, WebGL, physical Safari or gameplay promotion claimed.",
+  "collection_note": "The artifact route returns 404 for raw source extensions (.py and .txt). Source files are therefore transferred as independently hashed base64 entries in source-bundle.json, a supported metadata artifact. The collector now writes atomically after verification; no model bytes or cluster configuration changed."
+}

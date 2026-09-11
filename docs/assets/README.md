@@ -2,7 +2,7 @@
 
 Review the images, models and sounds that will make Haynes Quest's storybook world. Start with the [art direction](art-direction.md), then browse the [first-pass catalog](catalog.md).
 
-The first reference set and prop concepts are ready. Model and audio candidates are in production alongside the private playable preview. Infrastructure test meshes and sounds are not game candidates or approved assets.
+The common reference set, both travelers, seven clearing prop models and all four sound auditions are available in the completed first-pass catalog. The private game remains playable with temporary art while these candidates await exact-version review. Infrastructure test meshes and sounds are not game candidates or approved assets.
 
 Each finished candidate gets a page with its source concepts, model views or audio player, exact version, technical results and feedback history. The [review template](000-review-template.md) defines that record. The coordinator can create and refine the whole first pass before Tom reviews it.
 

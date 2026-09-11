@@ -1,0 +1,1078 @@
+{
+  "date": "2026-09-11T05:52:22.185Z",
+  "base": "http://127.0.0.1:4173",
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software (requested)"
+  },
+  "pages": [
+    {
+      "id": "storybook-reference",
+      "models": [],
+      "audio": [],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/storybook-reference/v001/environment.png",
+          "bytes": 2678153,
+          "mime": "image/png",
+          "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/storybook-reference/v001/traveler-ages.png",
+          "bytes": 2137802,
+          "mime": "image/png",
+          "sha256": "4d43c73a80d8f8505cf142f6e6a35703456aba857f19d8d0a2c7a06d25759c84"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/storybook-reference/v001/props-materials.png",
+          "bytes": 2384183,
+          "mime": "image/png",
+          "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+        }
+      ]
+    },
+    {
+      "id": "traveler-infant",
+      "models": [
+        {
+          "src": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/traveler-infant.glb",
+          "poster": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/front.png",
+          "dimensions": {
+            "x": 0.5444031953811646,
+            "y": 0.750000029802318,
+            "z": 0.3248731940984726
+          },
+          "clips": [
+            "idle",
+            "move",
+            "interact"
+          ],
+          "paused": true,
+          "delivery": {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/traveler-infant.glb",
+            "bytes": 448656,
+            "mime": "model/gltf-binary",
+            "sha256": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c",
+            "manifestUrl": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/manifest.json",
+            "declarations": 1
+          },
+          "render": {
+            "bounds": {
+              "x": 16,
+              "y": 485.828125,
+              "width": 358,
+              "height": 358
+            },
+            "maxRgbStandardDeviation": 79.9829127143441
+          }
+        }
+      ],
+      "audio": [],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/storybook-reference/v001/traveler-ages.png",
+          "bytes": 2137802,
+          "mime": "image/png",
+          "sha256": "4d43c73a80d8f8505cf142f6e6a35703456aba857f19d8d0a2c7a06d25759c84"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/beauty.png",
+          "bytes": 701261,
+          "mime": "image/png",
+          "sha256": "847e19b636b8dc9879b97ea1f60720ccd2424764275e86cb6e8b90f9b7536733"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/traveler-infant.glb",
+          "bytes": 448656,
+          "mime": "model/gltf-binary",
+          "sha256": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/front.png",
+          "bytes": 708995,
+          "mime": "image/png",
+          "sha256": "898297d6c775182b35bbe6bdd5c90611cb1e802f5c8ea1c4c492e661f8263da0"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/side.png",
+          "bytes": 673447,
+          "mime": "image/png",
+          "sha256": "1021b02461da97095c1a8a4f4e3cf34601a0216d9189f5c0724cd767d8fc1866"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/back.png",
+          "bytes": 680925,
+          "mime": "image/png",
+          "sha256": "cfd048b6854222b9fd4ccfc3e6ca66cb24ef9b6a65bb0841ee8216a3aa00e034"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/age-comparison.png",
+          "bytes": 995772,
+          "mime": "image/png",
+          "sha256": "a302293a55c360e5e3c87495471cae10b5e4fc0b3c1c9b440760c0849139a4ce"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/motion-grid.png",
+          "bytes": 307337,
+          "mime": "image/png",
+          "sha256": "e4562ae3d6216550628210a675c96cb0d12129c0b16521d8f6cbc624dbef69ec"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/animations.mp4",
+          "bytes": 92859,
+          "mime": "video/mp4",
+          "sha256": "56aaedc559f9c997bd86a71c8ac2711cb97d9e0049689ab8885f888447c883ed"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/idle.mp4",
+          "bytes": 26713,
+          "mime": "video/mp4",
+          "sha256": "dd3003faa5729182f1db0012da002206b3faccb8e9039cbc6681c73c2682845d"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/move.mp4",
+          "bytes": 31427,
+          "mime": "video/mp4",
+          "sha256": "57269f146ccc256365761b42820e89a1815c02438d5c33194b862b35ce5b0fc2"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-infant/v001/interact.mp4",
+          "bytes": 36344,
+          "mime": "video/mp4",
+          "sha256": "e113ddfb17970916fc56d08ffaf0c071e10fa341e96d23576296b54ceea1c149"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/storybook-reference/v001/browser-intake/pair-shared-scale-orbit-180.png",
+          "bytes": 148102,
+          "mime": "image/png",
+          "sha256": "b906a97a7cb841f96cea44ffa5751dafec55a833a76aa94c5aeb4f33df8139af"
+        }
+      ]
+    },
+    {
+      "id": "traveler-child",
+      "models": [
+        {
+          "src": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/traveler-child.glb",
+          "poster": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/front.png",
+          "dimensions": {
+            "x": 0.6524658799171448,
+            "y": 1.1999999284744263,
+            "z": 0.3913732022047043
+          },
+          "clips": [
+            "idle",
+            "move",
+            "interact",
+            "jump"
+          ],
+          "paused": true,
+          "delivery": {
+            "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/traveler-child.glb",
+            "bytes": 460616,
+            "mime": "model/gltf-binary",
+            "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e",
+            "manifestUrl": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/manifest.json",
+            "declarations": 1
+          },
+          "render": {
+            "bounds": {
+              "x": 16,
+              "y": 486.421875,
+              "width": 358,
+              "height": 358
+            },
+            "maxRgbStandardDeviation": 71.64202549024313
+          }
+        }
+      ],
+      "audio": [],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/storybook-reference/v001/traveler-ages.png",
+          "bytes": 2137802,
+          "mime": "image/png",
+          "sha256": "4d43c73a80d8f8505cf142f6e6a35703456aba857f19d8d0a2c7a06d25759c84"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/beauty.png",
+          "bytes": 686355,
+          "mime": "image/png",
+          "sha256": "9307a3c05953a2f82f6794e0b5cf3f6386771681d574eac4f68b75410e0fb9ab"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/traveler-child.glb",
+          "bytes": 460616,
+          "mime": "model/gltf-binary",
+          "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/front.png",
+          "bytes": 690993,
+          "mime": "image/png",
+          "sha256": "d2ee4d722aebeea8d1c6f8f583f55010adea94e8e98e55fdba5eac98834c691a"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/side.png",
+          "bytes": 658829,
+          "mime": "image/png",
+          "sha256": "9d8dc17c818362612889a2062994b4f4fbf82339080c9a254671b019a93a7e2e"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/back.png",
+          "bytes": 671538,
+          "mime": "image/png",
+          "sha256": "842808d253e0356689a2030b3c813a1aa4c7c97e8902e4a3943d98e16fdd20cf"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/age-comparison.png",
+          "bytes": 995772,
+          "mime": "image/png",
+          "sha256": "a302293a55c360e5e3c87495471cae10b5e4fc0b3c1c9b440760c0849139a4ce"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/motion-grid.png",
+          "bytes": 354257,
+          "mime": "image/png",
+          "sha256": "e25b3107588f60d5cc8122a176afac78d97e01b8ef7a6582cb475deba3757936"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/animations.mp4",
+          "bytes": 106601,
+          "mime": "video/mp4",
+          "sha256": "4eb94633a0cfe4f63f630e63d357f8154ac53f064fce669d880e361cf89dff60"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/idle.mp4",
+          "bytes": 20290,
+          "mime": "video/mp4",
+          "sha256": "024cb6792bc1884620377178735a9fcfeabbdeb7ce367e3c67262ebe983a3c12"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/move.mp4",
+          "bytes": 30003,
+          "mime": "video/mp4",
+          "sha256": "f63990a9af8b3eef3fb81bc90f9809ba3f6f6e6f936b3081e55c689105713b78"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/interact.mp4",
+          "bytes": 27768,
+          "mime": "video/mp4",
+          "sha256": "45482ebafba9819c558b3ae105e70375d4f3e2085f4abd3057b40f2de2df7992"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/traveler-child/v001/jump.mp4",
+          "bytes": 31005,
+          "mime": "video/mp4",
+          "sha256": "70644b28bffd26b54da939c1988fc61629d08ed11d12354f756328efedc11dd4"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/storybook-reference/v001/browser-intake/pair-shared-scale-orbit-180.png",
+          "bytes": 148102,
+          "mime": "image/png",
+          "sha256": "b906a97a7cb841f96cea44ffa5751dafec55a833a76aa94c5aeb4f33df8139af"
+        }
+      ],
+      "touchOrbit": {
+        "before": {
+          "theta": 2.7323795732403062,
+          "phi": 1.3089969389957472,
+          "radius": 2.5275230160505493
+        },
+        "after": {
+          "theta": 4.782294732592243,
+          "phi": 1.3089969389957472,
+          "radius": 2.5275230160505493
+        },
+        "changed": true
+      }
+    },
+    {
+      "id": "memory-keepsake",
+      "models": [
+        {
+          "src": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb",
+          "poster": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/front.png",
+          "dimensions": {
+            "x": 0.41999998688697815,
+            "y": 0.6499999761581421,
+            "z": 0.10000000149011612
+          },
+          "clips": [],
+          "paused": true,
+          "delivery": {
+            "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb",
+            "bytes": 116304,
+            "mime": "model/gltf-binary",
+            "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137",
+            "manifestUrl": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/manifest.json",
+            "declarations": 2
+          },
+          "render": {
+            "bounds": {
+              "x": 16,
+              "y": 243.046875,
+              "width": 358,
+              "height": 358
+            },
+            "maxRgbStandardDeviation": 77.56356416078829
+          }
+        }
+      ],
+      "audio": [],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/concept.png",
+          "bytes": 2089695,
+          "mime": "image/png",
+          "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/beauty.png",
+          "bytes": 561792,
+          "mime": "image/png",
+          "sha256": "0f8e02f7bcb1325385ec7cc6bc9b1218c6efcb41b6a2e88d2396ea5772eb8a6c"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb",
+          "bytes": 116304,
+          "mime": "model/gltf-binary",
+          "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/front.png",
+          "bytes": 570834,
+          "mime": "image/png",
+          "sha256": "7a3f085f9a159b1934fbf1b72b1b5d9a4d287a4fef32378c0f476eadcd7c3eb9"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/turntable.png",
+          "bytes": 659083,
+          "mime": "image/png",
+          "sha256": "252040c160dd3d2a7ab7dfc1a18651704ded8c803e76102a608625e776efcb46"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/side.png",
+          "bytes": 545089,
+          "mime": "image/png",
+          "sha256": "17ffe9fcd6ee35e1c9b8b6d8bfdce865595022f0ce1bd6458b5cb5cd9db61a2c"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/back.png",
+          "bytes": 546837,
+          "mime": "image/png",
+          "sha256": "4920110db07f1502df4ab56c7128640d7c9d57c96b8cdffdd1525cf56bcc4c77"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/top.png",
+          "bytes": 531284,
+          "mime": "image/png",
+          "sha256": "77ff3fe82657ed739638facc583475832451718ecdf9c150bc8d28e39d75aab0"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-keepsake/v001/scale.png",
+          "bytes": 559866,
+          "mime": "image/png",
+          "sha256": "8383fef1f890006173e9c2fdd22ef074c54f2f393cbf7da0342e86811535b089"
+        }
+      ],
+      "touchOrbit": {
+        "before": {
+          "theta": 2.705260340591211,
+          "phi": 1.2217304763960306,
+          "radius": 1.5627273930538494
+        },
+        "after": {
+          "theta": 4.71794308003288,
+          "phi": 1.2217304763960306,
+          "radius": 1.5627273930538494
+        },
+        "changed": true
+      }
+    },
+    {
+      "id": "clearing-path-kit",
+      "models": [
+        {
+          "src": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile.glb",
+          "poster": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile-front.png",
+          "dimensions": {
+            "x": 2,
+            "y": 0.11999999731779099,
+            "z": 2
+          },
+          "clips": [],
+          "paused": true,
+          "delivery": {
+            "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile.glb",
+            "bytes": 50724,
+            "mime": "model/gltf-binary",
+            "sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
+            "manifestUrl": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/manifest.json",
+            "declarations": 2
+          },
+          "render": {
+            "bounds": {
+              "x": 16,
+              "y": 242.984375,
+              "width": 358,
+              "height": 358
+            },
+            "maxRgbStandardDeviation": 53.19987948230569
+          }
+        },
+        {
+          "src": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile.glb",
+          "poster": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile-front.png",
+          "dimensions": {
+            "x": 2,
+            "y": 0.07999999821186066,
+            "z": 2
+          },
+          "clips": [],
+          "paused": true,
+          "delivery": {
+            "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile.glb",
+            "bytes": 30084,
+            "mime": "model/gltf-binary",
+            "sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
+            "manifestUrl": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/manifest.json",
+            "declarations": 2
+          },
+          "render": {
+            "bounds": {
+              "x": 16,
+              "y": 242.875,
+              "width": 358,
+              "height": 358
+            },
+            "maxRgbStandardDeviation": 27.65859396827053
+          }
+        },
+        {
+          "src": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step.glb",
+          "poster": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step-front.png",
+          "dimensions": {
+            "x": 2,
+            "y": 0.2199999988079071,
+            "z": 0.6000000238418579
+          },
+          "clips": [],
+          "paused": true,
+          "delivery": {
+            "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step.glb",
+            "bytes": 15968,
+            "mime": "model/gltf-binary",
+            "sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+            "manifestUrl": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/manifest.json",
+            "declarations": 2
+          },
+          "render": {
+            "bounds": {
+              "x": 16,
+              "y": 243.359375,
+              "width": 358,
+              "height": 358
+            },
+            "maxRgbStandardDeviation": 29.048722614826225
+          }
+        }
+      ],
+      "audio": [],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/concept.png",
+          "bytes": 2201520,
+          "mime": "image/png",
+          "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/kit-beauty.png",
+          "bytes": 1343204,
+          "mime": "image/png",
+          "sha256": "9f1b40427fd8d295802396b2630cc37d0f3508bb205a14cc6386c10ddad2f102"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile-beauty.png",
+          "bytes": 530216,
+          "mime": "image/png",
+          "sha256": "5947ae801f0abeab7f1d1e3c5b82795ad72f11fffb561bd839bf420193cd618e"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile.glb",
+          "bytes": 50724,
+          "mime": "model/gltf-binary",
+          "sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile-front.png",
+          "bytes": 532743,
+          "mime": "image/png",
+          "sha256": "62b070caed7b84037c1bd76e0d18e3e3a71d15fa34e1c6e2c4ab3eebd7215ee8"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile-turntable.png",
+          "bytes": 619986,
+          "mime": "image/png",
+          "sha256": "4d2a5c31c46ade69a2e79c9cf9190c4a0a0c95b2cbff3e0873efc13c61bd1b12"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile-side.png",
+          "bytes": 533606,
+          "mime": "image/png",
+          "sha256": "1dba0117ae9898e925362cf892f7abc05a8e541393d3c1f7cca4f0e0f284ee5c"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile-back.png",
+          "bytes": 533900,
+          "mime": "image/png",
+          "sha256": "f4665f739668227c2a99c0c1e6914a1241001eaa71019f72ff4bd57361b13e3c"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile-top.png",
+          "bytes": 518849,
+          "mime": "image/png",
+          "sha256": "b8545c4560e41fd7252d8541d4510cc3380ccbb9c2bb7c0c60ed1f98482b1fb9"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/ground-tile-scale.png",
+          "bytes": 528156,
+          "mime": "image/png",
+          "sha256": "9a27bc6cf8c5991d8fd21a8323f89e12059a4f2fdcbc76546248deb2fe960d33"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile-beauty.png",
+          "bytes": 531613,
+          "mime": "image/png",
+          "sha256": "b7533b3f0516c6c5b082ab0fbaac8a4db900c712b57afdcf527b2f1247096322"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile.glb",
+          "bytes": 30084,
+          "mime": "model/gltf-binary",
+          "sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile-front.png",
+          "bytes": 532964,
+          "mime": "image/png",
+          "sha256": "3ed0384dc8424f69ea47c1d78ef6fad7f93a289b0e3071cb3993de7004dc1573"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile-turntable.png",
+          "bytes": 547450,
+          "mime": "image/png",
+          "sha256": "879cb625c4327a9a92cde3760839cfcc6f645590b48d54150a633bec616f6781"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile-side.png",
+          "bytes": 533038,
+          "mime": "image/png",
+          "sha256": "ed6967021cbb06df99bf547324b0bcb266728d3969ba3f4942f147cdd8092c0f"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile-back.png",
+          "bytes": 533131,
+          "mime": "image/png",
+          "sha256": "2ed2c0feeac47b2fe26ea952e98ea7f857f43d63f7464a24f40e0e6868789d2b"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile-top.png",
+          "bytes": 525863,
+          "mime": "image/png",
+          "sha256": "67fa4740ed3e2947e0a664b1f38164813a0ab2ccf1320cb09e308ea50a32d046"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/path-tile-scale.png",
+          "bytes": 523443,
+          "mime": "image/png",
+          "sha256": "523e66f2a079e8716902a7217336c72b0a8c56f8f138034dd2ba446d536933c9"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step-beauty.png",
+          "bytes": 519762,
+          "mime": "image/png",
+          "sha256": "5ea2c3dbcc6f086b10049e3f4c4a245e8a61c9958886960d102299fadf7b482a"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step.glb",
+          "bytes": 15968,
+          "mime": "model/gltf-binary",
+          "sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step-front.png",
+          "bytes": 531708,
+          "mime": "image/png",
+          "sha256": "f4a69da005adce3973bb6a232feb3ea729f4820a93ea870e3719c834ab700fd4"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step-turntable.png",
+          "bytes": 518920,
+          "mime": "image/png",
+          "sha256": "cbe8d9f8c96c090cf22f3006af26c9e0fa3e1d61f1ebb4bde21bd7d628bc7ca6"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step-side.png",
+          "bytes": 531576,
+          "mime": "image/png",
+          "sha256": "76777762cfbb3a34562edbe0b9dda103a6be599ea22933ee562adca13385e9b7"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step-back.png",
+          "bytes": 531976,
+          "mime": "image/png",
+          "sha256": "9d4a5de4453598174fd44eb91687af6d9f6cb0a66805feb7daef5edd9b0fc37d"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step-top.png",
+          "bytes": 517318,
+          "mime": "image/png",
+          "sha256": "4c4f9f680c6901dbc24ef6a2eecc64fbb09fa30cb25ba43a1f31ff7d08406fc0"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/low-step-scale.png",
+          "bytes": 517178,
+          "mime": "image/png",
+          "sha256": "8dc001c026e6c75d0d571b3be9ef71145c6335c2ff7e52fef61b8220ae87fcae"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-path-kit/v001/tile-joins.png",
+          "bytes": 883478,
+          "mime": "image/png",
+          "sha256": "96b7de35041bdf0d2b6376ec4376d72b82762c2128ecde263899f2a48d9fd9f1"
+        }
+      ]
+    },
+    {
+      "id": "clearing-tree",
+      "models": [
+        {
+          "src": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/clearing-tree.glb",
+          "poster": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/front.png",
+          "dimensions": {
+            "x": 2.5,
+            "y": 3,
+            "z": 1.5463862419128418
+          },
+          "clips": [],
+          "paused": true,
+          "delivery": {
+            "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/clearing-tree.glb",
+            "bytes": 71316,
+            "mime": "model/gltf-binary",
+            "sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+            "manifestUrl": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/manifest.json",
+            "declarations": 2
+          },
+          "render": {
+            "bounds": {
+              "x": 16,
+              "y": 243.046875,
+              "width": 358,
+              "height": 358
+            },
+            "maxRgbStandardDeviation": 62.490640531863725
+          }
+        }
+      ],
+      "audio": [],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/concept.png",
+          "bytes": 2213940,
+          "mime": "image/png",
+          "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/beauty.png",
+          "bytes": 559831,
+          "mime": "image/png",
+          "sha256": "68f8dc56d65dd89543bca5f36c35217fccc616e635ccf699e0694bc9c4414d49"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/clearing-tree.glb",
+          "bytes": 71316,
+          "mime": "model/gltf-binary",
+          "sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/front.png",
+          "bytes": 579422,
+          "mime": "image/png",
+          "sha256": "42cc069fac2a32713a3e05d9bd87768267c83c9a9357a818235a3f61212698e5"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/turntable.png",
+          "bytes": 785194,
+          "mime": "image/png",
+          "sha256": "37de9422809ee7503de18fc5ca03deabb231999de43c42f4a4894a3525eb8da6"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/side.png",
+          "bytes": 559992,
+          "mime": "image/png",
+          "sha256": "e550ee56ee9a58f15eae5446b224809b98ae96f85e7d4e04dbd5bb7b092e6b27"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/back.png",
+          "bytes": 581747,
+          "mime": "image/png",
+          "sha256": "257c450e8fd59664d6efb2a90fd4ee2b2b90a02b646b0ba369b22f99dc7a561c"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/top.png",
+          "bytes": 531818,
+          "mime": "image/png",
+          "sha256": "9d3c2ee0184af7dfb6421c8da55922421091e0cfbfded67e96fa114b564772a2"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/scale.png",
+          "bytes": 559710,
+          "mime": "image/png",
+          "sha256": "0f390daaace0a34a92a9778999f6e6e090a0411cd411ef946ac9eef0296d102a"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-tree/v001/reuse.png",
+          "bytes": 601116,
+          "mime": "image/png",
+          "sha256": "1d448796010aae00c2071d79bdc091aa8f3612e15138f2895a629f99c5bd49f8"
+        }
+      ]
+    },
+    {
+      "id": "clearing-stone",
+      "models": [
+        {
+          "src": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/clearing-stone.glb",
+          "poster": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/front.png",
+          "dimensions": {
+            "x": 1.0499999523162842,
+            "y": 0.800000011920929,
+            "z": 0.75
+          },
+          "clips": [],
+          "paused": true,
+          "delivery": {
+            "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/clearing-stone.glb",
+            "bytes": 41284,
+            "mime": "model/gltf-binary",
+            "sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+            "manifestUrl": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/manifest.json",
+            "declarations": 2
+          },
+          "render": {
+            "bounds": {
+              "x": 16,
+              "y": 485.859375,
+              "width": 358,
+              "height": 358
+            },
+            "maxRgbStandardDeviation": 44.67272725937221
+          }
+        }
+      ],
+      "audio": [],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/concept.png",
+          "bytes": 2058864,
+          "mime": "image/png",
+          "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/beauty.png",
+          "bytes": 537305,
+          "mime": "image/png",
+          "sha256": "7b82a1143171e1dde0dff70b2e0c49769f5eadfde7f82bb31dc12919d3ade28b"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/clearing-stone.glb",
+          "bytes": 41284,
+          "mime": "model/gltf-binary",
+          "sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/front.png",
+          "bytes": 551287,
+          "mime": "image/png",
+          "sha256": "9808672759bfad6ef5eb6930c251e1ae43f2f1803b9aca640d6a37f366452e9d"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/turntable.png",
+          "bytes": 646295,
+          "mime": "image/png",
+          "sha256": "38df9d6be8562b431f2b586c5dbd21661f5f1c621764de17e5bdfc10befc02c4"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/side.png",
+          "bytes": 549156,
+          "mime": "image/png",
+          "sha256": "35086f535cde4ed7b6d7fd2416ab795466ff1c40b2d17036b83fd67c5c986f33"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/back.png",
+          "bytes": 551005,
+          "mime": "image/png",
+          "sha256": "f3a4322aa911a1938877816ab14d19d2a5c03635c7a50ac18ef417e50512f1c8"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/top.png",
+          "bytes": 536898,
+          "mime": "image/png",
+          "sha256": "35a779b674ce4f805d9d2708b150ee83334f5b1f0231ac3c67117fcc4ff039ec"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/scale.png",
+          "bytes": 539672,
+          "mime": "image/png",
+          "sha256": "b80728306bdb118dfa2c0c454cee666d81126f5a5534bd47687666edc6dabded"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/clearing-stone/v001/reuse.png",
+          "bytes": 553604,
+          "mime": "image/png",
+          "sha256": "bdf4e2d8dab055c604bde930ee71cdff243e5068086d7afa0139245a4945b6d7"
+        }
+      ]
+    },
+    {
+      "id": "arrival-landmark",
+      "models": [
+        {
+          "src": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/arrival-landmark.glb",
+          "poster": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/front.png",
+          "dimensions": {
+            "x": 2.4000000953674316,
+            "y": 2.799999952316284,
+            "z": 0.550000011920929
+          },
+          "clips": [],
+          "paused": true,
+          "delivery": {
+            "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/arrival-landmark.glb",
+            "bytes": 118348,
+            "mime": "model/gltf-binary",
+            "sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
+            "manifestUrl": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/manifest.json",
+            "declarations": 2
+          },
+          "render": {
+            "bounds": {
+              "x": 16,
+              "y": 243.046875,
+              "width": 358,
+              "height": 358
+            },
+            "maxRgbStandardDeviation": 56.27989826718717
+          }
+        }
+      ],
+      "audio": [],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/concept.png",
+          "bytes": 2075973,
+          "mime": "image/png",
+          "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/beauty.png",
+          "bytes": 557714,
+          "mime": "image/png",
+          "sha256": "2b13751a48433515c12bc303b1280c3f5007cf6eacbdd8e13bcd3c9ccd9e3139"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/arrival-landmark.glb",
+          "bytes": 118348,
+          "mime": "model/gltf-binary",
+          "sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/front.png",
+          "bytes": 565798,
+          "mime": "image/png",
+          "sha256": "606402ca4ef097ede9aa36ccf32169d8695e562ea5edd33e207601801356504b"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/turntable.png",
+          "bytes": 710455,
+          "mime": "image/png",
+          "sha256": "b287039e2f18257fac2aee1fd02a6a08dcf87b4b47192fcef2f591f8f0ddcd70"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/side.png",
+          "bytes": 535626,
+          "mime": "image/png",
+          "sha256": "bade86a06f95cb9d4f24b73223c977acebcb2a46d5e62329c718e34745dc4300"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/back.png",
+          "bytes": 567080,
+          "mime": "image/png",
+          "sha256": "35d918ec7351c993bf9f178ab1e53b96a2f1c52c6e873c013eaec820e3920247"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/top.png",
+          "bytes": 522493,
+          "mime": "image/png",
+          "sha256": "ecf658d63450cbbe98506c64467ab90e1a3427f6502f94f593695e30100a6051"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/arrival-landmark/v001/scale.png",
+          "bytes": 549808,
+          "mime": "image/png",
+          "sha256": "1ade4e3397458f26b8b2be5e005f579094bdf9acaa09ea96e1ed4914b1a61c7d"
+        }
+      ]
+    },
+    {
+      "id": "memory-collected",
+      "models": [],
+      "audio": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-collected/v001/cue.wav",
+          "duration": 1.2,
+          "channels": 2,
+          "sampleRate": 44100,
+          "paused": true
+        }
+      ],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-collected/v001/cue.wav",
+          "bytes": 211724,
+          "mime": "audio/wav",
+          "sha256": "86ed72b341775dbb6f60414994912ec0d0292140e6408c20de54e5eb7ba0d358"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-collected/v001/source.wav",
+          "bytes": 882044,
+          "mime": "audio/wav",
+          "sha256": "90dfbc573fbf5923508c025b4e7c33438a166449fbd4c2e3cfb988c164ac526b"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/memory-collected/v001/waveform.svg",
+          "bytes": 13612,
+          "mime": "image/svg+xml; charset=utf-8",
+          "sha256": "414e14fdf0320c2b710902616ec18a695cb95d8a9bd726561c41a9f5750a554f"
+        }
+      ]
+    },
+    {
+      "id": "ability-unlocked",
+      "models": [],
+      "audio": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/ability-unlocked/v001/cue.wav",
+          "duration": 1.8,
+          "channels": 2,
+          "sampleRate": 44100,
+          "paused": true
+        }
+      ],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/ability-unlocked/v001/cue.wav",
+          "bytes": 317564,
+          "mime": "audio/wav",
+          "sha256": "46318afe6c77579a6b063fa704e887cd6112601b4cc4144351fa9085845115c0"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/ability-unlocked/v001/source.wav",
+          "bytes": 882044,
+          "mime": "audio/wav",
+          "sha256": "c6d084ce680ab407b20c351cb49509ade12290efb291453fdfc350ce3ef7a904"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/ability-unlocked/v001/waveform.svg",
+          "bytes": 13421,
+          "mime": "image/svg+xml; charset=utf-8",
+          "sha256": "ab65054ee3c2438236d55cd884ce29027f2b628b80d3ab833b7538feca2b6f4a"
+        }
+      ]
+    },
+    {
+      "id": "movement-landed",
+      "models": [],
+      "audio": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/movement-landed/v001/cue.wav",
+          "duration": 0.25,
+          "channels": 2,
+          "sampleRate": 44100,
+          "paused": true
+        }
+      ],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/movement-landed/v001/cue.wav",
+          "bytes": 44144,
+          "mime": "audio/wav",
+          "sha256": "2c869c641b29e5df0ede83ad5dfab63f26a4d41c9b7258b56d3acb4dd71bf127"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/movement-landed/v001/source.wav",
+          "bytes": 882044,
+          "mime": "audio/wav",
+          "sha256": "59661a9bf7f48019d114ce39ba344b5ecf7d69bc4bceb09493ef056cf8aee995"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/movement-landed/v001/waveform.svg",
+          "bytes": 13723,
+          "mime": "image/svg+xml; charset=utf-8",
+          "sha256": "51f086486e7c1e1e01c00fd365a139ef1a75b7d789bbd879bb7e9a4f32ce9e06"
+        }
+      ]
+    },
+    {
+      "id": "ui-confirmed",
+      "models": [],
+      "audio": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/ui-confirmed/v001/cue.wav",
+          "duration": 0.3,
+          "channels": 2,
+          "sampleRate": 44100,
+          "paused": true
+        }
+      ],
+      "media": [
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/ui-confirmed/v001/cue.wav",
+          "bytes": 52964,
+          "mime": "audio/wav",
+          "sha256": "e9a0541c87b518de9b7d989ae4b6ef99d3ee03e40bfc1e65855bfe9069597608"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/ui-confirmed/v001/source.wav",
+          "bytes": 882044,
+          "mime": "audio/wav",
+          "sha256": "416cdbb0fbb82da0b701f7fdac2fb4176b1f5933c4e1a236fab246e130ac941b"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/ui-confirmed/v001/waveform.svg",
+          "bytes": 13715,
+          "mime": "image/svg+xml; charset=utf-8",
+          "sha256": "569f8004aa393ca9c741283197fbd2ed7cd3d99cc48d365b0c00b6a7ddafb6f0"
+        },
+        {
+          "url": "http://127.0.0.1:4173/studio/assets/media/ui-confirmed/v001/source-attempt-1.wav",
+          "bytes": 882044,
+          "mime": "audio/wav",
+          "sha256": "177abf2e67e0578be44ed13609ca97b3464b7548bae57ee11e5a32bded68bfa7"
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "badResponses": [],
+  "externalRequests": [],
+  "physicalSafari": "not tested",
+  "audioReview": "browser decoding only; listening not performed",
+  "harnessSourceCommit": "a78333da1fb65aa517fa3295c3e49654a564a32e",
+  "studioCssSha256": "4db9aabf674d748a4f37d2ce0fd55deadd7a7d472c488fad2aee579651c3b388",
+  "coordinatorVisualIntake": "Driving Astra inspected all seven static model crops; all visibly render and match selected candidates. Traveler render/clip intake also recorded separately."
+}

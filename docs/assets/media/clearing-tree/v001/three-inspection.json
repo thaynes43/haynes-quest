@@ -1,0 +1,35 @@
+{
+  "asset_id": "clearing-tree",
+  "three_revision": "186",
+  "glb_sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+  "loader": "Three.js GLTFLoader; CPU geometry and ray checks",
+  "bounds": {
+    "min": [
+      -1.25,
+      0,
+      -0.7731931209564209
+    ],
+    "max": [
+      1.25,
+      3,
+      0.7731931209564209
+    ],
+    "dimensions": [
+      2.5,
+      3,
+      1.5463862419128418
+    ]
+  },
+  "meshes": 2,
+  "material_primitives": 2,
+  "animations": 0,
+  "external_fetches": 0,
+  "checks": {
+    "static_mesh_loaded": true,
+    "ground_y_zero": true,
+    "no_animations": true,
+    "all_have_vertex_colors": true,
+    "stable_flat_ground_contact": true
+  },
+  "ground_contact_area_m2": 0.375055605733944
+}

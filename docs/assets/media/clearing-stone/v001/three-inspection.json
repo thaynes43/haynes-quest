@@ -1,0 +1,35 @@
+{
+  "asset_id": "clearing-stone",
+  "three_revision": "186",
+  "glb_sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+  "loader": "Three.js GLTFLoader; CPU geometry and ray checks",
+  "bounds": {
+    "min": [
+      -0.5249999761581421,
+      0,
+      -0.375
+    ],
+    "max": [
+      0.5249999761581421,
+      0.800000011920929,
+      0.375
+    ],
+    "dimensions": [
+      1.0499999523162842,
+      0.800000011920929,
+      0.75
+    ]
+  },
+  "meshes": 1,
+  "material_primitives": 1,
+  "animations": 0,
+  "external_fetches": 0,
+  "checks": {
+    "static_mesh_loaded": true,
+    "ground_y_zero": true,
+    "no_animations": true,
+    "all_have_vertex_colors": true,
+    "stable_flat_ground_contact": true
+  },
+  "ground_contact_area_m2": 0.3207858829747851
+}

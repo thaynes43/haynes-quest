@@ -1,6 +1,8 @@
 # First-pass catalog
 
-This is the initial inventory for one compact playable slice. Concepts and all four audio auditions are complete; the traveler pair is ready for Tom’s review and the clearing props are next. No candidate is approved for gameplay. The Astra lead should produce a first pass for every required asset, add links as it works, and adjust the inventory when the implemented slice reveals a real need. Optional full-game content does not expand this overnight inventory automatically.
+This is the initial inventory for one compact playable slice. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The scoped first pass is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
+
+[Browser delivery audit](media/storybook-reference/v001/browser-intake/catalog-local-report.json): 12 pages, nine models, seven clips and four decoded auditions; zero page/console errors, failed responses or external asset requests. [Combined clearing preview](media/clearing-path-kit/v001/kit-beauty.png).
 
 ## Images and models
 
@@ -9,11 +11,11 @@ This is the initial inventory for one compact playable slice. Concepts and all f
 | `storybook-reference` | [Environment, traveler ages and prop/material reference set](reviews/storybook-reference/v001.md) | Coordinator selected · Tom review pending |
 | `traveler-infant` | [Starting traveler, model and movement · v001](reviews/traveler-infant/v001.md) | Ready for Tom · No gameplay approval |
 | `traveler-child` | [Older traveler, model and added jump · v001](reviews/traveler-child/v001.md) | Ready for Tom · No gameplay approval |
-| `memory-keepsake` | [A memory worth keeping · v001](reviews/memory-keepsake/v001.md) | Model in production · concept selected |
-| `clearing-path-kit` | [A small path forward · v001](reviews/clearing-path-kit/v001.md) | Model in production · concept selected |
-| `clearing-tree` | [A quiet place in the shade · v001](reviews/clearing-tree/v001.md) | Model in production · concept selected |
-| `clearing-stone` | [A rounded edge to the clearing · v001](reviews/clearing-stone/v001.md) | Model in production · concept selected |
-| `arrival-landmark` | [A lantern at the end of the path · v001](reviews/arrival-landmark/v001.md) | Model in production · concept selected |
+| `memory-keepsake` | [A memory worth keeping · v001](reviews/memory-keepsake/v001.md) | Ready for Tom · No gameplay approval |
+| `clearing-path-kit` | [A small path forward · v001](reviews/clearing-path-kit/v001.md) | Ready for Tom · No gameplay approval |
+| `clearing-tree` | [A quiet place in the shade · v001](reviews/clearing-tree/v001.md) | Ready for Tom · No gameplay approval |
+| `clearing-stone` | [A rounded edge to the clearing · v001](reviews/clearing-stone/v001.md) | Ready for Tom · No gameplay approval |
+| `arrival-landmark` | [A lantern at the end of the path · v001](reviews/arrival-landmark/v001.md) | Ready for Tom · No gameplay approval |
 
 Each separately modeled piece in a kit needs an identifiable concept view, model preview and version in its review page. A kit approval must list the included files/checksums. Include both age stages together in a comparison preview. The precise costume, landmark shape and clip names are lead decisions to record before production, not owner-approved designs.
 

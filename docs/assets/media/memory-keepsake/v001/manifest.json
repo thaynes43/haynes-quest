@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "catalog_id": "memory-keepsake",
+  "version": "v001",
+  "candidate_status": "unapproved",
+  "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+  "tom_review": "pending",
+  "source_concepts": {
+    "work_order": "WO-010",
+    "inspected_actual_images": true,
+    "references": [
+      {
+        "path": "docs/assets/media/storybook-reference/v001/environment.png",
+        "bytes": 2678153,
+        "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+      },
+      {
+        "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+        "bytes": 2384183,
+        "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/concept.png",
+        "bytes": 2089695,
+        "sha256": "7be0aee5e47bfb9a01a14921db44ddfa2ea16ab4e7d616ff466c7bce371d854b"
+      },
+      {
+        "path": "docs/assets/media/memory-keepsake/v001/prompt.txt",
+        "bytes": 1184,
+        "sha256": "8c6925d4910cf2f4987652a7faad3beb2bde0bb7f30f0e1ce2994d90058c3ee0"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/concept.png",
+        "bytes": 2201520,
+        "sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042"
+      },
+      {
+        "path": "docs/assets/media/clearing-path-kit/v001/prompt.txt",
+        "bytes": 1171,
+        "sha256": "2da875eeff88f77128435d5f871944edb63eb79f89fdf56477155956aafa742e"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/concept.png",
+        "bytes": 2213940,
+        "sha256": "bba9bee804ba2f5201a42bf1313e4e3bf2071a31827ca7c96172083058830583"
+      },
+      {
+        "path": "docs/assets/media/clearing-tree/v001/prompt.txt",
+        "bytes": 1117,
+        "sha256": "3104cf36b318e38c36331e6893c7f040db93b2cf576c852f12a1a015aafcb9d3"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/concept.png",
+        "bytes": 2058864,
+        "sha256": "595a2cb343d1c4309d85f74f9d1b4198fed3cd28fab911155c0b2896b097a0d5"
+      },
+      {
+        "path": "docs/assets/media/clearing-stone/v001/prompt.txt",
+        "bytes": 978,
+        "sha256": "03ce14efccb2f4a95e4fbef27b7da5897f9de9a34ed88b7a236a419cc3cf34d6"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/concept.png",
+        "bytes": 2075973,
+        "sha256": "028f27187729bcc2cef8ccdea1551f046bf2871f50893fdc9cd721a5f8d4c8d2"
+      },
+      {
+        "path": "docs/assets/media/arrival-landmark/v001/prompt.txt",
+        "bytes": 1233,
+        "sha256": "178cd9fb841de6ac5517013f47065db777e85bbbbadd91a11a7e3cd037cb2bcd"
+      }
+    ],
+    "external_inputs": [],
+    "private_inputs": false,
+    "candidate_status": "unapproved"
+  },
+  "assets": {
+    "memory-keepsake": {
+      "catalog_id": "memory-keepsake",
+      "candidate_status": "unapproved",
+      "coordinator_review": "Selected for Tom by driving Astra on 2026-09-11 after concept/export, master hash, validation and actual Chromium browser intake; no gameplay approval.",
+      "tom_review": "pending",
+      "glb_sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137",
+      "triangles": 1741,
+      "material_count": 3,
+      "draw_primitives": 3,
+      "dimensions_gltf_m": [
+        0.41999998688697815,
+        0.6499999761581421,
+        0.10000000149011612
+      ],
+      "files": [
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/memory-keepsake.glb",
+          "file": "memory-keepsake/memory-keepsake.glb",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/memory-keepsake.glb",
+          "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137",
+          "bytes": 116304,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/memory-keepsake.glb"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/beauty.png",
+          "file": "memory-keepsake/beauty.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/beauty.png",
+          "sha256": "0f8e02f7bcb1325385ec7cc6bc9b1218c6efcb41b6a2e88d2396ea5772eb8a6c",
+          "bytes": 561792,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/beauty.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/front.png",
+          "file": "memory-keepsake/front.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/front.png",
+          "sha256": "7a3f085f9a159b1934fbf1b72b1b5d9a4d287a4fef32378c0f476eadcd7c3eb9",
+          "bytes": 570834,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/front.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/side.png",
+          "file": "memory-keepsake/side.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/side.png",
+          "sha256": "17ffe9fcd6ee35e1c9b8b6d8bfdce865595022f0ce1bd6458b5cb5cd9db61a2c",
+          "bytes": 545089,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/side.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/back.png",
+          "file": "memory-keepsake/back.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/back.png",
+          "sha256": "4920110db07f1502df4ab56c7128640d7c9d57c96b8cdffdd1525cf56bcc4c77",
+          "bytes": 546837,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/back.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/top.png",
+          "file": "memory-keepsake/top.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/top.png",
+          "sha256": "77ff3fe82657ed739638facc583475832451718ecdf9c150bc8d28e39d75aab0",
+          "bytes": 531284,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/top.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/scale.png",
+          "file": "memory-keepsake/scale.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/scale.png",
+          "sha256": "8383fef1f890006173e9c2fdd22ef074c54f2f393cbf7da0342e86811535b089",
+          "bytes": 559866,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/scale.png",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/turntable.png",
+          "file": "memory-keepsake/turntable.png",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/turntable.png",
+          "sha256": "252040c160dd3d2a7ab7dfc1a18651704ded8c803e76102a608625e776efcb46",
+          "bytes": 659083,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/turntable.png",
+          "width": 1152,
+          "height": 768
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/validation.json",
+          "file": "memory-keepsake/validation.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/validation.json",
+          "sha256": "1aa34a4b471fb8034a7b163b0351de2da9c9e7246772404b90aa5d39bf2ae8a2",
+          "bytes": 2949,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/validation.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/reimport.json",
+          "file": "memory-keepsake/reimport.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/reimport.json",
+          "sha256": "2d8f0ca30e0d3e478d14c1212265ca45f630b5806c1e53ef604518f4cde2e666",
+          "bytes": 1370,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/reimport.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/three-inspection.json",
+          "file": "memory-keepsake/three-inspection.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/three-inspection.json",
+          "sha256": "fa32231bda44a35178f6a008854440f0815a6d37bfd690ec724a10fb38d93e63",
+          "bytes": 1030,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/three-inspection.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/construction.json",
+          "file": "memory-keepsake/construction.json",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/construction.json",
+          "sha256": "00caabbe0de04806736f3fcf19dac5cd053bfc47d046a350b6e8335b670d125d",
+          "bytes": 5440,
+          "repository_path": "docs/assets/media/memory-keepsake/v001/construction.json"
+        },
+        {
+          "artifact_id": "haynes-quest/clearing-kit/v001/memory-keepsake/memory-keepsake.blend",
+          "file": "memory-keepsake/memory-keepsake.blend",
+          "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/clearing-kit/v001/memory-keepsake/memory-keepsake.blend",
+          "sha256": "a9fbeead38391f6a0c39a0c7b7c6a5031ffccf9fc9bac965031d49b9ed39cf37",
+          "bytes": 209594,
+          "repository_path": null
+        }
+      ]
+    }
+  },
+  "shared_kit_files": []
+}

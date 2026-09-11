@@ -1,0 +1,54 @@
+{
+  "asset_id": "clearing-stone",
+  "source": "Exact delivered GLB re-imported by Blender glTF importer",
+  "blender": "4.5.13 LTS",
+  "glb_sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+  "bounds_blender": {
+    "min": [
+      -0.5249999761581421,
+      -0.375,
+      0.0
+    ],
+    "max": [
+      0.5249999761581421,
+      0.375,
+      0.800000011920929
+    ],
+    "dimensions": [
+      1.0499999523162842,
+      0.75,
+      0.800000011920929
+    ]
+  },
+  "meshes": [
+    {
+      "name": "clearing-stone",
+      "vertices": 1043,
+      "triangles": 348,
+      "materials": [
+        "Lavender stone"
+      ],
+      "uv_layers": [],
+      "color_layers": [
+        "Color"
+      ]
+    }
+  ],
+  "external_image_count": 0,
+  "front_blender": "+Y",
+  "front_gltf": "-Z",
+  "scale_reference_m": 1,
+  "turntable": {
+    "file": "turntable.png",
+    "angles_degrees": [
+      0,
+      60,
+      120,
+      180,
+      240,
+      300
+    ],
+    "layout": "left to right, top row then bottom row",
+    "source": "six exact-GLB renders"
+  }
+}

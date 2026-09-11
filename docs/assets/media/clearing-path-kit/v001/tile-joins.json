@@ -1,0 +1,12 @@
+{
+  "source": "exact GLBs instanced at 2 m offsets",
+  "ground_instances": 4,
+  "path_instances": 4,
+  "each_joined_dimensions_m": [
+    4,
+    4
+  ],
+  "outer_footprint": "exact rectangle; closed solid joint bed beneath paver grooves",
+  "shared_edge_gap_m": 0,
+  "alignment": "bases at Y=0; tops differ by the specified 0.12 m / 0.08 m piece heights"
+}
