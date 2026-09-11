@@ -21,6 +21,10 @@ Tom further clarified that the enemies must be recognizable pop-culture parodies
 
 Tom also requires Roblox-style obby gameplay mixed with goofy fights: hazards, movement timing and jumps, tuned for his six-year-old daughter. Short forgiving sections, broad landing areas and nearby recovery are part of the core slice under [DESIGN-011](../designs/011-forgiving-obby.md).
 
+## Future lifetime direction
+
+Tom has explicitly placed age-based challenge growth and real-life continuation in [BL-06](../BACKLOG.md#bl-06-a-lifetime-campaign-that-grows-with-the-player). Later recovered ages bring more abilities and demanding content; a child may need to live more years before continuing, while an adult can explore decades of existing memories. His proposed 37-year private archive will support a future infancy-to-adulthood playtest after the private photo flow is ready. This is product direction, not a current MVP implementation or completed real-photo test.
+
 ## Confirmed requirements
 
 The established platform constraints remain in force. R-12, R-14, and R-20–R-34 express Tom's narrative and gameplay direction within this draft. Memory-age progression now adds an age-zero start and accumulating abilities to decade-like/proportional levels and the era enemy/boss catalog. Exact abilities, age thresholds, grouping, personalization weights, and encounter mechanics remain proposed in DESIGN-004–DESIGN-006.
@@ -68,6 +72,8 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-3
 | R-39 | Support user-started browser audio, persistent mute/volume preferences, visible equivalents for required cues, and safe interruption/resume on touch and PC. Missing or blocked audio must not prevent play. | Must |
 | R-40 | Support finite configured photo journeys; store entered person names, resolved identities and private photo/age configuration server-side. Reuse AppDaemon’s Immich connection for the family PoC through ExternalSecrets/1Password. Use fictional repository fixtures. | Must |
 | R-41 | Maintain a Material for MkDocs documentation site in `docs/`, cataloging all scoped source concepts, generated models and audio with concrete previews, provenance, versions, feedback and approval state. Keep personal assets outside public git and static site output. | Must |
+| R-42 | In the future lifetime campaign, increase challenge and combinations of retained abilities as recovered age advances, supporting more demanding later childhood and adult play while retaining appropriate assistance. | Future; BL-06 |
+| R-43 | Let a journey through one's own life catch up to available lived memories, then support explicit saved continuation when real age, curated photos and authored content permit. Preserve completed progress and never invent future memories or grant abilities merely for elapsed time. | Future; BL-06 |
 
 The completed overnight milestone is [PLAN-004](../../.agents/plans/completed/004-overnight-mvp.md). Tom permits a private placeholder account for coding/testing and defers OAuth setup until tomorrow; Authentik remains the eventual sole player login. Older scope paragraphs describe the preceding synthetic-only milestone.
 
@@ -101,7 +107,7 @@ Enemies and bosses come from a static, authored catalog of recognizable parodies
 
 Each new journey begins with the generic avatar at age zero, no memories, and a small playable baby ability set. After finding useful gear and defeating the current period’s boss, the player reveals and consumes its memory bundle to advance to the represented age and the next period. Individual photo revelation does not change age. New movement, interaction, tool, and puzzle abilities build on earlier skills, and the player carries them into later periods. Exact actions and thresholds are still to be designed in [DESIGN-006](../designs/006-memory-age-and-abilities.md).
 
-Calendar dates determine the cultural-era enemy pool; recovered age determines the character's abilities. The human player's difficulty settings are separate, while every required encounter must fit the abilities currently available. Entering a chapter does not grant all powers from its latest photos. Missing infancy still permits a journey that starts at zero: a short opening and guided catch-up to the earliest real memory's age are proposed, with no fabricated baby photos.
+Calendar dates determine the cultural-era enemy pool; recovered age determines the character's abilities and, in the future lifetime campaign, increasing challenge and content complexity. The human player's challenge/assistance settings remain separate, while every required encounter must fit the abilities currently available. Entering a chapter does not grant all powers from its latest photos. Missing infancy still permits a journey that starts at zero: a short opening and guided catch-up to the earliest real memory's age are proposed, with no fabricated baby photos.
 
 ## Input and sign-in direction
 
@@ -160,6 +166,8 @@ These criteria are retained for the [backlog](../BACKLOG.md), not for PoC accept
 | ID | Criterion | Requirements |
 | --- | --- | --- |
 | AC-10 | If person-specific playable models are separately reintroduced for a broader release, automatic generation produces validated models from eligible photos, with progress and recoverable failures that preserve existing journeys. This is outside the generic-avatar PoC. | R-15; BL-01 |
+| AC-35 | A future synthetic archive spanning 37 years demonstrates infancy-to-adulthood progression, escalating obby/combat complexity and taught, retained abilities. A subsequent authorized private archive test validates real chronology and curation; neither test is required for the current MVP. | R-42; BL-06 |
+| AC-36 | A future child journey reaches a satisfying current endpoint, grants no progress simply when a birthday passes, and can be explicitly extended with eligible new memories/content without changing completed chapters, identities, victories or learned abilities. | R-43; BL-06 |
 
 ## Current scope
 

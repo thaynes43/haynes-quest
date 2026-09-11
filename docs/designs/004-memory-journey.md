@@ -51,6 +51,8 @@ The first period's original encounter studies evoke block-building games and liv
 
 ## Broader campaign and story
 
+Tom's September 11 [future lifetime campaign direction](../BACKLOG.md#bl-06-a-lifetime-campaign-that-grows-with-the-player) connects recovered age to increasing challenge and the actual life timeline. A child may reach the end of the memories currently available and continue years later; an adult can progress through decades already represented in their archive. Future extension must preserve the completed journey and deliberately add curated chapters. This does not change the current frozen, finite-save behavior or fabricate future stages.
+
 Tom's earlier decade/proportional grouping direction remains useful for pacing a larger library. The later clarification makes age advancement and its corresponding calendar period the transition rule. A decade does not automatically equal one level, and dense photos cannot force an entire library into the objective. Broader photo selection, sublevels, explicit preview of chapter counts and duplicate/burst filtering remain additional design work.
 
 The avatar's relationship to the selected person, eventual identity reveal, world history and final narrative remain story decisions. Current UI should communicate the concrete loop without inventing a completed lifetime campaign. Journey progress measures selected chapters and objectives, not a percentage of a person's whole life.
