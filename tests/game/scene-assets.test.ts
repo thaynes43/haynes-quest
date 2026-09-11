@@ -39,8 +39,10 @@ describe("SceneAssets.attachInstances", () => {
     geometry.clearGroups();
     geometry.addGroup(0, 18, 0);
     geometry.addGroup(18, 18, 1);
+    const sourceTexture = new THREE.Texture();
+    const sourceTextureDispose = vi.spyOn(sourceTexture, "dispose");
     const materials = [
-      new THREE.MeshStandardMaterial({ color: 0xaabbcc }),
+      new THREE.MeshStandardMaterial({ color: 0xaabbcc, map: sourceTexture }),
       new THREE.MeshStandardMaterial({ color: 0x332211 }),
     ];
     const source = new THREE.Mesh(geometry, materials);
@@ -132,6 +134,14 @@ describe("SceneAssets.attachInstances", () => {
     expect(clonedMaterials[0]).not.toBe(materials[0]);
     expect(clonedMaterials[1]).not.toBe(materials[1]);
     expect(repeatedBatch.material).toEqual(clonedMaterials);
+    const clonedTexture = (clonedMaterials[0] as THREE.MeshStandardMaterial)
+      .map;
+    const repeatedMaterials = repeatedBatch.material as THREE.Material[];
+    expect(clonedTexture).toBeInstanceOf(THREE.Texture);
+    expect(clonedTexture).not.toBe(sourceTexture);
+    expect((repeatedMaterials[0] as THREE.MeshStandardMaterial).map).toBe(
+      clonedTexture,
+    );
     expect(
       (clonedMaterials[0] as THREE.MeshStandardMaterial).color.getHex(),
     ).toBe(0xaabbcc);
@@ -160,16 +170,24 @@ describe("SceneAssets.attachInstances", () => {
     expect(batch.boundingBox).not.toBeNull();
     expect(batch.boundingSphere).not.toBeNull();
     const clonedGeometryDispose = vi.spyOn(batch.geometry, "dispose");
+    const instanceDisposals = [batch, repeatedBatch].map((instance) =>
+      vi.spyOn(instance, "dispose"),
+    );
     const clonedMaterialDisposals = clonedMaterials.map((material) =>
       vi.spyOn(material, "dispose"),
     );
+    const clonedTextureDispose = vi.spyOn(clonedTexture!, "dispose");
     disposeTree(target);
+    for (const disposal of instanceDisposals)
+      expect(disposal).toHaveBeenCalledOnce();
     expect(clonedGeometryDispose).toHaveBeenCalledOnce();
     for (const disposal of clonedMaterialDisposals)
       expect(disposal).toHaveBeenCalledOnce();
     expect(geometryDispose).not.toHaveBeenCalled();
     for (const disposal of materialDisposals)
       expect(disposal).not.toHaveBeenCalled();
+    expect(clonedTextureDispose).toHaveBeenCalledOnce();
+    expect(sourceTextureDispose).not.toHaveBeenCalled();
   });
 
   it("shares a retried load without duplicating batches and drops invalid jobs", async () => {
@@ -210,12 +228,103 @@ describe("SceneAssets.attachInstances", () => {
     expect(currentTarget.children).toHaveLength(1);
   });
 
+  it("keeps construction failures visible and retries the cached GLTF", async () => {
+    const sourceScene = new THREE.Group();
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial();
+    sourceScene.add(new THREE.Mesh(geometry, material));
+    const clone = material.clone.bind(material);
+    vi.spyOn(material, "clone")
+      .mockImplementationOnce(() => {
+        throw new Error("temporary construction failure");
+      })
+      .mockImplementation(clone);
+    const load = vi
+      .spyOn(GLTFLoader.prototype, "loadAsync")
+      .mockResolvedValue(gltf(sourceScene));
+    const assets = new SceneAssets();
+    const target = new THREE.Group();
+
+    assets.attachInstances(
+      "/construction.glb",
+      target,
+      [new THREE.Matrix4()],
+      () => true,
+    );
+
+    await vi.waitFor(() => expect(assets.getState().failed).toBe(1));
+    expect(target.children).toHaveLength(0);
+    expect(load).toHaveBeenCalledOnce();
+    assets.retry();
+    await vi.waitFor(() => expect(target.children).toHaveLength(1));
+    expect(load).toHaveBeenCalledOnce();
+    expect(assets.getState()).toEqual({ loading: 0, failed: 0 });
+
+    const emptyTarget = new THREE.Group();
+    let emptyValid = true;
+    load.mockResolvedValueOnce(gltf(new THREE.Group()));
+    assets.attachInstances(
+      "/empty.glb",
+      emptyTarget,
+      [new THREE.Matrix4()],
+      () => emptyValid,
+    );
+    await vi.waitFor(() => expect(assets.getState().failed).toBe(1));
+    expect(emptyTarget.children).toHaveLength(0);
+    assets.retry();
+    await vi.waitFor(() => expect(assets.getState().failed).toBe(1));
+    expect(emptyTarget.children).toHaveLength(0);
+    expect(load).toHaveBeenCalledTimes(2);
+    emptyValid = false;
+    expect(assets.getState()).toEqual({ loading: 0, failed: 0 });
+    assets.retry();
+    expect(emptyTarget.children).toHaveLength(0);
+  });
+
+  it("keeps existing hierarchy attachments isolated from cached textures", async () => {
+    const sourceScene = new THREE.Group();
+    const texture = new THREE.Texture();
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ map: texture });
+    sourceScene.add(new THREE.Mesh(geometry, material));
+    const clip = new THREE.AnimationClip("idle", 1, []);
+    const fixture = gltf(sourceScene);
+    fixture.animations = [clip];
+    vi.spyOn(GLTFLoader.prototype, "loadAsync").mockResolvedValue(fixture);
+    const sourceTextureDispose = vi.spyOn(texture, "dispose");
+    const assets = new SceneAssets();
+    const target = new THREE.Group();
+    const ready = vi.fn();
+
+    assets.attach("/existing.glb", target, () => true, ready);
+
+    await vi.waitFor(() => expect(target.children).toHaveLength(1));
+    const attached = target.children[0] as THREE.Group;
+    const attachedMesh = attached.children[0] as THREE.Mesh;
+    const attachedTexture = (attachedMesh.material as THREE.MeshBasicMaterial)
+      .map;
+    expect(attachedMesh.geometry).not.toBe(geometry);
+    expect(attachedMesh.material).not.toBe(material);
+    expect(attachedTexture).toBeInstanceOf(THREE.Texture);
+    expect(attachedTexture).not.toBe(texture);
+    expect(ready).toHaveBeenCalledWith(attached, [clip]);
+    const attachedTextureDispose = vi.spyOn(attachedTexture!, "dispose");
+    disposeTree(target);
+    expect(attachedTextureDispose).toHaveBeenCalledOnce();
+    expect(sourceTextureDispose).not.toHaveBeenCalled();
+    assets.dispose();
+    await vi.waitFor(() => expect(sourceTextureDispose).toHaveBeenCalledOnce());
+  });
+
   it("disposes a batch assembled after its route becomes stale", async () => {
     const sourceScene = new THREE.Group();
     const sourceGeometry = new THREE.BoxGeometry();
-    const sourceMaterial = new THREE.MeshBasicMaterial();
+    const sourceTexture = new THREE.Texture();
+    const sourceMaterial = new THREE.MeshBasicMaterial({ map: sourceTexture });
     const sourceGeometryDispose = vi.spyOn(sourceGeometry, "dispose");
     const sourceMaterialDispose = vi.spyOn(sourceMaterial, "dispose");
+    const sourceTextureDispose = vi.spyOn(sourceTexture, "dispose");
+    const textureDispose = vi.spyOn(THREE.Texture.prototype, "dispose");
     const clonedGeometry = sourceGeometry.clone();
     const clonedMaterial = sourceMaterial.clone();
     const geometryDispose = vi.spyOn(clonedGeometry, "dispose");
@@ -226,6 +335,7 @@ describe("SceneAssets.attachInstances", () => {
     vi.spyOn(GLTFLoader.prototype, "loadAsync").mockResolvedValue(
       gltf(sourceScene),
     );
+    const instanceDispose = vi.spyOn(THREE.InstancedMesh.prototype, "dispose");
     const assets = new SceneAssets();
     const target = new THREE.Group();
     let validityChecks = 0;
@@ -238,10 +348,13 @@ describe("SceneAssets.attachInstances", () => {
     );
 
     await vi.waitFor(() => expect(materialDispose).toHaveBeenCalledOnce());
+    expect(instanceDispose).toHaveBeenCalledOnce();
     expect(geometryDispose).toHaveBeenCalledOnce();
     expect(target.children).toHaveLength(0);
     expect(sourceGeometryDispose).not.toHaveBeenCalled();
     expect(sourceMaterialDispose).not.toHaveBeenCalled();
+    expect(textureDispose).toHaveBeenCalledOnce();
+    expect(sourceTextureDispose).not.toHaveBeenCalled();
   });
 
   it("does not assemble after disposal and releases the cached source GLTF", async () => {
