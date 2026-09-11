@@ -16,8 +16,8 @@ Root read the completed native reports from session `878b0cfc-1bc3-43d6-be8f-1b5
 | Failed model jobs retain obsolete scene objects; cloned materials share cached textures. | `34e009b`: validity-aware retry pruning, independent texture objects, exact instance disposal and visible construction-failure handling. |
 | Errors/retries are hidden behind dialogs. | Independently found by the journey lane; `f0756bc` renders feedback inside the active dialog. |
 | HTTP contract still describes retired recover/finish mutations and old save shapes. | Root updated DESIGN-009 with the action envelope, verbs, save/lock semantics, errors and bounded receipt guarantee. |
-| Clock injection is missing from create/read views; persisted cooldowns can remain far in the future after clock skew. | Assigned to the bounded Fable server follow-up, WO-018; no completion claimed yet. |
-| Stored-data AppError failures produce no safe diagnostics; reduced states are not validated before writing. | Assigned to WO-018, retaining the existing privacy-safe diagnostic format and frozen-plan authority. |
+| Clock injection is missing from create/read views; persisted cooldowns can remain far in the future after clock skew. | `abee156`, bounded Fable WO-018 follow-up: one required clock argument and bounded remaining-time rules, with near-deadline and skew regressions. |
+| Stored-data AppError failures produce no safe diagnostics; reduced states are not validated before writing. | `abee156`: safe 5xx diagnostics and pre-write invariant checks, retaining frozen-plan authority. |
 
 Root also corrected stale-refresh wording, repeated-error notification, missing error mappings and a chapter message that announced jumping regardless of actual newly unlocked abilities. These are lead-owned UI decisions.
 

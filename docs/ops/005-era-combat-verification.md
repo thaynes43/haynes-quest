@@ -2,13 +2,13 @@
 
 This record concerns the PLAN-005 correction: useful gear → era encounters → boss victory → released pictures → memory consumption → age and next period. It does not replace the separate evidence for the currently deployed historical prototype.
 
-**Current state:** implementation and isolated review are in progress. No PLAN-005 release has been deployed. The local game uses existing candidate GLBs and temporary enemy/equipment studies; owner approval for demo use remains pending. Real library photos, admitted-player OAuth and physical Safari have not been validated by these checks.
+**Current state:** the corrected core code has passed isolated review and is ready for checked PR handling. Current creature/equipment asset production and visual review are still in progress. No PLAN-005 release has been deployed. The local game uses existing candidate GLBs and temporary enemy/equipment studies; owner approval for demo use remains pending. Real library photos, admitted-player OAuth and physical Safari have not been validated by these checks.
 
 ## Source and checks
 
 Root worktree: `/home/dev/work/quest-era-boss-loop`, branch `agent/quest-era-boss-loop`, based on `3502ac7`. The integrated server/migration is `f7df719`, stored-state/PostgreSQL fixes `d25377d`, scene and UI `faa8bab`, low-frame-rate timing correction `08e1337`, and media regression test `88cdcec`.
 
-TypeScript, lint and production build passed. The local suite passed 65 tests with eight PostgreSQL tests skipped because the local run had no database URL. The separate real-database result below covers those eight tests. Actual keyboard gameplay has reached both bosses and the final age-seven completion; touch verification and independent Fable review are still in progress.
+TypeScript, lint and production build passed. The local suite passed 65 tests with eight PostgreSQL tests skipped because the local run had no database URL. The separate real-database result below covers those eight tests. Actual keyboard and emulated-touch gameplay passed both bosses and final age-seven completion, with all completion pictures decoded. Independent technical findings were recovered and fixed; the original separate Fable browser lane timed out and is not claimed complete.
 
 The isolated test harness serves synthetic fixtures with in-memory storage at `127.0.0.1:4390`. It now runs in tmux window `main:quest-era-fixture`, with log `/tmp/quest-era-fixture.log`. Two earlier tool-owned processes ended with signal 143; their in-memory saves were discarded. This was a local test interruption, not a live application or dev-env restart. In-memory reload tests demonstrate application save/resume semantics within that process; they do not establish persistence across process replacement.
 
@@ -50,4 +50,17 @@ After batching repeated static GLBs, desktop draw calls fell from 360 to 222 and
 
 ## Adversarial review and later corrections
 
-[WO-015 results](../../.agents/work-orders/015-era-adversarial-results.md) records recovered independent client/server findings and lead dispositions. The Fable parent timed out waiting for its browser lane; that lane is not claimed complete. Concrete fixes cover secure UUID availability, stale-tab enemy revival, retained pending contact, fair pause telegraphs, cached-picture display, model retry/texture ownership, and dialog feedback. The subsequent combined local suite passed 82 tests with eight database tests skipped. Further remote-retry regressions and the bounded server follow-up are being integrated before final evidence and PR completion.
+[WO-015 results](../../.agents/work-orders/015-era-adversarial-results.md) records recovered independent client/server findings and lead dispositions. The Fable parent timed out waiting for its browser lane; that lane is not claimed complete. Concrete fixes cover secure UUID availability, stale-tab enemy revival, retained pending contact, fair pause telegraphs, cached-picture display, model retry/texture ownership, and dialog feedback. The subsequent combined local suite passed 82 tests with eight database tests skipped. Remote-retry regressions are integrated as `46ad8b9`, cached-picture fixes as `c5d217c`, and the bounded Fable server follow-up as `abee156`. The resulting full local suite passed **91 tests**, with **eight PostgreSQL tests skipped** pending PR CI. Typecheck, lint and production build passed.
+
+
+## Final control journeys for the code PR
+
+[Keyboard evidence](media/era-combat/journey-keyboard-evidence.json), completed `2026-09-11T14:10:04Z`; [touch evidence](media/era-combat/journey-touch-evidence.json), completed `2026-09-11T14:11:54Z`. Both use Chromium `153.0.8010.12`, final client bundle `index-C3rM52AX.js`, and real movement/actions through both periods. Read-only save assertions verified equipment, encounter/boss gates, unchanged age through victory and revelation, absorption from 0 → 4 → 7, save/leave/resume and the retained final 2024 world. Touch used 844 × 390 emulation with simultaneous controls, guard/jump and pointer cancellation. There were zero page errors. Keyboard also forced picture failures and recovered through the in-dialog retry.
+
+These journeys ran on the in-memory harness before the final server clock/write-validation follow-up. After integrating `abee156`, root restarted only that owned local harness, repeated the media/first-boss action regression against the updated server and received the same passing counts: three previews, two released pictures, two actual WebGL uploads, bounded automatic/manual retries, no unexpected errors. PR CI verifies the full updated server and database suite. This distinction avoids claiming the earlier browser run used code that had not yet been loaded by the server.
+
+![Keyboard completion with all three fictional pictures visibly loaded](media/era-combat/keyboard-complete.png)
+
+![Touch completion with all three fictional pictures visibly loaded](media/era-combat/touch-complete.png)
+
+These captures show fixture illustrations, not imported family photographs. The completion dialog scrolls within the touch viewport to reveal its captions and return control.
