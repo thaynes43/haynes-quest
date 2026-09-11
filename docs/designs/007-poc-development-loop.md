@@ -50,16 +50,16 @@ The local greybox can establish feel using development-only synthetic adapters. 
 
 ## Astra team and coordination
 
-All project development lanes use **GPT-6 Astra**, following Tom's current instruction. Start native Codex development agents with empty conversation windows (`fork_turns: "none"`) and explicit self-contained work orders; do not inherit this planning thread. Agents read the applicable instructions and the documents/inputs listed in their work order. Use bounded parallel tasks; separate Claude sessions are not the default team for this project. The available concurrency determines how many lanes run at once, not a promise to keep a permanent agent for every role.
+**GPT-6 Astra leads; native Codex subagents use GPT-5.6 Sol at `xhigh`**, following Tom's updated instruction. Start development agents with empty conversation windows (`fork_turns: "none"`) and explicit self-contained work orders. Agents read the applicable instructions and documents/inputs listed in their work order. Use bounded parallel tasks and native collaboration tools. Claude Code uses Opus for its own subagents; `agent-run` starts a separate CLI session only when explicitly needed. Available concurrency determines how many lanes run at once. Astra retains architecture, integration judgment, user-facing design/text, and final review.
 
 | Lane | Responsibility and handoff |
 | --- | --- |
 | Driving Astra / integration | Own scope, architecture, shared contracts, user-facing design, and the current runnable checkpoint. Review findings and integrate work without waiting for unrelated backlog items. |
-| Gameplay/code Astra | Implement the scene, input, chronology, unlocks, save boundaries, and focused verification. Return a branch/diff, commands/results, and a runnable demonstration. |
-| Visual-assets Astra | Use image generation for concept/reference sheets, then Blender for authored geometry, materials, rigs, animations, and GLB export. Return editable masters, validated candidates, and a review package. |
-| Audio Astra | Author cue candidates, clean/export them, retain provenance, and map them to stable cue IDs. Return audition files and processing/level notes under DESIGN-008. |
-| Story/design Astra | Maintain the small premise and objective text; record later story and level ideas in the backlog. Draft user-facing text at Astra quality for the driving Astra's review. Full narrative production is deferred. |
-| Verification Astra | Independently check the slice, asset contracts, save behavior, audio lifecycle, and reported evidence. Distinguish automated checks from actual device or owner playtests. |
+| Gameplay/code Sol | Implement the scene, input, chronology, unlocks, save boundaries, and focused verification. Return a branch/diff, commands/results, and a runnable demonstration. |
+| Visual authoring Sol, Astra art direction | Use image generation for concept/reference sheets, then Blender for authored geometry, materials, rigs, animations, and GLB export. Return editable masters, validated candidates, and a review package. |
+| Audio authoring Sol, Astra direction | Author cue candidates, clean/export them, retain provenance, and map them to stable cue IDs. Return audition files and processing/level notes under DESIGN-008. |
+| Story/design, driving Astra | Maintain the small premise and objective text; record later story and level ideas in the backlog. Draft user-facing text at Astra quality for the driving Astra's review. Full narrative production is deferred. |
+| Verification Sol | Independently check the slice, asset contracts, save behavior, audio lifecycle, and reported evidence. Distinguish automated checks from actual device or owner playtests. |
 
 Use the [work-order template](../../.agents/work-orders/000-template.md) for scope, owned paths, dependencies, outputs, and acceptance. Avoid concurrent edits to shared files; use a worktree/branch per implementation task and communicate contract changes through the driving agent. Work orders must supply the verified remote MCP endpoint, remote workspace and artifact upload/download conventions, and exact input versions; local worktree paths are not service paths. A shared Blender session is a mutable resource: serialize its use or use isolated sessions/files. Do not run competing authoring commands against one scene.
 

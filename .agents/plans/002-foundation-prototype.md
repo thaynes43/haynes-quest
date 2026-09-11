@@ -31,10 +31,10 @@ This documentation task does not execute the plan, install tools, generate asset
 
 ### 3. Repeatable authoring and Tom's review
 
-This milestone can overlap code work once its own tools are ready. Use bounded Astra work orders with owned files/resources; serialize access to a shared Blender scene or isolate sessions.
+This milestone can overlap code work once its own tools are ready. Use bounded Sol work orders under Astra with owned files/resources; serialize access to a shared Blender scene or isolate sessions.
 
 - Use the dedicated cluster Blender service and explicit remote artifact workflow verified by PLAN-003 and DESIGN-002. Prove scene inspection, viewport capture, editable save/reopen, and GLB export/load with a synthetic object before producing final candidates. Manage homelab tooling through `haynes-ops`.
-- Prepare the DESIGN-008 SFX trial: selected self-hosted model access/terms and a separate pinned service/Job environment with measured CPU/GPU resources, or a hosted account/plan and bounded credit budget; protected download/API credential, pinned authoring script, FFmpeg/ffprobe, and appropriate storage/distribution. These are unverified setup tasks, not a current subscription or authorization to purchase one. Music and narration remain optional later work.
+- Use the DESIGN-008 self-hosted Small-SFX service verified by PLAN-003. Supply its remote MCP endpoint, job/artifact conventions, pinned provenance, and cue brief in the work order. Generate a bounded candidate set, prepare browser exports, and collect listening/review evidence. The CPU baseline needs no hosted account or GPU; music and narration remain optional later work.
 - Author only the avatar/props/materials/animations and small cue set the route needs. Use image-generated visual sketches followed by Blender. Retain editable masters, provenance, scripts/settings, checksums, and format/performance checks. No private family references are needed.
 - Present concrete visual and audio candidates in isolated review previews using the asset-review template. Obtain and record Tom's review of the exact final versions before gameplay promotion. Keep placeholders or the previous approved version in the runnable game while review is pending.
 
@@ -57,4 +57,4 @@ All [DESIGN-007 PoC acceptance criteria](../../docs/designs/007-poc-development-
 
 ## Result
 
-Not started. The bounded coding scope is defined, but Tom now wants PLAN-003 dependency setup first; final asset-tool connections, audio account/plan trial, owner asset reviews, live admission/provisioning, and actual-device testing remain future milestone dependencies. The current repository remains documentation-only.
+Not started. The bounded coding scope is defined, but Tom now wants PLAN-003 dependency setup first; fresh-session native tool discovery, owner asset reviews, live admission/provisioning, and actual-device testing remain milestone dependencies. The separate authoring services have passed live checks under PLAN-003. The current repository remains documentation-only.
