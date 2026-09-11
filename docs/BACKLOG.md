@@ -5,7 +5,7 @@ These items do not gate the initial playable loop in [DESIGN-007](designs/007-po
 ## BL-01: Automatic playable-character generation
 
 - **Status:** Automatic generation remains deferred; Tom has now reintroduced age/likeness evolution as product direction for the family game.
-- **Revisit after:** The overnight age-growth and private appearance-variant contract in [PLAN-004](../.agents/plans/004-overnight-mvp.md) is playable.
+- **Revisit after:** The overnight age-growth and private appearance-variant contract in [PLAN-004](../.agents/plans/completed/004-overnight-mvp.md) is playable.
 - **Requirement:** [PRD-001 R-15](prds/001-project-brief.md)
 - **Future acceptance criterion:** PRD-001 AC-10
 

@@ -10,6 +10,26 @@ Initial deployed image: `ghcr.io/thaynes43/haynes-quest:sha-6263dc42443eb5c33943
 
 Deployment [haynes-ops #2851](https://github.com/thaynes43/haynes-ops/pull/2851) merged as `6622a9b0988c69de2c9dedd7e51626ed439d2aea` after all nine required checks passed. Flux and Helm became Ready at the expected revision/chart. Normal HTTPS requests passed health, database readiness, studio and catalog checks. The fixture process receives its dedicated application Secret only, with internal-Traefik ingress and DNS/Postgres egress. It has no Immich or database administrator Secret.
 
+## Final catalog release
+
+Application [PR #23](https://github.com/thaynes43/haynes-quest/pull/23) merged as `71c45b5fdba69cb38c59ccd336935218b322cd5c` after all 46 tests, including three fresh PostgreSQL 16 integration tests, typecheck, lint, client/server build, strict docs and container checks passed. [Main workflow 34568145769](https://github.com/thaynes43/haynes-quest/actions/runs/34568145769) published, attested and signed the image pinned in the current handoff.
+
+[Deployment #2853](https://github.com/thaynes43/haynes-ops/pull/2853) merged `026deb4584dac21532547ec174f3a8c36058d66d`. Flux became Ready/Healthy at that exact revision, HelmRelease Ready, and the new pod was Ready with zero restarts and the expected image digest. Normal HTTPS health/readiness/catalog checks passed, as did delivery of all nine `model/gltf-binary` exports and four `audio/wav` auditions. The original runtime Secret, security and network boundaries remained intact. [Ops evidence #2854](https://github.com/thaynes43/haynes-ops/pull/2854) merged `17ac580cea032b91a720043b35865df541214e06`; the rollout activity ended. This rollout created no player records and used no manual pod deletion.
+
+The full live studio browser audit passed at **2026-09-11 06:15:02.885 UTC**, in 23.89 seconds, against that final image:
+
+| Check | Result |
+| --- | --- |
+| Review inventory | 12 pages, nine visible GLBs, seven traveler clips played/paused, four decoded WAVs |
+| Delivery | 112 unique media files, correct MIME and nonempty responses; all model hashes/sizes matched seven exact manifests |
+| Phone viewers | All nine visibly rendered at 358 × 358 within the 390 × 844 viewport |
+| Touch orbit | Actual CDP touch gestures changed the traveler and keepsake camera orbits |
+| Errors | Zero page errors, console errors, bad responses or external requests |
+
+Sol inspected all nine settled live crops; root inspected the live child and stone crops after its earlier complete export intake. See the [safe live report](../assets/media/storybook-reference/v001/browser-intake/catalog-live-report.json), [child browser crop](../assets/media/storybook-reference/v001/browser-intake/live-traveler-child-phone.png), [stone browser crop](../assets/media/storybook-reference/v001/browser-intake/live-clearing-stone-phone.png) and [WO-011](../../.agents/work-orders/011-catalog-verification.md). Browser rendering used Chromium 153 with requested SwiftShader software graphics. Decoding audio does not establish listening quality.
+
+The coordinator rechecked the original dev-env pod UID and all zero restart counts after the final catalog rollout. The local memory-only test harness was stopped by its verified PID. Postdeployment evidence/archive commits do not change the audited runtime image.
+
 ## Live play
 
 The coordinator completed the live browser run at **2026-09-11 05:13:46.653 UTC**, using Playwright 1.63.0 and Chromium 153.0.8010.12 with ANGLE SwiftShader rendering.

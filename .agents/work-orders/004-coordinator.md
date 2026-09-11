@@ -1,6 +1,6 @@
 # WO-004: Overnight coordination
 
-- **Status:** In progress
+- **Status:** Completed (private MVP and full first-pass catalog deployed and verified)
 - **Lead:** native driving GPT-6 Astra, max
 - **Worktree:** `/home/dev/work/haynes-quest-overnight-mvp`, `agent/haynes-quest-overnight-mvp`, base `1b18f48`
 - **Authorization:** PLAN-004 through private runnable MVP and complete scoped candidate catalog; checked PRs self-merge; OAuth tomorrow; no dev-env restart.
@@ -54,3 +54,10 @@ Read HANDOFF, this work order, PLAN-004 and TEAM. Preserve all artifact versions
 - All scoped candidates are complete: eight source concepts, nine GLBs, seven traveler clips and four audio auditions. Root selected all visual candidates after actual source/export/browser inspection. Masters and exact checksums are durable; Blender scene and audio queue are released. No gameplay approval or listening claim.
 - Complete local studio audit passed 12 pages, nine visible square phone viewers, seven clips, four decoded auditions, two touch orbits, 105 media files and seven model manifests. The audit found/fixed WAV MIME handling and the custom element’s default 150 px height. Evidence and exact browser crops are committed.
 - Root now uses `agent/quest-completion` from merged main; reactivated Sol deployment lane has `agent/quest-catalog-deploy` from current ops main `8a37feb`. Final immutable rollout, live complete-catalog audit and completion/archive record remain. Dev-env remains unchanged.
+
+### Completion: final catalog live and resources released
+
+- Ops #2853 merged `026deb4584dac21532547ec174f3a8c36058d66d`, deploying the signed app `71c45b5` image after all nine checks passed. Flux/Helm Ready and the exact image digest matched the Ready pod. Ops evidence #2854 merged `17ac580cea032b91a720043b35865df541214e06`; rollout activity ended.
+- Full live studio audit passed at 06:15:02 UTC: 12 pages, nine visible models, seven clips, four decoded WAVs, 112 referenced media files and seven exact manifests; portrait viewer bounds, actual touch orbit and all model hashes passed. Zero page/console errors, bad responses or external requests. Safe report and representative live crops are committed.
+- All scoped production, review intake, deployment and verification work is complete. PLAN-004 is archived with evidence. PLAN-002 remains open for OAuth/admission, actual Safari/performance and approved-asset integration. No asset approval or listening claim; no real-player/photo admission.
+- All native lanes finalized, Blender scene/audio queue released, Fable CLI already reaped. Root stopped only its verified local fixture listener PID 43126 and consumed harness exit143. Dev-env retained original UID and zero restarts. Completion records are postdeployment documentation; the audited image remains the explicit runtime pin.

@@ -3,7 +3,7 @@
 - **Status:** Ready for review
 - **Model / dispatch:** Native GPT-5.6 Sol, `xhigh`, delegated by the Astra coordinator
 - **Context:** Fresh development agent with a self-contained gameplay brief
-- **Required reading:** `AGENTS.md`, `.agents/TEAM.md`, `.agents/plans/004-overnight-mvp.md`, `docs/designs/009-overnight-contracts.md`, `docs/designs/007-poc-development-loop.md`, `docs/designs/006-memory-age-and-abilities.md`, and `docs/assets/art-direction.md`
+- **Required reading:** `AGENTS.md`, `.agents/TEAM.md`, `.agents/plans/completed/004-overnight-mvp.md`, `docs/designs/009-overnight-contracts.md`, `docs/designs/007-poc-development-loop.md`, `docs/designs/006-memory-age-and-abilities.md`, and `docs/assets/art-direction.md`
 - **Worktree / branch / base commit:** `/home/dev/work/quest-game`, `agent/quest-game`, base `bd55863`; shared scaffold cherry-picked at `599258f` from lead commit `948d917`
 - **Depends on / stable contracts:** `src/shared/contracts.ts` `SaveView`; direct Three.js `0.186.0`; DESIGN-009 input, progression, appearance, level and palette contracts
 - **Owned paths and remote resources:** `src/game/**`, `tests/game/**`, `.agents/work-orders/006-game.md`; no remote authoring resources, Blender scene, image generation, candidate assets or audio

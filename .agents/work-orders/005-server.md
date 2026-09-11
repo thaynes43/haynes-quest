@@ -3,7 +3,7 @@
 - **Status:** In progress
 - **Model / dispatch:** Native GPT-5.6 Sol, `xhigh`, delegated by the overnight Astra coordinator
 - **Context:** Fresh development agent with a self-contained server work order
-- **Required reading:** `AGENTS.md`, `.agents/TEAM.md`, `.agents/plans/004-overnight-mvp.md`, `docs/designs/009-overnight-contracts.md`, `docs/reference/immich-appdaemon.md`, and relevant photo/persistence designs
+- **Required reading:** `AGENTS.md`, `.agents/TEAM.md`, `.agents/plans/completed/004-overnight-mvp.md`, `docs/designs/009-overnight-contracts.md`, `docs/reference/immich-appdaemon.md`, and relevant photo/persistence designs
 - **Worktree / branch / base commit:** `/home/dev/work/quest-server`; `agent/quest-server`; `bd55863`
 - **Depends on / stable contracts:** DESIGN-009 HTTP and persistence contracts; coordinator-owned `src/shared/contracts.ts` and root package/tooling scaffold
 - **Owned paths:** `src/server/**`, `tests/server/**`, `migrations/**`, `scripts/db/**`, and this work order

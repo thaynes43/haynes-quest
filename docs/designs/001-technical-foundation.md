@@ -7,7 +7,7 @@
 
 ## Overview
 
-The staged prototype in [DESIGN-007](007-poc-development-loop.md) first proves a small collection/ability route with synthetic placeholders, then validates authored assets, authenticated save ownership, and resuming a memory journey. Complete Tom's current PLAN-003 dependency checkpoint and define the slice contracts before code; then the initial greybox can use placeholders while final assets are produced and reviewed. It uses synthetic photo connections and a prepared shared avatar to establish the data and asset contracts. The family PoC uses a generic mysterious avatar, independent of the selected person; automatic person-specific generation is [conditional future backlog BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
+The staged prototype in [DESIGN-007](007-poc-development-loop.md) first proves a small collection/ability route with synthetic placeholders, then validates authored assets, authenticated save ownership, and resuming a memory journey. PLAN-003 setup is complete. The implemented private slice follows DESIGN-009; broader player-ready criteria in this design remain to be verified. It uses synthetic photo connections and a prepared shared avatar to establish the data and asset contracts. PLAN-004 extends the original generic-avatar proposal with visible synthetic age stages and a private versioned subject-appearance contract; automatic person-specific generation is [conditional future backlog BL-01](../BACKLOG.md#bl-01-automatic-playable-character-generation).
 
 ```mermaid
 flowchart TB
