@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-11T04:15:13Z",
+  "tool": "audio.list_generations",
+  "result": "All selected jobs were present with completed status and persisted WAV metadata.",
+  "selected_jobs": [
+    {
+      "cue_id": "memory-collected",
+      "job_id": "0d102d675f3c4d58a8762b0909ad174b",
+      "status": "completed",
+      "source_sha256": "90dfbc573fbf5923508c025b4e7c33438a166449fbd4c2e3cfb988c164ac526b"
+    },
+    {
+      "cue_id": "ability-unlocked",
+      "job_id": "55aceccfb6ba407ca6bd84ab227c0d93",
+      "status": "completed",
+      "source_sha256": "c6d084ce680ab407b20c351cb49509ade12290efb291453fdfc350ce3ef7a904"
+    },
+    {
+      "cue_id": "movement-landed",
+      "job_id": "cdd9618646d94788a65eeb4fcf8b84a9",
+      "status": "completed",
+      "source_sha256": "59661a9bf7f48019d114ce39ba344b5ecf7d69bc4bceb09493ef056cf8aee995"
+    },
+    {
+      "cue_id": "ui-confirmed",
+      "job_id": "b8bf67044e094f4c956397d78ec8391d",
+      "status": "completed",
+      "source_sha256": "416cdbb0fbb82da0b701f7fdac2fb4176b1f5933c4e1a236fab246e130ac941b"
+    }
+  ],
+  "retained_rejected_jobs": [
+    {
+      "cue_id": "ui-confirmed",
+      "job_id": "e3767bc777284577b9466a6018f793e9",
+      "status": "completed",
+      "source_sha256": "177abf2e67e0578be44ed13609ca97b3464b7548bae57ee11e5a32bded68bfa7",
+      "rejection": "Effectively silent by numerical RMS threshold; no listening claim."
+    }
+  ]
+}

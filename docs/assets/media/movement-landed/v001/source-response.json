@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "service_version": "0.1.1",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "cdd9618646d94788a65eeb4fcf8b84a9",
+  "status": "completed",
+  "prompt": "One soft non-startling landing sound: a small cloth rustle together with a light muted earth contact, short and dry, gentle low-volume movement feedback; isolated sound effect, no footsteps sequence, no voice, no speech, no music, no ambience, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 103,
+  "created_at": "2026-09-11T04:09:10.936014Z",
+  "started_at": "2026-09-11T04:09:10.953437Z",
+  "finished_at": "2026-09-11T04:09:17.265677Z",
+  "peak_subprocess_rss_bytes": 4066267136,
+  "artifact": "jobs/cdd9618646d94788a65eeb4fcf8b84a9/output.wav",
+  "audio": {
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_seconds": 5.0,
+    "size_bytes": 882044,
+    "sha256": "59661a9bf7f48019d114ce39ba344b5ecf7d69bc4bceb09493ef056cf8aee995"
+  },
+  "error": null,
+  "elapsed_seconds": 6.312,
+  "download_url": "/artifacts/cdd9618646d94788a65eeb4fcf8b84a9/output.wav"
+}

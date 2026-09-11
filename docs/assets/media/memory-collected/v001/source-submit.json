@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "service_version": "0.1.1",
+  "id": "0d102d675f3c4d58a8762b0909ad174b",
+  "status": "queued",
+  "prompt": "A soft warm two-note chime made from delicate glass and wood, with a gentle sparkling tail; an isolated short sound effect for collecting a cherished memory, no voice, no speech, no music, no ambience, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 101,
+  "created_at": "2026-09-11T04:07:20.616121Z"
+}

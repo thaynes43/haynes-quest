@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/memory-collected/v001/source.wav",
+    "sha256": "90dfbc573fbf5923508c025b4e7c33438a166449fbd4c2e3cfb988c164ac526b",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.29467773,
+    "peak_dbfs": -10.613,
+    "rms_amplitude": 0.01996671,
+    "rms_dbfs": -33.994,
+    "dc_offset": -1.192e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/memory-collected/v001/cue.wav",
+    "sha256": "86ed72b341775dbb6f60414994912ec0d0292140e6408c20de54e5eb7ba0d358",
+    "size_bytes": 211724,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 52920,
+    "duration_seconds": 1.2,
+    "peak_amplitude": 0.35482788,
+    "peak_dbfs": -9.0,
+    "rms_amplitude": 0.04766585,
+    "rms_dbfs": -26.436,
+    "dc_offset": -8.215e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}
