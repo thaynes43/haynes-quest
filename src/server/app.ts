@@ -186,6 +186,15 @@ export function createApp(options: AppOptions): Hono {
 
   app.get('/studio', (context) => context.redirect('/studio/', 308));
   app.get('/studio/', serveStatic({ root: options.studioDir, path: 'index.html' }));
+  app.use('/studio/*', async (context, next) => {
+    await next();
+    if (
+      (context.res.status === 200 || context.res.status === 206) &&
+      context.req.path.toLowerCase().endsWith('.wav')
+    ) {
+      context.header('Content-Type', 'audio/wav');
+    }
+  });
   app.use('/studio/*', serveStatic({
     root: options.studioDir,
     rewriteRequestPath: (path) => path.replace(/^\/studio/, ''),

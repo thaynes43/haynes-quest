@@ -1,3 +1,6 @@
+import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { createApp } from '../../src/server/app.js';
 import { InMemoryQuestStore } from '../../src/server/db/memory-store.js';
@@ -232,6 +235,44 @@ describe('fixture API', () => {
     expect(media.headers.get('cache-control')).toBe('no-store');
     expect(media.headers.get('x-content-type-options')).toBe('nosniff');
     expect(await media.text()).toContain('Synthetic memory');
+  });
+
+  it('serves studio WAV files with their audio MIME across full and range responses', async () => {
+    const studioDir = await mkdtemp(join(tmpdir(), 'quest-studio-'));
+    const wav = Uint8Array.from([
+      0x52, 0x49, 0x46, 0x46, 0x04, 0x00, 0x00, 0x00, 0x57, 0x41, 0x56, 0x45,
+    ]);
+    try {
+      await writeFile(join(studioDir, 'cue.wav'), wav);
+      const app = createApp({
+        store: new InMemoryQuestStore(),
+        fixtureMode: true,
+        sessionSecret: SECRET,
+        appOrigin: ORIGIN,
+        clientDir: studioDir,
+        studioDir,
+      });
+
+      const full = await app.request('/studio/cue.wav');
+      expect(full.status).toBe(200);
+      expect(full.headers.get('content-type')).toBe('audio/wav');
+      expect(full.headers.get('x-content-type-options')).toBe('nosniff');
+      expect(new Uint8Array(await full.arrayBuffer())).toEqual(wav);
+
+      const range = await app.request('/studio/cue.wav', {
+        headers: { range: 'bytes=4-7' },
+      });
+      expect(range.status).toBe(206);
+      expect(range.headers.get('content-type')).toBe('audio/wav');
+      expect(range.headers.get('accept-ranges')).toBe('bytes');
+      expect(range.headers.get('content-range')).toBe(`bytes 4-7/${wav.length}`);
+      expect(range.headers.get('content-length')).toBe('4');
+      expect(new Uint8Array(await range.arrayBuffer())).toEqual(wav.slice(4, 8));
+
+      expect((await app.request('/studio/missing.wav')).status).toBe(404);
+    } finally {
+      await rm(studioDir, { recursive: true, force: true });
+    }
   });
 
   it('fails closed when fixture and private adapters are mixed or production has no auth', async () => {
