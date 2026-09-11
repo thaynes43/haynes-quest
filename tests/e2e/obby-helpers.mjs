@@ -314,9 +314,47 @@ export async function rideFerry({ page, controls, inspectGame, label }) {
     );
   }, `${label}-board`);
   assert.ok(boarded?.obby, `${label} recovered instead of boarding the ferry`);
-  const boardFerry = ferryFrom(boarded);
+  // `boarded` is sampled while the forward input is still held; the driver
+  // only releases it after the predicate returns, and a CDP touch release
+  // takes a few frames. Horizontal movement has no inertia, so once the input
+  // is gone the rider offset is constant. Establish the carry baseline from a
+  // post-release sample whose offset held still across consecutive reads,
+  // and require the traveler to still be on the ferry without a recovery.
+  let previousOffset = null;
+  const settled = await waitForInspection(
+    page,
+    inspectGame,
+    (inspection) => {
+      const ferry = ferryFrom(inspection);
+      if (!ferry || !inspection.status.grounded) {
+        previousOffset = null;
+        return false;
+      }
+      if (inspection.obby.supportId !== "ferry-platform") {
+        previousOffset = null;
+        return false;
+      }
+      const offset = inspection.status.position.z - ferry.center.z;
+      const still =
+        previousOffset !== null && Math.abs(offset - previousOffset) < 0.005;
+      previousOffset = offset;
+      return still;
+    },
+    `${label}-settle`,
+    8_000,
+  );
+  assert.equal(
+    settled.obby.recoveries,
+    beforeBoardRecoveries,
+    `${label} recovered after boarding the ferry`,
+  );
+  const boardFerry = ferryFrom(settled);
   assert.ok(boardFerry);
-  const riderOffset = boarded.status.position.z - boardFerry.center.z;
+  const riderOffset = settled.status.position.z - boardFerry.center.z;
+  const boardingDrift =
+    boarded.status.position.z -
+    ferryFrom(boarded).center.z -
+    riderOffset;
   const rideWait = await waitForCourseProgress({
     page,
     inspectGame,
@@ -374,6 +412,8 @@ export async function rideFerry({ page, controls, inspectGame, label }) {
     boardedAt: boardFerry.center.z,
     riddenTo: riddenFerry.center.z,
     farDockAt: ferryFrom(farDock)?.center.z,
+    riderOffset,
+    boardingDrift,
     riderOffsetDrift:
       ridden.status.position.z - riddenFerry.center.z - riderOffset,
     waits: {
