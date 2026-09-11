@@ -132,12 +132,10 @@ describe('era combat adventure', () => {
       { eraYear: 2024, startAgeYears: 4, targetAgeYears: 7, memoryIds: ['seven'] },
     ]);
 
-    const sparse = createAdventurePlan('1980-01-01', [
+    expect(() => createAdventurePlan('1980-01-01', [
       { id: 'early', date: '1981-01-01', ageYears: 1 },
       { id: 'late', date: '1995-01-01', ageYears: 15 },
-    ]);
-    expect(sparse.levels).toHaveLength(1);
-    expect(sparse.levels[0]).toMatchObject({ targetAgeYears: 15, memoryIds: ['early', 'late'] });
+    ])).toThrow('Parody catalog has no complete compatible period');
   });
 
   it('requires equipment and ordinary victories, then releases and consumes memories before growth', async () => {
@@ -147,6 +145,23 @@ describe('era combat adventure', () => {
     const level = save.adventure!.activeLevel!;
     const [ordinaryOne, ordinaryTwo, boss] = level.encounters;
     const attackPickup = level.pickups.find((pickup) => pickup.kind === 'attack-tool')!;
+    expect(level).toMatchObject({
+      startDate: '2020-01-01',
+      periodId: 'block-party-v1',
+      routeId: 'gentle-intro-v1',
+    });
+    expect(save).toMatchObject({
+      versions: { journey: 'era-level-plan-v2', catalog: 'parody-catalog-v1' },
+      adventure: {
+        planVersion: 'era-level-plan-v2',
+        catalogVersion: 'parody-catalog-v1',
+      },
+    });
+    expect(level.encounters.map((encounter) => encounter.content?.catalogEntryId)).toEqual([
+      'mister-hiss',
+      'peel-patrol',
+      'drama-dragon',
+    ]);
     expect(level.encounters.map((encounter) => encounter.available)).toEqual([true, true, false]);
 
     const lockedMedia = await app.request(`/api/saves/${save.id}/media/${save.memories[0]!.id}`, {
@@ -202,6 +217,8 @@ describe('era combat adventure', () => {
       completed: false,
       adventure: { phase: 'memory-released' },
     });
+    expect(save.adventure!.activeLevel!.encounters.map((encounter) => encounter.content?.catalogEntryId))
+      .toEqual(['mister-hiss', 'peel-patrol', 'drama-dragon']);
     expect(save.memories.map((memory) => memory.state)).toEqual(['released', 'released', 'locked']);
 
     const releasedMedia = await app.request(`/api/saves/${save.id}/media/${save.memories[0]!.id}`, {
@@ -249,9 +266,17 @@ describe('era combat adventure', () => {
       completed: false,
       adventure: {
         phase: 'exploring',
-        activeLevel: { eraYear: 2024, startAgeYears: 4, targetAgeYears: 7 },
+        activeLevel: {
+          eraYear: 2024,
+          startAgeYears: 4,
+          targetAgeYears: 7,
+          periodId: 'remix-runway-v1',
+          routeId: 'gentle-jump-v1',
+        },
       },
     });
+    expect(save.adventure!.activeLevel!.encounters.map((encounter) => encounter.content?.catalogEntryId))
+      .toEqual(['sir-flush-a-lot', 'nap-captain', 'one-star-diva']);
     expect(save.memories.map((memory) => memory.state)).toEqual(['consumed', 'consumed', 'locked']);
     expect(save.adventure!.inventory).toContainEqual(expect.objectContaining({ id: attackPickup.id }));
 
@@ -378,12 +403,18 @@ describe('era combat adventure', () => {
     expect(await errorCode(blocked)).toBe('ACTION_NOT_AVAILABLE');
 
     const inventoryIds = save.adventure!.inventory.map((item) => item.id);
+    const encounterContent = level.encounters.map((encounter) => ({
+      ...encounter.content,
+    }));
     save = await applyAction(app, started.cookie, save, { type: 'retry-level', levelId: level.id });
     expect(save.adventure).toMatchObject({ playerHp: 10, phase: 'exploring' });
     expect(save.adventure!.inventory.map((item) => item.id)).toEqual(inventoryIds);
     expect(save.adventure!.activeLevel!.encounters.every(
       (encounter) => encounter.hp === encounter.maxHp && !encounter.defeated,
     )).toBe(true);
+    expect(save.adventure!.activeLevel!.encounters.map((encounter) => ({
+      ...encounter.content,
+    }))).toEqual(encounterContent);
     const resumed = await (
       await app.request(`/api/saves/${save.id}`, { headers: { cookie: started.cookie } })
     ).json() as SaveView;

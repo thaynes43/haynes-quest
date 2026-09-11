@@ -2,12 +2,12 @@ import { randomUUID } from 'node:crypto';
 import { and, desc, eq, gt } from 'drizzle-orm';
 import { drizzle, type NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
-import { createAdventurePlan, createInitialAdventureState } from '../../shared/adventure.js';
 import type { GameplayActionRequest } from '../../shared/contracts.js';
 import {
   applyGameplayActionToSave,
   abilitiesForAge,
   appearanceForAge,
+  createAdventureForSave,
   isValidFrozenManifest,
   RULE_VERSIONS,
   type CreateSaveCommand,
@@ -140,8 +140,10 @@ export class PostgresQuestStore implements QuestStore {
       if (memories.length < 1 || memories.length > 24) {
         throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
       }
-      const adventurePlan = createAdventurePlan(preview.birthDate, memories);
-      const adventureState = createInitialAdventureState(adventurePlan);
+      const { plan: adventurePlan, state: adventureState } = createAdventureForSave(
+        preview.birthDate,
+        memories,
+      );
 
       const [created] = await transaction
         .insert(saves)

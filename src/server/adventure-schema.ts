@@ -3,8 +3,10 @@ import {
   abilitiesForAge,
   appearanceForAge,
   type AdventurePlan,
+  type AdventurePlanV2,
   type AdventureState,
 } from '../shared/adventure.js';
+import { PARODY_CANDIDATES, PARODY_CATALOG_VERSION } from '../shared/parody-catalog.js';
 import type { Ability, RuleVersions, SubjectOption } from '../shared/contracts.js';
 import type { FrozenMemory } from './domain.js';
 import { AppError } from './errors.js';
@@ -44,14 +46,24 @@ const equipmentSchema = z.object({
   damage: z.number().int().min(0).max(1_000),
   guardReduction: z.number().int().min(0).max(1_000),
 }).strict();
-const encounterDefinitionSchema = z.object({
+const encounterDefinitionShape = {
   id: identifier,
   role: z.enum(['ordinary', 'boss']),
   kind: z.enum(['ordinary-a', 'ordinary-b', 'boss']),
   maxHp: z.number().int().min(1).max(100_000),
   attackDamage: z.number().int().min(0).max(10_000),
+};
+const encounterDefinitionV1Schema = z.object(encounterDefinitionShape).strict();
+const encounterDefinitionV2Schema = z.object({
+  ...encounterDefinitionShape,
+  content: z.object({
+    catalogEntryId: identifier,
+    catalogEntryVersion: identifier,
+    assetId: identifier,
+    assetVersion: identifier,
+  }).strict(),
 }).strict();
-const levelSchema = z.object({
+const levelShape = {
   id: identifier,
   index: z.number().int().min(0).max(23),
   startAgeYears: z.number().int().min(0).max(150),
@@ -60,13 +72,29 @@ const levelSchema = z.object({
   eraYear: z.number().int().min(1_000).max(9_999),
   memoryIds: z.array(identifier).min(1).max(24),
   pickups: z.array(equipmentSchema).min(1).max(8),
-  encounters: z.array(encounterDefinitionSchema).min(1).max(16),
   bossId: identifier,
+};
+const levelV1Schema = z.object({
+  ...levelShape,
+  encounters: z.array(encounterDefinitionV1Schema).min(1).max(16),
 }).strict();
-const planSchema = z.object({
-  version: z.literal('era-level-plan-v1'),
-  levels: z.array(levelSchema).min(1).max(24),
+const levelV2Schema = z.object({
+  ...levelShape,
+  periodId: z.enum(['block-party-v1', 'remix-runway-v1']),
+  routeId: z.enum(['gentle-intro-v1', 'gentle-jump-v1']),
+  encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
 }).strict();
+const planSchema = z.discriminatedUnion('version', [
+  z.object({
+    version: z.literal('era-level-plan-v1'),
+    levels: z.array(levelV1Schema).min(1).max(24),
+  }).strict(),
+  z.object({
+    version: z.literal('era-level-plan-v2'),
+    catalogVersion: z.literal(PARODY_CATALOG_VERSION),
+    levels: z.array(levelV2Schema).min(1).max(24),
+  }).strict(),
+]);
 const encounterProgressSchema = z.object({
   hp: z.number().int().min(0).max(100_000),
   defeated: z.boolean(),
@@ -139,6 +167,7 @@ export function parseStoredAdventure(
 }
 
 function validPlan(plan: AdventurePlan): boolean {
+  if (plan.version === 'era-level-plan-v2' && !validParodyPlan(plan)) return false;
   const levelIds = new Set<string>();
   const memoryIds = new Set<string>();
   const pickupIds = new Set<string>();
@@ -176,6 +205,40 @@ function validPlan(plan: AdventurePlan): boolean {
     });
     level.encounters.forEach((encounter) => encounterIds.add(encounter.id));
     priorTargetAge = level.targetAgeYears;
+  }
+  return true;
+}
+
+function validParodyPlan(plan: AdventurePlanV2): boolean {
+  if (plan.catalogVersion !== PARODY_CATALOG_VERSION) return false;
+  for (const level of plan.levels) {
+    const abilities = new Set(abilitiesForAge(level.startAgeYears));
+    const expectedRoute = abilities.has('jump') ? 'gentle-jump-v1' : 'gentle-intro-v1';
+    if (
+      level.routeId !== expectedRoute ||
+      new Set(level.encounters.map((encounter) => encounter.content.catalogEntryId)).size !== level.encounters.length ||
+      level.encounters.filter((encounter) => encounter.kind === 'ordinary-a' && encounter.role === 'ordinary').length !== 1 ||
+      level.encounters.filter((encounter) => encounter.kind === 'ordinary-b' && encounter.role === 'ordinary').length !== 1 ||
+      level.encounters.filter((encounter) => encounter.kind === 'boss' && encounter.role === 'boss').length !== 1
+    ) return false;
+    for (const encounter of level.encounters) {
+      const entry = PARODY_CANDIDATES.find((candidate) =>
+        candidate.id === encounter.content.catalogEntryId &&
+        candidate.version === encounter.content.catalogEntryVersion,
+      );
+      if (
+        !entry ||
+        entry.assetId !== encounter.content.assetId ||
+        entry.assetVersion !== encounter.content.assetVersion ||
+        entry.periodId !== level.periodId ||
+        entry.role !== encounter.role ||
+        entry.kind !== encounter.kind ||
+        level.startDate < entry.eligibleFrom ||
+        level.startDate > entry.eligibleThrough ||
+        level.startDate < entry.referenceAvailableBy ||
+        entry.requiredAbilities.some((ability) => !abilities.has(ability))
+      ) return false;
+    }
   }
   return true;
 }
