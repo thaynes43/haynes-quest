@@ -21,11 +21,13 @@
 
 ## Observed facts
 
-(appended as the run proceeds)
+- 19:29 UTC: **touch-only journey passed end to end** (`QUEST_E2E_MODE=touch`, exit 0) against the leased fixture, client `index-DcnSUtWQ.js` SHA256 `aca24da6…bb22`, Chromium 153.0.8010.12, 390x844 DPR1 with CDP touch, zero page errors. Stages: modal pause, both tools, deliberate hazard recovery (revision/HP/gear unchanged), safe sweeper pass, both first-era fights with guard, save/leave/resume twice, first boss, three decoded fictional pictures, age 0→4, missed-gap recovery, both gaps with landing-armed checkpoints (`first-clearing`, `second-clearing`), runway sweeper jump, second-era fights, ferry ride to `boss-landing`, second boss, age 4→7, completion dialog with three pictures. Evidence: `test-results/journey-touch-evidence.json` (ignored) and the curated copy under `docs/assets/media/playtest/v001/`.
+- Ferry numbers from that run: boarded at ferry z -16.660, carried to -16.743, far dock -17.286; settled rider offset -0.570 m; **pre-release boarding drift +0.293 m; post-release carry drift 0.000 m**.
+- Wall time for the touch chapter pair: about 3 minutes (15:26:22 to 15:29:10 pod local).
 
 ## Hypotheses
 
-- H1 (inherited from the Sol session, unverified at this point): the ferry `boarded` sample is taken while the touch joystick is still held; the release finishes after the sample and the continued input shifts the rider offset before the carry measurement.
+- H1 (inherited): **confirmed and closed** as a harness defect, see below. Evidence: `stepObby` applies horizontal velocity only while input is held and carries the rider by the exact support delta (`src/game/obby.ts`), so the offset can only change while input is held; the touch driver releases the stick in `jumpForwardUntil`'s `finally` after the boarded sample; CDP touch dispatch costs 232-345 ms (WO031 diagnostic) which is 2-3 capped 0.05 s frames at 3.1 m/s, i.e. 0.3-0.5 m against a 0.035 m tolerance. The first fixed run measured 0.293 m of pre-release drift and 0 m of carry drift.
 
 ## Findings: game bugs (confirmed)
 
@@ -33,7 +35,7 @@
 
 ## Findings: harness / test defects
 
-(none yet)
+- **T1 (fixed, `de71c5e`)** `rideFerry` measured the carry baseline from the pre-release boarded sample. Now it waits for a post-release sample whose ferry-relative offset held still across consecutive reads, requires ferry support and an unchanged recovery count, and reports `boardingDrift` separately from `riderOffsetDrift`. Not a game bug: the game carried the rider exactly (0 m drift) once input stopped.
 
 ## Emulator limitations
 
