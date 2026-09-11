@@ -66,9 +66,12 @@ function requireClip(
     throw new Error(`Enemy clip "${name}" has no positive duration`);
   if (clip.tracks.length === 0)
     throw new Error(`Enemy clip "${name}" has no tracks`);
-  const animatesModel = clip.tracks.some((track) =>
-    trackBindsToModel(root, track, name),
-  );
+  let animatesModel = false;
+  for (const track of clip.tracks) {
+    // Validate every track: a valid first bone track must not hide later root motion.
+    const binds = trackBindsToModel(root, track, name);
+    animatesModel = binds || animatesModel;
+  }
   if (!animatesModel)
     throw new Error(
       `Enemy clip "${name}" has no track that binds to a property of the model`,

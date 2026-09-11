@@ -184,6 +184,17 @@ describe("EnemyAnimation construction", () => {
         /"move" animates the model root/,
       );
     }
+    const mixedRootMotion = clips.map((clip) =>
+      clip.name === "move"
+        ? new THREE.AnimationClip("move", clip.duration, [
+            ...clip.tracks,
+            vectorTrack(".position", [0, 0.8], [0, 0, 0, 5, 0, 0]),
+          ])
+        : clip,
+    );
+    expect(
+      () => new EnemyAnimation(root, mixedRootMotion, contactFraction),
+    ).toThrow(/"move" animates the model root/);
     expect(root.position.toArray()).toEqual([0, 0, 0]);
     expect(() => new EnemyAnimation(root, clips, 0)).toThrow(
       /contact fraction/,

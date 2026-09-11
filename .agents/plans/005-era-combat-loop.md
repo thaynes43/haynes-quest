@@ -4,7 +4,15 @@
 - **Owner correction:** Tom, 2026-09-11: the player finds useful equipment during a level to fight the pop culture of that period. After beating the boss, the player consumes enough memories to advance to the next age bracket. The next level takes place in the period corresponding to that advanced age. The existing blank/simple photo tiles and placeholder presentation are inadequate.
 - **Precedence:** This corrects the coordinator's PLAN-004 interpretation. Equipment, period enemies, a boss and the post-boss age transition are the core loop, not optional content postponed until after a memory-walking demo. The earlier checks describe a working prototype of the wrong loop; they do not prove this acceptance.
 - **Read with:** [TEAM](../TEAM.md), [DESIGN-010](../../docs/designs/010-era-combat-loop.md), [asset pipeline](../../docs/designs/002-asset-pipeline.md), [photo boundary](../../docs/designs/009-overnight-contracts.md), [current handoff](../HANDOFF.md).
-- **Worktree:** `/home/dev/work/quest-era-boss-loop`, branch `agent/quest-era-boss-loop`, base `3502ac7`.
+- **Worktree:** `/home/dev/work/quest-era-boss-loop`, branch `agent/quest-era-asset-intake`, core merged main `f6a8f0d`.
+
+## Enemy direction correction
+
+Tom rejected the six generic creature studies as enemies. The new requirement is recognizable pop-culture parody, using capture-date metadata and the person's birthday to establish period and age progression. The coordinator's unrequested broad-inspiration-only restriction is removed. All six existing models remain available for possible friendly/ambient use; none is selected as an enemy. Their live Blender leases and render jobs have ended. No further enemy modeling starts until root has written specific references, historical eligibility, visual jokes and encounter behaviors. Preserve useful equipment and reusable animation/loading work.
+
+## Obby requirement
+
+Tom explicitly requires Roblox-style obstacle-course play mixed with goofy fights, approachable for his six-year-old daughter. [DESIGN-011](../../docs/designs/011-forgiving-obby.md) defines the main-route approach and acceptance: visible hazards, forgiving timing, jumps after the age-based unlock, safe checkpoints and no loss of equipment or memory progress from missed traversal. A flat combat corridor fails the intended loop.
 
 ## Required result
 

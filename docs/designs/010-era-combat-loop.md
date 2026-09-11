@@ -27,7 +27,7 @@ Equipment must be visible and useful: a starting attack tool, protective equipme
 
 After victory, the boss’s defeat motion plays in the world. The player can choose **Reclaim your memories** to open the reward. The reward panel gives the actual memory pictures space on screen. It does not automatically pause the world in the middle of the boss's defeat. Distinguish locked, revealed and consumed states; communicate failed image loads and offer retry instead of showing an unexplained blank tile. The next period is visibly introduced with its age/year and changed enemies/environment accents. The character remains at the level's starting age throughout combat.
 
-The authored traveler and clearing candidates can materially improve the current scene; demo integration is awaiting the explicit owner decision recorded in PLAN-005. Creature/equipment direction remains original and consistent with the storybook palette. Preserve exact asset versions and avoid treating a gameplay code merge as final art approval.
+The authored traveler and clearing candidates can materially improve the current scene; demo integration is awaiting the explicit owner decision recorded in PLAN-005. Enemies must be recognizable pop-culture parodies under DESIGN-005; the rejected wooden creature studies are preserved only for possible friendly/ambient use. Equipment and environment art may retain the storybook palette. Preserve exact asset versions and avoid treating a gameplay code merge as final art approval.
 
 ## Persistence and authority
 
@@ -47,4 +47,8 @@ Real private photos still need admitted-player access and connection/subject con
 
 ## Authored visual intake
 
-The isolated candidate scene replaces temporary encounter and gear studies with versioned GLBs. Enemy idle/move clips repeat; attack timing follows the simulation wind-up and contact pose; hit/defeat play once. Previously defeated enemies stay hidden on resume. Traveler equipment is parented to the actual hand bones at measured grip centers, with procedural arm/wrist motion applied after the authored traveler clip. The strongest collected shield is displayed, and a stronger attack tool replaces the held tool. GLTFLoader preserves original dotted bone names in `userData.name` while sanitizing runtime node names; socket lookup uses the authored identity. Each scene owns its geometry/material/texture copies, while decoded source images remain cache-owned until final scene disposal. Final owner approval and actual game/browser evidence remain separate from these integration contracts.
+The isolated candidate scene uses the existing traveler/clearing models and hand-attached equipment for technical review. The six newly authored wooden creature studies are removed from enemy integration after Tom's direction correction. Their archived model pages do not demonstrate that the intended enemy vision is fulfilled. The reusable animation adapter and asset loading/ownership fixes remain useful for the replacement parody cast.
+
+## Obstacle-course play
+
+[DESIGN-011](011-forgiving-obby.md) adds Tom's explicit requirement for Roblox-style obby play woven through combat: visible hazards, movement timing and jumps, with a main route appropriate for his six-year-old daughter. A flat combat corridor is not sufficient. Keep hazards solvable with the current abilities, and preserve equipment, memories and finished fights through a missed jump or local checkpoint recovery.

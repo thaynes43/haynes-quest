@@ -15,3 +15,8 @@ Inspect the actual selected sheets in [the concept review](../../docs/assets/rev
 Use the full export, rig, material, source/master, render, motion, validation and Three intake contract in [WO-014](014-blender-era-2020.md). Required clips are `idle`, `move`, `attack`, `hit`, `defeat`; root fixed, meters, +Y up and forward -Z. Record impact time and clip duration. Target under 15k triangles, six materials and 2 MiB per GLB; measured exceptions require justification.
 
 Claim and record the one live Blender scene before mutation. Never reset the application or unload its addon, and never touch completed remote masters. Keep durable checkpoints and return actual files/hashes, not promises of later exports. Send the first completed model and beauty render to the lead for early inspection while continuing the remaining owned work. Release the scene explicitly at the end. No new image generation, private media, OAuth or dev-env changes. Candidate production is authorized; exact-version owner review still precedes gameplay promotion.
+
+
+## Final continuation status
+
+WO-016 completed: source commits fb5851d/0eeb260/a170a7a, integrated cc821f5/0ab5e6d/d160f20. Live scene released 14:57:02 UTC; all isolated renders and packaging finished. Later owner ruling rejects these as enemies; preserve possible ambient/friendly studies.

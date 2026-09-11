@@ -19,3 +19,8 @@ Meter scale, +Y up, forward -Z; center each prop at a documented grip/attachment
 Target under 5k triangles, five materials and 1 MiB per GLB, with measured justification for exceptions. No external textures/decoders. Retain editable masters, construction/export scripts, exact GLBs, Khronos results, re-imported dimensions and material/triangle counts, hashes and browser proof. Confirm the source and exported props agree, including all rear grips. Preserve lead concept files and original remote masters.
 
 One exclusive live scene; claim it before mutation and release it at completion. Never factory-reset or unload the addon. No image generation, private media, OAuth or dev-env changes. Candidate production is authorized; exact-version owner approval remains separate from coordinator selection and gameplay promotion.
+
+
+## Final continuation status
+
+WO-017 completed: source commits d7ef884/fe09318, integrated 880d955/e1c2c13. Live scene released 15:08:52 UTC; no running jobs. All four equipment candidates selected by lead; exact owner approval pending.

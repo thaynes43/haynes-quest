@@ -36,18 +36,22 @@ Copy the [review template](000-review-template.md) to a versioned review page; r
 
 The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concept v002 with its rear wedge restored in the back view, following Tom’s September 11 feedback. The model remains v001; its support was already present.
 
-## Corrected combat slice: work in progress
+## Equipment and preserved creature studies
 
-Tom’s review expanded the required playable loop to equipment, period enemies and bosses. The earlier nine-model inventory remains preserved, but it does not cover these new needs. The isolated game review loads the existing traveler/environment GLBs; the new authored enemies and equipment are being integrated as their checked packages arrive. No demo-use or final approval has been recorded.
+The correction produced ten additional models: six animated creature studies and four tools. Tom found the creature models useful as possible friendly or ambient characters, but **they do not fit his enemy vision**. They are not selected for enemy use. Actual enemies must be recognizable pop-culture parodies; [DESIGN-005](../designs/005-era-enemy-catalog.md) records that correction.
 
-[Review the complete concept set](reviews/era-combat/v001.md): Blockling, Signal Moth, Buffer Baron, Loop Dancer, Prism Mimic and Trendweaver, plus Spark Mallet, Acorn Shield, Prism Wand and Ribbon Shield. Eight sheets show the six creatures and four tools with source prompts, exact hashes and rear construction views.
+The full catalog now preserves nineteen model candidates, including the original nine. All exact-version approvals remain pending. The creature studies' thirty animation clips and source masters remain useful production artifacts; no friendly role is automatically approved or placed in the game.
 
-| Candidate | Actual model review | Production status |
+[Original construction sheets](reviews/era-combat/v001.md) retain the lead's earlier direction for traceability. Review the actual exports separately:
+
+| Candidate | Actual model review | Current role / review |
 | --- | --- | --- |
-| Blockling | [Model and five clips](reviews/blockling/v001.md) | Lead selected · Tom review pending |
-| Signal Moth | [Model and five clips](reviews/signal-moth/v001.md) | Lead selected · Tom review pending |
-| Buffer Baron | [Model and five clips](reviews/buffer-baron/v001.md) | Lead selected · Tom review pending |
-| Loop Dancer, Prism Mimic, Trendweaver | Concepts above | Final authoring and review in progress |
-| Spark Mallet, Acorn Shield, Prism Wand, Ribbon Shield | Concepts above | Offline preparation complete; scene work queued |
+| Blockling | [Model and five clips](reviews/blockling/v001.md) | Possible friendly/ambient study · not an enemy |
+| Signal Moth | [Model and five clips](reviews/signal-moth/v001.md) | Possible friendly/ambient study · not an enemy |
+| Buffer Baron | [Model and five clips](reviews/buffer-baron/v001.md) | Possible friendly/ambient study · not an enemy |
+| Loop Dancer | [Model and five clips](reviews/loop-dancer/v001.md) | Possible friendly/ambient study · not an enemy |
+| Prism Mimic | [Model and five clips](reviews/prism-mimic/v001.md) | Possible friendly/ambient study · not an enemy |
+| Trendweaver | [Model and five clips](reviews/trendweaver/v001.md) | Possible friendly/ambient study · not an enemy |
+| Spark Mallet, Acorn Shield, Prism Wand, Ribbon Shield | [Four tools, including rear grips](reviews/era-equipment/v001.md) | Equipment candidates · Tom review pending |
 
-All concepts were generated serially with built-in image generation and selected by the lead. [WO-014](../../.agents/work-orders/014-blender-era-2020-evidence.md) delivered three textured GLBs, fifteen clips, exact re-imported views and hash-verified masters. The live scene has passed to the 2024 author. Later-era creatures and four tools remain required current work under PLAN-005; none has gameplay approval.
+All concepts were generated serially by the lead. Fresh Astra Blender authors completed the [first creature set](../../.agents/work-orders/014-blender-era-2020-evidence.md), [later creature set](../../.agents/work-orders/016-blender-era-2024-evidence.md) and [equipment](../../.agents/work-orders/017-blender-era-equipment-evidence.md), preserving exact exports and masters. All scene leases and render jobs have ended. Their individual format, animation and browser checks are recorded; the combined seven-page catalog audit is still pending.
