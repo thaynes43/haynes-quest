@@ -1,0 +1,89 @@
+{
+  "asset_id": "sir-flush-a-lot",
+  "version": "v001",
+  "glb": "sir-flush-a-lot.glb",
+  "glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+  "runtime_scale": 1,
+  "units": "meters",
+  "up": "+Y",
+  "forward": "-Z",
+  "origin": [
+    0,
+    0,
+    0
+  ],
+  "ground_to_top_m": 1.0,
+  "rest_ground_y_m": 0,
+  "root_motion": "Caller attachment root and root joint remain fixed; body joint has authored steps/squash/lift.",
+  "attack_contact_time_s": 1.0,
+  "attack_contact_fraction": 0.625,
+  "clips": {
+    "idle": {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "repeat"
+    },
+    "move": {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "repeat"
+    },
+    "attack": {
+      "name": "attack",
+      "duration_s": 1.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.0,
+      "contact_fraction": 0.625,
+      "playback": "once"
+    },
+    "hit": {
+      "name": "hit",
+      "duration_s": 0.5,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "once"
+    },
+    "defeat": {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "playback": "once",
+      "end_behavior": "Ducks one head into bowl; lid rests partly closed without cutting crown.",
+      "remove_only_after_duration_s": 2.0,
+      "embedded_fade": false
+    }
+  },
+  "triangles": 14676,
+  "materials": 5,
+  "draw_primitives": 5,
+  "joints": [
+    "root",
+    "body",
+    "neck",
+    "head",
+    "brow_L",
+    "brow_R",
+    "cheek_L",
+    "cheek_R",
+    "bubble_0",
+    "bubble_1",
+    "bubble_2",
+    "bubble_3",
+    "lid"
+  ],
+  "texture": "One original useful 1024px embedded atlas; no external image/decoder/resources."
+}

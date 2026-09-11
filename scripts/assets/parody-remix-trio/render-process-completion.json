@@ -1,12 +1,11 @@
 {
-  "work_order": "WO-032",
-  "updated_utc": "2026-09-11T17:24:52.312463+00:00",
+  "checked_at": "2026-09-11T17:41:08.599571+00:00",
+  "all_owned_jobs_exited_and_reaped": true,
   "jobs": [
     {
       "pid": 51196,
       "asset": "sir-flush-a-lot",
       "role": "quick render",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/quick-render.log",
       "exit_code": 0,
       "reaped": true
     },
@@ -14,7 +13,6 @@
       "pid": 51261,
       "asset": "sir-flush-a-lot",
       "role": "construction checker",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/construction-check.log",
       "exit_code": 1,
       "reaped": true
     },
@@ -22,7 +20,6 @@
       "pid": 51360,
       "asset": "sir-flush-a-lot",
       "role": "corrected construction checker",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/construction-check-2.log",
       "exit_code": 1,
       "reaped": true
     },
@@ -30,7 +27,6 @@
       "pid": 51416,
       "asset": "sir-flush-a-lot",
       "role": "contact and defeat preview",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/pose-check.log",
       "exit_code": 0,
       "reaped": true
     },
@@ -38,7 +34,6 @@
       "pid": 51483,
       "asset": "sir-flush-a-lot",
       "role": "armature-space construction checker",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/construction-check-3.log",
       "exit_code": 1,
       "reaped": true
     },
@@ -46,7 +41,6 @@
       "pid": 51546,
       "asset": "sir-flush-a-lot",
       "role": "final duck construction check",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/construction-check-4.log",
       "exit_code": 1,
       "reaped": true
     },
@@ -54,7 +48,6 @@
       "pid": 51547,
       "asset": "sir-flush-a-lot",
       "role": "final duck pose previews",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/pose-check-2.log",
       "exit_code": 0,
       "reaped": true
     },
@@ -62,7 +55,6 @@
       "pid": 51667,
       "asset": "sir-flush-a-lot",
       "role": "duck pitch construction check",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/construction-check-5.log",
       "exit_code": 0,
       "reaped": true
     },
@@ -70,7 +62,6 @@
       "pid": 51668,
       "asset": "sir-flush-a-lot",
       "role": "duck pitch pose previews",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/pose-check-3.log",
       "exit_code": 0,
       "reaped": true
     },
@@ -78,18 +69,36 @@
       "pid": 51826,
       "asset": "sir-flush-a-lot",
       "role": "final stills five clips reel turntable",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/final-render.log",
-      "exit_code": null,
-      "reaped": null
+      "exit_code": 0,
+      "reaped": true
     },
     {
       "pid": 51926,
       "asset": "sir-flush-a-lot",
       "role": "complete duck sequence contact audit",
-      "log_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/construction-check-duck-sequence.log",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 54922,
+      "asset": "nap-captain",
+      "role": "early actual GLB views",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 54923,
+      "asset": "nap-captain",
+      "role": "construction contact checker",
+      "exit_code": 1,
+      "reaped": true
+    },
+    {
+      "pid": 55047,
+      "asset": "nap-captain",
+      "role": "first contact and defeat preview",
       "exit_code": 0,
       "reaped": true
     }
-  ],
-  "all_owned_jobs_exited_and_reaped": false
+  ]
 }

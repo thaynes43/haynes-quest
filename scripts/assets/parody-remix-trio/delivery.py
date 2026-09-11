@@ -1,7 +1,7 @@
 """WO032 exact source/artifact inventory; run only after all owned jobs finish."""
 from pathlib import Path
 from datetime import datetime,timezone
-import base64,hashlib,json,subprocess
+import argparse,base64,hashlib,json,subprocess
 
 ROOT=Path('/workspace/haynes-quest/parody/remix-trio/v001')
 BASE='http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/'
@@ -10,16 +10,17 @@ def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def read(p):return json.loads(p.read_text())
 def write(p,data):p.write_text(json.dumps(data,indent=2)+'\n')
 
-def main():
+def main(asset_names=NAMES):
  lease=read(ROOT/'scene-lease.json');jobs=read(ROOT/'render-process-completion.json')
- assert jobs['all_owned_jobs_exited_and_reaped'];assert lease['status'].startswith('released')
+ assert all(j['exit_code'] is not None and j['reaped'] for j in jobs['jobs'] if j['asset'] in asset_names)
+ if asset_names==NAMES:assert jobs['all_owned_jobs_exited_and_reaped'] and lease['status'].startswith('released')
  sources=[]
  for p in sorted(ROOT.iterdir()):
   if p.suffix in ['.py','.mjs']:
    sources.append({'file':p.name,'repository_path':'scripts/assets/parody-remix-trio/'+p.name,'bytes':p.stat().st_size,'sha256':digest(p),'base64':base64.b64encode(p.read_bytes()).decode()})
  write(ROOT/'source-bundle.json',{'work_order':'WO-032','files':sources})
  references=read(ROOT/'concept-references.json');assets=[]
- for name in NAMES:
+ for name in asset_names:
   folder=ROOT/name;glb=folder/(name+'.glb');sha=digest(glb)
   construction=read(folder/'construction.json');validation=read(folder/'validation.json');inspection=read(folder/'export-inspection.json')
   completion=read(folder/'render-complete.json');three=read(folder/'three-inspection.json');browser=read(folder/'browser-inspection.json');survival=read(folder/'construction-survival.json');lead=read(folder/'lead-checkpoint-review.json')
@@ -32,6 +33,7 @@ def main():
   runtime={'asset_id':name,'version':'v001','glb':name+'.glb','glb_sha256':sha,'runtime_scale':1,'units':'meters','up':'+Y','forward':'-Z','origin':[0,0,0],'ground_to_top_m':construction['spec']['height'],'rest_ground_y_m':0,'root_motion':'Caller attachment root and root joint remain fixed; body joint has authored steps/squash/lift.','attack_contact_time_s':attack['contact_time_s'],'attack_contact_fraction':attack['contact_fraction'],'clips':clips,'triangles':validation['triangles'],'materials':len(validation['materials']),'draw_primitives':validation['draw_primitives'],'joints':validation['joints'],'texture':'One original useful 1024px embedded atlas; no external image/decoder/resources.'}
   write(folder/'runtime.json',runtime)
   names=[name+'.blend',name+'-export-review.blend','live-scene-release.blend',name+'.glb','pigment.png','atlas-provenance.json','front.png','side.png','back.png','beauty.png','motion-grid.png','animations.mp4','turntable.mp4',*[c+'.mp4' for c in CLIPS],'browser-beauty.png','browser-attack.png','quick.png','checkpoint-front.png','checkpoint-back.png','checkpoint-complete.json','contact-pose.png','contact-followthrough.png','defeat-pose.png','defeat-side.png','pose-check.json','construction.json','construction-survival.json','validation.json','export-inspection.json','three-inspection.json','browser-inspection.json','render-complete.json','runtime.json','lead-checkpoint-review.json']
+  names.append('authoring-source.json')
   files=[];videos={}
   for file in names:
    p=folder/file;assert p.is_file() and p.stat().st_size>0 and not p.is_symlink(),p
@@ -47,6 +49,8 @@ def main():
  globals=[]
  for file in ['scene-lease.json','render-process-completion.json','source-bundle.json','concept-references.json']:
   p=ROOT/file;globals.append({'file':file,'bytes':p.stat().st_size,'sha256':digest(p),'artifact_url':BASE+file})
- write(ROOT/'delivery-manifest.json',{'work_order':'WO-032','created_utc':datetime.now(timezone.utc).isoformat(),'assets':assets,'global_files':globals})
- print(json.dumps({'assets':[{'name':a['asset']['asset_id'],'sha256':a['asset']['glb_sha256'],'artifact_files':len(a['asset']['files'])} for a in assets],'source_files':len(sources),'delivery_sha256':digest(ROOT/'delivery-manifest.json')}))
-if __name__=='__main__':main()
+ delivery_file='delivery-manifest.json' if len(assets)==3 else 'delivery-manifest-'+assets[0]['asset']['asset_id']+'.json'
+ write(ROOT/delivery_file,{'work_order':'WO-032','scope':'complete trio' if len(assets)==3 else 'completed asset increment; overall lease remains as recorded','created_utc':datetime.now(timezone.utc).isoformat(),'assets':assets,'global_files':globals})
+ print(json.dumps({'assets':[{'name':a['asset']['asset_id'],'sha256':a['asset']['glb_sha256'],'artifact_files':len(a['asset']['files'])} for a in assets],'source_files':len(sources),'delivery_file':delivery_file,'delivery_sha256':digest(ROOT/delivery_file)}))
+if __name__=='__main__':
+ parser=argparse.ArgumentParser();parser.add_argument('--asset',choices=NAMES);args=parser.parse_args();main([args.asset] if args.asset else NAMES)
