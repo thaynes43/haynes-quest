@@ -20,18 +20,24 @@ export function createObbyCourse(routeId: ObbyRouteId): ObbyCourse {
     { id: "start", position: { x: 0, y: 0, z: 1 }, triggerRadius: 1.25 },
     {
       id: "first-clearing",
+      triggerPlatformId:
+        routeId === "gentle-jump-v1" ? "first-clearing-island" : undefined,
       position: { x: 0, y: 0, z: -4.8 },
       triggerRadius: 0.65,
       triggerHalfExtents: { x: 6, z: 0.35 },
     },
     {
       id: "second-clearing",
+      triggerPlatformId:
+        routeId === "gentle-jump-v1" ? "second-clearing-island" : undefined,
       position: { x: 0, y: 0, z: -10.6 },
       triggerRadius: 0.55,
       triggerHalfExtents: { x: 6, z: 0.35 },
     },
     {
       id: "boss-landing",
+      triggerPlatformId:
+        routeId === "gentle-jump-v1" ? "boss-island" : undefined,
       position: { x: 0, y: 0, z: -19 },
       triggerRadius: 0.65,
       triggerHalfExtents: { x: 6, z: 0.35 },

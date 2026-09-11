@@ -63,6 +63,8 @@ export interface ObbyCheckpoint {
   triggerRadius: number;
   /** Optional axis-aligned horizontal half extents for broad landing strips. */
   triggerHalfExtents?: { x: number; z: number };
+  /** Arm anywhere on this supporting platform; the marker remains the recovery position. */
+  triggerPlatformId?: string;
 }
 
 export interface ObbyCourse {
@@ -906,7 +908,9 @@ export function stepObby(
         const target = sanitizePoint(checkpoint.position);
         if (Math.abs(position.y - target.y) > tuning.checkpointHeightTolerance) continue;
         const halfExtents = checkpoint.triggerHalfExtents;
-        if (halfExtents) {
+        if (checkpoint.triggerPlatformId !== undefined) {
+          if (state.supportId !== checkpoint.triggerPlatformId) continue;
+        } else if (halfExtents) {
           const halfX = finiteOr(halfExtents.x, 0);
           const halfZ = finiteOr(halfExtents.z, 0);
           if (
