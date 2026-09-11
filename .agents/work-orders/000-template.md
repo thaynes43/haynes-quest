@@ -22,6 +22,8 @@ Supply verified MCP endpoint, remote scene/workspace ownership, actual upload/do
 
 Return runnable code or editable masters/build scripts/GLBs and previews, exact checksums, actual commands/results and known limits. Model handoffs include matching concept/render views and animation examples; audio handoffs include original/processed audition files and processing/level evidence. Link the versioned catalog record; do not claim owner approval, listening or device tests that did not happen.
 
+For every asset task, name the coordinator responsible for the [mandatory catalog update](../../docs/PROCESS.md#asset-catalog-must-stay-current). Include review-page paths, inventory entries, thumbnail/card changes, factual status and verification/publication evidence in acceptance. Authoring agents outside those owned paths must return precise intake data. The overall task remains incomplete until the asset PR includes the catalog changes and the delivered catalog is verified.
+
 For adversarial review identify the exact commit and request concrete counterexamples, severity and reproduction evidence. Reviewers do not edit unrelated scopes or merge unreviewed fixes behind the coordinator.
 
 ## Handoff and recovery
