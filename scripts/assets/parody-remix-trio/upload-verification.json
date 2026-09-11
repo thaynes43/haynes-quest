@@ -1,0 +1,24 @@
+{
+  "work_order": "WO-032",
+  "files": [
+    {
+      "file": "delivery.py",
+      "bytes": 8695,
+      "sha256": "9affef81420f428fc09c59516111060dc4f526d39e5b840dbbbbe622f84eaa67",
+      "remote_verified": true
+    },
+    {
+      "file": "collect.py",
+      "bytes": 3063,
+      "sha256": "d00bb79ecc634d6f5dc1dd99e6c1cb643f2985d210dff36ff852ee06ece8e0b8",
+      "remote_verified": true
+    },
+    {
+      "file": "sir-flush-a-lot/lead-checkpoint-review.json",
+      "bytes": 1069,
+      "sha256": "a54ed52415c451d07c290ea4c4a858bca81abb233ef65f0af2468a7a08c01ad4",
+      "remote_verified": true
+    }
+  ],
+  "all_remote_hashes_match": true
+}

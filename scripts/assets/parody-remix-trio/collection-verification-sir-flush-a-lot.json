@@ -1,0 +1,340 @@
+{
+  "work_order": "WO-032",
+  "artifact_files": [
+    {
+      "path": ".docs-build/remix-trio-masters/sir-flush-a-lot/sir-flush-a-lot.blend",
+      "bytes": 7491469,
+      "sha256": "228a8ff41533a830d386ff05bb8ba3367039f22ce8580186423bfd97912cfb30",
+      "transfer_verified": true
+    },
+    {
+      "path": ".docs-build/remix-trio-masters/sir-flush-a-lot/sir-flush-a-lot-export-review.blend",
+      "bytes": 3309216,
+      "sha256": "d156e77fb6d425fb8cacc0a40b94b312a0337e064832723271d28fb946de14fd",
+      "transfer_verified": true
+    },
+    {
+      "path": ".docs-build/remix-trio-masters/sir-flush-a-lot/live-scene-release.blend",
+      "bytes": 7498845,
+      "sha256": "ae7dce0836df8c078730236099126c00e14ea15b54d90215383fd6c64f702d6a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/sir-flush-a-lot.glb",
+      "bytes": 782488,
+      "sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/pigment.png",
+      "bytes": 395950,
+      "sha256": "c4be1356c9b819122c9adad41f850e20d99fda2c5fbaeceb75d5d9ea0678503e",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/atlas-provenance.json",
+      "bytes": 678,
+      "sha256": "fa6c8691355685a19d91cf146c93785ac913ad4ce488c933d4b6480abbf49b9e",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/front.png",
+      "bytes": 755768,
+      "sha256": "d76110fdb82dff852485dd8333d4bd7a31f855b970de736a54b0ceecceeb86e7",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/side.png",
+      "bytes": 726696,
+      "sha256": "ef5b4724e8b338a63d54068d7012202c4cf9bb565d79f959d11606d31ba0a1eb",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/back.png",
+      "bytes": 722139,
+      "sha256": "c1ab8220290cc94f7e58319d02e4726851d6f698dff6a2de195c10c8d4eb54ce",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/beauty.png",
+      "bytes": 811169,
+      "sha256": "c3432543e8d03d706489273f86723fab77efc9b34610630b55e98c1516bca5dd",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/motion-grid.png",
+      "bytes": 439564,
+      "sha256": "a60193dfc5d23430b51320c6a6708a58c6b07f8c5d5d17d899bbd763f193da3e",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/animations.mp4",
+      "bytes": 167860,
+      "sha256": "98bd5d8f2873821df3854efc5eb475572be41dc5be70957b4b28bf6ca706d3bc",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/turntable.mp4",
+      "bytes": 134055,
+      "sha256": "bc67cfc261417e01ab0c58fb7d9c052072eac855e2841d41ac170ace95b8cd74",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/idle.mp4",
+      "bytes": 37267,
+      "sha256": "cfab1ed0cf7cd755d92b8e9ed7aca3048b4f2a4cadd6a25747a6e4ff4824c5c0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/move.mp4",
+      "bytes": 31352,
+      "sha256": "73244c9edfc00ae33066592545eee848f6233a3c31846facb25f4f658b236dda",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/attack.mp4",
+      "bytes": 42325,
+      "sha256": "1927f3594a6491b1daddb2b53ab4e8c502d92266b38a75951d0b74161462e923",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/hit.mp4",
+      "bytes": 17941,
+      "sha256": "bab31551443296507885b0f48548ff08bcc9ed5dc987511e29e5e5c2f7f2285e",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/defeat.mp4",
+      "bytes": 42272,
+      "sha256": "fa25aeb0dd0e80b2a2db426671918ecaa4a7fb246c5839e888d54c4a797db9e7",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/browser-beauty.png",
+      "bytes": 107654,
+      "sha256": "1a7ae0b4b97366dc5ff703fb62014a44b71a68f90d3eb1f4a082e3e062960482",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/browser-attack.png",
+      "bytes": 109497,
+      "sha256": "710ca96606fe3838be8a2b472d9c43b6d15bfcc6f8f83eafef1939fa9a2fb73b",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/quick.png",
+      "bytes": 519132,
+      "sha256": "51a8698a9b8b0c5d1a7f0bd8efda349c703afddda854c5c8bfdf98d5537e494b",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/checkpoint-front.png",
+      "bytes": 485800,
+      "sha256": "5d09b9ebe1d7a2cd1de6cb72c0f98a0a2d8c2bb76b5905964e26b42e70e1b796",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/checkpoint-back.png",
+      "bytes": 461355,
+      "sha256": "ec19a76bd7e203de4d52ea0eb36b73d7e8564f8e7704225263ddaf56f3ab83fe",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/checkpoint-complete.json",
+      "bytes": 116,
+      "sha256": "74a3b06201ee6420b8b93acb7cf28fc1a7f7867165054f4cdef509a77f9f3fa5",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/contact-pose.png",
+      "bytes": 509392,
+      "sha256": "16f98ff087c1742f0e59336b589afaf5b2f662743e980bb7c1e73efe9f78c34b",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/contact-followthrough.png",
+      "bytes": 508464,
+      "sha256": "8a226e7c7184f3ba9430a176191ca83b85fa7e948514237b3e1b15428c3f788a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/defeat-pose.png",
+      "bytes": 483698,
+      "sha256": "b9323866c6500d9eccefab152b77cb51bb5934e558fd51ead8aabf889e5c96e3",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/defeat-side.png",
+      "bytes": 423455,
+      "sha256": "e0aafc56ec1be3d3b0f957126e7161d00ce7c2c651eb0c68f2a95266fb0bcad7",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/pose-check.json",
+      "bytes": 509,
+      "sha256": "ef74c9c4b94a8c7443e16cd1e8672da77d6af872aea563e1b6269031528ca938",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/construction.json",
+      "bytes": 17067,
+      "sha256": "6a46d4e04ca730cacbc0973d204434a419821662321be3cc611f3d06a413232a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/construction-survival.json",
+      "bytes": 68153,
+      "sha256": "d07ab4c023bc5cc6c2c32c5b766eeb7b3bfa8f76c38cca0b7147f754ef95323b",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/validation.json",
+      "bytes": 3788,
+      "sha256": "b768ba336e0a33ea18e66308625833748b385422b09b0d321179aa130c3382f5",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/export-inspection.json",
+      "bytes": 1935,
+      "sha256": "6dc9ba276794b4f962591d3aa26ab99894d2033f6990fe70b64c7a91e48be577",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/three-inspection.json",
+      "bytes": 37777,
+      "sha256": "90fc2428f4b302f97c863b75d061bef6faf0ea977309adf7eba4c753fba8f9c0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/browser-inspection.json",
+      "bytes": 3874,
+      "sha256": "4526d542e7666dcdcf781ca3646ddef6d8a3f442ed103298b6b8ff0d8be90737",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/render-complete.json",
+      "bytes": 227,
+      "sha256": "8753373cc61d4ad8f10127ee02176b0287bff34c0526999c75d1ef4836bb5c90",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/runtime.json",
+      "bytes": 2133,
+      "sha256": "90ecba6657203de122f1ed15cf39e29000655525291c46fdf0ae5a4c6520cf33",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/lead-checkpoint-review.json",
+      "bytes": 1069,
+      "sha256": "a54ed52415c451d07c290ea4c4a858bca81abb233ef65f0af2468a7a08c01ad4",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/sir-flush-a-lot/v001/authoring-source.json",
+      "bytes": 39294,
+      "sha256": "6486dc48362caa88c77080f113cf40559623f55092ac8ff3fa255e07d9595998",
+      "transfer_verified": true
+    }
+  ],
+  "source_files": [
+    {
+      "file": "atlas.py",
+      "bytes": 3588,
+      "sha256": "6a629b422a17cdd657f40b66d33c12a6b130fe4b2289f29dc95835f044f696f9",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "build.py",
+      "bytes": 473,
+      "sha256": "143b9a47ce81f500c211bd6344304d7290bbb635284d251d92df6ec3acaef1e3",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "collect.py",
+      "bytes": 3063,
+      "sha256": "d00bb79ecc634d6f5dc1dd99e6c1cb643f2985d210dff36ff852ee06ece8e0b8",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "common.py",
+      "bytes": 15011,
+      "sha256": "8687ba2743c7fb794064e5ac9c191727a84378a13c724b9e259331335cec1a30",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "compare-construction.py",
+      "bytes": 7679,
+      "sha256": "cee43e514e4b91a9242880243f3284100ea6fc04faa3856deda487dce680e0a3",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "delivery.py",
+      "bytes": 8695,
+      "sha256": "9affef81420f428fc09c59516111060dc4f526d39e5b840dbbbbe622f84eaa67",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "inspect-browser.mjs",
+      "bytes": 8848,
+      "sha256": "364db7fbca9be494695a59002eb59cc32d03c52e9383348c5c0b1d37097730fb",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "inspect-three.mjs",
+      "bytes": 8811,
+      "sha256": "6c84f0d88cf4fe814be7d8f838f905c518865c3f6c800d5b6848c2649e50478c",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "nap-captain.py",
+      "bytes": 10821,
+      "sha256": "bdb8b13212f4cb500d838cab9313d20ceed7b3f1d2f89d00e7f80d0842f0bc06",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "one-star-diva.py",
+      "bytes": 13503,
+      "sha256": "898aed6fe05162b4c39214176fa298616af7aaafdd32fe96fb77e3141decd876",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "pose-check.py",
+      "bytes": 1363,
+      "sha256": "0f261b98ec32ddbae30c9308eac5f388bc6cbd5bfc2b5a428392cfff9590dc28",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "render.py",
+      "bytes": 10555,
+      "sha256": "a81f18ad4fecb73e378110b46d1115985586281ab9498741d2abe50501b6539b",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "sir-flush-a-lot.py",
+      "bytes": 9700,
+      "sha256": "b971cfa8235ca6932fc15e0b74761634261d011f610b589b84e77ffa9aa95605",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "transfer.py",
+      "bytes": 4370,
+      "sha256": "d370f242ef0b68760e339ce815f4ffafd1a98d69a2ebc0d486dec8f325f672e8",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "validate.mjs",
+      "bytes": 2914,
+      "sha256": "680673443b4c64f74d9f36a1352648911557728009bfb85fdcbd949b4ee362a2",
+      "roundtrip_verified": true
+    }
+  ],
+  "all_transfer_hashes_match": true,
+  "master_directory": "/home/dev/work/quest-remix-trio/.docs-build/remix-trio-masters",
+  "preserved_root_files": {
+    "sir-flush-a-lot": {
+      "concept-provenance.json": "01e3af2ac63769e48e6e35120b49a0b5fdef24a1bb5d52075d081771a5f4a203",
+      "concept.png": "11de6c89c08ea5be66833f2c60669926cea29e77346fa53ab3b71749967793eb",
+      "prompt.txt": "f643ee509e3786028a9cde5d8ca707cf0891dafd33c1ba151080c8918bc44397"
+    }
+  }
+}

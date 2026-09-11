@@ -1,3 +1,5 @@
+import type { ObbySample } from "./obby";
+import type { ObbyRouteId } from "../shared/parody-catalog";
 import type {
   Ability,
   AdventurePhase,
@@ -61,11 +63,15 @@ export interface SceneFrame {
   guarding: boolean;
   enemies: EnemyFrame[];
   currentTarget: string | null;
+  obby?: ObbySample;
+  checkpointId?: string | null;
+  recovering?: boolean;
 }
 
 export interface SceneMediaState {
   loading: number;
   failed: number;
+  reloadRequired?: boolean;
 }
 
 export interface GameStatus {
@@ -93,6 +99,7 @@ export interface GameStatus {
   requestErrorCode: string | null;
   mediaLoading: number;
   mediaFailed: number;
+  mediaReloadRequired?: boolean;
 }
 
 export interface MemoryPlacementInspection extends PositionSnapshot {
@@ -132,6 +139,13 @@ export interface GameInspection {
   checkpoint: PositionSnapshot;
   level: LevelInspection;
   enemies: EnemyFrame[];
+  obby?: ObbySample & {
+    routeId: ObbyRouteId;
+    checkpointId: string | null;
+    supportId: string | null;
+    recoveryRemaining: number;
+    recoveries: number;
+  };
   disposed: boolean;
 }
 

@@ -1,0 +1,44 @@
+{
+  "work_order": "WO-027",
+  "completed_utc": "2026-09-11T16:20:52.928269+00:00",
+  "jobs": {
+    "checkpoint": {
+      "pid": 37668,
+      "exit_code": 0
+    },
+    "checkpoint-corrected": {
+      "pid": 37753,
+      "exit_code": 0
+    },
+    "construction-check": {
+      "pid": 37850,
+      "exit_code": 1
+    },
+    "construction-check-final": {
+      "pid": 37922,
+      "exit_code": 0
+    },
+    "final-render": {
+      "pid": 37990,
+      "exit_code": -15
+    },
+    "construction-check-hat": {
+      "pid": 37991,
+      "exit_code": 0
+    },
+    "final-render-fastened": {
+      "pid": 38372,
+      "exit_code": 0
+    },
+    "construction-check-fastened": {
+      "pid": 38373,
+      "exit_code": 0
+    }
+  },
+  "all_owned_jobs_exited_and_reaped": true,
+  "resolved_prior_attempts": {
+    "construction-check": "The first checker included Blender imported armature display geometry; corrected to skinned runtime meshes. All final checks passed.",
+    "final-render": "Intentionally terminated and reaped before adding concealed sash fastenings; prior source and available renders preserved in iterations/selected-before-fastening-tabs."
+  },
+  "final_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+}

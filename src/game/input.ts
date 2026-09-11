@@ -142,14 +142,15 @@ export class GameInputState {
     };
   }
 
-  consumeActions(): Record<ButtonAction, boolean> {
+  consumeActions(deferJump = false): Record<ButtonAction, boolean> {
     const result = { ...this.pendingActions };
     this.pendingActions = {
-      jump: false,
+      jump: deferJump && result.jump,
       interact: false,
       attack: false,
       guard: false,
     };
+    if (deferJump) result.jump = false;
     return result;
   }
 
@@ -202,6 +203,8 @@ export function bindBrowserInput({
         : null;
     if (source?.closest("input, textarea, select, [role=dialog]")) return;
     event.preventDefault();
+    // Recovery and pause clear held inputs; OS repeats must not re-arm them.
+    if (event.repeat) return;
     input.setKey(event.code, true);
   };
   const onKeyUp = (event: KeyboardEvent): void =>

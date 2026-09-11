@@ -1,0 +1,25 @@
+{
+  "asset_id": "one-star-diva",
+  "version": "v001",
+  "kind": "parody-construction-concept",
+  "created_date": "2026-09-11",
+  "tool": "built-in image_gen",
+  "generation_model_id": null,
+  "seed": null,
+  "reference_target": "Roblox Dress to Impress and one-star voting",
+  "private_references_used": false,
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2282833,
+      "sha256": "0e1bcbd888f7fb68ad649888b7856eda44091262bbf95b2c6099549ae04231c8"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 3392,
+      "sha256": "0ba72f5c5c4287bf023b0c829e93e3bbecb5fbfa9b572ce5524e21640b1fe58d"
+    }
+  ],
+  "lead_review": "Selected fashion-avatar outfit, oversized coat and one-star vote gag. Author must make the right hand physically grip the paddle handle even where the neutral sheet obscures it; paddle remains in hand through twirl (thumbnail omission is not permission to remove it). Total measured height1.65m includes hair bow. Maintain both feet and connected rear belt/bow.",
+  "owner_review": "pending"
+}

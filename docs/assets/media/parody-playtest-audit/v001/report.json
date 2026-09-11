@@ -1,0 +1,1154 @@
+{
+  "date": "2026-09-11T18:19:09.327Z",
+  "sourceCommit": "356791d911b4a7835d16d24990fceb89814bb3d9",
+  "selectedIds": [
+    "mister-hiss",
+    "peel-patrol",
+    "drama-dragon",
+    "sir-flush-a-lot"
+  ],
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software (requested)",
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "hasTouch": true,
+      "deviceScaleFactor": 1
+    }
+  },
+  "physicalSafari": "not tested",
+  "pages": [
+    {
+      "id": "mister-hiss",
+      "url": "/studio/assets/reviews/mister-hiss/v001.html",
+      "manifest": "docs/assets/media/mister-hiss/v001/manifest.json",
+      "model": {
+        "src": "/studio/assets/media/mister-hiss/v001/mister-hiss.glb",
+        "dimensions": {
+          "x": 0.44213783740997314,
+          "y": 0.9999999850988388,
+          "z": 0.4668426960706711
+        },
+        "renderSurface": {
+          "width": 356,
+          "height": 356
+        },
+        "webgl": {
+          "calls": 1,
+          "successfulContexts": 1,
+          "types": [
+            "webgl2"
+          ]
+        },
+        "clips": [
+          "idle",
+          "move",
+          "attack",
+          "hit",
+          "defeat"
+        ],
+        "animations": [
+          {
+            "clip": "idle",
+            "playback": "repeat",
+            "repetitions": "Infinity",
+            "runningTime": 0.05010000000000002,
+            "pausedTime": 0.1,
+            "advanced": true
+          },
+          {
+            "clip": "move",
+            "playback": "repeat",
+            "repetitions": "Infinity",
+            "runningTime": 0.05,
+            "pausedTime": 0.08330000000000007,
+            "advanced": true
+          },
+          {
+            "clip": "attack",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.05,
+            "pausedTime": 0.1,
+            "advanced": true,
+            "finished": {
+              "time": 1.5,
+              "heldTime": 1.5,
+              "playLabel": "Play"
+            }
+          },
+          {
+            "clip": "hit",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.050099999999999915,
+            "pausedTime": 0.08339999999999964,
+            "advanced": true,
+            "finished": {
+              "time": 0.5,
+              "heldTime": 0.5,
+              "playLabel": "Play"
+            }
+          },
+          {
+            "clip": "defeat",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.06669999999999981,
+            "pausedTime": 0.13330000000000017,
+            "advanced": true,
+            "finished": {
+              "time": 2,
+              "heldTime": 2,
+              "playLabel": "Play"
+            }
+          }
+        ],
+        "delivery": {
+          "bytes": 1202456,
+          "sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+        },
+        "embedded": {
+          "images": 1,
+          "textures": 3,
+          "externalUris": []
+        },
+        "portrait": {
+          "x": 16,
+          "y": 243.375,
+          "width": 358,
+          "height": 358
+        },
+        "pixels": {
+          "file": "mister-hiss-viewer-phone.png",
+          "maxRgbStandardDeviation": 62.73269517017517
+        }
+      },
+      "videos": [
+        {
+          "filename": "idle.mp4",
+          "pageReferenced": true,
+          "bytes": 53759,
+          "sha256": "0fc9b1949607bb2327259de7a13bef6fd4de1c60bfd7a98459d48868b1597c8a",
+          "duration": 2.5,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.051993,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.041667,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "move.mp4",
+          "pageReferenced": true,
+          "bytes": 42816,
+          "sha256": "6845517c02c7a15031eccb5a151d2a69461bcd95b6f892407c046c16d082156e",
+          "duration": 1,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.051671,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.041667,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "attack.mp4",
+          "pageReferenced": true,
+          "bytes": 64459,
+          "sha256": "46c5851d94e30ec262374859da6a5556599bc7eff2e67e00eaedde992db7384d",
+          "duration": 1.5,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.049395,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.041667,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "hit.mp4",
+          "pageReferenced": true,
+          "bytes": 23954,
+          "sha256": "a7636714ed8e02026895ecc7799f2d5c35b38c06d0ac79bb1cf5675f3ed4db18",
+          "duration": 0.5,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.051291,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.041667,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "defeat.mp4",
+          "pageReferenced": true,
+          "bytes": 75342,
+          "sha256": "e424126e6757b5a8ffa9ca4ccc6de2c6555fe5a9cd52f12722ae10ab983fcd4a",
+          "duration": 2,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.045653,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.041667,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "animations.mp4",
+          "pageReferenced": true,
+          "bytes": 257041,
+          "sha256": "f504be34567c826a97fb83c8a5310addd605887ff991dd4c6c55c00ae0a1ac36",
+          "duration": 7.5,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.04314,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.041667,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "turntable.mp4",
+          "pageReferenced": true,
+          "bytes": 197055,
+          "sha256": "66a77a988c776cd4f9e9620edaaf0de6c6015472b0fb1cadf31dbf56cdba98f1",
+          "duration": 3,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.044789,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.041667,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        }
+      ],
+      "stills": {
+        "stills": [
+          {
+            "path": "/studio/assets/media/mister-hiss/v001/concept.png",
+            "complete": true,
+            "naturalWidth": 1536,
+            "naturalHeight": 1024
+          },
+          {
+            "path": "/studio/assets/media/mister-hiss/v001/beauty.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          },
+          {
+            "path": "/studio/assets/media/mister-hiss/v001/front.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          },
+          {
+            "path": "/studio/assets/media/mister-hiss/v001/side.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          },
+          {
+            "path": "/studio/assets/media/mister-hiss/v001/back.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          }
+        ],
+        "posterPaths": [
+          "/studio/assets/media/mister-hiss/v001/front.png",
+          "/studio/assets/media/mister-hiss/v001/motion-grid.png"
+        ]
+      },
+      "touchOrbit": {
+        "before": {
+          "theta": 2.705260340591212,
+          "phi": 1.3089969389957472,
+          "radius": 2.3446679773835997
+        },
+        "after": {
+          "theta": 4.717720771957589,
+          "phi": 1.3089969389957472,
+          "radius": 2.3446679773835997
+        },
+        "changed": true
+      },
+      "screenshot": "mister-hiss-page-phone.png"
+    },
+    {
+      "id": "peel-patrol",
+      "url": "/studio/assets/reviews/peel-patrol/v001.html",
+      "manifest": "docs/assets/media/peel-patrol/v001/manifest.json",
+      "model": {
+        "src": "/studio/assets/media/peel-patrol/v001/peel-patrol.glb",
+        "dimensions": {
+          "x": 0.49000000953674316,
+          "y": 1.149999976158142,
+          "z": 0.4143987726420164
+        },
+        "renderSurface": {
+          "width": 356,
+          "height": 356
+        },
+        "webgl": {
+          "calls": 1,
+          "successfulContexts": 1,
+          "types": [
+            "webgl2"
+          ]
+        },
+        "clips": [
+          "idle",
+          "move",
+          "attack",
+          "hit",
+          "defeat"
+        ],
+        "animations": [
+          {
+            "clip": "idle",
+            "playback": "repeat",
+            "repetitions": "Infinity",
+            "runningTime": 0.049999999999999996,
+            "pausedTime": 0.08330000000000007,
+            "advanced": true
+          },
+          {
+            "clip": "move",
+            "playback": "repeat",
+            "repetitions": "Infinity",
+            "runningTime": 0.05,
+            "pausedTime": 0.08319999999999993,
+            "advanced": true
+          },
+          {
+            "clip": "attack",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.049999999999999996,
+            "pausedTime": 0.1,
+            "advanced": true,
+            "finished": {
+              "time": 1.600000023841858,
+              "heldTime": 1.600000023841858,
+              "playLabel": "Play"
+            }
+          },
+          {
+            "clip": "hit",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.05,
+            "pausedTime": 0.09989999999999963,
+            "advanced": true,
+            "finished": {
+              "time": 0.6000000238418579,
+              "heldTime": 0.6000000238418579,
+              "playLabel": "Play"
+            }
+          },
+          {
+            "clip": "defeat",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.05,
+            "pausedTime": 0.1,
+            "advanced": true,
+            "finished": {
+              "time": 2,
+              "heldTime": 2,
+              "playLabel": "Play"
+            }
+          }
+        ],
+        "delivery": {
+          "bytes": 652424,
+          "sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5"
+        },
+        "embedded": {
+          "images": 1,
+          "textures": 4,
+          "externalUris": []
+        },
+        "portrait": {
+          "x": 16,
+          "y": 242.59375,
+          "width": 358,
+          "height": 358
+        },
+        "pixels": {
+          "file": "peel-patrol-viewer-phone.png",
+          "maxRgbStandardDeviation": 54.16281873609528
+        }
+      },
+      "videos": [
+        {
+          "filename": "idle.mp4",
+          "pageReferenced": true,
+          "bytes": 32146,
+          "sha256": "95e61337e4a758250fce3e21c4b2c2fee03735afae153ecb5b8b1da3f569c23a",
+          "duration": 2.5,
+          "width": 400,
+          "height": 480,
+          "currentTime": 0.04421,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "move.mp4",
+          "pageReferenced": true,
+          "bytes": 29989,
+          "sha256": "79ad09845fdbc1cf0674d04d365ae4e53165e2edac1d3adec118640c5ed530a2",
+          "duration": 1.2,
+          "width": 400,
+          "height": 480,
+          "currentTime": 0.070768,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "attack.mp4",
+          "pageReferenced": true,
+          "bytes": 41130,
+          "sha256": "2335db4ce489ab891cfcfd2e6e57dd4e51b41ea87008cbddd9fbe7371876d98b",
+          "duration": 1.6,
+          "width": 400,
+          "height": 480,
+          "currentTime": 0.048457,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "hit.mp4",
+          "pageReferenced": true,
+          "bytes": 17375,
+          "sha256": "cf06cfb9890ec2c8a935886d2a78cfd81cd1631fab7c1384872716b0df81dd52",
+          "duration": 0.6,
+          "width": 400,
+          "height": 480,
+          "currentTime": 0.051658,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "defeat.mp4",
+          "pageReferenced": true,
+          "bytes": 49217,
+          "sha256": "7cec44236686dd7cc255b35bd24c8a04815df56bda978ccb2097feb0c3e92f59",
+          "duration": 2,
+          "width": 400,
+          "height": 480,
+          "currentTime": 0.052228,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "animations.mp4",
+          "pageReferenced": true,
+          "bytes": 166568,
+          "sha256": "f62af53bc6fc570e074f70e139e885a96a3b3b1ef1f75ef27c7a223e82cb09bb",
+          "duration": 7.9,
+          "width": 400,
+          "height": 480,
+          "currentTime": 0.045853,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "turntable.mp4",
+          "pageReferenced": true,
+          "bytes": 111634,
+          "sha256": "9bce7424b4b9330720271694849cf8421c20cbe7c210f1d80637e450b181eabf",
+          "duration": 3,
+          "width": 400,
+          "height": 480,
+          "currentTime": 0.045531,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        }
+      ],
+      "stills": {
+        "stills": [
+          {
+            "path": "/studio/assets/media/peel-patrol/v001/concept.png",
+            "complete": true,
+            "naturalWidth": 1536,
+            "naturalHeight": 1024
+          },
+          {
+            "path": "/studio/assets/media/peel-patrol/v001/beauty.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          },
+          {
+            "path": "/studio/assets/media/peel-patrol/v001/front.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          },
+          {
+            "path": "/studio/assets/media/peel-patrol/v001/side.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          },
+          {
+            "path": "/studio/assets/media/peel-patrol/v001/back.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          }
+        ],
+        "posterPaths": [
+          "/studio/assets/media/peel-patrol/v001/front.png",
+          "/studio/assets/media/peel-patrol/v001/motion-grid.png"
+        ]
+      },
+      "touchOrbit": {
+        "before": {
+          "theta": 2.705260340591208,
+          "phi": 1.3089969389957472,
+          "radius": 2.533225055399662
+        },
+        "after": {
+          "theta": 4.717720432023686,
+          "phi": 1.3089969389957472,
+          "radius": 2.533225055399662
+        },
+        "changed": true
+      },
+      "screenshot": "peel-patrol-page-phone.png"
+    },
+    {
+      "id": "drama-dragon",
+      "url": "/studio/assets/reviews/drama-dragon/v001.html",
+      "manifest": "docs/assets/media/drama-dragon/v001/manifest.json",
+      "model": {
+        "src": "/studio/assets/media/drama-dragon/v001/drama-dragon.glb",
+        "dimensions": {
+          "x": 2.6000001430511475,
+          "y": 1.7999999523162842,
+          "z": 3.0000001192092896
+        },
+        "renderSurface": {
+          "width": 356,
+          "height": 356
+        },
+        "webgl": {
+          "calls": 1,
+          "successfulContexts": 1,
+          "types": [
+            "webgl2"
+          ]
+        },
+        "clips": [
+          "idle",
+          "move",
+          "attack",
+          "hit",
+          "defeat"
+        ],
+        "animations": [
+          {
+            "clip": "idle",
+            "playback": "repeat",
+            "repetitions": "Infinity",
+            "runningTime": 0.05,
+            "pausedTime": 0.08329999999999996,
+            "advanced": true
+          },
+          {
+            "clip": "move",
+            "playback": "repeat",
+            "repetitions": "Infinity",
+            "runningTime": 0.05010000000000002,
+            "pausedTime": 0.10010000000000002,
+            "advanced": true
+          },
+          {
+            "clip": "attack",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.05,
+            "pausedTime": 0.1,
+            "advanced": true,
+            "finished": {
+              "time": 2,
+              "heldTime": 2,
+              "playLabel": "Play"
+            }
+          },
+          {
+            "clip": "hit",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.08329999999999972,
+            "pausedTime": 0.13340000000000007,
+            "advanced": true,
+            "finished": {
+              "time": 0.699999988079071,
+              "heldTime": 0.699999988079071,
+              "playLabel": "Play"
+            }
+          },
+          {
+            "clip": "defeat",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.04989999999999964,
+            "pausedTime": 0.09989999999999966,
+            "advanced": true,
+            "finished": {
+              "time": 2.4000000953674316,
+              "heldTime": 2.4000000953674316,
+              "playLabel": "Play"
+            }
+          }
+        ],
+        "delivery": {
+          "bytes": 917980,
+          "sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933"
+        },
+        "embedded": {
+          "images": 1,
+          "textures": 4,
+          "externalUris": []
+        },
+        "portrait": {
+          "x": 16,
+          "y": 242.796875,
+          "width": 358,
+          "height": 358
+        },
+        "pixels": {
+          "file": "drama-dragon-viewer-phone.png",
+          "maxRgbStandardDeviation": 71.15799923218532
+        }
+      },
+      "videos": [
+        {
+          "filename": "idle.mp4",
+          "pageReferenced": true,
+          "bytes": 51005,
+          "sha256": "9e02abc8d090fab239a8352e550096802809b0af4cee9994a811e8f8995c6729",
+          "duration": 3,
+          "width": 640,
+          "height": 400,
+          "currentTime": 0.071298,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "move.mp4",
+          "pageReferenced": true,
+          "bytes": 48743,
+          "sha256": "5c67d75cd468983a46706c8bd9a78cb72e2245cdaf05c0ea026ec5d8fe1ab89e",
+          "duration": 1.6,
+          "width": 640,
+          "height": 400,
+          "currentTime": 0.04512,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "attack.mp4",
+          "pageReferenced": true,
+          "bytes": 69870,
+          "sha256": "f18b8155f4a6352157b8da38c265bb7928780140411b91a84971cf54137719a1",
+          "duration": 2,
+          "width": 640,
+          "height": 400,
+          "currentTime": 0.066168,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "hit.mp4",
+          "pageReferenced": true,
+          "bytes": 27762,
+          "sha256": "8bb9c6dfefd73d8c4c6fdc2e0aa7364ba4ec66eb50091995e078c3662edf82b6",
+          "duration": 0.7,
+          "width": 640,
+          "height": 400,
+          "currentTime": 0.06657,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "defeat.mp4",
+          "pageReferenced": true,
+          "bytes": 60665,
+          "sha256": "da76e1a8fd6caa1a08858504c022f87bb1337072a1e8ae5b77bf0aa6b19090cf",
+          "duration": 2.4,
+          "width": 640,
+          "height": 400,
+          "currentTime": 0.068606,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "animations.mp4",
+          "pageReferenced": true,
+          "bytes": 254748,
+          "sha256": "4df3010b9f7df05470c7cf50bb21fb37ed6c526bf448e41de11efde895625c77",
+          "duration": 9.7,
+          "width": 640,
+          "height": 400,
+          "currentTime": 0.073512,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "turntable.mp4",
+          "pageReferenced": true,
+          "bytes": 198496,
+          "sha256": "075c75d1ac2f30374a49d6b7e94a4630c7aeafcf8c55f9bfc6b904ba4151db64",
+          "duration": 3,
+          "width": 640,
+          "height": 400,
+          "currentTime": 0.040127,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.05,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        }
+      ],
+      "stills": {
+        "stills": [
+          {
+            "path": "/studio/assets/media/drama-dragon/v001/concept.png",
+            "complete": true,
+            "naturalWidth": 1536,
+            "naturalHeight": 1024
+          },
+          {
+            "path": "/studio/assets/media/drama-dragon/v001/beauty.png",
+            "complete": true,
+            "naturalWidth": 1200,
+            "naturalHeight": 850
+          },
+          {
+            "path": "/studio/assets/media/drama-dragon/v001/front.png",
+            "complete": true,
+            "naturalWidth": 1200,
+            "naturalHeight": 850
+          },
+          {
+            "path": "/studio/assets/media/drama-dragon/v001/side.png",
+            "complete": true,
+            "naturalWidth": 1200,
+            "naturalHeight": 850
+          },
+          {
+            "path": "/studio/assets/media/drama-dragon/v001/back.png",
+            "complete": true,
+            "naturalWidth": 1200,
+            "naturalHeight": 850
+          }
+        ],
+        "posterPaths": [
+          "/studio/assets/media/drama-dragon/v001/front.png",
+          "/studio/assets/media/drama-dragon/v001/motion-grid.png"
+        ]
+      },
+      "touchOrbit": {
+        "before": {
+          "theta": 2.736041909702861,
+          "phi": 1.3089969389957472,
+          "radius": 6.4355400496963275
+        },
+        "after": {
+          "theta": 4.7880642512042115,
+          "phi": 1.3089969389957472,
+          "radius": 6.4355400496963275
+        },
+        "changed": true
+      },
+      "screenshot": "drama-dragon-page-phone.png"
+    },
+    {
+      "id": "sir-flush-a-lot",
+      "url": "/studio/assets/reviews/sir-flush-a-lot/v001.html",
+      "manifest": "docs/assets/media/sir-flush-a-lot/v001/manifest.json",
+      "model": {
+        "src": "/studio/assets/media/sir-flush-a-lot/v001/sir-flush-a-lot.glb",
+        "dimensions": {
+          "x": 0.5000845193862915,
+          "y": 1.0000000968575384,
+          "z": 0.5917750895023346
+        },
+        "renderSurface": {
+          "width": 356,
+          "height": 356
+        },
+        "webgl": {
+          "calls": 1,
+          "successfulContexts": 1,
+          "types": [
+            "webgl2"
+          ]
+        },
+        "clips": [
+          "idle",
+          "move",
+          "attack",
+          "hit",
+          "defeat"
+        ],
+        "animations": [
+          {
+            "clip": "idle",
+            "playback": "repeat",
+            "repetitions": "Infinity",
+            "runningTime": 0.05,
+            "pausedTime": 0.08329999999999996,
+            "advanced": true
+          },
+          {
+            "clip": "move",
+            "playback": "repeat",
+            "repetitions": "Infinity",
+            "runningTime": 0.049999999999999996,
+            "pausedTime": 0.08330000000000007,
+            "advanced": true
+          },
+          {
+            "clip": "attack",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.0499000000000001,
+            "pausedTime": 0.0999000000000001,
+            "advanced": true,
+            "finished": {
+              "time": 1.600000023841858,
+              "heldTime": 1.600000023841858,
+              "playLabel": "Play"
+            }
+          },
+          {
+            "clip": "hit",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.05,
+            "pausedTime": 0.1,
+            "advanced": true,
+            "finished": {
+              "time": 0.5,
+              "heldTime": 0.5,
+              "playLabel": "Play"
+            }
+          },
+          {
+            "clip": "defeat",
+            "playback": "once",
+            "repetitions": 1,
+            "runningTime": 0.05,
+            "pausedTime": 0.09999999999999999,
+            "advanced": true,
+            "finished": {
+              "time": 2,
+              "heldTime": 2,
+              "playLabel": "Play"
+            }
+          }
+        ],
+        "delivery": {
+          "bytes": 782488,
+          "sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+        },
+        "embedded": {
+          "images": 1,
+          "textures": 5,
+          "externalUris": []
+        },
+        "portrait": {
+          "x": 16,
+          "y": 242.78125,
+          "width": 358,
+          "height": 358
+        },
+        "pixels": {
+          "file": "sir-flush-a-lot-viewer-phone.png",
+          "maxRgbStandardDeviation": 28.586340852672652
+        }
+      },
+      "videos": [
+        {
+          "filename": "idle.mp4",
+          "pageReferenced": true,
+          "bytes": 37267,
+          "sha256": "cfab1ed0cf7cd755d92b8e9ed7aca3048b4f2a4cadd6a25747a6e4ff4824c5c0",
+          "duration": 2.5,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.054219,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.033333,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "move.mp4",
+          "pageReferenced": true,
+          "bytes": 31352,
+          "sha256": "73244c9edfc00ae33066592545eee848f6233a3c31846facb25f4f658b236dda",
+          "duration": 1,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.042838,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.033333,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "attack.mp4",
+          "pageReferenced": true,
+          "bytes": 42325,
+          "sha256": "1927f3594a6491b1daddb2b53ab4e8c502d92266b38a75951d0b74161462e923",
+          "duration": 1.6,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.050085,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.033333,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "hit.mp4",
+          "pageReferenced": true,
+          "bytes": 17941,
+          "sha256": "bab31551443296507885b0f48548ff08bcc9ed5dc987511e29e5e5c2f7f2285e",
+          "duration": 0.5,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.054653,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.033333,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "defeat.mp4",
+          "pageReferenced": true,
+          "bytes": 42272,
+          "sha256": "fa25aeb0dd0e80b2a2db426671918ecaa4a7fb246c5839e888d54c4a797db9e7",
+          "duration": 2,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.053439,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.033333,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "animations.mp4",
+          "pageReferenced": true,
+          "bytes": 167860,
+          "sha256": "98bd5d8f2873821df3854efc5eb475572be41dc5be70957b4b28bf6ca706d3bc",
+          "duration": 7.6,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.045352,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.033333,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        },
+        {
+          "filename": "turntable.mp4",
+          "pageReferenced": true,
+          "bytes": 134055,
+          "sha256": "bc67cfc261417e01ab0c58fb7d9c052072eac855e2841d41ac170ace95b8cd74",
+          "duration": 3,
+          "width": 480,
+          "height": 560,
+          "currentTime": 0.048273,
+          "readyState": 4,
+          "frame": {
+            "mediaTime": 0.033333,
+            "presentedFrames": 2
+          },
+          "decoded": true
+        }
+      ],
+      "stills": {
+        "stills": [
+          {
+            "path": "/studio/assets/media/sir-flush-a-lot/v001/concept.png",
+            "complete": true,
+            "naturalWidth": 1536,
+            "naturalHeight": 1024
+          },
+          {
+            "path": "/studio/assets/media/sir-flush-a-lot/v001/beauty.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          },
+          {
+            "path": "/studio/assets/media/sir-flush-a-lot/v001/front.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          },
+          {
+            "path": "/studio/assets/media/sir-flush-a-lot/v001/side.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          },
+          {
+            "path": "/studio/assets/media/sir-flush-a-lot/v001/back.png",
+            "complete": true,
+            "naturalWidth": 900,
+            "naturalHeight": 1000
+          }
+        ],
+        "posterPaths": [
+          "/studio/assets/media/sir-flush-a-lot/v001/front.png",
+          "/studio/assets/media/sir-flush-a-lot/v001/motion-grid.png"
+        ]
+      },
+      "touchOrbit": {
+        "before": {
+          "theta": 2.7052603405912103,
+          "phi": 1.3089969389957472,
+          "radius": 2.1947263017087413
+        },
+        "after": {
+          "theta": 4.717736898549514,
+          "phi": 1.3089969389957472,
+          "radius": 2.1947263017087413
+        },
+        "changed": true
+      },
+      "screenshot": "sir-flush-a-lot-page-phone.png"
+    }
+  ],
+  "masters": [
+    {
+      "modelId": "mister-hiss",
+      "artifactPath": "/artifacts/haynes-quest/parody/mister-hiss/v001/mister-hiss.blend",
+      "bytes": 8218611,
+      "sha256": "18781a327b2aba9387308daacf5f6e5aaf62851eae5a00e47fb15a2e93bf266a",
+      "verified": true
+    },
+    {
+      "modelId": "peel-patrol",
+      "artifactPath": "/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/peel-patrol.blend",
+      "bytes": 9172051,
+      "sha256": "d9dacbbee93b4b660e64ed351092731016a184fc38a64eb45b73dabe76628e5e",
+      "verified": true
+    },
+    {
+      "modelId": "drama-dragon",
+      "artifactPath": "/artifacts/haynes-quest/parody/block-party-pair/v001/drama-dragon/drama-dragon.blend",
+      "bytes": 13530294,
+      "sha256": "59a45076f2cc5ab6f12b135b8272cbd771a25724d9275cfb98f24948f2fd9561",
+      "verified": true
+    },
+    {
+      "modelId": "sir-flush-a-lot",
+      "artifactPath": "/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/sir-flush-a-lot.blend",
+      "bytes": 7491469,
+      "sha256": "228a8ff41533a830d386ff05bb8ba3367039f22ce8580186423bfd97912cfb30",
+      "verified": true
+    }
+  ],
+  "diagnostics": {
+    "pageErrors": 0,
+    "consoleErrors": 0,
+    "badResponses": 0,
+    "failedRequests": 0,
+    "expectedMetadataAborts": 4,
+    "externalRequests": 0
+  }
+}

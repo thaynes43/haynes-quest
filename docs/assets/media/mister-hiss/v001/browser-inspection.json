@@ -1,0 +1,109 @@
+{
+  "asset_id": "mister-hiss",
+  "glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+  "gltf_clips": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "defeat"
+  ],
+  "skinned_primitives": 3,
+  "embedded_images": [
+    {
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "render": {
+    "calls_including_one_ground": 4,
+    "triangles_including_one_ground": 12874,
+    "textures": 3
+  },
+  "gl_error": 0,
+  "webgl_version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "three_revision": "186",
+  "clips": {
+    "idle": {
+      "duration_s": 2.5,
+      "raster_sha256": [
+        "d96b96a5088b4864f86f134eaeb4cb26e14a17dc4c75c6a3cae0e4f668a5145d",
+        "0b4a071c85816c8866b0fc74fa946f4ebca5c6eac70f7e4802fd60c91b5f38d7",
+        "d96b96a5088b4864f86f134eaeb4cb26e14a17dc4c75c6a3cae0e4f668a5145d",
+        "46ab9018ed9e56814bdb63667ee5655dcef796191f015285d8e573c929eccb98"
+      ],
+      "distinct_rasters": 3,
+      "gl_error": 0
+    },
+    "move": {
+      "duration_s": 1,
+      "raster_sha256": [
+        "d96b96a5088b4864f86f134eaeb4cb26e14a17dc4c75c6a3cae0e4f668a5145d",
+        "68e0a5def9f831aece65f3e4952dccf6adf675d1419d993b170af4edc6b797f7",
+        "d96b96a5088b4864f86f134eaeb4cb26e14a17dc4c75c6a3cae0e4f668a5145d",
+        "aa260ac453c9613f1194784cdb1857a1e6b4a2e91c3fe0dd3e0326d5fe67c6c5"
+      ],
+      "distinct_rasters": 3,
+      "gl_error": 0
+    },
+    "attack": {
+      "duration_s": 1.5,
+      "raster_sha256": [
+        "08d8fb5f7d87fca7a1d8af64f01c76d5af0d52eb38b36f20ac8120efcd55803f",
+        "ece4cd929cd0738953ea76ca653459f67b2437edf9f2313cce8fe89268d90d9a",
+        "af6b0a9e96912290a9e1dd342fc69ea30ddda5037bb967b9433007fcdf11927c",
+        "0898a15b136612ecc609b877db48fdf391bfa8a7b50edde46e78dae3a60bab47"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "hit": {
+      "duration_s": 0.5,
+      "raster_sha256": [
+        "cdfd05dfbbc9621b2515a4ace470a5bf6b703a212c5e8d115e9b7ff254deb289",
+        "9a88c8005e1d01274d8401b5a19e2a099226dfd58c33727794a7633a39c9dc77",
+        "d96b96a5088b4864f86f134eaeb4cb26e14a17dc4c75c6a3cae0e4f668a5145d",
+        "74b13da1c0184181045a804a66a0c02d924ddc99c9102b699647b9fa2957572e"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "defeat": {
+      "duration_s": 2,
+      "raster_sha256": [
+        "d96b96a5088b4864f86f134eaeb4cb26e14a17dc4c75c6a3cae0e4f668a5145d",
+        "2107d9bad386128486d1c83b173c42237e217173ac2eb050760eb77c4011a9d9",
+        "5bb246e18a439aa449196a7669d43e04a9446803486660c303dd6b39af9e09f2",
+        "130131fb1df86425945bca1071c1bc49f4aef9c383ef911b6e27e8d872a3541a"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    }
+  },
+  "browser": "153.0.8010.12",
+  "renderer": "Chromium headless with ANGLE SwiftShader (software WebGL)",
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:35279/",
+    "http://127.0.0.1:35279/three/build/three.module.js",
+    "http://127.0.0.1:35279/three/examples/jsm/loaders/GLTFLoader.js",
+    "http://127.0.0.1:35279/three/examples/jsm/utils/BufferGeometryUtils.js",
+    "http://127.0.0.1:35279/three/examples/jsm/utils/SkeletonUtils.js",
+    "http://127.0.0.1:35279/three/build/three.core.js",
+    "http://127.0.0.1:35279/assets/mister-hiss.glb",
+    "blob:http://127.0.0.1:35279/c5722436-bcb1-4ea9-8404-655255a0abcb"
+  ],
+  "checks": {
+    "exact_glb_hash": true,
+    "three_skinned_draw_primitives": true,
+    "one_embedded_1024_image": true,
+    "expected_color_draws": true,
+    "expected_triangle_count": true,
+    "five_expected_clips": true,
+    "every_clip_changes_actual_raster": true,
+    "webgl_error_free": true,
+    "browser_error_free": true,
+    "no_external_requests": true
+  },
+  "limitations": "Isolated exact-GLB software WebGL intake; not integrated gameplay, physical Safari, GPU performance or owner approval."
+}

@@ -63,6 +63,28 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
     }
   });
 
+  it('Postgres leaves no partial save when dated catalog coverage is unavailable', async () => {
+    const store = PostgresQuestStore.connect(testDatabaseUrl!);
+    try {
+      const owner = await store.createFixtureSession(randomUUID(), new Date(Date.now() + 60_000));
+      const preview = await store.putPreview(previewInputForDates(owner.id, '2019-01-01', [
+        '2019-06-01',
+      ]));
+      await expect(store.createSave({
+        ownerId: owner.id,
+        previewId: preview.previewId,
+        selectedIds: preview.selectedIds,
+      })).rejects.toMatchObject({
+        status: 422,
+        code: 'ERA_CATALOG_UNAVAILABLE',
+        message: 'Adventure catalog unavailable',
+      });
+      expect(await store.listSaves(owner.id)).toEqual([]);
+    } finally {
+      await store.close();
+    }
+  });
+
   it('Postgres serializes idempotent combat actions and scopes every query by owner', async () => {
     const store = PostgresQuestStore.connect(testDatabaseUrl!);
     try {
@@ -520,5 +542,34 @@ function previewInput(ownerId: string, expiresAt = new Date(Date.now() + 60_000)
     selectedIds: memories.map((memory) => memory.id),
     coverage: { fromDate: memories[0]!.date, toDate: memories.at(-1)!.date, incomplete: false, scanned: 3 },
     expiresAt,
+  };
+}
+
+function previewInputForDates(
+  ownerId: string,
+  birthDate: string,
+  dates: string[],
+): NewPreviewRecord {
+  const memories = dates.map((date, index) => ({
+    id: `memory-${index}`,
+    date,
+    label: `Memory ${index}`,
+    ageYears: wholeYearsAt(birthDate, date),
+    source: { kind: 'fixture' as const, key: `memory-${index}` },
+  }));
+  return {
+    ownerId,
+    birthDate,
+    subjects: [FIXTURE_SUBJECT],
+    chosenSubject: FIXTURE_SUBJECT,
+    memories,
+    selectedIds: memories.map((memory) => memory.id),
+    coverage: {
+      fromDate: dates[0] ?? null,
+      toDate: dates.at(-1) ?? null,
+      incomplete: false,
+      scanned: memories.length,
+    },
+    expiresAt: new Date(Date.now() + 60_000),
   };
 }

@@ -1,0 +1,921 @@
+{
+  "asset_id": "drama-dragon",
+  "glb_sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933",
+  "master_sha256": "59a45076f2cc5ab6f12b135b8272cbd771a25724d9275cfb98f24948f2fd9561",
+  "method": "Every source vertex matched to reimported GLB coordinates with equal joint influences; BVH surface intersections at authored seams.",
+  "named_source_parts": 110,
+  "exported_vertices": 10804,
+  "parts": [
+    {
+      "name": "Torso | angular black voxel chest",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Torso | softer belly plate",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Torso | stepped belly tile 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Torso | stepped belly tile 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Torso | stepped belly tile 2",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Torso | stepped belly tile 3",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Neck | connected voxel segment 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Neck | connected voxel segment 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Neck | connected voxel segment 2",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Head | oversized square black head",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Head | long rectangular muzzle",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Jaw | attached blunt lower jaw",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | purple rectangular eye L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | purple inner eye glow L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | expressive block brow L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | square nostril L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Jaw | blunt square tooth L0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Jaw | blunt square tooth L1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Horn | attached lower L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Horn | blunt upper L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | purple rectangular eye R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | purple inner eye glow R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | expressive block brow R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | square nostril R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Jaw | blunt square tooth R0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Jaw | blunt square tooth R1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Horn | attached lower R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Horn | blunt upper R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Crown | connected cardboard lower band",
+      "vertices": 132,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Crown | exactly three cardboard points",
+      "vertices": 24,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Crown | embossed cardboard score -0.083",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Crown | embossed cardboard score 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Crown | embossed cardboard score 0.088",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | continuous plum inner collar",
+      "vertices": 132,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 00",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 01",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 02",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 03",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 04",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 05",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 06",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 07",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 08",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 09",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 10",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | broad cloth pleat 11",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | secure back brass clasp",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Ruff | back clasp inset",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | front_L thigh block",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | front_L square knee",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | front_L shin block",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | front_L broad dark foot",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | front_L blunt grey toe 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | front_L blunt grey toe 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | front_L blunt grey toe 2",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | front_R thigh block",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | front_R square knee",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | front_R shin block",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | front_R broad dark foot",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | front_R blunt grey toe 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | front_R blunt grey toe 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | front_R blunt grey toe 2",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | rear_L thigh block",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | rear_L square knee",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | rear_L shin block",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | rear_L broad dark foot",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | rear_L blunt grey toe 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | rear_L blunt grey toe 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | rear_L blunt grey toe 2",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | rear_R thigh block",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | rear_R square knee",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | rear_R shin block",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | rear_R broad dark foot",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | rear_R blunt grey toe 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | rear_R blunt grey toe 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Foot | rear_R blunt grey toe 2",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | L angular opaque membrane",
+      "vertices": 16,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | L attached grey strut 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | L attached grey strut 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | L attached grey strut 2",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | L attached grey strut 3",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | L attached grey strut 4",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | L block elbow joint",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | R angular opaque membrane",
+      "vertices": 16,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | R attached grey strut 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | R attached grey strut 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | R attached grey strut 2",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | R attached grey strut 3",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | R attached grey strut 4",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Wing | R block elbow joint",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | single chain segment 00",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 00",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | single chain segment 01",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 01",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | single chain segment 02",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 02",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | single chain segment 03",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 03",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | single chain segment 04",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 04",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | single chain segment 05",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 05",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | single chain segment 06",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 06",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | single chain segment 07",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Tail | attached grey dorsal tile 07",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Back | attached grey dorsal tile 0",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Back | attached grey dorsal tile 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Back | attached grey dorsal tile 2",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Back | attached grey dorsal tile 3",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    }
+  ],
+  "attachment_contacts": [
+    {
+      "attachment": "cardboard crown attached to head",
+      "parts": [
+        "Crown | connected cardboard lower band",
+        "Head | oversized square black head"
+      ],
+      "intersecting_face_pairs": 66
+    },
+    {
+      "attachment": "three crown points attached to band",
+      "parts": [
+        "Crown | exactly three cardboard points",
+        "Crown | connected cardboard lower band"
+      ],
+      "intersecting_face_pairs": 24
+    },
+    {
+      "attachment": "ruff collar attached to neck",
+      "parts": [
+        "Ruff | continuous plum inner collar",
+        "Neck | connected voxel segment 1"
+      ],
+      "intersecting_face_pairs": 64
+    },
+    {
+      "attachment": "ruff back clasp attached to pleat",
+      "parts": [
+        "Ruff | secure back brass clasp",
+        "Ruff | broad cloth pleat 06"
+      ],
+      "intersecting_face_pairs": 18
+    },
+    {
+      "attachment": "tail base attached to body",
+      "parts": [
+        "Tail | single chain segment 00",
+        "Torso | angular black voxel chest"
+      ],
+      "intersecting_face_pairs": 12
+    },
+    {
+      "attachment": "wing L joins body",
+      "parts": [
+        "Wing | L angular opaque membrane",
+        "Torso | angular black voxel chest"
+      ],
+      "intersecting_face_pairs": 10
+    },
+    {
+      "attachment": "horn L joins head",
+      "parts": [
+        "Horn | attached lower L",
+        "Head | oversized square black head"
+      ],
+      "intersecting_face_pairs": 12
+    },
+    {
+      "attachment": "wing R joins body",
+      "parts": [
+        "Wing | R angular opaque membrane",
+        "Torso | angular black voxel chest"
+      ],
+      "intersecting_face_pairs": 10
+    },
+    {
+      "attachment": "horn R joins head",
+      "parts": [
+        "Horn | attached lower R",
+        "Head | oversized square black head"
+      ],
+      "intersecting_face_pairs": 12
+    },
+    {
+      "attachment": "tail joint 00",
+      "parts": [
+        "Tail | single chain segment 00",
+        "Tail | single chain segment 01"
+      ],
+      "intersecting_face_pairs": 12
+    },
+    {
+      "attachment": "tail joint 01",
+      "parts": [
+        "Tail | single chain segment 01",
+        "Tail | single chain segment 02"
+      ],
+      "intersecting_face_pairs": 14
+    },
+    {
+      "attachment": "tail joint 02",
+      "parts": [
+        "Tail | single chain segment 02",
+        "Tail | single chain segment 03"
+      ],
+      "intersecting_face_pairs": 14
+    },
+    {
+      "attachment": "tail joint 03",
+      "parts": [
+        "Tail | single chain segment 03",
+        "Tail | single chain segment 04"
+      ],
+      "intersecting_face_pairs": 12
+    },
+    {
+      "attachment": "tail joint 04",
+      "parts": [
+        "Tail | single chain segment 04",
+        "Tail | single chain segment 05"
+      ],
+      "intersecting_face_pairs": 12
+    },
+    {
+      "attachment": "tail joint 05",
+      "parts": [
+        "Tail | single chain segment 05",
+        "Tail | single chain segment 06"
+      ],
+      "intersecting_face_pairs": 12
+    },
+    {
+      "attachment": "tail joint 06",
+      "parts": [
+        "Tail | single chain segment 06",
+        "Tail | single chain segment 07"
+      ],
+      "intersecting_face_pairs": 14
+    }
+  ],
+  "checks": {
+    "every_named_source_vertex_survives": true,
+    "all_source_weights_survive": true,
+    "normalized_skin_weights": true,
+    "one_to_four_influences": true,
+    "major_attachment_seams_physically_intersect": true,
+    "exactly_four_distinct_feet": true,
+    "exactly_two_wing_membranes": true,
+    "one_tail_with_eight_segments": true,
+    "one_three_point_crown_and_back_clasp": true
+  }
+}

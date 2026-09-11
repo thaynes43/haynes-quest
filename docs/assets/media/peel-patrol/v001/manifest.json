@@ -1,0 +1,2277 @@
+{
+  "asset_id": "peel-patrol",
+  "version": "v001",
+  "work_order": "WO-028",
+  "status": "candidate; exact owner approval pending",
+  "glb_sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5",
+  "remote_directory": "/workspace/haynes-quest/parody/block-party-pair/v001/peel-patrol",
+  "authoring": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "blender": "4.5.13 LTS",
+    "method": "Original authored silhouette, softly beveled tactile forms, original embedded pigment atlas, deliberate skin and joint weights, five 40fps clips."
+  },
+  "source_concept": {
+    "repository_path": "docs/assets/media/peel-patrol/v001/concept.png",
+    "sha256": "4ce40a6669cec9ad87e249c877c7c73cf8633369bd0ae30ee3ffcdadc6f60be5",
+    "private_inputs": false,
+    "reference": "Fortnite Peely, goofy banana safety marshal"
+  },
+  "review": {
+    "lead_checkpoint": {
+      "work_order": "WO-028",
+      "coordinator_selection": "selected from actual GLB front/back/three-quarter before final media; rest geometry unchanged by subsequent grounding/stance/seated-pose corrections",
+      "initial_glb_sha256": "d81dc0375407e1743d69b460be9af384523942633a915c303ca236e24912312c",
+      "final_glb_sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5",
+      "root_direction": "It reads clearly as Peely with the officious marshal gag; one whistle and one attached belt peel remain coherent across the views. Preserve attachment geometry and boot contact in all clips.",
+      "owner_approval": "pending",
+      "final_motion_selection": "Root selected the seated slip correction; actual geometry and attachment construction retained."
+    },
+    "owner_approval": "pending",
+    "gameplay_promotion": false
+  },
+  "runtime": {
+    "asset_id": "peel-patrol",
+    "version": "v001",
+    "glb": "peel-patrol.glb",
+    "glb_sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5",
+    "runtime_scale": 1,
+    "units": "meters",
+    "up": "+Y",
+    "forward": "-Z",
+    "origin": [
+      0,
+      0,
+      0
+    ],
+    "ground_to_top_m": 1.15,
+    "rest_ground_y_m": 0,
+    "root_motion": "Caller-controlled scene root and root joint remain fixed; articulated in-place clips.",
+    "attack_contact_time_s": 1.0,
+    "attack_contact_fraction": 0.625,
+    "clips": {
+      "idle": {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "repeat"
+      },
+      "move": {
+        "name": "move",
+        "duration_s": 1.2,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "repeat"
+      },
+      "attack": {
+        "name": "attack",
+        "duration_s": 1.6,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": 1.0,
+        "contact_fraction": 0.625,
+        "playback": "once"
+      },
+      "hit": {
+        "name": "hit",
+        "duration_s": 0.6,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "once"
+      },
+      "defeat": {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "once",
+        "end_behavior": "Seated intact; terminal pose holds.",
+        "remove_only_after_duration_s": 2.0,
+        "embedded_fade": false
+      }
+    },
+    "triangles": 9084,
+    "materials": 4,
+    "draw_primitives": 4,
+    "joints": [
+      "root",
+      "body",
+      "head",
+      "brow_L",
+      "brow_R",
+      "whistle",
+      "upper_arm_L",
+      "forearm_L",
+      "hand_L",
+      "thigh_L",
+      "shin_L",
+      "foot_L",
+      "upper_arm_R",
+      "forearm_R",
+      "hand_R",
+      "thigh_R",
+      "shin_R",
+      "foot_R",
+      "peel_upper",
+      "peel_lower",
+      "peel_tip"
+    ],
+    "rest_bounds_y_up": {
+      "min": [
+        -0.24500000476837158,
+        0,
+        -0.19900000095367432
+      ],
+      "max": [
+        0.24500000476837158,
+        1.149999976158142,
+        0.2153987716883421
+      ]
+    },
+    "texture": "One original embedded 1024px JPEG atlas; no external decoder, images or network resources."
+  },
+  "construction": {
+    "asset_id": "peel-patrol",
+    "version": "v001",
+    "work_order": "WO-028",
+    "authoring_model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "blender": "4.5.13 LTS",
+    "private_inputs": false,
+    "downloaded_meshes_or_textures": false,
+    "triangles": 9084,
+    "vertices": 4684,
+    "material_count": 4,
+    "joints": [
+      "root",
+      "body",
+      "head",
+      "whistle",
+      "brow_L",
+      "brow_R",
+      "upper_arm_L",
+      "forearm_L",
+      "hand_L",
+      "thigh_L",
+      "shin_L",
+      "foot_L",
+      "upper_arm_R",
+      "forearm_R",
+      "hand_R",
+      "thigh_R",
+      "shin_R",
+      "foot_R",
+      "peel_upper",
+      "peel_lower",
+      "peel_tip"
+    ],
+    "spec": {
+      "height": 1.15,
+      "floor": 0,
+      "forward": "glTF -Z",
+      "up": "glTF +Y",
+      "concept_sha256": "4ce40a6669cec9ad87e249c877c7c73cf8633369bd0ae30ee3ffcdadc6f60be5",
+      "height_m": 1.15,
+      "anatomy": {
+        "arms": 2,
+        "legs": 2,
+        "fingers_per_hand": 4,
+        "whistles": 1,
+        "left_belt_trailing_peels": 1
+      },
+      "clips": {
+        "idle": 2.5,
+        "move": 1.2,
+        "attack": 1.6,
+        "hit": 0.6,
+        "defeat": 2.0
+      },
+      "attack_contact_s": 1.0,
+      "attack_contact_fraction": 0.625,
+      "loop_clips": [
+        "idle",
+        "move"
+      ],
+      "once_clamped_clips": [
+        "attack",
+        "hit",
+        "defeat"
+      ]
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.2,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.6,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": 1.0,
+        "contact_fraction": 0.625
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.6,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null
+      }
+    ],
+    "source_scale_xyz": [
+      1.0,
+      1.0,
+      0.9863325357437134
+    ],
+    "animation_fps": 40,
+    "bounds_blender": {
+      "min": [
+        -0.24500000476837158,
+        -0.21539877355098724,
+        0.0
+      ],
+      "max": [
+        0.24500000476837158,
+        0.19900000095367432,
+        1.149999976158142
+      ]
+    },
+    "rig_limb_contract": {
+      "arm_L": {
+        "rest_points": [
+          [
+            0.14300000667572021,
+            0.0020000000949949026,
+            0.5503735542297363
+          ],
+          [
+            0.22200000286102295,
+            0.010999999940395355,
+            0.4438496232032776
+          ],
+          [
+            0.18400000035762787,
+            0.04699999839067459,
+            0.3590250313282013
+          ]
+        ],
+        "joints": [
+          "upper_arm_L",
+          "forearm_L",
+          "hand_L"
+        ]
+      },
+      "leg_L": {
+        "rest_points": [
+          [
+            0.06300000101327896,
+            0.0,
+            0.2978724241256714
+          ],
+          [
+            0.07699999958276749,
+            0.017000000923871994,
+            0.20219816267490387
+          ],
+          [
+            0.08399999886751175,
+            0.003000000026077032,
+            0.09961958974599838
+          ]
+        ],
+        "joints": [
+          "thigh_L",
+          "shin_L",
+          "foot_L"
+        ]
+      },
+      "arm_R": {
+        "rest_points": [
+          [
+            -0.14300000667572021,
+            0.0020000000949949026,
+            0.5503735542297363
+          ],
+          [
+            -0.22200000286102295,
+            0.010999999940395355,
+            0.4438496232032776
+          ],
+          [
+            -0.18400000035762787,
+            0.04699999839067459,
+            0.3590250313282013
+          ]
+        ],
+        "joints": [
+          "upper_arm_R",
+          "forearm_R",
+          "hand_R"
+        ]
+      },
+      "leg_R": {
+        "rest_points": [
+          [
+            -0.06300000101327896,
+            0.0,
+            0.2978724241256714
+          ],
+          [
+            -0.07699999958276749,
+            0.017000000923871994,
+            0.20219816267490387
+          ],
+          [
+            -0.08399999886751175,
+            0.003000000026077032,
+            0.09961958974599838
+          ]
+        ],
+        "joints": [
+          "thigh_R",
+          "shin_R",
+          "foot_R"
+        ]
+      }
+    },
+    "named_source_parts": [
+      {
+        "name": "Banana | continuous tall curved yellow skin",
+        "weighting": "blended attachment",
+        "atlas_tile": 0,
+        "vertices": 308,
+        "triangles": 612,
+        "bounds": {
+          "min": [
+            -0.15100499987602234,
+            -0.11949999630451202,
+            0.26137810945510864
+          ],
+          "max": [
+            0.14800499379634857,
+            0.11153999716043472,
+            1.081020474433899
+          ]
+        }
+      },
+      {
+        "name": "Banana | attached side ridge -1",
+        "weighting": "blended attachment",
+        "atlas_tile": 1,
+        "vertices": 32,
+        "triangles": 60,
+        "bounds": {
+          "min": [
+            -0.12799817323684692,
+            0.017032751813530922,
+            0.3939695954322815
+          ],
+          "max": [
+            -0.08602020889520645,
+            0.07399409264326096,
+            0.9375646114349365
+          ]
+        }
+      },
+      {
+        "name": "Banana | attached side ridge 1",
+        "weighting": "blended attachment",
+        "atlas_tile": 1,
+        "vertices": 32,
+        "triangles": 60,
+        "bounds": {
+          "min": [
+            0.03412215784192085,
+            0.017030581831932068,
+            0.3939695954322815
+          ],
+          "max": [
+            0.12799817323684692,
+            0.07399409264326096,
+            0.937892735004425
+          ]
+        }
+      },
+      {
+        "name": "Banana | brown blunt stem",
+        "weighting": "head",
+        "atlas_tile": 3,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.05386759713292122,
+            -0.017103124409914017,
+            1.0712209939956665
+          ],
+          "max": [
+            0.017867598682641983,
+            0.03710312396287918,
+            1.149999976158142
+          ]
+        }
+      },
+      {
+        "name": "Banana | attached upper peel flap L",
+        "weighting": "head",
+        "atlas_tile": 1,
+        "vertices": 20,
+        "triangles": 36,
+        "bounds": {
+          "min": [
+            -0.011500000022351742,
+            -0.01617814414203167,
+            0.970501720905304
+          ],
+          "max": [
+            0.1510000079870224,
+            0.010375741869211197,
+            1.0915459394454956
+          ]
+        }
+      },
+      {
+        "name": "Face | dark oval eye L",
+        "weighting": "head",
+        "atlas_tile": 8,
+        "vertices": 222,
+        "triangles": 440,
+        "bounds": {
+          "min": [
+            0.001999981701374054,
+            0.056999992579221725,
+            0.758489727973938
+          ],
+          "max": [
+            0.07000000774860382,
+            0.0949999988079071,
+            0.8669863343238831
+          ]
+        }
+      },
+      {
+        "name": "Face | stern brow L",
+        "weighting": "brow_L",
+        "atlas_tile": 3,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            0.004322908818721771,
+            0.03150000050663948,
+            0.875914454460144
+          ],
+          "max": [
+            0.06567709147930145,
+            0.05050000175833702,
+            0.9034294486045837
+          ]
+        }
+      },
+      {
+        "name": "Banana | attached upper peel flap R",
+        "weighting": "head",
+        "atlas_tile": 1,
+        "vertices": 20,
+        "triangles": 36,
+        "bounds": {
+          "min": [
+            -0.19700001180171967,
+            -0.01617814414203167,
+            0.970501720905304
+          ],
+          "max": [
+            -0.03450000286102295,
+            0.010375741869211197,
+            1.0915459394454956
+          ]
+        }
+      },
+      {
+        "name": "Face | dark oval eye R",
+        "weighting": "head",
+        "atlas_tile": 8,
+        "vertices": 222,
+        "triangles": 440,
+        "bounds": {
+          "min": [
+            -0.10000001639127731,
+            0.056999992579221725,
+            0.758489727973938
+          ],
+          "max": [
+            -0.031999994069337845,
+            0.0949999988079071,
+            0.8669863343238831
+          ]
+        }
+      },
+      {
+        "name": "Face | stern brow R",
+        "weighting": "brow_R",
+        "atlas_tile": 3,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.09567709267139435,
+            0.03150000050663948,
+            0.875914454460144
+          ],
+          "max": [
+            -0.03432290628552437,
+            0.05050000175833702,
+            0.9034294486045837
+          ]
+        }
+      },
+      {
+        "name": "Vest | continuous navy back and side panels",
+        "weighting": "body",
+        "atlas_tile": 4,
+        "vertices": 132,
+        "triangles": 260,
+        "bounds": {
+          "min": [
+            -0.1529417335987091,
+            -0.12700000405311584,
+            0.3994646668434143
+          ],
+          "max": [
+            0.1529417335987091,
+            0.12132773548364639,
+            0.5730592012405396
+          ]
+        }
+      },
+      {
+        "name": "Vest | lapel L",
+        "weighting": "body",
+        "atlas_tile": 5,
+        "vertices": 6,
+        "triangles": 8,
+        "bounds": {
+          "min": [
+            0.041999999433755875,
+            0.05826469510793686,
+            0.5188109278678894
+          ],
+          "max": [
+            0.13500000536441803,
+            0.12762120366096497,
+            0.576018214225769
+          ]
+        }
+      },
+      {
+        "name": "Vest | small pocket L",
+        "weighting": "body",
+        "atlas_tile": 5,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            0.07800000160932541,
+            0.08949999511241913,
+            0.42116400599479675
+          ],
+          "max": [
+            0.12800000607967377,
+            0.1145000010728836,
+            0.46850794553756714
+          ]
+        }
+      },
+      {
+        "name": "Vest | pocket top seam L",
+        "weighting": "body",
+        "atlas_tile": 6,
+        "vertices": 12,
+        "triangles": 20,
+        "bounds": {
+          "min": [
+            0.08178457617759705,
+            0.11045611649751663,
+            0.4677188992500305
+          ],
+          "max": [
+            0.12521542608737946,
+            0.1195438876748085,
+            0.4712696969509125
+          ]
+        }
+      },
+      {
+        "name": "Vest | lapel R",
+        "weighting": "body",
+        "atlas_tile": 5,
+        "vertices": 6,
+        "triangles": 8,
+        "bounds": {
+          "min": [
+            -0.13500000536441803,
+            0.05826469510793686,
+            0.5188109278678894
+          ],
+          "max": [
+            -0.041999999433755875,
+            0.12762120366096497,
+            0.576018214225769
+          ]
+        }
+      },
+      {
+        "name": "Vest | small pocket R",
+        "weighting": "body",
+        "atlas_tile": 5,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.12800000607967377,
+            0.08949999511241913,
+            0.42116400599479675
+          ],
+          "max": [
+            -0.07800000160932541,
+            0.1145000010728836,
+            0.46850794553756714
+          ]
+        }
+      },
+      {
+        "name": "Vest | pocket top seam R",
+        "weighting": "body",
+        "atlas_tile": 6,
+        "vertices": 12,
+        "triangles": 20,
+        "bounds": {
+          "min": [
+            -0.12521542608737946,
+            0.11045611649751663,
+            0.4677188992500305
+          ],
+          "max": [
+            -0.08178457617759705,
+            0.1195438876748085,
+            0.4712696969509125
+          ]
+        }
+      },
+      {
+        "name": "Vest | concealed shoulder fastening -1",
+        "weighting": "body",
+        "atlas_tile": 4,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.1589999943971634,
+            -0.02250000089406967,
+            0.5128929018974304
+          ],
+          "max": [
+            -0.1289999932050705,
+            0.02250000089406967,
+            0.5681275129318237
+          ]
+        }
+      },
+      {
+        "name": "Vest | concealed shoulder fastening 1",
+        "weighting": "body",
+        "atlas_tile": 4,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            0.1289999932050705,
+            -0.02250000089406967,
+            0.5128929018974304
+          ],
+          "max": [
+            0.1589999943971634,
+            0.02250000089406967,
+            0.5681275129318237
+          ]
+        }
+      },
+      {
+        "name": "Badge | single brass banana insignia",
+        "weighting": "body",
+        "atlas_tile": 9,
+        "vertices": 20,
+        "triangles": 36,
+        "bounds": {
+          "min": [
+            0.07109999656677246,
+            0.10050000250339508,
+            0.4883825480937958
+          ],
+          "max": [
+            0.13089999556541443,
+            0.10949999839067459,
+            0.5505708456039429
+          ]
+        }
+      },
+      {
+        "name": "Belt | continuous dark belt",
+        "weighting": "body",
+        "atlas_tile": 8,
+        "vertices": 132,
+        "triangles": 260,
+        "bounds": {
+          "min": [
+            -0.11800000071525574,
+            -0.09600000083446503,
+            0.3383120596408844
+          ],
+          "max": [
+            0.11800000071525574,
+            0.09600000083446503,
+            0.37776535749435425
+          ]
+        }
+      },
+      {
+        "name": "Belt | brass buckle",
+        "weighting": "body",
+        "atlas_tile": 7,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.03350000083446503,
+            0.0925000011920929,
+            0.33387356996536255
+          ],
+          "max": [
+            0.03350000083446503,
+            0.11349999904632568,
+            0.3822038769721985
+          ]
+        }
+      },
+      {
+        "name": "Belt | inset leather buckle",
+        "weighting": "body",
+        "atlas_tile": 10,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.02250000089406967,
+            0.11299999803304672,
+            0.34275054931640625
+          ],
+          "max": [
+            0.02250000089406967,
+            0.11899999529123306,
+            0.3733268678188324
+          ]
+        }
+      },
+      {
+        "name": "Cap | softly tailored navy crown",
+        "weighting": "head",
+        "atlas_tile": 4,
+        "vertices": 120,
+        "triangles": 236,
+        "bounds": {
+          "min": [
+            -0.11517175287008286,
+            -0.06900206208229065,
+            1.0012508630752563
+          ],
+          "max": [
+            0.0651717558503151,
+            0.08900205790996552,
+            1.0998649597167969
+          ]
+        }
+      },
+      {
+        "name": "Cap | fitted lower band",
+        "weighting": "head",
+        "atlas_tile": 6,
+        "vertices": 48,
+        "triangles": 92,
+        "bounds": {
+          "min": [
+            -0.10439034551382065,
+            -0.06269247084856033,
+            0.9939419627189636
+          ],
+          "max": [
+            0.057589828968048096,
+            0.08009443432092667,
+            1.0442053079605103
+          ]
+        }
+      },
+      {
+        "name": "Cap | short forward visor",
+        "weighting": "head",
+        "atlas_tile": 6,
+        "vertices": 170,
+        "triangles": 336,
+        "bounds": {
+          "min": [
+            -0.11412584781646729,
+            0.014823012053966522,
+            0.9896112680435181
+          ],
+          "max": [
+            0.08974064886569977,
+            0.16403767466545105,
+            1.0306556224822998
+          ]
+        }
+      },
+      {
+        "name": "Cap | brass side button",
+        "weighting": "head",
+        "atlas_tile": 7,
+        "vertices": 86,
+        "triangles": 168,
+        "bounds": {
+          "min": [
+            0.05056701973080635,
+            0.014306915923953056,
+            1.0448249578475952
+          ],
+          "max": [
+            0.06820931285619736,
+            0.03205391764640808,
+            1.0622646808624268
+          ]
+        }
+      },
+      {
+        "name": "Whistle | single brass barrel",
+        "weighting": "whistle",
+        "atlas_tile": 7,
+        "vertices": 32,
+        "triangles": 60,
+        "bounds": {
+          "min": [
+            -0.024000000208616257,
+            0.1509999930858612,
+            0.4260956645011902
+          ],
+          "max": [
+            0.024000000208616257,
+            0.19699999690055847,
+            0.47146695852279663
+          ]
+        }
+      },
+      {
+        "name": "Whistle | attached mouthpiece",
+        "weighting": "whistle",
+        "atlas_tile": 7,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.012500000186264515,
+            0.16200000047683716,
+            0.39847832918167114
+          ],
+          "max": [
+            0.012500000186264515,
+            0.1940000057220459,
+            0.4438496232032776
+          ]
+        }
+      },
+      {
+        "name": "Whistle | dark windway",
+        "weighting": "whistle",
+        "atlas_tile": 8,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.006500000134110451,
+            0.19499999284744263,
+            0.41228702664375305
+          ],
+          "max": [
+            0.006500000134110451,
+            0.19900000095367432,
+            0.4320136308670044
+          ]
+        }
+      },
+      {
+        "name": "Whistle cord | secured L",
+        "weighting": "blended attachment",
+        "atlas_tile": 8,
+        "vertices": 32,
+        "triangles": 60,
+        "bounds": {
+          "min": [
+            -0.00046871218364685774,
+            0.10525957494974136,
+            0.4670284390449524
+          ],
+          "max": [
+            0.09038181602954865,
+            0.17146846652030945,
+            0.5652920007705688
+          ]
+        }
+      },
+      {
+        "name": "Whistle cord | secured R",
+        "weighting": "blended attachment",
+        "atlas_tile": 8,
+        "vertices": 32,
+        "triangles": 60,
+        "bounds": {
+          "min": [
+            -0.09038181602954865,
+            0.10525957494974136,
+            0.4670284390449524
+          ],
+          "max": [
+            0.00046871218364685774,
+            0.17146846652030945,
+            0.5652920007705688
+          ]
+        }
+      },
+      {
+        "name": "Arm | upper L",
+        "weighting": "upper_arm_L",
+        "atlas_tile": 0,
+        "vertices": 36,
+        "triangles": 68,
+        "bounds": {
+          "min": [
+            0.12282206863164902,
+            -0.022943641990423203,
+            0.4310385584831238
+          ],
+          "max": [
+            0.23975658416748047,
+            0.03295040875673294,
+            0.5649316310882568
+          ]
+        }
+      },
+      {
+        "name": "Arm | elbow L",
+        "weighting": "forearm_L",
+        "atlas_tile": 0,
+        "vertices": 86,
+        "triangles": 168,
+        "bounds": {
+          "min": [
+            0.19900000095367432,
+            -0.010999999940395355,
+            0.4201776683330536
+          ],
+          "max": [
+            0.24500000476837158,
+            0.032999999821186066,
+            0.467521607875824
+          ]
+        }
+      },
+      {
+        "name": "Arm | forearm L",
+        "weighting": "forearm_L",
+        "atlas_tile": 0,
+        "vertices": 36,
+        "triangles": 68,
+        "bounds": {
+          "min": [
+            0.16753564774990082,
+            -0.009545443579554558,
+            0.34990742802619934
+          ],
+          "max": [
+            0.24212311208248138,
+            0.06380990147590637,
+            0.454993337392807
+          ]
+        }
+      },
+      {
+        "name": "Hand | mitten palm L",
+        "weighting": "hand_L",
+        "atlas_tile": 0,
+        "vertices": 146,
+        "triangles": 288,
+        "bounds": {
+          "min": [
+            0.1550000011920929,
+            0.029999999329447746,
+            0.3126673996448517
+          ],
+          "max": [
+            0.21299999952316284,
+            0.07999999821186066,
+            0.3797380030155182
+          ]
+        }
+      },
+      {
+        "name": "Hand | L finger 1",
+        "weighting": "hand_L",
+        "atlas_tile": 0,
+        "vertices": 72,
+        "triangles": 140,
+        "bounds": {
+          "min": [
+            0.16144049167633057,
+            0.053999997675418854,
+            0.3067494034767151
+          ],
+          "max": [
+            0.17855951189994812,
+            0.07800000160932541,
+            0.3442300260066986
+          ]
+        }
+      },
+      {
+        "name": "Hand | L finger 2",
+        "weighting": "hand_L",
+        "atlas_tile": 0,
+        "vertices": 72,
+        "triangles": 140,
+        "bounds": {
+          "min": [
+            0.1754404902458191,
+            0.053999997675418854,
+            0.3067494034767151
+          ],
+          "max": [
+            0.19255951046943665,
+            0.07800000160932541,
+            0.3442300260066986
+          ]
+        }
+      },
+      {
+        "name": "Hand | L finger 3",
+        "weighting": "hand_L",
+        "atlas_tile": 0,
+        "vertices": 72,
+        "triangles": 140,
+        "bounds": {
+          "min": [
+            0.18944048881530762,
+            0.053999997675418854,
+            0.3067494034767151
+          ],
+          "max": [
+            0.20655950903892517,
+            0.07800000160932541,
+            0.3442300260066986
+          ]
+        }
+      },
+      {
+        "name": "Hand | L thumb",
+        "weighting": "hand_L",
+        "atlas_tile": 0,
+        "vertices": 72,
+        "triangles": 140,
+        "bounds": {
+          "min": [
+            0.14463627338409424,
+            0.057999998331069946,
+            0.33436670899391174
+          ],
+          "max": [
+            0.16936373710632324,
+            0.08799999952316284,
+            0.373820036649704
+          ]
+        }
+      },
+      {
+        "name": "Leg | upper L",
+        "weighting": "thigh_L",
+        "atlas_tile": 0,
+        "vertices": 24,
+        "triangles": 44,
+        "bounds": {
+          "min": [
+            0.04023587703704834,
+            -0.022661598399281502,
+            0.19768443703651428
+          ],
+          "max": [
+            0.0977846309542656,
+            0.03769102692604065,
+            0.3028160035610199
+          ]
+        }
+      },
+      {
+        "name": "Leg | knee L",
+        "weighting": "shin_L",
+        "atlas_tile": 0,
+        "vertices": 86,
+        "triangles": 168,
+        "bounds": {
+          "min": [
+            0.054999999701976776,
+            -0.004999998956918716,
+            0.17951251566410065
+          ],
+          "max": [
+            0.0989999994635582,
+            0.039000000804662704,
+            0.2248838245868683
+          ]
+        }
+      },
+      {
+        "name": "Leg | shin L",
+        "weighting": "shin_L",
+        "atlas_tile": 0,
+        "vertices": 24,
+        "triangles": 44,
+        "bounds": {
+          "min": [
+            0.05704515054821968,
+            -0.014839805662631989,
+            0.09698135405778885
+          ],
+          "max": [
+            0.10195936262607574,
+            0.036822009831666946,
+            0.20512953400611877
+          ]
+        }
+      },
+      {
+        "name": "Boot | sole L",
+        "weighting": "foot_L",
+        "atlas_tile": 10,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            0.02799999713897705,
+            -0.048500001430511475,
+            0.0
+          ],
+          "max": [
+            0.14000000059604645,
+            0.12250000238418579,
+            0.027617311105132103
+          ]
+        }
+      },
+      {
+        "name": "Boot | round toe L",
+        "weighting": "foot_L",
+        "atlas_tile": 8,
+        "vertices": 182,
+        "triangles": 360,
+        "bounds": {
+          "min": [
+            0.028999973088502884,
+            -0.008000016212463379,
+            0.006904326844960451
+          ],
+          "max": [
+            0.13899999856948853,
+            0.13600000739097595,
+            0.07989293336868286
+          ]
+        }
+      },
+      {
+        "name": "Boot | ankle leather L",
+        "weighting": "foot_L",
+        "atlas_tile": 8,
+        "vertices": 96,
+        "triangles": 188,
+        "bounds": {
+          "min": [
+            0.04399999976158142,
+            -0.04699999839067459,
+            0.028603646904230118
+          ],
+          "max": [
+            0.12399999797344208,
+            0.04699999839067459,
+            0.12723690271377563
+          ]
+        }
+      },
+      {
+        "name": "Boot | rolled cuff L",
+        "weighting": "foot_L",
+        "atlas_tile": 12,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            0.04099999740719795,
+            -0.04899999871850014,
+            0.10948291420936584
+          ],
+          "max": [
+            0.12700000405311584,
+            0.04899999871850014,
+            0.12723688781261444
+          ]
+        }
+      },
+      {
+        "name": "Boot | brass lace L0",
+        "weighting": "foot_L",
+        "atlas_tile": 9,
+        "vertices": 12,
+        "triangles": 20,
+        "bounds": {
+          "min": [
+            0.06199999898672104,
+            0.05257513001561165,
+            0.08107653260231018
+          ],
+          "max": [
+            0.10599999874830246,
+            0.057424869388341904,
+            0.08659999817609787
+          ]
+        }
+      },
+      {
+        "name": "Boot | brass lace L1",
+        "weighting": "foot_L",
+        "atlas_tile": 9,
+        "vertices": 12,
+        "triangles": 20,
+        "bounds": {
+          "min": [
+            0.06199999898672104,
+            0.06457512825727463,
+            0.06628154218196869
+          ],
+          "max": [
+            0.10599999874830246,
+            0.06942487508058548,
+            0.07180501520633698
+          ]
+        }
+      },
+      {
+        "name": "Boot | brass lace L2",
+        "weighting": "foot_L",
+        "atlas_tile": 9,
+        "vertices": 12,
+        "triangles": 20,
+        "bounds": {
+          "min": [
+            0.06199999898672104,
+            0.0765751302242279,
+            0.051486559212207794
+          ],
+          "max": [
+            0.10599999874830246,
+            0.08142487704753876,
+            0.057010021060705185
+          ]
+        }
+      },
+      {
+        "name": "Arm | upper R",
+        "weighting": "upper_arm_R",
+        "atlas_tile": 0,
+        "vertices": 36,
+        "triangles": 68,
+        "bounds": {
+          "min": [
+            -0.23975658416748047,
+            -0.022943641990423203,
+            0.4310385584831238
+          ],
+          "max": [
+            -0.12282206863164902,
+            0.03295040875673294,
+            0.5649316310882568
+          ]
+        }
+      },
+      {
+        "name": "Arm | elbow R",
+        "weighting": "forearm_R",
+        "atlas_tile": 0,
+        "vertices": 86,
+        "triangles": 168,
+        "bounds": {
+          "min": [
+            -0.24500000476837158,
+            -0.010999999940395355,
+            0.4201776683330536
+          ],
+          "max": [
+            -0.19900000095367432,
+            0.032999999821186066,
+            0.467521607875824
+          ]
+        }
+      },
+      {
+        "name": "Arm | forearm R",
+        "weighting": "forearm_R",
+        "atlas_tile": 0,
+        "vertices": 36,
+        "triangles": 68,
+        "bounds": {
+          "min": [
+            -0.24212311208248138,
+            -0.009545443579554558,
+            0.34990742802619934
+          ],
+          "max": [
+            -0.16753564774990082,
+            0.06380990147590637,
+            0.454993337392807
+          ]
+        }
+      },
+      {
+        "name": "Hand | mitten palm R",
+        "weighting": "hand_R",
+        "atlas_tile": 0,
+        "vertices": 146,
+        "triangles": 288,
+        "bounds": {
+          "min": [
+            -0.21299999952316284,
+            0.029999999329447746,
+            0.3126673996448517
+          ],
+          "max": [
+            -0.1550000011920929,
+            0.07999999821186066,
+            0.3797380030155182
+          ]
+        }
+      },
+      {
+        "name": "Hand | R finger 1",
+        "weighting": "hand_R",
+        "atlas_tile": 0,
+        "vertices": 72,
+        "triangles": 140,
+        "bounds": {
+          "min": [
+            -0.20655950903892517,
+            0.053999997675418854,
+            0.3067494034767151
+          ],
+          "max": [
+            -0.18944048881530762,
+            0.07800000160932541,
+            0.3442300260066986
+          ]
+        }
+      },
+      {
+        "name": "Hand | R finger 2",
+        "weighting": "hand_R",
+        "atlas_tile": 0,
+        "vertices": 72,
+        "triangles": 140,
+        "bounds": {
+          "min": [
+            -0.19255951046943665,
+            0.053999997675418854,
+            0.3067494034767151
+          ],
+          "max": [
+            -0.1754404902458191,
+            0.07800000160932541,
+            0.3442300260066986
+          ]
+        }
+      },
+      {
+        "name": "Hand | R finger 3",
+        "weighting": "hand_R",
+        "atlas_tile": 0,
+        "vertices": 72,
+        "triangles": 140,
+        "bounds": {
+          "min": [
+            -0.17855951189994812,
+            0.053999997675418854,
+            0.3067494034767151
+          ],
+          "max": [
+            -0.16144049167633057,
+            0.07800000160932541,
+            0.3442300260066986
+          ]
+        }
+      },
+      {
+        "name": "Hand | R thumb",
+        "weighting": "hand_R",
+        "atlas_tile": 0,
+        "vertices": 72,
+        "triangles": 140,
+        "bounds": {
+          "min": [
+            -0.16936373710632324,
+            0.057999998331069946,
+            0.33436670899391174
+          ],
+          "max": [
+            -0.14463627338409424,
+            0.08799999952316284,
+            0.373820036649704
+          ]
+        }
+      },
+      {
+        "name": "Leg | upper R",
+        "weighting": "thigh_R",
+        "atlas_tile": 0,
+        "vertices": 24,
+        "triangles": 44,
+        "bounds": {
+          "min": [
+            -0.0977846309542656,
+            -0.022661598399281502,
+            0.19768443703651428
+          ],
+          "max": [
+            -0.04023587703704834,
+            0.03769102692604065,
+            0.3028160035610199
+          ]
+        }
+      },
+      {
+        "name": "Leg | knee R",
+        "weighting": "shin_R",
+        "atlas_tile": 0,
+        "vertices": 86,
+        "triangles": 168,
+        "bounds": {
+          "min": [
+            -0.0989999994635582,
+            -0.004999998956918716,
+            0.17951251566410065
+          ],
+          "max": [
+            -0.054999999701976776,
+            0.039000000804662704,
+            0.2248838245868683
+          ]
+        }
+      },
+      {
+        "name": "Leg | shin R",
+        "weighting": "shin_R",
+        "atlas_tile": 0,
+        "vertices": 24,
+        "triangles": 44,
+        "bounds": {
+          "min": [
+            -0.10195936262607574,
+            -0.014839805662631989,
+            0.09698135405778885
+          ],
+          "max": [
+            -0.05704515054821968,
+            0.036822009831666946,
+            0.20512953400611877
+          ]
+        }
+      },
+      {
+        "name": "Boot | sole R",
+        "weighting": "foot_R",
+        "atlas_tile": 10,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.14000000059604645,
+            -0.048500001430511475,
+            0.0
+          ],
+          "max": [
+            -0.02799999713897705,
+            0.12250000238418579,
+            0.027617311105132103
+          ]
+        }
+      },
+      {
+        "name": "Boot | round toe R",
+        "weighting": "foot_R",
+        "atlas_tile": 8,
+        "vertices": 182,
+        "triangles": 360,
+        "bounds": {
+          "min": [
+            -0.1390000283718109,
+            -0.008000016212463379,
+            0.006904326844960451
+          ],
+          "max": [
+            -0.028999991714954376,
+            0.13600000739097595,
+            0.07989293336868286
+          ]
+        }
+      },
+      {
+        "name": "Boot | ankle leather R",
+        "weighting": "foot_R",
+        "atlas_tile": 8,
+        "vertices": 96,
+        "triangles": 188,
+        "bounds": {
+          "min": [
+            -0.12399999797344208,
+            -0.04699999839067459,
+            0.028603646904230118
+          ],
+          "max": [
+            -0.04399999976158142,
+            0.04699999839067459,
+            0.12723690271377563
+          ]
+        }
+      },
+      {
+        "name": "Boot | rolled cuff R",
+        "weighting": "foot_R",
+        "atlas_tile": 12,
+        "vertices": 56,
+        "triangles": 108,
+        "bounds": {
+          "min": [
+            -0.12700000405311584,
+            -0.04899999871850014,
+            0.10948291420936584
+          ],
+          "max": [
+            -0.04099999740719795,
+            0.04899999871850014,
+            0.12723688781261444
+          ]
+        }
+      },
+      {
+        "name": "Boot | brass lace R0",
+        "weighting": "foot_R",
+        "atlas_tile": 9,
+        "vertices": 12,
+        "triangles": 20,
+        "bounds": {
+          "min": [
+            -0.10599999874830246,
+            0.05257513001561165,
+            0.08107653260231018
+          ],
+          "max": [
+            -0.06199999898672104,
+            0.057424869388341904,
+            0.08659999817609787
+          ]
+        }
+      },
+      {
+        "name": "Boot | brass lace R1",
+        "weighting": "foot_R",
+        "atlas_tile": 9,
+        "vertices": 12,
+        "triangles": 20,
+        "bounds": {
+          "min": [
+            -0.10599999874830246,
+            0.06457512825727463,
+            0.06628154218196869
+          ],
+          "max": [
+            -0.06199999898672104,
+            0.06942487508058548,
+            0.07180501520633698
+          ]
+        }
+      },
+      {
+        "name": "Boot | brass lace R2",
+        "weighting": "foot_R",
+        "atlas_tile": 9,
+        "vertices": 12,
+        "triangles": 20,
+        "bounds": {
+          "min": [
+            -0.10599999874830246,
+            0.0765751302242279,
+            0.051486559212207794
+          ],
+          "max": [
+            -0.06199999898672104,
+            0.08142487704753876,
+            0.057010021060705185
+          ]
+        }
+      },
+      {
+        "name": "Peel attachment | brass secured loop (0.13, -0.016, 0.358)",
+        "weighting": "body",
+        "atlas_tile": 7,
+        "vertices": 16,
+        "triangles": 28,
+        "bounds": {
+          "min": [
+            0.1249999925494194,
+            -0.021000001579523087,
+            0.3531070649623871
+          ],
+          "max": [
+            0.13499999046325684,
+            -0.01100000087171793,
+            0.38368335366249084
+          ]
+        }
+      },
+      {
+        "name": "Peel attachment | brass secured loop (0.113, -0.025, 0.373)",
+        "weighting": "body",
+        "atlas_tile": 7,
+        "vertices": 16,
+        "triangles": 28,
+        "bounds": {
+          "min": [
+            0.11299999803304672,
+            -0.030000001192092896,
+            0.36297038197517395
+          ],
+          "max": [
+            0.1420000046491623,
+            -0.019999999552965164,
+            0.3728336989879608
+          ]
+        }
+      },
+      {
+        "name": "Peel | single attached left belt trailing strip",
+        "weighting": "blended attachment",
+        "atlas_tile": 1,
+        "vertices": 36,
+        "triangles": 68,
+        "bounds": {
+          "min": [
+            0.10849999636411667,
+            -0.21539877355098724,
+            0.009455381892621517
+          ],
+          "max": [
+            0.19750000536441803,
+            -0.013551274314522743,
+            0.3635590970516205
+          ]
+        }
+      }
+    ],
+    "runtime_construction": "Editable named sources retained; single skin, opaque original-atlas materials, rigid parts plus smooth banana/cord/peel attachment weights.",
+    "files": {
+      "peel-patrol.blend": {
+        "bytes": 9172051,
+        "sha256": "d9dacbbee93b4b660e64ed351092731016a184fc38a64eb45b73dabe76628e5e"
+      },
+      "peel-patrol.glb": {
+        "bytes": 652424,
+        "sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5"
+      },
+      "pigment.png": {
+        "bytes": 645627,
+        "sha256": "9d81346b3c208ff30de2bfd29637d9fa1f27ebecf02ab34c8495d5223809bca0"
+      }
+    }
+  },
+  "validation": {
+    "khronos_issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "resource_and_budget_checks": {
+      "gltf_2": true,
+      "khronos_no_errors": true,
+      "khronos_no_warnings": true,
+      "five_exact_clips": true,
+      "positive_animated_clips": true,
+      "triangle_budget_15000": true,
+      "material_budget_6": true,
+      "primitive_budget_6": true,
+      "glb_budget_2_mib": true,
+      "one_embedded_pigment_image": true,
+      "embedded_resources": true,
+      "no_required_extensions": true,
+      "all_have_uvs": true,
+      "single_skin": true,
+      "at_most_4_influences": true,
+      "opaque_surfaces": true
+    },
+    "three_revision": "186",
+    "three_checks": {
+      "embedded_pigment_decoded": true,
+      "six_or_fewer_draw_primitives": true,
+      "skinned_geometry_loaded": true,
+      "correct_max_height": true,
+      "correct_rest_clearance": true,
+      "correct_wingspan": true,
+      "exact_clip_set": true,
+      "all_clips_move_actual_vertices": true,
+      "idle_move_loop_seams": true,
+      "root_bone_fixed": true,
+      "external_scene_translation_correct": true,
+      "bounded_floor_penetration": true,
+      "finite_geometry": true,
+      "independent_skeleton_clone": true,
+      "all_tracks_bind_below_attachment_root": true,
+      "unit_attachment_root_scale": true,
+      "attack_clamps_after_end": true,
+      "clone_animation_does_not_translate_attachment_root": true,
+      "exact_contact_timing": true,
+      "correct_rest_length": true
+    },
+    "browser": "153.0.8010.12",
+    "browser_checks": {
+      "exact_glb_hash": true,
+      "expected_skinned_draw_primitives": true,
+      "one_embedded_1024_image": true,
+      "expected_color_draws": true,
+      "expected_triangle_count": true,
+      "five_expected_clips": true,
+      "every_clip_changes_actual_raster": true,
+      "webgl_error_free": true,
+      "browser_error_free": true,
+      "no_external_requests": true
+    },
+    "construction_checks": {
+      "every_named_source_vertex_survives": true,
+      "all_source_weights_survive": true,
+      "normalized_skin_weights": true,
+      "one_to_four_influences": true,
+      "major_attachment_seams_physically_intersect": true,
+      "exactly_two_upper_arms": true,
+      "exactly_two_boots": true,
+      "exactly_one_whistle_barrel": true,
+      "exactly_one_left_trailing_peel": true,
+      "four_fingers_per_hand": true
+    },
+    "rig_ground_checks": {
+      "all_expected_feet_weighted": true,
+      "every_articulated_joint_stays_connected": true,
+      "boots_do_not_penetrate_floor": true,
+      "attack_has_grounded_contact": true,
+      "idle_feet_stay_grounded": true,
+      "move_retains_stance_support": true
+    },
+    "video_streams": {
+      "animations.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 400,
+        "height": 480,
+        "fps": "20/1",
+        "frames": 158,
+        "duration_s": 7.9,
+        "audio": false
+      },
+      "turntable.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 400,
+        "height": 480,
+        "fps": "20/1",
+        "frames": 60,
+        "duration_s": 3.0,
+        "audio": false
+      },
+      "idle.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 400,
+        "height": 480,
+        "fps": "20/1",
+        "frames": 50,
+        "duration_s": 2.5,
+        "audio": false
+      },
+      "move.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 400,
+        "height": 480,
+        "fps": "20/1",
+        "frames": 24,
+        "duration_s": 1.2,
+        "audio": false
+      },
+      "attack.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 400,
+        "height": 480,
+        "fps": "20/1",
+        "frames": 32,
+        "duration_s": 1.6,
+        "audio": false
+      },
+      "hit.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 400,
+        "height": 480,
+        "fps": "20/1",
+        "frames": 12,
+        "duration_s": 0.6,
+        "audio": false
+      },
+      "defeat.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 400,
+        "height": 480,
+        "fps": "20/1",
+        "frames": 40,
+        "duration_s": 2.0,
+        "audio": false
+      }
+    }
+  },
+  "editable_master": {
+    "remote_path": "/workspace/haynes-quest/parody/block-party-pair/v001/peel-patrol/peel-patrol.blend",
+    "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/peel-patrol.blend",
+    "sha256": "d9dacbbee93b4b660e64ed351092731016a184fc38a64eb45b73dabe76628e5e"
+  },
+  "files": [
+    {
+      "local_name": "peel-patrol.blend",
+      "remote_relative_path": "peel-patrol/peel-patrol.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/peel-patrol.blend",
+      "role": "editable_master",
+      "bytes": 9172051,
+      "sha256": "d9dacbbee93b4b660e64ed351092731016a184fc38a64eb45b73dabe76628e5e"
+    },
+    {
+      "local_name": "peel-patrol-export-review.blend",
+      "remote_relative_path": "peel-patrol/peel-patrol-export-review.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/peel-patrol-export-review.blend",
+      "role": "editable_master",
+      "bytes": 3965412,
+      "sha256": "157836f2b755b23e90913f4592b2955b662f7e12279de905842c0e51fe89e283"
+    },
+    {
+      "local_name": "peel-patrol.glb",
+      "remote_relative_path": "peel-patrol/peel-patrol.glb",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/peel-patrol.glb",
+      "role": "candidate_or_evidence",
+      "bytes": 652424,
+      "sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5"
+    },
+    {
+      "local_name": "pigment.png",
+      "remote_relative_path": "peel-patrol/pigment.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/pigment.png",
+      "role": "candidate_or_evidence",
+      "bytes": 645627,
+      "sha256": "9d81346b3c208ff30de2bfd29637d9fa1f27ebecf02ab34c8495d5223809bca0"
+    },
+    {
+      "local_name": "atlas-source.json",
+      "remote_relative_path": "peel-patrol/atlas-source.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/atlas-source.json",
+      "role": "candidate_or_evidence",
+      "bytes": 580,
+      "sha256": "b8e81aaa550a1b32ac5d452af5bf094ad34a493b9613fbf7cdc498dea4725d2a"
+    },
+    {
+      "local_name": "source-build.json",
+      "remote_relative_path": "peel-patrol/source-build.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/source-build.json",
+      "role": "candidate_or_evidence",
+      "bytes": 47706,
+      "sha256": "4dc0bb57671a93256a276d9136241b559b79f09f6b8156cf6d8609567e7af82f"
+    },
+    {
+      "local_name": "front.png",
+      "remote_relative_path": "peel-patrol/front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/front.png",
+      "role": "candidate_or_evidence",
+      "bytes": 773180,
+      "sha256": "4715eb760747c49e982616d5cd6fab4c4748d190427e5ad3d638e5fa02a2c5f3"
+    },
+    {
+      "local_name": "side.png",
+      "remote_relative_path": "peel-patrol/side.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/side.png",
+      "role": "candidate_or_evidence",
+      "bytes": 726610,
+      "sha256": "2c596cf7b175e2633ebd6696ff41a68b5485eb255a016bb8a64838fe9d700fb8"
+    },
+    {
+      "local_name": "back.png",
+      "remote_relative_path": "peel-patrol/back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/back.png",
+      "role": "candidate_or_evidence",
+      "bytes": 737368,
+      "sha256": "194bb829c93207ebb0970b23bdb61473ecc22ac54cb3cb8e9ac642f87fc7dbf9"
+    },
+    {
+      "local_name": "beauty.png",
+      "remote_relative_path": "peel-patrol/beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/beauty.png",
+      "role": "candidate_or_evidence",
+      "bytes": 831893,
+      "sha256": "87d45146116bc08da9fad907258e0e8bef0546eacf29f5f362d3b4a5ba5b2027"
+    },
+    {
+      "local_name": "motion-grid.png",
+      "remote_relative_path": "peel-patrol/motion-grid.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/motion-grid.png",
+      "role": "candidate_or_evidence",
+      "bytes": 590673,
+      "sha256": "ea67e69ac460f33ee6c0ce6e7b0c4e818e4084553d12d3e166bef049c7757994"
+    },
+    {
+      "local_name": "animations.mp4",
+      "remote_relative_path": "peel-patrol/animations.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/animations.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 166568,
+      "sha256": "f62af53bc6fc570e074f70e139e885a96a3b3b1ef1f75ef27c7a223e82cb09bb"
+    },
+    {
+      "local_name": "turntable.mp4",
+      "remote_relative_path": "peel-patrol/turntable.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/turntable.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 111634,
+      "sha256": "9bce7424b4b9330720271694849cf8421c20cbe7c210f1d80637e450b181eabf"
+    },
+    {
+      "local_name": "idle.mp4",
+      "remote_relative_path": "peel-patrol/idle.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/idle.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 32146,
+      "sha256": "95e61337e4a758250fce3e21c4b2c2fee03735afae153ecb5b8b1da3f569c23a"
+    },
+    {
+      "local_name": "move.mp4",
+      "remote_relative_path": "peel-patrol/move.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/move.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 29989,
+      "sha256": "79ad09845fdbc1cf0674d04d365ae4e53165e2edac1d3adec118640c5ed530a2"
+    },
+    {
+      "local_name": "attack.mp4",
+      "remote_relative_path": "peel-patrol/attack.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/attack.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 41130,
+      "sha256": "2335db4ce489ab891cfcfd2e6e57dd4e51b41ea87008cbddd9fbe7371876d98b"
+    },
+    {
+      "local_name": "hit.mp4",
+      "remote_relative_path": "peel-patrol/hit.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/hit.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 17375,
+      "sha256": "cf06cfb9890ec2c8a935886d2a78cfd81cd1631fab7c1384872716b0df81dd52"
+    },
+    {
+      "local_name": "defeat.mp4",
+      "remote_relative_path": "peel-patrol/defeat.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/defeat.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 49217,
+      "sha256": "7cec44236686dd7cc255b35bd24c8a04815df56bda978ccb2097feb0c3e92f59"
+    },
+    {
+      "local_name": "browser-beauty.png",
+      "remote_relative_path": "peel-patrol/browser-beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/browser-beauty.png",
+      "role": "candidate_or_evidence",
+      "bytes": 82948,
+      "sha256": "06e7479ce09a70418977045ed1d6e1cfd598683eb56d4556822eba8cdf99b201"
+    },
+    {
+      "local_name": "browser-attack.png",
+      "remote_relative_path": "peel-patrol/browser-attack.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/browser-attack.png",
+      "role": "candidate_or_evidence",
+      "bytes": 83594,
+      "sha256": "1afa3f84a6bce7b76e8478fb4cd98b72fd2e20ee5f4fa6417ab1f3a4c06de707"
+    },
+    {
+      "local_name": "quick.png",
+      "remote_relative_path": "peel-patrol/quick.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/quick.png",
+      "role": "candidate_or_evidence",
+      "bytes": 534173,
+      "sha256": "4600f9e497da7fec9dbefc0cd9cbd2d35b8a326d2a09ec088eaf02a775a9de09"
+    },
+    {
+      "local_name": "checkpoint-front.png",
+      "remote_relative_path": "peel-patrol/checkpoint-front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/checkpoint-front.png",
+      "role": "candidate_or_evidence",
+      "bytes": 500587,
+      "sha256": "1c517a05de6047fd99f4aceabf32c5ab14e2cfb14d68e5235cb7bc5cbd078f9c"
+    },
+    {
+      "local_name": "checkpoint-back.png",
+      "remote_relative_path": "peel-patrol/checkpoint-back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/checkpoint-back.png",
+      "role": "candidate_or_evidence",
+      "bytes": 473198,
+      "sha256": "e512b2533779f58025bfa3310a621115ebe3ba35786ff67f71f6f9fa791aae0c"
+    },
+    {
+      "local_name": "checkpoint-complete.json",
+      "remote_relative_path": "peel-patrol/checkpoint-complete.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/checkpoint-complete.json",
+      "role": "candidate_or_evidence",
+      "bytes": 116,
+      "sha256": "16fd1b0c8049fb01023e6ec744e75d2ca75c7e3ade6553bb06d5b5c79f388026"
+    },
+    {
+      "local_name": "construction.json",
+      "remote_relative_path": "peel-patrol/construction.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/construction.json",
+      "role": "candidate_or_evidence",
+      "bytes": 34695,
+      "sha256": "7e8ce9607c22ec769a12ec94d889b011d43fe6d75e1cedd85ca33787172f31fa"
+    },
+    {
+      "local_name": "construction-survival.json",
+      "remote_relative_path": "peel-patrol/construction-survival.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/construction-survival.json",
+      "role": "candidate_or_evidence",
+      "bytes": 16049,
+      "sha256": "1c4e6b2a795fecd61c8c7558ea62b942ff6f30387cd37ebd05234026bb800a99"
+    },
+    {
+      "local_name": "validation.json",
+      "remote_relative_path": "peel-patrol/validation.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/validation.json",
+      "role": "candidate_or_evidence",
+      "bytes": 3695,
+      "sha256": "fc2b21b7bb0fbbee8e811ff011d773dcc1d7748d0d2b5988da7111e5673983b0"
+    },
+    {
+      "local_name": "export-inspection.json",
+      "remote_relative_path": "peel-patrol/export-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/export-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1916,
+      "sha256": "a47d20a8c46d7761087bbf708b832cfeb5cee14c53138589342d5b66783605f0"
+    },
+    {
+      "local_name": "three-inspection.json",
+      "remote_relative_path": "peel-patrol/three-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/three-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 59101,
+      "sha256": "1bb544f9a348879ad5092662443c30acd11c0f0b8d280317c49c082afc6e3f74"
+    },
+    {
+      "local_name": "browser-inspection.json",
+      "remote_relative_path": "peel-patrol/browser-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/browser-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 3897,
+      "sha256": "f4c4fc33e1fec1bda357c66f75103a6d4d10e50b9c7f71e3fb8f91331a6fe123"
+    },
+    {
+      "local_name": "rig-ground-inspection.json",
+      "remote_relative_path": "peel-patrol/rig-ground-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/rig-ground-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 49074,
+      "sha256": "c18290144aef564490b091770ed16cd5e487018e473d20cb54a5edb8937833c2"
+    },
+    {
+      "local_name": "pose-attack.png",
+      "remote_relative_path": "peel-patrol/pose-attack.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/pose-attack.png",
+      "role": "candidate_or_evidence",
+      "bytes": 530705,
+      "sha256": "280a9047e53fed2ce8a8daf035b82d696e4e7e3b39aabf2f42e53010122429e0"
+    },
+    {
+      "local_name": "pose-defeat.png",
+      "remote_relative_path": "peel-patrol/pose-defeat.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/pose-defeat.png",
+      "role": "candidate_or_evidence",
+      "bytes": 524955,
+      "sha256": "05e471e44083897d2ed6325065da71fb75d6c8bd974e6856caa3cf3e96518372"
+    },
+    {
+      "local_name": "render-complete.json",
+      "remote_relative_path": "peel-patrol/render-complete.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/render-complete.json",
+      "role": "candidate_or_evidence",
+      "bytes": 223,
+      "sha256": "0b19c844a55d82d8cebc2ee651d811acd855d0511f99ed956083ada20b310ab8"
+    },
+    {
+      "local_name": "runtime.json",
+      "remote_relative_path": "peel-patrol/runtime.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/runtime.json",
+      "role": "candidate_or_evidence",
+      "bytes": 2435,
+      "sha256": "ff716c4096039796a3203dffa2fe7651f96df19f182474f21e9e6bb13c8069d0"
+    },
+    {
+      "local_name": "lead-checkpoint-review.json",
+      "remote_relative_path": "peel-patrol/lead-checkpoint-review.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/peel-patrol/lead-checkpoint-review.json",
+      "role": "candidate_or_evidence",
+      "bytes": 762,
+      "sha256": "7831b8ae4e3e4c9c2ea1d29721e61a3e96fac22611f0a4e6d624cebd970c93e5"
+    }
+  ],
+  "sources": [
+    {
+      "file": "atlas.py",
+      "repository_path": "scripts/assets/parody-block-party-pair/atlas.py",
+      "bytes": 3828,
+      "sha256": "f159219907f957d5c71f2cfac261c0ef7ca40bf0284bf52cae05fa08fbaf3610"
+    },
+    {
+      "file": "build.py",
+      "repository_path": "scripts/assets/parody-block-party-pair/build.py",
+      "bytes": 35878,
+      "sha256": "f3e70a157e627ebf8bf0d2b5a18df8502f89ec08cd4c9e298f5a0239fe566fdd"
+    },
+    {
+      "file": "collect.py",
+      "repository_path": "scripts/assets/parody-block-party-pair/collect.py",
+      "bytes": 4036,
+      "sha256": "1a5d728abf0dce87103219143ab8829bc993dae33c48793119c4f264dd7af20b"
+    },
+    {
+      "file": "compare-construction.py",
+      "repository_path": "scripts/assets/parody-block-party-pair/compare-construction.py",
+      "bytes": 8434,
+      "sha256": "5bbfca43b5f2f04b08c23b3d6e598739d4d8ad7faf35be948b7bde0c4900f7e4"
+    },
+    {
+      "file": "contract.json",
+      "repository_path": "scripts/assets/parody-block-party-pair/contract.json",
+      "bytes": 1629,
+      "sha256": "18fc4b6dd5feb2c7d18e5c39724c8c39360bdd37bcc652a72de6cc30282b6197"
+    },
+    {
+      "file": "delivery.py",
+      "repository_path": "scripts/assets/parody-block-party-pair/delivery.py",
+      "bytes": 9250,
+      "sha256": "dddfc8b0b0773161e54e31710ff4e4765db474a60712e35c47d8f685f73c7fa0"
+    },
+    {
+      "file": "inspect-browser.mjs",
+      "repository_path": "scripts/assets/parody-block-party-pair/inspect-browser.mjs",
+      "bytes": 8934,
+      "sha256": "86a7f979e39237b24be57a26c9ce8aeee30eb641a341bcd998c4b91b97db8608"
+    },
+    {
+      "file": "inspect-ground.mjs",
+      "repository_path": "scripts/assets/parody-block-party-pair/inspect-ground.mjs",
+      "bytes": 2775,
+      "sha256": "a5922631808a4922c6d164460f8f40774ff8534d8db4c3a836aa2b11e69ed6d9"
+    },
+    {
+      "file": "inspect-rig.mjs",
+      "repository_path": "scripts/assets/parody-block-party-pair/inspect-rig.mjs",
+      "bytes": 5593,
+      "sha256": "80b3a199beec06f289388f39e5591be4df6c05cbc692af93d4044ea4a23c312a"
+    },
+    {
+      "file": "inspect-three.mjs",
+      "repository_path": "scripts/assets/parody-block-party-pair/inspect-three.mjs",
+      "bytes": 8683,
+      "sha256": "b63c0a4d6c1c6ee794910fb6a7833198db9493067d4b0c8c9f431a6b48500683"
+    },
+    {
+      "file": "release.py",
+      "repository_path": "scripts/assets/parody-block-party-pair/release.py",
+      "bytes": 2735,
+      "sha256": "57a449bf19bc41ef25c565f3089e99c7f3a367152b93fb4f7903d6a9432b7d69"
+    },
+    {
+      "file": "render.py",
+      "repository_path": "scripts/assets/parody-block-party-pair/render.py",
+      "bytes": 11225,
+      "sha256": "dc7b214dcc89e38e6e6ef0cf1139019d0dbc7ed0a24a90bc543008cd36efb73d"
+    },
+    {
+      "file": "validate.mjs",
+      "repository_path": "scripts/assets/parody-block-party-pair/validate.mjs",
+      "bytes": 2909,
+      "sha256": "40277cb4a1b96a0ce18eb61b6980f113c9a426b02142da36f28faed058b45c4b"
+    }
+  ],
+  "source_bundle": {
+    "file": "source-bundle.json",
+    "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/block-party-pair/v001/source-bundle.json",
+    "bytes": 144525,
+    "sha256": "54ac55e387bd10537972bd1b558a554af3fef51d3925aab6ffc30cb2c9db5bda"
+  },
+  "limitations": [
+    "No physical iPhone/iPad Safari, hardware GPU frame-time, integrated gameplay or owner approval claim.",
+    "Videos are 20fps samples of authored 40fps clips at the exact runtime duration.",
+    "Attack locomotion belongs to the caller; the visible lunge/stomp is articulated in place."
+  ]
+}

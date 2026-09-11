@@ -1,0 +1,273 @@
+{
+  "work_order": "WO-027",
+  "glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+  "artifact_files": [
+    {
+      "path": ".docs-build/mister-hiss-masters/mister-hiss.blend",
+      "bytes": 8218611,
+      "sha256": "18781a327b2aba9387308daacf5f6e5aaf62851eae5a00e47fb15a2e93bf266a",
+      "transfer_verified": true
+    },
+    {
+      "path": ".docs-build/mister-hiss-masters/mister-hiss-export-review.blend",
+      "bytes": 3842200,
+      "sha256": "bc9df8ee7a9344aa2710b4782299ed2d756bc8ab9b2e20b8259454cff8be9b9d",
+      "transfer_verified": true
+    },
+    {
+      "path": ".docs-build/mister-hiss-masters/live-scene-release.blend",
+      "bytes": 8246307,
+      "sha256": "d44ef91177adcc469431efa2310b56384bc37d168aabeea0671effaf54e9871f",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/mister-hiss.glb",
+      "bytes": 1202456,
+      "sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/pigment.png",
+      "bytes": 763241,
+      "sha256": "b2f3a67995e3eb4be8d641911dd1c73a45eb53fdb213fa528ea67c831534f5f1",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/front.png",
+      "bytes": 799798,
+      "sha256": "7d682167cf487a85601d6efc33d0fc63a407d30530aea8f1ed0214681cb67b65",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/side.png",
+      "bytes": 788210,
+      "sha256": "f919b84f5b090eba417fd67977fb6f1813f2f5f16d1024ca0dcfb4fde69c9d55",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/back.png",
+      "bytes": 778614,
+      "sha256": "ef57c0d81283d4916f81e99f7a1ce9362b81413974d4ede31e9a34b5fec2739f",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/beauty.png",
+      "bytes": 912150,
+      "sha256": "b7bb218ec5436a8288a51f8f64da960d0b1d79ddb62d3c505a011ec38e1f007a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/motion-grid.png",
+      "bytes": 821658,
+      "sha256": "7a1e61a2a5cc500957e6a30609cdff7d8c8b939ba9eb63058645c0befa239ad0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/animations.mp4",
+      "bytes": 257041,
+      "sha256": "f504be34567c826a97fb83c8a5310addd605887ff991dd4c6c55c00ae0a1ac36",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/turntable.mp4",
+      "bytes": 197055,
+      "sha256": "66a77a988c776cd4f9e9620edaaf0de6c6015472b0fb1cadf31dbf56cdba98f1",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/idle.mp4",
+      "bytes": 53759,
+      "sha256": "0fc9b1949607bb2327259de7a13bef6fd4de1c60bfd7a98459d48868b1597c8a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/move.mp4",
+      "bytes": 42816,
+      "sha256": "6845517c02c7a15031eccb5a151d2a69461bcd95b6f892407c046c16d082156e",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/attack.mp4",
+      "bytes": 64459,
+      "sha256": "46c5851d94e30ec262374859da6a5556599bc7eff2e67e00eaedde992db7384d",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/hit.mp4",
+      "bytes": 23954,
+      "sha256": "a7636714ed8e02026895ecc7799f2d5c35b38c06d0ac79bb1cf5675f3ed4db18",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/defeat.mp4",
+      "bytes": 75342,
+      "sha256": "e424126e6757b5a8ffa9ca4ccc6de2c6555fe5a9cd52f12722ae10ab983fcd4a",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/browser-beauty.png",
+      "bytes": 119493,
+      "sha256": "ea3262e67f5fe2bc3d6418b6e9550a3985ad1cfaea57831156c763591f66e662",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/browser-attack.png",
+      "bytes": 126493,
+      "sha256": "ad93aaa997dd31c7602309a5c9429e2322e3685186cb8f83c95478375cbc18de",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/quick.png",
+      "bytes": 581553,
+      "sha256": "506ba0d2bc77e3a6e3dd159d97132820d4d28b22bc4794a5c7a541e6f85dfff6",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/checkpoint-front.png",
+      "bytes": 510853,
+      "sha256": "4fe777932118fa17f9af2ab0f750364f31bcd5691cc19f3d675af43a0254e6c5",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/checkpoint-back.png",
+      "bytes": 492227,
+      "sha256": "e53bcfc556d31dbd7582750ce6443faee301f86d8a69ac6cac633dd614da2e66",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/checkpoint-complete.json",
+      "bytes": 116,
+      "sha256": "9c2793b5a93a1634e7c4e072aff1a3e3c89a84edf2cb810cd94d9b5ee43c5dec",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/construction.json",
+      "bytes": 59154,
+      "sha256": "42074cb6a5b1d1d565f1b1f7e1f4e9b7035131aab4ad2e5e88037eec2976f0c0",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/construction-survival.json",
+      "bytes": 55716,
+      "sha256": "cb49f0b0de6b96a5fb4603cf4c7956e74f7276aa450edf5007666ef5c174b3bc",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/validation.json",
+      "bytes": 3440,
+      "sha256": "201f9f69458bff956207cc6b3a61f3d559ecd7a1752467f53675e28306b74d3c",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/export-inspection.json",
+      "bytes": 1831,
+      "sha256": "76ee4e4b00255fd413f41624ab429db3c1552ebac74f2bdda33d5d18166e610e",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/three-inspection.json",
+      "bytes": 46507,
+      "sha256": "0d31dc8371de6f42928c422e0ca318e8f1e2b72403c22727a43b3dce809c218f",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/browser-inspection.json",
+      "bytes": 3849,
+      "sha256": "f15313bc177d149032d51cb77c6d7218ce47525591acfbb6bf5aec2cd04cb99b",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/render-complete.json",
+      "bytes": 223,
+      "sha256": "6e4b23e587c4a65fad6b65ed3c60e48cd517de01000363b131d4489da67752b6",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/runtime.json",
+      "bytes": 2124,
+      "sha256": "b103bc28cc41e20d02f805a5edd535f71fb39d85dc18b9964c3e0cc468b0e970",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/lead-checkpoint-review.json",
+      "bytes": 1224,
+      "sha256": "8debbc08774a0ee209c25ab35a33310c7b87aa8883c7fbcf44291a2e161310d1",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/render-process-completion.json",
+      "bytes": 1242,
+      "sha256": "11bec6f4d88b743c33d7b5a2009d1eeb9b5c0c850d64746f27a9d7068cfb2bd4",
+      "transfer_verified": true
+    },
+    {
+      "path": "docs/assets/media/mister-hiss/v001/scene-lease.json",
+      "bytes": 1681,
+      "sha256": "afed2be5a8aba7c39d4c2f729c0f43c7862157634f88f507988ca2d8a582e479",
+      "transfer_verified": true
+    }
+  ],
+  "source_files": [
+    {
+      "file": "atlas.py",
+      "bytes": 2184,
+      "sha256": "f040e91a2608d137643eb188bb6fe3a8e1b119fe4176501eee31e91a94dc2697",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "build.py",
+      "bytes": 22718,
+      "sha256": "0dfc99a6098119120b6e733a7c7dcf0830e85df3a379436329b01635c939ba29",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "collect.py",
+      "bytes": 2780,
+      "sha256": "0df963851eae14a699f4f773adf10d47cd28708b8198c543f90163729199a334",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "compare-construction.py",
+      "bytes": 4608,
+      "sha256": "e8261897715309ff3551223e0aa7ac9fdb7d284d76db80a65da1793ab8a575f9",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "delivery.py",
+      "bytes": 8334,
+      "sha256": "64f5ebd1a984aed56b9ca378c955f3eccff7c84c8da4970fc014fbd55b0b6db7",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "inspect-browser.mjs",
+      "bytes": 8708,
+      "sha256": "463796a5dd0ce9fb13bc1474bc4dae2af71a7e46562c1c1191ebc035f295418c",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "inspect-three.mjs",
+      "bytes": 8484,
+      "sha256": "5dc8fe85749d8a963f3b692996f1a33cf9a7cf5cf6a7ad87a3ccebdc50418caf",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "render.py",
+      "bytes": 10387,
+      "sha256": "ad9fc6807a7d901d0819bcb9272ad2bb5f339902edc3154d87f6698e897c353c",
+      "roundtrip_verified": true
+    },
+    {
+      "file": "validate.mjs",
+      "bytes": 2873,
+      "sha256": "6c20d3e087a8c4f6146b588c0af3d91cb84dd8c35f1b197ab2d5c22cc3a0cef0",
+      "roundtrip_verified": true
+    }
+  ],
+  "preserved_root_files": {
+    "concept-provenance.json": "4e2ff17bbecb0a7deda2916e76c42f85612e33ae4436c1c3c2360c1bf9ca69cd",
+    "concept.png": "6042bcae573864a7b86af00fe91f45a4f30acd1788d9fcf12ccd6799f93208cd",
+    "prompt.txt": "4ebdff758c1e6cedf0d2c37177652339001fc4efec8eac5a50c33f036ef8aa0e"
+  },
+  "all_transfer_hashes_match": true,
+  "master_directory": "/home/dev/work/quest-mister-hiss-model/.docs-build/mister-hiss-masters"
+}

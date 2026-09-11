@@ -29,6 +29,8 @@ export function friendlyError(error: unknown): string {
     return "Check the name, birth date and date range. Choose a photo limit from 1 to 24.";
   if (code === "NO_USABLE_PHOTOS")
     return "No memories fall within those dates. Try a wider date range.";
+  if (code === "ERA_CATALOG_UNAVAILABLE")
+    return "We haven’t built a complete adventure for those years yet. This preview covers the 2020 and 2024 chapters.";
   if (code === "PREVIEW_NOT_FOUND")
     return "That photo selection has expired. Preview the memories again.";
   if (code === "RATE_LIMITED") return "Take a short pause, then try again.";

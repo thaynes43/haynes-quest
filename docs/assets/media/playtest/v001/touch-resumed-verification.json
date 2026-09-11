@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-11T20:37:40.268Z",
+  "bundle": {
+    "path": "/assets/index-BPeATrrp.js",
+    "bytes": 1001106,
+    "sha256": "15487f825f0f7d8125144d3a1eb49c37e5212bf6c7d0bb8de8f368f141bc6051"
+  },
+  "scope": "Same saved synthetic touch journey across a browser restart; no gameplay API mutation",
+  "segments": [
+    {
+      "file": "final-touch-run.log",
+      "bytes": 1464,
+      "sha256": "9969103280017d9219d83c1a59f75f862c3789d36729d26a0b781c93aa6cdd75"
+    },
+    {
+      "file": "final-touch-resume.log",
+      "bytes": 1631,
+      "sha256": "5254a82126b5f283e1936f4b71a3d26dd5016f389dea91492db60cd19ad39e52"
+    },
+    {
+      "file": "completed-touch-review.json",
+      "bytes": 598,
+      "sha256": "bd5fd515a9bb23b02fdcbcb63298b714a2f46d5bb3b540b6b44169f7d33dba4b"
+    }
+  ],
+  "verified": [
+    "first-chapter equipment, hazard recovery, guard, ordinary fights and saves",
+    "first boss, two decoded pictures, age 0 to 4",
+    "both gaps, runway jump, ferry landing and second-chapter fights",
+    "second boss, third picture, age 4 to 7, complete state",
+    "same completed card reopened twice after reload, all three images decoded"
+  ],
+  "limitations": [
+    "Software Chromium only; no physical Safari or child acceptance",
+    "Route invocations stopped at late harness assertions; final completed-card probe exited zero",
+    "Error observers were attached in original driver and final completed-card probe; resumed route wrapper did not independently attach a pageerror observer"
+  ]
+}

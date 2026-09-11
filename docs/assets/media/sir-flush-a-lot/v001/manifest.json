@@ -1,0 +1,1790 @@
+{
+  "asset_id": "sir-flush-a-lot",
+  "version": "v001",
+  "work_order": "WO-032",
+  "status": "candidate; exact owner approval pending",
+  "glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+  "remote_directory": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot",
+  "authoring": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "blender": "4.5.13 LTS",
+    "method": "Original softly beveled authored shapes and tactile atlas; weighted continuous shoulders/tail/legs where needed, fixed root, explicit attachments and five clips."
+  },
+  "source_concept": {
+    "repository_path": "docs/assets/media/sir-flush-a-lot/v001/concept.png",
+    "sha256": "11de6c89c08ea5be66833f2c60669926cea29e77346fa53ab3b71749967793eb",
+    "bytes": 2004993,
+    "reference": "Skibidi Toilet (original human-head-in-toilet silhouette)",
+    "lead_review": "Selected recognizable head-in-toilet silhouette and opera-singer gag. Final modeled total height includes crown despite approximate drawn dimension. One head, lid hinge and stable closed plinth must survive export. Sheet typography is not a game logo approval.",
+    "private_inputs": false,
+    "concept_generated_by": "Driving root Astra via built-in image_gen; not this Blender author."
+  },
+  "review": {
+    "lead_checkpoint": {
+      "asset_id": "sir-flush-a-lot",
+      "selected_checkpoint_sha256": "5895d84aa2c41a5d1bb80d9ec28f16861bdd6969c593a89c0c979b209095da66",
+      "decision": "Root selected actual front/back/three-quarter recognizable toilet-head, opera face/moustache, crown/bowtie, cistern/plinth and rear emblem; retain shape/style.",
+      "correction": "Defeat-only head compression and removal of pitch under compressed neck; actual end lid/crown clearance passes. Armature object is removed only in GLB export so skinned node is root; no validator warnings.",
+      "corrected_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+      "corrected_pose_review": "Root inspected contact, bubble followthrough, defeat front and side; selected the duck-into-bowl gag and clear lid/head/crown separation. No further shape revision requested.",
+      "owner_approval": "pending",
+      "final_motion_grid_review": "Root inspected final exact-GLB motion-grid and selected the clean duck/lid sequence and readable bubbly contact for coordinator intake; owner approval remains pending."
+    },
+    "owner_approval": "pending",
+    "gameplay_promotion": false
+  },
+  "runtime": {
+    "asset_id": "sir-flush-a-lot",
+    "version": "v001",
+    "glb": "sir-flush-a-lot.glb",
+    "glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+    "runtime_scale": 1,
+    "units": "meters",
+    "up": "+Y",
+    "forward": "-Z",
+    "origin": [
+      0,
+      0,
+      0
+    ],
+    "ground_to_top_m": 1.0,
+    "rest_ground_y_m": 0,
+    "root_motion": "Caller attachment root and root joint remain fixed; body joint has authored steps/squash/lift.",
+    "attack_contact_time_s": 1.0,
+    "attack_contact_fraction": 0.625,
+    "clips": {
+      "idle": {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "repeat"
+      },
+      "move": {
+        "name": "move",
+        "duration_s": 1.0,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "repeat"
+      },
+      "attack": {
+        "name": "attack",
+        "duration_s": 1.6,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": 1.0,
+        "contact_fraction": 0.625,
+        "playback": "once"
+      },
+      "hit": {
+        "name": "hit",
+        "duration_s": 0.5,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "once"
+      },
+      "defeat": {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "playback": "once",
+        "end_behavior": "Ducks one head into bowl; lid rests partly closed without cutting crown.",
+        "remove_only_after_duration_s": 2.0,
+        "embedded_fade": false
+      }
+    },
+    "triangles": 14676,
+    "materials": 5,
+    "draw_primitives": 5,
+    "joints": [
+      "root",
+      "body",
+      "neck",
+      "head",
+      "brow_L",
+      "brow_R",
+      "cheek_L",
+      "cheek_R",
+      "bubble_0",
+      "bubble_1",
+      "bubble_2",
+      "bubble_3",
+      "lid"
+    ],
+    "texture": "One original useful 1024px embedded atlas; no external image/decoder/resources."
+  },
+  "construction": {
+    "asset_id": "sir-flush-a-lot",
+    "version": "v001",
+    "work_order": "WO-032",
+    "authoring_model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "blender": "4.5.13 LTS",
+    "reference": "Skibidi Toilet original head-in-toilet silhouette; one pompous opera head, crown, bow tie and soap notes.",
+    "private_inputs": false,
+    "downloaded_meshes_or_textures": false,
+    "triangles": 14676,
+    "vertices": 7476,
+    "material_count": 5,
+    "joints": [
+      "root",
+      "body",
+      "neck",
+      "head",
+      "lid",
+      "brow_L",
+      "brow_R",
+      "cheek_L",
+      "cheek_R",
+      "bubble_0",
+      "bubble_1",
+      "bubble_2",
+      "bubble_3"
+    ],
+    "spec": {
+      "height": 1.0,
+      "floor": 0,
+      "forward": "glTF -Z",
+      "up": "glTF +Y",
+      "heads": 1,
+      "arms": 0,
+      "legs": 0,
+      "lids": 1,
+      "bubbles": 4
+    },
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 2.5,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.0,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 1.6,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": 1.0,
+        "contact_fraction": 0.625
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.5,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.0,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null
+      }
+    ],
+    "source_scale_factor": 0.9551099002695246,
+    "bounds_blender": {
+      "min": [
+        -0.24698039889335632,
+        -0.32951292395591736,
+        0.0
+      ],
+      "max": [
+        0.2531041204929352,
+        0.26226216554641724,
+        1.0
+      ]
+    },
+    "named_source_parts": [
+      {
+        "name": "Pedestal | broad closed floor plinth",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 96,
+        "triangles": 188,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Pedestal | tapered closed ceramic column",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 120,
+        "triangles": 236,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Bowl | continuous ceramic outer inner shell",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 384,
+        "triangles": 764,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Bowl | substantial pearly seat rim",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 222,
+        "triangles": 440,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Bowl | clean shadowed interior well",
+        "bone": "body",
+        "atlas_tile": 1,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Cistern | complete rounded rear ceramic tank",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 96,
+        "triangles": 188,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Cistern | oversized fitted tank top",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Cistern | rear original blue glaze flourish",
+        "bone": "body",
+        "atlas_tile": 13,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Cistern | structural bowl-to-tank bridge",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Lever | mounted flush axle",
+        "bone": "body",
+        "atlas_tile": 14,
+        "vertices": 24,
+        "triangles": 44,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Lever | one rear flush handle",
+        "bone": "body",
+        "atlas_tile": 7,
+        "vertices": 144,
+        "triangles": 284,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Hinge | single fixed cross axle",
+        "bone": "body",
+        "atlas_tile": 14,
+        "vertices": 24,
+        "triangles": 44,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Hinge | ceramic bearing -0.133",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Hinge | ceramic bearing 0.133",
+        "bone": "body",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "body"
+        ]
+      },
+      {
+        "name": "Lid | one raised oval ceramic lid",
+        "bone": "lid",
+        "atlas_tile": 0,
+        "vertices": 264,
+        "triangles": 524,
+        "groups": [
+          "lid"
+        ]
+      },
+      {
+        "name": "Lid | integral ceramic hinge tongue",
+        "bone": "lid",
+        "atlas_tile": 0,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "lid"
+        ]
+      },
+      {
+        "name": "Lid | softly rounded single rim",
+        "bone": "lid",
+        "atlas_tile": 1,
+        "vertices": 198,
+        "triangles": 392,
+        "groups": [
+          "lid"
+        ]
+      },
+      {
+        "name": "Neck | single flexible opera neck",
+        "bone": "neck",
+        "atlas_tile": 2,
+        "vertices": 120,
+        "triangles": 236,
+        "groups": [
+          "neck"
+        ]
+      },
+      {
+        "name": "Head | single male cartoon cranium",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 420,
+        "triangles": 836,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | proud rounded chin",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 144,
+        "triangles": 284,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Head | L ear",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 144,
+        "triangles": 284,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Head | L inner ear",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 84,
+        "triangles": 164,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | L expressive cheek",
+        "bone": "cheek_L",
+        "atlas_tile": 3,
+        "vertices": 144,
+        "triangles": 284,
+        "groups": [
+          "cheek_L"
+        ]
+      },
+      {
+        "name": "Head | R ear",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 144,
+        "triangles": 284,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Head | R inner ear",
+        "bone": "head",
+        "atlas_tile": 2,
+        "vertices": 84,
+        "triangles": 164,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | R expressive cheek",
+        "bone": "cheek_R",
+        "atlas_tile": 3,
+        "vertices": 144,
+        "triangles": 284,
+        "groups": [
+          "cheek_R"
+        ]
+      },
+      {
+        "name": "Face | broad open opera grin",
+        "bone": "head",
+        "atlas_tile": 9,
+        "vertices": 100,
+        "triangles": 196,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | lower smiling lip",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 104,
+        "triangles": 204,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | upper tooth 1",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | upper tooth 2",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | upper tooth 3",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | upper tooth 4",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | upper tooth 5",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | upper tooth 6",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | warm tongue inside smile",
+        "bone": "head",
+        "atlas_tile": 10,
+        "vertices": 112,
+        "triangles": 220,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Face | pompous broad nose",
+        "bone": "head",
+        "atlas_tile": 3,
+        "vertices": 144,
+        "triangles": 284,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Eye | L cream sclera",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 112,
+        "triangles": 220,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Eye | L warm iris",
+        "bone": "head",
+        "atlas_tile": 12,
+        "vertices": 112,
+        "triangles": 220,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Eye | L black pupil",
+        "bone": "head",
+        "atlas_tile": 5,
+        "vertices": 84,
+        "triangles": 164,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Eye | L bright catchlight",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 70,
+        "triangles": 136,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Brow | L dramatic swept eyebrow",
+        "bone": "brow_L",
+        "atlas_tile": 4,
+        "vertices": 80,
+        "triangles": 156,
+        "groups": [
+          "brow_L"
+        ]
+      },
+      {
+        "name": "Moustache | L curled opera point",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 104,
+        "triangles": 204,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Eye | R cream sclera",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 112,
+        "triangles": 220,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Eye | R warm iris",
+        "bone": "head",
+        "atlas_tile": 12,
+        "vertices": 112,
+        "triangles": 220,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Eye | R black pupil",
+        "bone": "head",
+        "atlas_tile": 5,
+        "vertices": 84,
+        "triangles": 164,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Eye | R bright catchlight",
+        "bone": "head",
+        "atlas_tile": 6,
+        "vertices": 70,
+        "triangles": 136,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Brow | R dramatic swept eyebrow",
+        "bone": "brow_R",
+        "atlas_tile": 4,
+        "vertices": 80,
+        "triangles": 156,
+        "groups": [
+          "brow_R"
+        ]
+      },
+      {
+        "name": "Moustache | R curled opera point",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 104,
+        "triangles": 204,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Hair | fitted swept dark cap",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 288,
+        "triangles": 572,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Hair | broad swept quiff lock 0",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 90,
+        "triangles": 176,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Hair | broad swept quiff lock 1",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 90,
+        "triangles": 176,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Hair | broad swept quiff lock 2",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 90,
+        "triangles": 176,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Hair | broad swept quiff lock 3",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 90,
+        "triangles": 176,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Hair | broad swept quiff lock 4",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 90,
+        "triangles": 176,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Hair | L sculpted sideburn",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 63,
+        "triangles": 122,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Hair | R sculpted sideburn",
+        "bone": "head",
+        "atlas_tile": 4,
+        "vertices": 63,
+        "triangles": 122,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Crown | attached small gold band",
+        "bone": "head",
+        "atlas_tile": 7,
+        "vertices": 96,
+        "triangles": 188,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Crown | three pompous front points",
+        "bone": "head",
+        "atlas_tile": 7,
+        "vertices": 98,
+        "triangles": 192,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Crown | rounded point 0",
+        "bone": "head",
+        "atlas_tile": 15,
+        "vertices": 84,
+        "triangles": 164,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Crown | rounded point 1",
+        "bone": "head",
+        "atlas_tile": 15,
+        "vertices": 84,
+        "triangles": 164,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Crown | rounded point 2",
+        "bone": "head",
+        "atlas_tile": 15,
+        "vertices": 84,
+        "triangles": 164,
+        "groups": [
+          "head"
+        ]
+      },
+      {
+        "name": "Bow tie | continuous turquoise neck band",
+        "bone": "neck",
+        "atlas_tile": 8,
+        "vertices": 198,
+        "triangles": 392,
+        "groups": [
+          "neck"
+        ]
+      },
+      {
+        "name": "Bow tie | small opera bow | left folded loop",
+        "bone": "neck",
+        "atlas_tile": 8,
+        "vertices": 84,
+        "triangles": 164,
+        "groups": [
+          "neck"
+        ]
+      },
+      {
+        "name": "Bow tie | small opera bow | right folded loop",
+        "bone": "neck",
+        "atlas_tile": 8,
+        "vertices": 84,
+        "triangles": 164,
+        "groups": [
+          "neck"
+        ]
+      },
+      {
+        "name": "Bow tie | small opera bow | sewn center knot",
+        "bone": "neck",
+        "atlas_tile": 8,
+        "vertices": 56,
+        "triangles": 108,
+        "groups": [
+          "neck"
+        ]
+      },
+      {
+        "name": "Bubble | opaque pearly soap sphere 0",
+        "bone": "bubble_0",
+        "atlas_tile": 11,
+        "vertices": 108,
+        "triangles": 212,
+        "groups": [
+          "bubble_0"
+        ]
+      },
+      {
+        "name": "Bubble | opaque pearly soap sphere 1",
+        "bone": "bubble_1",
+        "atlas_tile": 11,
+        "vertices": 108,
+        "triangles": 212,
+        "groups": [
+          "bubble_1"
+        ]
+      },
+      {
+        "name": "Bubble | opaque pearly soap sphere 2",
+        "bone": "bubble_2",
+        "atlas_tile": 11,
+        "vertices": 108,
+        "triangles": 212,
+        "groups": [
+          "bubble_2"
+        ]
+      },
+      {
+        "name": "Bubble | opaque pearly soap sphere 3",
+        "bone": "bubble_3",
+        "atlas_tile": 11,
+        "vertices": 108,
+        "triangles": 212,
+        "groups": [
+          "bubble_3"
+        ]
+      }
+    ],
+    "required_contacts": [
+      {
+        "part_a": "Pedestal | broad closed floor plinth",
+        "part_b": "Pedestal | tapered closed ceramic column",
+        "required": "overlap"
+      },
+      {
+        "part_a": "Pedestal | tapered closed ceramic column",
+        "part_b": "Bowl | continuous ceramic outer inner shell",
+        "required": "overlap"
+      },
+      {
+        "part_a": "Cistern | complete rounded rear ceramic tank",
+        "part_b": "Cistern | structural bowl-to-tank bridge",
+        "required": "overlap"
+      },
+      {
+        "part_a": "Neck | single flexible opera neck",
+        "part_b": "Head | single male cartoon cranium",
+        "required": "overlap"
+      },
+      {
+        "part_a": "Hair | fitted swept dark cap",
+        "part_b": "Crown | attached small gold band",
+        "required": "overlap"
+      },
+      {
+        "part_a": "Hinge | single fixed cross axle",
+        "part_b": "Lid | integral ceramic hinge tongue",
+        "required": "overlap"
+      },
+      {
+        "part_a": "Lid | integral ceramic hinge tongue",
+        "part_b": "Lid | one raised oval ceramic lid",
+        "required": "overlap"
+      }
+    ],
+    "runtime_construction": "Original named softly beveled shapes retained in excluded source collection. Joined runtime skin uses authored rigid and continuous joint weights. Original embedded 1k material atlas.",
+    "files": {
+      "sir-flush-a-lot.blend": {
+        "bytes": 7491469,
+        "sha256": "228a8ff41533a830d386ff05bb8ba3367039f22ce8580186423bfd97912cfb30"
+      },
+      "sir-flush-a-lot.glb": {
+        "bytes": 782488,
+        "sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+      },
+      "pigment.png": {
+        "bytes": 395950,
+        "sha256": "c4be1356c9b819122c9adad41f850e20d99fda2c5fbaeceb75d5d9ea0678503e"
+      }
+    }
+  },
+  "validation": {
+    "khronos_issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "resource_and_budget_checks": {
+      "gltf_2": true,
+      "khronos_no_errors": true,
+      "khronos_no_warnings": true,
+      "five_exact_clips": true,
+      "positive_animated_clips": true,
+      "triangle_budget_15000": true,
+      "material_budget_6": true,
+      "primitive_budget_6": true,
+      "glb_budget_2_mib": true,
+      "one_embedded_pigment_image": true,
+      "embedded_resources": true,
+      "no_required_extensions": true,
+      "all_have_uvs": true,
+      "single_skin": true,
+      "at_most_4_influences": true,
+      "opaque_surfaces": true
+    },
+    "three_revision": "186",
+    "three_checks": {
+      "embedded_pigment_decoded": true,
+      "six_or_fewer_draw_primitives": true,
+      "skinned_geometry_loaded": true,
+      "correct_max_height": true,
+      "correct_rest_clearance": true,
+      "correct_wingspan": true,
+      "exact_clip_set": true,
+      "all_clips_move_actual_vertices": true,
+      "idle_move_loop_seams": true,
+      "root_bone_fixed": true,
+      "external_scene_translation_correct": true,
+      "bounded_floor_penetration": true,
+      "finite_geometry": true,
+      "independent_skeleton_clone": true,
+      "all_tracks_bind_below_attachment_root": true,
+      "unit_attachment_root_scale": true,
+      "attack_clamps_after_end": true,
+      "clone_animation_does_not_translate_attachment_root": true,
+      "exact_contact_timing": true
+    },
+    "browser": "153.0.8010.12",
+    "browser_checks": {
+      "exact_glb_hash": true,
+      "expected_skinned_draw_primitives": true,
+      "one_embedded_1024_image": true,
+      "expected_color_draws": true,
+      "expected_triangle_count": true,
+      "five_expected_clips": true,
+      "every_clip_changes_actual_raster": true,
+      "webgl_error_free": true,
+      "browser_error_free": true,
+      "no_external_requests": true
+    },
+    "construction_checks": {
+      "every_named_source_part_survives": true,
+      "all_exported_weights_match_source": true,
+      "all_vertices_have_normalized_at_most_four_weights": true,
+      "every_required_rest_attachment_connected": true,
+      "every_required_attachment_connected_across_all_clips": true,
+      "defeat_lid_clears_head_hair_crown": true
+    },
+    "special_attachment_checks": {
+      "defeat_lid_clears_head_hair_crown": true,
+      "defeat_lid_samples": [
+        {
+          "time_s": 0.0,
+          "intersections": []
+        },
+        {
+          "time_s": 0.125,
+          "intersections": []
+        },
+        {
+          "time_s": 0.25,
+          "intersections": []
+        },
+        {
+          "time_s": 0.375,
+          "intersections": []
+        },
+        {
+          "time_s": 0.5,
+          "intersections": []
+        },
+        {
+          "time_s": 0.625,
+          "intersections": []
+        },
+        {
+          "time_s": 0.75,
+          "intersections": []
+        },
+        {
+          "time_s": 0.875,
+          "intersections": []
+        },
+        {
+          "time_s": 1.0,
+          "intersections": []
+        },
+        {
+          "time_s": 1.125,
+          "intersections": []
+        },
+        {
+          "time_s": 1.25,
+          "intersections": []
+        },
+        {
+          "time_s": 1.375,
+          "intersections": []
+        },
+        {
+          "time_s": 1.5,
+          "intersections": []
+        },
+        {
+          "time_s": 1.625,
+          "intersections": []
+        },
+        {
+          "time_s": 1.75,
+          "intersections": []
+        },
+        {
+          "time_s": 1.875,
+          "intersections": []
+        },
+        {
+          "time_s": 2.0,
+          "intersections": []
+        }
+      ]
+    },
+    "video_streams": {
+      "animations.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "30/1",
+        "frames": 228,
+        "duration_s": 7.6,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "turntable.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "30/1",
+        "frames": 90,
+        "duration_s": 3.0,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "idle.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "30/1",
+        "frames": 75,
+        "duration_s": 2.5,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "move.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "30/1",
+        "frames": 30,
+        "duration_s": 1.0,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "attack.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "30/1",
+        "frames": 48,
+        "duration_s": 1.6,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "hit.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "30/1",
+        "frames": 15,
+        "duration_s": 0.5,
+        "audio": false,
+        "full_decode_passed": true
+      },
+      "defeat.mp4": {
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 480,
+        "height": 560,
+        "fps": "30/1",
+        "frames": 60,
+        "duration_s": 2.0,
+        "audio": false,
+        "full_decode_passed": true
+      }
+    }
+  },
+  "editable_master": {
+    "remote_path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/sir-flush-a-lot.blend",
+    "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/sir-flush-a-lot.blend",
+    "sha256": "228a8ff41533a830d386ff05bb8ba3367039f22ce8580186423bfd97912cfb30"
+  },
+  "files": [
+    {
+      "local_name": "sir-flush-a-lot.blend",
+      "remote_relative_path": "sir-flush-a-lot/sir-flush-a-lot.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/sir-flush-a-lot.blend",
+      "role": "editable_master",
+      "bytes": 7491469,
+      "sha256": "228a8ff41533a830d386ff05bb8ba3367039f22ce8580186423bfd97912cfb30",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "sir-flush-a-lot-export-review.blend",
+      "remote_relative_path": "sir-flush-a-lot/sir-flush-a-lot-export-review.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/sir-flush-a-lot-export-review.blend",
+      "role": "editable_master",
+      "bytes": 3309216,
+      "sha256": "d156e77fb6d425fb8cacc0a40b94b312a0337e064832723271d28fb946de14fd",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "live-scene-release.blend",
+      "remote_relative_path": "sir-flush-a-lot/live-scene-release.blend",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/live-scene-release.blend",
+      "role": "editable_master",
+      "bytes": 7498845,
+      "sha256": "ae7dce0836df8c078730236099126c00e14ea15b54d90215383fd6c64f702d6a",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "sir-flush-a-lot.glb",
+      "remote_relative_path": "sir-flush-a-lot/sir-flush-a-lot.glb",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/sir-flush-a-lot.glb",
+      "role": "candidate_or_evidence",
+      "bytes": 782488,
+      "sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "pigment.png",
+      "remote_relative_path": "sir-flush-a-lot/pigment.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/pigment.png",
+      "role": "candidate_or_evidence",
+      "bytes": 395950,
+      "sha256": "c4be1356c9b819122c9adad41f850e20d99fda2c5fbaeceb75d5d9ea0678503e",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "atlas-provenance.json",
+      "remote_relative_path": "sir-flush-a-lot/atlas-provenance.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/atlas-provenance.json",
+      "role": "candidate_or_evidence",
+      "bytes": 678,
+      "sha256": "fa6c8691355685a19d91cf146c93785ac913ad4ce488c933d4b6480abbf49b9e",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "front.png",
+      "remote_relative_path": "sir-flush-a-lot/front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/front.png",
+      "role": "candidate_or_evidence",
+      "bytes": 755768,
+      "sha256": "d76110fdb82dff852485dd8333d4bd7a31f855b970de736a54b0ceecceeb86e7",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "side.png",
+      "remote_relative_path": "sir-flush-a-lot/side.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/side.png",
+      "role": "candidate_or_evidence",
+      "bytes": 726696,
+      "sha256": "ef5b4724e8b338a63d54068d7012202c4cf9bb565d79f959d11606d31ba0a1eb",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "back.png",
+      "remote_relative_path": "sir-flush-a-lot/back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/back.png",
+      "role": "candidate_or_evidence",
+      "bytes": 722139,
+      "sha256": "c1ab8220290cc94f7e58319d02e4726851d6f698dff6a2de195c10c8d4eb54ce",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "beauty.png",
+      "remote_relative_path": "sir-flush-a-lot/beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/beauty.png",
+      "role": "candidate_or_evidence",
+      "bytes": 811169,
+      "sha256": "c3432543e8d03d706489273f86723fab77efc9b34610630b55e98c1516bca5dd",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "motion-grid.png",
+      "remote_relative_path": "sir-flush-a-lot/motion-grid.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/motion-grid.png",
+      "role": "candidate_or_evidence",
+      "bytes": 439564,
+      "sha256": "a60193dfc5d23430b51320c6a6708a58c6b07f8c5d5d17d899bbd763f193da3e",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "animations.mp4",
+      "remote_relative_path": "sir-flush-a-lot/animations.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/animations.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 167860,
+      "sha256": "98bd5d8f2873821df3854efc5eb475572be41dc5be70957b4b28bf6ca706d3bc",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "turntable.mp4",
+      "remote_relative_path": "sir-flush-a-lot/turntable.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/turntable.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 134055,
+      "sha256": "bc67cfc261417e01ab0c58fb7d9c052072eac855e2841d41ac170ace95b8cd74",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "idle.mp4",
+      "remote_relative_path": "sir-flush-a-lot/idle.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/idle.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 37267,
+      "sha256": "cfab1ed0cf7cd755d92b8e9ed7aca3048b4f2a4cadd6a25747a6e4ff4824c5c0",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "move.mp4",
+      "remote_relative_path": "sir-flush-a-lot/move.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/move.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 31352,
+      "sha256": "73244c9edfc00ae33066592545eee848f6233a3c31846facb25f4f658b236dda",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "attack.mp4",
+      "remote_relative_path": "sir-flush-a-lot/attack.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/attack.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 42325,
+      "sha256": "1927f3594a6491b1daddb2b53ab4e8c502d92266b38a75951d0b74161462e923",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "hit.mp4",
+      "remote_relative_path": "sir-flush-a-lot/hit.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/hit.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 17941,
+      "sha256": "bab31551443296507885b0f48548ff08bcc9ed5dc987511e29e5e5c2f7f2285e",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "defeat.mp4",
+      "remote_relative_path": "sir-flush-a-lot/defeat.mp4",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/defeat.mp4",
+      "role": "candidate_or_evidence",
+      "bytes": 42272,
+      "sha256": "fa25aeb0dd0e80b2a2db426671918ecaa4a7fb246c5839e888d54c4a797db9e7",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "browser-beauty.png",
+      "remote_relative_path": "sir-flush-a-lot/browser-beauty.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/browser-beauty.png",
+      "role": "candidate_or_evidence",
+      "bytes": 107654,
+      "sha256": "1a7ae0b4b97366dc5ff703fb62014a44b71a68f90d3eb1f4a082e3e062960482",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "browser-attack.png",
+      "remote_relative_path": "sir-flush-a-lot/browser-attack.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/browser-attack.png",
+      "role": "candidate_or_evidence",
+      "bytes": 109497,
+      "sha256": "710ca96606fe3838be8a2b472d9c43b6d15bfcc6f8f83eafef1939fa9a2fb73b",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "quick.png",
+      "remote_relative_path": "sir-flush-a-lot/quick.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/quick.png",
+      "role": "candidate_or_evidence",
+      "bytes": 519132,
+      "sha256": "51a8698a9b8b0c5d1a7f0bd8efda349c703afddda854c5c8bfdf98d5537e494b",
+      "source_glb_sha256": "5895d84aa2c41a5d1bb80d9ec28f16861bdd6969c593a89c0c979b209095da66"
+    },
+    {
+      "local_name": "checkpoint-front.png",
+      "remote_relative_path": "sir-flush-a-lot/checkpoint-front.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/checkpoint-front.png",
+      "role": "candidate_or_evidence",
+      "bytes": 485800,
+      "sha256": "5d09b9ebe1d7a2cd1de6cb72c0f98a0a2d8c2bb76b5905964e26b42e70e1b796",
+      "source_glb_sha256": "5895d84aa2c41a5d1bb80d9ec28f16861bdd6969c593a89c0c979b209095da66"
+    },
+    {
+      "local_name": "checkpoint-back.png",
+      "remote_relative_path": "sir-flush-a-lot/checkpoint-back.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/checkpoint-back.png",
+      "role": "candidate_or_evidence",
+      "bytes": 461355,
+      "sha256": "ec19a76bd7e203de4d52ea0eb36b73d7e8564f8e7704225263ddaf56f3ab83fe",
+      "source_glb_sha256": "5895d84aa2c41a5d1bb80d9ec28f16861bdd6969c593a89c0c979b209095da66"
+    },
+    {
+      "local_name": "checkpoint-complete.json",
+      "remote_relative_path": "sir-flush-a-lot/checkpoint-complete.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/checkpoint-complete.json",
+      "role": "candidate_or_evidence",
+      "bytes": 116,
+      "sha256": "74a3b06201ee6420b8b93acb7cf28fc1a7f7867165054f4cdef509a77f9f3fa5",
+      "source_glb_sha256": "5895d84aa2c41a5d1bb80d9ec28f16861bdd6969c593a89c0c979b209095da66"
+    },
+    {
+      "local_name": "contact-pose.png",
+      "remote_relative_path": "sir-flush-a-lot/contact-pose.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/contact-pose.png",
+      "role": "candidate_or_evidence",
+      "bytes": 509392,
+      "sha256": "16f98ff087c1742f0e59336b589afaf5b2f662743e980bb7c1e73efe9f78c34b",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "contact-followthrough.png",
+      "remote_relative_path": "sir-flush-a-lot/contact-followthrough.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/contact-followthrough.png",
+      "role": "candidate_or_evidence",
+      "bytes": 508464,
+      "sha256": "8a226e7c7184f3ba9430a176191ca83b85fa7e948514237b3e1b15428c3f788a",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "defeat-pose.png",
+      "remote_relative_path": "sir-flush-a-lot/defeat-pose.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/defeat-pose.png",
+      "role": "candidate_or_evidence",
+      "bytes": 483698,
+      "sha256": "b9323866c6500d9eccefab152b77cb51bb5934e558fd51ead8aabf889e5c96e3",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "defeat-side.png",
+      "remote_relative_path": "sir-flush-a-lot/defeat-side.png",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/defeat-side.png",
+      "role": "candidate_or_evidence",
+      "bytes": 423455,
+      "sha256": "e0aafc56ec1be3d3b0f957126e7161d00ce7c2c651eb0c68f2a95266fb0bcad7",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "pose-check.json",
+      "remote_relative_path": "sir-flush-a-lot/pose-check.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/pose-check.json",
+      "role": "candidate_or_evidence",
+      "bytes": 509,
+      "sha256": "ef74c9c4b94a8c7443e16cd1e8672da77d6af872aea563e1b6269031528ca938",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "construction.json",
+      "remote_relative_path": "sir-flush-a-lot/construction.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/construction.json",
+      "role": "candidate_or_evidence",
+      "bytes": 17067,
+      "sha256": "6a46d4e04ca730cacbc0973d204434a419821662321be3cc611f3d06a413232a",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "construction-survival.json",
+      "remote_relative_path": "sir-flush-a-lot/construction-survival.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/construction-survival.json",
+      "role": "candidate_or_evidence",
+      "bytes": 68153,
+      "sha256": "d07ab4c023bc5cc6c2c32c5b766eeb7b3bfa8f76c38cca0b7147f754ef95323b",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "validation.json",
+      "remote_relative_path": "sir-flush-a-lot/validation.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/validation.json",
+      "role": "candidate_or_evidence",
+      "bytes": 3788,
+      "sha256": "b768ba336e0a33ea18e66308625833748b385422b09b0d321179aa130c3382f5",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "export-inspection.json",
+      "remote_relative_path": "sir-flush-a-lot/export-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/export-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1935,
+      "sha256": "6dc9ba276794b4f962591d3aa26ab99894d2033f6990fe70b64c7a91e48be577",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "three-inspection.json",
+      "remote_relative_path": "sir-flush-a-lot/three-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/three-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 37777,
+      "sha256": "90fc2428f4b302f97c863b75d061bef6faf0ea977309adf7eba4c753fba8f9c0",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "browser-inspection.json",
+      "remote_relative_path": "sir-flush-a-lot/browser-inspection.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/browser-inspection.json",
+      "role": "candidate_or_evidence",
+      "bytes": 3874,
+      "sha256": "4526d542e7666dcdcf781ca3646ddef6d8a3f442ed103298b6b8ff0d8be90737",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "render-complete.json",
+      "remote_relative_path": "sir-flush-a-lot/render-complete.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/render-complete.json",
+      "role": "candidate_or_evidence",
+      "bytes": 227,
+      "sha256": "8753373cc61d4ad8f10127ee02176b0287bff34c0526999c75d1ef4836bb5c90",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "runtime.json",
+      "remote_relative_path": "sir-flush-a-lot/runtime.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/runtime.json",
+      "role": "candidate_or_evidence",
+      "bytes": 2133,
+      "sha256": "90ecba6657203de122f1ed15cf39e29000655525291c46fdf0ae5a4c6520cf33",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "lead-checkpoint-review.json",
+      "remote_relative_path": "sir-flush-a-lot/lead-checkpoint-review.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/lead-checkpoint-review.json",
+      "role": "candidate_or_evidence",
+      "bytes": 1069,
+      "sha256": "a54ed52415c451d07c290ea4c4a858bca81abb233ef65f0af2468a7a08c01ad4",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    },
+    {
+      "local_name": "authoring-source.json",
+      "remote_relative_path": "sir-flush-a-lot/authoring-source.json",
+      "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/authoring-source.json",
+      "role": "candidate_or_evidence",
+      "bytes": 39294,
+      "sha256": "6486dc48362caa88c77080f113cf40559623f55092ac8ff3fa255e07d9595998",
+      "source_glb_sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
+    }
+  ],
+  "sources": [
+    {
+      "file": "atlas.py",
+      "repository_path": "scripts/assets/parody-remix-trio/atlas.py",
+      "bytes": 3588,
+      "sha256": "6a629b422a17cdd657f40b66d33c12a6b130fe4b2289f29dc95835f044f696f9"
+    },
+    {
+      "file": "build.py",
+      "repository_path": "scripts/assets/parody-remix-trio/build.py",
+      "bytes": 473,
+      "sha256": "143b9a47ce81f500c211bd6344304d7290bbb635284d251d92df6ec3acaef1e3"
+    },
+    {
+      "file": "collect.py",
+      "repository_path": "scripts/assets/parody-remix-trio/collect.py",
+      "bytes": 3063,
+      "sha256": "d00bb79ecc634d6f5dc1dd99e6c1cb643f2985d210dff36ff852ee06ece8e0b8"
+    },
+    {
+      "file": "common.py",
+      "repository_path": "scripts/assets/parody-remix-trio/common.py",
+      "bytes": 15011,
+      "sha256": "8687ba2743c7fb794064e5ac9c191727a84378a13c724b9e259331335cec1a30"
+    },
+    {
+      "file": "compare-construction.py",
+      "repository_path": "scripts/assets/parody-remix-trio/compare-construction.py",
+      "bytes": 7679,
+      "sha256": "cee43e514e4b91a9242880243f3284100ea6fc04faa3856deda487dce680e0a3"
+    },
+    {
+      "file": "delivery.py",
+      "repository_path": "scripts/assets/parody-remix-trio/delivery.py",
+      "bytes": 8695,
+      "sha256": "9affef81420f428fc09c59516111060dc4f526d39e5b840dbbbbe622f84eaa67"
+    },
+    {
+      "file": "inspect-browser.mjs",
+      "repository_path": "scripts/assets/parody-remix-trio/inspect-browser.mjs",
+      "bytes": 8848,
+      "sha256": "364db7fbca9be494695a59002eb59cc32d03c52e9383348c5c0b1d37097730fb"
+    },
+    {
+      "file": "inspect-three.mjs",
+      "repository_path": "scripts/assets/parody-remix-trio/inspect-three.mjs",
+      "bytes": 8811,
+      "sha256": "6c84f0d88cf4fe814be7d8f838f905c518865c3f6c800d5b6848c2649e50478c"
+    },
+    {
+      "file": "nap-captain.py",
+      "repository_path": "scripts/assets/parody-remix-trio/nap-captain.py",
+      "bytes": 10821,
+      "sha256": "bdb8b13212f4cb500d838cab9313d20ceed7b3f1d2f89d00e7f80d0842f0bc06"
+    },
+    {
+      "file": "one-star-diva.py",
+      "repository_path": "scripts/assets/parody-remix-trio/one-star-diva.py",
+      "bytes": 13503,
+      "sha256": "898aed6fe05162b4c39214176fa298616af7aaafdd32fe96fb77e3141decd876"
+    },
+    {
+      "file": "pose-check.py",
+      "repository_path": "scripts/assets/parody-remix-trio/pose-check.py",
+      "bytes": 1363,
+      "sha256": "0f261b98ec32ddbae30c9308eac5f388bc6cbd5bfc2b5a428392cfff9590dc28"
+    },
+    {
+      "file": "render.py",
+      "repository_path": "scripts/assets/parody-remix-trio/render.py",
+      "bytes": 10555,
+      "sha256": "a81f18ad4fecb73e378110b46d1115985586281ab9498741d2abe50501b6539b"
+    },
+    {
+      "file": "sir-flush-a-lot.py",
+      "repository_path": "scripts/assets/parody-remix-trio/sir-flush-a-lot.py",
+      "bytes": 9700,
+      "sha256": "b971cfa8235ca6932fc15e0b74761634261d011f610b589b84e77ffa9aa95605"
+    },
+    {
+      "file": "transfer.py",
+      "repository_path": "scripts/assets/parody-remix-trio/transfer.py",
+      "bytes": 4370,
+      "sha256": "d370f242ef0b68760e339ce815f4ffafd1a98d69a2ebc0d486dec8f325f672e8"
+    },
+    {
+      "file": "validate.mjs",
+      "repository_path": "scripts/assets/parody-remix-trio/validate.mjs",
+      "bytes": 2914,
+      "sha256": "680673443b4c64f74d9f36a1352648911557728009bfb85fdcbd949b4ee362a2"
+    }
+  ],
+  "source_bundle": {
+    "file": "source-bundle.json",
+    "artifact_url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/parody/remix-trio/v001/source-bundle.json",
+    "bytes": 149580,
+    "sha256": "59f2c6f60c4184db6d1dca99d2a32c5f7b9cd9fcbe2963d57df4525f3721876c"
+  },
+  "retained_iterations": [
+    "sir-flush-a-lot/iterations/compressed-duck-before-pitch-fix",
+    "sir-flush-a-lot/iterations/first-duck-correction",
+    "sir-flush-a-lot/iterations/first-source",
+    "sir-flush-a-lot/iterations/selected-before-lid-clearance"
+  ],
+  "lease": {
+    "work_order": "WO-032",
+    "owner": "/root/remix_trio_authoring",
+    "authoring_model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "status": "active; exclusive scene owner",
+    "claimed_utc": "2026-09-11T17:09:10.483651+00:00",
+    "remote_root": "/workspace/haynes-quest/parody/remix-trio/v001",
+    "prior_checkpoint": "/workspace/haynes-quest/parody/block-party-pair/v001/live-scene-release.blend",
+    "prior_bytes": 13540486,
+    "prior_sha256": "d89132f2ba7526a78b933aca4dea9de248cc7653a710d09e49abd2e5885c7b3c",
+    "grant_basis": "Root explicit grant after WO028 released 2026-09-11T17:05:53.540911Z; all11ownedjobs exited0/waited/reaped",
+    "blender": "4.5.13 LTS",
+    "binary": "/opt/blender/blender",
+    "processes_at_intake": [
+      {
+        "pid": 1,
+        "args": "/opt/blender-authoring/blender-mcp/.venv/bin/python /opt/blender-authoring/service.py ",
+        "state": "State:\tS (sleeping)"
+      },
+      {
+        "pid": 9,
+        "args": "Xvfb :90 -screen 0 1280x720x24 -nolisten tcp -auth /tmp/blender-authoring-1000/Xauthority -noreset ",
+        "state": "State:\tS (sleeping)"
+      },
+      {
+        "pid": 12,
+        "args": "/usr/local/bin/blender --factory-startup --disable-autoexec -noaudio --gpu-backend opengl --python-exit-code 1 --python /opt/blender-authoring/bootstrap.py ",
+        "state": "State:\tR (running)"
+      }
+    ]
+  },
+  "process_completion": {
+    "checked_at": "2026-09-11T17:41:08.599571+00:00",
+    "all_owned_jobs_exited_and_reaped": true,
+    "jobs": [
+      {
+        "pid": 51196,
+        "asset": "sir-flush-a-lot",
+        "role": "quick render",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51261,
+        "asset": "sir-flush-a-lot",
+        "role": "construction checker",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 51360,
+        "asset": "sir-flush-a-lot",
+        "role": "corrected construction checker",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 51416,
+        "asset": "sir-flush-a-lot",
+        "role": "contact and defeat preview",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51483,
+        "asset": "sir-flush-a-lot",
+        "role": "armature-space construction checker",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 51546,
+        "asset": "sir-flush-a-lot",
+        "role": "final duck construction check",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 51547,
+        "asset": "sir-flush-a-lot",
+        "role": "final duck pose previews",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51667,
+        "asset": "sir-flush-a-lot",
+        "role": "duck pitch construction check",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51668,
+        "asset": "sir-flush-a-lot",
+        "role": "duck pitch pose previews",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51826,
+        "asset": "sir-flush-a-lot",
+        "role": "final stills five clips reel turntable",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51926,
+        "asset": "sir-flush-a-lot",
+        "role": "complete duck sequence contact audit",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 54922,
+        "asset": "nap-captain",
+        "role": "early actual GLB views",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 54923,
+        "asset": "nap-captain",
+        "role": "construction contact checker",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 55047,
+        "asset": "nap-captain",
+        "role": "first contact and defeat preview",
+        "exit_code": 0,
+        "reaped": true
+      }
+    ]
+  },
+  "limitations": [
+    "No physical iPhone/iPad Safari, child playtest, device GPU performance, integrated gameplay, owner approval or deployment claim.",
+    "All visible effects and carried accessories are present in the GLB; no external particle service, generated image or downloaded model/texture is needed."
+  ]
+}

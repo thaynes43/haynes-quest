@@ -1,0 +1,1859 @@
+{
+  "asset_id": "mister-hiss",
+  "tool": "Three GLTFLoader + AnimationMixer + actual sampled skinned vertices + precise bounds",
+  "three_revision": "186",
+  "glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.22106891870498657,
+      0,
+      -0.27218297123908997
+    ],
+    "max": [
+      0.22106891870498657,
+      0.9999999850988388,
+      0.19465972483158112
+    ]
+  },
+  "mesh_primitives": 3,
+  "draw_call_expectation": {
+    "opaque_color_pass": 3,
+    "shadow_pass_if_enabled": 3,
+    "note": "Per-pass primitive count; actual renderer statistics depend on lights, shadows, instancing and passes."
+  },
+  "embedded_image_decode": [
+    {
+      "encoded_bytes": 57162,
+      "width": 1024,
+      "height": 1024,
+      "decoded_bytes": 4194304
+    }
+  ],
+  "bones": [
+    "root",
+    "body",
+    "head",
+    "brow_L",
+    "brow_R",
+    "hat",
+    "confetti_0",
+    "confetti_1",
+    "confetti_2",
+    "confetti_3",
+    "confetti_4",
+    "confetti_5",
+    "foot_front_L",
+    "foot_rear_L",
+    "foot_front_R",
+    "foot_rear_R"
+  ],
+  "animations": {
+    "idle": {
+      "duration_s": 2.5,
+      "samples": 49,
+      "sampled_vertices": 820,
+      "max_vertex_displacement_m": 0.026575986402097306,
+      "bounds": {
+        "min": [
+          -0.22611165926560722,
+          0,
+          -0.27463260266538114
+        ],
+        "max": [
+          0.22936803701603753,
+          1.0001442622894916,
+          0.19465972483158112
+        ]
+      },
+      "loop_seam_max_m": 6.947834928989498e-18
+    },
+    "move": {
+      "duration_s": 1,
+      "samples": 49,
+      "sampled_vertices": 820,
+      "max_vertex_displacement_m": 0.04272419672680498,
+      "bounds": {
+        "min": [
+          -0.23142925798418792,
+          0,
+          -0.2796391135483353
+        ],
+        "max": [
+          0.23140519379913554,
+          1.0200147503299428,
+          0.2116597220301628
+        ]
+      },
+      "loop_seam_max_m": 6.938893903907228e-18
+    },
+    "attack": {
+      "duration_s": 1.5,
+      "samples": 49,
+      "sampled_vertices": 820,
+      "max_vertex_displacement_m": 0.581907952549926,
+      "bounds": {
+        "min": [
+          -0.33622687536448254,
+          0,
+          -0.7433013493434858
+        ],
+        "max": [
+          0.24318259668738126,
+          1.0100320275221941,
+          0.2839215094055582
+        ]
+      },
+      "loop_seam_max_m": 0.5909107426742041
+    },
+    "hit": {
+      "duration_s": 0.5,
+      "samples": 49,
+      "sampled_vertices": 820,
+      "max_vertex_displacement_m": 0.12238773716160325,
+      "bounds": {
+        "min": [
+          -0.22217685773795706,
+          0,
+          -0.28389403099471483
+        ],
+        "max": [
+          0.24843127226296718,
+          1.0002129566607105,
+          0.19465972483158112
+        ]
+      },
+      "loop_seam_max_m": 0.00805758552234184
+    },
+    "defeat": {
+      "duration_s": 2,
+      "samples": 49,
+      "sampled_vertices": 820,
+      "max_vertex_displacement_m": 0.20267433268056848,
+      "bounds": {
+        "min": [
+          -0.26857058491008906,
+          0,
+          -0.28112536827999973
+        ],
+        "max": [
+          0.2685515468800384,
+          1.0090486090774833,
+          0.20865972340106964
+        ]
+      },
+      "loop_seam_max_m": 0.20259456122645747
+    }
+  },
+  "clone_track_binding": {
+    "method": "SkeletonUtils clone of the complete GLTF scene; every track resolves below caller-controlled attachment root.",
+    "tracks": [
+      {
+        "clip": "idle",
+        "track": "root.position",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "root.quaternion",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "root.scale",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "body.position",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "body.quaternion",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "body.scale",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "head.position",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "head.quaternion",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "head.scale",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "brow_L.position",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "brow_L.quaternion",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "brow_L.scale",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "brow_R.position",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "brow_R.quaternion",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "brow_R.scale",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "hat.position",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "hat.quaternion",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "hat.scale",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_0.position",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_0.quaternion",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_0.scale",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_1.position",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_1.quaternion",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_1.scale",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_2.position",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_2.quaternion",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_2.scale",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_3.position",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_3.quaternion",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_3.scale",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_4.position",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_4.quaternion",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_4.scale",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_5.position",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_5.quaternion",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "confetti_5.scale",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_front_L.position",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_front_L.quaternion",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_front_L.scale",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_rear_L.position",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_rear_L.quaternion",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_rear_L.scale",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_front_R.position",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_front_R.quaternion",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_front_R.scale",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_rear_R.position",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_rear_R.quaternion",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "idle",
+        "track": "foot_rear_R.scale",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "root.position",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "root.quaternion",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "root.scale",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "body.position",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "body.quaternion",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "body.scale",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "head.position",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "head.quaternion",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "head.scale",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "brow_L.position",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "brow_L.quaternion",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "brow_L.scale",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "brow_R.position",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "brow_R.quaternion",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "brow_R.scale",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "hat.position",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "hat.quaternion",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "hat.scale",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_0.position",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_0.quaternion",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_0.scale",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_1.position",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_1.quaternion",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_1.scale",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_2.position",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_2.quaternion",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_2.scale",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_3.position",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_3.quaternion",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_3.scale",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_4.position",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_4.quaternion",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_4.scale",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_5.position",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_5.quaternion",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "confetti_5.scale",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_front_L.position",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_front_L.quaternion",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_front_L.scale",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_rear_L.position",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_rear_L.quaternion",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_rear_L.scale",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_front_R.position",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_front_R.quaternion",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_front_R.scale",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_rear_R.position",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_rear_R.quaternion",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "move",
+        "track": "foot_rear_R.scale",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "root.position",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "root.quaternion",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "root.scale",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "body.position",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "body.quaternion",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "body.scale",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "head.position",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "head.quaternion",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "head.scale",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "brow_L.position",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "brow_L.quaternion",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "brow_L.scale",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "brow_R.position",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "brow_R.quaternion",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "brow_R.scale",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "hat.position",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "hat.quaternion",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "hat.scale",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_0.position",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_0.quaternion",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_0.scale",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_1.position",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_1.quaternion",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_1.scale",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_2.position",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_2.quaternion",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_2.scale",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_3.position",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_3.quaternion",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_3.scale",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_4.position",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_4.quaternion",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_4.scale",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_5.position",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_5.quaternion",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "confetti_5.scale",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_front_L.position",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_front_L.quaternion",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_front_L.scale",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_rear_L.position",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_rear_L.quaternion",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_rear_L.scale",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_front_R.position",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_front_R.quaternion",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_front_R.scale",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_rear_R.position",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_rear_R.quaternion",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "attack",
+        "track": "foot_rear_R.scale",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "root.position",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "root.quaternion",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "root.scale",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "body.position",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "body.quaternion",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "body.scale",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "head.position",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "head.quaternion",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "head.scale",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "brow_L.position",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "brow_L.quaternion",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "brow_L.scale",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "brow_R.position",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "brow_R.quaternion",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "brow_R.scale",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "hat.position",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "hat.quaternion",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "hat.scale",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_0.position",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_0.quaternion",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_0.scale",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_1.position",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_1.quaternion",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_1.scale",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_2.position",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_2.quaternion",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_2.scale",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_3.position",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_3.quaternion",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_3.scale",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_4.position",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_4.quaternion",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_4.scale",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_5.position",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_5.quaternion",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "confetti_5.scale",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_front_L.position",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_front_L.quaternion",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_front_L.scale",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_rear_L.position",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_rear_L.quaternion",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_rear_L.scale",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_front_R.position",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_front_R.quaternion",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_front_R.scale",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_rear_R.position",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_rear_R.quaternion",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "hit",
+        "track": "foot_rear_R.scale",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "root.position",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "root.quaternion",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "root.scale",
+        "node": "root",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "body.position",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "body.quaternion",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "body.scale",
+        "node": "body",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "head.position",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "head.quaternion",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "head.scale",
+        "node": "head",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "brow_L.position",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "brow_L.quaternion",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "brow_L.scale",
+        "node": "brow_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "brow_R.position",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "brow_R.quaternion",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "brow_R.scale",
+        "node": "brow_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "hat.position",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "hat.quaternion",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "hat.scale",
+        "node": "hat",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_0.position",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_0.quaternion",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_0.scale",
+        "node": "confetti_0",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_1.position",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_1.quaternion",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_1.scale",
+        "node": "confetti_1",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_2.position",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_2.quaternion",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_2.scale",
+        "node": "confetti_2",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_3.position",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_3.quaternion",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_3.scale",
+        "node": "confetti_3",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_4.position",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_4.quaternion",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_4.scale",
+        "node": "confetti_4",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_5.position",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_5.quaternion",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "confetti_5.scale",
+        "node": "confetti_5",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_front_L.position",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_front_L.quaternion",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_front_L.scale",
+        "node": "foot_front_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_rear_L.position",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_rear_L.quaternion",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_rear_L.scale",
+        "node": "foot_rear_L",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_front_R.position",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_front_R.quaternion",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_front_R.scale",
+        "node": "foot_front_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_rear_R.position",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_rear_R.quaternion",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      },
+      {
+        "clip": "defeat",
+        "track": "foot_rear_R.scale",
+        "node": "foot_rear_R",
+        "resolves": true,
+        "targets_attachment_root": false
+      }
+    ]
+  },
+  "attack_contact": {
+    "duration_s": 1.5,
+    "time_s": 0.9,
+    "fraction": 0.6
+  },
+  "checks": {
+    "embedded_pigment_decoded": true,
+    "six_or_fewer_draw_primitives": true,
+    "skinned_geometry_loaded": true,
+    "correct_max_height": true,
+    "correct_rest_clearance": true,
+    "correct_wingspan": true,
+    "exact_clip_set": true,
+    "all_clips_move_actual_vertices": true,
+    "idle_move_loop_seams": true,
+    "root_bone_fixed": true,
+    "external_scene_translation_correct": true,
+    "bounded_floor_penetration": true,
+    "finite_geometry": true,
+    "independent_skeleton_clone": true,
+    "all_tracks_bind_below_attachment_root": true,
+    "unit_attachment_root_scale": true,
+    "attack_clamps_after_end": true,
+    "clone_animation_does_not_translate_attachment_root": true,
+    "exact_contact_timing": true
+  },
+  "limitations": "CPU loader, fully decoded embedded pigment and geometry evidence; no WebGL raster, physical Safari or frame-time claim."
+}

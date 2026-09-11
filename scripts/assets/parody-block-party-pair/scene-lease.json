@@ -1,0 +1,29 @@
+{
+  "work_order": "WO-028",
+  "owner": "block_party_pair_authoring",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "state": "released",
+  "grant_utc": "2026-09-11T16:20:52.953Z",
+  "observed_utc": "2026-09-11T16:22:25.613478+00:00",
+  "remote_root": "/workspace/haynes-quest/parody/block-party-pair/v001",
+  "previous_release": {
+    "path": "/workspace/haynes-quest/parody/mister-hiss/v001/live-scene-release.blend",
+    "bytes": 8246307,
+    "sha256": "d44ef91177adcc469431efa2310b56384bc37d168aabeea0671effaf54e9871f"
+  },
+  "factory_reset_or_addon_unload": false,
+  "assets": [
+    "peel-patrol",
+    "drama-dragon"
+  ],
+  "released_utc": "2026-09-11T17:05:53.540911+00:00",
+  "previous_release_unchanged": true,
+  "final_live_scene": {
+    "path": "/workspace/haynes-quest/parody/block-party-pair/v001/live-scene-release.blend",
+    "bytes": 13540486,
+    "sha256": "d89132f2ba7526a78b933aca4dea9de248cc7653a710d09e49abd2e5885c7b3c"
+  },
+  "owned_processes_exited_and_reaped": true,
+  "owned_process_count": 11
+}

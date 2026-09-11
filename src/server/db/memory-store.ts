@@ -1,10 +1,10 @@
 import { randomUUID } from 'node:crypto';
-import { createAdventurePlan, createInitialAdventureState } from '../../shared/adventure.js';
 import type { GameplayActionRequest } from '../../shared/contracts.js';
 import {
   applyGameplayActionToSave,
   abilitiesForAge,
   appearanceForAge,
+  createAdventureForSave,
   isValidFrozenManifest,
   RULE_VERSIONS,
   type CreateSaveCommand,
@@ -97,8 +97,10 @@ export class InMemoryQuestStore implements QuestStore {
         throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
       }
       const now = new Date();
-      const adventurePlan = createAdventurePlan(preview.birthDate, memories);
-      const adventureState = createInitialAdventureState(adventurePlan);
+      const { plan: adventurePlan, state: adventureState } = createAdventureForSave(
+        preview.birthDate,
+        memories,
+      );
       const save: SaveRecord = {
         id: randomUUID(),
         ownerId: command.ownerId,

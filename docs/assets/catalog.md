@@ -1,5 +1,9 @@
 # First-pass catalog
 
+For the current game scope and its exact four-character cast, open the [two-chapter playtest](playtest.md). That page separates what can be assessed in the next test from future family setup, photos and additional content. The archive below also preserves earlier studies and paused candidates.
+
+The [four-character browser audit](media/parody-playtest-audit/v001/report.json) verifies all four model pages, 20 animation clips, 28 videos, 20 stills, four touch orbits and four editable masters. No page, console, asset-response or external-request errors were recorded. This establishes catalog delivery; full game controls and owner artwork decisions are separate checks.
+
 This catalog preserves the original overnight inventory and the required two-era combat expansion below. All eight source concepts, nine model candidates and four audio auditions have been produced. All nine models are ready for Tom’s review; all four sound auditions are available, with listening review still pending. No candidate is approved for gameplay. The original overnight inventory is complete; the catalog preserves source concepts, exact exports, checks, browser views and review decisions for each entry. Optional full-game content does not expand this overnight inventory automatically.
 
 [Browser delivery audit](media/storybook-reference/v001/browser-intake/catalog-local-report.json): 12 pages, nine models, seven clips and four decoded auditions; zero page/console errors, failed responses or external asset requests. [Combined clearing preview](media/clearing-path-kit/v001/kit-beauty.png).
@@ -40,7 +44,7 @@ The keepsake’s [review page](reviews/memory-keepsake/v001.md) now shows concep
 
 The correction produced ten additional models: six animated creature studies and four tools. Tom found the creature models useful as possible friendly or ambient characters, but **they do not fit his enemy vision**. They are not selected for enemy use. Actual enemies must be recognizable pop-culture parodies; [DESIGN-005](../designs/005-era-enemy-catalog.md) records that correction.
 
-The full catalog now preserves nineteen model candidates, including the original nine. All exact-version approvals remain pending. The creature studies' thirty animation clips and source masters remain useful production artifacts; no friendly role is automatically approved or placed in the game.
+That earlier production brought the archive to nineteen model candidates, including the original nine. All exact-version approvals remain pending. The creature studies' thirty animation clips and source masters remain useful production artifacts; no friendly role is automatically approved or placed in the game.
 
 [Original construction sheets](reviews/era-combat/v001.md) retain the lead's earlier direction for traceability. Review the actual exports separately:
 
@@ -58,4 +62,19 @@ All concepts were generated serially by the lead. Fresh Astra Blender authors co
 
 ## Replacement parody direction
 
-[Mister Hiss](reviews/mister-hiss/v001.md) is the first replacement concept: a recognizable Minecraft Creeper parody with a confetti-sneeze attack. It has a concept sheet and exact prompt, with no model yet. The replacement roster and forgiving obby work remain in progress.
+The replacement cast uses recognizable pop-culture parodies from the selected photo periods. Each page includes its exact concept, prompt, construction corrections and intended encounter. Model production and the forgiving obby game remain in progress; none of these candidates has owner approval for private gameplay.
+
+| Period | Enemy | Reference and joke | Current candidate |
+| --- | --- | --- | --- |
+| The Block Party | [Mister Hiss](reviews/mister-hiss/v001.md) | Creeper with a confetti sneeze | Exported model and five clips |
+| The Block Party | [Peel Patrol](reviews/peel-patrol/v001.md) | Peely safety marshal who slips on his own peel | Exported model and five clips |
+| The Block Party | [The Drama Dragon](reviews/drama-dragon/v001.md) | Ender Dragon as a pompous performer | Exported model and five clips |
+| The Remix Runway | [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) | Skibidi Toilet opera singer | Exported model and five clips · optional candidate · Tom review pending |
+| The Remix Runway | [Nap Captain](reviews/nap-captain/v001.md) | CatNap bedtime inspector with a pillow prank | First model checkpoint · corrections and final media paused |
+| The Remix Runway | [The One-Star Diva](reviews/one-star-diva/v001.md) | Dress to Impress judge with an oversized outfit | Concept selected · model production paused |
+
+## Child-specific curation and the next design
+
+[Player setup](../designs/012-player-journey-curation.md) will let a parent select photos and encounters for each level, with era suggestions, favorites, exclusions and explicit admin period overrides. Completed models are optional library entries. The former fixed roster is not mandatory for every child.
+
+Tom selected **The Besties duo first** for the next design discussion, based on Mackenzie Turner and Lael’s Roblox personas. FNAF-inspired characters are a later interest for his son. No Besties or FNAF model has been generated. New production is paused while the next brief is agreed; Nap’s partial source and Diva’s unbuilt source are preserved.

@@ -1,3 +1,5 @@
+import type { ObbyRouteId, ParodyPeriodId } from './parody-catalog.js';
+
 export type Ability = "move" | "interact" | "jump";
 export type AppearanceStage = "infant" | "child";
 export type SaveFormat = "legacy-v1" | "era-combat-v2";
@@ -43,10 +45,17 @@ export interface EquipmentView {
   guardReduction: number;
   collected: boolean;
 }
+export interface FrozenEncounterContent {
+  catalogEntryId: string;
+  catalogEntryVersion: string;
+  assetId: string;
+  assetVersion: string;
+}
 export interface EncounterView {
   id: string;
   role: EncounterRole;
   kind: EncounterKind;
+  content?: FrozenEncounterContent;
   maxHp: number;
   hp: number;
   attackDamage: number;
@@ -61,12 +70,16 @@ export interface ActiveLevelView {
   targetAgeYears: number;
   startDate: string;
   eraYear: number;
+  periodId?: ParodyPeriodId;
+  routeId?: ObbyRouteId;
   memoryIds: string[];
   pickups: EquipmentView[];
   encounters: EncounterView[];
   bossId: string;
 }
 export interface AdventureView {
+  planVersion?: string;
+  catalogVersion?: string;
   phase: AdventurePhase;
   activeLevelIndex: number;
   currentLevelId: string | null;

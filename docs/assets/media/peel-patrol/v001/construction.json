@@ -1,0 +1,1593 @@
+{
+  "asset_id": "peel-patrol",
+  "version": "v001",
+  "work_order": "WO-028",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "blender": "4.5.13 LTS",
+  "private_inputs": false,
+  "downloaded_meshes_or_textures": false,
+  "triangles": 9084,
+  "vertices": 4684,
+  "material_count": 4,
+  "joints": [
+    "root",
+    "body",
+    "head",
+    "whistle",
+    "brow_L",
+    "brow_R",
+    "upper_arm_L",
+    "forearm_L",
+    "hand_L",
+    "thigh_L",
+    "shin_L",
+    "foot_L",
+    "upper_arm_R",
+    "forearm_R",
+    "hand_R",
+    "thigh_R",
+    "shin_R",
+    "foot_R",
+    "peel_upper",
+    "peel_lower",
+    "peel_tip"
+  ],
+  "spec": {
+    "height": 1.15,
+    "floor": 0,
+    "forward": "glTF -Z",
+    "up": "glTF +Y",
+    "concept_sha256": "4ce40a6669cec9ad87e249c877c7c73cf8633369bd0ae30ee3ffcdadc6f60be5",
+    "height_m": 1.15,
+    "anatomy": {
+      "arms": 2,
+      "legs": 2,
+      "fingers_per_hand": 4,
+      "whistles": 1,
+      "left_belt_trailing_peels": 1
+    },
+    "clips": {
+      "idle": 2.5,
+      "move": 1.2,
+      "attack": 1.6,
+      "hit": 0.6,
+      "defeat": 2.0
+    },
+    "attack_contact_s": 1.0,
+    "attack_contact_fraction": 0.625,
+    "loop_clips": [
+      "idle",
+      "move"
+    ],
+    "once_clamped_clips": [
+      "attack",
+      "hit",
+      "defeat"
+    ]
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.2,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.0,
+      "contact_fraction": 0.625
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    }
+  ],
+  "source_scale_xyz": [
+    1.0,
+    1.0,
+    0.9863325357437134
+  ],
+  "animation_fps": 40,
+  "bounds_blender": {
+    "min": [
+      -0.24500000476837158,
+      -0.21539877355098724,
+      0.0
+    ],
+    "max": [
+      0.24500000476837158,
+      0.19900000095367432,
+      1.149999976158142
+    ]
+  },
+  "rig_limb_contract": {
+    "arm_L": {
+      "rest_points": [
+        [
+          0.14300000667572021,
+          0.0020000000949949026,
+          0.5503735542297363
+        ],
+        [
+          0.22200000286102295,
+          0.010999999940395355,
+          0.4438496232032776
+        ],
+        [
+          0.18400000035762787,
+          0.04699999839067459,
+          0.3590250313282013
+        ]
+      ],
+      "joints": [
+        "upper_arm_L",
+        "forearm_L",
+        "hand_L"
+      ]
+    },
+    "leg_L": {
+      "rest_points": [
+        [
+          0.06300000101327896,
+          0.0,
+          0.2978724241256714
+        ],
+        [
+          0.07699999958276749,
+          0.017000000923871994,
+          0.20219816267490387
+        ],
+        [
+          0.08399999886751175,
+          0.003000000026077032,
+          0.09961958974599838
+        ]
+      ],
+      "joints": [
+        "thigh_L",
+        "shin_L",
+        "foot_L"
+      ]
+    },
+    "arm_R": {
+      "rest_points": [
+        [
+          -0.14300000667572021,
+          0.0020000000949949026,
+          0.5503735542297363
+        ],
+        [
+          -0.22200000286102295,
+          0.010999999940395355,
+          0.4438496232032776
+        ],
+        [
+          -0.18400000035762787,
+          0.04699999839067459,
+          0.3590250313282013
+        ]
+      ],
+      "joints": [
+        "upper_arm_R",
+        "forearm_R",
+        "hand_R"
+      ]
+    },
+    "leg_R": {
+      "rest_points": [
+        [
+          -0.06300000101327896,
+          0.0,
+          0.2978724241256714
+        ],
+        [
+          -0.07699999958276749,
+          0.017000000923871994,
+          0.20219816267490387
+        ],
+        [
+          -0.08399999886751175,
+          0.003000000026077032,
+          0.09961958974599838
+        ]
+      ],
+      "joints": [
+        "thigh_R",
+        "shin_R",
+        "foot_R"
+      ]
+    }
+  },
+  "named_source_parts": [
+    {
+      "name": "Banana | continuous tall curved yellow skin",
+      "weighting": "blended attachment",
+      "atlas_tile": 0,
+      "vertices": 308,
+      "triangles": 612,
+      "bounds": {
+        "min": [
+          -0.15100499987602234,
+          -0.11949999630451202,
+          0.26137810945510864
+        ],
+        "max": [
+          0.14800499379634857,
+          0.11153999716043472,
+          1.081020474433899
+        ]
+      }
+    },
+    {
+      "name": "Banana | attached side ridge -1",
+      "weighting": "blended attachment",
+      "atlas_tile": 1,
+      "vertices": 32,
+      "triangles": 60,
+      "bounds": {
+        "min": [
+          -0.12799817323684692,
+          0.017032751813530922,
+          0.3939695954322815
+        ],
+        "max": [
+          -0.08602020889520645,
+          0.07399409264326096,
+          0.9375646114349365
+        ]
+      }
+    },
+    {
+      "name": "Banana | attached side ridge 1",
+      "weighting": "blended attachment",
+      "atlas_tile": 1,
+      "vertices": 32,
+      "triangles": 60,
+      "bounds": {
+        "min": [
+          0.03412215784192085,
+          0.017030581831932068,
+          0.3939695954322815
+        ],
+        "max": [
+          0.12799817323684692,
+          0.07399409264326096,
+          0.937892735004425
+        ]
+      }
+    },
+    {
+      "name": "Banana | brown blunt stem",
+      "weighting": "head",
+      "atlas_tile": 3,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.05386759713292122,
+          -0.017103124409914017,
+          1.0712209939956665
+        ],
+        "max": [
+          0.017867598682641983,
+          0.03710312396287918,
+          1.149999976158142
+        ]
+      }
+    },
+    {
+      "name": "Banana | attached upper peel flap L",
+      "weighting": "head",
+      "atlas_tile": 1,
+      "vertices": 20,
+      "triangles": 36,
+      "bounds": {
+        "min": [
+          -0.011500000022351742,
+          -0.01617814414203167,
+          0.970501720905304
+        ],
+        "max": [
+          0.1510000079870224,
+          0.010375741869211197,
+          1.0915459394454956
+        ]
+      }
+    },
+    {
+      "name": "Face | dark oval eye L",
+      "weighting": "head",
+      "atlas_tile": 8,
+      "vertices": 222,
+      "triangles": 440,
+      "bounds": {
+        "min": [
+          0.001999981701374054,
+          0.056999992579221725,
+          0.758489727973938
+        ],
+        "max": [
+          0.07000000774860382,
+          0.0949999988079071,
+          0.8669863343238831
+        ]
+      }
+    },
+    {
+      "name": "Face | stern brow L",
+      "weighting": "brow_L",
+      "atlas_tile": 3,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.004322908818721771,
+          0.03150000050663948,
+          0.875914454460144
+        ],
+        "max": [
+          0.06567709147930145,
+          0.05050000175833702,
+          0.9034294486045837
+        ]
+      }
+    },
+    {
+      "name": "Banana | attached upper peel flap R",
+      "weighting": "head",
+      "atlas_tile": 1,
+      "vertices": 20,
+      "triangles": 36,
+      "bounds": {
+        "min": [
+          -0.19700001180171967,
+          -0.01617814414203167,
+          0.970501720905304
+        ],
+        "max": [
+          -0.03450000286102295,
+          0.010375741869211197,
+          1.0915459394454956
+        ]
+      }
+    },
+    {
+      "name": "Face | dark oval eye R",
+      "weighting": "head",
+      "atlas_tile": 8,
+      "vertices": 222,
+      "triangles": 440,
+      "bounds": {
+        "min": [
+          -0.10000001639127731,
+          0.056999992579221725,
+          0.758489727973938
+        ],
+        "max": [
+          -0.031999994069337845,
+          0.0949999988079071,
+          0.8669863343238831
+        ]
+      }
+    },
+    {
+      "name": "Face | stern brow R",
+      "weighting": "brow_R",
+      "atlas_tile": 3,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.09567709267139435,
+          0.03150000050663948,
+          0.875914454460144
+        ],
+        "max": [
+          -0.03432290628552437,
+          0.05050000175833702,
+          0.9034294486045837
+        ]
+      }
+    },
+    {
+      "name": "Vest | continuous navy back and side panels",
+      "weighting": "body",
+      "atlas_tile": 4,
+      "vertices": 132,
+      "triangles": 260,
+      "bounds": {
+        "min": [
+          -0.1529417335987091,
+          -0.12700000405311584,
+          0.3994646668434143
+        ],
+        "max": [
+          0.1529417335987091,
+          0.12132773548364639,
+          0.5730592012405396
+        ]
+      }
+    },
+    {
+      "name": "Vest | lapel L",
+      "weighting": "body",
+      "atlas_tile": 5,
+      "vertices": 6,
+      "triangles": 8,
+      "bounds": {
+        "min": [
+          0.041999999433755875,
+          0.05826469510793686,
+          0.5188109278678894
+        ],
+        "max": [
+          0.13500000536441803,
+          0.12762120366096497,
+          0.576018214225769
+        ]
+      }
+    },
+    {
+      "name": "Vest | small pocket L",
+      "weighting": "body",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.07800000160932541,
+          0.08949999511241913,
+          0.42116400599479675
+        ],
+        "max": [
+          0.12800000607967377,
+          0.1145000010728836,
+          0.46850794553756714
+        ]
+      }
+    },
+    {
+      "name": "Vest | pocket top seam L",
+      "weighting": "body",
+      "atlas_tile": 6,
+      "vertices": 12,
+      "triangles": 20,
+      "bounds": {
+        "min": [
+          0.08178457617759705,
+          0.11045611649751663,
+          0.4677188992500305
+        ],
+        "max": [
+          0.12521542608737946,
+          0.1195438876748085,
+          0.4712696969509125
+        ]
+      }
+    },
+    {
+      "name": "Vest | lapel R",
+      "weighting": "body",
+      "atlas_tile": 5,
+      "vertices": 6,
+      "triangles": 8,
+      "bounds": {
+        "min": [
+          -0.13500000536441803,
+          0.05826469510793686,
+          0.5188109278678894
+        ],
+        "max": [
+          -0.041999999433755875,
+          0.12762120366096497,
+          0.576018214225769
+        ]
+      }
+    },
+    {
+      "name": "Vest | small pocket R",
+      "weighting": "body",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.12800000607967377,
+          0.08949999511241913,
+          0.42116400599479675
+        ],
+        "max": [
+          -0.07800000160932541,
+          0.1145000010728836,
+          0.46850794553756714
+        ]
+      }
+    },
+    {
+      "name": "Vest | pocket top seam R",
+      "weighting": "body",
+      "atlas_tile": 6,
+      "vertices": 12,
+      "triangles": 20,
+      "bounds": {
+        "min": [
+          -0.12521542608737946,
+          0.11045611649751663,
+          0.4677188992500305
+        ],
+        "max": [
+          -0.08178457617759705,
+          0.1195438876748085,
+          0.4712696969509125
+        ]
+      }
+    },
+    {
+      "name": "Vest | concealed shoulder fastening -1",
+      "weighting": "body",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.1589999943971634,
+          -0.02250000089406967,
+          0.5128929018974304
+        ],
+        "max": [
+          -0.1289999932050705,
+          0.02250000089406967,
+          0.5681275129318237
+        ]
+      }
+    },
+    {
+      "name": "Vest | concealed shoulder fastening 1",
+      "weighting": "body",
+      "atlas_tile": 4,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.1289999932050705,
+          -0.02250000089406967,
+          0.5128929018974304
+        ],
+        "max": [
+          0.1589999943971634,
+          0.02250000089406967,
+          0.5681275129318237
+        ]
+      }
+    },
+    {
+      "name": "Badge | single brass banana insignia",
+      "weighting": "body",
+      "atlas_tile": 9,
+      "vertices": 20,
+      "triangles": 36,
+      "bounds": {
+        "min": [
+          0.07109999656677246,
+          0.10050000250339508,
+          0.4883825480937958
+        ],
+        "max": [
+          0.13089999556541443,
+          0.10949999839067459,
+          0.5505708456039429
+        ]
+      }
+    },
+    {
+      "name": "Belt | continuous dark belt",
+      "weighting": "body",
+      "atlas_tile": 8,
+      "vertices": 132,
+      "triangles": 260,
+      "bounds": {
+        "min": [
+          -0.11800000071525574,
+          -0.09600000083446503,
+          0.3383120596408844
+        ],
+        "max": [
+          0.11800000071525574,
+          0.09600000083446503,
+          0.37776535749435425
+        ]
+      }
+    },
+    {
+      "name": "Belt | brass buckle",
+      "weighting": "body",
+      "atlas_tile": 7,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.03350000083446503,
+          0.0925000011920929,
+          0.33387356996536255
+        ],
+        "max": [
+          0.03350000083446503,
+          0.11349999904632568,
+          0.3822038769721985
+        ]
+      }
+    },
+    {
+      "name": "Belt | inset leather buckle",
+      "weighting": "body",
+      "atlas_tile": 10,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.02250000089406967,
+          0.11299999803304672,
+          0.34275054931640625
+        ],
+        "max": [
+          0.02250000089406967,
+          0.11899999529123306,
+          0.3733268678188324
+        ]
+      }
+    },
+    {
+      "name": "Cap | softly tailored navy crown",
+      "weighting": "head",
+      "atlas_tile": 4,
+      "vertices": 120,
+      "triangles": 236,
+      "bounds": {
+        "min": [
+          -0.11517175287008286,
+          -0.06900206208229065,
+          1.0012508630752563
+        ],
+        "max": [
+          0.0651717558503151,
+          0.08900205790996552,
+          1.0998649597167969
+        ]
+      }
+    },
+    {
+      "name": "Cap | fitted lower band",
+      "weighting": "head",
+      "atlas_tile": 6,
+      "vertices": 48,
+      "triangles": 92,
+      "bounds": {
+        "min": [
+          -0.10439034551382065,
+          -0.06269247084856033,
+          0.9939419627189636
+        ],
+        "max": [
+          0.057589828968048096,
+          0.08009443432092667,
+          1.0442053079605103
+        ]
+      }
+    },
+    {
+      "name": "Cap | short forward visor",
+      "weighting": "head",
+      "atlas_tile": 6,
+      "vertices": 170,
+      "triangles": 336,
+      "bounds": {
+        "min": [
+          -0.11412584781646729,
+          0.014823012053966522,
+          0.9896112680435181
+        ],
+        "max": [
+          0.08974064886569977,
+          0.16403767466545105,
+          1.0306556224822998
+        ]
+      }
+    },
+    {
+      "name": "Cap | brass side button",
+      "weighting": "head",
+      "atlas_tile": 7,
+      "vertices": 86,
+      "triangles": 168,
+      "bounds": {
+        "min": [
+          0.05056701973080635,
+          0.014306915923953056,
+          1.0448249578475952
+        ],
+        "max": [
+          0.06820931285619736,
+          0.03205391764640808,
+          1.0622646808624268
+        ]
+      }
+    },
+    {
+      "name": "Whistle | single brass barrel",
+      "weighting": "whistle",
+      "atlas_tile": 7,
+      "vertices": 32,
+      "triangles": 60,
+      "bounds": {
+        "min": [
+          -0.024000000208616257,
+          0.1509999930858612,
+          0.4260956645011902
+        ],
+        "max": [
+          0.024000000208616257,
+          0.19699999690055847,
+          0.47146695852279663
+        ]
+      }
+    },
+    {
+      "name": "Whistle | attached mouthpiece",
+      "weighting": "whistle",
+      "atlas_tile": 7,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.012500000186264515,
+          0.16200000047683716,
+          0.39847832918167114
+        ],
+        "max": [
+          0.012500000186264515,
+          0.1940000057220459,
+          0.4438496232032776
+        ]
+      }
+    },
+    {
+      "name": "Whistle | dark windway",
+      "weighting": "whistle",
+      "atlas_tile": 8,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.006500000134110451,
+          0.19499999284744263,
+          0.41228702664375305
+        ],
+        "max": [
+          0.006500000134110451,
+          0.19900000095367432,
+          0.4320136308670044
+        ]
+      }
+    },
+    {
+      "name": "Whistle cord | secured L",
+      "weighting": "blended attachment",
+      "atlas_tile": 8,
+      "vertices": 32,
+      "triangles": 60,
+      "bounds": {
+        "min": [
+          -0.00046871218364685774,
+          0.10525957494974136,
+          0.4670284390449524
+        ],
+        "max": [
+          0.09038181602954865,
+          0.17146846652030945,
+          0.5652920007705688
+        ]
+      }
+    },
+    {
+      "name": "Whistle cord | secured R",
+      "weighting": "blended attachment",
+      "atlas_tile": 8,
+      "vertices": 32,
+      "triangles": 60,
+      "bounds": {
+        "min": [
+          -0.09038181602954865,
+          0.10525957494974136,
+          0.4670284390449524
+        ],
+        "max": [
+          0.00046871218364685774,
+          0.17146846652030945,
+          0.5652920007705688
+        ]
+      }
+    },
+    {
+      "name": "Arm | upper L",
+      "weighting": "upper_arm_L",
+      "atlas_tile": 0,
+      "vertices": 36,
+      "triangles": 68,
+      "bounds": {
+        "min": [
+          0.12282206863164902,
+          -0.022943641990423203,
+          0.4310385584831238
+        ],
+        "max": [
+          0.23975658416748047,
+          0.03295040875673294,
+          0.5649316310882568
+        ]
+      }
+    },
+    {
+      "name": "Arm | elbow L",
+      "weighting": "forearm_L",
+      "atlas_tile": 0,
+      "vertices": 86,
+      "triangles": 168,
+      "bounds": {
+        "min": [
+          0.19900000095367432,
+          -0.010999999940395355,
+          0.4201776683330536
+        ],
+        "max": [
+          0.24500000476837158,
+          0.032999999821186066,
+          0.467521607875824
+        ]
+      }
+    },
+    {
+      "name": "Arm | forearm L",
+      "weighting": "forearm_L",
+      "atlas_tile": 0,
+      "vertices": 36,
+      "triangles": 68,
+      "bounds": {
+        "min": [
+          0.16753564774990082,
+          -0.009545443579554558,
+          0.34990742802619934
+        ],
+        "max": [
+          0.24212311208248138,
+          0.06380990147590637,
+          0.454993337392807
+        ]
+      }
+    },
+    {
+      "name": "Hand | mitten palm L",
+      "weighting": "hand_L",
+      "atlas_tile": 0,
+      "vertices": 146,
+      "triangles": 288,
+      "bounds": {
+        "min": [
+          0.1550000011920929,
+          0.029999999329447746,
+          0.3126673996448517
+        ],
+        "max": [
+          0.21299999952316284,
+          0.07999999821186066,
+          0.3797380030155182
+        ]
+      }
+    },
+    {
+      "name": "Hand | L finger 1",
+      "weighting": "hand_L",
+      "atlas_tile": 0,
+      "vertices": 72,
+      "triangles": 140,
+      "bounds": {
+        "min": [
+          0.16144049167633057,
+          0.053999997675418854,
+          0.3067494034767151
+        ],
+        "max": [
+          0.17855951189994812,
+          0.07800000160932541,
+          0.3442300260066986
+        ]
+      }
+    },
+    {
+      "name": "Hand | L finger 2",
+      "weighting": "hand_L",
+      "atlas_tile": 0,
+      "vertices": 72,
+      "triangles": 140,
+      "bounds": {
+        "min": [
+          0.1754404902458191,
+          0.053999997675418854,
+          0.3067494034767151
+        ],
+        "max": [
+          0.19255951046943665,
+          0.07800000160932541,
+          0.3442300260066986
+        ]
+      }
+    },
+    {
+      "name": "Hand | L finger 3",
+      "weighting": "hand_L",
+      "atlas_tile": 0,
+      "vertices": 72,
+      "triangles": 140,
+      "bounds": {
+        "min": [
+          0.18944048881530762,
+          0.053999997675418854,
+          0.3067494034767151
+        ],
+        "max": [
+          0.20655950903892517,
+          0.07800000160932541,
+          0.3442300260066986
+        ]
+      }
+    },
+    {
+      "name": "Hand | L thumb",
+      "weighting": "hand_L",
+      "atlas_tile": 0,
+      "vertices": 72,
+      "triangles": 140,
+      "bounds": {
+        "min": [
+          0.14463627338409424,
+          0.057999998331069946,
+          0.33436670899391174
+        ],
+        "max": [
+          0.16936373710632324,
+          0.08799999952316284,
+          0.373820036649704
+        ]
+      }
+    },
+    {
+      "name": "Leg | upper L",
+      "weighting": "thigh_L",
+      "atlas_tile": 0,
+      "vertices": 24,
+      "triangles": 44,
+      "bounds": {
+        "min": [
+          0.04023587703704834,
+          -0.022661598399281502,
+          0.19768443703651428
+        ],
+        "max": [
+          0.0977846309542656,
+          0.03769102692604065,
+          0.3028160035610199
+        ]
+      }
+    },
+    {
+      "name": "Leg | knee L",
+      "weighting": "shin_L",
+      "atlas_tile": 0,
+      "vertices": 86,
+      "triangles": 168,
+      "bounds": {
+        "min": [
+          0.054999999701976776,
+          -0.004999998956918716,
+          0.17951251566410065
+        ],
+        "max": [
+          0.0989999994635582,
+          0.039000000804662704,
+          0.2248838245868683
+        ]
+      }
+    },
+    {
+      "name": "Leg | shin L",
+      "weighting": "shin_L",
+      "atlas_tile": 0,
+      "vertices": 24,
+      "triangles": 44,
+      "bounds": {
+        "min": [
+          0.05704515054821968,
+          -0.014839805662631989,
+          0.09698135405778885
+        ],
+        "max": [
+          0.10195936262607574,
+          0.036822009831666946,
+          0.20512953400611877
+        ]
+      }
+    },
+    {
+      "name": "Boot | sole L",
+      "weighting": "foot_L",
+      "atlas_tile": 10,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.02799999713897705,
+          -0.048500001430511475,
+          0.0
+        ],
+        "max": [
+          0.14000000059604645,
+          0.12250000238418579,
+          0.027617311105132103
+        ]
+      }
+    },
+    {
+      "name": "Boot | round toe L",
+      "weighting": "foot_L",
+      "atlas_tile": 8,
+      "vertices": 182,
+      "triangles": 360,
+      "bounds": {
+        "min": [
+          0.028999973088502884,
+          -0.008000016212463379,
+          0.006904326844960451
+        ],
+        "max": [
+          0.13899999856948853,
+          0.13600000739097595,
+          0.07989293336868286
+        ]
+      }
+    },
+    {
+      "name": "Boot | ankle leather L",
+      "weighting": "foot_L",
+      "atlas_tile": 8,
+      "vertices": 96,
+      "triangles": 188,
+      "bounds": {
+        "min": [
+          0.04399999976158142,
+          -0.04699999839067459,
+          0.028603646904230118
+        ],
+        "max": [
+          0.12399999797344208,
+          0.04699999839067459,
+          0.12723690271377563
+        ]
+      }
+    },
+    {
+      "name": "Boot | rolled cuff L",
+      "weighting": "foot_L",
+      "atlas_tile": 12,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          0.04099999740719795,
+          -0.04899999871850014,
+          0.10948291420936584
+        ],
+        "max": [
+          0.12700000405311584,
+          0.04899999871850014,
+          0.12723688781261444
+        ]
+      }
+    },
+    {
+      "name": "Boot | brass lace L0",
+      "weighting": "foot_L",
+      "atlas_tile": 9,
+      "vertices": 12,
+      "triangles": 20,
+      "bounds": {
+        "min": [
+          0.06199999898672104,
+          0.05257513001561165,
+          0.08107653260231018
+        ],
+        "max": [
+          0.10599999874830246,
+          0.057424869388341904,
+          0.08659999817609787
+        ]
+      }
+    },
+    {
+      "name": "Boot | brass lace L1",
+      "weighting": "foot_L",
+      "atlas_tile": 9,
+      "vertices": 12,
+      "triangles": 20,
+      "bounds": {
+        "min": [
+          0.06199999898672104,
+          0.06457512825727463,
+          0.06628154218196869
+        ],
+        "max": [
+          0.10599999874830246,
+          0.06942487508058548,
+          0.07180501520633698
+        ]
+      }
+    },
+    {
+      "name": "Boot | brass lace L2",
+      "weighting": "foot_L",
+      "atlas_tile": 9,
+      "vertices": 12,
+      "triangles": 20,
+      "bounds": {
+        "min": [
+          0.06199999898672104,
+          0.0765751302242279,
+          0.051486559212207794
+        ],
+        "max": [
+          0.10599999874830246,
+          0.08142487704753876,
+          0.057010021060705185
+        ]
+      }
+    },
+    {
+      "name": "Arm | upper R",
+      "weighting": "upper_arm_R",
+      "atlas_tile": 0,
+      "vertices": 36,
+      "triangles": 68,
+      "bounds": {
+        "min": [
+          -0.23975658416748047,
+          -0.022943641990423203,
+          0.4310385584831238
+        ],
+        "max": [
+          -0.12282206863164902,
+          0.03295040875673294,
+          0.5649316310882568
+        ]
+      }
+    },
+    {
+      "name": "Arm | elbow R",
+      "weighting": "forearm_R",
+      "atlas_tile": 0,
+      "vertices": 86,
+      "triangles": 168,
+      "bounds": {
+        "min": [
+          -0.24500000476837158,
+          -0.010999999940395355,
+          0.4201776683330536
+        ],
+        "max": [
+          -0.19900000095367432,
+          0.032999999821186066,
+          0.467521607875824
+        ]
+      }
+    },
+    {
+      "name": "Arm | forearm R",
+      "weighting": "forearm_R",
+      "atlas_tile": 0,
+      "vertices": 36,
+      "triangles": 68,
+      "bounds": {
+        "min": [
+          -0.24212311208248138,
+          -0.009545443579554558,
+          0.34990742802619934
+        ],
+        "max": [
+          -0.16753564774990082,
+          0.06380990147590637,
+          0.454993337392807
+        ]
+      }
+    },
+    {
+      "name": "Hand | mitten palm R",
+      "weighting": "hand_R",
+      "atlas_tile": 0,
+      "vertices": 146,
+      "triangles": 288,
+      "bounds": {
+        "min": [
+          -0.21299999952316284,
+          0.029999999329447746,
+          0.3126673996448517
+        ],
+        "max": [
+          -0.1550000011920929,
+          0.07999999821186066,
+          0.3797380030155182
+        ]
+      }
+    },
+    {
+      "name": "Hand | R finger 1",
+      "weighting": "hand_R",
+      "atlas_tile": 0,
+      "vertices": 72,
+      "triangles": 140,
+      "bounds": {
+        "min": [
+          -0.20655950903892517,
+          0.053999997675418854,
+          0.3067494034767151
+        ],
+        "max": [
+          -0.18944048881530762,
+          0.07800000160932541,
+          0.3442300260066986
+        ]
+      }
+    },
+    {
+      "name": "Hand | R finger 2",
+      "weighting": "hand_R",
+      "atlas_tile": 0,
+      "vertices": 72,
+      "triangles": 140,
+      "bounds": {
+        "min": [
+          -0.19255951046943665,
+          0.053999997675418854,
+          0.3067494034767151
+        ],
+        "max": [
+          -0.1754404902458191,
+          0.07800000160932541,
+          0.3442300260066986
+        ]
+      }
+    },
+    {
+      "name": "Hand | R finger 3",
+      "weighting": "hand_R",
+      "atlas_tile": 0,
+      "vertices": 72,
+      "triangles": 140,
+      "bounds": {
+        "min": [
+          -0.17855951189994812,
+          0.053999997675418854,
+          0.3067494034767151
+        ],
+        "max": [
+          -0.16144049167633057,
+          0.07800000160932541,
+          0.3442300260066986
+        ]
+      }
+    },
+    {
+      "name": "Hand | R thumb",
+      "weighting": "hand_R",
+      "atlas_tile": 0,
+      "vertices": 72,
+      "triangles": 140,
+      "bounds": {
+        "min": [
+          -0.16936373710632324,
+          0.057999998331069946,
+          0.33436670899391174
+        ],
+        "max": [
+          -0.14463627338409424,
+          0.08799999952316284,
+          0.373820036649704
+        ]
+      }
+    },
+    {
+      "name": "Leg | upper R",
+      "weighting": "thigh_R",
+      "atlas_tile": 0,
+      "vertices": 24,
+      "triangles": 44,
+      "bounds": {
+        "min": [
+          -0.0977846309542656,
+          -0.022661598399281502,
+          0.19768443703651428
+        ],
+        "max": [
+          -0.04023587703704834,
+          0.03769102692604065,
+          0.3028160035610199
+        ]
+      }
+    },
+    {
+      "name": "Leg | knee R",
+      "weighting": "shin_R",
+      "atlas_tile": 0,
+      "vertices": 86,
+      "triangles": 168,
+      "bounds": {
+        "min": [
+          -0.0989999994635582,
+          -0.004999998956918716,
+          0.17951251566410065
+        ],
+        "max": [
+          -0.054999999701976776,
+          0.039000000804662704,
+          0.2248838245868683
+        ]
+      }
+    },
+    {
+      "name": "Leg | shin R",
+      "weighting": "shin_R",
+      "atlas_tile": 0,
+      "vertices": 24,
+      "triangles": 44,
+      "bounds": {
+        "min": [
+          -0.10195936262607574,
+          -0.014839805662631989,
+          0.09698135405778885
+        ],
+        "max": [
+          -0.05704515054821968,
+          0.036822009831666946,
+          0.20512953400611877
+        ]
+      }
+    },
+    {
+      "name": "Boot | sole R",
+      "weighting": "foot_R",
+      "atlas_tile": 10,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.14000000059604645,
+          -0.048500001430511475,
+          0.0
+        ],
+        "max": [
+          -0.02799999713897705,
+          0.12250000238418579,
+          0.027617311105132103
+        ]
+      }
+    },
+    {
+      "name": "Boot | round toe R",
+      "weighting": "foot_R",
+      "atlas_tile": 8,
+      "vertices": 182,
+      "triangles": 360,
+      "bounds": {
+        "min": [
+          -0.1390000283718109,
+          -0.008000016212463379,
+          0.006904326844960451
+        ],
+        "max": [
+          -0.028999991714954376,
+          0.13600000739097595,
+          0.07989293336868286
+        ]
+      }
+    },
+    {
+      "name": "Boot | ankle leather R",
+      "weighting": "foot_R",
+      "atlas_tile": 8,
+      "vertices": 96,
+      "triangles": 188,
+      "bounds": {
+        "min": [
+          -0.12399999797344208,
+          -0.04699999839067459,
+          0.028603646904230118
+        ],
+        "max": [
+          -0.04399999976158142,
+          0.04699999839067459,
+          0.12723690271377563
+        ]
+      }
+    },
+    {
+      "name": "Boot | rolled cuff R",
+      "weighting": "foot_R",
+      "atlas_tile": 12,
+      "vertices": 56,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.12700000405311584,
+          -0.04899999871850014,
+          0.10948291420936584
+        ],
+        "max": [
+          -0.04099999740719795,
+          0.04899999871850014,
+          0.12723688781261444
+        ]
+      }
+    },
+    {
+      "name": "Boot | brass lace R0",
+      "weighting": "foot_R",
+      "atlas_tile": 9,
+      "vertices": 12,
+      "triangles": 20,
+      "bounds": {
+        "min": [
+          -0.10599999874830246,
+          0.05257513001561165,
+          0.08107653260231018
+        ],
+        "max": [
+          -0.06199999898672104,
+          0.057424869388341904,
+          0.08659999817609787
+        ]
+      }
+    },
+    {
+      "name": "Boot | brass lace R1",
+      "weighting": "foot_R",
+      "atlas_tile": 9,
+      "vertices": 12,
+      "triangles": 20,
+      "bounds": {
+        "min": [
+          -0.10599999874830246,
+          0.06457512825727463,
+          0.06628154218196869
+        ],
+        "max": [
+          -0.06199999898672104,
+          0.06942487508058548,
+          0.07180501520633698
+        ]
+      }
+    },
+    {
+      "name": "Boot | brass lace R2",
+      "weighting": "foot_R",
+      "atlas_tile": 9,
+      "vertices": 12,
+      "triangles": 20,
+      "bounds": {
+        "min": [
+          -0.10599999874830246,
+          0.0765751302242279,
+          0.051486559212207794
+        ],
+        "max": [
+          -0.06199999898672104,
+          0.08142487704753876,
+          0.057010021060705185
+        ]
+      }
+    },
+    {
+      "name": "Peel attachment | brass secured loop (0.13, -0.016, 0.358)",
+      "weighting": "body",
+      "atlas_tile": 7,
+      "vertices": 16,
+      "triangles": 28,
+      "bounds": {
+        "min": [
+          0.1249999925494194,
+          -0.021000001579523087,
+          0.3531070649623871
+        ],
+        "max": [
+          0.13499999046325684,
+          -0.01100000087171793,
+          0.38368335366249084
+        ]
+      }
+    },
+    {
+      "name": "Peel attachment | brass secured loop (0.113, -0.025, 0.373)",
+      "weighting": "body",
+      "atlas_tile": 7,
+      "vertices": 16,
+      "triangles": 28,
+      "bounds": {
+        "min": [
+          0.11299999803304672,
+          -0.030000001192092896,
+          0.36297038197517395
+        ],
+        "max": [
+          0.1420000046491623,
+          -0.019999999552965164,
+          0.3728336989879608
+        ]
+      }
+    },
+    {
+      "name": "Peel | single attached left belt trailing strip",
+      "weighting": "blended attachment",
+      "atlas_tile": 1,
+      "vertices": 36,
+      "triangles": 68,
+      "bounds": {
+        "min": [
+          0.10849999636411667,
+          -0.21539877355098724,
+          0.009455381892621517
+        ],
+        "max": [
+          0.19750000536441803,
+          -0.013551274314522743,
+          0.3635590970516205
+        ]
+      }
+    }
+  ],
+  "runtime_construction": "Editable named sources retained; single skin, opaque original-atlas materials, rigid parts plus smooth banana/cord/peel attachment weights.",
+  "files": {
+    "peel-patrol.blend": {
+      "bytes": 9172051,
+      "sha256": "d9dacbbee93b4b660e64ed351092731016a184fc38a64eb45b73dabe76628e5e"
+    },
+    "peel-patrol.glb": {
+      "bytes": 652424,
+      "sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5"
+    },
+    "pigment.png": {
+      "bytes": 645627,
+      "sha256": "9d81346b3c208ff30de2bfd29637d9fa1f27ebecf02ab34c8495d5223809bca0"
+    }
+  }
+}

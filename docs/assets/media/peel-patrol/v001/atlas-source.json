@@ -1,0 +1,30 @@
+{
+  "asset_id": "peel-patrol",
+  "method": "Original deterministic pigment, banana speckle / cloth weave / voxel wash atlas; standard-library PNG writer.",
+  "seed": 28001,
+  "dimensions": [
+    1024,
+    1024
+  ],
+  "colors": [
+    "f1c72b",
+    "ffe16a",
+    "d69c2b",
+    "795030",
+    "273354",
+    "344263",
+    "17243d",
+    "c8a04d",
+    "26222a",
+    "e8bc56",
+    "9c7641",
+    "e9d392",
+    "3d383d",
+    "f7dc75",
+    "b77929",
+    "504057"
+  ],
+  "bytes": 645627,
+  "sha256": "9d81346b3c208ff30de2bfd29637d9fa1f27ebecf02ab34c8495d5223809bca0",
+  "source_images": []
+}

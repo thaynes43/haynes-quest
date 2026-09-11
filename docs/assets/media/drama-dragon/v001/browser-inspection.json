@@ -1,0 +1,109 @@
+{
+  "asset_id": "drama-dragon",
+  "glb_sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933",
+  "gltf_clips": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "defeat"
+  ],
+  "skinned_primitives": 3,
+  "embedded_images": [
+    {
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "render": {
+    "calls_including_one_ground": 4,
+    "triangles_including_one_ground": 11962,
+    "textures": 3
+  },
+  "gl_error": 0,
+  "webgl_version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "three_revision": "186",
+  "clips": {
+    "idle": {
+      "duration_s": 3,
+      "raster_sha256": [
+        "4cd39a8769b673683e759ee2997ea64c382048c6bc632a93cdce6109b4a03c70",
+        "5f16f45fbba474189e6a4228629440c86b5fdeefe8e1a0ac365539cc1a0f5cc1",
+        "f683dbc6d726fbc4ecb09bcddecb838bd507cb52d13d9f121726d0284a15cb8a",
+        "6b8f015843d394dd60c98a6b75cc64ec659e03ffa58f82147aa8469d769fed13"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "move": {
+      "duration_s": 1.600000023841858,
+      "raster_sha256": [
+        "4cd39a8769b673683e759ee2997ea64c382048c6bc632a93cdce6109b4a03c70",
+        "3f6da379700e930680a3010f00504622a0687160df48381a36a0822886d12f67",
+        "f683dbc6d726fbc4ecb09bcddecb838bd507cb52d13d9f121726d0284a15cb8a",
+        "5e1201fc9872f87e82ab9e0b663143ca9d6f814d3afa96cac12ccff9688ec52c"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "attack": {
+      "duration_s": 2,
+      "raster_sha256": [
+        "2ce6787487f221b9618d4f5644f7e59d19d2763ae074fd99b2df0bfb6e311397",
+        "314816a83fed43cf1bd049d38d14724584fef992768a9c8cf29f505c6ba9e149",
+        "b95158101dcffb309945afe2e14e88f00f21ee0148530257e1a1f98f63f4e127",
+        "2ce6787487f221b9618d4f5644f7e59d19d2763ae074fd99b2df0bfb6e311397"
+      ],
+      "distinct_rasters": 3,
+      "gl_error": 0
+    },
+    "hit": {
+      "duration_s": 0.699999988079071,
+      "raster_sha256": [
+        "8a9a880b104e4ac20a1265e2f9f9d9793579c5112db3196adf1f19c77e3ab009",
+        "7002865d7ac3e327ca47bb60ca0259828758e2be01b50e878085e059655aa4f3",
+        "e310f325fce25257de0f23496b04ba98fa38ca2df8ce2315fcf7d8552dcb00df",
+        "18c3c16553872a60c171736ec3bf92da35b6516f2a7319b339bd7fe3e8c10e40"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "raster_sha256": [
+        "2ce6787487f221b9618d4f5644f7e59d19d2763ae074fd99b2df0bfb6e311397",
+        "88aec62f6454fe66415eff3cd4febdfdf29e319a4c2bc493ee5e31b286e3feab",
+        "fa540248d68a82145274bf618345cc1f5b4f1a3ff8c971566fd78d1b6d6862e2",
+        "ea2e63dfc48b4e9f3615b7ffa6748312763aaf0f0a255fdb888b104d9444569e"
+      ],
+      "distinct_rasters": 4,
+      "gl_error": 0
+    }
+  },
+  "browser": "153.0.8010.12",
+  "renderer": "Chromium headless with ANGLE SwiftShader (software WebGL)",
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:43907/",
+    "http://127.0.0.1:43907/three/build/three.module.js",
+    "http://127.0.0.1:43907/three/examples/jsm/loaders/GLTFLoader.js",
+    "http://127.0.0.1:43907/three/examples/jsm/utils/BufferGeometryUtils.js",
+    "http://127.0.0.1:43907/three/examples/jsm/utils/SkeletonUtils.js",
+    "http://127.0.0.1:43907/three/build/three.core.js",
+    "http://127.0.0.1:43907/assets/drama-dragon.glb",
+    "blob:http://127.0.0.1:43907/c942bf7e-61c6-4a8c-badb-4f489665c136"
+  ],
+  "checks": {
+    "exact_glb_hash": true,
+    "expected_skinned_draw_primitives": true,
+    "one_embedded_1024_image": true,
+    "expected_color_draws": true,
+    "expected_triangle_count": true,
+    "five_expected_clips": true,
+    "every_clip_changes_actual_raster": true,
+    "webgl_error_free": true,
+    "browser_error_free": true,
+    "no_external_requests": true
+  },
+  "limitations": "Isolated exact-GLB software WebGL intake; not integrated gameplay, physical Safari, GPU performance or owner approval."
+}

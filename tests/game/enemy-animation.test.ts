@@ -283,7 +283,7 @@ describe("EnemyAnimation playback", () => {
     expect(arm.position.x).toBeCloseTo(6 + 0.05 * fadeFrames(0.05) * 10, 5);
   });
 
-  it("plays the hit clip once per real HP drop outside windup and strike, and never over an attack cue", () => {
+  it("plays one hit clip per HP drop and queues attack-phase hits until the cue resolves", () => {
     const { animation, arm, head, hips } = setup();
     step(animation, frame("idle"), 0.05, 2);
 
@@ -303,8 +303,12 @@ describe("EnemyAnimation playback", () => {
     expect(head.position.z).toBeCloseTo(0, 5); // no hit pose over the windup
     animation.update(frame("windup", { windupProgress: 1, hp: 2 }), 0.05);
     animation.update(frame("strike", { hp: 2 }), 0.05);
-    step(animation, frame("chasing", { hp: 2 }), 0.05, 6);
-    expect(head.position.z).toBeCloseTo(0, 5); // the suppressed hit is not deferred
+    animation.update(frame("chasing", { hp: 2 }), 0.05);
+    expect(head.position.z).toBeGreaterThan(0); // queued hit starts after the attack phase
+    step(animation, frame("chasing", { hp: 2 }), 0.05, 7);
+    expect(head.position.z).toBeCloseTo(5, 5);
+    step(animation, frame("chasing", { hp: 2 }), 0.05, 4);
+    expect(head.position.z).toBeCloseTo(0, 5);
 
     step(animation, frame("windup", { windupProgress: 1, hp: 2 }), 0.05, 3);
     animation.update(frame("strike", { hp: 2 }), 0.05);
@@ -334,6 +338,24 @@ describe("EnemyAnimation playback", () => {
     expect(head.position.z).toBeCloseTo(0, 5);
 
     step(animation, frame("idle", { hp: 3 }), 0.05, 8);
+    expect(head.position.z).toBeCloseTo(5, 5);
+  });
+
+  it("clears a queued attack-phase hit when retry restores HP", () => {
+    const { animation, head } = setup();
+    step(animation, frame("idle"), 0.05, 2);
+    animation.update(
+      frame("windup", { windupProgress: 0.2, hp: 3 }),
+      0.05,
+    );
+    animation.update(
+      frame("windup", { windupProgress: 0.3, hp: 4 }),
+      0.05,
+    );
+    step(animation, frame("chasing", { hp: 4 }), 0.05, 6);
+    expect(head.position.z).toBeCloseTo(0, 5);
+
+    step(animation, frame("chasing", { hp: 3 }), 0.05, 8);
     expect(head.position.z).toBeCloseTo(5, 5);
   });
 
@@ -383,6 +405,12 @@ describe("EnemyAnimation playback", () => {
   it("revives a defeated model with fresh locomotion, no hit, and lets it be defeated again", () => {
     const { animation, spine, hips, head } = setup();
     step(animation, frame("idle"), 0.05, 6);
+    step(
+      animation,
+      frame("windup", { windupProgress: 0.2, hp: 3 }),
+      0.05,
+      2,
+    ); // queues a hit which defeat must discard
     step(animation, frame("defeated", { hp: 0 }), 0.1, 8);
     expect(animation.update(frame("defeated", { hp: 0 }), 0.1).visible).toBe(
       false,

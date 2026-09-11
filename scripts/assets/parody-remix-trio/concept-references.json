@@ -1,0 +1,29 @@
+{
+  "sir-flush-a-lot": {
+    "repository_path": "docs/assets/media/sir-flush-a-lot/v001/concept.png",
+    "sha256": "11de6c89c08ea5be66833f2c60669926cea29e77346fa53ab3b71749967793eb",
+    "bytes": 2004993,
+    "reference": "Skibidi Toilet (original human-head-in-toilet silhouette)",
+    "lead_review": "Selected recognizable head-in-toilet silhouette and opera-singer gag. Final modeled total height includes crown despite approximate drawn dimension. One head, lid hinge and stable closed plinth must survive export. Sheet typography is not a game logo approval.",
+    "private_inputs": false,
+    "concept_generated_by": "Driving root Astra via built-in image_gen; not this Blender author."
+  },
+  "nap-captain": {
+    "repository_path": "docs/assets/media/nap-captain/v001/concept.png",
+    "sha256": "7f862cf560e797919b77b69d8da306f62f89352efa1a2bb98392e55328faee76",
+    "bytes": 2366159,
+    "reference": "CatNap / Smiling Critters original plush form",
+    "lead_review": "Selected recognizable purple cat face, crescent pendant and pillow-pounce joke. Resolve illustration inconsistency: pillow belongs under character LEFT arm (viewer right in front, viewer left in back), not a different arm in rear view. One tail/pendant/mask strap and exactly two arms/two legs. Source friendly slogans do not change the selected goofy enemy role.",
+    "private_inputs": false,
+    "concept_generated_by": "Driving root Astra via built-in image_gen; not this Blender author."
+  },
+  "one-star-diva": {
+    "repository_path": "docs/assets/media/one-star-diva/v001/concept.png",
+    "sha256": "0e1bcbd888f7fb68ad649888b7856eda44091262bbf95b2c6099549ae04231c8",
+    "bytes": 2282833,
+    "reference": "Roblox Dress to Impress and one-star voting",
+    "lead_review": "Selected fashion-avatar outfit, oversized coat and one-star vote gag. Author must make the right hand physically grip the paddle handle even where the neutral sheet obscures it; paddle remains in hand through twirl (thumbnail omission is not permission to remove it). Total measured height1.65m includes hair bow. Maintain both feet and connected rear belt/bow.",
+    "private_inputs": false,
+    "concept_generated_by": "Driving root Astra via built-in image_gen; not this Blender author."
+  }
+}

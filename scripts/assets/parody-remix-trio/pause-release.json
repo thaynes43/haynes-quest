@@ -1,0 +1,188 @@
+{
+  "work_order": "WO-032",
+  "status": "paused at user direction; live lease released",
+  "released_at_utc": "2026-09-11T17:44:32.601411+00:00",
+  "files": [
+    {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/live-scene-release.blend",
+      "bytes": 7641662,
+      "sha256": "9a84bd4c72e70292512bd605f4da44f6fcccdca290816d230aa0bc053c972afe"
+    },
+    {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/nap-captain/nap-captain.blend",
+      "bytes": 7634894,
+      "sha256": "dd3d8efcebdda7db6b1381878ec4abdf9a08010c01317822266c07c206a5f7a3"
+    },
+    {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/nap-captain/nap-captain.glb",
+      "bytes": 789036,
+      "sha256": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7"
+    },
+    {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/nap-captain/authoring-source.json",
+      "bytes": 40779,
+      "sha256": "78b33ed3c0e9055f51e093a7f44b2baa73bf3a60835982b002307a83ad313b6d"
+    },
+    {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/scene-lease.json",
+      "bytes": 2197,
+      "sha256": "4cabfb08af76064c1c1d73cd41a42aa937bddfeb1ea95e919603ebe50a56d6fd"
+    },
+    {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/render-process-completion.json",
+      "bytes": 2368,
+      "sha256": "b7948616af022be3d530e1ea0274a9321ec1409f59b34050237671cff5fc7671"
+    }
+  ],
+  "process_completion": {
+    "checked_at": "2026-09-11T17:44:32.601411+00:00",
+    "all_owned_jobs_exited_and_reaped": true,
+    "jobs": [
+      {
+        "pid": 51196,
+        "asset": "sir-flush-a-lot",
+        "role": "quick render",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51261,
+        "asset": "sir-flush-a-lot",
+        "role": "construction checker",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 51360,
+        "asset": "sir-flush-a-lot",
+        "role": "corrected construction checker",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 51416,
+        "asset": "sir-flush-a-lot",
+        "role": "contact and defeat preview",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51483,
+        "asset": "sir-flush-a-lot",
+        "role": "armature-space construction checker",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 51546,
+        "asset": "sir-flush-a-lot",
+        "role": "final duck construction check",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 51547,
+        "asset": "sir-flush-a-lot",
+        "role": "final duck pose previews",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51667,
+        "asset": "sir-flush-a-lot",
+        "role": "duck pitch construction check",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51668,
+        "asset": "sir-flush-a-lot",
+        "role": "duck pitch pose previews",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51826,
+        "asset": "sir-flush-a-lot",
+        "role": "final stills five clips reel turntable",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 51926,
+        "asset": "sir-flush-a-lot",
+        "role": "complete duck sequence contact audit",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 54922,
+        "asset": "nap-captain",
+        "role": "early actual GLB views",
+        "exit_code": 0,
+        "reaped": true
+      },
+      {
+        "pid": 54923,
+        "asset": "nap-captain",
+        "role": "construction contact checker",
+        "exit_code": 1,
+        "reaped": true
+      },
+      {
+        "pid": 55047,
+        "asset": "nap-captain",
+        "role": "first contact and defeat preview",
+        "exit_code": 0,
+        "reaped": true
+      }
+    ],
+    "note": "Exploratory checker failures retained honestly; no active owned processes."
+  },
+  "lease": {
+    "work_order": "WO-032",
+    "owner": "/root/remix_trio_authoring",
+    "authoring_model": "gpt-6-astra",
+    "reasoning_effort": "max",
+    "status": "released; production paused by user steering before roster selection",
+    "claimed_utc": "2026-09-11T17:09:10.483651+00:00",
+    "remote_root": "/workspace/haynes-quest/parody/remix-trio/v001",
+    "prior_checkpoint": "/workspace/haynes-quest/parody/block-party-pair/v001/live-scene-release.blend",
+    "prior_bytes": 13540486,
+    "prior_sha256": "d89132f2ba7526a78b933aca4dea9de248cc7653a710d09e49abd2e5885c7b3c",
+    "grant_basis": "Root explicit grant after WO028 released 2026-09-11T17:05:53.540911Z; all11ownedjobs exited0/waited/reaped",
+    "blender": "4.5.13 LTS",
+    "binary": "/opt/blender/blender",
+    "processes_at_intake": [
+      {
+        "pid": 1,
+        "args": "/opt/blender-authoring/blender-mcp/.venv/bin/python /opt/blender-authoring/service.py ",
+        "state": "State:\tS (sleeping)"
+      },
+      {
+        "pid": 9,
+        "args": "Xvfb :90 -screen 0 1280x720x24 -nolisten tcp -auth /tmp/blender-authoring-1000/Xauthority -noreset ",
+        "state": "State:\tS (sleeping)"
+      },
+      {
+        "pid": 12,
+        "args": "/usr/local/bin/blender --factory-startup --disable-autoexec -noaudio --gpu-backend opengl --python-exit-code 1 --python /opt/blender-authoring/bootstrap.py ",
+        "state": "State:\tR (running)"
+      }
+    ],
+    "released_at_utc": "2026-09-11T17:44:32.601411+00:00",
+    "release_checkpoint": {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/live-scene-release.blend",
+      "bytes": 7641662,
+      "sha256": "9a84bd4c72e70292512bd605f4da44f6fcccdca290816d230aa0bc053c972afe"
+    },
+    "current_scene": "Nap Captain first exported candidate; local cap/weight/seated corrections have not been uploaded or built.",
+    "all_owned_jobs_exited_and_reaped": true,
+    "previous_checkpoint_preserved": {
+      "path": "/workspace/haynes-quest/parody/block-party-pair/v001/live-scene-release.blend",
+      "bytes": 13540486,
+      "sha256": "d89132f2ba7526a78b933aca4dea9de248cc7653a710d09e49abd2e5885c7b3c"
+    },
+    "remaining": "Nap final media and corrections unbuilt; Diva unbuilt; further production requires root instruction and a new lease."
+  }
+}

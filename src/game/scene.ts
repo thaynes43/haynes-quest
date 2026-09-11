@@ -1,4 +1,7 @@
 import * as THREE from "three";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { ObbyScene } from "./obby-scene";
+import type { ObbyCourse } from "./obby";
 import type { AppearanceStage, SaveView } from "../shared/contracts";
 import { getAvatarProportions } from "./controller";
 import type { LevelLayout } from "./level";
@@ -16,7 +19,9 @@ import {
   palettes,
   shapeMesh,
 } from "./scene-art";
-import { equipmentArtwork } from "./scene-catalog";
+import { equipmentArtwork, parodyArtwork } from "./scene-catalog";
+import { EnemyAnimation } from "./enemy-animation";
+import { enemyAttackRange } from "./combat";
 import { TravelerEquipment } from "./traveler-equipment";
 
 type PhotoState = {
@@ -38,6 +43,8 @@ type EncounterVisual = {
   boss: boolean;
   lastHp: number;
   hitUntil: number;
+  authored: boolean;
+  animation?: EnemyAnimation;
 };
 
 export class GardenScene {
@@ -48,8 +55,10 @@ export class GardenScene {
   private readonly camera = new THREE.PerspectiveCamera(48, 1, 0.08, 100);
   private readonly renderer: THREE.WebGLRenderer;
   private readonly assets = new SceneAssets();
+  private readonly environment: THREE.WebGLRenderTarget;
+  private obbyVisual: ObbyScene | null = null;
   private readonly resizeObserver: ResizeObserver | null;
-  private readonly sun = new THREE.DirectionalLight(0xffdc9b, 2.7);
+  private readonly sun = new THREE.DirectionalLight(0xffedce, 2.1);
   private readonly target = new THREE.Vector3();
   private readonly desiredCamera = new THREE.Vector3();
   private world = new THREE.Group();
@@ -76,6 +85,7 @@ export class GardenScene {
   private cameraPlaced = false;
   private previousAttack = false;
   private attackAt = -10;
+  private unsupportedContentCount = 0;
 
   constructor(
     private readonly container: HTMLElement,
@@ -98,12 +108,19 @@ export class GardenScene {
       touchAction: "none",
     });
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.15;
+    const room = new RoomEnvironment();
+    const generator = new THREE.PMREMGenerator(this.renderer);
+    this.environment = generator.fromScene(room, 0.04);
+    this.scene.environment = this.environment.texture;
+    this.scene.environmentIntensity = 0.3;
+    room.dispose();
+    generator.dispose();
     container.append(this.canvas);
-    this.scene.add(new THREE.HemisphereLight(0xffedce, 0x617284, 1.5));
+    this.scene.add(new THREE.HemisphereLight(0xfff5e5, 0x607c8c, 1.15));
     this.sun.castShadow = true;
     this.sun.shadow.mapSize.set(2048, 2048);
     Object.assign(this.sun.shadow.camera, {
@@ -147,6 +164,7 @@ export class GardenScene {
 
   rebuildRoute(level: LevelLayout, save: SaveView): void {
     this.routeGeneration += 1;
+    this.unsupportedContentCount = 0;
     this.save = save;
     for (const photo of this.photos.values()) {
       if (photo.timer) clearTimeout(photo.timer);
@@ -156,7 +174,9 @@ export class GardenScene {
     this.photos.clear();
     this.memories.clear();
     this.pickups.clear();
+    for (const enemy of this.enemies.values()) enemy.animation?.dispose();
     this.enemies.clear();
+    this.obbyVisual = null;
     this.scene.remove(this.world);
     disposeTree(this.world);
     this.world = new THREE.Group();
@@ -165,26 +185,44 @@ export class GardenScene {
     this.cameraYaw = 0;
     this.cameraPitch = 0.4;
     this.cameraPlaced = false;
-    const later = (save.adventure?.activeLevel?.eraYear ?? 2020) >= 2024;
+    const period = save.adventure?.activeLevel?.periodId;
+    const later = period
+      ? period === "remix-runway-v1" || period === "remix-runway-v2"
+      : (save.adventure?.activeLevel?.eraYear ?? 2020) >= 2024;
     const palette = later ? palettes.fair : palettes.orchard;
-    this.scene.background = new THREE.Color(palette.sky);
-    this.scene.fog = new THREE.Fog(palette.sky, 15, 45);
-    this.sun.color.setHex(palette.light);
-    this.renderer.toneMappingExposure = later ? 1.23 : 1.12;
+    const sky = level.course && !later ? 0xcde5ef : palette.sky;
+    this.scene.background = new THREE.Color(sky);
+    this.scene.fog = new THREE.Fog(sky, 20, 52);
+    this.sun.color.setHex(level.course ? 0xfff4df : palette.light);
+    this.renderer.toneMappingExposure = later ? 0.85 : 0.82;
     const generation = this.routeGeneration;
     const valid = () => !this.disposed && generation === this.routeGeneration;
     const ground = shapeMesh(
       new THREE.PlaneGeometry(64, 110, 48, 80),
-      material(palette.grass),
-      [0, -0.045, -13],
+      material(level.course ? 0x88c1c5 : palette.grass),
+      [0, level.course ? -1.4 : -0.045, -13],
     );
     ground.rotation.x = -Math.PI / 2;
     ground.castShadow = false;
     this.world.add(ground);
+    if (level.course) {
+      this.obbyVisual = new ObbyScene(level.course, later);
+      this.world.add(this.obbyVisual.root);
+      for (const side of [-1, 1])
+        this.world.add(
+          shapeMesh(
+            new THREE.BoxGeometry(16, 1.4, 80),
+            material(palette.grass),
+            [side * 17.5, -0.7, -13],
+          ),
+        );
+    }
     const pathPlacements: THREE.Matrix4[] = [];
     for (let z = 4; z >= -26; z -= 2) {
       const xs = z < -18 ? [-2, 0, 2] : [Math.sin(z * 0.22) * 0.45];
       for (const x of xs) {
+        if (level.course && (later || !this.onIsland(level.course, x, z, 1.05)))
+          continue;
         const tile = new THREE.Group();
         tile.position.set(x, -0.012, z);
         tile.rotation.y = z % 4 ? Math.PI : 0;
@@ -201,7 +239,9 @@ export class GardenScene {
         castShadow: false,
       },
     );
-    const groundColor = new THREE.Color(palette.grass);
+    const groundColor = new THREE.Color(
+      level.course ? 0x88c1c5 : palette.grass,
+    );
     const groundPositions = ground.geometry.getAttribute("position");
     const colors = new Float32Array(groundPositions.count * 3);
     for (let i = 0; i < groundPositions.count; i++) {
@@ -224,7 +264,7 @@ export class GardenScene {
       const side = i % 2 ? 1 : -1;
       const tree = new THREE.Group();
       tree.position.set(
-        side * (7.1 + (i % 3) * 0.85),
+        side * ((level.course ? 10.1 : 7.1) + (i % 3) * 0.85),
         0,
         4 - Math.floor(i / 2) * 4.8,
       );
@@ -234,7 +274,11 @@ export class GardenScene {
       treePlacements.push(tree.matrix.clone());
       if (i % 2 === 0) {
         const stone = new THREE.Group();
-        stone.position.set(-side * 6.5, -0.04, tree.position.z - 2.2);
+        stone.position.set(
+          -side * (level.course ? 9.9 : 6.5),
+          -0.04,
+          tree.position.z - 2.2,
+        );
         stone.rotation.y = i * 2.1;
         stone.scale.setScalar(0.8 + (i % 3) * 0.1);
         stone.updateMatrix();
@@ -264,8 +308,8 @@ export class GardenScene {
       hill.receiveShadow = false;
       this.world.add(hill);
     }
-    this.addMeadow(later);
-    this.addEraDetails(later);
+    this.addMeadow(later, level.course);
+    if (!level.course) this.addEraDetails(later);
     const gate = new THREE.Group();
     gate.position.set(level.finish.x, 0, level.finish.z);
     gate.scale.setScalar(1.4);
@@ -303,10 +347,17 @@ export class GardenScene {
     for (const placement of level.encounters) {
       const root = new THREE.Group();
       root.position.set(placement.position.x, 0, placement.position.z);
-      const model = createEncounterStudy(placement.kind, later);
+      const content = save.adventure?.activeLevel?.encounters.find(
+        (item) => item.id === placement.id,
+      )?.content;
+      const artwork = content ? parodyArtwork(content) : null;
+      if (content && !artwork) this.unsupportedContentCount += 1;
+      const model = content
+        ? new THREE.Group()
+        : createEncounterStudy(placement.kind, later);
       root.add(model);
       const boss = placement.role === "boss";
-      const warning = groundRing(boss ? 1.7 : 1.25, 0xed735d);
+      const warning = groundRing(enemyAttackRange(placement.role), 0xed735d);
       root.add(warning);
       warning.visible = false;
       const marker = groundRing(boss ? 0.9 : 0.5, 0xffdea0, 0.5);
@@ -318,11 +369,11 @@ export class GardenScene {
           color: 0xf0c778,
           side: THREE.DoubleSide,
         }),
-        [0, boss ? 2.25 : 1.45, 0],
+        [0, artwork ? artwork.height + 0.2 : boss ? 2.25 : 1.45, 0],
       );
       root.add(hp);
       this.world.add(root);
-      this.enemies.set(placement.id, {
+      const visual: EncounterVisual = {
         root,
         model,
         warning,
@@ -331,7 +382,17 @@ export class GardenScene {
         boss,
         lastHp: -1,
         hitUntil: 0,
-      });
+        authored: Boolean(artwork),
+      };
+      this.enemies.set(placement.id, visual);
+      if (artwork)
+        this.assets.attach(artwork.url, model, valid, (loaded, clips) => {
+          visual.animation = new EnemyAnimation(
+            loaded,
+            clips,
+            artwork.contactFraction,
+          );
+        });
     }
     this.updateProgress(save);
   }
@@ -390,15 +451,18 @@ export class GardenScene {
 
   getMediaState(): SceneMediaState {
     const assets = this.assets.getState();
-    return {
+    const state: SceneMediaState & { reloadRequired?: boolean } = {
       loading:
         assets.loading +
         [...this.photos.values()].filter((item) => item.loading || item.timer)
           .length,
       failed:
         assets.failed +
-        [...this.photos.values()].filter((item) => item.failed).length,
+        [...this.photos.values()].filter((item) => item.failed).length +
+        this.unsupportedContentCount,
+      reloadRequired: this.unsupportedContentCount > 0,
     };
+    return state;
   }
 
   retryMedia(): void {
@@ -435,6 +499,10 @@ export class GardenScene {
     if (this.disposed) return;
     const dt = frame?.deltaSeconds ?? 0;
     const elapsed = (this.visualTime += dt);
+    if (frame?.obby)
+      this.obbyVisual?.update(frame.obby, frame.checkpointId ?? null);
+    (this.guardRing.material as THREE.MeshBasicMaterial).opacity =
+      frame?.recovering ? 0.6 : 0.8;
     this.traveler.position.set(position.x, position.y, position.z);
     this.traveler.rotation.y = facing;
     if (frame?.attacking && !this.previousAttack) this.attackAt = elapsed;
@@ -443,7 +511,7 @@ export class GardenScene {
     this.slash.visible = attackTime < 0.28;
     this.slash.rotation.z = -1.3 + attackTime * 12;
     this.slash.position.y = this.stage === "infant" ? 0.45 : 0.78;
-    this.guardRing.visible = frame?.guarding ?? false;
+    this.guardRing.visible = Boolean(frame?.guarding || frame?.recovering);
 
     const desiredClip =
       !frame?.grounded && this.clips.has("jump")
@@ -487,7 +555,7 @@ export class GardenScene {
       }
     }
     for (const enemy of frame?.enemies ?? [])
-      this.animateEnemy(enemy, elapsed, frame?.currentTarget === enemy.id);
+      this.animateEnemy(enemy, elapsed, frame?.currentTarget === enemy.id, dt);
     if (this.particles)
       this.particles.rotation.y = Math.sin(elapsed * 0.03) * 0.02;
     this.renderer.render(this.scene, this.camera);
@@ -514,9 +582,11 @@ export class GardenScene {
     this.mixer?.stopAllAction();
     if (this.avatarRoot) this.mixer?.uncacheRoot(this.avatarRoot);
     this.avatarRoot = null;
+    for (const enemy of this.enemies.values()) enemy.animation?.dispose();
     disposeTree(this.world);
     disposeTree(this.traveler);
     this.assets.dispose();
+    this.environment.dispose();
     this.renderer.renderLists.dispose();
     this.renderer.dispose();
     this.renderer.forceContextLoss();
@@ -696,6 +766,7 @@ export class GardenScene {
     enemy: EnemyFrame,
     elapsed: number,
     targeted: boolean,
+    deltaSeconds: number,
   ): void {
     const visual = this.enemies.get(enemy.id);
     if (!visual) return;
@@ -711,21 +782,24 @@ export class GardenScene {
         (item) => item.role === "ordinary" && !item.defeated,
       );
     const defeated = enemy.phase === "defeated";
-    visual.root.visible = !defeated;
+    const animation = visual.animation?.update(enemy, deltaSeconds);
+    visual.root.visible = animation?.visible ?? !defeated;
     if (enemy.hp < visual.lastHp) visual.hitUntil = elapsed + 0.2;
     visual.lastHp = enemy.hp;
-    visual.model.scale.setScalar(elapsed < visual.hitUntil ? 0.9 : 1);
+    visual.model.scale.setScalar(
+      animation ? 1 - animation.vanish : elapsed < visual.hitUntil ? 0.9 : 1,
+    );
     visual.marker.visible = targeted && !defeated;
     visual.warning.visible =
       enemy.phase === "windup" || enemy.phase === "strike";
-    visual.warning.scale.setScalar(
-      enemy.phase === "strike" ? 1 : Math.max(0.1, enemy.windupProgress),
-    );
+    // Show the entire danger area from the start of the warning.
+    visual.warning.scale.setScalar(1);
     (visual.warning.material as THREE.MeshBasicMaterial).opacity =
       enemy.phase === "strike" ? 1 : 0.4 + enemy.windupProgress * 0.5;
     visual.hp.visible = !dormant && enemy.hp < enemy.maxHp && !defeated;
     visual.hp.scale.x = Math.max(0.01, enemy.hp / enemy.maxHp);
     visual.hp.quaternion.copy(this.camera.quaternion);
+    if (visual.authored) return;
     const motion = visual.model.getObjectByName("motion");
     if (motion) {
       motion.position.y =
@@ -758,7 +832,21 @@ export class GardenScene {
     }
   }
 
-  private addMeadow(later: boolean): void {
+  private onIsland(
+    course: ObbyCourse,
+    x: number,
+    z: number,
+    inset = 0,
+  ): boolean {
+    return course.platforms.some(
+      (platform) =>
+        !platform.motion &&
+        Math.abs(x - platform.center.x) <= platform.size.x / 2 - inset &&
+        Math.abs(z - platform.center.z) <= platform.size.z / 2 - inset,
+    );
+  }
+
+  private addMeadow(later: boolean, course?: ObbyCourse): void {
     const bladeGeometry = new THREE.BufferGeometry();
     bladeGeometry.setAttribute(
       "position",
@@ -789,7 +877,15 @@ export class GardenScene {
       dummy.rotation.set(0, i * 1.7, 0);
       dummy.scale.setScalar(0.55 + (i % 9) / 11);
       // Keep the final battle floor clear and readable.
-      if (z < -18 && Math.abs(x) < 3.2) dummy.scale.setScalar(0);
+      if (
+        (z < -18 && Math.abs(x) < 3.2) ||
+        (course &&
+          (later ||
+            Math.abs(x) < 4.5 ||
+            i % 3 !== 0 ||
+            !this.onIsland(course, x, z, 0.3)))
+      )
+        dummy.scale.setScalar(0);
       dummy.updateMatrix();
       grass.setMatrixAt(i, dummy.matrix);
       if (i < 160) {

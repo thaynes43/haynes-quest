@@ -1,0 +1,25 @@
+{
+  "asset_id": "drama-dragon",
+  "version": "v001",
+  "kind": "parody-construction-concept",
+  "created_date": "2026-09-11",
+  "tool": "built-in image_gen",
+  "generation_model_id": null,
+  "seed": null,
+  "reference_target": "Minecraft Ender Dragon",
+  "private_references_used": false,
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2235469,
+      "sha256": "d4983359fa757c7a5aa647117ece7d29553061dd38386ba03fb23ab6749af7c8"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 3112,
+      "sha256": "aaa94467a67adeb9f06501e31328ea33981e0eab104d97cd62e9dacad443314e"
+    }
+  ],
+  "lead_review": "Selected angular black dragon, purple eyes, four feet/two wings/one tail, tiny crown and theatrical ruff. 3D author must explicitly preserve all four legs where the illustration overlaps them; neutral height1.8m, span2.6m,length3.0m.",
+  "owner_review": "pending"
+}

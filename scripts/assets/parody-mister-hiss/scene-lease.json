@@ -1,0 +1,36 @@
+{
+  "work_order": "WO-027",
+  "owner": "/root/mister_hiss_authoring",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "status": "released; no remaining mutable scene work",
+  "claimed_utc": "2026-09-11T15:46:04.230705+00:00",
+  "remote_root": "/workspace/haynes-quest/parody/mister-hiss/v001",
+  "prior_checkpoint": "/workspace/haynes-quest/era-equipment/v001/live-scene-release.blend",
+  "prior_sha256": "6ebc393a8b1197e9e0422af04a4fecd8bbf95f52aa6aba7c1ee22df5b5b9649d",
+  "grant_basis": "Root explicit lease after WO017 release 2026-09-11 15:08:52 UTC and all jobs ended",
+  "processes_at_intake": [
+    {
+      "pid": 1,
+      "cmd": "/opt/blender-authoring/blender-mcp/.venv/bin/python /opt/blender-authoring/service.py "
+    },
+    {
+      "pid": 9,
+      "cmd": "Xvfb :90 -screen 0 1280x720x24 -nolisten tcp -auth /tmp/blender-authoring-1000/Xauthority -noreset "
+    },
+    {
+      "pid": 12,
+      "cmd": "/usr/local/bin/blender --factory-startup --disable-autoexec -noaudio --gpu-backend opengl --python-exit-code 1 --python /opt/blender-authoring/bootstrap.py "
+    }
+  ],
+  "blender": "4.5.13 LTS",
+  "binary": "/opt/blender/blender",
+  "released_utc": "2026-09-11T16:20:52.952967+00:00",
+  "all_owned_jobs_exited_and_reaped": true,
+  "final_live_checkpoint": "/workspace/haynes-quest/parody/mister-hiss/v001/live-scene-release.blend",
+  "final_glb_sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+  "prior_checkpoint_unchanged": true,
+  "final_render_pid": 38372,
+  "final_render_exit_code": 0,
+  "remaining_work": "Filesystem-only exact-byte packaging/transfer and scoped git commit; no live-scene mutation required."
+}

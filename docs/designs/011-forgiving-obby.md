@@ -22,11 +22,15 @@ Use a short grace period after leaving an edge and a small buffered jump window 
 
 Place a safe checkpoint before each new obstacle section and after completing it. A missed jump or obstacle bump returns the player nearby, with a brief clear recovery and protection from immediate repeated contact. It does not remove collected equipment, consumed memories, completed encounters or boss progress. Avoid repeated damage or bouncing loops while the player is recovering. Combat defeat remains a separate, clearly explained retry state.
 
+On the jumping route, standing on a destination island activates its checkpoint even when the jump lands beyond the painted marker. The marker identifies the safe recovery position; it is not a small target the child must land on or backtrack to touch. Standing on the preceding island or passing over the destination in midair does not activate it. The first flat route retains its visible checkpoint strips.
+
+The second island leaves a safe pause after the gap before its rotating padded bar. The bar sits farther down the island with a short arm, so a natural gap landing does not demand an immediate second jump. The player can watch its slow turn, jump at a clear angle, or use the wide space around it. Leave a safe exit before the moving-platform approach as well.
+
 Obstacle traversal checkpoints may be local within the current session; a persisted resume must start at a safe position derived from saved progression until a versioned checkpoint contract is implemented. Do not imply that an in-memory marker survives reload. The server continues to own combat and memory progression; local movement is not an anti-cheat system.
 
 ## Technical acceptance
 
-The current controller only models a flat plane and one raised edge. Required work includes explicit walkable platforms, support and side collision, gaps/fall detection, moving surfaces carrying the player, timed hazard contact and local safe checkpoints. A shared simulation state drives collision and the visible obstacle poses, using the same bounded paused clock.
+The corrected controller models explicit walkable platforms, support and side collision, gaps/fall detection, moving surfaces carrying the player, timed hazard contact and local safe checkpoints. A shared simulation state drives collision and the visible obstacle poses, using the same bounded paused clock. The former flat-plane controller did not satisfy this requirement.
 
 Test walking off and landing on platforms, undersides/sides, edge grace, buffered input, moving-platform support, hazard timing, recovery cooldown, modal/visibility pause and narrow-screen touch play. Verify that failed traversal preserves authoritative inventory and combat/memory state. The ordinary route must be completed through actual keyboard and touch controls; API-arranged state alone cannot establish playability. Record safe game captures and the limits of emulated Chromium versus a physical iPad or iPhone.
 

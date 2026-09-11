@@ -1,0 +1,105 @@
+{
+  "checked_at": "2026-09-11T17:44:32.601411+00:00",
+  "all_owned_jobs_exited_and_reaped": true,
+  "jobs": [
+    {
+      "pid": 51196,
+      "asset": "sir-flush-a-lot",
+      "role": "quick render",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 51261,
+      "asset": "sir-flush-a-lot",
+      "role": "construction checker",
+      "exit_code": 1,
+      "reaped": true
+    },
+    {
+      "pid": 51360,
+      "asset": "sir-flush-a-lot",
+      "role": "corrected construction checker",
+      "exit_code": 1,
+      "reaped": true
+    },
+    {
+      "pid": 51416,
+      "asset": "sir-flush-a-lot",
+      "role": "contact and defeat preview",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 51483,
+      "asset": "sir-flush-a-lot",
+      "role": "armature-space construction checker",
+      "exit_code": 1,
+      "reaped": true
+    },
+    {
+      "pid": 51546,
+      "asset": "sir-flush-a-lot",
+      "role": "final duck construction check",
+      "exit_code": 1,
+      "reaped": true
+    },
+    {
+      "pid": 51547,
+      "asset": "sir-flush-a-lot",
+      "role": "final duck pose previews",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 51667,
+      "asset": "sir-flush-a-lot",
+      "role": "duck pitch construction check",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 51668,
+      "asset": "sir-flush-a-lot",
+      "role": "duck pitch pose previews",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 51826,
+      "asset": "sir-flush-a-lot",
+      "role": "final stills five clips reel turntable",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 51926,
+      "asset": "sir-flush-a-lot",
+      "role": "complete duck sequence contact audit",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 54922,
+      "asset": "nap-captain",
+      "role": "early actual GLB views",
+      "exit_code": 0,
+      "reaped": true
+    },
+    {
+      "pid": 54923,
+      "asset": "nap-captain",
+      "role": "construction contact checker",
+      "exit_code": 1,
+      "reaped": true
+    },
+    {
+      "pid": 55047,
+      "asset": "nap-captain",
+      "role": "first contact and defeat preview",
+      "exit_code": 0,
+      "reaped": true
+    }
+  ],
+  "note": "Exploratory checker failures retained honestly; no active owned processes."
+}

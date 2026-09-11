@@ -1,0 +1,191 @@
+{
+  "date": "2026-09-11T20:16:49.996Z",
+  "browser": "153.0.8010.12",
+  "bundle": {
+    "path": "/assets/index-BPeATrrp.js",
+    "bytes": 1001106,
+    "sha256": "15487f825f0f7d8125144d3a1eb49c37e5212bf6c7d0bb8de8f368f141bc6051"
+  },
+  "viewport": {
+    "keyboard": {
+      "width": 1024,
+      "height": 768,
+      "deviceScaleFactor": 1
+    },
+    "touch": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "cdpTouch": true
+    },
+    "portrait": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1
+    }
+  },
+  "keyboard": "two complete v2 courses and era battles through keyboard/UI controls; deliberate local recoveries, checkpoints, gaps, ferry, equipment, guard, boss gate, all fictional memory reveals, age transitions, save/leave/resume",
+  "touch": "not run in keyboard-only mode",
+  "media": "forced same-origin memory fetch failure produced visible scene/photo recovery states; retry restored artwork",
+  "authority": "read-only GET save assertions confirmed local recovery changes no revision, HP, inventory, victories or encounters; boss/reveal do not change age; absorption advances 0→4→7",
+  "obby": {
+    "keyboard": {
+      "pause": {
+        "heldSeconds": 0.85,
+        "courseTimeBefore": 0.15,
+        "courseTimeAfter": 0.15,
+        "resumedDelta": 0
+      },
+      "firstHazardRecovery": {
+        "beforeRecoveries": 0,
+        "afterRecoveries": 1,
+        "checkpointId": "start",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "recoveryRemaining": 0.7500000000000002,
+        "savedRevision": 1,
+        "playerHp": 10,
+        "inventoryCount": 1,
+        "defeatedCount": 0,
+        "completedLevelCount": 0
+      },
+      "firstHazardPass": {
+        "recoveries": 1,
+        "position": {
+          "x": 5.734689999999983,
+          "y": 0,
+          "z": -4.580000000000007
+        }
+      },
+      "missedGapRecovery": {
+        "beforeRecoveries": 0,
+        "afterRecoveries": 1,
+        "checkpointId": "start",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "recoveryRemaining": 0.8,
+        "savedRevision": 20,
+        "playerHp": 10,
+        "inventoryCount": 3,
+        "defeatedCount": 0,
+        "completedLevelCount": 1
+      },
+      "firstGap": {
+        "checkpointId": "first-clearing",
+        "checkpointArmedOnLanding": true,
+        "landingPosition": {
+          "x": 0,
+          "y": 0,
+          "z": -5.044690000000016
+        },
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": -5.044690000000016
+        },
+        "recoveries": 1,
+        "jumpApex": 0.8312499999999999
+      },
+      "secondGap": {
+        "checkpointId": "second-clearing",
+        "checkpointArmedOnLanding": true,
+        "landingPosition": {
+          "x": 0.7749999999999999,
+          "y": 0,
+          "z": -11.244379999999946
+        },
+        "position": {
+          "x": 0.7749999999999999,
+          "y": 0,
+          "z": -11.244379999999946
+        },
+        "recoveries": 1,
+        "jumpApex": 0.8312499999999999
+      },
+      "runwaySweeper": {
+        "waitedAtPosition": {
+          "x": -2.914335439641036e-16,
+          "y": 0,
+          "z": -11.554379999999941
+        },
+        "takeoffPosition": {
+          "x": -2.914335439641036e-16,
+          "y": 0,
+          "z": -12.32937999999993
+        },
+        "hazardAngle": 0.08356636458550804,
+        "jumpApex": 0.8312499999999999,
+        "landingPosition": {
+          "x": -2.914335439641036e-16,
+          "y": 0,
+          "z": -14.4990699999999
+        },
+        "safeExitPosition": {
+          "x": -2.914335439641036e-16,
+          "y": 0,
+          "z": -14.809069999999895
+        },
+        "recoveries": 1
+      },
+      "secondFightSettle": {
+        "before": {
+          "position": {
+            "x": -2.914335439641036e-16,
+            "y": 0,
+            "z": -14.809069999999895
+          },
+          "grounded": true,
+          "supportId": "second-clearing-island"
+        },
+        "after": {
+          "position": {
+            "x": -2.914335439641036e-16,
+            "y": 0,
+            "z": -14.809069999999895
+          },
+          "grounded": true,
+          "supportId": "second-clearing-island"
+        },
+        "recoveries": 1
+      },
+      "ferry": {
+        "boardedAt": -16.650000035248585,
+        "riddenTo": -16.736321664673536,
+        "farDockAt": -17.28304511206273,
+        "riderOffset": -0.6906786169560739,
+        "boardingDrift": 0,
+        "riderOffsetDrift": 0,
+        "waits": {
+          "nearDock": {
+            "simulationSeconds": 2.416600000000029,
+            "wallMilliseconds": 5223
+          },
+          "ride": {
+            "simulationSeconds": 0.8000000000000114,
+            "wallMilliseconds": 1771
+          },
+          "farDock": {
+            "simulationSeconds": 0.9499000000000208,
+            "wallMilliseconds": 1723
+          }
+        },
+        "checkpointId": "boss-landing",
+        "landingPosition": {
+          "x": -2.914335439641036e-16,
+          "y": 0,
+          "z": -20.042025755126225
+        }
+      }
+    }
+  },
+  "portrait": "390x844 home has no horizontal overflow",
+  "pageErrors": [],
+  "storage": "WO045 frozen fixture; local modal-leave locator accommodation",
+  "physicalDevices": "not tested"
+}

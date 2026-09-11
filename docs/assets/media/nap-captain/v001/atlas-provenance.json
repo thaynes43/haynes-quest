@@ -1,0 +1,32 @@
+{
+  "work_order": "WO-032",
+  "asset_id": "nap-captain",
+  "method": "Original deterministic swatches with ceramic glaze, short plush fibres, woven/quilt stitches or satin grain authored procedurally; no input or downloaded textures.",
+  "seed": 32002,
+  "size": [
+    1024,
+    1024
+  ],
+  "palette": [
+    "7744a3",
+    "a16dc1",
+    "1f1527",
+    "fff4d7",
+    "263454",
+    "ece1c2",
+    "42aabb",
+    "edd689",
+    "d7a738",
+    "362640",
+    "af69bd",
+    "614b39",
+    "f8e3a2",
+    "395577",
+    "654089",
+    "9b55ae"
+  ],
+  "pillow": "12.3.0",
+  "numpy": "2.5.2",
+  "sha256": "94da21fe68603c90f0ae2507cfc78bba7291f5da349b634444fedd819b64914e",
+  "bytes": 665008
+}

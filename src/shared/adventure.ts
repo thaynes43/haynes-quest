@@ -8,8 +8,16 @@ import type {
   EncounterRole,
   EquipmentKind,
   EquipmentView,
+  FrozenEncounterContent,
   GameplayAction,
 } from './contracts.js';
+import {
+  PARODY_CATALOG_VERSION,
+  type ObbyRouteId,
+  type ParodyCatalogVersion,
+  type ParodyPeriodId,
+} from './parody-catalog.js';
+import { selectParodyLevel } from './parody-selection.js';
 
 export const AGE_THRESHOLDS = [4, 8, 13, 18, 25, 35, 50, 65] as const;
 export const ATTACK_COOLDOWN_MS = 600;
@@ -34,7 +42,7 @@ export interface FrozenEquipmentDefinition {
   guardReduction: number;
 }
 
-export interface FrozenEncounterDefinition {
+export interface FrozenEncounterDefinitionV1 {
   id: string;
   role: EncounterRole;
   kind: EncounterKind;
@@ -42,7 +50,13 @@ export interface FrozenEncounterDefinition {
   attackDamage: number;
 }
 
-export interface FrozenLevelPlan {
+export interface FrozenEncounterDefinitionV2 extends FrozenEncounterDefinitionV1 {
+  content: FrozenEncounterContent;
+}
+
+export type FrozenEncounterDefinition = FrozenEncounterDefinitionV1 | FrozenEncounterDefinitionV2;
+
+interface FrozenLevelPlanBase {
   id: string;
   index: number;
   startAgeYears: number;
@@ -51,14 +65,33 @@ export interface FrozenLevelPlan {
   eraYear: number;
   memoryIds: string[];
   pickups: FrozenEquipmentDefinition[];
-  encounters: FrozenEncounterDefinition[];
   bossId: string;
 }
 
-export interface AdventurePlan {
-  version: 'era-level-plan-v1';
-  levels: FrozenLevelPlan[];
+export interface FrozenLevelPlanV1 extends FrozenLevelPlanBase {
+  encounters: FrozenEncounterDefinitionV1[];
 }
+
+export interface FrozenLevelPlanV2 extends FrozenLevelPlanBase {
+  periodId: ParodyPeriodId;
+  routeId: ObbyRouteId;
+  encounters: FrozenEncounterDefinitionV2[];
+}
+
+export type FrozenLevelPlan = FrozenLevelPlanV1 | FrozenLevelPlanV2;
+
+export interface AdventurePlanV1 {
+  version: 'era-level-plan-v1';
+  levels: FrozenLevelPlanV1[];
+}
+
+export interface AdventurePlanV2 {
+  version: 'era-level-plan-v2';
+  catalogVersion: ParodyCatalogVersion;
+  levels: FrozenLevelPlanV2[];
+}
+
+export type AdventurePlan = AdventurePlanV1 | AdventurePlanV2;
 
 export interface EncounterProgress {
   hp: number;
@@ -127,11 +160,12 @@ export function appearanceForAge(ageYears: number): AppearanceStage {
 export function createAdventurePlan(
   birthDate: string,
   memories: AdventureMemory[],
-): AdventurePlan {
+): AdventurePlanV2 {
   if (memories.length < 1 || memories.length > 24) {
     throw new RangeError('An adventure requires between 1 and 24 memories');
   }
-  const levels: FrozenLevelPlan[] = [];
+  const levels: FrozenLevelPlanV2[] = [];
+  const catalogVersion = PARODY_CATALOG_VERSION;
   let memoryIndex = 0;
   let startAgeYears = 0;
   let startDate = birthDate;
@@ -154,7 +188,9 @@ export function createAdventurePlan(
     if (!Number.isInteger(eraYear)) throw new RangeError('Adventure start date is invalid');
     const prefix = `level-${index + 1}-${eraYear}`;
     const pickups = createEquipment(prefix, index);
-    const encounters = createEncounters(prefix, index);
+    const startingAbilities = abilitiesForAge(startAgeYears);
+    const selection = selectParodyLevel(startDate, startingAbilities, catalogVersion);
+    const encounters = createEncounters(prefix, index, selection.encounters);
     levels.push({
       id: prefix,
       index,
@@ -163,6 +199,8 @@ export function createAdventurePlan(
       startDate,
       eraYear,
       memoryIds: bundle.map((memory) => memory.id),
+      periodId: selection.periodId,
+      routeId: selection.routeId,
       pickups,
       encounters,
       bossId: encounters.at(-1)!.id,
@@ -173,7 +211,7 @@ export function createAdventurePlan(
     startDate = finalMemory.date;
   }
 
-  return { version: 'era-level-plan-v1', levels };
+  return { version: 'era-level-plan-v2', catalogVersion, levels };
 }
 
 export function createInitialAdventureState(plan: AdventurePlan): AdventureState {
@@ -361,6 +399,8 @@ export function toAdventureView(
     .filter((equipment) => state.inventoryIds.includes(equipment.id))
     .map((equipment) => equipmentView(equipment, state));
   return {
+    planVersion: plan.version,
+    ...(plan.version === 'era-level-plan-v2' ? { catalogVersion: plan.catalogVersion } : {}),
     phase: state.phase,
     activeLevelIndex: state.activeLevelIndex,
     currentLevelId: level?.id ?? null,
@@ -416,26 +456,27 @@ function createEquipment(prefix: string, levelIndex: number): FrozenEquipmentDef
   ];
 }
 
-function createEncounters(prefix: string, levelIndex: number): FrozenEncounterDefinition[] {
+function createEncounters(
+  prefix: string,
+  levelIndex: number,
+  selections: ReturnType<typeof selectParodyLevel>['encounters'],
+): FrozenEncounterDefinitionV2[] {
   return [
     {
+      ...selections[0],
       id: `${prefix}-encounter-1`,
-      role: 'ordinary',
-      kind: 'ordinary-a',
       maxHp: 4 + levelIndex * 2,
       attackDamage: 2 + levelIndex,
     },
     {
+      ...selections[1],
       id: `${prefix}-encounter-2`,
-      role: 'ordinary',
-      kind: 'ordinary-b',
       maxHp: 5 + levelIndex * 2,
       attackDamage: 2 + levelIndex,
     },
     {
+      ...selections[2],
       id: `${prefix}-boss`,
-      role: 'boss',
-      kind: 'boss',
       maxHp: 8 + levelIndex * 3,
       attackDamage: 3 + levelIndex,
     },
@@ -509,6 +550,7 @@ function levelView(
     targetAgeYears: level.targetAgeYears,
     startDate: level.startDate,
     eraYear: level.eraYear,
+    ...('periodId' in level ? { periodId: level.periodId, routeId: level.routeId } : {}),
     memoryIds: [...level.memoryIds],
     pickups: level.pickups.map((equipment) => equipmentView(equipment, state)),
     encounters: level.encounters.map((encounter) => {

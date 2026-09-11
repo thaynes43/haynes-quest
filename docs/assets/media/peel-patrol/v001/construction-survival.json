@@ -1,0 +1,625 @@
+{
+  "asset_id": "peel-patrol",
+  "glb_sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5",
+  "master_sha256": "d9dacbbee93b4b660e64ed351092731016a184fc38a64eb45b73dabe76628e5e",
+  "method": "Every source vertex matched to reimported GLB coordinates with equal joint influences; BVH surface intersections at authored seams.",
+  "named_source_parts": 71,
+  "exported_vertices": 7759,
+  "parts": [
+    {
+      "name": "Banana | continuous tall curved yellow skin",
+      "vertices": 308,
+      "max_export_distance_m": 0,
+      "max_weight_error": 5.960464477539063e-08,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Banana | attached side ridge -1",
+      "vertices": 32,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Banana | attached side ridge 1",
+      "vertices": 32,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Banana | brown blunt stem",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Banana | attached upper peel flap L",
+      "vertices": 20,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | dark oval eye L",
+      "vertices": 222,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | stern brow L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Banana | attached upper peel flap R",
+      "vertices": 20,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | dark oval eye R",
+      "vertices": 222,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Face | stern brow R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Vest | continuous navy back and side panels",
+      "vertices": 132,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Vest | lapel L",
+      "vertices": 6,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Vest | small pocket L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Vest | pocket top seam L",
+      "vertices": 12,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Vest | lapel R",
+      "vertices": 6,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Vest | small pocket R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Vest | pocket top seam R",
+      "vertices": 12,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Vest | concealed shoulder fastening -1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Vest | concealed shoulder fastening 1",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Badge | single brass banana insignia",
+      "vertices": 20,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Belt | continuous dark belt",
+      "vertices": 132,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Belt | brass buckle",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Belt | inset leather buckle",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Cap | softly tailored navy crown",
+      "vertices": 120,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Cap | fitted lower band",
+      "vertices": 48,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Cap | short forward visor",
+      "vertices": 170,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Cap | brass side button",
+      "vertices": 86,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Whistle | single brass barrel",
+      "vertices": 32,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Whistle | attached mouthpiece",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Whistle | dark windway",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Whistle cord | secured L",
+      "vertices": 32,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Whistle cord | secured R",
+      "vertices": 32,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Arm | upper L",
+      "vertices": 36,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Arm | elbow L",
+      "vertices": 86,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Arm | forearm L",
+      "vertices": 36,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | mitten palm L",
+      "vertices": 146,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | L finger 1",
+      "vertices": 72,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | L finger 2",
+      "vertices": 72,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | L finger 3",
+      "vertices": 72,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | L thumb",
+      "vertices": 72,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | upper L",
+      "vertices": 24,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | knee L",
+      "vertices": 86,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | shin L",
+      "vertices": 24,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | sole L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | round toe L",
+      "vertices": 182,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | ankle leather L",
+      "vertices": 96,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | rolled cuff L",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | brass lace L0",
+      "vertices": 12,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | brass lace L1",
+      "vertices": 12,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | brass lace L2",
+      "vertices": 12,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Arm | upper R",
+      "vertices": 36,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Arm | elbow R",
+      "vertices": 86,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Arm | forearm R",
+      "vertices": 36,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | mitten palm R",
+      "vertices": 146,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | R finger 1",
+      "vertices": 72,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | R finger 2",
+      "vertices": 72,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | R finger 3",
+      "vertices": 72,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Hand | R thumb",
+      "vertices": 72,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | upper R",
+      "vertices": 24,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | knee R",
+      "vertices": 86,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Leg | shin R",
+      "vertices": 24,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | sole R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | round toe R",
+      "vertices": 182,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | ankle leather R",
+      "vertices": 96,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | rolled cuff R",
+      "vertices": 56,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | brass lace R0",
+      "vertices": 12,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | brass lace R1",
+      "vertices": 12,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Boot | brass lace R2",
+      "vertices": 12,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Peel attachment | brass secured loop (0.13, -0.016, 0.358)",
+      "vertices": 16,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Peel attachment | brass secured loop (0.113, -0.025, 0.373)",
+      "vertices": 16,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    },
+    {
+      "name": "Peel | single attached left belt trailing strip",
+      "vertices": 36,
+      "max_export_distance_m": 0,
+      "max_weight_error": 0,
+      "missing_influence_sets": 0
+    }
+  ],
+  "attachment_contacts": [
+    {
+      "attachment": "cap contacts banana",
+      "parts": [
+        "Cap | fitted lower band",
+        "Banana | continuous tall curved yellow skin"
+      ],
+      "intersecting_face_pairs": 60
+    },
+    {
+      "attachment": "stem contacts banana",
+      "parts": [
+        "Banana | brown blunt stem",
+        "Banana | continuous tall curved yellow skin"
+      ],
+      "intersecting_face_pairs": 38
+    },
+    {
+      "attachment": "whistle pieces are one attached prop",
+      "parts": [
+        "Whistle | single brass barrel",
+        "Whistle | attached mouthpiece"
+      ],
+      "intersecting_face_pairs": 20
+    },
+    {
+      "attachment": "belt contacts banana",
+      "parts": [
+        "Belt | continuous dark belt",
+        "Banana | continuous tall curved yellow skin"
+      ],
+      "intersecting_face_pairs": 134
+    },
+    {
+      "attachment": "peel contacts belt loop",
+      "parts": [
+        "Peel | single attached left belt trailing strip",
+        "Peel attachment | brass secured loop (0.13, -0.016, 0.358)"
+      ],
+      "intersecting_face_pairs": 11
+    },
+    {
+      "attachment": "upper flap L joins banana",
+      "parts": [
+        "Banana | attached upper peel flap L",
+        "Banana | continuous tall curved yellow skin"
+      ],
+      "intersecting_face_pairs": 10
+    },
+    {
+      "attachment": "vest fastening L reaches body",
+      "parts": [
+        "Vest | concealed shoulder fastening 1",
+        "Banana | continuous tall curved yellow skin"
+      ],
+      "intersecting_face_pairs": 16
+    },
+    {
+      "attachment": "vest fastening L reaches cloth",
+      "parts": [
+        "Vest | concealed shoulder fastening 1",
+        "Vest | continuous navy back and side panels"
+      ],
+      "intersecting_face_pairs": 32
+    },
+    {
+      "attachment": "whistle cord L reaches barrel",
+      "parts": [
+        "Whistle cord | secured L",
+        "Whistle | single brass barrel"
+      ],
+      "intersecting_face_pairs": 9
+    },
+    {
+      "attachment": "upper flap R joins banana",
+      "parts": [
+        "Banana | attached upper peel flap R",
+        "Banana | continuous tall curved yellow skin"
+      ],
+      "intersecting_face_pairs": 10
+    },
+    {
+      "attachment": "vest fastening R reaches body",
+      "parts": [
+        "Vest | concealed shoulder fastening -1",
+        "Banana | continuous tall curved yellow skin"
+      ],
+      "intersecting_face_pairs": 16
+    },
+    {
+      "attachment": "vest fastening R reaches cloth",
+      "parts": [
+        "Vest | concealed shoulder fastening -1",
+        "Vest | continuous navy back and side panels"
+      ],
+      "intersecting_face_pairs": 32
+    },
+    {
+      "attachment": "whistle cord R reaches barrel",
+      "parts": [
+        "Whistle cord | secured R",
+        "Whistle | single brass barrel"
+      ],
+      "intersecting_face_pairs": 9
+    }
+  ],
+  "checks": {
+    "every_named_source_vertex_survives": true,
+    "all_source_weights_survive": true,
+    "normalized_skin_weights": true,
+    "one_to_four_influences": true,
+    "major_attachment_seams_physically_intersect": true,
+    "exactly_two_upper_arms": true,
+    "exactly_two_boots": true,
+    "exactly_one_whistle_barrel": true,
+    "exactly_one_left_trailing_peel": true,
+    "four_fingers_per_hand": true
+  }
+}

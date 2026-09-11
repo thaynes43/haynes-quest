@@ -4,12 +4,16 @@ import {
   MAX_ACTION_RECEIPTS,
   abilitiesForAge,
   appearanceForAge,
+  createAdventurePlan,
+  createInitialAdventureState,
   memoryIsReleased,
   reduceAdventureAction,
   toAdventureView,
   type AdventurePlan,
   type AdventureState,
 } from '../shared/adventure.js';
+import { PARODY_CATALOG_VERSION } from '../shared/parody-catalog.js';
+import { ParodyCatalogUnavailableError } from '../shared/parody-selection.js';
 import type {
   Ability,
   AppearanceStage,
@@ -31,11 +35,11 @@ export const FIXTURE_SUBJECT: SubjectOption = {
 };
 
 export const RULE_VERSIONS: RuleVersions = {
-  journey: 'era-level-plan-v1',
+  journey: 'era-level-plan-v2',
   age: 'birth-date-whole-years-v1',
   progression: 'boss-memory-consume-v2',
   appearance: 'synthetic-traveler-v1',
-  catalog: 'generic-era-catalog-v1',
+  catalog: PARODY_CATALOG_VERSION,
   combat: 'discrete-combat-v1',
 };
 
@@ -125,6 +129,21 @@ export interface QuestStore {
 }
 
 export { abilitiesForAge, appearanceForAge };
+
+export function createAdventureForSave(
+  birthDate: string,
+  memories: FrozenMemory[],
+): { plan: AdventurePlan; state: AdventureState } {
+  try {
+    const plan = createAdventurePlan(birthDate, memories);
+    return { plan, state: createInitialAdventureState(plan) };
+  } catch (error) {
+    if (error instanceof ParodyCatalogUnavailableError) {
+      throw new AppError(422, 'ERA_CATALOG_UNAVAILABLE', 'Adventure catalog unavailable');
+    }
+    throw error;
+  }
+}
 
 export function wholeYearsAt(birthDate: string, eventDate: string): number {
   const birth = parseDateOnly(birthDate);
@@ -330,6 +349,8 @@ export function validateSaveRecord(save: SaveRecord): SaveRecord {
   if (
     plannedMemoryIds.length !== savedMemoryIds.length ||
     plannedMemoryIds.some((id, index) => id !== savedMemoryIds[index]) ||
+    normalized.versions.journey !== plan.version ||
+    (plan.version === 'era-level-plan-v2' && normalized.versions.catalog !== plan.catalogVersion) ||
     plan.levels[0]?.startDate !== normalized.birthDate ||
     plan.levels.some((level, index) => {
       const lastMemoryId = level.memoryIds.at(-1);

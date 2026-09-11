@@ -1,0 +1,2625 @@
+{
+  "asset_id": "mister-hiss",
+  "version": "v001",
+  "work_order": "WO-027",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "blender": "4.5.13 LTS",
+  "reference": "Minecraft Creeper confetti parody; exact root concept retained",
+  "private_inputs": false,
+  "downloaded_meshes_or_textures": false,
+  "triangles": 12872,
+  "vertices": 7152,
+  "material_count": 3,
+  "joints": [
+    "root",
+    "body",
+    "head",
+    "foot_front_L",
+    "foot_rear_L",
+    "foot_front_R",
+    "foot_rear_R",
+    "brow_L",
+    "brow_R",
+    "hat",
+    "confetti_0",
+    "confetti_1",
+    "confetti_2",
+    "confetti_3",
+    "confetti_4",
+    "confetti_5"
+  ],
+  "spec": {
+    "height": 1.0,
+    "floor": 0,
+    "forward": "glTF -Z",
+    "up": "glTF +Y",
+    "feet": 4,
+    "arms": 0
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.5,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 1.5,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 0.9,
+      "contact_fraction": 0.6
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.5,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null
+    }
+  ],
+  "source_scale_factor": 0.9603341372553217,
+  "bounds_blender": {
+    "min": [
+      -0.22106891870498657,
+      -0.19465972483158112,
+      0.0
+    ],
+    "max": [
+      0.22106891870498657,
+      0.27218297123908997,
+      1.0
+    ]
+  },
+  "named_source_parts": [
+    {
+      "name": "Torso | tall narrow armless paper core",
+      "bone": "body",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Torso | layered paper | front tab r00c00",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r00c01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r00c02",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r00c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r01c00",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r01c01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r01c02",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r01c03",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r02c00",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r02c01",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r02c02",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r02c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r03c00",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r03c01",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r03c02",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r03c03",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r04c00",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r04c01",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r04c02",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r04c03",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r05c00",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r05c01",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r05c02",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | front tab r05c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r00c00",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r00c01",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r00c02",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r00c03",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r01c00",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r01c01",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r01c02",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r01c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r02c00",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r02c01",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r02c02",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r02c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r03c00",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r03c01",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r03c02",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r03c03",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r04c00",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r04c01",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r04c02",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r04c03",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r05c00",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r05c01",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r05c02",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | back tab r05c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r00c00",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r00c01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r00c02",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r00c03",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r01c00",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r01c01",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r01c02",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r01c03",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r02c00",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r02c01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r02c02",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r02c03",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r03c00",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r03c01",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r03c02",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r03c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r04c00",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r04c01",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r04c02",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r04c03",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r05c00",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r05c01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r05c02",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | right tab r05c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r00c00",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r00c01",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r00c02",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r00c03",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r01c00",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r01c01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r01c02",
+      "bone": "body",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r01c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r02c00",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r02c01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r02c02",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r02c03",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r03c00",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r03c01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r03c02",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r03c03",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r04c00",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r04c01",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r04c02",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r04c03",
+      "bone": "body",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r05c00",
+      "bone": "body",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r05c01",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r05c02",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Torso | layered paper | left tab r05c03",
+      "bone": "body",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L dark sole",
+      "bone": "foot_front_L",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Foot | front L green cuboid",
+      "bone": "foot_front_L",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Foot | front L | front tab r00c00",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | front tab r00c01",
+      "bone": "foot_front_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | front tab r00c02",
+      "bone": "foot_front_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | front tab r01c00",
+      "bone": "foot_front_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | front tab r01c01",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | front tab r01c02",
+      "bone": "foot_front_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | back tab r00c00",
+      "bone": "foot_front_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | back tab r00c01",
+      "bone": "foot_front_L",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | back tab r00c02",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | back tab r01c00",
+      "bone": "foot_front_L",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | back tab r01c01",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | back tab r01c02",
+      "bone": "foot_front_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | right tab r00c00",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | right tab r00c01",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | right tab r00c02",
+      "bone": "foot_front_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | right tab r01c00",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | right tab r01c01",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | right tab r01c02",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | left tab r00c00",
+      "bone": "foot_front_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | left tab r00c01",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | left tab r00c02",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | left tab r01c00",
+      "bone": "foot_front_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | left tab r01c01",
+      "bone": "foot_front_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front L | left tab r01c02",
+      "bone": "foot_front_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L dark sole",
+      "bone": "foot_rear_L",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Foot | rear L green cuboid",
+      "bone": "foot_rear_L",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Foot | rear L | front tab r00c00",
+      "bone": "foot_rear_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | front tab r00c01",
+      "bone": "foot_rear_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | front tab r00c02",
+      "bone": "foot_rear_L",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | front tab r01c00",
+      "bone": "foot_rear_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | front tab r01c01",
+      "bone": "foot_rear_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | front tab r01c02",
+      "bone": "foot_rear_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | back tab r00c00",
+      "bone": "foot_rear_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | back tab r00c01",
+      "bone": "foot_rear_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | back tab r00c02",
+      "bone": "foot_rear_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | back tab r01c00",
+      "bone": "foot_rear_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | back tab r01c01",
+      "bone": "foot_rear_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | back tab r01c02",
+      "bone": "foot_rear_L",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | right tab r00c00",
+      "bone": "foot_rear_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | right tab r00c01",
+      "bone": "foot_rear_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | right tab r00c02",
+      "bone": "foot_rear_L",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | right tab r01c00",
+      "bone": "foot_rear_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | right tab r01c01",
+      "bone": "foot_rear_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | right tab r01c02",
+      "bone": "foot_rear_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | left tab r00c00",
+      "bone": "foot_rear_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | left tab r00c01",
+      "bone": "foot_rear_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | left tab r00c02",
+      "bone": "foot_rear_L",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | left tab r01c00",
+      "bone": "foot_rear_L",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | left tab r01c01",
+      "bone": "foot_rear_L",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear L | left tab r01c02",
+      "bone": "foot_rear_L",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R dark sole",
+      "bone": "foot_front_R",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Foot | front R green cuboid",
+      "bone": "foot_front_R",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Foot | front R | front tab r00c00",
+      "bone": "foot_front_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | front tab r00c01",
+      "bone": "foot_front_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | front tab r00c02",
+      "bone": "foot_front_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | front tab r01c00",
+      "bone": "foot_front_R",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | front tab r01c01",
+      "bone": "foot_front_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | front tab r01c02",
+      "bone": "foot_front_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | back tab r00c00",
+      "bone": "foot_front_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | back tab r00c01",
+      "bone": "foot_front_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | back tab r00c02",
+      "bone": "foot_front_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | back tab r01c00",
+      "bone": "foot_front_R",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | back tab r01c01",
+      "bone": "foot_front_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | back tab r01c02",
+      "bone": "foot_front_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | right tab r00c00",
+      "bone": "foot_front_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | right tab r00c01",
+      "bone": "foot_front_R",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | right tab r00c02",
+      "bone": "foot_front_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | right tab r01c00",
+      "bone": "foot_front_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | right tab r01c01",
+      "bone": "foot_front_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | right tab r01c02",
+      "bone": "foot_front_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | left tab r00c00",
+      "bone": "foot_front_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | left tab r00c01",
+      "bone": "foot_front_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | left tab r00c02",
+      "bone": "foot_front_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | left tab r01c00",
+      "bone": "foot_front_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | left tab r01c01",
+      "bone": "foot_front_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | front R | left tab r01c02",
+      "bone": "foot_front_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R dark sole",
+      "bone": "foot_rear_R",
+      "atlas_tile": 5,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Foot | rear R green cuboid",
+      "bone": "foot_rear_R",
+      "atlas_tile": 0,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Foot | rear R | front tab r00c00",
+      "bone": "foot_rear_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | front tab r00c01",
+      "bone": "foot_rear_R",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | front tab r00c02",
+      "bone": "foot_rear_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | front tab r01c00",
+      "bone": "foot_rear_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | front tab r01c01",
+      "bone": "foot_rear_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | front tab r01c02",
+      "bone": "foot_rear_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | back tab r00c00",
+      "bone": "foot_rear_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | back tab r00c01",
+      "bone": "foot_rear_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | back tab r00c02",
+      "bone": "foot_rear_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | back tab r01c00",
+      "bone": "foot_rear_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | back tab r01c01",
+      "bone": "foot_rear_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | back tab r01c02",
+      "bone": "foot_rear_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | right tab r00c00",
+      "bone": "foot_rear_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | right tab r00c01",
+      "bone": "foot_rear_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | right tab r00c02",
+      "bone": "foot_rear_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | right tab r01c00",
+      "bone": "foot_rear_R",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | right tab r01c01",
+      "bone": "foot_rear_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | right tab r01c02",
+      "bone": "foot_rear_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | left tab r00c00",
+      "bone": "foot_rear_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | left tab r00c01",
+      "bone": "foot_rear_R",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | left tab r00c02",
+      "bone": "foot_rear_R",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | left tab r01c00",
+      "bone": "foot_rear_R",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | left tab r01c01",
+      "bone": "foot_rear_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Foot | rear R | left tab r01c02",
+      "bone": "foot_rear_R",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | broad cuboid core",
+      "bone": "head",
+      "atlas_tile": 0,
+      "vertices": 96,
+      "triangles": 188
+    },
+    {
+      "name": "Head | layered paper | front tab r00c00",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r00c01",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r00c02",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r00c03",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r00c04",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r00c05",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r00c06",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r01c00",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r01c06",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r02c00",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r02c06",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r03c00",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r03c06",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r04c00",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | front tab r04c06",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r00c00",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r00c01",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r00c02",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r00c03",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r00c04",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r00c05",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r00c06",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r01c00",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r01c01",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r01c02",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r01c03",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r01c04",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r01c05",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r01c06",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r02c00",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r02c01",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r02c02",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r02c03",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r02c04",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r02c05",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r02c06",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r03c00",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r03c01",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r03c02",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r03c03",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r03c04",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r03c05",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r03c06",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r04c00",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r04c01",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r04c02",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r04c03",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r04c04",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r04c05",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | back tab r04c06",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r00c00",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r00c01",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r00c02",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r00c03",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r00c04",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r00c05",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r01c00",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r01c01",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r01c02",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r01c03",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r01c04",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r01c05",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r02c00",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r02c01",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r02c02",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r02c03",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r02c04",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r02c05",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r03c00",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r03c01",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r03c02",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r03c03",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r03c04",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r03c05",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r04c00",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r04c01",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r04c02",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r04c03",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r04c04",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | right tab r04c05",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r00c00",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r00c01",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r00c02",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r00c03",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r00c04",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r00c05",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r01c00",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r01c01",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r01c02",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r01c03",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r01c04",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r01c05",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r02c00",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r02c01",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r02c02",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r02c03",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r02c04",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r02c05",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r03c00",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r03c01",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r03c02",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r03c03",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r03c04",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r03c05",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r04c00",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r04c01",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r04c02",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r04c03",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r04c04",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | layered paper | left tab r04c05",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Head | crown paper strip 00",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Head | crown paper strip 01",
+      "bone": "head",
+      "atlas_tile": 3,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Head | crown paper strip 02",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Head | crown paper strip 03",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Head | crown paper strip 04",
+      "bone": "head",
+      "atlas_tile": 4,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Head | crown paper strip 05",
+      "bone": "head",
+      "atlas_tile": 2,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Head | crown paper strip 06",
+      "bone": "head",
+      "atlas_tile": 1,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Face | unmistakable black pixel frown",
+      "bone": "head",
+      "atlas_tile": 9,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Face | L cream pixel eye",
+      "bone": "head",
+      "atlas_tile": 10,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Face | L amber iris",
+      "bone": "head",
+      "atlas_tile": 11,
+      "vertices": 72,
+      "triangles": 140
+    },
+    {
+      "name": "Face | L black pupil",
+      "bone": "head",
+      "atlas_tile": 9,
+      "vertices": 72,
+      "triangles": 140
+    },
+    {
+      "name": "Face | L catchlight",
+      "bone": "head",
+      "atlas_tile": 10,
+      "vertices": 36,
+      "triangles": 68
+    },
+    {
+      "name": "Face | L lopsided black eyebrow",
+      "bone": "brow_L",
+      "atlas_tile": 9,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Face | R cream pixel eye",
+      "bone": "head",
+      "atlas_tile": 10,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Face | R amber iris",
+      "bone": "head",
+      "atlas_tile": 11,
+      "vertices": 72,
+      "triangles": 140
+    },
+    {
+      "name": "Face | R black pupil",
+      "bone": "head",
+      "atlas_tile": 9,
+      "vertices": 72,
+      "triangles": 140
+    },
+    {
+      "name": "Face | R catchlight",
+      "bone": "head",
+      "atlas_tile": 10,
+      "vertices": 36,
+      "triangles": 68
+    },
+    {
+      "name": "Face | R lopsided black eyebrow",
+      "bone": "brow_R",
+      "atlas_tile": 9,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Sash | continuous diagonal plum wrap front sides back",
+      "bone": "body",
+      "atlas_tile": 6,
+      "vertices": 16,
+      "triangles": 32
+    },
+    {
+      "name": "Sash | concealed glued fastening tab L",
+      "bone": "body",
+      "atlas_tile": 6,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Sash | concealed glued fastening tab R",
+      "bone": "body",
+      "atlas_tile": 6,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Popper | strapped printed plum canister",
+      "bone": "body",
+      "atlas_tile": 7,
+      "vertices": 96,
+      "triangles": 188
+    },
+    {
+      "name": "Popper | lower plum folded rim",
+      "bone": "body",
+      "atlas_tile": 6,
+      "vertices": 96,
+      "triangles": 188
+    },
+    {
+      "name": "Popper | tiny brass mouth rim",
+      "bone": "body",
+      "atlas_tile": 8,
+      "vertices": 96,
+      "triangles": 188
+    },
+    {
+      "name": "Popper | recessed dark open mouth",
+      "bone": "body",
+      "atlas_tile": 9,
+      "vertices": 48,
+      "triangles": 92
+    },
+    {
+      "name": "Popper | secure plum retaining band",
+      "bone": "body",
+      "atlas_tile": 6,
+      "vertices": 48,
+      "triangles": 92
+    },
+    {
+      "name": "Popper | brass clasp plate",
+      "bone": "body",
+      "atlas_tile": 8,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "name": "Popper | clasp inset",
+      "bone": "body",
+      "atlas_tile": 6,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Popper | clasp smile eye -0.01",
+      "bone": "body",
+      "atlas_tile": 9,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Popper | clasp smile eye 0.01",
+      "bone": "body",
+      "atlas_tile": 9,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Popper | clasp smile",
+      "bone": "body",
+      "atlas_tile": 9,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Hat | plum cone with original party print",
+      "bone": "hat",
+      "atlas_tile": 7,
+      "vertices": 48,
+      "triangles": 92
+    },
+    {
+      "name": "Hat | rolled plum brim",
+      "bone": "hat",
+      "atlas_tile": 6,
+      "vertices": 80,
+      "triangles": 156
+    },
+    {
+      "name": "Hat | paper pompom fold 00",
+      "bone": "hat",
+      "atlas_tile": 12,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Hat | paper pompom fold 01",
+      "bone": "hat",
+      "atlas_tile": 12,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Hat | paper pompom fold 02",
+      "bone": "hat",
+      "atlas_tile": 12,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Hat | paper pompom fold 03",
+      "bone": "hat",
+      "atlas_tile": 12,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Hat | paper pompom fold 04",
+      "bone": "hat",
+      "atlas_tile": 12,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Hat | paper pompom fold 05",
+      "bone": "hat",
+      "atlas_tile": 12,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Hat | paper pompom fold 06",
+      "bone": "hat",
+      "atlas_tile": 12,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Hat | paper pompom fold 07",
+      "bone": "hat",
+      "atlas_tile": 12,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "name": "Confetti | folded paper bit 0",
+      "bone": "confetti_0",
+      "atlas_tile": 12,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Confetti | folded paper bit 1",
+      "bone": "confetti_1",
+      "atlas_tile": 13,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Confetti | folded paper bit 2",
+      "bone": "confetti_2",
+      "atlas_tile": 14,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Confetti | folded paper bit 3",
+      "bone": "confetti_3",
+      "atlas_tile": 15,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Confetti | folded paper bit 4",
+      "bone": "confetti_4",
+      "atlas_tile": 13,
+      "vertices": 16,
+      "triangles": 28
+    },
+    {
+      "name": "Confetti | folded paper bit 5",
+      "bone": "confetti_5",
+      "atlas_tile": 12,
+      "vertices": 16,
+      "triangles": 28
+    }
+  ],
+  "runtime_construction": "Named editable parts retained in excluded source collection; joined into one runtime skin and three opaque material primitives.",
+  "files": {
+    "mister-hiss.blend": {
+      "bytes": 8218611,
+      "sha256": "18781a327b2aba9387308daacf5f6e5aaf62851eae5a00e47fb15a2e93bf266a"
+    },
+    "mister-hiss.glb": {
+      "bytes": 1202456,
+      "sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
+    },
+    "pigment.png": {
+      "bytes": 763241,
+      "sha256": "b2f3a67995e3eb4be8d641911dd1c73a45eb53fdb213fa528ea67c831534f5f1"
+    }
+  }
+}

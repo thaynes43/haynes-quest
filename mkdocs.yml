@@ -26,6 +26,7 @@ nav:
       - Overview: assets/README.md
       - Art direction: assets/art-direction.md
       - First-pass catalog: assets/catalog.md
+      - Two-chapter playtest: assets/playtest.md
       - Review template: assets/000-review-template.md
   - Product:
       - Project brief: prds/001-project-brief.md
@@ -49,6 +50,8 @@ nav:
       - Audio pipeline: designs/008-audio-pipeline.md
       - Overnight contracts: designs/009-overnight-contracts.md
       - Era combat loop: designs/010-era-combat-loop.md
+      - Forgiving obby: designs/011-forgiving-obby.md
+      - Player journey setup: designs/012-player-journey-curation.md
       - Design template: designs/000-template.md
   - Operations:
       - Hosting context: ops/001-hosting-context.md

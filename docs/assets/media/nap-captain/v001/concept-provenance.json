@@ -1,0 +1,25 @@
+{
+  "asset_id": "nap-captain",
+  "version": "v001",
+  "kind": "parody-construction-concept",
+  "created_date": "2026-09-11",
+  "tool": "built-in image_gen",
+  "generation_model_id": null,
+  "seed": null,
+  "reference_target": "CatNap / Smiling Critters original plush form",
+  "private_references_used": false,
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2366159,
+      "sha256": "7f862cf560e797919b77b69d8da306f62f89352efa1a2bb98392e55328faee76"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 3198,
+      "sha256": "88264438cfbba1171211337aa13c3c3a93469af96739ae6889008fd69dfee5b1"
+    }
+  ],
+  "lead_review": "Selected recognizable purple cat face, crescent pendant and pillow-pounce joke. Resolve illustration inconsistency: pillow belongs under character LEFT arm (viewer right in front, viewer left in back), not a different arm in rear view. One tail/pendant/mask strap and exactly two arms/two legs. Source friendly slogans do not change the selected goofy enemy role.",
+  "owner_review": "pending"
+}

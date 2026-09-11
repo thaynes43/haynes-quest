@@ -1,0 +1,25 @@
+{
+  "asset_id": "peel-patrol",
+  "version": "v001",
+  "kind": "parody-construction-concept",
+  "created_date": "2026-09-11",
+  "tool": "built-in image_gen",
+  "generation_model_id": null,
+  "seed": null,
+  "reference_target": "Fortnite Peely",
+  "private_references_used": false,
+  "files": [
+    {
+      "file": "concept.png",
+      "bytes": 2183004,
+      "sha256": "4ce40a6669cec9ad87e249c877c7c73cf8633369bd0ae30ee3ffcdadc6f60be5"
+    },
+    {
+      "file": "prompt.txt",
+      "bytes": 2744,
+      "sha256": "a2bfb47edcbac2292c7f67cbffe8e721f484315820604fd30794953515d9486c"
+    }
+  ],
+  "lead_review": "Selected recognizable banana silhouette, vest/cap and left-belt peel construction. Model must use one whistle; action thumbnails do not authorize duplicated props. Final total height includes stem/cap, independent of drawn dimension guide.",
+  "owner_review": "pending"
+}

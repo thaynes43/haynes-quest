@@ -9,7 +9,11 @@ import type {
 import { GameScreen } from "./GameScreen";
 import { MemoryImage } from "./MemoryImage";
 import { api, friendlyError } from "./api";
+import { installMultiTouchActivation } from "./touch-activation";
 import "./styles.css";
+
+const disposeMultiTouchActivation = installMultiTouchActivation(document);
+import.meta.hot?.dispose(disposeMultiTouchActivation);
 
 function Sprout({ className = "" }: { className?: string }) {
   return (
@@ -112,7 +116,7 @@ function App() {
         <Brand />
         <span className="preview-badge">
           <i />
-          Private preview · Fictional memories
+          Playtest · Two chapters · Fictional memories
         </span>
         <a className="studio-link" href="/studio/assets/catalog.html">
           Asset studio <Arrow />
@@ -155,7 +159,7 @@ function App() {
                   Start a journey <Arrow />
                 </button>
                 <div className="welcome-note">
-                  <span>01</span> Two eras. Two bosses. One growing adventurer.
+                  <span>01</span> Gear, goofy fights and gentle obstacles.
                 </div>
               </div>
               <div
@@ -265,7 +269,9 @@ function App() {
       <footer>
         <span>Made for small adventures.</span>
         <span>Keyboard & mouse · Touch controls</span>
-        <span>Private fixture · Your photo library is not connected.</span>
+        <span>
+          Your photos, family setup and more chapters are still to come.
+        </span>
       </footer>
     </div>
   );
