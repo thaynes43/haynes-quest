@@ -65,7 +65,7 @@ BL-06 adds a future distinction between completing the currently curated journey
 
 The fictional fixture has a known birth date. Tom has clarified the birthday as the age source. Real-person setup still needs authenticated media admission and the source-local capture-date policy. No age is inferred from appearance, and the earliest available picture is never assumed to depict birth. An approximate anchor would require an explicit precision policy.
 
-Broader age abilities, within-infancy progression, missing-period introductions, additional appearance stages and final difficulty balance remain to be designed and reviewed. They do not change the owner-confirmed ordering above. [DESIGN-010](010-era-combat-loop.md) records the current combat and persistence implementation; [PLAN-005](../../.agents/plans/005-era-combat-loop.md) records its actual acceptance status.
+Broader age abilities, within-infancy progression, missing-period introductions, additional appearance stages and final difficulty balance remain to be designed and reviewed. They do not change the owner-confirmed ordering above. [DESIGN-010](010-era-combat-loop.md) records the current combat and persistence implementation; [PLAN-005](../../.agents/plans/completed/005-era-combat-loop.md) records its actual acceptance status.
 
 ## Validation
 

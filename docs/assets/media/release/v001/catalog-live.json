@@ -1,0 +1,716 @@
+{
+  "date": "2026-09-11T21:41:06.767Z",
+  "origin": "https://haynes-quest-playtest.haynesops.com",
+  "sourceCommit": "30b15bc98",
+  "deployedImage": "ghcr.io/thaynes43/haynes-quest:sha-b15bc98f1a6bec1108815bdea75794f86e1323db@sha256:d7eddba8db5ccf60ea03bdcb7ba921e7486106b1ab34e7380c53929a355d4599",
+  "scope": "final live catalog delivery; HTTP review/thumbnail/model checks and focused catalog/Nap browser rendering only",
+  "excluded": "gameplay replay, video/audio playback, authoring services, art-quality approval and physical Safari",
+  "health": {
+    "status": 200,
+    "body": {
+      "status": "ok"
+    }
+  },
+  "ready": {
+    "status": 200,
+    "body": {
+      "status": "ready"
+    }
+  },
+  "unchangedGame": {
+    "path": "/assets/index-BPeATrrp.js",
+    "bytes": 1001106,
+    "sha256": "15487f825f0f7d8125144d3a1eb49c37e5212bf6c7d0bb8de8f368f141bc6051",
+    "contentType": "text/javascript; charset=utf-8"
+  },
+  "reviews": [
+    {
+      "url": "/studio/assets/reviews/storybook-reference/v001.html",
+      "bytes": 35764,
+      "fragments": [
+        "the-clearing",
+        "a-traveler-who-grows",
+        "a-shared-set-of-materials"
+      ]
+    },
+    {
+      "url": "/studio/assets/reviews/era-combat/v001.html",
+      "bytes": 42181,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/traveler-infant/v001.html",
+      "bytes": 41392,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/traveler-child/v001.html",
+      "bytes": 41599,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/memory-keepsake/v001.html",
+      "bytes": 40562,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/clearing-path-kit/v001.html",
+      "bytes": 46765,
+      "fragments": [
+        "grass-and-soil",
+        "pale-pavers",
+        "one-low-rise"
+      ]
+    },
+    {
+      "url": "/studio/assets/reviews/clearing-tree/v001.html",
+      "bytes": 39253,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/clearing-stone/v001.html",
+      "bytes": 39274,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/arrival-landmark/v001.html",
+      "bytes": 39313,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/era-equipment/v001.html",
+      "bytes": 42058,
+      "fragments": [
+        "spark-mallet",
+        "acorn-shield",
+        "prism-wand",
+        "ribbon-shield"
+      ]
+    },
+    {
+      "url": "/studio/assets/reviews/blockling/v001.html",
+      "bytes": 37911,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/signal-moth/v001.html",
+      "bytes": 38001,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/buffer-baron/v001.html",
+      "bytes": 38025,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/loop-dancer/v001.html",
+      "bytes": 37776,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/prism-mimic/v001.html",
+      "bytes": 37810,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/trendweaver/v001.html",
+      "bytes": 37809,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/mister-hiss/v001.html",
+      "bytes": 39087,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/peel-patrol/v001.html",
+      "bytes": 38383,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/drama-dragon/v001.html",
+      "bytes": 38530,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/sir-flush-a-lot/v001.html",
+      "bytes": 38747,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/nap-captain/v001.html",
+      "bytes": 36542,
+      "fragments": [
+        "paused-checkpoint"
+      ]
+    },
+    {
+      "url": "/studio/assets/reviews/one-star-diva/v001.html",
+      "bytes": 34254,
+      "fragments": []
+    },
+    {
+      "url": "/studio/assets/reviews/memory-collected/v001.html",
+      "bytes": 36786,
+      "fragments": [
+        "audition"
+      ]
+    },
+    {
+      "url": "/studio/assets/reviews/ability-unlocked/v001.html",
+      "bytes": 36845,
+      "fragments": [
+        "audition"
+      ]
+    },
+    {
+      "url": "/studio/assets/reviews/movement-landed/v001.html",
+      "bytes": 36781,
+      "fragments": [
+        "audition"
+      ]
+    },
+    {
+      "url": "/studio/assets/reviews/ui-confirmed/v001.html",
+      "bytes": 37524,
+      "fragments": [
+        "audition"
+      ]
+    }
+  ],
+  "thumbnails": [
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/4df9117f24ee064b.webp",
+      "bytes": 4970,
+      "sha256": "fe81e89c733cf6359898d616beb9b1740d6e705a22e51888a9816012e7cab4ee",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/ea05da55c11ace56.webp",
+      "bytes": 4598,
+      "sha256": "f911b9722f8665f46e21dd3385e9abfd62463c418c18ee8908a17f5011739e1f",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/6ea1ca071b476e9c.webp",
+      "bytes": 23658,
+      "sha256": "66deddb3f091a98ae63b4ca65e6154efa5a40e38a513073b8daed2eb810d30a1",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/3f329aa3e54bf29d.webp",
+      "bytes": 10064,
+      "sha256": "bf06b44438190e8f8569db01ce98bdc6eabc95fbe01921d2f4f31acd6cb805ce",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/96f8449e34bb7d10.webp",
+      "bytes": 29804,
+      "sha256": "8822ea9d5c3bbce02ae8517b3979e45923ee3584a38b91c87f9fb216d5359aea",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/de0597a895152a79.webp",
+      "bytes": 8650,
+      "sha256": "fa29ffa1656cd8d064dced397a0013cbcbce504d59be5719a13b803754883d40",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/1ee8a794a04f24f4.webp",
+      "bytes": 35120,
+      "sha256": "1288b40fd112d078ce1c4832916f0e4f325f7bc29af34b3adc530c05994ad9bd",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/bb4f038050d6453a.webp",
+      "bytes": 28714,
+      "sha256": "122ed4f6f83eebf4c13af6f01433da3486083ac6f2ea99afb8c764e729f1a0f9",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/0ac411d78aaa2f5c.webp",
+      "bytes": 3530,
+      "sha256": "d9387d8ce004ab6a11e802861df20e80313ef026305223560759b21abc4b8212",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/c869a55a9607c6c5.webp",
+      "bytes": 1758,
+      "sha256": "16e661c76536712d851bb812b3fb594163caf7fff2ce46152bc310f382146082",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/2ae2bfed9f0b7f10.webp",
+      "bytes": 2150,
+      "sha256": "8e8ecc018c95d777b058b2dc1c6958646bee3b99f857f219ec838a5e85ccd5f6",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/5b126701683fc06f.webp",
+      "bytes": 2694,
+      "sha256": "e7918f0f57f7b2280c5fcd428f3a66c97e88d5db8df4804e74b8d49499347add",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/785a4385ffe5c8f6.webp",
+      "bytes": 21408,
+      "sha256": "9b053129f79024d2d796a46e754382c1259a1be7e32952e85df13473a9524c5c",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/e6d09d9446175b04.webp",
+      "bytes": 4364,
+      "sha256": "da5de30a72dcd94f46db57c6d7899f9887be6ea492e299fa92bc6e82f47e6e32",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/176a4cd8fee82ca6.webp",
+      "bytes": 34370,
+      "sha256": "75c0c1a6f0b184bfde9526c263a04e3ef89b9c7ca27ce4cfc5e1650ec7ea4599",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/62fa384f6bfe5cde.webp",
+      "bytes": 8208,
+      "sha256": "89a2303628bafe681e0e0b16e611818ca0870d5289d32f2e587c539e2824305e",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/2cd76be82656194c.webp",
+      "bytes": 39070,
+      "sha256": "dc11e75999aac8dcde8ad14061ae7d244158c299fea8ed05d5feb0969206fb94",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/693235231cf7caf8.webp",
+      "bytes": 6784,
+      "sha256": "933265b7a8bd04b8d9a807975e9b6161f0eab4429b46eaf3aa8653dcd15cbad8",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/d05c26a1fbc716ba.webp",
+      "bytes": 32830,
+      "sha256": "226c498f0bc4353b856c937ccc90cc4436ec81b6f1e91d5ea147dfbc95a7313c",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/6818fa09d4f95587.webp",
+      "bytes": 3564,
+      "sha256": "ecf9eadce77a7306078213a967608473646d3ee1c6202360d9155f5604d58fdb",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/63523c42b1660131.webp",
+      "bytes": 6826,
+      "sha256": "817ad317bcf01cd77f9ef60efa9d5d691fea358860f9409aa0a0496d44fa4078",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/9e1d5796c0bf9914.webp",
+      "bytes": 5660,
+      "sha256": "2850345346abd4c333f8ce68959e3dce10454fa12de521ff1b9556559053cdae",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/d850335c11eca920.webp",
+      "bytes": 33586,
+      "sha256": "e08c432740bc2d26aa947f7da60f09a55617a6419ff317dad6be6961d808d0ef",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/d3ea5ccdf2a63a03.webp",
+      "bytes": 6408,
+      "sha256": "780fb1fd65d56f07420fff0e85c1bb4ed846a00f9a3525e0d577498f9b0ea33f",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/945ff0da4bf9513b.webp",
+      "bytes": 33028,
+      "sha256": "a94b42fb0ad583907f5693f5f29b77851e8e36c784be175bd440eb961ac0e83a",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/0021a7a547506c07.webp",
+      "bytes": 3048,
+      "sha256": "64f6a39ff74a2119a32e1e9ae60d1fd0d0fd95c4fee0e35e930c39a4f3039d5e",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/c6c9f76a3eab3e16.webp",
+      "bytes": 26478,
+      "sha256": "0548800d53e3ab340df82d1060ee98de624135b89fa1185725a7ef3a610693ba",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/9e05ff122c19097e.webp",
+      "bytes": 4316,
+      "sha256": "ac981f6b22d4046203253a073be284760d5b0936df61f65bd97cb87518214cb4",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/c165726c58d4ded7.webp",
+      "bytes": 10142,
+      "sha256": "ce6b6ad00d4f5fd6e1adbd2d8f925488f4da11e052aaafe2ba4e8b46acd9761c",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/c0f599cff0b1bb03.webp",
+      "bytes": 42280,
+      "sha256": "306497c08c74ef2a1bfb05b2e1060985291c102727b77a41f08672ec9e404752",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/cd8bcf785cf094f2.webp",
+      "bytes": 986,
+      "sha256": "3688bdc0d54925bc33721dd4949f324e77473a3714a2603185615c779383858f",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/38db3a49b0b39b9d.webp",
+      "bytes": 9522,
+      "sha256": "a72f46d67a9133df8d1090a1e772e608d25e3409b82fd52b6ff7ea98d4e61a2d",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/6ea69d7607adba1a.webp",
+      "bytes": 43090,
+      "sha256": "3bcb2946c741164f0b8bd105030b183af19fe124a0311a32dc228c37b07dccec",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/9691450911f42c9c.webp",
+      "bytes": 46786,
+      "sha256": "c1724f2bf6157c5bb9d628b6c7462db9490ff1b017d9bd882b84dd523c301e1e",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/2b2d450c186751ff.webp",
+      "bytes": 6380,
+      "sha256": "1166f46e0dc76eb4745af07a18e5360aecacf1ecf89f83f4da23437c0d3de1a6",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/3571a2e20985a4d6.webp",
+      "bytes": 37542,
+      "sha256": "366cfdefcfd7dacf8d068e7cf71825f8abebdef0c2c73a66faa24f0c5803259d",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/7408095b1dcf7b88.webp",
+      "bytes": 7296,
+      "sha256": "c9fe9e6dfe80abef6330dbb1fb565a1fec5ebf961ff5c904716c99b321cff904",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/4000f4ebcc9e87e6.webp",
+      "bytes": 32222,
+      "sha256": "2618c041dc7f4cfa99411bef15427be5cd767f3470962e09170825bf680c95a0",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/b50a0119ee089f01.webp",
+      "bytes": 9496,
+      "sha256": "b234816d6076a32bbc31c1d7803521a25518b763cdb53b4e2c54783306f4e40e",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/801894826980aaa1.webp",
+      "bytes": 39896,
+      "sha256": "e2b405ca77b0bc698e1f908bed1d6e3a82f933bb0aaa3e40a965da5ef4acf3a0",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/88c279d44cad8b1a.webp",
+      "bytes": 5282,
+      "sha256": "15c5e3e1b80b94f8a730f7446cf6105368e0461a4f3298ef618aed93fa76e15f",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/6b744e6e7e7e2580.webp",
+      "bytes": 42432,
+      "sha256": "4fd94cebfae22cb88e47e162aa9d9695115c52bd49cb1e0af1788441dadb7952",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/2d37bec7a280121c.webp",
+      "bytes": 63200,
+      "sha256": "e8f79a042de526e86b1c2c73669074e1e0216410f7dc7128b36cf48d26808f9b",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/d9f37cae29190e89.webp",
+      "bytes": 38320,
+      "sha256": "fb9aa23828943005acf461f0cab0c3b5a076b4ad38c61cb0eb9d3f20c68a17cf",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/d7bc0fead8dfcd78.webp",
+      "bytes": 23012,
+      "sha256": "6df471356cfaa576b251f782fefb662ea1da3582684609f78e6571370b9780c7",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/0fe12aa71f9ecf4c.webp",
+      "bytes": 5092,
+      "sha256": "dabc293655f5724f988ffa8eae3b9a2138a2a2d6933707961c924af38e8ba203",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/cc99287ad93a182c.webp",
+      "bytes": 6146,
+      "sha256": "8ef622cc55363e44354b82b453989056b94a54ce393ea28b2cd0553a16308a8d",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/00475838c055ccac.webp",
+      "bytes": 6536,
+      "sha256": "67fa1547ec5e51dbf7c86fd9244703f2c3bc9a2fee83a84aaca72c378dcb8302",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/ef135449b5393682.webp",
+      "bytes": 40128,
+      "sha256": "f48faaaf71b9683ff61491b5db2a79ab2f0d91bda366798fe85a0b0aa68514c2",
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/studio/assets/media/catalog-thumbnails/v001/162c610bb3eaa15d.webp",
+      "bytes": 1304,
+      "sha256": "6bad41a5a7961390016f576815892b01e1fb2dc667d1d4a2736de504e7ffc9cf",
+      "contentType": "image/webp"
+    }
+  ],
+  "models": [
+    {
+      "assetId": "traveler-infant",
+      "url": "/studio/assets/media/traveler-infant/v001/traveler-infant.glb",
+      "bytes": 448656,
+      "sha256": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "traveler-child",
+      "url": "/studio/assets/media/traveler-child/v001/traveler-child.glb",
+      "bytes": 460616,
+      "sha256": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "memory-keepsake",
+      "url": "/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb",
+      "bytes": 116304,
+      "sha256": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "ground-tile",
+      "url": "/studio/assets/media/clearing-path-kit/v001/ground-tile.glb",
+      "bytes": 50724,
+      "sha256": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "path-tile",
+      "url": "/studio/assets/media/clearing-path-kit/v001/path-tile.glb",
+      "bytes": 30084,
+      "sha256": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "low-step",
+      "url": "/studio/assets/media/clearing-path-kit/v001/low-step.glb",
+      "bytes": 15968,
+      "sha256": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "clearing-tree",
+      "url": "/studio/assets/media/clearing-tree/v001/clearing-tree.glb",
+      "bytes": 71316,
+      "sha256": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "clearing-stone",
+      "url": "/studio/assets/media/clearing-stone/v001/clearing-stone.glb",
+      "bytes": 41284,
+      "sha256": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "arrival-landmark",
+      "url": "/studio/assets/media/arrival-landmark/v001/arrival-landmark.glb",
+      "bytes": 118348,
+      "sha256": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "spark-mallet",
+      "url": "/studio/assets/media/era-equipment/v001/spark-mallet/spark-mallet.glb",
+      "bytes": 161872,
+      "sha256": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "acorn-shield",
+      "url": "/studio/assets/media/era-equipment/v001/acorn-shield/acorn-shield.glb",
+      "bytes": 184460,
+      "sha256": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "prism-wand",
+      "url": "/studio/assets/media/era-equipment/v001/prism-wand/prism-wand.glb",
+      "bytes": 143444,
+      "sha256": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "ribbon-shield",
+      "url": "/studio/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb",
+      "bytes": 197244,
+      "sha256": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "blockling",
+      "url": "/studio/assets/media/blockling/v001/blockling.glb",
+      "bytes": 1121948,
+      "sha256": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "signal-moth",
+      "url": "/studio/assets/media/signal-moth/v001/signal-moth.glb",
+      "bytes": 1083900,
+      "sha256": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "buffer-baron",
+      "url": "/studio/assets/media/buffer-baron/v001/buffer-baron.glb",
+      "bytes": 1195688,
+      "sha256": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "loop-dancer",
+      "url": "/studio/assets/media/loop-dancer/v001/loop-dancer.glb",
+      "bytes": 1096328,
+      "sha256": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "prism-mimic",
+      "url": "/studio/assets/media/prism-mimic/v001/prism-mimic.glb",
+      "bytes": 1079220,
+      "sha256": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "trendweaver",
+      "url": "/studio/assets/media/trendweaver/v001/trendweaver.glb",
+      "bytes": 1089712,
+      "sha256": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "mister-hiss",
+      "url": "/studio/assets/media/mister-hiss/v001/mister-hiss.glb",
+      "bytes": 1202456,
+      "sha256": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "peel-patrol",
+      "url": "/studio/assets/media/peel-patrol/v001/peel-patrol.glb",
+      "bytes": 652424,
+      "sha256": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "drama-dragon",
+      "url": "/studio/assets/media/drama-dragon/v001/drama-dragon.glb",
+      "bytes": 917980,
+      "sha256": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "sir-flush-a-lot",
+      "url": "/studio/assets/media/sir-flush-a-lot/v001/sir-flush-a-lot.glb",
+      "bytes": 782488,
+      "sha256": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49",
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "assetId": "nap-captain",
+      "url": "/studio/assets/media/nap-captain/v001/nap-captain.glb",
+      "bytes": 789036,
+      "sha256": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7",
+      "contentType": "model/gltf-binary"
+    }
+  ],
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software (requested)"
+  },
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "hasTouch": false,
+      "cards": 33,
+      "inPlaytest": 15,
+      "images": {
+        "rendered": 57,
+        "unique": 50
+      },
+      "noHorizontalOverflow": true,
+      "screenshot": "catalog-live-desktop.png"
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "hasTouch": true,
+      "cards": 33,
+      "inPlaytest": 15,
+      "images": {
+        "rendered": 57,
+        "unique": 50
+      },
+      "noHorizontalOverflow": true,
+      "screenshot": "catalog-live-phone.png",
+      "napCaptain": {
+        "clips": [
+          "idle",
+          "move",
+          "attack",
+          "hit",
+          "defeat"
+        ],
+        "loaded": true,
+        "modelIsVisible": true,
+        "renderSurface": {
+          "width": 356,
+          "height": 356
+        },
+        "review": "/studio/assets/reviews/nap-captain/v001.html#paused-checkpoint",
+        "model": "/studio/assets/media/nap-captain/v001/nap-captain.glb",
+        "screenshot": "nap-captain-live-phone.png",
+        "state": "paused partial model; no quality or final-readiness claim"
+      }
+    }
+  ],
+  "browserErrors": {
+    "page": [],
+    "console": [],
+    "responses": [],
+    "requests": [],
+    "externalRequests": [],
+    "heavyCatalogRequests": []
+  },
+  "outcome": "passed"
+}

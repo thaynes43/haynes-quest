@@ -10,7 +10,7 @@
 
 Tom's September 11 review corrected the prototype scope: the coming-of-age arc depends on useful equipment, period enemies, a boss, then post-boss memories that advance age and the next period. These are the core playable loop. The earlier collection-and-jump route was technically functional but did not demonstrate that loop; its tests remain historical evidence.
 
-[PLAN-005](../../.agents/plans/005-era-combat-loop.md) and [DESIGN-010](010-era-combat-loop.md) now govern the bounded rebuild. The fixture keeps three fictional memories and demonstrates two periods: age zero in 2020, then age four in 2024, ending at age seven. Exact thresholds and combat balance are provisional. A full lifetime campaign and complete historical catalog are additional work; the current fights and useful pickups cannot be postponed as though they were unrelated polish.
+[PLAN-005](../../.agents/plans/completed/005-era-combat-loop.md) and [DESIGN-010](010-era-combat-loop.md) now govern the bounded rebuild. The fixture keeps three fictional memories and demonstrates two periods: age zero in 2020, then age four in 2024, ending at age seven. Exact thresholds and combat balance are provisional. A full lifetime campaign and complete historical catalog are additional work; the current fights and useful pickups cannot be postponed as though they were unrelated polish.
 
 ## Corrected playable slice
 

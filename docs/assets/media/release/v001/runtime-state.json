@@ -1,0 +1,63 @@
+{
+  "observedAt": "2026-09-11T21:49:10.961770+00:00",
+  "pods": [
+    {
+      "namespace": "frontend",
+      "name": "haynes-quest-playtest-9bd87959-gbk5v",
+      "uid": "96a8569c-5397-41df-b85e-36f3e4cc6ecc",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "app",
+          "ready": true,
+          "restarts": 0,
+          "imageID": "ghcr.io/thaynes43/haynes-quest@sha256:d7eddba8db5ccf60ea03bdcb7ba921e7486106b1ab34e7380c53929a355d4599"
+        }
+      ]
+    },
+    {
+      "namespace": "frontend",
+      "name": "haynes-quest-7d9b698574-nds6g",
+      "uid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "app",
+          "ready": true,
+          "restarts": 0,
+          "imageID": "ghcr.io/thaynes43/haynes-quest@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+        }
+      ]
+    },
+    {
+      "namespace": "dev",
+      "name": "dev-env-dfdd8c894-l724p",
+      "uid": "c3a94756-af35-405e-93bc-eb05c2979d3a",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "app",
+          "ready": true,
+          "restarts": 0,
+          "imageID": "ghcr.io/thaynes43/dev-env@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+        },
+        {
+          "name": "auth-watch",
+          "ready": true,
+          "restarts": 0,
+          "imageID": "ghcr.io/thaynes43/dev-env@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+        },
+        {
+          "name": "gh-refresher",
+          "ready": true,
+          "restarts": 0,
+          "imageID": "ghcr.io/thaynes43/dev-env@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+        }
+      ]
+    }
+  ],
+  "activitiesEnded": [
+    "act-205400-187494",
+    "act-213939-197262"
+  ]
+}
