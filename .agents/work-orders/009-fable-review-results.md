@@ -140,3 +140,22 @@ Scratch probes and screenshots live under the git-ignored `test-results/review/`
 3. 00:24 — typecheck/lint/tests/build green via direct binaries.
 4. 00:27–00:31 — controller, HTTP, limiter, touch probes and the corrected journey run; F1 and F2 confirmed with artifacts.
 5. 00:33 — this record committed; no implementation edits, no merge.
+
+## Addendum: status at the lead tip `05456e5` (delta check only, not a re-review)
+
+The lead branch advanced seven commits past `ad4eedc` while this review ran. I diffed the files behind each finding; nothing else was re-verified.
+
+| Finding | Status at `05456e5` | Basis |
+| --- | --- | --- |
+| F1 hover / step edge | **Open** | `src/game/controller.ts` unchanged |
+| F2 touch e2e jump sequence | **Fixed** in `35bdd13` | `tests/e2e/journey.mjs` now releases `point(3, …)` with the same CDP rationale, adds the 250 ms `d` steer and a pointer trace |
+| F3 dev toolchain + client maps in image | **Open** | `Dockerfile:24` and `vite.config.ts` unchanged (Dockerfile only gained `COPY scripts`; `sharp` joined `dependencies`, so the runtime copy also carries its platform binaries) |
+| F4 `NODE_ENV=production` vs fixture-only playability | **Open** (decision) | `Dockerfile:22`, `src/server/config.ts`, `src/server/index.ts` unchanged |
+| F5 earliest-96 discovery | **Open** | `src/server/photos/immich.ts` unchanged |
+| F6 client error-code map | **Open** | `src/client/api.ts` unchanged |
+| F7 limiter map growth | **Fixed** (limiter) / **Open** (row growth) | `src/server/security.ts` now prunes on insert and caps at 2,000 keys with `tests/server/limits.test.ts`; session/preview rows are still never purged |
+| F8 studio serves project records | **Open** | `scripts/docs/prepare.py` unchanged |
+| F9 UTC date semantics / date revalidation | **Open** | `immich.ts` unchanged |
+| F10 silent 503 | **Open** | `src/server/app.ts`, `src/server/errors.ts` unchanged |
+| F11 catalog rows without review records | **Open** for the five prop concepts | audio rows now link v001 review pages; prop rows unchanged |
+| I4 adapter not wired / no sanitizer | **Partly addressed** | `src/server/photos/private.ts` factory + `SharpImageSanitizer` (`sanitizer.ts`, tests) added; `index.ts` still constructs no private source by design; HANDOFF records an isolated Immich 3.1.0 schema/transport smoke. "Adapter not exercised end-to-end in the app" still holds |
