@@ -2,8 +2,10 @@
 
 Copy this page to `docs/assets/reviews/<asset-id>/<version>.md`. Replace all example values and media paths; remove inapplicable sections. Link the page from the catalog. Keep old versions available for comparison.
 
+Follow the [mandatory catalog procedure](../PROCESS.md#asset-catalog-must-stay-current): this review, its inventory entry, thumbnail card and affected counts/status must match the asset in the same PR. Include concepts and paused candidates; a current candidate without a thumbnail card linking to its review is not a completed catalog update.
+
 - **Stable ID / candidate version:** To fill
-- **Status:** In production / Needs iteration / Ready for Tom / Changes requested / Approved / Superseded
+- **Status:** In production / Paused / Needs iteration / Ready for Tom / Changes requested / Approved / Rejected / Superseded
 - **Kind / gameplay purpose:** To fill
 - **Public-safe provenance:** Original/generated/licensed; actual tool/model versions, generation date, applicable terms and attribution
 - **Authoring agent / effort:** Actual agent; Blender must be Astra

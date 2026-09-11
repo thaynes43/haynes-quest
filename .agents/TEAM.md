@@ -35,6 +35,8 @@ Use both authorized plans for useful work, choosing Fable coding/review tasks wh
 
 After every integrated milestone and before a context reset or usage wall, update [HANDOFF.md](HANDOFF.md), active work orders and the [asset catalog](../docs/assets/catalog.md): merged commits, remaining branches, exact run/preview commands, actual checks, current asset versions, scene owner, pending jobs and next bounded tasks. Save project artifacts to durable storage and release idle scene ownership. A replacement lead reads these records and resumes rather than regenerating completed assets.
 
+**Every asset work order includes catalog maintenance as acceptance.** Follow the [mandatory catalog procedure](../docs/PROCESS.md#asset-catalog-must-stay-current), including concepts, revisions, audio and paused work. Authoring agents return exact intake data; the lead owns visible text, thumbnails and catalog integration in the same asset PR, then verified publication. Delegation or pending owner review does not excuse catalog drift. Do not close the overall asset task with catalog work left for another task.
+
 Keep working through the playable MVP and its scoped first-pass catalog. Pending Tom review does not block candidate production, iteration, tests or ordinary PR merges. Final asset promotion still follows [DESIGN-002](../docs/designs/002-asset-pipeline.md); report tool and review limitations honestly.
 
 ## Owner-directed roster and cost control

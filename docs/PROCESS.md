@@ -19,6 +19,30 @@ Apply this progression to the next bounded slice. Tom's current priority is the 
 - Ask one concrete owner question when a decision is needed. Record the question and answer in the relevant document. Decisions the owner explicitly defers stay deferred until their stage; do not interrupt the bootstrap with the full game questionnaire.
 - Keep an app's current release and task status in one place. The README points to `.agents/HANDOFF.md` instead of copying a running history.
 
+## Asset catalog must stay current
+
+Tom's standing rule: **an asset change and its MkDocs catalog update are one deliverable.** Apply this to every generated, imported or revised concept, reference, model, animation, texture or sound, and to changes in review status or gameplay use. Record concept-only and paused/partial work as it exists; do not wait for a finished model or owner approval to make a public-safe candidate reviewable. Supporting files belong with their asset's review rather than becoming separate navigation cards.
+
+Before merging an asset change:
+
+1. Update `docs/assets/reviews/<asset-id>/<version>.md` with exact sources, inspiration images, matching renders, available model/animation or audio previews, downloads, checksums, provenance and actual limitations. Keep earlier versions and working deep links. A revised concept must not imply that an unchanged model already incorporates it.
+2. Update `scripts/assets/catalog-inventory.json`: identities, versions, source/media paths, checksums, category, state and counts. Account for every delivered asset; each separately reviewable model in a kit needs its own entry. Retained historical files stay linked from the review history.
+3. Update `docs/assets/catalog.md` with the correct category, thumbnail card, inspiration thumbnail, review link, version, status and affected counts. Keep “In playtest” labels and the playtest guide consistent with runtime manifests. Label missing or partial models and rejected studies honestly.
+4. When thumbnail sources change, run `node scripts/assets/catalog-thumbnails.mjs` after updating the inventory, with repository Node dependencies installed. Commit affected WebPs and `docs/assets/media/catalog-thumbnails/v001/manifest.json`, then wire the cards to those outputs. **The script generates thumbnails; it does not update the Markdown cards or inventory, or remove obsolete files.** Verify each card's thumbnail maps to its current inventory source through the manifest, and reconcile the manifest with the committed derivatives. Remove obsolete generated thumbnails only after checking that no retained review references them. Preserve original images.
+5. Run the [strict documentation build and link/media checks](README.md#build-and-preview-the-site). Inspect affected cards and reviews on desktop and phone: visible thumbnails, correct inspiration/version, working model or audio delivery and usable navigation. The existing `tests/e2e/visual-catalog.mjs` can audit a served build using `QUEST_CATALOG_URL`; keep its asset-specific expectations aligned with intentional changes. Record actual results and limitations. Link checks alone cannot prove every new artifact was cataloged.
+
+With the documented preview running on port 8000, run the browser audit in a second terminal:
+
+```bash
+QUEST_CATALOG_URL=http://127.0.0.1:8000/assets/catalog.html node tests/e2e/visual-catalog.mjs
+```
+
+Put asset files and their catalog updates in the **same PR**. Authoring agents return IDs, versions, paths/checksums, previews and catalog changes or precise intake data in their work orders. The coordinator owns final UI/copy and shared-catalog integration, and must finish it before marking the overall asset task complete. Interrupted authoring can checkpoint and release its scene immediately, but missing catalog/publication work stays explicitly open.
+
+Asset delivery also includes publishing the updated catalog through the existing checked release process and verifying the affected live thumbnail, review and media URLs. Record the deployed revision and review link in the handoff. A merge or local preview does not establish that live MkDocs is current. If publication is blocked, retain and report the unfinished step. Instruction-only documentation changes do not require a game deployment.
+
+Existing [private-media rules](assets/README.md#where-files-live) and exact-version approval boundaries still apply: never copy family photos, private likeness assets or credentials into public git or static documentation, and never treat catalog inclusion as Tom's gameplay approval.
+
 ## Plans and delivery
 
 Executable plans live in `.agents/plans/`. Each states its scope, dependencies, steps, and observable completion evidence. Use `Draft`, `Ready`, `In progress`, `Completed`, or `Blocked` for plan status.

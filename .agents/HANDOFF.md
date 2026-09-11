@@ -52,6 +52,8 @@ All final artwork still awaits Tom's exact-version review. Audio auditions exist
 
 ## Resources and recovery
 
+Tom's standing catalog rule is now in [AGENTS.md](../AGENTS.md) and the [catalog maintenance procedure](../docs/PROCESS.md#asset-catalog-must-stay-current): every asset change includes matching reviews, inventory and thumbnail navigation in the same PR, with verified publication before asset delivery is complete. TEAM and the work-order/review templates carry this acceptance requirement into future dispatches. This instruction update does not change the deployed game or generate assets.
+
 Follow [TEAM](TEAM.md): Astra max owns architecture, UI/copy, art direction and integration; native Sol xhigh handles bounded ordinary tasks; every Blender task uses a fresh Astra max agent and an exclusive scene lease. Fable5.1 sessions through `agent-run` are explicitly authorized when useful. No Blender scene owner, render job, audio generation, active activity declaration or browser lease remains.
 
 Nap remains the first partial v001 export, SHA256 `e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7`. Cap bands, arm attachment, seated height and a small weight discrepancy still need correction; proposed fixes were never built. Diva is unbuilt. [WO032](work-orders/032-blender-remix-trio-evidence.md) and `scripts/assets/parody-remix-trio/resume-notes.json` preserve sources. The released scene is `/workspace/haynes-quest/parody/remix-trio/v001/live-scene-release.blend`, SHA256 `9a84bd4c72e70292512bd605f4da44f6fcccdca290816d230aa0bc053c972afe`. Do not regenerate completed assets or resume that scene automatically.
