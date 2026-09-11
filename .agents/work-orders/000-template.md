@@ -1,7 +1,7 @@
 # Work order: <short task name>
 
 - **Status:** Draft / In progress / Ready for review / Complete
-- **Agent/model:** GPT-6 Astra
+- **Agent/model:** GPT-5.6 Sol (`gpt-5.6-sol`, `xhigh`); GPT-6 Astra leads and reviews
 - **Context:** New agent with `fork_turns: "none"`; no inherited conversation
 - **Required reading:** <applicable instructions, handoff, named design/plan sections>
 - **Input artifacts:** <exact versions/paths available without this planning conversation>

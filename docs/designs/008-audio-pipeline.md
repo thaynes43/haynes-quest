@@ -1,22 +1,24 @@
 # DESIGN-008: Audio authoring and browser playback
 
-- **Status:** Proposed
+- **Status:** Self-hosted CPU authoring verified; native registration staged; browser contract proposed
 - **Last updated:** 2026-09-11
 - **Source:** Tom's request for audio tooling and an Astra asset-development workflow
 - **Satisfies:** [PRD-001 R-08, R-09, R-16, R-35–R-39](../prds/001-project-brief.md)
 - **Related:** [PoC development loop](007-poc-development-loop.md), [visual assets](002-asset-pipeline.md), [asset review template](../assets/000-review-template.md)
 
-## Recommendation
+## Selected authoring route
 
-Tom asked about free and self-hosted options before dependency setup. **Trial self-hosted Stable Audio 3 Small-SFX for authored effects/ambience**, keeping ElevenLabs as an optional hosted alternative. Run any selected model in a dedicated service or Job with its own environment and persistent cache, independently of dev-env and Blender. The earlier CPU-only recommendation is broadened by Tom's offer of a server capable of dual RTX 3090s plus smaller cluster GPUs. CPU remains a possible trial baseline; select CPU/GPU placement after inventory and a measured trial. The offered hardware does not settle provider choice, model access, or terms acceptance. FFmpeg/ffprobe processing, exact-version owner review, and native Web Audio playback remain common to either route. The game plays prepared files without a runtime generation service.
+Tom selected self-hosted audio setup before the one planned dev-env restart. Use **Stable Audio 3 Small-SFX through its official optimized TFLite CPU implementation** in a dedicated cluster service. Its independent image, model cache, output workspace, and lifecycle let us upgrade audio without restarting Blender or dev-env. The game plays prepared, reviewed files; it does not call the generation service during gameplay.
 
-| Candidate | Fit | Current setup limit |
+The [official optimized implementation](https://github.com/Stability-AI/stable-audio-3/blob/779434a908193105335fd8d833418603625b2859/optimized/tflite/README.md) uses LiteRT on CPU, without PyTorch or CUDA. Its [optimized model distribution](https://huggingface.co/stabilityai/stable-audio-3-optimized/tree/da6edc54ddba10bfd79a077102ded687f80e882b) supports anonymous downloads, including the text encoder. The gated PyTorch checkpoint is a different distribution; its account/contact-sharing gate is not a setup prerequisite for this route. The model's published license terms still apply.
+
+| Option | Role | Setup boundary |
 | --- | --- | --- |
-| Stable Audio 3 Small-SFX | Recommended self-hosted trial; open weights with CPU inference and local output files. Small-Music is a later instrumental-music option. | Gated model access and terms acceptance, isolated Python dependencies, roughly 3.5GB of SFX weights/tokenizer files before dependencies, selected CPU/GPU resources, and an actual quality/speed trial. |
-| ElevenLabs API/SDK | Optional hosted SFX/loopable-ambience trial; free tier available. | Account/key and shared monthly credits; free output is noncommercial, with attribution conditions when shared. Music/API terms differ. |
-| Kenney audio packs | Simple prepared placeholder/fallback for UI/interaction cues; reviewed pack pages identify CC0. | Less bespoke; final choices still follow Tom's review. |
+| Stable Audio 3 optimized Small-SFX | Selected self-hosted effects/ambience authoring route. | Pinned CPU runtime, persistent model files, private job API, and live generation evidence. |
+| ElevenLabs API/SDK | Optional hosted alternative retained for reference. | No account, key, subscription, or integration is required for the selected setup. |
+| Kenney audio packs | Optional prepared placeholder/fallback. | Retain the selected pack's license and exact-version review record. |
 
-The [official Stable Audio repository](https://github.com/Stability-AI/stable-audio-3) supports CPU inference for Small-SFX/Small-Music; its published optimized-device timings are not a Linux pod benchmark. [Kenney UI Audio](https://kenney.nl/assets/ui-audio) remains an inexpensive way to keep code moving. No output quality or runtime performance has been measured here.
+GPU audio and Small-Music can be evaluated later. Existing cluster GPU consumers make scheduler availability insufficient evidence of free VRAM; no GPU is reserved for this CPU service. [Kenney UI Audio](https://kenney.nl/assets/ui-audio) is also available for simple placeholders.
 
 ### ElevenLabs free tier
 
@@ -24,30 +26,26 @@ The [official Stable Audio repository](https://github.com/Stability-AI/stable-au
 
 Free output is for noncommercial use, with attribution when shared/published under the [publishing guidance](https://help.elevenlabs.io/hc/en-us/articles/13313564601361-Can-I-publish-the-content-I-generate-on-the-platform). A later subscription does not retroactively convert free-generated files into paid-plan output. ElevenLabs is a hosted service, not the self-hosted choice in this proposal.
 
-### Self-hosted trial prerequisites
+### Reproducible service setup
 
-1. Tom obtains access to [Small-SFX](https://huggingface.co/stabilityai/stable-audio-3-small-sfx) through Hugging Face, including the displayed contact-sharing consent, Stability model terms, and Gemma terms. Small-Music has its own model access. No terms or account actions have been performed on his behalf.
-2. Store an authorized download token through the existing secret workflow, outside git and chat. Model downloads need explicitly allowed Hugging Face/CDN destinations in the authoring environment; determine exact hosts before the GitOps egress change. No proxy or allowlist bypass is part of setup.
-3. Pin the upstream revision and create an isolated Python environment in the dedicated audio service/Job image. Upstream's [dependency manifest](https://github.com/Stability-AI/stable-audio-3/blob/main/pyproject.toml) requires Python 3.10+ and Torch/Torchaudio 2.7.1; explicitly choose CPU wheels for a CPU trial because its default Linux x86_64 uv configuration selects CUDA wheels. For a GPU trial, verify driver/runtime compatibility and scheduling before selecting CUDA dependencies. Gradio is optional. Keep model caches on persistent storage and dependencies separate from Blender and dev-env so audio upgrades do not restart either.
-4. The [SFX audio checkpoint](https://huggingface.co/stabilityai/stable-audio-3-small-sfx/tree/main) is about 2.27GB; its text model/tokenizer adds about 1.22GB. Allow more disk for dependencies/caches. Disk footprint is not peak RAM. The dev-env pod's lack of a GPU does not constrain a separate authoring service. Inventory Tom's offered dual-3090-capable server and smaller cluster GPUs before reserving resources; confirm available VRAM and measured peak memory. Do not assume two GPUs pool their memory or that the selected inference implementation uses both.
-5. Generate one short synthetic cue, inspect it with ffprobe, listen, and record hardware, generation time, peak host/device memory, and listening results before committing to the self-hosted route. The [source-verified CLI](https://github.com/Stability-AI/stable-audio-3/blob/main/stable_audio_3/cli.py) CPU baseline example is below; it has not been executed here. A GPU trial needs its own verified command and hardware results.
+- Pin source to `Stability-AI/stable-audio-3@779434a908193105335fd8d833418603625b2859` and weights to `stabilityai/stable-audio-3-optimized@da6edc54ddba10bfd79a077102ded687f80e882b`.
+- Provision only the text encoder, Small-SFX diffusion model, and SAME-S decoder, approximately 2.5GB total. Keep downloads in a separate provisioning job with permitted Hugging Face/CDN egress. Runtime mounts the model volume read-only and runs offline.
+- Expose a private streamable HTTP MCP job interface at `http://audio-authoring.dev.svc.cluster.local:8000/mcp`. Submission returns a job ID; status, cancellation, history, and confined artifact downloads avoid keeping one agent request open throughout inference. One generation runs at a time.
+- Keep generated WAVs and job/provenance metadata on the audio service's own persistent workspace. Remote paths are not dev-env paths. Use FFmpeg/ffprobe in the dedicated authoring workloads for processing and inspection.
+- Validate a real synthetic cue on the deployed CPU workload, recording duration/format, elapsed time, peak memory, artifact checksum, and the limits of any listening review. Infrastructure smoke output does not count as an approved game sound.
+- Stage audio/Blender MCP registrations and startup delegation rules under a temporary Reloader exclusion after service validation. Verify both ConfigMaps and mounted files, then use held dev-env PR #2833 for one explicit pod-template activation and restoration of normal reload behavior at Tom's session break. Later service upgrades do not require that restart.
 
-```bash
-python -m stable_audio_3.cli --model small-sfx --device cpu --no-half \
-  -p "gentle forest wind and birds" --duration 10 -o forest.wav
-```
-
-The inference code is MIT; model weights use the [Stability Community License and associated terms](https://huggingface.co/stabilityai/stable-audio-3-small-sfx/blob/main/LICENSE.md), including Gemma conditions for the text component. Personal hobby use has no model license fee; local compute/storage still cost resources. Do not describe the weights as unrestricted open source. Small-Music can be evaluated later without making a soundtrack a PoC dependency.
+The selected CLI configuration fixes `sm-sfx`, `same-s`, FP32 diffusion, quantized decoder, four CPU threads, and eight steps by default. Generate enough context and trim the desired event for short cues; the upstream guide recommends longer clips for coherence. Source is MIT; model artifacts retain the publisher's [Stability license](https://stability.ai/license) and redistributed text component's [Gemma terms](https://ai.google.dev/gemma/terms). Preserve provenance and applicable terms with each candidate.
 
 ## Authoring workflow
 
 1. Define a cue ID, triggering event, mood, duration/loop intent, and priority. The brief uses original sound descriptions and identifies any needed source rights.
-2. The Audio Astra produces a small set of candidates using the selected pinned local CLI or hosted script/SDK. For the hosted alternative, ElevenLabs' [SFX endpoint](https://elevenlabs.io/docs/api-reference/text-to-sound-effects/convert) accepts text and generation settings, including looping for its supported model. Match duration and export settings to the current endpoint/plan rather than assuming every format is available.
+2. The audio authoring agent produces a small set of candidates using the selected pinned local CLI or hosted script/SDK. For the hosted alternative, ElevenLabs' [SFX endpoint](https://elevenlabs.io/docs/api-reference/text-to-sound-effects/convert) accepts text and generation settings, including looping for its supported model. Match duration and export settings to the current endpoint/plan rather than assuming every format is available.
 3. Retain the original generated/downloaded file and metadata. Inspect, trim, fade, check clipping/loop seams, and create browser delivery versions. [FFmpeg filters](https://ffmpeg.org/ffmpeg-filters.html) support these processing steps; [ffprobe](https://ffmpeg.org/ffprobe.html) supplies machine-readable stream metadata. Do not claim a lossy provider download becomes a lossless master by converting it to WAV.
 4. Audition candidates in isolation and in a short labeled review preview. Keep a reproducible processing recipe, level/loop notes, checksums, and source/terms information. [Audacity macros](https://manual.audacityteam.org/man/macros.html) are an optional workstation editing aid; an interactive editor is not required for the agent pipeline.
 5. Present the concrete review package to Tom. Record approval against the exact version under DESIGN-007, then promote that version into the cue manifest. Keep the previous approved sound when a replacement is pending or rejected.
 
-A local CLI or direct API script is sufficient; an audio MCP server is not a prerequisite. ElevenLabs' [former local MCP repository](https://github.com/elevenlabs/elevenlabs-mcp) is archived/deprecated; its replacement [hosted MCP](https://elevenlabs.io/docs/eleven-agents/operate/hosted-mcp) documents speech and agent-management capabilities, without establishing SFX/music parity for this workflow. We have not connected either server.
+Our private MCP service wraps the pinned local CLI for asynchronous authoring. It is separate from provider-hosted MCP offerings. ElevenLabs' [former local MCP repository](https://github.com/elevenlabs/elevenlabs-mcp) is archived/deprecated; its replacement [hosted MCP](https://elevenlabs.io/docs/eleven-agents/operate/hosted-mcp) documents speech and agent-management capabilities, without establishing SFX/music parity for this workflow. We have not connected either server.
 
 ## Small initial cue set
 
@@ -90,8 +88,6 @@ MDN specifically documents Safari audio interruption after switching away or tur
 
 ## Readiness and validation
 
-On 2026-09-10 the pod has Node, pnpm, Python, and uvx, but `ffmpeg`, `ffprobe`, SoX, Audacity, and Blender are not available on PATH. No connected audio-generation tool is exposed in this session. ElevenLabs account/auth, generation credits, output quality, and export eligibility have not been tested. No audio was generated, downloaded, or approved for the game by this research. Stable Audio model access/terms acceptance and local performance are likewise unverified. No weights have been installed, no model/provider terms have been accepted, and no GPU has been assigned to this audio trial.
+The dedicated Blender service provides FFmpeg/ffprobe and verified artifact transfer. The separate audio service has downloaded its pinned 2.49GB model bundle anonymously and passed real CPU generation, asynchronous status/cancellation, and confined WAV downloads. The first 10-second stereo test took 7.3 seconds with about 3.9 GiB peak subprocess memory. PLAN-003 records deployment, cache-fix, and persistence evidence. No GPU is assigned, the samples have not been auditioned, and no game audio candidate is approved. Both native registrations and startup rules are staged and verified without restarting dev-env; discovery waits for the single held activation.
 
-Later setup pins the selected self-hosted service/Job image or hosted script/SDK, arranges the required access/key and resource or credit budget, configures permitted egress and secrets through `haynes-ops`, and provides FFmpeg/ffprobe plus suitable artifact storage. PLAN-003 tracks the dedicated Blender/FFmpeg authoring service separately from pending audio-provider access. Audio model dependencies belong in their own workload, upgradeable without rolling dev-env; GPU availability is an option, not completed setup. Any initial agent registration that changes dev-env's mounted configuration still follows that repo's held-draft workflow. Do not install a deprecated MCP bridge to satisfy a capability already available by direct API.
-
-Validate first interaction, mute, missing files, repeated scene entry, effect spam, backgrounding, screen lock, interruption, and resume on actual iPad/iPhone Safari and PC. Listen for clipped peaks, abrupt cuts, and loop seams; retain the measured export settings and Tom's exact-version review. The findings above are documentation evidence, not a completed generation, listening, or browser test.
+Validate first interaction, mute, missing files, repeated scene entry, effect spam, backgrounding, screen lock, interruption, and resume on actual iPad/iPhone Safari and PC. Listen for clipped peaks, abrupt cuts, and loop seams; retain the measured export settings and Tom's exact-version review. The infrastructure generation checks above do not establish listening quality or browser behavior.

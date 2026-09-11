@@ -3,7 +3,7 @@
 - **Status:** Candidate / Changes requested / Approved / Superseded
 - **Kind and gameplay purpose:** <model, animation, material, sound, music, voice>
 - **Version/checksum:** <exact candidate identity>
-- **Authoring agent:** GPT-6 Astra
+- **Authoring agent:** <actual model/effort; GPT-6 Astra lead/reviewer>
 - **Source/provenance:** <original/generated/licensed; provider/tool versions; generation date and applicable terms>
 - **Editable master and runtime export:** <artifact locations; keep restricted/private files out of public git>
 
