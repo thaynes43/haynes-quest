@@ -3,7 +3,7 @@
 - **Status:** Complete on `agent/quest-playtest-artifacts`.
 - **Owner:** Native GPT-5.6 Sol, xhigh; bounded artifact-test lane.
 - **Base:** `35c6c62f43697b73cb29ea3dcb62dc90c978fe0b` from `agent/quest-parody-obby`.
-- **Owned files:** `tests/game/parody-artifact-contract.test.ts`, this result, and `docs/assets/media/parody-playtest-audit/v001/`.
+- **Owned files:** `tests/game/parody-artifact-contract.test.ts`, `tests/e2e/parody-catalog.mjs`, this result, and `docs/assets/media/parody-playtest-audit/v001/`.
 
 ## Result
 
@@ -59,6 +59,17 @@ Attack contact time must equal the attack duration times the production resolver
 - `pnpm exec eslint tests/game/parody-artifact-contract.test.ts` — passed with zero warnings.
 - `pnpm exec prettier --check tests/game/parody-artifact-contract.test.ts` — passed.
 - `pnpm typecheck` — passed.
+- `git diff --check` — passed.
+
+## Harness default follow-up
+
+After the browser evidence was captured, the catalog harness default was narrowed from the six-ID historical allowlist to the four completed playtest assets: Mister Hiss, Peel Patrol, Drama Dragon and Sir Flush-a-Lot. `QUEST_PARODY_IDS` still accepts any explicit subset of all six known IDs, so Nap Captain and One-Star Diva remain available for deliberate archive audits without being demanded by a default playtest run. The report's `defaultIds` field now records the actual four-item default rather than the broader allowlist.
+
+The prior successful browser audit already supplied those same four assets explicitly through `QUEST_PARODY_IDS`, as shown in its command and `selectedIds`. No browser was launched and no site build was performed for this follow-up.
+
+- `node --check tests/e2e/parody-catalog.mjs` — passed.
+- `pnpm exec eslint tests/e2e/parody-catalog.mjs` — passed with zero warnings.
+- `pnpm exec prettier --check tests/e2e/parody-catalog.mjs` — passed.
 - `git diff --check` — passed.
 
 ## Four-asset frozen-site browser audit

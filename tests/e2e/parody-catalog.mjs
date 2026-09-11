@@ -13,7 +13,14 @@ const allIds = [
   "nap-captain",
   "one-star-diva",
 ];
-const requestedIds = (process.env.QUEST_PARODY_IDS ?? allIds.join(","))
+// Default audits cover the four completed playtest assets; archived IDs remain opt-in.
+const defaultIds = [
+  "mister-hiss",
+  "peel-patrol",
+  "drama-dragon",
+  "sir-flush-a-lot",
+];
+const requestedIds = (process.env.QUEST_PARODY_IDS ?? defaultIds.join(","))
   .split(",")
   .map((value) => value.trim())
   .filter(Boolean);
@@ -909,7 +916,7 @@ const report = {
   repoRoot,
   sourceCommit: process.env.QUEST_SOURCE_COMMIT ?? "not supplied",
   selectedIds: requestedIds,
-  defaultIds: allIds,
+  defaultIds,
   browser: undefined,
   physicalSafari: "not tested",
   pages: [],
