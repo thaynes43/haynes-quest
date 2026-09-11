@@ -11,10 +11,11 @@
   },
   "review": {
     "creator_inspected": true,
-    "coordinator_intake": "pending lead review",
+    "coordinator_intake": "selected for Tom review by lead Astra, 2026-09-11; concept, re-imported stills/motion sheet and browser views compared",
     "owner_approval": "pending",
     "gameplay_promotion": false,
-    "physical_safari_validation": false
+    "physical_safari_validation": false,
+    "browser_intake": "Chromium 153.0.8010.12; all clips load/play/pause, touch orbit, zero page/console/request errors"
   },
   "reference_set": "storybook-v001",
   "reference_sha256": {
