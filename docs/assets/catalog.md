@@ -65,6 +65,12 @@ The replacement cast uses recognizable pop-culture parodies from the selected ph
 | The Block Party | [Mister Hiss](reviews/mister-hiss/v001.md) | Creeper with a confetti sneeze | Exported model and five clips |
 | The Block Party | [Peel Patrol](reviews/peel-patrol/v001.md) | Peely safety marshal who slips on his own peel | Exported model and five clips |
 | The Block Party | [The Drama Dragon](reviews/drama-dragon/v001.md) | Ender Dragon as a pompous performer | Exported model and five clips |
-| The Remix Runway | [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) | Skibidi Toilet opera singer | Concept selected |
-| The Remix Runway | [Nap Captain](reviews/nap-captain/v001.md) | CatNap bedtime inspector with a pillow prank | Concept selected |
-| The Remix Runway | [The One-Star Diva](reviews/one-star-diva/v001.md) | Dress to Impress judge with an oversized outfit | Concept selected |
+| The Remix Runway | [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) | Skibidi Toilet opera singer | Exported model and five clips · optional candidate · Tom review pending |
+| The Remix Runway | [Nap Captain](reviews/nap-captain/v001.md) | CatNap bedtime inspector with a pillow prank | First model checkpoint · corrections and final media paused |
+| The Remix Runway | [The One-Star Diva](reviews/one-star-diva/v001.md) | Dress to Impress judge with an oversized outfit | Concept selected · model production paused |
+
+## Child-specific curation and the next design
+
+[Player setup](../designs/012-player-journey-curation.md) will let a parent select photos and encounters for each level, with era suggestions, favorites, exclusions and explicit admin period overrides. Completed models are optional library entries. The former fixed roster is not mandatory for every child.
+
+Tom selected **The Besties duo first** for the next design discussion, based on Mackenzie Turner and Lael’s Roblox personas. FNAF-inspired characters are a later interest for his son. No Besties or FNAF model has been generated. New production is paused while the next brief is agreed; Nap’s partial source and Diva’s unbuilt source are preserved.

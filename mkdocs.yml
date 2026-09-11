@@ -49,6 +49,8 @@ nav:
       - Audio pipeline: designs/008-audio-pipeline.md
       - Overnight contracts: designs/009-overnight-contracts.md
       - Era combat loop: designs/010-era-combat-loop.md
+      - Forgiving obby: designs/011-forgiving-obby.md
+      - Player journey setup: designs/012-player-journey-curation.md
       - Design template: designs/000-template.md
   - Operations:
       - Hosting context: ops/001-hosting-context.md

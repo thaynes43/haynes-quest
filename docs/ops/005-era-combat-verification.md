@@ -2,7 +2,17 @@
 
 This record concerns the PLAN-005 correction: useful gear → era encounters → boss victory → released pictures → memory consumption → age and next period. It does not replace the separate evidence for the currently deployed historical prototype.
 
-**Current state:** the corrected core code has passed isolated review and is ready for checked PR handling. Current creature/equipment asset production and visual review are still in progress. No PLAN-005 release has been deployed. The local game uses existing candidate GLBs and temporary enemy/equipment studies; owner approval for demo use remains pending. Real library photos, admitted-player OAuth and physical Safari have not been validated by these checks.
+**Current state, September 11 at 17:48 UTC:** the server/combat foundation is merged in PR26 and the supporting asset work in PR27. [PR28](https://github.com/thaynes43/haynes-quest/pull/28) adds the forgiving obby and recognizable parody cast. Its first automated verification, PostgreSQL tests, documentation and container checks passed; candidate production and full final playthroughs are still in progress. No PLAN-005 release has been deployed. Real library photos, admitted-player OAuth and physical Safari have not been validated by these checks.
+
+## Obby and parody correction
+
+The current local build alternates slow hazards and broad landing platforms with era encounters. Missed jumps and obstacle bumps return the player nearby while retaining equipment, health and victories. Age zero uses movement timing; after the first boss and memory consumption, age four unlocks jumping for two short gaps and a moving platform. The course, checkpoint, combat-height, input-clearing and pause regressions pass. [The latest review](../../.agents/work-orders/033-parody-obby-review-results.md) records the concrete findings and fixes.
+
+The first three actual parody models are delivered: Mister Hiss, Peel Patrol and Drama Dragon. [Their catalog audit](../../.agents/work-orders/034-parody-catalog-intake-results.md) passed the exact models, all 15 interactive animation clips, 21 decoded videos, phone layout and touch orbit, and the editable-master checksums. Sir Flush-a-Lot, Nap Captain and One-Star Diva remain in production. The earlier generic creature studies are rejected as enemies and are preserved only for possible future friendly or ambient roles.
+
+[The current control audit](../../.agents/work-orders/031-obby-browser-journey-results.md) is explicitly partial: keyboard controls completed the first period, boss, pictures and growth to age four, then a deliberate missed-jump recovery and the first gap. It does not yet establish the ferry, second boss, final growth or a full touch journey with the final cast. The software renderer measured about 8–9 frames per second at the recorded test viewports; tests are being corrected to follow actual movement and landings rather than short fixed delays. This is not a physical-device performance result or a child playtest.
+
+The remaining sections preserve the earlier combat foundation's evidence. Those earlier complete journeys used the former corridor and temporary studies; they do not establish the corrected obby or final visual quality.
 
 ## Source and checks
 
@@ -10,7 +20,7 @@ Root worktree: `/home/dev/work/quest-era-boss-loop`, branch `agent/quest-era-bos
 
 TypeScript, lint and production build passed. The local suite passed 65 tests with eight PostgreSQL tests skipped because the local run had no database URL. The separate real-database result below covers those eight tests. Actual keyboard and emulated-touch gameplay passed both bosses and final age-seven completion, with all completion pictures decoded. Independent technical findings were recovered and fixed; the original separate Fable browser lane timed out and is not claimed complete.
 
-The isolated test harness serves synthetic fixtures with in-memory storage at `127.0.0.1:4390`. It now runs in tmux window `main:quest-era-fixture`, with log `/tmp/quest-era-fixture.log`. Two earlier tool-owned processes ended with signal 143; their in-memory saves were discarded. This was a local test interruption, not a live application or dev-env restart. In-memory reload tests demonstrate application save/resume semantics within that process; they do not establish persistence across process replacement.
+The earlier isolated harness served synthetic fixtures with in-memory storage at `127.0.0.1:4390`; its owned tmux window was closed at 16:48 UTC after the audit. Its log remains at `/tmp/quest-era-fixture.log`. Two earlier tool-owned processes ended with signal 143; their in-memory saves were discarded. These were local test interruptions, not live application or dev-env restarts. In-memory reload tests demonstrate save/resume semantics within that process; they do not establish persistence across process replacement. The current harness locations and freeze ownership are in [HANDOFF](../../.agents/HANDOFF.md).
 
 ## Real PostgreSQL
 

@@ -10,6 +10,10 @@
 
 Tom rejected the six generic creature studies as enemies. The new requirement is recognizable pop-culture parody, using capture-date metadata and the person's birthday to establish period and age progression. The coordinator's unrequested broad-inspiration-only restriction is removed. All six existing models remain available for possible friendly/ambient use; none is selected as an enemy. Their live Blender leases and render jobs have ended. Root has now written six specific recognizable references, primary-sourced historical eligibility, visual jokes and encounter behaviors. All six construction concepts are selected and saved; replacement models are in active production under WO027/028/032. Preserve useful equipment and reusable animation/loading work.
 
+## Player curation and production correction
+
+Tom's later September 11 request adds configurable parent setup: full-name Immich lookup, birthday, curated photos for each level, child-specific enemy/boss choices, era defaults and explicit admin overrides. [DESIGN-012](../../docs/designs/012-player-journey-curation.md) records the experience and privacy/versioning boundaries. The former six-entry roster is a candidate library, not a mandatory cast for every child. Finish independent gameplay and checked PR work, but pause new asset production for a short design discussion. Tom selected The Besties duo first; do not automatically finish Nap/Diva or generate FNAF without agreeing on the next brief.
+
 ## Obby requirement
 
 Tom explicitly requires Roblox-style obstacle-course play mixed with goofy fights, approachable for his six-year-old daughter. [DESIGN-011](../../docs/designs/011-forgiving-obby.md) defines the main-route approach and acceptance: visible hazards, forgiving timing, jumps after the age-based unlock, safe checkpoints and no loss of equipment or memory progress from missed traversal. A flat combat corridor fails the intended loop.
