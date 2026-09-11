@@ -30,10 +30,10 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-3
 | R-09 | Support play with a keyboard and mouse at a computer. | Must |
 | R-10 | Consider gamepad support after the initial playable scope; it is optional future work. | Later option |
 | R-11 | Require players to sign in through Authentik, following Haynes Network's sign-in approach. Authentik is the only login method; do not add game-local passwords or separate login providers. | Must |
-| R-12 | Use a generic, mysterious playable avatar who begins at memory age zero without memories and with baby abilities. Its model is independent of the selected photo-library person; no likeness or per-person character asset is required. | Must |
+| R-12 | Begin with a mysterious avatar at memory age zero without memories and with baby abilities; as memories recover identity, its appearance should evolve toward the represented age and likeness. PLAN-004 uses synthetic age stages for the overnight proof while final likeness design remains open. | Must |
 | R-13 | After login, let the player select one of their saved games or start a new game. | Must |
 | R-14 | Starting a new game includes choosing whose memories to explore from the configured people. The saved game retains that person's identity and journey progress when resumed. | Must |
-| R-15 | Automatically generate playable character models from configured people's photos if person-specific avatars are separately reintroduced. | Deferred; conditional future [BL-01](../BACKLOG.md), outside family PoC |
+| R-15 | Consider automatically generating playable age/likeness variants from configured people’s photos. Personalization is now product direction, but automatic model generation remains deferred under [BL-01](../BACKLOG.md). | Later; not an overnight dependency |
 | R-16 | Define the technical and nontechnical contracts for the next playable slice. Tom now prioritizes the PLAN-003 dependency checkpoint before fresh-context development dispatch. Full gameplay/story detail remains deferred; after setup, synthetic placeholders allow code work while final assets are produced and reviewed. | Current priority |
 | R-17 | Let users configure the photo-service URL, API key, and people's names used to populate the game. | Must |
 | R-18 | Resolve configured names to people in the connected photo service and retrieve their eligible photos and usable dates for gameplay content and timeline construction. | Must |
@@ -58,6 +58,9 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-3
 | R-37 | Establish an audio-authoring tool and repeatable cue workflow alongside visual authoring. Prepare and review files during development; the game need not generate audio while playing. Full music and narration can follow later. | Must; self-hosted authoring selected |
 | R-38 | Use GPT-6 Astra to lead code, visual assets, audio, story/design, and verification, with native Codex GPT-5.6 Sol subagents at `xhigh` for bounded work, with new empty conversation contexts, self-contained work orders, required repository reading, and coordinated handoffs. | Must |
 | R-39 | Support user-started browser audio, persistent mute/volume preferences, visible equivalents for required cues, and safe interruption/resume on touch and PC. Missing or blocked audio must not prevent play. | Must |
+| R-40 | Support finite configured photo journeys; store entered person names, resolved identities and private photo/age configuration server-side. Reuse AppDaemon’s Immich connection for the family PoC through ExternalSecrets/1Password. Use fictional repository fixtures. | Must |
+
+The current overnight milestone is [PLAN-004](../../.agents/plans/004-overnight-mvp.md). Tom permits a private placeholder account for coding/testing and defers OAuth setup until tomorrow; Authentik remains the eventual sole player login. Older scope paragraphs describe the preceding synthetic-only milestone.
 
 ## Saved games and memory journeys
 

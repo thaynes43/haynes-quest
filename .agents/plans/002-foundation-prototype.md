@@ -5,6 +5,10 @@
 - **Depends on:** Tom's dependency-first checkpoint in [PLAN-003](003-authoring-tool-setup.md), then slice contracts in DESIGN-007; authoring tools, live admission/provisioning, and owner asset review are dependencies of the later milestones that use them
 - **Requirements/designs:** [PRD-001 R-01, R-08–R-14, R-16–R-24, R-30–R-39](../../docs/prds/001-project-brief.md), [ADR-002](../../docs/adrs/002-web-game-stack.md), [DESIGN-001](../../docs/designs/001-technical-foundation.md), [DESIGN-002](../../docs/designs/002-asset-pipeline.md), [DESIGN-003](../../docs/designs/003-photo-connections-and-people.md), [DESIGN-004](../../docs/designs/004-memory-journey.md), [DESIGN-006](../../docs/designs/006-memory-age-and-abilities.md), [DESIGN-007](../../docs/designs/007-poc-development-loop.md), [DESIGN-008](../../docs/designs/008-audio-pipeline.md)
 
+## Current overnight extension
+
+[PLAN-004](004-overnight-mvp.md) extends this foundation: implement the Immich adapter and finite setup now, demonstrate visible avatar growth, and allow a private synthetic placeholder account while OAuth is deferred until tomorrow. Its current milestone takes precedence over the older exclusions below. Final Authentik-only access and reviewed assets remain release requirements.
+
 ## Outcome and scope
 
 Build a small playable proof of chronological memory recovery and cumulative abilities, then validate the authored-asset workflow, account-owned saves, and browser delivery. The proposed route has one compact level, a generic avatar, three synthetic dated memories, one new movement action, retained starting actions, and a reachable finish. A fictional known birth date supplies the test age mapping. These are prototype defaults, not final age thresholds, level quotas, or a resolution of real-person setup policy.
