@@ -1,7 +1,7 @@
 # WO-035: Player setup and per-level curation intake
 
 - **Status:** Technical audit complete; implementation and player-facing design deferred
-- **Audited source:** `/home/dev/work/quest-parody-obby` at `879c1eb998b91be47dfc48b380ab684051b1e778`, including the root-owned pending edit to `docs/ops/005-era-combat-verification.md`
+- **Audited source:** `/home/dev/work/quest-parody-obby` at `879c1eb998b91be47dfc48b380ab684051b1e778`, including the root-owned pending verification edit; final dispositions were checked against the later root-owned draft `docs/designs/012-player-journey-curation.md`
 - **Audit date:** 2026-09-11
 - **Scope:** Existing player setup, Immich resolution and photo freezing, shared catalogs, authentication/roles, persistence, and the smallest compatible contract for per-level photo and encounter curation
 
@@ -19,7 +19,7 @@ No private library, credentials, external service, Blender session, model genera
 | Saved media | A released saved memory is served only through an owner-scoped save route. Immich fetch revalidates current asset identity, selected-person membership, visibility, and availability, then size/type checks and sanitizes the image. Frozen dates remain unchanged after a library correction. | There is no equivalent owner/preview/expiry-scoped route for setup thumbnails. The production entry point supplies neither the photo adapter nor private media provider. |
 | Journey grouping | `createAdventurePlan` partitions selected chronological memories at fixed age thresholds. Each memory belongs to exactly one level. A level's frozen `startDate`, not its reward photo date, selects its era and roster. | The caller cannot submit an exact level grouping. Same-age tails and broad gaps still follow provisional automatic grouping. |
 | Character catalog | `PARODY_CANDIDATES` is a finite shared compile-time catalog. Each entry has stable content and asset versions, slot role/kind, one period, an inclusive eligibility window, an earliest reference date, and required abilities. The selector filters dates and abilities, then requires exactly one ordinary-a, ordinary-b, and boss set. | There is currently one fixed trio per period, no interest tags, no published/readiness state, no alternatives for curation, and no override representation. The current six include the now-paused second-period direction. |
-| Runtime identity | Every v2 encounter freezes catalog entry ID/version and asset ID/version. The browser resolves that identity through the shared scene catalog rather than choosing by date again. | Every selectable published catalog entry also needs a reviewed runtime asset mapping. Concept-only or missing-artifact entries must never be offered as playable choices. |
+| Runtime identity | Every v2 encounter freezes catalog entry ID/version and one asset ID/version. The browser resolves that identity through the shared scene catalog rather than choosing by date again. | Every selectable published catalog entry also needs a reviewed runtime asset mapping. Concept-only or missing-artifact entries must never be offered as playable choices. The one-asset shape cannot yet express one encounter made from a bounded duo or group. |
 | Catalog compatibility | `era-level-plan-v1` and `era-level-plan-v2` are discriminated and the v2 plan freezes `parody-catalog-v1`. | `parseStoredAdventure` accepts only the current catalog literal and revalidates identities against the current `PARODY_CANDIDATES`. Replacing/removing entries or bumping the constant can turn an intact old save into `SAVE_DATA_INVALID`. |
 | Authentication and roles | Fixture mode has a signed, same-origin, HTTP-only session cookie. All save, preview, action, and media operations derive the owner from that session; mutation routes enforce exact Origin plus `X-Quest-Request`, rate limits, strict request schemas, optimistic revisions, and idempotency. Authentik OIDC is accepted in ADR-001. | Non-fixture startup constructs no session provider, so protected production routes currently return `AUTH_REQUIRED`. `PlayerRecord` and `SessionView` contain no roles; there is no `ADMIN` authority or audit actor. |
 | Storage | PostgreSQL stores players, fixture sessions, setup previews, and saves. Private source IDs and birthday remain server-side. Save plan/state/version fields are JSONB; `save_format` permits `legacy-v1` and `era-combat-v2`. Preview reuse is prevented by a unique save `preview_id`. | There are no connection grants, configured-person records, role records, curation draft/version, or override audit fields. Real authentication and photo admission remain explicitly deferred. |
@@ -48,6 +48,8 @@ Introduce `era-level-plan-v3` while retaining both existing plan parsers. Each v
 - the catalog version and setup-curation contract version;
 - a selection provenance union: default eligible selection or an authorized dated override.
 
+Keep encounter identity separate from actor cardinality. The owner-selected and approved Besties concept is one duo boss encounter with two actors, while retaining one boss slot, one server-authoritative encounter progress record, and one completion/reward gate. The exact v3 representation can be a versioned composite asset or frozen actor-asset list; the catalog contract must not permanently equate one entry with exactly one model.
+
 The existing `era-combat-state-v2` can remain unchanged because per-level grouping and roster provenance do not add mutable gameplay state. `save_format` can remain `era-combat-v2`; JSONB already accommodates a new plan variant. Set `RuleVersions.journey` to the v3 value for new saves and add an optional curation rule version only if plan version alone cannot identify the validator. Existing rows need no data rewrite.
 
 Before adding a second catalog version, replace the current-singleton validator with an immutable registry keyed by catalog version. The v2 parser must always validate against archived `parody-catalog-v1`; v3 validates against the exact frozen catalog version. Runtime availability is a separate check: a withdrawn or missing asset yields a recoverable content-unavailable state, not save corruption or a new roster.
@@ -58,9 +60,9 @@ Add stable, non-personal `interestTagIds` to catalog entries and accept selected
 
 Catalog entries need an explicit published/runtime-ready state or, preferably, inclusion in an immutable published catalog only after the model, clips, runtime metadata, and exact artifact version pass review. Draft concepts can exist in authoring records but must not reach setup options or plan creation. Every offered entry must still match its slot role/kind and starting abilities.
 
-### 4. Make the ADMIN override narrow and dated
+### 4. Keep ADMIN relevance corrections explicit and dated
 
-Represent a per-level exception in the frozen plan, rather than widening the catalog window globally. A minimal record is:
+Publish a shared correction as a new catalog version, and represent a journey-local exception in the frozen plan without mutating that shared history. A minimal local record is:
 
 ```ts
 type RosterProvenance =
@@ -71,32 +73,34 @@ type RosterProvenance =
       approvedByPlayerId: string;
       approvedAt: string;
       reasonCode: string;
-      defaultEligibleThrough: string;
+      defaultRelevanceWindows: readonly { from: string; through: string }[];
       authorizationPolicyVersion: string;
     };
 ```
 
-The override is valid only when that exact frozen level date is later than `eligibleThrough`; it cannot bypass `eligibleFrom`. The server must still enforce that the reference existed by that date, the requested role/kind and ability contract match, the exact entry/catalog version exists, and its runtime asset is published. This supports an explicitly approved enduring character in a later period without allowing a future reference into an earlier memory.
+Relevance windows are editable catalog curation, not immutable historical facts or authorization boundaries. An administrator may publish corrected shared relevance windows in a new catalog version for new drafts, or authorize an exception for one exact journey level date without changing other families' defaults. Original availability/debut and supporting historical evidence remain separate fields and are not rewritten to make a relevance correction appear historically native.
+
+Whether local exceptions may apply on both sides of a default window or only after its end is a root policy decision. A later-only exception is one possible narrower rule for enduring characters, but it is not established by the user requirement and is not a security invariant. In every policy, the server must still enforce the requested role/kind and ability contract, the exact entry/catalog version, a reviewed/published runtime asset, and any immutable historical-availability rule root adopts.
 
 The browser cannot assert `ADMIN`, `approvedByPlayerId`, or `approvedAt`. The create transaction derives the actor and roles from the authenticated server session, verifies `ADMIN` at that moment, and writes the actor/time itself. A fixture principal is non-admin unless a separate synthetic test fixture declares the role. The frozen audit explains why a save was valid without granting future override authority.
 
 ## Security invariants for later implementation
 
-1. Authentication and admission come before any real photo or override endpoint. Validate Authentik issuer, audience, callback, session, and stable subject; derive owner and roles server-side. An admin role authorizes only the dated catalog exception and never another owner's previews, saves, connections, or media.
+1. Authentication and admission come before any real photo or live override endpoint. Validate Authentik issuer, audience, callback, session, and stable subject; derive owner and roles server-side. Synthetic fixture contracts and planning can be implemented first without OAuth or private inputs. An admin role authorizes relevance curation/exception actions and never another owner's previews, saves, connections, or media.
 2. A full name is a lookup key, not login identity or durable authorization. Keep upstream person/asset IDs and credentials server-side; use connection-scoped opaque IDs in browser contracts. Never log request bodies, names, birthdays, source IDs, media URLs, tokens, or photos.
 3. Every preview, setup-media, plan, and save request remains owner-scoped and bounded. Reject expired previews, IDs not issued by that preview, duplicate/cross-level photos, unknown versions, oversized lists, missing required slots, and content not present in the exact published catalog.
 4. The server derives normalized dates, ages, level dates, abilities, role/slot requirements, and override audit fields. Client-submitted derived values are hints at most and must match server recomputation.
 5. Saved chronology remains frozen. A later Immich date edit does not rewrite age, level, or roster; current membership/visibility revocation still blocks bytes. Date-basis and precision must be frozen under a new rule before real-photo admission.
-6. Catalog additions never reroll an existing save. Old catalog definitions stay available to structural validation, while asset withdrawal is handled as runtime availability. Catalog version, entry version, and asset version must agree exactly.
+6. Catalog additions and shared relevance-window edits never reroll an existing save. Old catalog definitions stay available to structural validation, while asset withdrawal is handled as runtime availability. Catalog version, entry version, composite/actor asset versions, and the frozen selection must agree exactly.
 7. Curated-create retries are idempotent only when the requested normalized curation matches: ordered level photo membership, roster identities, catalog/plan versions, and override intent/reason. A retry reuses the original server-issued actor/time audit; a reused preview with different curation returns a conflict.
 8. Keep strict Origin/CSRF checks, private no-store media, image sanitization, fetch allowlists, redirect rejection, time/size limits, request rate limits, save revision checks, and safe fixed-field diagnostics.
 
 ## Recommended implementation order
 
-1. Ratify real-photo date basis/precision and Authentik admission/role claims without accessing a private library.
-2. Archive `parody-catalog-v1` and make stored-plan validation version-addressed.
-3. Define the v3 plan and curated-create schemas plus invariant tests using synthetic subjects, photos, roles, and catalogs.
-4. Add owner-scoped preview media and setup-plan endpoints behind the admitted connection grant.
-5. Populate interest-tagged published catalog alternatives only after roster collaboration and asset review; then exercise default and exact-date ADMIN paths in synthetic tests.
+1. Archive `parody-catalog-v1` and make stored-plan validation version-addressed.
+2. Define the proposed v3 plan and curated-create schemas plus invariant tests using synthetic subjects, photos, role claims, composite encounters, and catalogs. Root retains the final versioning decision.
+3. Build synthetic setup/planning against the fictional fixture while OAuth, private photo admission, and real ADMIN mapping remain deferred.
+4. Ratify real-photo date basis/precision and Authentik admission/role claims before adding owner-scoped real preview media and live override operations.
+5. Populate interest-tagged published catalog alternatives only after roster collaboration and asset review; then exercise shared relevance edits and per-journey dated exceptions in synthetic tests.
 
 This ordering leaves costly model production downstream of the roster and contract decisions, preserves current v1/v2 saves, and does not activate real authentication or private photo access as a side effect.
