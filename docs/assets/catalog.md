@@ -21,10 +21,10 @@ Each separately modeled piece in a kit needs an identifiable concept view, model
 
 | Stable cue ID | First-pass deliverable | Status / review |
 | --- | --- | --- |
-| `memory-collected` | Short warm discovery cue | In production · concept selected |
-| `ability-unlocked` | Related but distinct growth/ability cue | In production · concept selected |
-| `movement-landed` | Soft contact/landing feedback suited to the chosen motion | In production · concept selected |
-| `ui-confirmed` | Quiet confirmation cue | In production · concept selected |
+| `memory-collected` | [A memory found · v001](reviews/memory-collected/v001.md) | Audition available · listening and Tom review pending |
+| `ability-unlocked` | [A little more possible · v001](reviews/ability-unlocked/v001.md) | Audition available · listening and Tom review pending |
+| `movement-landed` | [Back on the path · v001](reviews/movement-landed/v001.md) | Audition available · listening and Tom review pending |
+| `ui-confirmed` | [A quiet yes · v001](reviews/ui-confirmed/v001.md) | Audition available · listening and Tom review pending |
 
 Add ambience only after the required cues and runnable slice are complete. Full music, voices, bosses, era rosters and extra biomes remain backlog work. Keep generated originals and processed exports distinct; record processing, license/provenance, waveform/level checks and an audible preview. A metadata check alone is not a listening review.
 
