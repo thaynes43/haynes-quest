@@ -1,9 +1,5 @@
 import * as THREE from "three";
-import type {
-  BestiesClipName,
-  BestiesFrame,
-  BestieActorId,
-} from "./besties";
+import type { BestiesClipName, BestiesFrame, BestieActorId } from "./besties";
 import { BESTIES_ARENA_CENTER, bestiesActorOffset } from "./besties";
 import type { DuoParodyArtwork } from "./scene-catalog";
 import { SceneAssets, disposeTree } from "./scene-assets";
@@ -241,14 +237,15 @@ export class BestiesScene {
     this.stars.visible = frame.vulnerable;
     for (const orbit of this.stars.children) orbit.rotation.y = elapsed * 3;
     const hazard = frame.hazards[0];
+    const origin = frame.arenaOrigin ?? BESTIES_ARENA_CENTER;
     this.hazard.visible = Boolean(hazard?.damaging);
     this.warning.visible = Boolean(hazard && !hazard.damaging);
     if (hazard) {
       const mesh = hazard.damaging ? this.hazard : this.warning;
       mesh.position.set(
-        hazard.center.x - BESTIES_ARENA_CENTER.x,
-        hazard.center.y,
-        hazard.center.z - BESTIES_ARENA_CENTER.z,
+        hazard.center.x - origin.x,
+        hazard.center.y - origin.y,
+        hazard.center.z - origin.z,
       );
       mesh.scale.set(
         hazard.halfExtents.x * 2,
@@ -257,12 +254,10 @@ export class BestiesScene {
       );
       if (!hazard.damaging && hazard.kind === "foam-bar") {
         mesh.position.x =
-          (hazard.sweep.from.x + hazard.sweep.to.x) / 2 -
-          BESTIES_ARENA_CENTER.x;
+          (hazard.sweep.from.x + hazard.sweep.to.x) / 2 - origin.x;
         mesh.position.y = 0.028;
         mesh.position.z =
-          (hazard.sweep.from.z + hazard.sweep.to.z) / 2 -
-          BESTIES_ARENA_CENTER.z;
+          (hazard.sweep.from.z + hazard.sweep.to.z) / 2 - origin.z;
         mesh.scale.set(
           Math.abs(hazard.sweep.to.x - hazard.sweep.from.x) +
             hazard.halfExtents.x * 2,
@@ -286,7 +281,7 @@ export class BestiesScene {
         position.x - from.x,
         position.z - from.z,
       );
-      if (candidateDistance < distance) {
+      if (candidateDistance < distance - 0.000001) {
         nearest = position;
         distance = candidateDistance;
       }
