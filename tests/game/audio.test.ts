@@ -51,6 +51,7 @@ class FakeAudioContext extends EventTarget {
   readonly gains: FakeGain[] = [];
   readonly compressors: FakeCompressor[] = [];
   readonly sources: FakeSource[] = [];
+  failSourceStart = false;
   readonly resume = vi.fn(async () => {
     this.state = "running";
   });
@@ -74,6 +75,10 @@ class FakeAudioContext extends EventTarget {
 
   createBufferSource(): AudioBufferSourceNode {
     const source = new FakeSource();
+    if (this.failSourceStart)
+      source.start.mockImplementation(() => {
+        throw new DOMException("Source start failed", "InvalidStateError");
+      });
     this.sources.push(source);
     return source as unknown as AudioBufferSourceNode;
   }
@@ -390,5 +395,19 @@ describe("QuestAudio", () => {
     expect(context.sources[0]?.stop).toHaveBeenCalledOnce();
     expect(context.sources[1]?.stop).not.toHaveBeenCalled();
     expect(context.sources[2]?.start).toHaveBeenCalledOnce();
+  });
+
+  it("releases failed source starts so later gameplay sounds still have room", async () => {
+    const { audio, context } = audioFixture({ maxSources: 2 });
+    await audio.start();
+    context.failSourceStart = true;
+    await expect(audio.cue("memory-collected")).resolves.toBe(false);
+    await expect(audio.cue("memory-collected")).resolves.toBe(false);
+    context.failSourceStart = false;
+    await expect(audio.feedback("jump")).resolves.toBe(true);
+    await expect(audio.feedback("landed")).resolves.toBe(true);
+    expect(context.sources[0]?.disconnect).toHaveBeenCalledOnce();
+    expect(context.sources[1]?.disconnect).toHaveBeenCalledOnce();
+    audio.dispose();
   });
 });

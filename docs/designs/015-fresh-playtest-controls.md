@@ -10,6 +10,8 @@ The left stick moves. A deliberate tap on the world jumps at every age; dragging
 
 Each chapter contains two minor memories along the route and a major memory beyond the boss. Minor pickups show a brief picture and keep the player moving, at the same age. The major becomes available after the boss; collecting it with both minors completes the chapter and advances age. Missing minors remain collectible after victory. Two test chapters use six fictional illustrations and progress 0 → 4 → 7. Parent-curated photo roles and the longer campaign remain DESIGN012/backlog work.
 
+Retrying after losing all health keeps defeated enemies, gear and collected memories in a fresh playtest. Surviving enemies regain their health. A boss retry therefore keeps the route victories that unlocked it. Archived v1/v2 journeys retain their original retry contract.
+
 ## Controls and feedback
 
 - Fixed, visible stick with a 44 CSS pixel deflection radius and an 8 pixel dead zone. Its pointer remains independent of camera and action contacts. Keeping the stick's activation area local preserves world-tap jumping on the left side too.

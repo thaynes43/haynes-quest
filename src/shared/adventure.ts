@@ -357,6 +357,9 @@ export function reduceAdventureAction(
     state.guardActiveUntilMs = 0;
     state.guardReadyAtMs = 0;
     for (const encounter of level.encounters) {
+      if (plan.version === 'era-level-plan-v3' && state.encounters[encounter.id]?.defeated) {
+        continue;
+      }
       state.encounters[encounter.id] = {
         hp: encounter.maxHp,
         defeated: false,

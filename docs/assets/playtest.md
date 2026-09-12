@@ -15,7 +15,7 @@ This private review uses [six fictional pictures](reviews/fixture-route-memories
 | Secondary attack | Smaller **Bash** button, after finding a shield | Shift |
 | Collect gear or memories | Walk into them | Walk into them |
 
-Hold the movement stick while tapping elsewhere to jump or attack. Dragging the camera and touching a menu do not jump. Bash is a stronger close-range hit with a separate recharge; future gear can add other secondary attacks.
+Hold the movement stick while tapping elsewhere to jump or attack. Dragging the camera and touching a menu do not jump. Bash adds a close-range hit with a separate recharge; future gear can add other secondary attacks.
 
 Find two little memories along each route. They appear briefly as you collect them and do not stop the action or age the player. Beat the boss, then walk into the big memory beyond it: collecting all three advances your age and opens the next chapter. Missing little memories remain on the path after victory.
 
@@ -30,6 +30,8 @@ Find two little memories along each route. They appear briefly as you collect th
 ## The encounters
 
 Watch the padded sweepers and short gaps. A slip returns you to a nearby safe spot with your gear and collected memories. Green hearts mark friends who can heal you. Deliberately hurting one costs health; returning to make amends restores their help. Friends never block chapter progression.
+
+If you lose all your health, retrying keeps your gear, memories and defeated enemies. Enemies still standing regain their health, so you can try the boss again without repeating the earlier fights.
 
 The Besties alternate a pink foam sweeper and a purple floor lane. Jump or step aside. When they miss their high-five, both become dizzy for five seconds: that is your chance to attack.
 

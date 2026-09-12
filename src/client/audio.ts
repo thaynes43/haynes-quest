@@ -480,6 +480,7 @@ export class QuestAudio {
 
     let source: AudioBufferSourceNode | undefined;
     let sourceGain: GainNode | undefined;
+    let active: ActiveSource | undefined;
     try {
       source = context.createBufferSource();
       sourceGain = context.createGain();
@@ -489,18 +490,23 @@ export class QuestAudio {
       sourceGain.gain.value = cue.gain * clamp(options.gain ?? 1, 0, 2);
       source.connect(sourceGain);
       sourceGain.connect(masterGain);
-      const active: ActiveSource = {
+      active = {
         cueId: id,
         priority: cue.priority,
         sequence: this.sequence++,
         source,
         gain: sourceGain,
       };
-      source.onended = () => this.removeSource(active);
+      const activeSource = active;
+      source.onended = () => this.removeSource(activeSource);
       this.sources.add(active);
       source.start();
       return true;
     } catch {
+      if (active) {
+        this.removeSource(active);
+        return false;
+      }
       try {
         source?.disconnect();
         sourceGain?.disconnect();

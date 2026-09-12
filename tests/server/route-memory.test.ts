@@ -240,6 +240,65 @@ describe('route-memory plan v3', () => {
     expect(state.encounters[enemy.id]).toMatchObject({ hp: enemy.maxHp, defeated: false });
   });
 
+  it('retries a boss loss without reviving defeated route encounters', () => {
+    const plan = routePlan();
+    const level = plan.levels[0]!;
+    const ordinary = level.encounters.filter((encounter) => encounter.role === 'ordinary');
+    const boss = level.encounters.find((encounter) => encounter.role === 'boss')!;
+    let state = createInitialAdventureState(plan);
+    state = collect(plan, state, 'attack-tool');
+    state = collect(plan, state, 'guard-tool');
+    for (const memoryId of level.minorMemoryIds) {
+      state = apply(plan, state, {
+        type: 'recover-memory', levelId: level.id, memoryId,
+      }, 0);
+    }
+
+    let nowMs = 0;
+    for (const encounter of ordinary) {
+      while (!state.encounters[encounter.id]!.defeated) {
+        state = apply(plan, state, {
+          type: 'attack', levelId: level.id, encounterId: encounter.id,
+        }, nowMs);
+        nowMs += ROUTE_ATTACK_COOLDOWN_MS;
+      }
+    }
+    state = apply(plan, state, {
+      type: 'attack', levelId: level.id, encounterId: boss.id,
+    }, nowMs);
+    expect(state.encounters[boss.id]!.hp).toBeLessThan(boss.maxHp);
+
+    while (state.phase !== 'fallen') {
+      state = apply(plan, state, {
+        type: 'take-hit', levelId: level.id, encounterId: boss.id,
+      }, nowMs);
+      nowMs += 900;
+    }
+    state = apply(plan, state, { type: 'retry-level', levelId: level.id }, nowMs);
+
+    expect(state.revealedMemoryIds).toEqual(level.minorMemoryIds);
+    expect(state.collectedPickupIds).toEqual(level.pickups.map((pickup) => pickup.pickupId));
+    expect(state.inventoryIds).toEqual(level.pickups.map((pickup) => pickup.id));
+    for (const encounter of ordinary) {
+      expect(state.encounters[encounter.id]).toMatchObject({ hp: 0, defeated: true });
+    }
+    expect(state.encounters[boss.id]).toMatchObject({ hp: boss.maxHp, defeated: false });
+    expect(toAdventureView(plan, state, nowMs).activeLevel.encounters.find(
+      (encounter) => encounter.id === boss.id,
+    )).toMatchObject({ available: true, defeated: false, hp: boss.maxHp });
+
+    while (!state.encounters[boss.id]!.defeated) {
+      state = apply(plan, state, {
+        type: 'attack', levelId: level.id, encounterId: boss.id,
+      }, nowMs);
+      nowMs += ROUTE_ATTACK_COOLDOWN_MS;
+    }
+    state = apply(plan, state, {
+      type: 'recover-memory', levelId: level.id, memoryId: level.majorMemoryId,
+    }, nowMs);
+    expect(state).toMatchObject({ activeLevelIndex: 1, ageYears: 4, phase: 'exploring' });
+  });
+
   it('uses the guard tool as a separately cooled v3 secondary attack', () => {
     const plan = routePlan();
     const level = plan.levels[0]!;

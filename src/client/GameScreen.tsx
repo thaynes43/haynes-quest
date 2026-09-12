@@ -869,7 +869,7 @@ function Adventure({
           </p>
           <p>
             Attack hits a nearby enemy. Your second button, Bash, uses a shield
-            for a stronger close-range hit. Step out of danger while it
+            for a close-range second hit. Step out of danger while it
             recharges. The Besties take turns with obstacle tricks: attack when
             their missed high-five leaves them dizzy.
           </p>

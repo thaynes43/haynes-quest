@@ -53,3 +53,21 @@ Completed verification:
 ## Handoff and recovery
 
 All edits are in the shared lead worktree and intentionally uncommitted for coordinator review. No remote resource, browser lease or authoring service is owned. If interrupted, inspect the shared worktree before editing because WO063 and the coordinator also modify adjacent app/contracts/game files.
+
+## Appendix: scene lifecycle verification
+
+Follow-up verification added scene-only tests without production edits:
+
+- A known single-model encounter keeps its procedural fallback while the GLB is pending or failed. Retrying leaves that fallback in place until the exact model is attached; the ready callback then removes and disposes only the fallback. Rebuilding the route disposes the attached model geometry/material and its animation adapter.
+- Both Besties actors keep visible capsule fallbacks through real `SceneAssets` load rejection. A successful shared retry attaches each exact model, removes and disposes each fallback once, and the normal `BestiesScene.dispose()` plus route-tree disposal releases the cloned model resources without revisiting detached fallback resources.
+- Monotonic `attackSequence` changes restart both primary and secondary poses while their respective attacking boolean remains continuously true, covering consecutive attempts whose false gap is shorter than a sampled render frame.
+
+Focused verification: `pnpm typecheck`, ESLint for both scene test files, and four passing tests across `tests/game/artwork-fallback.test.ts` and `tests/game/besties-scene.test.ts`.
+
+## Appendix: catalog integrity and final retry verification
+
+A read-only catalog audit followed the checked-in inventory, thumbnail generator recipe, fixture manifest, playtest artwork manifest and MkDocs preparation mappings. All 37 inventory entries have distinct catalog cards and review targets. The audit resolved 40 inspiration images, 27 model images, 26 standalone GLBs, nine audio files and four explicit thumbnail sources; all referenced paths exist. All 42 inventoried SHA-256 values match their files. The 54 expected thumbnail sources map one-to-one to 54 checked-in derivatives with exact source hashes, filename recipes, byte counts and output hashes.
+
+The fictional-memory group remains exact: six fixture SVGs plus its contact sheet match the seven-file manifest and inventory checksums, and the manifest's pinned `src/server/media.ts` source hash is current. All 53 MkDocs navigation destinations resolve through `scripts/docs/prepare.py`, including the five Asset studio pages. The catalog and active playtest guide agree on 25 completed models, one partial model, one concept awaiting a model, four sound auditions, six fictional pictures, 23 runtime GLBs and four runtime WAVs. DESIGN-015 and the runtime both specify 4 m/s. No active guide, count, navigation, catalog-card or runtime-manifest drift was found. The documentation builder and serving assets were not invoked or changed.
+
+The v3 boss-loss regression now defeats the ordinary encounters, collects both route memories and both pieces of gear, damages the boss, falls to boss hits, and retries. It verifies the collected route state and defeated ordinary encounters survive, the living boss returns at full health and remains available, and defeating it plus recovering the major advances to chapter two. The focused route-memory file passes 8/8. The final full `pnpm test` run passes 328 tests with 10 skipped across 41 passing files and one skipped file (42 files total), including the archived v2 retry behavior, scene fallback coverage and final audio-source cleanup regression.

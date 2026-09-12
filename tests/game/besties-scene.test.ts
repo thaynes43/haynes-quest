@@ -1,15 +1,34 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import * as THREE from "three";
+import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
 import { BestiesScene } from "../../src/game/besties-scene";
 import { BestiesSimulation, type BestieActorId } from "../../src/game/besties";
 import type { DuoParodyArtwork } from "../../src/game/scene-catalog";
-import type { SceneAssets } from "../../src/game/scene-assets";
+import { disposeTree, SceneAssets } from "../../src/game/scene-assets";
 import type { PositionSnapshot } from "../../src/game/types";
 
 const models = [
   { id: "bestie-pink", url: "/fixture/bestie-pink.glb" },
   { id: "bestie-black", url: "/fixture/bestie-black.glb" },
 ] as const satisfies DuoParodyArtwork["models"];
+
+function deferred<T>() {
+  let resolve!: (value: T) => void;
+  let reject!: (reason?: unknown) => void;
+  const promise = new Promise<T>((accept, decline) => {
+    resolve = accept;
+    reject = decline;
+  });
+  return { promise, resolve, reject };
+}
+
+function gltf(scene: THREE.Group): GLTF {
+  return { scene, scenes: [scene], animations: [] } as unknown as GLTF;
+}
+
+type DeferredGltf = ReturnType<typeof deferred<GLTF>>;
+
+afterEach(() => vi.restoreAllMocks());
 
 function worldPosition(scene: BestiesScene, id: BestieActorId): THREE.Vector3 {
   const actor = scene.root.getObjectByName(id);
@@ -97,5 +116,102 @@ describe("BestiesScene spell targeting", () => {
 
     scene.dispose();
     expect(scene.targetPosition(near(highFivePink))).toBeNull();
+  });
+
+  it("keeps both fallbacks through failed loads, swaps them on retry, and releases route-owned geometry", async () => {
+    const firstLoads = new Map<string, DeferredGltf>(
+      models.map((model) => [model.url, deferred<GLTF>()]),
+    );
+    const retryLoads = new Map<string, DeferredGltf>(
+      models.map((model) => [model.url, deferred<GLTF>()]),
+    );
+    const attempts = new Map<string, number>();
+    const load = vi
+      .spyOn(GLTFLoader.prototype, "loadAsync")
+      .mockImplementation((url) => {
+        const count = (attempts.get(url) ?? 0) + 1;
+        attempts.set(url, count);
+        return (count === 1 ? firstLoads : retryLoads).get(url)!.promise;
+      });
+    const assets = new SceneAssets();
+    const scene = new BestiesScene(assets, () => true, models);
+    const fallbacks = models.map((model) => {
+      const actor = scene.root.getObjectByName(model.id)!;
+      const fallback = actor.getObjectByName(
+        "bestie-artwork-fallback",
+      ) as THREE.Mesh;
+      return {
+        actor,
+        fallback,
+        geometryDispose: vi.spyOn(fallback.geometry, "dispose"),
+        materialDispose: vi.spyOn(
+          fallback.material as THREE.Material,
+          "dispose",
+        ),
+      };
+    });
+    expect(assets.getState()).toEqual({ loading: 2, failed: 0 });
+    expect(fallbacks.every(({ fallback }) => fallback.visible && fallback.parent)).toBe(
+      true,
+    );
+
+    for (const pending of firstLoads.values())
+      pending.reject(new Error("temporary GLB failure"));
+    await vi.waitFor(() => expect(assets.getState()).toEqual({ loading: 0, failed: 2 }));
+    expect(
+      fallbacks.every(({ actor, fallback }) =>
+        actor.getObjectByName("bestie-artwork-fallback") === fallback,
+      ),
+    ).toBe(true);
+
+    assets.retry();
+    expect(load).toHaveBeenCalledTimes(4);
+    for (const model of models) {
+      const exact = new THREE.Group();
+      exact.name = `exact-${model.id}`;
+      exact.add(
+        new THREE.Mesh(
+          new THREE.BoxGeometry(),
+          new THREE.MeshBasicMaterial(),
+        ),
+      );
+      retryLoads.get(model.url)!.resolve(gltf(exact));
+    }
+    await vi.waitFor(() =>
+      expect(
+        models.every((model) =>
+          scene.root.getObjectByName(`exact-${model.id}`),
+        ),
+      ).toBe(true),
+    );
+    for (const [index, model] of models.entries()) {
+      const lifecycle = fallbacks[index]!;
+      expect(lifecycle.fallback.parent).toBeNull();
+      expect(lifecycle.geometryDispose).toHaveBeenCalledOnce();
+      expect(lifecycle.materialDispose).toHaveBeenCalledOnce();
+      expect(lifecycle.actor.getObjectByName(`exact-${model.id}`)).toBeTruthy();
+    }
+
+    const attachedDisposals = models.map((model) => {
+      const mesh = scene.root
+        .getObjectByName(`exact-${model.id}`)!
+        .children[0] as THREE.Mesh;
+      return {
+        geometry: vi.spyOn(mesh.geometry, "dispose"),
+        material: vi.spyOn(mesh.material as THREE.Material, "dispose"),
+      };
+    });
+    scene.dispose();
+    disposeTree(scene.root);
+    for (const disposal of attachedDisposals) {
+      expect(disposal.geometry).toHaveBeenCalledOnce();
+      expect(disposal.material).toHaveBeenCalledOnce();
+    }
+    for (const lifecycle of fallbacks) {
+      expect(lifecycle.geometryDispose).toHaveBeenCalledOnce();
+      expect(lifecycle.materialDispose).toHaveBeenCalledOnce();
+    }
+    assets.dispose();
+    await Promise.resolve();
   });
 });
