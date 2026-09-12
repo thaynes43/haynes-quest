@@ -7,7 +7,18 @@ export interface GrassPlacement extends PositionSnapshot {
 }
 
 /** Plant visible shoulders on actual island tops, leaving the middle route clear. */
-export function grassPlacements(course?: ObbyCourse): GrassPlacement[] {
+export function grassPlacements(
+  course?: ObbyCourse,
+  options?: {
+    clearZones: readonly {
+      minX: number;
+      maxX: number;
+      minZ: number;
+      maxZ: number;
+    }[];
+    maxInstances: number;
+  },
+): GrassPlacement[] {
   const platforms = course?.platforms.filter(
     (platform) => !platform.motion,
   ) ?? [
@@ -33,7 +44,18 @@ export function grassPlacements(course?: ObbyCourse): GrassPlacement[] {
               (1.65 + (((i * 43) % 97) / 97) * Math.min(3.4, halfWidth - 1.65));
           if (Math.abs(x - platform.center.x) > halfWidth) continue;
           // Keep the boss's central arena and its warning shapes unobscured.
-          if (z < -18.5 && Math.abs(x) < 3.1) continue;
+          if (options) {
+            if (
+              options.clearZones.some(
+                (zone) =>
+                  x >= zone.minX &&
+                  x <= zone.maxX &&
+                  z >= zone.minZ &&
+                  z <= zone.maxZ,
+              )
+            )
+              continue;
+          } else if (z < -18.5 && Math.abs(x) < 3.1) continue;
           placements.push({
             x,
             y: top + 0.012,
@@ -44,6 +66,16 @@ export function grassPlacements(course?: ObbyCourse): GrassPlacement[] {
         }
       }
     }
+  }
+  if (options && placements.length > options.maxInstances) {
+    // Sample the entire course evenly; a budget must not leave its far end bare.
+    return Array.from(
+      { length: options.maxInstances },
+      (_, index) =>
+        placements[
+          Math.floor((index * placements.length) / options.maxInstances)
+        ]!,
+    );
   }
   return placements;
 }

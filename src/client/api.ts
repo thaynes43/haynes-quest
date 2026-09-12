@@ -65,7 +65,7 @@ export function friendlyError(error: unknown): string {
   if (code === "GUARD_TOOL_REQUIRED")
     return "Find a shield in this level to guard.";
   if (code === "ENCOUNTER_NOT_ACTIVE")
-    return "That creature can’t be fought right now. Defeat the two creatures before facing the boss.";
+    return "That creature can’t be fought right now. Defeat the other enemies before facing the boss.";
   if (code === "MEMORY_BUNDLE_INCOMPLETE")
     return "Remember every picture in this bundle before you grow.";
   if (code === "ACTION_NOT_AVAILABLE" || code === "LEVEL_NOT_ACTIVE")

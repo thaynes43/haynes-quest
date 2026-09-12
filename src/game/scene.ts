@@ -242,12 +242,21 @@ export class GardenScene {
     this.scene.fog = new THREE.Fog(sky, 20, 52);
     this.sun.color.setHex(level.course ? 0xfff4df : palette.light);
     this.renderer.toneMappingExposure = later ? 0.85 : 0.82;
+    const routeCenterX = level.authored ? (level.minX + level.maxX) / 2 : 0;
+    const routeCenterZ = level.authored ? (level.minZ + level.maxZ) / 2 : -13;
+    const routeDepth = level.authored ? level.maxZ - level.minZ : 30;
+    const routeWidth = level.authored ? level.maxX - level.minX : 12;
     const generation = this.routeGeneration;
     const valid = () => !this.disposed && generation === this.routeGeneration;
     const ground = shapeMesh(
-      new THREE.PlaneGeometry(64, 110, 48, 80),
+      new THREE.PlaneGeometry(
+        level.authored ? routeWidth + 40 : 64,
+        level.authored ? routeDepth + 50 : 110,
+        48,
+        80,
+      ),
       material(level.course ? 0x88c1c5 : palette.grass),
-      [0, level.course ? -1.4 : -0.045, -13],
+      [routeCenterX, level.course ? -1.4 : -0.045, routeCenterZ],
     );
     ground.rotation.x = -Math.PI / 2;
     ground.castShadow = false;
@@ -258,23 +267,58 @@ export class GardenScene {
       for (const side of [-1, 1])
         this.world.add(
           shapeMesh(
-            new THREE.BoxGeometry(16, 1.4, 80),
+            new THREE.BoxGeometry(
+              16,
+              1.4,
+              level.authored ? routeDepth + 35 : 80,
+            ),
             material(palette.grass),
-            [side * 17.5, -0.7, -13],
+            [
+              level.authored
+                ? side < 0
+                  ? level.minX - 8
+                  : level.maxX + 8
+                : side * 17.5,
+              -0.7,
+              routeCenterZ,
+            ],
           ),
         );
     }
     const pathPlacements: THREE.Matrix4[] = [];
-    for (let z = 4; z >= -26; z -= 2) {
-      const xs = z < -18 ? [-2, 0, 2] : [Math.sin(z * 0.22) * 0.45];
-      for (const x of xs) {
-        if (level.course && (later || !this.onIsland(level.course, x, z, 1.05)))
+    if (level.authored && level.course) {
+      for (const platform of level.course.platforms) {
+        if (
+          platform.motion ||
+          later ||
+          platform.size.x < 4 ||
+          platform.center.y + platform.size.y / 2 > 0.01
+        )
           continue;
-        const tile = new THREE.Group();
-        tile.position.set(x, -0.012, z);
-        tile.rotation.y = z % 4 ? Math.PI : 0;
-        tile.updateMatrix();
-        pathPlacements.push(tile.matrix.clone());
+        const near = platform.center.z + platform.size.z / 2 - 1;
+        const far = platform.center.z - platform.size.z / 2 + 1;
+        for (let z = far; z <= near; z += 2.2) {
+          const tile = new THREE.Object3D();
+          tile.position.set(platform.center.x, -0.012, z);
+          tile.updateMatrix();
+          pathPlacements.push(tile.matrix.clone());
+        }
+      }
+    } else {
+      for (let z = 4; z >= -26; z -= 2) {
+        const xs = z < -18 ? [-2, 0, 2] : [Math.sin(z * 0.22) * 0.45];
+        for (const x of xs) {
+          if (
+            level.course &&
+            (later || !this.onIsland(level.course, x, z, 1.05))
+          )
+            continue;
+          const tile = new THREE.Group();
+          tile.position.set(x, -0.012, z);
+          tile.rotation.y = z % 4 ? Math.PI : 0;
+          tile.updateMatrix();
+          pathPlacements.push(tile.matrix.clone());
+        }
       }
     }
     this.assets.attachInstances(
@@ -307,13 +351,17 @@ export class GardenScene {
     // Repeat the catalog geometry in batches while preserving every placement.
     const treePlacements: THREE.Matrix4[] = [];
     const stonePlacements: THREE.Matrix4[] = [];
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < (level.authored ? 28 : 16); i++) {
       const side = i % 2 ? 1 : -1;
       const tree = new THREE.Group();
       tree.position.set(
-        side * ((level.course ? 10.1 : 7.1) + (i % 3) * 0.85),
+        level.authored
+          ? (side < 0 ? level.minX - 2 : level.maxX + 2) + side * (i % 3) * 0.85
+          : side * ((level.course ? 10.1 : 7.1) + (i % 3) * 0.85),
         0,
-        4 - Math.floor(i / 2) * 4.8,
+        level.authored
+          ? level.maxZ - (Math.floor(i / 2) * routeDepth) / 13
+          : 4 - Math.floor(i / 2) * 4.8,
       );
       tree.scale.setScalar(1.1 + (i % 4) * 0.13);
       tree.rotation.y = i * 1.7;
@@ -322,7 +370,11 @@ export class GardenScene {
       if (i % 2 === 0) {
         const stone = new THREE.Group();
         stone.position.set(
-          -side * (level.course ? 9.9 : 6.5),
+          level.authored
+            ? side > 0
+              ? level.minX - 1
+              : level.maxX + 1
+            : -side * (level.course ? 9.9 : 6.5),
           -0.04,
           tree.position.z - 2.2,
         );
@@ -332,16 +384,46 @@ export class GardenScene {
         stonePlacements.push(stone.matrix.clone());
       }
     }
-    // Bring the existing canopy into view without filling the route or jump gaps.
-    if (level.course) {
-      for (const z of [1.7, -5.5, -11.7, -25.2]) {
+    // Keep large landing areas planted while preserving activity and resident clearances.
+    if (level.authored && level.course) {
+      const anchors = [
+        ...level.memories,
+        ...level.pickups,
+        ...level.encounters,
+        ...(level.friendlies ?? []),
+      ].map((entry) => entry.position);
+      for (const platform of level.course.platforms) {
+        if (platform.motion || platform.size.x < 9 || platform.size.z < 6)
+          continue;
         for (const side of [-1, 1]) {
+          const x = platform.center.x + side * (platform.size.x / 2 - 0.55);
+          const z = platform.center.z + platform.size.z / 2 - 1.1;
+          if (
+            anchors.some(
+              (anchor) => Math.hypot(anchor.x - x, anchor.z - z) < 2.5,
+            )
+          )
+            continue;
           const planting = new THREE.Object3D();
-          planting.position.set(side * 5.55, 0, z);
+          planting.position.set(x, platform.center.y + platform.size.y / 2, z);
           planting.rotation.y = side * z * 0.35;
           planting.scale.setScalar(later ? 0.8 : 0.9);
           planting.updateMatrix();
           treePlacements.push(planting.matrix.clone());
+        }
+      }
+    } else {
+      // Bring the existing canopy into view without filling the route or jump gaps.
+      if (level.course) {
+        for (const z of [1.7, -5.5, -11.7, -25.2]) {
+          for (const side of [-1, 1]) {
+            const planting = new THREE.Object3D();
+            planting.position.set(side * 5.55, 0, z);
+            planting.rotation.y = side * z * 0.35;
+            planting.scale.setScalar(later ? 0.8 : 0.9);
+            planting.updateMatrix();
+            treePlacements.push(planting.matrix.clone());
+          }
         }
       }
     }
@@ -357,21 +439,31 @@ export class GardenScene {
       stonePlacements,
       valid,
     );
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < (level.authored ? 12 : 8); i++) {
       const hill = shapeMesh(
         new THREE.SphereGeometry(5 + (i % 3), 16, 8),
         material(i % 2 ? palette.leaf : palette.mist),
-        [(i % 2 ? 1 : -1) * (16 + (i % 3)), -2, 10 - Math.floor(i / 2) * 14],
+        [
+          level.authored
+            ? i % 2
+              ? level.maxX + 10
+              : level.minX - 10
+            : (i % 2 ? 1 : -1) * (16 + (i % 3)),
+          -2,
+          level.authored
+            ? level.maxZ - (Math.floor(i / 2) * routeDepth) / 5
+            : 10 - Math.floor(i / 2) * 14,
+        ],
       );
       hill.scale.y = 0.7;
       hill.castShadow = false;
       hill.receiveShadow = false;
       this.world.add(hill);
     }
-    this.addMeadow(later, level.course);
+    this.addMeadow(later, level.course, level.authored ? level : undefined);
     if (!level.course) this.addEraDetails(later);
     const gate = new THREE.Group();
-    gate.position.set(level.finish.x, 0, level.finish.z);
+    gate.position.set(level.finish.x, level.finish.y, level.finish.z);
     gate.scale.setScalar(1.4);
     this.world.add(gate);
     this.assets.attach(modelUrls.gate, gate, valid);
@@ -398,7 +490,7 @@ export class GardenScene {
         (item) => item.pickupId === placement.id,
       );
       const pickup = new THREE.Group();
-      pickup.position.set(placement.position.x, 0, placement.position.z);
+      pickup.position.copy(placement.position);
       const display = new THREE.Group();
       const artwork = equipmentArtwork(placement.kind, data?.tier ?? 1);
       this.assets.attach(artwork.url, display, valid);
@@ -412,7 +504,7 @@ export class GardenScene {
     this.world.add(this.friendlyVisual.root);
     for (const placement of level.encounters) {
       const root = new THREE.Group();
-      root.position.set(placement.position.x, 0, placement.position.z);
+      root.position.copy(placement.position);
       const content = save.adventure?.activeLevel?.encounters.find(
         (item) => item.id === placement.id,
       )?.content;
@@ -709,10 +801,7 @@ export class GardenScene {
       position.y + dimensions.cameraTargetHeight + 0.3,
       position.z - 0.5,
     );
-    const duoInView =
-      frame?.besties &&
-      frame.besties.phase !== "inactive" &&
-      position.z < -17.5;
+    const duoInView = frame?.besties && frame.besties.phase !== "inactive";
     const distance = this.camera.aspect < 0.85 ? (duoInView ? 8.6 : 6.2) : 4.9;
     const flat = Math.cos(this.cameraPitch) * distance;
     this.desiredCamera.set(
@@ -1063,7 +1152,11 @@ export class GardenScene {
     );
   }
 
-  private addMeadow(later: boolean, course?: ObbyCourse): void {
+  private addMeadow(
+    later: boolean,
+    course?: ObbyCourse,
+    authoredLevel?: LevelLayout,
+  ): void {
     const bladeGeometry = new THREE.BufferGeometry();
     bladeGeometry.setAttribute(
       "position",
@@ -1079,7 +1172,27 @@ export class GardenScene {
     bladeGeometry.computeVertexNormals();
     const grassMat = material(later ? 0x7ba95b : 0x71a64d);
     grassMat.side = THREE.DoubleSide;
-    const planting = grassPlacements(course);
+    const clearZones = authoredLevel
+      ? [
+          ...authoredLevel.encounters.flatMap((entry) =>
+            entry.arena ? [entry.arena] : [],
+          ),
+          ...[
+            ...authoredLevel.memories,
+            ...authoredLevel.pickups,
+            ...(authoredLevel.friendlies ?? []),
+          ].map(({ position }) => ({
+            minX: position.x - 1,
+            maxX: position.x + 1,
+            minZ: position.z - 1,
+            maxZ: position.z + 1,
+          })),
+        ]
+      : [];
+    const planting = grassPlacements(
+      course,
+      authoredLevel ? { clearZones, maxInstances: 4400 } : undefined,
+    );
     const grass = new THREE.InstancedMesh(
       bladeGeometry,
       grassMat,
@@ -1113,9 +1226,15 @@ export class GardenScene {
     this.world.add(grass, flowers);
     const positions = new Float32Array(180 * 3);
     for (let i = 0; i < 180; i++) {
-      positions[i * 3] = ((i * 47) % 180) / 10 - 9;
+      positions[i * 3] = authoredLevel
+        ? authoredLevel.minX +
+          (((i * 47) % 180) / 180) * (authoredLevel.maxX - authoredLevel.minX)
+        : ((i * 47) % 180) / 10 - 9;
       positions[i * 3 + 1] = 0.3 + ((i * 31) % 70) / 20;
-      positions[i * 3 + 2] = 4 - ((i * 23) % 350) / 10;
+      positions[i * 3 + 2] = authoredLevel
+        ? authoredLevel.maxZ -
+          (((i * 23) % 350) / 350) * (authoredLevel.maxZ - authoredLevel.minZ)
+        : 4 - ((i * 23) % 350) / 10;
     }
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));

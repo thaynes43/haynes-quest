@@ -1,3 +1,4 @@
+import type { AuthoredLevelDocument } from "../shared/authored-level";
 import type { ObbySample } from "./obby";
 import type { ObbyRouteId } from "../shared/parody-catalog";
 import type {
@@ -178,6 +179,7 @@ export interface EncounterInspection extends PositionSnapshot {
 
 export interface LevelInspection {
   id: string | null;
+  authored?: AuthoredLevelDocument;
   memoryIds: string[];
   memoryPositions: MemoryPlacementInspection[];
   pickupPositions: PickupInspection[];
