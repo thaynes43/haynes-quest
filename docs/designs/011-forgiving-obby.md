@@ -14,7 +14,8 @@ Examples for the bounded slice are broad stepping platforms, a slow moving platf
 
 ## Ability order
 
-Keep the existing start at memory age zero and the post-boss ability progression. The first short level introduces movement timing with safe ramps, openings and dodgeable obstacles; it must not demand the jump unlocked by its own boss reward. After the first growth transition, teach the new jump on broad low platforms before using it over a gap or with a moving obstacle. This preserves the established ability dependency while making the second level a proper jumping obby. Future changes to starting abilities must be explicit rather than hidden in collision code.
+Keep the start at memory age zero and the post-boss age progression. Tom’s later PLAN007 direction makes jumping available at every age, including zero. Teach it immediately on broad safe ground, then introduce short gaps and slow moving surfaces. Later chapters may combine familiar ideas, but the six-year-old’s required route stays forgiving. Future powers must be taught before a required obstacle uses them; do not silently remove jumping or gate it behind the first boss.
+
 
 ## Forgiving controls and recovery
 
