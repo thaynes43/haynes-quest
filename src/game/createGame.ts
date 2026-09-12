@@ -913,7 +913,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
           if (traversal.recovered) {
             traversalRecoveries++;
             besties.restartThreatenedTrick();
-            input.clear();
+            if (isRouteMemoryAdventure(save)) input.clearActions();
+            else input.clear();
             pendingHit = null;
             enemies.restartThreatenedAttacks();
           }

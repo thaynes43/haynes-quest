@@ -164,21 +164,27 @@ export class GameInputState {
     return result;
   }
 
-  clear(): void {
+  /** Discard action edges after a local recovery while the stick stays held. */
+  clearActions(): void {
     this.pendingActions = {
       jump: false,
       interact: false,
       attack: false,
       guard: false,
     };
-    this.external.moveX = 0;
-    this.external.moveY = 0;
-    this.external.lookX = 0;
-    this.external.lookY = 0;
     this.external.jump = false;
     this.external.interact = false;
     this.external.attack = false;
     this.external.guard = false;
+    for (const code of actionCodes) this.keys.delete(code);
+  }
+
+  clear(): void {
+    this.clearActions();
+    this.external.moveX = 0;
+    this.external.moveY = 0;
+    this.external.lookX = 0;
+    this.external.lookY = 0;
     this.keys.clear();
     this.pointerLookX = 0;
     this.pointerLookY = 0;

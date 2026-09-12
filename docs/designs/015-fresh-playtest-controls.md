@@ -10,7 +10,7 @@ The left stick moves. A deliberate tap on the world jumps at every age; dragging
 
 Each chapter contains two minor memories along the route and a major memory beyond the boss. Minor pickups show a brief picture and keep the player moving, at the same age. The major becomes available after the boss; collecting it with both minors completes the chapter and advances age. Missing minors remain collectible after victory. Two test chapters use six fictional illustrations and progress 0 → 4 → 7. Parent-curated photo roles and the longer campaign remain DESIGN012/backlog work.
 
-Retrying after losing all health keeps defeated enemies, gear and collected memories in a fresh playtest. Surviving enemies regain their health. A boss retry therefore keeps the route victories that unlocked it. Archived v1/v2 journeys retain their original retry contract.
+Retrying after losing all health keeps defeated enemies, gear and collected memories in a fresh playtest. Surviving enemies regain their health. A boss retry therefore keeps the route victories that unlocked it. Local obstacle recovery preserves a held movement stick while discarding queued action presses; menus and backgrounding still clear movement. Archived v1/v2 journeys retain their original retry contract.
 
 ## Controls and feedback
 
@@ -37,7 +37,7 @@ Web Audio starts from a real gesture, confirms unlock, survives menu transitions
 
 ## Fable research and lead decisions
 
-Fable 5.1 at xhigh completed WO062 in `agent/haynes-quest-0911-204632` (final report commit `16c5d4f`, evidence-location follow-up `bfadcd1`). It inspected the deployed client in four viewport sizes and a touch-emulated context. Source gathering and code tracing used its Opus subagents. The browser lease was released. Its report remains in that worktree; this record captures the decisions and limits without importing search-index quotations as verified text.
+Fable 5.1 at xhigh completed WO062 in `agent/haynes-quest-0911-204632` (final report commit `16c5d4f`, evidence-location follow-up `bfadcd1`). It inspected the deployed client in four viewport sizes and a touch-emulated context. Source gathering and code tracing used its Opus subagents. The browser lease was released. The completed CLI task was reaped after its report and screenshots were preserved under `test-results/fable-reviews/` on the lead PVC; its pushed review branch also retains the record. This design captures the decisions and limits without importing search-index quotations as verified text.
 
 Astra adopts the two-button hierarchy, larger targets, safe-area anchoring, pointer ownership, local attack feedback, cue rebalance and simulation-time correction. A 4 m/s pace improves response while keeping the short-jump landings forgiving; 5 m/s overshot the earlier resting zones. The fixed local stick preserves Tom's world-tap gesture across more of the screen. Bash reuses the existing offhand asset instead of introducing new area attacks. Unknown art falls back visibly rather than triggering another automatic reload. Held auto-repeat, automatic camera follow and new haptics are deferred until the simpler controls have physical feedback.
 

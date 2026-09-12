@@ -20,7 +20,7 @@ Status: final integration in progress. Lead Astra max, `/home/dev/work/quest-pla
 | L8 fixture media reads | Public fictional SVGs remain public like their catalog exports, with the existing bounded read limiter. |
 | N1 shortcut timestamps | Accepted bounded setup-clock artifact: completing chapter one clears cooldowns and the next real action succeeds. No player-visible time or age derives from receipt timestamp. |
 | N2 jump cue status interval | Accepted present bound of up to 100 ms simulated status cadence; visual motion is immediate. Physical latency remains unverified. |
-| N3 passive overlay dead zones | Objective and boss-health panels now pass pointer contacts through to the world. |
+| N3 passive overlay dead zones | Age/health, objective and boss-health panels now pass pointer contacts through to the world. |
 | N4 Besties timing authority | Existing single-player runtime timing gate is preserved; server owns damage, equipment, phase and cooldown, while local routine timing remains client-owned. This is not a multiplayer or anti-cheat claim. |
 
 The lead also preserves defeated encounters after a v3 health-zero retry: surviving enemies regain health, collected gear/minors and prior victories remain. A reducer regression completes the boss and major after retry. Archived v1/v2 retain their original reset contract. The restored contextual interaction control keeps archived v2 touch saves usable; fresh v3 uses contact collection.
@@ -32,3 +32,11 @@ WO066 owns browser evidence. Preliminary runs established fresh reset behavior, 
 CI at `528ac89` passed all 333 tests including ten Postgres cases, docs and container build. Later local suite passed 328 / 10 skipped; focused review regressions and final full checks are still being completed. One interim CI run on `f51dd5f` caught a nullable assertion in the newly added retry test; the assertion was corrected and local typecheck passed. Do not substitute these interim results for final PR checks.
 
 WebKit cannot launch here because required GStreamer libraries are absent. Physical iPad/iPhone Safari controls, device performance, listening and final-art approval remain open. No private photo, OAuth, asset generation or dev-env restart occurred.
+
+Fable WO062 and WO068 tasks were reaped after confirming their final commits were pushed. Their raw reports, source probes and screenshots are retained under `/home/dev/work/quest-playtest-reset/test-results/fable-reviews/`; WO068 is also imported above. Final local typecheck, lint, production build, strict docs and the suite pass: 338 tests, with ten Postgres cases reserved for CI. Source commit `399c992` is pushed; its final browser bundle is `index-Ciqx9oUf.js`, 1,041,563 bytes, SHA256 `e305eda6874eadb7f448bff55316e1ad2619eada4b2e9ddcf8751b8633d10019`. Owned fixture4397 is exec session26874. WO066 holds the final browser lease; no other browser, authoring or Fable session is active for this task.
+
+## Held-stick recovery correction
+
+The `e305eda…` touch probe established a real product defect: one local fall returned the player to the start at full health, but `input.clear()` erased movement while the physical joystick contact and visible knob remained held. The test's long pause was not only navigation failure. V3 local recovery now calls `clearActions()` to discard queued attack/jump/interaction presses while retaining movement. Menus, backgrounding and explicit clear retain full cancellation. Archived v1/v2 local recovery stays unchanged. The browser harness no longer reacquires the stick to hide this failure; it must observe resumed movement with the same contact. Independent input/runtime regressions are being added.
+
+Current fixture bundle after that fix: `index-Bn3nnDAn.js`, 1,041,657 bytes, SHA256 `0e795d99f5fd820bc5388c8ae24c350f4214c3ac5a6fbcbdc444b9ae5db43702`. The backend remains the reviewed `399c992` build, owned server session26874 at4397. No new deployment yet.

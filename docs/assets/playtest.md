@@ -29,7 +29,7 @@ Find two little memories along each route. They appear briefly as you collect th
 
 ## The encounters
 
-Watch the padded sweepers and short gaps. A slip returns you to a nearby safe spot with your gear and collected memories. Green hearts mark friends who can heal you. Deliberately hurting one costs health; returning to make amends restores their help. Friends never block chapter progression.
+Watch the padded sweepers and short gaps. A slip returns you to a nearby safe spot with your gear and collected memories. If you keep holding the stick, movement resumes after you recover. Green hearts mark friends who can heal you. Deliberately hurting one costs health; returning to make amends restores their help. Friends never block chapter progression.
 
 If you lose all your health, retrying keeps your gear, memories and defeated enemies. Enemies still standing regain their health, so you can try the boss again without repeating the earlier fights.
 

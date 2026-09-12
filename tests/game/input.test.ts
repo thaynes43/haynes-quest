@@ -144,7 +144,40 @@ describe("game input", () => {
     });
   });
 
-  it("clears independent channels on blur and removes listeners on dispose", () => {
+  it("clears queued actions while preserving held analog and keyboard movement", () => {
+    const input = new GameInputState();
+    input.set("moveX", 0.4);
+    input.set("lookX", -0.25);
+    input.setKey("KeyW", true);
+    for (const action of ["jump", "interact", "attack", "guard"] as const) {
+      input.set(action, true);
+      input.set(action, false);
+    }
+    for (const code of ["Space", "KeyE", "KeyF", "ShiftLeft"])
+      input.setKey(code, true);
+
+    input.clearActions();
+
+    expect(input.snapshot()).toMatchObject({
+      lookX: -0.25,
+      jump: false,
+      interact: false,
+      attack: false,
+      guard: false,
+    });
+    expect(input.snapshot().moveX).toBeGreaterThan(0);
+    expect(input.snapshot().moveY).toBeGreaterThan(0);
+    expect(input.consumeActions()).toEqual({
+      jump: false,
+      interact: false,
+      attack: false,
+      guard: false,
+    });
+    input.setKey("KeyW", false);
+    expect(input.snapshot()).toMatchObject({ moveX: 0.4, moveY: 0 });
+  });
+
+  it("clears independent channels on blur or visibility loss and removes listeners on dispose", () => {
     const input = new GameInputState();
     const fakeWindow = new FakeEventTarget();
     const fakeDocument = new FakeEventTarget() as FakeEventTarget & {
@@ -182,6 +215,12 @@ describe("game input", () => {
     expect(input.snapshot().moveX).toBe(0);
     expect(input.snapshot().jump).toBe(false);
 
+    input.set("moveY", 1);
+    fakeDocument.visibilityState = "hidden";
+    fakeDocument.dispatch("visibilitychange");
+    expect(input.snapshot().moveY).toBe(0);
+    fakeDocument.visibilityState = "visible";
+
     fakeWindow.dispatch("keydown", keyEvent("KeyW"));
     fakeWindow.dispatch("keydown", keyEvent("Space"));
     expect(input.consumeActions().jump).toBe(true);
@@ -198,6 +237,7 @@ describe("game input", () => {
     expect(input.consumeActions().jump).toBe(true);
 
     dispose();
+    expect(input.snapshot()).toMatchObject({ moveX: 0, moveY: 0, jump: false });
     input.set("moveX", 0.5);
     fakeWindow.dispatch("blur");
     expect(input.snapshot().moveX).toBe(0.5);

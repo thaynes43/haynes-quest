@@ -740,6 +740,7 @@ describe("obby game runtime", () => {
         onAction: async () => routedSave({ levelIndex: 1 }),
         onRefresh: async () => routedSave({ levelIndex: 1 }),
       });
+      game.setInput("moveY", 1);
       game.setInput("jump", true);
       game.setInput("jump", false);
       advance();
@@ -748,6 +749,7 @@ describe("obby game runtime", () => {
         game.setPaused(false);
       } else if (cancellation === "clear") game.clearInput();
       else window.dispatchEvent(new Event(cancellation));
+      expect(game.inspect().input.moveY).toBe(0);
       advance();
       advance();
       expect(game.inspect().status.position.y).toBe(0);
@@ -1224,6 +1226,49 @@ describe("obby game runtime", () => {
     expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual(
       ["guard"],
     );
+    game.dispose();
+  });
+
+  it("keeps a held v3 movement stick active after a local gap recovery", () => {
+    const initial = routeMemoryRoutedSave({
+      collectedKinds: ["attack-tool", "guard-tool"],
+    });
+    const onAction = vi.fn(async (_request: GameplayActionRequest) => initial);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    game.setInput("moveY", 1);
+    warmRuntime();
+
+    let leftWelcomeIsland = false;
+    for (
+      let frame = 0;
+      frame < 100 && game.inspect().obby?.recoveries === 0;
+      frame += 1
+    ) {
+      advance();
+      leftWelcomeIsland ||= !game.inspect().status.grounded;
+    }
+
+    expect(leftWelcomeIsland).toBe(true);
+    expect(game.inspect()).toMatchObject({
+      status: { position: { x: 0, y: 0, z: 1 } },
+      input: { moveY: 1 },
+      obby: {
+        checkpointId: "start",
+        recoveryRemaining: 0.8,
+        recoveries: 1,
+      },
+    });
+    const respawnZ = game.inspect().status.position.z;
+    advance();
+    expect(game.inspect().obby?.recoveries).toBe(1);
+    expect(game.inspect().input.moveY).toBe(1);
+    expect(game.inspect().status.position.z).toBeLessThan(respawnZ);
+    expect(onAction).not.toHaveBeenCalled();
     game.dispose();
   });
 
