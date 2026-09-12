@@ -126,12 +126,18 @@ export async function createTouchControls({ page, context }) {
     await release();
     const { origin, target } = movementContacts(deltaX, deltaZ, strength);
     // The fixed game camera maps +X to joystick right and -Z to joystick up.
-    await send("touchStart", [origin]);
-    await send("touchMove", [target]);
     held = target;
+    await Promise.all([
+      send("touchStart", [origin]),
+      send("touchMove", [target]),
+    ]);
     return target;
   };
-  const beginJumpToward = async (deltaX, deltaZ, strength = 1) => {
+  const jumpToward = async (
+    deltaX,
+    deltaZ,
+    { strength = 1, milliseconds = 600 } = {},
+  ) => {
     await release();
     const worldTap = await resolveWorldTap();
     const { origin, target } = movementContacts(deltaX, deltaZ, strength);
@@ -155,23 +161,30 @@ export async function createTouchControls({ page, context }) {
     // captured joystick contact stays active (covered by the existing input
     // diagnostic and used here only through the normal touch surface).
     const up = send("touchEnd", [jump]);
-    await Promise.all([started, moved, down, up]);
-    return target;
+    await delay(Math.max(0, milliseconds - 10));
+    held = null;
+    const ended = send("touchEnd", []);
+    await Promise.all([started, moved, down, up, ended]);
+    await delay(35);
   };
 
   return {
     kind: "touch",
     beginToward,
-    beginJumpToward,
+    jumpToward,
     release,
     async pulseToward(deltaX, deltaZ, { jump = false, milliseconds = 150 } = {}) {
-      if (jump) await beginJumpToward(deltaX, deltaZ);
-      else await beginToward(deltaX, deltaZ);
-      try {
-        await delay(milliseconds);
-      } finally {
-        await release();
-      }
+      if (jump) return jumpToward(deltaX, deltaZ, { milliseconds });
+      await release();
+      const { origin, target } = movementContacts(deltaX, deltaZ);
+      held = target;
+      const started = send("touchStart", [origin]);
+      const moved = send("touchMove", [target]);
+      await delay(milliseconds);
+      held = null;
+      const ended = send("touchEnd", []);
+      await Promise.all([started, moved, ended]);
+      await delay(35);
     },
     async tapButton(name) {
       await page.getByRole("button", { name, exact: true }).tap();
@@ -354,7 +367,7 @@ export function createAuthoredRouteDriver({
           continue;
         }
         const recoveriesBefore = boardInspection.obby.recoveries;
-        await controls.beginJumpToward(
+        await controls.jumpToward(
           target.x - sourceEdge.x,
           target.z - sourceEdge.z,
         );
@@ -449,7 +462,7 @@ export function createAuthoredRouteDriver({
         continue;
       }
       const recoveriesBefore = inspection.obby.recoveries;
-      await controls.beginJumpToward(
+      await controls.jumpToward(
         targetEdge.x - inspection.status.position.x,
         targetEdge.z - inspection.status.position.z,
       );
@@ -518,7 +531,7 @@ export function createAuthoredRouteDriver({
             position: current.status.position,
             jumpSequence,
           });
-          await controls.beginJumpToward(
+          await controls.jumpToward(
             landing.x - current.status.position.x,
             landing.z - current.status.position.z,
           );

@@ -60,7 +60,7 @@ const browser = await chromium.launch({
 report.browser = browser.version();
 const context = await browser.newContext({
   viewport: { width: 844, height: 390 },
-  deviceScaleFactor: 2,
+  deviceScaleFactor: 1,
   hasTouch: true,
   isMobile: true,
 });
