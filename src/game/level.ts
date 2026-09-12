@@ -1,3 +1,5 @@
+import type { AuthoredLevelDocument } from "../shared/authored-level";
+import { authoredLevelLayout } from "./authored-layout";
 import type {
   EncounterKind,
   EncounterRole,
@@ -32,6 +34,7 @@ export interface EncounterPlacement {
   kind: EncounterKind;
   position: PositionSnapshot;
   arena?: { minX: number; maxX: number; minZ: number; maxZ: number };
+  retryCheckpointId?: string;
 }
 
 export interface StepPlacement {
@@ -44,6 +47,7 @@ export interface LevelLayout {
   id: string | null;
   routeId?: ObbyRouteId;
   course?: ObbyCourse;
+  authored?: AuthoredLevelDocument;
   memories: MemoryPlacement[];
   pickups: PickupPlacement[];
   encounters: EncounterPlacement[];
@@ -149,6 +153,8 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
       maxZ: 3,
     };
   }
+  const authored = authoredLevelLayout(save, activeLevel);
+  if (authored) return authored;
   const memoriesById = new Map(
     save.memories.map((memory) => [memory.id, memory]),
   );
@@ -264,6 +270,26 @@ export function checkpointForSave(
   level: LevelLayout,
 ): PositionSnapshot {
   if (save.format === "era-combat-v2") {
+    if (level.authored && level.course) {
+      if (save.adventure?.phase === "memory-released") {
+        return { ...level.authored.anchors.rewardRespawn.position };
+      }
+      const completed = save.adventure?.activeLevel?.encounters.findLast(
+        (enemy) => enemy.defeated,
+      );
+      const binding = level.encounters.find(
+        (enemy) => enemy.id === completed?.id,
+      );
+      const safe = level.course.checkpoints.find(
+        (entry) => entry.id === binding?.retryCheckpointId,
+      );
+      // Reload fallback never grants unvisited obstacle progress. Session retries
+      // prefer the last actually visited safe checkpoint in createGame.
+      const anyDefeated = save.adventure?.activeLevel?.encounters.some(
+        (enemy) => enemy.defeated,
+      );
+      return { ...(anyDefeated && safe ? safe.position : level.checkpoint) };
+    }
     if (save.adventure?.phase === "memory-released")
       return { x: 0, y: 0, z: -23.5 };
     if (level.course) {
@@ -293,6 +319,7 @@ export function checkpointForSave(
 export function inspectLevel(level: LevelLayout): LevelInspection {
   return {
     id: level.id,
+    ...(level.authored ? { authored: structuredClone(level.authored) } : {}),
     memoryIds: level.memories.map((memory) => memory.id),
     memoryPositions: level.memories.map((memory) => ({
       id: memory.id,

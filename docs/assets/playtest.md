@@ -2,7 +2,7 @@
 
 Choose **Play from the beginning** for the full age 0 → 4 → 7 route, or **Try the Besties chapter** to jump straight to chapter two. Every test starts fresh. Leaving or reloading resets the run; there is no save or resume list in this playtest.
 
-This private review uses [six fictional pictures](reviews/fixture-route-memories/v001.md). Your family’s photo library and sign-in remain separate work.
+This private review uses [six fictional pictures](reviews/fixture-route-memories/v001.md). Longer, forgiving adventures for a six-year-old are the current focus. Identity and curated family photos are the next required part of the MVP; this fixture's ages and pictures are still fictional.
 
 ## How to play
 
@@ -21,27 +21,34 @@ Find two little memories along each route. Their keepsakes disappear on collecti
 
 ## What changed for this test
 
-Collected keepsakes now disappear, attacks clear the brief pickup picture, and the permanent jump hint is gone. The Besties face you, move through their routine, show hit reactions and finish with a defeat animation. Their warnings follow your position when the warning starts, giving you time to dodge; each hit is gentler in this fresh playtest.
+The two chapters now have different, much longer playground routes. Each mixes short jumping activities with safe stopping places, four goofy enemy encounters, two little memories and a boss. An optional side path lets you visit a friendly resident before rejoining the adventure.
 
-- Fresh starts replace the artwork-update, save-and-leave loop. A missing model shows a retryable warning while play continues.
-- Jumping works from age zero. Gear, memories and available friendly healing are collected on contact.
-- Two labeled combat buttons replace the four-button cluster. Movement is faster, slow rendering no longer automatically halves game speed, and attacks and pickups have more visible motion.
-- Grass and flowers grow along the visible edges of the path and on the landings.
-- Sound starts with a confirming cue after a touch or key press. **Sound on/off** controls mute; **Help → Play a test sound** auditions the output. Help also has a volume slider and confirms each test tap or offers a retry. Audio rebuilds after an interruption; the source cues and mix are unchanged in this update. Physical iPhone speaker output still needs listening.
+| Chapter | Places to explore |
+| --- | --- |
+| The Block Party | Garden stepping pads, a picnic clearing, winding padded sweepers, a woodland side path, a low rise and a small ferry before the dragon. |
+| Besties Obby | Low party terraces, a ribbon lane, a sideways ferry, a choice of stepping pads or a broad side bridge, a slow turnstile and the Besties court. |
+
+Jump onto the ferries, ride along, then jump to the next landing. Broad platforms leave room to line up a jump. A slip returns you nearby with your gear and memories; there is no lives counter or race timer. Grass, flowers and the existing trees extend through the longer routes, with clear space around fights and memories.
+
+The mobile controls and sound repairs accepted on Tom's iPhone are retained. Jumping works from age zero, contact collects things, and recovered little keepsakes disappear. **Sound on/off** controls mute; **Help → Play a test sound** auditions the output and offers a retry if needed. The source cues and mix are unchanged. A missing model still shows a retryable warning while play continues.
 
 ## In the game
 
-![The age-zero route with visible grass, fictional memories and the Attack control](media/playtest/v004/age-zero-route.png){ width="300" }
+![The age-zero route with visible grass, fictional memories and the Attack control](media/playtest/v005/age-zero-route.png){ width="600" }
 
-The first route starts with grass-lined landings, a glowing tool and two little memories before the dragon.
+The garden starts with a safe tool pickup and broad stepping pads. Grass and trees continue through the route, with clear space for jumping and fighting.
 
-![The Besties during their shared dizzy window, with Attack and the smaller Bash control](media/playtest/v004/besties-dizzy.png){ width="300" }
+![A padded sweeper on the main path and a broad woodland side path to the right](media/playtest/v005/woodland-choice.png){ width="600" }
 
-The Besties share a recovery window after their missed high-five. The small Bash button appears after you collect a shield. These are actual browser captures from the mobile repair candidate; their [capture record](media/playtest/v004/captures.json) identifies the tested versions.
+The woodland path offers a friendly visit and rejoins the adventure. The main path continues over the padded bridge.
 
-![Help after a successful test tap, with a repeatable sound button and visible status](media/playtest/v004/help-sound.png){ width="300" }
+![The Besties during their shared dizzy window, with Attack and the smaller Bash control](media/playtest/v005/besties-dizzy.png){ width="600" }
 
-Help scrolls on touch, and the sound button confirms a test or offers a retry. Artwork retries also update their result while a menu or the game-over screen is open; they do not require a second tap. The [sound check](media/playtest/v004/mobile-audio-local.json) verifies button input and browser playback; listening on your iPhone remains part of the next check.
+The Besties share a recovery window after their missed high-five. The small Bash button appears after you collect a shield. These are actual browser captures of the longer playgrounds; their [capture record](media/playtest/v005/captures.json) identifies the tested version.
+
+![Help after a successful test tap, with a repeatable sound button and visible status](media/playtest/v005/help-sound.png){ width="300" }
+
+Help scrolls on touch, and the sound button confirms a test or offers a retry. Artwork retries also update their result while a menu or the game-over screen is open; they do not require a second tap. The [sound check](media/playtest/v005/mobile-audio-local.json) records touch scrolling, a failed sound request and a successful retry. Tom confirmed audible sound on his iPhone during the preceding repair pass.
 
 ## The encounters
 
@@ -51,17 +58,19 @@ If you lose all your health, retrying keeps your gear, memories and defeated ene
 
 The Besties alternate a pink foam sweeper and a purple floor lane. Each warning chooses your position once, then stays fixed: jump or move to clear ground. The pair turn toward you, step into their tricks, react to hits and disappear after their defeat animation. When they miss their high-five, both become dizzy for five seconds: that is your chance to attack.
 
-Please judge how the controls feel, whether you can hear the actions, and whether the route and jokes are fun. The [hosted route check](media/release/v004/final-live-route.json) completed both chapters and all six memories, including one-tap artwork recovery on the game-over screen. Separate [touch](media/release/v004/final-live-controls.json), [landscape](media/release/v004/final-live-landscape.json) and [sound-button recovery](media/release/v004/final-live-audio.json) checks pass on the deployed build. Physical iPhone/iPad Safari, device performance, listening and the children’s response remain the next inspection.
+For the next family test, watch whether the destinations are clear, whether the jumps feel forgiving and where your daughter wants to explore. Her response will guide the next content pass. The [playground check](media/playtest/v005/playground-check.json) records both chapters, their side paths, ferry rides, combat and memory collection. The long automated journey uses keyboard movement with touch combat; separate [touch](media/playtest/v005/touch-smoke.json) and [landscape](media/playtest/v005/landscape-controls.json) checks cover the mobile controls. It does not establish child enjoyment or physical-device performance. The [current handoff](../../.agents/HANDOFF.md) records release status.
 
 ## Still to come
 
-More chapters, the full baby-to-adult journey, difficulty and abilities that grow throughout life, a modular level builder, freely placed integrated or uploaded memories, period suggestions with Show more, birthday setup and sign-in remain future work. The Besties shortcut prepares the first chapter for testing; it is not a saved journey.
+Identity, birthday setup and curated personal photos follow the longer levels as required MVP work. A parent will choose the little memories and the big memory for each chapter; the daughter's actual chronology will replace the fixture's 0 → 4 → 7 sequence. Authorized photo integrations and manual uploads belong to that personalized experience.
+
+The new courses share validated, reusable pieces as the foundation for a level builder. A visual editor, freely placed memories, period suggestions with Show more, more chapters and the full baby-to-adult journey remain later extensions. The Besties shortcut prepares the first chapter for testing; it is not a saved journey.
 
 ## Cast and artwork
 
 | Chapter in a new journey | Ordinary enemies | Boss | Friendly residents |
 | --- | --- | --- | --- |
-| The Block Party | [Mister Hiss](reviews/mister-hiss/v001.md), [Peel Patrol](reviews/peel-patrol/v001.md) | [Drama Dragon](reviews/drama-dragon/v001.md) | [Blockling](reviews/blockling/v001.md), [Signal Moth](reviews/signal-moth/v001.md), [Buffer Baron](reviews/buffer-baron/v001.md) |
-| Besties Obby | [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md), returning Peel Patrol | [The Bickering Besties](reviews/bickering-besties/v001.md) | [Loop Dancer](reviews/loop-dancer/v001.md), [Prism Mimic](reviews/prism-mimic/v001.md), [Trendweaver](reviews/trendweaver/v001.md) |
+| The Block Party | Two [Mister Hiss](reviews/mister-hiss/v001.md) and two [Peel Patrol](reviews/peel-patrol/v001.md) encounters | [Drama Dragon](reviews/drama-dragon/v001.md) | [Blockling](reviews/blockling/v001.md), [Signal Moth](reviews/signal-moth/v001.md), [Buffer Baron](reviews/buffer-baron/v001.md) |
+| Besties Obby | Two [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) and two returning Peel Patrol encounters | [The Bickering Besties](reviews/bickering-besties/v001.md) | [Loop Dancer](reviews/loop-dancer/v001.md), [Prism Mimic](reviews/prism-mimic/v001.md), [Trendweaver](reviews/trendweaver/v001.md) |
 
-[Browse the full visual catalog](catalog.md) for inspiration images, models, motion, the six fictional pictures and sound previews. The playtest uses the same 23 GLBs and four source WAVs recorded in the [artwork list](media/playtest/v002/artwork.json), with a revised runtime sound mix. The [hosted phone and desktop catalog audit](media/release/v004/final-catalog-live.json) checks the thumbnails, reviews and model viewers. The joint Besties look is approved; exact model and sound versions remain available for final review.
+[Browse the full visual catalog](catalog.md) for inspiration images, models, motion, the six fictional pictures and sound previews. The playtest uses the same 23 GLBs and four source WAVs recorded in the [artwork list](media/playtest/v002/artwork.json), with a revised runtime sound mix. The [phone and desktop catalog check](media/playtest/v005/catalog-check.json) verifies thumbnail navigation, reviews and model viewers for this candidate. The joint Besties look is approved; exact model and sound versions remain available for final review.

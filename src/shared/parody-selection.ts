@@ -25,6 +25,18 @@ export interface ParodyLevelSelection {
   encounters: [SelectedParodyEncounter, SelectedParodyEncounter, SelectedParodyEncounter];
 }
 
+export interface RouteMemoryLevelSelection {
+  periodId: 'block-party-v1' | 'besties-obby-v1';
+  routeId: 'garden-playground-v1' | 'besties-playground-v1';
+  encounters: [
+    SelectedParodyEncounter,
+    SelectedParodyEncounter,
+    SelectedParodyEncounter,
+    SelectedParodyEncounter,
+    SelectedParodyEncounter,
+  ];
+}
+
 export class ParodyCatalogUnavailableError extends Error {
   constructor() {
     super('Parody catalog has no complete compatible period');
@@ -70,6 +82,57 @@ export function selectParodyLevel(
         periodId,
         routeId: abilities.has('jump') ? 'gentle-jump-v1' : 'gentle-intro-v1',
         encounters: selected.map(freezeIdentity) as ParodyLevelSelection['encounters'],
+      };
+    }
+  }
+
+  throw new ParodyCatalogUnavailableError();
+}
+
+/**
+ * Selects the expanded authored-playground roster for fresh route-memory
+ * journeys. Keeping this separate from `selectParodyLevel` prevents the new
+ * catalog default from changing v2 journey cardinality or route geometry.
+ */
+export function selectRouteMemoryLevel(
+  startDate: string,
+  startingAbilities: readonly Ability[],
+  catalogVersion: ParodyCatalogVersion = PARODY_CATALOG_VERSION,
+  catalog: readonly ParodyCatalogEntry[] = PARODY_CATALOGS[catalogVersion],
+): RouteMemoryLevelSelection {
+  if (catalogVersion !== 'parody-catalog-v4') {
+    throw new ParodyCatalogUnavailableError();
+  }
+  const abilities = new Set(startingAbilities);
+  const eligible = catalog.filter((entry) =>
+    entry.eligibleFrom <= startDate &&
+    startDate <= entry.eligibleThrough &&
+    entry.referenceAvailableBy <= startDate &&
+    entry.requiredAbilities.every((ability) => abilities.has(ability)),
+  );
+  const routes = {
+    'block-party-v1': 'garden-playground-v1',
+    'besties-obby-v1': 'besties-playground-v1',
+  } as const;
+
+  for (const periodId of Object.keys(routes).sort() as Array<keyof typeof routes>) {
+    const periodEntries = eligible.filter((entry) => entry.periodId === periodId);
+    const [ordinaryA, ordinaryB, boss] = REQUIRED_SLOTS.map(({ kind, role }) =>
+      periodEntries
+        .filter((entry) => entry.kind === kind && entry.role === role)
+        .toSorted(compareIdentity)[0],
+    );
+    if (ordinaryA && ordinaryB && boss) {
+      return {
+        periodId,
+        routeId: routes[periodId],
+        encounters: [
+          freezeIdentity(ordinaryA),
+          freezeIdentity(ordinaryB),
+          freezeIdentity(ordinaryA),
+          freezeIdentity(ordinaryB),
+          freezeIdentity(boss),
+        ],
       };
     }
   }

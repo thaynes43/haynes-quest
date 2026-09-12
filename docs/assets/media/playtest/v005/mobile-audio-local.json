@@ -1,0 +1,46 @@
+{
+  "url": "http://127.0.0.1:4400",
+  "browser": "153.0.8010.12",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "errors": [],
+  "checks": [
+    {
+      "check": "failed cue delivery produces a visible retry state without disabling the button"
+    },
+    {
+      "check": "scrolled Help accepts real touch and starts a decoded cue",
+      "scrollBefore": 0,
+      "scrollAfter": 345,
+      "before": {
+        "clicks": 1,
+        "starts": 1
+      },
+      "after": {
+        "clicks": 2,
+        "starts": [
+          {
+            "duration": 0.3,
+            "state": "running"
+          },
+          {
+            "duration": 1.2,
+            "state": "running"
+          }
+        ]
+      },
+      "limitation": "AudioBufferSource start is not physical iPhone speaker evidence."
+    },
+    {
+      "check": "sound test remains repeatable"
+    }
+  ],
+  "client": {
+    "path": "/assets/index-DOmWuEtB.js",
+    "bytes": 1171500,
+    "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+  },
+  "passed": true
+}

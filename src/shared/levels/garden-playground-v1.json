@@ -1,0 +1,732 @@
+{
+  "schemaVersion": "authored-level-v1",
+  "id": "garden-playground-v1",
+  "theme": "garden",
+  "pieces": [
+    {
+      "type": "platform",
+      "id": "welcome",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": 0
+      },
+      "size": {
+        "x": 10,
+        "y": 0.6,
+        "z": 8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "garden-hop-1",
+      "center": {
+        "x": -1,
+        "y": -0.3,
+        "z": -6.2
+      },
+      "size": {
+        "x": 4.4,
+        "y": 0.6,
+        "z": 3
+      }
+    },
+    {
+      "type": "platform",
+      "id": "garden-hop-2",
+      "center": {
+        "x": 1,
+        "y": -0.3,
+        "z": -10
+      },
+      "size": {
+        "x": 4.4,
+        "y": 0.6,
+        "z": 3
+      }
+    },
+    {
+      "type": "platform",
+      "id": "garden-hop-3",
+      "center": {
+        "x": -1,
+        "y": -0.3,
+        "z": -13.8
+      },
+      "size": {
+        "x": 4.4,
+        "y": 0.6,
+        "z": 3
+      }
+    },
+    {
+      "type": "platform",
+      "id": "picnic",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -20
+      },
+      "size": {
+        "x": 12,
+        "y": 0.6,
+        "z": 8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "winding-east",
+      "center": {
+        "x": 3,
+        "y": -0.3,
+        "z": -28
+      },
+      "size": {
+        "x": 6,
+        "y": 0.6,
+        "z": 6
+      }
+    },
+    {
+      "type": "platform",
+      "id": "winding-west",
+      "center": {
+        "x": -1,
+        "y": -0.3,
+        "z": -35
+      },
+      "size": {
+        "x": 8,
+        "y": 0.6,
+        "z": 6
+      }
+    },
+    {
+      "type": "platform",
+      "id": "woodland-rest",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -43
+      },
+      "size": {
+        "x": 12,
+        "y": 0.6,
+        "z": 8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "padded-bridge",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -52.5
+      },
+      "size": {
+        "x": 6,
+        "y": 0.6,
+        "z": 9
+      }
+    },
+    {
+      "type": "platform",
+      "id": "memory-grove",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -63
+      },
+      "size": {
+        "x": 12,
+        "y": 0.6,
+        "z": 10
+      }
+    },
+    {
+      "type": "platform",
+      "id": "little-rise",
+      "center": {
+        "x": 0,
+        "y": -0.07999999999999999,
+        "z": -70.6
+      },
+      "size": {
+        "x": 6,
+        "y": 0.6,
+        "z": 3.2
+      }
+    },
+    {
+      "type": "platform",
+      "id": "little-landing",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -75
+      },
+      "size": {
+        "x": 6,
+        "y": 0.6,
+        "z": 3.2
+      }
+    },
+    {
+      "type": "platform",
+      "id": "pond-dock",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -81
+      },
+      "size": {
+        "x": 12,
+        "y": 0.6,
+        "z": 7
+      }
+    },
+    {
+      "type": "moving-platform",
+      "id": "garden-ferry",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -87
+      },
+      "size": {
+        "x": 3.4,
+        "y": 0.6,
+        "z": 3.4
+      },
+      "motion": {
+        "axis": "z",
+        "distance": 0.5,
+        "period": 8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "dragon-clearing",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -98
+      },
+      "size": {
+        "x": 14,
+        "y": 0.6,
+        "z": 17
+      }
+    },
+    {
+      "type": "platform",
+      "id": "garden-reward",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -109
+      },
+      "size": {
+        "x": 12,
+        "y": 0.6,
+        "z": 5
+      }
+    },
+    {
+      "type": "platform",
+      "id": "woodland-side-1",
+      "center": {
+        "x": 7,
+        "y": -0.3,
+        "z": -47
+      },
+      "size": {
+        "x": 4,
+        "y": 0.6,
+        "z": 6
+      }
+    },
+    {
+      "type": "platform",
+      "id": "woodland-side-2",
+      "center": {
+        "x": 9,
+        "y": -0.3,
+        "z": -53
+      },
+      "size": {
+        "x": 6,
+        "y": 0.6,
+        "z": 5
+      }
+    },
+    {
+      "type": "platform",
+      "id": "woodland-side-3",
+      "center": {
+        "x": 7,
+        "y": -0.3,
+        "z": -59
+      },
+      "size": {
+        "x": 4,
+        "y": 0.6,
+        "z": 6
+      }
+    },
+    {
+      "type": "sweeper",
+      "id": "east-padded-bar",
+      "center": {
+        "x": 3,
+        "y": 0.22,
+        "z": -28
+      },
+      "halfLength": 1,
+      "radius": 0.18,
+      "motion": {
+        "axis": "x",
+        "distance": 1.5,
+        "period": 10,
+        "phase": 1.5707963267948966
+      }
+    },
+    {
+      "type": "sweeper",
+      "id": "west-padded-bar",
+      "center": {
+        "x": -1,
+        "y": 0.22,
+        "z": -36
+      },
+      "halfLength": 1,
+      "radius": 0.18,
+      "motion": {
+        "axis": "x",
+        "distance": 2.5,
+        "period": 11,
+        "phase": -1.5707963267948966
+      }
+    },
+    {
+      "type": "sweeper",
+      "id": "garden-turnstile",
+      "center": {
+        "x": 0,
+        "y": 0.22,
+        "z": -53
+      },
+      "halfLength": 1.05,
+      "radius": 0.18,
+      "rotation": {
+        "period": 13
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "garden-start",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "platformId": "welcome",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "picnic-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -16.8
+      },
+      "platformId": "picnic",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "winding-safe",
+      "position": {
+        "x": -1,
+        "y": 0,
+        "z": -32.8
+      },
+      "platformId": "winding-west",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "woodland-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -39.8
+      },
+      "platformId": "woodland-rest",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "grove-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -59
+      },
+      "platformId": "memory-grove",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "pond-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -78.3
+      },
+      "platformId": "pond-dock",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "dragon-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -90.5
+      },
+      "platformId": "dragon-clearing",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "garden-reward-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -107.5
+      },
+      "platformId": "garden-reward",
+      "activation": {
+        "type": "platform"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "from": "welcome",
+      "to": "garden-hop-1",
+      "mode": "jump"
+    },
+    {
+      "from": "garden-hop-1",
+      "to": "garden-hop-2",
+      "mode": "jump"
+    },
+    {
+      "from": "garden-hop-2",
+      "to": "garden-hop-3",
+      "mode": "jump"
+    },
+    {
+      "from": "garden-hop-3",
+      "to": "picnic",
+      "mode": "jump"
+    },
+    {
+      "from": "picnic",
+      "to": "winding-east",
+      "mode": "jump"
+    },
+    {
+      "from": "winding-east",
+      "to": "winding-west",
+      "mode": "jump"
+    },
+    {
+      "from": "winding-west",
+      "to": "woodland-rest",
+      "mode": "jump"
+    },
+    {
+      "from": "woodland-rest",
+      "to": "padded-bridge",
+      "mode": "jump"
+    },
+    {
+      "from": "padded-bridge",
+      "to": "memory-grove",
+      "mode": "jump"
+    },
+    {
+      "from": "memory-grove",
+      "to": "little-rise",
+      "mode": "jump"
+    },
+    {
+      "from": "little-rise",
+      "to": "little-landing",
+      "mode": "jump"
+    },
+    {
+      "from": "little-landing",
+      "to": "pond-dock",
+      "mode": "jump"
+    },
+    {
+      "from": "pond-dock",
+      "to": "garden-ferry",
+      "mode": "ride"
+    },
+    {
+      "from": "garden-ferry",
+      "to": "dragon-clearing",
+      "mode": "ride"
+    },
+    {
+      "from": "dragon-clearing",
+      "to": "garden-reward",
+      "mode": "walk"
+    },
+    {
+      "from": "woodland-rest",
+      "to": "woodland-side-1",
+      "mode": "walk"
+    },
+    {
+      "from": "woodland-side-1",
+      "to": "woodland-side-2",
+      "mode": "jump"
+    },
+    {
+      "from": "woodland-side-2",
+      "to": "woodland-side-3",
+      "mode": "jump"
+    },
+    {
+      "from": "woodland-side-3",
+      "to": "memory-grove",
+      "mode": "walk"
+    }
+  ],
+  "mainPath": [
+    "welcome",
+    "garden-hop-1",
+    "garden-hop-2",
+    "garden-hop-3",
+    "picnic",
+    "winding-east",
+    "winding-west",
+    "woodland-rest",
+    "padded-bridge",
+    "memory-grove",
+    "little-rise",
+    "little-landing",
+    "pond-dock",
+    "garden-ferry",
+    "dragon-clearing",
+    "garden-reward"
+  ],
+  "branches": [
+    [
+      "woodland-rest",
+      "woodland-side-1",
+      "woodland-side-2",
+      "woodland-side-3",
+      "memory-grove"
+    ]
+  ],
+  "anchors": {
+    "spawn": {
+      "platformId": "welcome",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    "finish": {
+      "platformId": "garden-reward",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -110
+      }
+    },
+    "rewardRespawn": {
+      "platformId": "garden-reward",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -107.5
+      }
+    },
+    "pickups": {
+      "attack-tool": {
+        "platformId": "welcome",
+        "position": {
+          "x": -0.7,
+          "y": 0,
+          "z": -0.5
+        }
+      },
+      "guard-tool": {
+        "platformId": "picnic",
+        "position": {
+          "x": 1,
+          "y": 0,
+          "z": -18
+        }
+      }
+    },
+    "memories": {
+      "minor-one": {
+        "platformId": "picnic",
+        "position": {
+          "x": -1,
+          "y": 0,
+          "z": -18
+        }
+      },
+      "minor-two": {
+        "platformId": "memory-grove",
+        "position": {
+          "x": -1.5,
+          "y": 0,
+          "z": -61
+        }
+      },
+      "major": {
+        "platformId": "garden-reward",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": -108.5
+        }
+      }
+    },
+    "encounters": {
+      "ordinary-1": {
+        "platformId": "picnic",
+        "position": {
+          "x": 2,
+          "y": 0,
+          "z": -21.5
+        },
+        "kind": "ordinary-a",
+        "checkpointId": "picnic-safe",
+        "arena": {
+          "minX": -4,
+          "maxX": 4,
+          "minZ": -23,
+          "maxZ": -20
+        }
+      },
+      "ordinary-2": {
+        "platformId": "woodland-rest",
+        "position": {
+          "x": 2,
+          "y": 0,
+          "z": -43.5
+        },
+        "kind": "ordinary-b",
+        "checkpointId": "woodland-safe",
+        "arena": {
+          "minX": -4,
+          "maxX": 4,
+          "minZ": -45,
+          "maxZ": -42
+        }
+      },
+      "ordinary-3": {
+        "platformId": "memory-grove",
+        "position": {
+          "x": 2,
+          "y": 0,
+          "z": -65
+        },
+        "kind": "ordinary-a",
+        "checkpointId": "grove-safe",
+        "arena": {
+          "minX": -3,
+          "maxX": 4,
+          "minZ": -67,
+          "maxZ": -63
+        }
+      },
+      "ordinary-4": {
+        "platformId": "pond-dock",
+        "position": {
+          "x": 2,
+          "y": 0,
+          "z": -81
+        },
+        "kind": "ordinary-b",
+        "checkpointId": "pond-safe",
+        "arena": {
+          "minX": -4,
+          "maxX": 4,
+          "minZ": -83,
+          "maxZ": -80
+        }
+      },
+      "boss": {
+        "platformId": "dragon-clearing",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": -98
+        },
+        "kind": "boss",
+        "checkpointId": "dragon-safe",
+        "arena": {
+          "minX": -3.8,
+          "maxX": 3.8,
+          "minZ": -100,
+          "maxZ": -96.5
+        }
+      }
+    },
+    "friendlies": {
+      "friendly-1": {
+        "platformId": "welcome",
+        "position": {
+          "x": -3,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "friendly-2": {
+        "platformId": "memory-grove",
+        "position": {
+          "x": -4.5,
+          "y": 0,
+          "z": -59.5
+        }
+      },
+      "friendly-3": {
+        "platformId": "woodland-side-2",
+        "position": {
+          "x": 9,
+          "y": 0,
+          "z": -53
+        }
+      }
+    }
+  }
+}

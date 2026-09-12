@@ -18,7 +18,11 @@ import {
   type ParodyCatalogVersion,
   type ParodyPeriodId,
 } from './parody-catalog.js';
-import { selectParodyLevel } from './parody-selection.js';
+import {
+  selectParodyLevel,
+  selectRouteMemoryLevel,
+  type SelectedParodyEncounter,
+} from './parody-selection.js';
 
 export const AGE_THRESHOLDS = [4, 8, 13, 18, 25, 35, 50, 65] as const;
 export const ATTACK_COOLDOWN_MS = 600;
@@ -249,11 +253,11 @@ export function createAdventurePlan(
 export function createRouteMemoryPlan(
   birthDate: string,
   memories: AdventureMemory[],
+  catalogVersion: ParodyCatalogVersion = PARODY_CATALOG_VERSION,
 ): AdventurePlanV3 {
   if (memories.length !== 6) {
     throw new RangeError('A route-memory adventure requires exactly 6 memories');
   }
-  const catalogVersion = PARODY_CATALOG_VERSION;
   const levels: FrozenLevelPlanV3[] = [];
   let startAgeYears = 0;
   let startDate = birthDate;
@@ -268,11 +272,9 @@ export function createRouteMemoryPlan(
     if (!Number.isInteger(eraYear)) throw new RangeError('Adventure start date is invalid');
     const prefix = `level-${index + 1}-${eraYear}`;
     const pickups = createEquipment(prefix, index);
-    const selection = selectParodyLevel(
-      startDate,
-      ['move', 'interact', 'jump'],
-      catalogVersion,
-    );
+    const selection = catalogVersion === 'parody-catalog-v4'
+      ? selectRouteMemoryLevel(startDate, ['move', 'interact', 'jump'], catalogVersion)
+      : selectParodyLevel(startDate, ['move', 'interact', 'jump'], catalogVersion);
     const encounters = createEncounters(prefix, index, selection.encounters).map((encounter) =>
       encounter.role === 'boss' && encounter.content.catalogEntryId === 'bickering-besties'
         ? { ...encounter, attackDamage: 2 }
@@ -643,28 +645,26 @@ function createEquipment(prefix: string, levelIndex: number): FrozenEquipmentDef
 function createEncounters(
   prefix: string,
   levelIndex: number,
-  selections: ReturnType<typeof selectParodyLevel>['encounters'],
+  selections: readonly SelectedParodyEncounter[],
 ): FrozenEncounterDefinitionV2[] {
-  return [
-    {
-      ...selections[0],
-      id: `${prefix}-encounter-1`,
-      maxHp: 4 + levelIndex * 2,
+  let ordinaryOrdinal = 0;
+  return selections.map((selection) => {
+    if (selection.role === 'boss') {
+      return {
+        ...selection,
+        id: `${prefix}-boss`,
+        maxHp: 8 + levelIndex * 3,
+        attackDamage: 3 + levelIndex,
+      };
+    }
+    ordinaryOrdinal += 1;
+    return {
+      ...selection,
+      id: `${prefix}-encounter-${ordinaryOrdinal}`,
+      maxHp: (selection.kind === 'ordinary-b' ? 5 : 4) + levelIndex * 2,
       attackDamage: 2 + levelIndex,
-    },
-    {
-      ...selections[1],
-      id: `${prefix}-encounter-2`,
-      maxHp: 5 + levelIndex * 2,
-      attackDamage: 2 + levelIndex,
-    },
-    {
-      ...selections[2],
-      id: `${prefix}-boss`,
-      maxHp: 8 + levelIndex * 3,
-      attackDamage: 3 + levelIndex,
-    },
-  ];
+    };
+  });
 }
 
 function requirePhase(state: AdventureState, phase: AdventurePhase): void {

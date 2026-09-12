@@ -1,0 +1,388 @@
+{
+  "startedAt": "2026-09-12T19:45:01.295Z",
+  "finishedAt": "2026-09-12T19:45:43.048Z",
+  "status": "passed-smoke",
+  "browser": "153.0.8010.12",
+  "bundle": {
+    "path": "/assets/index-DOmWuEtB.js",
+    "bytes": 1171500,
+    "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+  },
+  "audio": {
+    "testSound": {
+      "available": true,
+      "contexts": [
+        {
+          "state": "running",
+          "sampleCount": 268288,
+          "nonzeroSampleCount": 112,
+          "maxAbs": 0.4512324333190918,
+          "analyserConnected": true
+        }
+      ]
+    },
+    "mutedJump": {
+      "available": true,
+      "contexts": [
+        {
+          "state": "running",
+          "sampleCount": 141312,
+          "nonzeroSampleCount": 0,
+          "maxAbs": 0,
+          "analyserConnected": true
+        }
+      ]
+    },
+    "unmute": {
+      "available": true,
+      "contexts": [
+        {
+          "state": "running",
+          "sampleCount": 204800,
+          "nonzeroSampleCount": 26,
+          "maxAbs": 0.3635765016078949,
+          "analyserConnected": true
+        }
+      ]
+    }
+  },
+  "gestures": {
+    "spaceAtAgeZero": {
+      "age": 0,
+      "startY": 0,
+      "airborneY": 0.758133200000001
+    },
+    "cancelledWorldTouch": {
+      "before": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "after": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    "worldTapAtAgeZero": {
+      "age": 0,
+      "startY": 0,
+      "airborneY": 0.7
+    },
+    "heldJumpTouch": {
+      "durationMs": 583,
+      "pointerId": 7
+    },
+    "heldJumpPointerTrace": [
+      {
+        "type": "pointerdown",
+        "id": 2,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 195,
+        "y": 361.0899963378906,
+        "timeStamp": 367.7999999523163,
+        "handledAt": 381.5
+      },
+      {
+        "type": "pointerup",
+        "id": 2,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 195,
+        "y": 361.0899963378906,
+        "timeStamp": 367.7999999523163,
+        "handledAt": 381.7999999523163
+      },
+      {
+        "type": "pointerdown",
+        "id": 3,
+        "pointerType": "touch",
+        "target": "SPAN",
+        "x": 332,
+        "y": 50,
+        "timeStamp": 3589.2999999523163,
+        "handledAt": 3616.699999988079
+      },
+      {
+        "type": "pointerup",
+        "id": 3,
+        "pointerType": "touch",
+        "target": "SPAN",
+        "x": 332,
+        "y": 50,
+        "timeStamp": 3589.399999976158,
+        "handledAt": 3616.899999976158
+      },
+      {
+        "type": "pointerdown",
+        "id": 4,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 115.56999969482422,
+        "y": 539.7100219726562,
+        "timeStamp": 3709,
+        "handledAt": 3731.199999988079
+      },
+      {
+        "type": "pointerup",
+        "id": 4,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 115.56999969482422,
+        "y": 539.7100219726562,
+        "timeStamp": 3709,
+        "handledAt": 3731.2999999523163
+      },
+      {
+        "type": "pointerdown",
+        "id": 5,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 125.12999725341797,
+        "y": 802.9600219726562,
+        "timeStamp": 11685.899999976158,
+        "handledAt": 11825.899999976158
+      },
+      {
+        "type": "pointerup",
+        "id": 5,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 125.12999725341797,
+        "y": 802.9600219726562,
+        "timeStamp": 11686,
+        "handledAt": 11827.099999964237
+      },
+      {
+        "type": "pointerdown",
+        "id": 6,
+        "pointerType": "touch",
+        "target": "SPAN",
+        "x": 204,
+        "y": 50,
+        "timeStamp": 12192.199999988079,
+        "handledAt": 12450.5
+      },
+      {
+        "type": "pointerup",
+        "id": 6,
+        "pointerType": "touch",
+        "target": "SPAN",
+        "x": 204,
+        "y": 50,
+        "timeStamp": 12192.299999952316,
+        "handledAt": 12451.5
+      },
+      {
+        "type": "pointerdown",
+        "id": 7,
+        "pointerType": "touch",
+        "target": "CANVAS",
+        "x": 273,
+        "y": 464.20001220703125,
+        "timeStamp": 12759.299999952316,
+        "handledAt": 12822.299999952316
+      },
+      {
+        "type": "pointerup",
+        "id": 7,
+        "pointerType": "touch",
+        "target": "CANVAS",
+        "x": 273,
+        "y": 464.20001220703125,
+        "timeStamp": 12893.799999952316,
+        "handledAt": 13180.199999988079
+      },
+      {
+        "type": "pointerdown",
+        "id": 8,
+        "pointerType": "touch",
+        "target": "SPAN",
+        "x": 204,
+        "y": 50,
+        "timeStamp": 13836.599999964237,
+        "handledAt": 14227.599999964237
+      },
+      {
+        "type": "pointerup",
+        "id": 8,
+        "pointerType": "touch",
+        "target": "SPAN",
+        "x": 204,
+        "y": 50,
+        "timeStamp": 13836.699999988079,
+        "handledAt": 14227.799999952316
+      },
+      {
+        "type": "pointerdown",
+        "id": 9,
+        "pointerType": "touch",
+        "target": "CANVAS",
+        "x": 273,
+        "y": 464.20001220703125,
+        "timeStamp": 15879.399999976158,
+        "handledAt": 16088.399999976158
+      },
+      {
+        "type": "pointercancel",
+        "id": 9,
+        "pointerType": "touch",
+        "target": "CANVAS",
+        "x": 273,
+        "y": 464.20001220703125,
+        "timeStamp": 16160,
+        "handledAt": 16474.599999964237
+      },
+      {
+        "type": "pointerdown",
+        "id": 10,
+        "pointerType": "touch",
+        "target": "CANVAS",
+        "x": 273,
+        "y": 464.20001220703125,
+        "timeStamp": 16674.799999952316,
+        "handledAt": 16890.099999964237
+      },
+      {
+        "type": "pointerup",
+        "id": 10,
+        "pointerType": "touch",
+        "target": "CANVAS",
+        "x": 273,
+        "y": 464.20001220703125,
+        "timeStamp": 16961.799999952316,
+        "handledAt": 17484.19999998808
+      },
+      {
+        "type": "pointerdown",
+        "id": 11,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 53,
+        "y": 50,
+        "timeStamp": 18720,
+        "handledAt": 19136.19999998808
+      },
+      {
+        "type": "pointerup",
+        "id": 11,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 53,
+        "y": 50,
+        "timeStamp": 18720,
+        "handledAt": 19136.299999952316
+      },
+      {
+        "type": "pointerdown",
+        "id": 12,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 195,
+        "y": 361.0899963378906,
+        "timeStamp": 24364.899999976158,
+        "handledAt": 24379.799999952316
+      },
+      {
+        "type": "pointerup",
+        "id": 12,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 195,
+        "y": 361.0899963378906,
+        "timeStamp": 24364.899999976158,
+        "handledAt": 24379.899999976158
+      },
+      {
+        "type": "pointerdown",
+        "id": 13,
+        "pointerType": "touch",
+        "target": "DIV",
+        "x": 74,
+        "y": 758,
+        "timeStamp": 27160.5,
+        "handledAt": 27198.19999998808
+      },
+      {
+        "type": "pointerup",
+        "id": 13,
+        "pointerType": "touch",
+        "target": "DIV",
+        "x": 74,
+        "y": 714,
+        "timeStamp": 27338.69999998808,
+        "handledAt": 27366.099999964237
+      },
+      {
+        "type": "pointerdown",
+        "id": 14,
+        "pointerType": "touch",
+        "target": "DIV",
+        "x": 74,
+        "y": 758,
+        "timeStamp": 27434.899999976158,
+        "handledAt": 27475.099999964237
+      },
+      {
+        "type": "pointerdown",
+        "id": 15,
+        "pointerType": "touch",
+        "target": "SPAN",
+        "x": 264,
+        "y": 772,
+        "timeStamp": 27532.399999976158,
+        "handledAt": 27566.599999964237
+      },
+      {
+        "type": "pointerup",
+        "id": 15,
+        "pointerType": "touch",
+        "target": "BUTTON",
+        "x": 264,
+        "y": 772,
+        "timeStamp": 27541.799999952316,
+        "handledAt": 27567.19999998808
+      },
+      {
+        "type": "pointerdown",
+        "id": 16,
+        "pointerType": "touch",
+        "target": "CANVAS",
+        "x": 273,
+        "y": 464.20001220703125,
+        "timeStamp": 27615.899999976158,
+        "handledAt": 28198
+      },
+      {
+        "type": "pointerup",
+        "id": 16,
+        "pointerType": "touch",
+        "target": "CANVAS",
+        "x": 273,
+        "y": 464.20001220703125,
+        "timeStamp": 27626.399999976158,
+        "handledAt": 28198.099999964237
+      }
+    ],
+    "simultaneous": {
+      "attackOutcome": "no-target",
+      "heldMoveXDuringAttack": -0.14444446563720703,
+      "heldMoveXDuringJump": -0.14444446563720703,
+      "airborneY": 0.7,
+      "jumpSequence": 1,
+      "cancelledWorldPointer": {
+        "heldContactId": 8,
+        "heldMoveXBeforeCancel": -0.14444446563720703,
+        "moveXAfterCancel": 0,
+        "jumpSequence": 1
+      }
+    }
+  },
+  "layout": null,
+  "responseErrors": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "coverage": "touch-smoke",
+  "raw_report_sha256": "0f0fb0135ae41ebffa94ef0a0740f578b680fd949d2feea2affaaff44436c6ff"
+}

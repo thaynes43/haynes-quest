@@ -15,6 +15,7 @@ import {
   enemyAttackRange,
   EnemySimulation,
   findAttackTarget,
+  playerAttackRange,
   withinEnemyStrikeHeight,
 } from "./combat";
 import { getAvatarProportions, stepController } from "./controller";
@@ -80,7 +81,7 @@ function horizontalDistance(
 }
 
 function levelIdentity(save: SaveView): string {
-  return `${save.id}:${save.adventure?.currentLevelId ?? "complete"}`;
+  return `${save.id}:${save.adventure?.currentLevelId ?? "complete"}:${save.adventure?.activeLevel?.routeId ?? "legacy"}`;
 }
 
 function requireAdventure(save: SaveView): AdventureView {
@@ -156,11 +157,32 @@ export function createGame(options: CreateGameOptions): GameHandle {
   }
 
   const enemies = new EnemySimulation(level, save);
-  let besties = new BestiesSimulation();
   const bestiesEncounter = () =>
     requireAdventure(save).activeLevel?.encounters.find(
       (entry) => entry.content?.assetId === "bickering-besties",
     );
+  const bestiesPlacement = () =>
+    level.encounters.find((entry) => entry.id === bestiesEncounter()?.id);
+  const bestiesOrigin = () =>
+    level.authored ? bestiesPlacement()?.position : undefined;
+  let besties = new BestiesSimulation(bestiesOrigin());
+  const nearBesties = () => {
+    if (!level.authored) return controller.position.z < -17.5;
+    const arena = bestiesPlacement()?.arena;
+    const actor = nearestBestiesActor(besties.frame(), controller.position);
+    const withinToolReach =
+      horizontalDistance(controller.position, actor.position) <=
+      playerAttackRange(save, "boss");
+    return Boolean(
+      arena &&
+      (withinToolReach ||
+        (controller.position.x >= arena.minX - 1.5 &&
+          controller.position.x <= arena.maxX + 1.5 &&
+          controller.position.z >= arena.minZ - 1.5 &&
+          controller.position.z <= arena.maxZ + 1.5)) &&
+      Math.abs(controller.position.y) < 1,
+    );
+  };
   let pendingHit: { levelId: string; encounterId: string } | null = null;
   let disposed = false;
   let paused = false;
@@ -221,7 +243,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       const routine = besties.frame();
       return {
         ...enemy,
-        position: { ...BESTIES_ARENA_CENTER },
+        position: { ...(routine.arenaOrigin ?? BESTIES_ARENA_CENTER) },
         facing: Math.PI,
         phase:
           enemy.hp === 0
@@ -552,7 +574,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
       retried ||
       nextAdventure.phase === "memory-released"
     ) {
-      checkpoint = nextCheckpoint;
+      const visited =
+        retried && !identityChanged && level.authored
+          ? level.course?.checkpoints.find(
+              (entry) => entry.id === controller.checkpointId,
+            )
+          : undefined;
+      checkpoint = visited ? { ...visited.position } : nextCheckpoint;
     }
     if (identityChanged || retried) {
       courseTime = 0;
@@ -565,7 +593,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       attackFeedback = null;
       resetController(checkpoint);
       enemies.reset(level, save);
-      besties = new BestiesSimulation();
+      besties = new BestiesSimulation(bestiesOrigin());
       scene.rebuildRoute(level, save);
       scene.cameraYaw = 0;
     } else {
@@ -1007,10 +1035,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
           player: controller.position,
           deltaSeconds: stepSeconds,
           active: Boolean(
-            duo &&
-            combatActive &&
-            bossIsActive(save) &&
-            controller.position.z < -17.5,
+            duo && combatActive && bossIsActive(save) && nearBesties(),
           ),
           paused: controller.recoveryRemaining > 0,
           defeated: duo?.defeated ?? false,

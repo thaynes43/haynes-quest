@@ -48,7 +48,7 @@ export const BESTIES_ARENA_CENTER = Object.freeze({ x: 0, y: 0, z: -22 });
 
 export interface BestiesActorFrame {
   id: BestieActorId;
-  /** Local to BESTIES_ARENA_CENTER. The scene owns final translation and facing. */
+  /** Local to the resolved arena origin. The scene owns translation and facing. */
   offset: PositionSnapshot;
   clip: BestiesClipName;
 }
@@ -79,6 +79,8 @@ export interface BestiesFloorLaneFrame extends BestiesHazardBase {
 export type BestiesHazardFrame = BestiesFoamBarFrame | BestiesFloorLaneFrame;
 
 export interface BestiesFrame {
+  /** World origin for an authored encounter; absent for the archived arena. */
+  arenaOrigin?: PositionSnapshot;
   phase: BestiesPhase;
   activeActor: BestieActorId | null;
   vulnerable: boolean;
@@ -121,23 +123,26 @@ export function nearestBestiesActor(
   id: BestieActorId;
   position: PositionSnapshot;
 } {
+  const origin = frame.arenaOrigin ?? BESTIES_ARENA_CENTER;
   return frame.actors
     .map((actor) => {
       const offset = bestiesActorOffset(frame, actor);
       return {
         id: actor.id,
         position: {
-          x: BESTIES_ARENA_CENTER.x + offset.x,
-          y: BESTIES_ARENA_CENTER.y + offset.y,
-          z: BESTIES_ARENA_CENTER.z + offset.z,
+          x: origin.x + offset.x,
+          y: origin.y + offset.y,
+          z: origin.z + offset.z,
         },
       };
     })
-    .sort(
-      (a, b) =>
+    .sort((a, b) => {
+      const difference =
         Math.hypot(a.position.x - player.x, a.position.z - player.z) -
-        Math.hypot(b.position.x - player.x, b.position.z - player.z),
-    )[0]!;
+        Math.hypot(b.position.x - player.x, b.position.z - player.z);
+      // Keep center-line ties stable when an authored origin changes rounding.
+      return Math.abs(difference) < 0.000001 ? 0 : difference;
+    })[0]!;
 }
 
 export interface BestiesStepOptions {
@@ -438,9 +443,40 @@ function nextPhase(state: BestiesState): BestiesState {
  */
 export class BestiesSimulation {
   private state: BestiesState = inactiveState();
+  private readonly origin?: PositionSnapshot;
+
+  constructor(origin?: PositionSnapshot) {
+    if (origin && !Object.values(origin).every(Number.isFinite)) {
+      throw new RangeError("Besties origin must be finite");
+    }
+    this.origin = origin ? { ...origin } : undefined;
+  }
 
   frame(): BestiesFrame {
-    return makeFrame(this.state);
+    const frame = makeFrame(this.state);
+    if (!this.origin) return frame;
+    const origin = this.origin;
+    const translate = (point: PositionSnapshot): PositionSnapshot => ({
+      x: point.x + origin.x - BESTIES_ARENA_CENTER.x,
+      y: point.y + origin.y - BESTIES_ARENA_CENTER.y,
+      z: point.z + origin.z - BESTIES_ARENA_CENTER.z,
+    });
+    return {
+      ...frame,
+      arenaOrigin: { ...origin },
+      hazards: frame.hazards.map((hazard) => ({
+        ...hazard,
+        center: translate(hazard.center),
+        ...(hazard.kind === "foam-bar"
+          ? {
+              sweep: {
+                from: translate(hazard.sweep.from),
+                to: translate(hazard.sweep.to),
+              },
+            }
+          : {}),
+      })),
+    };
   }
 
   /**
@@ -460,6 +496,18 @@ export class BestiesSimulation {
   }
 
   step(options: BestiesStepOptions): BestiesStepResult {
+    // Preserve the tested routine in its original local frame. Both observed
+    // geometry and targeting translate through the same authored origin.
+    if (this.origin) {
+      options = {
+        ...options,
+        player: {
+          x: options.player.x - this.origin.x + BESTIES_ARENA_CENTER.x,
+          y: options.player.y - this.origin.y + BESTIES_ARENA_CENTER.y,
+          z: options.player.z - this.origin.z + BESTIES_ARENA_CENTER.z,
+        },
+      };
+    }
     // Victory disables combat in the same authoritative update. Defeat must
     // still reach the renderer instead of resetting both actors to idle.
     if (options.defeated) {
@@ -539,7 +587,7 @@ export class BestiesSimulation {
     phaseEntered: BestiesPhase | null,
   ): BestiesStepResult {
     return {
-      frame: makeFrame(this.state),
+      frame: this.frame(),
       hit: hitBy !== null,
       hitBy,
       phaseEntered,

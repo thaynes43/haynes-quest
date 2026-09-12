@@ -5,6 +5,7 @@ import { BestiesScene } from "../../src/game/besties-scene";
 import {
   BESTIES_PHASE_SECONDS,
   BestiesSimulation,
+  nearestBestiesActor,
   type BestieActorId,
   type BestiesFrame,
   type BestiesPhase,
@@ -526,6 +527,50 @@ describe("BestiesScene warnings", () => {
     expect(warning.scale.y).toBeCloseTo(0.025, 8);
     expect(warning.scale.z).toBeCloseTo(2.6, 8);
 
+    scene.dispose();
+  });
+});
+
+describe("authored Besties world alignment", () => {
+  it("draws translated warning and damage boxes at the simulation geometry and targets visible actors", () => {
+    const origin = { x: 8, y: 0, z: -112 };
+    const simulation = new BestiesSimulation(origin);
+    const scene = new BestiesScene(animationAssets(), () => true, models);
+    scene.root.position.copy(origin);
+    const player = { x: 8, y: 0, z: -110 };
+    for (let i = 0; i < 100; i++) {
+      const frame = simulation.step({
+        player,
+        deltaSeconds: 0.05,
+        active: true,
+        defeated: false,
+        aimAtPlayer: true,
+      }).frame;
+      scene.update(frame, 0.05, 10, i * 0.05, null, player);
+      scene.root.updateMatrixWorld(true);
+      const target = nearestBestiesActor(frame, player);
+      expectPosition(
+        scene.targetPosition(player),
+        new THREE.Vector3(
+          target.position.x,
+          target.position.y,
+          target.position.z,
+        ),
+      );
+      const hazard = frame.hazards[0];
+      if (!hazard) continue;
+      const mesh = scene.root.getObjectByName(
+        hazard.damaging ? "besties-hazard" : "besties-warning",
+      )!;
+      const rendered = mesh.getWorldPosition(new THREE.Vector3());
+      const expectedX =
+        !hazard.damaging && hazard.kind === "foam-bar"
+          ? (hazard.sweep.from.x + hazard.sweep.to.x) / 2
+          : hazard.center.x;
+      expect(rendered.x).toBeCloseTo(expectedX, 8);
+      expect(rendered.z).toBeCloseTo(hazard.center.z, 8);
+      expect(mesh.visible).toBe(true);
+    }
     scene.dispose();
   });
 });

@@ -5,12 +5,17 @@ export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v1",
   "parody-catalog-v2",
   "parody-catalog-v3",
+  "parody-catalog-v4",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
-export const PARODY_CATALOG_VERSION = "parody-catalog-v3" as const;
+export const PARODY_CATALOG_VERSION = "parody-catalog-v4" as const;
 export type ParodyPeriodId =
   "block-party-v1" | "remix-runway-v1" | "remix-runway-v2" | "besties-obby-v1";
-export type ObbyRouteId = "gentle-intro-v1" | "gentle-jump-v1";
+export type ObbyRouteId =
+  | "gentle-intro-v1"
+  | "gentle-jump-v1"
+  | "garden-playground-v1"
+  | "besties-playground-v1";
 export interface ParodyCatalogEntry {
   readonly id: string;
   readonly version: "v001";
@@ -210,12 +215,22 @@ const PARODY_CANDIDATES_V3: readonly ParodyCatalogEntry[] = Object.freeze([
   }),
 ]);
 
+/**
+ * New playground journeys reuse the reviewed v3 cast and assets. The new
+ * catalog identity freezes the expanded encounter-selection contract without
+ * changing any archived v3 entry in place.
+ */
+const PARODY_CANDIDATES_V4: readonly ParodyCatalogEntry[] = Object.freeze(
+  PARODY_CANDIDATES_V3.map(freezeV3Entry),
+);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
   "parody-catalog-v1": PARODY_CANDIDATES_V1,
   "parody-catalog-v2": PARODY_CANDIDATES_V2,
   "parody-catalog-v3": PARODY_CANDIDATES_V3,
+  "parody-catalog-v4": PARODY_CANDIDATES_V4,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();
