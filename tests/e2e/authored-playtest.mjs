@@ -18,9 +18,15 @@ import {
   summarizeAuthoredCourse,
 } from "./authored-navigation.mjs";
 
+import { verifyLandscapeControls } from "./landscape-controls.mjs";
+
 import { createPausedArtworkProbe } from "./paused-artwork-recovery.mjs";
 
-const pausedArtworkRetry = process.env.QUEST_E2E_PAUSED_ARTWORK_RETRY === "true";
+class ControlsVerified extends Error {}
+const controlsOnly = process.env.QUEST_E2E_CONTROLS_ONLY === "true";
+
+const pausedArtworkRetry =
+  process.env.QUEST_E2E_PAUSED_ARTWORK_RETRY === "true";
 const expectedBundleSha256 = process.env.QUEST_E2E_BUNDLE_SHA256;
 const url = process.env.QUEST_E2E_URL ?? "http://127.0.0.1:4397";
 const runLabel = process.env.QUEST_E2E_RUN_LABEL;
@@ -42,6 +48,10 @@ const report = {
   status: "running",
   url,
   routeStartChapter,
+  coverage: controlsOnly
+    ? "authored-first-pickups-and-landscape-controls"
+    : "full-journey",
+  layout: [],
   browser: null,
   bundle: null,
   pausedArtworkRetry,
@@ -151,7 +161,10 @@ page.on("console", (message) => {
 page.on("response", async (response) => {
   const parsed = new URL(response.url());
   if (response.status() >= 400) {
-    const errors = pausedArtworkProbe?.isExpectedResponse(parsed.pathname, response.status())
+    const errors = pausedArtworkProbe?.isExpectedResponse(
+      parsed.pathname,
+      response.status(),
+    )
       ? report.expectedFaults
       : report.responseErrors;
     errors.push({
@@ -180,14 +193,21 @@ page.on("response", async (response) => {
   }
 });
 
-const waitForSave = async (predicate, label, timeout = 20_000, captureTimeout = true) => {
+const waitForSave = async (
+  predicate,
+  label,
+  timeout = 20_000,
+  captureTimeout = true,
+) => {
   const deadline = Date.now() + timeout;
   while (Date.now() < deadline) {
     if (latestSave && predicate(latestSave)) return latestSave;
     await delay(50);
   }
   if (captureTimeout) await screenshot(`${label}-save-failure`);
-  throw new Error(`${label}: save state unavailable: ${JSON.stringify(latestSave)}`);
+  throw new Error(
+    `${label}: save state unavailable: ${JSON.stringify(latestSave)}`,
+  );
 };
 
 const saveProgress = (save) => ({
@@ -208,7 +228,8 @@ const saveProgress = (save) => ({
 
 const closest = (entries, target) =>
   [...entries].sort(
-    (left, right) => planarDistance(left, target) - planarDistance(right, target),
+    (left, right) =>
+      planarDistance(left, target) - planarDistance(right, target),
   )[0];
 
 const spatialDistance = (first, second) =>
@@ -237,7 +258,10 @@ function observeBesties(tracker, inspection) {
     const sample = actor.pose?.head ?? actor.position;
     if (sample) {
       observed.first ??= { ...sample };
-      observed.motion = Math.max(observed.motion, spatialDistance(observed.first, sample));
+      observed.motion = Math.max(
+        observed.motion,
+        spatialDistance(observed.first, sample),
+      );
     }
     tracker.set(actor.id, observed);
   }
@@ -266,7 +290,10 @@ async function proveDynamicPieces(document) {
   const movingPlatforms = movingIds.map((id) => {
     const before = start.obby.platforms.find((entry) => entry.id === id);
     const after = end.obby.platforms.find((entry) => entry.id === id);
-    assert.ok(before && after, `${id}: moving platform missing from live sample`);
+    assert.ok(
+      before && after,
+      `${id}: moving platform missing from live sample`,
+    );
     const motion = planarDistance(before.center, after.center);
     assert.ok(motion > 0.001, `${id}: moving platform did not move`);
     return { id, motion };
@@ -277,7 +304,10 @@ async function proveDynamicPieces(document) {
     assert.ok(before && after, `${id}: sweeper missing from live sample`);
     const translation = planarDistance(before.center, after.center);
     const rotation = Math.abs(before.angle - after.angle);
-    assert.ok(translation > 0.001 || rotation > 0.001, `${id}: sweeper stayed static`);
+    assert.ok(
+      translation > 0.001 || rotation > 0.001,
+      `${id}: sweeper stayed static`,
+    );
     return { id, translation, rotation };
   });
   return { movingPlatforms, sweepers };
@@ -290,7 +320,9 @@ async function startChapter(chapter) {
     exact: true,
   });
   await button.tap();
-  await page.locator("canvas[data-quest-canvas=true]").waitFor({ timeout: 20_000 });
+  await page
+    .locator("canvas[data-quest-canvas=true]")
+    .waitFor({ timeout: 20_000 });
   const save = await waitForSave(
     (candidate) =>
       candidate.id !== priorId &&
@@ -318,10 +350,12 @@ async function playChapter(chapter) {
     screenshot,
     label: `chapter-${chapter}-authored-ready`,
     timeout: 20_000,
-    predicate: (inspection) => Boolean(inspection.level.authored && inspection.obby),
+    predicate: (inspection) =>
+      Boolean(inspection.level.authored && inspection.obby),
   });
   const document = authoredDocumentFromInspection(initial);
-  const expectedId = chapter === 1 ? "garden-playground-v1" : "besties-playground-v1";
+  const expectedId =
+    chapter === 1 ? "garden-playground-v1" : "besties-playground-v1";
   assert.equal(document.id, expectedId);
   assert.equal(initial.obby.routeId, expectedId);
   chapterReport.course = summarizeAuthoredCourse(document);
@@ -380,14 +414,10 @@ async function playChapter(chapter) {
       )
     )
       return;
-    await moveToAnchor(
-      anchor,
-      `chapter-${chapter}-${kind}`,
-      undefined,
-      () =>
-        latestSave.adventure.inventory.some(
-          (item) => item.kind === kind && item.collected,
-        ),
+    await moveToAnchor(anchor, `chapter-${chapter}-${kind}`, undefined, () =>
+      latestSave.adventure.inventory.some(
+        (item) => item.kind === kind && item.collected,
+      ),
     );
     const save = await waitForSave(
       (candidate) =>
@@ -402,12 +432,20 @@ async function playChapter(chapter) {
       revision: save.revision,
       platformId: anchor.platformId,
     });
+    if (kind === "guard-tool") {
+      const layout = await verifyLandscapeControls({ page, screenshot });
+      report.layout.push({ chapter, courseId: document.id, ...layout });
+      mark("landscape:complete", { chapter, ...layout });
+      if (controlsOnly) throw new ControlsVerified();
+    }
   };
 
   const collectMemory = async (role, anchor) => {
     const id = chapterMemoryIds[role];
     assert.ok(id, `${role}: runtime memory id missing`);
-    const already = latestSave.memories.find((memory) => memory.id === id)?.state;
+    const already = latestSave.memories.find(
+      (memory) => memory.id === id,
+    )?.state;
     const ageBefore = latestSave.ageYears;
     if (!["revealed", "consumed"].includes(already)) {
       await moveToAnchor(
@@ -415,7 +453,9 @@ async function playChapter(chapter) {
         `chapter-${chapter}-${role}`,
         undefined,
         () => {
-          const state = latestSave.memories.find((memory) => memory.id === id)?.state;
+          const state = latestSave.memories.find(
+            (memory) => memory.id === id,
+          )?.state;
           return ["revealed", "consumed"].includes(state);
         },
       );
@@ -436,7 +476,10 @@ async function playChapter(chapter) {
         const visual = inspection.visuals?.memories.find(
           (memory) => memory.id === id,
         );
-        return visual?.visible === false || inspection.level.authored?.id !== document.id;
+        return (
+          visual?.visible === false ||
+          inspection.level.authored?.id !== document.id
+        );
       },
     });
     assert.ok(rendered);
@@ -452,13 +495,18 @@ async function playChapter(chapter) {
 
   const visitFriendly = async (role, anchor) => {
     const inspection = await inspectGame(page);
-    const live = closest(inspection?.level.friendlyPositions ?? [], anchor.position);
+    const live = closest(
+      inspection?.level.friendlyPositions ?? [],
+      anchor.position,
+    );
     assert.ok(live, `${role}: rendered friendly missing`);
     await moveToAnchor(
       anchor,
       `chapter-${chapter}-${role}`,
       (candidate) =>
-        candidate.level.friendlyPositions?.find((friend) => friend.id === live.id),
+        candidate.level.friendlyPositions?.find(
+          (friend) => friend.id === live.id,
+        ),
       (candidate) => candidate.status.nearFriendlyId === live.id,
     );
     await waitForInspection({
@@ -519,7 +567,8 @@ async function playChapter(chapter) {
         page,
         screenshot,
         label: `chapter-${chapter}-${role}-near`,
-        predicate: (candidate) => candidate.status.nearEncounterId === encounterId,
+        predicate: (candidate) =>
+          candidate.status.nearEncounterId === encounterId,
       });
     };
     const approachSecondary = async () =>
@@ -541,33 +590,45 @@ async function playChapter(chapter) {
       const bossHitDeadline = Date.now() + 15_000;
       while (
         Date.now() < bossHitDeadline &&
-        observedHits.slice(hitStart).every((hit) => hit.encounterId !== encounterId)
+        observedHits
+          .slice(hitStart)
+          .every((hit) => hit.encounterId !== encounterId)
       ) {
         if (await recoverCombat(role)) {
           combatRetries += 1;
           await approach();
         } else {
-          inspection = await driver.read(`chapter-${chapter}-${role}-attack-proof`);
+          inspection = await driver.read(
+            `chapter-${chapter}-${role}-attack-proof`,
+          );
           observeBesties(besties, inspection);
           sawDizzy ||= inspection.status.bestiesPhase === "dizzy";
           await delay(80);
         }
       }
       assert.ok(
-        observedHits.slice(hitStart).some((hit) => hit.encounterId === encounterId),
+        observedHits
+          .slice(hitStart)
+          .some((hit) => hit.encounterId === encounterId),
         `${role}: no real boss attack reached the player`,
       );
     }
 
     if (chapter === 2 && role === "boss" && pausedArtworkProbe) {
-      report.injectedArtworkFailure = await pausedArtworkProbe.verify({ screenshot, mark });
+      report.injectedArtworkFailure = await pausedArtworkProbe.verify({
+        screenshot,
+        mark,
+      });
     }
 
     const deadline = Date.now() + 120_000;
     while (Date.now() < deadline) {
       if (await recoverCombat(role)) {
         combatRetries += 1;
-        assert.ok(combatRetries <= 4, `${role}: combat recovery bound exceeded`);
+        assert.ok(
+          combatRetries <= 4,
+          `${role}: combat recovery bound exceeded`,
+        );
         await approach();
         continue;
       }
@@ -578,7 +639,12 @@ async function playChapter(chapter) {
       inspection = await driver.read(`chapter-${chapter}-${role}-fight`);
       observeBesties(besties, inspection);
       sawDizzy ||= inspection.status.bestiesPhase === "dizzy";
-      if (chapter === 2 && role === "boss" && !capturedDizzy && inspection.status.bestiesPhase === "dizzy") {
+      if (
+        chapter === 2 &&
+        role === "boss" &&
+        !capturedDizzy &&
+        inspection.status.bestiesPhase === "dizzy"
+      ) {
         await screenshot("besties-dizzy");
         capturedDizzy = true;
       }
@@ -646,7 +712,8 @@ async function playChapter(chapter) {
     const hits = observedHits
       .slice(hitStart)
       .filter((hit) => hit.encounterId === encounterId);
-    if (role === "boss") assert.ok(hits.length > 0, `${role}: boss never attacked`);
+    if (role === "boss")
+      assert.ok(hits.length > 0, `${role}: boss never attacked`);
     if (chapter === 2 && role === "boss") {
       assert.equal(sawDizzy, true, "Besties never entered dizzy state");
       for (const id of ["bestie-pink", "bestie-black"]) {
@@ -696,10 +763,14 @@ async function playChapter(chapter) {
   const proveCheckpointRecovery = async () => {
     const before = await driver.read(`chapter-${chapter}-fall-before`);
     const checkpoint = document.pieces.find(
-      (piece) => piece.type === "checkpoint" && piece.id === before.obby.checkpointId,
+      (piece) =>
+        piece.type === "checkpoint" && piece.id === before.obby.checkpointId,
     );
     assert.ok(checkpoint, "armed authored checkpoint missing");
-    assert.notEqual(checkpoint.id, document.pieces.find((piece) => piece.type === "checkpoint")?.id);
+    assert.notEqual(
+      checkpoint.id,
+      document.pieces.find((piece) => piece.type === "checkpoint")?.id,
+    );
     const progress = saveProgress(latestSave);
     const revision = latestSave.revision;
     const recoveryCount = before.obby.recoveries;
@@ -719,11 +790,24 @@ async function playChapter(chapter) {
     }
     assert.equal(recovered.obby.checkpointId, checkpoint.id);
     assert.ok(recovered.obby.recoveryRemaining > 0);
-    assert.ok(planarDistance(recovered.status.position, checkpoint.position) < 0.7);
+    assert.ok(
+      planarDistance(recovered.status.position, checkpoint.position) < 0.7,
+    );
     const heldInput = Math.hypot(recovered.input.moveX, recovered.input.moveY);
-    assert.ok(heldInput > 0.5, "intentional fall did not retain its real held input");
-    assert.equal(latestSave.revision, revision, "local recovery wrote a save action");
-    assert.deepEqual(saveProgress(latestSave), progress, "local recovery changed progress");
+    assert.ok(
+      heldInput > 0.5,
+      "intentional fall did not retain its real held input",
+    );
+    assert.equal(
+      latestSave.revision,
+      revision,
+      "local recovery wrote a save action",
+    );
+    assert.deepEqual(
+      saveProgress(latestSave),
+      progress,
+      "local recovery changed progress",
+    );
     chapterReport.recovery = {
       checkpointId: checkpoint.id,
       direction,
@@ -757,7 +841,11 @@ async function playChapter(chapter) {
         const ordinary = latestSave.adventure.activeLevel.encounters.filter(
           (encounter) => encounter.role === "ordinary",
         );
-        assert.equal(ordinary.length, 4, "authored chapter does not have four ordinary fights");
+        assert.equal(
+          ordinary.length,
+          4,
+          "authored chapter does not have four ordinary fights",
+        );
         assert.ok(ordinary.every((encounter) => encounter.defeated));
         for (const minorRole of ["minor-one", "minor-two"]) {
           const id = chapterMemoryIds[minorRole];
@@ -772,11 +860,16 @@ async function playChapter(chapter) {
       await fight(role, anchor);
     }
     if (!recoveryProved) {
-      const current = await driver.read(`chapter-${chapter}-${platformId}-checkpoint`);
+      const current = await driver.read(
+        `chapter-${chapter}-${platformId}-checkpoint`,
+      );
       const firstCheckpoint = document.pieces.find(
         (piece) => piece.type === "checkpoint",
       );
-      if (current.obby.checkpointId && current.obby.checkpointId !== firstCheckpoint?.id) {
+      if (
+        current.obby.checkpointId &&
+        current.obby.checkpointId !== firstCheckpoint?.id
+      ) {
         await proveCheckpointRecovery();
         recoveryProved = true;
       }
@@ -791,10 +884,16 @@ async function playChapter(chapter) {
   let crossingCount = 0;
   while (edgeIndex < plan.edges.length) {
     crossingCount += 1;
-    assert.ok(crossingCount <= 60, "course traversal exceeded its recovery bound");
+    assert.ok(
+      crossingCount <= 60,
+      "course traversal exceeded its recovery bound",
+    );
     const current = await driver.read(`chapter-${chapter}-route-${edgeIndex}`);
     const supportIndex = plan.platformIds.indexOf(current.obby.supportId);
-    assert.ok(supportIndex >= 0, `live support ${current.obby.supportId} is outside the route plan`);
+    assert.ok(
+      supportIndex >= 0,
+      `live support ${current.obby.supportId} is outside the route plan`,
+    );
     if (supportIndex !== edgeIndex) {
       assert.ok(
         supportIndex < edgeIndex,
@@ -819,7 +918,11 @@ async function playChapter(chapter) {
     );
     const documentExited = after.level.authored?.id !== document.id;
     const finishTriggered = finishEdge && finishReached();
-    if (!documentExited && !finishTriggered && after.obby.supportId !== edge.to) {
+    if (
+      !documentExited &&
+      !finishTriggered &&
+      after.obby.supportId !== edge.to
+    ) {
       continue;
     }
     assert.ok(
@@ -834,15 +937,30 @@ async function playChapter(chapter) {
     ) {
       chapterReport.branch.visited.push(edge.to);
     }
-    if (edge.to === plan.branchPlatformIds.at(-1)) chapterReport.branch.rejoined = true;
+    if (edge.to === plan.branchPlatformIds.at(-1))
+      chapterReport.branch.rejoined = true;
     await processPlatform(edge.to);
-    if (!documentExited && !finishTriggered && ["woodland-rest", "pond-dock", "party-dock", "turnstile-deck"].includes(edge.to)) {
+    if (
+      !documentExited &&
+      !finishTriggered &&
+      ["woodland-rest", "pond-dock", "party-dock", "turnstile-deck"].includes(
+        edge.to,
+      )
+    ) {
       await screenshot(`chapter-${chapter}-${edge.to}`);
     }
   }
 
-  assert.equal(recoveryProved, true, "intentional checkpoint recovery was not exercised");
-  assert.equal(chapterReport.combat.length, 5, "chapter did not complete five fights");
+  assert.equal(
+    recoveryProved,
+    true,
+    "intentional checkpoint recovery was not exercised",
+  );
+  assert.equal(
+    chapterReport.combat.length,
+    5,
+    "chapter did not complete five fights",
+  );
   assert.ok(primaryDamage > 0, "primary attack never damaged an enemy");
   assert.ok(secondaryDamage > 0, "secondary attack never damaged an enemy");
   assert.deepEqual(
@@ -850,9 +968,19 @@ async function playChapter(chapter) {
     plan.branchPlatformIds.slice(1),
     "declared branch was not traversed",
   );
-  assert.equal(chapterReport.branch.rejoined, true, "branch did not rejoin main path");
-  assert.ok(driver.evidence.ferryEvidence.length > 0, "ferry carry was not proved");
-  assert.ok(driver.evidence.hazardJumps.length > 0, "no live sweeper was cleared with a jump");
+  assert.equal(
+    chapterReport.branch.rejoined,
+    true,
+    "branch did not rejoin main path",
+  );
+  assert.ok(
+    driver.evidence.ferryEvidence.length > 0,
+    "ferry carry was not proved",
+  );
+  assert.ok(
+    driver.evidence.hazardJumps.length > 0,
+    "no live sweeper was cleared with a jump",
+  );
   chapterReport.traversal = {
     visitedPlatforms,
     primaryDamage,
@@ -872,9 +1000,13 @@ try {
   const index = await fetch(url);
   assert.equal(index.status, 200, "authored playtest fixture unavailable");
   await page.goto(url);
-  const bundlePath = await page.locator('script[type="module"][src]').getAttribute("src");
+  const bundlePath = await page
+    .locator('script[type="module"][src]')
+    .getAttribute("src");
   assert.ok(bundlePath, "application bundle is missing");
-  const bundleResponse = await context.request.get(new URL(bundlePath, url).href);
+  const bundleResponse = await context.request.get(
+    new URL(bundlePath, url).href,
+  );
   assert.equal(bundleResponse.status(), 200);
   const bundleBytes = await bundleResponse.body();
   report.bundle = {
@@ -882,7 +1014,8 @@ try {
     bytes: bundleBytes.length,
     sha256: createHash("sha256").update(bundleBytes).digest("hex"),
   };
-  if (expectedBundleSha256) assert.equal(report.bundle.sha256, expectedBundleSha256);
+  if (expectedBundleSha256)
+    assert.equal(report.bundle.sha256, expectedBundleSha256);
   await page
     .getByRole("button", { name: "Play from the beginning", exact: true })
     .waitFor();
@@ -890,7 +1023,9 @@ try {
     await startChapter(1);
     await playChapter(1);
     await page.getByRole("dialog", { name: /Welcome to 2024/ }).waitFor();
-    await page.getByRole("button", { name: "Enter the next era", exact: true }).tap();
+    await page
+      .getByRole("button", { name: "Enter the next era", exact: true })
+      .tap();
     await waitForInspection({
       page,
       screenshot,
@@ -927,14 +1062,23 @@ try {
   report.status = "passed";
   report.finishedAt = new Date().toISOString();
 } catch (error) {
-  report.status = "failed";
-  report.finishedAt = new Date().toISOString();
-  report.failure =
-    error instanceof Error
-      ? { name: error.name, message: error.message, stack: error.stack }
-      : { name: "NonError", message: String(error) };
-  await screenshot("failure").catch(() => undefined);
-  throw error;
+  if (error instanceof ControlsVerified) {
+    assert.deepEqual(report.responseErrors, []);
+    assert.deepEqual(report.pageErrors, []);
+    assert.deepEqual(report.consoleErrors, []);
+    assert.equal(report.layout.length, 1);
+    report.status = "passed";
+    report.finishedAt = new Date().toISOString();
+  } else {
+    report.status = "failed";
+    report.finishedAt = new Date().toISOString();
+    report.failure =
+      error instanceof Error
+        ? { name: error.name, message: error.message, stack: error.stack }
+        : { name: "NonError", message: String(error) };
+    await screenshot("failure").catch(() => undefined);
+    throw error;
+  }
 } finally {
   clearTimeout(timer);
   await fs.writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`);
