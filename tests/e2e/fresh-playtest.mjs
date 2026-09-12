@@ -1258,6 +1258,28 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
     }
     return true;
   };
+  const bashTarget = (inspection) => {
+    if (!requireDizzy)
+      return inspection.level.encounterPositions.find(
+        (candidate) => candidate.id === encounter.id,
+      );
+    const visibleActors =
+      inspection.visuals?.besties?.filter((actor) => actor.visible) ?? [];
+    return visibleActors.sort(
+      (left, right) =>
+        pointDistance(inspection.status.position, left.position) -
+        pointDistance(inspection.status.position, right.position),
+    )[0]?.position;
+  };
+  const reachedBashRange = async () => {
+    const inspection = await inspectGame();
+    const target = inspection ? bashTarget(inspection) : null;
+    return Boolean(
+      inspection?.status.grounded &&
+        target &&
+        pointDistance(inspection.status.position, target) <= 1.2,
+    );
+  };
   await moveTo(
     (inspection) =>
       inspection.level.encounterPositions.find(
@@ -1329,6 +1351,29 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
         await screenshot("besties-dizzy");
         capturedDizzy = true;
       }
+    }
+
+    const guardEquipped = latestSave.adventure.inventory.some(
+      (item) => item.kind === "guard-tool" && item.collected,
+    );
+    const currentBashTarget = bashTarget(inspection);
+    if (
+      guardEquipped &&
+      !bashAccepted &&
+      (!inspection.status.grounded ||
+        !currentBashTarget ||
+        pointDistance(inspection.status.position, currentBashTarget) > 1.2)
+    ) {
+      await moveTo(
+        bashTarget,
+        reachedBashRange,
+        `${label}-secondary-approach`,
+      );
+      continue;
+    }
+    if (guardEquipped && !bashAccepted && !inspection.status.guardReady) {
+      await delay(90);
+      continue;
     }
 
     const hp = current.hp;
