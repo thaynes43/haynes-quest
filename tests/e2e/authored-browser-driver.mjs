@@ -622,11 +622,7 @@ export function createAuthoredRouteDriver({
           );
         } else {
           after = await moveToPoint(
-            (candidate) =>
-              platformGateway(
-                livePlatform(candidate, edge.from),
-                livePlatform(candidate, edge.to),
-              ).to,
+            (candidate) => livePlatform(candidate, edge.to).center,
             {
               label: `${label}-walk`,
               tolerance: 0.55,
