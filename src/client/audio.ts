@@ -387,8 +387,10 @@ export class QuestAudio {
         const context = this.context;
         this.contextStateListener = () => {
           if (this.context === context && context.state !== "running") {
+            const wasUnlocked = this.unlocked;
             this.unlocked = false;
-            this.contextNeedsReplacement = true;
+            if (context.state !== "suspended" || wasUnlocked)
+              this.contextNeedsReplacement = true;
             this.stopAll();
           }
         };
@@ -425,11 +427,7 @@ export class QuestAudio {
         context.state !== "running"
       ) {
         this.unlocked = false;
-        if (this.context === context) {
-          if (this.contextNeedsReplacement) this.retireContext();
-          else if (context.state === "running")
-            await context.suspend().catch(() => undefined);
-        }
+        if (this.context === context) this.retireContext();
         return false;
       }
       this.unlocked = true;

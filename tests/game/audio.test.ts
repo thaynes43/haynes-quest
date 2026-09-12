@@ -185,6 +185,55 @@ describe("QuestAudio", () => {
     expect(context.sources).toHaveLength(2);
   });
 
+  it("ignores an initial suspended event while the first resume is pending", async () => {
+    const { audio, context } = audioFixture();
+    let finishResume!: () => void;
+    context.resume.mockImplementationOnce(
+      () =>
+        new Promise<void>((resolve) => {
+          finishResume = () => {
+            context.state = "running";
+            resolve();
+          };
+        }),
+    );
+
+    const starting = audio.start();
+    context.dispatchEvent(new Event("statechange"));
+    finishResume();
+
+    await expect(starting).resolves.toBe(true);
+    expect(audio.status()).toMatchObject({
+      ready: true,
+      contextState: "running",
+    });
+    expect(context.close).not.toHaveBeenCalled();
+  });
+
+  it("does not await a hanging suspend when mute invalidates a pending start", async () => {
+    const { audio, context } = audioFixture();
+    let finishResume!: () => void;
+    context.resume.mockImplementationOnce(
+      () =>
+        new Promise<void>((resolve) => {
+          finishResume = () => {
+            context.state = "running";
+            resolve();
+          };
+        }),
+    );
+    context.suspend.mockImplementationOnce(() => new Promise<void>(() => {}));
+
+    const starting = audio.start();
+    audio.setPreferences(true);
+    finishResume();
+
+    await expect(starting).resolves.toBe(false);
+    expect(context.suspend).not.toHaveBeenCalled();
+    expect(context.close).toHaveBeenCalledOnce();
+    expect(audio.status().contextState).toBe("unavailable");
+  });
+
   it("bounds a stalled audition resume and uses a fresh context on retry", async () => {
     vi.useFakeTimers();
     try {

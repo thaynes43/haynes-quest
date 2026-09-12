@@ -34,11 +34,11 @@ Silent-switch handling is already attempted correctly on Safari 16.4 and newer b
 - `QuestAudio` shares one resume attempt per context, resolves a stalled resume after 1.5 seconds, aborts/resolves a stalled cue load after 5 seconds, and lets the next direct gesture retry with a fresh context.
 - A context that has suspended, backgrounded, or entered WebKit's nonstandard `interrupted` state is replaced before the next unlock. Decoded buffers are fetched again for the fresh context; four short same-origin WAVs make that bounded reload preferable to trusting a context whose state can misreport physical output.
 - Regression tests simulate a never-settling `resume()`, one tap's overlapping confirmation/audition starts, a never-settling fetch, page hiding during a pending resume, background recovery, and spontaneous interruption recovery.
-- Focused `pnpm exec vitest run tests/game/audio.test.ts`: 17 passed.
+- Focused `pnpm exec vitest run tests/game/audio.test.ts`: 19 passed after follow-up review.
 - `pnpm typecheck`: passed.
 - `pnpm lint`: passed with zero warnings.
 - `pnpm exec prettier --check src/client/audio.ts tests/game/audio.test.ts .agents/work-orders/071-audio-reliability.md`: passed.
-- Full `pnpm test`: 343 passed, 10 skipped across 42 files (41 passed, one skipped).
+- Full `pnpm test`: 345 passed, 10 skipped across 42 files (41 passed, one skipped) after follow-up review.
 - `pnpm build`: client and server builds passed; Vite retained the repository's existing large-chunk advisory.
 - `pnpm docs:build`: its reference/media preparation checked 170 Markdown files and 981 prepared files, then stopped because `/usr/bin/python3` has no `mkdocs` module. The task forbids adding host dependencies; no documentation site claim follows.
 - Physical Safari speaker output remains an owner device check; automated Web Audio state/analyser evidence does not establish it.
@@ -50,3 +50,11 @@ The lead can retain the existing `Promise<boolean>` contract. The Help click han
 The implementation does not add an `HTMLAudioElement` fallback. WebKit 251532 indicates that media elements helped one older silent-switch case, but WebKit 291892 also records silent media elements in an affected iOS 26 web app. Choosing a second engine by user agent would bypass the existing gain/limiter contract without proving this device's route. `navigator.audioSession.type = "playback"` remains the standards-track silent-switch mitigation where Safari exposes it.
 
 Branch: `agent/quest-audio-reliability`. No asset catalog change is required because no cue or asset changes. Physical Safari must verify first-load audition, background/return/retry, silent-switch expectations, device volume, and audible gameplay after closing Help.
+
+## Follow-up review
+
+The lead identified a remaining unbounded path after the first handoff: if mute, pause, background, or disposal invalidated a start after `resume()` succeeded, the owner could await `context.suspend()` forever. The invalidation path now detaches and closes the context without awaiting either browser operation. A regression supplies a never-settling `suspend()` and proves the start still resolves `false`.
+
+A second regression dispatches an initial `statechange` while a new context is still `suspended` and its first resume is pending. That notification is no longer treated as a stale-context signal before the context has unlocked. A later suspended event after unlock, plus `interrupted` or `closed` at any time, still invalidates the context.
+
+The existing Playwright MCP service was inspected read-only under an exclusive browser lease, then closed and released. No Deployment, Pod, or Service name containing Playwright/browser exists; the MCP is the local stdio `playwright-mcp` 0.0.80 command configured with `--browser chromium --headless`. Its live browser is Chromium 153. The available MCP calls expose no browser-type switch, and the unsafe evaluator sandbox exposes neither dynamic imports nor `process`, so it cannot acquire a separate WebKit `BrowserType`. Although the local browser cache contains `webkit-2359`, that is the already-known build that cannot launch without missing GStreamer libraries. The existing service therefore offers no usable WebKit procedure without a configuration restart or dependency change, both outside this task. The probe navigated no Quest page and provides no physical-iPhone evidence.
