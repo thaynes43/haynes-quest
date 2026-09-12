@@ -1092,6 +1092,11 @@ try {
     await startChapter(2);
   }
   await playChapter(2);
+  assert.equal(
+    controlsOnly,
+    false,
+    "controls-only diagnostic completed a chapter without verifying its layout",
+  );
   await page
     .getByRole("dialog", { name: "Every chapter, a little more you." })
     .waitFor();
