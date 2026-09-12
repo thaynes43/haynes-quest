@@ -2,7 +2,7 @@
 
 ## BL-07: A shared level builder for people and agents
 
-- **Status:** Owner-confirmed direction, September 12, 2026. Fix the mobile playtest's broken interactions and combat first under PLAN008.
+- **Status:** Owner-confirmed direction, September 12, 2026. PLAN008's mobile reliability repair is deployed and its hosted checks pass. Next extract reusable level contracts and validation before expanding the obby; physical-device inspection remains open.
 - **Contract:** [DESIGN016](designs/016-authored-levels.md), PRD R-44–R-45.
 
 Replace one-off handcrafted corridors with reusable, validated level pieces. Humans and agents should use the same level document to place platforms, creative obby challenges, checkpoints, equipment, enemies, friends and memories. Extract and test the current mechanics before building a longer route with branches, optional discoveries and combinations of taught obstacles. Keep the youngest child's opening forgiving; later recovered ages can support more demanding content.

@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-12T17:30:19Z",
+  "observedAt": "2026-09-12T17:27:20.726Z",
+  "mode": "read-only-postrelease-verification",
+  "baselineCapturedAt": "2026-09-12T17:21:17.839Z",
+  "expected": {
+    "image": "ghcr.io/thaynes43/haynes-quest:sha-6e71ba1556784efb340056e27be11e2bd7ae6c10@sha256:3112a716b888a3e5dbcbfca35d5680a52f49c43ae3b9347e34408b86b954bf0f",
+    "revision": "main@sha1:a621f1b4463f371fcc08f01e85c5c281e9600f36"
+  },
+  "passed": true,
+  "summary": {
+    "passed": 24,
+    "failed": [],
+    "total": 24
+  },
+  "flux": {
+    "source": {
+      "name": "flux-system/haynes-ops",
+      "uid": "a67b6f6b-743c-497f-9e3b-aae6bfc342ab",
+      "generation": 1,
+      "observedGeneration": 1,
+      "revision": "main@sha1:a621f1b4463f371fcc08f01e85c5c281e9600f36",
+      "ready": true
+    },
+    "questKustomization": {
+      "name": "frontend/haynes-quest",
+      "uid": "8d6a4df9-aff7-4e3c-beae-d08a450b074f",
+      "generation": 3,
+      "observedGeneration": 3,
+      "lastAppliedRevision": "main@sha1:a621f1b4463f371fcc08f01e85c5c281e9600f36",
+      "ready": true,
+      "reason": "ReconciliationSucceeded"
+    }
+  },
+  "privateQuestAfterRelease": {
+    "helmRelease": {
+      "uid": "117b9801-8cf3-49b2-8f9b-7799fd4c770c",
+      "generation": 6,
+      "observedGeneration": 6,
+      "chartRevision": "5.1.0+0d039f7760db",
+      "releaseStatus": "deployed",
+      "ready": true,
+      "reason": "UpgradeSucceeded"
+    },
+    "deployment": {
+      "uid": "d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b",
+      "generation": 6,
+      "observedGeneration": 6,
+      "revision": 6,
+      "replicas": 1,
+      "readyReplicas": 1,
+      "updatedReplicas": 1,
+      "availableReplicas": 1,
+      "unavailableReplicas": 0,
+      "image": "ghcr.io/thaynes43/haynes-quest:sha-6e71ba1556784efb340056e27be11e2bd7ae6c10@sha256:3112a716b888a3e5dbcbfca35d5680a52f49c43ae3b9347e34408b86b954bf0f"
+    },
+    "pod": {
+      "name": "haynes-quest-playtest-84f9856fc7-cdv4g",
+      "uid": "0ab1f221-abb3-47c6-93c2-d71c074f26e1",
+      "ready": true,
+      "restarts": 0,
+      "runtimeImageDigest": "sha256:3112a716b888a3e5dbcbfca35d5680a52f49c43ae3b9347e34408b86b954bf0f"
+    }
+  },
+  "preservedInvariants": {
+    "privatePublicEnvironment": "matched the required names and values",
+    "privateServiceIngressAndNetworkPolicy": "same UIDs and exact spec hashes as the immediate baseline",
+    "normalQuest": "HelmRelease, Deployment, pod, image, restarts, public environment, endpoint, Cilium identity, Service, ingress and policy unchanged",
+    "devEnv": "HelmRelease, Deployment, pod UID, all three container images and restart counts unchanged",
+    "healthAndReadiness": "four TLS-verified endpoints returned HTTP 200 with exact expected bodies",
+    "privateTransientIdentities": "new pod, EndpointSlice target and Cilium endpoint were accepted only after readiness and exact routing/identity checks"
+  },
+  "checkIds": [
+    "flux_source_exact_revision_ready",
+    "flux_kustomization_exact_revision_ready",
+    "private_helmrelease_settled",
+    "private_deployment_exact_image_settled",
+    "private_pod_exact_digest_zero_restarts",
+    "private_required_public_environment",
+    "private_service_identity_and_exact_spec",
+    "private_ingressRoute_identity_and_exact_spec",
+    "private_networkPolicy_identity_and_exact_spec",
+    "normal_service_identity_and_exact_spec",
+    "normal_ingressRoute_identity_and_exact_spec",
+    "normal_networkPolicy_identity_and_exact_spec",
+    "private_endpointslice_routes_to_current_pod",
+    "private_cilium_endpoint_ready_identity_labels",
+    "normal_helmrelease_unchanged_settled",
+    "normal_deployment_unchanged_settled",
+    "normal_pod_identity_image_restarts_unchanged",
+    "normal_public_environment_unchanged",
+    "normal_endpointslice_identity_target_unchanged",
+    "normal_cilium_endpoint_identity_unchanged_ready",
+    "dev_env_helmrelease_unchanged_settled",
+    "dev_env_deployment_unchanged_settled",
+    "dev_env_pod_identity_images_restarts_unchanged",
+    "https_health_and_readiness"
+  ],
+  "scope": {
+    "reads": "named Flux, Quest, dev-env, routing and Cilium resources plus four HTTPS health probes",
+    "excludes": "Secrets, unrestricted environment, application data and all mutations"
+  },
+  "sourceEvidenceSha256": {
+    "baseline-immediate.json": "1408abdcbfabc140c2944010a40cba7cd55de1a0d8cd8a2dcffe4b4c7db86da1",
+    "post-release.json": "f8b4b620ac25a544142aefcea187b41bee77ad89b21ae213eeed3b8c17506ade"
+  },
+  "sanitization": "Retains exact release revision, image, controller generations, pod readiness/restarts and assertion names; omits environment values, addresses, full routing/policy bodies, Cilium labels and transient endpoint identifiers."
+}

@@ -1,0 +1,73 @@
+{
+  "version": "v004-final",
+  "source": "test-results/fresh-playtest/plan008-final-hosted-landscape/report.json",
+  "source_sha256": "f253177bc88dea2ae1e883a10f65b7364513f303be848b8e607f760df046abe7",
+  "target": "https://haynes-quest-playtest.haynesops.com",
+  "status": "passed-landscape",
+  "started_at": "2026-09-12T17:30:59.767Z",
+  "finished_at": "2026-09-12T17:31:16.219Z",
+  "client": {
+    "path": "/assets/index-Dg49Dt7R.js",
+    "bytes": 1046626,
+    "sha256": "14fdb50c25753fbaffa5e389dc224f293a4ed0de4048e667e7f11fd91c9fc35d"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12"
+  },
+  "traversal": "touch joystick, world taps, and touch UI actions",
+  "route_only": true,
+  "viewport": {
+    "width": 844,
+    "height": 390
+  },
+  "controls_non_overlapping": true,
+  "control_bounds": {
+    "attack": {
+      "x": 672,
+      "y": 290,
+      "width": 84,
+      "height": 84
+    },
+    "bash": {
+      "x": 764,
+      "y": 232,
+      "width": 60,
+      "height": 60
+    },
+    "joystick": {
+      "x": 20,
+      "y": 270,
+      "width": 104,
+      "height": 104
+    },
+    "header": {
+      "x": 24,
+      "y": 10,
+      "width": 796,
+      "height": 57
+    }
+  },
+  "held_attack": {
+    "enemy_hp_before": 6,
+    "enemy_hp_after": 3,
+    "damage": 3,
+    "retained_move_x": -1,
+    "tap_duration_ms": 225
+  },
+  "help_opened_and_closed": true,
+  "retries": {
+    "combat": 0,
+    "local_obby": 0
+  },
+  "unexpected_errors": {
+    "page": 0,
+    "response": 0,
+    "console": 0
+  },
+  "expected_artwork_503_console_entries": 1,
+  "limitations": [
+    "WebKit could not launch because the container lacks libgstreamer-1.0.so.0.",
+    "Physical iPhone Safari was not tested."
+  ]
+}

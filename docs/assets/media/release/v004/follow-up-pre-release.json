@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-12T17:30:19Z",
+  "capturedAt": "2026-09-12T17:21:17.839Z",
+  "mode": "read-only-cluster-baseline",
+  "fluxAtCapture": {
+    "source": {
+      "name": "flux-system/haynes-ops",
+      "uid": "a67b6f6b-743c-497f-9e3b-aae6bfc342ab",
+      "generation": 1,
+      "observedGeneration": 1,
+      "revision": "main@sha1:024066546951c4cbd165b10db33a82798fac22ae",
+      "ready": true
+    },
+    "questKustomization": {
+      "name": "frontend/haynes-quest",
+      "uid": "8d6a4df9-aff7-4e3c-beae-d08a450b074f",
+      "generation": 3,
+      "observedGeneration": 3,
+      "lastAppliedRevision": "main@sha1:024066546951c4cbd165b10db33a82798fac22ae",
+      "ready": true,
+      "reason": "ReconciliationSucceeded"
+    }
+  },
+  "privateQuestBeforeRelease": {
+    "helmRelease": {
+      "uid": "117b9801-8cf3-49b2-8f9b-7799fd4c770c",
+      "generation": 5,
+      "observedGeneration": 5,
+      "chartRevision": "5.1.0+0d039f7760db",
+      "configDigest": "sha256:68da755c8bca913a981ba2e6d6fa1372b69f37b057c887378509addd5acf6137",
+      "releaseStatus": "deployed",
+      "ready": true,
+      "readyObservedGeneration": 5,
+      "reason": "UpgradeSucceeded"
+    },
+    "deployment": {
+      "uid": "d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b",
+      "generation": 5,
+      "observedGeneration": 5,
+      "revision": 5,
+      "replicas": 1,
+      "readyReplicas": 1,
+      "updatedReplicas": 1,
+      "availableReplicas": 1,
+      "unavailableReplicas": 0,
+      "image": "ghcr.io/thaynes43/haynes-quest:sha-c5696e3b884059040bcf67d225697139979a3551@sha256:b5e6aee84795299699bc8f02304a5ddd1cb644f81bf458718bdaa9540e988fd5"
+    },
+    "pod": {
+      "name": "haynes-quest-playtest-549c4d7b76-nn4tf",
+      "uid": "7ae5b272-2a6d-4784-9422-4c5fc21d9545",
+      "ready": true,
+      "restarts": 0,
+      "runtimeImageDigest": "sha256:b5e6aee84795299699bc8f02304a5ddd1cb644f81bf458718bdaa9540e988fd5"
+    },
+    "stableResourceSpecs": {
+      "service": {
+        "uid": "f1c93ed4-75ae-45fa-9e1d-efe270e07c37",
+        "specSha256": "ea558a37d19fce5da279ed7272867a97bbabbc486684235a0fc286ab95e60468"
+      },
+      "ingressRoute": {
+        "uid": "6bc371bf-4425-4d3b-a818-5a071625be97",
+        "generation": 1,
+        "specSha256": "cfd2771d3ad4f7b0d436a2e6dac600dc14fdf33d22b08a3d283d6981923fd450"
+      },
+      "networkPolicy": {
+        "uid": "d8c0e74a-f505-4908-931d-15edf8fbd333",
+        "generation": 1,
+        "specSha256": "254d6c28cc7490bebc4f8ee529712307aac22861892a9f90efdf90b3a57a9271",
+        "valid": true
+      }
+    }
+  },
+  "preservedBaselines": {
+    "normalQuest": {
+      "helmReleaseUid": "a0b71566-535e-4c48-991c-38fc6bbe4eaf",
+      "helmReleaseGeneration": 3,
+      "deploymentUid": "c17ee749-129e-4059-8091-ba167639604e",
+      "deploymentGeneration": 3,
+      "image": "ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37",
+      "podUid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+      "podRestarts": 0
+    },
+    "devEnv": {
+      "helmReleaseUid": "f47f6744-38ee-426e-b17f-e5a48737b6da",
+      "helmReleaseGeneration": 30,
+      "deploymentUid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+      "deploymentGeneration": 100,
+      "image": "ghcr.io/thaynes43/dev-env:0.5.4@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1",
+      "podUid": "c3a94756-af35-405e-93bc-eb05c2979d3a",
+      "containerRestarts": {
+        "app": 0,
+        "auth-watch": 0,
+        "gh-refresher": 0
+      }
+    }
+  },
+  "verification": {
+    "firstInvocation": {
+      "expectedRevision": "main@sha1:6772777e752450d1e74dfb897d2bd0be02b570d9",
+      "actualRevision": "main@sha1:024066546951c4cbd165b10db33a82798fac22ae",
+      "passed": false,
+      "summary": {
+        "passed": 22,
+        "failed": [
+          "flux_source_exact_revision_ready",
+          "flux_kustomization_exact_revision_ready"
+        ],
+        "total": 24
+      },
+      "explanation": "The first invocation used the newer local base revision 6772777, while Flux still observed its prior unrelated revision 0240665. Only the two exact-revision assertions failed; this was an incorrect expectation, not resource drift."
+    },
+    "acceptedActualObservedInvocation": {
+      "expectedRevision": "main@sha1:024066546951c4cbd165b10db33a82798fac22ae",
+      "expectedImage": "ghcr.io/thaynes43/haynes-quest:sha-c5696e3b884059040bcf67d225697139979a3551@sha256:b5e6aee84795299699bc8f02304a5ddd1cb644f81bf458718bdaa9540e988fd5",
+      "observedAt": "2026-09-12T17:22:05.821Z",
+      "passed": true,
+      "summary": {
+        "passed": 24,
+        "failed": [],
+        "total": 24
+      },
+      "checkIds": [
+        "flux_source_exact_revision_ready",
+        "flux_kustomization_exact_revision_ready",
+        "private_helmrelease_settled",
+        "private_deployment_exact_image_settled",
+        "private_pod_exact_digest_zero_restarts",
+        "private_required_public_environment",
+        "private_service_identity_and_exact_spec",
+        "private_ingressRoute_identity_and_exact_spec",
+        "private_networkPolicy_identity_and_exact_spec",
+        "normal_service_identity_and_exact_spec",
+        "normal_ingressRoute_identity_and_exact_spec",
+        "normal_networkPolicy_identity_and_exact_spec",
+        "private_endpointslice_routes_to_current_pod",
+        "private_cilium_endpoint_ready_identity_labels",
+        "normal_helmrelease_unchanged_settled",
+        "normal_deployment_unchanged_settled",
+        "normal_pod_identity_image_restarts_unchanged",
+        "normal_public_environment_unchanged",
+        "normal_endpointslice_identity_target_unchanged",
+        "normal_cilium_endpoint_identity_unchanged_ready",
+        "dev_env_helmrelease_unchanged_settled",
+        "dev_env_deployment_unchanged_settled",
+        "dev_env_pod_identity_images_restarts_unchanged",
+        "https_health_and_readiness"
+      ]
+    }
+  },
+  "sourceEvidenceSha256": {
+    "baseline-immediate.json": "1408abdcbfabc140c2944010a40cba7cd55de1a0d8cd8a2dcffe4b4c7db86da1",
+    "immediate-baseline-verification.json": "f9971f7179420cdf3b29df94c0a15accb9c208db0530672824d207e8601ce5c2",
+    "immediate-baseline-observed-revision.json": "0f2ce9f6989309af232271e48408630bfea3aa6d8395d984945885b0a651a7fd"
+  },
+  "sanitization": "Retains resource UIDs, generations, immutable image digests and stable spec hashes; omits environment values, addresses, Cilium labels and transient endpoint details. No secrets or application data were read."
+}

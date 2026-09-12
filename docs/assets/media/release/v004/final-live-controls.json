@@ -1,0 +1,65 @@
+{
+  "version": "v004-final",
+  "source": "test-results/fresh-playtest/plan008-final-hosted-touch/report.json",
+  "source_sha256": "20b944cedab7ecc7d64c4de963b8cca6db3f1c51eeedaef6ef9cc09f36e15754",
+  "target": "https://haynes-quest-playtest.haynesops.com",
+  "status": "passed-smoke",
+  "started_at": "2026-09-12T17:27:41.546Z",
+  "finished_at": "2026-09-12T17:28:14.100Z",
+  "client": {
+    "path": "/assets/index-Dg49Dt7R.js",
+    "bytes": 1046626,
+    "sha256": "14fdb50c25753fbaffa5e389dc224f293a4ed0de4048e667e7f11fd91c9fc35d"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "traversal": "touch joystick, world taps, and touch UI actions",
+  "outcomes": {
+    "keyboard_jump_at_age_zero": {
+      "start_y": 0,
+      "airborne_y": 0.5815249250000011
+    },
+    "world_tap_jump_at_age_zero": {
+      "start_y": 0,
+      "airborne_y": 0.5332333249999979
+    },
+    "cancelled_world_touch_did_not_move": true,
+    "held_jump_touch_ms": 693,
+    "simultaneous_inputs": {
+      "attack_outcome": "no-target",
+      "move_x_during_attack": -0.14444446563720703,
+      "move_x_during_jump": -0.14444446563720703,
+      "airborne_y": 0.58125,
+      "cancelled_contact_reset_move_x_to_zero": true
+    },
+    "leave_created_fresh_journey": true,
+    "reload_created_fresh_journey": true
+  },
+  "audio_signal": {
+    "test_sound_nonzero_samples": 112,
+    "muted_jump_nonzero_samples": 0,
+    "after_unmute_nonzero_samples": 39,
+    "context_running": true,
+    "analyser_connected": true
+  },
+  "retries": {
+    "combat": 0,
+    "local_obby": 0
+  },
+  "unexpected_errors": {
+    "page": 0,
+    "response": 0,
+    "console": 0
+  },
+  "limitations": [
+    "This is a focused hosted smoke run rather than a complete route.",
+    "WebKit could not launch because the container lacks libgstreamer-1.0.so.0.",
+    "Physical iPhone Safari was not tested."
+  ]
+}
