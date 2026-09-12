@@ -186,6 +186,7 @@ export const AUTHORED_LEVEL_LIMITS = Object.freeze({
 
 const ID_PATTERN = /^[a-z][a-z0-9-]{0,79}$/;
 const EPSILON = 1e-6;
+const GATEWAY_CLEARANCE_LENGTH = 0.75;
 
 const identifierSchema = z.string().regex(ID_PATTERN);
 const horizontalNumberSchema = z
@@ -393,6 +394,13 @@ interface HorizontalBounds {
   maxX: number;
   minZ: number;
   maxZ: number;
+}
+
+type HorizontalAxis = "x" | "z";
+
+interface NumericInterval {
+  min: number;
+  max: number;
 }
 
 interface ParsedValidation {
@@ -612,6 +620,145 @@ function hazardEnvelope(hazard: AuthoredSweeperPiece): HorizontalBounds {
     minZ: hazard.center.z - translationZ - reachZ,
     maxZ: hazard.center.z + translationZ + reachZ,
   };
+}
+
+function intervalForBounds(
+  bounds: HorizontalBounds,
+  axis: HorizontalAxis,
+): NumericInterval {
+  return axis === "x"
+    ? { min: bounds.minX, max: bounds.maxX }
+    : { min: bounds.minZ, max: bounds.maxZ };
+}
+
+function intervalsHaveInteriorOverlap(
+  first: NumericInterval,
+  second: NumericInterval,
+): boolean {
+  return Math.min(first.max, second.max) - Math.max(first.min, second.min) > EPSILON;
+}
+
+function platformCenterInterval(
+  platform: PlatformPiece,
+  axis: HorizontalAxis,
+): NumericInterval {
+  const radius = AUTHORED_LEVEL_LIMITS.supportEdgeClearance;
+  const motionInset =
+    platform.type === "moving-platform" && platform.motion.axis === axis
+      ? platform.motion.distance
+      : 0;
+  const halfSize = platform.size[axis] / 2;
+  return {
+    min: platform.center[axis] - halfSize + radius + motionInset,
+    max: platform.center[axis] + halfSize - radius - motionInset,
+  };
+}
+
+function gatewayStripInterval(
+  platform: PlatformPiece,
+  axis: HorizontalAxis,
+  direction: -1 | 1,
+  end: "source" | "destination",
+): NumericInterval {
+  const radius = AUTHORED_LEVEL_LIMITS.supportEdgeClearance;
+  const halfSize = platform.size[axis] / 2;
+  const edgeDirection = end === "source" ? direction : -direction;
+  const inwardDirection = -edgeDirection;
+  const edge = platform.center[axis] + edgeDirection * halfSize;
+  const start = edge + inwardDirection * radius;
+  const finish = start + inwardDirection * GATEWAY_CLEARANCE_LENGTH;
+  const motionExpansion =
+    platform.type === "moving-platform" && platform.motion.axis === axis
+      ? platform.motion.distance
+      : 0;
+  return {
+    min: Math.min(start, finish) - motionExpansion,
+    max: Math.max(start, finish) + motionExpansion,
+  };
+}
+
+function hazardIntersectsStandingHeight(
+  hazard: AuthoredSweeperPiece,
+  feet: number,
+): boolean {
+  const head = feet + AUTHORED_LEVEL_LIMITS.actorHeight;
+  return hazard.center.y + hazard.radius > feet && hazard.center.y - hazard.radius < head;
+}
+
+function subtractInterval(
+  available: readonly NumericInterval[],
+  blocked: NumericInterval,
+): NumericInterval[] {
+  return available.flatMap((interval) => {
+    if (!intervalsHaveInteriorOverlap(interval, blocked)) return [interval];
+    const remaining: NumericInterval[] = [];
+    if (blocked.min - interval.min > EPSILON)
+      remaining.push({ min: interval.min, max: Math.min(interval.max, blocked.min) });
+    if (interval.max - blocked.max > EPSILON)
+      remaining.push({ min: Math.max(interval.min, blocked.max), max: interval.max });
+    return remaining;
+  });
+}
+
+/**
+ * Checks only the local takeoff and landing geometry for one aligned center
+ * lane. This deliberately does not claim that the connection is reachable.
+ */
+function gatewayClearanceFailure(
+  from: PlatformPiece,
+  to: PlatformPiece,
+  hazards: readonly AuthoredSweeperPiece[],
+): string | null {
+  const deltaX = to.center.x - from.center.x;
+  const deltaZ = to.center.z - from.center.z;
+  const travelAxis: HorizontalAxis = Math.abs(deltaX) >= Math.abs(deltaZ) ? "x" : "z";
+  const crossAxis: HorizontalAxis = travelAxis === "x" ? "z" : "x";
+  const travelDelta = travelAxis === "x" ? deltaX : deltaZ;
+  const direction: -1 | 1 = travelDelta < 0 ? -1 : 1;
+  const requiredDepth =
+    AUTHORED_LEVEL_LIMITS.supportEdgeClearance + GATEWAY_CLEARANCE_LENGTH;
+
+  if (from.size[travelAxis] < requiredDepth - EPSILON)
+    return `${JSON.stringify(from.id)} cannot contain a ${GATEWAY_CLEARANCE_LENGTH}m source-exit strip after the ${AUTHORED_LEVEL_LIMITS.supportEdgeClearance}m avatar-radius edge inset`;
+  if (to.size[travelAxis] < requiredDepth - EPSILON)
+    return `${JSON.stringify(to.id)} cannot contain a ${GATEWAY_CLEARANCE_LENGTH}m destination-entry strip after the ${AUTHORED_LEVEL_LIMITS.supportEdgeClearance}m avatar-radius edge inset`;
+
+  const fromCross = platformCenterInterval(from, crossAxis);
+  const toCross = platformCenterInterval(to, crossAxis);
+  const commonCross: NumericInterval = {
+    min: Math.max(fromCross.min, toCross.min),
+    max: Math.min(fromCross.max, toCross.max),
+  };
+  if (commonCross.max - commonCross.min <= EPSILON)
+    return `No common avatar-width ${crossAxis} center lane remains across the platform motion envelopes for ${JSON.stringify(from.id)} to ${JSON.stringify(to.id)}`;
+
+  const sourceStrip = gatewayStripInterval(from, travelAxis, direction, "source");
+  const destinationStrip = gatewayStripInterval(
+    to,
+    travelAxis,
+    direction,
+    "destination",
+  );
+  let available: NumericInterval[] = [commonCross];
+  for (const hazard of hazards) {
+    const swept = expandedBounds(
+      hazardEnvelope(hazard),
+      AUTHORED_LEVEL_LIMITS.supportEdgeClearance,
+    );
+    const along = intervalForBounds(swept, travelAxis);
+    const blocksSource =
+      hazardIntersectsStandingHeight(hazard, platformTop(from)) &&
+      intervalsHaveInteriorOverlap(along, sourceStrip);
+    const blocksDestination =
+      hazardIntersectsStandingHeight(hazard, platformTop(to)) &&
+      intervalsHaveInteriorOverlap(along, destinationStrip);
+    if (!blocksSource && !blocksDestination) continue;
+    available = subtractInterval(available, intervalForBounds(swept, crossAxis));
+    if (available.length === 0) break;
+  }
+  if (available.length === 0)
+    return `No common avatar-width ${crossAxis} center lane keeps ${GATEWAY_CLEARANCE_LENGTH}m source-exit and destination-entry strips clear of standing-height sweepers for ${JSON.stringify(from.id)} to ${JSON.stringify(to.id)}`;
+  return null;
 }
 
 function checkpointEnvelope(
@@ -848,6 +995,16 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
         "connection.rise",
         `${connection.mode} height difference ${rise.toFixed(3)}m exceeds ${riseLimit}m`,
       );
+    if (connection.mode === "jump" || connection.mode === "ride") {
+      const clearanceFailure = gatewayClearanceFailure(from, to, hazards);
+      if (clearanceFailure)
+        issue(
+          issues,
+          `$.connections[${index}]`,
+          "connection.gateway-clearance",
+          clearanceFailure,
+        );
+    }
   });
 
   const platformPathSet = new Set<string>();

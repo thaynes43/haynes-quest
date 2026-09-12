@@ -8,6 +8,8 @@ import {
   type AuthoredLevelIssue,
   type AuthoredLevelPiece,
 } from "../../src/shared/authored-level";
+import bestiesPlayground from "../../src/shared/levels/besties-playground-v1.json";
+import gardenPlayground from "../../src/shared/levels/garden-playground-v1.json";
 
 const ground = (
   id: string,
@@ -132,6 +134,12 @@ function issuesFor(document: unknown): readonly AuthoredLevelIssue[] {
   return validateAuthoredLevelDocument(document);
 }
 
+function gatewayIssuesFor(document: unknown): readonly AuthoredLevelIssue[] {
+  return issuesFor(document).filter(
+    (entry) => entry.code === "connection.gateway-clearance",
+  );
+}
+
 function expectIssue(
   document: unknown,
   code: string,
@@ -238,6 +246,137 @@ describe("authored level documents", () => {
     const unsafeRise = clone();
     (unsafeRise.pieces[2] as { center: { y: number } }).center.y = 0.2;
     expectIssue(unsafeRise, "connection.rise", "$.connections[1]");
+  });
+
+  it("accepts hazard-free gateway strips in both shipped playgrounds", () => {
+    expect(gatewayIssuesFor(gardenPlayground)).toEqual([]);
+    expect(gatewayIssuesFor(bestiesPlayground)).toEqual([]);
+    expect(issuesFor(gardenPlayground)).toEqual([]);
+    expect(issuesFor(bestiesPlayground)).toEqual([]);
+  });
+
+  it("rejects a stationary wall across a required landing strip", () => {
+    const blocked = structuredClone(
+      gardenPlayground,
+    ) as unknown as AuthoredLevelDocument;
+    (blocked.pieces as AuthoredLevelPiece[]).push({
+      type: "sweeper",
+      id: "landing-wall",
+      center: { x: 3, y: 0.22, z: -25.6 },
+      halfLength: 3,
+      radius: 0.4,
+    });
+
+    expect(gatewayIssuesFor(blocked)).toContainEqual({
+      path: "$.connections[4]",
+      code: "connection.gateway-clearance",
+      message:
+        'No common avatar-width x center lane keeps 0.75m source-exit and destination-entry strips clear of standing-height sweepers for "picnic" to "winding-east"',
+    });
+  });
+
+  it("requires one lane that stays clear at both ends of a connection", () => {
+    const divided = clone();
+    (divided.pieces as AuthoredLevelPiece[]).push(
+      {
+        type: "sweeper",
+        id: "left-exit-blocker",
+        center: { x: -2, y: 0.22, z: -1.3 },
+        halfLength: 1.7,
+        radius: 0.05,
+      },
+      {
+        type: "sweeper",
+        id: "right-entry-blocker",
+        center: { x: 2, y: 0.22, z: -3.8 },
+        halfLength: 1.7,
+        radius: 0.05,
+      },
+    );
+
+    expectIssue(divided, "connection.gateway-clearance", "$.connections[0]");
+  });
+
+  it("uses full platform and hazard motion envelopes for gateway lanes", () => {
+    const movingSupport = clone();
+    const moving = movingSupport.pieces.find((piece) => piece.id === "p2") as Extract<
+      AuthoredLevelPiece,
+      { type: "moving-platform" }
+    >;
+    (moving.size as { x: number }).x = 0.9;
+    expectIssue(
+      movingSupport,
+      "connection.gateway-clearance",
+      "$.connections[1]",
+    );
+
+    const movingHazard = clone();
+    (movingHazard.pieces as AuthoredLevelPiece[]).push({
+      type: "sweeper",
+      id: "moving-landing-wall",
+      center: { x: 8, y: 0.22, z: -3.6 },
+      halfLength: 0.1,
+      radius: 0.1,
+      motion: { axis: "x", distance: 12, period: 12 },
+    });
+    expectIssue(
+      movingHazard,
+      "connection.gateway-clearance",
+      "$.connections[0]",
+    );
+
+    const movingEntry = clone();
+    const approaching = movingEntry.pieces.find(
+      (piece) => piece.id === "p2",
+    ) as Extract<AuthoredLevelPiece, { type: "moving-platform" }>;
+    (approaching.motion as { axis: "x" | "z" }).axis = "z";
+    (movingEntry.pieces as AuthoredLevelPiece[]).push({
+      type: "sweeper",
+      id: "motion-edge-wall",
+      center: { x: 0, y: 0.22, z: -9.55 },
+      halfLength: 5,
+      radius: 0.05,
+    });
+    expectIssue(
+      movingEntry,
+      "connection.gateway-clearance",
+      "$.connections[1]",
+    );
+  });
+
+  it("allows a broad alternate lane around a centered landing hazard", () => {
+    const alternateLane = clone();
+    (alternateLane.pieces as AuthoredLevelPiece[]).push({
+      type: "sweeper",
+      id: "center-landing-blocker",
+      center: { x: 0, y: 0.22, z: -3.6 },
+      halfLength: 0.5,
+      radius: 0.1,
+    });
+
+    expect(gatewayIssuesFor(alternateLane)).toEqual([]);
+  });
+
+  it("ignores gateway hazards entirely below the feet or above the child", () => {
+    const verticallyClear = clone();
+    (verticallyClear.pieces as AuthoredLevelPiece[]).push(
+      {
+        type: "sweeper",
+        id: "below-landing-wall",
+        center: { x: 0, y: -0.4, z: -3.6 },
+        halfLength: 5,
+        radius: 0.4,
+      },
+      {
+        type: "sweeper",
+        id: "above-landing-wall",
+        center: { x: 0, y: 1.62, z: -3.6 },
+        halfLength: 5,
+        radius: 0.4,
+      },
+    );
+
+    expect(gatewayIssuesFor(verticallyClear)).toEqual([]);
   });
 
   it("keeps gameplay anchors and checkpoints on clear static ground", () => {
