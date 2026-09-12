@@ -184,6 +184,7 @@ function Adventure({
     let previousRequestError: string | null = null;
     let previousAttackSequence = -1;
     let previouslyGrounded = true;
+    let previousJumpSequence = 0;
     let noticeTimer: ReturnType<typeof setTimeout> | undefined;
     const sound = new QuestAudio();
     soundRef.current = sound;
@@ -209,12 +210,18 @@ function Adventure({
       setSave(next);
       setError("");
       if (next.revision > before.revision) {
-        if (action?.type === "recover-memory")
-          void sound.cue("memory-collected");
         if (
-          action?.type === "consume-memory-bundle" ||
-          next.ageYears > before.ageYears
+          action?.type === "recover-memory" &&
+          before.memories.find((memory) => memory.id === action.memoryId)
+            ?.role === "minor"
         )
+          void sound.feedback("pickup");
+        else if (
+          action?.type === "recover-memory" &&
+          next.ageYears === before.ageYears
+        )
+          void sound.cue("memory-collected");
+        if (action?.type === "consume-memory-bundle")
           void sound.cue("ability-unlocked");
         if (action?.type === "collect-equipment") {
           void sound.feedback("pickup");
@@ -346,8 +353,9 @@ function Adventure({
               ["exploring", "memory-released"].includes(next.phase)
             )
               void sound.feedback("landed");
-            if (previouslyGrounded && !next.grounded && next.position.y > 0.05)
+            if ((next.jumpSequence ?? 0) > previousJumpSequence)
               void sound.feedback("jump");
+            previousJumpSequence = next.jumpSequence ?? 0;
             previouslyGrounded = next.grounded;
             if (
               next.attackFeedback &&
@@ -440,6 +448,13 @@ function Adventure({
   useEffect(() => {
     game.current?.setPaused(modalOpen);
     soundRef.current?.setPaused(modalOpen);
+    // Celebration can play through its panel once gameplay has unlocked audio.
+    // Only direct gestures attempt to unlock a suspended browser context.
+    if (
+      (activeModal === "chapter" || activeModal === "complete") &&
+      soundRef.current?.status().contextState === "running"
+    )
+      void soundRef.current.audition("ability-unlocked");
   }, [modalOpen, activeModal]);
 
   const feedback = (
@@ -873,7 +888,12 @@ function Adventure({
               setMuted(false);
               soundRef.current?.setPreferences(false, volume || 0.8);
               if (!volume) setVolume(0.8);
-              void soundRef.current?.audition().then(ok => { if (!ok) setError("Sound couldn’t start. Check your device volume and tap Play a test sound again."); });
+              void soundRef.current?.audition().then((ok) => {
+                if (!ok)
+                  setError(
+                    "Sound couldn’t start. Check your device volume and tap Play a test sound again.",
+                  );
+              });
             }}
           >
             Play a test sound

@@ -1,42 +1,43 @@
-# Two-chapter playtest
+# A fresh two-chapter playtest
 
-Continue your saved journey to try the repaired wand and dragon fight. **Start a new Demo Adventurer journey for the Besties boss in chapter two.** Existing journeys keep their original cast and progress.
+Choose **Play from the beginning** for the full age 0 → 4 → 7 route, or **Try the Besties chapter** to jump straight to chapter two. Every test starts fresh. Leaving or reloading resets the run; there is no save or resume list in this playtest.
 
-This private review uses fictional pictures. Your family’s photo library and sign-in are still separate work. Look for **Playtest · Two chapters · Fictional memories** on the home screen.
+This private review uses [six fictional pictures](reviews/fixture-route-memories/v001.md). Your family’s photo library and sign-in remain separate work.
 
-## What changed
+## How to play
 
-- The Prism wand reaches nearby enemies, aims toward them and shows a bright beam. Attack explains when you need to move closer or wait. Holding the movement stick while pressing Attack should keep you moving.
-- The dragon can reach the second chapter’s saved landing and retaliate. Watch the full red warning circle, step clear or guard.
-- Four sound cues now accompany actions, landings, memories and growth. Sound starts after a touch or key press. The music-note button mutes it; Help contains the volume control.
-- Trees, flowers and grass fill out both chapters while the main route and landing areas stay clear.
-- Six friendly residents offer healing. Look for green hearts. Harming a friend requires a deliberate confirmation, costs health and pauses their help; **Make amends** restores the friendship, even after knocking them out.
-- The Besties alternate a pink foam sweeper and a purple floor lane. Jump or move aside. Their missed high-five leaves both dizzy for five seconds: that is your chance to attack.
+| Action | Touch | Keyboard |
+| --- | --- | --- |
+| Move | Left stick | WASD or arrow keys |
+| Jump, at every age | Tap the world | Space |
+| Look around | Drag the world | Drag with the mouse |
+| Attack | Large **Attack** button | F |
+| Secondary attack | Smaller **Bash** button, after finding a shield | Shift |
+| Collect gear or memories | Walk into them | Walk into them |
 
-## What to try
+Hold the movement stick while tapping elsewhere to jump or attack. Dragging the camera and touching a menu do not jump. Bash is a stronger close-range hit with a separate recharge; future gear can add other secondary attacks.
 
-Find your attack tool and shield, dodge the moving hazards and defeat the first boss. Open its released pictures, then absorb the bundle to grow from age zero to four and unlock jumping. Cross the short gaps and moving platform in chapter two, beat its boss and absorb the next bundle to reach age seven. Save and leave at any point to check that your progress returns.
+Find two little memories along each route. They appear briefly as you collect them and do not stop the action or age the player. Beat the boss, then walk into the big memory beyond it: collecting all three advances your age and opens the next chapter. Missing little memories remain on the path after victory.
 
-The loop is **gear → obstacles and fights → boss → memories → growth → next period**. Falls return you to a nearby safe spot with equipment and victories retained. Friendly help is optional and never blocks a chapter. Please judge whether the controls feel comfortable, the route is clear and the jokes and fights are fun.
+## What changed for this test
 
-| Included now | Still to come |
-| --- | --- |
-| Two chapters, equipment, ordinary enemies and bosses | More chapters and the full baby-to-adult journey |
-| Gentle obby hazards, checkpoints and jumping after growth | Difficulty and abilities that expand throughout a lifetime |
-| Besties duo, six healing friends and recoverable harm penalties | Parent-curated favorites and additional enemies such as FNAF-inspired characters |
-| Sound cues, fictional pictures and saved keyboard/touch play | Your family’s Immich photos, birthday setup and sign-in |
-| Automated browser and touch checks | Physical iPhone/iPad Safari and the children’s next playtest |
+- Fresh starts replace the artwork-update, save-and-leave loop. A missing model shows a retryable warning while play continues.
+- Jumping works from age zero. Gear, memories and available friendly healing are collected on contact.
+- Two labeled combat buttons replace the four-button cluster. Movement is faster, slow rendering no longer automatically halves game speed, and attacks and pickups have more visible motion.
+- Grass and flowers grow along the visible edges of the path and on the landings.
+- Sound starts with a confirming cue after a touch or key press. **Sound on/off** controls mute; **Help → Play a test sound** auditions the output. Help also has a volume slider. The mix is louder and actions have distinct feedback.
 
-## Actual game views
+## The encounters
 
-These are captures from the running game, using its actual models.
+Watch the padded sweepers and short gaps. A slip returns you to a nearby safe spot with your gear and collected memories. Green hearts mark friends who can heal you. Deliberately hurting one costs health; returning to make amends restores their help. Friends never block chapter progression.
 
-<div class="studio-comparison">
-<figure><img src="media/playtest/v002/friends.png" alt="Friendly residents and planting in the game"><figcaption>Friendly help along the journey</figcaption></figure>
-<figure><img src="media/playtest/v002/besties-phone.png" alt="The two Besties actors and their obstacle warning in a phone-sized game view"><figcaption>The Besties on a small screen</figcaption></figure>
-</div>
+The Besties alternate a pink foam sweeper and a purple floor lane. Jump or step aside. When they miss their high-five, both become dizzy for five seconds: that is your chance to attack.
 
-The [first complete touch journey](media/playtest/v002/first-touch-evidence.json) passed both chapters, bosses, visible fictional pictures, age 0 → 4 → 7 and saved resume. That run preceded the final high-five pose and camera refinements. The [final focused touch check](media/playtest/v002/focused-touch-final.json) verifies friendly help and penalties, sound controls, held-stick wand damage, dragon retaliation and the Besties opening on the reviewed build. The exact artwork files are listed below. Automated Chromium touch and software graphics checks do not establish physical Safari performance or the children’s response.
+Please judge how the controls feel, whether you can hear the actions, and whether the route and jokes are fun. Automated browser checks help find failures, but physical iPhone/iPad Safari, device performance and the children’s response remain the next inspection.
+
+## Still to come
+
+More chapters, the full baby-to-adult journey, difficulty and abilities that grow throughout life, parent-curated photos and favorite enemies, birthday setup, Immich and sign-in remain future work. The Besties shortcut prepares the first chapter for testing; it is not a saved journey.
 
 ## Cast and artwork
 
@@ -45,6 +46,4 @@ The [first complete touch journey](media/playtest/v002/first-touch-evidence.json
 | The Block Party | [Mister Hiss](reviews/mister-hiss/v001.md), [Peel Patrol](reviews/peel-patrol/v001.md) | [Drama Dragon](reviews/drama-dragon/v001.md) | [Blockling](reviews/blockling/v001.md), [Signal Moth](reviews/signal-moth/v001.md), [Buffer Baron](reviews/buffer-baron/v001.md) |
 | Besties Obby | [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md), returning Peel Patrol | [The Bickering Besties](reviews/bickering-besties/v001.md) | [Loop Dancer](reviews/loop-dancer/v001.md), [Prism Mimic](reviews/prism-mimic/v001.md), [Trendweaver](reviews/trendweaver/v001.md) |
 
-The Besties require jumping. A journey beginning in 2024 without that ability keeps the compatible remix roster. Existing v2 journeys retain the returning Drama Dragon. Nap Captain and One-Star Diva remain paused; the playtest cast does not decide the children’s permanent favorites.
-
-The [exact playtest artwork list](media/playtest/v002/artwork.json) records 23 GLBs and four sound cues with their checksums. [Browse the full visual catalog](catalog.md) for inspiration images, models, motion and sound previews. The joint Besties look is approved; final approval of exact model and sound versions remains open.
+[Browse the full visual catalog](catalog.md) for inspiration images, models, motion, the six fictional pictures and sound previews. The playtest uses the same 23 GLBs and four source WAVs recorded in the [artwork list](media/playtest/v002/artwork.json), with a revised runtime sound mix. The joint Besties look is approved; exact model and sound versions remain available for final review.

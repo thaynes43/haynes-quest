@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { loadConfig } from '../../src/server/config.js';
+import { InMemoryQuestStore } from '../../src/server/db/memory-store.js';
+import { createConfiguredStore } from '../../src/server/index.js';
 
 const base = {
   DATABASE_URL: 'postgres://quest:local@example.invalid/quest',
@@ -17,6 +19,42 @@ describe('server configuration', () => {
   it('rejects Immich credentials in the fixture process', () => {
     expect(() => loadConfig({ ...base, QUEST_FIXTURE_MODE: 'true', IMMICH_API_KEY: 'private' })).toThrow(
       'cannot receive Immich credentials',
+    );
+  });
+
+  it('allows an explicit fixture-development playtest to start without a database', () => {
+    const { DATABASE_URL: _databaseUrl, ...withoutDatabase } = base;
+    const config = loadConfig({
+      ...withoutDatabase,
+      NODE_ENV: 'development',
+      QUEST_FIXTURE_MODE: 'true',
+      QUEST_EPHEMERAL_PLAYTEST: 'true',
+    });
+
+    expect(config).toMatchObject({
+      fixtureMode: true,
+      ephemeralPlaytest: true,
+      databaseUrl: null,
+    });
+    expect(createConfiguredStore(config)).toBeInstanceOf(InMemoryQuestStore);
+  });
+
+  it('rejects ephemeral progress outside the isolated fixture deployment', () => {
+    expect(() => loadConfig({ ...base, QUEST_EPHEMERAL_PLAYTEST: 'true' })).toThrow(
+      'Ephemeral playtest requires fixture development mode',
+    );
+    expect(() => loadConfig({
+      ...base,
+      NODE_ENV: 'test',
+      QUEST_FIXTURE_MODE: 'true',
+      QUEST_EPHEMERAL_PLAYTEST: 'true',
+    })).toThrow('Ephemeral playtest requires fixture development mode');
+  });
+
+  it('continues to require Postgres configuration for normal persistent mode', () => {
+    const { DATABASE_URL: _databaseUrl, ...withoutDatabase } = base;
+    expect(() => loadConfig({ ...withoutDatabase, QUEST_FIXTURE_MODE: 'true' })).toThrow(
+      'DATABASE_URL is required',
     );
   });
 

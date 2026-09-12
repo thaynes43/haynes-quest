@@ -1,9 +1,11 @@
 import { z } from 'zod';
 import {
-  abilitiesForAge,
+  abilitiesForPlanAge,
   appearanceForAge,
+  memoryIdsForLevel,
   type AdventurePlan,
   type AdventurePlanV2,
+  type AdventurePlanV3,
   type AdventureState,
 } from '../shared/adventure.js';
 import {
@@ -78,16 +80,30 @@ const levelShape = {
   targetAgeYears: z.number().int().min(0).max(150),
   startDate: dateOnly,
   eraYear: z.number().int().min(1_000).max(9_999),
-  memoryIds: z.array(identifier).min(1).max(24),
   pickups: z.array(equipmentSchema).min(1).max(8),
   bossId: identifier,
 };
 const levelV1Schema = z.object({
   ...levelShape,
+  memoryIds: z.array(identifier).min(1).max(24),
   encounters: z.array(encounterDefinitionV1Schema).min(1).max(16),
 }).strict();
 const levelV2Schema = z.object({
   ...levelShape,
+  memoryIds: z.array(identifier).min(1).max(24),
+  periodId: z.enum([
+    'block-party-v1',
+    'remix-runway-v1',
+    'remix-runway-v2',
+    'besties-obby-v1',
+  ]),
+  routeId: z.enum(['gentle-intro-v1', 'gentle-jump-v1']),
+  encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
+}).strict();
+const levelV3Schema = z.object({
+  ...levelShape,
+  minorMemoryIds: z.tuple([identifier, identifier]),
+  majorMemoryId: identifier,
   periodId: z.enum([
     'block-party-v1',
     'remix-runway-v1',
@@ -106,6 +122,11 @@ const planSchema = z.discriminatedUnion('version', [
     version: z.literal('era-level-plan-v2'),
     catalogVersion: z.enum(PARODY_CATALOG_VERSIONS),
     levels: z.array(levelV2Schema).min(1).max(24),
+  }).strict(),
+  z.object({
+    version: z.literal('era-level-plan-v3'),
+    catalogVersion: z.enum(PARODY_CATALOG_VERSIONS),
+    levels: z.array(levelV3Schema).length(2),
   }).strict(),
 ]);
 const encounterProgressSchema = z.object({
@@ -225,7 +246,7 @@ export function parseStoredFriendlyState(
 }
 
 function validPlan(plan: AdventurePlan): boolean {
-  if (plan.version === 'era-level-plan-v2' && !validParodyPlan(plan)) return false;
+  if (plan.version !== 'era-level-plan-v1' && !validParodyPlan(plan)) return false;
   const levelIds = new Set<string>();
   const memoryIds = new Set<string>();
   const pickupIds = new Set<string>();
@@ -233,6 +254,7 @@ function validPlan(plan: AdventurePlan): boolean {
   const encounterIds = new Set<string>();
   let priorTargetAge = 0;
   for (const [index, level] of plan.levels.entries()) {
+    const levelMemoryIds = memoryIdsForLevel(level);
     const levelPickupIds = level.pickups.map((equipment) => equipment.pickupId);
     const levelEquipmentIds = level.pickups.map((equipment) => equipment.id);
     const levelEncounterIds = level.encounters.map((encounter) => encounter.id);
@@ -242,11 +264,11 @@ function validPlan(plan: AdventurePlan): boolean {
       level.targetAgeYears < level.startAgeYears ||
       level.eraYear !== Number(level.startDate.slice(0, 4)) ||
       levelIds.has(level.id) ||
-      hasDuplicates(level.memoryIds) ||
+      hasDuplicates(levelMemoryIds) ||
       hasDuplicates(levelPickupIds) ||
       hasDuplicates(levelEquipmentIds) ||
       hasDuplicates(levelEncounterIds) ||
-      level.memoryIds.some((id) => memoryIds.has(id)) ||
+      levelMemoryIds.some((id) => memoryIds.has(id)) ||
       level.pickups.some(
         (equipment) => pickupIds.has(equipment.pickupId) || equipmentIds.has(equipment.id),
       ) ||
@@ -256,7 +278,7 @@ function validPlan(plan: AdventurePlan): boolean {
       level.encounters.find((encounter) => encounter.id === level.bossId)?.role !== 'boss'
     ) return false;
     levelIds.add(level.id);
-    level.memoryIds.forEach((id) => memoryIds.add(id));
+    levelMemoryIds.forEach((id) => memoryIds.add(id));
     level.pickups.forEach((equipment) => {
       pickupIds.add(equipment.pickupId);
       equipmentIds.add(equipment.id);
@@ -267,11 +289,11 @@ function validPlan(plan: AdventurePlan): boolean {
   return true;
 }
 
-function validParodyPlan(plan: AdventurePlanV2): boolean {
+function validParodyPlan(plan: AdventurePlanV2 | AdventurePlanV3): boolean {
   const catalog = PARODY_CATALOGS[plan.catalogVersion];
   if (!catalog) return false;
   for (const level of plan.levels) {
-    const abilities = new Set(abilitiesForAge(level.startAgeYears));
+    const abilities = new Set(abilitiesForPlanAge(plan, level.startAgeYears));
     const expectedRoute = abilities.has('jump') ? 'gentle-jump-v1' : 'gentle-intro-v1';
     if (
       level.routeId !== expectedRoute ||
@@ -307,7 +329,7 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
   const equipment = levels.flatMap((level) => level.pickups);
   const equipmentIds = new Set(equipment.map((item) => item.id));
   const pickupIds = new Set(equipment.map((item) => item.pickupId));
-  const memories = new Set(levels.flatMap((level) => level.memoryIds));
+  const memories = new Set(levels.flatMap(memoryIdsForLevel));
   const levelIds = new Set(levels.map((level) => level.id));
   const definitions = new Map(
     levels.flatMap((level) => level.encounters).map((encounter) => [encounter.id, encounter]),
@@ -315,7 +337,7 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
   const stateEncounterIds = Object.keys(state.encounters);
   const completedPrefix = levels.slice(0, state.completedLevelIds.length).map((level) => level.id);
   const completedMemoryIds = new Set(
-    levels.slice(0, state.completedLevelIds.length).flatMap((level) => level.memoryIds),
+    levels.slice(0, state.completedLevelIds.length).flatMap(memoryIdsForLevel),
   );
   const activeLevel = levels[state.activeLevelIndex];
   const availableEquipment = new Set(
@@ -330,15 +352,20 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
       .flatMap((level) => level.pickups)
       .map((item) => item.pickupId),
   );
-  const revealableMemoryIds = new Set([
-    ...completedMemoryIds,
-    ...(activeLevel && state.phase === 'memory-released' ? activeLevel.memoryIds : []),
-  ]);
+  const revealableMemoryIds = new Set(completedMemoryIds);
+  if (activeLevel) {
+    if ('minorMemoryIds' in activeLevel) {
+      activeLevel.minorMemoryIds.forEach((id) => revealableMemoryIds.add(id));
+      if (state.phase === 'memory-released') revealableMemoryIds.add(activeLevel.majorMemoryId);
+    } else if (state.phase === 'memory-released') {
+      activeLevel.memoryIds.forEach((id) => revealableMemoryIds.add(id));
+    }
+  }
   const equipped = equipment.find((item) => item.id === state.equippedId);
   const expectedAge = state.completedLevelIds.length > 0
     ? levels[state.completedLevelIds.length - 1]!.targetAgeYears
     : 0;
-  const expectedAbilities = abilitiesForAge(expectedAge);
+  const expectedAbilities = abilitiesForPlanAge(plan, expectedAge);
   const expectedAppearance = appearanceForAge(expectedAge);
   if (
     hasDuplicates(state.inventoryIds) ||
@@ -354,6 +381,8 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
     state.collectedPickupIds.some((id) => !availablePickups.has(id)) ||
     state.revealedMemoryIds.some((id) => !memories.has(id)) ||
     state.revealedMemoryIds.some((id) => !revealableMemoryIds.has(id)) ||
+    (activeLevel && 'majorMemoryId' in activeLevel &&
+      state.revealedMemoryIds.includes(activeLevel.majorMemoryId)) ||
     state.consumedMemoryIds.some(
       (id) => !memories.has(id) || !state.revealedMemoryIds.includes(id) || !completedMemoryIds.has(id),
     ) ||

@@ -35,10 +35,21 @@ class FakeSource {
   readonly stop = vi.fn();
 }
 
-class FakeAudioContext {
+class FakeCompressor {
+  readonly threshold = { value: -24 };
+  readonly knee = { value: 30 };
+  readonly ratio = { value: 12 };
+  readonly attack = { value: 0.003 };
+  readonly release = { value: 0.25 };
+  readonly connect = vi.fn();
+  readonly disconnect = vi.fn();
+}
+
+class FakeAudioContext extends EventTarget {
   state: AudioContextState = "suspended";
   readonly destination = {} as AudioDestinationNode;
   readonly gains: FakeGain[] = [];
+  readonly compressors: FakeCompressor[] = [];
   readonly sources: FakeSource[] = [];
   readonly resume = vi.fn(async () => {
     this.state = "running";
@@ -51,6 +62,10 @@ class FakeAudioContext {
   });
   readonly decodeAudioData = vi.fn(async () => ({}) as AudioBuffer);
 
+  constructor() {
+    super();
+  }
+
   createGain(): GainNode {
     const gain = new FakeGain();
     this.gains.push(gain);
@@ -61,6 +76,12 @@ class FakeAudioContext {
     const source = new FakeSource();
     this.sources.push(source);
     return source as unknown as AudioBufferSourceNode;
+  }
+
+  createDynamicsCompressor(): DynamicsCompressorNode {
+    const compressor = new FakeCompressor();
+    this.compressors.push(compressor);
+    return compressor as unknown as DynamicsCompressorNode;
   }
 }
 
@@ -77,23 +98,32 @@ function successfulFetch(): typeof fetch {
 function audioFixture(overrides: QuestAudioOptions = {}) {
   const context = new FakeAudioContext();
   const storage = new MemoryStorage();
+  const audioSession = { type: "auto" };
   const contextFactory = vi.fn(() => context as unknown as AudioContext);
   const fetcher = successfulFetch();
   const audio = new QuestAudio({
     storage,
     pageDocument: null,
+    audioSession,
     contextFactory,
     fetcher,
     ...overrides,
   });
-  return { audio, context, contextFactory, fetcher, storage };
+  return { audio, audioSession, context, contextFactory, fetcher, storage };
 }
 
 describe("QuestAudio", () => {
   it("waits for an explicit start before loading or playing a cue", async () => {
-    const { audio, context, contextFactory, fetcher } = audioFixture();
+    const { audio, audioSession, context, contextFactory, fetcher } =
+      audioFixture();
 
-    expect(audio.preferences()).toEqual({ muted: false, volume: 0.35 });
+    expect(audio.preferences()).toEqual({ muted: false, volume: 0.8 });
+    expect(audio.status()).toEqual({
+      muted: false,
+      volume: 0.8,
+      ready: false,
+      contextState: "unavailable",
+    });
     await expect(audio.cue("memory-collected")).resolves.toBe(false);
     expect(contextFactory).not.toHaveBeenCalled();
     expect(fetcher).not.toHaveBeenCalled();
@@ -101,6 +131,18 @@ describe("QuestAudio", () => {
     const started = audio.start();
     expect(contextFactory).toHaveBeenCalledOnce();
     await expect(started).resolves.toBe(true);
+    expect(audioSession.type).toBe("playback");
+    expect(context.compressors[0]).toMatchObject({
+      threshold: { value: -3 },
+      knee: { value: 0 },
+      ratio: { value: 20 },
+      attack: { value: 0.003 },
+      release: { value: 0.1 },
+    });
+    expect(audio.status()).toMatchObject({
+      ready: true,
+      contextState: "running",
+    });
     await expect(
       audio.cue("memory-collected", { gain: 0.5, playbackRate: 0.5 }),
     ).resolves.toBe(true);
@@ -109,9 +151,11 @@ describe("QuestAudio", () => {
     expect(context.gains[1]?.gain.value).toBe(
       playtestCues["memory-collected"].gain * 0.5,
     );
+    audio.dispose();
+    expect(audioSession.type).toBe("auto");
   });
 
-  it("honors and updates an explicit persisted mute and volume preference", async () => {
+  it("starts fresh from legacy playtest preferences, then persists the new preference namespace", async () => {
     const storage = new MemoryStorage();
     storage.setItem(
       "quest-audio",
@@ -119,21 +163,76 @@ describe("QuestAudio", () => {
     );
     const { audio, context, contextFactory } = audioFixture({ storage });
 
-    expect(audio.preferences()).toEqual({ muted: true, volume: 0.8 });
-    await expect(audio.start()).resolves.toBe(false);
-    expect(contextFactory).not.toHaveBeenCalled();
+    expect(audio.preferences()).toEqual({ muted: false, volume: 0.8 });
+    await expect(audio.start()).resolves.toBe(true);
+    expect(contextFactory).toHaveBeenCalledOnce();
 
-    audio.setPreferences(false, 0.25);
-    expect(JSON.parse(storage.getItem("quest-audio")!)).toEqual({
-      muted: false,
+    audio.setPreferences(true, 0.25);
+    expect(JSON.parse(storage.getItem("quest-audio-v2")!)).toEqual({
+      muted: true,
       volume: 0.25,
     });
-    await expect(audio.start()).resolves.toBe(true);
+    await expect(audio.start()).resolves.toBe(false);
+    audio.setPreferences(false);
     await expect(audio.cue("ui-confirmed")).resolves.toBe(true);
     audio.setPreferences(true);
 
     expect(context.gains[0]?.gain.value).toBe(0);
     expect(context.sources[0]?.stop).toHaveBeenCalledOnce();
+  });
+
+  it("honors an explicit mute in the current preference namespace", async () => {
+    const storage = new MemoryStorage();
+    storage.setItem(
+      "quest-audio-v2",
+      JSON.stringify({ muted: true, volume: 0.45 }),
+    );
+    const { audio, contextFactory } = audioFixture({ storage });
+
+    expect(audio.preferences()).toEqual({ muted: true, volume: 0.45 });
+    await expect(audio.start({ confirmation: true })).resolves.toBe(false);
+    expect(contextFactory).not.toHaveBeenCalled();
+  });
+
+  it("plays one retryable positive confirmation after gesture unlock", async () => {
+    const retryingFetch = vi
+      .fn<typeof fetch>()
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockImplementation(
+        async () => new Response(new Uint8Array([1, 2, 3, 4]), { status: 200 }),
+      );
+    const { audio, context } = audioFixture({ fetcher: retryingFetch });
+
+    await expect(audio.start({ confirmation: true })).resolves.toBe(false);
+    expect(audio.status().ready).toBe(true);
+    expect(context.sources).toHaveLength(0);
+    await expect(audio.start({ confirmation: true })).resolves.toBe(true);
+    expect(context.sources).toHaveLength(1);
+    await expect(audio.start({ confirmation: true })).resolves.toBe(true);
+    expect(context.sources).toHaveLength(1);
+
+    audio.setPreferences(true);
+    audio.setPreferences(false);
+    audio.setPaused(true);
+    await expect(audio.start({ confirmation: true })).resolves.toBe(true);
+    expect(context.sources).toHaveLength(2);
+    expect(audio.status().ready).toBe(false);
+  });
+
+  it("auditions a requested cue repeatedly while a gameplay modal is paused", async () => {
+    const { audio, context } = audioFixture();
+    audio.setPaused(true);
+
+    await expect(audio.audition()).resolves.toBe(true);
+    await expect(audio.audition("ui-confirmed")).resolves.toBe(true);
+
+    expect(context.resume).toHaveBeenCalledOnce();
+    expect(context.sources).toHaveLength(2);
+    expect(audio.status().ready).toBe(false);
+
+    audio.setPreferences(true);
+    await expect(audio.audition()).resolves.toBe(false);
+    expect(context.sources).toHaveLength(2);
   });
 
   it("keeps load/decode failures silent, retryable, and same-origin", async () => {
@@ -167,7 +266,7 @@ describe("QuestAudio", () => {
     expect(externalFetch).not.toHaveBeenCalled();
   });
 
-  it("stays silent while paused or backgrounded and cannot revive after dispose", async () => {
+  it("pauses modal cues without suspending hardware, but requires a gesture after backgrounding", async () => {
     const page = new FakePage();
     const { audio, context, fetcher } = audioFixture({ pageDocument: page });
     await audio.start();
@@ -175,15 +274,15 @@ describe("QuestAudio", () => {
 
     audio.setPaused(true);
     expect(context.sources[0]?.stop).toHaveBeenCalledOnce();
-    expect(context.suspend).toHaveBeenCalledOnce();
-    audio.setPaused(false);
+    expect(context.suspend).not.toHaveBeenCalled();
     await expect(audio.cue("memory-collected")).resolves.toBe(false);
-    await audio.start();
+    audio.setPaused(false);
     await expect(audio.cue("memory-collected")).resolves.toBe(true);
 
     page.hidden = true;
     page.dispatchEvent(new Event("visibilitychange"));
     expect(context.sources[1]?.stop).toHaveBeenCalledOnce();
+    expect(context.suspend).toHaveBeenCalledOnce();
     page.hidden = false;
     page.dispatchEvent(new Event("visibilitychange"));
     await expect(audio.cue("memory-collected")).resolves.toBe(false);
@@ -195,6 +294,88 @@ describe("QuestAudio", () => {
     await expect(audio.start()).resolves.toBe(false);
     await expect(audio.cue("memory-collected")).resolves.toBe(false);
     expect(fetcher).toHaveBeenCalledTimes(requestsAtDispose);
+  });
+
+  it("keeps a page-hide suspend authoritative over a pending resume", async () => {
+    const page = new FakePage();
+    const { audio, context } = audioFixture({ pageDocument: page });
+    let finishResume!: () => void;
+    context.resume.mockImplementationOnce(async () => {
+      await new Promise<void>((resolve) => {
+        finishResume = resolve;
+      });
+      context.state = "running";
+    });
+
+    const starting = audio.start();
+    expect(context.resume).toHaveBeenCalledOnce();
+    page.hidden = true;
+    page.dispatchEvent(new Event("visibilitychange"));
+    finishResume();
+
+    await expect(starting).resolves.toBe(false);
+    expect(context.state).toBe("suspended");
+    expect(audio.status().ready).toBe(false);
+    expect(context.suspend).toHaveBeenCalledTimes(2);
+  });
+
+  it("marks spontaneous interruption as not ready and resumes on a later gesture", async () => {
+    const { audio, context } = audioFixture();
+    await audio.start();
+
+    context.state = "interrupted";
+    context.dispatchEvent(new Event("statechange"));
+    expect(audio.status()).toMatchObject({
+      ready: false,
+      contextState: "interrupted",
+    });
+    await expect(audio.cue("ui-confirmed")).resolves.toBe(false);
+    await expect(audio.start()).resolves.toBe(true);
+    expect(context.resume).toHaveBeenCalledTimes(2);
+  });
+
+  it("rebuilds the graph after the browser closes a context", async () => {
+    const first = new FakeAudioContext();
+    const second = new FakeAudioContext();
+    const contextFactory = vi
+      .fn<() => AudioContext | undefined>()
+      .mockReturnValueOnce(first as unknown as AudioContext)
+      .mockReturnValueOnce(second as unknown as AudioContext);
+    const audio = new QuestAudio({
+      storage: new MemoryStorage(),
+      pageDocument: null,
+      audioSession: null,
+      contextFactory,
+      fetcher: successfulFetch(),
+    });
+    await audio.start();
+    await audio.cue("ui-confirmed");
+
+    first.state = "closed";
+    first.dispatchEvent(new Event("statechange"));
+    await expect(audio.start()).resolves.toBe(true);
+
+    expect(contextFactory).toHaveBeenCalledTimes(2);
+    expect(first.sources[0]?.stop).toHaveBeenCalledOnce();
+    expect(first.gains[0]?.disconnect).toHaveBeenCalledOnce();
+    expect(first.compressors[0]?.disconnect).toHaveBeenCalledOnce();
+    expect(second.state).toBe("running");
+  });
+
+  it("maps gameplay feedback to measured cue variants", async () => {
+    const { audio, context } = audioFixture();
+    await audio.start();
+
+    await expect(audio.feedback("jump")).resolves.toBe(true);
+    await expect(audio.feedback("impact")).resolves.toBe(true);
+    expect(context.sources[0]?.playbackRate.value).toBe(1.45);
+    expect(context.gains[1]?.gain.value).toBe(
+      playtestCues["ui-confirmed"].gain * 1.1,
+    );
+    expect(context.sources[1]?.playbackRate.value).toBe(0.75);
+    expect(context.gains[2]?.gain.value).toBe(
+      playtestCues["ui-confirmed"].gain * 1.3,
+    );
   });
 
   it("bounds overlap and lets important feedback replace movement sounds", async () => {

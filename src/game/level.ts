@@ -164,8 +164,8 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
         ? id === activeLevel.majorMemoryId
           ? -24
           : index === 0
-            ? -5.2
-            : -11.2
+            ? -6.3
+            : -12.0
         : -22,
     },
     state: memoriesById.get(id)?.state ?? "locked",
@@ -193,7 +193,7 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
       kind: pickup.kind,
       position: activeLevel.majorMemoryId
         ? {
-            x: pickup.kind === "attack-tool" ? -0.7 : 0.8,
+            x: pickup.kind === "attack-tool" ? -0.7 : 1.0,
             y: 0,
             z: pickup.kind === "attack-tool" ? -0.5 : -5.8,
           }

@@ -1,16 +1,25 @@
 import { serve } from '@hono/node-server';
+import { pathToFileURL } from 'node:url';
 import { classifyError, createApp, emitSafeDiagnostic, writeSafeDiagnostic } from './app.js';
-import { loadConfig } from './config.js';
+import { loadConfig, type ServerConfig } from './config.js';
+import { InMemoryQuestStore } from './db/memory-store.js';
 import { PostgresQuestStore } from './db/postgres-store.js';
+import type { QuestStore } from './domain.js';
 
 const MAINTENANCE_INTERVAL_MS = 5 * 60_000;
-let startupStore: PostgresQuestStore | null = null;
+let startupStore: QuestStore | null = null;
 
-async function start(): Promise<void> {
+export function createConfiguredStore(config: ServerConfig): QuestStore {
+  if (config.ephemeralPlaytest) return InMemoryQuestStore.ephemeral();
+  if (!config.databaseUrl) throw new Error('DATABASE_URL is required');
+  return PostgresQuestStore.connect(config.databaseUrl);
+}
+
+export async function start(): Promise<void> {
   const config = loadConfig();
-  const store = PostgresQuestStore.connect(config.databaseUrl);
+  const store = createConfiguredStore(config);
   startupStore = store;
-  await store.migrate();
+  if (store instanceof PostgresQuestStore) await store.migrate();
 
   let maintenanceJob: Promise<void> | null = null;
   const runMaintenance = (phase: 'scheduled' | 'startup'): Promise<void> => {
@@ -37,6 +46,7 @@ async function start(): Promise<void> {
   const app = createApp({
     store,
     fixtureMode: config.fixtureMode,
+    ephemeralPlaytest: config.ephemeralPlaytest,
     sessionSecret: config.sessionSecret,
     appOrigin: config.appOrigin,
     clientDir: config.clientDir,
@@ -69,7 +79,7 @@ async function start(): Promise<void> {
     }
     await maintenanceJob;
     try {
-      await store.close();
+      await store.close?.();
     } catch (error) {
       failed = true;
       emitSafeDiagnostic(writeSafeDiagnostic, {
@@ -84,18 +94,25 @@ async function start(): Promise<void> {
   process.on('SIGTERM', () => void shutdown());
 }
 
-void start().catch(async (error: unknown) => {
-  emitSafeDiagnostic(writeSafeDiagnostic, {
-    event: 'startup_failed',
-    errorClass: classifyError(error),
-  });
-  try {
-    await startupStore?.close();
-  } catch (closeError) {
+function isMainModule(): boolean {
+  const entrypoint = process.argv[1];
+  return entrypoint !== undefined && import.meta.url === pathToFileURL(entrypoint).href;
+}
+
+if (isMainModule()) {
+  void start().catch(async (error: unknown) => {
     emitSafeDiagnostic(writeSafeDiagnostic, {
-      event: 'shutdown_failed',
-      errorClass: classifyError(closeError),
+      event: 'startup_failed',
+      errorClass: classifyError(error),
     });
-  }
-  process.exitCode = 1;
-});
+    try {
+      await startupStore?.close?.();
+    } catch (closeError) {
+      emitSafeDiagnostic(writeSafeDiagnostic, {
+        event: 'shutdown_failed',
+        errorClass: classifyError(closeError),
+      });
+    }
+    process.exitCode = 1;
+  });
+}

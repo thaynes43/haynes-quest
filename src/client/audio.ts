@@ -15,6 +15,9 @@ export interface QuestAudioCue {
 /**
  * Existing v001 candidates authorized for this private playtest.
  * Catalog inclusion and playtest use do not imply listening or final-art approval.
+ * The trims follow the checked-in PCM measurements: at the 0.8 fresh-playtest
+ * master, each unvaried cue peaks between -12.5 and -9.9 dBFS. A limiter handles
+ * coincident transients without flattening those individual sounds.
  */
 export const playtestCues = {
   "ui-confirmed": {
@@ -24,7 +27,7 @@ export const playtestCues = {
     sha256: "e9a0541c87b518de9b7d989ae4b6ef99d3ee03e40bfc1e65855bfe9069597608",
     durationSeconds: 0.3,
     loop: false,
-    gain: 0.7,
+    gain: 1.5,
     priority: 1,
     maxInstances: 2,
   },
@@ -35,7 +38,7 @@ export const playtestCues = {
     sha256: "86ed72b341775dbb6f60414994912ec0d0292140e6408c20de54e5eb7ba0d358",
     durationSeconds: 1.2,
     loop: false,
-    gain: 0.85,
+    gain: 1.1,
     priority: 3,
     maxInstances: 2,
   },
@@ -46,7 +49,7 @@ export const playtestCues = {
     sha256: "46318afe6c77579a6b063fa704e887cd6112601b4cc4144351fa9085845115c0",
     durationSeconds: 1.8,
     loop: false,
-    gain: 0.8,
+    gain: 1,
     priority: 4,
     maxInstances: 1,
   },
@@ -57,7 +60,7 @@ export const playtestCues = {
     sha256: "2c869c641b29e5df0ede83ad5dfab63f26a4d41c9b7258b56d3acb4dd71bf127",
     durationSeconds: 0.25,
     loop: false,
-    gain: 0.55,
+    gain: 2,
     priority: 0,
     maxInstances: 2,
   },
@@ -72,10 +75,60 @@ export interface CuePlaybackOptions {
   readonly playbackRate?: number;
 }
 
+export const gameplayFeedback = {
+  jump: {
+    cueId: "ui-confirmed",
+    options: { gain: 1.1, playbackRate: 1.45 },
+  },
+  attack: {
+    cueId: "ui-confirmed",
+    options: { gain: 1.2, playbackRate: 0.9 },
+  },
+  secondary: {
+    cueId: "ui-confirmed",
+    options: { gain: 0.9, playbackRate: 1.1 },
+  },
+  pickup: {
+    cueId: "ui-confirmed",
+    options: { gain: 1.1, playbackRate: 1.2 },
+  },
+  impact: {
+    cueId: "ui-confirmed",
+    options: { gain: 1.3, playbackRate: 0.75 },
+  },
+  landed: {
+    cueId: "movement-landed",
+    options: { gain: 0.65, playbackRate: 1 },
+  },
+} as const satisfies Readonly<
+  Record<
+    string,
+    { readonly cueId: PlaytestCueId; readonly options: CuePlaybackOptions }
+  >
+>;
+
+export type GameplayFeedbackId = keyof typeof gameplayFeedback;
+
+export interface QuestAudioStartOptions {
+  /** Plays the confirmation cue once after this audio owner first unlocks. */
+  readonly confirmation?: boolean;
+}
+
+export interface QuestAudioStatus {
+  readonly muted: boolean;
+  readonly volume: number;
+  readonly ready: boolean;
+  readonly contextState: AudioContextState | "unavailable";
+}
+
 interface VisibilityDocument {
   readonly hidden: boolean;
   addEventListener(type: "visibilitychange", listener: () => void): void;
   removeEventListener(type: "visibilitychange", listener: () => void): void;
+}
+
+interface AudioSessionControl {
+  type: string;
 }
 
 export interface QuestAudioOptions {
@@ -88,6 +141,7 @@ export interface QuestAudioOptions {
   readonly defaultMuted?: boolean;
   readonly defaultVolume?: number;
   readonly maxSources?: number;
+  readonly audioSession?: AudioSessionControl | null;
 }
 
 interface ActiveSource {
@@ -98,8 +152,8 @@ interface ActiveSource {
   readonly gain: GainNode;
 }
 
-const DEFAULT_STORAGE_KEY = "quest-audio";
-const DEFAULT_VOLUME = 0.35;
+const DEFAULT_STORAGE_KEY = "quest-audio-v2";
+const DEFAULT_VOLUME = 0.8;
 const DEFAULT_MAX_SOURCES = 4;
 
 function clamp(value: number, minimum: number, maximum: number): number {
@@ -129,6 +183,13 @@ function defaultContextFactory(): AudioContext | undefined {
   return Context ? new Context() : undefined;
 }
 
+function defaultAudioSession(): AudioSessionControl | undefined {
+  if (typeof navigator === "undefined") return undefined;
+  return (
+    navigator as Navigator & { readonly audioSession?: AudioSessionControl }
+  ).audioSession;
+}
+
 function isSameOriginAsset(path: string): boolean {
   try {
     const base = new URL(
@@ -155,19 +216,27 @@ export class QuestAudio {
   private readonly contextFactory: () => AudioContext | undefined;
   private readonly fetcher: typeof fetch;
   private readonly maxSources: number;
+  private readonly audioSession: AudioSessionControl | undefined;
   private readonly buffers = new Map<string, AudioBuffer>();
   private readonly loads = new Map<string, Promise<AudioBuffer | undefined>>();
   private readonly sources = new Set<ActiveSource>();
   private readonly visibilityListener: () => void;
   private context: AudioContext | undefined;
   private masterGain: GainNode | undefined;
+  private limiter: DynamicsCompressorNode | undefined;
+  private contextStateListener: (() => void) | undefined;
+  private confirmationPromise: Promise<boolean> | undefined;
+  private previousAudioSessionType: string | undefined;
+  private audioSessionConfigured = false;
   private disposed = false;
   private unlocked = false;
+  private confirmationPlayed = false;
   private paused = false;
   private backgrounded = false;
   private muted: boolean;
   private volume: number;
   private sequence = 0;
+  private suspendSequence = 0;
 
   constructor(options: QuestAudioOptions = {}) {
     this.cues = options.cues ?? playtestCues;
@@ -186,6 +255,10 @@ export class QuestAudio {
     this.maxSources = Math.round(
       clamp(options.maxSources ?? DEFAULT_MAX_SOURCES, 1, 16),
     );
+    this.audioSession =
+      options.audioSession === null
+        ? undefined
+        : (options.audioSession ?? defaultAudioSession());
     this.muted = options.defaultMuted ?? false;
     this.volume = clamp(options.defaultVolume ?? DEFAULT_VOLUME, 0, 1);
 
@@ -215,12 +288,29 @@ export class QuestAudio {
     return { muted: this.muted, volume: this.volume };
   }
 
+  status(): QuestAudioStatus {
+    const contextState = this.context?.state ?? "unavailable";
+    return {
+      ...this.preferences(),
+      ready:
+        !this.disposed &&
+        !this.muted &&
+        !this.paused &&
+        !this.backgrounded &&
+        this.unlocked &&
+        contextState === "running",
+      contextState,
+    };
+  }
+
   setPreferences(muted: boolean, volume = this.volume): void {
+    const wasMuted = this.muted;
     this.muted = muted;
     this.volume = clamp(volume, 0, 1);
     if (this.masterGain)
       this.masterGain.gain.value = this.muted ? 0 : this.volume;
     if (this.muted) this.stopAll();
+    if (wasMuted && !this.muted) this.confirmationPlayed = false;
     try {
       this.storage?.setItem(
         this.storageKey,
@@ -235,29 +325,78 @@ export class QuestAudio {
    * Call synchronously from Play/Continue or another user gesture. Creating the
    * context before the first await preserves Safari's gesture-unlock window.
    */
-  async start(): Promise<boolean> {
-    if (this.disposed || this.muted || this.paused || this.backgrounded)
+  async start(options: QuestAudioStartOptions = {}): Promise<boolean> {
+    const ready = await this.startContext(options.confirmation === true);
+    if (!ready) return false;
+    return options.confirmation ? this.confirmOnce() : true;
+  }
+
+  /** Plays a repeatable explicit sound check, including while gameplay is paused. */
+  async audition(id: PlaytestCueId = "memory-collected"): Promise<boolean> {
+    if (!(await this.startContext(true))) return false;
+    return this.playCue(id, {}, true);
+  }
+
+  private async startContext(allowWhilePaused: boolean): Promise<boolean> {
+    if (
+      this.disposed ||
+      this.muted ||
+      (this.paused && !allowWhilePaused) ||
+      this.backgrounded
+    )
       return false;
 
     if (this.context?.state === "closed") {
-      this.context = undefined;
-      this.masterGain = undefined;
-      this.unlocked = false;
-      this.buffers.clear();
-      this.loads.clear();
+      this.releaseContext();
     }
 
+    const suspendSequence = this.suspendSequence;
     try {
-      this.context ??= this.contextFactory();
-      if (!this.context) return false;
-      if (!this.masterGain) {
-        this.masterGain = this.context.createGain();
-        this.masterGain.gain.value = this.volume;
-        this.masterGain.connect(this.context.destination);
+      if (!this.context) {
+        this.configureAudioSession();
+        this.context = this.contextFactory();
+        if (!this.context) return false;
+        const context = this.context;
+        this.contextStateListener = () => {
+          if (this.context === context && context.state !== "running") {
+            this.unlocked = false;
+            this.stopAll();
+          }
+        };
+        context.addEventListener("statechange", this.contextStateListener);
       }
-      if (this.context.state !== "running") await this.context.resume();
-      this.unlocked = !this.disposed && this.context.state === "running";
-      return this.unlocked;
+      const context = this.context;
+      if (!this.masterGain) {
+        const masterGain = context.createGain();
+        const limiter = context.createDynamicsCompressor();
+        masterGain.gain.value = this.volume;
+        limiter.threshold.value = -3;
+        limiter.knee.value = 0;
+        limiter.ratio.value = 20;
+        limiter.attack.value = 0.003;
+        limiter.release.value = 0.1;
+        masterGain.connect(limiter);
+        limiter.connect(context.destination);
+        this.masterGain = masterGain;
+        this.limiter = limiter;
+      }
+      if (context.state !== "running") await context.resume();
+      if (
+        this.disposed ||
+        this.muted ||
+        (this.paused && !allowWhilePaused) ||
+        this.backgrounded ||
+        this.context !== context ||
+        this.suspendSequence !== suspendSequence ||
+        context.state !== "running"
+      ) {
+        this.unlocked = false;
+        if (this.context === context && context.state === "running")
+          await context.suspend().catch(() => undefined);
+        return false;
+      }
+      this.unlocked = true;
+      return true;
     } catch {
       this.unlocked = false;
       return false;
@@ -266,6 +405,7 @@ export class QuestAudio {
 
   /** Stops transient sounds and suspends the context without marking game pause. */
   suspend(): void {
+    this.suspendSequence += 1;
     this.unlocked = false;
     this.stopAll();
     try {
@@ -278,10 +418,23 @@ export class QuestAudio {
   /** A deliberate gameplay pause remains in force until explicitly cleared. */
   setPaused(paused: boolean): void {
     this.paused = paused;
-    if (paused) this.suspend();
+    if (paused) this.stopAll();
   }
 
-  async cue(id: string, options: CuePlaybackOptions = {}): Promise<boolean> {
+  feedback(id: GameplayFeedbackId): Promise<boolean> {
+    const feedback = gameplayFeedback[id];
+    return this.cue(feedback.cueId, feedback.options);
+  }
+
+  cue(id: string, options: CuePlaybackOptions = {}): Promise<boolean> {
+    return this.playCue(id, options, false);
+  }
+
+  private async playCue(
+    id: string,
+    options: CuePlaybackOptions,
+    allowWhilePaused: boolean,
+  ): Promise<boolean> {
     const cue = this.cues[id];
     const context = this.context;
     const masterGain = this.masterGain;
@@ -290,7 +443,7 @@ export class QuestAudio {
       this.disposed ||
       !this.unlocked ||
       this.muted ||
-      this.paused ||
+      (this.paused && !allowWhilePaused) ||
       this.backgrounded ||
       !context ||
       !masterGain ||
@@ -304,7 +457,7 @@ export class QuestAudio {
       this.disposed ||
       !this.unlocked ||
       this.muted ||
-      this.paused ||
+      (this.paused && !allowWhilePaused) ||
       this.backgrounded ||
       this.context !== context ||
       context.state !== "running"
@@ -361,6 +514,7 @@ export class QuestAudio {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.suspendSequence += 1;
     this.unlocked = false;
     this.pageDocument?.removeEventListener(
       "visibilitychange",
@@ -369,14 +523,78 @@ export class QuestAudio {
     this.stopAll();
     this.buffers.clear();
     this.loads.clear();
+    const context = this.context;
+    this.releaseContext();
     try {
-      this.masterGain?.disconnect();
-      void this.context?.close().catch(() => undefined);
+      void context?.close().catch(() => undefined);
     } catch {
       /* Closing unsupported or interrupted audio remains harmless. */
     }
+    if (
+      this.audioSessionConfigured &&
+      this.previousAudioSessionType !== undefined &&
+      this.audioSession
+    ) {
+      try {
+        if (this.audioSession.type === "playback")
+          this.audioSession.type = this.previousAudioSessionType;
+      } catch {
+        /* The draft Audio Session API is optional. */
+      }
+    }
+  }
+
+  private configureAudioSession(): void {
+    if (!this.audioSession || this.audioSessionConfigured) return;
+    try {
+      this.previousAudioSessionType = this.audioSession.type;
+      this.audioSession.type = "playback";
+      this.audioSessionConfigured = this.audioSession.type === "playback";
+    } catch {
+      /* Unsupported or policy-restricted implementations use their default. */
+    }
+  }
+
+  private confirmOnce(): Promise<boolean> {
+    if (this.confirmationPlayed) return Promise.resolve(true);
+    if (this.confirmationPromise) return this.confirmationPromise;
+    const confirmation = this.playCue(
+      "ui-confirmed",
+      { gain: 1, playbackRate: 1 },
+      true,
+    )
+      .then((played) => {
+        if (played) this.confirmationPlayed = true;
+        return played;
+      })
+      .finally(() => {
+        if (this.confirmationPromise === confirmation)
+          this.confirmationPromise = undefined;
+      });
+    this.confirmationPromise = confirmation;
+    return confirmation;
+  }
+
+  private releaseContext(): void {
+    const context = this.context;
+    this.stopAll();
+    if (context && this.contextStateListener)
+      context.removeEventListener("statechange", this.contextStateListener);
+    try {
+      this.masterGain?.disconnect();
+      this.limiter?.disconnect();
+    } catch {
+      /* A closed context may have already detached its graph. */
+    }
+    this.contextStateListener = undefined;
+    this.confirmationPromise = undefined;
+    this.confirmationPlayed = false;
+    this.limiter = undefined;
     this.masterGain = undefined;
     this.context = undefined;
+    this.unlocked = false;
+    this.buffers.clear();
+    this.loads.clear();
   }
 
   private load(

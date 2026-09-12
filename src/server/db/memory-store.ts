@@ -3,11 +3,9 @@ import type { GameplayActionRequest } from '../../shared/contracts.js';
 import { createInitialFriendlyState } from '../../shared/friendly.js';
 import {
   applyGameplayActionToSave,
-  abilitiesForAge,
   appearanceForAge,
   createAdventureForSave,
   isValidFrozenManifest,
-  RULE_VERSIONS,
   type CreateSaveCommand,
   type FixtureMaintenanceResult,
   type NewPreviewRecord,
@@ -19,6 +17,18 @@ import {
 } from '../domain.js';
 import { AppError } from '../errors.js';
 
+interface EphemeralStoreLimits {
+  maxSessions: number;
+  maxPreviews: number;
+  maxSaves: number;
+}
+
+const DEFAULT_EPHEMERAL_LIMITS: EphemeralStoreLimits = {
+  maxSessions: 1_000,
+  maxPreviews: 2_000,
+  maxSaves: 1_000,
+};
+
 export class InMemoryQuestStore implements QuestStore {
   private readonly sessions = new Map<string, { player: PlayerRecord; expiresAt: Date }>();
   private readonly previews = new Map<string, PreviewRecord>();
@@ -28,6 +38,7 @@ export class InMemoryQuestStore implements QuestStore {
   constructor(
     initialSaves: SaveRecord[] = [],
     initialSessions: Array<{ sessionId: string; player: PlayerRecord; expiresAt: Date }> = [],
+    private readonly ephemeralLimits: EphemeralStoreLimits | null = null,
   ) {
     for (const save of initialSaves) this.saves.set(save.id, cloneSave(validateSaveRecord(save)));
     for (const session of initialSessions) {
@@ -36,6 +47,10 @@ export class InMemoryQuestStore implements QuestStore {
         expiresAt: new Date(session.expiresAt),
       });
     }
+  }
+
+  static ephemeral(limits: Partial<EphemeralStoreLimits> = {}): InMemoryQuestStore {
+    return new InMemoryQuestStore([], [], { ...DEFAULT_EPHEMERAL_LIMITS, ...limits });
   }
 
   async ready(): Promise<boolean> {
@@ -48,25 +63,33 @@ export class InMemoryQuestStore implements QuestStore {
   }
 
   async createFixtureSession(sessionId: string, expiresAt: Date): Promise<PlayerRecord> {
-    const player = { id: randomUUID(), label: 'Preview player' };
-    this.sessions.set(sessionId, { player, expiresAt });
-    return { ...player };
+    return this.exclusive(() => {
+      this.pruneExpiredEphemeralRecords(new Date());
+      this.ensureEphemeralCapacity(this.sessions.size, this.ephemeralLimits?.maxSessions);
+      const player = { id: randomUUID(), label: 'Preview player' };
+      this.sessions.set(sessionId, { player, expiresAt });
+      return { ...player };
+    });
   }
 
   async putPreview(input: NewPreviewRecord): Promise<PreviewRecord> {
     if (!isValidFrozenManifest(input.birthDate, input.memories)) {
       throw new AppError(422, 'INVALID_MANIFEST', 'Invalid memory manifest');
     }
-    const now = new Date();
-    const preview: PreviewRecord = {
-      ...structuredClone(input),
-      previewId: randomUUID(),
-      candidates: input.memories.map(({ source: _source, ...memory }) => memory),
-      createdAt: now,
-      expiresAt: new Date(input.expiresAt),
-    };
-    this.previews.set(preview.previewId, preview);
-    return clonePreview(preview);
+    return this.exclusive(() => {
+      this.pruneExpiredEphemeralRecords(new Date());
+      this.ensureEphemeralCapacity(this.previews.size, this.ephemeralLimits?.maxPreviews);
+      const now = new Date();
+      const preview: PreviewRecord = {
+        ...structuredClone(input),
+        previewId: randomUUID(),
+        candidates: input.memories.map(({ source: _source, ...memory }) => memory),
+        createdAt: now,
+        expiresAt: new Date(input.expiresAt),
+      };
+      this.previews.set(preview.previewId, preview);
+      return clonePreview(preview);
+    });
   }
 
   async createSave(command: CreateSaveCommand): Promise<SaveRecord> {
@@ -84,6 +107,7 @@ export class InMemoryQuestStore implements QuestStore {
         }
         return cloneSave(existing);
       }
+      this.ensureEphemeralCapacity(this.saves.size, this.ephemeralLimits?.maxSaves);
       if (!preview.chosenSubject) throw new AppError(422, 'SUBJECT_UNRESOLVED', 'Subject unresolved');
       if (!isValidFrozenManifest(preview.birthDate, preview.memories)) {
         throw new AppError(422, 'INVALID_MANIFEST', 'Invalid memory manifest');
@@ -98,9 +122,10 @@ export class InMemoryQuestStore implements QuestStore {
         throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
       }
       const now = new Date();
-      const { plan: adventurePlan, state: adventureState } = createAdventureForSave(
+      const { plan: adventurePlan, state: adventureState, versions } = createAdventureForSave(
         preview.birthDate,
         memories,
+        command.planMode,
       );
       const save: SaveRecord = {
         id: randomUUID(),
@@ -112,7 +137,7 @@ export class InMemoryQuestStore implements QuestStore {
         memories: structuredClone(memories),
         recoveredIds: [],
         ageYears: 0,
-        abilities: abilitiesForAge(0),
+        abilities: adventureState.abilities,
         appearanceStage: appearanceForAge(0),
         completed: false,
         saveFormat: 'era-combat-v2',
@@ -122,7 +147,7 @@ export class InMemoryQuestStore implements QuestStore {
         revision: 0,
         createdAt: now,
         updatedAt: now,
-        versions: RULE_VERSIONS,
+        versions,
       };
       this.saves.set(save.id, save);
       return cloneSave(save);
@@ -167,6 +192,8 @@ export class InMemoryQuestStore implements QuestStore {
         }
       }
 
+      if (this.ephemeralLimits) this.pruneOrphanedEphemeralRecords();
+
       const referencedPreviews = new Set([...this.saves.values()].map((save) => save.previewId));
       let previewsDeleted = 0;
       for (const [previewId, preview] of this.previews) {
@@ -178,6 +205,30 @@ export class InMemoryQuestStore implements QuestStore {
       }
       return { sessionsDeleted, previewsDeleted };
     });
+  }
+
+  private pruneExpiredEphemeralRecords(now: Date): void {
+    if (!this.ephemeralLimits) return;
+    for (const [sessionId, session] of this.sessions) {
+      if (session.expiresAt <= now) this.sessions.delete(sessionId);
+    }
+    this.pruneOrphanedEphemeralRecords();
+  }
+
+  private pruneOrphanedEphemeralRecords(): void {
+    const activeOwnerIds = new Set([...this.sessions.values()].map(({ player }) => player.id));
+    for (const [saveId, save] of this.saves) {
+      if (!activeOwnerIds.has(save.ownerId)) this.saves.delete(saveId);
+    }
+    for (const [previewId, preview] of this.previews) {
+      if (!activeOwnerIds.has(preview.ownerId)) this.previews.delete(previewId);
+    }
+  }
+
+  private ensureEphemeralCapacity(size: number, limit: number | undefined): void {
+    if (limit !== undefined && size >= limit) {
+      throw new AppError(503, 'STORE_CAPACITY', 'Playtest is busy');
+    }
   }
 
   private async exclusive<T>(callback: () => T | Promise<T>): Promise<T> {

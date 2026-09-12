@@ -62,6 +62,7 @@ export interface SceneFrame {
   attacking: boolean;
   attackTargetId: string | null;
   guarding: boolean;
+  attackSequence?: number;
   secondaryAttacking?: boolean;
   interacting?: boolean;
   enemies: EnemyFrame[];
@@ -94,6 +95,7 @@ export interface SceneMediaState {
 }
 
 export interface GameStatus {
+  jumpSequence?: number;
   interactionSequence?: number;
   nearFriendlyId?: string | null;
   bestiesPhase?: import("./besties").BestiesPhase;

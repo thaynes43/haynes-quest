@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
   createAdventurePlan,
   createInitialAdventureState,
+  memoryIdsForLevel,
   type AdventurePlan,
 } from '../../src/shared/adventure.js';
 import type { GameplayAction, GameplayActionRequest } from '../../src/shared/contracts.js';
@@ -350,7 +351,7 @@ describe('friendly save sidecar', () => {
       }
     }
     expect(save.adventureState!.phase).toBe('memory-released');
-    for (const memoryId of level.memoryIds) {
+    for (const memoryId of memoryIdsForLevel(level)) {
       save = await apply(store, save, {
         type: 'recover-memory', levelId: level.id, memoryId,
       }, nowMs);

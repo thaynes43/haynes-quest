@@ -50,6 +50,42 @@ describe('fixture record maintenance', () => {
       previewsDeleted: 0,
     });
   });
+
+  it('expires an ephemeral owner\'s whole playtest and reclaims bounded capacity', async () => {
+    const store = InMemoryQuestStore.ephemeral({ maxSessions: 1, maxPreviews: 2, maxSaves: 1 });
+    const expiresAt = new Date('2030-01-01T00:00:00.000Z');
+    const player = await store.createFixtureSession(
+      '11111111-1111-4111-8111-111111111111',
+      expiresAt,
+    );
+    const preview = await store.putPreview(previewInput(player.id, expiresAt));
+    const save = await store.createSave({
+      ownerId: player.id,
+      previewId: preview.previewId,
+      selectedIds: preview.selectedIds,
+    });
+
+    await expect(store.createFixtureSession(
+      '22222222-2222-4222-8222-222222222222',
+      new Date('2030-01-02T00:00:00.000Z'),
+    )).rejects.toMatchObject({ code: 'STORE_CAPACITY' });
+
+    expect(await store.maintainFixtureRecords(expiresAt)).toEqual({
+      sessionsDeleted: 1,
+      previewsDeleted: 0,
+    });
+    expect(await store.getSave(player.id, save.id)).toBeNull();
+    expect(await store.listSaves(player.id)).toEqual([]);
+    await expect(store.createSave({
+      ownerId: player.id,
+      previewId: preview.previewId,
+      selectedIds: preview.selectedIds,
+    })).rejects.toMatchObject({ code: 'PREVIEW_NOT_FOUND' });
+    await expect(store.createFixtureSession(
+      '22222222-2222-4222-8222-222222222222',
+      new Date('2030-01-02T00:00:00.000Z'),
+    )).resolves.toMatchObject({ label: 'Preview player' });
+  });
 });
 
 function previewInput(ownerId: string, expiresAt: Date): NewPreviewRecord {

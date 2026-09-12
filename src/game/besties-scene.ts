@@ -2,7 +2,7 @@ import * as THREE from "three";
 import type { BestiesFrame, BestieActorId } from "./besties";
 import { BESTIES_ARENA_CENTER } from "./besties";
 import type { DuoParodyArtwork } from "./scene-catalog";
-import { SceneAssets } from "./scene-assets";
+import { SceneAssets, disposeTree } from "./scene-assets";
 import { groundRing } from "./scene-art";
 import type { PositionSnapshot } from "./types";
 
@@ -52,6 +52,13 @@ export class BestiesScene {
       root.name = id;
       root.position.x = x;
       root.rotation.y = Math.PI;
+      const fallback = new THREE.Mesh(
+        new THREE.CapsuleGeometry(0.28, 0.8, 4, 8),
+        new THREE.MeshStandardMaterial({ color, roughness: 0.8 }),
+      );
+      fallback.name = "bestie-artwork-fallback";
+      fallback.position.y = 0.7;
+      root.add(fallback);
       const marker = groundRing(0.58, color, 0.65);
       const pivot = new THREE.Group();
       pivot.position.x = x;
@@ -78,6 +85,8 @@ export class BestiesScene {
             action.clampWhenFinished = true;
             actor.actions.set(clip.name, action);
           }
+          fallback.removeFromParent();
+          disposeTree(fallback);
         },
       );
     }

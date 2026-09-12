@@ -117,6 +117,7 @@ export class GardenScene {
   private disposed = false;
   private cameraPlaced = false;
   private previousAttack = false;
+  private lastAttackSequence = -1;
   private attackAt = -10;
   private secondaryAt = -10;
   private previousSecondary = false;
@@ -416,9 +417,15 @@ export class GardenScene {
       )?.content;
       const artwork = content ? parodyArtwork(content) : null;
       if (content && !artwork) this.unsupportedContentCount += 1;
-      const model = artwork
-        ? new THREE.Group()
-        : createEncounterStudy(placement.kind, later);
+      const model = new THREE.Group();
+      const fallback =
+        artwork?.kind === "duo"
+          ? null
+          : createEncounterStudy(placement.kind, later);
+      if (fallback) {
+        fallback.name = "encounter-artwork-fallback";
+        model.add(fallback);
+      }
       root.add(model);
       const boss = placement.role === "boss";
       const warning = groundRing(enemyAttackRange(placement.role), 0xed735d);
@@ -459,6 +466,10 @@ export class GardenScene {
             clips,
             artwork.contactFraction,
           );
+          if (fallback) {
+            fallback.removeFromParent();
+            disposeTree(fallback);
+          }
         });
     }
     this.updateProgress(save);
@@ -573,12 +584,17 @@ export class GardenScene {
       frame?.recovering ? 0.6 : 0.8;
     this.traveler.position.set(position.x, position.y, position.z);
     this.traveler.rotation.y = facing;
-    if (frame?.attacking && !this.previousAttack) this.attackAt = elapsed;
+    const newAttack =
+      frame?.attackSequence !== undefined &&
+      frame.attackSequence !== this.lastAttackSequence;
+    if (frame?.attacking && (newAttack || !this.previousAttack))
+      this.attackAt = elapsed;
     this.previousAttack = frame?.attacking ?? false;
     const attackTime = elapsed - this.attackAt;
-    if (frame?.secondaryAttacking && !this.previousSecondary)
+    if (frame?.secondaryAttacking && (newAttack || !this.previousSecondary))
       this.secondaryAt = elapsed;
     this.previousSecondary = frame?.secondaryAttacking ?? false;
+    this.lastAttackSequence = frame?.attackSequence ?? -1;
     const secondaryTime = elapsed - this.secondaryAt;
     const attackLean = Math.sin(
       Math.min(1, Math.max(0, attackTime / 0.38)) * Math.PI,

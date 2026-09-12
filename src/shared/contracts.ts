@@ -4,6 +4,7 @@ export type Ability = "move" | "interact" | "jump";
 export type AppearanceStage = "infant" | "child";
 export type SaveFormat = "legacy-v1" | "era-combat-v2";
 export type MemoryState = "locked" | "released" | "revealed" | "consumed";
+export type MemoryRole = "minor" | "major";
 export type AdventurePhase = "exploring" | "memory-released" | "fallen" | "complete";
 export type EquipmentKind = "attack-tool" | "guard-tool";
 export type EncounterRole = "ordinary" | "boss";
@@ -21,6 +22,8 @@ export interface MemoryPreview {
 }
 export interface MemoryView extends MemoryPreview {
   state: MemoryState;
+  /** Present for route-memory plans; absent for archived plans. */
+  role?: MemoryRole;
   mediaUrl?: string;
 }
 export interface Appearance {
@@ -83,6 +86,10 @@ export interface ActiveLevelView {
   periodId?: ParodyPeriodId;
   routeId?: ObbyRouteId;
   memoryIds: string[];
+  /** Present for route-memory plans; `memoryIds` remains the ordered combined view. */
+  minorMemoryIds?: [string, string];
+  /** Present for route-memory plans and always follows the two minor memories. */
+  majorMemoryId?: string;
   pickups: EquipmentView[];
   encounters: EncounterView[];
   /** Added after the initial combat contract; absent in older serialized fixtures. */
@@ -103,6 +110,8 @@ export interface AdventureView {
   playerHp: number;
   maxPlayerHp: number;
   attackCooldownRemainingMs: number;
+  /** Present for route-memory plans, whose guard tool acts as an offhand attack. */
+  secondaryCooldownRemainingMs?: number;
   guardActiveRemainingMs: number;
   guardCooldownRemainingMs: number;
 }
@@ -126,6 +135,7 @@ export interface SaveView {
 export type GameplayAction =
   | { type: "collect-equipment"; levelId: string; pickupId: string }
   | { type: "attack"; levelId: string; encounterId: string }
+  | { type: "secondary-attack"; levelId: string; encounterId: string }
   | { type: "take-hit"; levelId: string; encounterId: string }
   | { type: "interact-friendly"; levelId: string; friendlyId: string }
   | { type: "attack-friendly"; levelId: string; friendlyId: string }
@@ -173,6 +183,7 @@ export interface PreviewResponse {
 export interface SessionView {
   player: { id: string; label: string };
   mode: "fixture";
+  progressMode?: "ephemeral" | "persistent";
   csrfHeader: "X-Quest-Request";
 }
 export interface ApiError {
