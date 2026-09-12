@@ -2,6 +2,10 @@
 
 Tom's latest project instruction governs the model exceptions below. The pod's native Sol default remains useful for ordinary work; **Blender always uses Astra**, and **separate Fable sessions are explicitly authorized** for this project. No dev-env startup change is needed to apply these project rules.
 
+## Temporary review quota override
+
+Tom reports on September 12, 2026 that Fable usage is exhausted until Monday at 8 AM. Until that reset, any needed separate adversarial review uses **Claude Opus 5**, exact `claude-opus-5`, effort `xhigh`, through `agent-run`; do not dispatch Fable. The reported reset has no recorded timezone, so verify quota availability before returning to Fable. This changes the review lane during the quota window, not Astra's lead role, native Sol delegation or the Astra-only Blender rule. Do not start a review merely to use the available model.
+
 ## Routing
 
 | Work | Model and dispatch | Ownership |
