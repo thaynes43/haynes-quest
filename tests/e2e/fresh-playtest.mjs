@@ -294,6 +294,7 @@ const driver = createJourneyDriver({ url, errors });
 const page = await context.newPage();
 let latestSave = null;
 const observedSaves = [];
+const observedHits = [];
 page.on("pageerror", (error) => report.pageErrors.push(error.message));
 page.on("console", (message) => {
   if (message.type() === "error") report.consoleErrors.push(message.text());
@@ -318,6 +319,15 @@ page.on("response", async (response) => {
   ) {
     const body = await response.json().catch(() => null);
     if (body?.id && Number.isInteger(body.revision)) {
+      const action = response.request().postDataJSON()?.action;
+      if (action?.type === "take-hit") {
+        observedHits.push({
+          encounterId: action.encounterId,
+          revision: body.revision,
+          beforeHp: latestSave?.adventure?.playerHp,
+          afterHp: body.adventure?.playerHp,
+        });
+      }
       latestSave = body;
       observedSaves.push({
         id: body.id,
@@ -1086,11 +1096,7 @@ const finitePoint = (point) =>
   point && [point.x, point.y, point.z].every(Number.isFinite);
 
 const pointDistance = (first, second) =>
-  Math.hypot(
-    first.x - second.x,
-    first.y - second.y,
-    first.z - second.z,
-  );
+  Math.hypot(first.x - second.x, first.y - second.y, first.z - second.z);
 
 const createBestiesVisualTracker = () => ({
   actors: new Map(),
@@ -1405,11 +1411,7 @@ const playChapter = async (expectedAge, nextAge, index) => {
   await collectPickup("attack-tool", `chapter-${index + 1}-attack-tool`);
   evidence.revisions.attackTool = latestSave.revision;
   evidence.minorVisuals.push(
-    await collectMinor(
-      minorOne,
-      expectedAge,
-      `chapter-${index + 1}-minor-one`,
-    ),
+    await collectMinor(minorOne, expectedAge, `chapter-${index + 1}-minor-one`),
   );
   evidence.revisions.minorOne = latestSave.revision;
   await collectPickup("guard-tool", `chapter-${index + 1}-guard-tool`);
@@ -1420,11 +1422,7 @@ const playChapter = async (expectedAge, nextAge, index) => {
   );
   evidence.revisions.ordinaryOne = latestSave.revision;
   evidence.minorVisuals.push(
-    await collectMinor(
-      minorTwo,
-      expectedAge,
-      `chapter-${index + 1}-minor-two`,
-    ),
+    await collectMinor(minorTwo, expectedAge, `chapter-${index + 1}-minor-two`),
   );
   evidence.revisions.minorTwo = latestSave.revision;
   assert.equal(
@@ -1460,6 +1458,9 @@ const playChapter = async (expectedAge, nextAge, index) => {
     index === 1,
   );
   evidence.bossCombat = bossFight;
+  evidence.bossHits = observedHits.filter(
+    (hit) => hit.encounterId === level.bossId,
+  );
   evidence.revisions.boss = latestSave.revision;
   evidence.secondaryAttackAccepted =
     firstFight.bashAccepted ||

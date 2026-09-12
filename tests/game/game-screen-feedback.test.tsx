@@ -233,7 +233,7 @@ describe("GameScreen friendly and audio feedback boundaries", () => {
     await act(async () => buttonNamed("Play a test sound").click());
     expect(
       container.querySelector("#sound-test-status")?.textContent,
-    ).toContain("Test sound played");
+    ).toContain("Sound test started");
     expect(audio.audition).toHaveBeenCalledTimes(2);
   });
 
@@ -253,11 +253,11 @@ describe("GameScreen friendly and audio feedback boundaries", () => {
     await act(async () => buttonNamed("Play a test sound").click());
     expect(
       container.querySelector("#sound-test-status")?.textContent,
-    ).toContain("Test sound played");
+    ).toContain("Sound test started");
     await act(async () => failOlder(new Error("Old interrupted context")));
     expect(
       container.querySelector("#sound-test-status")?.textContent,
-    ).toContain("Test sound played");
+    ).toContain("Sound test started");
   });
 
   it("keeps the persistent world-tap instruction out of the play surface", async () => {
@@ -351,6 +351,31 @@ describe("GameScreen friendly and audio feedback boundaries", () => {
     );
   });
 
+  it.each(["touch", "pen"])(
+    "waits for %s release before unlocking audio or celebrating",
+    async (pointerType) => {
+      gameFixture(status(null));
+      await renderGame(makeEraSave({ completed: true }));
+      const audio = mocks.audioInstances[0]!;
+      await act(async () => {
+        document.dispatchEvent(
+          new PointerEvent("pointerdown", { bubbles: true, pointerType }),
+        );
+      });
+      expect(audio.start).not.toHaveBeenCalled();
+      expect(audio.audition).not.toHaveBeenCalled();
+      await act(async () => {
+        document.dispatchEvent(
+          new PointerEvent("pointerup", { bubbles: true, pointerType }),
+        );
+      });
+      expect(audio.start).toHaveBeenCalledOnce();
+      expect(audio.audition).toHaveBeenCalledExactlyOnceWith(
+        "ability-unlocked",
+      );
+    },
+  );
+
   it("retries audio unlock on pointerup and removes every gesture listener on cleanup", async () => {
     gameFixture(status(null));
     mocks.audioStartResults.push(false, true);
@@ -358,7 +383,12 @@ describe("GameScreen friendly and audio feedback boundaries", () => {
     const audio = mocks.audioInstances[0]!;
 
     await act(async () => {
-      document.dispatchEvent(new Event("pointerdown", { bubbles: true }));
+      document.dispatchEvent(
+        new PointerEvent("pointerdown", {
+          bubbles: true,
+          pointerType: "mouse",
+        }),
+      );
     });
     expect(audio.start).toHaveBeenCalledOnce();
     await expect(audio.start.mock.results[0]!.value).resolves.toBe(false);

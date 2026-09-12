@@ -10,9 +10,19 @@ import { getJoystickVector } from "../game/input";
 import type { GameHandle, GameStatus } from "../game/index";
 import type { GameInputAction } from "../game/types";
 import { api, friendlyError } from "./api";
+
 import { QuestAudio } from "./audio";
 import { MemoryImage } from "./MemoryImage";
 import { equipmentName, eraStory } from "./era";
+
+// Touch and pen activate the browser on release; starting a resume promise on
+// pointerdown can strand it before the valid gesture reaches the audio engine.
+function canUnlockAudio(event?: Event): boolean {
+  return (
+    event?.type !== "pointerdown" ||
+    (event as PointerEvent).pointerType === "mouse"
+  );
+}
 
 const friendlyNames: Record<string, string> = {
   blockling: "Blockling",
@@ -200,7 +210,8 @@ function Adventure({
     soundRef.current = sound;
     setMuted(sound.preferences().muted);
     setVolume(sound.preferences().volume);
-    const audioGesture = () => {
+    const audioGesture = (event: Event) => {
+      if (!canUnlockAudio(event)) return;
       void sound.start({ confirmation: true });
     };
     document.addEventListener("pointerdown", audioGesture, true);
@@ -462,8 +473,8 @@ function Adventure({
     if (!sound) return;
     let played = false;
     let pending = false;
-    const celebrate = () => {
-      if (played || pending) return;
+    const celebrate = (event?: Event) => {
+      if (!canUnlockAudio(event) || played || pending) return;
       pending = true;
       void sound.audition("ability-unlocked").then((started) => {
         played = started;
@@ -975,7 +986,7 @@ function Adventure({
             {soundTest === "starting"
               ? "Starting sound…"
               : soundTest === "played"
-                ? "Test sound played. You can tap again to repeat it."
+                ? "Sound test started. You can tap again to repeat it."
                 : soundTest === "failed"
                   ? "Sound couldn’t start. Tap again to retry."
                   : "Tap to hear a memory chime."}

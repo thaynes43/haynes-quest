@@ -479,11 +479,6 @@ export function createGame(options: CreateGameOptions): GameHandle {
         : secondaryAttackAnimationSeconds) *
         1000;
     attackTargetId = targetId;
-    if (targetId === bestiesEncounter()?.id)
-      bestiesHitActorId = nearestBestiesActor(
-        besties.frame(),
-        controller.position,
-      ).id;
   };
 
   const beginInteractionAnimation = (): void => {
@@ -564,6 +559,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       traversalRecoveries = 0;
       attackAnimationUntil = 0;
       attackTargetId = null;
+      bestiesHitActorId = null;
       interactionAnimationUntil = 0;
       suppressedAutoFriendlyId = null;
       attackFeedback = null;
@@ -800,6 +796,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
       const acceptedKind =
         action.type === "secondary-attack" ? "secondary" : "primary";
       if (!accepted) return recordAttackFeedback("unavailable", acceptedKind);
+      if (
+        action.type !== "attack-friendly" &&
+        action.encounterId === bestiesEncounter()?.id
+      )
+        bestiesHitActorId = nearestBestiesActor(
+          besties.frame(),
+          controller.position,
+        ).id;
       if (action.type === "attack-friendly") {
         beginAttackAnimation("primary", action.friendlyId);
       }

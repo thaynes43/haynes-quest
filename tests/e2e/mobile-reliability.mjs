@@ -141,7 +141,7 @@ try {
   await sound.tap();
   await page
     .locator("#sound-test-status")
-    .filter({ hasText: "Test sound played" })
+    .filter({ hasText: "Sound test started" })
     .waitFor();
   const after = await page.evaluate(() => ({
     clicks: window.__soundClicks,
@@ -164,7 +164,7 @@ try {
   await sound.tap();
   await page
     .locator("#sound-test-status")
-    .filter({ hasText: "Test sound played" })
+    .filter({ hasText: "Sound test started" })
     .waitFor();
   assert.equal(
     await page.evaluate(() => window.__soundClicks),
