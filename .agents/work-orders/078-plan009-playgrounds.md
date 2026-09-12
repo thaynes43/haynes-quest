@@ -1,6 +1,6 @@
 # WO078: Daughter playground integration
 
-Status: In progress, September 12, 2026. Lead Astra max in `/home/dev/work/quest-daughter-levels`, branch `agent/quest-daughter-levels`, base main `7a5bce0`. Scope is PLAN009 and DESIGN017: longer, varied and forgiving levels for Tom's six-year-old daughter, followed by the required identity and curated-photo stage.
+Status: Implementation merged and deployed; final hosted acceptance is tracked in [WO081](081-plan009-hosted-release.md), September 12, 2026. Lead Astra max in `/home/dev/work/quest-daughter-levels`, branch `agent/quest-daughter-levels`, base main `7a5bce0`. Scope is PLAN009 and DESIGN017: longer, varied and forgiving levels for Tom's six-year-old daughter, followed by the required identity and curated-photo stage.
 
 ## Integrated checkpoint
 
