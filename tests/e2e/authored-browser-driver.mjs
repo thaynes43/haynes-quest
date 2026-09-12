@@ -552,7 +552,7 @@ export function createAuthoredRouteDriver({
   const crossEdge = async (
     edge,
     label,
-    { allowFinishDocumentExit = false } = {},
+    { allowFinishTrigger = false, finishReached = null } = {},
   ) => {
     let before = await read(`${label}-before`);
     if (before.obby.supportId === edge.to) return before;
@@ -645,17 +645,22 @@ export function createAuthoredRouteDriver({
               tolerance: 0.55,
               supportId: edge.to,
               stopOnRecovery: true,
-              allowDocumentExit: allowFinishDocumentExit,
-              done: allowFinishDocumentExit
-                ? (candidate) => candidate.level.authored?.id !== document.id
+              allowDocumentExit: allowFinishTrigger,
+              done: allowFinishTrigger
+                ? (candidate) =>
+                    candidate.level.authored?.id !== document.id ||
+                    finishReached?.(candidate)
                 : null,
             },
           );
         }
       }
-      if (after.level.authored?.id !== document.id) {
+      const finishTriggered = Boolean(
+        allowFinishTrigger && finishReached?.(after),
+      );
+      if (after.level.authored?.id !== document.id || finishTriggered) {
         assert.equal(
-          allowFinishDocumentExit && edge.to === document.anchors.finish.platformId,
+          allowFinishTrigger && edge.to === document.anchors.finish.platformId,
           true,
           `${label}: document exit occurred outside the declared finish edge`,
         );
@@ -678,7 +683,10 @@ export function createAuthoredRouteDriver({
       });
     }
     const documentExited = after?.level.authored?.id !== document.id;
-    if (!documentExited) {
+    const finishTriggered = Boolean(
+      allowFinishTrigger && finishReached?.(after),
+    );
+    if (!documentExited && !finishTriggered) {
       assert.equal(
         after?.obby.supportId,
         edge.to,
@@ -687,11 +695,16 @@ export function createAuthoredRouteDriver({
     }
     const evidence = {
       ...edge,
-      ...(documentExited
+      ...(documentExited || finishTriggered
         ? {
             recoveries: 0,
-            documentExited: true,
-            nextDocumentId: after.level.authored?.id ?? null,
+            finishTriggered,
+            ...(documentExited
+              ? {
+                  documentExited: true,
+                  nextDocumentId: after.level.authored?.id ?? null,
+                }
+              : { triggerPosition: after.status.position }),
           }
         : {
             recoveries: after.obby.recoveries - recoveriesBefore,

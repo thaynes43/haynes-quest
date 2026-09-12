@@ -744,13 +744,22 @@ async function playChapter(chapter) {
     }
     const edge = plan.edges[edgeIndex];
     const finishEdge = edge.to === document.anchors.finish.platformId;
+    const finishReached = () =>
+      ["revealed", "consumed"].includes(
+        latestSave.memories.find(
+          (memory) => memory.id === chapterMemoryIds.major,
+        )?.state,
+      );
     const after = await driver.crossEdge(
       edge,
       `chapter-${chapter}-edge-${edgeIndex + 1}`,
-      { allowFinishDocumentExit: finishEdge },
+      { allowFinishTrigger: finishEdge, finishReached },
     );
     const documentExited = after.level.authored?.id !== document.id;
-    if (!documentExited && after.obby.supportId !== edge.to) continue;
+    const finishTriggered = finishEdge && finishReached();
+    if (!documentExited && !finishTriggered && after.obby.supportId !== edge.to) {
+      continue;
+    }
     assert.ok(
       !documentExited || finishEdge,
       "authored document changed before the declared finish edge",
