@@ -1,0 +1,85 @@
+{
+  "url": "http://127.0.0.1:4402",
+  "browser": "153.0.8010.12",
+  "runs": [
+    {
+      "label": "as-shipped",
+      "bundle": "http://127.0.0.1:4402/assets/index-CD5h8vpi.js",
+      "styles": {
+        "gameScreen": "auto",
+        "gameCanvas": "auto",
+        "canvas": "none",
+        "joystick": "none",
+        "attack": "none",
+        "viewportMeta": "width=device-width,initial-scale=1,viewport-fit=cover"
+      },
+      "scaleStart": 1,
+      "doubleTaps": {
+        "canvas": {
+          "x": 195,
+          "y": 330,
+          "hitElement": "",
+          "scaleBefore": 1,
+          "scaleAfter": 1
+        },
+        "objective": {
+          "x": 285,
+          "y": 117,
+          "touchAction": "auto",
+          "hitElement": "",
+          "scaleBefore": 1,
+          "scaleAfter": 1
+        },
+        "hud": {
+          "x": 96,
+          "y": 135,
+          "touchAction": "auto",
+          "hitElement": "",
+          "scaleBefore": 1,
+          "scaleAfter": 1
+        }
+      },
+      "scaleAfterPinch": 2.499999523162842
+    },
+    {
+      "label": "canvas-touch-action-none",
+      "bundle": "http://127.0.0.1:4402/assets/index-CD5h8vpi.js",
+      "styles": {
+        "gameScreen": "auto",
+        "gameCanvas": "none",
+        "canvas": "none",
+        "joystick": "none",
+        "attack": "none",
+        "viewportMeta": "width=device-width,initial-scale=1,viewport-fit=cover"
+      },
+      "scaleStart": 1,
+      "doubleTaps": {
+        "canvas": {
+          "x": 195,
+          "y": 330,
+          "hitElement": "",
+          "scaleBefore": 1,
+          "scaleAfter": 1
+        },
+        "objective": {
+          "x": 285,
+          "y": 117,
+          "touchAction": "auto",
+          "hitElement": "",
+          "scaleBefore": 1,
+          "scaleAfter": 1
+        },
+        "hud": {
+          "x": 96,
+          "y": 135,
+          "touchAction": "auto",
+          "hitElement": "",
+          "scaleBefore": 1,
+          "scaleAfter": 1
+        }
+      },
+      "scaleAfterPinch": 2.5000007152557373
+    }
+  ],
+  "errors": []
+}

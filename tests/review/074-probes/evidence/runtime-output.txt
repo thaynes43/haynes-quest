@@ -1,0 +1,31 @@
+WO074 dodging child reached dizzy with hp 10 (was 10); take-hits so far 0
+WO074 struck-actor attribution: accepted attack was aimed at bestie-pink; after the rejected (busy) press bestiesHitActorId=bestie-black; on the HP-drop frame the renderer received bestiesHitActorId=bestie-black
+WO074 middle-path kid: 2 take-hit requests (2 on the boss island), player hp 2/10, phases seen inactive,pink-warning,pink-trick,black-warning,black-trick,high-five,dizzy, accepted attacks 9
+WO074 post-victory renderer stream: besties phases defeated (first change at never); boss enemy phases defeated; adventure phase memory-released; boss defeated flag true
+ × tests/review/074-probes/runtime-besties.test.ts > WO074 runtime probes (717cfe6) > animates the hit on the actor nearest the ACCEPTED attack, not the actor nearest a later rejected press 2978ms
+   → expected 'bestie-black' to be 'bestie-pink' // Object.is equality
+WO074 swallow: collect-equipment dispatched on frame 3; attack feedback sequence 2→3→3 across the surrounding frames
+WO074 stationary middle-path child (no attacks):
+t=0.00s pink-warning/exploring hp=10/10 boss=11/11 hits=0 retries=0 z=-20.77
+t=0.35s pink-trick/exploring hp=10/10 boss=11/11 hits=0 retries=0 z=-20.77
+t=1.25s pink-trick/exploring hp=6/10 boss=11/11 hits=1 retries=0 z=-20.77
+t=2.37s black-warning/exploring hp=6/10 boss=11/11 hits=1 retries=0 z=-20.77
+t=3.57s black-trick/exploring hp=2/10 boss=11/11 hits=2 retries=0 z=-20.77
+t=5.58s high-five/exploring hp=2/10 boss=11/11 hits=2 retries=0 z=-20.77
+t=7.18s dizzy/exploring hp=2/10 boss=11/11 hits=2 retries=0 z=-20.77
+t=12.19s pink-warning/exploring hp=2/10 boss=11/11 hits=2 retries=0 z=-20.77
+t=13.39s pink-trick/exploring hp=2/10 boss=11/11 hits=2 retries=0 z=-20.77
+t=14.27s pink-trick/fallen hp=0/10 boss=11/11 hits=3 retries=0 z=-20.77
+t=14.29s inactive/exploring hp=10/10 boss=11/11 hits=3 retries=1 z=-19.00
+t=14.32s pink-warning/exploring hp=10/10 boss=11/11 hits=3 retries=1 z=-19.00
+t=15.50s pink-trick/exploring hp=10/10 boss=11/11 hits=3 retries=1 z=-19.00
+t=16.40s pink-trick/exploring hp=6/10 boss=11/11 hits=4 retries=1 z=-19.00
+t=17.52s black-warning/exploring hp=6/10 boss=11/11 hits=4 retries=1 z=-19.00
+t=18.72s black-trick/exploring hp=6/10 boss=11/11 hits=4 retries=1 z=-19.00
+t=18.74s black-trick/exploring hp=2/10 boss=11/11 hits=5 retries=1 z=-19.00
+t=20.74s high-five/exploring hp=2/10 boss=11/11 hits=5 retries=1 z=-19.00
+t=22.34s dizzy/exploring hp=2/10 boss=11/11 hits=5 retries=1 z=-19.00
+ ✓ tests/review/074-probes/runtime-besties.test.ts > WO074 runtime probes (717cfe6) > keeps the pair defeated after victory and lands aimed hits on a player holding the middle path 1636ms
+ ✓ tests/review/074-probes/runtime-besties.test.ts > WO074 runtime probes (717cfe6) > drops an Attack press silently on the frame a contact pickup is accepted (documents the swallow) 36ms
+ ✓ tests/review/074-probes/runtime-besties.test.ts > WO074 runtime probes (717cfe6) > records what happens to a child who stands still on the middle path (hit cost, knockout, retry) 7246ms
+ FAIL  tests/review/074-probes/runtime-besties.test.ts > WO074 runtime probes (717cfe6) > animates the hit on the actor nearest the ACCEPTED attack, not the actor nearest a later rejected press

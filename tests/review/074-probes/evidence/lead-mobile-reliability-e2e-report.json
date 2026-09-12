@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:4402",
+  "browser": "153.0.8010.12",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "errors": [],
+  "checks": [
+    {
+      "check": "scrolled Help accepts real touch and starts a decoded cue",
+      "scrollBefore": 0,
+      "scrollAfter": 345,
+      "before": {
+        "clicks": 0,
+        "starts": 1
+      },
+      "after": {
+        "clicks": 1,
+        "starts": [
+          {
+            "duration": 0.3,
+            "state": "running"
+          },
+          {
+            "duration": 1.2,
+            "state": "running"
+          }
+        ]
+      },
+      "limitation": "AudioBufferSource start is not physical iPhone speaker evidence."
+    },
+    {
+      "check": "sound test remains repeatable"
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,53 @@
+WO074 real-GLB pose motion by cycle:phase:actor
+0:pink-warning:bestie-pink: 71/71 frames moved, max step 0.0980 m
+0:pink-warning:bestie-black: 71/71 frames moved, max step 0.0031 m
+0:pink-trick:bestie-pink: 95/120 frames moved, max step 0.0100 m
+0:pink-trick:bestie-black: 120/120 frames moved, max step 0.0031 m
+0:black-warning:bestie-pink: 72/72 frames moved, max step 0.1491 m
+0:black-warning:bestie-black: 72/72 frames moved, max step 0.1755 m
+0:black-trick:bestie-pink: 120/120 frames moved, max step 0.0034 m
+0:black-trick:bestie-black: 95/120 frames moved, max step 0.0081 m
+0:high-five:bestie-pink: 96/96 frames moved, max step 0.1562 m
+0:high-five:bestie-black: 96/96 frames moved, max step 0.0459 m
+0:dizzy:bestie-pink: 300/300 frames moved, max step 0.1004 m
+0:dizzy:bestie-black: 300/300 frames moved, max step 0.1196 m
+1:pink-warning:bestie-pink: 72/72 frames moved, max step 0.0980 m
+1:pink-warning:bestie-black: 72/72 frames moved, max step 0.1303 m
+1:pink-trick:bestie-pink: 95/120 frames moved, max step 0.0100 m
+1:pink-trick:bestie-black: 120/120 frames moved, max step 0.0031 m
+1:black-warning:bestie-pink: 72/72 frames moved, max step 0.1491 m
+1:black-warning:bestie-black: 72/72 frames moved, max step 0.1755 m
+1:black-trick:bestie-pink: 120/120 frames moved, max step 0.0034 m
+1:black-trick:bestie-black: 95/120 frames moved, max step 0.0081 m
+1:high-five:bestie-pink: 96/96 frames moved, max step 0.1562 m
+1:high-five:bestie-black: 96/96 frames moved, max step 0.0459 m
+1:dizzy:bestie-pink: 300/300 frames moved, max step 0.1004 m
+1:dizzy:bestie-black: 300/300 frames moved, max step 0.1196 m
+2:pink-warning:bestie-pink: 61/61 frames moved, max step 0.0980 m
+2:pink-warning:bestie-black: 61/61 frames moved, max step 0.1303 m
+ ✓ tests/review/074-probes/besties-glb-mixer.test.ts > WO074 actual-GLB AnimationMixer probes (717cfe6) > both authored GLBs expose the eight exact clips at the recorded durations 20ms
+ ✓ tests/review/074-probes/besties-glb-mixer.test.ts > WO074 actual-GLB AnimationMixer probes (717cfe6) > moves the authored geometry in every routine phase of two full cycles (no frozen mixer after scrubbed clips) 233ms
+WO074 hit clip: pink diverged on 0/33 frames, black diverged on 33/33, black frozen on 8
+WO074 defeat: both actors hidden after 2.000 s; geometry moved on 91/120 visible frames
+ ✓ tests/review/074-probes/besties-glb-mixer.test.ts > WO074 actual-GLB AnimationMixer probes (717cfe6) > plays the real hit clip on the struck actor only, and never when the runtime passes null 110ms
+ ✓ tests/review/074-probes/besties-glb-mixer.test.ts > WO074 actual-GLB AnimationMixer probes (717cfe6) > plays the authored 2.0 s defeat clip after victory disables combat, then hides both actors 41ms
+ ✓ tests/review/074-probes/besties-glb-mixer.test.ts > WO074 actual-GLB AnimationMixer probes (717cfe6) > renders each actor at the anchor the attack code targets and turns the authored -Z face toward the player 23ms
+ ✓ tests/review/074-probes/besties-glb-mixer.test.ts > WO074 actual-GLB AnimationMixer probes (717cfe6) > processes defeat while the routine is paused for recovery, and a recovery restart keeps the aimed geometry 0ms
+WO074 authored clip tails
+bestie-pink/idle: 2.40 s, static tail 0.000 s
+bestie-pink/move: 1.20 s, static tail 0.000 s
+bestie-pink/attack: 1.60 s, static tail 0.120 s
+bestie-pink/hit: 0.60 s, static tail 0.165 s
+bestie-pink/defeat: 2.00 s, static tail 0.450 s
+bestie-pink/cheer: 2.00 s, static tail 0.000 s
+bestie-pink/high-five: 1.60 s, static tail 0.000 s
+bestie-pink/dizzy: 2.40 s, static tail 0.000 s
+bestie-black/idle: 2.40 s, static tail 0.000 s
+bestie-black/move: 1.20 s, static tail 0.000 s
+bestie-black/attack: 1.60 s, static tail 0.120 s
+bestie-black/hit: 0.60 s, static tail 0.165 s
+bestie-black/defeat: 2.00 s, static tail 0.450 s
+bestie-black/cheer: 2.00 s, static tail 0.000 s
+bestie-black/high-five: 1.60 s, static tail 0.000 s
+bestie-black/dizzy: 2.40 s, static tail 0.000 s
+ ✓ tests/review/074-probes/besties-glb-mixer.test.ts > WO074 actual-GLB AnimationMixer probes (717cfe6) > measures each authored clip's trailing static hold on the raw GLB (evidence for the motion thresholds) 128ms
