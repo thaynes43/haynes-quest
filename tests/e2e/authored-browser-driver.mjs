@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 
 import {
   authoredDocumentFromInspection,
-  landingPoint,
   livePlatform,
   planarDistance,
+  platformGateway,
 } from "./authored-navigation.mjs";
 
 export const delay = (milliseconds) =>
@@ -192,6 +192,58 @@ export async function createTouchControls({ page, context }) {
   };
 }
 
+export function createHybridControls({ page }) {
+  let heldKeys = [];
+  const keysToward = (deltaX, deltaZ) => {
+    const horizontal =
+      Math.abs(deltaX) > 0.08 ? (deltaX < 0 ? "KeyA" : "KeyD") : null;
+    const vertical =
+      Math.abs(deltaZ) > 0.08 ? (deltaZ < 0 ? "KeyW" : "KeyS") : null;
+    if (!horizontal) return vertical ? [vertical] : [];
+    if (!vertical) return [horizontal];
+    // Closed-loop pulses resolve non-45-degree approaches one axis at a time.
+    return Math.abs(deltaX) > Math.abs(deltaZ)
+      ? [horizontal]
+      : [vertical];
+  };
+  const release = async () => {
+    for (const key of [...heldKeys].reverse()) await page.keyboard.up(key);
+    heldKeys = [];
+  };
+  const beginToward = async (deltaX, deltaZ) => {
+    await release();
+    heldKeys = keysToward(deltaX, deltaZ);
+    assert.ok(heldKeys.length, "zero-length keyboard movement requested");
+    for (const key of heldKeys) await page.keyboard.down(key);
+  };
+  return {
+    kind: "keyboard-route-touch-actions",
+    beginToward,
+    release,
+    async jumpToward(deltaX, deltaZ, { milliseconds = 600 } = {}) {
+      await beginToward(deltaX, deltaZ);
+      try {
+        await page.keyboard.press("Space", { delay: 30 });
+        await delay(milliseconds);
+      } finally {
+        await release();
+      }
+    },
+    async pulseToward(deltaX, deltaZ, { jump = false, milliseconds = 150 } = {}) {
+      await beginToward(deltaX, deltaZ);
+      try {
+        if (jump) await page.keyboard.press("Space", { delay: 30 });
+        await delay(milliseconds);
+      } finally {
+        await release();
+      }
+    },
+    async tapButton(name) {
+      await page.getByRole("button", { name, exact: true }).tap();
+    },
+  };
+}
+
 function pointToSegmentDistance(point, start, end) {
   const dx = end.x - start.x;
   const dz = end.z - start.z;
@@ -223,10 +275,6 @@ function isMovingPlatform(document, platformId) {
   return document.pieces.some(
     (piece) => piece.id === platformId && piece.type === "moving-platform",
   );
-}
-
-function closestApproach(platform, target, inset = 0.32) {
-  return landingPoint(platform, target, inset);
 }
 
 export function createAuthoredRouteDriver({
@@ -349,8 +397,9 @@ export function createAuthoredRouteDriver({
         const boardInspection = await read(`${label}-board-wait`);
         const moving = livePlatform(boardInspection, edge.to);
         const source = livePlatform(boardInspection, edge.from);
-        const target = closestApproach(moving, source.center);
-        const sourceEdge = closestApproach(source, moving.center);
+        const gateway = platformGateway(source, moving);
+        const target = gateway.to;
+        const sourceEdge = gateway.from;
         if (planarDistance(boardInspection.status.position, sourceEdge) > 0.65) {
           const approached = await moveToPoint(() => sourceEdge, {
             label: `${label}-board-approach`,
@@ -437,15 +486,16 @@ export function createAuthoredRouteDriver({
       );
       const source = livePlatform(inspection, edge.from);
       const target = livePlatform(inspection, edge.to);
-      const sourceEdge = closestApproach(source, target.center);
-      const targetEdge = closestApproach(target, source.center);
+      const gateway = platformGateway(source, target);
+      const sourceEdge = gateway.from;
+      const targetEdge = gateway.to;
       if (planarDistance(inspection.status.position, sourceEdge) > 0.6) {
         const approached = await moveToPoint(
           (candidate) =>
-            closestApproach(
+            platformGateway(
               livePlatform(candidate, edge.from),
-              livePlatform(candidate, edge.to).center,
-            ),
+              livePlatform(candidate, edge.to),
+            ).from,
           {
             label: `${label}-disembark-approach`,
             tolerance: 0.55,
@@ -511,9 +561,10 @@ export function createAuthoredRouteDriver({
       } else {
         const target = livePlatform(before, edge.to);
         const source = livePlatform(before, edge.from);
-        const landing = closestApproach(target, source.center);
+        const gateway = platformGateway(source, target);
+        const landing = gateway.to;
         if (edge.mode === "jump") {
-          const takeoff = closestApproach(source, target.center);
+          const takeoff = gateway.from;
           const approached = await moveToPoint(() => takeoff, {
             label: `${label}-takeoff`,
             tolerance: 0.5,
@@ -571,7 +622,11 @@ export function createAuthoredRouteDriver({
           );
         } else {
           after = await moveToPoint(
-            (candidate) => closestApproach(livePlatform(candidate, edge.to), candidate.status.position),
+            (candidate) =>
+              platformGateway(
+                livePlatform(candidate, edge.from),
+                livePlatform(candidate, edge.to),
+              ).to,
             {
               label: `${label}-walk`,
               tolerance: 0.55,

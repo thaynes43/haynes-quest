@@ -10,6 +10,7 @@ const {
   buildTraversalPlan,
   findPlatformPath,
   landingPoint,
+  platformGateway,
   summarizeAuthoredCourse,
 } = navigation;
 const { chooseFallDirection, nearbyHazard } = browserDriver;
@@ -178,6 +179,18 @@ describe("authored browser navigation", () => {
         { x: 2, y: 0, z: -20 },
       ),
     ).toEqual({ x: 8.45, y: 1.25, z: -10.55 });
+  });
+
+  it("aligns a jump through the shared corridor of offset platforms", () => {
+    const gateway = platformGateway(
+      { center: { x: -1, y: -0.3, z: -6.2 }, size: { x: 4.4, y: 0.6, z: 3 } },
+      { center: { x: 1, y: -0.3, z: -10 }, size: { x: 4.4, y: 0.6, z: 3 } },
+    );
+
+    expect(gateway).toEqual({
+      from: { x: 0, y: 0, z: -7.38 },
+      to: { x: 0, y: 0, z: -8.82 },
+    });
   });
 
   it("rejects a future authored schema instead of silently using it", () => {

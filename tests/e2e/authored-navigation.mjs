@@ -246,6 +246,41 @@ export function landingPoint(platform, from, inset = 0.45) {
   };
 }
 
+/** Closest aligned inset points across two axis-aligned platform tops. */
+export function platformGateway(source, target, inset = 0.32) {
+  const interval = (platform, axis) => {
+    const half = Math.max(0, platform.size[axis] / 2 - inset);
+    return [platform.center[axis] - half, platform.center[axis] + half];
+  };
+  const coordinates = (axis) => {
+    const [sourceMin, sourceMax] = interval(source, axis);
+    const [targetMin, targetMax] = interval(target, axis);
+    const overlapMin = Math.max(sourceMin, targetMin);
+    const overlapMax = Math.min(sourceMax, targetMax);
+    if (overlapMin <= overlapMax) {
+      const shared = (overlapMin + overlapMax) / 2;
+      return [shared, shared];
+    }
+    return sourceMax < targetMin
+      ? [sourceMax, targetMin]
+      : [sourceMin, targetMax];
+  };
+  const [sourceX, targetX] = coordinates("x");
+  const [sourceZ, targetZ] = coordinates("z");
+  return {
+    from: {
+      x: sourceX,
+      y: source.center.y + source.size.y / 2,
+      z: sourceZ,
+    },
+    to: {
+      x: targetX,
+      y: target.center.y + target.size.y / 2,
+      z: targetZ,
+    },
+  };
+}
+
 export function summarizeAuthoredCourse(document) {
   validateAuthoredNavigation(document);
   return {

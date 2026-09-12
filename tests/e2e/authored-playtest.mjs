@@ -5,7 +5,7 @@ import { chromium } from "playwright";
 import {
   chooseFallDirection,
   createAuthoredRouteDriver,
-  createTouchControls,
+  createHybridControls,
   delay,
   inspectGame,
   waitForInspection,
@@ -32,7 +32,9 @@ const report = {
   status: "running",
   url,
   browser: null,
-  controls: "real CDP touch joystick, world taps, and visible combat buttons",
+  controls: "real keyboard route movement/jumps and touch combat buttons",
+  relatedTouchDiagnostic:
+    "test-results/fresh-playtest/plan009-input-diagnostic/report.json",
   chapters: [],
   progress: [],
   screenshots: [],
@@ -320,7 +322,7 @@ async function playChapter(chapter) {
   };
   chapterReport.dynamics = await proveDynamicPieces(document);
 
-  const controls = await createTouchControls({ page, context });
+  const controls = createHybridControls({ page });
   const driver = createAuthoredRouteDriver({
     page,
     controls,
