@@ -6,6 +6,8 @@
 
 ## Parent setup
 
+**September 12 amendment:** [DESIGN016](016-authored-levels.md) makes an authored level builder the central setup experience. Authors place integrated or manually uploaded memories and choose modular routes and encounters. Full name is an integration lookup aid, not an upload-only requirement. Each level suggests period-relevant photos and bosses; **Show more** permits deliberate wider selections without an admin ceremony for every local creative choice. Shared historical/relevance defaults remain administrator-managed. Original metadata, media authorization, asset readiness and progression gates still apply. The flow below is earlier setup groundwork to reuse under that direction.
+
 A parent prepares the journey before the child starts playing. The setup presents four steps:
 
 1. **Choose the person.** Enter the full name for Immich lookup, confirm the matched person and enter their birthday. A name is a search input, not a unique identity: ambiguous matches must be resolved before photos are selected. Keep a separate friendly display name for the game.

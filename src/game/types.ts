@@ -68,6 +68,7 @@ export interface SceneFrame {
   enemies: EnemyFrame[];
   currentTarget: string | null;
   besties?: import("./besties").BestiesFrame;
+  bestiesHitActorId?: import("./besties").BestieActorId | null;
   obby?: ObbySample;
   checkpointId?: string | null;
   recovering?: boolean;
@@ -92,6 +93,33 @@ export interface SceneMediaState {
   loading: number;
   failed: number;
   reloadRequired?: boolean;
+}
+
+export interface MemoryVisualInspection {
+  id: string;
+  /** The current value on the Three.js memory root. */
+  visible: boolean;
+}
+
+export interface BestiesPoseInspection {
+  head?: PositionSnapshot;
+  leftHand?: PositionSnapshot;
+  rightHand?: PositionSnapshot;
+}
+
+export interface BestiesActorVisualInspection {
+  id: import("./besties").BestieActorId;
+  /** World-space position of the actor's rendered root. */
+  position: PositionSnapshot;
+  /** False when the actor or any ancestor in the rendered scene is hidden. */
+  visible: boolean;
+  clip: import("./besties").BestiesClipName | null;
+  pose?: BestiesPoseInspection;
+}
+
+export interface SceneVisualInspection {
+  memories: MemoryVisualInspection[];
+  besties?: BestiesActorVisualInspection[];
 }
 
 export interface GameStatus {
@@ -165,6 +193,7 @@ export interface GameInspection {
   checkpoint: PositionSnapshot;
   level: LevelInspection;
   enemies: EnemyFrame[];
+  visuals?: SceneVisualInspection;
   obby?: ObbySample & {
     routeId: ObbyRouteId;
     checkpointId: string | null;

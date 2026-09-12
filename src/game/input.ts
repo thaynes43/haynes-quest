@@ -241,7 +241,7 @@ export function bindBrowserInput({
     cameraPointers.set(event.pointerId, {
       x: event.clientX, y: event.clientY,
       startX: event.clientX, startY: event.clientY,
-      startedAt: windowTarget.performance.now(),
+      startedAt: event.timeStamp,
       touch: event.pointerType === "touch", dragging: false,
     });
     target.setPointerCapture?.(event.pointerId);
@@ -262,9 +262,10 @@ export function bindBrowserInput({
   const stopPointer = (event: PointerEvent): void => {
     const pointer = cameraPointers.get(event.pointerId);
     cameraPointers.delete(event.pointerId);
+    const elapsed = pointer ? event.timeStamp - pointer.startedAt : -1;
     if (event.type === "pointerup" && pointer?.touch && !pointer.dragging &&
         Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY) <= 10 &&
-        windowTarget.performance.now() - pointer.startedAt <= 500) {
+        elapsed >= 0 && elapsed <= 500) {
       input.set("jump", true);
       input.set("jump", false);
     }

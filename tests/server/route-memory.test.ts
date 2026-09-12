@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import {
+  ENEMY_HIT_COOLDOWN_MS,
   ROUTE_ATTACK_COOLDOWN_MS,
   SECONDARY_ATTACK_COOLDOWN_MS,
   createAdventurePlan,
@@ -163,6 +164,73 @@ describe('route-memory plan v3', () => {
       ...structuredClone(plan),
       levels: plan.levels.map((level) => ({ ...level, memoryIds: memoryIdsForLevel(level) })),
     }, createInitialAdventureState(plan))).toThrow('Save unavailable');
+  });
+
+  it('gives only newly created v3 Besties plans forgiving contact damage', () => {
+    const plan = routePlan();
+    const firstBoss = plan.levels[0]!.encounters.find((encounter) => encounter.role === 'boss')!;
+    const besties = plan.levels[1]!.encounters.find((encounter) => encounter.role === 'boss')!;
+    expect(firstBoss.content.catalogEntryId).not.toBe('bickering-besties');
+    expect(firstBoss.attackDamage).toBe(3);
+    expect(besties.content.catalogEntryId).toBe('bickering-besties');
+    expect(besties.attackDamage).toBe(2);
+
+    const v2 = createAdventurePlan('2020-01-01', MEMORIES);
+    const v2Besties = v2.levels[1]!.encounters.find((encounter) => encounter.role === 'boss')!;
+    expect(v2Besties.content.catalogEntryId).toBe('bickering-besties');
+    expect(v2Besties.attackDamage).toBe(4);
+
+    const frozenV3 = structuredClone(plan);
+    frozenV3.levels[1]!.encounters.find((encounter) => encounter.role === 'boss')!.attackDamage = 4;
+    expect(parseStoredAdventure(frozenV3, createInitialAdventureState(frozenV3)).plan.levels[1]!
+      .encounters.find((encounter) => encounter.role === 'boss')!.attackDamage).toBe(4);
+  });
+
+  it('keeps the player alive through four Besties contacts before the fifth causes a fall', () => {
+    const plan = routePlan();
+    const firstLevel = plan.levels[0]!;
+    let state = createInitialAdventureState(plan);
+    state = collect(plan, state, 'attack-tool');
+    for (const memoryId of firstLevel.minorMemoryIds) {
+      state = apply(plan, state, {
+        type: 'recover-memory', levelId: firstLevel.id, memoryId,
+      }, 0);
+    }
+    state = defeatLevelEncounters(plan, state);
+    state = apply(plan, state, {
+      type: 'recover-memory', levelId: firstLevel.id, memoryId: firstLevel.majorMemoryId,
+    }, 10_000);
+
+    const bestiesLevel = plan.levels[1]!;
+    const besties = bestiesLevel.encounters.find((encounter) => encounter.role === 'boss')!;
+    let attackAtMs = 0;
+    for (const encounter of bestiesLevel.encounters.filter(
+      (candidate) => candidate.role === 'ordinary',
+    )) {
+      while (!state.encounters[encounter.id]!.defeated) {
+        state = apply(plan, state, {
+          type: 'attack', levelId: bestiesLevel.id, encounterId: encounter.id,
+        }, attackAtMs);
+        attackAtMs += ROUTE_ATTACK_COOLDOWN_MS;
+      }
+    }
+
+    expect(besties.attackDamage).toBe(2);
+    expect(toAdventureView(plan, state, attackAtMs).activeLevel!.encounters.find(
+      (encounter) => encounter.id === besties.id,
+    )!.available).toBe(true);
+    let hitAtMs = 100_000;
+    for (const expectedHp of [8, 6, 4, 2]) {
+      state = apply(plan, state, {
+        type: 'take-hit', levelId: bestiesLevel.id, encounterId: besties.id,
+      }, hitAtMs);
+      hitAtMs += ENEMY_HIT_COOLDOWN_MS;
+      expect(state).toMatchObject({ playerHp: expectedHp, phase: 'exploring' });
+    }
+    state = apply(plan, state, {
+      type: 'take-hit', levelId: bestiesLevel.id, encounterId: besties.id,
+    }, hitAtMs);
+    expect(state).toMatchObject({ playerHp: 0, phase: 'fallen' });
   });
 
   it('recovers route minors without aging and makes the post-boss major the atomic age gate', () => {

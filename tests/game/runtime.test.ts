@@ -5,7 +5,10 @@ import type {
   GameplayActionRequest,
   SaveView,
 } from "../../src/shared/contracts";
-import type { SceneFrame } from "../../src/game/types";
+import type {
+  SceneFrame,
+  SceneVisualInspection,
+} from "../../src/game/types";
 import { makeEraSave } from "./fixtures";
 
 const sceneState = vi.hoisted(() => ({
@@ -54,6 +57,10 @@ vi.mock("../../src/game/scene", () => ({
 
     getMediaState(): { loading: number; failed: number } {
       return { loading: 1, failed: 2 };
+    }
+
+    inspectVisuals(): SceneVisualInspection {
+      return { memories: [{ id: "rendered-memory", visible: false }] };
     }
 
     retryMedia(): void {
@@ -186,6 +193,9 @@ describe("era game runtime", () => {
     expect(game.inspect().status).toMatchObject({
       mediaLoading: 1,
       mediaFailed: 2,
+    });
+    expect(game.inspect().visuals).toEqual({
+      memories: [{ id: "rendered-memory", visible: false }],
     });
     game.retryMedia();
     expect(sceneState.instances[0]?.retries).toBe(1);

@@ -1,6 +1,6 @@
 # DESIGN015: Fresh playtests and direct controls
 
-Status: Accepted for the private PLAN007 slice, September 12, 2026. Tom's physical-device feedback is the requirement; Astra ratifies the implementation choices below. This amends DESIGN006's private reward presentation and DESIGN011's age-gated jumping. Archived journeys retain their frozen contracts.
+Status: Accepted for the private PLAN007 slice, amended by PLAN008 after further physical iPhone feedback on September 12, 2026. Tom's feedback is the requirement; Astra ratifies the implementation choices below. This amends DESIGN006's private reward presentation and DESIGN011's age-gated jumping. Archived journeys retain their frozen contracts.
 
 ## The player experience
 
@@ -16,7 +16,7 @@ Retrying after losing all health keeps defeated enemies, gear and collected memo
 
 - Fixed, visible stick with a 44 CSS pixel deflection radius and an 8 pixel dead zone. Its pointer remains independent of camera and action contacts. Keeping the stick's activation area local preserves world-tap jumping on the left side too.
 - A world tap travels no more than 10 pixels and lasts no more than 500 ms. Exceeding the movement threshold makes it a camera drag until release. Cancellation never jumps. UI contacts keep their own role; a held stick plus another finger's world tap is supported.
-- Attack is 84–94 pixels across, Bash 60–68; header controls have at least 48 pixel targets. Safe-area insets keep controls away from device edges. Labels and a pressed state identify each action; touch users see a jump hint rather than a keyboard legend.
+- Attack is 84–94 pixels across, Bash 60–68; header controls have at least 48 pixel targets. Safe-area insets keep controls away from device edges. Labels and a pressed state identify each action. PLAN008 removes the permanent touch jump hint; Help retains instructions. Contextual teaching near specific obstacles is future course design.
 - Primary attacks have a 400 ms authoritative cooldown. Bash requires the collected offhand shield, reaches 2.25 m, deals 2/3 damage by tier and has a separate 1 second cooldown. It shares Besties' dizzy window. Later dual-wield and combo designs can replace this bounded secondary action.
 - Local arm motion, torso follow-through and swing/spell visuals acknowledge an attack immediately, including an empty swing. Pickups use the existing interaction clip. Movement is 4 m/s with bounded simulation slices so ordinary slow rendering does not halve movement speed. Background/modal time never accumulates into catch-up damage.
 - Existing grass geometry is taller and planted on the route's visible shoulders, at actual platform height. The center path, gaps, moving platform and central boss floor remain readable.
@@ -30,6 +30,8 @@ The new `era-level-plan-v3` freezes two minor IDs and one major ID per level. V1
 Root HTML is `no-store`; hashed JavaScript/CSS bundles are immutable. Studio pages and media use `no-cache` so browsers revalidate them. An unknown artwork identity uses visible study geometry and a recoverable warning. It cannot disable simulation or force a save/reload loop. Missing downloads remain retryable. A stale device client is a plausible cause of Tom's artwork gate; the specific device cause has not been established.
 
 ## Sound
+
+PLAN008 adds immediate visible audition status and bounded startup/loading failures. A context that suspended or was interrupted is retired and rebuilt on the next direct gesture, addressing documented WebKit lifecycle failures without trusting a stale running state. Concurrent gesture events share startup. The modal remains scrollable, its sound control remains a normal repeatable button, and failure never disables gameplay. Physical speaker listening remains necessary.
 
 The four v001 WAVs remain unchanged. Their earlier gain stack produced a landing peak around −30 dBFS; source analysis also found that sound was brief and bass-heavy. The new 0.8 master, measured cue trims and midrange attack/jump/pickup variants make feedback substantially stronger. A limiter bounds overlap. The fresh preference key avoids inheriting an earlier release's mute setting; the labeled toggle and Help audition make state and output easy to check.
 
@@ -46,3 +48,7 @@ Primary guidance: [W3C's enhanced target-size guidance](https://www.w3.org/WAI/W
 ## Verification boundary
 
 PLAN007 requires a complete fresh route through both bosses, independent direct Besties entry, contact collection, age-zero jumping, held-stick combinations, missing-art recovery, reload reset, audible-output samples, foliage captures and responsive control measurements. Automated Chromium remains distinct from physical Safari. The cached WebKit browser cannot launch in this dev-env because required GStreamer libraries are absent; restarting or changing dev-env is outside scope. Catalog and deployment checks are recorded in the active work orders and handoff before closure.
+
+PLAN008 final review also separates the pickup picture from later feedback by updating each notice as one text/photo value. Replacing a pickup notice with Attack, gear or friendly feedback clears its picture immediately, including when the old timer was canceled. Touch/pen sound unlock waits for release; mouse pointerdown remains valid. The sound-test confirmation describes startup, while physical listening remains a device check.
+
+Pointer timestamps determine the 0–500 ms world-tap window. A real Chromium trace captured an 11 ms touch whose release handler arrived roughly 531 ms after its press handler; processing-time measurement incorrectly rejected it. Slow frames must not turn a quick physical tap into a long press. True gestures over 500 ms, dragging and cancellation retain their existing behavior. Passive nearby-gear hints sit above combat controls and cannot intercept touches.

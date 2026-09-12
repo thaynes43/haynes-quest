@@ -3,7 +3,12 @@ import type {
   GameplayAction,
   SaveView,
 } from "../shared/contracts";
-import { BestiesSimulation, BESTIES_ARENA_CENTER } from "./besties";
+import {
+  BestiesSimulation,
+  BESTIES_ARENA_CENTER,
+  nearestBestiesActor,
+  type BestieActorId,
+} from "./besties";
 import { ActionCoordinator, type ActionRequestState } from "./actions";
 import {
   bossIsActive,
@@ -31,6 +36,7 @@ import type {
   PositionSnapshot,
   SceneFrame,
   SceneMediaState,
+  SceneVisualInspection,
 } from "./types";
 
 const interactionRadius = 1.4;
@@ -61,6 +67,7 @@ interface RuntimeScene {
     frame?: SceneFrame,
   ): void;
   getMediaState?(): SceneMediaState;
+  inspectVisuals?(): SceneVisualInspection;
   retryMedia?(): void;
   dispose(): void;
 }
@@ -166,6 +173,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let attackAnimationUntil = 0;
   let attackAnimationKind: "primary" | "secondary" = "primary";
   let attackTargetId: string | null = null;
+  let bestiesHitActorId: BestieActorId | null = null;
   let interactionAnimationUntil = 0;
   let interactionSequence = 0;
   let jumpSequence = 0;
@@ -255,7 +263,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const routeMemories = activeLevel?.minorMemoryIds;
     if (
       routeMemories
-        ? adventure.phase !== "exploring" && adventure.phase !== "memory-released"
+        ? adventure.phase !== "exploring" &&
+          adventure.phase !== "memory-released"
         : adventure.phase !== "memory-released"
     )
       return null;
@@ -264,8 +273,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
           ...routeMemories,
           ...(adventure.phase === "memory-released" &&
           routeMemories.every(
-            (id) => save.memories.find((memory) => memory.id === id)?.state === "revealed",
-          ) && activeLevel.majorMemoryId
+            (id) =>
+              save.memories.find((memory) => memory.id === id)?.state ===
+              "revealed",
+          ) &&
+          activeLevel.majorMemoryId
             ? [activeLevel.majorMemoryId]
             : []),
         ])
@@ -299,10 +311,21 @@ export function createGame(options: CreateGameOptions): GameHandle {
     );
   };
 
+  const attackTargetFrames = (): EnemyFrame[] =>
+    enemyFrames().map((enemy) =>
+      enemy.id === bestiesEncounter()?.id
+        ? {
+            ...enemy,
+            position: nearestBestiesActor(besties.frame(), controller.position)
+              .position,
+          }
+        : enemy,
+    );
+
   const nearestEncounter = (autoFace: boolean) =>
     findAttackTarget(
       save,
-      enemyFrames(),
+      attackTargetFrames(),
       controller.position,
       controller.facing,
       autoFace,
@@ -311,9 +334,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const nearestSecondaryEncounter = (autoFace: boolean) => {
     const adventure = requireAdventure(save);
     const encounters = new Map(
-      (adventure.activeLevel?.encounters ?? []).map((encounter) => [encounter.id, encounter]),
+      (adventure.activeLevel?.encounters ?? []).map((encounter) => [
+        encounter.id,
+        encounter,
+      ]),
     );
-    const candidates = enemyFrames().flatMap((enemy) => {
+    const candidates = attackTargetFrames().flatMap((enemy) => {
       const encounter = encounters.get(enemy.id);
       if (
         !encounter ||
@@ -325,14 +351,18 @@ export function createGame(options: CreateGameOptions): GameHandle {
       const distance = horizontalDistance(controller.position, enemy.position);
       if (
         distance > secondaryAttackRange ||
-        Math.abs(controller.position.y - enemy.position.y) > maxPlayerAttackFeetDelta
+        Math.abs(controller.position.y - enemy.position.y) >
+          maxPlayerAttackFeetDelta
       )
         return [];
       const facing = Math.atan2(
         controller.position.x - enemy.position.x,
         controller.position.z - enemy.position.z,
       );
-      if (!autoFace && facingDifference(facing, controller.facing) > Math.PI / 3) {
+      if (
+        !autoFace &&
+        facingDifference(facing, controller.facing) > Math.PI / 3
+      ) {
         return [];
       }
       return [{ id: enemy.id, facing, distance }];
@@ -360,7 +390,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const now = windowTarget.performance.now();
     const target = nearestEncounter(true);
     const routeMemories = isRouteMemoryAdventure(save);
-    const secondaryTarget = routeMemories ? nearestSecondaryEncounter(true) : null;
+    const secondaryTarget = routeMemories
+      ? nearestSecondaryEncounter(true)
+      : null;
     const media = mediaState();
     const requestBusy = requestState.requestState === "acting";
     return {
@@ -400,7 +432,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
         hasEquipment(save, "guard-tool") &&
         (routeMemories
           ? Boolean(secondaryTarget) &&
-            (secondaryTarget?.id !== bestiesEncounter()?.id || besties.frame().vulnerable) &&
+            (secondaryTarget?.id !== bestiesEncounter()?.id ||
+              besties.frame().vulnerable) &&
             now >= secondaryCooldownUntil
           : now >= guardCooldownUntil) &&
         !requestBusy,
@@ -526,6 +559,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       traversalRecoveries = 0;
       attackAnimationUntil = 0;
       attackTargetId = null;
+      bestiesHitActorId = null;
       interactionAnimationUntil = 0;
       suppressedAutoFriendlyId = null;
       attackFeedback = null;
@@ -632,11 +666,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
 
   const performAction = (action: GameplayAction): boolean => {
     const adventure = requireAdventure(save);
-    const attackKind = action.type === "secondary-attack"
-      ? "secondary"
-      : action.type === "attack"
-        ? "primary"
-        : null;
+    const attackKind =
+      action.type === "secondary-attack"
+        ? "secondary"
+        : action.type === "attack"
+          ? "primary"
+          : null;
     if (action.type === "attack" || action.type === "secondary-attack") {
       beginAttackAnimation(attackKind!, action.encounterId);
     }
@@ -730,7 +765,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
         );
         const routeMemories = adventure.activeLevel?.minorMemoryIds;
         if (routeMemories) {
-          if (nearestMemoryId() !== action.memoryId || memory?.state !== "released") {
+          if (
+            nearestMemoryId() !== action.memoryId ||
+            memory?.state !== "released"
+          ) {
             return false;
           }
         } else if (
@@ -755,8 +793,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
       action.type === "secondary-attack" ||
       action.type === "attack-friendly"
     ) {
-      const acceptedKind = action.type === "secondary-attack" ? "secondary" : "primary";
+      const acceptedKind =
+        action.type === "secondary-attack" ? "secondary" : "primary";
       if (!accepted) return recordAttackFeedback("unavailable", acceptedKind);
+      if (
+        action.type !== "attack-friendly" &&
+        action.encounterId === bestiesEncounter()?.id
+      )
+        bestiesHitActorId = nearestBestiesActor(
+          besties.frame(),
+          controller.position,
+        ).id;
       if (action.type === "attack-friendly") {
         beginAttackAnimation("primary", action.friendlyId);
       }
@@ -774,7 +821,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
       attackFeedback = {
         sequence: ++attackFeedbackSequence,
         outcome: "accepted",
-        ...(action.type === "secondary-attack" ? { kind: "secondary" as const } : {}),
+        ...(action.type === "secondary-attack"
+          ? { kind: "secondary" as const }
+          : {}),
       };
       emitStatus(true);
     }
@@ -790,7 +839,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     return accepted;
   };
 
-  const performAutoInteraction = (now: number): void => {
+  const performAutoInteraction = (now: number): boolean => {
     const adventure = requireAdventure(save);
     if (
       !isRouteMemoryAdventure(save) ||
@@ -800,7 +849,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       requestState.requestState === "acting" ||
       !adventure.currentLevelId
     )
-      return;
+      return false;
     const currentFriendlyId = nearestFriendlyId();
     if (
       suppressedAutoFriendlyId &&
@@ -817,11 +866,23 @@ export function createGame(options: CreateGameOptions): GameHandle {
         ? null
         : eligibleFriendlyId;
     const action: GameplayAction | null = pickupId
-      ? { type: "collect-equipment", levelId: adventure.currentLevelId, pickupId }
+      ? {
+          type: "collect-equipment",
+          levelId: adventure.currentLevelId,
+          pickupId,
+        }
       : memoryId
-        ? { type: "recover-memory", levelId: adventure.currentLevelId, memoryId }
+        ? {
+            type: "recover-memory",
+            levelId: adventure.currentLevelId,
+            memoryId,
+          }
         : friendlyId
-          ? { type: "interact-friendly", levelId: adventure.currentLevelId, friendlyId }
+          ? {
+              type: "interact-friendly",
+              levelId: adventure.currentLevelId,
+              friendlyId,
+            }
           : null;
     const key = action
       ? `${action.type}:${
@@ -835,15 +896,16 @@ export function createGame(options: CreateGameOptions): GameHandle {
     if (!action || !key) {
       autoInteractionKey = null;
       autoInteractionRetryAt = 0;
-      return;
+      return false;
     }
     if (autoInteractionKey !== key) {
       autoInteractionKey = key;
       autoInteractionRetryAt = 0;
     }
-    if (now < autoInteractionRetryAt) return;
-    performAction(action);
+    if (now < autoInteractionRetryAt) return false;
+    const accepted = performAction(action);
     autoInteractionRetryAt = now + autoInteractionRetryMs;
+    return accepted;
   };
 
   const frame = (now: number): void => {
@@ -870,7 +932,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
       rawDeltaSeconds,
       worldActive && worldWasActive,
     );
-    const deltaSeconds = simulationSteps.reduce((total, step) => total + step, 0);
+    const deltaSeconds = simulationSteps.reduce(
+      (total, step) => total + step,
+      0,
+    );
     worldWasActive = worldActive;
     elapsed += deltaSeconds;
     timeSinceStatus += deltaSeconds;
@@ -905,7 +970,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
             jumpPressed: actions.jump && stepIndex === 0,
             radius: dimensions.colliderRadius,
             height: dimensions.height,
-            ...(isRouteMemoryAdventure(save) ? { tuning: { moveSpeed: 4 } } : {}),
+            ...(isRouteMemoryAdventure(save)
+              ? { tuning: { moveSpeed: 4 } }
+              : {}),
           });
           if (traversal.checkpointChanged || traversal.recovered) {
             checkpoint = { ...controller.checkpoint };
@@ -946,6 +1013,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
           ),
           paused: controller.recoveryRemaining > 0,
           defeated: duo?.defeated ?? false,
+          aimAtPlayer: isRouteMemoryAdventure(save),
         });
         const contacts = enemies.step(
           {
@@ -956,7 +1024,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
           save,
         );
         if (duoStep.hit && duo && !pendingHit && adventure.currentLevelId) {
-          pendingHit = { levelId: adventure.currentLevelId, encounterId: duo.id };
+          pendingHit = {
+            levelId: adventure.currentLevelId,
+            encounterId: duo.id,
+          };
         }
         if (!pendingHit && contacts[0] && adventure.currentLevelId) {
           pendingHit = {
@@ -966,10 +1037,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
         }
       }
       if (simulationSteps.length === 0) {
-        enemies.step({ player: controller.position, deltaSeconds: 0, active: false }, save);
+        enemies.step(
+          { player: controller.position, deltaSeconds: 0, active: false },
+          save,
+        );
       }
       if (controller.recoveryRemaining <= 0) flushPendingHit();
-      performAutoInteraction(now);
+      const collectedByContact = performAutoInteraction(now);
       if (actions.interact && !isRouteMemoryAdventure(save)) {
         const pickupId = nearestPickupId();
         const memoryId = nearestMemoryId();
@@ -1003,7 +1077,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
           });
         }
       }
-      if (actions.attack && adventure.currentLevelId) {
+      if (actions.attack && !collectedByContact && adventure.currentLevelId) {
         const target = nearestEncounter(true);
         if (target) {
           controller.facing = target.facing;
@@ -1017,7 +1091,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
           recordAttackFeedback("no-target");
         }
       }
-      if (actions.guard && adventure.currentLevelId) {
+      if (actions.guard && !collectedByContact && adventure.currentLevelId) {
         if (isRouteMemoryAdventure(save)) {
           const target = nearestSecondaryEncounter(true);
           if (target) {
@@ -1060,6 +1134,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       enemies: frames,
       currentTarget: target?.id ?? null,
       besties: bestiesEncounter() ? besties.frame() : undefined,
+      bestiesHitActorId,
       obby: level.course ? sampleObby(level.course, courseTime) : undefined,
       checkpointId: controller.checkpointId,
       recovering: controller.recoveryRemaining > 0,
@@ -1129,6 +1204,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         checkpoint: { ...checkpoint },
         level: levelInspection,
         enemies: frames,
+        visuals: scene.inspectVisuals?.(),
         obby: level.course
           ? {
               ...sampleObby(level.course, courseTime),

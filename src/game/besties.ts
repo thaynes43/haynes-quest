@@ -90,6 +90,56 @@ export interface BestiesFrame {
   hazards: readonly BestiesHazardFrame[];
 }
 
+/** Rendering, aiming and hit range resolve the same moving actor anchors. */
+export function bestiesActorOffset(
+  frame: BestiesFrame,
+  actor: BestiesActorFrame,
+): PositionSnapshot {
+  const result = { ...actor.offset };
+  const side = actor.id === "bestie-pink" ? 1 : -1;
+  if (frame.phase === "high-five") {
+    const amount =
+      frame.phaseProgress <= 0.625
+        ? frame.phaseProgress / 0.625
+        : (1 - frame.phaseProgress) / 0.375;
+    result.x -= side * Math.sin((Math.PI / 2) * amount) * 0.8;
+  } else if (frame.activeActor === actor.id) {
+    // Step into the trick, then return before the shared high-five.
+    result.z +=
+      0.45 *
+      (frame.phase.endsWith("warning")
+        ? frame.phaseProgress
+        : 1 - frame.phaseProgress);
+  }
+  return result;
+}
+
+export function nearestBestiesActor(
+  frame: BestiesFrame,
+  player: PositionSnapshot,
+): {
+  id: BestieActorId;
+  position: PositionSnapshot;
+} {
+  return frame.actors
+    .map((actor) => {
+      const offset = bestiesActorOffset(frame, actor);
+      return {
+        id: actor.id,
+        position: {
+          x: BESTIES_ARENA_CENTER.x + offset.x,
+          y: BESTIES_ARENA_CENTER.y + offset.y,
+          z: BESTIES_ARENA_CENTER.z + offset.z,
+        },
+      };
+    })
+    .sort(
+      (a, b) =>
+        Math.hypot(a.position.x - player.x, a.position.z - player.z) -
+        Math.hypot(b.position.x - player.x, b.position.z - player.z),
+    )[0]!;
+}
+
 export interface BestiesStepOptions {
   player: PositionSnapshot;
   deltaSeconds: number;
@@ -97,6 +147,8 @@ export interface BestiesStepOptions {
   paused?: boolean;
   /** One authoritative encounter flag defeats both visible actors. */
   defeated: boolean;
+  /** New route playtests aim each warning once; archived encounters retain their geometry. */
+  aimAtPlayer?: boolean;
 }
 
 export interface BestiesStepResult {
@@ -114,6 +166,9 @@ interface BestiesState {
   cycleIndex: number;
   blackLaneSide: BestiesLaneSide;
   contactedDuringTrick: boolean;
+  aimed: boolean;
+  pinkZ: number;
+  blackX: number;
 }
 
 const pinkActorOffset = Object.freeze({ x: 1.25, y: 0, z: 0 });
@@ -132,6 +187,9 @@ function inactiveState(): BestiesState {
     phaseSeconds: 0,
     cycleIndex: 0,
     blackLaneSide: "left",
+    aimed: false,
+    pinkZ: -20.4,
+    blackX: -3.75,
     contactedDuringTrick: false,
   };
 }
@@ -202,20 +260,30 @@ function clampUnit(value: number): number {
   return Math.max(0, Math.min(1, value));
 }
 
-function pinkBarAt(progress: number, damaging: boolean): BestiesFoamBarFrame {
+function pinkBarAt(
+  progress: number,
+  damaging: boolean,
+  state?: BestiesState,
+): BestiesFoamBarFrame {
   const amount = clampUnit(progress);
+  const from = state?.aimed
+    ? { ...pinkSweepFrom, x: -5.4, z: state.pinkZ }
+    : pinkSweepFrom;
+  const to = state?.aimed
+    ? { ...pinkSweepTo, x: 5.4, z: state.pinkZ }
+    : pinkSweepTo;
   return {
     id: "besties-pink-foam-bar",
     kind: "foam-bar",
     center: {
-      x: pinkSweepFrom.x + (pinkSweepTo.x - pinkSweepFrom.x) * amount,
-      y: pinkSweepFrom.y,
-      z: pinkSweepFrom.z,
+      x: from.x + (to.x - from.x) * amount,
+      y: from.y,
+      z: from.z,
     },
     halfExtents: copyPosition(foamHalfExtents),
     sweep: {
-      from: copyPosition(pinkSweepFrom),
-      to: copyPosition(pinkSweepTo),
+      from: copyPosition(from),
+      to: copyPosition(to),
     },
     damaging,
   };
@@ -224,13 +292,14 @@ function pinkBarAt(progress: number, damaging: boolean): BestiesFoamBarFrame {
 function blackLaneAt(
   side: BestiesLaneSide,
   damaging: boolean,
+  state?: BestiesState,
 ): BestiesFloorLaneFrame {
   return {
     id: "besties-black-floor-lane",
     kind: "floor-lane",
     side,
     center: {
-      x: side === "left" ? -3.75 : 3.75,
+      x: state?.aimed ? state.blackX : side === "left" ? -3.75 : 3.75,
       y: 0.03,
       z: -22.75,
     },
@@ -240,17 +309,21 @@ function blackLaneAt(
 }
 
 function hazardsFor(state: BestiesState): readonly BestiesHazardFrame[] {
-  if (state.phase === "pink-warning") return [pinkBarAt(0, false)];
+  if (state.phase === "pink-warning") return [pinkBarAt(0, false, state)];
   if (state.phase === "pink-trick") {
     return [
-      pinkBarAt(state.phaseSeconds / BESTIES_PHASE_SECONDS["pink-trick"], true),
+      pinkBarAt(
+        state.phaseSeconds / BESTIES_PHASE_SECONDS["pink-trick"],
+        true,
+        state,
+      ),
     ];
   }
   if (state.phase === "black-warning") {
-    return [blackLaneAt(state.blackLaneSide, false)];
+    return [blackLaneAt(state.blackLaneSide, false, state)];
   }
   if (state.phase === "black-trick") {
-    return [blackLaneAt(state.blackLaneSide, true)];
+    return [blackLaneAt(state.blackLaneSide, true, state)];
   }
   return [];
 }
@@ -304,7 +377,7 @@ function contactsDuringSegment(
 ): BestieActorId | null {
   if (state.contactedDuringTrick || !playerCanContact(player)) return null;
   if (state.phase === "black-trick") {
-    const lane = blackLaneAt(state.blackLaneSide, true);
+    const lane = blackLaneAt(state.blackLaneSide, true, state);
     return intersectsExpandedBox(player, lane.center, lane.halfExtents)
       ? "bestie-black"
       : null;
@@ -312,8 +385,8 @@ function contactsDuringSegment(
   if (state.phase !== "pink-trick" || endSeconds <= startSeconds) return null;
 
   const duration = BESTIES_PHASE_SECONDS["pink-trick"];
-  const start = pinkBarAt(startSeconds / duration, true);
-  const end = pinkBarAt(endSeconds / duration, true);
+  const start = pinkBarAt(startSeconds / duration, true, state);
+  const end = pinkBarAt(endSeconds / duration, true, state);
   const sweptCenter = {
     x: (start.center.x + end.center.x) / 2,
     y: start.center.y,
@@ -387,12 +460,8 @@ export class BestiesSimulation {
   }
 
   step(options: BestiesStepOptions): BestiesStepResult {
-    if (!options.active) {
-      const changed = this.state.phase !== "inactive";
-      this.state = inactiveState();
-      return this.result(null, changed ? "inactive" : null);
-    }
-
+    // Victory disables combat in the same authoritative update. Defeat must
+    // still reach the renderer instead of resetting both actors to idle.
     if (options.defeated) {
       const changed = this.state.phase !== "defeated";
       this.state = {
@@ -404,9 +473,16 @@ export class BestiesSimulation {
       return this.result(null, changed ? "defeated" : null);
     }
 
+    if (!options.active) {
+      const changed = this.state.phase !== "inactive";
+      this.state = inactiveState();
+      return this.result(null, changed ? "inactive" : null);
+    }
+
     let phaseEntered: BestiesPhase | null = null;
     if (this.state.phase === "inactive" || this.state.phase === "defeated") {
       this.state = openingState();
+      this.aimWarning(options);
       phaseEntered = "pink-warning";
     }
     if (options.paused) return this.result(null, phaseEntered);
@@ -434,10 +510,28 @@ export class BestiesSimulation {
 
       if (duration - this.state.phaseSeconds > phaseEpsilon) break;
       this.state = { ...nextPhase(this.state), phaseSeconds: 0 };
+      this.aimWarning(options);
       phaseEntered = this.state.phase;
     }
 
     return this.result(hitBy, phaseEntered);
+  }
+
+  private aimWarning(options: BestiesStepOptions): void {
+    if (!options.aimAtPlayer) return;
+    this.state.aimed = true;
+    if (
+      this.state.phase === "pink-warning" &&
+      Number.isFinite(options.player.z)
+    )
+      this.state.pinkZ = Math.max(-23.5, Math.min(-19.5, options.player.z));
+    if (
+      this.state.phase === "black-warning" &&
+      Number.isFinite(options.player.x)
+    ) {
+      this.state.blackX = Math.max(-3.75, Math.min(3.75, options.player.x));
+      this.state.blackLaneSide = this.state.blackX < 0 ? "left" : "right";
+    }
   }
 
   private result(

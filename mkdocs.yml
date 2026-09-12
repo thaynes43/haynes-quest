@@ -55,6 +55,7 @@ nav:
       - Friendly characters: designs/013-friendly-characters.md
       - The Besties encounter: designs/014-besties-encounter.md
       - Fresh playtest controls: designs/015-fresh-playtest-controls.md
+      - Personalized authored levels: designs/016-authored-levels.md
       - Design template: designs/000-template.md
   - Operations:
       - Hosting context: ops/001-hosting-context.md
@@ -63,6 +64,7 @@ nav:
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
+      - Mobile reliability and builder direction: project/plans/008-mobile-reliability-and-builder-direction.md
       - Current handoff: project/HANDOFF.md
       - Fresh playtests and controls: project/plans/completed/007-playtest-reset-and-controls.md
       - Playtest feedback and Besties: project/plans/completed/006-playtest-polish-and-besties.md

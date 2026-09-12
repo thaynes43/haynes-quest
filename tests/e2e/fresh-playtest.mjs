@@ -272,6 +272,29 @@ const context = await browser.newContext({
 });
 await context.addInitScript(installAudioAnalyser);
 await context.addInitScript(installFrameProbe);
+await context.addInitScript(() => {
+  window.__questPointerTrace = [];
+  for (const type of ["pointerdown", "pointerup", "pointercancel"]) {
+    document.addEventListener(
+      type,
+      (event) => {
+        window.__questPointerTrace.push({
+          type,
+          id: event.pointerId,
+          pointerType: event.pointerType,
+          target: event.target.tagName,
+          x: event.clientX,
+          y: event.clientY,
+          timeStamp: event.timeStamp,
+          handledAt: performance.now(),
+        });
+        if (window.__questPointerTrace.length > 64)
+          window.__questPointerTrace.shift();
+      },
+      true,
+    );
+  }
+});
 
 let failArtwork = true;
 let failedArtworkRequests = 0;
@@ -294,6 +317,7 @@ const driver = createJourneyDriver({ url, errors });
 const page = await context.newPage();
 let latestSave = null;
 const observedSaves = [];
+const observedHits = [];
 page.on("pageerror", (error) => report.pageErrors.push(error.message));
 page.on("console", (message) => {
   if (message.type() === "error") report.consoleErrors.push(message.text());
@@ -318,6 +342,15 @@ page.on("response", async (response) => {
   ) {
     const body = await response.json().catch(() => null);
     if (body?.id && Number.isInteger(body.revision)) {
+      const action = response.request().postDataJSON()?.action;
+      if (action?.type === "take-hit") {
+        observedHits.push({
+          encounterId: action.encounterId,
+          revision: body.revision,
+          beforeHp: latestSave?.adventure?.playerHp,
+          afterHp: body.adventure?.playerHp,
+        });
+      }
       latestSave = body;
       observedSaves.push({
         id: body.id,
@@ -1049,6 +1082,20 @@ const collectMinor = async (memoryId, expectedAge, label) => {
     latestSave.memories.find((memory) => memory.id === memoryId)?.role,
     "minor",
   );
+  const rendered = await waitForInspection(
+    (inspection) =>
+      inspection.visuals?.memories.some(
+        (memory) => memory.id === memoryId && memory.visible === false,
+      ),
+    `${label}-rendered-hidden`,
+    20_000,
+  );
+  const visual = rendered.visuals.memories.find(
+    (memory) => memory.id === memoryId,
+  );
+  assert.deepEqual(visual, { id: memoryId, visible: false });
+  mark(`memory:${label}:rendered-hidden`, visual);
+  return visual;
 };
 
 const waitForEnemyChange = async (
@@ -1068,6 +1115,110 @@ const waitForEnemyChange = async (
   return null;
 };
 
+const finitePoint = (point) =>
+  point && [point.x, point.y, point.z].every(Number.isFinite);
+
+const pointDistance = (first, second) =>
+  Math.hypot(first.x - second.x, first.y - second.y, first.z - second.z);
+
+const createBestiesVisualTracker = () => ({
+  actors: new Map(),
+  samples: [],
+  lastSignature: null,
+});
+
+const observeBestiesVisuals = (tracker, inspection) => {
+  const phase = inspection.status.bestiesPhase;
+  const actors = inspection.visuals?.besties;
+  if (!phase || !actors?.length) return;
+  const signature = `${phase}:${actors
+    .map((actor) => `${actor.id}:${actor.clip}:${actor.visible}`)
+    .join("|")}`;
+  if (signature !== tracker.lastSignature && tracker.samples.length < 16) {
+    tracker.lastSignature = signature;
+    tracker.samples.push({
+      phase,
+      actors: actors.map((actor) => ({
+        id: actor.id,
+        visible: actor.visible,
+        clip: actor.clip,
+        position: actor.position,
+        ...(actor.pose?.head ? { head: actor.pose.head } : {}),
+      })),
+    });
+  }
+  for (const actor of actors) {
+    let observed = tracker.actors.get(actor.id);
+    if (!observed) {
+      observed = {
+        clips: new Set(),
+        sawVisible: false,
+        firstPosition: null,
+        furthestPosition: null,
+        maxPositionMotion: 0,
+        firstHead: null,
+        furthestHead: null,
+        maxHeadMotion: 0,
+      };
+      tracker.actors.set(actor.id, observed);
+    }
+    if (actor.clip) observed.clips.add(`${phase}:${actor.clip}`);
+    observed.sawVisible ||= actor.visible;
+    if (finitePoint(actor.position)) {
+      observed.firstPosition ??= { ...actor.position };
+      const motion = pointDistance(observed.firstPosition, actor.position);
+      if (motion >= observed.maxPositionMotion) {
+        observed.maxPositionMotion = motion;
+        observed.furthestPosition = { ...actor.position };
+      }
+    }
+    if (finitePoint(actor.pose?.head)) {
+      observed.firstHead ??= { ...actor.pose.head };
+      const motion = pointDistance(observed.firstHead, actor.pose.head);
+      if (motion >= observed.maxHeadMotion) {
+        observed.maxHeadMotion = motion;
+        observed.furthestHead = { ...actor.pose.head };
+      }
+    }
+  }
+};
+
+const bestiesVisualsReady = (tracker) =>
+  ["bestie-pink", "bestie-black"].every((id) => {
+    const observed = tracker.actors.get(id);
+    return (
+      observed?.sawVisible &&
+      observed.clips.size > 0 &&
+      observed.firstHead &&
+      Math.max(observed.maxPositionMotion, observed.maxHeadMotion) > 0.002
+    );
+  });
+
+const summarizeBestiesVisuals = (tracker) => ({
+  samples: tracker.samples,
+  actors: ["bestie-pink", "bestie-black"].map((id) => {
+    const observed = tracker.actors.get(id);
+    assert.ok(observed, `${id}: rendered observation unavailable`);
+    assert.equal(observed.sawVisible, true, `${id}: never visibly rendered`);
+    assert.ok(observed.clips.size > 0, `${id}: selected clip unavailable`);
+    assert.ok(observed.firstHead, `${id}: rendered head pose unavailable`);
+    assert.ok(
+      Math.max(observed.maxPositionMotion, observed.maxHeadMotion) > 0.002,
+      `${id}: rendered pose and position remained static`,
+    );
+    return {
+      id,
+      clips: [...observed.clips],
+      maxPositionMotion: observed.maxPositionMotion,
+      maxHeadMotion: observed.maxHeadMotion,
+      firstPosition: observed.firstPosition,
+      furthestPosition: observed.furthestPosition,
+      firstHead: observed.firstHead,
+      furthestHead: observed.furthestHead,
+    };
+  }),
+});
+
 const verifyBestiesArtworkRecovery = async () => {
   mark("besties-artwork:fallback");
   await page
@@ -1083,7 +1234,15 @@ const verifyBestiesArtworkRecovery = async () => {
     timeout: 20_000,
   });
   const afterRetry = await waitForInspection(
-    (inspection) => inspection.status.mediaFailed === 0,
+    (inspection) => {
+      const actors = inspection.visuals?.besties;
+      return (
+        inspection.status.mediaFailed === 0 &&
+        inspection.status.mediaLoading === 0 &&
+        actors?.length === 2 &&
+        actors.every((actor) => actor.clip && actor.pose?.head)
+      );
+    },
     "besties-artwork-retry",
     20_000,
   );
@@ -1093,6 +1252,7 @@ const verifyBestiesArtworkRecovery = async () => {
     before: beforeRetry.status.mediaFailed,
     after: afterRetry.status.mediaFailed,
     gamePhase: afterRetry.status.phase,
+    renderedActors: afterRetry.visuals.besties.map((actor) => actor.id),
   };
   await screenshot("besties-pink-restored");
   mark("besties-artwork:restored");
@@ -1121,6 +1281,28 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
     }
     return true;
   };
+  const bashTarget = (inspection) => {
+    if (!requireDizzy)
+      return inspection.level.encounterPositions.find(
+        (candidate) => candidate.id === encounter.id,
+      );
+    const visibleActors =
+      inspection.visuals?.besties?.filter((actor) => actor.visible) ?? [];
+    return visibleActors.sort(
+      (left, right) =>
+        pointDistance(inspection.status.position, left.position) -
+        pointDistance(inspection.status.position, right.position),
+    )[0]?.position;
+  };
+  const reachedBashRange = async () => {
+    const inspection = await inspectGame();
+    const target = inspection ? bashTarget(inspection) : null;
+    return Boolean(
+      inspection?.status.grounded &&
+      target &&
+      pointDistance(inspection.status.position, target) <= 1.2,
+    );
+  };
   await moveTo(
     (inspection) =>
       inspection.level.encounterPositions.find(
@@ -1132,6 +1314,12 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
   if (requireDizzy && report.injectedArtworkFailure === null)
     await verifyBestiesArtworkRecovery();
 
+  const playerHpAtApproach = latestSave.adventure.playerHp;
+  let lowestPlayerHp = playerHpAtApproach;
+  const observedBossPhases = new Set();
+  const bestiesVisualTracker = requireDizzy
+    ? createBestiesVisualTracker()
+    : null;
   let sawDizzy = false;
   let capturedDizzy = false;
   let bashAccepted = false;
@@ -1141,12 +1329,26 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
     const current = latestSave.adventure.activeLevel.encounters.find(
       (candidate) => candidate.id === encounter.id,
     );
+    lowestPlayerHp = Math.min(lowestPlayerHp, latestSave.adventure.playerHp);
     if (current?.defeated) {
-      mark(`fight:${label}:defeated`, { sawDizzy, bashAccepted });
-      return { sawDizzy, bashAccepted };
+      const evidence = {
+        sawDizzy,
+        bashAccepted,
+        playerHpAtApproach,
+        lowestPlayerHp,
+        playerHpAfter: latestSave.adventure.playerHp,
+        phases: [...observedBossPhases],
+        ...(bestiesVisualTracker
+          ? { renderedBesties: summarizeBestiesVisuals(bestiesVisualTracker) }
+          : {}),
+      };
+      mark(`fight:${label}:defeated`, evidence);
+      return evidence;
     }
     const inspection = await inspectGame();
     assert.ok(inspection, `${label}: inspection missing`);
+    if (bestiesVisualTracker)
+      observeBestiesVisuals(bestiesVisualTracker, inspection);
     if (inspection.status.nearEncounterId !== encounter.id) {
       await moveTo(
         (candidate) =>
@@ -1159,8 +1361,12 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
       continue;
     }
     if (requireDizzy) {
+      observedBossPhases.add(inspection.status.bestiesPhase);
       sawDizzy ||= inspection.status.bestiesPhase === "dizzy";
-      if (inspection.status.bestiesPhase !== "dizzy") {
+      if (
+        inspection.status.bestiesPhase !== "dizzy" ||
+        !bestiesVisualsReady(bestiesVisualTracker)
+      ) {
         await delay(80);
         continue;
       }
@@ -1168,6 +1374,25 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
         await screenshot("besties-dizzy");
         capturedDizzy = true;
       }
+    }
+
+    const guardEquipped = latestSave.adventure.inventory.some(
+      (item) => item.kind === "guard-tool" && item.collected,
+    );
+    const currentBashTarget = bashTarget(inspection);
+    if (
+      guardEquipped &&
+      !bashAccepted &&
+      (!inspection.status.grounded ||
+        !currentBashTarget ||
+        pointDistance(inspection.status.position, currentBashTarget) > 1.2)
+    ) {
+      await moveTo(bashTarget, reachedBashRange, `${label}-secondary-approach`);
+      continue;
+    }
+    if (guardEquipped && !bashAccepted && !inspection.status.guardReady) {
+      await delay(90);
+      continue;
     }
 
     const hp = current.hp;
@@ -1231,6 +1456,7 @@ const playChapter = async (expectedAge, nextAge, index) => {
     startAge: expectedAge,
     minorIds: [minorOne, minorTwo],
     majorId: major,
+    minorVisuals: [],
     revisions: {},
   };
   await delay(500);
@@ -1248,7 +1474,9 @@ const playChapter = async (expectedAge, nextAge, index) => {
 
   await collectPickup("attack-tool", `chapter-${index + 1}-attack-tool`);
   evidence.revisions.attackTool = latestSave.revision;
-  await collectMinor(minorOne, expectedAge, `chapter-${index + 1}-minor-one`);
+  evidence.minorVisuals.push(
+    await collectMinor(minorOne, expectedAge, `chapter-${index + 1}-minor-one`),
+  );
   evidence.revisions.minorOne = latestSave.revision;
   await collectPickup("guard-tool", `chapter-${index + 1}-guard-tool`);
   evidence.revisions.guardTool = latestSave.revision;
@@ -1257,7 +1485,9 @@ const playChapter = async (expectedAge, nextAge, index) => {
     `chapter-${index + 1}-ordinary-a`,
   );
   evidence.revisions.ordinaryOne = latestSave.revision;
-  await collectMinor(minorTwo, expectedAge, `chapter-${index + 1}-minor-two`);
+  evidence.minorVisuals.push(
+    await collectMinor(minorTwo, expectedAge, `chapter-${index + 1}-minor-two`),
+  );
   evidence.revisions.minorTwo = latestSave.revision;
   assert.equal(
     latestSave.adventure.activeLevel.minorMemoryIds.every((id) =>
@@ -1291,6 +1521,10 @@ const playChapter = async (expectedAge, nextAge, index) => {
     `chapter-${index + 1}-boss`,
     index === 1,
   );
+  evidence.bossCombat = bossFight;
+  evidence.bossHits = observedHits.filter(
+    (hit) => hit.encounterId === level.bossId,
+  );
   evidence.revisions.boss = latestSave.revision;
   evidence.secondaryAttackAccepted =
     firstFight.bashAccepted ||
@@ -1305,6 +1539,34 @@ const playChapter = async (expectedAge, nextAge, index) => {
   assert.equal(latestSave.adventure.phase, "memory-released");
   if (index === 1)
     assert.equal(bossFight.sawDizzy, true, "Besties never became dizzy");
+  if (index === 1) {
+    const defeatWaitStarted = Date.now();
+    const defeatedVisuals = await waitForInspection(
+      (inspection) => {
+        const actors = inspection.visuals?.besties;
+        return (
+          inspection.status.bestiesPhase === "defeated" &&
+          actors?.length === 2 &&
+          actors.every(
+            (actor) => actor.clip === "defeat" && actor.visible === false,
+          )
+        );
+      },
+      "Besties defeat animation completes in renderer",
+      20_000,
+    );
+    evidence.bestiesDefeatVisuals = {
+      waitedMs: Date.now() - defeatWaitStarted,
+      actors: defeatedVisuals.visuals.besties.map((actor) => ({
+        id: actor.id,
+        visible: actor.visible,
+        clip: actor.clip,
+        position: actor.position,
+        ...(actor.pose?.head ? { head: actor.pose.head } : {}),
+      })),
+    };
+    mark("besties:defeat-rendered-hidden", evidence.bestiesDefeatVisuals);
+  }
   await screenshot(`chapter-${index + 1}-boss-defeated`);
 
   await collectMajor(major, expectedAge, nextAge, `chapter-${index + 1}-major`);
@@ -1625,7 +1887,11 @@ try {
       "held-stick-attack",
     );
     const jumpSequence = simultaneousAttack.status.jumpSequence;
-    await tapPointWhileHeld(held, await worldPoint());
+    const jumpTouch = await tapPointWhileHeld(held, await worldPoint());
+    report.gestures.heldJumpTouch = jumpTouch;
+    report.gestures.heldJumpPointerTrace = await page.evaluate(
+      () => window.__questPointerTrace,
+    );
     const simultaneousJump = await waitForInspection(
       (inspection) =>
         inspection.input.moveX < -0.1 &&

@@ -324,11 +324,7 @@ function attachDiagnostics(page, report, scope, expectedAbortContext) {
   });
 }
 
-function reclassifyExpectedMetadataAborts(
-  report,
-  scope,
-  expectedAbortContext,
-) {
+function reclassifyExpectedMetadataAborts(report, scope, expectedAbortContext) {
   const unexpected = [];
   for (const failure of report.failedRequests) {
     const expected =
@@ -580,16 +576,16 @@ async function inspectLanding(
         .every(
           (entry) =>
             /completed/i.test(entry.stateText) ||
-            /in PLAN006 playtest/i.test(entry.stateText),
+            entry.gameplay_use === "private-candidate",
         ),
       `${scope}: the other 25 model records are completed or in the current playtest`,
     );
     for (const id of integratedAssetIds) {
       const asset = inventory.find((entry) => entry.id === id);
       assert.ok(asset, `${scope}: ${id} gameplay asset is inventoried`);
-      assert.match(
-        asset.stateText,
-        /in PLAN006 playtest/i,
+      assert.equal(
+        asset.gameplay_use,
+        "private-candidate",
         `${scope}: ${id} inventory records current gameplay use`,
       );
       const cardState = cardInspections.find((entry) => entry.id === id)?.state;
@@ -1198,7 +1194,8 @@ async function inspectBesties(browser, inventory, report) {
         const result = original.call(this, type, ...args);
         if (["webgl", "webgl2", "experimental-webgl"].includes(type)) {
           globalThis.__questBestiesWebglProbe.calls += 1;
-          if (result) globalThis.__questBestiesWebglProbe.successfulContexts += 1;
+          if (result)
+            globalThis.__questBestiesWebglProbe.successfulContexts += 1;
         }
         return result;
       };
@@ -1224,13 +1221,17 @@ async function inspectBesties(browser, inventory, report) {
       waitUntil: "domcontentloaded",
     });
     assert.equal(landing?.status(), 200, "Besties catalog response");
-    const pinkCard = page.locator(
-      '.catalog-card[data-asset-id="bestie-pink"]',
-    );
+    const pinkCard = page.locator('.catalog-card[data-asset-id="bestie-pink"]');
     assert.equal(await pinkCard.count(), 1, "Bestie Pink has one catalog card");
     const pinkLink = cardTitleLink(pinkCard);
-    assert.equal(await pinkLink.count(), 1, "Bestie Pink has one card title link");
-    const expectedReview = comparableUrl(repositoryPathToUrl(entries[0].review));
+    assert.equal(
+      await pinkLink.count(),
+      1,
+      "Bestie Pink has one card title link",
+    );
+    const expectedReview = comparableUrl(
+      repositoryPathToUrl(entries[0].review),
+    );
     assert.equal(
       comparableUrl(await pinkLink.evaluate((element) => element.href)),
       expectedReview,
@@ -1270,7 +1271,11 @@ async function inspectBesties(browser, inventory, report) {
     );
 
     const viewers = page.locator("model-viewer[data-quest-clips][src]");
-    assert.equal(await viewers.count(), 2, "Besties review has two model viewers");
+    assert.equal(
+      await viewers.count(),
+      2,
+      "Besties review has two model viewers",
+    );
     const inspections = [];
     for (let index = 0; index < 2; index += 1) {
       const viewer = viewers.nth(index);
@@ -1333,7 +1338,10 @@ async function inspectBesties(browser, inventory, report) {
       });
       const comparableModel = comparableUrl(inspection.src);
       const id = expectedModels.get(comparableModel);
-      assert.ok(id, `Besties viewer uses an inventory model: ${inspection.src}`);
+      assert.ok(
+        id,
+        `Besties viewer uses an inventory model: ${inspection.src}`,
+      );
       assert.equal(inspection.loaded, true, `${id} model loaded`);
       assert.equal(inspection.modelIsVisible, true, `${id} model is visible`);
       assert.equal(
@@ -1393,7 +1401,11 @@ async function inspectBesties(browser, inventory, report) {
       'select[aria-label="Choose a movement clip"]',
     );
     const play = controls.locator('button[type="button"]');
-    assert.equal(await selector.count(), 1, "Bestie Pink has one clip selector");
+    assert.equal(
+      await selector.count(),
+      1,
+      "Bestie Pink has one clip selector",
+    );
     assert.deepEqual(
       (await selector.locator("option").allTextContents()).sort(),
       [...requiredBestiesClips].sort(),
@@ -1416,7 +1428,10 @@ async function inspectBesties(browser, inventory, report) {
       "high-five",
       "clip selector changes the viewer animation",
     );
-    assert.ok(selected.currentTime <= 0.01, "clip selector resets playback time");
+    assert.ok(
+      selected.currentTime <= 0.01,
+      "clip selector resets playback time",
+    );
     assert.equal(selected.paused, true, "clip selection remains paused");
     await play.tap();
     await pinkViewer.evaluate(

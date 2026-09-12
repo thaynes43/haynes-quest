@@ -161,10 +161,7 @@ function friendlyRoutedSave(options: EraSaveOptions = {}): SaveView {
   };
 }
 
-function asRouteMemorySave(
-  save: SaveView,
-  revealedMinorCount = 0,
-): SaveView {
+function asRouteMemorySave(save: SaveView, revealedMinorCount = 0): SaveView {
   const adventure = save.adventure;
   const activeLevel = adventure?.activeLevel;
   if (!adventure || !activeLevel)
@@ -207,8 +204,8 @@ function asRouteMemorySave(
     ...save,
     memories,
     recoveredIds: memories
-      .filter((memory) =>
-        memory.state === "revealed" || memory.state === "consumed",
+      .filter(
+        (memory) => memory.state === "revealed" || memory.state === "consumed",
       )
       .map((memory) => memory.id),
     abilities: ["move", "interact", "jump"],
@@ -353,7 +350,11 @@ describe("obby game runtime", () => {
   });
 
   it("keeps route movement faithful at 60 fps and 10 fps with v3-only speed tuning", () => {
-    const travel = (save: SaveView, frameMs: number, frameCount: number): number => {
+    const travel = (
+      save: SaveView,
+      frameMs: number,
+      frameCount: number,
+    ): number => {
       nextFrame = undefined;
       now = 1_000;
       const game = createGame({
@@ -528,11 +529,53 @@ describe("obby game runtime", () => {
         ),
       memoryId: "route-memory-3",
     },
-  ])("automatically recovers a contacted $label", ({ save: makeSave, memoryId }) => {
-    const initial = makeSave();
-    const onAction = vi.fn(
-      (_request: GameplayActionRequest) =>
-        new Promise<SaveView>(() => undefined),
+  ])(
+    "automatically recovers a contacted $label",
+    ({ save: makeSave, memoryId }) => {
+      const initial = makeSave();
+      const onAction = vi.fn(
+        (_request: GameplayActionRequest) =>
+          new Promise<SaveView>(() => undefined),
+      );
+      const game = createGame({
+        container: document.createElement("div"),
+        save: initial,
+        onAction,
+        onRefresh: async () => initial,
+      });
+      game.setInput("moveY", 1);
+      advance(0);
+      advance();
+
+      expect(onAction).toHaveBeenCalledOnce();
+      expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+        action: { type: "recover-memory", memoryId },
+      });
+      expect(game.inspect().status.canConsume).toBe(false);
+      game.dispose();
+    },
+  );
+
+  it("gives an accepted memory contact the frame without turning queued combat into feedback", async () => {
+    const initial = routeMemoryRoutedSave(
+      {
+        defeatedIds: ["level-1-2020-ordinary-a"],
+        collectedKinds: ["attack-tool", "guard-tool"],
+      },
+      1,
+    );
+    const recovered = routeMemoryRoutedSave(
+      {
+        revision: 1,
+        defeatedIds: ["level-1-2020-ordinary-a"],
+        collectedKinds: ["attack-tool", "guard-tool"],
+      },
+      2,
+    );
+    const onAction = vi.fn((request: GameplayActionRequest) =>
+      request.action.type === "recover-memory"
+        ? Promise.resolve(recovered)
+        : new Promise<SaveView>(() => undefined),
     );
     const game = createGame({
       container: document.createElement("div"),
@@ -542,13 +585,98 @@ describe("obby game runtime", () => {
     });
     game.setInput("moveY", 1);
     advance(0);
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    game.setInput("guard", true);
+    game.setInput("guard", false);
+
     advance();
 
     expect(onAction).toHaveBeenCalledOnce();
     expect(onAction.mock.calls[0]?.[0]).toMatchObject({
-      action: { type: "recover-memory", memoryId },
+      action: { type: "recover-memory", memoryId: "route-memory-2" },
     });
-    expect(game.inspect().status.canConsume).toBe(false);
+    expect(game.inspect().status.attackFeedback).toBeNull();
+    expect(sceneState.instances.at(-1)?.frames.at(-1)).toMatchObject({
+      attacking: false,
+      secondaryAttacking: false,
+    });
+
+    await vi.waitFor(() =>
+      expect(game.inspect().status.requestBusy).toBe(false),
+    );
+    expect(game.inspect().status.nearMemoryId).toBeNull();
+
+    game.setInput("moveX", 1);
+    game.setInput("moveY", 1);
+    for (let frame = 0; frame < 13; frame += 1) advance();
+    game.clearInput();
+    expect(game.inspect().status.nearEncounterId).toBe(
+      "level-1-2020-ordinary-b",
+    );
+
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "accepted",
+    });
+
+    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual(
+      ["recover-memory", "attack"],
+    );
+    game.dispose();
+  });
+
+  it("keeps a memory collectible when its contacted recovery request fails", async () => {
+    const initial = routeMemoryRoutedSave(
+      {
+        defeatedIds: ["level-1-2020-ordinary-a"],
+        collectedKinds: ["attack-tool", "guard-tool"],
+      },
+      1,
+    );
+    const onAction = vi.fn(async () => {
+      throw Object.assign(new Error("Action unavailable"), {
+        code: "ACTION_NOT_AVAILABLE",
+      });
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    game.setInput("moveY", 1);
+    advance(0);
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+
+    advance();
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(game.inspect().status.attackFeedback).toBeNull();
+    await vi.waitFor(() =>
+      expect(game.inspect().status.requestState).toBe("error"),
+    );
+    expect(
+      game
+        .inspect()
+        .level.memoryPositions.find((memory) => memory.id === "route-memory-2"),
+    ).toMatchObject({ state: "released" });
+    expect(game.inspect().status.nearMemoryId).toBe("route-memory-2");
+
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "no-target",
+    });
     game.dispose();
   });
 
@@ -661,13 +789,15 @@ describe("obby game runtime", () => {
         friendlyId,
       }),
     ).toBe(true);
-    await vi.waitFor(() => expect(game.inspect().status.requestBusy).toBe(false));
+    await vi.waitFor(() =>
+      expect(game.inspect().status.requestBusy).toBe(false),
+    );
     advance(0);
     advance();
     advance();
-    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual([
-      "attack-friendly",
-    ]);
+    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual(
+      ["attack-friendly"],
+    );
 
     game.setInput("moveX", -1);
     for (
@@ -678,13 +808,16 @@ describe("obby game runtime", () => {
       advance();
     expect(game.inspect().status.nearFriendlyId).toBeNull();
     game.setInput("moveX", 1);
-    for (let frame = 0; frame < 30 && onAction.mock.calls.length < 2; frame += 1)
+    for (
+      let frame = 0;
+      frame < 30 && onAction.mock.calls.length < 2;
+      frame += 1
+    )
       advance();
 
-    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual([
-      "attack-friendly",
-      "interact-friendly",
-    ]);
+    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual(
+      ["attack-friendly", "interact-friendly"],
+    );
     game.dispose();
   });
 
@@ -902,12 +1035,15 @@ describe("obby game runtime", () => {
     game.dispose();
   });
 
-  it("blocks the Besties during their routine and accepts a hit while they are dizzy", () => {
+  it("blocks guarded Besties hits and keeps an accepted hit on its actor during later busy presses", async () => {
     const initial = bestiesRoutedSave();
     const bossId = initial.adventure!.activeLevel!.bossId;
+    let finishHit!: (save: SaveView) => void;
     const onAction = vi.fn(
       (_request: GameplayActionRequest) =>
-        new Promise<SaveView>(() => undefined),
+        new Promise<SaveView>((resolve) => {
+          finishHit = resolve;
+        }),
     );
     const game = createGame({
       container: document.createElement("div"),
@@ -961,6 +1097,34 @@ describe("obby game runtime", () => {
       sequence: 2,
       outcome: "accepted",
     });
+    expect(sceneState.instances[0]!.frames.at(-1)!.bestiesHitActorId).toBe(
+      "bestie-pink",
+    );
+    game.setInput("moveX", -1);
+    for (let frame = 0; frame < 6; frame++) advance();
+    game.clearInput();
+    expect(game.inspect().status.position.x).toBeLessThan(-0.5);
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+    expect(game.inspect().status.attackFeedback?.outcome).toBe("busy");
+    expect(onAction).toHaveBeenCalledOnce();
+    const damaged = structuredClone(initial);
+    damaged.revision++;
+    damaged.adventure!.activeLevel!.encounters.find(
+      (enemy) => enemy.id === bossId,
+    )!.hp--;
+    finishHit(damaged);
+    await Promise.resolve();
+    await Promise.resolve();
+    advance();
+    const damageFrame = sceneState.instances[0]!.frames.at(-1)!;
+    expect(damageFrame.enemies.find((enemy) => enemy.id === bossId)!.hp).toBe(
+      damaged.adventure!.activeLevel!.encounters.find(
+        (enemy) => enemy.id === bossId,
+      )!.hp,
+    );
+    expect(damageFrame.bestiesHitActorId).toBe("bestie-pink");
     game.dispose();
   });
 

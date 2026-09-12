@@ -1,0 +1,44 @@
+{
+  "version": "v004",
+  "recorded_on": "2026-09-12",
+  "source_commit": "7256000",
+  "source": "test-results/mobile-audio-v004/report.json",
+  "url": "http://127.0.0.1:4398",
+  "status": "passed",
+  "client": {
+    "path": "/assets/index-DGbCshsH.js",
+    "bytes": 1046627,
+    "sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "outcomes": {
+    "failed_cue_showed_retry_state": true,
+    "failed_cue_left_button_enabled": true,
+    "help_touch_after_scroll": {
+      "scroll_before": 0,
+      "scroll_after": 345,
+      "click_count_before": 1,
+      "click_count_after": 2,
+      "decoded_starts": [
+        {
+          "duration_seconds": 0.3,
+          "context_state": "running"
+        },
+        {
+          "duration_seconds": 1.2,
+          "context_state": "running"
+        }
+      ]
+    },
+    "sound_test_repeatable": true
+  },
+  "errors": [],
+  "limitation": "AudioBufferSource start confirms decoded browser delivery, not physical iPhone speaker output."
+}

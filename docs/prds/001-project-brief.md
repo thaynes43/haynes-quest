@@ -27,13 +27,15 @@ Tom has explicitly placed age-based challenge growth and real-life continuation 
 
 ## Confirmed requirements
 
+The September 12 builder pivot in [DESIGN016](../designs/016-authored-levels.md) supersedes automatic photo grouping as the central setup experience. Authors can build a different adventure for each person, place integrated or uploaded memories, and choose from period suggestions or the wider authorized catalog. PLAN008 fixes the reported mobile failures before richer level construction.
+
 The established platform constraints remain in force. R-12, R-14, and R-20–R-34 express Tom's narrative and gameplay direction within this draft. Memory-age progression now adds an age-zero start and accumulating abilities to decade-like/proportional levels and the era enemy/boss catalog. Exact abilities, age thresholds, grouping, personalization weights, and encounter mechanics remain proposed in DESIGN-004–DESIGN-006.
 
 | ID | Requirement | Priority |
 | --- | --- | --- |
 | R-01 | The game is a 3D web application playable on iPad, iPhone, and PC. | Must |
 | R-02 | The intended players are Tom's kids; this is a novelty family game. | Must |
-| R-03 | Players collect real photos from the configured self-hosted photo service, with Immich as the first integration. Configured people also drive photo queries for other game uses as those are designed. | Must |
+| R-03 | Authors place collectible memories from authorized photo integrations, with Immich first, or manual uploads. Configured people support photo lookup when using an integration; an upload-only draft does not require Immich. | Must |
 | R-04 | The project gets its own GitHub repository, with hosting on Tom's homelab managed through `haynes-ops`. | Must |
 | R-05 | Repository and documentation conventions stay consistent with Tom's existing projects. | Must |
 | R-06 | GPT-6 Astra leads the project end to end. | Must |
@@ -57,8 +59,8 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-3
 | R-24 | Handle missing early photos, sparse years, date problems, and later library changes without inventing memories, silently resetting progress, or requiring empty chapters. | Must |
 | R-25 | Group levels around decades or proportions of the available history, tailoring pacing to known age and photo coverage. Exact boundaries and count remain for design; a short history may have several levels within one era and no fixed ten-level rule is required. | Must; grouping details open |
 | R-26 | Support explicitly entering the selected subject's gender at new-game setup to inform personalization within the eligible era catalog. Curate variety across genders; input options, requiredness, and preference rules remain for design. Do not infer gender from photos or names; difficulty is separate. | Must; setup details open |
-| R-27 | Enemies and bosses are recognizable, funny pop-culture parodies from the actual calendar periods represented by photo capture metadata, including television, animation, games, and relevant YouTube/internet culture. Later-created influences must not appear before their supported period. | Must |
-| R-28 | Use a finite, authored catalog of prepared enemies and bosses with historical eligibility metadata. Dynamically select encounters from it for each journey; runtime trend retrieval and automatic enemy generation are not required. | Must |
+| R-27 | Enemies and bosses are recognizable, funny pop-culture parodies. Suggest entries relevant to a level's represented calendar period using original dates and curated relevance windows. Authors can use Show more for an explicit wider choice without rewriting history. | Must |
+| R-28 | Use a finite, authored catalog of prepared enemies and bosses with historical relevance metadata. Authors select encounters or confirm suggested choices for each journey; runtime trend retrieval and automatic enemy generation are not required. | Must |
 | R-29 | Author recognizable parodies with a specific cultural target, visual joke and encounter behavior. Preserve reference and production provenance. Generic creatures with vague cultural labels do not satisfy the enemy vision. See DESIGN-005 and the asset pipeline. | Must |
 | R-30 | Every new save starts at memory age zero with no collected memories and a playable baby ability set. The first memory must be reachable with that set. | Must |
 | R-31 | Only after defeating the level boss does consuming its required memories advance the character into the next age bracket. The next level uses that age’s corresponding calendar period. Photo reveal/pickup alone cannot grow the avatar mid-level. Preserve chronological and explicit age-source consistency. | Must |
@@ -74,6 +76,8 @@ The established platform constraints remain in force. R-12, R-14, and R-20–R-3
 | R-41 | Maintain a Material for MkDocs documentation site in `docs/`, cataloging all scoped source concepts, generated models and audio with concrete previews, provenance, versions, feedback and approval state. Keep personal assets outside public git and static site output. | Must |
 | R-42 | In the future lifetime campaign, increase challenge and combinations of retained abilities as recovered age advances, supporting more demanding later childhood and adult play while retaining appropriate assistance. | Future; BL-06 |
 | R-43 | Let a journey through one's own life catch up to available lived memories, then support explicit saved continuation when real age, curated photos and authored content permit. Preserve completed progress and never invent future memories or grant abilities merely for elapsed time. | Future; BL-06 |
+| R-44 | Humans and agents can author personalized levels using reusable pieces and a shared validated level document. Place obstacles, equipment, encounters and memories with guardrails for reachability, required abilities, collision, combat and progression. | Future implementation; BL-07 |
+| R-45 | Each level records its represented period. Suggest relevant photos and bosses, with Show more for other authorized selections. Authors can assign integrated or manually uploaded pictures to memory roles and positions. | Future implementation; BL-07 |
 
 The completed overnight milestone is [PLAN-004](../../.agents/plans/completed/004-overnight-mvp.md). Tom permits a private placeholder account for coding/testing and defers OAuth setup until tomorrow; Authentik remains the eventual sole player login. Older scope paragraphs describe the preceding synthetic-only milestone.
 

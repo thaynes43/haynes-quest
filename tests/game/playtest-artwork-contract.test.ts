@@ -28,6 +28,7 @@ interface InventoryEntry {
   models: string[];
   audio: string[];
   state: string;
+  gameplay_use?: "private-candidate";
   checksums: Record<string, string>;
 }
 
@@ -140,7 +141,7 @@ describe("current playtest artwork manifest", () => {
     for (const id of integratedModelIds) {
       const entry = inventory.assets.find((candidate) => candidate.id === id);
       expect(entry, `${id}: gameplay model inventory entry`).toBeDefined();
-      expect(entry!.state).toMatch(/in PLAN006 playtest/i);
+      expect(entry!.gameplay_use).toBe("private-candidate");
     }
   });
 
@@ -159,7 +160,7 @@ describe("current playtest artwork manifest", () => {
       expectExactFile(record);
       const entry = inventoryEntryForPath("audio", record.path);
       expect(entry.id).toBe(record.id);
-      expect(entry.state).toMatch(/in PLAN006 playtest/i);
+      expect(entry.gameplay_use).toBe("private-candidate");
       expect(entry.checksums[`docs/assets/media/${record.path}`]).toBe(
         record.sha256,
       );

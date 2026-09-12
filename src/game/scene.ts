@@ -2,7 +2,7 @@ import { grassPlacements } from "./foliage";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { BestiesScene } from "./besties-scene";
-import type { BestiesFrame } from "./besties";
+import type { BestiesFrame, BestieActorId } from "./besties";
 import { FriendlyScene } from "./friendly-scene";
 import { ObbyScene } from "./obby-scene";
 import type { ObbyCourse } from "./obby";
@@ -14,6 +14,7 @@ import type {
   PositionSnapshot,
   SceneFrame,
   SceneMediaState,
+  SceneVisualInspection,
 } from "./types";
 import { disposeTree, modelUrls, SceneAssets } from "./scene-assets";
 import {
@@ -482,7 +483,10 @@ export class GardenScene {
     for (const [id, root] of this.memories) {
       const memory = save.memories.find((item) => item.id === id);
       root.visible = Boolean(
-        memory && memory.state !== "locked" && memory.state !== "consumed",
+        memory &&
+        (memory.state === "released" ||
+          (!save.adventure?.activeLevel?.majorMemoryId &&
+            memory.state === "revealed")),
       );
       if (!memory?.mediaUrl || !root.visible) continue;
       let picture: THREE.Mesh | undefined;
@@ -542,6 +546,19 @@ export class GardenScene {
       reloadRequired: false,
     };
     return state;
+  }
+
+  inspectVisuals(): SceneVisualInspection {
+    const besties = [...this.enemies.values()].flatMap(
+      (enemy) => enemy.besties?.inspectVisuals() ?? [],
+    );
+    return {
+      memories: [...this.memories.entries()].map(([id, root]) => ({
+        id,
+        visible: root.visible,
+      })),
+      ...(besties.length > 0 ? { besties } : {}),
+    };
   }
 
   retryMedia(): void {
@@ -729,6 +746,8 @@ export class GardenScene {
         frame?.currentTarget === enemy.id,
         dt,
         frame?.besties,
+        frame?.bestiesHitActorId,
+        position,
       );
     if (this.particles)
       this.particles.rotation.y = Math.sin(elapsed * 0.03) * 0.02;
@@ -947,6 +966,8 @@ export class GardenScene {
     targeted: boolean,
     deltaSeconds: number,
     besties?: BestiesFrame,
+    bestiesHitActorId?: BestieActorId | null,
+    playerPosition?: PositionSnapshot,
   ): void {
     const visual = this.enemies.get(enemy.id);
     if (!visual) return;
@@ -956,7 +977,14 @@ export class GardenScene {
       enemy.position.z,
     );
     if (visual.besties && besties) {
-      visual.besties.update(besties, deltaSeconds, enemy.hp, elapsed);
+      visual.besties.update(
+        besties,
+        deltaSeconds,
+        enemy.hp,
+        elapsed,
+        bestiesHitActorId,
+        playerPosition,
+      );
       visual.model.rotation.y = 0;
       visual.warning.visible =
         visual.marker.visible =

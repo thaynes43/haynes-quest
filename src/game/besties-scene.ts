@@ -1,17 +1,53 @@
 import * as THREE from "three";
-import type { BestiesFrame, BestieActorId } from "./besties";
-import { BESTIES_ARENA_CENTER } from "./besties";
+import type {
+  BestiesClipName,
+  BestiesFrame,
+  BestieActorId,
+} from "./besties";
+import { BESTIES_ARENA_CENTER, bestiesActorOffset } from "./besties";
 import type { DuoParodyArtwork } from "./scene-catalog";
 import { SceneAssets, disposeTree } from "./scene-assets";
 import { groundRing } from "./scene-art";
-import type { PositionSnapshot } from "./types";
+import type {
+  BestiesActorVisualInspection,
+  BestiesPoseInspection,
+  PositionSnapshot,
+} from "./types";
 
 interface DuoActor {
   root: THREE.Group;
   marker: THREE.Mesh;
   mixer?: THREE.AnimationMixer;
   actions: Map<string, THREE.AnimationAction>;
-  current: string;
+  current: BestiesClipName | "";
+}
+
+const fallbackDefeatSeconds = 0.6;
+
+function worldPosition(object: THREE.Object3D): PositionSnapshot {
+  const position = object.getWorldPosition(new THREE.Vector3());
+  return { x: position.x, y: position.y, z: position.z };
+}
+
+function effectivelyVisible(object: THREE.Object3D): boolean {
+  let current: THREE.Object3D | null = object;
+  while (current) {
+    if (!current.visible) return false;
+    current = current.parent;
+  }
+  return true;
+}
+
+function inspectPose(root: THREE.Object3D): BestiesPoseInspection | undefined {
+  const head = root.getObjectByName("head");
+  const leftHand = root.getObjectByName("hand_L");
+  const rightHand = root.getObjectByName("hand_R");
+  if (!head && !leftHand && !rightHand) return undefined;
+  return {
+    ...(head ? { head: worldPosition(head) } : {}),
+    ...(leftHand ? { leftHand: worldPosition(leftHand) } : {}),
+    ...(rightHand ? { rightHand: worldPosition(rightHand) } : {}),
+  };
 }
 
 /** Two authored actors share one authoritative boss and one visible trick at a time. */
@@ -38,12 +74,16 @@ export class BestiesScene {
   private readonly stars = new THREE.Group();
   private lastHp: number | null = null;
   private hitRemaining = 0;
+  private hitActor: BestieActorId | null | undefined;
+  private defeatElapsed: number | null = null;
   constructor(
     assets: SceneAssets,
     valid: () => boolean,
     models: DuoParodyArtwork["models"],
   ) {
     this.root.name = "bickering-besties";
+    this.hazard.name = "besties-hazard";
+    this.warning.name = "besties-warning";
     for (const [id, x, color] of [
       ["bestie-pink", 1.25, 0xff8cca],
       ["bestie-black", -1.25, 0xb699ff],
@@ -111,27 +151,58 @@ export class BestiesScene {
     this.root.add(this.hazard, this.warning, this.stars);
     this.hazard.visible = this.warning.visible = this.stars.visible = false;
   }
-  update(frame: BestiesFrame, dt: number, hp: number, elapsed: number): void {
-    if (this.lastHp !== null && hp < this.lastHp) this.hitRemaining = 0.6;
-    if (this.lastHp !== null && hp > this.lastHp) this.hitRemaining = 0;
+  update(
+    frame: BestiesFrame,
+    dt: number,
+    hp: number,
+    elapsed: number,
+    hitActor?: BestieActorId | null,
+    player?: PositionSnapshot,
+  ): void {
+    const safeDelta = Number.isFinite(dt) && dt > 0 ? dt : 0;
+    if (frame.phase === "defeated") {
+      this.defeatElapsed = (this.defeatElapsed ?? 0) + safeDelta;
+    } else {
+      this.defeatElapsed = null;
+    }
+    if (this.lastHp !== null && hp < this.lastHp) {
+      this.hitRemaining = 0.6;
+      this.hitActor = hitActor;
+    }
+    if (this.lastHp !== null && hp > this.lastHp) {
+      this.hitRemaining = 0;
+      this.hitActor = null;
+    }
     this.lastHp = hp;
     for (const actorFrame of frame.actors) {
       const actor = this.actors.get(actorFrame.id)!;
-      const side = actorFrame.id === "bestie-pink" ? 1 : -1;
-      actor.root.position.copy(actorFrame.offset);
-      const together =
-        frame.phase === "high-five"
-          ? Math.sin(
-              (Math.PI / 2) *
-                (frame.phaseProgress <= 0.625
-                  ? frame.phaseProgress / 0.625
-                  : (1 - frame.phaseProgress) / 0.375),
-            )
-          : 0;
-      actor.root.position.x -= side * together * 0.8;
-      actor.root.rotation.y = Math.PI;
+      actor.root.position.copy(bestiesActorOffset(frame, actorFrame));
+      if (player && actor.root.parent) {
+        const localPlayer = actor.root.parent.worldToLocal(
+          new THREE.Vector3(player.x, player.y, player.z),
+        );
+        actor.root.rotation.y =
+          Math.atan2(
+            localPlayer.x - actor.root.position.x,
+            localPlayer.z - actor.root.position.z,
+          ) + Math.PI;
+      } else {
+        actor.root.rotation.y = Math.PI;
+      }
       actor.marker.parent!.position.copy(actor.root.position);
       actor.marker.visible = frame.phase !== "defeated";
+      const authoredDefeatDuration = actor.actions
+        .get("defeat")
+        ?.getClip().duration;
+      const defeatDuration =
+        authoredDefeatDuration !== undefined &&
+        Number.isFinite(authoredDefeatDuration) &&
+        authoredDefeatDuration > 0
+          ? Math.min(authoredDefeatDuration, 5)
+          : fallbackDefeatSeconds;
+      actor.root.visible =
+        frame.phase !== "defeated" ||
+        (this.defeatElapsed ?? 0) < defeatDuration;
       (actor.marker.material as THREE.MeshBasicMaterial).opacity =
         frame.vulnerable
           ? 0.9
@@ -141,7 +212,8 @@ export class BestiesScene {
       const clip =
         frame.phase === "defeated"
           ? "defeat"
-          : this.hitRemaining > 0
+          : this.hitRemaining > 0 &&
+              (this.hitActor === undefined || this.hitActor === actorFrame.id)
             ? "hit"
             : actorFrame.clip;
       const action = actor.actions.get(clip);
@@ -162,9 +234,10 @@ export class BestiesScene {
         action.paused = true;
         action.time = frame.phaseProgress * action.getClip().duration;
       }
-      actor.mixer?.update(dt);
+      actor.mixer?.update(safeDelta);
     }
-    this.hitRemaining = Math.max(0, this.hitRemaining - dt);
+    this.hitRemaining = Math.max(0, this.hitRemaining - safeDelta);
+    if (this.hitRemaining === 0) this.hitActor = null;
     this.stars.visible = frame.vulnerable;
     for (const orbit of this.stars.children) orbit.rotation.y = elapsed * 3;
     const hazard = frame.hazards[0];
@@ -183,9 +256,20 @@ export class BestiesScene {
         hazard.halfExtents.z * 2,
       );
       if (!hazard.damaging && hazard.kind === "foam-bar") {
-        mesh.position.x = 0;
+        mesh.position.x =
+          (hazard.sweep.from.x + hazard.sweep.to.x) / 2 -
+          BESTIES_ARENA_CENTER.x;
         mesh.position.y = 0.028;
-        mesh.scale.set(6, 0.025, hazard.halfExtents.z * 2);
+        mesh.position.z =
+          (hazard.sweep.from.z + hazard.sweep.to.z) / 2 -
+          BESTIES_ARENA_CENTER.z;
+        mesh.scale.set(
+          Math.abs(hazard.sweep.to.x - hazard.sweep.from.x) +
+            hazard.halfExtents.x * 2,
+          0.025,
+          Math.abs(hazard.sweep.to.z - hazard.sweep.from.z) +
+            hazard.halfExtents.z * 2,
+        );
       }
       this.hazard.material.color.setHex(
         hazard.kind === "foam-bar" ? 0xf77eb4 : 0x9c82d7,
@@ -208,6 +292,19 @@ export class BestiesScene {
       }
     }
     return nearest ? { x: nearest.x, y: nearest.y, z: nearest.z } : null;
+  }
+
+  inspectVisuals(): BestiesActorVisualInspection[] {
+    return [...this.actors.entries()].map(([id, actor]) => {
+      const pose = inspectPose(actor.root);
+      return {
+        id,
+        position: worldPosition(actor.root),
+        visible: effectivelyVisible(actor.root),
+        clip: actor.current || null,
+        ...(pose ? { pose } : {}),
+      };
+    });
   }
 
   dispose(): void {
