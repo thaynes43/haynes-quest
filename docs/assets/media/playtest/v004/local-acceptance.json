@@ -262,6 +262,7 @@
   "limitations": [
     "WebKit was cached but could not launch because the container lacks libgstreamer-1.0.so.0.",
     "Physical iPhone Safari, speaker output, and final art quality were not assessed.",
-    "Frame pacing numbers came from Chromium with SwiftShader and are diagnostic rather than device performance evidence."
+    "Frame pacing numbers came from Chromium with SwiftShader and are diagnostic rather than device performance evidence.",
+    "Held-contact release uses a Chromium CDP extension outside the portable empty-touchEnd contract; it does not provide WebKit coverage."
   ]
 }

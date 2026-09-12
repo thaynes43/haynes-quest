@@ -24,3 +24,9 @@ Each agent uses its own task worktree. No authoring/browser shared-resource leas
 ## Completion evidence
 
 Record source causes, focused regression results, full checks, exact browser/viewport/input paths, remaining physical-device limits, app/ops merges, image/client identities and hosted tests in this plan and the handoff. Do not mark the new physical complaints resolved solely because the prior suite still passes.
+
+## Verified candidate, September 12
+
+WO071–076 record the diagnosed causes and accepted fixes. Candidate `7256000` passes typecheck, lint, build and 378 tests (10 real-Postgres cases run in CI). Separate Fable5.1 xhigh review is complete; all 15 integrated probes pass, including seven actual-model animation tests now in the main suite. No additional art or audio was generated.
+
+Final client `index-DGbCshsH.js` (1,046,627 bytes; SHA256 `999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982`) passes real-touch controls and scrolled Help cue failure/retry/repeat. The full route completes age 0 → 4 → 7 and all six memories, observes actual collected roots disappearing and Besties pose/hit/defeat behavior, and accepts secondary attacks in both chapters. Focused held-wand damage and landscape controls pass. The versioned [v004 evidence](../../docs/assets/media/playtest/v004/local-acceptance.json) separates these paths from unavailable physical Safari and speaker listening. Strict documentation and final checked release remain required; this candidate checkpoint does not claim deployment.
