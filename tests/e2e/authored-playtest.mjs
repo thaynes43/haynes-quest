@@ -502,6 +502,20 @@ async function playChapter(chapter) {
         predicate: (candidate) => candidate.status.nearEncounterId === encounterId,
       });
     };
+    const approachSecondary = async () =>
+      driver.moveToPoint(
+        (candidate) =>
+          candidate.level.encounterPositions.find(
+            (entry) => entry.id === encounterId,
+          ),
+        {
+          label: `chapter-${chapter}-${role}-secondary-approach`,
+          tolerance: 1.1,
+          supportId: anchor.platformId,
+          allowHazardJump: false,
+          stopOnRecovery: true,
+        },
+      );
     await approach();
     if (role === "boss") {
       const bossHitDeadline = Date.now() + 15_000;
@@ -545,6 +559,15 @@ async function playChapter(chapter) {
         continue;
       }
       const secondaryBeforePrimary = chapter === 2 && role !== "boss";
+      if (
+        secondaryBeforePrimary &&
+        !secondaryAccepted &&
+        !inspection.status.guardReady
+      ) {
+        await approachSecondary();
+        await delay(80);
+        continue;
+      }
       const useSecondary =
         !secondaryAccepted &&
         inspection.status.guardReady &&
