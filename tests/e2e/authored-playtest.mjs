@@ -463,19 +463,19 @@ async function playChapter(chapter) {
 
   const collectPickup = async (kind, anchor) => {
     if (
-      latestSave.adventure.inventory.some(
+      latestSave.adventure.activeLevel.pickups.some(
         (item) => item.kind === kind && item.collected,
       )
     )
       return;
     await moveToAnchor(anchor, `chapter-${chapter}-${kind}`, undefined, () =>
-      latestSave.adventure.inventory.some(
+      latestSave.adventure.activeLevel.pickups.some(
         (item) => item.kind === kind && item.collected,
       ),
     );
     const save = await waitForSave(
       (candidate) =>
-        candidate.adventure.inventory.some(
+        candidate.adventure.activeLevel.pickups.some(
           (item) => item.kind === kind && item.collected,
         ),
       `chapter-${chapter}-${kind}-collected`,
@@ -486,12 +486,6 @@ async function playChapter(chapter) {
       revision: save.revision,
       platformId: anchor.platformId,
     });
-    if (kind === "guard-tool") {
-      const layout = await verifyLandscapeControls({ page, screenshot });
-      report.layout.push({ chapter, courseId: document.id, ...layout });
-      mark("landscape:complete", { chapter, ...layout });
-      if (controlsOnly) throw new ControlsVerified();
-    }
   };
 
   const collectMemory = async (role, anchor) => {
@@ -883,6 +877,12 @@ async function playChapter(chapter) {
     }
     for (const [kind, anchor] of Object.entries(document.anchors.pickups)) {
       if (anchor.platformId === platformId) await collectPickup(kind, anchor);
+    }
+    if (document.anchors.pickups["guard-tool"].platformId === platformId) {
+      const layout = await verifyLandscapeControls({ page, screenshot });
+      report.layout.push({ chapter, courseId: document.id, ...layout });
+      mark("landscape:complete", { chapter, ...layout });
+      if (controlsOnly) throw new ControlsVerified();
     }
     for (const [role, anchor] of Object.entries(document.anchors.memories)) {
       if (anchor.platformId === platformId && role !== "major") {
