@@ -118,10 +118,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "Besties duo actor in PLAN006 playtest; joint look approved; exact final model review pending",
+      "state": "Duo actor in the private playtest; PLAN008 runtime motion/hit/defeat corrections; unchanged v001 model; final model review pending",
       "checksums": {
         "docs/assets/media/bestie-black/v001/bestie-black.glb": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "bestie-pink",
@@ -140,10 +141,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "Besties duo actor in PLAN006 playtest; joint look approved; exact final model review pending",
+      "state": "Duo actor in the private playtest; PLAN008 runtime motion/hit/defeat corrections; unchanged v001 model; final model review pending",
       "checksums": {
         "docs/assets/media/bestie-pink/v001/bestie-pink.glb": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "traveler-infant",
@@ -162,10 +164,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/traveler-infant/v001/traveler-infant.glb": "1c7c2ae03f888d5164bbee2c99b4180b1e275f19979019b659bf757f1b6de64c"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "traveler-child",
@@ -184,10 +187,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/traveler-child/v001/traveler-child.glb": "4fc44919588b16ec1055bbb042fda326571ce1f4ebfc484535f102293bd7ff4e"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "memory-keepsake",
@@ -207,10 +211,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001 model; v002 corrected concept",
-      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "state": "Memory pickup in private playtest; collected route keepsakes disappear immediately; unchanged v001 model; final review pending",
       "checksums": {
         "docs/assets/media/memory-keepsake/v001/memory-keepsake.glb": "059d92ca7bad6d1397e5fab9677a0ef0730fb45d54a4770b22675988a55fa137"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "ground-tile",
@@ -229,7 +234,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/clearing-path-kit/v001/ground-tile.glb": "432a834771f5054fa2d8c28a59c8ab713358aefab773f4d1fce6c24080d1392a"
       }
@@ -251,10 +256,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/clearing-path-kit/v001/path-tile.glb": "f36ce588582fc9ce386375d3972e5abed67fe62d5bef53636d1d3f4262d7ec2f"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "low-step",
@@ -273,7 +279,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/clearing-path-kit/v001/low-step.glb": "c72956195c7b82501ccacf4898b8f68c13669671da7ef9b95143d98c5aba231f"
       }
@@ -295,10 +301,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/clearing-tree/v001/clearing-tree.glb": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "clearing-stone",
@@ -317,10 +324,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/clearing-stone/v001/clearing-stone.glb": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "arrival-landmark",
@@ -339,10 +347,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/arrival-landmark/v001/arrival-landmark.glb": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "spark-mallet",
@@ -361,10 +370,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed equipment candidate; Tom review pending; not approved for gameplay",
+      "state": "completed equipment candidate; Tom review pending; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/era-equipment/v001/spark-mallet/spark-mallet.glb": "f7d8607192a1634efd34fa27b708dcfc50cc8cb1185fe7eb5907f11b931b10ae"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "acorn-shield",
@@ -383,10 +393,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed equipment candidate; Tom review pending; not approved for gameplay",
+      "state": "completed equipment candidate; Tom review pending; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/era-equipment/v001/acorn-shield/acorn-shield.glb": "2f499570f1579acc066e4b5b50ed91a6540daed799c245ec4f4038a99e3df1c6"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "prism-wand",
@@ -405,10 +416,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed equipment candidate; Tom review pending; not approved for gameplay",
+      "state": "completed equipment candidate; Tom review pending; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/era-equipment/v001/prism-wand/prism-wand.glb": "5b4e4abc4989db3579a4240e002561a54952098515e759f30a1ef3c4a35ba1dc"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "ribbon-shield",
@@ -427,10 +439,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed equipment candidate; Tom review pending; not approved for gameplay",
+      "state": "completed equipment candidate; Tom review pending; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb": "cdeae334f480b422df98853358b8b24c7932c81eb20906de3e4bb1583a7448f9"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "blockling",
@@ -452,7 +465,8 @@
       "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/blockling/v001/blockling.glb": "57f8cf41898c856f90d3aa4df50880c242db9718a8df9acbda3fa46d06fcc1cb"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "signal-moth",
@@ -474,7 +488,8 @@
       "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/signal-moth/v001/signal-moth.glb": "9e964faf1b483193a399cb0e410a5b6d6e68ccd158c16bf2d2a88cbbaa9144fe"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "buffer-baron",
@@ -496,7 +511,8 @@
       "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/buffer-baron/v001/buffer-baron.glb": "9d343e07e9d2593fce5ad9c99df29672ac81cc235ea66fdd276199b7c6da6915"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "loop-dancer",
@@ -518,7 +534,8 @@
       "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/loop-dancer/v001/loop-dancer.glb": "99e2ddac66bc2f63fa00e44b1b9b7513c083023d9926343bc67ce52ecfbf9e79"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "prism-mimic",
@@ -540,7 +557,8 @@
       "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/prism-mimic/v001/prism-mimic.glb": "60b6fe89f1397fe32269d6f858f91f3cb9a0c6459f03595d24257830a170aef0"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "trendweaver",
@@ -562,7 +580,8 @@
       "state": "friendly character in PLAN006 playtest; healing greeting and recoverable harm penalty; final artwork review pending",
       "checksums": {
         "docs/assets/media/trendweaver/v001/trendweaver.glb": "2191ef48a3e71853f0e67899b9335a18b8e31c5ede33f43e39f24dcd2adc64ce"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "mister-hiss",
@@ -581,10 +600,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate with five clips; Tom review pending; not approved for gameplay",
+      "state": "completed candidate with five clips; Tom review pending; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/mister-hiss/v001/mister-hiss.glb": "14bcfe2dcc060cbfd6908a281de0795f6b426144a63d322f89f1ec234e42572f"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "peel-patrol",
@@ -603,10 +623,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate with five clips; Tom review pending; not approved for gameplay",
+      "state": "completed candidate with five clips; Tom review pending; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/peel-patrol/v001/peel-patrol.glb": "72962eb3a1cb2a08e13d9082dd506fbe7186798f48d0dee7af3cdd72b7891ed5"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "drama-dragon",
@@ -625,10 +646,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate with five clips; Tom review pending; not approved for gameplay",
+      "state": "completed candidate with five clips; Tom review pending; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/drama-dragon/v001/drama-dragon.glb": "13c6cb5185385f85cda2e16027ad201a2ea1e2a4ad0f5eb7a13cba9d073fa933"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "sir-flush-a-lot",
@@ -647,10 +669,11 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed optional candidate with five clips; Tom review pending; not approved for gameplay",
+      "state": "completed optional candidate with five clips; Tom review pending; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/sir-flush-a-lot/v001/sir-flush-a-lot.glb": "c4db8f231fcdb29d71ddc605df89b928ef0aeaa29b91af3b1e3041041f0cdf49"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "nap-captain",
@@ -669,7 +692,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001 first-export checkpoint",
-      "state": "paused partial model with five clips; cap bands, paw-to-arm gap, seated hover, and tail-weight comparison need correction; not approved for gameplay",
+      "state": "paused partial model with five clips; cap bands, paw-to-arm gap, seated hover, and tail-weight comparison need correction; not approved for normal gameplay",
       "checksums": {
         "docs/assets/media/nap-captain/v001/nap-captain.glb": "e1cf47bf78e5edb53287e20e0b27ccb7886872bcefe2782a9e1fb31a91a8c7c7"
       }
@@ -728,11 +751,12 @@
       ],
       "thumbnail": "docs/assets/media/memory-collected/v001/waveform.svg",
       "version": "v001",
-      "state": "cue in PLAN006 playtest; final listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; physical listening review pending",
       "checksums": {
         "docs/assets/media/memory-collected/v001/cue.wav": "86ed72b341775dbb6f60414994912ec0d0292140e6408c20de54e5eb7ba0d358",
         "docs/assets/media/memory-collected/v001/source.wav": "90dfbc573fbf5923508c025b4e7c33438a166449fbd4c2e3cfb988c164ac526b"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "ability-unlocked",
@@ -748,11 +772,12 @@
       ],
       "thumbnail": "docs/assets/media/ability-unlocked/v001/waveform.svg",
       "version": "v001",
-      "state": "cue in PLAN006 playtest; final listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; physical listening review pending",
       "checksums": {
         "docs/assets/media/ability-unlocked/v001/cue.wav": "46318afe6c77579a6b063fa704e887cd6112601b4cc4144351fa9085845115c0",
         "docs/assets/media/ability-unlocked/v001/source.wav": "c6d084ce680ab407b20c351cb49509ade12290efb291453fdfc350ce3ef7a904"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "movement-landed",
@@ -768,11 +793,12 @@
       ],
       "thumbnail": "docs/assets/media/movement-landed/v001/waveform.svg",
       "version": "v001",
-      "state": "cue in PLAN006 playtest; final listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; physical listening review pending",
       "checksums": {
         "docs/assets/media/movement-landed/v001/cue.wav": "2c869c641b29e5df0ede83ad5dfab63f26a4d41c9b7258b56d3acb4dd71bf127",
         "docs/assets/media/movement-landed/v001/source.wav": "59661a9bf7f48019d114ce39ba344b5ecf7d69bc4bceb09493ef056cf8aee995"
-      }
+      },
+      "gameplay_use": "private-candidate"
     },
     {
       "id": "ui-confirmed",
@@ -789,12 +815,13 @@
       ],
       "thumbnail": "docs/assets/media/ui-confirmed/v001/waveform.svg",
       "version": "v001",
-      "state": "cue in PLAN006 playtest; final listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; physical listening review pending",
       "checksums": {
         "docs/assets/media/ui-confirmed/v001/cue.wav": "e9a0541c87b518de9b7d989ae4b6ef99d3ee03e40bfc1e65855bfe9069597608",
         "docs/assets/media/ui-confirmed/v001/source.wav": "416cdbb0fbb82da0b701f7fdac2fb4176b1f5933c4e1a236fab246e130ac941b",
         "docs/assets/media/ui-confirmed/v001/source-attempt-1.wav": "177abf2e67e0578be44ed13609ca97b3464b7548bae57ee11e5a32bded68bfa7"
-      }
+      },
+      "gameplay_use": "private-candidate"
     }
   ],
   "notes": {

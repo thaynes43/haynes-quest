@@ -17,7 +17,7 @@ This private review uses [six fictional pictures](reviews/fixture-route-memories
 
 Hold the movement stick while tapping elsewhere to jump or attack. Dragging the camera and touching a menu do not jump. Bash adds a close-range hit with a separate recharge; future gear can add other secondary attacks.
 
-Find two little memories along each route. They appear briefly as you collect them and do not stop the action or age the player. Beat the boss, then walk into the big memory beyond it: collecting all three advances your age and opens the next chapter. Missing little memories remain on the path after victory.
+Find two little memories along each route. Their keepsakes disappear on collection; a brief picture confirms the pickup without stopping the action or aging the player. You can revisit collected pictures in Memories. Beat the boss, then walk into the big memory beyond it: collecting all three advances your age and opens the next chapter. Missing little memories remain on the path after victory.
 
 ## What changed for this test
 
@@ -25,7 +25,7 @@ Find two little memories along each route. They appear briefly as you collect th
 - Jumping works from age zero. Gear, memories and available friendly healing are collected on contact.
 - Two labeled combat buttons replace the four-button cluster. Movement is faster, slow rendering no longer automatically halves game speed, and attacks and pickups have more visible motion.
 - Grass and flowers grow along the visible edges of the path and on the landings.
-- Sound starts with a confirming cue after a touch or key press. **Sound on/off** controls mute; **Help → Play a test sound** auditions the output. Help also has a volume slider. The mix is louder and actions have distinct feedback.
+- Sound starts with a confirming cue after a touch or key press. **Sound on/off** controls mute; **Help → Play a test sound** auditions the output. Help also has a volume slider and confirms each test tap or offers a retry. Audio rebuilds after an interruption; the source cues and mix are unchanged in this update. Physical iPhone speaker output still needs listening.
 
 ## In the game
 
@@ -43,13 +43,13 @@ Watch the padded sweepers and short gaps. A slip returns you to a nearby safe sp
 
 If you lose all your health, retrying keeps your gear, memories and defeated enemies. Enemies still standing regain their health, so you can try the boss again without repeating the earlier fights.
 
-The Besties alternate a pink foam sweeper and a purple floor lane. Jump or step aside. When they miss their high-five, both become dizzy for five seconds: that is your chance to attack.
+The Besties alternate a pink foam sweeper and a purple floor lane. Each warning chooses your position once, then stays fixed: jump or move to clear ground. The pair turn toward you, step into their tricks, react to hits and disappear after their defeat animation. When they miss their high-five, both become dizzy for five seconds: that is your chance to attack.
 
 Please judge how the controls feel, whether you can hear the actions, and whether the route and jokes are fun. The [recorded browser checks](media/playtest/v003/local-acceptance.json) completed both chapters using keyboard movement and touch combat, with separate touch-stick and jump checks. Physical iPhone/iPad Safari, device performance, listening and the children’s response remain the next inspection.
 
 ## Still to come
 
-More chapters, the full baby-to-adult journey, difficulty and abilities that grow throughout life, parent-curated photos and favorite enemies, birthday setup, Immich and sign-in remain future work. The Besties shortcut prepares the first chapter for testing; it is not a saved journey.
+More chapters, the full baby-to-adult journey, difficulty and abilities that grow throughout life, a modular level builder, freely placed integrated or uploaded memories, period suggestions with Show more, birthday setup and sign-in remain future work. The Besties shortcut prepares the first chapter for testing; it is not a saved journey.
 
 ## Cast and artwork
 

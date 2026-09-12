@@ -5,7 +5,7 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations.
+Choose a picture to review its inspiration, 3D model and available animations. The current reliability update changes how the existing Besties, memory keepsakes and sounds behave in the playtest; their source files and thumbnail references are unchanged.
 
 **25 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions · 6 fictional memory pictures**
 

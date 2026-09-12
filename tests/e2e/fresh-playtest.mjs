@@ -1132,6 +1132,9 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
   if (requireDizzy && report.injectedArtworkFailure === null)
     await verifyBestiesArtworkRecovery();
 
+  const playerHpAtApproach = latestSave.adventure.playerHp;
+  let lowestPlayerHp = playerHpAtApproach;
+  const observedBossPhases = new Set();
   let sawDizzy = false;
   let capturedDizzy = false;
   let bashAccepted = false;
@@ -1141,9 +1144,18 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
     const current = latestSave.adventure.activeLevel.encounters.find(
       (candidate) => candidate.id === encounter.id,
     );
+    lowestPlayerHp = Math.min(lowestPlayerHp, latestSave.adventure.playerHp);
     if (current?.defeated) {
-      mark(`fight:${label}:defeated`, { sawDizzy, bashAccepted });
-      return { sawDizzy, bashAccepted };
+      const evidence = {
+        sawDizzy,
+        bashAccepted,
+        playerHpAtApproach,
+        lowestPlayerHp,
+        playerHpAfter: latestSave.adventure.playerHp,
+        phases: [...observedBossPhases],
+      };
+      mark(`fight:${label}:defeated`, evidence);
+      return evidence;
     }
     const inspection = await inspectGame();
     assert.ok(inspection, `${label}: inspection missing`);
@@ -1159,6 +1171,7 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
       continue;
     }
     if (requireDizzy) {
+      observedBossPhases.add(inspection.status.bestiesPhase);
       sawDizzy ||= inspection.status.bestiesPhase === "dizzy";
       if (inspection.status.bestiesPhase !== "dizzy") {
         await delay(80);
@@ -1291,6 +1304,7 @@ const playChapter = async (expectedAge, nextAge, index) => {
     `chapter-${index + 1}-boss`,
     index === 1,
   );
+  evidence.bossCombat = bossFight;
   evidence.revisions.boss = latestSave.revision;
   evidence.secondaryAttackAccepted =
     firstFight.bashAccepted ||
@@ -1305,6 +1319,13 @@ const playChapter = async (expectedAge, nextAge, index) => {
   assert.equal(latestSave.adventure.phase, "memory-released");
   if (index === 1)
     assert.equal(bossFight.sawDizzy, true, "Besties never became dizzy");
+  if (index === 1) {
+    await waitForInspection(
+      (inspection) => inspection.status.bestiesPhase === "defeated",
+      "Besties defeat remains visible to renderer",
+    );
+    await delay(4500);
+  }
   await screenshot(`chapter-${index + 1}-boss-defeated`);
 
   await collectMajor(major, expectedAge, nextAge, `chapter-${index + 1}-major`);

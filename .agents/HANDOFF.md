@@ -4,6 +4,13 @@
 
 PLAN007's release below remains the current deployed baseline, not acceptance of this new feedback.
 
+PLAN008 checkpoint: core candidate `717cfe6` completed both local chapters with visible touch combat; report `test-results/fresh-playtest/plan008-candidate-route/report.json` identifies `index-CD5h8vpi.js` / SHA256 `c7c7861fe9af5b92aed71cef5f0157c8a5796f133902f7cfcff69de9c1fb7111`. The later audio-only correction `7de8872` is built as `index-BAlwKx8V.js`; scrolled real-touch Help audition/repeat passes. Native audio and memory regressions are integrated; current full tests are 362 passed / 10 Postgres skipped. Typecheck/lint pass. The strict docs build uses the existing `/home/dev/work/quest-art-direction/.venv-docs/bin` environment. Catalog use now has a structured `gameplay_use` field; its tests are being aligned, preserving exact models/WAVs/thumbnails.
+
+Active work: Fable5.1 xhigh adversarial review via task `haynes-quest-0912-113435` (WO074, observed transcript model `claude-fable-5-1`), including real GLB animation probes; native WO075 adds read-only actual-scene observations so browser tests can prove visible collection/defeat. Root then repeats final browser acceptance, integrates review findings and releases. Local owned fixture4398 runs from this worktree with its own current `site/`, exec session73230; unrelated4392 remains untouched. The earlier fixture4398 PID306059 was stopped before switching its docs path. Shared MCP browser is closed. Existing MCP is Chromium-only; cached WebKit lacks libraries; no dependency/config/restart workaround was used.
+
+Scoped ops preparation is `/home/dev/work/quest-plan008-private-release`, branch `agent/quest-plan008-private-release`, commit7951ab8. Its work order and ignored `.private/test-results/plan008-private-release/baseline.json` preserve current private/normal/dev-env identities. Future change is private image pin only; ephemeral mode is already enabled. No app/ops PR, live mutation or activity declaration has been made for PLAN008 yet. No generation or authoring lease exists.
+
+
 ## Open the updated test
 
 - [Fresh private playtest](https://haynes-quest-playtest.haynesops.com/?playtest=plan007): **Play from the beginning** or **Try the Besties chapter**. The query opens the current shell rather than reusing an old tab.

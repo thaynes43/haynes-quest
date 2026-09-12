@@ -1,6 +1,6 @@
 # Contributor and agent guide
 
-This project is a novelty 3D browser game, initially a family PoC for Tom Haynes's kids. Users configure a self-hosted photo-service URL, API key, and people; their photos supply chronological memory journeys. The avatar starts mysterious at memory age zero with no memories and baby abilities; the newer direction makes its appearance evolve toward the recovered person’s age and likeness. Synthetic age variants serve the overnight MVP. Immich is the first integration. The private fixture MVP and asset studio run in the local cluster through `haynes-ops`; real player admission remains deferred.
+This project is a novelty 3D browser game, initially a family PoC for Tom Haynes's kids. Authors tailor levels to a person, placing memories from photo integrations or manual uploads alongside obby challenges and curated encounters. Reusable pieces and shared validation will support human and agent level building. The avatar starts mysterious at memory age zero; post-boss memories grow its age and abilities. Synthetic age variants serve the private MVP. Immich is the first integration. The private fixture MVP and asset studio run in the local cluster through `haynes-ops`; real player admission remains deferred.
 
 Read [`.agents/HANDOFF.md`](.agents/HANDOFF.md) for the current stage, then the [project brief](docs/prds/001-project-brief.md) and the documents named by the active plan.
 
