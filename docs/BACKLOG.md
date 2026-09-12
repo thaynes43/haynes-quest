@@ -1,5 +1,14 @@
 # Future backlog
 
+## BL-07: A shared level builder for people and agents
+
+- **Status:** Owner-confirmed direction, September 12, 2026. Fix the mobile playtest's broken interactions and combat first under PLAN008.
+- **Contract:** [DESIGN016](designs/016-authored-levels.md), PRD R-44–R-45.
+
+Replace one-off handcrafted corridors with reusable, validated level pieces. Humans and agents should use the same level document to place platforms, creative obby challenges, checkpoints, equipment, enemies, friends and memories. Extract and test the current mechanics before building a longer route with branches, optional discoveries and combinations of taught obstacles. Keep the youngest child's opening forgiving; later recovered ages can support more demanding content.
+
+Authors tailor each person's experience and freely place pictures from integrations or manual uploads. The level's represented period supplies photo and boss suggestions; **Show more** offers other authorized choices. Preserve source dates, private access and frozen published revisions. An editor and agent commands should share placement errors and a playable preview, with guardrails for geometry, encounter reach, required gear/abilities and boss-gated growth. The builder is not implemented by this documentation change.
+
 The current equipment, enemies and bosses are required by [PLAN-005](../.agents/plans/completed/005-era-combat-loop.md), following Tom’s September 11 correction. The broader items below do not replace that work. BL-01 defers automatic generation while authored age/likeness evolution remains product direction; the later gameplay/content items can return within the family project after the core loop is evaluated.
 
 ## BL-01: Automatic playable-character generation

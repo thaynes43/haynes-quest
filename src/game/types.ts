@@ -68,6 +68,7 @@ export interface SceneFrame {
   enemies: EnemyFrame[];
   currentTarget: string | null;
   besties?: import("./besties").BestiesFrame;
+  bestiesHitActorId?: import("./besties").BestieActorId | null;
   obby?: ObbySample;
   checkpointId?: string | null;
   recovering?: boolean;

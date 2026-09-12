@@ -209,6 +209,44 @@ afterEach(async () => {
 });
 
 describe("GameScreen friendly and audio feedback boundaries", () => {
+  it("acknowledges a sound tap immediately, reports failure and permits another tap", async () => {
+    gameFixture(status(null));
+    await renderGame();
+    await act(async () => button('[aria-label="How to play"]').click());
+    const audio = mocks.audioInstances[0]!;
+    let finish!: (played: boolean) => void;
+    audio.audition.mockImplementationOnce(
+      () =>
+        new Promise<boolean>((resolve) => {
+          finish = resolve;
+        }),
+    );
+    await act(async () => buttonNamed("Play a test sound").click());
+    expect(container.querySelector("#sound-test-status")?.textContent).toBe(
+      "Starting sound…",
+    );
+    expect(buttonNamed("Play a test sound").disabled).toBe(false);
+    await act(async () => finish(false));
+    expect(
+      container.querySelector("#sound-test-status")?.textContent,
+    ).toContain("Tap again to retry");
+    await act(async () => buttonNamed("Play a test sound").click());
+    expect(
+      container.querySelector("#sound-test-status")?.textContent,
+    ).toContain("Test sound played");
+    expect(audio.audition).toHaveBeenCalledTimes(2);
+  });
+
+  it("keeps the persistent world-tap instruction out of the play surface", async () => {
+    gameFixture(status(null));
+    await renderGame();
+    expect(container.querySelector(".touch-jump-hint")).toBeNull();
+    await act(async () => button('[aria-label="How to play"]').click());
+    expect(container.querySelector('[role="dialog"]')?.textContent).toContain(
+      "Tap the world to jump",
+    );
+  });
+
   it("retries an interrupted celebration from a gesture and plays it only once", async () => {
     gameFixture(status(null));
     await renderGame(makeEraSave({ completed: true }));
@@ -233,9 +271,13 @@ describe("GameScreen friendly and audio feedback boundaries", () => {
     mocks.audioVolume = 0;
     await renderGame();
     await act(async () => button('[aria-label="Enable sound"]').click());
-    expect(mocks.audioInstances[0]!.setPreferences)
-      .toHaveBeenCalledWith(false, 0.8);
-    expect(button('[aria-label="Mute sound"]').textContent).toContain("Sound on");
+    expect(mocks.audioInstances[0]!.setPreferences).toHaveBeenCalledWith(
+      false,
+      0.8,
+    );
+    expect(button('[aria-label="Mute sound"]').textContent).toContain(
+      "Sound on",
+    );
   });
 
   it("rejects a stale visible friendly prompt without opening or freezing the world", async () => {

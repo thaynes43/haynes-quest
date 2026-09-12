@@ -126,6 +126,9 @@ function Adventure({
   const soundRef = useRef<QuestAudio | undefined>(undefined);
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(0.8);
+  const [soundTest, setSoundTest] = useState<
+    "idle" | "starting" | "played" | "failed"
+  >("idle");
   const soundOff = muted || volume === 0;
   const [showHelp, setShowHelp] = useState(false);
   const [showAlbum, setShowAlbum] = useState(false);
@@ -465,7 +468,13 @@ function Adventure({
     // An interrupted context waits for the next direct gesture; repeated
     // pointer/touch events share one pending celebration attempt.
     if (sound.status().contextState === "running") celebrate();
-    const gestures = ["pointerdown", "pointerup", "touchend", "click", "keydown"];
+    const gestures = [
+      "pointerdown",
+      "pointerup",
+      "touchend",
+      "click",
+      "keydown",
+    ];
     for (const gesture of gestures)
       document.addEventListener(gesture, celebrate, true);
     return () => {
@@ -529,7 +538,9 @@ function Adventure({
             ? "Walk into the glowing mallet. Tap the world to jump!"
             : ordinaryLeft > 0
               ? `${ordinaryLeft} ${ordinaryLeft === 1 ? "goofy guest stands" : "goofy guests stand"} between you and the boss.`
-              : `Face ${story.enemies.boss}. Watch its attack warning.`;
+              : status?.bestiesPhase === "inactive"
+                ? "Reach the stage ahead to challenge The Besties."
+                : `Face ${story.enemies.boss}. Watch its attack warning.`;
   const activePhoto = save.memories.find((memory) => memory.id === photoDetail);
 
   return (
@@ -630,17 +641,23 @@ function Adventure({
         </small>
         <p>{objective}</p>
       </div>
-      {boss && ordinaryLeft === 0 && view.phase === "exploring" && (
-        <div className="boss-hud">
-          <span>{story.enemies.boss}</span>
-          <meter
-            min={0}
-            max={boss.maxHp}
-            value={boss.hp}
-            aria-label="Boss health"
-          />
-        </div>
-      )}
+      {boss &&
+        ordinaryLeft === 0 &&
+        view.phase === "exploring" &&
+        status?.bestiesPhase !== "inactive" && (
+          <div className="boss-hud">
+            <span>{story.enemies.boss}</span>
+            <meter
+              min={0}
+              max={boss.maxHp}
+              value={boss.hp}
+              aria-label="Boss health"
+            />
+            <small>
+              {boss.hp} / {boss.maxHp}
+            </small>
+          </div>
+        )}
       {target && !nearbyFriend && view.phase === "exploring" && (
         <div className="target-hint">
           {story.enemies[target.kind]} · {target.hp}/{target.maxHp}
@@ -670,9 +687,6 @@ function Adventure({
           <div className="keyboard-hint">
             <span>WASD</span> move <span>SPACE</span> jump <span>F</span> attack{" "}
             <span>SHIFT</span> secondary
-          </div>
-          <div className="touch-jump-hint">
-            Tap the world to jump · Drag to look
           </div>
           <div className="combat-actions">
             {shield && (
@@ -716,7 +730,7 @@ function Adventure({
             )}
         </div>
       )}
-      {nearbyFriend && !nearbyPickup && !attackNotice && !modalOpen && (
+      {nearbyFriend && !nearbyPickup && !modalOpen && (
         <button
           className="friendly-prompt"
           data-quest-ui
@@ -888,9 +902,9 @@ function Adventure({
           </p>
           <p>
             Attack hits a nearby enemy. Your second button, Bash, uses a shield
-            for a close-range second hit. Step out of danger while it
-            recharges. The Besties take turns with obstacle tricks: attack when
-            their missed high-five leaves them dizzy.
+            for a close-range second hit. Step out of danger while it recharges.
+            The Besties take turns with obstacle tricks: attack when their
+            missed high-five leaves them dizzy.
           </p>
           <p>
             Green hearts mark friends. Walk up for healing when you need it.
@@ -921,20 +935,37 @@ function Adventure({
           </label>
           <button
             className="secondary sound-test"
+            aria-describedby="sound-test-status"
+            aria-busy={soundTest === "starting"}
             onClick={() => {
+              setSoundTest("starting");
               setMuted(false);
               soundRef.current?.setPreferences(false, volume || 0.8);
               if (!volume) setVolume(0.8);
-              void soundRef.current?.audition().then((ok) => {
-                if (!ok)
-                  setError(
-                    "Sound couldn’t start. Check your device volume and tap Play a test sound again.",
-                  );
-              });
+              const attempt = soundRef.current?.audition();
+              if (!attempt) setSoundTest("failed");
+              else
+                void attempt.then(
+                  (ok) => {
+                    if (mounted.current) setSoundTest(ok ? "played" : "failed");
+                  },
+                  () => {
+                    if (mounted.current) setSoundTest("failed");
+                  },
+                );
             }}
           >
             Play a test sound
           </button>
+          <p id="sound-test-status" className="sound-test-status" role="status">
+            {soundTest === "starting"
+              ? "Starting sound…"
+              : soundTest === "played"
+                ? "Test sound played. You can tap again to repeat it."
+                : soundTest === "failed"
+                  ? "Sound couldn’t start. Tap again to retry."
+                  : "Tap to hear a memory chime."}
+          </p>
           <p className="small-note">
             This private review uses fictional drawings. It has not connected to
             your photo library. Use the music-note button to mute the playtest

@@ -837,7 +837,7 @@ footer {
   background: #819982;
   position: relative;
   overflow: hidden;
-  touch-action: none;
+  touch-action: auto;
   user-select: none;
   -webkit-user-select: none;
   color: #f8f1de;
@@ -2421,7 +2421,7 @@ footer {
 .friendly-prompt {
   position: absolute;
   z-index: 8;
-  bottom: max(150px, calc(env(safe-area-inset-bottom) + 132px));
+  bottom: max(230px, calc(env(safe-area-inset-bottom) + 212px));
   left: 50%;
   transform: translateX(-50%);
   width: min(300px, 48vw);
@@ -2431,6 +2431,9 @@ footer {
   color: #f1fff7;
   background: rgba(26, 58, 50, 0.94);
   box-shadow: 0 5px 22px #17332c33;
+}
+.friendly-prompt:active:not(:disabled) {
+  transform: translateX(-50%) translateY(1px);
 }
 .friendly-prompt strong,
 .friendly-prompt span {
@@ -2621,21 +2624,6 @@ footer {
   color: #f8e7b1;
   margin-bottom: 7px;
 }
-.touch-jump-hint {
-  display: none;
-  position: absolute;
-  bottom: 185px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: max-content;
-  max-width: 80vw;
-  padding: 6px 10px;
-  border-radius: 20px;
-  background: #26372cb3;
-  font-size: 12px;
-  text-align: center;
-  pointer-events: none;
-}
 .era-game .close-modal {
   width: 48px;
   height: 48px;
@@ -2643,11 +2631,10 @@ footer {
 .era-game .sound-test {
   margin: 12px 0;
   min-height: 48px;
+  background: #506f62;
+  color: #fff9ee;
 }
 @media (pointer: coarse) {
-  .touch-jump-hint {
-    display: block;
-  }
   .era-game .keyboard-hint {
     display: none;
   }
@@ -2720,11 +2707,6 @@ footer {
   }
   .era-game .game-bottom {
     bottom: max(16px, calc(env(safe-area-inset-bottom) + 12px));
-  }
-  .touch-jump-hint {
-    bottom: 0;
-    max-width: 40vw;
-    font-size: 11px;
   }
 }
 
