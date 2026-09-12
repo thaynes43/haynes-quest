@@ -142,6 +142,10 @@ export interface QuestAudioOptions {
   readonly defaultVolume?: number;
   readonly maxSources?: number;
   readonly audioSession?: AudioSessionControl | null;
+  /** Maximum time to trust a browser AudioContext resume attempt. */
+  readonly resumeTimeoutMs?: number;
+  /** Maximum time to fetch and decode one cue before allowing a retry. */
+  readonly loadTimeoutMs?: number;
 }
 
 interface ActiveSource {
@@ -152,9 +156,17 @@ interface ActiveSource {
   readonly gain: GainNode;
 }
 
+interface ResumeAttempt {
+  readonly context: AudioContext;
+  readonly promise: Promise<boolean>;
+  readonly cancel: () => void;
+}
+
 const DEFAULT_STORAGE_KEY = "quest-audio-v2";
 const DEFAULT_VOLUME = 0.8;
 const DEFAULT_MAX_SOURCES = 4;
+const DEFAULT_RESUME_TIMEOUT_MS = 1_500;
+const DEFAULT_LOAD_TIMEOUT_MS = 5_000;
 
 function clamp(value: number, minimum: number, maximum: number): number {
   return Number.isFinite(value)
@@ -217,14 +229,18 @@ export class QuestAudio {
   private readonly fetcher: typeof fetch;
   private readonly maxSources: number;
   private readonly audioSession: AudioSessionControl | undefined;
+  private readonly resumeTimeoutMs: number;
+  private readonly loadTimeoutMs: number;
   private readonly buffers = new Map<string, AudioBuffer>();
   private readonly loads = new Map<string, Promise<AudioBuffer | undefined>>();
+  private readonly loadCancels = new Map<string, () => void>();
   private readonly sources = new Set<ActiveSource>();
   private readonly visibilityListener: () => void;
   private context: AudioContext | undefined;
   private masterGain: GainNode | undefined;
   private limiter: DynamicsCompressorNode | undefined;
   private contextStateListener: (() => void) | undefined;
+  private resumeAttempt: ResumeAttempt | undefined;
   private confirmationPromise: Promise<boolean> | undefined;
   private previousAudioSessionType: string | undefined;
   private audioSessionConfigured = false;
@@ -233,6 +249,7 @@ export class QuestAudio {
   private confirmationPlayed = false;
   private paused = false;
   private backgrounded = false;
+  private contextNeedsReplacement = false;
   private muted: boolean;
   private volume: number;
   private sequence = 0;
@@ -254,6 +271,12 @@ export class QuestAudio {
       options.fetcher ?? ((input, init) => globalThis.fetch(input, init));
     this.maxSources = Math.round(
       clamp(options.maxSources ?? DEFAULT_MAX_SOURCES, 1, 16),
+    );
+    this.resumeTimeoutMs = Math.round(
+      clamp(options.resumeTimeoutMs ?? DEFAULT_RESUME_TIMEOUT_MS, 1, 10_000),
+    );
+    this.loadTimeoutMs = Math.round(
+      clamp(options.loadTimeoutMs ?? DEFAULT_LOAD_TIMEOUT_MS, 1, 30_000),
     );
     this.audioSession =
       options.audioSession === null
@@ -348,9 +371,11 @@ export class QuestAudio {
     )
       return false;
 
-    if (this.context?.state === "closed") {
-      this.releaseContext();
-    }
+    if (
+      this.context?.state === "closed" ||
+      (this.context && this.contextNeedsReplacement)
+    )
+      this.retireContext();
 
     const suspendSequence = this.suspendSequence;
     try {
@@ -358,10 +383,12 @@ export class QuestAudio {
         this.configureAudioSession();
         this.context = this.contextFactory();
         if (!this.context) return false;
+        this.contextNeedsReplacement = false;
         const context = this.context;
         this.contextStateListener = () => {
           if (this.context === context && context.state !== "running") {
             this.unlocked = false;
+            this.contextNeedsReplacement = true;
             this.stopAll();
           }
         };
@@ -382,25 +409,34 @@ export class QuestAudio {
         this.masterGain = masterGain;
         this.limiter = limiter;
       }
-      if (context.state !== "running") await context.resume();
+      if (context.state !== "running" && !(await this.resumeContext(context))) {
+        this.unlocked = false;
+        if (this.context === context) this.retireContext();
+        return false;
+      }
       if (
         this.disposed ||
         this.muted ||
         (this.paused && !allowWhilePaused) ||
         this.backgrounded ||
         this.context !== context ||
+        this.contextNeedsReplacement ||
         this.suspendSequence !== suspendSequence ||
         context.state !== "running"
       ) {
         this.unlocked = false;
-        if (this.context === context && context.state === "running")
-          await context.suspend().catch(() => undefined);
+        if (this.context === context) {
+          if (this.contextNeedsReplacement) this.retireContext();
+          else if (context.state === "running")
+            await context.suspend().catch(() => undefined);
+        }
         return false;
       }
       this.unlocked = true;
       return true;
     } catch {
       this.unlocked = false;
+      if (this.context) this.retireContext();
       return false;
     }
   }
@@ -409,6 +445,7 @@ export class QuestAudio {
   suspend(): void {
     this.suspendSequence += 1;
     this.unlocked = false;
+    if (this.context) this.contextNeedsReplacement = true;
     this.stopAll();
     try {
       void this.context?.suspend().catch(() => undefined);
@@ -532,14 +569,8 @@ export class QuestAudio {
     );
     this.stopAll();
     this.buffers.clear();
-    this.loads.clear();
-    const context = this.context;
-    this.releaseContext();
-    try {
-      void context?.close().catch(() => undefined);
-    } catch {
-      /* Closing unsupported or interrupted audio remains harmless. */
-    }
+    this.cancelLoads();
+    this.retireContext();
     if (
       this.audioSessionConfigured &&
       this.previousAudioSessionType !== undefined &&
@@ -585,6 +616,54 @@ export class QuestAudio {
     return confirmation;
   }
 
+  /**
+   * Safari can leave resume() pending indefinitely after an interruption. One
+   * physical tap may also surface as several pointer/touch/click events, so all
+   * callers share one bounded attempt for the current context.
+   */
+  private resumeContext(context: AudioContext): Promise<boolean> {
+    if (this.resumeAttempt?.context === context)
+      return this.resumeAttempt.promise;
+
+    let cancel: () => void = () => undefined;
+    const promise = new Promise<boolean>((resolve) => {
+      let settled = false;
+      const finish = (ready: boolean) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        resolve(ready);
+      };
+      cancel = () => finish(false);
+      const timer = setTimeout(cancel, this.resumeTimeoutMs);
+      try {
+        void context.resume().then(
+          () => finish(context.state === "running"),
+          () => finish(false),
+        );
+      } catch {
+        finish(false);
+      }
+    });
+    const attempt = { context, promise, cancel };
+    this.resumeAttempt = attempt;
+    void promise.then(() => {
+      if (this.resumeAttempt === attempt) this.resumeAttempt = undefined;
+    });
+    return promise;
+  }
+
+  private retireContext(): void {
+    const context = this.context;
+    this.releaseContext();
+    if (!context || context.state === "closed") return;
+    try {
+      void context.close().catch(() => undefined);
+    } catch {
+      /* Closing unsupported or interrupted audio remains harmless. */
+    }
+  }
+
   private releaseContext(): void {
     const context = this.context;
     this.stopAll();
@@ -597,14 +676,17 @@ export class QuestAudio {
       /* A closed context may have already detached its graph. */
     }
     this.contextStateListener = undefined;
+    this.resumeAttempt?.cancel();
+    this.resumeAttempt = undefined;
     this.confirmationPromise = undefined;
     this.confirmationPlayed = false;
     this.limiter = undefined;
     this.masterGain = undefined;
     this.context = undefined;
+    this.contextNeedsReplacement = false;
     this.unlocked = false;
     this.buffers.clear();
-    this.loads.clear();
+    this.cancelLoads();
   }
 
   private load(
@@ -617,28 +699,64 @@ export class QuestAudio {
     const pending = this.loads.get(id);
     if (pending) return pending;
 
-    const load = (async () => {
-      if (!isSameOriginAsset(cue.path)) return undefined;
-      try {
-        const response = await this.fetcher(cue.path, {
-          credentials: "same-origin",
-          redirect: "error",
-        });
-        if (!response.ok) return undefined;
-        const buffer = await context.decodeAudioData(
-          await response.arrayBuffer(),
-        );
-        if (this.disposed || this.context !== context) return undefined;
-        this.buffers.set(id, buffer);
-        return buffer;
-      } catch {
-        return undefined;
-      } finally {
-        this.loads.delete(id);
-      }
-    })();
+    if (!isSameOriginAsset(cue.path)) return Promise.resolve(undefined);
+    const abort = new AbortController();
+    let cancel: () => void = () => undefined;
+    const load = new Promise<AudioBuffer | undefined>((resolve) => {
+      let settled = false;
+      const finish = (buffer: AudioBuffer | undefined) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        resolve(buffer);
+      };
+      cancel = () => {
+        abort.abort();
+        finish(undefined);
+      };
+      const timer = setTimeout(cancel, this.loadTimeoutMs);
+
+      void (async () => {
+        try {
+          const response = await this.fetcher(cue.path, {
+            credentials: "same-origin",
+            redirect: "error",
+            signal: abort.signal,
+          });
+          if (!response.ok) {
+            finish(undefined);
+            return;
+          }
+          const buffer = await context.decodeAudioData(
+            await response.arrayBuffer(),
+          );
+          if (
+            settled ||
+            this.disposed ||
+            this.context !== context ||
+            abort.signal.aborted
+          )
+            return;
+          this.buffers.set(id, buffer);
+          finish(buffer);
+        } catch {
+          finish(undefined);
+        }
+      })();
+    });
     this.loads.set(id, load);
+    this.loadCancels.set(id, cancel);
+    void load.then(() => {
+      if (this.loads.get(id) === load) this.loads.delete(id);
+      if (this.loadCancels.get(id) === cancel) this.loadCancels.delete(id);
+    });
     return load;
+  }
+
+  private cancelLoads(): void {
+    for (const cancel of [...this.loadCancels.values()]) cancel();
+    this.loadCancels.clear();
+    this.loads.clear();
   }
 
   private stopAll(): void {

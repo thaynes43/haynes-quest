@@ -160,6 +160,103 @@ describe("QuestAudio", () => {
     expect(audioSession.type).toBe("auto");
   });
 
+  it("shares one resume across overlapping confirmation and audition gestures", async () => {
+    const { audio, context } = audioFixture();
+    let finishResume!: () => void;
+    context.resume.mockImplementationOnce(
+      () =>
+        new Promise<void>((resolve) => {
+          finishResume = () => {
+            context.state = "running";
+            resolve();
+          };
+        }),
+    );
+
+    const confirming = audio.start({ confirmation: true });
+    const auditioning = audio.audition();
+    const repeatedStart = audio.start({ confirmation: true });
+
+    expect(context.resume).toHaveBeenCalledOnce();
+    finishResume();
+    await expect(
+      Promise.all([confirming, auditioning, repeatedStart]),
+    ).resolves.toEqual([true, true, true]);
+    expect(context.sources).toHaveLength(2);
+  });
+
+  it("bounds a stalled audition resume and uses a fresh context on retry", async () => {
+    vi.useFakeTimers();
+    try {
+      const first = new FakeAudioContext();
+      first.resume.mockImplementationOnce(() => new Promise<void>(() => {}));
+      const second = new FakeAudioContext();
+      const contextFactory = vi
+        .fn<() => AudioContext | undefined>()
+        .mockReturnValueOnce(first as unknown as AudioContext)
+        .mockReturnValueOnce(second as unknown as AudioContext);
+      const fetcher = successfulFetch();
+      const audio = new QuestAudio({
+        storage: new MemoryStorage(),
+        pageDocument: null,
+        audioSession: null,
+        contextFactory,
+        fetcher,
+        resumeTimeoutMs: 25,
+      });
+
+      const auditioning = audio.audition();
+      await vi.advanceTimersByTimeAsync(25);
+      await expect(auditioning).resolves.toBe(false);
+      expect(audio.status().contextState).toBe("unavailable");
+      expect(first.close).toHaveBeenCalledOnce();
+      expect(fetcher).not.toHaveBeenCalled();
+
+      await expect(audio.audition()).resolves.toBe(true);
+      expect(contextFactory).toHaveBeenCalledTimes(2);
+      expect(second.resume).toHaveBeenCalledOnce();
+      expect(second.sources[0]?.start).toHaveBeenCalledOnce();
+      audio.dispose();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("bounds a stalled cue load, aborts it, and allows a later audition", async () => {
+    vi.useFakeTimers();
+    try {
+      let firstSignal: AbortSignal | null | undefined;
+      const fetcher = vi
+        .fn<typeof fetch>()
+        .mockImplementationOnce((_input, init) => {
+          firstSignal = init?.signal;
+          return new Promise<Response>(() => {});
+        })
+        .mockImplementation(
+          async () =>
+            new Response(new Uint8Array([1, 2, 3, 4]), { status: 200 }),
+        );
+      const { audio, context } = audioFixture({
+        fetcher,
+        loadTimeoutMs: 25,
+      });
+      await audio.start();
+
+      const auditioning = audio.audition();
+      await vi.advanceTimersByTimeAsync(25);
+      await expect(auditioning).resolves.toBe(false);
+      expect(firstSignal?.aborted).toBe(true);
+      expect(context.sources).toHaveLength(0);
+
+      await expect(audio.audition()).resolves.toBe(true);
+      expect(fetcher).toHaveBeenCalledTimes(2);
+      expect(context.sources[0]?.start).toHaveBeenCalledOnce();
+      audio.dispose();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
   it("starts fresh from legacy playtest preferences, then persists the new preference namespace", async () => {
     const storage = new MemoryStorage();
     storage.setItem(
@@ -271,30 +368,46 @@ describe("QuestAudio", () => {
     expect(externalFetch).not.toHaveBeenCalled();
   });
 
-  it("pauses modal cues without suspending hardware, but requires a gesture after backgrounding", async () => {
+  it("pauses modal cues without suspending hardware, but replaces audio after backgrounding", async () => {
     const page = new FakePage();
-    const { audio, context, fetcher } = audioFixture({ pageDocument: page });
+    const first = new FakeAudioContext();
+    const second = new FakeAudioContext();
+    const contextFactory = vi
+      .fn<() => AudioContext | undefined>()
+      .mockReturnValueOnce(first as unknown as AudioContext)
+      .mockReturnValueOnce(second as unknown as AudioContext);
+    const fetcher = successfulFetch();
+    const audio = new QuestAudio({
+      storage: new MemoryStorage(),
+      pageDocument: page,
+      audioSession: null,
+      contextFactory,
+      fetcher,
+    });
     await audio.start();
     await audio.cue("memory-collected");
 
     audio.setPaused(true);
-    expect(context.sources[0]?.stop).toHaveBeenCalledOnce();
-    expect(context.suspend).not.toHaveBeenCalled();
+    expect(first.sources[0]?.stop).toHaveBeenCalledOnce();
+    expect(first.suspend).not.toHaveBeenCalled();
     await expect(audio.cue("memory-collected")).resolves.toBe(false);
     audio.setPaused(false);
     await expect(audio.cue("memory-collected")).resolves.toBe(true);
 
     page.hidden = true;
     page.dispatchEvent(new Event("visibilitychange"));
-    expect(context.sources[1]?.stop).toHaveBeenCalledOnce();
-    expect(context.suspend).toHaveBeenCalledOnce();
+    expect(first.sources[1]?.stop).toHaveBeenCalledOnce();
+    expect(first.suspend).toHaveBeenCalledOnce();
     page.hidden = false;
     page.dispatchEvent(new Event("visibilitychange"));
     await expect(audio.cue("memory-collected")).resolves.toBe(false);
     await expect(audio.start()).resolves.toBe(true);
+    expect(first.close).toHaveBeenCalledOnce();
+    expect(contextFactory).toHaveBeenCalledTimes(2);
+    expect(second.resume).toHaveBeenCalledOnce();
 
     audio.dispose();
-    expect(context.close).toHaveBeenCalledOnce();
+    expect(second.close).toHaveBeenCalledOnce();
     const requestsAtDispose = vi.mocked(fetcher).mock.calls.length;
     await expect(audio.start()).resolves.toBe(false);
     await expect(audio.cue("memory-collected")).resolves.toBe(false);
@@ -319,24 +432,39 @@ describe("QuestAudio", () => {
     finishResume();
 
     await expect(starting).resolves.toBe(false);
-    expect(context.state).toBe("suspended");
+    expect(context.state).toBe("closed");
     expect(audio.status().ready).toBe(false);
-    expect(context.suspend).toHaveBeenCalledTimes(2);
+    expect(context.suspend).toHaveBeenCalledOnce();
+    expect(context.close).toHaveBeenCalledOnce();
   });
 
-  it("marks spontaneous interruption as not ready and resumes on a later gesture", async () => {
-    const { audio, context } = audioFixture();
+  it("marks spontaneous interruption as not ready and replaces it on a later gesture", async () => {
+    const first = new FakeAudioContext();
+    const second = new FakeAudioContext();
+    const contextFactory = vi
+      .fn<() => AudioContext | undefined>()
+      .mockReturnValueOnce(first as unknown as AudioContext)
+      .mockReturnValueOnce(second as unknown as AudioContext);
+    const audio = new QuestAudio({
+      storage: new MemoryStorage(),
+      pageDocument: null,
+      audioSession: null,
+      contextFactory,
+      fetcher: successfulFetch(),
+    });
     await audio.start();
 
-    context.state = "interrupted";
-    context.dispatchEvent(new Event("statechange"));
+    first.state = "interrupted";
+    first.dispatchEvent(new Event("statechange"));
     expect(audio.status()).toMatchObject({
       ready: false,
       contextState: "interrupted",
     });
     await expect(audio.cue("ui-confirmed")).resolves.toBe(false);
     await expect(audio.start()).resolves.toBe(true);
-    expect(context.resume).toHaveBeenCalledTimes(2);
+    expect(first.close).toHaveBeenCalledOnce();
+    expect(second.resume).toHaveBeenCalledOnce();
+    expect(contextFactory).toHaveBeenCalledTimes(2);
   });
 
   it("rebuilds the graph after the browser closes a context", async () => {
