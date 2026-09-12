@@ -6,6 +6,8 @@
     "haynes-quest-playtest"
   ],
   "started_at": "2026-09-12T16:49:47Z",
-  "status": "active",
-  "ttl_minutes": 45
+  "status": "ended",
+  "ttl_minutes": 45,
+  "ended_at": "2026-09-12T17:28:50Z",
+  "end_reason": "Private rollout settled and all 24 isolation checks passed; remaining hosted browser checks are read-only verification."
 }

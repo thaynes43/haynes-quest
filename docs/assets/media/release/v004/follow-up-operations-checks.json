@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-12T17:30:19Z",
+  "pullRequest": {
+    "number": 2867,
+    "url": "https://github.com/thaynes43/haynes-ops/pull/2867",
+    "title": "Keep private playtest artwork feedback current while paused",
+    "base": "6772777e752450d1e74dfb897d2bd0be02b570d9",
+    "head": "42fef3752b9c6a7ddd5d98bc8202fffca7f4ebd7",
+    "state": "MERGED",
+    "mergedAt": "2026-09-12T17:26:02Z",
+    "mergeCommit": "a621f1b4463f371fcc08f01e85c5c281e9600f36",
+    "headStableThroughMerge": true
+  },
+  "checks": {
+    "passed": 9,
+    "failed": [],
+    "total": 9,
+    "items": [
+      {
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/thaynes43/haynes-ops/actions/runs/34707774430/job/103590848362",
+        "name": "Diff Scope - Success",
+        "status": "COMPLETED"
+      },
+      {
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/thaynes43/haynes-ops/actions/runs/34707774424/job/103590848080",
+        "name": "Flux Local - Filter",
+        "status": "COMPLETED"
+      },
+      {
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/thaynes43/haynes-ops/actions/runs/34707774424/job/103590860823",
+        "name": "Flux Local - Test (main)",
+        "status": "COMPLETED"
+      },
+      {
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/thaynes43/haynes-ops/actions/runs/34707774424/job/103590860899",
+        "name": "Flux Local - Test (edge)",
+        "status": "COMPLETED"
+      },
+      {
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/thaynes43/haynes-ops/actions/runs/34707774424/job/103590860869",
+        "name": "Flux Local - Diff (main/helmrelease)",
+        "status": "COMPLETED"
+      },
+      {
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/thaynes43/haynes-ops/actions/runs/34707774424/job/103590860910",
+        "name": "Flux Local - Diff (main/kustomization)",
+        "status": "COMPLETED"
+      },
+      {
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/thaynes43/haynes-ops/actions/runs/34707774424/job/103590860853",
+        "name": "Flux Local - Diff (edge/helmrelease)",
+        "status": "COMPLETED"
+      },
+      {
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/thaynes43/haynes-ops/actions/runs/34707774424/job/103590860921",
+        "name": "Flux Local - Diff (edge/kustomization)",
+        "status": "COMPLETED"
+      },
+      {
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/thaynes43/haynes-ops/actions/runs/34707774424/job/103591110021",
+        "name": "Flux Local - Success",
+        "status": "COMPLETED"
+      }
+    ]
+  },
+  "review": {
+    "leadScopeReview": "approved at the exact head before merge",
+    "reviewedHead": "42fef3752b9c6a7ddd5d98bc8202fffca7f4ebd7",
+    "stickyDiffs": {
+      "main": "two comments; only the private image and image tag changed",
+      "edge": "empty; both edge diff jobs passed without a sticky comment"
+    },
+    "serviceAndServiceAccount": "unchanged"
+  },
+  "scope": {
+    "files": [
+      {
+        "additions": 50,
+        "deletions": 0,
+        "path": ".agents/work-orders/quest-plan008-paused-release.md"
+      },
+      {
+        "additions": 2,
+        "deletions": 2,
+        "path": "kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml"
+      }
+    ],
+    "oldImage": "ghcr.io/thaynes43/haynes-quest:sha-c5696e3b884059040bcf67d225697139979a3551@sha256:b5e6aee84795299699bc8f02304a5ddd1cb644f81bf458718bdaa9540e988fd5",
+    "newImage": "ghcr.io/thaynes43/haynes-quest:sha-6e71ba1556784efb340056e27be11e2bd7ae6c10@sha256:3112a716b888a3e5dbcbfca35d5680a52f49c43ae3b9347e34408b86b954bf0f",
+    "manifestEffect": "private playtest image and publication comment only",
+    "otherApplicationsRoutingPoliciesAndDevEnv": "unchanged"
+  },
+  "sourceEvidenceSha256": {
+    "pr2867-ci-review.json": "e6f9ab78b08d621354368f8354e722dfcafec2b3bcfce5d3e34ac654edf4bf57",
+    "pr2867-root-review.json": "5a2c25e4c5e06392d02c462b65166a859f3836a09cd5ac1198e276b0b887d526"
+  },
+  "sanitization": "Reduced to public GitHub metadata, check outcomes and reviewed diff scope; raw sticky diff bodies were omitted."
+}

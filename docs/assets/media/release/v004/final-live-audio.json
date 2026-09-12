@@ -1,0 +1,43 @@
+{
+  "version": "v004-final",
+  "source": "test-results/hosted-plan008-final/audio/report.json",
+  "source_sha256": "c522ab60506c3889ea4a4f56ac8c91e5c876614e6f90078bddb6f8587c854004",
+  "target": "https://haynes-quest-playtest.haynesops.com",
+  "status": "passed",
+  "client": {
+    "path": "/assets/index-Dg49Dt7R.js",
+    "bytes": 1046626,
+    "sha256": "14fdb50c25753fbaffa5e389dc224f293a4ed0de4048e667e7f11fd91c9fc35d"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "outcomes": {
+    "failed_cue_showed_retry_state": true,
+    "failed_cue_left_button_enabled": true,
+    "help_touch_after_scroll": {
+      "scroll_before": 0,
+      "scroll_after": 345,
+      "click_count_before": 1,
+      "click_count_after": 2,
+      "decoded_starts": [
+        {
+          "duration_seconds": 0.3,
+          "context_state": "running"
+        },
+        {
+          "duration_seconds": 1.2,
+          "context_state": "running"
+        }
+      ]
+    },
+    "sound_test_repeatable": true
+  },
+  "errors": [],
+  "limitation": "AudioBufferSource start confirms decoded browser delivery, not physical iPhone speaker output."
+}

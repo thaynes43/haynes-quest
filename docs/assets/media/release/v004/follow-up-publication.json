@@ -1,0 +1,38 @@
+{
+  "application_merge": "6e71ba1556784efb340056e27be11e2bd7ae6c10",
+  "image": "ghcr.io/thaynes43/haynes-quest:sha-6e71ba1556784efb340056e27be11e2bd7ae6c10@sha256:3112a716b888a3e5dbcbfca35d5680a52f49c43ae3b9347e34408b86b954bf0f",
+  "registry_http_status": 200,
+  "registry_header_digest": "sha256:3112a716b888a3e5dbcbfca35d5680a52f49c43ae3b9347e34408b86b954bf0f",
+  "independent_manifest_bytes_digest": "sha256:3112a716b888a3e5dbcbfca35d5680a52f49c43ae3b9347e34408b86b954bf0f",
+  "manifest_bytes": 857,
+  "media_type": "application/vnd.oci.image.index.v1+json",
+  "platforms": [
+    {
+      "digest": "sha256:5e29884226fcdb808a0d6beb00313a19e81ac7a223934f96e0cb893fbc13bbe5",
+      "platform": {
+        "architecture": "amd64",
+        "os": "linux"
+      }
+    },
+    {
+      "digest": "sha256:b1ed20706a9c1bcb441a98cd2b3c92e6bee9c10b5766bac72922505ba4d0abcb",
+      "platform": {
+        "architecture": "unknown",
+        "os": "unknown"
+      }
+    }
+  ],
+  "independent_signature_verification": "Not claimed; registry bytes independently checked. CI signing must be verified separately.",
+  "application_pr": 38,
+  "application_run": 34707413422,
+  "documentation_run": 34707413477,
+  "ci_verified_steps": [
+    "Application verification including dedicated PostgreSQL tests",
+    "Buildx provenance and SBOM",
+    "GitHub build-provenance attestation",
+    "cosign signing"
+  ],
+  "operations_pr": 2867,
+  "operations_head": "42fef3752b9c6a7ddd5d98bc8202fffca7f4ebd7",
+  "operations_merge": "a621f1b4463f371fcc08f01e85c5c281e9600f36"
+}

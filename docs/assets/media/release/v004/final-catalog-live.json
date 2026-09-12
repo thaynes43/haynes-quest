@@ -1,0 +1,97 @@
+{
+  "version": "v004-final",
+  "observed_at": "2026-09-12T17:31:18.760Z",
+  "source": "test-results/hosted-plan008-final/catalog/report.json",
+  "source_sha256": "331c60ef9204795599e4643e6d0c13202df0e9f369ae177d0491d5468c68e6b2",
+  "target": "https://haynes-quest-playtest.haynesops.com/studio/assets/catalog.html",
+  "status": "passed",
+  "deployed_client": {
+    "verified_by": "docs/assets/media/release/v004/final-live-api.json",
+    "path": "/assets/index-Dg49Dt7R.js",
+    "bytes": 1046626,
+    "sha256": "14fdb50c25753fbaffa5e389dc224f293a4ed0de4048e667e7f11fd91c9fc35d"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software"
+  },
+  "inventory": {
+    "source": "scripts/assets/catalog-inventory.json",
+    "entries": 37,
+    "thumbnail_files": 54,
+    "model_deliveries": 26
+  },
+  "responsive_landing": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "touch": false,
+      "cards": 37,
+      "category_jumps": 8,
+      "images": 63
+    },
+    {
+      "name": "phone",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true,
+      "cards": 37,
+      "category_jumps": 8,
+      "images": 63
+    }
+  ],
+  "reviews": {
+    "pages": 28,
+    "entries": 37,
+    "images": 131,
+    "model_viewers": 26
+  },
+  "nap_captain": {
+    "loaded": true,
+    "visible": true,
+    "clips": [
+      "idle",
+      "move",
+      "attack",
+      "hit",
+      "defeat"
+    ],
+    "orbit_changed": true,
+    "state": "paused partial model; corrections remain"
+  },
+  "besties": {
+    "viewers_loaded_and_visible": [
+      "bestie-pink",
+      "bestie-black"
+    ],
+    "clips": [
+      "idle",
+      "move",
+      "attack",
+      "hit",
+      "defeat",
+      "cheer",
+      "high-five",
+      "dizzy"
+    ],
+    "high_five_selected_and_playing": true
+  },
+  "error_counts": {
+    "page": 0,
+    "console": 0,
+    "bad_responses": 0,
+    "failed_requests": 0,
+    "external_requests": 0,
+    "expected_metadata_preload_aborts": 14
+  },
+  "limitations": [
+    "Physical Safari was not tested.",
+    "Final art quality was not assessed."
+  ]
+}

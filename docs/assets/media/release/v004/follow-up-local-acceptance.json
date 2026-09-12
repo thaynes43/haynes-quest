@@ -1,0 +1,215 @@
+{
+  "version": "v004-follow-up",
+  "recorded_on": "2026-09-12",
+  "source_commit": "6e71ba1556784efb340056e27be11e2bd7ae6c10",
+  "client": {
+    "path": "/assets/index-Dg49Dt7R.js",
+    "bytes": 1046626,
+    "sha256": "14fdb50c25753fbaffa5e389dc224f293a4ed0de4048e667e7f11fd91c9fc35d"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software"
+  },
+  "complete_route": {
+    "source": "test-results/fresh-playtest/plan008-paused-local-route/report.json",
+    "source_sha256": "b383fa33f66e9a6650810e52a8b5e10bd2352c3df99c5896a624dc55f7c67967",
+    "url": "http://127.0.0.1:4399",
+    "status": "passed",
+    "started_at": "2026-09-12T17:03:49.292Z",
+    "finished_at": "2026-09-12T17:06:08.074Z",
+    "traversal": "keyboard movement and jumps; touch UI actions",
+    "route_only": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "chapters": 2,
+    "ages": [
+      0,
+      4,
+      7
+    ],
+    "memories_collected": 6,
+    "minor_memory_scene_roots_after_collection": [
+      {
+        "id": "demo-memory-2020-07",
+        "visible": false
+      },
+      {
+        "id": "demo-memory-2022-01",
+        "visible": false
+      },
+      {
+        "id": "demo-memory-2025-01",
+        "visible": false
+      },
+      {
+        "id": "demo-memory-2026-01",
+        "visible": false
+      }
+    ],
+    "secondary_attack_accepted": {
+      "chapter_1": true,
+      "chapter_2": true
+    },
+    "besties": {
+      "phases_observed": [
+        "pink-warning",
+        "pink-trick",
+        "black-warning",
+        "black-trick",
+        "high-five",
+        "dizzy"
+      ],
+      "dizzy_observed": true,
+      "rendered_actors": [
+        {
+          "id": "bestie-pink",
+          "selected_clips": [
+            "attack",
+            "cheer",
+            "high-five",
+            "dizzy",
+            "hit"
+          ],
+          "max_world_position_motion": 0.7992446555077729,
+          "max_head_world_motion": 0.806917156783757
+        },
+        {
+          "id": "bestie-black",
+          "selected_clips": [
+            "cheer",
+            "attack",
+            "high-five",
+            "dizzy"
+          ],
+          "max_world_position_motion": 0.7992446555077729,
+          "max_head_world_motion": 0.8070357384919339
+        }
+      ],
+      "player_damage_received": {
+        "meaning": "Player HP before and after server-observed Besties boss hits.",
+        "before_route_retry": [
+          {
+            "player_hp_before": 4,
+            "player_hp_after": 2,
+            "damage_received": 2
+          },
+          {
+            "player_hp_before": 2,
+            "player_hp_after": 0,
+            "damage_received": 2
+          }
+        ],
+        "after_route_retry": [
+          {
+            "player_hp_before": 10,
+            "player_hp_after": 8,
+            "damage_received": 2
+          },
+          {
+            "player_hp_before": 8,
+            "player_hp_after": 6,
+            "damage_received": 2
+          },
+          {
+            "player_hp_before": 6,
+            "player_hp_after": 4,
+            "damage_received": 2
+          },
+          {
+            "player_hp_before": 4,
+            "player_hp_after": 2,
+            "damage_received": 2
+          }
+        ]
+      },
+      "paused_artwork_retry": {
+        "game_phase": "fallen",
+        "retry_presses": 1,
+        "media_failed_before": 1,
+        "media_failed_after": 0,
+        "media_loading_after": 0,
+        "warning_hidden": true,
+        "remained_paused": true,
+        "route_continued_after_retry": true
+      },
+      "defeat_animation_wait_ms": 1887,
+      "actors_after_defeat": [
+        {
+          "id": "bestie-pink",
+          "clip": "defeat",
+          "visible": false
+        },
+        {
+          "id": "bestie-black",
+          "clip": "defeat",
+          "visible": false
+        }
+      ]
+    },
+    "recovery": {
+      "combat_retries": 1,
+      "local_obby_events": 4,
+      "held_input_preserved": true
+    },
+    "artwork_recovery": {
+      "injected_bestie_model_failures": 1,
+      "failed_before": 1,
+      "failed_after": 0,
+      "rendered_actors_after_restore": [
+        "bestie-pink",
+        "bestie-black"
+      ]
+    },
+    "unexpected_errors": {
+      "page": 0,
+      "response": 0,
+      "console": 0
+    },
+    "expected_injected_artwork_503_console_entries": 1
+  },
+  "audio": {
+    "source": "test-results/paused-local-audio/report.json",
+    "source_sha256": "1868d38b6d227d62b4c6acc8333a2e0b72aceba8309b9da65981ebd367a6adef",
+    "url": "http://127.0.0.1:4399",
+    "status": "passed",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "outcomes": {
+      "failed_cue_showed_retry_state": true,
+      "failed_cue_left_button_enabled": true,
+      "help_touch_after_scroll": {
+        "scroll_before": 0,
+        "scroll_after": 345,
+        "click_count_before": 1,
+        "click_count_after": 2,
+        "decoded_starts": [
+          {
+            "duration_seconds": 0.3,
+            "context_state": "running"
+          },
+          {
+            "duration_seconds": 1.2,
+            "context_state": "running"
+          }
+        ]
+      },
+      "sound_test_repeatable": true
+    },
+    "errors": []
+  },
+  "automated_tests": {
+    "local_cases_passed": 380,
+    "ci_cases_passed": 10
+  },
+  "limitations": [
+    "WebKit could not launch because the container lacks libgstreamer-1.0.so.0.",
+    "Physical iPhone Safari and speaker output were not tested.",
+    "Frame pacing came from Chromium with SwiftShader and is diagnostic rather than device performance evidence."
+  ]
+}
