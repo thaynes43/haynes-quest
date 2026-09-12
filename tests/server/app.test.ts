@@ -1,8 +1,8 @@
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { createApp } from '../../src/server/app.js';
 import { InMemoryQuestStore } from '../../src/server/db/memory-store.js';
 import type { SaveRecord } from '../../src/server/domain.js';
@@ -21,6 +21,21 @@ function makeApp(store = new InMemoryQuestStore(), now?: () => Date) {
       clientDir: '/tmp/quest-client-not-present',
       studioDir: '/tmp/quest-studio-not-present',
       now,
+    }),
+  };
+}
+
+function makeEphemeralApp(store = InMemoryQuestStore.ephemeral()) {
+  return {
+    store,
+    app: createApp({
+      store,
+      fixtureMode: true,
+      ephemeralPlaytest: true,
+      sessionSecret: SECRET,
+      appOrigin: ORIGIN,
+      clientDir: '/tmp/quest-client-not-present',
+      studioDir: '/tmp/quest-studio-not-present',
     }),
   };
 }
@@ -62,6 +77,16 @@ async function createJourney(app: ReturnType<typeof makeApp>['app'], cookie: str
   return createResponse.json();
 }
 
+async function startPlaytest(
+  app: ReturnType<typeof makeApp>['app'],
+  cookie: string,
+  chapter: 1 | 2,
+) {
+  const response = await app.request('/api/playtest/start', mutation(cookie, { chapter }));
+  expect(response.status).toBe(201);
+  return response.json();
+}
+
 describe('fixture API', () => {
   it('assigns a signed durable identity instead of accepting a client identity', async () => {
     const { app } = makeApp();
@@ -74,6 +99,178 @@ describe('fixture API', () => {
 
     const forged = await app.request('/api/saves', { headers: { cookie: `${first.cookie}x` } });
     expect(forged.status).toBe(401);
+  });
+
+  it('renews an old fixture cookie into isolated ephemeral state without touching persisted progress', async () => {
+    const persistent = makeApp();
+    const oldSession = await startSession(persistent.app);
+    const oldSave = await createJourney(persistent.app, oldSession.cookie);
+
+    const ephemeral = makeEphemeralApp();
+    const renewedResponse = await ephemeral.app.request('/api/session', {
+      headers: { cookie: oldSession.cookie },
+    });
+    expect(renewedResponse.status).toBe(200);
+    expect(renewedResponse.headers.get('set-cookie')).not.toBeNull();
+    const renewedCookie = renewedResponse.headers.get('set-cookie')!.split(';', 1)[0]!;
+    const renewed = await renewedResponse.json();
+    expect(renewed).toMatchObject({
+      mode: 'fixture',
+      progressMode: 'ephemeral',
+      csrfHeader: 'X-Quest-Request',
+    });
+    expect(renewed.player.id).not.toBe(oldSession.body.player.id);
+    expect(await (await ephemeral.app.request('/api/saves', { headers: { cookie: renewedCookie } })).json())
+      .toEqual({ saves: [] });
+
+    const activeSave = await startPlaytest(ephemeral.app, renewedCookie, 1);
+    expect((await ephemeral.app.request(`/api/saves/${activeSave.id}`, {
+      headers: { cookie: renewedCookie },
+    })).status).toBe(200);
+    const pickup = activeSave.adventure.activeLevel.pickups[0];
+    const applied = await ephemeral.app.request(
+      `/api/saves/${activeSave.id}/actions`,
+      mutation(renewedCookie, {
+        actionId: randomUUID(),
+        expectedRevision: activeSave.revision,
+        action: {
+          type: 'collect-equipment',
+          levelId: activeSave.adventure.currentLevelId,
+          pickupId: pickup.pickupId,
+        },
+      }),
+    );
+    expect(applied.status).toBe(200);
+    expect(await applied.json()).toMatchObject({ revision: activeSave.revision + 1 });
+    const stale = await ephemeral.app.request(
+      `/api/saves/${activeSave.id}/actions`,
+      mutation(renewedCookie, {
+        actionId: randomUUID(),
+        expectedRevision: activeSave.revision,
+        action: {
+          type: 'collect-equipment',
+          levelId: activeSave.adventure.currentLevelId,
+          pickupId: pickup.pickupId,
+        },
+      }),
+    );
+    expect(stale.status).toBe(409);
+    expect((await stale.json()).error.code).toBe('SAVE_REVISION_STALE');
+    expect(await (await ephemeral.app.request('/api/saves', { headers: { cookie: renewedCookie } })).json())
+      .toEqual({ saves: [] });
+    expect(await persistent.store.getSave(oldSession.body.player.id, oldSave.id)).toMatchObject({ id: oldSave.id });
+
+    const resumedIdentity = await ephemeral.app.request('/api/session', {
+      headers: { cookie: renewedCookie },
+    });
+    expect(resumedIdentity.headers.get('set-cookie')).toBeNull();
+    expect((await resumedIdentity.json()).player).toEqual(renewed.player);
+  });
+
+  it('starts distinct fresh routes and prepares the Besties shortcut through authoritative actions', async () => {
+    const ephemeral = makeEphemeralApp(InMemoryQuestStore.ephemeral({
+      maxSessions: 2,
+      maxPreviews: 3,
+      maxSaves: 2,
+    }));
+    const { cookie } = await startSession(ephemeral.app);
+
+    expect((await ephemeral.app.request('/api/playtest/start', mutation('', { chapter: 1 }))).status).toBe(401);
+
+    const rejected = await ephemeral.app.request('/api/playtest/start', {
+      method: 'POST',
+      body: JSON.stringify({ chapter: 1 }),
+      headers: { cookie, 'content-type': 'application/json', 'x-quest-request': '1' },
+    });
+    expect(rejected.status).toBe(403);
+    const invalidChapter = await ephemeral.app.request(
+      '/api/playtest/start',
+      mutation(cookie, { chapter: 3 }),
+    );
+    expect(invalidChapter.status).toBe(422);
+    const extraField = await ephemeral.app.request(
+      '/api/playtest/start',
+      mutation(cookie, { chapter: 1, saveId: 'forged' }),
+    );
+    expect(extraField.status).toBe(422);
+
+    const first = await startPlaytest(ephemeral.app, cookie, 1);
+    const second = await startPlaytest(ephemeral.app, cookie, 1);
+    expect(second.id).not.toBe(first.id);
+    expect(first).toMatchObject({
+      ageYears: 0,
+      abilities: ['move', 'interact', 'jump'],
+      revision: 0,
+      adventure: { planVersion: 'era-level-plan-v3', activeLevelIndex: 0 },
+    });
+
+    const besties = await startPlaytest(ephemeral.app, cookie, 2);
+    expect(besties).toMatchObject({
+      ageYears: 4,
+      adventure: {
+        planVersion: 'era-level-plan-v3',
+        activeLevelIndex: 1,
+        phase: 'exploring',
+      },
+    });
+    expect(besties.revision).toBeGreaterThan(0);
+    expect((await ephemeral.app.request(`/api/saves/${first.id}`, {
+      headers: { cookie },
+    })).status).toBe(404);
+    expect(await (await ephemeral.app.request('/api/saves', { headers: { cookie } })).json())
+      .toEqual({ saves: [] });
+
+    const other = await startSession(ephemeral.app);
+    const otherRun = await startPlaytest(ephemeral.app, other.cookie, 1);
+    expect(otherRun).toMatchObject({ ageYears: 0, revision: 0 });
+    expect((await ephemeral.app.request(`/api/saves/${second.id}`, {
+      headers: { cookie },
+    })).status).toBe(404);
+
+    const persistent = makeApp();
+    const persistentSession = await startSession(persistent.app);
+    expect((await persistent.app.request(
+      '/api/playtest/start',
+      mutation(persistentSession.cookie, { chapter: 1 }),
+    )).status).toBe(404);
+  });
+
+  it('rejects stale ephemeral selections before asking the store to create a save', async () => {
+    const { app, store } = makeEphemeralApp();
+    const { cookie } = await startSession(app);
+    const preview = await (
+      await app.request(
+        '/api/setup/preview',
+        mutation(cookie, { name: 'Demo Adventurer', birthDate: '2020-01-01' }),
+      )
+    ).json();
+    expect(preview.selectedIds).toHaveLength(6);
+    const createSave = vi.spyOn(store, 'createSave');
+
+    for (const selectedIds of [
+      preview.selectedIds.slice(0, 5),
+      [...preview.selectedIds, 'unissued-memory'],
+    ]) {
+      const stale = await app.request(
+        '/api/saves',
+        mutation(cookie, { previewId: preview.previewId, selectedIds }),
+      );
+      expect(stale.status).toBe(422);
+      expect(await stale.json()).toEqual({
+        error: { code: 'INVALID_SELECTION', message: 'Invalid selection' },
+      });
+    }
+    expect(createSave).not.toHaveBeenCalled();
+
+    const current = await app.request(
+      '/api/saves',
+      mutation(cookie, {
+        previewId: preview.previewId,
+        selectedIds: preview.selectedIds,
+      }),
+    );
+    expect(current.status).toBe(201);
+    expect(createSave).toHaveBeenCalledOnce();
   });
 
   it('globally caps new fixture identities while established sessions still resume', async () => {
@@ -109,6 +306,30 @@ describe('fixture API', () => {
     expect(resumed.status).toBe(200);
     expect((await resumed.json()).player).toEqual(establishedPlayer);
     expect(resumed.headers.get('set-cookie')).toBeNull();
+  });
+
+  it('bounds public fictional fixture media reads independently by user agent', async () => {
+    const { app } = makeEphemeralApp();
+    const request = { headers: { 'user-agent': 'fixture-catalog-reader' } };
+
+    for (let index = 0; index < 120; index += 1) {
+      const response = await app.request('/api/fixture-media/demo-memory-2020-07', request);
+      expect(response.status).toBe(200);
+      expect(response.headers.get('content-type')).toBe('image/svg+xml; charset=utf-8');
+      expect(response.headers.get('cache-control')).toBe('no-store');
+    }
+
+    const capped = await app.request('/api/fixture-media/demo-memory-2020-07', request);
+    expect(capped.status).toBe(429);
+    expect(await capped.json()).toEqual({
+      error: { code: 'RATE_LIMITED', message: 'Too many requests' },
+    });
+    expect(capped.headers.get('cache-control')).toBe('no-store');
+
+    const separateAgent = await app.request('/api/fixture-media/demo-memory-2020-07', {
+      headers: { 'user-agent': 'fixture-catalog-reader-2' },
+    });
+    expect(separateAgent.status).toBe(200);
   });
 
   it('requires same-origin JSON and the explicit CSRF header for mutations', async () => {
@@ -255,6 +476,9 @@ describe('fixture API', () => {
       0x52, 0x49, 0x46, 0x46, 0x04, 0x00, 0x00, 0x00, 0x57, 0x41, 0x56, 0x45,
     ]);
     try {
+      await mkdir(join(studioDir, 'assets'));
+      await writeFile(join(studioDir, 'index.html'), '<!doctype html><title>Studio</title>');
+      await writeFile(join(studioDir, 'assets', 'memory-keepsake.glb'), 'fixture glTF');
       await writeFile(join(studioDir, 'cue.wav'), wav);
       const app = createApp({
         store: new InMemoryQuestStore(),
@@ -265,9 +489,24 @@ describe('fixture API', () => {
         studioDir,
       });
 
+      const redirect = await app.request('/studio');
+      expect(redirect.status).toBe(308);
+      expect(redirect.headers.get('cache-control')).toBe('no-cache');
+
+      const index = await app.request('/studio/');
+      expect(index.status).toBe(200);
+      expect(index.headers.get('content-type')).toContain('text/html');
+      expect(index.headers.get('cache-control')).toBe('no-cache');
+
+      const model = await app.request('/studio/assets/memory-keepsake.glb');
+      expect(model.status).toBe(200);
+      expect(model.headers.get('content-type')).toBe('model/gltf-binary');
+      expect(model.headers.get('cache-control')).toBe('no-cache');
+
       const full = await app.request('/studio/cue.wav');
       expect(full.status).toBe(200);
       expect(full.headers.get('content-type')).toBe('audio/wav');
+      expect(full.headers.get('cache-control')).toBe('no-cache');
       expect(full.headers.get('x-content-type-options')).toBe('nosniff');
       expect(new Uint8Array(await full.arrayBuffer())).toEqual(wav);
 
@@ -276,14 +515,64 @@ describe('fixture API', () => {
       });
       expect(range.status).toBe(206);
       expect(range.headers.get('content-type')).toBe('audio/wav');
+      expect(range.headers.get('cache-control')).toBe('no-cache');
       expect(range.headers.get('accept-ranges')).toBe('bytes');
       expect(range.headers.get('content-range')).toBe(`bytes 4-7/${wav.length}`);
       expect(range.headers.get('content-length')).toBe('4');
       expect(new Uint8Array(await range.arrayBuffer())).toEqual(wav.slice(4, 8));
 
-      expect((await app.request('/studio/missing.wav')).status).toBe(404);
+      const missing = await app.request('/studio/missing.wav');
+      expect(missing.status).toBe(404);
+      expect(missing.headers.get('cache-control')).toBe('no-cache');
     } finally {
       await rm(studioDir, { recursive: true, force: true });
+    }
+  });
+
+  it('prevents stale app shells while caching content-hashed client assets immutably', async () => {
+    const clientDir = await mkdtemp(join(tmpdir(), 'quest-client-'));
+    try {
+      await mkdir(join(clientDir, 'assets'));
+      await writeFile(join(clientDir, 'index.html'), '<!doctype html><script src="/assets/index-AbCd1234.js"></script>');
+      await writeFile(join(clientDir, 'assets', 'index-AbCd1234.js'), 'globalThis.quest = true;');
+      await writeFile(join(clientDir, 'assets', 'chapter-Ab_cd-12.css'), '.chapter {}');
+      await writeFile(join(clientDir, 'assets', 'runtime.js'), 'globalThis.runtime = true;');
+      await writeFile(join(clientDir, 'assets', 'runtime-longfilename.js'), 'globalThis.runtime = true;');
+      await writeFile(join(clientDir, 'assets', 'index-AbCd12345.js'), 'globalThis.runtime = true;');
+      await writeFile(join(clientDir, 'assets', 'memory-keepsake.glb'), 'fixture glTF');
+      const app = createApp({
+        store: new InMemoryQuestStore(),
+        fixtureMode: true,
+        sessionSecret: SECRET,
+        appOrigin: ORIGIN,
+        clientDir,
+        studioDir: '/tmp/quest-studio-not-present',
+      });
+
+      const shell = await app.request('/');
+      expect(shell.status).toBe(200);
+      expect(shell.headers.get('cache-control')).toBe('no-store');
+
+      const hashed = await app.request('/assets/index-AbCd1234.js');
+      expect(hashed.status).toBe(200);
+      expect(hashed.headers.get('cache-control')).toBe('public, max-age=31536000, immutable');
+
+      const hashedChunk = await app.request('/assets/chapter-Ab_cd-12.css');
+      expect(hashedChunk.status).toBe(200);
+      expect(hashedChunk.headers.get('cache-control')).toBe('public, max-age=31536000, immutable');
+
+      for (const path of [
+        '/assets/runtime.js',
+        '/assets/runtime-longfilename.js',
+        '/assets/index-AbCd12345.js',
+        '/assets/memory-keepsake.glb',
+      ]) {
+        const unhashed = await app.request(path);
+        expect(unhashed.status).toBe(200);
+        expect(unhashed.headers.get('cache-control')).toBe('no-cache');
+      }
+    } finally {
+      await rm(clientDir, { recursive: true, force: true });
     }
   });
 
@@ -298,6 +587,26 @@ describe('fixture API', () => {
       studioDir: '/tmp/none',
       photoSource: {} as never,
     })).toThrow('private photo source');
+
+    expect(() => createApp({
+      store,
+      fixtureMode: false,
+      ephemeralPlaytest: true,
+      sessionSecret: SECRET,
+      appOrigin: ORIGIN,
+      clientDir: '/tmp/none',
+      studioDir: '/tmp/none',
+    })).toThrow('requires fixture mode');
+
+    expect(() => createApp({
+      store: {} as never,
+      fixtureMode: true,
+      ephemeralPlaytest: true,
+      sessionSecret: SECRET,
+      appOrigin: ORIGIN,
+      clientDir: '/tmp/none',
+      studioDir: '/tmp/none',
+    })).toThrow('requires in-memory storage');
 
     const production = createApp({
       store,

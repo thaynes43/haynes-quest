@@ -57,6 +57,9 @@ export const recoverSchema = z
   .object({ memoryId: z.string().min(1).max(128) })
   .strict();
 export const finishSchema = z.object({}).strict();
+export const playtestStartSchema = z.object({
+  chapter: z.union([z.literal(1), z.literal(2)]),
+}).strict();
 
 const gameplayLevelId = z.string().min(1).max(160);
 const gameplayActionSchema = z.discriminatedUnion('type', [
@@ -67,6 +70,11 @@ const gameplayActionSchema = z.discriminatedUnion('type', [
   }).strict(),
   z.object({
     type: z.literal('attack'),
+    levelId: gameplayLevelId,
+    encounterId: z.string().min(1).max(160),
+  }).strict(),
+  z.object({
+    type: z.literal('secondary-attack'),
     levelId: gameplayLevelId,
     encounterId: z.string().min(1).max(160),
   }).strict(),

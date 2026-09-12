@@ -10,6 +10,7 @@ import type {
   EquipmentView,
   FrozenEncounterContent,
   GameplayAction,
+  MemoryRole,
 } from './contracts.js';
 import {
   PARODY_CATALOG_VERSION,
@@ -21,6 +22,8 @@ import { selectParodyLevel } from './parody-selection.js';
 
 export const AGE_THRESHOLDS = [4, 8, 13, 18, 25, 35, 50, 65] as const;
 export const ATTACK_COOLDOWN_MS = 600;
+export const ROUTE_ATTACK_COOLDOWN_MS = 400;
+export const SECONDARY_ATTACK_COOLDOWN_MS = 1_000;
 export const ENEMY_HIT_COOLDOWN_MS = 900;
 export const GUARD_ACTIVE_MS = 800;
 export const GUARD_COOLDOWN_MS = 1_500;
@@ -63,22 +66,31 @@ interface FrozenLevelPlanBase {
   targetAgeYears: number;
   startDate: string;
   eraYear: number;
-  memoryIds: string[];
   pickups: FrozenEquipmentDefinition[];
   bossId: string;
 }
 
 export interface FrozenLevelPlanV1 extends FrozenLevelPlanBase {
+  memoryIds: string[];
   encounters: FrozenEncounterDefinitionV1[];
 }
 
 export interface FrozenLevelPlanV2 extends FrozenLevelPlanBase {
+  memoryIds: string[];
   periodId: ParodyPeriodId;
   routeId: ObbyRouteId;
   encounters: FrozenEncounterDefinitionV2[];
 }
 
-export type FrozenLevelPlan = FrozenLevelPlanV1 | FrozenLevelPlanV2;
+export interface FrozenLevelPlanV3 extends FrozenLevelPlanBase {
+  minorMemoryIds: [string, string];
+  majorMemoryId: string;
+  periodId: ParodyPeriodId;
+  routeId: ObbyRouteId;
+  encounters: FrozenEncounterDefinitionV2[];
+}
+
+export type FrozenLevelPlan = FrozenLevelPlanV1 | FrozenLevelPlanV2 | FrozenLevelPlanV3;
 
 export interface AdventurePlanV1 {
   version: 'era-level-plan-v1';
@@ -91,7 +103,13 @@ export interface AdventurePlanV2 {
   levels: FrozenLevelPlanV2[];
 }
 
-export type AdventurePlan = AdventurePlanV1 | AdventurePlanV2;
+export interface AdventurePlanV3 {
+  version: 'era-level-plan-v3';
+  catalogVersion: ParodyCatalogVersion;
+  levels: FrozenLevelPlanV3[];
+}
+
+export type AdventurePlan = AdventurePlanV1 | AdventurePlanV2 | AdventurePlanV3;
 
 export interface EncounterProgress {
   hp: number;
@@ -137,6 +155,7 @@ export type AdventureRuleCode =
   | 'ENCOUNTER_NOT_FOUND'
   | 'ENCOUNTER_NOT_ACTIVE'
   | 'ATTACK_COOLDOWN'
+  | 'SECONDARY_ATTACK_COOLDOWN'
   | 'ENEMY_HIT_COOLDOWN'
   | 'GUARD_COOLDOWN'
   | 'MEMORY_NOT_FOUND'
@@ -155,6 +174,15 @@ export class AdventureRuleError extends Error {
 
 export function abilitiesForAge(ageYears: number): Ability[] {
   return ageYears >= 4 ? ['move', 'interact', 'jump'] : ['move', 'interact'];
+}
+
+export function abilitiesForPlanAge(
+  plan: Pick<AdventurePlan, 'version'>,
+  ageYears: number,
+): Ability[] {
+  return plan.version === 'era-level-plan-v3'
+    ? ['move', 'interact', 'jump']
+    : abilitiesForAge(ageYears);
 }
 
 export function appearanceForAge(ageYears: number): AppearanceStage {
@@ -218,6 +246,56 @@ export function createAdventurePlan(
   return { version: 'era-level-plan-v2', catalogVersion, levels };
 }
 
+export function createRouteMemoryPlan(
+  birthDate: string,
+  memories: AdventureMemory[],
+): AdventurePlanV3 {
+  if (memories.length !== 6) {
+    throw new RangeError('A route-memory adventure requires exactly 6 memories');
+  }
+  const catalogVersion = PARODY_CATALOG_VERSION;
+  const levels: FrozenLevelPlanV3[] = [];
+  let startAgeYears = 0;
+  let startDate = birthDate;
+
+  for (let memoryIndex = 0; memoryIndex < memories.length; memoryIndex += 3) {
+    const [minorOne, minorTwo, major] = memories.slice(memoryIndex, memoryIndex + 3);
+    if (!minorOne || !minorTwo || !major) {
+      throw new RangeError('A route-memory level requires exactly 3 memories');
+    }
+    const index = levels.length;
+    const eraYear = Number(startDate.slice(0, 4));
+    if (!Number.isInteger(eraYear)) throw new RangeError('Adventure start date is invalid');
+    const prefix = `level-${index + 1}-${eraYear}`;
+    const pickups = createEquipment(prefix, index);
+    const selection = selectParodyLevel(
+      startDate,
+      ['move', 'interact', 'jump'],
+      catalogVersion,
+    );
+    const encounters = createEncounters(prefix, index, selection.encounters);
+    levels.push({
+      id: prefix,
+      index,
+      startAgeYears,
+      targetAgeYears: major.ageYears,
+      startDate,
+      eraYear,
+      minorMemoryIds: [minorOne.id, minorTwo.id],
+      majorMemoryId: major.id,
+      periodId: selection.periodId,
+      routeId: selection.routeId,
+      pickups,
+      encounters,
+      bossId: encounters.at(-1)!.id,
+    });
+    startAgeYears = major.ageYears;
+    startDate = major.date;
+  }
+
+  return { version: 'era-level-plan-v3', catalogVersion, levels };
+}
+
 export function createInitialAdventureState(plan: AdventurePlan): AdventureState {
   const encounters = Object.fromEntries(
     plan.levels.flatMap((level) => level.encounters).map((encounter) => [
@@ -239,7 +317,7 @@ export function createInitialAdventureState(plan: AdventurePlan): AdventureState
     consumedMemoryIds: [],
     completedLevelIds: [],
     ageYears: 0,
-    abilities: abilitiesForAge(0),
+    abilities: abilitiesForPlanAge(plan, 0),
     appearanceStage: appearanceForAge(0),
     attackReadyAtMs: 0,
     guardActiveUntilMs: 0,
@@ -279,6 +357,9 @@ export function reduceAdventureAction(
     state.guardActiveUntilMs = 0;
     state.guardReadyAtMs = 0;
     for (const encounter of level.encounters) {
+      if (plan.version === 'era-level-plan-v3' && state.encounters[encounter.id]?.defeated) {
+        continue;
+      }
       state.encounters[encounter.id] = {
         hp: encounter.maxHp,
         defeated: false,
@@ -311,7 +392,10 @@ export function reduceAdventureAction(
   if (action.type === 'attack') {
     requirePhase(state, 'exploring');
     const encounter = requireCurrentEncounter(level, state, action.encounterId);
-    if (boundedRemainingMs(state.attackReadyAtMs, nowMs, ATTACK_COOLDOWN_MS) > 0) {
+    const attackCooldownMs = plan.version === 'era-level-plan-v3'
+      ? ROUTE_ATTACK_COOLDOWN_MS
+      : ATTACK_COOLDOWN_MS;
+    if (boundedRemainingMs(state.attackReadyAtMs, nowMs, attackCooldownMs) > 0) {
       throw new AdventureRuleError('ATTACK_COOLDOWN');
     }
     const equipment = findEquipment(plan, state.equippedId);
@@ -321,7 +405,30 @@ export function reduceAdventureAction(
     const progress = state.encounters[encounter.id]!;
     progress.hp = Math.max(0, progress.hp - equipment.damage);
     progress.defeated = progress.hp === 0;
-    state.attackReadyAtMs = nowMs + ATTACK_COOLDOWN_MS;
+    state.attackReadyAtMs = nowMs + attackCooldownMs;
+    if (progress.defeated && encounter.role === 'boss') state.phase = 'memory-released';
+    return state;
+  }
+
+  if (action.type === 'secondary-attack') {
+    if (plan.version !== 'era-level-plan-v3') {
+      throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
+    }
+    requirePhase(state, 'exploring');
+    const encounter = requireCurrentEncounter(level, state, action.encounterId);
+    if (boundedRemainingMs(
+      state.guardReadyAtMs,
+      nowMs,
+      SECONDARY_ATTACK_COOLDOWN_MS,
+    ) > 0) {
+      throw new AdventureRuleError('SECONDARY_ATTACK_COOLDOWN');
+    }
+    const guard = strongestGuard(plan, state.inventoryIds);
+    if (!guard) throw new AdventureRuleError('GUARD_TOOL_REQUIRED');
+    const progress = state.encounters[encounter.id]!;
+    progress.hp = Math.max(0, progress.hp - (guard.tier + 1));
+    progress.defeated = progress.hp === 0;
+    state.guardReadyAtMs = nowMs + SECONDARY_ATTACK_COOLDOWN_MS;
     if (progress.defeated && encounter.role === 'boss') state.phase = 'memory-released';
     return state;
   }
@@ -343,6 +450,9 @@ export function reduceAdventureAction(
   }
 
   if (action.type === 'guard') {
+    if (plan.version === 'era-level-plan-v3') {
+      throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
+    }
     requirePhase(state, 'exploring');
     if (!strongestGuard(plan, state.inventoryIds)) throw new AdventureRuleError('GUARD_TOOL_REQUIRED');
     if (!level.encounters.some((encounter) => !state.encounters[encounter.id]?.defeated)) {
@@ -357,38 +467,42 @@ export function reduceAdventureAction(
   }
 
   if (action.type === 'recover-memory') {
-    requirePhase(state, 'memory-released');
-    if (!level.memoryIds.includes(action.memoryId)) throw new AdventureRuleError('MEMORY_NOT_FOUND');
+    if (plan.version === 'era-level-plan-v3') {
+      if (!isRouteMemoryLevel(level)) throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
+      const role = memoryRoleForLevel(level, action.memoryId);
+      if (!role) throw new AdventureRuleError('MEMORY_NOT_FOUND');
+      if (role === 'major') {
+        requirePhase(state, 'memory-released');
+        if (level.minorMemoryIds.some((id) => !state.revealedMemoryIds.includes(id))) {
+          throw new AdventureRuleError('MEMORY_BUNDLE_INCOMPLETE');
+        }
+      } else if (state.phase !== 'exploring' && state.phase !== 'memory-released') {
+        throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
+      }
+    } else {
+      requirePhase(state, 'memory-released');
+      if (isRouteMemoryLevel(level)) throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
+      if (!level.memoryIds.includes(action.memoryId)) throw new AdventureRuleError('MEMORY_NOT_FOUND');
+    }
     if (state.revealedMemoryIds.includes(action.memoryId)) {
       throw new AdventureRuleError('MEMORY_ALREADY_REVEALED');
     }
     state.revealedMemoryIds.push(action.memoryId);
+    if (isRouteMemoryLevel(level) && action.memoryId === level.majorMemoryId) {
+      completeLevel(plan, level, state);
+    }
     return state;
   }
 
+  if (plan.version === 'era-level-plan-v3') {
+    throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
+  }
   requirePhase(state, 'memory-released');
+  if (isRouteMemoryLevel(level)) throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
   if (level.memoryIds.some((memoryId) => !state.revealedMemoryIds.includes(memoryId))) {
     throw new AdventureRuleError('MEMORY_BUNDLE_INCOMPLETE');
   }
-  for (const memoryId of level.memoryIds) {
-    if (!state.consumedMemoryIds.includes(memoryId)) state.consumedMemoryIds.push(memoryId);
-  }
-  state.completedLevelIds.push(level.id);
-  state.ageYears = level.targetAgeYears;
-  state.abilities = abilitiesForAge(state.ageYears);
-  state.appearanceStage = appearanceForAge(state.ageYears);
-  state.playerHp = state.maxPlayerHp;
-  state.attackReadyAtMs = 0;
-  state.guardActiveUntilMs = 0;
-  state.guardReadyAtMs = 0;
-
-  if (level.index === plan.levels.length - 1) {
-    state.activeLevelIndex = plan.levels.length;
-    state.phase = 'complete';
-  } else {
-    state.activeLevelIndex += 1;
-    state.phase = 'exploring';
-  }
+  completeLevel(plan, level, state);
   return state;
 }
 
@@ -402,9 +516,12 @@ export function toAdventureView(
   const inventory = allEquipment
     .filter((equipment) => state.inventoryIds.includes(equipment.id))
     .map((equipment) => equipmentView(equipment, state));
+  const attackCooldownMs = plan.version === 'era-level-plan-v3'
+    ? ROUTE_ATTACK_COOLDOWN_MS
+    : ATTACK_COOLDOWN_MS;
   return {
     planVersion: plan.version,
-    ...(plan.version === 'era-level-plan-v2' ? { catalogVersion: plan.catalogVersion } : {}),
+    ...(plan.version !== 'era-level-plan-v1' ? { catalogVersion: plan.catalogVersion } : {}),
     phase: state.phase,
     activeLevelIndex: state.activeLevelIndex,
     currentLevelId: level?.id ?? null,
@@ -415,9 +532,18 @@ export function toAdventureView(
     equippedId: state.equippedId,
     playerHp: state.playerHp,
     maxPlayerHp: state.maxPlayerHp,
-    attackCooldownRemainingMs: boundedRemainingMs(state.attackReadyAtMs, nowMs, ATTACK_COOLDOWN_MS),
+    attackCooldownRemainingMs: boundedRemainingMs(state.attackReadyAtMs, nowMs, attackCooldownMs),
     guardActiveRemainingMs: boundedRemainingMs(state.guardActiveUntilMs, nowMs, GUARD_ACTIVE_MS),
-    guardCooldownRemainingMs: boundedRemainingMs(state.guardReadyAtMs, nowMs, GUARD_COOLDOWN_MS),
+    guardCooldownRemainingMs: plan.version === 'era-level-plan-v3'
+      ? 0
+      : boundedRemainingMs(state.guardReadyAtMs, nowMs, GUARD_COOLDOWN_MS),
+    ...(plan.version === 'era-level-plan-v3' ? {
+      secondaryCooldownRemainingMs: boundedRemainingMs(
+        state.guardReadyAtMs,
+        nowMs,
+        SECONDARY_ATTACK_COOLDOWN_MS,
+      ),
+    } : {}),
   };
 }
 
@@ -435,7 +561,57 @@ export function memoryIsReleased(
 ): boolean {
   if (state.revealedMemoryIds.includes(memoryId) || state.consumedMemoryIds.includes(memoryId)) return true;
   const level = activeLevel(plan, state);
-  return Boolean(level?.memoryIds.includes(memoryId) && state.phase === 'memory-released');
+  if (!level) return false;
+  if (isRouteMemoryLevel(level)) {
+    return level.minorMemoryIds.includes(memoryId) ||
+      (level.majorMemoryId === memoryId && state.phase === 'memory-released');
+  }
+  return level.memoryIds.includes(memoryId) && state.phase === 'memory-released';
+}
+
+export function memoryIdsForLevel(level: FrozenLevelPlan): string[] {
+  return isRouteMemoryLevel(level)
+    ? [...level.minorMemoryIds, level.majorMemoryId]
+    : [...level.memoryIds];
+}
+
+export function memoryRoleForLevel(
+  level: FrozenLevelPlan,
+  memoryId: string,
+): MemoryRole | null {
+  if (!isRouteMemoryLevel(level)) return null;
+  if (level.minorMemoryIds.includes(memoryId)) return 'minor';
+  return level.majorMemoryId === memoryId ? 'major' : null;
+}
+
+function isRouteMemoryLevel(level: FrozenLevelPlan): level is FrozenLevelPlanV3 {
+  return 'minorMemoryIds' in level;
+}
+
+function completeLevel(
+  plan: AdventurePlan,
+  level: FrozenLevelPlan,
+  state: AdventureState,
+): void {
+  for (const memoryId of memoryIdsForLevel(level)) {
+    if (!state.consumedMemoryIds.includes(memoryId)) state.consumedMemoryIds.push(memoryId);
+  }
+  state.completedLevelIds.push(level.id);
+  state.ageYears = level.targetAgeYears;
+  state.abilities = abilitiesForPlanAge(plan, state.ageYears);
+  state.appearanceStage = appearanceForAge(state.ageYears);
+  state.playerHp = state.maxPlayerHp;
+  state.attackReadyAtMs = 0;
+  state.guardActiveUntilMs = 0;
+  state.guardReadyAtMs = 0;
+
+  if (level.index === plan.levels.length - 1) {
+    state.activeLevelIndex = plan.levels.length;
+    state.phase = 'complete';
+  } else {
+    state.activeLevelIndex += 1;
+    state.phase = 'exploring';
+  }
 }
 
 function createEquipment(prefix: string, levelIndex: number): FrozenEquipmentDefinition[] {
@@ -555,7 +731,11 @@ function levelView(
     startDate: level.startDate,
     eraYear: level.eraYear,
     ...('periodId' in level ? { periodId: level.periodId, routeId: level.routeId } : {}),
-    memoryIds: [...level.memoryIds],
+    memoryIds: memoryIdsForLevel(level),
+    ...('minorMemoryIds' in level ? {
+      minorMemoryIds: [...level.minorMemoryIds] as [string, string],
+      majorMemoryId: level.majorMemoryId,
+    } : {}),
     pickups: level.pickups.map((equipment) => equipmentView(equipment, state)),
     encounters: level.encounters.map((encounter) => {
       const defeated = state.encounters[encounter.id]?.defeated ?? false;

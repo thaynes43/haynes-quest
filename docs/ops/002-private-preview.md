@@ -1,6 +1,6 @@
 # Running the private preview
 
-The deployed overnight build and corrected PLAN-005 review use **fictional illustrations**. The [handoff](../../.agents/HANDOFF.md) distinguishes their versions and actual release status. OAuth and real-player admission remain deferred. The Immich adapter exists behind a private server contract, but the fixture web process cannot receive its credentials or expose a real-photo route.
+The private playtest uses **fictional illustrations**. PLAN007 adds fresh sessions, contact collection and jumping at every age. The [handoff](../../.agents/HANDOFF.md) distinguishes their versions and actual release status. OAuth and real-player admission remain deferred. The Immich adapter exists behind a private server contract, but the fixture web process cannot receive its credentials or expose a real-photo route.
 
 ## Private cluster preview
 
@@ -12,23 +12,21 @@ The corrected two-chapter candidate is prepared for a separate private review at
 
 ## Local development
 
-Use Node 24 and the repository’s pinned pnpm version. Install with `pnpm install --frozen-lockfile`. Start a dedicated disposable PostgreSQL database, then provide `DATABASE_URL`, a randomly generated `BETTER_AUTH_SECRET` (at least 32 characters), `QUEST_FIXTURE_MODE=true`, `NODE_ENV=development` and `QUEST_APP_ORIGIN=http://127.0.0.1:3000` in your shell or an untracked local environment file. Never use a real photo credential in this process.
+Use Node 24 and the repository's pinned pnpm version. Install with `pnpm install --frozen-lockfile`. For the current fresh playtest, provide `QUEST_EPHEMERAL_PLAYTEST=true`, `QUEST_FIXTURE_MODE=true`, `NODE_ENV=development`, a randomly generated `BETTER_AUTH_SECRET` (at least 32 characters), and `QUEST_APP_ORIGIN=http://127.0.0.1:3000` in your shell or an untracked local environment file. No database URL is needed. Never provide real photo credentials to this process.
 
-Build the asset studio first using its documented Python environment and `pnpm docs:build`; the game models are served from `site/`. Run `pnpm build`, then `pnpm start` from the repository root. The server applies checksum-tracked migrations from `migrations/` before listening on port 3000. Open `http://127.0.0.1:3000`. A signed, HttpOnly browser cookie identifies a server-assigned fictional player; clearing it starts another preview player. New fixture sessions are capped globally at 120 per minute. A five-minute bounded maintenance pass removes expired sessions and unused previews, preserving all saves and their referenced previews. This temporary identity is not an additional production login method.
+Build the asset studio with its documented Python environment and `pnpm docs:build`; the game models are served from `site/`. Run `pnpm build`, then `pnpm start` from the task worktree. Open `http://127.0.0.1:3000`. The explicit ephemeral mode uses bounded memory storage, skips database connections and migrations, and omits save discovery. A signed, HttpOnly cookie identifies the synthetic player; leaving or reloading the page starts a new run. An expired session loses its orphaned test records during maintenance. This temporary identity is not a production login method.
+
+To develop the older persistent fixture flow, omit `QUEST_EPHEMERAL_PLAYTEST` and use a dedicated disposable PostgreSQL database through `DATABASE_URL`. That mode applies checksum-tracked migrations before listening and preserves accepted saves. Existing deployed persistent records are not deleted by the fresh playtest mode.
 
 For client development, set the API origin to `http://localhost:5173`, run `pnpm dev:server` and `pnpm dev` in separate terminals, and open that exact origin. Vite proxies the API. Do not mix `localhost` and `127.0.0.1` origins within one session.
 
-## Playing the corrected review
+## Playing the current review
 
-Choose **Start a journey**, preview Demo Adventurer’s fictional memories and begin. Keep all three selected to play both periods. The fictional birth date is January 1, 2020.
+Choose **Play from the beginning**, or use **Try the Besties chapter** for the explicit chapter-two shortcut. The [playtest guide](../assets/playtest.md) describes the current controls and loop. Move with the touch stick or WASD/arrows; tap the world or press Space to jump at every age. Drag to look. Walk into gear and pictures to collect them. F or the large Attack button swings the equipped tool; Shift or the smaller Bash button uses the shield for a secondary attack.
 
-Move with WASD/arrows or the touch stick; drag the scene to look. Find the spark mallet and press E/**Take gear**. F/**Attack** strikes a nearby creature. Find the acorn shield and use Shift/**Guard** to soften an incoming hit. Step out of the expanding attack ring before the strike. Defeat both ordinary enemies to wake the boss.
+Two minor memories lie along each route. The major memory appears after its boss and advances the chapter once both minors are collected. The complete fixture progresses age 0 → 4 → 7. Leaving or reloading returns to the fresh start screen. Earlier saved journeys remain outside this playtest's discovery UI.
 
-After the boss falls, remember the pictures it releases. Their full images are available in the victory review. **Absorb memories** becomes available when every picture in the bundle is remembered; that changes age and the next period. The first bundle produces age four, the child model and Space/**Jump**. Gear and earlier abilities persist into 2024. The final bundle ends at age seven.
-
-The server saves accepted gameplay events. **Save & leave** and resume restore equipment, health, encounters, phase, pictures, age and abilities. A fallen player can retry with full health while preserving gear and previous completed levels. Earlier v1 journeys remain read-only albums; start a new journey for the corrected loop.
-
-Pictures that fail to load show a retry control. The source remains fictional illustrations until authenticated real-photo integration is configured; a working image response does not establish Immich access. The review is silent while audio candidates await approval. Mute and volume preferences remain available and persist locally.
+The four existing sound candidates play in the isolated review with a revised mix. The labeled sound control mutes/unmutes; Help provides volume and a repeatable test sound. Physical iPhone/iPad listening remains necessary. Missing artwork uses a recoverable warning and visible encounter fallback, without freezing play or requiring save-and-leave.
 
 ## Asset studio
 
@@ -42,7 +40,8 @@ The static studio contains original fictional references, candidate media and th
 - `pnpm test` runs unit/failure-path tests. Set **only** `QUEST_TEST_DATABASE_URL` to a dedicated disposable database to include the real Postgres tests. Those tests truncate Quest test tables; never point them at the running game database.
 - `pnpm build` builds the browser and Node server.
 - `pnpm exec tsx tests/e2e/serve-fixture.ts` starts a synthetic browser-test harness on `127.0.0.1:4173`. Without `QUEST_TEST_DATABASE_URL` it uses memory storage, which is explicitly not durability evidence.
-- In another terminal, `node tests/e2e/journey.mjs` runs keyboard and Chromium touch-emulation journeys against that harness. It saves synthetic screenshots and evidence under ignored `test-results/`. Browser binaries must be installed for Playwright. These checks do not establish physical iPhone/iPad Safari performance.
+- For the older persistent contracts, `node tests/e2e/journey.mjs` runs keyboard and Chromium touch-emulation journeys against that harness. It saves synthetic screenshots and evidence under ignored `test-results/`. Browser binaries must be installed for Playwright. These checks do not establish physical iPhone/iPad Safari performance.
+- `QUEST_E2E_URL=http://127.0.0.1:3000 node tests/e2e/fresh-playtest.mjs` checks the new fresh-start route against the built ephemeral server. Follow WO066 for its exact scenarios and evidence.
 - `node tests/e2e/studio.mjs` checks every candidate page, GLB/clip, media download, decoded audio audition and portrait layout. Set `QUEST_E2E_URL` to the private app origin to check deployed delivery. This checks audio decoding, not listening quality.
 - `scripts/docs/build.sh` runs the strict documentation build and local media/link checks using the pinned Python requirements.
 
@@ -56,4 +55,4 @@ The deployment deliberately sets both `NODE_ENV=development` and `QUEST_FIXTURE_
 
 The private route is live at `https://haynes-quest.haynesops.com` behind `traefik-internal`, whose LoadBalancer is LAN-only at `192.168.40.203`. The zone is managed by UniFi DNS and excluded from the public Cloudflare DNS controller. Deployment merged through haynes-ops [#2851](https://github.com/thaynes43/haynes-ops/pull/2851), with restart and ownership evidence in [#2852](https://github.com/thaynes43/haynes-ops/pull/2852). Check the [handoff](../../.agents/HANDOFF.md) for the current immutable image.
 
-Tomorrow: configure the separate Authentik client and admitted-player policy, verify actual login/callback journeys, authorize real subject setup/media, settle birth-date/age-anchor and name-disambiguation previews, review exact asset versions, and play on physical iPad/iPhone Safari. Real photo-derived likeness remains private follow-on work; no private family reference has been sent to an external generator.
+Future admission work: configure the separate Authentik client and admitted-player policy, verify actual login/callback journeys, authorize real subject setup/media, settle birth-date/age-anchor and name-disambiguation previews, review exact asset versions, and play on physical iPad/iPhone Safari. Real photo-derived likeness remains private follow-on work; no private family reference has been sent to an external generator.

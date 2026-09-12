@@ -1,3 +1,4 @@
+import { grassPlacements } from "./foliage";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { BestiesScene } from "./besties-scene";
@@ -116,7 +117,10 @@ export class GardenScene {
   private disposed = false;
   private cameraPlaced = false;
   private previousAttack = false;
+  private lastAttackSequence = -1;
   private attackAt = -10;
+  private secondaryAt = -10;
+  private previousSecondary = false;
   private unsupportedContentCount = 0;
 
   constructor(
@@ -372,7 +376,11 @@ export class GardenScene {
     this.assets.attach(modelUrls.gate, gate, valid);
     for (const placement of level.memories) {
       const memory = new THREE.Group();
-      memory.position.set(placement.position.x, 0, placement.position.z);
+      memory.position.set(
+        placement.position.x,
+        placement.position.y,
+        placement.position.z,
+      );
       memory.rotation.y = Math.PI;
       memory.scale.setScalar(1.7);
       memory.name = `memory-${placement.id}`;
@@ -409,9 +417,15 @@ export class GardenScene {
       )?.content;
       const artwork = content ? parodyArtwork(content) : null;
       if (content && !artwork) this.unsupportedContentCount += 1;
-      const model = content
-        ? new THREE.Group()
-        : createEncounterStudy(placement.kind, later);
+      const model = new THREE.Group();
+      const fallback =
+        artwork?.kind === "duo"
+          ? null
+          : createEncounterStudy(placement.kind, later);
+      if (fallback) {
+        fallback.name = "encounter-artwork-fallback";
+        model.add(fallback);
+      }
       root.add(model);
       const boss = placement.role === "boss";
       const warning = groundRing(enemyAttackRange(placement.role), 0xed735d);
@@ -452,6 +466,10 @@ export class GardenScene {
             clips,
             artwork.contactFraction,
           );
+          if (fallback) {
+            fallback.removeFromParent();
+            disposeTree(fallback);
+          }
         });
     }
     this.updateProgress(save);
@@ -521,7 +539,7 @@ export class GardenScene {
         assets.failed +
         [...this.photos.values()].filter((item) => item.failed).length +
         this.unsupportedContentCount,
-      reloadRequired: this.unsupportedContentCount > 0,
+      reloadRequired: false,
     };
     return state;
   }
@@ -566,14 +584,37 @@ export class GardenScene {
       frame?.recovering ? 0.6 : 0.8;
     this.traveler.position.set(position.x, position.y, position.z);
     this.traveler.rotation.y = facing;
-    if (frame?.attacking && !this.previousAttack) this.attackAt = elapsed;
+    const newAttack =
+      frame?.attackSequence !== undefined &&
+      frame.attackSequence !== this.lastAttackSequence;
+    if (frame?.attacking && (newAttack || !this.previousAttack))
+      this.attackAt = elapsed;
     this.previousAttack = frame?.attacking ?? false;
     const attackTime = elapsed - this.attackAt;
+    if (frame?.secondaryAttacking && (newAttack || !this.previousSecondary))
+      this.secondaryAt = elapsed;
+    this.previousSecondary = frame?.secondaryAttacking ?? false;
+    this.lastAttackSequence = frame?.attackSequence ?? -1;
+    const secondaryTime = elapsed - this.secondaryAt;
+    const attackLean = Math.sin(
+      Math.min(1, Math.max(0, attackTime / 0.38)) * Math.PI,
+    );
+    const secondaryLean = Math.sin(
+      Math.min(1, Math.max(0, secondaryTime / 0.4)) * Math.PI,
+    );
+    this.avatarVisual.rotation.x = -0.15 * (attackLean + secondaryLean);
+    this.avatarVisual.rotation.z = 0.1 * (attackLean - secondaryLean);
+    const airborneStretch = frame && !frame.grounded ? 1.06 : 1;
+    this.avatarVisual.scale.set(
+      1 / Math.sqrt(airborneStretch),
+      airborneStretch,
+      1 / Math.sqrt(airborneStretch),
+    );
     const ranged =
       (this.save.adventure?.inventory.find(
         (item) => item.id === this.save.adventure?.equippedId,
       )?.tier ?? 1) > 1;
-    this.slash.visible = !ranged && attackTime < 0.28;
+    this.slash.visible = (!ranged && attackTime < 0.38) || secondaryTime < 0.4;
     this.slash.rotation.z = -1.3 + attackTime * 12;
     this.slash.position.y = this.stage === "infant" ? 0.45 : 0.78;
     this.guardRing.visible = Boolean(frame?.guarding || frame?.recovering);
@@ -635,13 +676,16 @@ export class GardenScene {
     const desiredClip =
       !frame?.grounded && this.clips.has("jump")
         ? "jump"
-        : frame?.moving
-          ? "move"
-          : "idle";
+        : frame?.interacting && this.clips.has("interact")
+          ? "interact"
+          : frame?.moving
+            ? "move"
+            : "idle";
     this.equipment?.resetPose();
     this.playClip(desiredClip);
+    this.clips.get("move")?.setEffectiveTimeScale(1.3);
     this.mixer?.update(dt);
-    this.equipment?.pose(attackTime, frame?.guarding ?? false);
+    this.equipment?.pose(attackTime, frame?.guarding ?? false, secondaryTime);
     const dimensions = getAvatarProportions(this.stage);
     this.target.set(
       position.x,
@@ -997,45 +1041,43 @@ export class GardenScene {
       "position",
       new THREE.Float32BufferAttribute(
         [
-          -0.028, 0, 0, 0.028, 0, 0, 0.035, 0.2, 0.015, -0.024, 0, -0.015,
-          0.008, 0.15, -0.025, -0.055, 0.25, -0.018, 0, 0, -0.026, 0, 0, 0.026,
-          -0.02, 0.18, 0.038,
+          -0.055, 0, 0, 0.055, 0, 0, 0.06, 0.33, 0.025, -0.05, 0, -0.025, 0.016,
+          0.26, -0.04, -0.085, 0.4, -0.03, 0, 0, -0.05, 0, 0, 0.05, -0.03, 0.31,
+          0.065,
         ],
         3,
       ),
     );
     bladeGeometry.computeVertexNormals();
-    const grassMat = material(later ? 0x729496 : 0x91a771);
+    const grassMat = material(later ? 0x7ba95b : 0x71a64d);
     grassMat.side = THREE.DoubleSide;
-    const grass = new THREE.InstancedMesh(bladeGeometry, grassMat, 1600);
+    const planting = grassPlacements(course);
+    const grass = new THREE.InstancedMesh(
+      bladeGeometry,
+      grassMat,
+      planting.length,
+    );
+    grass.name = "route-grass";
+    const flowerCount = Math.ceil(planting.length / 13);
     const flowers = new THREE.InstancedMesh(
       new THREE.SphereGeometry(0.06, 5, 4),
       material(later ? 0xd7b7dd : 0xffe9af),
-      300,
+      flowerCount,
     );
     const dummy = new THREE.Object3D();
-    for (let i = 0; i < 1600; i++) {
-      const side = i % 2 ? 1 : -1;
-      const x =
-        side *
-        (course ? 3.7 + ((i * 43) % 67) / 30 : 1.55 + ((i * 43) % 87) / 17);
-      const z = 4 - ((i * 31) % 355) / 10;
-      dummy.position.set(x, 0, z);
-      dummy.rotation.set(0, i * 1.7, 0);
-      dummy.scale.setScalar(0.55 + (i % 9) / 11);
-      // Keep the final battle floor clear and readable.
-      if (
-        (z < -18 && Math.abs(x) < 3.8) ||
-        (course && !this.onIsland(course, x, z, 0.3))
-      )
-        dummy.scale.setScalar(0);
+    let flowerIndex = 0;
+    for (let i = 0; i < planting.length; i++) {
+      const plant = planting[i]!;
+      dummy.position.set(plant.x, plant.y, plant.z);
+      dummy.rotation.set(0, plant.rotation, 0);
+      dummy.scale.setScalar(plant.scale);
       dummy.updateMatrix();
       grass.setMatrixAt(i, dummy.matrix);
-      if (i < 300) {
-        dummy.position.y = 0.18;
-        dummy.scale.multiplyScalar(0.8);
+      if (i % 13 === 0) {
+        dummy.position.y = plant.y + 0.28;
+        dummy.scale.multiplyScalar(1.1);
         dummy.updateMatrix();
-        flowers.setMatrixAt(i, dummy.matrix);
+        flowers.setMatrixAt(flowerIndex++, dummy.matrix);
       }
     }
     grass.receiveShadow = true;

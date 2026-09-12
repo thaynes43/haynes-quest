@@ -1,0 +1,23 @@
+{
+  "version": "v003",
+  "captured_on": "2026-09-12",
+  "scope": "Actual synthetic Chromium phone screenshots, 390 by 844 CSS pixels, on the final PLAN007 client. This is not physical Safari or speaker-listening evidence.",
+  "captures": [
+    {
+      "path": "age-zero-route.png",
+      "source": "test-results/fresh-playtest/final-continuity/chapter-1-route-start.png",
+      "client": "index-Bn3nnDAn.js",
+      "client_sha256": "0e795d99f5fd820bc5388c8ae24c350f4214c3ac5a6fbcbdc444b9ae5db43702",
+      "sha256": "eab0ba69becc25515530eb2be29cd012e2661ebb5d93dd990e8efc8dddc7d8ba",
+      "bytes": 182805
+    },
+    {
+      "path": "besties-dizzy.png",
+      "source": "test-results/fresh-playtest/final-bn3-route-complete/besties-dizzy.png",
+      "client": "index-Bn3nnDAn.js",
+      "client_sha256": "0e795d99f5fd820bc5388c8ae24c350f4214c3ac5a6fbcbdc444b9ae5db43702",
+      "sha256": "075d2e62849ad35c3c7c3e6bcd3d3051f54361125810a7e46603dc7ecb23aeb8",
+      "bytes": 153325
+    }
+  ]
+}

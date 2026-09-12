@@ -164,21 +164,27 @@ export class GameInputState {
     return result;
   }
 
-  clear(): void {
+  /** Discard action edges after a local recovery while the stick stays held. */
+  clearActions(): void {
     this.pendingActions = {
       jump: false,
       interact: false,
       attack: false,
       guard: false,
     };
-    this.external.moveX = 0;
-    this.external.moveY = 0;
-    this.external.lookX = 0;
-    this.external.lookY = 0;
     this.external.jump = false;
     this.external.interact = false;
     this.external.attack = false;
     this.external.guard = false;
+    for (const code of actionCodes) this.keys.delete(code);
+  }
+
+  clear(): void {
+    this.clearActions();
+    this.external.moveX = 0;
+    this.external.moveY = 0;
+    this.external.lookX = 0;
+    this.external.lookY = 0;
     this.keys.clear();
     this.pointerLookX = 0;
     this.pointerLookY = 0;
@@ -188,6 +194,11 @@ export class GameInputState {
 interface PointerRecord {
   x: number;
   y: number;
+  startX: number;
+  startY: number;
+  startedAt: number;
+  touch: boolean;
+  dragging: boolean;
 }
 
 export interface BrowserInputBindingOptions {
@@ -226,28 +237,38 @@ export function bindBrowserInput({
         ? event.target
         : null;
     if (element?.closest("[data-quest-ui]")) return;
-    if (event.pointerType === "touch") {
-      const rect = target.getBoundingClientRect();
-      if (event.clientX < rect.left + rect.width / 2) return;
-    } else if (event.button !== 0) {
-      return;
-    }
-    cameraPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    if (event.pointerType !== "touch" && event.button !== 0) return;
+    cameraPointers.set(event.pointerId, {
+      x: event.clientX, y: event.clientY,
+      startX: event.clientX, startY: event.clientY,
+      startedAt: windowTarget.performance.now(),
+      touch: event.pointerType === "touch", dragging: false,
+    });
     target.setPointerCapture?.(event.pointerId);
     event.preventDefault();
   };
   const onPointerMove = (event: PointerEvent): void => {
     const previous = cameraPointers.get(event.pointerId);
     if (!previous) return;
-    input.addPointerLook(
-      event.clientX - previous.x,
-      event.clientY - previous.y,
-    );
-    cameraPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    if (Math.hypot(event.clientX - previous.startX, event.clientY - previous.startY) > 10)
+      previous.dragging = true;
+    if (!previous.touch || previous.dragging) {
+      input.addPointerLook(event.clientX - previous.x, event.clientY - previous.y);
+      previous.x = event.clientX;
+      previous.y = event.clientY;
+    }
     event.preventDefault();
   };
   const stopPointer = (event: PointerEvent): void => {
+    const pointer = cameraPointers.get(event.pointerId);
     cameraPointers.delete(event.pointerId);
+    if (event.type === "pointerup" && pointer?.touch && !pointer.dragging &&
+        Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY) <= 10 &&
+        windowTarget.performance.now() - pointer.startedAt <= 500) {
+      input.set("jump", true);
+      input.set("jump", false);
+    }
+    if (target.hasPointerCapture?.(event.pointerId)) target.releasePointerCapture(event.pointerId);
   };
   const clearAll = (): void => {
     cameraPointers.clear();

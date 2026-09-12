@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import {
   createAdventurePlan,
   createInitialAdventureState,
+  memoryIdsForLevel,
   type AdventurePlanV2,
 } from "../../src/shared/adventure.js";
 import type { GameplayAction } from "../../src/shared/contracts.js";
@@ -166,7 +167,7 @@ function bossCheckpoint(save: SaveRecord): SaveRecord {
   for (const encounter of first.encounters) {
     current = defeatEncounter(current, encounter.id);
   }
-  for (const memoryId of first.memoryIds) {
+  for (const memoryId of memoryIdsForLevel(first)) {
     current = applySetup(current, {
       type: "recover-memory",
       levelId: first.id,

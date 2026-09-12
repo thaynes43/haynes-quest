@@ -1,16 +1,20 @@
+import { randomUUID } from 'node:crypto';
 import { Hono, type Context } from 'hono';
 import { routePath } from 'hono/route';
 import { secureHeaders } from 'hono/secure-headers';
 import { serveStatic } from '@hono/node-server/serve-static';
-import type { ApiError, SessionView } from '../shared/contracts.js';
+import { ROUTE_ATTACK_COOLDOWN_MS } from '../shared/adventure.js';
+import type { ApiError, GameplayAction, SessionView } from '../shared/contracts.js';
 import {
   canAccessSaveMemory,
   toSaveSummary,
   toSaveView,
   type PlayerRecord,
   type QuestStore,
+  type SaveRecord,
 } from './domain.js';
 import { asAppError, AppError } from './errors.js';
+import { InMemoryQuestStore } from './db/memory-store.js';
 import { fixtureSvg, type PrivateMediaProvider } from './media.js';
 import { FixturePhotoSource } from './photos/fixture.js';
 import { createPreview } from './photos/setup.js';
@@ -21,6 +25,7 @@ import {
   finishSchema,
   gameplayActionRequestSchema,
   parseJson,
+  playtestStartSchema,
   previewRequestSchema,
   recoverSchema,
 } from './validation.js';
@@ -28,6 +33,7 @@ import {
 export interface AppOptions {
   store: QuestStore;
   fixtureMode: boolean;
+  ephemeralPlaytest?: boolean;
   sessionSecret: string;
   appOrigin: string;
   clientDir: string;
@@ -67,6 +73,7 @@ const DIAGNOSTIC_ROUTES = new Set([
   '/healthz',
   '/readyz',
   '/api/session',
+  '/api/playtest/start',
   '/api/fixture-media/:memoryId',
   '/api/saves',
   '/api/setup/preview',
@@ -78,6 +85,12 @@ const DIAGNOSTIC_ROUTES = new Set([
 ]);
 
 export function createApp(options: AppOptions): Hono {
+  if (options.ephemeralPlaytest && !options.fixtureMode) {
+    throw new Error('Ephemeral playtest requires fixture mode');
+  }
+  if (options.ephemeralPlaytest && !(options.store instanceof InMemoryQuestStore)) {
+    throw new Error('Ephemeral playtest requires in-memory storage');
+  }
   if (options.fixtureMode && options.photoSource && !(options.photoSource instanceof FixturePhotoSource)) {
     throw new Error('Fixture app cannot use a private photo source');
   }
@@ -89,7 +102,9 @@ export function createApp(options: AppOptions): Hono {
   const sessions = options.fixtureMode
     ? new FixtureSessions(options.store, options.sessionSecret, options.appOrigin.startsWith('https://'))
     : null;
-  const photoSource = options.fixtureMode ? (options.photoSource ?? new FixturePhotoSource()) : options.photoSource;
+  const photoSource = options.fixtureMode
+    ? (options.photoSource ?? new FixturePhotoSource(options.ephemeralPlaytest === true))
+    : options.photoSource;
   const limiter = new RequestLimiter(120, 60_000);
   const actionLimiter = new RequestLimiter(360, 60_000);
   const diagnosticSink = options.diagnosticSink ?? writeSafeDiagnostic;
@@ -116,20 +131,55 @@ export function createApp(options: AppOptions): Hono {
     app.get('/api/session', async (context) => {
       limiter.take(`session:${context.req.header('user-agent') ?? 'unknown'}`);
       const player = await sessions.establish(context);
-      const response: SessionView = { player, mode: 'fixture', csrfHeader: 'X-Quest-Request' };
+      const response: SessionView = {
+        player,
+        mode: 'fixture',
+        progressMode: options.ephemeralPlaytest ? 'ephemeral' : 'persistent',
+        csrfHeader: 'X-Quest-Request',
+      };
       return context.json(response);
     });
 
     app.get('/api/fixture-media/:memoryId', (context) => {
+      limiter.take(`fixture-media:${context.req.header('user-agent') ?? 'unknown'}`);
       const svg = fixtureSvg(context.req.param('memoryId'));
       if (!svg) throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
       return context.body(svg, 200, fixtureMediaHeaders());
     });
+
+    if (options.ephemeralPlaytest) {
+      app.post('/api/playtest/start', async (context) => {
+        enforceMutationSecurity(context, options.appOrigin);
+        const player = await requirePlayer(context, sessions);
+        limiter.take(`write:${player.id}`);
+        const request = await parseJson(context, playtestStartSchema);
+        const startedAt = now();
+        const preview = await createPreview(options.store, photoSource!, player.id, {
+          name: 'Demo Adventurer',
+          birthDate: '2020-01-01',
+        }, startedAt);
+        const created = await options.store.createSave({
+          ownerId: player.id,
+          previewId: preview.previewId,
+          selectedIds: preview.selectedIds,
+          planMode: 'route-memories',
+        });
+        const save = await prepareRouteMemoryChapter(
+          options.store,
+          player.id,
+          created,
+          request.chapter,
+          startedAt,
+        );
+        return context.json(toSaveView(save, save.updatedAt), 201);
+      });
+    }
   }
 
   app.get('/api/saves', async (context) => {
     const player = await requirePlayer(context, sessions);
     limiter.take(`read:${player.id}`);
+    if (options.ephemeralPlaytest) return context.json({ saves: [] });
     const saves = (await options.store.listSaves(player.id)).map(toSaveSummary);
     return context.json({ saves });
   });
@@ -148,7 +198,14 @@ export function createApp(options: AppOptions): Hono {
     const player = await requirePlayer(context, sessions);
     limiter.take(`write:${player.id}`);
     const command = await parseJson(context, createSaveSchema);
-    const save = await options.store.createSave({ ownerId: player.id, ...command });
+    if (options.ephemeralPlaytest && command.selectedIds.length !== 6) {
+      throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
+    }
+    const save = await options.store.createSave({
+      ownerId: player.id,
+      ...command,
+      ...(options.ephemeralPlaytest ? { planMode: 'route-memories' as const } : {}),
+    });
     return context.json(toSaveView(save, now()), 201);
   });
 
@@ -211,22 +268,38 @@ export function createApp(options: AppOptions): Hono {
     return context.body(new Uint8Array(media.bytes), 200, privateMediaHeaders(media.contentType));
   });
 
-  app.get('/studio', (context) => context.redirect('/studio/', 308));
-  app.get('/studio/', serveStatic({ root: options.studioDir, path: 'index.html' }));
-  app.use('/studio/*', async (context, next) => {
+  const studioHeaders = async (context: Context, next: () => Promise<void>): Promise<void> => {
     await next();
+    context.header('Cache-Control', 'no-cache');
     if (
       (context.res.status === 200 || context.res.status === 206) &&
       context.req.path.toLowerCase().endsWith('.wav')
     ) {
       context.header('Content-Type', 'audio/wav');
     }
-  });
+  };
+  app.use('/studio', studioHeaders);
+  app.use('/studio/*', studioHeaders);
+  app.get('/studio', (context) => context.redirect('/studio/', 308));
+  app.get('/studio/', serveStatic({ root: options.studioDir, path: 'index.html' }));
   app.use('/studio/*', serveStatic({
     root: options.studioDir,
     rewriteRequestPath: (path) => path.replace(/^\/studio/, ''),
   }));
+  app.use('/', async (context, next) => {
+    await next();
+    context.header('Cache-Control', 'no-store');
+  });
   app.get('/', serveStatic({ root: options.clientDir, path: 'index.html' }));
+  app.use('/assets/*', async (context, next) => {
+    await next();
+    if (context.res.status === 200 || context.res.status === 206) {
+      context.header(
+        'Cache-Control',
+        isHashedClientAsset(context.req.path) ? 'public, max-age=31536000, immutable' : 'no-cache',
+      );
+    }
+  });
   app.use('/assets/*', serveStatic({ root: options.clientDir }));
 
   app.notFound((context) => {
@@ -324,4 +397,51 @@ function privateMediaHeaders(contentType: string): Record<string, string> {
     'Content-Disposition': 'inline',
     'X-Content-Type-Options': 'nosniff',
   };
+}
+
+function isHashedClientAsset(path: string): boolean {
+  return /(?:^|\/)[^/]+-[A-Za-z0-9_-]{8}\.(?:js|css)$/.test(path);
+}
+
+async function prepareRouteMemoryChapter(
+  store: QuestStore,
+  ownerId: string,
+  save: SaveRecord,
+  chapter: 1 | 2,
+  startedAt: Date,
+): Promise<SaveRecord> {
+  let current = save;
+  if (current.adventurePlan?.version !== 'era-level-plan-v3' || !current.adventureState) {
+    throw new AppError(409, 'PLAYTEST_CHAPTER_UNAVAILABLE', 'Playtest chapter unavailable');
+  }
+  if (chapter === 1) return current;
+
+  let actionTimeMs = startedAt.valueOf();
+  const apply = async (action: GameplayAction): Promise<void> => {
+    current = await store.applyGameplayAction(ownerId, current.id, {
+      actionId: randomUUID(),
+      expectedRevision: current.revision,
+      action,
+    }, new Date(actionTimeMs));
+  };
+  const level = current.adventurePlan.levels[0]!;
+  const attackTool = level.pickups.find((pickup) => pickup.kind === 'attack-tool');
+  if (!attackTool) {
+    throw new AppError(409, 'PLAYTEST_CHAPTER_UNAVAILABLE', 'Playtest chapter unavailable');
+  }
+  await apply({ type: 'collect-equipment', levelId: level.id, pickupId: attackTool.pickupId });
+  for (const memoryId of level.minorMemoryIds) {
+    await apply({ type: 'recover-memory', levelId: level.id, memoryId });
+  }
+  for (const encounter of level.encounters) {
+    while (!current.adventureState!.encounters[encounter.id]!.defeated) {
+      await apply({ type: 'attack', levelId: level.id, encounterId: encounter.id });
+      actionTimeMs += ROUTE_ATTACK_COOLDOWN_MS;
+    }
+  }
+  await apply({ type: 'recover-memory', levelId: level.id, memoryId: level.majorMemoryId });
+  if (current.adventureState.activeLevelIndex !== 1 || current.adventureState.phase !== 'exploring') {
+    throw new AppError(503, 'SAVE_DATA_INVALID', 'Save unavailable');
+  }
+  return current;
 }

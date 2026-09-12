@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations.
 
-**25 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions**
+**25 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -18,6 +18,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 <a href="#equipment">Equipment</a>
 <a href="#friendly-characters">Friendly characters</a>
 <a href="#reference-sheets">Reference sheets</a>
+<a href="#fictional-memories">Fictional memories</a>
 <a href="#sound-auditions">Sound auditions</a>
 </nav>
 
@@ -508,3 +509,21 @@ The Besties duo now has two animated model candidates and its agreed obstacle ro
 <span id="adding-candidates"></span>
 
 For production history and earlier delivery checks, see the [catalog history](catalog-history.md). Exact files, versions, source images, downloads and decisions remain on each review page.
+
+## Fictional memories {#fictional-memories}
+
+Six distinct pictures mark the two test chapters: two small memories on each route, then a major memory after its boss.
+
+<div class="catalog-grid" markdown="1">
+<div class="catalog-card" data-asset-id="fixture-route-memories" markdown="1">
+
+[![Six fictional memory pictures](media/catalog-thumbnails/v001/ae1fa06303598ed7.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/fixture-route-memories/v001.md)
+
+### [Six little windows into a life](reviews/fixture-route-memories/v001.md)
+
+<span class="catalog-state">Fictional illustrations · v001 · In playtest</span>
+
+Original SVG pictures for the memory route. No family photos or 3D model.
+
+</div>
+</div>

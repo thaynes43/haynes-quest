@@ -14,9 +14,11 @@ import { makeEraSave } from "./fixtures";
 const mocks = vi.hoisted(() => ({
   createGame: vi.fn(),
   audioStartResults: [] as boolean[],
+  audioVolume: 0.35,
   audioInstances: [] as Array<{
     start: ReturnType<typeof vi.fn>;
     cue: ReturnType<typeof vi.fn>;
+    audition: ReturnType<typeof vi.fn>;
     suspend: ReturnType<typeof vi.fn>;
     setPaused: ReturnType<typeof vi.fn>;
     setPreferences: ReturnType<typeof vi.fn>;
@@ -32,6 +34,7 @@ vi.mock("../../src/client/audio", () => ({
   QuestAudio: class {
     readonly start = vi.fn(async () => mocks.audioStartResults.shift() ?? true);
     readonly cue = vi.fn(async () => true);
+    readonly audition = vi.fn(async () => true);
     readonly suspend = vi.fn();
     readonly setPaused = vi.fn();
     readonly setPreferences = vi.fn();
@@ -42,7 +45,11 @@ vi.mock("../../src/client/audio", () => ({
     }
 
     preferences() {
-      return { muted: false, volume: 0.35 };
+      return { muted: false, volume: mocks.audioVolume };
+    }
+
+    status() {
+      return { contextState: "suspended" };
     }
   },
 }));
@@ -189,6 +196,7 @@ beforeEach(() => {
   document.body.append(container);
   mocks.createGame.mockReset();
   mocks.audioStartResults.length = 0;
+  mocks.audioVolume = 0.35;
   mocks.audioInstances.length = 0;
 });
 
@@ -201,6 +209,35 @@ afterEach(async () => {
 });
 
 describe("GameScreen friendly and audio feedback boundaries", () => {
+  it("retries an interrupted celebration from a gesture and plays it only once", async () => {
+    gameFixture(status(null));
+    await renderGame(makeEraSave({ completed: true }));
+    const audio = mocks.audioInstances[0]!;
+    expect(audio.audition).not.toHaveBeenCalled();
+    await act(async () => {
+      for (const type of ["pointerdown", "pointerup", "touchend", "click"])
+        document.dispatchEvent(new Event(type, { bubbles: true }));
+    });
+    expect(audio.audition).toHaveBeenCalledExactlyOnceWith("ability-unlocked");
+    await act(async () => {
+      document.dispatchEvent(new Event("keydown", { bubbles: true }));
+      root!.unmount();
+    });
+    root = undefined;
+    document.dispatchEvent(new Event("pointerdown", { bubbles: true }));
+    expect(audio.audition).toHaveBeenCalledOnce();
+  });
+
+  it("labels zero volume as off and restores audible volume when enabled", async () => {
+    gameFixture(status(null));
+    mocks.audioVolume = 0;
+    await renderGame();
+    await act(async () => button('[aria-label="Enable sound"]').click());
+    expect(mocks.audioInstances[0]!.setPreferences)
+      .toHaveBeenCalledWith(false, 0.8);
+    expect(button('[aria-label="Mute sound"]').textContent).toContain("Sound on");
+  });
+
   it("rejects a stale visible friendly prompt without opening or freezing the world", async () => {
     const game = gameFixture();
     await renderGame();

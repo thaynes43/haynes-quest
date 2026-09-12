@@ -185,6 +185,13 @@
       "sha256": "e08c432740bc2d26aa947f7da60f09a55617a6419ff317dad6be6961d808d0ef"
     },
     {
+      "source": "docs/assets/media/fixture-memories/v001/contact-sheet.png",
+      "source_sha256": "2950a9079b08d8be7ddc6fcedd94ae7215d2a738e7b3a3bccaa2966c98982afe",
+      "path": "docs/assets/media/catalog-thumbnails/v001/ae1fa06303598ed7.webp",
+      "bytes": 10150,
+      "sha256": "80c2c1a107a88042809cc7a179d335da1072b003d7989519136b7bbb27b3c09b"
+    },
+    {
       "source": "docs/assets/media/loop-dancer/v001/beauty.png",
       "source_sha256": "0dc4f6a6cdaabf33493b405204634d597895fdcc8b0b7e799ac7192f7db35998",
       "path": "docs/assets/media/catalog-thumbnails/v001/d3ea5ccdf2a63a03.webp",

@@ -1,5 +1,6 @@
 import {
   ATTACK_COOLDOWN_MS,
+  ROUTE_ATTACK_COOLDOWN_MS,
   AdventureRuleError,
   boundedRemainingMs,
   type AdventurePlan,
@@ -236,8 +237,11 @@ export function reduceFriendlyAction(
     throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
   }
   if (progress.defeated) throw new AdventureRuleError('FRIENDLY_NOT_ACTIVE');
+  const attackCooldownMs = plan.version === 'era-level-plan-v3'
+    ? ROUTE_ATTACK_COOLDOWN_MS
+    : ATTACK_COOLDOWN_MS;
   if (
-    boundedRemainingMs(adventureState.attackReadyAtMs, nowMs, ATTACK_COOLDOWN_MS) > 0
+    boundedRemainingMs(adventureState.attackReadyAtMs, nowMs, attackCooldownMs) > 0
   ) {
     throw new AdventureRuleError('ATTACK_COOLDOWN');
   }
@@ -260,6 +264,6 @@ export function reduceFriendlyAction(
       adventureState.playerHp - FRIENDLY_HARM_PENALTY_HP,
     );
   }
-  adventureState.attackReadyAtMs = nowMs + ATTACK_COOLDOWN_MS;
+  adventureState.attackReadyAtMs = nowMs + attackCooldownMs;
   return { adventureState, friendlyState };
 }

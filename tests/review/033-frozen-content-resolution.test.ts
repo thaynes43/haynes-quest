@@ -159,7 +159,7 @@ describe("frozen parody content resolution", () => {
     expect(parodyArtwork({ ...content, assetVersion: "v002" })).toBeNull();
   });
 
-  it("counts unsupported content as a blocking media failure", () => {
+  it("reports unsupported content without demanding a blocking reload", () => {
     const scene = Object.create(GardenScene.prototype) as GardenScene;
     Object.assign(scene as unknown as Record<string, unknown>, {
       assets: { getState: () => ({ loading: 2, failed: 1 }) },
@@ -173,7 +173,7 @@ describe("frozen parody content resolution", () => {
     expect(scene.getMediaState()).toEqual({
       loading: 3,
       failed: 4,
-      reloadRequired: true,
+      reloadRequired: false,
     });
 
     Object.assign(scene as unknown as Record<string, unknown>, {

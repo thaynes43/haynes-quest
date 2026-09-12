@@ -161,6 +161,94 @@ function friendlyRoutedSave(options: EraSaveOptions = {}): SaveView {
   };
 }
 
+function asRouteMemorySave(
+  save: SaveView,
+  revealedMinorCount = 0,
+): SaveView {
+  const adventure = save.adventure;
+  const activeLevel = adventure?.activeLevel;
+  if (!adventure || !activeLevel)
+    throw new Error("Route-memory fixture requires an active era level");
+  const levelIndex = activeLevel.index;
+  const memoryAges = [0, 2, 4, 5, 6, 7];
+  const activeMemoryIds =
+    levelIndex === 0
+      ? (["route-memory-1", "route-memory-2", "route-memory-3"] as const)
+      : (["route-memory-4", "route-memory-5", "route-memory-6"] as const);
+  const activeStart = levelIndex * 3;
+  const memories = memoryAges.map((ageYears, index) => {
+    const activeOffset = index - activeStart;
+    const role = index % 3 === 2 ? ("major" as const) : ("minor" as const);
+    const state =
+      index < activeStart
+        ? ("consumed" as const)
+        : activeOffset < 0 || activeOffset > 2
+          ? ("locked" as const)
+          : activeOffset < revealedMinorCount
+            ? ("revealed" as const)
+            : role === "minor"
+              ? ("released" as const)
+              : adventure.phase === "memory-released"
+                ? ("released" as const)
+                : ("locked" as const);
+    return {
+      id: `route-memory-${index + 1}`,
+      date: `${2020 + ageYears}-01-01`,
+      ageYears,
+      label: `Route memory ${index + 1}`,
+      role,
+      state,
+      ...(state === "locked"
+        ? {}
+        : { mediaUrl: `/fixture/route-memory-${index + 1}.svg` }),
+    };
+  });
+  return {
+    ...save,
+    memories,
+    recoveredIds: memories
+      .filter((memory) =>
+        memory.state === "revealed" || memory.state === "consumed",
+      )
+      .map((memory) => memory.id),
+    abilities: ["move", "interact", "jump"],
+    adventure: {
+      ...adventure,
+      planVersion: "era-level-plan-v3",
+      activeLevel: {
+        ...activeLevel,
+        routeId: "gentle-jump-v1",
+        memoryIds: [...activeMemoryIds],
+        minorMemoryIds: [activeMemoryIds[0], activeMemoryIds[1]],
+        majorMemoryId: activeMemoryIds[2],
+      },
+      consumedMemoryIds: memories
+        .filter((memory) => memory.state === "consumed")
+        .map((memory) => memory.id),
+      secondaryCooldownRemainingMs: 0,
+    },
+    versions: {
+      ...save.versions,
+      journey: "era-level-plan-v3",
+      progression: "route-major-recovery-v3",
+    },
+  };
+}
+
+function routeMemoryRoutedSave(
+  options: EraSaveOptions = {},
+  revealedMinorCount = 0,
+): SaveView {
+  return asRouteMemorySave(routedSave(options), revealedMinorCount);
+}
+
+function friendlyRouteMemorySave(
+  options: EraSaveOptions = {},
+  revealedMinorCount = 0,
+): SaveView {
+  return asRouteMemorySave(friendlyRoutedSave(options), revealedMinorCount);
+}
+
 function bestiesRoutedSave(): SaveView {
   const levelId = "level-2-2024";
   const save = routedSave({
@@ -240,10 +328,10 @@ describe("obby game runtime", () => {
     advance();
   };
 
-  it("holds movement and actions when the scene needs newer frozen artwork", () => {
+  it("keeps movement and actions available while reporting stale artwork", () => {
     sceneState.reloadRequired = true;
     const save = routedSave({ levelIndex: 1, collectedKinds: ["guard-tool"] });
-    const onAction = vi.fn(async () => save);
+    const onAction = vi.fn(async (_request: GameplayActionRequest) => save);
     const game = createGame({
       container: document.createElement("div"),
       save,
@@ -252,14 +340,351 @@ describe("obby game runtime", () => {
     });
     game.setInput("moveY", 1);
     warmRuntime();
-    expect(game.inspect().status).toMatchObject({
-      position: { x: 0, y: 0, z: 1 },
-      mediaReloadRequired: true,
-    });
+    expect(game.inspect().status.position.z).toBeCloseTo(0.845, 9);
+    expect(game.inspect().status.mediaReloadRequired).toBe(true);
     expect(game.performAction({ type: "guard", levelId: "level-2-2024" })).toBe(
-      false,
+      true,
     );
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+      action: { type: "guard", levelId: "level-2-2024" },
+    });
+    game.dispose();
+  });
+
+  it("keeps route movement faithful at 60 fps and 10 fps with v3-only speed tuning", () => {
+    const travel = (save: SaveView, frameMs: number, frameCount: number): number => {
+      nextFrame = undefined;
+      now = 1_000;
+      const game = createGame({
+        container: document.createElement("div"),
+        save,
+        onAction: async () => save,
+        onRefresh: async () => save,
+      });
+      const startZ = game.inspect().status.position.z;
+      game.setInput("moveY", 1);
+      advance(0);
+      for (let frame = 0; frame < frameCount; frame += 1) advance(frameMs);
+      const distance = startZ - game.inspect().status.position.z;
+      game.dispose();
+      return distance;
+    };
+    const legacy = routedSave({
+      levelIndex: 1,
+      collectedKinds: ["attack-tool", "guard-tool"],
+    });
+    const routeMemory = routeMemoryRoutedSave({
+      levelIndex: 1,
+      collectedKinds: ["attack-tool", "guard-tool"],
+    });
+    const sixtyFpsDistance = travel(routeMemory, 1_000 / 60, 24);
+    const tenFpsDistance = travel(routeMemory, 100, 4);
+
+    expect(sixtyFpsDistance).toBeCloseTo(1.6, 6);
+    expect(tenFpsDistance).toBeCloseTo(sixtyFpsDistance, 6);
+    expect(travel(legacy, 100, 4)).toBeCloseTo(1.24, 6);
+  });
+
+  it("lands the v3 route's second jump before the runway hazard at 4 m/s", () => {
+    const initial = routeMemoryRoutedSave({
+      collectedKinds: ["attack-tool", "guard-tool"],
+    });
+    const clearedFirstEncounter = routeMemoryRoutedSave({
+      revision: 1,
+      collectedKinds: ["attack-tool", "guard-tool"],
+      defeatedIds: ["level-1-2020-ordinary-a"],
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction: async () => clearedFirstEncounter,
+      onRefresh: async () => initial,
+    });
+    game.updateSave(clearedFirstEncounter);
+    advance(0);
+    game.setInput("moveY", 1);
+    let firstJumped = false;
+    let secondJumped = false;
+    for (
+      let frame = 0;
+      frame < 120 && game.inspect().obby?.checkpointId !== "second-clearing";
+      frame += 1
+    ) {
+      const status = game.inspect().status;
+      if (!firstJumped && status.grounded && status.position.z <= -2.7) {
+        game.setInput("jump", true);
+        game.setInput("jump", false);
+        firstJumped = true;
+      } else if (
+        firstJumped &&
+        !secondJumped &&
+        status.grounded &&
+        status.position.z <= -8.7
+      ) {
+        game.setInput("jump", true);
+        game.setInput("jump", false);
+        secondJumped = true;
+      }
+      advance();
+    }
+    game.clearInput();
+
+    expect({ firstJumped, secondJumped }).toEqual({
+      firstJumped: true,
+      secondJumped: true,
+    });
+    expect(game.inspect().obby).toMatchObject({
+      checkpointId: "second-clearing",
+      recoveries: 0,
+    });
+    expect(game.inspect().status.position.z).toBeGreaterThan(-13.3);
+    game.dispose();
+  });
+
+  it("reports confirmed jumps once and keeps their sequence across route rebuilds", () => {
+    const initial = routeMemoryRoutedSave({
+      levelIndex: 1,
+      collectedKinds: ["attack-tool", "guard-tool"],
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction: async () => initial,
+      onRefresh: async () => initial,
+    });
+    advance(0);
+    expect(game.inspect().status.jumpSequence).toBe(0);
+    game.setInput("jump", true);
+    game.setInput("jump", false);
+    advance();
+    expect(game.inspect().status.jumpSequence).toBe(1);
+    advance();
+    expect(game.inspect().status.jumpSequence).toBe(1);
+
+    game.updateSave(routeMemoryRoutedSave({ revision: 1 }));
+    advance(0);
+    game.setInput("jump", true);
+    game.setInput("jump", false);
+    advance();
+    expect(game.inspect().status.jumpSequence).toBe(2);
+    game.dispose();
+  });
+
+  it("automatically collects a contacted v3 pickup and shows the interaction beat", () => {
+    const initial = routeMemoryRoutedSave();
+    const onAction = vi.fn(
+      (_request: GameplayActionRequest) =>
+        new Promise<SaveView>(() => undefined),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    game.setInput("moveY", 1);
+    advance(0);
+    advance();
+    advance();
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+      action: {
+        type: "collect-equipment",
+        levelId: "level-1-2020",
+        pickupId: "level-1-2020-pickup-attack-tool",
+      },
+    });
+    expect(game.inspect().status.interactionSequence).toBe(1);
+    expect(sceneState.instances.at(-1)?.frames.at(-1)?.interacting).toBe(true);
+    game.dispose();
+  });
+
+  it.each([
+    {
+      label: "minor during exploration",
+      save: () =>
+        routeMemoryRoutedSave({
+          defeatedIds: ["level-1-2020-ordinary-a"],
+          collectedKinds: ["attack-tool", "guard-tool"],
+        }),
+      memoryId: "route-memory-2",
+    },
+    {
+      label: "major after the boss and both minors",
+      save: () =>
+        routeMemoryRoutedSave(
+          {
+            phase: "memory-released",
+            defeatedIds: [
+              "level-1-2020-ordinary-a",
+              "level-1-2020-ordinary-b",
+              "level-1-2020-boss",
+            ],
+            collectedKinds: ["attack-tool", "guard-tool"],
+          },
+          2,
+        ),
+      memoryId: "route-memory-3",
+    },
+  ])("automatically recovers a contacted $label", ({ save: makeSave, memoryId }) => {
+    const initial = makeSave();
+    const onAction = vi.fn(
+      (_request: GameplayActionRequest) =>
+        new Promise<SaveView>(() => undefined),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    game.setInput("moveY", 1);
+    advance(0);
+    advance();
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+      action: { type: "recover-memory", memoryId },
+    });
+    expect(game.inspect().status.canConsume).toBe(false);
+    game.dispose();
+  });
+
+  it("maps the v3 guard input to a close-range secondary attack", () => {
+    const initial = routeMemoryRoutedSave(
+      {
+        levelIndex: 1,
+        defeatedIds: ["level-2-2024-ordinary-a"],
+        collectedKinds: ["attack-tool", "guard-tool"],
+      },
+      2,
+    );
+    const onAction = vi.fn(
+      (_request: GameplayActionRequest) =>
+        new Promise<SaveView>(() => undefined),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    advance(0);
+    game.setInput("moveX", 1);
+    game.setInput("moveY", 1);
+    advance(200);
+    advance(100);
+    advance(200);
+    game.setInput("moveX", 0);
+    game.setInput("moveY", 0);
+    expect(game.inspect().status.nearEncounterId).toBe(
+      "level-2-2024-ordinary-b",
+    );
+    expect(game.inspect().status.guardReady).toBe(true);
+    game.setInput("guard", true);
+    game.setInput("guard", false);
+    advance();
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+      action: {
+        type: "secondary-attack",
+        levelId: "level-2-2024",
+        encounterId: "level-2-2024-ordinary-b",
+      },
+    });
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "accepted",
+      kind: "secondary",
+    });
+    expect(sceneState.instances.at(-1)?.frames.at(-1)).toMatchObject({
+      secondaryAttacking: true,
+      attackSequence: 1,
+    });
+    game.dispose();
+  });
+
+  it("waits for friendly re-entry before automatically amending a v3 attack", async () => {
+    const initial = friendlyRouteMemorySave({
+      collectedKinds: ["attack-tool", "guard-tool"],
+      playerHp: 10,
+    });
+    const activeLevel = initial.adventure?.activeLevel;
+    const friendlyId = activeLevel?.friendlies?.[0]?.id;
+    if (!initial.adventure || !activeLevel || !friendlyId)
+      throw new Error("Friendly route-memory fixture is incomplete");
+    const penalized: SaveView = {
+      ...initial,
+      revision: 1,
+      adventure: {
+        ...initial.adventure,
+        activeLevel: {
+          ...activeLevel,
+          friendlies: activeLevel.friendlies?.map((friendly) =>
+            friendly.id === friendlyId
+              ? { ...friendly, penaltyActive: true, hp: friendly.hp - 1 }
+              : friendly,
+          ),
+        },
+      },
+    };
+    const onAction = vi.fn((request: GameplayActionRequest) =>
+      request.action.type === "attack-friendly"
+        ? Promise.resolve(penalized)
+        : new Promise<SaveView>(() => undefined),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    advance(0);
+    game.setInput("moveX", 1);
+    for (
+      let frame = 0;
+      frame < 30 && game.inspect().status.nearFriendlyId !== friendlyId;
+      frame += 1
+    )
+      advance();
+    game.clearInput();
+    expect(game.inspect().status.nearFriendlyId).toBe(friendlyId);
     expect(onAction).not.toHaveBeenCalled();
+
+    expect(
+      game.performAction({
+        type: "attack-friendly",
+        levelId: activeLevel.id,
+        friendlyId,
+      }),
+    ).toBe(true);
+    await vi.waitFor(() => expect(game.inspect().status.requestBusy).toBe(false));
+    advance(0);
+    advance();
+    advance();
+    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual([
+      "attack-friendly",
+    ]);
+
+    game.setInput("moveX", -1);
+    for (
+      let frame = 0;
+      frame < 30 && game.inspect().status.nearFriendlyId === friendlyId;
+      frame += 1
+    )
+      advance();
+    expect(game.inspect().status.nearFriendlyId).toBeNull();
+    game.setInput("moveX", 1);
+    for (let frame = 0; frame < 30 && onAction.mock.calls.length < 2; frame += 1)
+      advance();
+
+    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual([
+      "attack-friendly",
+      "interact-friendly",
+    ]);
     game.dispose();
   });
 
@@ -315,6 +740,7 @@ describe("obby game runtime", () => {
         onAction: async () => routedSave({ levelIndex: 1 }),
         onRefresh: async () => routedSave({ levelIndex: 1 }),
       });
+      game.setInput("moveY", 1);
       game.setInput("jump", true);
       game.setInput("jump", false);
       advance();
@@ -323,6 +749,7 @@ describe("obby game runtime", () => {
         game.setPaused(false);
       } else if (cancellation === "clear") game.clearInput();
       else window.dispatchEvent(new Event(cancellation));
+      expect(game.inspect().input.moveY).toBe(0);
       advance();
       advance();
       expect(game.inspect().status.position.y).toBe(0);
@@ -799,6 +1226,49 @@ describe("obby game runtime", () => {
     expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual(
       ["guard"],
     );
+    game.dispose();
+  });
+
+  it("keeps a held v3 movement stick active after a local gap recovery", () => {
+    const initial = routeMemoryRoutedSave({
+      collectedKinds: ["attack-tool", "guard-tool"],
+    });
+    const onAction = vi.fn(async (_request: GameplayActionRequest) => initial);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    game.setInput("moveY", 1);
+    warmRuntime();
+
+    let leftWelcomeIsland = false;
+    for (
+      let frame = 0;
+      frame < 100 && game.inspect().obby?.recoveries === 0;
+      frame += 1
+    ) {
+      advance();
+      leftWelcomeIsland ||= !game.inspect().status.grounded;
+    }
+
+    expect(leftWelcomeIsland).toBe(true);
+    expect(game.inspect()).toMatchObject({
+      status: { position: { x: 0, y: 0, z: 1 } },
+      input: { moveY: 1 },
+      obby: {
+        checkpointId: "start",
+        recoveryRemaining: 0.8,
+        recoveries: 1,
+      },
+    });
+    const respawnZ = game.inspect().status.position.z;
+    advance();
+    expect(game.inspect().obby?.recoveries).toBe(1);
+    expect(game.inspect().input.moveY).toBe(1);
+    expect(game.inspect().status.position.z).toBeLessThan(respawnZ);
+    expect(onAction).not.toHaveBeenCalled();
     game.dispose();
   });
 

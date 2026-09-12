@@ -2,12 +2,13 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 36,
+    "entries": 37,
     "reference_sheet_entries": 5,
     "model_entries": 26,
     "model_files": 26,
     "concept_only_entries": 1,
     "audio_entries": 4,
+    "fixture_illustration_sets": 1,
     "completed_model_candidates": 25,
     "paused_partial_model_candidates": 1,
     "owner_approved_entries": 1
@@ -688,6 +689,30 @@
       "version": "v001 concept",
       "state": "selected concept; model production paused; no model, rig, animation render, or gameplay approval",
       "checksums": {}
+    },
+    {
+      "id": "fixture-route-memories",
+      "title": "Fixture route memories \u00b7 v001",
+      "category": "fixture-illustrations",
+      "review": "docs/assets/reviews/fixture-route-memories/v001.md",
+      "concept_images": [],
+      "model_images": [
+        "docs/assets/media/fixture-memories/v001/contact-sheet.png"
+      ],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "Fictional playtest illustrations; six pictures; no family photos",
+      "checksums": {
+        "docs/assets/media/fixture-memories/v001/demo-memory-2020-07.svg": "92954d3b349ec9f38fd13c1115a7ae2207cb359bdb5d478293591772c1e98531",
+        "docs/assets/media/fixture-memories/v001/demo-memory-2022-01.svg": "ad6ff356a3db238c6f9ed38edc90b36448c66275f16c3a26e5279a05f47c5384",
+        "docs/assets/media/fixture-memories/v001/demo-memory-2024-01.svg": "53a6f7ba7ce136216e871e5efdc4a3a3041dad6cbe4bb4c7daa7bf6289501420",
+        "docs/assets/media/fixture-memories/v001/demo-memory-2025-01.svg": "2b7393329d448d55bde64a4594d3917bee6b960fd165e39548ad3328d26f16be",
+        "docs/assets/media/fixture-memories/v001/demo-memory-2026-01.svg": "d51fcc059008c8c27ec1a1a29d412e877abcf4f5c04fc3837bf89d0e9679b2e5",
+        "docs/assets/media/fixture-memories/v001/demo-memory-2027-01.svg": "45f944983017f1ec9529650679c9587c4586b38f0ffd2f04a7d92eb84ae43f21",
+        "docs/assets/media/fixture-memories/v001/contact-sheet.png": "2950a9079b08d8be7ddc6fcedd94ae7215d2a738e7b3a3bccaa2966c98982afe"
+      }
     },
     {
       "id": "memory-collected",

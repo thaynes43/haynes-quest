@@ -2,8 +2,9 @@ import { resolve } from 'node:path';
 
 export interface ServerConfig {
   fixtureMode: boolean;
+  ephemeralPlaytest: boolean;
   nodeEnv: string;
-  databaseUrl: string;
+  databaseUrl: string | null;
   sessionSecret: string;
   appOrigin: string;
   port: number;
@@ -19,12 +20,16 @@ function requireValue(env: NodeJS.ProcessEnv, name: string): string {
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
   const fixtureMode = env.QUEST_FIXTURE_MODE === 'true';
+  const ephemeralPlaytest = env.QUEST_EPHEMERAL_PLAYTEST === 'true';
   const nodeEnv = env.NODE_ENV ?? 'development';
   if (fixtureMode && nodeEnv === 'production') {
     throw new Error('Fixture mode is disabled in production');
   }
   if (fixtureMode && (env.IMMICH_URL || env.IMMICH_API_KEY)) {
     throw new Error('Fixture mode cannot receive Immich credentials');
+  }
+  if (ephemeralPlaytest && (!fixtureMode || nodeEnv !== 'development')) {
+    throw new Error('Ephemeral playtest requires fixture development mode');
   }
 
   const sessionSecret = (env.BETTER_AUTH_SECRET ?? env.QUEST_SESSION_SECRET)?.trim();
@@ -41,8 +46,9 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
 
   return {
     fixtureMode,
+    ephemeralPlaytest,
     nodeEnv,
-    databaseUrl: requireValue(env, 'DATABASE_URL'),
+    databaseUrl: ephemeralPlaytest ? null : requireValue(env, 'DATABASE_URL'),
     sessionSecret,
     appOrigin: origin.origin,
     port,

@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { Pool } from 'pg';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { memoryIdsForLevel } from '../../src/shared/adventure.js';
 import type { GameplayAction, GameplayActionRequest } from '../../src/shared/contracts.js';
 import { friendlyDefinitionsForLevel } from '../../src/shared/friendly.js';
 import { PostgresQuestStore } from '../../src/server/db/postgres-store.js';
@@ -268,7 +269,7 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
         }
       }
       expect(save).toMatchObject({ ageYears: 0, adventureState: { phase: 'memory-released' } });
-      for (const memoryId of level.memoryIds) {
+      for (const memoryId of memoryIdsForLevel(level)) {
         save = await applyStoreAction(store, owner.id, save, {
           type: 'recover-memory', levelId: level.id, memoryId,
         }, nowMs);

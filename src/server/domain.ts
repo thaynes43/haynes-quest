@@ -6,7 +6,10 @@ import {
   appearanceForAge,
   createAdventurePlan,
   createInitialAdventureState,
+  createRouteMemoryPlan,
+  memoryIdsForLevel,
   memoryIsReleased,
+  memoryRoleForLevel,
   reduceAdventureAction,
   toAdventureView,
   type AdventurePlan,
@@ -52,6 +55,12 @@ export const RULE_VERSIONS: RuleVersions = {
   appearance: 'synthetic-traveler-v1',
   catalog: PARODY_CATALOG_VERSION,
   combat: 'discrete-combat-v1',
+};
+
+export const ROUTE_MEMORY_RULE_VERSIONS: RuleVersions = {
+  ...RULE_VERSIONS,
+  journey: 'era-level-plan-v3',
+  progression: 'route-major-recovery-v3',
 };
 
 export interface PlayerRecord {
@@ -116,6 +125,8 @@ export interface CreateSaveCommand {
   previewId: string;
   selectedIds: string[];
   title?: string;
+  /** Server-selected mode; never accepted directly from the player request. */
+  planMode?: 'route-memories';
 }
 
 export interface FixtureMaintenanceResult {
@@ -146,10 +157,19 @@ export { abilitiesForAge, appearanceForAge };
 export function createAdventureForSave(
   birthDate: string,
   memories: FrozenMemory[],
-): { plan: AdventurePlan; state: AdventureState } {
+  planMode?: CreateSaveCommand['planMode'],
+): { plan: AdventurePlan; state: AdventureState; versions: RuleVersions } {
   try {
-    const plan = createAdventurePlan(birthDate, memories);
-    return { plan, state: createInitialAdventureState(plan) };
+    const plan = planMode === 'route-memories'
+      ? createRouteMemoryPlan(birthDate, memories)
+      : createAdventurePlan(birthDate, memories);
+    return {
+      plan,
+      state: createInitialAdventureState(plan),
+      versions: plan.version === 'era-level-plan-v3'
+        ? ROUTE_MEMORY_RULE_VERSIONS
+        : RULE_VERSIONS,
+    };
   } catch (error) {
     if (error instanceof ParodyCatalogUnavailableError) {
       throw new AppError(422, 'ERA_CATALOG_UNAVAILABLE', 'Adventure catalog unavailable');
@@ -311,12 +331,16 @@ export function toSaveView(save: SaveRecord, now: Date): SaveView {
         memoryIsReleased(save.adventurePlan, save.adventureState, id)
       );
       const state = consumed ? 'consumed' : recovered ? 'revealed' : released ? 'released' : 'locked';
+      const role = save.adventurePlan?.levels
+        .map((level) => memoryRoleForLevel(level, id))
+        .find((candidate) => candidate !== null);
       return {
         id,
         date,
         ageYears,
         label,
         state,
+        ...(role ? { role } : {}),
         ...(released ? {
           mediaUrl: `/api/saves/${encodeURIComponent(save.id)}/media/${encodeURIComponent(id)}`,
         } : {}),
@@ -398,19 +422,21 @@ export function validateSaveRecord(save: SaveRecord): SaveRecord {
   const friendlyState = normalized.friendlyState == null
     ? null
     : parseStoredFriendlyState(normalized.friendlyState, plan, state);
-  const plannedMemoryIds = plan.levels.flatMap((level) => level.memoryIds);
+  const plannedMemoryIds = plan.levels.flatMap(memoryIdsForLevel);
   const savedMemoryIds = normalized.memories.map((memory) => memory.id);
   if (
     plannedMemoryIds.length !== savedMemoryIds.length ||
     plannedMemoryIds.some((id, index) => id !== savedMemoryIds[index]) ||
     normalized.versions.journey !== plan.version ||
-    (plan.version === 'era-level-plan-v2' && normalized.versions.catalog !== plan.catalogVersion) ||
+    (plan.version !== 'era-level-plan-v1' && normalized.versions.catalog !== plan.catalogVersion) ||
+    (plan.version === 'era-level-plan-v3' &&
+      normalized.versions.progression !== ROUTE_MEMORY_RULE_VERSIONS.progression) ||
     plan.levels[0]?.startDate !== normalized.birthDate ||
     plan.levels.some((level, index) => {
-      const lastMemoryId = level.memoryIds.at(-1);
+      const lastMemoryId = memoryIdsForLevel(level).at(-1);
       const lastMemory = normalized.memories.find((memory) => memory.id === lastMemoryId);
       const priorLevel = plan.levels[index - 1];
-      const priorLastId = priorLevel?.memoryIds.at(-1);
+      const priorLastId = priorLevel ? memoryIdsForLevel(priorLevel).at(-1) : undefined;
       const priorLast = normalized.memories.find((memory) => memory.id === priorLastId);
       return !lastMemory ||
         lastMemory.ageYears !== level.targetAgeYears ||

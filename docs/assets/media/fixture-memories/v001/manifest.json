@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "catalog_id": "fixture-route-memories",
+  "version": "v001",
+  "source": {
+    "kind": "repository-code",
+    "path": "src/server/media.ts",
+    "export": "fixtureSvg",
+    "sha256": "b1df78b2baa5e19d93b9b774f7717df3f6cbca0e3844628081d10f587502c7d8",
+    "generated_by": "scripts/assets/fixture-memory-review.ts",
+    "external_inputs": [],
+    "private_inputs": false
+  },
+  "recipe": "Write fixtureSvg output bytes unchanged; render a two-column, three-row PNG contact sheet with Sharp using 480x270 tiles and 8px gutters.",
+  "files": [
+    {
+      "role": "fixture-picture",
+      "fixture_key": "demo-memory-2020-07",
+      "label": "The first glow",
+      "path": "docs/assets/media/fixture-memories/v001/demo-memory-2020-07.svg",
+      "media_type": "image/svg+xml",
+      "width": 960,
+      "height": 540,
+      "bytes": 832,
+      "sha256": "92954d3b349ec9f38fd13c1115a7ae2207cb359bdb5d478293591772c1e98531"
+    },
+    {
+      "role": "fixture-picture",
+      "fixture_key": "demo-memory-2022-01",
+      "label": "A small discovery",
+      "path": "docs/assets/media/fixture-memories/v001/demo-memory-2022-01.svg",
+      "media_type": "image/svg+xml",
+      "width": 960,
+      "height": 540,
+      "bytes": 837,
+      "sha256": "ad6ff356a3db238c6f9ed38edc90b36448c66275f16c3a26e5279a05f47c5384"
+    },
+    {
+      "role": "fixture-picture",
+      "fixture_key": "demo-memory-2024-01",
+      "label": "A taller path",
+      "path": "docs/assets/media/fixture-memories/v001/demo-memory-2024-01.svg",
+      "media_type": "image/svg+xml",
+      "width": 960,
+      "height": 540,
+      "bytes": 1032,
+      "sha256": "53a6f7ba7ce136216e871e5efdc4a3a3041dad6cbe4bb4c7daa7bf6289501420"
+    },
+    {
+      "role": "fixture-picture",
+      "fixture_key": "demo-memory-2025-01",
+      "label": "A bright detour",
+      "path": "docs/assets/media/fixture-memories/v001/demo-memory-2025-01.svg",
+      "media_type": "image/svg+xml",
+      "width": 960,
+      "height": 540,
+      "bytes": 823,
+      "sha256": "2b7393329d448d55bde64a4594d3917bee6b960fd165e39548ad3328d26f16be"
+    },
+    {
+      "role": "fixture-picture",
+      "fixture_key": "demo-memory-2026-01",
+      "label": "A brave crossing",
+      "path": "docs/assets/media/fixture-memories/v001/demo-memory-2026-01.svg",
+      "media_type": "image/svg+xml",
+      "width": 960,
+      "height": 540,
+      "bytes": 835,
+      "sha256": "d51fcc059008c8c27ec1a1a29d412e877abcf4f5c04fc3837bf89d0e9679b2e5"
+    },
+    {
+      "role": "fixture-picture",
+      "fixture_key": "demo-memory-2027-01",
+      "label": "The lantern gate",
+      "path": "docs/assets/media/fixture-memories/v001/demo-memory-2027-01.svg",
+      "media_type": "image/svg+xml",
+      "width": 960,
+      "height": 540,
+      "bytes": 1036,
+      "sha256": "45f944983017f1ec9529650679c9587c4586b38f0ffd2f04a7d92eb84ae43f21"
+    },
+    {
+      "role": "contact-sheet",
+      "path": "docs/assets/media/fixture-memories/v001/contact-sheet.png",
+      "media_type": "image/png",
+      "width": 984,
+      "height": 842,
+      "bytes": 50933,
+      "sha256": "2950a9079b08d8be7ddc6fcedd94ae7215d2a738e7b3a3bccaa2966c98982afe"
+    }
+  ]
+}
