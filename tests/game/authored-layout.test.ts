@@ -1,12 +1,21 @@
 import { describe, expect, it } from "vitest";
 
 import { authoredRoute } from "../../src/game/authored-layout";
+import { createObbyCourse } from "../../src/game/obby-layout";
 import { createLevelLayout, inspectLevel } from "../../src/game/level";
 import type { AuthoredLevelDocument } from "../../src/shared/authored-level";
 import { makeSave } from "./fixtures";
 import { makeArchivedRoutedSave, makeAuthoredSave } from "./authored-fixtures";
 
 describe("authored level layout", () => {
+  it.each(["garden-playground-v1", "besties-playground-v1"] as const)(
+    "resolves %s through the common course entry point",
+    (routeId) => {
+      expect(createObbyCourse(routeId)).toBe(authoredRoute(routeId)!.course);
+      expect(createObbyCourse(routeId).platforms.length).toBeGreaterThan(10);
+    },
+  );
+
   it("binds repeated ordinary kinds to four stable, distinct encounter slots", () => {
     const save = makeAuthoredSave();
     const level = createLevelLayout(save);
