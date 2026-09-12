@@ -714,9 +714,9 @@
       "friendly-2": {
         "platformId": "memory-grove",
         "position": {
-          "x": -4,
+          "x": -4.5,
           "y": 0,
-          "z": -63
+          "z": -59.5
         }
       },
       "friendly-3": {

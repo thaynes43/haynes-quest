@@ -724,9 +724,9 @@
       "friendly-3": {
         "platformId": "party-fair",
         "position": {
-          "x": -4,
+          "x": -5.3,
           "y": 0,
-          "z": -88
+          "z": -85.6
         }
       }
     }
