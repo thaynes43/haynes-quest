@@ -1,0 +1,50 @@
+{
+  "startedAt": "2026-09-12T19:48:12.488Z",
+  "finishedAt": "2026-09-12T19:48:41.152Z",
+  "status": "passed",
+  "coverage": "authored-first-pickups-and-landscape-controls",
+  "layout": [
+    {
+      "chapter": 2,
+      "courseId": "besties-playground-v1",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "attack": {
+        "x": 672,
+        "y": 290,
+        "width": 84,
+        "height": 84
+      },
+      "bash": {
+        "x": 764,
+        "y": 232,
+        "width": 60,
+        "height": 60
+      },
+      "joystick": {
+        "x": 20,
+        "y": 270,
+        "width": 104,
+        "height": 104
+      },
+      "header": {
+        "x": 24,
+        "y": 10,
+        "width": 796,
+        "height": 57
+      },
+      "helpOpenedAndClosed": true
+    }
+  ],
+  "bundle": {
+    "path": "/assets/index-DOmWuEtB.js",
+    "bytes": 1171500,
+    "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+  },
+  "responseErrors": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "raw_report_sha256": "9f7dda51bae02596b654cec254a6043c4ecbaa9f6af237e09b110642160c0ab3"
+}

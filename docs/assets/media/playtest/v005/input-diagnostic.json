@@ -1,0 +1,133 @@
+{
+  "startedAt": "2026-09-12T19:43:24.300Z",
+  "finishedAt": "2026-09-12T19:43:43.053Z",
+  "status": "input-diagnostic",
+  "browser": "153.0.8010.12",
+  "bundle": {
+    "path": "/assets/index-DOmWuEtB.js",
+    "bytes": 1171500,
+    "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+  },
+  "audio": {
+    "zeroVolumeRestore": {
+      "restoredVolume": 0.8,
+      "output": {
+        "available": true,
+        "contexts": [
+          {
+            "state": "running",
+            "sampleCount": 182272,
+            "nonzeroSampleCount": 16,
+            "maxAbs": 0.022584881633520126,
+            "analyserConnected": true
+          }
+        ]
+      }
+    }
+  },
+  "gestures": {
+    "passivePanels": {
+      "age-hud": {
+        "hitElement": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "ageYears": 0,
+        "jumpSequence": 1
+      },
+      "objective-hud": {
+        "hitElement": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "ageYears": 0,
+        "jumpSequence": 2
+      }
+    },
+    "heldWorldTapDiagnostic": {
+      "tap": {
+        "durationMs": 1624,
+        "pointerId": 4
+      },
+      "beforeJumpSequence": 2,
+      "afterJumpSequence": 3,
+      "heldMoveYBeforeTap": 1,
+      "heldMoveYAfterTap": 1,
+      "groundedAfterTap": false,
+      "pointerTrace": [
+        {
+          "type": "pointerdown",
+          "pointerId": 10,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "timeStamp": 15600.899999976158,
+          "x": 74,
+          "y": 758
+        },
+        {
+          "type": "pointerdown",
+          "id": 10,
+          "pointerType": "touch",
+          "target": "DIV",
+          "x": 74,
+          "y": 758,
+          "timeStamp": 15600.899999976158,
+          "handledAt": 15987.699999988079
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 10,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "timeStamp": 15989.099999964237,
+          "x": 74,
+          "y": 714
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 11,
+          "pointerType": "touch",
+          "target": "CANVAS.",
+          "timeStamp": 16257.300000011921,
+          "x": 273,
+          "y": 464.20001220703125
+        },
+        {
+          "type": "pointerdown",
+          "id": 11,
+          "pointerType": "touch",
+          "target": "CANVAS",
+          "x": 273,
+          "y": 464.20001220703125,
+          "timeStamp": 16257.300000011921,
+          "handledAt": 17879.599999964237
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 11,
+          "pointerType": "touch",
+          "target": "CANVAS.",
+          "timeStamp": 16266.899999976158,
+          "x": 273,
+          "y": 464.20001220703125
+        },
+        {
+          "type": "pointerup",
+          "id": 11,
+          "pointerType": "touch",
+          "target": "CANVAS",
+          "x": 273,
+          "y": 464.20001220703125,
+          "timeStamp": 16266.899999976158,
+          "handledAt": 17879.899999976158
+        }
+      ]
+    }
+  },
+  "layout": null,
+  "responseErrors": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "coverage": "input-diagnostic",
+  "raw_report_sha256": "7ca8b1bfd851f986ae9384ffd25c651c50a82c37381b3ed71c2931c74f0ae34e"
+}

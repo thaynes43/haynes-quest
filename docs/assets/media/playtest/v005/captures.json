@@ -1,0 +1,53 @@
+{
+  "version": "v005",
+  "captured_on": "2026-09-12",
+  "application_source_commit": "cfaddf4933ea0be13c374be513463d8caac721aa",
+  "driver_commit": "17cefefae38f49d6fa433f50275625e605f6829e",
+  "scope": "Actual local Chromium screenshots of fictional playgrounds; no private media. Software rendering is not physical iPhone performance evidence.",
+  "captures": [
+    {
+      "path": "docs/assets/media/playtest/v005/age-zero-route.png",
+      "source": "test-results/authored-playtest/plan009-final-local-retry/01-chapter-1-playground-start.png",
+      "client": {
+        "path": "/assets/index-DOmWuEtB.js",
+        "bytes": 1171500,
+        "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+      },
+      "sha256": "31e607846043782b2739858fccfad53ccfb0fcbab445890e2ca3ce6d76778bce",
+      "bytes": 236867
+    },
+    {
+      "path": "docs/assets/media/playtest/v005/woodland-choice.png",
+      "source": "test-results/authored-playtest/plan009-final-local-retry/02-chapter-1-woodland-rest.png",
+      "client": {
+        "path": "/assets/index-DOmWuEtB.js",
+        "bytes": 1171500,
+        "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+      },
+      "sha256": "e003e0971c357371d60064144c7edd64c5ad56669d4b773a8658ec697d4c4b1d",
+      "bytes": 232177
+    },
+    {
+      "path": "docs/assets/media/playtest/v005/besties-dizzy.png",
+      "source": "test-results/authored-playtest/plan009-final-local-retry/10-besties-dizzy.png",
+      "client": {
+        "path": "/assets/index-DOmWuEtB.js",
+        "bytes": 1171500,
+        "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+      },
+      "sha256": "4a9d04c07e25a021e2a1ed64254d895fbcae2d072697b87c1e6978d660f72349",
+      "bytes": 201910
+    },
+    {
+      "path": "docs/assets/media/playtest/v005/help-sound.png",
+      "source": "test-results/mobile-reliability/plan009-final/help-sound.png",
+      "client": {
+        "path": "/assets/index-DOmWuEtB.js",
+        "bytes": 1171500,
+        "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+      },
+      "sha256": "ccda7e4b20d117b87889c0250b8b36f698cb43f69d822a68b96152bb6368d9b8",
+      "bytes": 69513
+    }
+  ]
+}

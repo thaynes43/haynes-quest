@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "environment": "Local Chromium with SwiftShader; fictional fixture",
+  "started_at": "2026-09-12T19:36:54.544Z",
+  "finished_at": "2026-09-12T19:42:54.286Z",
+  "duration_seconds": 359.742,
+  "controls": "real keyboard route movement/jumps and touch combat buttons",
+  "bundle": {
+    "path": "/assets/index-DOmWuEtB.js",
+    "bytes": 1171500,
+    "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+  },
+  "raw_report_sha256": "7e041afa037f389355800d70c9efd38e90c919bc244c6187e699f2dc9535779d",
+  "chapters": [
+    {
+      "chapter": 1,
+      "course": {
+        "id": "garden-playground-v1",
+        "schemaVersion": "authored-level-v1",
+        "platforms": 18,
+        "movingPlatforms": 1,
+        "sweepers": 3,
+        "checkpoints": 8,
+        "mainPathPlatforms": 16,
+        "branches": 1,
+        "connections": 19
+      },
+      "visited_platforms": [
+        "welcome",
+        "garden-hop-1",
+        "garden-hop-2",
+        "garden-hop-3",
+        "picnic",
+        "winding-east",
+        "winding-west",
+        "woodland-rest",
+        "woodland-side-1",
+        "woodland-side-2",
+        "woodland-side-3",
+        "memory-grove",
+        "little-rise",
+        "little-landing",
+        "pond-dock",
+        "garden-ferry",
+        "dragon-clearing",
+        "garden-reward"
+      ],
+      "branch": {
+        "declared": [
+          "woodland-rest",
+          "woodland-side-1",
+          "woodland-side-2",
+          "woodland-side-3",
+          "memory-grove"
+        ],
+        "visited": [
+          "woodland-side-1",
+          "woodland-side-2",
+          "woodland-side-3",
+          "memory-grove"
+        ],
+        "rejoined": true
+      },
+      "ferry": [
+        {
+          "edge": {
+            "from": "pond-dock",
+            "to": "garden-ferry",
+            "mode": "ride",
+            "index": 14
+          },
+          "supportId": "garden-ferry",
+          "platformTravel": 0.12375072315889213,
+          "riderOffset": {
+            "x": -0.19999999999994164,
+            "z": 0.6421954361475741
+          },
+          "offsetDrift": 0
+        }
+      ],
+      "hazard_jumps": [
+        {
+          "id": "east-padded-bar",
+          "at": {
+            "x": 3.266399999999993,
+            "y": 0,
+            "z": -27.000400000000507
+          },
+          "angle": 0
+        }
+      ],
+      "intentional_recovery": {
+        "checkpointId": "picnic-safe",
+        "direction": {
+          "dx": -1,
+          "dz": 0,
+          "distance": 6.133599999999995,
+          "clearance": 6.370243323453194
+        },
+        "before": 0,
+        "after": 1,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": -16.8
+        },
+        "protectionSeconds": 0.8,
+        "heldInput": 1,
+        "progressPreserved": true
+      },
+      "fights_defeated": 5,
+      "primary_damage": 19,
+      "secondary_damage": 7,
+      "minor_memories": 2,
+      "major_memory": true,
+      "boss_hits_received": 12,
+      "combat_retries": 4,
+      "besties": null
+    },
+    {
+      "chapter": 2,
+      "course": {
+        "id": "besties-playground-v1",
+        "schemaVersion": "authored-level-v1",
+        "platforms": 19,
+        "movingPlatforms": 1,
+        "sweepers": 2,
+        "checkpoints": 8,
+        "mainPathPlatforms": 18,
+        "branches": 1,
+        "connections": 20
+      },
+      "visited_platforms": [
+        "party-welcome",
+        "party-terrace-1",
+        "party-terrace-2",
+        "party-terrace-3",
+        "party-picnic",
+        "ribbon-lane",
+        "ribbon-rest",
+        "party-ferry",
+        "party-dock",
+        "wide-side-bridge",
+        "friend-balcony",
+        "party-grove",
+        "turnstile-deck",
+        "party-fair",
+        "final-hop-1",
+        "final-hop-2",
+        "besties-court",
+        "party-reward"
+      ],
+      "branch": {
+        "declared": [
+          "party-dock",
+          "wide-side-bridge",
+          "friend-balcony",
+          "party-grove"
+        ],
+        "visited": [
+          "wide-side-bridge",
+          "friend-balcony",
+          "party-grove"
+        ],
+        "rejoined": true
+      },
+      "ferry": [
+        {
+          "edge": {
+            "from": "ribbon-rest",
+            "to": "party-ferry",
+            "mode": "ride",
+            "index": 6
+          },
+          "supportId": "party-ferry",
+          "platformTravel": 0.12560349927808412,
+          "riderOffset": {
+            "x": -0.34604498156291985,
+            "z": 0.8343999999998672
+          },
+          "offsetDrift": 0
+        }
+      ],
+      "hazard_jumps": [
+        {
+          "id": "ribbon-padded-bar",
+          "at": {
+            "x": -2.867199999999953,
+            "y": 0,
+            "z": -28.699200000000552
+          },
+          "angle": 0
+        },
+        {
+          "id": "party-turnstile",
+          "at": {
+            "x": 1.7335999999999787,
+            "y": 0,
+            "z": -79.66599999999931
+          },
+          "angle": 5.505147446570534
+        },
+        {
+          "id": "party-turnstile",
+          "at": {
+            "x": 1.7335999999999787,
+            "y": 0,
+            "z": -81.73279999999924
+          },
+          "angle": 5.804361706877445
+        }
+      ],
+      "intentional_recovery": {
+        "checkpointId": "party-picnic-safe",
+        "direction": {
+          "dx": 1,
+          "dz": 0,
+          "distance": 5.201599999999976,
+          "clearance": 6.080296045424104
+        },
+        "before": 0,
+        "after": 1,
+        "position": {
+          "x": 0.33279999999993026,
+          "y": 0,
+          "z": -17.5
+        },
+        "protectionSeconds": 0.7168000000000176,
+        "heldInput": 1,
+        "progressPreserved": true
+      },
+      "fights_defeated": 5,
+      "primary_damage": 25,
+      "secondary_damage": 12,
+      "minor_memories": 2,
+      "major_memory": true,
+      "boss_hits_received": 6,
+      "combat_retries": 3,
+      "besties": [
+        {
+          "id": "bestie-pink",
+          "visible": true,
+          "clips": [
+            "attack",
+            "cheer",
+            "high-five",
+            "dizzy",
+            "hit",
+            "defeat"
+          ],
+          "motion": 1.2570965922958284
+        },
+        {
+          "id": "bestie-black",
+          "visible": true,
+          "clips": [
+            "cheer",
+            "attack",
+            "high-five",
+            "dizzy",
+            "defeat"
+          ],
+          "motion": 0.8099780174840553
+        }
+      ]
+    }
+  ],
+  "paused_artwork_retry": {
+    "assetPath": "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+    "failures": 2,
+    "retryPresses": 1,
+    "phase": "fallen",
+    "failedBefore": 1,
+    "failedAfter": 0,
+    "loadingAfter": 0,
+    "warningHidden": true,
+    "physicsStayedPaused": true,
+    "timeSeconds": 51.99839999999936,
+    "actorsRestored": [
+      "bestie-pink",
+      "bestie-black"
+    ]
+  },
+  "unexpected_errors": {
+    "http": [],
+    "console": [],
+    "page": []
+  },
+  "limitations": [
+    "The driver takes the optional branch in each chapter; isolated real-physics tests cover every declared edge.",
+    "Automated completion and real combat retries are not child pacing or device-performance measurements.",
+    "Physical iPhone sound/control acceptance belongs to the preceding repair pass; the new levels still need family inspection."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "scope": "PLAN009 local catalog and immutable asset parity; no browser, network, generation, or private inputs",
+  "base": "7a5bce0",
+  "head": "64232c2",
+  "result": "pass",
+  "counts": {
+    "inventory_entries": 37,
+    "catalog_cards": 37,
+    "inventory_model_entries": 26,
+    "inventory_model_files": 26,
+    "review_model_viewers": 26,
+    "runtime_glbs": 23,
+    "runtime_cues": 4,
+    "fixture_pictures": 6,
+    "thumbnail_manifest_files": 54,
+    "thumbnail_derivative_files": 54,
+    "inventory_referenced_paths": 90,
+    "inventory_checksum_paths": 42,
+    "parody_catalog_v3_entries": 9,
+    "parody_catalog_v4_entries": 9
+  },
+  "manifests": {
+    "inventory": {
+      "path": "scripts/assets/catalog-inventory.json",
+      "sha256": "8f3d488ce396f8c3c108bf1204bbce39293f0f2dbe873c708dc71b43f2d7e6b6",
+      "git_blob": "0531746beee95a0376db713aec3f1642921e6ae7"
+    },
+    "runtime": {
+      "path": "docs/assets/media/playtest/v002/artwork.json",
+      "sha256": "4e7c6c0a0624043b8e91ab60f383ab5b4071f5a8402b025a59e0964cdb920168"
+    },
+    "thumbnails": {
+      "path": "docs/assets/media/catalog-thumbnails/v001/manifest.json",
+      "sha256": "12c5536f097ff3e086c2a35c443d8977e46270ab11b2e4f2d691422b2306c761"
+    },
+    "fixture": {
+      "path": "docs/assets/media/fixture-memories/v001/manifest.json",
+      "sha256": "0f0faac7e7f52820ef3e59da41e5a24adc0ed66bf4f82f5684e4c4d1d5d801c9"
+    }
+  },
+  "immutable_from_base": {
+    "media_tree_base": "c0974b3a2a8761bbdeb331f523283be46da34ecb",
+    "media_tree_head": "c0974b3a2a8761bbdeb331f523283be46da34ecb",
+    "inventory_blob_base": "0531746beee95a0376db713aec3f1642921e6ae7",
+    "inventory_blob_head": "0531746beee95a0376db713aec3f1642921e6ae7",
+    "changed_asset_paths": [],
+    "new_artifact_versions_or_bytes": false
+  },
+  "parity": {
+    "catalog_cards_equal_inventory": true,
+    "thumbnail_sources_equal_inventory_recipe": true,
+    "viewers_equal_inventory_models": true,
+    "runtime_glbs_equal_private_candidate_models": true,
+    "runtime_cues_equal_private_candidate_cues": true,
+    "parody_catalog_v4_entries_equal_v3": true
+  },
+  "failures": [],
+  "capture_note": "This parity observation precedes the new v005 gameplay screenshots and check records. Those later files document the new levels; they do not change runtime models, cues, memory pictures, catalog entries or thumbnails."
+}
