@@ -1,0 +1,19 @@
+{
+  "startedAt": "2026-09-12T03:45:16.729Z",
+  "status": "passed",
+  "url": "https://haynes-quest-playtest.haynesops.com",
+  "pageErrors": [],
+  "responseErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  ],
+  "expectedModelSha256": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+  "directBestiesAge": 4,
+  "injectedFailures": 1,
+  "recoveredModelSha256": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae",
+  "recoveredModelBytes": 956924,
+  "warningCleared": true,
+  "returnedToFreshHome": true,
+  "finishedAt": "2026-09-12T03:45:28.317Z",
+  "driver_note": "An initial probe used an exact-text locator that incorrectly included the adjacent button label; it timed out. The corrected substring locator matches the existing game markup. No product change was required."
+}

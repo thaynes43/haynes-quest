@@ -1,0 +1,47 @@
+{
+  "session": {
+    "mode": "fixture",
+    "progressMode": "ephemeral",
+    "csrfHeader": "X-Quest-Request"
+  },
+  "discoverable_saves": 0,
+  "fictional_images": [
+    {
+      "id": "demo-memory-2020-07",
+      "mime": "image/svg+xml",
+      "bytes": 832,
+      "sha256": "92954d3b349ec9f38fd13c1115a7ae2207cb359bdb5d478293591772c1e98531"
+    },
+    {
+      "id": "demo-memory-2022-01",
+      "mime": "image/svg+xml",
+      "bytes": 837,
+      "sha256": "ad6ff356a3db238c6f9ed38edc90b36448c66275f16c3a26e5279a05f47c5384"
+    },
+    {
+      "id": "demo-memory-2024-01",
+      "mime": "image/svg+xml",
+      "bytes": 1032,
+      "sha256": "53a6f7ba7ce136216e871e5efdc4a3a3041dad6cbe4bb4c7daa7bf6289501420"
+    },
+    {
+      "id": "demo-memory-2025-01",
+      "mime": "image/svg+xml",
+      "bytes": 823,
+      "sha256": "2b7393329d448d55bde64a4594d3917bee6b960fd165e39548ad3328d26f16be"
+    },
+    {
+      "id": "demo-memory-2026-01",
+      "mime": "image/svg+xml",
+      "bytes": 835,
+      "sha256": "d51fcc059008c8c27ec1a1a29d412e877abcf4f5c04fc3837bf89d0e9679b2e5"
+    },
+    {
+      "id": "demo-memory-2027-01",
+      "mime": "image/svg+xml",
+      "bytes": 1036,
+      "sha256": "45f944983017f1ec9529650679c9587c4586b38f0ffd2f04a7d92eb84ae43f21"
+    }
+  ],
+  "scope": "Authenticated save discovery and six public fictional image bytes; no credentials or session identifiers retained."
+}

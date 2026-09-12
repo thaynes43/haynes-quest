@@ -1,6 +1,6 @@
 # WO069: PLAN007 integration and review resolution
 
-Status: final integration in progress. Lead Astra max, `/home/dev/work/quest-playtest-reset`, branch `agent/quest-playtest-reset`, draft PR35. No PLAN007 live release yet.
+Status: completed. Lead Astra max, `/home/dev/work/quest-playtest-reset`, branch `agent/quest-playtest-reset`, merged PR35. The private release is verified under WO070.
 
 ## Fable review
 
@@ -31,7 +31,7 @@ The `e305eda…` touch probe established a real product defect: local obstacle r
 
 ## Final local validation
 
-The reviewed client is `index-Bn3nnDAn.js`, 1,041,657 bytes, SHA256 `0e795d99f5fd820bc5388c8ae24c350f4214c3ac5a6fbcbdc444b9ae5db43702`. Its backend is the reviewed 399c992 build; owned fixture 4397 is exec session 26874. No new source defect required a rebuild after 8ead835.
+The reviewed client is `index-Bn3nnDAn.js`, 1,041,657 bytes, SHA256 `0e795d99f5fd820bc5388c8ae24c350f4214c3ac5a6fbcbdc444b9ae5db43702`. During local QA its backend was the reviewed 399c992 build in owned fixture 4397, exec session 26874; that fixture is now stopped. No new source defect required a rebuild after 8ead835.
 
 [WO066](066-fresh-playtest-browser.md) records exact browser scope. `final-bn3-route-complete` passes an uninterrupted fresh 0 → 4 → 7 route using keyboard movement/jumps and visible touch combat controls: both minors before each boss with age unchanged, all four ordinary enemies and both bosses defeated, both major transitions, six memories complete, Besties dizzy/Bash, deliberately missing Pink fallback/retry and a fresh direct Besties shortcut. Five local obstacle recoveries and zero health-zero combat retries occurred; observed held input remained active after recovery. There were no unexpected page/response/console errors.
 
@@ -49,4 +49,4 @@ At source 8ead835 all PR checks are green: application verification, container b
 
 Measured active frame samples on the exact final client average 9.82 fps in chapter one and 9.34 fps in chapter two under headless SwiftShader. This misses the device frame budget and does not establish physical iPhone/iPad performance. Cached WebKit cannot launch because required GStreamer host libraries are absent. Physical Safari controls, speaker audibility, child response and exact final-art review remain owner inspection, not automated claims.
 
-Both Fable tasks were reaped after their reports/probes were pushed and preserved under `test-results/fable-reviews/`. There is no authoring lease, generation, private photo, OAuth or dev-env restart. PLAN007 is not deployed yet. Next: finish catalog/final PR checks, merge PR35, verify its immutable published image, then carry the private image+ephemeral flag through checked GitOps merge and live verification under WO067.
+Both Fable tasks were reaped after their reports/probes were pushed and preserved under `test-results/fable-reviews/`. There is no authoring lease, generation, private photo, OAuth or dev-env restart. PLAN007 is deployed and verified. Application PR35 and operations PR2862 are merged; [WO070](070-plan007-live-release.md) records the exact artifact, all 23 live checks, hosted controls/Besties/artwork/catalog evidence and ended activity.

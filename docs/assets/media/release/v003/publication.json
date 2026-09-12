@@ -1,0 +1,35 @@
+{
+  "application_pr": 35,
+  "application_merge": "b66b8ee2723480c6c1e0226af9018109489a1817",
+  "application_run": 34670404335,
+  "documentation_run": 34670404348,
+  "image": "ghcr.io/thaynes43/haynes-quest:sha-b66b8ee2723480c6c1e0226af9018109489a1817@sha256:eb685f46f8682e2b73505e02e0a52e738879d4c142b42c6af83fe7d2ec858cdc",
+  "registry_http_status": 200,
+  "registry_header_digest": "sha256:eb685f46f8682e2b73505e02e0a52e738879d4c142b42c6af83fe7d2ec858cdc",
+  "independent_manifest_bytes_digest": "sha256:eb685f46f8682e2b73505e02e0a52e738879d4c142b42c6af83fe7d2ec858cdc",
+  "manifest_bytes": 857,
+  "media_type": "application/vnd.oci.image.index.v1+json",
+  "platforms": [
+    {
+      "digest": "sha256:202dc221ad32ab5e45a5fa7f8cf3c418bf7a4582315792f07f49024dfe5b063c",
+      "platform": {
+        "architecture": "amd64",
+        "os": "linux"
+      }
+    },
+    {
+      "digest": "sha256:623c9990a8c6b8203421245e56e2edf3660a8c2d989252f8fb39f706f5108fdd",
+      "platform": {
+        "architecture": "unknown",
+        "os": "unknown"
+      }
+    }
+  ],
+  "ci_verified_steps": [
+    "350 tests and application checks",
+    "Buildx provenance and SBOM",
+    "GitHub build-provenance attestation",
+    "cosign signing"
+  ],
+  "independent_signature_verification": "Not claimed; registry bytes were independently checked and signing succeeded in CI."
+}
