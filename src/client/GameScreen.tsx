@@ -119,8 +119,11 @@ function Adventure({
   const [save, setSave] = useState(initialSave);
   const [status, setStatus] = useState<GameStatus>();
   const [error, setError] = useState("");
-  const [attackNotice, setAttackNotice] = useState("");
-  const [pickupMemoryId, setPickupMemoryId] = useState<string | null>(null);
+  const [{ text: attackNotice, memoryId: pickupMemoryId }, setNotice] =
+    useState<{
+      text: string;
+      memoryId: string | null;
+    }>({ text: "", memoryId: null });
   const [friendDialogId, setFriendDialogId] = useState<string | null>(null);
   const [confirmFriendlyHarm, setConfirmFriendlyHarm] = useState(false);
   const soundRef = useRef<QuestAudio | undefined>(undefined);
@@ -191,6 +194,8 @@ function Adventure({
     let previouslyGrounded = true;
     let previousJumpSequence = 0;
     let noticeTimer: ReturnType<typeof setTimeout> | undefined;
+    const setAttackNotice = (text: string) =>
+      setNotice({ text, memoryId: null });
     const sound = new QuestAudio();
     soundRef.current = sound;
     setMuted(sound.preferences().muted);
@@ -317,15 +322,14 @@ function Adventure({
         const memory = next.memories.find(
           (memory) => memory.id === action.memoryId,
         );
-        setPickupMemoryId(action.memoryId);
-        setAttackNotice(
-          `Little memory found · ${memory?.label ?? "A moment remembered"}`,
-        );
+        setNotice({
+          text: `Little memory found · ${memory?.label ?? "A moment remembered"}`,
+          memoryId: action.memoryId,
+        });
         if (noticeTimer) clearTimeout(noticeTimer);
         noticeTimer = setTimeout(() => {
           if (mounted.current) {
             setAttackNotice("");
-            setPickupMemoryId(null);
           }
         }, 2300);
       }
