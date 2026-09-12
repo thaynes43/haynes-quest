@@ -175,7 +175,7 @@ These criteria are retained for the [backlog](../BACKLOG.md), not for PoC accept
 
 ## Current scope
 
-Tom confirms the mobile repair and audible sound on his iPhone. The next family MVP is designed for his six-year-old daughter: [PLAN009](../../.agents/plans/009-daughter-playground-mvp.md) and [DESIGN017](../designs/017-daughter-playgrounds.md) deliver longer, more varied and forgiving levels first. Identity and deliberately curated personal photos are the following required MVP stage. The full lifetime campaign and the older-child difficulty curve remain future extensions.
+Tom confirms the mobile repair and audible sound on his iPhone. The next family MVP is designed for his six-year-old daughter: [PLAN009](../../.agents/plans/completed/009-daughter-playground-mvp.md) and [DESIGN017](../designs/017-daughter-playgrounds.md) deliver longer, more varied and forgiving levels first. Identity and deliberately curated personal photos are the following required MVP stage. The full lifetime campaign and the older-child difficulty curve remain future extensions.
 
 The bootstrap established the repository and documentation conventions. The current focus is a [small playable PoC and development loop](../designs/007-poc-development-loop.md), with [audio authoring/playback](../designs/008-audio-pipeline.md) alongside the existing visual pipeline. PLAN-003 tool setup and the PLAN-004 private synthetic slice are complete; the handoff records deployed behavior and the remaining player-ready gates. Finishing all combat, collectibles, era content, or story design is no longer a prerequisite; those details are [backlogged](../BACKLOG.md).
 

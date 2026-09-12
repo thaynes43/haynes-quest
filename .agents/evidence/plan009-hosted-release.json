@@ -1,0 +1,1305 @@
+{
+  "schemaVersion": 1,
+  "applicationCommit": "ee468101700ed3d0a5f94ffde4226a740a3d3ac4",
+  "operationsCommit": "bdbfc04afe24f8e9046459a62779698e6f0bb8b5",
+  "image": "ghcr.io/thaynes43/haynes-quest:sha-ee468101700ed3d0a5f94ffde4226a740a3d3ac4@sha256:9862c6c8f95c74b6c0c5f944125ae7aefe4729f211340a3f43d417e1f663459d",
+  "client": {
+    "path": "/assets/index-DOmWuEtB.js",
+    "bytes": 1171500,
+    "sha256": "40c5715544d0993a2e782065f06be82c29c1b0124dacf6a0ab49136b0f1f29ea"
+  },
+  "driverCommits": {
+    "fullRoute": "e15488e0af96971e4fada7f9a5d74ddf652e616f",
+    "bestiesControls": "6a136f8a7fce3b31f29b6c5fa512107e537509a9",
+    "laterNegativeCoverageGuard": "d5de1f41e97b9234b87d3c5c8c23a7ed122e4fc9"
+  },
+  "evidenceRoot": "/home/dev/work/quest-daughter-levels",
+  "reports": {
+    "bestiesControls": {
+      "path": "test-results/authored-playtest/plan009-final-hosted-chapter2-landscape-verified/report.json",
+      "sha256": "884b7d68b2109adffa1ede2ad017dfcb0b2c2b38fa34e41ae7153a10693fa1e5",
+      "outcome": "passed"
+    },
+    "oldControlsCoverageFailure": {
+      "path": "test-results/authored-playtest/plan009-final-hosted-chapter2-landscape/report.json",
+      "sha256": "7e2daa2b4660dc333cd64eef46a5fba06fdd4658ee1db3d3dfac77b7b1466b39",
+      "outcome": "passed",
+      "adjudication": "coverage-failed: raw success has no layout observations; superseded by the corrected limited diagnostic"
+    },
+    "route": {
+      "path": "test-results/authored-playtest/plan009-final-hosted-route-verified/report.json",
+      "sha256": "a9c3e90abd9fd7087c6f0db5d1e8cd42aaf760f37483a6cee9cfa29a86dba863",
+      "outcome": "passed"
+    },
+    "input": {
+      "path": "test-results/fresh-playtest/plan009-final-hosted-input-diagnostic/report.json",
+      "sha256": "d8db88d3bea65b0031f66318f819f573cd464d91d33a36769ed5cd08517cfc54",
+      "outcome": "input-diagnostic"
+    },
+    "touch": {
+      "path": "test-results/fresh-playtest/plan009-final-hosted-touch-smoke/report.json",
+      "sha256": "2482066536de351fa7a2ce4cbc2dd1b14a79f6c98228ab479d95ef8c6a4674a9",
+      "outcome": "passed-smoke"
+    },
+    "audio": {
+      "path": "test-results/mobile-reliability/plan009-final-hosted/report.json",
+      "sha256": "d3a2c21cc5bb87a664533ddbcae3dd558178839ebe6debdce272ca0c48f13196",
+      "outcome": true
+    },
+    "catalog": {
+      "path": "test-results/visual-catalog/plan009-final-hosted/report.json",
+      "sha256": "e1255075c7cfc36b5cf2022f2489a25d5fec9d0ee366018c4043671737341167",
+      "outcome": "passed"
+    },
+    "api": {
+      "path": "test-results/plan009/review-evidence/playground-api-hosted.json",
+      "sha256": "58b222eec7c15000c815029b5db9f2761dd48ad850011997ed9757dfe9710960",
+      "outcome": true
+    },
+    "initialMotionFailure": {
+      "path": "test-results/authored-playtest/plan009-final-hosted-route/report.json",
+      "sha256": "73c65e06e7b5eaa65b29be63fc72c291792df6d0935a013b95eafa002a7ffb7c",
+      "outcome": "failed"
+    },
+    "retryBookkeepingFailure": {
+      "path": "test-results/authored-playtest/plan009-final-hosted-route-observed/report.json",
+      "sha256": "bbbb3a43bf9889c37bdd8afdcd13067774ad784c7ebb18547481cae9f7722cfa",
+      "outcome": "failed"
+    }
+  },
+  "deployment": {
+    "path": "/home/dev/work/quest-playgrounds-release/.private/test-results/plan009-release/post-hosted-release.json",
+    "sha256": "0db3edbbf4021b166c650a98eb79d12bc058ae8a2250563577389007bcd24fbb",
+    "passed": true,
+    "assertions": 24
+  },
+  "apiAssertions": 59,
+  "route": {
+    "startedAt": "2026-09-12T20:33:49.178Z",
+    "finishedAt": "2026-09-12T20:38:17.672Z",
+    "elapsedSeconds": 268.494,
+    "controls": "real keyboard route movement/jumps and touch combat buttons",
+    "layout": [
+      {
+        "chapter": 1,
+        "courseId": "garden-playground-v1",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "attack": {
+          "x": 672,
+          "y": 290,
+          "width": 84,
+          "height": 84
+        },
+        "bash": {
+          "x": 764,
+          "y": 232,
+          "width": 60,
+          "height": 60
+        },
+        "joystick": {
+          "x": 20,
+          "y": 270,
+          "width": 104,
+          "height": 104
+        },
+        "header": {
+          "x": 24,
+          "y": 10,
+          "width": 796,
+          "height": 57
+        },
+        "helpOpenedAndClosed": true
+      }
+    ],
+    "pausedArtworkRetry": {
+      "assetPath": "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+      "failures": 1,
+      "retryPresses": 1,
+      "phase": "fallen",
+      "failedBefore": 1,
+      "failedAfter": 0,
+      "loadingAfter": 0,
+      "warningHidden": true,
+      "physicsStayedPaused": true,
+      "timeSeconds": 68.86349999999875,
+      "actorsRestored": [
+        "bestie-pink",
+        "bestie-black"
+      ]
+    },
+    "chapters": [
+      {
+        "chapter": 1,
+        "course": {
+          "id": "garden-playground-v1",
+          "schemaVersion": "authored-level-v1",
+          "platforms": 18,
+          "movingPlatforms": 1,
+          "sweepers": 3,
+          "checkpoints": 8,
+          "mainPathPlatforms": 16,
+          "branches": 1,
+          "connections": 19
+        },
+        "dynamics": {
+          "movingPlatforms": [
+            {
+              "id": "garden-ferry",
+              "motion": 0.06840789847412054
+            }
+          ],
+          "sweepers": [
+            {
+              "id": "east-padded-bar",
+              "translation": 0.0991893080529973,
+              "rotation": 0
+            },
+            {
+              "id": "west-padded-bar",
+              "translation": 0.1376822172999641,
+              "rotation": 0
+            },
+            {
+              "id": "garden-turnstile",
+              "translation": 0,
+              "rotation": 0.10468753365654615
+            }
+          ],
+          "sampleCount": 2,
+          "wallElapsedMs": 297,
+          "startTimeSeconds": 0.6999000000000001,
+          "endTimeSeconds": 0.9165000000000002
+        },
+        "contents": [
+          {
+            "type": "friendly",
+            "role": "friendly-1",
+            "id": "level-1-2020-friendly-blockling",
+            "platformId": "welcome",
+            "contacted": true
+          },
+          {
+            "type": "pickup",
+            "role": "attack-tool",
+            "revision": 1,
+            "platformId": "welcome"
+          },
+          {
+            "type": "pickup",
+            "role": "guard-tool",
+            "revision": 3,
+            "platformId": "picnic"
+          },
+          {
+            "type": "memory",
+            "role": "minor-one",
+            "id": "demo-memory-2020-07",
+            "revision": 3,
+            "platformId": "picnic",
+            "renderedHidden": true
+          },
+          {
+            "type": "encounter",
+            "role": "ordinary-1",
+            "id": "level-1-2020-encounter-1",
+            "defeated": true,
+            "platformId": "picnic"
+          },
+          {
+            "type": "encounter",
+            "role": "ordinary-2",
+            "id": "level-1-2020-encounter-2",
+            "defeated": true,
+            "platformId": "woodland-rest"
+          },
+          {
+            "type": "friendly",
+            "role": "friendly-3",
+            "id": "level-1-2020-friendly-buffer-baron",
+            "platformId": "woodland-side-2",
+            "contacted": true
+          },
+          {
+            "type": "friendly",
+            "role": "friendly-2",
+            "id": "level-1-2020-friendly-signal-moth",
+            "platformId": "memory-grove",
+            "contacted": true
+          },
+          {
+            "type": "memory",
+            "role": "minor-two",
+            "id": "demo-memory-2022-01",
+            "revision": 11,
+            "platformId": "memory-grove",
+            "renderedHidden": true
+          },
+          {
+            "type": "encounter",
+            "role": "ordinary-3",
+            "id": "level-1-2020-encounter-3",
+            "defeated": true,
+            "platformId": "memory-grove"
+          },
+          {
+            "type": "encounter",
+            "role": "ordinary-4",
+            "id": "level-1-2020-encounter-4",
+            "defeated": true,
+            "platformId": "pond-dock"
+          },
+          {
+            "type": "encounter",
+            "role": "boss",
+            "id": "level-1-2020-boss",
+            "defeated": true,
+            "platformId": "dragon-clearing"
+          },
+          {
+            "type": "memory",
+            "role": "major",
+            "id": "demo-memory-2024-01",
+            "revision": 32,
+            "platformId": "garden-reward",
+            "renderedHidden": true
+          }
+        ],
+        "combat": [
+          {
+            "role": "ordinary-1",
+            "id": "level-1-2020-encounter-1",
+            "platformId": "picnic",
+            "primaryAccepted": true,
+            "secondaryAccepted": true,
+            "hitsReceived": 0,
+            "hpAtApproach": 10,
+            "playerHpAfter": 10,
+            "combatRetries": 0,
+            "sawDizzy": false
+          },
+          {
+            "role": "ordinary-2",
+            "id": "level-1-2020-encounter-2",
+            "platformId": "woodland-rest",
+            "primaryAccepted": true,
+            "secondaryAccepted": false,
+            "hitsReceived": 1,
+            "hpAtApproach": 10,
+            "playerHpAfter": 8,
+            "combatRetries": 0,
+            "sawDizzy": false
+          },
+          {
+            "role": "ordinary-3",
+            "id": "level-1-2020-encounter-3",
+            "platformId": "memory-grove",
+            "primaryAccepted": true,
+            "secondaryAccepted": true,
+            "hitsReceived": 1,
+            "hpAtApproach": 10,
+            "playerHpAfter": 8,
+            "combatRetries": 0,
+            "sawDizzy": false
+          },
+          {
+            "role": "ordinary-4",
+            "id": "level-1-2020-encounter-4",
+            "platformId": "pond-dock",
+            "primaryAccepted": true,
+            "secondaryAccepted": true,
+            "hitsReceived": 1,
+            "hpAtApproach": 8,
+            "playerHpAfter": 6,
+            "combatRetries": 0,
+            "sawDizzy": false
+          },
+          {
+            "role": "boss",
+            "id": "level-1-2020-boss",
+            "platformId": "dragon-clearing",
+            "primaryAccepted": true,
+            "secondaryAccepted": true,
+            "hitsReceived": 5,
+            "hpAtApproach": 6,
+            "playerHpAfter": 1,
+            "combatRetries": 1,
+            "sawDizzy": false
+          }
+        ],
+        "branch": {
+          "declared": [
+            "woodland-rest",
+            "woodland-side-1",
+            "woodland-side-2",
+            "woodland-side-3",
+            "memory-grove"
+          ],
+          "visited": [
+            "woodland-side-1",
+            "woodland-side-2",
+            "woodland-side-3",
+            "memory-grove"
+          ],
+          "rejoined": true
+        },
+        "recovery": {
+          "checkpointId": "picnic-safe",
+          "direction": {
+            "dx": -1,
+            "dz": 0,
+            "distance": 6,
+            "clearance": 6.370243323453194
+          },
+          "before": 0,
+          "after": 1,
+          "position": {
+            "x": -0.6,
+            "y": 0,
+            "z": -16.8
+          },
+          "protectionSeconds": 0.6500000000000006,
+          "heldInput": 1,
+          "progressPreserved": true
+        },
+        "traversal": {
+          "visitedPlatforms": [
+            "welcome",
+            "garden-hop-1",
+            "garden-hop-2",
+            "garden-hop-3",
+            "picnic",
+            "winding-east",
+            "winding-west",
+            "woodland-rest",
+            "woodland-side-1",
+            "woodland-side-2",
+            "woodland-side-3",
+            "memory-grove",
+            "little-rise",
+            "little-landing",
+            "pond-dock",
+            "garden-ferry",
+            "dragon-clearing",
+            "garden-reward"
+          ],
+          "primaryDamage": 21,
+          "secondaryDamage": 8,
+          "edgeEvidence": [
+            {
+              "from": "welcome",
+              "to": "garden-hop-1",
+              "mode": "jump",
+              "index": 0,
+              "recoveries": 0,
+              "landed": {
+                "x": -0.7999999999999999,
+                "y": 0,
+                "z": -5.399999999999991
+              }
+            },
+            {
+              "from": "garden-hop-1",
+              "to": "garden-hop-2",
+              "mode": "jump",
+              "index": 1,
+              "recoveries": 0,
+              "landed": {
+                "x": -9.71445146547012e-17,
+                "y": 0,
+                "z": -8.80039999999998
+              }
+            },
+            {
+              "from": "garden-hop-2",
+              "to": "garden-hop-3",
+              "mode": "jump",
+              "index": 2,
+              "recoveries": 0,
+              "landed": {
+                "x": -9.71445146547012e-17,
+                "y": 0,
+                "z": -13.733999999999972
+              }
+            },
+            {
+              "from": "garden-hop-3",
+              "to": "picnic",
+              "mode": "jump",
+              "index": 3,
+              "recoveries": 0,
+              "landed": {
+                "x": -0.7999999999999999,
+                "y": 0,
+                "z": -16.93400000000001
+              }
+            },
+            {
+              "from": "picnic",
+              "to": "winding-east",
+              "mode": "jump",
+              "index": 4,
+              "recoveries": 0,
+              "landed": {
+                "x": 2.866799999999987,
+                "y": 0,
+                "z": -25.666800000000432
+              }
+            },
+            {
+              "from": "winding-east",
+              "to": "winding-west",
+              "mode": "jump",
+              "index": 5,
+              "recoveries": 0,
+              "landed": {
+                "x": 1.266799999999988,
+                "y": 0,
+                "z": -32.73240000000069
+              }
+            },
+            {
+              "from": "winding-west",
+              "to": "woodland-rest",
+              "mode": "jump",
+              "index": 6,
+              "recoveries": 0,
+              "landed": {
+                "x": -1.0664000000000242,
+                "y": 0,
+                "z": -39.931200000000324
+              }
+            },
+            {
+              "from": "woodland-rest",
+              "to": "woodland-side-1",
+              "mode": "walk",
+              "index": 7,
+              "recoveries": 0,
+              "landed": {
+                "x": 7.3335999999999615,
+                "y": 0,
+                "z": -46.796399999999984
+              }
+            },
+            {
+              "from": "woodland-side-1",
+              "to": "woodland-side-2",
+              "mode": "jump",
+              "index": 8,
+              "recoveries": 0,
+              "landed": {
+                "x": 7.3335999999999615,
+                "y": 0,
+                "z": -50.86319999999978
+              }
+            },
+            {
+              "from": "woodland-side-2",
+              "to": "woodland-side-3",
+              "mode": "jump",
+              "index": 9,
+              "recoveries": 0,
+              "landed": {
+                "x": 7.399999999999956,
+                "y": 0,
+                "z": -56.2635999999995
+              }
+            },
+            {
+              "from": "woodland-side-3",
+              "to": "memory-grove",
+              "mode": "walk",
+              "index": 10,
+              "recoveries": 0,
+              "landed": {
+                "x": -0.06640000000011417,
+                "y": 0,
+                "z": -63.06399999999908
+              }
+            },
+            {
+              "from": "memory-grove",
+              "to": "little-rise",
+              "mode": "jump",
+              "index": 11,
+              "recoveries": 0,
+              "landed": {
+                "x": -0.19800000000020723,
+                "y": 0.22,
+                "z": -70.1303999999988
+              }
+            },
+            {
+              "from": "little-rise",
+              "to": "little-landing",
+              "mode": "jump",
+              "index": 12,
+              "recoveries": 0,
+              "landed": {
+                "x": -0.19800000000020723,
+                "y": 0,
+                "z": -74.19679999999856
+              }
+            },
+            {
+              "from": "little-landing",
+              "to": "pond-dock",
+              "mode": "jump",
+              "index": 13,
+              "recoveries": 0,
+              "landed": {
+                "x": -0.19800000000020723,
+                "y": 0,
+                "z": -78.86319999999832
+              }
+            },
+            {
+              "from": "pond-dock",
+              "to": "garden-ferry",
+              "mode": "ride",
+              "index": 14,
+              "recoveries": 0,
+              "landed": {
+                "x": 0.40199999999979263,
+                "y": 0,
+                "z": -85.97468999420785
+              }
+            },
+            {
+              "from": "garden-ferry",
+              "to": "dragon-clearing",
+              "mode": "ride",
+              "index": 15,
+              "recoveries": 0,
+              "landed": {
+                "x": 0.40199999999979263,
+                "y": 0,
+                "z": -91.02321075173452
+              }
+            },
+            {
+              "from": "dragon-clearing",
+              "to": "garden-reward",
+              "mode": "walk",
+              "index": 16,
+              "recoveries": 0,
+              "finishTriggered": true,
+              "documentExited": true,
+              "nextDocumentId": "besties-playground-v1"
+            }
+          ],
+          "ferryEvidence": [
+            {
+              "edge": {
+                "from": "pond-dock",
+                "to": "garden-ferry",
+                "mode": "ride",
+                "index": 14
+              },
+              "supportId": "garden-ferry",
+              "platformTravel": 0.14451884073845633,
+              "riderOffset": {
+                "x": 0.40199999999979263,
+                "z": 0.5924217121734756
+              },
+              "offsetDrift": 0
+            }
+          ],
+          "hazardJumps": [
+            {
+              "id": "east-padded-bar",
+              "at": {
+                "x": 2.866799999999987,
+                "y": 0,
+                "z": -27.26680000000051
+              },
+              "angle": 0
+            },
+            {
+              "id": "west-padded-bar",
+              "at": {
+                "x": 1.266799999999988,
+                "y": 0,
+                "z": -35.13240000000055
+              },
+              "angle": 0
+            },
+            {
+              "id": "west-padded-bar",
+              "at": {
+                "x": -0.26640000000002423,
+                "y": 0,
+                "z": -36.73200000000049
+              },
+              "angle": 0
+            }
+          ],
+          "recoveries": [
+            {
+              "at": "chapter-1-route-4",
+              "count": 1,
+              "checkpointId": "picnic-safe",
+              "position": {
+                "x": -0.6,
+                "y": 0,
+                "z": -16.8
+              }
+            }
+          ]
+        }
+      },
+      {
+        "chapter": 2,
+        "course": {
+          "id": "besties-playground-v1",
+          "schemaVersion": "authored-level-v1",
+          "platforms": 19,
+          "movingPlatforms": 1,
+          "sweepers": 2,
+          "checkpoints": 8,
+          "mainPathPlatforms": 18,
+          "branches": 1,
+          "connections": 20
+        },
+        "dynamics": {
+          "movingPlatforms": [
+            {
+              "id": "party-ferry",
+              "motion": 0.0627170779605919
+            }
+          ],
+          "sweepers": [
+            {
+              "id": "ribbon-padded-bar",
+              "translation": 0.18821662663702865,
+              "rotation": 0
+            },
+            {
+              "id": "party-turnstile",
+              "translation": 0,
+              "rotation": 0.06731984257692414
+            }
+          ],
+          "sampleCount": 2,
+          "wallElapsedMs": 156,
+          "startTimeSeconds": 0,
+          "endTimeSeconds": 0.15
+        },
+        "contents": [
+          {
+            "type": "friendly",
+            "role": "friendly-1",
+            "id": "level-2-2024-friendly-loop-dancer",
+            "platformId": "party-welcome",
+            "contacted": true
+          },
+          {
+            "type": "memory",
+            "role": "minor-one",
+            "id": "demo-memory-2025-01",
+            "revision": 34,
+            "platformId": "party-picnic",
+            "renderedHidden": true
+          },
+          {
+            "type": "encounter",
+            "role": "ordinary-1",
+            "id": "level-2-2024-encounter-1",
+            "defeated": true,
+            "platformId": "party-picnic"
+          },
+          {
+            "type": "encounter",
+            "role": "ordinary-2",
+            "id": "level-2-2024-encounter-2",
+            "defeated": true,
+            "platformId": "ribbon-rest"
+          },
+          {
+            "type": "friendly",
+            "role": "friendly-2",
+            "id": "level-2-2024-friendly-prism-mimic",
+            "platformId": "friend-balcony",
+            "contacted": true
+          },
+          {
+            "type": "memory",
+            "role": "minor-two",
+            "id": "demo-memory-2026-01",
+            "revision": 44,
+            "platformId": "party-grove",
+            "renderedHidden": true
+          },
+          {
+            "type": "encounter",
+            "role": "ordinary-3",
+            "id": "level-2-2024-encounter-3",
+            "defeated": true,
+            "platformId": "party-grove"
+          },
+          {
+            "type": "friendly",
+            "role": "friendly-3",
+            "id": "level-2-2024-friendly-trendweaver",
+            "platformId": "party-fair",
+            "contacted": true
+          },
+          {
+            "type": "encounter",
+            "role": "ordinary-4",
+            "id": "level-2-2024-encounter-4",
+            "defeated": true,
+            "platformId": "party-fair"
+          },
+          {
+            "type": "encounter",
+            "role": "boss",
+            "id": "level-2-2024-boss",
+            "defeated": true,
+            "platformId": "besties-court"
+          },
+          {
+            "type": "memory",
+            "role": "major",
+            "id": "demo-memory-2027-01",
+            "revision": 61,
+            "platformId": "party-reward",
+            "renderedHidden": true
+          }
+        ],
+        "combat": [
+          {
+            "role": "ordinary-1",
+            "id": "level-2-2024-encounter-1",
+            "platformId": "party-picnic",
+            "primaryAccepted": true,
+            "secondaryAccepted": true,
+            "hitsReceived": 1,
+            "hpAtApproach": 10,
+            "playerHpAfter": 7,
+            "combatRetries": 0,
+            "sawDizzy": false,
+            "besties": [
+              {
+                "id": "bestie-pink",
+                "visible": true,
+                "clips": [],
+                "motion": 0
+              },
+              {
+                "id": "bestie-black",
+                "visible": true,
+                "clips": [
+                  "idle"
+                ],
+                "motion": 0.009560390024474827
+              }
+            ]
+          },
+          {
+            "role": "ordinary-2",
+            "id": "level-2-2024-encounter-2",
+            "platformId": "ribbon-rest",
+            "primaryAccepted": true,
+            "secondaryAccepted": true,
+            "hitsReceived": 1,
+            "hpAtApproach": 7,
+            "playerHpAfter": 4,
+            "combatRetries": 0,
+            "sawDizzy": false,
+            "besties": [
+              {
+                "id": "bestie-pink",
+                "visible": true,
+                "clips": [],
+                "motion": 0
+              },
+              {
+                "id": "bestie-black",
+                "visible": true,
+                "clips": [
+                  "idle"
+                ],
+                "motion": 0.0070912267738086334
+              }
+            ]
+          },
+          {
+            "role": "ordinary-3",
+            "id": "level-2-2024-encounter-3",
+            "platformId": "party-grove",
+            "primaryAccepted": true,
+            "secondaryAccepted": true,
+            "hitsReceived": 1,
+            "hpAtApproach": 6,
+            "playerHpAfter": 3,
+            "combatRetries": 0,
+            "sawDizzy": false,
+            "besties": [
+              {
+                "id": "bestie-pink",
+                "visible": true,
+                "clips": [],
+                "motion": 0
+              },
+              {
+                "id": "bestie-black",
+                "visible": true,
+                "clips": [
+                  "idle"
+                ],
+                "motion": 0.0069780363345542116
+              }
+            ]
+          },
+          {
+            "role": "ordinary-4",
+            "id": "level-2-2024-encounter-4",
+            "platformId": "party-fair",
+            "primaryAccepted": true,
+            "secondaryAccepted": true,
+            "hitsReceived": 1,
+            "hpAtApproach": 5,
+            "playerHpAfter": 2,
+            "combatRetries": 0,
+            "sawDizzy": false,
+            "besties": [
+              {
+                "id": "bestie-pink",
+                "visible": true,
+                "clips": [],
+                "motion": 0
+              },
+              {
+                "id": "bestie-black",
+                "visible": true,
+                "clips": [
+                  "idle"
+                ],
+                "motion": 0.008221251185853406
+              }
+            ]
+          },
+          {
+            "role": "boss",
+            "id": "level-2-2024-boss",
+            "platformId": "besties-court",
+            "primaryAccepted": true,
+            "secondaryAccepted": false,
+            "hitsReceived": 3,
+            "hpAtApproach": 2,
+            "playerHpAfter": 6,
+            "combatRetries": 1,
+            "sawDizzy": true,
+            "besties": [
+              {
+                "id": "bestie-pink",
+                "visible": true,
+                "clips": [
+                  "attack",
+                  "cheer",
+                  "high-five",
+                  "dizzy",
+                  "hit",
+                  "defeat"
+                ],
+                "motion": 1.2559758854765972
+              },
+              {
+                "id": "bestie-black",
+                "visible": true,
+                "clips": [
+                  "cheer",
+                  "attack",
+                  "high-five",
+                  "dizzy",
+                  "defeat"
+                ],
+                "motion": 0.8130945563733705
+              }
+            ]
+          }
+        ],
+        "branch": {
+          "declared": [
+            "party-dock",
+            "wide-side-bridge",
+            "friend-balcony",
+            "party-grove"
+          ],
+          "visited": [
+            "wide-side-bridge",
+            "friend-balcony",
+            "party-grove"
+          ],
+          "rejoined": true
+        },
+        "recovery": {
+          "checkpointId": "party-picnic-safe",
+          "direction": {
+            "dx": 1,
+            "dz": 0,
+            "distance": 4.665999999999881,
+            "clearance": 6.080296045424104
+          },
+          "before": 0,
+          "after": 1,
+          "position": {
+            "x": 0.13319999999995347,
+            "y": 0,
+            "z": -17.5
+          },
+          "protectionSeconds": 0.7667000000000115,
+          "heldInput": 1,
+          "progressPreserved": true
+        },
+        "traversal": {
+          "visitedPlatforms": [
+            "party-welcome",
+            "party-terrace-1",
+            "party-terrace-2",
+            "party-terrace-3",
+            "party-picnic",
+            "ribbon-lane",
+            "ribbon-rest",
+            "party-ferry",
+            "party-dock",
+            "wide-side-bridge",
+            "friend-balcony",
+            "party-grove",
+            "turnstile-deck",
+            "party-fair",
+            "final-hop-1",
+            "final-hop-2",
+            "besties-court",
+            "party-reward"
+          ],
+          "primaryDamage": 24,
+          "secondaryDamage": 12,
+          "edgeEvidence": [
+            {
+              "from": "party-welcome",
+              "to": "party-terrace-1",
+              "mode": "jump",
+              "index": 0,
+              "recoveries": 0,
+              "landed": {
+                "x": 0.9331999999999532,
+                "y": 0.2,
+                "z": -4.9995999999998535
+              }
+            },
+            {
+              "from": "party-terrace-1",
+              "to": "party-terrace-2",
+              "mode": "jump",
+              "index": 1,
+              "recoveries": 0,
+              "landed": {
+                "x": 0.13319999999995336,
+                "y": 0.35,
+                "z": -9.865599999999835
+              }
+            },
+            {
+              "from": "party-terrace-2",
+              "to": "party-terrace-3",
+              "mode": "jump",
+              "index": 2,
+              "recoveries": 0,
+              "landed": {
+                "x": 0.13319999999995336,
+                "y": 0.15,
+                "z": -12.998399999999874
+              }
+            },
+            {
+              "from": "party-terrace-3",
+              "to": "party-picnic",
+              "mode": "jump",
+              "index": 3,
+              "recoveries": 0,
+              "landed": {
+                "x": 1.6672000000000728,
+                "y": 0,
+                "z": -17.065199999999958
+              }
+            },
+            {
+              "from": "party-picnic",
+              "to": "ribbon-lane",
+              "mode": "jump",
+              "index": 4,
+              "recoveries": 0,
+              "landed": {
+                "x": -2.399599999999861,
+                "y": 0,
+                "z": -27.832400000000607
+              }
+            },
+            {
+              "from": "ribbon-lane",
+              "to": "ribbon-rest",
+              "mode": "jump",
+              "index": 5,
+              "recoveries": 0,
+              "landed": {
+                "x": -3.3995999999998574,
+                "y": 0,
+                "z": -35.56520000000053
+              }
+            },
+            {
+              "from": "ribbon-rest",
+              "to": "party-ferry",
+              "mode": "ride",
+              "index": 6,
+              "recoveries": 0,
+              "landed": {
+                "x": -2.72919469093016,
+                "y": 0,
+                "z": -45.510657550109165
+              }
+            },
+            {
+              "from": "party-ferry",
+              "to": "party-dock",
+              "mode": "ride",
+              "index": 7,
+              "recoveries": 0,
+              "landed": {
+                "x": -2.8758222703234986,
+                "y": 0,
+                "z": -49.243857550109034
+              }
+            },
+            {
+              "from": "party-dock",
+              "to": "wide-side-bridge",
+              "mode": "walk",
+              "index": 8,
+              "recoveries": 0,
+              "landed": {
+                "x": 2.6565777296766417,
+                "y": 0,
+                "z": -58.90985755010843
+              }
+            },
+            {
+              "from": "wide-side-bridge",
+              "to": "friend-balcony",
+              "mode": "walk",
+              "index": 9,
+              "recoveries": 0,
+              "landed": {
+                "x": 4.256177729676613,
+                "y": 0,
+                "z": -65.0430575501082
+              }
+            },
+            {
+              "from": "friend-balcony",
+              "to": "party-grove",
+              "mode": "walk",
+              "index": 10,
+              "recoveries": 0,
+              "landed": {
+                "x": 0.4561777296766182,
+                "y": 0,
+                "z": -71.17585755010774
+              }
+            },
+            {
+              "from": "party-grove",
+              "to": "turnstile-deck",
+              "mode": "jump",
+              "index": 11,
+              "recoveries": 0,
+              "landed": {
+                "x": 1.8561777296766189,
+                "y": 0,
+                "z": -77.37545755010726
+              }
+            },
+            {
+              "from": "turnstile-deck",
+              "to": "party-fair",
+              "mode": "jump",
+              "index": 12,
+              "recoveries": 0,
+              "landed": {
+                "x": 2.4561777296766176,
+                "y": 0,
+                "z": -86.04145755010683
+              }
+            },
+            {
+              "from": "party-fair",
+              "to": "final-hop-1",
+              "mode": "jump",
+              "index": 13,
+              "recoveries": 0,
+              "landed": {
+                "x": -0.8770222703235692,
+                "y": 0,
+                "z": -95.44145755010615
+              }
+            },
+            {
+              "from": "final-hop-1",
+              "to": "final-hop-2",
+              "mode": "jump",
+              "index": 14,
+              "recoveries": 0,
+              "landed": {
+                "x": -0.3438222703236159,
+                "y": 0,
+                "z": -99.57465755010595
+              }
+            },
+            {
+              "from": "final-hop-2",
+              "to": "besties-court",
+              "mode": "jump",
+              "index": 15,
+              "recoveries": 0,
+              "landed": {
+                "x": 1.2565777296762914,
+                "y": 0,
+                "z": -102.84065755010585
+              }
+            },
+            {
+              "from": "besties-court",
+              "to": "party-reward",
+              "mode": "walk",
+              "index": 16,
+              "recoveries": 0,
+              "finishTriggered": true,
+              "triggerPosition": {
+                "x": 0,
+                "y": 0,
+                "z": -124.33279999999876
+              }
+            }
+          ],
+          "ferryEvidence": [
+            {
+              "edge": {
+                "from": "ribbon-rest",
+                "to": "party-ferry",
+                "mode": "ride",
+                "index": 6
+              },
+              "supportId": "party-ferry",
+              "platformTravel": 0.13997787259386874,
+              "riderOffset": {
+                "x": -0.011432246384497358,
+                "z": 0.48934244989083453
+              },
+              "offsetDrift": 0
+            }
+          ],
+          "hazardJumps": [
+            {
+              "id": "ribbon-padded-bar",
+              "at": {
+                "x": -2.399599999999861,
+                "y": 0,
+                "z": -28.632400000000647
+              },
+              "angle": 0
+            },
+            {
+              "id": "party-turnstile",
+              "at": {
+                "x": 1.8561777296766189,
+                "y": 0,
+                "z": -78.1090575501073
+              },
+              "angle": 4.240072964864754
+            },
+            {
+              "id": "party-turnstile",
+              "at": {
+                "x": 1.8561777296766189,
+                "y": 0,
+                "z": -81.44225755010706
+              },
+              "angle": 4.6140571303270725
+            }
+          ],
+          "recoveries": [
+            {
+              "at": "chapter-2-route-4",
+              "count": 1,
+              "checkpointId": "party-picnic-safe",
+              "position": {
+                "x": 0.13319999999995347,
+                "y": 0,
+                "z": -17.5
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "bestiesControls": {
+    "coverage": "authored-first-pickups-and-landscape-controls",
+    "layout": [
+      {
+        "chapter": 2,
+        "courseId": "besties-playground-v1",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "attack": {
+          "x": 672,
+          "y": 290,
+          "width": 84,
+          "height": 84
+        },
+        "bash": {
+          "x": 764,
+          "y": 232,
+          "width": 60,
+          "height": 60
+        },
+        "joystick": {
+          "x": 20,
+          "y": 270,
+          "width": 104,
+          "height": 104
+        },
+        "header": {
+          "x": 24,
+          "y": 10,
+          "width": 796,
+          "height": 57
+        },
+        "helpOpenedAndClosed": true
+      }
+    ],
+    "chapters": [],
+    "startedAt": "2026-09-12T20:41:30.298Z",
+    "finishedAt": "2026-09-12T20:41:59.131Z"
+  },
+  "catalog": {
+    "entries": 37,
+    "thumbnails": 54,
+    "modelDeliveries": 26
+  },
+  "limitations": [
+    "Synthetic pictures only; personal identity and curation are not implemented by this release.",
+    "Long traversal uses real keyboard movement/jumps and touch combat; separate held-stick/world-tap checks do not establish an uninterrupted full-touch journey.",
+    "Software Chromium timings and retries are not child enjoyment, child completion-time or physical iPhone/iPad performance evidence.",
+    "The full route checked Garden landscape; carried equipment bypassed the later pickup/layout test. The separate limited Besties run verifies its current-level pickups and layout. The old controls-only run completed a whole chapter with an empty layout despite raw passed status and is adjudicated a coverage failure.",
+    "Both preserved hosted failures exposed test observation/retry bookkeeping limitations; no exact phase cause is established for the original two-sample motion failure.",
+    "No game asset generation or promotion; exact final asset review remains separate."
+  ]
+}
