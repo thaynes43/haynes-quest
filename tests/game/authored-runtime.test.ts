@@ -272,4 +272,39 @@ describe("authored level runtime", () => {
     expect(onAction).not.toHaveBeenCalled();
     authoredLocation.dispose();
   });
+
+  it("starts the Besties routine when the wand can target an actor at the court entrance", () => {
+    const save = makeAuthoredSave({
+      routeId: "besties-playground-v1",
+      defeatedOrdinaryCount: 4,
+    });
+    const adventure = save.adventure!;
+    const wand = {
+      ...adventure.activeLevel!.pickups.find(
+        (item) => item.kind === "attack-tool",
+      )!,
+      collected: true,
+    };
+    adventure.inventory = [wand];
+    adventure.equippedId = wand.id;
+    const boss = authoredRoute("besties-playground-v1")!.anchors.encounters
+      .boss;
+    runtimeState.spawnOverrides.push({
+      x: boss.position.x + 1.25,
+      y: 0,
+      z: boss.position.z + 4.1,
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction: async () => save,
+      onRefresh: async () => save,
+    });
+    warmRuntime();
+    expect(game.inspect().status.nearEncounterId).toBe(
+      adventure.activeLevel!.bossId,
+    );
+    expect(game.inspect().status.bestiesPhase).toBe("pink-warning");
+    game.dispose();
+  });
 });

@@ -15,6 +15,7 @@ import {
   enemyAttackRange,
   EnemySimulation,
   findAttackTarget,
+  playerAttackRange,
   withinEnemyStrikeHeight,
 } from "./combat";
 import { getAvatarProportions, stepController } from "./controller";
@@ -168,12 +169,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const nearBesties = () => {
     if (!level.authored) return controller.position.z < -17.5;
     const arena = bestiesPlacement()?.arena;
+    const actor = nearestBestiesActor(besties.frame(), controller.position);
+    const withinToolReach =
+      horizontalDistance(controller.position, actor.position) <=
+      playerAttackRange(save, "boss");
     return Boolean(
       arena &&
-      controller.position.x >= arena.minX - 1.5 &&
-      controller.position.x <= arena.maxX + 1.5 &&
-      controller.position.z >= arena.minZ - 1.5 &&
-      controller.position.z <= arena.maxZ + 1.5 &&
+      (withinToolReach ||
+        (controller.position.x >= arena.minX - 1.5 &&
+          controller.position.x <= arena.maxX + 1.5 &&
+          controller.position.z >= arena.minZ - 1.5 &&
+          controller.position.z <= arena.maxZ + 1.5)) &&
       Math.abs(controller.position.y) < 1,
     );
   };
