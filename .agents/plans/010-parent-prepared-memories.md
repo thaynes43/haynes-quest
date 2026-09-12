@@ -1,7 +1,7 @@
 # PLAN010: A parent-prepared personal journey
 
 - **Status:** Draft, September 12, 2026. Required next MVP stage after the longer playgrounds; authentication and media contracts must be ratified before implementation exposes personal content.
-- **Depends on:** [PLAN009](009-daughter-playground-mvp.md) and its hosted acceptance; [identity readiness](../work-orders/080-identity-curation-readiness.md).
+- **Depends on:** [PLAN009](completed/009-daughter-playground-mvp.md) and its hosted acceptance; [identity readiness](../work-orders/080-identity-curation-readiness.md).
 - **Requirements/designs:** [Authentik only](../../docs/adrs/001-authentik-sign-in.md), [parent curation](../../docs/designs/012-player-journey-curation.md), [authored levels](../../docs/designs/016-authored-levels.md), [photo boundary](../../docs/designs/009-overnight-contracts.md).
 
 ## Outcome and scope

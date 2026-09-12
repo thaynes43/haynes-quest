@@ -66,7 +66,7 @@ nav:
       - Runbook template: ops/000-template.md
   - Project records:
       - Parent-prepared memories: project/plans/010-parent-prepared-memories.md
-      - Daughter playground MVP: project/plans/009-daughter-playground-mvp.md
+      - Daughter playground MVP: project/plans/completed/009-daughter-playground-mvp.md
       - Mobile reliability and builder direction: project/plans/completed/008-mobile-reliability-and-builder-direction.md
       - Current handoff: project/HANDOFF.md
       - Fresh playtests and controls: project/plans/completed/007-playtest-reset-and-controls.md
