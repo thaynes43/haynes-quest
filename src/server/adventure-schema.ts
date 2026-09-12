@@ -97,7 +97,12 @@ const levelV2Schema = z.object({
     'remix-runway-v2',
     'besties-obby-v1',
   ]),
-  routeId: z.enum(['gentle-intro-v1', 'gentle-jump-v1']),
+  routeId: z.enum([
+    'gentle-intro-v1',
+    'gentle-jump-v1',
+    'garden-playground-v1',
+    'besties-playground-v1',
+  ]),
   encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
 }).strict();
 const levelV3Schema = z.object({
@@ -110,7 +115,12 @@ const levelV3Schema = z.object({
     'remix-runway-v2',
     'besties-obby-v1',
   ]),
-  routeId: z.enum(['gentle-intro-v1', 'gentle-jump-v1']),
+  routeId: z.enum([
+    'gentle-intro-v1',
+    'gentle-jump-v1',
+    'garden-playground-v1',
+    'besties-playground-v1',
+  ]),
   encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
 }).strict();
 const planSchema = z.discriminatedUnion('version', [
@@ -258,6 +268,9 @@ function validPlan(plan: AdventurePlan): boolean {
     const levelPickupIds = level.pickups.map((equipment) => equipment.pickupId);
     const levelEquipmentIds = level.pickups.map((equipment) => equipment.id);
     const levelEncounterIds = level.encounters.map((encounter) => encounter.id);
+    const playgroundPlan =
+      plan.version === 'era-level-plan-v3' &&
+      plan.catalogVersion === 'parody-catalog-v4';
     if (
       level.index !== index ||
       level.startAgeYears !== priorTargetAge ||
@@ -273,7 +286,8 @@ function validPlan(plan: AdventurePlan): boolean {
         (equipment) => pickupIds.has(equipment.pickupId) || equipmentIds.has(equipment.id),
       ) ||
       level.encounters.some((encounter) => encounterIds.has(encounter.id)) ||
-      level.encounters.filter((encounter) => encounter.role === 'ordinary').length !== 2 ||
+      level.encounters.filter((encounter) => encounter.role === 'ordinary').length !==
+        (playgroundPlan ? 4 : 2) ||
       level.encounters.filter((encounter) => encounter.role === 'boss').length !== 1 ||
       level.encounters.find((encounter) => encounter.id === level.bossId)?.role !== 'boss'
     ) return false;
@@ -294,13 +308,62 @@ function validParodyPlan(plan: AdventurePlanV2 | AdventurePlanV3): boolean {
   if (!catalog) return false;
   for (const level of plan.levels) {
     const abilities = new Set(abilitiesForPlanAge(plan, level.startAgeYears));
-    const expectedRoute = abilities.has('jump') ? 'gentle-jump-v1' : 'gentle-intro-v1';
+    const playgroundPlan =
+      plan.version === 'era-level-plan-v3' &&
+      plan.catalogVersion === 'parody-catalog-v4';
+    const expectedRoute = playgroundPlan
+      ? level.periodId === 'block-party-v1'
+        ? 'garden-playground-v1'
+        : level.periodId === 'besties-obby-v1'
+          ? 'besties-playground-v1'
+          : undefined
+      : abilities.has('jump')
+        ? 'gentle-jump-v1'
+        : 'gentle-intro-v1';
+    const expectedSlots = playgroundPlan
+      ? [
+          ['ordinary-a', 'ordinary'],
+          ['ordinary-b', 'ordinary'],
+          ['ordinary-a', 'ordinary'],
+          ['ordinary-b', 'ordinary'],
+          ['boss', 'boss'],
+        ] as const
+      : null;
+    const contentIdentity = (index: number): string => {
+      const content = level.encounters[index]?.content;
+      return content
+        ? [
+            content.catalogEntryId,
+            content.catalogEntryVersion,
+            content.assetId,
+            content.assetVersion,
+          ].join('\0')
+        : '';
+    };
     if (
+      !expectedRoute ||
       level.routeId !== expectedRoute ||
-      new Set(level.encounters.map((encounter) => encounter.content.catalogEntryId)).size !== level.encounters.length ||
-      level.encounters.filter((encounter) => encounter.kind === 'ordinary-a' && encounter.role === 'ordinary').length !== 1 ||
-      level.encounters.filter((encounter) => encounter.kind === 'ordinary-b' && encounter.role === 'ordinary').length !== 1 ||
-      level.encounters.filter((encounter) => encounter.kind === 'boss' && encounter.role === 'boss').length !== 1
+      (playgroundPlan
+        ? level.encounters.length !== expectedSlots!.length ||
+          level.encounters.some((encounter, index) => {
+            const slot = expectedSlots![index];
+            const expectedId = index === expectedSlots!.length - 1
+              ? `${level.id}-boss`
+              : `${level.id}-encounter-${index + 1}`;
+            return !slot ||
+              encounter.id !== expectedId ||
+              encounter.kind !== slot[0] ||
+              encounter.role !== slot[1];
+          }) ||
+          contentIdentity(0) !== contentIdentity(2) ||
+          contentIdentity(1) !== contentIdentity(3) ||
+          contentIdentity(0) === contentIdentity(1) ||
+          contentIdentity(4) === contentIdentity(0) ||
+          contentIdentity(4) === contentIdentity(1)
+        : new Set(level.encounters.map((encounter) => encounter.content.catalogEntryId)).size !== level.encounters.length ||
+          level.encounters.filter((encounter) => encounter.kind === 'ordinary-a' && encounter.role === 'ordinary').length !== 1 ||
+          level.encounters.filter((encounter) => encounter.kind === 'ordinary-b' && encounter.role === 'ordinary').length !== 1 ||
+          level.encounters.filter((encounter) => encounter.kind === 'boss' && encounter.role === 'boss').length !== 1)
     ) return false;
     for (const encounter of level.encounters) {
       const entry = catalog.find((candidate) =>

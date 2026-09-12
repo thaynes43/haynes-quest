@@ -17,6 +17,7 @@ import {
 import {
   ParodyCatalogUnavailableError,
   selectParodyLevel,
+  selectRouteMemoryLevel,
 } from '../../src/shared/parody-selection.js';
 import { parseStoredAdventure } from '../../src/server/adventure-schema.js';
 import { createApp } from '../../src/server/app.js';
@@ -130,6 +131,46 @@ describe('frozen dated parody selection', () => {
       .toEqual(EXPECTED_2020);
   });
 
+  it('gates the five-slot playground roster to fresh v4 route-memory selection', () => {
+    const garden = selectRouteMemoryLevel('2020-01-01', ['move', 'interact', 'jump']);
+    const besties = selectRouteMemoryLevel('2024-01-01', ['move', 'interact', 'jump']);
+    expect({
+      periodId: garden.periodId,
+      routeId: garden.routeId,
+      ids: garden.encounters.map((entry) => entry.content.catalogEntryId),
+    }).toEqual({
+      periodId: 'block-party-v1',
+      routeId: 'garden-playground-v1',
+      ids: ['mister-hiss', 'peel-patrol', 'mister-hiss', 'peel-patrol', 'drama-dragon'],
+    });
+    expect({
+      periodId: besties.periodId,
+      routeId: besties.routeId,
+      ids: besties.encounters.map((entry) => entry.content.catalogEntryId),
+    }).toEqual({
+      periodId: 'besties-obby-v1',
+      routeId: 'besties-playground-v1',
+      ids: [
+        'sir-flush-a-lot-besties',
+        'peel-patrol-besties',
+        'sir-flush-a-lot-besties',
+        'peel-patrol-besties',
+        'bickering-besties',
+      ],
+    });
+    expect(selectParodyLevel('2020-01-01', ['move', 'interact'], 'parody-catalog-v4')
+      .encounters).toHaveLength(3);
+    expect(() => selectRouteMemoryLevel(
+      '2020-01-01', ['move', 'interact', 'jump'], 'parody-catalog-v3',
+    )).toThrow(ParodyCatalogUnavailableError);
+    expect(() => selectRouteMemoryLevel(
+      '2020-01-01',
+      ['move', 'interact', 'jump'],
+      'parody-catalog-v4',
+      PARODY_CATALOGS['parody-catalog-v4'].filter((entry) => entry.id !== 'drama-dragon'),
+    )).toThrow(ParodyCatalogUnavailableError);
+  });
+
   it('is stable under catalog reorder and freezes the two fixture level identities', () => {
     const forward = selectParodyLevel('2024-01-01', ['move', 'interact', 'jump']);
     const reversed = selectParodyLevel(
@@ -175,12 +216,14 @@ describe('frozen dated parody selection', () => {
     ]);
   });
 
-  it('freezes v3 and represents the duo as one jump-gated boss identity', () => {
-    expect(PARODY_CATALOG_VERSION).toBe('parody-catalog-v3');
+  it('archives v3 unchanged and freezes v4 with the same reviewed identities', () => {
+    expect(PARODY_CATALOG_VERSION).toBe('parody-catalog-v4');
     expect(Object.isFrozen(PARODY_CANDIDATES)).toBe(true);
     expect(PARODY_CANDIDATES.every(Object.isFrozen)).toBe(true);
     expect(PARODY_CANDIDATES.every((entry) => Object.isFrozen(entry.requiredAbilities)))
       .toBe(true);
+    expect(PARODY_CANDIDATES).toEqual(PARODY_CATALOGS['parody-catalog-v3']);
+    expect(PARODY_CANDIDATES).not.toBe(PARODY_CATALOGS['parody-catalog-v3']);
     expect(PARODY_PERIODS['besties-obby-v1']).toEqual({
       title: 'Besties Obby',
       subtitle: 'Pink, black and one missed high-five',

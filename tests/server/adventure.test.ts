@@ -151,10 +151,10 @@ describe('era combat adventure', () => {
       routeId: 'gentle-intro-v1',
     });
     expect(save).toMatchObject({
-      versions: { journey: 'era-level-plan-v2', catalog: 'parody-catalog-v3' },
+      versions: { journey: 'era-level-plan-v2', catalog: 'parody-catalog-v4' },
       adventure: {
         planVersion: 'era-level-plan-v2',
-        catalogVersion: 'parody-catalog-v3',
+        catalogVersion: 'parody-catalog-v4',
       },
     });
     expect(level.encounters.map((encounter) => encounter.content?.catalogEntryId)).toEqual([

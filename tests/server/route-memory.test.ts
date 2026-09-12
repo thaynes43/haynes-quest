@@ -41,6 +41,10 @@ function routePlan(): AdventurePlanV3 {
   return createRouteMemoryPlan('2020-01-01', MEMORIES);
 }
 
+function archivedRoutePlan(): AdventurePlanV3 {
+  return createRouteMemoryPlan('2020-01-01', MEMORIES, 'parody-catalog-v3');
+}
+
 function apply(
   plan: AdventurePlanV3,
   state: AdventureState,
@@ -133,8 +137,9 @@ describe('route-memory plan v3', () => {
     expect(route.scanned).toBe(6);
   });
 
-  it('freezes two three-photo chapters with explicit roles and baseline jump', () => {
+  it('freezes two three-photo chapters on five-slot authored playground routes', () => {
     const plan = routePlan();
+    expect(plan.catalogVersion).toBe('parody-catalog-v4');
     expect(plan.levels.map((level) => ({
       startAgeYears: level.startAgeYears,
       targetAgeYears: level.targetAgeYears,
@@ -147,15 +152,36 @@ describe('route-memory plan v3', () => {
         targetAgeYears: 4,
         minorMemoryIds: ['memory-age-0', 'memory-age-2'],
         majorMemoryId: 'memory-age-4',
-        routeId: 'gentle-jump-v1',
+        routeId: 'garden-playground-v1',
       },
       {
         startAgeYears: 4,
         targetAgeYears: 7,
         minorMemoryIds: ['memory-age-5', 'memory-age-6'],
         majorMemoryId: 'memory-age-7',
-        routeId: 'gentle-jump-v1',
+        routeId: 'besties-playground-v1',
       },
+    ]);
+    expect(plan.levels.map((level) => level.encounters.map((encounter) => ({
+      id: encounter.id,
+      kind: encounter.kind,
+      role: encounter.role,
+      contentId: encounter.content.catalogEntryId,
+    })))).toEqual([
+      [
+        { id: 'level-1-2020-encounter-1', kind: 'ordinary-a', role: 'ordinary', contentId: 'mister-hiss' },
+        { id: 'level-1-2020-encounter-2', kind: 'ordinary-b', role: 'ordinary', contentId: 'peel-patrol' },
+        { id: 'level-1-2020-encounter-3', kind: 'ordinary-a', role: 'ordinary', contentId: 'mister-hiss' },
+        { id: 'level-1-2020-encounter-4', kind: 'ordinary-b', role: 'ordinary', contentId: 'peel-patrol' },
+        { id: 'level-1-2020-boss', kind: 'boss', role: 'boss', contentId: 'drama-dragon' },
+      ],
+      [
+        { id: 'level-2-2024-encounter-1', kind: 'ordinary-a', role: 'ordinary', contentId: 'sir-flush-a-lot-besties' },
+        { id: 'level-2-2024-encounter-2', kind: 'ordinary-b', role: 'ordinary', contentId: 'peel-patrol-besties' },
+        { id: 'level-2-2024-encounter-3', kind: 'ordinary-a', role: 'ordinary', contentId: 'sir-flush-a-lot-besties' },
+        { id: 'level-2-2024-encounter-4', kind: 'ordinary-b', role: 'ordinary', contentId: 'peel-patrol-besties' },
+        { id: 'level-2-2024-boss', kind: 'boss', role: 'boss', contentId: 'bickering-besties' },
+      ],
     ]);
     expect(createInitialAdventureState(plan).abilities).toEqual(['move', 'interact', 'jump']);
     expect(() => createRouteMemoryPlan('2020-01-01', MEMORIES.slice(0, 5)))
@@ -180,10 +206,56 @@ describe('route-memory plan v3', () => {
     expect(v2Besties.content.catalogEntryId).toBe('bickering-besties');
     expect(v2Besties.attackDamage).toBe(4);
 
-    const frozenV3 = structuredClone(plan);
+    const frozenV3 = archivedRoutePlan();
     frozenV3.levels[1]!.encounters.find((encounter) => encounter.role === 'boss')!.attackDamage = 4;
     expect(parseStoredAdventure(frozenV3, createInitialAdventureState(frozenV3)).plan.levels[1]!
       .encounters.find((encounter) => encounter.role === 'boss')!.attackDamage).toBe(4);
+  });
+
+  it('accepts archived v3 routes and rejects cross-version playground tampering', () => {
+    const archived = archivedRoutePlan();
+    expect(archived.levels.map((level) => ({
+      routeId: level.routeId,
+      ids: level.encounters.map((encounter) => encounter.id),
+    }))).toEqual([
+      {
+        routeId: 'gentle-jump-v1',
+        ids: ['level-1-2020-encounter-1', 'level-1-2020-encounter-2', 'level-1-2020-boss'],
+      },
+      {
+        routeId: 'gentle-jump-v1',
+        ids: ['level-2-2024-encounter-1', 'level-2-2024-encounter-2', 'level-2-2024-boss'],
+      },
+    ]);
+    expect(parseStoredAdventure(archived, createInitialAdventureState(archived)).plan)
+      .toEqual(archived);
+
+    const fresh = routePlan();
+    expect(parseStoredAdventure(fresh, createInitialAdventureState(fresh)).plan).toEqual(fresh);
+    const invalidPlans: unknown[] = [];
+    const legacyRoute = structuredClone(fresh);
+    legacyRoute.levels[0]!.routeId = 'gentle-jump-v1';
+    invalidPlans.push(legacyRoute);
+    invalidPlans.push({ ...structuredClone(fresh), catalogVersion: 'parody-catalog-v3' });
+    const changedRoster = structuredClone(fresh);
+    changedRoster.levels[0]!.encounters[2]!.content = structuredClone(
+      changedRoster.levels[0]!.encounters[1]!.content,
+    );
+    invalidPlans.push(changedRoster);
+    const changedOrdinal = structuredClone(fresh);
+    changedOrdinal.levels[0]!.encounters[2]!.id = 'level-1-2020-encounter-9';
+    invalidPlans.push(changedOrdinal);
+    const unknownRoute = structuredClone(fresh) as unknown as Record<string, unknown>;
+    ((unknownRoute.levels as Array<Record<string, unknown>>)[0]!).routeId = 'unknown-route-v1';
+    invalidPlans.push(unknownRoute);
+    invalidPlans.push({ ...structuredClone(fresh), version: 'era-level-plan-v4' });
+
+    for (const invalidPlan of invalidPlans) {
+      expect(() => parseStoredAdventure(
+        invalidPlan,
+        createInitialAdventureState(invalidPlan as AdventurePlanV3),
+      )).toThrow('Save unavailable');
+    }
   });
 
   it('keeps the player alive through four Besties contacts before the fifth causes a fall', () => {
