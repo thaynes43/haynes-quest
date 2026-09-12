@@ -18,6 +18,12 @@ The daughter's MVP is incomplete without identity and curated personal memories.
 
 Repair all three fields together and add a real disposable-Postgres test covering v3 creation, reload and progression with the authored routes, initial jumping, exact memory roles and catalog v4. Preserve existing records and v2 defaults. This bug does not affect the ephemeral playground fixture, whose configuration requires the in-memory store.
 
+## PostgreSQL initialization checkpoint
+
+The first repair is prepared on `agent/quest-postgres-v3-init`. `src/server/db/postgres-store.ts` now passes the requested plan mode into `createAdventureForSave` and stores the constructor's returned rule versions and initial abilities. The default call path remains the v2 path, and stored rows still load through the existing versioned validation without a migration.
+
+`tests/server/postgres.integration.test.ts` adds a disposable-Postgres regression for route-memory v3 creation, two store reopenings and first-chapter progression. It checks catalog v4, both authored route IDs, four ordinary encounter instances plus the boss, the two-minor/one-major memory roles, initial jumping and the persisted age-zero-to-four transition. TypeScript, scoped lint, the production build and 442 local tests pass. All 11 PostgreSQL cases were discovered but skipped locally because `QUEST_TEST_DATABASE_URL` was unset; the pull request's dedicated PostgreSQL CI remains required before merge.
+
 ## Lead decisions and next implementation
 
 Keep account identity separate from the journey's subject: the child's birthday and personal chronology cannot come from an account label, photo coverage or this synthetic fixture. Ratify the smallest parent-prepared family workflow and admission rule before opening private media endpoints. The first slice does not need a general public account system or a child-owned OAuth account merely to play a parent-prepared journey.

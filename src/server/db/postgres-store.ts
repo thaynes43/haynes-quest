@@ -6,11 +6,9 @@ import type { GameplayActionRequest } from '../../shared/contracts.js';
 import { createInitialFriendlyState } from '../../shared/friendly.js';
 import {
   applyGameplayActionToSave,
-  abilitiesForAge,
   appearanceForAge,
   createAdventureForSave,
   isValidFrozenManifest,
-  RULE_VERSIONS,
   type CreateSaveCommand,
   type FixtureMaintenanceResult,
   type NewPreviewRecord,
@@ -141,9 +139,10 @@ export class PostgresQuestStore implements QuestStore {
       if (memories.length < 1 || memories.length > 24) {
         throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
       }
-      const { plan: adventurePlan, state: adventureState } = createAdventureForSave(
+      const { plan: adventurePlan, state: adventureState, versions } = createAdventureForSave(
         preview.birthDate,
         memories,
+        command.planMode,
       );
 
       const [created] = await transaction
@@ -158,7 +157,7 @@ export class PostgresQuestStore implements QuestStore {
           memories,
           recoveredIds: [],
           ageYears: 0,
-          abilities: abilitiesForAge(0),
+          abilities: adventureState.abilities,
           appearanceStage: appearanceForAge(0),
           completed: false,
           saveFormat: 'era-combat-v2',
@@ -166,7 +165,7 @@ export class PostgresQuestStore implements QuestStore {
           adventureState,
           friendlyState: createInitialFriendlyState(adventurePlan),
           revision: 0,
-          versions: RULE_VERSIONS,
+          versions,
         })
         .returning();
       if (!created) throw new AppError(503, 'STORE_WRITE_FAILED', 'Save failed');
