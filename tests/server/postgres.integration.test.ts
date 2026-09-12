@@ -2,12 +2,13 @@ import { randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { Pool } from 'pg';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { memoryIdsForLevel } from '../../src/shared/adventure.js';
+import { memoryIdsForLevel, memoryRoleForLevel } from '../../src/shared/adventure.js';
 import type { GameplayAction, GameplayActionRequest } from '../../src/shared/contracts.js';
 import { friendlyDefinitionsForLevel } from '../../src/shared/friendly.js';
 import { PostgresQuestStore } from '../../src/server/db/postgres-store.js';
 import {
   FIXTURE_SUBJECT,
+  ROUTE_MEMORY_RULE_VERSIONS,
   wholeYearsAt,
   type NewPreviewRecord,
   type SaveRecord,
@@ -62,6 +63,159 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
       });
     } finally {
       await restartedStore.close();
+    }
+  });
+
+  it('Postgres persists a fresh route-memory plan and its progression across restarts', async () => {
+    const sessionId = '99999999-9999-4999-8999-999999999999';
+    const firstStore = PostgresQuestStore.connect(testDatabaseUrl!);
+    const player = await firstStore.createFixtureSession(
+      sessionId,
+      new Date(Date.now() + 60_000),
+    );
+    const preview = await firstStore.putPreview(previewInputForDates(player.id, '2020-01-01', [
+      '2020-07-01',
+      '2022-01-01',
+      '2024-01-01',
+      '2025-01-01',
+      '2026-01-01',
+      '2027-01-01',
+    ]));
+    const created = await firstStore.createSave({
+      ownerId: player.id,
+      previewId: preview.previewId,
+      selectedIds: preview.selectedIds,
+      planMode: 'route-memories',
+    });
+    const plan = created.adventurePlan;
+    if (!plan || plan.version !== 'era-level-plan-v3') throw new Error('Expected a v3 plan');
+    expect(created).toMatchObject({
+      abilities: ['move', 'interact', 'jump'],
+      versions: ROUTE_MEMORY_RULE_VERSIONS,
+      adventureState: {
+        abilities: ['move', 'interact', 'jump'],
+        phase: 'exploring',
+      },
+    });
+    expect(plan.catalogVersion).toBe('parody-catalog-v4');
+    expect(plan.levels.map((level) => ({
+      routeId: level.routeId,
+      memories: memoryIdsForLevel(level).map((id) => [id, memoryRoleForLevel(level, id)]),
+      encounterIds: level.encounters.map((encounter) => encounter.id),
+      encounterRoles: level.encounters.map((encounter) => encounter.role),
+    }))).toEqual([
+      {
+        routeId: 'garden-playground-v1',
+        memories: [
+          ['memory-0', 'minor'],
+          ['memory-1', 'minor'],
+          ['memory-2', 'major'],
+        ],
+        encounterIds: [
+          'level-1-2020-encounter-1',
+          'level-1-2020-encounter-2',
+          'level-1-2020-encounter-3',
+          'level-1-2020-encounter-4',
+          'level-1-2020-boss',
+        ],
+        encounterRoles: ['ordinary', 'ordinary', 'ordinary', 'ordinary', 'boss'],
+      },
+      {
+        routeId: 'besties-playground-v1',
+        memories: [
+          ['memory-3', 'minor'],
+          ['memory-4', 'minor'],
+          ['memory-5', 'major'],
+        ],
+        encounterIds: [
+          'level-2-2024-encounter-1',
+          'level-2-2024-encounter-2',
+          'level-2-2024-encounter-3',
+          'level-2-2024-encounter-4',
+          'level-2-2024-boss',
+        ],
+        encounterRoles: ['ordinary', 'ordinary', 'ordinary', 'ordinary', 'boss'],
+      },
+    ]);
+    await firstStore.close();
+
+    const restartedStore = PostgresQuestStore.connect(testDatabaseUrl!);
+    let resumed = await restartedStore.getSave(player.id, created.id);
+    expect(resumed).toMatchObject({
+      id: created.id,
+      revision: 0,
+      abilities: ['move', 'interact', 'jump'],
+      versions: ROUTE_MEMORY_RULE_VERSIONS,
+      adventurePlan: {
+        version: 'era-level-plan-v3',
+        catalogVersion: 'parody-catalog-v4',
+      },
+      adventureState: {
+        abilities: ['move', 'interact', 'jump'],
+        activeLevelIndex: 0,
+        phase: 'exploring',
+      },
+    });
+    if (!resumed?.adventurePlan || resumed.adventurePlan.version !== 'era-level-plan-v3') {
+      throw new Error('Expected the persisted v3 plan');
+    }
+    let nowMs = Date.parse('2026-09-12T12:00:00.000Z');
+    const firstLevel = resumed.adventurePlan.levels[0]!;
+    for (const memoryId of firstLevel.minorMemoryIds) {
+      resumed = await applyStoreAction(restartedStore, player.id, resumed, {
+        type: 'recover-memory', levelId: firstLevel.id, memoryId,
+      }, nowMs);
+    }
+    const attackTool = firstLevel.pickups.find((pickup) => pickup.kind === 'attack-tool')!;
+    resumed = await applyStoreAction(restartedStore, player.id, resumed, {
+      type: 'collect-equipment', levelId: firstLevel.id, pickupId: attackTool.pickupId,
+    }, nowMs);
+    for (const encounter of firstLevel.encounters) {
+      while (!resumed.adventureState!.encounters[encounter.id]!.defeated) {
+        nowMs += 600;
+        resumed = await applyStoreAction(restartedStore, player.id, resumed, {
+          type: 'attack', levelId: firstLevel.id, encounterId: encounter.id,
+        }, nowMs);
+      }
+    }
+    expect(resumed).toMatchObject({
+      ageYears: 0,
+      recoveredIds: ['memory-0', 'memory-1'],
+      adventureState: { phase: 'memory-released' },
+    });
+    resumed = await applyStoreAction(restartedStore, player.id, resumed, {
+      type: 'recover-memory', levelId: firstLevel.id, memoryId: firstLevel.majorMemoryId,
+    }, nowMs);
+    expect(resumed).toMatchObject({
+      ageYears: 4,
+      abilities: ['move', 'interact', 'jump'],
+      recoveredIds: ['memory-0', 'memory-1', 'memory-2'],
+      completed: false,
+      versions: ROUTE_MEMORY_RULE_VERSIONS,
+      adventureState: {
+        activeLevelIndex: 1,
+        phase: 'exploring',
+        completedLevelIds: [firstLevel.id],
+        consumedMemoryIds: ['memory-0', 'memory-1', 'memory-2'],
+      },
+    });
+    await restartedStore.close();
+
+    const secondRestart = PostgresQuestStore.connect(testDatabaseUrl!);
+    try {
+      expect(await secondRestart.getSave(player.id, created.id)).toMatchObject({
+        revision: resumed.revision,
+        ageYears: 4,
+        abilities: ['move', 'interact', 'jump'],
+        versions: ROUTE_MEMORY_RULE_VERSIONS,
+        adventureState: {
+          activeLevelIndex: 1,
+          phase: 'exploring',
+          completedLevelIds: [firstLevel.id],
+        },
+      });
+    } finally {
+      await secondRestart.close();
     }
   });
 
