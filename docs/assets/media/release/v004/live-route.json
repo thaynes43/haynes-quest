@@ -1,0 +1,97 @@
+{
+  "version": "v004",
+  "source": "test-results/fresh-playtest/plan008-hosted-route/report.json",
+  "source_sha256": "f35465549e5899bbc28f0b141e542cd1b92ccfbe0261e64f58055aa9465d466e",
+  "target": "https://haynes-quest-playtest.haynesops.com",
+  "status": "failed",
+  "started_at": "2026-09-12T16:52:05.417Z",
+  "finished_at": "2026-09-12T16:53:46.916Z",
+  "client": {
+    "path": "/assets/index-DGbCshsH.js",
+    "bytes": 1046627,
+    "sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "traversal": "keyboard movement and jumps; touch UI actions",
+  "route_only": true,
+  "route_completion": {
+    "complete": false,
+    "target_ages": [
+      0,
+      4,
+      7
+    ],
+    "completed_ages": [
+      0,
+      4
+    ],
+    "completed_chapters": 1,
+    "completed_memories": 3,
+    "additional_minor_memories_observed": 2
+  },
+  "minor_memory_scene_roots_after_collection": [
+    {
+      "id": "demo-memory-2020-07",
+      "visible": false
+    },
+    {
+      "id": "demo-memory-2022-01",
+      "visible": false
+    },
+    {
+      "id": "demo-memory-2025-01",
+      "visible": false
+    },
+    {
+      "id": "demo-memory-2026-01",
+      "visible": false
+    }
+  ],
+  "combat": {
+    "chapter_one_secondary_attack_accepted": true,
+    "chapter_one_boss_hit": {
+      "meaning": "Player HP before and after a server-observed boss hit.",
+      "player_hp_before": 6,
+      "player_hp_after": 3,
+      "damage_received": 3
+    },
+    "chapter_two_ordinary_encounters_defeated": 2,
+    "chapter_two_boss_observed": false
+  },
+  "besties": {
+    "artwork_fallback_observed": true,
+    "artwork_restore_observed": false,
+    "rendered_clips_observed": [],
+    "boss_hits_observed": [],
+    "defeat_visibility_observed": false
+  },
+  "retries": {
+    "combat": 0,
+    "local_obby_events": 3,
+    "held_input_preserved": true
+  },
+  "failure": {
+    "type": "TimeoutError",
+    "stage": "chapter-2 Besties artwork recovery",
+    "summary": "Timed out after 20 seconds waiting for the artwork warning to become hidden."
+  },
+  "errors": {
+    "page": 0,
+    "response": 0,
+    "console_503_entries": 1
+  },
+  "limitations": [
+    "This attempt did not complete the requested age 0 to 4 to 7 route.",
+    "Besties rendered clips, boss damage, and post-defeat visibility were not reached.",
+    "WebKit could not launch because the container lacks libgstreamer-1.0.so.0.",
+    "Physical iPhone Safari was not tested."
+  ]
+}

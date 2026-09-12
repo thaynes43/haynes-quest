@@ -938,7 +938,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
     );
     worldWasActive = worldActive;
     elapsed += deltaSeconds;
-    timeSinceStatus += deltaSeconds;
+    // Status includes asynchronous media state, which can change while gameplay is paused.
+    timeSinceStatus += rawDeltaSeconds;
     if (!worldActive) input.clear();
     const currentInput = input.snapshot();
     const pointerLook = input.consumePointerLook();

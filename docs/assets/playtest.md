@@ -37,11 +37,11 @@ The first route starts with grass-lined landings, a glowing tool and two little 
 
 ![The Besties during their shared dizzy window, with Attack and the smaller Bash control](media/playtest/v004/besties-dizzy.png){ width="300" }
 
-The Besties share a recovery window after their missed high-five. The small Bash button appears after you collect a shield. These are actual browser captures; their [capture record](media/playtest/v004/captures.json) identifies the tested versions.
+The Besties share a recovery window after their missed high-five. The small Bash button appears after you collect a shield. These are actual browser captures from the mobile repair candidate; their [capture record](media/playtest/v004/captures.json) identifies the tested versions.
 
 ![Help after a successful test tap, with a repeatable sound button and visible status](media/playtest/v004/help-sound.png){ width="300" }
 
-Help scrolls on touch, and the sound button confirms a test or offers a retry. The [sound check](media/playtest/v004/mobile-audio-local.json) verifies button input and browser playback; listening on your iPhone remains part of the next check.
+Help scrolls on touch, and the sound button confirms a test or offers a retry. Artwork retries also update their result while a menu or the game-over screen is open; they do not require a second tap. The [sound check](media/playtest/v004/mobile-audio-local.json) verifies button input and browser playback; listening on your iPhone remains part of the next check.
 
 ## The encounters
 

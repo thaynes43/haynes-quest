@@ -5,18 +5,18 @@ import type {
   GameplayActionRequest,
   SaveView,
 } from "../../src/shared/contracts";
-import type {
-  SceneFrame,
-  SceneVisualInspection,
-} from "../../src/game/types";
+import type { SceneFrame, SceneVisualInspection } from "../../src/game/types";
 import { makeEraSave } from "./fixtures";
 
 const sceneState = vi.hoisted(() => ({
+  initialMedia: { loading: 1, failed: 2 },
+  retryOutcomes: [] as Array<"success" | "failure">,
   instances: [] as Array<{
     rebuilds: string[];
     updates: number[];
     frames: SceneFrame[];
     retries: number;
+    media: { loading: number; failed: number };
   }>,
 }));
 
@@ -29,6 +29,7 @@ vi.mock("../../src/game/scene", () => ({
       updates: [] as number[],
       frames: [] as SceneFrame[],
       retries: 0,
+      media: { ...sceneState.initialMedia },
     };
 
     constructor(container: HTMLElement) {
@@ -56,7 +57,7 @@ vi.mock("../../src/game/scene", () => ({
     }
 
     getMediaState(): { loading: number; failed: number } {
-      return { loading: 1, failed: 2 };
+      return this.state.media;
     }
 
     inspectVisuals(): SceneVisualInspection {
@@ -65,6 +66,15 @@ vi.mock("../../src/game/scene", () => ({
 
     retryMedia(): void {
       this.state.retries += 1;
+      const outcome = sceneState.retryOutcomes.shift();
+      if (!outcome) return;
+      this.state.media = { loading: 1, failed: 1 };
+      queueMicrotask(() => {
+        this.state.media = {
+          loading: 0,
+          failed: outcome === "success" ? 0 : 1,
+        };
+      });
     }
 
     dispose(): void {
@@ -79,6 +89,8 @@ describe("era game runtime", () => {
   let nextFrame: FrameRequestCallback | undefined;
 
   beforeEach(() => {
+    sceneState.initialMedia = { loading: 1, failed: 2 };
+    sceneState.retryOutcomes.length = 0;
     sceneState.instances.length = 0;
     nextFrame = undefined;
     vi.spyOn(window, "requestAnimationFrame").mockImplementation((callback) => {
@@ -203,6 +215,56 @@ describe("era game runtime", () => {
     game.retryMedia();
     expect(sceneState.instances[0]?.retries).toBe(1);
   });
+
+  it.each([
+    ["successful", "success", 0],
+    ["failed again", "failure", 1],
+  ] as const)(
+    "reports a %s asynchronous media retry while fallen and paused",
+    async (_label, outcome, expectedFailures) => {
+      sceneState.initialMedia = { loading: 0, failed: 1 };
+      sceneState.retryOutcomes.push(outcome);
+      const onStatus = vi.fn();
+      const game = createGame({
+        container: document.createElement("div"),
+        save: makeEraSave({ phase: "fallen", playerHp: 0 }),
+        onAction: async () => makeEraSave({ revision: 1 }),
+        onRefresh: async () => makeEraSave(),
+        onStatus,
+      });
+      game.setPaused(true);
+      const frozen = game.inspect();
+
+      game.retryMedia();
+      expect(onStatus.mock.calls.at(-1)?.[0]).toMatchObject({
+        mediaLoading: 1,
+        mediaFailed: 1,
+      });
+
+      await Promise.resolve();
+      expect(game.inspect().status).toMatchObject({
+        mediaLoading: 0,
+        mediaFailed: expectedFailures,
+      });
+      expect(onStatus.mock.calls.at(-1)?.[0]).toMatchObject({
+        mediaLoading: 1,
+        mediaFailed: 1,
+      });
+
+      const now = performance.now() + 101;
+      nextFrame?.(now);
+      expect(onStatus.mock.calls.at(-1)?.[0]).toMatchObject({
+        mediaLoading: 0,
+        mediaFailed: expectedFailures,
+      });
+      expect(game.inspect()).toMatchObject({
+        status: { position: frozen.status.position },
+        enemies: frozen.enemies,
+      });
+      expect(sceneState.instances[0]?.retries).toBe(1);
+      game.dispose();
+    },
+  );
 
   it("surfaces unavailable action ids without stopping the frame loop", () => {
     vi.stubGlobal("crypto", undefined);

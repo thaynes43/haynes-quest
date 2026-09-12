@@ -23,6 +23,8 @@ const hybridRoute = process.env.QUEST_E2E_HYBRID_ROUTE === "true";
 const skipBossHud = process.env.QUEST_E2E_SKIP_BOSS_HUD === "true";
 const landscapeOnly = process.env.QUEST_E2E_LANDSCAPE_ONLY === "true";
 const smokeOnly = process.env.QUEST_E2E_SMOKE_ONLY === "true";
+const pausedArtworkRetry =
+  process.env.QUEST_E2E_PAUSED_ARTWORK_RETRY === "true";
 assert.ok(Number.isFinite(timeoutMs) && timeoutMs >= 120_000);
 assert.ok(
   routeStartChapter === 1 || routeStartChapter === 2,
@@ -1221,6 +1223,18 @@ const summarizeBestiesVisuals = (tracker) => ({
 
 const verifyBestiesArtworkRecovery = async () => {
   mark("besties-artwork:fallback");
+  if (pausedArtworkRetry) {
+    // Let the actual boss knock the standing player out. Verify the retry
+    // without resuming physics or pressing it a second time.
+    await waitForSave(
+      (save) => save.adventure.phase === "fallen",
+      "paused-artwork-fallen",
+      90_000,
+    );
+    await page
+      .getByRole("dialog", { name: "Take a breath. Try again." })
+      .waitFor();
+  }
   await page
     .getByText("Some artwork couldn’t load.")
     .waitFor({ timeout: 20_000 });
@@ -1246,6 +1260,19 @@ const verifyBestiesArtworkRecovery = async () => {
     "besties-artwork-retry",
     20_000,
   );
+  if (pausedArtworkRetry) {
+    assert.equal(beforeRetry.status.phase, "fallen");
+    assert.equal(afterRetry.status.phase, "fallen");
+    report.pausedArtworkRetry = {
+      phase: afterRetry.status.phase,
+      retryPresses: 1,
+      failedBefore: beforeRetry.status.mediaFailed,
+      failedAfter: afterRetry.status.mediaFailed,
+      loadingAfter: afterRetry.status.mediaLoading,
+      warningHidden: true,
+      remainedPaused: true,
+    };
+  }
   report.injectedArtworkFailure = {
     path: "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
     failures: failedArtworkRequests,

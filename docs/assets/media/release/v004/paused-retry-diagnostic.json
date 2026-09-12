@@ -1,0 +1,78 @@
+{
+  "source": "test-results/fresh-playtest/plan008-hosted-art-diagnostic/report.json",
+  "source_sha256": "4b4486de67d418e67e04c3c4da579b8bcc163feb0ac410d58a7cbbd0f4c24be2",
+  "client": {
+    "path": "/assets/index-DGbCshsH.js",
+    "bytes": 1046627,
+    "sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982"
+  },
+  "scope": "Diagnostic only: second retry explicitly demonstrated stale paused UI; it is not first-tap retry acceptance.",
+  "observations": [
+    {
+      "label": "before-screenshot",
+      "phase": "exploring",
+      "player_hp": 1,
+      "media_loading": 0,
+      "media_failed": 1,
+      "actual_retry_clicks": 0
+    },
+    {
+      "label": "before-tap",
+      "phase": "fallen",
+      "player_hp": 0,
+      "media_loading": 0,
+      "media_failed": 1,
+      "actual_retry_clicks": 0
+    },
+    {
+      "label": "after-tap",
+      "phase": "fallen",
+      "player_hp": 0,
+      "media_loading": 1,
+      "media_failed": 1,
+      "actual_retry_clicks": 1
+    },
+    {
+      "label": "warning-timeout",
+      "phase": "fallen",
+      "player_hp": 0,
+      "media_loading": 0,
+      "media_failed": 0,
+      "actual_retry_clicks": 1
+    },
+    {
+      "label": "repeat-tap",
+      "phase": "fallen",
+      "player_hp": 0,
+      "media_loading": 0,
+      "media_failed": 0,
+      "actual_retry_clicks": 2
+    },
+    {
+      "label": "repeat-cleared",
+      "phase": "fallen",
+      "player_hp": 0,
+      "media_loading": 0,
+      "media_failed": 0,
+      "actual_retry_clicks": 2
+    }
+  ],
+  "diagnosis": "First click starts the load; while fallen, media counters reach zero but warning stays visible for 20 seconds. A second click emits a fresh status and clears it. Status cadence used frozen simulation delta.",
+  "route_after_diagnostic": {
+    "status": "passed",
+    "chapter": 2,
+    "end_age": 7,
+    "defeated_actors": [
+      {
+        "id": "bestie-pink",
+        "visible": false,
+        "clip": "defeat"
+      },
+      {
+        "id": "bestie-black",
+        "visible": false,
+        "clip": "defeat"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "act-164947-373500",
+  "scope": [
+    "frontend",
+    "haynes-quest",
+    "haynes-quest-playtest"
+  ],
+  "started_at": "2026-09-12T16:49:47Z",
+  "status": "active",
+  "ttl_minutes": 45
+}

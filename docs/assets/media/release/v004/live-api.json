@@ -1,0 +1,55 @@
+{
+  "version": "v004",
+  "observed_at": "2026-09-12T16:51:14.938Z",
+  "source": "test-results/hosted-plan008/live-api.json",
+  "source_sha256": "a2045cfe30eaa2a48afaadd5793b250d6d9b9f2cecde7053296794cd6b2236c8",
+  "target": "https://haynes-quest-playtest.haynesops.com",
+  "status": "passed",
+  "summary": {
+    "passed": 53,
+    "failed": 0,
+    "total": 53
+  },
+  "deployment": {
+    "application_commits": [
+      "c5696e3",
+      "b5e6aee"
+    ],
+    "operations_commit": "882ef5a"
+  },
+  "client": {
+    "path": "/assets/index-DGbCshsH.js",
+    "bytes": 1046627,
+    "sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982"
+  },
+  "session": {
+    "mode": "fixture",
+    "progress_mode": "ephemeral",
+    "fresh_starts_distinct": true,
+    "listed_saves": 0,
+    "chapter_one": {
+      "age_years": 0,
+      "active_level_index": 0
+    },
+    "chapter_two": {
+      "age_years": 4,
+      "active_level_index": 1
+    }
+  },
+  "endpoints": {
+    "health_ready": true,
+    "client_shell_and_bundle": true,
+    "session_and_saves": true,
+    "fresh_start": true
+  },
+  "fixture_pictures": {
+    "count": 6,
+    "catalog_exact": true,
+    "fresh_routes_use_catalog": true,
+    "content_type_and_bytes_exact": true
+  },
+  "limitations": [
+    "Fixture progress is intentionally ephemeral; this check does not claim durable save persistence.",
+    "Browser rendering and physical-device behavior are covered by separate records."
+  ]
+}
