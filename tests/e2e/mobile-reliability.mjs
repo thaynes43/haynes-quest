@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import { chromium } from "playwright";
 const url = process.env.QUEST_E2E_URL ?? "http://127.0.0.1:4398";
@@ -53,6 +54,20 @@ try {
   page.on("pageerror", (e) => report.errors.push(e.message));
   page.setDefaultTimeout(20000);
   await page.goto(url);
+  const bundleUrl = await page
+    .locator('script[type="module"][src]')
+    .getAttribute("src");
+  assert.ok(bundleUrl, "Missing application module");
+  const bundleResponse = await context.request.get(
+    new URL(bundleUrl, url).href,
+  );
+  assert.equal(bundleResponse.status(), 200);
+  const bundleBytes = await bundleResponse.body();
+  report.client = {
+    path: bundleUrl,
+    bytes: bundleBytes.length,
+    sha256: createHash("sha256").update(bundleBytes).digest("hex"),
+  };
   await page
     .getByRole("button", { name: "Play from the beginning", exact: true })
     .tap();
