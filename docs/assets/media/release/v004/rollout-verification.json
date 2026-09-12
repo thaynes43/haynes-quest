@@ -1,0 +1,547 @@
+{
+  "schemaVersion": 2,
+  "observedAt": "2026-09-12T16:51:05.273Z",
+  "mode": "read-only-postrelease-verification",
+  "baselineReference": {
+    "path": "/home/dev/work/quest-plan008-private-release/.private/test-results/plan008-private-release/baseline-immediate.json",
+    "capturedAt": "2026-09-12T16:48:56.507Z"
+  },
+  "expected": {
+    "image": "ghcr.io/thaynes43/haynes-quest:sha-c5696e3b884059040bcf67d225697139979a3551@sha256:b5e6aee84795299699bc8f02304a5ddd1cb644f81bf458718bdaa9540e988fd5",
+    "revision": "main@sha1:882ef5a847f0b7461234a2642a446480de248273"
+  },
+  "passed": true,
+  "summary": {
+    "passed": 24,
+    "failed": [],
+    "total": 24
+  },
+  "checks": [
+    {
+      "id": "flux_source_exact_revision_ready",
+      "passed": true,
+      "observed": {
+        "name": "flux-system/haynes-ops",
+        "uid": "a67b6f6b-743c-497f-9e3b-aae6bfc342ab",
+        "generation": 1,
+        "observedGeneration": 1,
+        "revision": "main@sha1:882ef5a847f0b7461234a2642a446480de248273",
+        "ready": true
+      },
+      "expected": {
+        "uid": "a67b6f6b-743c-497f-9e3b-aae6bfc342ab",
+        "generation": 1,
+        "revision": "main@sha1:882ef5a847f0b7461234a2642a446480de248273",
+        "ready": true
+      }
+    },
+    {
+      "id": "flux_kustomization_exact_revision_ready",
+      "passed": true,
+      "observed": {
+        "name": "frontend/haynes-quest",
+        "uid": "8d6a4df9-aff7-4e3c-beae-d08a450b074f",
+        "generation": 3,
+        "observedGeneration": 3,
+        "lastAppliedRevision": "main@sha1:882ef5a847f0b7461234a2642a446480de248273",
+        "ready": true,
+        "reason": "ReconciliationSucceeded"
+      },
+      "expected": {
+        "uid": "8d6a4df9-aff7-4e3c-beae-d08a450b074f",
+        "generation": 3,
+        "revision": "main@sha1:882ef5a847f0b7461234a2642a446480de248273",
+        "ready": true
+      }
+    },
+    {
+      "id": "private_helmrelease_settled",
+      "passed": true,
+      "observed": {
+        "uid": "117b9801-8cf3-49b2-8f9b-7799fd4c770c",
+        "generation": 5,
+        "observedGeneration": 5,
+        "chartRevision": "5.1.0+0d039f7760db",
+        "releaseStatus": "deployed",
+        "ready": true,
+        "reason": "UpgradeSucceeded"
+      },
+      "expected": {
+        "uid": "117b9801-8cf3-49b2-8f9b-7799fd4c770c",
+        "generation": ">4",
+        "chartRevision": "5.1.0+0d039f7760db",
+        "releaseStatus": "deployed",
+        "ready": true
+      }
+    },
+    {
+      "id": "private_deployment_exact_image_settled",
+      "passed": true,
+      "observed": {
+        "uid": "d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b",
+        "generation": 5,
+        "observedGeneration": 5,
+        "revision": 5,
+        "replicas": 1,
+        "readyReplicas": 1,
+        "updatedReplicas": 1,
+        "availableReplicas": 1,
+        "unavailableReplicas": 0,
+        "image": "ghcr.io/thaynes43/haynes-quest:sha-c5696e3b884059040bcf67d225697139979a3551@sha256:b5e6aee84795299699bc8f02304a5ddd1cb644f81bf458718bdaa9540e988fd5"
+      },
+      "expected": {
+        "uid": "d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b",
+        "generation": ">4",
+        "revision": ">4",
+        "image": "ghcr.io/thaynes43/haynes-quest:sha-c5696e3b884059040bcf67d225697139979a3551@sha256:b5e6aee84795299699bc8f02304a5ddd1cb644f81bf458718bdaa9540e988fd5",
+        "replicas": "1/1 updated, ready and available"
+      }
+    },
+    {
+      "id": "private_pod_exact_digest_zero_restarts",
+      "passed": true,
+      "observed": {
+        "name": "haynes-quest-playtest-549c4d7b76-nn4tf",
+        "uid": "7ae5b272-2a6d-4784-9422-4c5fc21d9545",
+        "ready": true,
+        "restarts": 0,
+        "runtimeImageDigest": "sha256:b5e6aee84795299699bc8f02304a5ddd1cb644f81bf458718bdaa9540e988fd5"
+      },
+      "expected": {
+        "ready": true,
+        "restarts": 0,
+        "runtimeImageDigest": "sha256:b5e6aee84795299699bc8f02304a5ddd1cb644f81bf458718bdaa9540e988fd5"
+      },
+      "note": "The private pod UID may rotate."
+    },
+    {
+      "id": "private_required_public_environment",
+      "passed": true,
+      "observed": {
+        "matches": true,
+        "checkedNames": [
+          "NODE_ENV",
+          "PORT",
+          "QUEST_APP_ORIGIN",
+          "QUEST_EPHEMERAL_PLAYTEST",
+          "QUEST_FIXTURE_MODE"
+        ]
+      },
+      "expected": {
+        "matches": true,
+        "checkedNames": [
+          "NODE_ENV",
+          "PORT",
+          "QUEST_APP_ORIGIN",
+          "QUEST_EPHEMERAL_PLAYTEST",
+          "QUEST_FIXTURE_MODE"
+        ]
+      }
+    },
+    {
+      "id": "private_service_identity_and_exact_spec",
+      "passed": true,
+      "observed": {
+        "uid": "f1c93ed4-75ae-45fa-9e1d-efe270e07c37",
+        "clusterIP": "10.43.174.201",
+        "selector": "app.kubernetes.io/controller=main,app.kubernetes.io/instance=haynes-quest-playtest,app.kubernetes.io/name=haynes-quest-playtest",
+        "port": 3000,
+        "specSha256": "ea558a37d19fce5da279ed7272867a97bbabbc486684235a0fc286ab95e60468"
+      },
+      "expected": {
+        "uid": "f1c93ed4-75ae-45fa-9e1d-efe270e07c37",
+        "specSha256": "ea558a37d19fce5da279ed7272867a97bbabbc486684235a0fc286ab95e60468"
+      }
+    },
+    {
+      "id": "private_ingressRoute_identity_and_exact_spec",
+      "passed": true,
+      "observed": {
+        "uid": "6bc371bf-4425-4d3b-a818-5a071625be97",
+        "generation": 1,
+        "entryPoint": "websecure",
+        "match": "Host(`haynes-quest-playtest.haynesops.com`) && PathPrefix(`/`)",
+        "service": "haynes-quest-playtest:3000",
+        "tlsSecretName": "certificate-haynesops",
+        "specSha256": "cfd2771d3ad4f7b0d436a2e6dac600dc14fdf33d22b08a3d283d6981923fd450"
+      },
+      "expected": {
+        "uid": "6bc371bf-4425-4d3b-a818-5a071625be97",
+        "generation": 1,
+        "specSha256": "cfd2771d3ad4f7b0d436a2e6dac600dc14fdf33d22b08a3d283d6981923fd450"
+      }
+    },
+    {
+      "id": "private_networkPolicy_identity_and_exact_spec",
+      "passed": true,
+      "observed": {
+        "name": "haynes-quest-playtest",
+        "uid": "d8c0e74a-f505-4908-931d-15edf8fbd333",
+        "generation": 1,
+        "valid": true,
+        "specSha256": "254d6c28cc7490bebc4f8ee529712307aac22861892a9f90efdf90b3a57a9271"
+      },
+      "expected": {
+        "uid": "d8c0e74a-f505-4908-931d-15edf8fbd333",
+        "generation": 1,
+        "specSha256": "254d6c28cc7490bebc4f8ee529712307aac22861892a9f90efdf90b3a57a9271",
+        "valid": true
+      }
+    },
+    {
+      "id": "normal_service_identity_and_exact_spec",
+      "passed": true,
+      "observed": {
+        "uid": "822590b9-e17a-4666-8780-f975553d27ce",
+        "clusterIP": "10.43.214.26",
+        "selector": "app.kubernetes.io/controller=main,app.kubernetes.io/instance=haynes-quest,app.kubernetes.io/name=haynes-quest",
+        "port": 3000,
+        "specSha256": "94940847328d03cbdea18f9210ca9cc11a3fd3773301c0790940d1048fd9e87d"
+      },
+      "expected": {
+        "uid": "822590b9-e17a-4666-8780-f975553d27ce",
+        "specSha256": "94940847328d03cbdea18f9210ca9cc11a3fd3773301c0790940d1048fd9e87d"
+      }
+    },
+    {
+      "id": "normal_ingressRoute_identity_and_exact_spec",
+      "passed": true,
+      "observed": {
+        "uid": "89efd0c9-ba58-4f31-b306-5b6fbc9d23a0",
+        "generation": 1,
+        "entryPoint": "websecure",
+        "match": "Host(`haynes-quest.haynesops.com`) && PathPrefix(`/`)",
+        "service": "haynes-quest:3000",
+        "tlsSecretName": "certificate-haynesops",
+        "specSha256": "da1c5032735b920de6f3caa2e8c5912f990dd7fba1a9ff37ac4acd2737f4aa53"
+      },
+      "expected": {
+        "uid": "89efd0c9-ba58-4f31-b306-5b6fbc9d23a0",
+        "generation": 1,
+        "specSha256": "da1c5032735b920de6f3caa2e8c5912f990dd7fba1a9ff37ac4acd2737f4aa53"
+      }
+    },
+    {
+      "id": "normal_networkPolicy_identity_and_exact_spec",
+      "passed": true,
+      "observed": {
+        "name": "haynes-quest-fixture",
+        "uid": "5499b732-b729-4266-993d-f22611dc4904",
+        "generation": 1,
+        "valid": true,
+        "specSha256": "fbf796789ff0b804ce773df0ce9d6a9ea80ebfbca2b4546309d3cb3ab7c9ebef"
+      },
+      "expected": {
+        "uid": "5499b732-b729-4266-993d-f22611dc4904",
+        "generation": 1,
+        "specSha256": "fbf796789ff0b804ce773df0ce9d6a9ea80ebfbca2b4546309d3cb3ab7c9ebef",
+        "valid": true
+      }
+    },
+    {
+      "id": "private_endpointslice_routes_to_current_pod",
+      "passed": true,
+      "observed": {
+        "name": "haynes-quest-playtest-c55ks",
+        "uid": "140b275f-3eec-4be2-9c77-3614662c3dbc",
+        "targetPod": "haynes-quest-playtest-549c4d7b76-nn4tf",
+        "targetPodUid": "7ae5b272-2a6d-4784-9422-4c5fc21d9545",
+        "address": "10.42.3.82",
+        "port": 3000,
+        "ready": true,
+        "exactTarget": true
+      },
+      "expected": {
+        "oneReadyTarget": "haynes-quest-playtest-549c4d7b76-nn4tf",
+        "port": 3000
+      },
+      "note": "The private EndpointSlice UID and name may rotate."
+    },
+    {
+      "id": "private_cilium_endpoint_ready_identity_labels",
+      "passed": true,
+      "observed": {
+        "uid": "5110487e-76db-4c22-8e06-e584a47a7243",
+        "state": "ready",
+        "address": "10.42.3.82",
+        "exactIdentityLabelsMatch": true
+      },
+      "expected": {
+        "state": "ready",
+        "exactIdentityLabelsMatch": true
+      },
+      "note": "The private CiliumEndpoint UID and numeric identity may rotate."
+    },
+    {
+      "id": "normal_helmrelease_unchanged_settled",
+      "passed": true,
+      "observed": {
+        "uid": "a0b71566-535e-4c48-991c-38fc6bbe4eaf",
+        "generation": 3,
+        "observedGeneration": 3,
+        "chartRevision": "5.1.0+0d039f7760db",
+        "releaseStatus": "deployed",
+        "ready": true,
+        "reason": "UpgradeSucceeded"
+      },
+      "expected": {
+        "uid": "a0b71566-535e-4c48-991c-38fc6bbe4eaf",
+        "generation": 3,
+        "observedGeneration": 3,
+        "chartRevision": "5.1.0+0d039f7760db",
+        "releaseStatus": "deployed",
+        "ready": true,
+        "reason": "UpgradeSucceeded"
+      }
+    },
+    {
+      "id": "normal_deployment_unchanged_settled",
+      "passed": true,
+      "observed": {
+        "uid": "c17ee749-129e-4059-8091-ba167639604e",
+        "generation": 3,
+        "observedGeneration": 3,
+        "revision": 3,
+        "replicas": 1,
+        "readyReplicas": 1,
+        "updatedReplicas": 1,
+        "availableReplicas": 1,
+        "unavailableReplicas": 0,
+        "image": "ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+      },
+      "expected": {
+        "uid": "c17ee749-129e-4059-8091-ba167639604e",
+        "generation": 3,
+        "observedGeneration": 3,
+        "revision": 3,
+        "replicas": 1,
+        "readyReplicas": 1,
+        "updatedReplicas": 1,
+        "availableReplicas": 1,
+        "unavailableReplicas": 0,
+        "image": "ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+      }
+    },
+    {
+      "id": "normal_pod_identity_image_restarts_unchanged",
+      "passed": true,
+      "observed": {
+        "name": "haynes-quest-7d9b698574-nds6g",
+        "uid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+        "ready": true,
+        "restarts": 0,
+        "runtimeImageDigest": "sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+      },
+      "expected": {
+        "name": "haynes-quest-7d9b698574-nds6g",
+        "uid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+        "ready": true,
+        "restarts": 0,
+        "runtimeImageDigest": "sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+      }
+    },
+    {
+      "id": "normal_public_environment_unchanged",
+      "passed": true,
+      "observed": {
+        "matches": true,
+        "checkedNames": [
+          "NODE_ENV",
+          "PORT",
+          "QUEST_APP_ORIGIN",
+          "QUEST_FIXTURE_MODE"
+        ]
+      },
+      "expected": {
+        "matches": true,
+        "checkedNames": [
+          "NODE_ENV",
+          "PORT",
+          "QUEST_APP_ORIGIN",
+          "QUEST_FIXTURE_MODE"
+        ]
+      }
+    },
+    {
+      "id": "normal_endpointslice_identity_target_unchanged",
+      "passed": true,
+      "observed": {
+        "name": "haynes-quest-dz299",
+        "uid": "d6e80168-d5e0-49a1-9d15-698f2fdde3fe",
+        "targetPod": "haynes-quest-7d9b698574-nds6g",
+        "targetPodUid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+        "address": "10.42.4.222",
+        "port": 3000,
+        "ready": true,
+        "exactTarget": true
+      },
+      "expected": {
+        "name": "haynes-quest-dz299",
+        "uid": "d6e80168-d5e0-49a1-9d15-698f2fdde3fe",
+        "targetPod": "haynes-quest-7d9b698574-nds6g",
+        "targetPodUid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+        "address": "10.42.4.222",
+        "port": 3000,
+        "ready": true,
+        "exactTarget": true
+      }
+    },
+    {
+      "id": "normal_cilium_endpoint_identity_unchanged_ready",
+      "passed": true,
+      "observed": {
+        "uid": "c4c4e1a9-2950-4bd3-9406-3391a449376c",
+        "state": "ready",
+        "identity": 114782,
+        "address": "10.42.4.222",
+        "exactIdentityLabelsMatch": true
+      },
+      "expected": {
+        "uid": "c4c4e1a9-2950-4bd3-9406-3391a449376c",
+        "state": "ready",
+        "identity": 114782,
+        "address": "10.42.4.222",
+        "exactIdentityLabelsMatch": true
+      }
+    },
+    {
+      "id": "dev_env_helmrelease_unchanged_settled",
+      "passed": true,
+      "observed": {
+        "uid": "f47f6744-38ee-426e-b17f-e5a48737b6da",
+        "generation": 30,
+        "observedGeneration": 30,
+        "chartRevision": "5.1.0+0d039f7760db",
+        "releaseStatus": "deployed",
+        "ready": true,
+        "reason": "UpgradeSucceeded"
+      },
+      "expected": {
+        "uid": "f47f6744-38ee-426e-b17f-e5a48737b6da",
+        "generation": 30,
+        "observedGeneration": 30,
+        "chartRevision": "5.1.0+0d039f7760db",
+        "releaseStatus": "deployed",
+        "ready": true,
+        "reason": "UpgradeSucceeded"
+      }
+    },
+    {
+      "id": "dev_env_deployment_unchanged_settled",
+      "passed": true,
+      "observed": {
+        "uid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+        "generation": 100,
+        "observedGeneration": 100,
+        "revision": 51,
+        "replicas": 1,
+        "readyReplicas": 1,
+        "updatedReplicas": 1,
+        "availableReplicas": 1,
+        "unavailableReplicas": 0,
+        "image": "ghcr.io/thaynes43/dev-env:0.5.4@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+      },
+      "expected": {
+        "uid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+        "generation": 100,
+        "observedGeneration": 100,
+        "revision": 51,
+        "replicas": 1,
+        "readyReplicas": 1,
+        "updatedReplicas": 1,
+        "availableReplicas": 1,
+        "unavailableReplicas": 0,
+        "image": "ghcr.io/thaynes43/dev-env:0.5.4@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+      }
+    },
+    {
+      "id": "dev_env_pod_identity_images_restarts_unchanged",
+      "passed": true,
+      "observed": {
+        "name": "dev-env-dfdd8c894-l724p",
+        "uid": "c3a94756-af35-405e-93bc-eb05c2979d3a",
+        "ready": true,
+        "containers": [
+          {
+            "name": "app",
+            "ready": true,
+            "restarts": 0,
+            "runtimeImageDigest": "sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+          },
+          {
+            "name": "auth-watch",
+            "ready": true,
+            "restarts": 0,
+            "runtimeImageDigest": "sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+          },
+          {
+            "name": "gh-refresher",
+            "ready": true,
+            "restarts": 0,
+            "runtimeImageDigest": "sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+          }
+        ]
+      },
+      "expected": {
+        "name": "dev-env-dfdd8c894-l724p",
+        "uid": "c3a94756-af35-405e-93bc-eb05c2979d3a",
+        "ready": true,
+        "containers": [
+          {
+            "name": "app",
+            "ready": true,
+            "restarts": 0,
+            "runtimeImageDigest": "sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+          },
+          {
+            "name": "auth-watch",
+            "ready": true,
+            "restarts": 0,
+            "runtimeImageDigest": "sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+          },
+          {
+            "name": "gh-refresher",
+            "ready": true,
+            "restarts": 0,
+            "runtimeImageDigest": "sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "https_health_and_readiness",
+      "passed": true,
+      "observed": [
+        {
+          "url": "https://haynes-quest.haynesops.com/healthz",
+          "status": 200,
+          "bodyMatches": true,
+          "passed": true
+        },
+        {
+          "url": "https://haynes-quest.haynesops.com/readyz",
+          "status": 200,
+          "bodyMatches": true,
+          "passed": true
+        },
+        {
+          "url": "https://haynes-quest-playtest.haynesops.com/healthz",
+          "status": 200,
+          "bodyMatches": true,
+          "passed": true
+        },
+        {
+          "url": "https://haynes-quest-playtest.haynesops.com/readyz",
+          "status": 200,
+          "bodyMatches": true,
+          "passed": true
+        }
+      ],
+      "expected": "four TLS-verified HTTP 200 JSON responses with exact status bodies"
+    }
+  ],
+  "scope": {
+    "reads": "named Flux, Quest, dev-env, routing and Cilium resources plus four HTTPS health probes",
+    "excludes": "Secrets, unrestricted environment, application data and all mutations"
+  }
+}

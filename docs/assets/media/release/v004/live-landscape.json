@@ -1,0 +1,17 @@
+{
+  "version": "v004",
+  "expected_source": "test-results/fresh-playtest/plan008-hosted-landscape/report.json",
+  "source_sha256": null,
+  "target": "https://haynes-quest-playtest.haynesops.com",
+  "status": "pending",
+  "deployed_client": {
+    "verified_by": "docs/assets/media/release/v004/live-api.json",
+    "path": "/assets/index-DGbCshsH.js",
+    "bytes": 1046627,
+    "sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982"
+  },
+  "reason": "The sequential hosted suite stopped after the failed full-route attempt, before the landscape run produced a report.",
+  "limitations": [
+    "No hosted landscape browser result is available, so this record makes no layout or control pass claim."
+  ]
+}
