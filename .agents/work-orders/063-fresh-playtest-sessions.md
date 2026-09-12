@@ -21,7 +21,7 @@ The root app shell now sends `Cache-Control: no-store`. Vite-style content-hashe
 
 ## Verification
 
-- `pnpm exec vitest run tests/server/app.test.ts tests/server/config.test.ts tests/server/maintenance.test.ts` — 22 tests passed.
+- `pnpm exec vitest run tests/server/app.test.ts tests/server/config.test.ts tests/server/maintenance.test.ts` — 29 tests passed in the final integrated tree.
 - `pnpm exec vitest run tests/server` — 74 tests passed; ten PostgreSQL tests skipped because `QUEST_TEST_DATABASE_URL` was not set.
 - Scoped ESLint over every owned implementation and test file — passed with zero warnings.
 - `pnpm typecheck` — passed after the shared WO064 contract settled.
@@ -39,4 +39,4 @@ Five synthetic pointer tests were added in `tests/game/input.test.ts` without ch
 
 The ephemeral start route was reviewed for authentication, request integrity, isolation and resource bounds. It is registered only in ephemeral fixture mode, requires a valid signed owner session, exact same-origin mutation header, strict JSON with only chapter 1 or 2, and the existing per-owner write limiter. Its photo request and plan mode are server-selected, responses are covered by API `no-store`, fresh records are capped by the ephemeral store, and chapter preparation persists only validated revision-controlled actions. Added endpoint assertions reject a missing session, missing origin, chapter 3 and an extra client-supplied save ID; persistent mode returns 404. No concrete security regression was found.
 
-Follow-up verification: `pnpm exec vitest run tests/server/app.test.ts tests/game/input.test.ts` passed 23 tests, scoped ESLint passed with zero warnings, and `pnpm typecheck` remained green.
+Final focused verification: `pnpm exec vitest run tests/server/app.test.ts tests/server/config.test.ts tests/server/maintenance.test.ts tests/game/input.test.ts` passed all 38 tests. Scoped ESLint passed with zero warnings, and `pnpm typecheck` remained green at the implementation checkpoint.

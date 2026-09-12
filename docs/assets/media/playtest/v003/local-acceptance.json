@@ -1,0 +1,391 @@
+{
+  "version": "v003",
+  "recorded_on": "2026-09-12",
+  "client": {
+    "path": "/assets/index-Bn3nnDAn.js",
+    "bytes": 1041657,
+    "sha256": "0e795d99f5fd820bc5388c8ae24c350f4214c3ac5a6fbcbdc444b9ae5db43702"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "hasTouch": true
+    },
+    "rendering": "Headless Chromium with SwiftShader software rendering"
+  },
+  "complete_route": {
+    "source": "test-results/fresh-playtest/final-bn3-route-complete/report.json",
+    "source_status": "passed",
+    "controls": "keyboard movement and jumps; touch UI actions",
+    "chapters": [
+      {
+        "chapter": 1,
+        "levelId": "level-1-2020",
+        "eraYear": 2020,
+        "startAge": 0,
+        "minorIds": [
+          "demo-memory-2020-07",
+          "demo-memory-2022-01"
+        ],
+        "majorId": "demo-memory-2024-01",
+        "revisions": {
+          "attackTool": 1,
+          "minorOne": 3,
+          "guardTool": 3,
+          "ordinaryOne": 5,
+          "minorTwo": 6,
+          "ordinaryTwo": 9,
+          "boss": 15,
+          "major": 16
+        },
+        "frames": {
+          "samples": 28,
+          "durationMs": 2849.899999999998,
+          "averageMs": 101.78214285714277,
+          "averageFps": 9.824906137057448,
+          "p50Ms": 116.70000000000073,
+          "p95Ms": 166.6999999999989,
+          "maxMs": 249.89999999999964
+        },
+        "ordinaryDefeatedBeforeBoss": [
+          {
+            "id": "level-1-2020-encounter-1",
+            "defeated": true
+          },
+          {
+            "id": "level-1-2020-encounter-2",
+            "defeated": true
+          }
+        ],
+        "secondaryAttackAccepted": true,
+        "sawBestiesDizzy": false,
+        "endAge": 4
+      },
+      {
+        "chapter": 2,
+        "levelId": "level-2-2024",
+        "eraYear": 2024,
+        "startAge": 4,
+        "minorIds": [
+          "demo-memory-2025-01",
+          "demo-memory-2026-01"
+        ],
+        "majorId": "demo-memory-2027-01",
+        "revisions": {
+          "attackTool": 17,
+          "minorOne": 19,
+          "guardTool": 19,
+          "ordinaryOne": 21,
+          "minorTwo": 22,
+          "ordinaryTwo": 25,
+          "boss": 30,
+          "major": 31
+        },
+        "frames": {
+          "samples": 26,
+          "durationMs": 2783.2999999999956,
+          "averageMs": 107.04999999999983,
+          "averageFps": 9.341429238673532,
+          "p50Ms": 133.1999999999971,
+          "p95Ms": 166.6999999999971,
+          "maxMs": 333.3000000000029
+        },
+        "ordinaryDefeatedBeforeBoss": [
+          {
+            "id": "level-2-2024-encounter-1",
+            "defeated": true
+          },
+          {
+            "id": "level-2-2024-encounter-2",
+            "defeated": true
+          }
+        ],
+        "secondaryAttackAccepted": true,
+        "sawBestiesDizzy": true,
+        "endAge": 7
+      }
+    ],
+    "recovered_memories": 6,
+    "combat_retries": 0,
+    "local_obby_recoveries": 5,
+    "held_input_preserved_after_observed_recoveries": true,
+    "besties_shortcut": {
+      "revision": 13,
+      "ageYears": 4,
+      "activeLevelIndex": 1,
+      "bestiesPhase": "inactive"
+    },
+    "artwork_retry": {
+      "path": "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+      "failures": 1,
+      "before": 1,
+      "after": 0,
+      "gamePhase": "exploring"
+    },
+    "passive_hud_taps": {
+      "age-hud": {
+        "hitElement": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "ageYears": 0,
+        "jumpSequence": 1
+      },
+      "objective-hud": {
+        "hitElement": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "ageYears": 0,
+        "jumpSequence": 2
+      }
+    },
+    "audio_zero_volume_restore": {
+      "restoredVolume": 0.8,
+      "output": {
+        "available": true,
+        "contexts": [
+          {
+            "state": "running",
+            "sampleCount": 182272,
+            "nonzeroSampleCount": 29,
+            "maxAbs": 0.29086118936538696,
+            "analyserConnected": true
+          }
+        ]
+      }
+    },
+    "unexpected_page_errors": 0,
+    "unexpected_response_errors": 0,
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    ]
+  },
+  "focused_prefix": {
+    "source": "test-results/fresh-playtest/final-bn3-controls-smoke-pass-2/report.json",
+    "source_status": "passed-smoke",
+    "scope": "Clean final-build controls/audio/reset smoke using real CDP touches. Down/up commands are queued in protocol order without an extra slow-renderer acknowledgement between them. No synthetic PointerEvent is used for this browser cancellation proof.",
+    "audio": {
+      "testSound": {
+        "available": true,
+        "contexts": [
+          {
+            "state": "running",
+            "sampleCount": 266240,
+            "nonzeroSampleCount": 112,
+            "maxAbs": 0.4604392647743225,
+            "analyserConnected": true
+          }
+        ]
+      },
+      "mutedJump": {
+        "available": true,
+        "contexts": [
+          {
+            "state": "running",
+            "sampleCount": 108544,
+            "nonzeroSampleCount": 0,
+            "maxAbs": 0,
+            "analyserConnected": true
+          }
+        ]
+      },
+      "unmute": {
+        "available": true,
+        "contexts": [
+          {
+            "state": "running",
+            "sampleCount": 167936,
+            "nonzeroSampleCount": 27,
+            "maxAbs": 0.3635765016078949,
+            "analyserConnected": true
+          }
+        ]
+      }
+    },
+    "gestures": {
+      "spaceAtAgeZero": {
+        "age": 0,
+        "startY": 0,
+        "airborneY": 0.5329331999999967
+      },
+      "cancelledWorldTouch": {
+        "before": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "after": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "worldTapAtAgeZero": {
+        "age": 0,
+        "startY": 0,
+        "airborneY": 0.5335332999999989
+      },
+      "simultaneous": {
+        "attackOutcome": "no-target",
+        "heldMoveXDuringAttack": -0.14444446563720703,
+        "heldMoveXDuringJump": -0.14444446563720703,
+        "airborneY": 0.6250833250000019,
+        "jumpSequence": 1,
+        "cancelledWorldPointer": {
+          "heldContactId": 8,
+          "heldMoveXBeforeCancel": -0.14444446563720703,
+          "moveXAfterCancel": 0,
+          "jumpSequence": 1
+        }
+      }
+    },
+    "leave_starts_new_run": true,
+    "reload_starts_new_run": true,
+    "discarded_reload_revision": 1,
+    "page_errors": [],
+    "response_errors": [],
+    "console_errors": []
+  },
+  "held_touch": {
+    "source": "test-results/fresh-playtest/held-world-input-sequence/report.json",
+    "source_status": "input-diagnostic",
+    "evidence": {
+      "tap": {
+        "durationMs": 610,
+        "pointerId": 4
+      },
+      "beforeJumpSequence": 2,
+      "afterJumpSequence": 3,
+      "heldMoveYBeforeTap": 1,
+      "heldMoveYAfterTap": 1,
+      "groundedAfterTap": false,
+      "pointerTrace": [
+        {
+          "type": "pointerdown",
+          "pointerId": 10,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "timeStamp": 12181.40000000596,
+          "x": 74,
+          "y": 758
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 10,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "timeStamp": 12306.200000017881,
+          "x": 74,
+          "y": 714
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 11,
+          "pointerType": "touch",
+          "target": "CANVAS.",
+          "timeStamp": 12566.700000017881,
+          "x": 273,
+          "y": 464.20001220703125
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 11,
+          "pointerType": "touch",
+          "target": "CANVAS.",
+          "timeStamp": 13070.90000000596,
+          "x": 273,
+          "y": 464.20001220703125
+        }
+      ]
+    },
+    "protocol_scope": "This cached Chromium accepts partial touchEnd contact lists, an extension outside the documented CDP empty-end contract. A touchMove with only the remaining active contact did not emit pointerup in a separate observed probe. This is not portable WebKit coverage."
+  },
+  "performance": [
+    {
+      "label": "chapter-1-active-route",
+      "samples": 28,
+      "durationMs": 2849.899999999998,
+      "averageMs": 101.78214285714277,
+      "averageFps": 9.824906137057448,
+      "p50Ms": 116.70000000000073,
+      "p95Ms": 166.6999999999989,
+      "maxMs": 249.89999999999964
+    },
+    {
+      "label": "chapter-2-active-route",
+      "samples": 26,
+      "durationMs": 2783.2999999999956,
+      "averageMs": 107.04999999999983,
+      "averageFps": 9.341429238673532,
+      "p50Ms": 133.1999999999971,
+      "p95Ms": 166.6999999999971,
+      "maxMs": 333.3000000000029
+    }
+  ],
+  "limitations": [
+    "Software rendering measured roughly 9\u201310 fps; it does not meet the game device frame budget and does not predict physical iPhone/iPad frame rates.",
+    "WebKit could not launch because required GStreamer host libraries are absent.",
+    "Audio analyser signal and mute checks do not establish physical speaker audibility.",
+    "The complete final route uses keyboard movement/jumps and touch combat. Focused real multi-touch checks and earlier chapter-specific touch routes are separate evidence."
+  ],
+  "held_wand_damage_and_landscape": {
+    "source": "test-results/fresh-playtest/final-bn3-landscape/report.json",
+    "source_status": "passed-landscape",
+    "client": {
+      "path": "/assets/index-Bn3nnDAn.js",
+      "bytes": 1041657,
+      "sha256": "0e795d99f5fd820bc5388c8ae24c350f4214c3ac5a6fbcbdc444b9ae5db43702"
+    },
+    "held_touch_attack": {
+      "encounterId": "level-2-2024-encounter-1",
+      "revisionBefore": 15,
+      "revisionAfter": 16,
+      "hpBefore": 6,
+      "hpAfter": 3,
+      "retainedMoveX": -1,
+      "tapDurationMs": 601
+    },
+    "layout": {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "attack": {
+        "x": 672,
+        "y": 290,
+        "width": 84,
+        "height": 84
+      },
+      "bash": {
+        "x": 764,
+        "y": 232,
+        "width": 60,
+        "height": 60
+      },
+      "joystick": {
+        "x": 20,
+        "y": 270,
+        "width": 104,
+        "height": 104
+      },
+      "header": {
+        "x": 24,
+        "y": 10,
+        "width": 796,
+        "height": 57
+      },
+      "helpOpenedAndClosed": true
+    },
+    "scope": "Actual joystick and Attack touch contacts dealt authoritative wand damage while the stick stayed held. Keyboard travel positioned the player first. The independently injected Pink503 remained visible during this layout capture; its recovery was verified in the full route."
+  },
+  "historical_driver_diagnostics": {
+    "source": "test-results/fresh-playtest/final-bn3-hybrid/report.json",
+    "source_status": "failed",
+    "scope": "An earlier prefix used an invalid synthetic pointer capture during cancellation and later timed out on a Bash locator readiness race. Later touch attempts also suffered renderer-delayed sequential CDP calls. These failures remain raw diagnostic records, superseded for controls by the clean real-touch smoke above. The passing complete route uses bounded combat waits.",
+    "boss_hud_tap_scope": "The earlier prefix separately proved a canvas hit and jumpSequence increment on the boss HUD; the complete route explicitly skipped that duplicate rather than claiming it ran."
+  }
+}
