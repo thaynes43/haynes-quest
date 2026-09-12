@@ -125,6 +125,53 @@ function knownModelSave(): SaveView {
   };
 }
 
+function routeMemorySave(
+  firstMemoryState: "released" | "revealed",
+): SaveView {
+  const save = makeEraSave({ phase: "memory-released" });
+  const adventure = save.adventure;
+  const activeLevel = adventure?.activeLevel;
+  if (!adventure || !activeLevel)
+    throw new Error("Route-memory fixture needs an active level");
+  const memoryIds = ["memory-1", "memory-2", "memory-3"];
+  const memories = save.memories.map((memory, index) => ({
+    ...memory,
+    role: index === 2 ? ("major" as const) : ("minor" as const),
+    state:
+      index === 0
+        ? firstMemoryState
+        : index === 1 || index === 2
+          ? ("released" as const)
+          : memory.state,
+    mediaUrl: `/fixture/${index + 1}.svg`,
+  }));
+  return {
+    ...save,
+    memories,
+    recoveredIds:
+      firstMemoryState === "revealed" ? [memoryIds[0]!] : [],
+    adventure: {
+      ...adventure,
+      planVersion: "era-level-plan-v3",
+      activeLevel: {
+        ...activeLevel,
+        memoryIds,
+        minorMemoryIds: [memoryIds[0]!, memoryIds[1]!],
+        majorMemoryId: memoryIds[2]!,
+      },
+      secondaryCooldownRemainingMs: 0,
+    },
+  };
+}
+
+function memoryRoot(id: string): THREE.Object3D {
+  const root = harness.attachments.find(
+    (attachment) => attachment.target.name === `memory-${id}`,
+  )?.target;
+  if (!root) throw new Error(`Memory ${id} was not attached to the scene`);
+  return root;
+}
+
 function frame(overrides: Partial<SceneFrame> = {}): SceneFrame {
   return {
     deltaSeconds: 0,
@@ -271,6 +318,44 @@ describe("GardenScene fallback and attack lifecycle", () => {
     );
     expect(avatar.rotation.x).toBeCloseTo(0, 6);
     expect(avatar.rotation.z).toBeCloseTo(0, 6);
+    scene.dispose();
+  });
+
+  it("removes a contacted route memory from the world after recovery", () => {
+    const released = routeMemorySave("released");
+    const scene = new GardenScene(
+      document.createElement("div"),
+      createLevelLayout(released),
+      released,
+    );
+    const root = memoryRoot("memory-1");
+    expect(root.visible).toBe(true);
+
+    scene.updateProgress(routeMemorySave("revealed"));
+
+    expect(root.visible).toBe(false);
+    scene.dispose();
+  });
+
+  it("keeps an archived revealed memory visible until bundle consumption", () => {
+    const released = makeEraSave({ phase: "memory-released" });
+    const scene = new GardenScene(
+      document.createElement("div"),
+      createLevelLayout(released),
+      released,
+    );
+    const root = memoryRoot("memory-1");
+    expect(root.visible).toBe(true);
+
+    scene.updateProgress(
+      makeEraSave({
+        phase: "memory-released",
+        revealedCount: 1,
+        revision: 1,
+      }),
+    );
+
+    expect(root.visible).toBe(true);
     scene.dispose();
   });
 });

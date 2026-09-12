@@ -552,6 +552,133 @@ describe("obby game runtime", () => {
     game.dispose();
   });
 
+  it("gives an accepted memory contact the frame without turning queued combat into feedback", async () => {
+    const initial = routeMemoryRoutedSave(
+      {
+        defeatedIds: ["level-1-2020-ordinary-a"],
+        collectedKinds: ["attack-tool", "guard-tool"],
+      },
+      1,
+    );
+    const recovered = routeMemoryRoutedSave(
+      {
+        revision: 1,
+        defeatedIds: ["level-1-2020-ordinary-a"],
+        collectedKinds: ["attack-tool", "guard-tool"],
+      },
+      2,
+    );
+    const onAction = vi.fn((request: GameplayActionRequest) =>
+      request.action.type === "recover-memory"
+        ? Promise.resolve(recovered)
+        : new Promise<SaveView>(() => undefined),
+    );
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    game.setInput("moveY", 1);
+    advance(0);
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    game.setInput("guard", true);
+    game.setInput("guard", false);
+
+    advance();
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+      action: { type: "recover-memory", memoryId: "route-memory-2" },
+    });
+    expect(game.inspect().status.attackFeedback).toBeNull();
+    expect(sceneState.instances.at(-1)?.frames.at(-1)).toMatchObject({
+      attacking: false,
+      secondaryAttacking: false,
+    });
+
+    await vi.waitFor(() =>
+      expect(game.inspect().status.requestBusy).toBe(false),
+    );
+    expect(game.inspect().status.nearMemoryId).toBeNull();
+
+    game.setInput("moveX", 1);
+    game.setInput("moveY", 1);
+    for (let frame = 0; frame < 13; frame += 1) advance();
+    game.clearInput();
+    expect(game.inspect().status.nearEncounterId).toBe(
+      "level-1-2020-ordinary-b",
+    );
+
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "accepted",
+    });
+
+    expect(onAction.mock.calls.map(([request]) => request.action.type)).toEqual([
+      "recover-memory",
+      "attack",
+    ]);
+    game.dispose();
+  });
+
+  it("keeps a memory collectible when its contacted recovery request fails", async () => {
+    const initial = routeMemoryRoutedSave(
+      {
+        defeatedIds: ["level-1-2020-ordinary-a"],
+        collectedKinds: ["attack-tool", "guard-tool"],
+      },
+      1,
+    );
+    const onAction = vi.fn(async () => {
+      throw Object.assign(new Error("Action unavailable"), {
+        code: "ACTION_NOT_AVAILABLE",
+      });
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    game.setInput("moveY", 1);
+    advance(0);
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+
+    advance();
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(game.inspect().status.attackFeedback).toBeNull();
+    await vi.waitFor(() =>
+      expect(game.inspect().status.requestState).toBe("error"),
+    );
+    expect(
+      game
+        .inspect()
+        .level.memoryPositions.find(
+          (memory) => memory.id === "route-memory-2",
+        ),
+    ).toMatchObject({ state: "released" });
+    expect(game.inspect().status.nearMemoryId).toBe("route-memory-2");
+
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(game.inspect().status.attackFeedback).toEqual({
+      sequence: 1,
+      outcome: "no-target",
+    });
+    game.dispose();
+  });
+
   it("maps the v3 guard input to a close-range secondary attack", () => {
     const initial = routeMemoryRoutedSave(
       {

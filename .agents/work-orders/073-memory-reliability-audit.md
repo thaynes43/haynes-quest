@@ -1,10 +1,10 @@
 # WO073: Memory pickup reliability and reusable level seams
 
-- **Status:** Complete — read-only source audit
+- **Status:** Complete — source audit and focused regression coverage
 - **Model / dispatch:** Native GPT-5.6 Sol, `xhigh`, fresh delegated context
 - **Worktree / branch / base commit:** `/home/dev/work/quest-memory-reliability`; `agent/quest-memory-reliability`; `d461cda8e6fe7aecdb37933c21fd53e934ffabeb`
-- **Owned path:** This report only. The coordinator owns PLAN008, design/UI text, implementation, tests, review and delivery.
-- **Boundaries:** No game source, tests, assets, browser fixture, private media, OAuth, cluster state or dev-env changes.
+- **Owned paths:** This report, `tests/game/artwork-fallback.test.ts` and `tests/game/runtime-obby.test.ts`. The coordinator owns PLAN008, design/UI text, runtime implementation, review and delivery.
+- **Boundaries:** No game runtime, assets, browser fixture, private media, OAuth, cluster state or dev-env changes.
 
 ## Reported observation
 
@@ -75,3 +75,15 @@ The smallest durable direction is a versioned declarative level registry that co
 - deterministic compilation and checked-in fixtures, with semantic tests for complete route traversal and gate order rather than snapshots of generated coordinates.
 
 This inventory is technical input only. PLAN008 and any product/editor workflow decisions remain with the Astra coordinator.
+
+## Follow-up regression evidence
+
+The focused follow-up implements the behavior-level coverage requested by the coordinator:
+
+- `tests/game/artwork-fallback.test.ts:324-359` constructs real `GardenScene` instances through the existing renderer/asset fallback harness, follows the attached memory root in the scene graph, and asserts that a v3 minor changes from visible `released` to hidden `revealed`. Its paired archived v2 case asserts that the older revealed-until-bundle behavior remains visible.
+- `tests/game/runtime-obby.test.ts:555-628` enters contact range with both Attack and Guard edges queued. It asserts that contact sends exactly one `recover-memory`, emits neither attack feedback nor either attack pose, applies the authoritative reveal so the memory is no longer near, and accepts a later explicit Attack against an actual encounter.
+- `tests/game/runtime-obby.test.ts:630-680` rejects the contacted recovery request. It asserts that the failed request emits no same-frame Attack feedback, leaves the authoritative memory `released` and still near, sends no synthetic interaction or duplicate recovery, and allows a later Attack edge to report its independent `no-target` result.
+
+On unchanged base `d461cda8e6fe7aecdb37933c21fd53e934ffabeb`, the focused Vitest run has 34 passing and three expected failures: v3 revealed visibility remains `true`, the accepted-contact overlap records secondary `no-target` sequence 2, and the failed-contact overlap records primary `no-target` sequence 1. The archived v2 visibility assertion passes there.
+
+In a detached integration worktree at coordinator head `717cfe6`, with this test diff applied, the same focused run passes all 37 tests. `pnpm typecheck` and targeted ESLint for both owned test files also pass on this branch.
