@@ -1,0 +1,267 @@
+{
+  "version": "v004",
+  "recorded_on": "2026-09-12",
+  "source_commit": "7256000",
+  "client": {
+    "path": "/assets/index-DGbCshsH.js",
+    "bytes": 1046627,
+    "sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software"
+  },
+  "complete_route": {
+    "source": "test-results/fresh-playtest/plan008-v004-route/report.json",
+    "url": "http://127.0.0.1:4398",
+    "status": "passed",
+    "started_at": "2026-09-12T16:22:00.860Z",
+    "finished_at": "2026-09-12T16:24:09.581Z",
+    "traversal": "keyboard movement and jumps; touch UI actions",
+    "route_only": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "chapters": 2,
+    "ages": [
+      0,
+      4,
+      7
+    ],
+    "memories_collected": 6,
+    "minor_memory_scene_roots_after_collection": [
+      {
+        "id": "demo-memory-2020-07",
+        "visible": false
+      },
+      {
+        "id": "demo-memory-2022-01",
+        "visible": false
+      },
+      {
+        "id": "demo-memory-2025-01",
+        "visible": false
+      },
+      {
+        "id": "demo-memory-2026-01",
+        "visible": false
+      }
+    ],
+    "secondary_attack_accepted": {
+      "chapter_1": true,
+      "chapter_2": true
+    },
+    "besties": {
+      "phases_observed": [
+        "black-trick",
+        "high-five",
+        "dizzy",
+        "pink-warning",
+        "pink-trick",
+        "black-warning"
+      ],
+      "dizzy_observed": true,
+      "rendered_actors": [
+        {
+          "id": "bestie-pink",
+          "selected_clips": [
+            "cheer",
+            "high-five",
+            "dizzy",
+            "hit",
+            "attack"
+          ],
+          "max_world_position_motion": 0.7974843237083431,
+          "max_head_world_motion": 0.817553570161332
+        },
+        {
+          "id": "bestie-black",
+          "selected_clips": [
+            "attack",
+            "high-five",
+            "dizzy",
+            "cheer"
+          ],
+          "max_world_position_motion": 0.8828806616188576,
+          "max_head_world_motion": 0.899728404982865
+        }
+      ],
+      "boss_hits": {
+        "meaning": "Player HP before and after server-observed boss hits.",
+        "observations": [
+          {
+            "player_hp_before": 10,
+            "player_hp_after": 8,
+            "damage_received": 2
+          },
+          {
+            "player_hp_before": 8,
+            "player_hp_after": 6,
+            "damage_received": 2
+          },
+          {
+            "player_hp_before": 6,
+            "player_hp_after": 4,
+            "damage_received": 2
+          },
+          {
+            "player_hp_before": 4,
+            "player_hp_after": 2,
+            "damage_received": 2
+          }
+        ]
+      },
+      "defeat_animation_wait_ms": 1889,
+      "actors_after_defeat": [
+        {
+          "id": "bestie-pink",
+          "clip": "defeat",
+          "visible": false
+        },
+        {
+          "id": "bestie-black",
+          "clip": "defeat",
+          "visible": false
+        }
+      ]
+    },
+    "recovery": {
+      "combat_retries": 1,
+      "local_obby_events": 7,
+      "held_input_preserved": true
+    },
+    "artwork_recovery": {
+      "injected_bestie_model_failures": 1,
+      "fallback_observed": true,
+      "restored_actors": [
+        "bestie-pink",
+        "bestie-black"
+      ]
+    },
+    "unexpected_errors": {
+      "page": 0,
+      "response": 0,
+      "console": 0
+    }
+  },
+  "touch_controls": {
+    "source": "test-results/fresh-playtest/plan008-v004-touch/report.json",
+    "url": "http://127.0.0.1:4398",
+    "status": "passed-smoke",
+    "started_at": "2026-09-12T16:21:12.524Z",
+    "finished_at": "2026-09-12T16:21:43.336Z",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "traversal": "touch joystick, world taps, and touch UI actions",
+    "outcomes": {
+      "keyboard_jump_at_age_zero": true,
+      "world_tap_jump_at_age_zero": true,
+      "cancelled_world_touch_did_not_move": true,
+      "held_jump_touch_ms": 374,
+      "move_held_during_attack": true,
+      "move_held_during_jump": true,
+      "cancelled_contact_reset_move_input": true,
+      "leave_created_fresh_journey": true,
+      "reload_created_fresh_journey": true
+    },
+    "unexpected_errors": {
+      "page": 0,
+      "response": 0,
+      "console": 0
+    }
+  },
+  "audio_signal": {
+    "source": "test-results/fresh-playtest/plan008-v004-touch/report.json",
+    "status": "passed",
+    "test_sound": {
+      "nonzero_samples": 113,
+      "max_abs": 0.4573076367378235
+    },
+    "muted_jump": {
+      "nonzero_samples": 0,
+      "max_abs": 0
+    },
+    "after_unmute": {
+      "nonzero_samples": 26,
+      "max_abs": 0.3635765016078949
+    },
+    "audio_context_running": true,
+    "analyser_connected": true
+  },
+  "landscape_layout": {
+    "source": "test-results/fresh-playtest/plan008-v004-landscape-focused/report.json",
+    "url": "http://127.0.0.1:4398",
+    "status": "passed-landscape",
+    "started_at": "2026-09-12T16:29:45.372Z",
+    "finished_at": "2026-09-12T16:30:02.496Z",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "controls_non_overlapping": true,
+    "control_bounds": {
+      "attack": {
+        "x": 672,
+        "y": 290,
+        "width": 84,
+        "height": 84
+      },
+      "bash": {
+        "x": 764,
+        "y": 232,
+        "width": 60,
+        "height": 60
+      },
+      "joystick": {
+        "x": 20,
+        "y": 270,
+        "width": 104,
+        "height": 104
+      },
+      "header": {
+        "x": 24,
+        "y": 10,
+        "width": 796,
+        "height": 57
+      }
+    },
+    "held_attack": {
+      "enemy_hp_before": 6,
+      "enemy_hp_after": 3,
+      "damage": 3,
+      "retained_move_x": -1,
+      "tap_duration_ms": 251
+    },
+    "help_opened_and_closed": true,
+    "unexpected_errors": {
+      "page": 0,
+      "response": 0,
+      "console": 0
+    },
+    "expected_artwork_503_console_entries": 1,
+    "first_attempt": {
+      "source": "test-results/fresh-playtest/plan008-v004-landscape/report.json",
+      "status": "failed",
+      "started_at": "2026-09-12T16:26:28.456Z",
+      "finished_at": "2026-09-12T16:26:57.992Z",
+      "world_tap_accepted": true,
+      "observed_jump_sequence": 2,
+      "failure": "The post-touch poll did not sample the airborne frame.",
+      "layout_assertion_completed": false,
+      "unexpected_errors": {
+        "page": 0,
+        "response": 0,
+        "console": 0
+      }
+    }
+  },
+  "limitations": [
+    "WebKit was cached but could not launch because the container lacks libgstreamer-1.0.so.0.",
+    "Physical iPhone Safari, speaker output, and final art quality were not assessed.",
+    "Frame pacing numbers came from Chromium with SwiftShader and are diagnostic rather than device performance evidence."
+  ]
+}

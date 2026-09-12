@@ -1,0 +1,44 @@
+{
+  "version": "v004",
+  "captured_on": "2026-09-12",
+  "source_commit": "7256000",
+  "scope": "Selected local Chromium playtest evidence; no private media or journey identifiers.",
+  "captures": [
+    {
+      "path": "docs/assets/media/playtest/v004/age-zero-route.png",
+      "source": "test-results/fresh-playtest/plan008-v004-route/chapter-1-route-start.png",
+      "client": "/assets/index-DGbCshsH.js",
+      "client_bytes": 1046627,
+      "client_sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982",
+      "sha256": "f0ee6b60428362e118d17f14002111628f7cf029638da51d9470e8c2d032fb31",
+      "bytes": 182384
+    },
+    {
+      "path": "docs/assets/media/playtest/v004/besties-dizzy.png",
+      "source": "test-results/fresh-playtest/plan008-v004-route/besties-dizzy.png",
+      "client": "/assets/index-DGbCshsH.js",
+      "client_bytes": 1046627,
+      "client_sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982",
+      "sha256": "4e99ce0e8124ed5f563699fc6808512a05745051935f4c683a34bdeb4f9e6cf1",
+      "bytes": 156962
+    },
+    {
+      "path": "docs/assets/media/playtest/v004/besties-defeated.png",
+      "source": "test-results/fresh-playtest/plan008-v004-route/chapter-2-boss-defeated.png",
+      "client": "/assets/index-DGbCshsH.js",
+      "client_bytes": 1046627,
+      "client_sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982",
+      "sha256": "525f848431caadb2267d06ecae45984683b632ec819456f7bdc4d3e0a9c8325d",
+      "bytes": 133269
+    },
+    {
+      "path": "docs/assets/media/playtest/v004/help-sound.png",
+      "source": "test-results/mobile-audio-v004/help-sound.png",
+      "client": "/assets/index-DGbCshsH.js",
+      "client_bytes": 1046627,
+      "client_sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982",
+      "sha256": "0a9f30fc47c56e3d1e89200d7fc1e62a64fe7b360ceef3fdde8974b1810df12c",
+      "bytes": 69775
+    }
+  ]
+}

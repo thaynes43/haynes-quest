@@ -1,0 +1,96 @@
+{
+  "version": "v004",
+  "recorded_on": "2026-09-12",
+  "source_commit": "7256000",
+  "source": "test-results/catalog-plan008-updated/report.json",
+  "url": "http://127.0.0.1:4398/studio/assets/catalog.html",
+  "status": "passed",
+  "client": {
+    "path": "/assets/index-DGbCshsH.js",
+    "bytes": 1046627,
+    "sha256": "999cb163fc55304ced6f2f244d1b0dab8584d1c143ab0e62ee3a9f5c08535982"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software"
+  },
+  "inventory": {
+    "source": "scripts/assets/catalog-inventory.json",
+    "entries": 37,
+    "thumbnail_files": 54,
+    "model_deliveries": 26
+  },
+  "responsive_landing": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "touch": false,
+      "cards": 37,
+      "category_jumps": 8,
+      "images": 63
+    },
+    {
+      "name": "phone",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true,
+      "cards": 37,
+      "category_jumps": 8,
+      "images": 63
+    }
+  ],
+  "reviews": {
+    "pages": 28,
+    "entries": 37,
+    "images": 131,
+    "model_viewers": 26
+  },
+  "nap_captain": {
+    "loaded": true,
+    "visible": true,
+    "clips": [
+      "idle",
+      "move",
+      "attack",
+      "hit",
+      "defeat"
+    ],
+    "orbit_changed": true,
+    "state": "paused partial model; corrections remain"
+  },
+  "besties": {
+    "viewers_loaded_and_visible": [
+      "bestie-pink",
+      "bestie-black"
+    ],
+    "clips": [
+      "idle",
+      "move",
+      "attack",
+      "hit",
+      "defeat",
+      "cheer",
+      "high-five",
+      "dizzy"
+    ],
+    "high_five_selected_and_playing": true
+  },
+  "error_counts": {
+    "page": 0,
+    "console": 0,
+    "bad_responses": 0,
+    "failed_requests": 0,
+    "external_requests": 0,
+    "expected_metadata_preload_aborts": 14
+  },
+  "limitations": [
+    "Physical Safari was not tested.",
+    "Final art quality was not assessed."
+  ]
+}
