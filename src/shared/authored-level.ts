@@ -559,6 +559,18 @@ function rectanglesOverlap(first: HorizontalBounds, second: HorizontalBounds): b
   );
 }
 
+function rectanglesHaveInteriorOverlap(
+  first: HorizontalBounds,
+  second: HorizontalBounds,
+): boolean {
+  return (
+    Math.min(first.maxX, second.maxX) - Math.max(first.minX, second.minX) >
+      EPSILON &&
+    Math.min(first.maxZ, second.maxZ) - Math.max(first.minZ, second.minZ) >
+      EPSILON
+  );
+}
+
 function expandedBounds(bounds: HorizontalBounds, amount: number): HorizontalBounds {
   return {
     minX: bounds.minX - amount,
@@ -1020,6 +1032,15 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       );
       continue;
     }
+    for (const [priorSlot, prior] of arenas) {
+      if (rectanglesHaveInteriorOverlap(encounter.arena, prior.arena))
+        issue(
+          issues,
+          `${path}.arena`,
+          "arena.overlap",
+          `Encounter arena overlaps $.anchors.encounters[${JSON.stringify(priorSlot)}].arena`,
+        );
+    }
     arenas.push([slot, encounter]);
     const support = staticPlatforms.get(encounter.platformId);
     if (
@@ -1255,14 +1276,17 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
   for (const [path, anchor] of protectedBeforeBoss) {
     if (
       arenas.some(([, encounter]) =>
-        rectanglesOverlap(pointEnvelope(anchor.position), encounter.arena),
+        rectanglesOverlap(
+          pointEnvelope(anchor.position),
+          encounterStrikeEnvelope(encounter),
+        ),
       )
     )
       issue(
         issues,
         `${path}.position`,
         "clearance.encounter",
-        "Safe content anchor overlaps an encounter arena",
+        "Safe content anchor is within an encounter strike envelope",
       );
   }
 

@@ -306,6 +306,25 @@ describe("authored level documents", () => {
     );
   });
 
+  it("rejects a protected content anchor just outside an arena but within attack reach", () => {
+    const unsafeContent = clone();
+    const friendly = unsafeContent.anchors.friendlies["friendly-2"] as {
+      platformId: string;
+      position: { x: number; y: number; z: number };
+    };
+    friendly.platformId = "p4";
+    friendly.position = { x: 3.5, y: 0, z: -20 };
+    expect(friendly.position.x).toBeGreaterThan(
+      unsafeContent.anchors.encounters["ordinary-1"].arena.maxX,
+    );
+
+    expectIssue(
+      unsafeContent,
+      "clearance.encounter",
+      '$.anchors.friendlies["friendly-2"].position',
+    );
+  });
+
   it("rejects unsafe checkpoint activation, hazard recovery and missing retry refs", () => {
     const oversizedActivation = clone();
     (oversizedActivation.pieces.at(-1) as { activation: unknown }).activation = {
@@ -372,6 +391,25 @@ describe("authored level documents", () => {
       "ordering.reward",
       "$.anchors.memories.major.platformId",
     );
+  });
+
+  it("rejects pairwise overlap between sequential encounter arenas", () => {
+    const overlapping = clone();
+    const second = overlapping.anchors.encounters["ordinary-2"] as {
+      platformId: string;
+      position: { x: number; y: number; z: number };
+      arena: { minX: number; maxX: number; minZ: number; maxZ: number };
+    };
+    second.platformId = "p4";
+    second.position = { x: 0, y: 0, z: -20 };
+    second.arena = { minX: -2, maxX: 2, minZ: -21, maxZ: -19 };
+
+    expect(issuesFor(overlapping)).toContainEqual({
+      path: '$.anchors.encounters["ordinary-2"].arena',
+      code: "arena.overlap",
+      message:
+        'Encounter arena overlaps $.anchors.encounters["ordinary-1"].arena',
+    });
   });
 
   it("throws a typed error carrying the exact validation issues", () => {
