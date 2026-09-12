@@ -1,0 +1,11 @@
+{
+  "activityId": "act-235605-241355",
+  "scope": ["frontend", "haynes-quest", "haynes-quest-playtest"],
+  "status": "ended",
+  "closureRecordedAt": "2026-09-12T00:13:04.549353+00:00",
+  "ownedFixtures4395And4396": "stopped",
+  "unrelatedFixture4392": "untouched",
+  "browserLease": "released",
+  "authoringLeases": "released",
+  "devEnvRestarted": false
+}

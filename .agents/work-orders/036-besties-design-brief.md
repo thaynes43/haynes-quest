@@ -1,7 +1,7 @@
-# WO-036: The Besties duo — agreed encounter, visual brief next
+# WO-036: The Besties duo — agreed encounter and approved visual brief
 
-- **Status:** Operation Besties is active under PLAN006. Tom approved the shared pink/black concept on September 11 with “Use this look for the duo.” WO051 now authorizes two models and their animations. Exact exported-model review remains pending; the agreed alternating obstacle routine and shared recovery window still apply.
-- **Owner:** Driving Astra for art direction, written pitch and any later single concept. A future model task must be a fresh native Astra max with a scene lease under TEAM.
+- **Status:** Operation Besties is implemented under PLAN006. Tom approved the shared pink/black concept on September 11 with “Use this look for the duo.” WO051 records both completed models and their animations. Exact exported-model review remains pending; the agreed alternating obstacle routine and shared recovery window still apply.
+- **Owner:** Driving Astra for art direction and the written brief; WO051 records the completed concept/model delivery. Any future model revision must use a fresh native Astra max with a scene lease under TEAM.
 - **User priority:** Recognizable Mackenzie Turner and Lael Roblox-persona parody for his daughter, with a gentle obby/combat routine. FNAF is a later interest for his son. Discuss roster choices before expensive production.
 
 ## Verified public reference
@@ -24,7 +24,7 @@ Their defeat is comic: a theatrical fake breakup, then reconciliation. No death,
 
 Confirm the recognizable pink/black Roblox avatar looks from an actual public reference. Preserve the duo's contrast and channel joke while authoring original models and props. The lead should show one joint concept containing both actors, front/back construction and one shared action. Agree on that look before building two rigs, five-clip sets, attachment checks and render catalogs.
 
-The shared costume concept and its pink/black contrast are approved in [WO051](051-besties-models.md). The working name remains The Bickering Besties. Do not automatically add voices, likeness generation from private photos, another enemy, or a full cinematic. The approved joint concept is saved in the versioned catalog; two model exports are in production.
+The shared costume concept and its pink/black contrast are approved in [WO051](051-besties-models.md). The working name remains The Bickering Besties. Do not automatically add voices, likeness generation from private photos, another enemy, or a full cinematic. The approved joint concept is saved in the versioned catalog; two model exports are delivered as private playtest candidates.
 
 ## Integration note
 

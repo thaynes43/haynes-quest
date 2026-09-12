@@ -1,0 +1,36 @@
+{
+  "sourceCommit": "d932b484a32d80e4cf3ad2ece1e99d3620d4c55c",
+  "tag": "sha-d932b484a32d80e4cf3ad2ece1e99d3620d4c55c",
+  "digest": "sha256:582737215e73ab34dc22445feac16f1773c20b91c27b4f82f3fdcec3ec077a27",
+  "httpStatus": 200,
+  "contentType": "application/vnd.oci.image.index.v1+json",
+  "manifestSha256": "582737215e73ab34dc22445feac16f1773c20b91c27b4f82f3fdcec3ec077a27",
+  "applicationPr": "https://github.com/thaynes43/haynes-quest/pull/33",
+  "applicationRun": "https://github.com/thaynes43/haynes-quest/actions/runs/34659017677",
+  "documentationRun": "https://github.com/thaynes43/haynes-quest/actions/runs/34659017660",
+  "imageJob": "https://github.com/thaynes43/haynes-quest/actions/runs/34659017677/job/103457632110",
+  "mainChecks": "success",
+  "ciBuildProvenance": "success",
+  "ciCosignSigning": "success",
+  "independentAttestationVerification": {
+    "status": "not completed",
+    "reason": "dev-env DNS cannot resolve GitHub attestation storage host tmaproduction.blob.core.windows.net; no alternate route attempted"
+  },
+  "localClient": {
+    "path": "index-D3lvcZ1s.js",
+    "bytes": 1028608,
+    "sha256": "718cc412a27bb79d768238f6326f154a0cccb52da555a69ed3ec4ce31173cebe"
+  },
+  "opsPr": "https://github.com/thaynes43/haynes-ops/pull/2860",
+  "opsMerge": "eed48853ae6d96c30f3f75515d7e81d20a0005f2",
+  "opsChecks": {
+    "head": "f121bb0b6910482728799fc9fe1e28cfd50ed9dc",
+    "passed": 9,
+    "mainRenderChanges": "only the playtest Deployment image and corresponding HelmRelease tag",
+    "edgeRenderChanges": 0,
+    "renderComments": [
+      "https://github.com/thaynes43/haynes-ops/pull/2860#issuecomment-5641941886",
+      "https://github.com/thaynes43/haynes-ops/pull/2860#issuecomment-5641942665"
+    ]
+  }
+}

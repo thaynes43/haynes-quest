@@ -12,7 +12,9 @@ Enemy direction remains **recognizable, funny pop-culture parodies**, selected b
 
 Tom also requires forgiving Roblox-style obby sections alongside goofy fights, designed for his six-year-old daughter. Read DESIGN-011; the flat corridor and a single step are not acceptance of that gameplay pillar.
 
-Tom now requires parent-prepared journeys and collaborative enemy selection; read DESIGN-012. Full-name Immich lookup, birthday, per-level curated photos, child-specific favorites/exclusions, and editable era-based enemy/boss choices belong to setup. Admins can correct relevance windows or permit explicit period overrides without rewriting history or bypassing photo/asset/progression gates. Discuss short encounter pitches with Tom before expensive modeling; do not automatically finish or expand the former fixed six-enemy batch. Operation Besties is active under PLAN006; Tom approved the joint pink/black look in WO051 for modeling. FNAF remains a later interest for his son. Preserve unfinished authoring checkpoints.
+Tom now requires parent-prepared journeys and collaborative enemy selection; read DESIGN-012. Full-name Immich lookup, birthday, per-level curated photos, child-specific favorites/exclusions, and editable era-based enemy/boss choices belong to setup. Admins can correct relevance windows or permit explicit period overrides without rewriting history or bypassing photo/asset/progression gates. Discuss short encounter pitches with Tom before expensive modeling; do not automatically finish or expand the former fixed six-enemy batch. Operation Besties is implemented under PLAN006 using Tom’s approved joint pink/black look; WO051 records the completed two-model delivery. Exact final-art review remains open. FNAF remains a later interest for his son. Preserve unfinished authoring checkpoints.
+
+[PLAN006](.agents/plans/completed/006-playtest-polish-and-besties.md) completes the private touch-combat, sound, foliage, friendly-character and Besties release. Read the handoff for exact live evidence and the remaining physical-device, listening and final-art review.
 
 ## Working rules
 

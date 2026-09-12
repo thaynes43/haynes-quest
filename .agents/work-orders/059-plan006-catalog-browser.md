@@ -66,3 +66,7 @@ Artifacts under `test-results/catalog-plan006-local/`:
 - `besties-review-phone.png`.
 
 The browser lease is released after this passing run.
+
+## Hosted release verification
+
+The same harness passed against the private playtest after PR33 / opsPR2860 deployment. [The retained hosted report](../../docs/assets/media/release/v002/catalog-live.json) verifies 36 entries, 53 exact thumbnails, all 26 model files, 27 review pages, desktop/phone navigation and the two eight-clip Besties viewers, including actual high-five selection/play/pause. Page/console/HTTP/unexpected request and external-request failures were zero. Fourteen exact video metadata-preload cancellations were classified separately; this catalog route does not claim full video playback verification. Root also inspected the hosted desktop catalog capture. Physical Safari and owner art-quality review remain open.
