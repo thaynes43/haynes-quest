@@ -272,6 +272,29 @@ const context = await browser.newContext({
 });
 await context.addInitScript(installAudioAnalyser);
 await context.addInitScript(installFrameProbe);
+await context.addInitScript(() => {
+  window.__questPointerTrace = [];
+  for (const type of ["pointerdown", "pointerup", "pointercancel"]) {
+    document.addEventListener(
+      type,
+      (event) => {
+        window.__questPointerTrace.push({
+          type,
+          id: event.pointerId,
+          pointerType: event.pointerType,
+          target: event.target.tagName,
+          x: event.clientX,
+          y: event.clientY,
+          timeStamp: event.timeStamp,
+          handledAt: performance.now(),
+        });
+        if (window.__questPointerTrace.length > 64)
+          window.__questPointerTrace.shift();
+      },
+      true,
+    );
+  }
+});
 
 let failArtwork = true;
 let failedArtworkRequests = 0;
@@ -1276,8 +1299,8 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
     const target = inspection ? bashTarget(inspection) : null;
     return Boolean(
       inspection?.status.grounded &&
-        target &&
-        pointDistance(inspection.status.position, target) <= 1.2,
+      target &&
+      pointDistance(inspection.status.position, target) <= 1.2,
     );
   };
   await moveTo(
@@ -1364,11 +1387,7 @@ const fight = async (roleOrKind, label, requireDizzy = false) => {
         !currentBashTarget ||
         pointDistance(inspection.status.position, currentBashTarget) > 1.2)
     ) {
-      await moveTo(
-        bashTarget,
-        reachedBashRange,
-        `${label}-secondary-approach`,
-      );
+      await moveTo(bashTarget, reachedBashRange, `${label}-secondary-approach`);
       continue;
     }
     if (guardEquipped && !bashAccepted && !inspection.status.guardReady) {
@@ -1868,7 +1887,11 @@ try {
       "held-stick-attack",
     );
     const jumpSequence = simultaneousAttack.status.jumpSequence;
-    await tapPointWhileHeld(held, await worldPoint());
+    const jumpTouch = await tapPointWhileHeld(held, await worldPoint());
+    report.gestures.heldJumpTouch = jumpTouch;
+    report.gestures.heldJumpPointerTrace = await page.evaluate(
+      () => window.__questPointerTrace,
+    );
     const simultaneousJump = await waitForInspection(
       (inspection) =>
         inspection.input.moveX < -0.1 &&

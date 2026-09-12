@@ -2713,6 +2713,11 @@ footer {
 .era-game {
   -webkit-touch-callout: none;
 }
+
+.era-game .pickup-prompt {
+  bottom: max(230px, calc(env(safe-area-inset-bottom) + 212px));
+  pointer-events: none;
+}
 .era-game .attack-notice img {
   width: 74px;
   height: 48px;
