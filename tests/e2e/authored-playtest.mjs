@@ -544,10 +544,11 @@ async function playChapter(chapter) {
         await approach();
         continue;
       }
+      const secondaryBeforePrimary = chapter === 2 && role !== "boss";
       const useSecondary =
-        primaryAccepted &&
         !secondaryAccepted &&
         inspection.status.guardReady &&
+        (primaryAccepted || secondaryBeforePrimary) &&
         (chapter !== 2 || role !== "boss" || sawDizzy);
       const usePrimary = !primaryAccepted || !useSecondary;
       const name = useSecondary ? "Bash" : usePrimary ? "Attack" : "Bash";
