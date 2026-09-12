@@ -758,7 +758,7 @@ async function playChapter(chapter) {
     edgeIndex += 1;
     if (!visitedPlatforms.includes(edge.to)) visitedPlatforms.push(edge.to);
     if (
-      plan.branchPlatformIds.includes(edge.to) &&
+      plan.branchPlatformIds.slice(1).includes(edge.to) &&
       !chapterReport.branch.visited.includes(edge.to)
     ) {
       chapterReport.branch.visited.push(edge.to);
