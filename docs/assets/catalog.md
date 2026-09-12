@@ -5,7 +5,7 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The current reliability update changes how the existing Besties, memory keepsakes and sounds behave in the playtest; their source files and thumbnail references are unchanged.
+Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse this cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. Source assets, review versions and thumbnail references are unchanged; the [playtest guide](playtest.md) describes their placement and gameplay.
 
 **25 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions · 6 fictional memory pictures**
 

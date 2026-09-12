@@ -32,6 +32,12 @@ Translate the Besties simulation, visual roots, hazard geometry, aim and target 
 
 Expose immutable authored navigation metadata through the existing read-only inspection surface for previews and tests. The browser driver follows actual platforms and dispatches normal touch/keyboard inputs. It must demonstrate ferry support/motion, checkpoint recovery, primary/secondary combat, real boss attacks and all memories without teleporting or fabricating encounter outcomes.
 
+## Authoring checks
+
+Run `pnpm exec tsx scripts/levels/validate.ts` to validate both registered documents, or append a JSON path to check a proposed revision. Diagnostics identify the invalid document path and constraint. New published content needs a new route version; the command does not publish a level or change an existing save.
+
+A checkpoint's trigger and recovery point have different roles. Landing anywhere on its named platform can arm it, while its actual recovery point must have supported avatar clearance outside the full sweeper envelope and enemy strike range. Same-platform gear/fight ordering still needs physical placement and play testing; a platform graph alone cannot prove the order of two points on that platform. A `ride` connection includes ordinary jump boarding and disembarking, not an assurance that walking across its gap is possible.
+
 ## Following MVP stage
 
 Identity and curated photos are required after the longer levels are ready for family review. Prepare the daughter’s subject and birthday, then let the author choose two minor pictures and a major picture per level from her authorized integration or manual uploads. Exact dates and age transitions come from that curation, not the synthetic fixture or an inferred birthday. The current 0 → 4 → 7 fixture remains visibly fictional during layout construction. Real admission, private photo handling and the personalized endpoint are separate acceptance before calling the daughter’s MVP complete.
