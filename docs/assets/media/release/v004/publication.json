@@ -31,5 +31,8 @@
     "Buildx provenance and SBOM",
     "GitHub build-provenance attestation",
     "cosign signing"
-  ]
+  ],
+  "operations_pr": 2864,
+  "operations_head": "c85ce284bbe55d5afdabaf4c5bb39920bdddf053",
+  "operations_merge": "882ef5a847f0b7461234a2642a446480de248273"
 }
