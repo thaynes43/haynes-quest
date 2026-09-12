@@ -1702,6 +1702,7 @@ try {
     });
     if (landscapeOnly) {
       await verifyLandscapeControls();
+      assertNoUnexpectedBrowserErrors();
       throw new LandscapeVerified();
     }
     if (inputOnly) {
