@@ -3,11 +3,12 @@ import { inspectGame, waitForInspection } from "./authored-browser-driver.mjs";
 
 const assetPath = "/studio/assets/media/bestie-pink/v001/bestie-pink.glb";
 
-/** Fault injection changes one asset response; progress still comes from real play. */
+/** Keep one asset unavailable through combat retries until its explicit artwork retry. */
 export async function createPausedArtworkProbe(page) {
   let failures = 0;
+  let retryAllowed = false;
   await page.route(`**${assetPath}`, async (route) => {
-    if (failures === 0) {
+    if (!retryAllowed) {
       failures += 1;
       await route.fulfill({
         status: 503,
@@ -19,18 +20,18 @@ export async function createPausedArtworkProbe(page) {
   return {
     assetPath,
     isExpectedResponse(path, status) {
-      return path === assetPath && status === 503 && failures === 1;
+      return path === assetPath && status === 503 && failures > 0;
     },
     isExpectedConsole(message) {
       return (
-        failures === 1 &&
+        failures > 0 &&
         new URL(message.location().url || "about:blank").pathname ===
           assetPath &&
         /503/.test(message.text())
       );
     },
     async verify({ screenshot, mark }) {
-      assert.equal(failures, 1, "exactly one Besties model request must fail");
+      assert.ok(failures > 0, "the selected Besties model must fail before retry");
       mark("paused-artwork:await-real-defeat");
       await waitForInspection({
         page,
@@ -46,6 +47,7 @@ export async function createPausedArtworkProbe(page) {
       const before = await inspectGame(page);
       assert.ok(before.status.mediaFailed > 0);
       await screenshot("besties-paused-artwork-fallback");
+      retryAllowed = true;
       await page
         .getByRole("button", { name: "Retry artwork", exact: true })
         .tap();

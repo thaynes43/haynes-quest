@@ -180,13 +180,13 @@ page.on("response", async (response) => {
   }
 });
 
-const waitForSave = async (predicate, label, timeout = 20_000) => {
+const waitForSave = async (predicate, label, timeout = 20_000, captureTimeout = true) => {
   const deadline = Date.now() + timeout;
   while (Date.now() < deadline) {
     if (latestSave && predicate(latestSave)) return latestSave;
     await delay(50);
   }
-  await screenshot(`${label}-save-failure`);
+  if (captureTimeout) await screenshot(`${label}-save-failure`);
   throw new Error(`${label}: save state unavailable: ${JSON.stringify(latestSave)}`);
 };
 
@@ -625,6 +625,7 @@ async function playChapter(chapter) {
         },
         `chapter-${chapter}-${role}-${name.toLowerCase()}`,
         5_000,
+        false,
       ).catch(() => null);
       if (!changed) continue;
       const afterHp = changed.adventure.activeLevel.encounters.find(
@@ -916,7 +917,8 @@ try {
     ),
   );
   if (pausedArtworkRetry) {
-    assert.equal(report.injectedArtworkFailure?.failures, 1);
+    assert.ok(report.injectedArtworkFailure?.failures > 0);
+    assert.equal(report.injectedArtworkFailure?.retryPresses, 1);
     assert.equal(report.injectedArtworkFailure?.physicsStayedPaused, true);
   }
   assert.deepEqual(report.responseErrors, []);
