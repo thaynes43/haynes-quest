@@ -80,7 +80,6 @@ export async function createTouchControls({ page, context }) {
   };
   let nextPointerId = 1;
   let held = null;
-  let worldTap = null;
 
   const send = (type, touchPoints) =>
     cdp.send("Input.dispatchTouchEvent", { type, touchPoints });
@@ -109,7 +108,7 @@ export async function createTouchControls({ page, context }) {
   };
   const jumpWhileHeld = async () => {
     assert.ok(held, "jump requested without held movement");
-    worldTap ??= await page.evaluate(() => {
+    const worldTap = await page.evaluate(() => {
       const canvas = document.querySelector("canvas[data-quest-canvas=true]");
       if (!canvas) return null;
       const bounds = canvas.getBoundingClientRect();
@@ -131,14 +130,15 @@ export async function createTouchControls({ page, context }) {
       worldTap.x,
       worldTap.y,
     );
-    await send("touchStart", [held, jump]);
-    await delay(55);
+    const down = send("touchStart", [held, jump]);
+    await delay(10);
     // There is deliberately no move event for the world contact, so this
     // requests the game's normal tap-to-jump without changing camera yaw.
     // Chromium treats the listed contact as the released pointer while the
     // captured joystick contact stays active (covered by the existing input
     // diagnostic and used here only through the normal touch surface).
-    await send("touchEnd", [jump]);
+    const up = send("touchEnd", [jump]);
+    await Promise.all([down, up]);
   };
 
   return {
@@ -492,6 +492,13 @@ export function createAuthoredRouteDriver({
           const current = await read(`${label}-jump-ready`);
           const attemptRecoveries = current.obby.recoveries;
           const jumpSequence = current.status.jumpSequence;
+          mark("jump:requested", {
+            edge,
+            attempt,
+            input: current.input,
+            position: current.status.position,
+            jumpSequence,
+          });
           await controls.beginToward(
             landing.x - current.status.position.x,
             landing.z - current.status.position.z,
@@ -514,6 +521,16 @@ export function createAuthoredRouteDriver({
           if (!after) {
             after = await read(`${label}-jump-timeout`);
           }
+          mark("jump:observed", {
+            edge,
+            attempt,
+            input: after.input,
+            position: after.status.position,
+            grounded: after.status.grounded,
+            supportId: after.obby.supportId,
+            recoveries: after.obby.recoveries,
+            jumpSequence: after.status.jumpSequence,
+          });
           assert.ok(
             after.status.jumpSequence > jumpSequence,
             `${label}: touch jump was not accepted`,
