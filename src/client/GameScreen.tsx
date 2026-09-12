@@ -677,6 +677,24 @@ function Adventure({
               cancelInput={cancelActionInput}
             />
           </div>
+          {!routeMemories &&
+            (nearbyPickup || status?.nearMemoryId || nearbyFriend) && (
+              <div className="legacy-contact-action">
+                <ActionButton
+                  action="interact"
+                  label={
+                    nearbyPickup
+                      ? "Take gear"
+                      : nearbyFriend
+                        ? "Say hello"
+                        : "Remember"
+                  }
+                  symbol="+"
+                  input={actionInput}
+                  cancelInput={cancelActionInput}
+                />
+              </div>
+            )}
         </div>
       )}
       {nearbyFriend && !nearbyPickup && !attackNotice && !modalOpen && (

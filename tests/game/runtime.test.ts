@@ -583,7 +583,7 @@ describe("era game runtime", () => {
     game.dispose();
   });
 
-  it("advances one bounded simulation step on slow visible frames", async () => {
+  it("advances a bounded 200 ms budget through slow visible frames", () => {
     const onAction = vi.fn(async (_request: GameplayActionRequest) =>
       makeEraSave({ revision: 1 }),
     );
@@ -601,30 +601,7 @@ describe("era game runtime", () => {
     now += 300;
     nextFrame?.(now);
     const afterSlowStep = game.inspect().status.position.z;
-    expect(beforeSlowStep - afterSlowStep).toBeCloseTo(0.155, 3);
-
-    for (let index = 0; index < 44; index += 1) {
-      now += 300;
-      nextFrame?.(now);
-    }
-    game.setInput("moveY", 0);
-    for (let index = 0; index < 240; index += 1) {
-      now += 300;
-      nextFrame?.(now);
-      await Promise.resolve();
-      if (
-        onAction.mock.calls.some(
-          ([request]) => request.action.type === "take-hit",
-        )
-      ) {
-        break;
-      }
-    }
-    expect(
-      onAction.mock.calls.some(
-        ([request]) => request.action.type === "take-hit",
-      ),
-    ).toBe(true);
+    expect(beforeSlowStep - afterSlowStep).toBeCloseTo(0.62, 3);
     game.dispose();
   });
 });

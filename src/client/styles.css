@@ -2741,3 +2741,17 @@ footer {
     transition: none;
   }
 }
+
+.legacy-contact-action {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+.legacy-contact-action .action-button {
+  width: 64px;
+  height: 64px;
+}
+.legacy-contact-action .action-button small {
+  font-size: 11px;
+}
