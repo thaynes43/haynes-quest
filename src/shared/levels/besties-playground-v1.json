@@ -1,0 +1,734 @@
+{
+  "schemaVersion": "authored-level-v1",
+  "id": "besties-playground-v1",
+  "theme": "party",
+  "pieces": [
+    {
+      "type": "platform",
+      "id": "party-welcome",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": 0
+      },
+      "size": {
+        "x": 10,
+        "y": 0.6,
+        "z": 8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "party-terrace-1",
+      "center": {
+        "x": 1.4,
+        "y": -0.09999999999999998,
+        "z": -6.2
+      },
+      "size": {
+        "x": 5,
+        "y": 0.6,
+        "z": 3
+      }
+    },
+    {
+      "type": "platform",
+      "id": "party-terrace-2",
+      "center": {
+        "x": -1.4,
+        "y": 0.04999999999999999,
+        "z": -10.4
+      },
+      "size": {
+        "x": 5,
+        "y": 0.6,
+        "z": 3
+      }
+    },
+    {
+      "type": "platform",
+      "id": "party-terrace-3",
+      "center": {
+        "x": 1.4,
+        "y": -0.15,
+        "z": -14.6
+      },
+      "size": {
+        "x": 5,
+        "y": 0.6,
+        "z": 3
+      }
+    },
+    {
+      "type": "platform",
+      "id": "party-picnic",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -21
+      },
+      "size": {
+        "x": 12,
+        "y": 0.6,
+        "z": 9
+      }
+    },
+    {
+      "type": "platform",
+      "id": "ribbon-lane",
+      "center": {
+        "x": -3,
+        "y": -0.3,
+        "z": -30
+      },
+      "size": {
+        "x": 7,
+        "y": 0.6,
+        "z": 7
+      }
+    },
+    {
+      "type": "platform",
+      "id": "ribbon-rest",
+      "center": {
+        "x": -3,
+        "y": -0.3,
+        "z": -39
+      },
+      "size": {
+        "x": 10,
+        "y": 0.6,
+        "z": 9
+      }
+    },
+    {
+      "type": "moving-platform",
+      "id": "party-ferry",
+      "center": {
+        "x": -3,
+        "y": -0.3,
+        "z": -46
+      },
+      "size": {
+        "x": 3.4,
+        "y": 0.6,
+        "z": 3.4
+      },
+      "motion": {
+        "axis": "x",
+        "distance": 0.6,
+        "period": 9
+      }
+    },
+    {
+      "type": "platform",
+      "id": "party-dock",
+      "center": {
+        "x": -3,
+        "y": -0.3,
+        "z": -52.5
+      },
+      "size": {
+        "x": 10,
+        "y": 0.6,
+        "z": 8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "zigzag-hop-1",
+      "center": {
+        "x": -4.8,
+        "y": -0.3,
+        "z": -59.3
+      },
+      "size": {
+        "x": 5,
+        "y": 0.6,
+        "z": 3.6
+      }
+    },
+    {
+      "type": "platform",
+      "id": "zigzag-hop-2",
+      "center": {
+        "x": -1.2,
+        "y": -0.3,
+        "z": -63.9
+      },
+      "size": {
+        "x": 5,
+        "y": 0.6,
+        "z": 3.6
+      }
+    },
+    {
+      "type": "platform",
+      "id": "party-grove",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -71
+      },
+      "size": {
+        "x": 12,
+        "y": 0.6,
+        "z": 8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "turnstile-deck",
+      "center": {
+        "x": 3,
+        "y": -0.3,
+        "z": -80
+      },
+      "size": {
+        "x": 10,
+        "y": 0.6,
+        "z": 8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "party-fair",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -89.5
+      },
+      "size": {
+        "x": 12,
+        "y": 0.6,
+        "z": 9
+      }
+    },
+    {
+      "type": "platform",
+      "id": "final-hop-1",
+      "center": {
+        "x": -1.2,
+        "y": -0.3,
+        "z": -96.2
+      },
+      "size": {
+        "x": 4.4,
+        "y": 0.6,
+        "z": 2.8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "final-hop-2",
+      "center": {
+        "x": 1.2,
+        "y": -0.3,
+        "z": -99.8
+      },
+      "size": {
+        "x": 4.4,
+        "y": 0.6,
+        "z": 2.8
+      }
+    },
+    {
+      "type": "platform",
+      "id": "besties-court",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -112
+      },
+      "size": {
+        "x": 14,
+        "y": 0.6,
+        "z": 20
+      }
+    },
+    {
+      "type": "platform",
+      "id": "party-reward",
+      "center": {
+        "x": 0,
+        "y": -0.3,
+        "z": -125
+      },
+      "size": {
+        "x": 12,
+        "y": 0.6,
+        "z": 6
+      }
+    },
+    {
+      "type": "platform",
+      "id": "wide-side-bridge",
+      "center": {
+        "x": 3,
+        "y": -0.3,
+        "z": -59
+      },
+      "size": {
+        "x": 6,
+        "y": 0.6,
+        "z": 10
+      }
+    },
+    {
+      "type": "platform",
+      "id": "friend-balcony",
+      "center": {
+        "x": 4,
+        "y": -0.3,
+        "z": -65.5
+      },
+      "size": {
+        "x": 6,
+        "y": 0.6,
+        "z": 5
+      }
+    },
+    {
+      "type": "sweeper",
+      "id": "ribbon-padded-bar",
+      "center": {
+        "x": -3,
+        "y": 0.22,
+        "z": -30
+      },
+      "halfLength": 1,
+      "radius": 0.18,
+      "motion": {
+        "axis": "x",
+        "distance": 2,
+        "period": 10
+      }
+    },
+    {
+      "type": "sweeper",
+      "id": "party-turnstile",
+      "center": {
+        "x": 3,
+        "y": 0.22,
+        "z": -80
+      },
+      "halfLength": 1.15,
+      "radius": 0.18,
+      "rotation": {
+        "period": 14
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "party-start",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "platformId": "party-welcome",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "party-picnic-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -17.5
+      },
+      "platformId": "party-picnic",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "ribbon-safe",
+      "position": {
+        "x": -3,
+        "y": 0,
+        "z": -35.5
+      },
+      "platformId": "ribbon-rest",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "party-dock-safe",
+      "position": {
+        "x": -3,
+        "y": 0,
+        "z": -49.5
+      },
+      "platformId": "party-dock",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "party-grove-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -68
+      },
+      "platformId": "party-grove",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "party-fair-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -86
+      },
+      "platformId": "party-fair",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "besties-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -103
+      },
+      "platformId": "besties-court",
+      "activation": {
+        "type": "platform"
+      }
+    },
+    {
+      "type": "checkpoint",
+      "id": "party-reward-safe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -123.5
+      },
+      "platformId": "party-reward",
+      "activation": {
+        "type": "platform"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "from": "party-welcome",
+      "to": "party-terrace-1",
+      "mode": "jump"
+    },
+    {
+      "from": "party-terrace-1",
+      "to": "party-terrace-2",
+      "mode": "jump"
+    },
+    {
+      "from": "party-terrace-2",
+      "to": "party-terrace-3",
+      "mode": "jump"
+    },
+    {
+      "from": "party-terrace-3",
+      "to": "party-picnic",
+      "mode": "jump"
+    },
+    {
+      "from": "party-picnic",
+      "to": "ribbon-lane",
+      "mode": "jump"
+    },
+    {
+      "from": "ribbon-lane",
+      "to": "ribbon-rest",
+      "mode": "jump"
+    },
+    {
+      "from": "ribbon-rest",
+      "to": "party-ferry",
+      "mode": "ride"
+    },
+    {
+      "from": "party-ferry",
+      "to": "party-dock",
+      "mode": "ride"
+    },
+    {
+      "from": "party-dock",
+      "to": "zigzag-hop-1",
+      "mode": "jump"
+    },
+    {
+      "from": "zigzag-hop-1",
+      "to": "zigzag-hop-2",
+      "mode": "jump"
+    },
+    {
+      "from": "zigzag-hop-2",
+      "to": "party-grove",
+      "mode": "jump"
+    },
+    {
+      "from": "party-grove",
+      "to": "turnstile-deck",
+      "mode": "jump"
+    },
+    {
+      "from": "turnstile-deck",
+      "to": "party-fair",
+      "mode": "jump"
+    },
+    {
+      "from": "party-fair",
+      "to": "final-hop-1",
+      "mode": "jump"
+    },
+    {
+      "from": "final-hop-1",
+      "to": "final-hop-2",
+      "mode": "jump"
+    },
+    {
+      "from": "final-hop-2",
+      "to": "besties-court",
+      "mode": "jump"
+    },
+    {
+      "from": "besties-court",
+      "to": "party-reward",
+      "mode": "walk"
+    },
+    {
+      "from": "party-dock",
+      "to": "wide-side-bridge",
+      "mode": "walk"
+    },
+    {
+      "from": "wide-side-bridge",
+      "to": "friend-balcony",
+      "mode": "walk"
+    },
+    {
+      "from": "friend-balcony",
+      "to": "party-grove",
+      "mode": "walk"
+    }
+  ],
+  "mainPath": [
+    "party-welcome",
+    "party-terrace-1",
+    "party-terrace-2",
+    "party-terrace-3",
+    "party-picnic",
+    "ribbon-lane",
+    "ribbon-rest",
+    "party-ferry",
+    "party-dock",
+    "zigzag-hop-1",
+    "zigzag-hop-2",
+    "party-grove",
+    "turnstile-deck",
+    "party-fair",
+    "final-hop-1",
+    "final-hop-2",
+    "besties-court",
+    "party-reward"
+  ],
+  "branches": [
+    [
+      "party-dock",
+      "wide-side-bridge",
+      "friend-balcony",
+      "party-grove"
+    ]
+  ],
+  "anchors": {
+    "spawn": {
+      "platformId": "party-welcome",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    "finish": {
+      "platformId": "party-reward",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -126.5
+      }
+    },
+    "rewardRespawn": {
+      "platformId": "party-reward",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -123.5
+      }
+    },
+    "pickups": {
+      "attack-tool": {
+        "platformId": "party-welcome",
+        "position": {
+          "x": -0.7,
+          "y": 0,
+          "z": -0.5
+        }
+      },
+      "guard-tool": {
+        "platformId": "party-picnic",
+        "position": {
+          "x": 1,
+          "y": 0,
+          "z": -18.5
+        }
+      }
+    },
+    "memories": {
+      "minor-one": {
+        "platformId": "party-picnic",
+        "position": {
+          "x": -1,
+          "y": 0,
+          "z": -18.5
+        }
+      },
+      "minor-two": {
+        "platformId": "party-grove",
+        "position": {
+          "x": -1.5,
+          "y": 0,
+          "z": -69
+        }
+      },
+      "major": {
+        "platformId": "party-reward",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": -125
+        }
+      }
+    },
+    "encounters": {
+      "ordinary-1": {
+        "platformId": "party-picnic",
+        "position": {
+          "x": 2,
+          "y": 0,
+          "z": -22
+        },
+        "kind": "ordinary-a",
+        "checkpointId": "party-picnic-safe",
+        "arena": {
+          "minX": -4,
+          "maxX": 4,
+          "minZ": -24,
+          "maxZ": -21
+        }
+      },
+      "ordinary-2": {
+        "platformId": "ribbon-rest",
+        "position": {
+          "x": -4,
+          "y": 0,
+          "z": -40
+        },
+        "kind": "ordinary-b",
+        "checkpointId": "ribbon-safe",
+        "arena": {
+          "minX": -7,
+          "maxX": 0,
+          "minZ": -42,
+          "maxZ": -38
+        }
+      },
+      "ordinary-3": {
+        "platformId": "party-grove",
+        "position": {
+          "x": 2,
+          "y": 0,
+          "z": -72
+        },
+        "kind": "ordinary-a",
+        "checkpointId": "party-grove-safe",
+        "arena": {
+          "minX": -4,
+          "maxX": 4,
+          "minZ": -74,
+          "maxZ": -71
+        }
+      },
+      "ordinary-4": {
+        "platformId": "party-fair",
+        "position": {
+          "x": 2,
+          "y": 0,
+          "z": -90
+        },
+        "kind": "ordinary-b",
+        "checkpointId": "party-fair-safe",
+        "arena": {
+          "minX": -4,
+          "maxX": 4,
+          "minZ": -92,
+          "maxZ": -89
+        }
+      },
+      "boss": {
+        "platformId": "besties-court",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": -112
+        },
+        "kind": "boss",
+        "checkpointId": "besties-safe",
+        "arena": {
+          "minX": -3.8,
+          "maxX": 3.8,
+          "minZ": -114,
+          "maxZ": -110
+        }
+      }
+    },
+    "friendlies": {
+      "friendly-1": {
+        "platformId": "party-welcome",
+        "position": {
+          "x": -3,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "friendly-2": {
+        "platformId": "friend-balcony",
+        "position": {
+          "x": 4,
+          "y": 0,
+          "z": -65.5
+        }
+      },
+      "friendly-3": {
+        "platformId": "party-fair",
+        "position": {
+          "x": -4,
+          "y": 0,
+          "z": -88
+        }
+      }
+    }
+  }
+}
