@@ -284,33 +284,87 @@ async function proveDynamicPieces(document) {
     .map((piece) => piece.id);
   const start = await inspectGame(page);
   assert.ok(start?.obby);
-  await delay(450);
-  const end = await inspectGame(page);
-  assert.ok(end?.obby);
-  const movingPlatforms = movingIds.map((id) => {
-    const before = start.obby.platforms.find((entry) => entry.id === id);
-    const after = end.obby.platforms.find((entry) => entry.id === id);
+  const startedAt = Date.now();
+  const movingPlatforms = movingIds.map((id) => ({ id, motion: 0 }));
+  const sweepers = sweeperIds.map((id) => ({
+    id,
+    translation: 0,
+    rotation: 0,
+  }));
+  let sampleCount = 1;
+  let end = start;
+
+  // Two samples can straddle a turning point or repeat a frame during loading.
+  // Require observed motion from every piece within a bounded live interval.
+  while (Date.now() - startedAt < 6_000) {
+    await delay(150);
+    end = await inspectGame(page);
+    assert.ok(end?.obby);
+    assert.equal(end.level.authored?.id, document.id);
+    sampleCount += 1;
+    for (const evidence of movingPlatforms) {
+      const before = start.obby.platforms.find(
+        (entry) => entry.id === evidence.id,
+      );
+      const after = end.obby.platforms.find(
+        (entry) => entry.id === evidence.id,
+      );
+      assert.ok(
+        before && after,
+        `${evidence.id}: moving platform missing from live sample`,
+      );
+      evidence.motion = Math.max(
+        evidence.motion,
+        planarDistance(before.center, after.center),
+      );
+    }
+    for (const evidence of sweepers) {
+      const before = start.obby.hazards.find(
+        (entry) => entry.id === evidence.id,
+      );
+      const after = end.obby.hazards.find((entry) => entry.id === evidence.id);
+      assert.ok(
+        before && after,
+        `${evidence.id}: sweeper missing from live sample`,
+      );
+      evidence.translation = Math.max(
+        evidence.translation,
+        planarDistance(before.center, after.center),
+      );
+      evidence.rotation = Math.max(
+        evidence.rotation,
+        Math.abs(before.angle - after.angle),
+      );
+    }
+    if (
+      movingPlatforms.every((piece) => piece.motion > 0.001) &&
+      sweepers.every(
+        (piece) => piece.translation > 0.001 || piece.rotation > 0.001,
+      )
+    )
+      break;
+  }
+  const evidence = {
+    movingPlatforms,
+    sweepers,
+    sampleCount,
+    wallElapsedMs: Date.now() - startedAt,
+    startTimeSeconds: start.obby.timeSeconds,
+    endTimeSeconds: end.obby.timeSeconds,
+  };
+  for (const piece of movingPlatforms) {
     assert.ok(
-      before && after,
-      `${id}: moving platform missing from live sample`,
+      piece.motion > 0.001,
+      `${piece.id}: moving platform did not move: ${JSON.stringify(evidence)}`,
     );
-    const motion = planarDistance(before.center, after.center);
-    assert.ok(motion > 0.001, `${id}: moving platform did not move`);
-    return { id, motion };
-  });
-  const sweepers = sweeperIds.map((id) => {
-    const before = start.obby.hazards.find((entry) => entry.id === id);
-    const after = end.obby.hazards.find((entry) => entry.id === id);
-    assert.ok(before && after, `${id}: sweeper missing from live sample`);
-    const translation = planarDistance(before.center, after.center);
-    const rotation = Math.abs(before.angle - after.angle);
+  }
+  for (const piece of sweepers) {
     assert.ok(
-      translation > 0.001 || rotation > 0.001,
-      `${id}: sweeper stayed static`,
+      piece.translation > 0.001 || piece.rotation > 0.001,
+      `${piece.id}: sweeper stayed static: ${JSON.stringify(evidence)}`,
     );
-    return { id, translation, rotation };
-  });
-  return { movingPlatforms, sweepers };
+  }
+  return evidence;
 }
 
 async function startChapter(chapter) {
