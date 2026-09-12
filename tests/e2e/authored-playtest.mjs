@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { chromium } from "playwright";
 
 import {
@@ -17,6 +18,10 @@ import {
   summarizeAuthoredCourse,
 } from "./authored-navigation.mjs";
 
+import { createPausedArtworkProbe } from "./paused-artwork-recovery.mjs";
+
+const pausedArtworkRetry = process.env.QUEST_E2E_PAUSED_ARTWORK_RETRY === "true";
+const expectedBundleSha256 = process.env.QUEST_E2E_BUNDLE_SHA256;
 const url = process.env.QUEST_E2E_URL ?? "http://127.0.0.1:4397";
 const runLabel = process.env.QUEST_E2E_RUN_LABEL;
 const outDir = runLabel
@@ -38,6 +43,10 @@ const report = {
   url,
   routeStartChapter,
   browser: null,
+  bundle: null,
+  pausedArtworkRetry,
+  injectedArtworkFailure: null,
+  expectedFaults: [],
   controls: "real keyboard route movement/jumps and touch combat buttons",
   relatedTouchDiagnostic:
     "test-results/fresh-playtest/plan009-input-diagnostic/report.json",
@@ -105,6 +114,9 @@ await context.addInitScript(() => {
   }
 });
 const page = await context.newPage();
+const pausedArtworkProbe = pausedArtworkRetry
+  ? await createPausedArtworkProbe(page)
+  : null;
 let latestSave = null;
 const observedHits = [];
 let screenshotSequence = 0;
@@ -131,12 +143,18 @@ const timer = setTimeout(() => {
 
 page.on("pageerror", (error) => report.pageErrors.push(error.message));
 page.on("console", (message) => {
-  if (message.type() === "error") report.consoleErrors.push(message.text());
+  if (message.type() !== "error") return;
+  if (pausedArtworkProbe?.isExpectedConsole(message)) {
+    report.expectedFaults.push({ type: "console", message: message.text() });
+  } else report.consoleErrors.push(message.text());
 });
 page.on("response", async (response) => {
   const parsed = new URL(response.url());
   if (response.status() >= 400) {
-    report.responseErrors.push({
+    const errors = pausedArtworkProbe?.isExpectedResponse(parsed.pathname, response.status())
+      ? report.expectedFaults
+      : report.responseErrors;
+    errors.push({
       method: response.request().method(),
       path: parsed.pathname,
       status: response.status(),
@@ -321,6 +339,7 @@ async function playChapter(chapter) {
     rejoined: false,
   };
   chapterReport.dynamics = await proveDynamicPieces(document);
+  await screenshot(`chapter-${chapter}-playground-start`);
 
   const controls = createHybridControls({ page });
   const driver = createAuthoredRouteDriver({
@@ -483,6 +502,7 @@ async function playChapter(chapter) {
     let primaryAccepted = false;
     let secondaryAccepted = false;
     let sawDizzy = false;
+    let capturedDizzy = false;
     let combatRetries = 0;
 
     const approach = async () => {
@@ -539,6 +559,10 @@ async function playChapter(chapter) {
       );
     }
 
+    if (chapter === 2 && role === "boss" && pausedArtworkProbe) {
+      report.injectedArtworkFailure = await pausedArtworkProbe.verify({ screenshot, mark });
+    }
+
     const deadline = Date.now() + 120_000;
     while (Date.now() < deadline) {
       if (await recoverCombat(role)) {
@@ -554,6 +578,10 @@ async function playChapter(chapter) {
       inspection = await driver.read(`chapter-${chapter}-${role}-fight`);
       observeBesties(besties, inspection);
       sawDizzy ||= inspection.status.bestiesPhase === "dizzy";
+      if (chapter === 2 && role === "boss" && !capturedDizzy && inspection.status.bestiesPhase === "dizzy") {
+        await screenshot("besties-dizzy");
+        capturedDizzy = true;
+      }
       if (inspection.status.nearEncounterId !== encounterId) {
         await approach();
         continue;
@@ -804,6 +832,9 @@ async function playChapter(chapter) {
     }
     if (edge.to === plan.branchPlatformIds.at(-1)) chapterReport.branch.rejoined = true;
     await processPlatform(edge.to);
+    if (!documentExited && !finishTriggered && ["woodland-rest", "pond-dock", "party-dock", "turnstile-deck"].includes(edge.to)) {
+      await screenshot(`chapter-${chapter}-${edge.to}`);
+    }
   }
 
   assert.equal(recoveryProved, true, "intentional checkpoint recovery was not exercised");
@@ -837,6 +868,17 @@ try {
   const index = await fetch(url);
   assert.equal(index.status, 200, "authored playtest fixture unavailable");
   await page.goto(url);
+  const bundlePath = await page.locator('script[type="module"][src]').getAttribute("src");
+  assert.ok(bundlePath, "application bundle is missing");
+  const bundleResponse = await context.request.get(new URL(bundlePath, url).href);
+  assert.equal(bundleResponse.status(), 200);
+  const bundleBytes = await bundleResponse.body();
+  report.bundle = {
+    path: bundlePath,
+    bytes: bundleBytes.length,
+    sha256: createHash("sha256").update(bundleBytes).digest("hex"),
+  };
+  if (expectedBundleSha256) assert.equal(report.bundle.sha256, expectedBundleSha256);
   await page
     .getByRole("button", { name: "Play from the beginning", exact: true })
     .waitFor();
@@ -870,6 +912,10 @@ try {
       routeStartChapter - 1,
     ),
   );
+  if (pausedArtworkRetry) {
+    assert.equal(report.injectedArtworkFailure?.failures, 1);
+    assert.equal(report.injectedArtworkFailure?.physicsStayedPaused, true);
+  }
   assert.deepEqual(report.responseErrors, []);
   assert.deepEqual(report.pageErrors, []);
   assert.deepEqual(report.consoleErrors, []);
