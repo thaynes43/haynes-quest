@@ -80,6 +80,7 @@ export async function createTouchControls({ page, context }) {
   };
   let nextPointerId = 1;
   let held = null;
+  let worldTap = null;
 
   const send = (type, touchPoints) =>
     cdp.send("Input.dispatchTouchEvent", { type, touchPoints });
@@ -108,17 +109,32 @@ export async function createTouchControls({ page, context }) {
   };
   const jumpWhileHeld = async () => {
     assert.ok(held, "jump requested without held movement");
-    const button = await page
-      .getByRole("button", { name: "Jump", exact: true })
-      .boundingBox();
-    assert.ok(button, "touch Jump control is unavailable");
+    worldTap ??= await page.evaluate(() => {
+      const canvas = document.querySelector("canvas[data-quest-canvas=true]");
+      if (!canvas) return null;
+      const bounds = canvas.getBoundingClientRect();
+      for (const [xRatio, yRatio] of [
+        [0.7, 0.55],
+        [0.52, 0.5],
+        [0.82, 0.42],
+        [0.45, 0.62],
+      ]) {
+        const x = bounds.left + bounds.width * xRatio;
+        const y = bounds.top + bounds.height * yRatio;
+        if (document.elementFromPoint(x, y) === canvas) return { x, y };
+      }
+      return null;
+    });
+    assert.ok(worldTap, "no unobstructed world-tap point is available");
     const jump = touchPoint(
       nextPointerId++,
-      button.x + button.width / 2,
-      button.y + button.height / 2,
+      worldTap.x,
+      worldTap.y,
     );
     await send("touchStart", [held, jump]);
     await delay(55);
+    // There is deliberately no move event for the world contact, so this
+    // requests the game's normal tap-to-jump without changing camera yaw.
     // Chromium treats the listed contact as the released pointer while the
     // captured joystick contact stays active (covered by the existing input
     // diagnostic and used here only through the normal touch surface).

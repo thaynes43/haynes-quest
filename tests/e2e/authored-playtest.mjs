@@ -32,7 +32,7 @@ const report = {
   status: "running",
   url,
   browser: null,
-  controls: "real CDP touch joystick and visible action buttons",
+  controls: "real CDP touch joystick, world taps, and visible combat buttons",
   chapters: [],
   progress: [],
   screenshots: [],
@@ -621,6 +621,8 @@ async function playChapter(chapter) {
     assert.equal(recovered.obby.checkpointId, checkpoint.id);
     assert.ok(recovered.obby.recoveryRemaining > 0);
     assert.ok(planarDistance(recovered.status.position, checkpoint.position) < 0.7);
+    const heldInput = Math.hypot(recovered.input.moveX, recovered.input.moveY);
+    assert.ok(heldInput > 0.5, "intentional fall did not retain its real held input");
     assert.equal(latestSave.revision, revision, "local recovery wrote a save action");
     assert.deepEqual(saveProgress(latestSave), progress, "local recovery changed progress");
     chapterReport.recovery = {
@@ -630,6 +632,7 @@ async function playChapter(chapter) {
       after: recovered.obby.recoveries,
       position: recovered.status.position,
       protectionSeconds: recovered.obby.recoveryRemaining,
+      heldInput,
       progressPreserved: true,
     };
     mark("recovery:intentional", chapterReport.recovery);
