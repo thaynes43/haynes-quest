@@ -24,13 +24,19 @@ const outDir = runLabel
   : "test-results/authored-playtest";
 const reportPath = `${outDir}/report.json`;
 const timeoutMs = Number(process.env.QUEST_E2E_TIMEOUT_MS ?? 900_000);
+const routeStartChapter = Number(process.env.QUEST_E2E_START_CHAPTER ?? 1);
 assert.ok(Number.isFinite(timeoutMs) && timeoutMs >= 180_000);
+assert.ok(
+  routeStartChapter === 1 || routeStartChapter === 2,
+  "QUEST_E2E_START_CHAPTER must be 1 or 2",
+);
 await fs.mkdir(outDir, { recursive: true });
 
 const report = {
   startedAt: new Date().toISOString(),
   status: "running",
   url,
+  routeStartChapter,
   browser: null,
   controls: "real keyboard route movement/jumps and touch combat buttons",
   relatedTouchDiagnostic:
@@ -810,29 +816,35 @@ try {
   await page
     .getByRole("button", { name: "Play from the beginning", exact: true })
     .waitFor();
-  await startChapter(1);
-  await playChapter(1);
-  await page.getByRole("dialog", { name: /Welcome to 2024/ }).waitFor();
-  await page.getByRole("button", { name: "Enter the next era", exact: true }).tap();
-  await waitForInspection({
-    page,
-    screenshot,
-    label: "chapter-2-transition",
-    predicate: (inspection) =>
-      inspection.level.authored?.id === "besties-playground-v1",
-    timeout: 20_000,
-  });
+  if (routeStartChapter === 1) {
+    await startChapter(1);
+    await playChapter(1);
+    await page.getByRole("dialog", { name: /Welcome to 2024/ }).waitFor();
+    await page.getByRole("button", { name: "Enter the next era", exact: true }).tap();
+    await waitForInspection({
+      page,
+      screenshot,
+      label: "chapter-2-transition",
+      predicate: (inspection) =>
+        inspection.level.authored?.id === "besties-playground-v1",
+      timeout: 20_000,
+    });
+  } else {
+    await startChapter(2);
+  }
   await playChapter(2);
   await page
     .getByRole("dialog", { name: "Every chapter, a little more you." })
     .waitFor();
   assert.equal(latestSave.completed, true);
   assert.equal(latestSave.recoveredIds.length, 6);
-  assert.equal(report.chapters.length, 2);
+  assert.equal(report.chapters.length, 3 - routeStartChapter);
   assert.ok(report.chapters.every((chapter) => chapter.combat.length === 5));
   assert.deepEqual(
     report.chapters.map((chapter) => chapter.course.id),
-    ["garden-playground-v1", "besties-playground-v1"],
+    ["garden-playground-v1", "besties-playground-v1"].slice(
+      routeStartChapter - 1,
+    ),
   );
   assert.deepEqual(report.responseErrors, []);
   assert.deepEqual(report.pageErrors, []);
