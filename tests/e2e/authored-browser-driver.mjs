@@ -83,31 +83,7 @@ export async function createTouchControls({ page, context }) {
 
   const send = (type, touchPoints) =>
     cdp.send("Input.dispatchTouchEvent", { type, touchPoints });
-  const release = async () => {
-    if (!held) return;
-    held = null;
-    await send("touchEnd", []);
-    await delay(35);
-  };
-  const beginToward = async (deltaX, deltaZ, strength = 1) => {
-    await release();
-    const magnitude = Math.hypot(deltaX, deltaZ);
-    assert.ok(magnitude > 0, "zero-length touch movement requested");
-    const id = nextPointerId++;
-    const origin = touchPoint(id, center.x, center.y);
-    // The fixed game camera maps +X to joystick right and -Z to joystick up.
-    const target = touchPoint(
-      id,
-      center.x + (deltaX / magnitude) * 44 * strength,
-      center.y + (deltaZ / magnitude) * 44 * strength,
-    );
-    await send("touchStart", [origin]);
-    await send("touchMove", [target]);
-    held = target;
-    return target;
-  };
-  const jumpWhileHeld = async () => {
-    assert.ok(held, "jump requested without held movement");
+  const resolveWorldTap = async () => {
     const worldTap = await page.evaluate(() => {
       const canvas = document.querySelector("canvas[data-quest-canvas=true]");
       if (!canvas) return null;
@@ -125,11 +101,52 @@ export async function createTouchControls({ page, context }) {
       return null;
     });
     assert.ok(worldTap, "no unobstructed world-tap point is available");
+    return worldTap;
+  };
+  const movementContacts = (deltaX, deltaZ, strength = 1) => {
+    const magnitude = Math.hypot(deltaX, deltaZ);
+    assert.ok(magnitude > 0, "zero-length touch movement requested");
+    const id = nextPointerId++;
+    return {
+      origin: touchPoint(id, center.x, center.y),
+      target: touchPoint(
+        id,
+        center.x + (deltaX / magnitude) * 44 * strength,
+        center.y + (deltaZ / magnitude) * 44 * strength,
+      ),
+    };
+  };
+  const release = async () => {
+    if (!held) return;
+    held = null;
+    await send("touchEnd", []);
+    await delay(35);
+  };
+  const beginToward = async (deltaX, deltaZ, strength = 1) => {
+    await release();
+    const { origin, target } = movementContacts(deltaX, deltaZ, strength);
+    // The fixed game camera maps +X to joystick right and -Z to joystick up.
+    await send("touchStart", [origin]);
+    await send("touchMove", [target]);
+    held = target;
+    return target;
+  };
+  const beginJumpToward = async (deltaX, deltaZ, strength = 1) => {
+    await release();
+    const worldTap = await resolveWorldTap();
+    const { origin, target } = movementContacts(deltaX, deltaZ, strength);
     const jump = touchPoint(
       nextPointerId++,
       worldTap.x,
       worldTap.y,
     );
+    held = target;
+    // Queue the full two-finger gesture before waiting for slow CDP command
+    // acknowledgements. At software-rendered frame rates, awaiting the moved
+    // joystick first can walk through the final takeoff margin before the
+    // second finger reaches the world.
+    const started = send("touchStart", [origin]);
+    const moved = send("touchMove", [target]);
     const down = send("touchStart", [held, jump]);
     await delay(10);
     // There is deliberately no move event for the world contact, so this
@@ -138,18 +155,19 @@ export async function createTouchControls({ page, context }) {
     // captured joystick contact stays active (covered by the existing input
     // diagnostic and used here only through the normal touch surface).
     const up = send("touchEnd", [jump]);
-    await Promise.all([down, up]);
+    await Promise.all([started, moved, down, up]);
+    return target;
   };
 
   return {
     kind: "touch",
     beginToward,
-    jumpWhileHeld,
+    beginJumpToward,
     release,
     async pulseToward(deltaX, deltaZ, { jump = false, milliseconds = 150 } = {}) {
-      await beginToward(deltaX, deltaZ);
+      if (jump) await beginJumpToward(deltaX, deltaZ);
+      else await beginToward(deltaX, deltaZ);
       try {
-        if (jump) await jumpWhileHeld();
         await delay(milliseconds);
       } finally {
         await release();
@@ -336,8 +354,10 @@ export function createAuthoredRouteDriver({
           continue;
         }
         const recoveriesBefore = boardInspection.obby.recoveries;
-        await controls.beginToward(target.x - sourceEdge.x, target.z - sourceEdge.z);
-        await controls.jumpWhileHeld();
+        await controls.beginJumpToward(
+          target.x - sourceEdge.x,
+          target.z - sourceEdge.z,
+        );
         try {
           boarded = await waitForInspection({
             page,
@@ -429,11 +449,10 @@ export function createAuthoredRouteDriver({
         continue;
       }
       const recoveriesBefore = inspection.obby.recoveries;
-      await controls.beginToward(
+      await controls.beginJumpToward(
         targetEdge.x - inspection.status.position.x,
         targetEdge.z - inspection.status.position.z,
       );
-      await controls.jumpWhileHeld();
       let landed;
       try {
         landed = await waitForInspection({
@@ -499,11 +518,10 @@ export function createAuthoredRouteDriver({
             position: current.status.position,
             jumpSequence,
           });
-          await controls.beginToward(
+          await controls.beginJumpToward(
             landing.x - current.status.position.x,
             landing.z - current.status.position.z,
           );
-          await controls.jumpWhileHeld();
           try {
             after = await waitForInspection({
               page,
@@ -530,6 +548,9 @@ export function createAuthoredRouteDriver({
             supportId: after.obby.supportId,
             recoveries: after.obby.recoveries,
             jumpSequence: after.status.jumpSequence,
+            pointerTrace: await page.evaluate(() =>
+              (window.__authoredPointerTrace ?? []).slice(-12),
+            ),
           });
           assert.ok(
             after.status.jumpSequence > jumpSequence,

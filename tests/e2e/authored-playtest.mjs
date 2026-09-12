@@ -64,6 +64,38 @@ const context = await browser.newContext({
   hasTouch: true,
   isMobile: true,
 });
+await context.addInitScript(() => {
+  window.__authoredPointerTrace = [];
+  for (const type of [
+    "pointerdown",
+    "pointermove",
+    "pointerup",
+    "pointercancel",
+  ]) {
+    document.addEventListener(
+      type,
+      (event) => {
+        window.__authoredPointerTrace.push({
+          type,
+          pointerId: event.pointerId,
+          pointerType: event.pointerType,
+          target:
+            event.target instanceof Element
+              ? `${event.target.tagName}.${event.target.className}`
+              : null,
+          x: event.clientX,
+          y: event.clientY,
+          timeStamp: event.timeStamp,
+          handledAt: performance.now(),
+        });
+        if (window.__authoredPointerTrace.length > 80) {
+          window.__authoredPointerTrace.shift();
+        }
+      },
+      true,
+    );
+  }
+});
 const page = await context.newPage();
 let latestSave = null;
 const observedHits = [];
