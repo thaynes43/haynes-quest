@@ -410,4 +410,16 @@ describe("QuestAudio", () => {
     expect(context.sources[1]?.disconnect).toHaveBeenCalledOnce();
     audio.dispose();
   });
+
+  it("reports zero volume as silent and recovers when volume is restored", async () => {
+    const { audio } = audioFixture();
+    await audio.start();
+    audio.setPreferences(false, 0);
+    expect(audio.status().ready).toBe(false);
+    await expect(audio.cue("memory-collected")).resolves.toBe(false);
+    await expect(audio.audition()).resolves.toBe(false);
+    audio.setPreferences(false, 0.8);
+    await expect(audio.audition()).resolves.toBe(true);
+    audio.dispose();
+  });
 });

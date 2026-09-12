@@ -1800,6 +1800,7 @@ footer {
   font-weight: normal;
 }
 .era-hud {
+  pointer-events: none;
   position: absolute;
   top: 105px;
   left: max(26px, env(safe-area-inset-left));
@@ -1867,6 +1868,7 @@ footer {
   color: #e4c988;
 }
 .era-objective {
+  pointer-events: none;
   position: absolute;
   top: 108px;
   right: max(26px, env(safe-area-inset-right));
@@ -1888,6 +1890,7 @@ footer {
   line-height: 1.6;
 }
 .boss-hud {
+  pointer-events: none;
   position: absolute;
   top: 110px;
   width: min(27vw, 340px);

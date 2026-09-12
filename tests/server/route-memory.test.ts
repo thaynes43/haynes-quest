@@ -15,7 +15,7 @@ import {
   type AdventureState,
 } from '../../src/shared/adventure.js';
 import type { GameplayAction, GameplayActionRequest } from '../../src/shared/contracts.js';
-import { createInitialFriendlyState } from '../../src/shared/friendly.js';
+import { createInitialFriendlyState, friendlyDefinitionsForLevel, reduceFriendlyAction } from '../../src/shared/friendly.js';
 import { parseStoredAdventure } from '../../src/server/adventure-schema.js';
 import {
   FIXTURE_SUBJECT,
@@ -283,7 +283,7 @@ describe('route-memory plan v3', () => {
       expect(state.encounters[encounter.id]).toMatchObject({ hp: 0, defeated: true });
     }
     expect(state.encounters[boss.id]).toMatchObject({ hp: boss.maxHp, defeated: false });
-    expect(toAdventureView(plan, state, nowMs).activeLevel.encounters.find(
+    expect(toAdventureView(plan, state, nowMs).activeLevel!.encounters.find(
       (encounter) => encounter.id === boss.id,
     )).toMatchObject({ available: true, defeated: false, hp: boss.maxHp });
 
@@ -320,7 +320,7 @@ describe('route-memory plan v3', () => {
     }, SECONDARY_ATTACK_COOLDOWN_MS);
     expect(state.encounters[secondEnemy!.id]!.hp).toBe(secondEnemy!.maxHp - 2);
     expect(toAdventureView(plan, state, SECONDARY_ATTACK_COOLDOWN_MS))
-      .toMatchObject({ secondaryCooldownRemainingMs: SECONDARY_ATTACK_COOLDOWN_MS });
+      .toMatchObject({ secondaryCooldownRemainingMs: SECONDARY_ATTACK_COOLDOWN_MS, guardCooldownRemainingMs: 0 });
     state = collect(plan, state, 'attack-tool');
     state = apply(plan, state, {
       type: 'attack', levelId: level.id, encounterId: secondEnemy!.id,
@@ -331,6 +331,26 @@ describe('route-memory plan v3', () => {
       .toThrow('ATTACK_COOLDOWN');
     expect(() => apply(plan, state, { type: 'guard', levelId: level.id }, 2_000))
       .toThrow('ACTION_NOT_AVAILABLE');
+  });
+
+  it('shares the v3 primary cooldown between friendly harm and enemy attacks', () => {
+    const plan = routePlan();
+    const level = plan.levels[0]!;
+    const friend = friendlyDefinitionsForLevel(level.id, level.index)[0]!;
+    const initial = collect(plan, createInitialAdventureState(plan), 'attack-tool');
+    const result = reduceFriendlyAction(plan, initial, createInitialFriendlyState(plan), {
+      type: 'attack-friendly', levelId: level.id, friendlyId: friend.id,
+    }, 0);
+    expect(toAdventureView(plan, result.adventureState, 0).attackCooldownRemainingMs)
+      .toBe(ROUTE_ATTACK_COOLDOWN_MS);
+    for (const nowMs of [0, 199, 200, ROUTE_ATTACK_COOLDOWN_MS - 1]) {
+      expect(() => apply(plan, result.adventureState, {
+        type: 'attack', levelId: level.id, encounterId: level.encounters[0]!.id,
+      }, nowMs)).toThrow('ATTACK_COOLDOWN');
+    }
+    expect(() => apply(plan, result.adventureState, {
+      type: 'attack', levelId: level.id, encounterId: level.encounters[0]!.id,
+    }, ROUTE_ATTACK_COOLDOWN_MS)).not.toThrow();
   });
 
   it('replays a route-minor receipt without collecting it twice', () => {

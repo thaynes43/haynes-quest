@@ -141,6 +141,7 @@ export function createApp(options: AppOptions): Hono {
     });
 
     app.get('/api/fixture-media/:memoryId', (context) => {
+      limiter.take(`fixture-media:${context.req.header('user-agent') ?? 'unknown'}`);
       const svg = fixtureSvg(context.req.param('memoryId'));
       if (!svg) throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
       return context.body(svg, 200, fixtureMediaHeaders());
@@ -197,6 +198,9 @@ export function createApp(options: AppOptions): Hono {
     const player = await requirePlayer(context, sessions);
     limiter.take(`write:${player.id}`);
     const command = await parseJson(context, createSaveSchema);
+    if (options.ephemeralPlaytest && command.selectedIds.length !== 6) {
+      throw new AppError(422, 'INVALID_SELECTION', 'Invalid selection');
+    }
     const save = await options.store.createSave({
       ownerId: player.id,
       ...command,
@@ -264,17 +268,20 @@ export function createApp(options: AppOptions): Hono {
     return context.body(new Uint8Array(media.bytes), 200, privateMediaHeaders(media.contentType));
   });
 
-  app.get('/studio', (context) => context.redirect('/studio/', 308));
-  app.get('/studio/', serveStatic({ root: options.studioDir, path: 'index.html' }));
-  app.use('/studio/*', async (context, next) => {
+  const studioHeaders = async (context: Context, next: () => Promise<void>): Promise<void> => {
     await next();
+    context.header('Cache-Control', 'no-cache');
     if (
       (context.res.status === 200 || context.res.status === 206) &&
       context.req.path.toLowerCase().endsWith('.wav')
     ) {
       context.header('Content-Type', 'audio/wav');
     }
-  });
+  };
+  app.use('/studio', studioHeaders);
+  app.use('/studio/*', studioHeaders);
+  app.get('/studio', (context) => context.redirect('/studio/', 308));
+  app.get('/studio/', serveStatic({ root: options.studioDir, path: 'index.html' }));
   app.use('/studio/*', serveStatic({
     root: options.studioDir,
     rewriteRequestPath: (path) => path.replace(/^\/studio/, ''),
@@ -393,7 +400,7 @@ function privateMediaHeaders(contentType: string): Record<string, string> {
 }
 
 function isHashedClientAsset(path: string): boolean {
-  return /(?:^|\/)[^/]+-[A-Za-z0-9_-]{8,}\.[^/]+$/.test(path);
+  return /(?:^|\/)[^/]+-[A-Za-z0-9_-]{8}\.(?:js|css)$/.test(path);
 }
 
 async function prepareRouteMemoryChapter(

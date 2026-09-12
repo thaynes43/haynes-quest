@@ -534,7 +534,9 @@ export function toAdventureView(
     maxPlayerHp: state.maxPlayerHp,
     attackCooldownRemainingMs: boundedRemainingMs(state.attackReadyAtMs, nowMs, attackCooldownMs),
     guardActiveRemainingMs: boundedRemainingMs(state.guardActiveUntilMs, nowMs, GUARD_ACTIVE_MS),
-    guardCooldownRemainingMs: boundedRemainingMs(state.guardReadyAtMs, nowMs, GUARD_COOLDOWN_MS),
+    guardCooldownRemainingMs: plan.version === 'era-level-plan-v3'
+      ? 0
+      : boundedRemainingMs(state.guardReadyAtMs, nowMs, GUARD_COOLDOWN_MS),
     ...(plan.version === 'era-level-plan-v3' ? {
       secondaryCooldownRemainingMs: boundedRemainingMs(
         state.guardReadyAtMs,

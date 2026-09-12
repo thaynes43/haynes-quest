@@ -115,3 +115,14 @@ This is one supporting six-picture set, not six model candidates. Root owns its 
 - Repository-wide `pnpm exec tsc --noEmit`: passed after the concurrent game lane settled.
 
 No source WAV, UI, browser, server, deployment or private data changed in this lane. No human listening or physical-device claim is made.
+
+## WO068 server review follow-up
+
+The bounded server follow-up resolves Fable findings M1, L1, L7 and L8 in `src/server/app.ts` without changing persistence or private-media authorization:
+
+- `/studio`, `/studio/` and every `/studio/*` response now explicitly use `Cache-Control: no-cache`, including redirects and missing static paths. Successful full and range WAV responses retain `audio/wav`; representative index, GLB, WAV and 404 responses are covered by the server tests.
+- Ephemeral `POST /api/saves` rejects any selection other than the six route memories as `422 INVALID_SELECTION` before calling `QuestStore.createSave`. A valid six-memory retry using the same preview still succeeds.
+- Only JavaScript and CSS names ending in an exact eight-character Vite-style hash receive the one-year immutable policy. Longer suffixes and non-JS/CSS names such as `memory-keepsake.glb` use `no-cache`.
+- The public fictional fixture SVG route remains session-free and now uses the existing 120-per-minute limiter independently per user agent. A capped user agent receives `429 RATE_LIMITED`; another user agent can still read the six-picture catalog.
+
+`pnpm exec vitest run tests/server/app.test.ts` passes 16 tests, `pnpm typecheck` passes, focused ESLint passes with zero warnings and `git diff --check` passes. The repository's current `src/server/app.ts` and `tests/server/app.test.ts` already fail the whole-file Prettier check at `HEAD`; this follow-up preserves their current single-quote style and avoids an unrelated full-file rewrite.

@@ -126,6 +126,7 @@ function Adventure({
   const soundRef = useRef<QuestAudio | undefined>(undefined);
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(0.8);
+  const soundOff = muted || volume === 0;
   const [showHelp, setShowHelp] = useState(false);
   const [showAlbum, setShowAlbum] = useState(false);
   const [showVictory, setShowVictory] = useState(
@@ -448,13 +449,29 @@ function Adventure({
   useEffect(() => {
     game.current?.setPaused(modalOpen);
     soundRef.current?.setPaused(modalOpen);
-    // Celebration can play through its panel once gameplay has unlocked audio.
-    // Only direct gestures attempt to unlock a suspended browser context.
-    if (
-      (activeModal === "chapter" || activeModal === "complete") &&
-      soundRef.current?.status().contextState === "running"
-    )
-      void soundRef.current.audition("ability-unlocked");
+    if (activeModal !== "chapter" && activeModal !== "complete") return;
+    const sound = soundRef.current;
+    if (!sound) return;
+    let played = false;
+    let pending = false;
+    const celebrate = () => {
+      if (played || pending) return;
+      pending = true;
+      void sound.audition("ability-unlocked").then((started) => {
+        played = started;
+        pending = false;
+      });
+    };
+    // An interrupted context waits for the next direct gesture; repeated
+    // pointer/touch events share one pending celebration attempt.
+    if (sound.status().contextState === "running") celebrate();
+    const gestures = ["pointerdown", "pointerup", "touchend", "click", "keydown"];
+    for (const gesture of gestures)
+      document.addEventListener(gesture, celebrate, true);
+    return () => {
+      for (const gesture of gestures)
+        document.removeEventListener(gesture, celebrate, true);
+    };
   }, [modalOpen, activeModal]);
 
   const feedback = (
@@ -538,16 +555,18 @@ function Adventure({
         <div className="game-tools">
           <button
             className="glass-button"
-            aria-label={muted ? "Enable sound" : "Mute sound"}
+            aria-label={soundOff ? "Enable sound" : "Mute sound"}
             onClick={() => {
-              const next = !muted;
+              const next = !soundOff;
+              const nextVolume = !next && volume === 0 ? 0.8 : volume;
               setMuted(next);
-              soundRef.current?.setPreferences(next);
+              setVolume(nextVolume);
+              soundRef.current?.setPreferences(next, nextVolume);
               void soundRef.current?.start({ confirmation: true });
             }}
           >
-            <span aria-hidden="true">{muted ? "♪̸" : "♪"}</span>
-            <small>{muted ? "Sound off" : "Sound on"}</small>
+            <span aria-hidden="true">{soundOff ? "♪̸" : "♪"}</span>
+            <small>{soundOff ? "Sound off" : "Sound on"}</small>
           </button>
           <button
             className="glass-button"

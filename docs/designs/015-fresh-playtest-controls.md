@@ -23,17 +23,17 @@ Retrying after losing all health keeps defeated enemies, gear and collected memo
 
 ## Freshness and authority
 
-`QUEST_EPHEMERAL_PLAYTEST=true` is allowed only with fixture development mode. Startup uses bounded expiring memory storage and does not connect to, migrate or delete Postgres data. Sessions, ownership, CSRF, revisions, action receipts and media admission still apply. Save discovery returns an empty list; an active page retains its current run ID. The chapter-two shortcut advances through normal authoritative actions.
+`QUEST_EPHEMERAL_PLAYTEST=true` is allowed only with fixture development mode. Startup uses bounded expiring memory storage and does not connect to, migrate or delete Postgres data. Sessions, ownership, CSRF, revisions, action receipts and media admission still apply. The temporary store retains the newest two runs per owner and retires least-recently-used runs or sessions at its global caps. Retained runs keep their receipts and ownership checks; evicted runs have no resume promise. Referenced previews remain available for idempotent creation, and the preview cap must exceed the run cap. Save discovery returns an empty list; an active page retains its current run ID. The chapter-two shortcut advances through normal authoritative actions.
 
 The new `era-level-plan-v3` freezes two minor IDs and one major ID per level. V1/v2 parsers and their age-based ability arrays remain valid; the default persistent plan factory still produces v2. New playtest plans always include jump and expose memory roles. A v3 major recovery consumes all three memories and advances atomically; the old bundle-consumption and guard actions remain for older contracts only.
 
-Root HTML is `no-store`; hashed bundles are immutable. An unknown artwork identity uses visible study geometry and a recoverable warning. It cannot disable simulation or force a save/reload loop. Missing downloads remain retryable. A stale device client is a plausible cause of Tom's artwork gate; the specific device cause has not been established.
+Root HTML is `no-store`; hashed JavaScript/CSS bundles are immutable. Studio pages and media use `no-cache` so browsers revalidate them. An unknown artwork identity uses visible study geometry and a recoverable warning. It cannot disable simulation or force a save/reload loop. Missing downloads remain retryable. A stale device client is a plausible cause of Tom's artwork gate; the specific device cause has not been established.
 
 ## Sound
 
 The four v001 WAVs remain unchanged. Their earlier gain stack produced a landing peak around −30 dBFS; source analysis also found that sound was brief and bass-heavy. The new 0.8 master, measured cue trims and midrange attack/jump/pickup variants make feedback substantially stronger. A limiter bounds overlap. The fresh preference key avoids inheriting an earlier release's mute setting; the labeled toggle and Help audition make state and output easy to check.
 
-Web Audio starts from a real gesture, confirms unlock, survives menu transitions and suspends in the background. Supported browsers use the Audio Session `playback` category. Actual speaker audibility, Safari handling and child comfort still require physical-device listening; a running AudioContext is insufficient evidence.
+Web Audio starts from a real gesture, confirms unlock, survives menu transitions and suspends in the background. A celebration interrupted before playback retries from the next gesture while its panel remains open. Zero volume is displayed as sound off; enabling sound restores an audible volume. Failed source starts release their playback slots. Supported browsers use the Audio Session `playback` category. Actual speaker audibility, Safari handling and child comfort still require physical-device listening; a running AudioContext is insufficient evidence.
 
 ## Fable research and lead decisions
 

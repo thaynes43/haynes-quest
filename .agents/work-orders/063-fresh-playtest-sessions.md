@@ -17,7 +17,7 @@ The signed fixture cookie continues to carry identity only. A cookie from the pe
 
 The ephemeral-only `POST /api/playtest/start` accepts a strict same-origin JSON body `{ chapter: 1 | 2 }`. Every call creates a new six-picture route journey. Chapter 1 returns its untouched starting state. Chapter 2 is a testing shortcut: it collects the issued attack tool, recovers both minor memories, defeats each encounter through revision-controlled store actions at the real cooldown, then recovers the major memory so the authoritative reducer advances to the second chapter. It never manufactures state or writes directly to storage. The route is absent in normal persistent mode.
 
-The root app shell now sends `Cache-Control: no-store`. Vite-style content-hashed client assets receive a one-year immutable policy; unhashed client assets require revalidation. This prevents a refreshed browser from pairing an old HTML shell with a new server while retaining safe caching for immutable bundles. Studio media keeps its existing revalidation behavior.
+The root app shell now sends `Cache-Control: no-store`. Vite-style content-hashed client assets receive a one-year immutable policy; unhashed client assets require revalidation. This prevents a refreshed browser from pairing an old HTML shell with a new server while retaining safe caching for immutable bundles. Studio pages and media explicitly require revalidation (`Cache-Control: no-cache`). WO068 identified that the earlier checkpoint had incorrectly described an existing policy; the review follow-up adds it.
 
 ## Verification
 

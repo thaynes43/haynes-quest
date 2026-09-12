@@ -295,6 +295,7 @@ export class QuestAudio {
       ready:
         !this.disposed &&
         !this.muted &&
+        this.volume > 0 &&
         !this.paused &&
         !this.backgrounded &&
         this.unlocked &&
@@ -341,6 +342,7 @@ export class QuestAudio {
     if (
       this.disposed ||
       this.muted ||
+      this.volume <= 0 ||
       (this.paused && !allowWhilePaused) ||
       this.backgrounded
     )
@@ -443,6 +445,7 @@ export class QuestAudio {
       this.disposed ||
       !this.unlocked ||
       this.muted ||
+      this.volume <= 0 ||
       (this.paused && !allowWhilePaused) ||
       this.backgrounded ||
       !context ||
@@ -457,6 +460,7 @@ export class QuestAudio {
       this.disposed ||
       !this.unlocked ||
       this.muted ||
+      this.volume <= 0 ||
       (this.paused && !allowWhilePaused) ||
       this.backgrounded ||
       this.context !== context ||
