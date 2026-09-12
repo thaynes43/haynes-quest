@@ -4,7 +4,7 @@
 - **Model / dispatch:** `claude-fable-5-1`, effort `xhigh`, via `agent-run` (task `haynes-quest-0911-204632`). Source gathering and code tracing were fanned out to three native Opus 5 subagents (`claude-opus-5`, verified on each report's first line); the recommendations and the verification of their claims are Fable's.
 - **Worktree / branch / base:** `/home/dev/work/haynes-quest-0911-204632`, `agent/haynes-quest-0911-204632`, from `origin/main` `ed7ae72`.
 - **Browser lease:** RELEASED. The shared Playwright MCP page was closed at the end of this research (`browser_close`, no open tabs); the temporary touch-emulation context was closed inside its own run.
-- **Evidence (ignored paths):** `test-results/wo062/touch-probe.json` (live touch probe log); subagent reports `/tmp/wo062-research-apple-webkit/report.md`, `/tmp/wo062-research-roblox-a11y/report.md`, `/tmp/wo062-code-diagnosis/report.md` (with its runnable catalog probe `/tmp/wo062-code-diagnosis/probe.ts`). Screenshots taken through the shared Playwright MCP are stored on that service's pod, not in this worktree; the layout numbers below were read from the live DOM.
+- **Evidence (ignored paths):** `test-results/wo062/touch-probe.json` (live touch probe log) and `test-results/wo062/wo062-*.png` (home page and in-game HUD at 390x844, 844x390, 1180x820 and 820x1180); subagent reports `/tmp/wo062-research-apple-webkit/report.md`, `/tmp/wo062-research-roblox-a11y/report.md`, `/tmp/wo062-code-diagnosis/report.md` (with its runnable catalog probe `/tmp/wo062-code-diagnosis/probe.ts`). The layout numbers below were read from the live DOM, not measured from the screenshots.
 
 ## 1. Summary
 
