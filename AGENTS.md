@@ -16,7 +16,7 @@ Tom now requires parent-prepared journeys and collaborative enemy selection; rea
 
 [PLAN006](.agents/plans/completed/006-playtest-polish-and-besties.md) completes the private touch-combat, sound, foliage, friendly-character and Besties release. Read the handoff for exact live evidence and the remaining physical-device, listening and final-art review.
 
-[PLAN007](.agents/plans/007-playtest-reset-and-controls.md) supersedes the prior playtest controls and reward presentation after Tom's next physical-device feedback. Private tests start fresh without saved-progress UI; jumping is always available; world taps/Space jump; walking into pickups interacts; Attack and Secondary replace the four-button cluster. Two minor memories are collected along each route and one major memory after the boss advances age. Prior test passes do not establish physical-device quality.
+[PLAN007](.agents/plans/completed/007-playtest-reset-and-controls.md) completes the revised private playtest and supersedes the prior playtest controls and reward presentation after Tom's next physical-device feedback. Private tests start fresh without saved-progress UI; jumping is always available; world taps/Space jump; walking into pickups interacts; Attack and Secondary replace the four-button cluster. Two minor memories are collected along each route and one major memory after the boss advances age. Prior test passes do not establish physical-device quality.
 
 ## Working rules
 

@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "source_report": "test-results/fresh-playtest/live-plan007-controls/report.json",
+  "url": "https://haynes-quest-playtest.haynesops.com/?playtest=plan007",
+  "startedAt": "2026-09-12T03:41:21.505Z",
+  "finishedAt": "2026-09-12T03:41:52.274Z",
+  "browser": "153.0.8010.12",
+  "bundle": {
+    "path": "/assets/index-Bn3nnDAn.js",
+    "bytes": 1041657,
+    "sha256": "0e795d99f5fd820bc5388c8ae24c350f4214c3ac5a6fbcbdc444b9ae5db43702"
+  },
+  "audio": {
+    "testSound": {
+      "available": true,
+      "contexts": [
+        {
+          "state": "running",
+          "sampleCount": 266240,
+          "nonzeroSampleCount": 110,
+          "maxAbs": 0.4678802192211151,
+          "analyserConnected": true
+        }
+      ]
+    },
+    "mutedJump": {
+      "available": true,
+      "contexts": [
+        {
+          "state": "running",
+          "sampleCount": 143360,
+          "nonzeroSampleCount": 0,
+          "maxAbs": 0,
+          "analyserConnected": true
+        }
+      ]
+    },
+    "unmute": {
+      "available": true,
+      "contexts": [
+        {
+          "state": "running",
+          "sampleCount": 167936,
+          "nonzeroSampleCount": 30,
+          "maxAbs": 0.3635765016078949,
+          "analyserConnected": true
+        }
+      ]
+    }
+  },
+  "gestures": {
+    "spaceAtAgeZero": {
+      "age": 0,
+      "startY": 0,
+      "airborneY": 0.4813583250000023
+    },
+    "cancelledWorldTouch": {
+      "before": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "after": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    "worldTapAtAgeZero": {
+      "age": 0,
+      "startY": 0,
+      "airborneY": 0.5335332999999989
+    },
+    "simultaneous": {
+      "attackOutcome": "no-target",
+      "heldMoveXDuringAttack": -0.14444446563720703,
+      "heldMoveXDuringJump": -0.14444446563720703,
+      "airborneY": 0.7,
+      "jumpSequence": 1,
+      "cancelledWorldPointer": {
+        "heldContactId": 8,
+        "heldMoveXBeforeCancel": -0.14444446563720703,
+        "moveXAfterCancel": 0,
+        "jumpSequence": 1
+      }
+    }
+  },
+  "fresh_leave": true,
+  "fresh_reload": true,
+  "discarded_revision": 1,
+  "pageErrors": [],
+  "responseErrors": [],
+  "consoleErrors": [],
+  "scope": "Actual hosted Chromium touch smoke. Audio graph output does not prove physical speaker audibility. No session identifiers or credentials retained."
+}

@@ -64,7 +64,7 @@ nav:
       - Runbook template: ops/000-template.md
   - Project records:
       - Current handoff: project/HANDOFF.md
-      - Fresh playtests and controls: project/plans/007-playtest-reset-and-controls.md
+      - Fresh playtests and controls: project/plans/completed/007-playtest-reset-and-controls.md
       - Playtest feedback and Besties: project/plans/completed/006-playtest-polish-and-besties.md
       - Team and routing: project/TEAM.md
       - Completed overnight MVP: project/plans/completed/004-overnight-mvp.md

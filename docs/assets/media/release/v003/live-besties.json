@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "source_report": "test-results/fresh-playtest/live-plan007-besties/report.json",
+  "url": "https://haynes-quest-playtest.haynesops.com/?playtest=plan007",
+  "startedAt": "2026-09-12T03:42:49.032Z",
+  "finishedAt": "2026-09-12T03:43:05.093Z",
+  "browser": "153.0.8010.12",
+  "bundle": {
+    "path": "/assets/index-Bn3nnDAn.js",
+    "bytes": 1041657,
+    "sha256": "0e795d99f5fd820bc5388c8ae24c350f4214c3ac5a6fbcbdc444b9ae5db43702"
+  },
+  "held_wand_damage": {
+    "encounterId": "level-2-2024-encounter-1",
+    "revisionBefore": 15,
+    "revisionAfter": 16,
+    "hpBefore": 6,
+    "hpAfter": 3,
+    "retainedMoveX": -1,
+    "tapDurationMs": 350
+  },
+  "layout": {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "attack": {
+      "x": 672,
+      "y": 290,
+      "width": 84,
+      "height": 84
+    },
+    "bash": {
+      "x": 764,
+      "y": 232,
+      "width": 60,
+      "height": 60
+    },
+    "joystick": {
+      "x": 20,
+      "y": 270,
+      "width": 104,
+      "height": 104
+    },
+    "header": {
+      "x": 24,
+      "y": 10,
+      "width": 796,
+      "height": 57
+    },
+    "helpOpenedAndClosed": true
+  },
+  "pageErrors": [],
+  "responseErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  ],
+  "scope": "Direct hosted chapter-two entry and natural gear/encounter approach with keyboard travel, actual held touch stick and Attack damage, landscape controls and Help. Pink was intentionally failed here; its visible retry is verified separately in live-artwork.json. This is not a full hosted boss replay."
+}
