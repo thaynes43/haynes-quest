@@ -13,7 +13,7 @@ const {
   platformGateway,
   summarizeAuthoredCourse,
 } = navigation;
-const { chooseFallDirection, nearbyHazard } = browserDriver;
+const { chooseFallDirection, createAuthoredRouteDriver, nearbyHazard } = browserDriver;
 
 type Edge = { from: string; to: string; mode: string };
 
@@ -96,6 +96,69 @@ function documentFixture() {
         "friendly-3": anchor("finish"),
       },
     },
+  };
+}
+
+function driverInspection(
+  document: ReturnType<typeof documentFixture>,
+  supportId: string,
+  recoveries: number,
+) {
+  const centers = {
+    spawn: { x: 0, y: 0, z: 0 },
+    turn: { x: 4, y: 0, z: 0 },
+    checkpoint: { x: 0, y: 0, z: 0 },
+  };
+  return {
+    status: {
+      position: centers[supportId as keyof typeof centers] ?? centers.spawn,
+      grounded: true,
+      jumpSequence: 0,
+    },
+    input: { moveX: 0, moveY: 0 },
+    level: { authored: document },
+    obby: {
+      routeId: document.id,
+      supportId,
+      recoveries,
+      checkpointId: "checkpoint",
+      platforms: [
+        { id: "spawn", center: centers.spawn, size: { x: 3, y: 0.5, z: 3 } },
+        { id: "turn", center: centers.turn, size: { x: 3, y: 0.5, z: 3 } },
+      ],
+      hazards: [],
+    },
+  };
+}
+
+function queuedRouteDriver(samples: ReturnType<typeof driverInspection>[]) {
+  const remaining = [...samples];
+  let pulses = 0;
+  const page = {
+    isClosed: () => false,
+    evaluate: async (_callback: unknown) => {
+      const sample = remaining.shift();
+      if (!sample) throw new Error("inspection queue exhausted");
+      return sample;
+    },
+  };
+  const controls = {
+    release: async () => undefined,
+    jumpToward: async () => undefined,
+    pulseToward: async () => {
+      pulses += 1;
+    },
+  };
+  return {
+    driver: createAuthoredRouteDriver({
+      page,
+      controls,
+      screenshot: async () => undefined,
+      mark: () => undefined,
+      maxRecoveries: 10,
+    }),
+    remaining,
+    pulses: () => pulses,
   };
 }
 
@@ -239,5 +302,52 @@ describe("authored browser navigation", () => {
     );
 
     expect(hazard?.id).toBe("rotated-sweeper");
+  });
+
+  it("gives a successfully crossed edge a fresh bounded budget after checkpoint recovery", async () => {
+    const document = documentFixture();
+    const at = (supportId: string, recoveries: number) =>
+      driverInspection(document, supportId, recoveries);
+    const queued = queuedRouteDriver([
+      at("spawn", 0),
+      at("spawn", 0), at("spawn", 0), at("spawn", 0), at("spawn", 1),
+      at("spawn", 1), at("spawn", 1), at("spawn", 1), at("spawn", 2),
+      at("spawn", 2), at("spawn", 2), at("spawn", 2), at("turn", 2),
+      at("spawn", 3),
+      at("spawn", 3), at("spawn", 3), at("spawn", 3), at("turn", 3),
+    ]);
+    const edge = { from: "spawn", to: "turn", mode: "walk" };
+
+    expect((await queued.driver.crossEdge(edge, "first-crossing")).obby.supportId).toBe("turn");
+    expect((await queued.driver.crossEdge(edge, "revisit-after-recovery")).obby.supportId)
+      .toBe("turn");
+    expect(queued.driver.evidence.edgeEvidence).toHaveLength(2);
+    expect(queued.pulses()).toBe(4);
+    expect(queued.remaining).toHaveLength(0);
+  });
+
+  it("retains and honestly reports the three-attempt bound for an unresolved edge", async () => {
+    const document = documentFixture();
+    const at = (supportId: string, recoveries: number) =>
+      driverInspection(document, supportId, recoveries);
+    const queued = queuedRouteDriver([
+      at("spawn", 0), at("spawn", 0), at("spawn", 0), at("spawn", 0), at("checkpoint", 1),
+      at("spawn", 1), at("spawn", 1), at("spawn", 1), at("spawn", 1), at("checkpoint", 2),
+      at("spawn", 2), at("spawn", 2), at("spawn", 2), at("spawn", 2), at("checkpoint", 3),
+      at("spawn", 3),
+    ]);
+    const edge = { from: "spawn", to: "turn", mode: "walk" };
+
+    expect((await queued.driver.crossEdge(edge, "unresolved-crossing")).obby.supportId)
+      .toBe("checkpoint");
+    expect((await queued.driver.crossEdge(edge, "unresolved-crossing")).obby.supportId)
+      .toBe("checkpoint");
+    expect((await queued.driver.crossEdge(edge, "unresolved-crossing")).obby.supportId)
+      .toBe("checkpoint");
+    await expect(queued.driver.crossEdge(edge, "unresolved-crossing")).rejects.toThrow(
+      "unresolved-crossing: walk edge exhausted its 3-attempt budget without a landing observation",
+    );
+    expect(queued.pulses()).toBe(3);
+    expect(queued.remaining).toHaveLength(0);
   });
 });

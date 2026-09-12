@@ -562,15 +562,18 @@ export function createAuthoredRouteDriver({
     label,
     { allowFinishTrigger = false, finishReached = null } = {},
   ) => {
+    const edgeKey = `${edge.from}->${edge.to}`;
     let before = await read(`${label}-before`);
-    if (before.obby.supportId === edge.to) return before;
+    if (before.obby.supportId === edge.to) {
+      edgeAttempts.delete(edgeKey);
+      return before;
+    }
     assert.equal(
       before.obby.supportId,
       edge.from,
       `${label}: expected support ${edge.from}, got ${before.obby.supportId}`,
     );
     const recoveriesBefore = before.obby.recoveries;
-    const edgeKey = `${edge.from}->${edge.to}`;
     let after;
     while ((edgeAttempts.get(edgeKey) ?? 0) < 3) {
       const attempt = (edgeAttempts.get(edgeKey) ?? 0) + 1;
@@ -690,7 +693,11 @@ export function createAuthoredRouteDriver({
         recoveries: after.obby.recoveries,
       });
     }
-    const documentExited = after?.level.authored?.id !== document.id;
+    assert.ok(
+      after,
+      `${label}: ${edge.mode} edge exhausted its 3-attempt budget without a landing observation`,
+    );
+    const documentExited = after.level.authored?.id !== document.id;
     const finishTriggered = Boolean(
       allowFinishTrigger && finishReached?.(after),
     );
@@ -701,6 +708,7 @@ export function createAuthoredRouteDriver({
         `${label}: ${edge.mode} edge remained unreachable after ${edgeAttempts.get(edgeKey)} real attempts`,
       );
     }
+    edgeAttempts.delete(edgeKey);
     const evidence = {
       ...edge,
       ...(documentExited || finishTriggered
