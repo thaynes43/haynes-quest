@@ -273,7 +273,11 @@ export function createRouteMemoryPlan(
       ['move', 'interact', 'jump'],
       catalogVersion,
     );
-    const encounters = createEncounters(prefix, index, selection.encounters);
+    const encounters = createEncounters(prefix, index, selection.encounters).map((encounter) =>
+      encounter.role === 'boss' && encounter.content.catalogEntryId === 'bickering-besties'
+        ? { ...encounter, attackDamage: 2 }
+        : encounter,
+    );
     levels.push({
       id: prefix,
       index,
