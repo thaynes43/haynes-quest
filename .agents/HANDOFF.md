@@ -1,6 +1,8 @@
 # Current handoff
 
-**[PLAN007](plans/completed/007-playtest-reset-and-controls.md) is complete for the private playtest, September 12, 2026.** Astra max coordinated the physical-device feedback correction through implementation, review, checked PRs, private deployment and hosted verification. Physical iPhone/iPad feel, speaker listening and final-art review remain owner inspection.
+**[PLAN008](plans/008-mobile-reliability-and-builder-direction.md) is active, September 12, 2026.** Tom's next physical iPhone test reports inaudible sound/unresponsive audition, retained collected keepsakes, an attack-triggered popup and stationary/non-threatening Besties. Prior automated passes did not establish these paths worked on his phone. Lead `/home/dev/work/quest-mobile-reliability`, branch `agent/quest-mobile-reliability`, base `d461cda`; WO071–073 cover bounded native Sol investigations. Fix basics and remove the persistent jump hint before expanding obby content. [DESIGN016](../docs/designs/016-authored-levels.md) records his human/agent builder pivot, freely placed integrated/uploaded memories and period suggestions with Show more. No new assets, OAuth or dev-env restart.
+
+PLAN007's release below remains the current deployed baseline, not acceptance of this new feedback.
 
 ## Open the updated test
 
