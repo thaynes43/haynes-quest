@@ -95,6 +95,7 @@ function makePointerHarness() {
     clientX: number,
     clientY: number,
     eventTarget: FakeElement = target,
+    timeStamp = fakeWindow.nowMs,
   ): void => {
     target.dispatch(type, {
       pointerId,
@@ -102,6 +103,7 @@ function makePointerHarness() {
       button: 0,
       clientX,
       clientY,
+      timeStamp,
       target: eventTarget,
       preventDefault: () => {},
     });
@@ -289,6 +291,18 @@ describe("game input", () => {
     dispose();
   });
 
+  it("uses pointer timestamps when delayed handlers receive a quick physical tap", () => {
+    const { input, fakeWindow, touch, dispose } = makePointerHarness();
+    fakeWindow.nowMs = 21_525.5;
+    touch("pointerdown", 8, 40, 50, undefined, 21_499.8);
+    fakeWindow.nowMs = 22_056.8;
+    touch("pointerup", 8, 40, 50, undefined, 21_510.8);
+
+    expect(input.consumeActions().jump).toBe(true);
+    expect(input.consumeActions().jump).toBe(false);
+    dispose();
+  });
+
   it("turns a touch drag into camera motion and never queues its release as a jump", () => {
     const { input, fakeWindow, touch, dispose } = makePointerHarness();
     fakeWindow.nowMs = 10;
@@ -312,9 +326,9 @@ describe("game input", () => {
     expect(input.consumeActions().jump).toBe(false);
 
     fakeWindow.nowMs = 100;
-    touch("pointerdown", 4, 40, 50);
-    fakeWindow.nowMs = 601;
-    touch("pointerup", 4, 40, 50);
+    touch("pointerdown", 4, 40, 50, undefined, 100);
+    fakeWindow.nowMs = 150;
+    touch("pointerup", 4, 40, 50, undefined, 601);
     expect(input.consumeActions().jump).toBe(false);
     dispose();
   });
