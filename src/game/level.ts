@@ -156,9 +156,17 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
     id,
     index,
     position: {
-      x: memoryBundleX(index, activeLevel.memoryIds.length),
+      x: activeLevel.majorMemoryId
+        ? 0
+        : memoryBundleX(index, activeLevel.memoryIds.length),
       y: 0,
-      z: -22,
+      z: activeLevel.majorMemoryId
+        ? id === activeLevel.majorMemoryId
+          ? -24
+          : index === 0
+            ? -5.2
+            : -11.2
+        : -22,
     },
     state: memoriesById.get(id)?.state ?? "locked",
   }));
@@ -183,7 +191,13 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
       id: pickup.pickupId,
       equipmentId: pickup.id,
       kind: pickup.kind,
-      position: { ...eraPickupPositions[pickup.kind] },
+      position: activeLevel.majorMemoryId
+        ? {
+            x: pickup.kind === "attack-tool" ? -0.7 : 0.8,
+            y: 0,
+            z: pickup.kind === "attack-tool" ? -0.5 : -5.8,
+          }
+        : { ...eraPickupPositions[pickup.kind] },
       collected: pickup.collected,
     })),
     encounters: activeLevel.encounters.map((encounter) => ({

@@ -6,6 +6,7 @@ import type {
   SaveView,
 } from "../shared/contracts";
 import { createGame } from "../game/index";
+import { getJoystickVector } from "../game/input";
 import type { GameHandle, GameStatus } from "../game/index";
 import type { GameInputAction } from "../game/types";
 import { api, friendlyError } from "./api";
@@ -33,14 +34,20 @@ const bestiesInstructions: Record<string, string> = {
 export function GameScreen({
   initialSave,
   onLeave,
+  ephemeral = false,
 }: {
   initialSave: SaveView;
   onLeave: () => void;
+  ephemeral?: boolean;
 }) {
   return initialSave.format === "legacy-v1" ? (
     <LegacyJourney save={initialSave} onLeave={onLeave} />
   ) : (
-    <Adventure initialSave={initialSave} onLeave={onLeave} />
+    <Adventure
+      initialSave={initialSave}
+      onLeave={onLeave}
+      ephemeral={ephemeral}
+    />
   );
 }
 
@@ -101,9 +108,11 @@ function MemoryCard({
 function Adventure({
   initialSave,
   onLeave,
+  ephemeral = false,
 }: {
   initialSave: SaveView;
   onLeave: () => void;
+  ephemeral?: boolean;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const game = useRef<GameHandle | undefined>(undefined);
@@ -111,17 +120,20 @@ function Adventure({
   const [status, setStatus] = useState<GameStatus>();
   const [error, setError] = useState("");
   const [attackNotice, setAttackNotice] = useState("");
+  const [pickupMemoryId, setPickupMemoryId] = useState<string | null>(null);
   const [friendDialogId, setFriendDialogId] = useState<string | null>(null);
   const [confirmFriendlyHarm, setConfirmFriendlyHarm] = useState(false);
   const soundRef = useRef<QuestAudio | undefined>(undefined);
-  const [muted, setMuted] = useState(true);
-  const [volume, setVolume] = useState(0.35);
+  const [muted, setMuted] = useState(false);
+  const [volume, setVolume] = useState(0.8);
   const [showHelp, setShowHelp] = useState(false);
   const [showAlbum, setShowAlbum] = useState(false);
   const [showVictory, setShowVictory] = useState(
-    initialSave.adventure?.phase === "memory-released",
+    initialSave.adventure?.phase === "memory-released" &&
+      !initialSave.adventure.activeLevel?.majorMemoryId,
   );
   const [chapterNotice, setChapterNotice] = useState("");
+  const [chapterMemoryId, setChapterMemoryId] = useState<string | null>(null);
   const [photoDetail, setPhotoDetail] = useState<string | null>(null);
   const mounted = useRef(true);
   const latest = useRef(initialSave);
@@ -130,6 +142,12 @@ function Adventure({
   victoryOpen.current = showVictory;
   const view = save.adventure!;
   const level = view.activeLevel;
+  const routeMemories = Boolean(level?.majorMemoryId);
+  const minorCount = save.memories.filter(
+    (memory) =>
+      level?.minorMemoryIds?.includes(memory.id) &&
+      ["revealed", "consumed"].includes(memory.state ?? ""),
+  ).length;
   const story = eraStory(level?.eraYear, level);
   const bundle = save.memories.filter((memory) =>
     level?.memoryIds.includes(memory.id),
@@ -172,7 +190,7 @@ function Adventure({
     setMuted(sound.preferences().muted);
     setVolume(sound.preferences().volume);
     const audioGesture = () => {
-      void sound.start();
+      void sound.start({ confirmation: true });
     };
     document.addEventListener("pointerdown", audioGesture, true);
     document.addEventListener("pointerup", audioGesture, true);
@@ -193,10 +211,24 @@ function Adventure({
       if (next.revision > before.revision) {
         if (action?.type === "recover-memory")
           void sound.cue("memory-collected");
-        if (action?.type === "consume-memory-bundle")
+        if (
+          action?.type === "consume-memory-bundle" ||
+          next.ageYears > before.ageYears
+        )
           void sound.cue("ability-unlocked");
-        if (action?.type === "collect-equipment")
-          void sound.cue("ui-confirmed", { gain: 1.2 });
+        if (action?.type === "collect-equipment") {
+          void sound.feedback("pickup");
+          const gear = next.adventure?.inventory.find(
+            (item) => item.pickupId === action.pickupId,
+          );
+          setAttackNotice(
+            `${equipmentName(gear)} ready${gear?.kind === "guard-tool" ? " · Bash for a second attack" : " · Attack to swing"}`,
+          );
+          if (noticeTimer) clearTimeout(noticeTimer);
+          noticeTimer = setTimeout(() => {
+            if (mounted.current) setAttackNotice("");
+          }, 2300);
+        }
         const enemyHit = next.adventure?.activeLevel?.encounters.some(
           (enemy) =>
             enemy.hp <
@@ -208,7 +240,7 @@ function Adventure({
           enemyHit ||
           (next.adventure?.playerHp ?? 0) < (before.adventure?.playerHp ?? 0)
         ) {
-          void sound.cue("movement-landed", { gain: 1.5, playbackRate: 0.85 });
+          void sound.feedback("impact");
         }
         if (action?.type === "interact-friendly") {
           const prior = before.adventure?.activeLevel?.friendlies?.find(
@@ -245,20 +277,45 @@ function Adventure({
       }
       if (
         action?.type === "recover-memory" &&
+        !before.adventure?.activeLevel?.majorMemoryId &&
         before.adventure?.phase === "memory-released" &&
         !victoryOpen.current
       )
         setPhotoDetail(action.memoryId);
       if (
-        action?.type === "consume-memory-bundle" &&
+        (action?.type === "consume-memory-bundle" ||
+          action?.type === "recover-memory") &&
         next.ageYears !== before.ageYears
       ) {
         setShowVictory(false);
         setPhotoDetail(null);
+        if (action?.type === "recover-memory")
+          setChapterMemoryId(action.memoryId);
         if (!next.completed)
           setChapterNotice(
-            `Age ${next.ageYears}. A new chapter begins in ${next.adventure?.activeLevel?.eraYear}. ${!before.abilities.includes("jump") && next.abilities.includes("jump") ? "You can now jump. " : ""}Your equipment and earlier abilities stay with you.`,
+            `Three memories brought you to age ${next.ageYears}. Your next chapter begins in ${next.adventure?.activeLevel?.eraYear}. Bring your gear and keep exploring!`,
           );
+      }
+      if (
+        action?.type === "recover-memory" &&
+        before.memories.find((memory) => memory.id === action.memoryId)
+          ?.role === "minor" &&
+        next.revision > before.revision
+      ) {
+        const memory = next.memories.find(
+          (memory) => memory.id === action.memoryId,
+        );
+        setPickupMemoryId(action.memoryId);
+        setAttackNotice(
+          `Little memory found · ${memory?.label ?? "A moment remembered"}`,
+        );
+        if (noticeTimer) clearTimeout(noticeTimer);
+        noticeTimer = setTimeout(() => {
+          if (mounted.current) {
+            setAttackNotice("");
+            setPickupMemoryId(null);
+          }
+        }, 2300);
       }
       return next;
     };
@@ -286,9 +343,11 @@ function Adventure({
             if (
               !previouslyGrounded &&
               next.grounded &&
-              next.phase === "exploring"
+              ["exploring", "memory-released"].includes(next.phase)
             )
-              void sound.cue("movement-landed");
+              void sound.feedback("landed");
+            if (previouslyGrounded && !next.grounded && next.position.y > 0.05)
+              void sound.feedback("jump");
             previouslyGrounded = next.grounded;
             if (
               next.attackFeedback &&
@@ -301,21 +360,27 @@ function Adventure({
                   (item) => item.id === latest.current.adventure?.equippedId,
                 )?.tier ?? 1) > 1;
               const messages = {
-                accepted: ranged ? "Zap!" : "Whack!",
+                accepted:
+                  next.attackFeedback.kind === "secondary"
+                    ? "Bash!"
+                    : ranged
+                      ? "Zap!"
+                      : "Whack!",
                 guarded:
                   "Wait for their missed high-five. Attack when they’re dizzy!",
                 "no-target": "Move closer to a glowing enemy, then attack.",
-                unarmed: "Pick up a tool first.",
+                unarmed: "Walk into a glowing tool to pick it up.",
                 cooldown: "Ready in a moment.",
                 busy: "Your hit is landing…",
                 unavailable: "You can attack during a fight.",
               };
               setAttackNotice(messages[outcome]);
-              if (outcome === "accepted")
-                void sound.cue("ui-confirmed", {
-                  gain: 0.8,
-                  playbackRate: ranged ? 1.35 : 0.9,
-                });
+              if (["accepted", "no-target", "guarded"].includes(outcome))
+                void sound.feedback(
+                  next.attackFeedback.kind === "secondary"
+                    ? "secondary"
+                    : "attack",
+                );
               if (noticeTimer) clearTimeout(noticeTimer);
               noticeTimer = setTimeout(
                 () => {
@@ -354,36 +419,27 @@ function Adventure({
     };
   }, [initialSave]);
 
-  const activeModal = status?.mediaReloadRequired
-    ? "artwork-update"
-    : save.completed
-      ? "complete"
-      : view.phase === "fallen"
-        ? "fallen"
-        : showVictory && level && view.phase === "memory-released"
-          ? "victory"
-          : chapterNotice
-            ? "chapter"
-            : photoDetail
-              ? "photo"
-              : selectedFriend
-                ? "friend"
-                : showHelp
-                  ? "help"
-                  : showAlbum
-                    ? "album"
-                    : null;
+  const activeModal = save.completed
+    ? "complete"
+    : view.phase === "fallen"
+      ? "fallen"
+      : showVictory && level && view.phase === "memory-released"
+        ? "victory"
+        : chapterNotice
+          ? "chapter"
+          : photoDetail
+            ? "photo"
+            : selectedFriend
+              ? "friend"
+              : showHelp
+                ? "help"
+                : showAlbum
+                  ? "album"
+                  : null;
   const modalOpen = activeModal !== null;
   useEffect(() => {
     game.current?.setPaused(modalOpen);
-    // Stop world transients on opening a menu; a deliberate menu gesture can
-    // unlock its own confirmation or memory sound while the world stays paused.
-    if (
-      ["help", "album", "fallen", "artwork-update", "friend"].includes(
-        activeModal ?? "",
-      )
-    )
-      soundRef.current?.suspend();
+    soundRef.current?.setPaused(modalOpen);
   }, [modalOpen, activeModal]);
 
   const feedback = (
@@ -396,7 +452,7 @@ function Adventure({
           </button>
         </div>
       )}
-      {Boolean(status?.mediaFailed) && !status?.mediaReloadRequired && (
+      {Boolean(status?.mediaFailed) && (
         <div className="media-warning" role="status" data-quest-ui>
           Some artwork couldn’t load.
           <button onClick={() => game.current?.retryMedia()}>
@@ -425,17 +481,23 @@ function Adventure({
     ? bestiesInstructions[status.bestiesPhase]
     : undefined;
   const objective =
-    bestiesInstruction && view.phase === "exploring"
+    bestiesInstruction &&
+    status?.bestiesPhase !== "inactive" &&
+    view.phase === "exploring"
       ? bestiesInstruction
-      : view.phase === "memory-released"
-        ? allRevealed
-          ? `Absorb the memories to grow to age ${level?.targetAgeYears}.`
-          : "The boss has fallen. Reclaim the memories it held."
-        : !weapon
-          ? "Find the spark mallet, then follow the course to the party."
-          : ordinaryLeft > 0
-            ? `${ordinaryLeft} ${ordinaryLeft === 1 ? "goofy guest stands" : "goofy guests stand"} between you and the boss.`
-            : `Face ${story.enemies.boss}. Watch its attack warning.`;
+      : view.phase === "memory-released" && routeMemories
+        ? minorCount < 2
+          ? "Find the two little memories along the path, then visit the big memory."
+          : "Walk into the big memory beyond the boss to grow older."
+        : view.phase === "memory-released"
+          ? allRevealed
+            ? `Absorb the memories to grow to age ${level?.targetAgeYears}.`
+            : "The boss has fallen. Reclaim the memories it held."
+          : !weapon
+            ? "Walk into the glowing mallet. Tap the world to jump!"
+            : ordinaryLeft > 0
+              ? `${ordinaryLeft} ${ordinaryLeft === 1 ? "goofy guest stands" : "goofy guests stand"} between you and the boss.`
+              : `Face ${story.enemies.boss}. Watch its attack warning.`;
   const activePhoto = save.memories.find((memory) => memory.id === photoDetail);
 
   return (
@@ -448,11 +510,11 @@ function Adventure({
       <header className="game-header" data-quest-ui>
         <button
           className="glass-button leave-button"
-          aria-label="Save & leave"
+          aria-label={ephemeral ? "Leave playtest" : "Save & leave"}
           disabled={busy || requestBusy.current}
           onClick={onLeave}
         >
-          ← <span>Save & leave</span>
+          ← <span>{ephemeral ? "Leave playtest" : "Save & leave"}</span>
         </button>
         <div className="chapter-pill">
           <span>{level?.eraYear ?? "JOURNEY COMPLETE"}</span>
@@ -466,24 +528,27 @@ function Adventure({
               const next = !muted;
               setMuted(next);
               soundRef.current?.setPreferences(next);
-              void soundRef.current?.start();
+              void soundRef.current?.start({ confirmation: true });
             }}
           >
-            {muted ? "♪̸" : "♪"}
+            <span aria-hidden="true">{muted ? "♪̸" : "♪"}</span>
+            <small>{muted ? "Sound off" : "Sound on"}</small>
           </button>
           <button
             className="glass-button"
             aria-label="Open your memories"
             onClick={() => setShowAlbum(true)}
           >
-            ▧
+            <span aria-hidden="true">▧</span>
+            <small>Memories</small>
           </button>
           <button
             className="glass-button"
             aria-label="How to play"
             onClick={() => setShowHelp(true)}
           >
-            ?
+            <span aria-hidden="true">?</span>
+            <small>Help</small>
           </button>
         </div>
       </header>
@@ -508,6 +573,14 @@ function Adventure({
             {view.playerHp}/{view.maxPlayerHp}
           </b>
         </div>
+        {routeMemories && (
+          <div
+            className="route-memory-count"
+            aria-label={`${minorCount} of 2 little memories collected`}
+          >
+            Little memories <b>{minorCount} / 2</b>
+          </div>
+        )}
         <div className="equipment-line">
           <span>✦ {equipmentName(weapon)}</span>
           {shield && <span>◈ {equipmentName(shield)}</span>}
@@ -547,6 +620,13 @@ function Adventure({
           aria-live="polite"
           data-quest-ui
         >
+          {pickupMemoryId && (
+            <MemoryImage
+              memory={save.memories.find(
+                (memory) => memory.id === pickupMemoryId,
+              )!}
+            />
+          )}
           {attackNotice}
         </div>
       )}
@@ -554,67 +634,30 @@ function Adventure({
         <div className="game-bottom" data-quest-ui>
           <Joystick game={game} />
           <div className="keyboard-hint">
-            <span>WASD</span> move <span>DRAG</span> look <span>F</span> attack{" "}
-            <span>SHIFT</span> guard <span>E</span> use{" "}
-            {save.abilities.includes("jump") && (
-              <>
-                <span>SPACE</span> jump
-              </>
-            )}
+            <span>WASD</span> move <span>SPACE</span> jump <span>F</span> attack{" "}
+            <span>SHIFT</span> secondary
+          </div>
+          <div className="touch-jump-hint">
+            Tap the world to jump · Drag to look
           </div>
           <div className="combat-actions">
-            <ActionButton
-              action="guard"
-              label="Guard"
-              symbol="◈"
-              disabled={!shield || view.phase !== "exploring"}
-              active={status?.guardActive}
-              input={actionInput}
-              cancelInput={cancelActionInput}
-            />
-            <ActionButton
-              action="jump"
-              label="Jump"
-              symbol="↑"
-              disabled={
-                !save.abilities.includes("jump") ||
-                (view.phase !== "exploring" && view.phase !== "memory-released")
-              }
-              input={actionInput}
-              cancelInput={cancelActionInput}
-            />
+            {shield && (
+              <ActionButton
+                action="guard"
+                label={routeMemories ? "Bash" : "Guard"}
+                symbol="◈"
+                disabled={!shield || view.phase !== "exploring"}
+                active={status?.guardReady}
+                input={actionInput}
+                cancelInput={cancelActionInput}
+              />
+            )}
             <ActionButton
               action="attack"
               label="Attack"
               symbol="✦"
-              disabled={!weapon || view.phase !== "exploring"}
+              disabled={view.phase !== "exploring"}
               active={Boolean(target && status?.attackReady)}
-              input={actionInput}
-              cancelInput={cancelActionInput}
-            />
-            <ActionButton
-              action="interact"
-              label={
-                nearbyPickup
-                  ? "Take gear"
-                  : nearbyFriend
-                    ? nearbyFriend.penaltyActive
-                      ? "Amends"
-                      : "Say hello"
-                    : "Remember"
-              }
-              symbol={nearbyPickup ? "+" : "▧"}
-              disabled={
-                !status?.nearPickupId &&
-                !status?.nearMemoryId &&
-                (!nearbyFriend ||
-                  (!nearbyFriend.penaltyActive &&
-                    (nearbyFriend.boonClaimed ||
-                      view.playerHp === view.maxPlayerHp)))
-              }
-              active={Boolean(
-                status?.nearPickupId || status?.nearMemoryId || nearbyFriend,
-              )}
               input={actionInput}
               cancelInput={cancelActionInput}
             />
@@ -655,11 +698,13 @@ function Adventure({
               ? nearbyPickup.tier > 1
                 ? "Ranged magic · aims at nearby enemies"
                 : `${nearbyPickup.damage} strength · equips when collected`
-              : "Soften incoming hits with a well-timed guard"}
+              : routeMemories
+                ? "A close-range bash for your second attack"
+                : "Soften incoming hits with a well-timed guard"}
           </span>
         </div>
       )}
-      {view.phase === "memory-released" && !modalOpen && (
+      {view.phase === "memory-released" && !routeMemories && !modalOpen && (
         <button
           className="open-victory primary"
           data-quest-ui
@@ -671,21 +716,6 @@ function Adventure({
       <div className="placeholder-label" data-quest-ui>
         Two-chapter playtest · Fictional memories · Candidate artwork
       </div>
-
-      {activeModal === "artwork-update" && (
-        <Modal title="Let’s reopen this journey." eyebrow="ARTWORK UPDATE">
-          <p>
-            A newer set of artwork is needed to continue. Your saved progress is
-            safe.
-          </p>
-          <button className="primary" onClick={() => window.location.reload()}>
-            Reload journey
-          </button>
-          <button className="secondary" onClick={onLeave}>
-            Save &amp; leave
-          </button>
-        </Modal>
-      )}
 
       {activeModal === "friend" && selectedFriend && level && (
         <Modal
@@ -794,37 +824,32 @@ function Adventure({
           onClose={() => setShowHelp(false)}
         >
           <p>
-            Find tools and shields, dodge the silly guests and beat the boss.
-            Step out of a red attack circle, or guard with your shield. The
-            Prism wand aims at nearby enemies and sends a bright magic beam.
+            Walk into glowing gear and pictures to collect them. Find two little
+            memories along the path, beat the boss, then collect the big memory
+            to grow older and enter the next chapter.
           </p>
           <p>
-            Characters with green hearts are friends. Say hello for healing when
-            you need it. Hurting a friend costs health; making amends restores
-            their friendship. The Besties take turns with obstacle tricks.
-            Attack together when their missed high-five leaves them dizzy.
+            Tap the world to jump, from your very first step. Use the left
+            circle to move and drag the world to look around. Short gaps and
+            padded sweepers lead to safe landing spots; a slip brings you back
+            nearby.
           </p>
           <p>
-            After the boss falls, remember the pictures it releases. Absorb that
-            bundle to grow older and enter the next period. Your gear and
-            learned abilities stay with you.
+            Attack hits a nearby enemy. Your second button, Bash, uses a shield
+            for a stronger close-range hit. Step out of danger while it
+            recharges. The Besties take turns with obstacle tricks: attack when
+            their missed high-five leaves them dizzy.
           </p>
           <p>
-            Take your time with the obstacles. Watch a padded sweeper pass, then
-            walk around it. When you learn to jump, hop over the short gaps and
-            ride the yellow platform. Glowing landing strips mark safe places: a
-            slip brings you back nearby with your gear and victories.
+            Green hearts mark friends. Walk up for healing when you need it.
+            Hurting them costs health; returning to make amends restores their
+            help.
           </p>
           <dl>
-            <dt>Touch</dt>
-            <dd>
-              Move with the left circle. Drag the scene to look. Attack, guard
-              and use equipment with the buttons on the right.
-            </dd>
             <dt>Keyboard</dt>
             <dd>
-              WASD or arrows move. Drag to look. F attacks, Shift guards, E
-              picks up gear or remembers. Space jumps from age four onward.
+              WASD or arrows move. Space jumps. F attacks; Shift uses your
+              secondary attack. Drag to look.
             </dd>
           </dl>
           <label className="volume-label">
@@ -842,6 +867,17 @@ function Adventure({
               }}
             />
           </label>
+          <button
+            className="secondary sound-test"
+            onClick={() => {
+              setMuted(false);
+              soundRef.current?.setPreferences(false, volume || 0.8);
+              if (!volume) setVolume(0.8);
+              void soundRef.current?.audition().then(ok => { if (!ok) setError("Sound couldn’t start. Check your device volume and tap Play a test sound again."); });
+            }}
+          >
+            Play a test sound
+          </button>
           <p className="small-note">
             This private review uses fictional drawings. It has not connected to
             your photo library. Use the music-note button to mute the playtest
@@ -932,6 +968,13 @@ function Adventure({
           eyebrow={`AGE ${save.ageYears} · ${story.title.toUpperCase()}`}
           onClose={() => setChapterNotice("")}
         >
+          {chapterMemoryId && (
+            <MemoryCard
+              memory={save.memories.find(
+                (memory) => memory.id === chapterMemoryId,
+              )!}
+            />
+          )}
           <p>{chapterNotice}</p>
           <p>{story.description}</p>
           <button className="primary" onClick={() => setChapterNotice("")}>
@@ -946,8 +989,8 @@ function Adventure({
           eyebrow="YOUR JOURNEY IS SAFE"
         >
           <p>
-            Your equipment and earlier memories are saved. Return with full
-            health and another chance to face this era.
+            You keep your equipment and collected memories for this attempt.
+            Return with full health and another chance to face this era.
           </p>
           <button
             className="primary"
@@ -957,7 +1000,7 @@ function Adventure({
             Try this level again
           </button>
           <button className="secondary" disabled={busy} onClick={onLeave}>
-            Save & leave
+            {ephemeral ? "Play again" : "Save & leave"}
           </button>
         </Modal>
       )}
@@ -978,7 +1021,8 @@ function Adventure({
           </div>
           {!save.recoveredIds.length && (
             <p>
-              Your first pictures will be released after you defeat the boss.
+              Look for two little memories along the path and a big memory after
+              the boss.
             </p>
           )}
         </Modal>
@@ -1002,7 +1046,7 @@ function Adventure({
             ))}
           </div>
           <button className="primary" onClick={onLeave}>
-            Back to your journeys
+            {ephemeral ? "Play again" : "Back to your journeys"}
           </button>
         </Modal>
       )}
@@ -1156,6 +1200,27 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
       game.current?.setInput("moveY", 0);
     };
   }, []);
+  const updateStick = (clientX: number, clientY: number) => {
+    const vector = getJoystickVector(
+      origin.current.x,
+      origin.current.y,
+      clientX,
+      clientY,
+      44,
+    );
+    const distance = vector.distance;
+    const strength =
+      distance <= 8 / 44 ? 0 : (distance - 8 / 44) / (1 - 8 / 44);
+    setKnob({ x: vector.x * 40, y: -vector.y * 40 });
+    game.current?.setInput(
+      "moveX",
+      distance ? (vector.x / distance) * strength : 0,
+    );
+    game.current?.setInput(
+      "moveY",
+      distance ? (vector.y / distance) * strength : 0,
+    );
+  };
   return (
     <div
       className="joystick"
@@ -1165,21 +1230,21 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
       onPointerDown={(event) => {
         if (pointer.current !== undefined) return;
         pointer.current = event.pointerId;
-        event.currentTarget.setPointerCapture(event.pointerId);
+        try {
+          event.currentTarget.setPointerCapture(event.pointerId);
+        } catch {
+          /* Release events still clear this finger. */
+        }
         const bounds = event.currentTarget.getBoundingClientRect();
         origin.current = {
           x: bounds.x + bounds.width / 2,
           y: bounds.y + bounds.height / 2,
         };
+        updateStick(event.clientX, event.clientY);
       }}
       onPointerMove={(event) => {
         if (event.pointerId !== pointer.current) return;
-        const x = event.clientX - origin.current.x,
-          y = event.clientY - origin.current.y;
-        const scale = Math.max(1, Math.hypot(x, y) / 36);
-        setKnob({ x: x / scale, y: y / scale });
-        game.current?.setInput("moveX", x / scale / 36);
-        game.current?.setInput("moveY", -y / scale / 36);
+        updateStick(event.clientX, event.clientY);
       }}
       onPointerUp={(event) => {
         if (event.pointerId === pointer.current) clear();

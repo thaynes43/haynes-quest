@@ -62,6 +62,8 @@ export interface SceneFrame {
   attacking: boolean;
   attackTargetId: string | null;
   guarding: boolean;
+  secondaryAttacking?: boolean;
+  interacting?: boolean;
   enemies: EnemyFrame[];
   currentTarget: string | null;
   besties?: import("./besties").BestiesFrame;
@@ -82,6 +84,7 @@ export type AttackAttemptOutcome =
 export interface AttackFeedback {
   sequence: number;
   outcome: AttackAttemptOutcome;
+  kind?: "primary" | "secondary";
 }
 
 export interface SceneMediaState {
@@ -91,6 +94,7 @@ export interface SceneMediaState {
 }
 
 export interface GameStatus {
+  interactionSequence?: number;
   nearFriendlyId?: string | null;
   bestiesPhase?: import("./besties").BestiesPhase;
   nearPickupId: string | null;

@@ -77,7 +77,7 @@ function App() {
     void api<SessionView>("/session")
       .then(async (s) => {
         if (live) setSession(s);
-        await refresh();
+        if (s.progressMode !== "ephemeral") await refresh();
       })
       .catch(() => {
         if (live)
@@ -103,13 +103,107 @@ function App() {
     setPage("home");
     setSave(undefined);
     try {
-      await refresh();
+      if (session?.progressMode !== "ephemeral") await refresh();
     } catch (e) {
       setError(friendlyError(e));
     }
   }
+  async function startPlaytest(chapter: 1 | 2) {
+    setBusy(true);
+    setError("");
+    try {
+      setSave(await api<SaveView>("/playtest/start", { chapter }));
+      setPage("game");
+    } catch (e) {
+      setError(friendlyError(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+  if (!session)
+    return (
+      <div className="app-shell">
+        <header className="site-header">
+          <Brand />
+        </header>
+        <main className="playtest-start">
+          <p role="status">{error || "Opening the clearing…"}</p>
+          {error && (
+            <button className="primary" onClick={() => location.reload()}>
+              Try again
+            </button>
+          )}
+        </main>
+      </div>
+    );
   if (page === "game" && save)
-    return <GameScreen initialSave={save} onLeave={() => void leave()} />;
+    return (
+      <GameScreen
+        initialSave={save}
+        ephemeral={session?.progressMode === "ephemeral"}
+        onLeave={() => void leave()}
+      />
+    );
+  if (session?.progressMode === "ephemeral")
+    return (
+      <div className="app-shell fresh-playtest">
+        <header className="site-header">
+          <Brand />
+          <a className="studio-link" href="/studio/assets/catalog.html">
+            Asset catalog <Arrow />
+          </a>
+        </header>
+        <main className="playtest-start">
+          <span className="eyebrow">A LITTLE ADVENTURE, EVERY TIME</span>
+          <h1>Jump in.</h1>
+          <p>
+            Find your gear, collect little memories and take on a goofy boss.
+          </p>
+          <div className="playtest-start-actions">
+            <button
+              className="primary"
+              disabled={busy}
+              onClick={() => void startPlaytest(1)}
+            >
+              {busy ? "Opening the clearing…" : "Play from the beginning"}
+            </button>
+            <button
+              className="secondary"
+              disabled={busy}
+              onClick={() => void startPlaytest(2)}
+            >
+              Try the Besties chapter
+            </button>
+          </div>
+          {error && <p role="alert">{error}</p>}
+          <p className="playtest-reset-note">
+            Every test starts fresh. Progress resets when you leave or reload.
+          </p>
+          <div className="playtest-control-guide">
+            <span>
+              <b>Move</b> with the left stick
+            </span>
+            <span>
+              <b>Jump</b> by tapping the world
+            </span>
+            <span>
+              <b>Collect</b> by walking into things
+            </span>
+            <span>
+              <b>Attack</b> with the big button
+            </span>
+          </div>
+          <p className="small-note">
+            Keyboard: WASD to move · Space to jump · F to attack · Shift for
+            your second attack
+          </p>
+        </main>
+        <footer>
+          <span>Two chapters · Six fictional memories</span>
+          <span>Family-photo setup comes later.</span>
+        </footer>
+      </div>
+    );
   return (
     <div className="app-shell">
       <header className="site-header">

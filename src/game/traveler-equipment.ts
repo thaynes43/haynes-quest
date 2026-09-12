@@ -56,9 +56,9 @@ export class TravelerEquipment {
     this.animatedPose.clear();
   }
 
-  pose(attackTime: number, guarding: boolean): void {
+  pose(attackTime: number, guarding: boolean, secondaryTime = 10): void {
     if (this.disposed) return;
-    if (this.slots.has("R")) {
+    if (this.slots.has("R") || attackTime < 0.4) {
       // These offsets animate the arms and wrist, keeping the prop in its grip.
       const strike =
         attackTime >= 0 && attackTime < 0.4
@@ -69,9 +69,18 @@ export class TravelerEquipment {
       this.rotate("hand.R", -0.4 - strike * 2.25, 0, 0);
     }
     if (this.slots.has("L")) {
-      this.rotate("upper_arm.L", guarding ? 0.55 : 0.12, 0, -0.14);
-      this.rotate("forearm.L", guarding ? 0.9 : 0.25, 0, 0);
-      this.rotate("hand.L", guarding ? -1.45 : -0.37, 0, 0);
+      const bash =
+        secondaryTime >= 0 && secondaryTime < 0.4
+          ? Math.sin((secondaryTime / 0.4) * Math.PI)
+          : 0;
+      this.rotate(
+        "upper_arm.L",
+        guarding ? 0.55 : 0.12 + bash * 1.4,
+        bash * 0.3,
+        -0.14,
+      );
+      this.rotate("forearm.L", guarding ? 0.9 : 0.25 + bash * 0.5, 0, 0);
+      this.rotate("hand.L", guarding ? -1.45 : -0.37 - bash, 0, 0);
     }
   }
 

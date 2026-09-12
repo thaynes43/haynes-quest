@@ -2468,3 +2468,276 @@ footer {
     font-size: 11px;
   }
 }
+
+/* Fresh private tests deliberately have no saved-journey selection. */
+.playtest-start {
+  max-width: 840px;
+  margin: 8vh auto;
+  padding: 28px;
+  text-align: center;
+}
+.playtest-start h1 {
+  font:
+    clamp(54px, 10vw, 92px) Georgia,
+    serif;
+  margin: 20px 0;
+  color: #342c46;
+}
+.playtest-start > p {
+  line-height: 1.65;
+}
+.playtest-start-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 32px 0 22px;
+  flex-wrap: wrap;
+}
+.playtest-start-actions button {
+  min-height: 56px;
+  padding: 16px 24px;
+  font-size: 16px;
+}
+.playtest-reset-note {
+  color: #685f70;
+  font-size: 14px;
+}
+.playtest-control-guide {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 34px auto 20px;
+  max-width: 620px;
+}
+.playtest-control-guide span {
+  padding: 16px;
+  border: 1px solid #d7c7b1;
+  border-radius: 12px;
+  background: #fffbf1;
+}
+.playtest-control-guide b {
+  display: block;
+  margin-bottom: 6px;
+  color: #436451;
+}
+@media (max-width: 600px) {
+  .playtest-start {
+    margin: 3vh auto;
+    padding: 20px;
+  }
+  .playtest-start-actions {
+    flex-direction: column;
+  }
+  .playtest-control-guide {
+    font-size: 13px;
+  }
+}
+
+/* PLAN007: stable thumb controls, with a clear primary action. */
+.era-game .combat-actions {
+  display: block;
+  position: relative;
+  width: 174px;
+  height: 174px;
+}
+.era-game .combat-actions .action-button {
+  position: absolute;
+  margin: 0;
+  transform: none;
+  touch-action: none;
+}
+.era-game .combat-actions .combat-attack {
+  width: 94px;
+  height: 94px;
+  left: 0;
+  bottom: 0;
+  background: #925827ed;
+  border: 2px solid #ffe2a1;
+  box-shadow:
+    0 6px 0 #513421bb,
+    0 7px 24px #0004;
+  font-size: 34px;
+}
+.era-game .combat-actions .combat-guard {
+  width: 68px;
+  height: 68px;
+  top: 0;
+  right: 0;
+  background: #494569ee;
+  border: 2px solid #d6cbed;
+  font-size: 26px;
+}
+.era-game .combat-actions .action-button small {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.era-game .combat-actions .combat-guard small {
+  font-size: 12px;
+}
+.era-game .combat-actions .action-button:active {
+  transform: scale(0.93);
+  box-shadow: 0 2px 0 #513421bb;
+}
+.era-game .combat-actions .action-button.available {
+  border-color: #fff4b2;
+  background: #a26b2b;
+}
+.era-game .combat-actions .action-button:disabled {
+  opacity: 0.56;
+}
+.era-game .game-bottom {
+  bottom: max(28px, calc(env(safe-area-inset-bottom) + 20px));
+  left: max(20px, calc(env(safe-area-inset-left) + 16px));
+  right: max(20px, calc(env(safe-area-inset-right) + 16px));
+}
+.era-game .game-tools .glass-button {
+  width: 58px;
+  min-width: 58px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  font-size: 18px;
+}
+.era-game .game-tools .glass-button small {
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.era-game .leave-button {
+  min-width: 48px;
+  min-height: 48px;
+}
+.route-memory-count {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #f8e7b1;
+  margin-bottom: 7px;
+}
+.touch-jump-hint {
+  display: none;
+  position: absolute;
+  bottom: 185px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 80vw;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #26372cb3;
+  font-size: 12px;
+  text-align: center;
+  pointer-events: none;
+}
+.era-game .close-modal {
+  width: 48px;
+  height: 48px;
+}
+.era-game .sound-test {
+  margin: 12px 0;
+  min-height: 48px;
+}
+@media (pointer: coarse) {
+  .touch-jump-hint {
+    display: block;
+  }
+  .era-game .keyboard-hint {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .era-game .chapter-pill {
+    display: none;
+  }
+  .era-game .game-header {
+    padding: max(12px, env(safe-area-inset-top)) 14px 0;
+  }
+  .era-game .game-tools {
+    gap: 6px;
+  }
+  .era-game .era-hud {
+    top: max(78px, calc(env(safe-area-inset-top) + 64px));
+    padding: 10px 12px;
+  }
+  .era-game .era-objective {
+    top: max(80px, calc(env(safe-area-inset-top) + 66px));
+  }
+  .era-game .combat-actions {
+    width: 154px;
+    height: 158px;
+  }
+  .era-game .combat-actions .combat-attack {
+    width: 88px;
+    height: 88px;
+  }
+  .era-game .combat-actions .combat-guard {
+    width: 64px;
+    height: 64px;
+  }
+  .era-game .game-bottom {
+    left: max(16px, calc(env(safe-area-inset-left) + 12px));
+    right: max(16px, calc(env(safe-area-inset-right) + 12px));
+  }
+  .era-game .attack-notice {
+    bottom: 215px;
+    max-width: 86vw;
+    font-size: 13px;
+  }
+  .era-game .era-modal p,
+  .era-game .era-modal dd {
+    font-size: 15px;
+  }
+  .era-game .era-modal .primary,
+  .era-game .era-modal .secondary {
+    font-size: 14px;
+    min-height: 48px;
+  }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  .era-game .combat-actions {
+    width: 152px;
+    height: 142px;
+  }
+  .era-game .combat-actions .combat-attack {
+    width: 84px;
+    height: 84px;
+  }
+  .era-game .combat-actions .combat-guard {
+    width: 60px;
+    height: 60px;
+  }
+  .era-game .joystick {
+    transform: none;
+    width: 104px;
+    height: 104px;
+  }
+  .era-game .game-bottom {
+    bottom: max(16px, calc(env(safe-area-inset-bottom) + 12px));
+  }
+  .touch-jump-hint {
+    bottom: 0;
+    max-width: 40vw;
+    font-size: 11px;
+  }
+}
+
+.era-game {
+  -webkit-touch-callout: none;
+}
+.era-game .attack-notice img {
+  width: 74px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 7px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .era-game .action-button {
+    transition: none;
+  }
+}

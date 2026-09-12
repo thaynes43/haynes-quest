@@ -16,6 +16,8 @@ Tom now requires parent-prepared journeys and collaborative enemy selection; rea
 
 [PLAN006](.agents/plans/completed/006-playtest-polish-and-besties.md) completes the private touch-combat, sound, foliage, friendly-character and Besties release. Read the handoff for exact live evidence and the remaining physical-device, listening and final-art review.
 
+[PLAN007](.agents/plans/007-playtest-reset-and-controls.md) supersedes the prior playtest controls and reward presentation after Tom's next physical-device feedback. Private tests start fresh without saved-progress UI; jumping is always available; world taps/Space jump; walking into pickups interacts; Attack and Secondary replace the four-button cluster. Two minor memories are collected along each route and one major memory after the boss advances age. Prior test passes do not establish physical-device quality.
+
 ## Working rules
 
 - Follow [`.agents/TEAM.md`](.agents/TEAM.md) for Tom's latest project routing: Astra (`gpt-6-astra`, `max`) coordinates and retains full lead context. Native Sol (`gpt-5.6-sol`, `xhigh`) handles ordinary bounded tasks with `fork_turns: "none"`. **All Blender work uses fresh native Astra subagents at `max`.** Driving Astra alone generates concept images, one at a time, and owns art direction, user-facing text, integration and final review. Tom explicitly authorizes separate Fable 5.1 (`claude-fable-5-1`, `xhigh`) sessions through `agent-run` for adversarial reviews and coding to balance plan use. Claude Code uses Opus for its own subagents. These project exceptions take precedence over generic pod defaults. Give every task a self-contained work order and owned paths/resources; keep checkpoints durable through context or quota limits.
