@@ -292,12 +292,16 @@ export function createAuthoredRouteDriver({
   const hazardJumps = [];
   const edgeAttempts = new Map();
 
-  const read = async (label) => {
+  const read = async (label, { allowDocumentExit = false } = {}) => {
     const inspection = await inspectGame(page);
     assert.ok(inspection?.obby, `${label}: active obby inspection unavailable`);
     document ??= authoredDocumentFromInspection(inspection);
+    const inspectedDocumentId = inspection.level.authored?.id ?? null;
+    if (inspectedDocumentId !== document.id && allowDocumentExit) {
+      return inspection;
+    }
     assert.equal(
-      inspection.level.authored.id,
+      inspectedDocumentId,
       document.id,
       `${label}: authored document changed during traversal`,
     );
@@ -333,13 +337,22 @@ export function createAuthoredRouteDriver({
       allowHazardJump = true,
       stopOnRecovery = false,
       done = null,
+      allowDocumentExit = false,
     } = {},
   ) => {
     let best = Number.POSITIVE_INFINITY;
     const recoveryCount = (await read(`${label}-start`)).obby.recoveries;
     const deadline = Date.now() + 25_000;
     while (Date.now() < deadline) {
-      const inspection = await read(label);
+      const inspection = await read(label, { allowDocumentExit });
+      if (inspection.level.authored?.id !== document.id) {
+        assert.ok(
+          done && (await done(inspection)),
+          `${label}: left the authored document before reaching the target`,
+        );
+        await controls.release();
+        return inspection;
+      }
       if (stopOnRecovery && inspection.obby.recoveries > recoveryCount) {
         await controls.release();
         return inspection;
@@ -536,7 +549,11 @@ export function createAuthoredRouteDriver({
     throw new Error(`${label}: moving platform never reached its landing`);
   };
 
-  const crossEdge = async (edge, label) => {
+  const crossEdge = async (
+    edge,
+    label,
+    { allowFinishDocumentExit = false } = {},
+  ) => {
     let before = await read(`${label}-before`);
     if (before.obby.supportId === edge.to) return before;
     assert.equal(
@@ -628,9 +645,21 @@ export function createAuthoredRouteDriver({
               tolerance: 0.55,
               supportId: edge.to,
               stopOnRecovery: true,
+              allowDocumentExit: allowFinishDocumentExit,
+              done: allowFinishDocumentExit
+                ? (candidate) => candidate.level.authored?.id !== document.id
+                : null,
             },
           );
         }
+      }
+      if (after.level.authored?.id !== document.id) {
+        assert.equal(
+          allowFinishDocumentExit && edge.to === document.anchors.finish.platformId,
+          true,
+          `${label}: document exit occurred outside the declared finish edge`,
+        );
+        break;
       }
       if (after.obby.supportId === edge.to) break;
       if (after.obby.supportId !== edge.from) {
@@ -648,15 +677,26 @@ export function createAuthoredRouteDriver({
         recoveries: after.obby.recoveries,
       });
     }
-    assert.equal(
-      after?.obby.supportId,
-      edge.to,
-      `${label}: ${edge.mode} edge remained unreachable after ${edgeAttempts.get(edgeKey)} real attempts`,
-    );
+    const documentExited = after?.level.authored?.id !== document.id;
+    if (!documentExited) {
+      assert.equal(
+        after?.obby.supportId,
+        edge.to,
+        `${label}: ${edge.mode} edge remained unreachable after ${edgeAttempts.get(edgeKey)} real attempts`,
+      );
+    }
     const evidence = {
       ...edge,
-      recoveries: after.obby.recoveries - recoveriesBefore,
-      landed: after.status.position,
+      ...(documentExited
+        ? {
+            recoveries: 0,
+            documentExited: true,
+            nextDocumentId: after.level.authored?.id ?? null,
+          }
+        : {
+            recoveries: after.obby.recoveries - recoveriesBefore,
+            landed: after.status.position,
+          }),
     };
     edgeEvidence.push(evidence);
     mark("edge:crossed", evidence);

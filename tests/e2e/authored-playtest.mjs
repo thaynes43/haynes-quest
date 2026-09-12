@@ -190,12 +190,6 @@ const closest = (entries, target) =>
 const spatialDistance = (first, second) =>
   Math.hypot(first.x - second.x, first.y - second.y, first.z - second.z);
 
-const runtimeMemoryId = (role) => {
-  const level = latestSave.adventure.activeLevel;
-  if (role === "major") return level.majorMemoryId;
-  return level.minorMemoryIds[role === "minor-one" ? 0 : 1];
-};
-
 const activeEncounter = (role, inspection, anchor) => {
   const live = closest(inspection.level.encounterPositions, anchor.position);
   assert.ok(live, `${role}: no rendered encounter`);
@@ -335,6 +329,11 @@ async function playChapter(chapter) {
   let recoveryProved = false;
   let primaryDamage = 0;
   let secondaryDamage = 0;
+  const chapterMemoryIds = {
+    "minor-one": latestSave.adventure.activeLevel.minorMemoryIds[0],
+    "minor-two": latestSave.adventure.activeLevel.minorMemoryIds[1],
+    major: latestSave.adventure.activeLevel.majorMemoryId,
+  };
 
   const moveToAnchor = async (
     anchor,
@@ -381,24 +380,26 @@ async function playChapter(chapter) {
   };
 
   const collectMemory = async (role, anchor) => {
-    const id = runtimeMemoryId(role);
+    const id = chapterMemoryIds[role];
+    assert.ok(id, `${role}: runtime memory id missing`);
     const already = latestSave.memories.find((memory) => memory.id === id)?.state;
-    if (["revealed", "consumed"].includes(already)) return;
     const ageBefore = latestSave.ageYears;
-    await moveToAnchor(
-      anchor,
-      `chapter-${chapter}-${role}`,
-      undefined,
-      () => {
-        const state = latestSave.memories.find((memory) => memory.id === id)?.state;
-        return ["revealed", "consumed"].includes(state);
-      },
-    );
+    if (!["revealed", "consumed"].includes(already)) {
+      await moveToAnchor(
+        anchor,
+        `chapter-${chapter}-${role}`,
+        undefined,
+        () => {
+          const state = latestSave.memories.find((memory) => memory.id === id)?.state;
+          return ["revealed", "consumed"].includes(state);
+        },
+      );
+    }
     const save = await waitForSave(
-      (candidate) => {
-        const state = candidate.memories.find((memory) => memory.id === id)?.state;
-        return ["revealed", "consumed"].includes(state);
-      },
+      (candidate) =>
+        ["revealed", "consumed"].includes(
+          candidate.memories.find((memory) => memory.id === id)?.state,
+        ),
       `chapter-${chapter}-${role}-collected`,
     );
     if (role !== "major") assert.equal(save.ageYears, ageBefore);
@@ -406,10 +407,12 @@ async function playChapter(chapter) {
       page,
       screenshot,
       label: `chapter-${chapter}-${role}-hidden`,
-      predicate: (inspection) =>
-        inspection.visuals?.memories.some(
-          (memory) => memory.id === id && memory.visible === false,
-        ),
+      predicate: (inspection) => {
+        const visual = inspection.visuals?.memories.find(
+          (memory) => memory.id === id,
+        );
+        return visual?.visible === false || inspection.level.authored?.id !== document.id;
+      },
     });
     assert.ok(rendered);
     chapterReport.contents.push({
@@ -695,7 +698,7 @@ async function playChapter(chapter) {
         assert.equal(ordinary.length, 4, "authored chapter does not have four ordinary fights");
         assert.ok(ordinary.every((encounter) => encounter.defeated));
         for (const minorRole of ["minor-one", "minor-two"]) {
-          const id = runtimeMemoryId(minorRole);
+          const id = chapterMemoryIds[minorRole];
           assert.ok(
             ["revealed", "consumed"].includes(
               latestSave.memories.find((memory) => memory.id === id)?.state,
@@ -740,11 +743,18 @@ async function playChapter(chapter) {
       continue;
     }
     const edge = plan.edges[edgeIndex];
+    const finishEdge = edge.to === document.anchors.finish.platformId;
     const after = await driver.crossEdge(
       edge,
       `chapter-${chapter}-edge-${edgeIndex + 1}`,
+      { allowFinishDocumentExit: finishEdge },
     );
-    if (after.obby.supportId !== edge.to) continue;
+    const documentExited = after.level.authored?.id !== document.id;
+    if (!documentExited && after.obby.supportId !== edge.to) continue;
+    assert.ok(
+      !documentExited || finishEdge,
+      "authored document changed before the declared finish edge",
+    );
     edgeIndex += 1;
     if (!visitedPlatforms.includes(edge.to)) visitedPlatforms.push(edge.to);
     if (
