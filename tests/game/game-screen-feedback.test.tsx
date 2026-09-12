@@ -237,6 +237,29 @@ describe("GameScreen friendly and audio feedback boundaries", () => {
     expect(audio.audition).toHaveBeenCalledTimes(2);
   });
 
+  it("keeps the latest sound result when an older attempt fails late", async () => {
+    gameFixture(status(null));
+    await renderGame();
+    await act(async () => button('[aria-label="How to play"]').click());
+    const audio = mocks.audioInstances[0]!;
+    let failOlder!: (error: Error) => void;
+    audio.audition.mockImplementationOnce(
+      () =>
+        new Promise<boolean>((_resolve, reject) => {
+          failOlder = reject;
+        }),
+    );
+    await act(async () => buttonNamed("Play a test sound").click());
+    await act(async () => buttonNamed("Play a test sound").click());
+    expect(
+      container.querySelector("#sound-test-status")?.textContent,
+    ).toContain("Test sound played");
+    await act(async () => failOlder(new Error("Old interrupted context")));
+    expect(
+      container.querySelector("#sound-test-status")?.textContent,
+    ).toContain("Test sound played");
+  });
+
   it("keeps the persistent world-tap instruction out of the play surface", async () => {
     gameFixture(status(null));
     await renderGame();

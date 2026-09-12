@@ -129,6 +129,7 @@ function Adventure({
   const [soundTest, setSoundTest] = useState<
     "idle" | "starting" | "played" | "failed"
   >("idle");
+  const soundTestAttempt = useRef(0);
   const soundOff = muted || volume === 0;
   const [showHelp, setShowHelp] = useState(false);
   const [showAlbum, setShowAlbum] = useState(false);
@@ -938,6 +939,7 @@ function Adventure({
             aria-describedby="sound-test-status"
             aria-busy={soundTest === "starting"}
             onClick={() => {
+              const attemptId = ++soundTestAttempt.current;
               setSoundTest("starting");
               setMuted(false);
               soundRef.current?.setPreferences(false, volume || 0.8);
@@ -947,10 +949,18 @@ function Adventure({
               else
                 void attempt.then(
                   (ok) => {
-                    if (mounted.current) setSoundTest(ok ? "played" : "failed");
+                    if (
+                      mounted.current &&
+                      attemptId === soundTestAttempt.current
+                    )
+                      setSoundTest(ok ? "played" : "failed");
                   },
                   () => {
-                    if (mounted.current) setSoundTest("failed");
+                    if (
+                      mounted.current &&
+                      attemptId === soundTestAttempt.current
+                    )
+                      setSoundTest("failed");
                   },
                 );
             }}

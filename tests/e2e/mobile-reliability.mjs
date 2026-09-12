@@ -98,6 +98,27 @@ try {
     name: "Play a test sound",
     exact: true,
   });
+  let failedCueRequests = 0;
+  await page.route("**/memory-collected/v001/cue.wav", async (route) => {
+    if (failedCueRequests === 0) {
+      failedCueRequests++;
+      await route.fulfill({
+        status: 503,
+        body: "injected audio delivery failure",
+      });
+    } else await route.continue();
+  });
+  await sound.tap();
+  await page
+    .locator("#sound-test-status")
+    .filter({ hasText: "Tap again to retry" })
+    .waitFor();
+  assert.equal(failedCueRequests, 1);
+  assert.equal(await sound.isEnabled(), true);
+  report.checks.push({
+    check:
+      "failed cue delivery produces a visible retry state without disabling the button",
+  });
   const before = await page.evaluate(() => ({
     clicks: window.__soundClicks,
     starts: window.__audioStarts.length,
