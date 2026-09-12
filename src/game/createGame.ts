@@ -36,6 +36,7 @@ import type {
   PositionSnapshot,
   SceneFrame,
   SceneMediaState,
+  SceneVisualInspection,
 } from "./types";
 
 const interactionRadius = 1.4;
@@ -66,6 +67,7 @@ interface RuntimeScene {
     frame?: SceneFrame,
   ): void;
   getMediaState?(): SceneMediaState;
+  inspectVisuals?(): SceneVisualInspection;
   retryMedia?(): void;
   dispose(): void;
 }
@@ -1198,6 +1200,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         checkpoint: { ...checkpoint },
         level: levelInspection,
         enemies: frames,
+        visuals: scene.inspectVisuals?.(),
         obby: level.course
           ? {
               ...sampleObby(level.course, courseTime),

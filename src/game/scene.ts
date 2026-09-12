@@ -14,6 +14,7 @@ import type {
   PositionSnapshot,
   SceneFrame,
   SceneMediaState,
+  SceneVisualInspection,
 } from "./types";
 import { disposeTree, modelUrls, SceneAssets } from "./scene-assets";
 import {
@@ -545,6 +546,19 @@ export class GardenScene {
       reloadRequired: false,
     };
     return state;
+  }
+
+  inspectVisuals(): SceneVisualInspection {
+    const besties = [...this.enemies.values()].flatMap(
+      (enemy) => enemy.besties?.inspectVisuals() ?? [],
+    );
+    return {
+      memories: [...this.memories.entries()].map(([id, root]) => ({
+        id,
+        visible: root.visible,
+      })),
+      ...(besties.length > 0 ? { besties } : {}),
+    };
   }
 
   retryMedia(): void {

@@ -1,20 +1,54 @@
 import * as THREE from "three";
-import type { BestiesFrame, BestieActorId } from "./besties";
+import type {
+  BestiesClipName,
+  BestiesFrame,
+  BestieActorId,
+} from "./besties";
 import { BESTIES_ARENA_CENTER, bestiesActorOffset } from "./besties";
 import type { DuoParodyArtwork } from "./scene-catalog";
 import { SceneAssets, disposeTree } from "./scene-assets";
 import { groundRing } from "./scene-art";
-import type { PositionSnapshot } from "./types";
+import type {
+  BestiesActorVisualInspection,
+  BestiesPoseInspection,
+  PositionSnapshot,
+} from "./types";
 
 interface DuoActor {
   root: THREE.Group;
   marker: THREE.Mesh;
   mixer?: THREE.AnimationMixer;
   actions: Map<string, THREE.AnimationAction>;
-  current: string;
+  current: BestiesClipName | "";
 }
 
 const fallbackDefeatSeconds = 0.6;
+
+function worldPosition(object: THREE.Object3D): PositionSnapshot {
+  const position = object.getWorldPosition(new THREE.Vector3());
+  return { x: position.x, y: position.y, z: position.z };
+}
+
+function effectivelyVisible(object: THREE.Object3D): boolean {
+  let current: THREE.Object3D | null = object;
+  while (current) {
+    if (!current.visible) return false;
+    current = current.parent;
+  }
+  return true;
+}
+
+function inspectPose(root: THREE.Object3D): BestiesPoseInspection | undefined {
+  const head = root.getObjectByName("head");
+  const leftHand = root.getObjectByName("hand_L");
+  const rightHand = root.getObjectByName("hand_R");
+  if (!head && !leftHand && !rightHand) return undefined;
+  return {
+    ...(head ? { head: worldPosition(head) } : {}),
+    ...(leftHand ? { leftHand: worldPosition(leftHand) } : {}),
+    ...(rightHand ? { rightHand: worldPosition(rightHand) } : {}),
+  };
+}
 
 /** Two authored actors share one authoritative boss and one visible trick at a time. */
 export class BestiesScene {
@@ -258,6 +292,19 @@ export class BestiesScene {
       }
     }
     return nearest ? { x: nearest.x, y: nearest.y, z: nearest.z } : null;
+  }
+
+  inspectVisuals(): BestiesActorVisualInspection[] {
+    return [...this.actors.entries()].map(([id, actor]) => {
+      const pose = inspectPose(actor.root);
+      return {
+        id,
+        position: worldPosition(actor.root),
+        visible: effectivelyVisible(actor.root),
+        clip: actor.current || null,
+        ...(pose ? { pose } : {}),
+      };
+    });
   }
 
   dispose(): void {

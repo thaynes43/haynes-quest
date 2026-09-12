@@ -330,10 +330,18 @@ describe("GardenScene fallback and attack lifecycle", () => {
     );
     const root = memoryRoot("memory-1");
     expect(root.visible).toBe(true);
+    expect(scene.inspectVisuals().memories).toContainEqual({
+      id: "memory-1",
+      visible: true,
+    });
 
     scene.updateProgress(routeMemorySave("revealed"));
 
     expect(root.visible).toBe(false);
+    expect(scene.inspectVisuals().memories).toContainEqual({
+      id: "memory-1",
+      visible: false,
+    });
     scene.dispose();
   });
 
@@ -356,6 +364,10 @@ describe("GardenScene fallback and attack lifecycle", () => {
     );
 
     expect(root.visible).toBe(true);
+    expect(scene.inspectVisuals().memories).toContainEqual({
+      id: "memory-1",
+      visible: true,
+    });
     scene.dispose();
   });
 });

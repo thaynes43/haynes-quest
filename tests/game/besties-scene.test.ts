@@ -68,6 +68,16 @@ function animationAssets(): SceneAssets {
         const loaded = new THREE.Group();
         const rig = new THREE.Group();
         rig.name = "test-rig";
+        for (const [name, x, y] of [
+          ["head", 0, 1.25],
+          ["hand_L", -0.4, 0.8],
+          ["hand_R", 0.4, 0.8],
+        ] as const) {
+          const bone = new THREE.Bone();
+          bone.name = name;
+          bone.position.set(x, y, 0);
+          rig.add(bone);
+        }
         loaded.add(rig);
         target.add(loaded);
         const track = (axis: "x" | "y" | "z", values: number[]) =>
@@ -279,6 +289,66 @@ describe("BestiesScene spell targeting", () => {
 });
 
 describe("BestiesScene animation state", () => {
+  it("reports rendered transforms, animation poses, and effective visibility", () => {
+    const scene = new BestiesScene(animationAssets(), () => true, models);
+    const parent = new THREE.Group();
+    parent.position.set(3, 0.5, -4);
+    parent.add(scene.root);
+    const simulation = new BestiesSimulation();
+    const early = advanceTo(simulation, "pink-warning", 0.2);
+
+    scene.update(early, 0, 11, 0);
+
+    const pinkRoot = scene.root.getObjectByName("bestie-pink")!;
+    const earlyPink = scene
+      .inspectVisuals()
+      .find((actor) => actor.id === "bestie-pink")!;
+    expectPosition(earlyPink.position, worldPosition(scene, "bestie-pink"));
+    expect(earlyPink).toMatchObject({
+      visible: true,
+      clip: "attack",
+      pose: {
+        head: expect.any(Object),
+        leftHand: expect.any(Object),
+        rightHand: expect.any(Object),
+      },
+    });
+
+    const late = advanceTo(simulation, "pink-warning", 0.8);
+    scene.update(late, 0, 11, 0);
+    const latePink = scene
+      .inspectVisuals()
+      .find((actor) => actor.id === "bestie-pink")!;
+    expect(latePink.pose?.head).not.toEqual(earlyPink.pose?.head);
+
+    scene.root.visible = false;
+    expect(scene.inspectVisuals().every((actor) => !actor.visible)).toBe(true);
+    expect(pinkRoot.visible).toBe(true);
+    scene.root.visible = true;
+
+    const defeated = simulation.step({
+      player: { x: 0, y: 0, z: -22 },
+      deltaSeconds: 0,
+      active: true,
+      defeated: true,
+    }).frame;
+    scene.update(defeated, 1.01, 0, 1.01);
+    expect(scene.inspectVisuals()).toEqual([
+      expect.objectContaining({
+        id: "bestie-pink",
+        visible: false,
+        clip: "defeat",
+      }),
+      expect.objectContaining({
+        id: "bestie-black",
+        visible: false,
+        clip: "defeat",
+      }),
+    ]);
+
+    scene.dispose();
+  });
+
   it("evaluates scrubbed attacks and resumes a looping clip after their transition", () => {
     const scene = new BestiesScene(animationAssets(), () => true, models);
     const simulation = new BestiesSimulation();
