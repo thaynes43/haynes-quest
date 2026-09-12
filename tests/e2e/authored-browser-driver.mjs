@@ -187,7 +187,11 @@ export async function createTouchControls({ page, context }) {
       await delay(35);
     },
     async tapButton(name) {
-      await page.getByRole("button", { name, exact: true }).tap();
+      return page
+        .getByRole("button", { name, exact: true })
+        .tap({ timeout: 1_000 })
+        .then(() => true)
+        .catch(() => false);
     },
   };
 }
@@ -239,7 +243,11 @@ export function createHybridControls({ page }) {
       }
     },
     async tapButton(name) {
-      await page.getByRole("button", { name, exact: true }).tap();
+      return page
+        .getByRole("button", { name, exact: true })
+        .tap({ timeout: 1_000 })
+        .then(() => true)
+        .catch(() => false);
     },
   };
 }

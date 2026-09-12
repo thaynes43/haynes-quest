@@ -612,7 +612,10 @@ async function playChapter(chapter) {
       }
       const beforeHp = encounter.hp;
       const beforeRevision = latestSave.revision;
-      await controls.tapButton(name);
+      if (!(await controls.tapButton(name))) {
+        await delay(80);
+        continue;
+      }
       const changed = await waitForSave(
         (candidate) => {
           const current = candidate.adventure.activeLevel.encounters.find(
