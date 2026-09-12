@@ -1,0 +1,66 @@
+{
+  "date": "2026-09-12T00:05:01.776Z",
+  "origin": "https://haynes-quest-playtest.haynesops.com",
+  "browser": "153.0.8010.12",
+  "viewport": {
+    "width": 820,
+    "height": 1180,
+    "touch": true
+  },
+  "bundle": {
+    "path": "/assets/index-D3lvcZ1s.js",
+    "bytes": 1028608,
+    "sha256": "718cc412a27bb79d768238f6326f154a0cccb52da555a69ed3ec4ce31173cebe"
+  },
+  "syntheticFixtureBefore": {
+    "saveId": "1bca5a1c-7fef-47b8-9db4-242bbbb0cd77",
+    "subjectLabel": "Demo Adventurer",
+    "format": "era-combat-v2",
+    "catalogVersion": "parody-catalog-v2",
+    "revision": 0,
+    "ageYears": 0,
+    "phase": "exploring",
+    "activeLevelIndex": 0,
+    "currentLevelId": "level-1-2020",
+    "inventoryCount": 0,
+    "playerHp": 10,
+    "maxPlayerHp": 10
+  },
+  "syntheticFixtureAfterReload": {
+    "saveId": "1bca5a1c-7fef-47b8-9db4-242bbbb0cd77",
+    "subjectLabel": "Demo Adventurer",
+    "format": "era-combat-v2",
+    "catalogVersion": "parody-catalog-v2",
+    "revision": 0,
+    "ageYears": 0,
+    "phase": "exploring",
+    "activeLevelIndex": 0,
+    "currentLevelId": "level-1-2020",
+    "inventoryCount": 0,
+    "playerHp": 10,
+    "maxPlayerHp": 10
+  },
+  "interactions": {
+    "resumedThroughSaveCard": true,
+    "helpOpenedAndClosed": true,
+    "albumOpenedAndClosed": true,
+    "soundMutedAndReenabledThroughTouch": true,
+    "audio": {
+      "contextCount": 1,
+      "states": ["running"]
+    },
+    "savedLeftReloadedAndResumed": true
+  },
+  "pageErrors": [],
+  "failedResponses": [],
+  "outcome": "passed",
+  "screenshotsRetainedOnPvc": [
+    "test-results/release/live-v2-resumed.png",
+    "test-results/release/live-v2-help.png",
+    "test-results/release/live-v2-reloaded.png"
+  ],
+  "scope": "Actual Chromium touch UI on the deployed release; no physical Safari or listening claim. Private cookie state is excluded.",
+  "harnessNotes": [
+    "Two preliminary probes timed out because of accessible-name and default-sound assumptions in the harness. The corrected route passed without product changes."
+  ]
+}

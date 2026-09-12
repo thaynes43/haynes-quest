@@ -32,6 +32,6 @@ PATH="$PWD/.venv-docs/bin:$PATH" scripts/docs/build.sh
 PATH="$PWD/.venv-docs/bin:$PATH" scripts/docs/serve.sh
 ```
 
-The local preview listens at `http://127.0.0.1:8000`. Re-run preparation by restarting the preview after changing canonical `.agents/` records or source docs. CI runs the same strict build and link/media checks. Generated `.docs-build/` and `site/` output are ignored; edit the source Markdown. The deployed app serves the [private asset studio](https://haynes-quest.haynesops.com/studio/assets/catalog.html) through the home network’s internal ingress. Public hosting is not enabled.
+The local preview listens at `http://127.0.0.1:8000`. Re-run preparation by restarting the preview after changing canonical `.agents/` records or source docs. CI runs the same strict build and link/media checks. Generated `.docs-build/` and `site/` output are ignored; edit the source Markdown. The deployed app serves the [private asset studio](https://haynes-quest-playtest.haynesops.com/studio/assets/catalog.html) through the home network’s internal ingress. Public hosting is not enabled.
 
 Use the asset-review template's local image, GLB and audio markup. The model viewer is pinned and bundled locally; review exports must embed their buffers/textures and avoid compression requiring external decoder downloads. Provide still/download fallbacks and do not autoplay sound. Keep personal or restricted media outside static site input, even for a local preview intended to be deployed later.

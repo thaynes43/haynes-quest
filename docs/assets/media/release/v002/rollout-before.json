@@ -1,0 +1,278 @@
+{
+  "observedAt": "2026-09-11T23:54:22.003610+00:00",
+  "pods": {
+    "normal": [
+      {
+        "name": "haynes-quest-7d9b698574-nds6g",
+        "uid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+        "phase": "Running",
+        "containers": [
+          {
+            "name": "app",
+            "ready": true,
+            "restartCount": 0,
+            "image": "sha256:58103b56a22dedaaf6d9ad68a8df8c28996fab956e881f0e637c00794db5f737",
+            "imageID": "ghcr.io/thaynes43/haynes-quest@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+          }
+        ]
+      },
+      {
+        "name": "haynes-quest-db-init-fwz9c",
+        "uid": "a1a58d6e-92c9-46d6-b391-7dc116e72756",
+        "phase": "Succeeded",
+        "containers": [
+          {
+            "name": "init-db",
+            "ready": false,
+            "restartCount": 0,
+            "image": "ghcr.io/home-operations/postgres-init:18.6",
+            "imageID": "ghcr.io/home-operations/postgres-init@sha256:b6d3af974df781c673d37e49bdddfa14a6f5be28b18d2cb7713f0449bea4057b"
+          }
+        ]
+      }
+    ],
+    "playtest": [
+      {
+        "name": "haynes-quest-playtest-9bd87959-gbk5v",
+        "uid": "96a8569c-5397-41df-b85e-36f3e4cc6ecc",
+        "phase": "Running",
+        "containers": [
+          {
+            "name": "app",
+            "ready": true,
+            "restartCount": 0,
+            "image": "sha256:c49bea07124718cde629d2a2978f3962a348d20deb94201b4110ef9b85e8dace",
+            "imageID": "ghcr.io/thaynes43/haynes-quest@sha256:d7eddba8db5ccf60ea03bdcb7ba921e7486106b1ab34e7380c53929a355d4599"
+          }
+        ]
+      }
+    ],
+    "devEnv": [
+      {
+        "name": "dev-env-dfdd8c894-l724p",
+        "uid": "c3a94756-af35-405e-93bc-eb05c2979d3a",
+        "phase": "Running",
+        "containers": [
+          {
+            "name": "app",
+            "ready": true,
+            "restartCount": 0,
+            "image": "sha256:6d083250f8a5163cb5c8ad7aa9ded2db381172d85f5711a134a0ab8aa1046bff",
+            "imageID": "ghcr.io/thaynes43/dev-env@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+          },
+          {
+            "name": "auth-watch",
+            "ready": true,
+            "restartCount": 0,
+            "image": "sha256:6d083250f8a5163cb5c8ad7aa9ded2db381172d85f5711a134a0ab8aa1046bff",
+            "imageID": "ghcr.io/thaynes43/dev-env@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+          },
+          {
+            "name": "gh-refresher",
+            "ready": true,
+            "restartCount": 0,
+            "image": "sha256:6d083250f8a5163cb5c8ad7aa9ded2db381172d85f5711a134a0ab8aa1046bff",
+            "imageID": "ghcr.io/thaynes43/dev-env@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1"
+          }
+        ]
+      }
+    ]
+  },
+  "resources": {
+    "service": [
+      {
+        "name": "haynes-quest",
+        "spec": {
+          "clusterIP": "10.43.214.26",
+          "clusterIPs": ["10.43.214.26"],
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": ["IPv4"],
+          "ipFamilyPolicy": "SingleStack",
+          "ports": [
+            {
+              "name": "http",
+              "port": 3000,
+              "protocol": "TCP",
+              "targetPort": 3000
+            }
+          ],
+          "selector": {
+            "app.kubernetes.io/controller": "main",
+            "app.kubernetes.io/instance": "haynes-quest",
+            "app.kubernetes.io/name": "haynes-quest"
+          },
+          "sessionAffinity": "None",
+          "type": "ClusterIP"
+        }
+      },
+      {
+        "name": "haynes-quest-playtest",
+        "spec": {
+          "clusterIP": "10.43.174.201",
+          "clusterIPs": ["10.43.174.201"],
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": ["IPv4"],
+          "ipFamilyPolicy": "SingleStack",
+          "ports": [
+            {
+              "name": "http",
+              "port": 3000,
+              "protocol": "TCP",
+              "targetPort": 3000
+            }
+          ],
+          "selector": {
+            "app.kubernetes.io/controller": "main",
+            "app.kubernetes.io/instance": "haynes-quest-playtest",
+            "app.kubernetes.io/name": "haynes-quest-playtest"
+          },
+          "sessionAffinity": "None",
+          "type": "ClusterIP"
+        }
+      }
+    ],
+    "endpointslices": [
+      {
+        "name": "haynes-quest-dz299",
+        "spec": null,
+        "endpoints": [
+          {
+            "addresses": ["10.42.4.222"],
+            "conditions": {
+              "ready": true,
+              "serving": true,
+              "terminating": false
+            },
+            "nodeName": "talosw02",
+            "targetRef": {
+              "kind": "Pod",
+              "name": "haynes-quest-7d9b698574-nds6g",
+              "namespace": "frontend",
+              "uid": "d3e0117d-9dc5-4716-9343-2a740147171b"
+            },
+            "zone": "w"
+          }
+        ],
+        "ports": [
+          {
+            "name": "http",
+            "port": 3000,
+            "protocol": "TCP"
+          }
+        ]
+      },
+      {
+        "name": "haynes-quest-playtest-c55ks",
+        "spec": null,
+        "endpoints": [
+          {
+            "addresses": ["10.42.3.188"],
+            "conditions": {
+              "ready": true,
+              "serving": true,
+              "terminating": false
+            },
+            "nodeName": "talosw01",
+            "targetRef": {
+              "kind": "Pod",
+              "name": "haynes-quest-playtest-9bd87959-gbk5v",
+              "namespace": "frontend",
+              "uid": "96a8569c-5397-41df-b85e-36f3e4cc6ecc"
+            },
+            "zone": "w"
+          }
+        ],
+        "ports": [
+          {
+            "name": "http",
+            "port": 3000,
+            "protocol": "TCP"
+          }
+        ]
+      }
+    ],
+    "ingressroute": [
+      {
+        "name": "haynes-quest",
+        "spec": {
+          "entryPoints": ["websecure"],
+          "routes": [
+            {
+              "kind": "Rule",
+              "match": "Host(`haynes-quest.haynesops.com`) && PathPrefix(`/`)",
+              "services": [
+                {
+                  "kind": "Service",
+                  "name": "haynes-quest",
+                  "port": 3000
+                }
+              ]
+            }
+          ],
+          "tls": {
+            "secretName": "certificate-haynesops"
+          }
+        }
+      },
+      {
+        "name": "haynes-quest-playtest",
+        "spec": {
+          "entryPoints": ["websecure"],
+          "routes": [
+            {
+              "kind": "Rule",
+              "match": "Host(`haynes-quest-playtest.haynesops.com`) && PathPrefix(`/`)",
+              "services": [
+                {
+                  "kind": "Service",
+                  "name": "haynes-quest-playtest",
+                  "port": 3000
+                }
+              ]
+            }
+          ],
+          "tls": {
+            "secretName": "certificate-haynesops"
+          }
+        }
+      }
+    ],
+    "networkpolicy": [],
+    "haynes-quest-deployment": {
+      "selector": {
+        "matchLabels": {
+          "app.kubernetes.io/controller": "main",
+          "app.kubernetes.io/instance": "haynes-quest",
+          "app.kubernetes.io/name": "haynes-quest"
+        }
+      },
+      "envFrom": [
+        [
+          {
+            "secretRef": {
+              "name": "haynes-quest-secret"
+            }
+          }
+        ]
+      ]
+    },
+    "haynes-quest-playtest-deployment": {
+      "selector": {
+        "matchLabels": {
+          "app.kubernetes.io/controller": "main",
+          "app.kubernetes.io/instance": "haynes-quest-playtest",
+          "app.kubernetes.io/name": "haynes-quest-playtest"
+        }
+      },
+      "envFrom": [
+        [
+          {
+            "secretRef": {
+              "name": "haynes-quest-secret"
+            }
+          }
+        ]
+      ]
+    }
+  }
+}

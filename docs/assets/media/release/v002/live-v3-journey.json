@@ -1,0 +1,98 @@
+{
+  "date": "2026-09-12T00:11:24.081Z",
+  "origin": "https://haynes-quest-playtest.haynesops.com",
+  "browser": "153.0.8010.12",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "touch": true
+  },
+  "bundle": {
+    "path": "/assets/index-D3lvcZ1s.js",
+    "bytes": 1028608,
+    "sha256": "718cc412a27bb79d768238f6326f154a0cccb52da555a69ed3ec4ce31173cebe"
+  },
+  "syntheticFixture": {
+    "saveId": "b024b374-2169-4a86-9022-c1f607d5a4cb",
+    "subjectLabel": "Demo Adventurer",
+    "format": "era-combat-v2"
+  },
+  "actualUiRoute": {
+    "startPreviewBegin": true,
+    "fullHealthFriendlyGiftRetained": true,
+    "collectedFirstWeaponAndGuard": true,
+    "defeatedFirstOrdinaryEncountersAndBoss": true,
+    "revealedAllFirstChapterPhotos": true,
+    "absorbedToAgeFour": true,
+    "enteredBestiesChapter": true,
+    "savedLeftReloadedAndResumed": true,
+    "bestiesFightRun": false
+  },
+  "beforeReload": {
+    "revision": 26,
+    "ageYears": 4,
+    "catalogVersion": "parody-catalog-v3",
+    "phase": "exploring",
+    "currentLevelId": "level-2-2024",
+    "completedLevelIds": ["level-1-2020"],
+    "inventory": [
+      {
+        "id": "level-1-2020-equipment-attack",
+        "kind": "attack-tool",
+        "collected": true
+      },
+      {
+        "id": "level-1-2020-equipment-guard",
+        "kind": "guard-tool",
+        "collected": true
+      }
+    ],
+    "recoveredIds": ["demo-memory-2020-07", "demo-memory-2024-01"],
+    "bestiesBossAssetId": "bickering-besties"
+  },
+  "afterReload": {
+    "revision": 26,
+    "ageYears": 4,
+    "catalogVersion": "parody-catalog-v3",
+    "phase": "exploring",
+    "currentLevelId": "level-2-2024",
+    "completedLevelIds": ["level-1-2020"],
+    "inventory": [
+      {
+        "id": "level-1-2020-equipment-attack",
+        "kind": "attack-tool",
+        "collected": true
+      },
+      {
+        "id": "level-1-2020-equipment-guard",
+        "kind": "guard-tool",
+        "collected": true
+      }
+    ],
+    "recoveredIds": ["demo-memory-2020-07", "demo-memory-2024-01"],
+    "bestiesBossAssetId": "bickering-besties"
+  },
+  "deliveredBestiesModels": [
+    {
+      "path": "/studio/assets/media/bestie-pink/v001/bestie-pink.glb",
+      "status": 200
+    },
+    {
+      "path": "/studio/assets/media/bestie-black/v001/bestie-black.glb",
+      "status": 200
+    }
+  ],
+  "pageErrors": [],
+  "failedResponses": [],
+  "outcome": "passed",
+  "screenshotsRetainedOnPvc": {
+    "friendly": "test-results/release/live-v3-friendly.png",
+    "firstBoss": "test-results/release/live-v3-first-boss.png",
+    "bestiesEntry": "test-results/release/live-v3-besties-entry.png",
+    "bestiesReload": "test-results/release/live-v3-besties-reloaded.png"
+  },
+  "scope": "Actual Chromium phone-touch UI on the deployed release. Besties entry, asset delivery and saved reload passed; combat was covered by the exact-build local focused run, not repeated live. No physical Safari or listening claim.",
+  "harnessNotes": [
+    "An earlier fresh journey reached Besties, then a harness assertion used encounter.assetId instead of encounter.content.assetId before its anonymous cookie was retained. That synthetic journey cannot be resumed. The corrected fresh run persisted private browser state and passed saved reload; no game change or human-data access occurred."
+  ]
+}

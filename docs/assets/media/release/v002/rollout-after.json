@@ -1,0 +1,737 @@
+{
+  "activityId": "act-235605-241355",
+  "deployments": {
+    "haynes-quest": {
+      "availableReplicas": 1,
+      "desiredReplicas": 1,
+      "envFrom": [
+        [
+          {
+            "secretRef": {
+              "name": "haynes-quest-secret"
+            }
+          }
+        ]
+      ],
+      "generation": 3,
+      "images": [
+        "ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+      ],
+      "name": "haynes-quest",
+      "observedGeneration": 3,
+      "readyReplicas": 1,
+      "replicas": 1,
+      "selector": {
+        "matchLabels": {
+          "app.kubernetes.io/controller": "main",
+          "app.kubernetes.io/instance": "haynes-quest",
+          "app.kubernetes.io/name": "haynes-quest"
+        }
+      },
+      "updatedReplicas": 1
+    },
+    "haynes-quest-playtest": {
+      "availableReplicas": 1,
+      "desiredReplicas": 1,
+      "envFrom": [
+        [
+          {
+            "secretRef": {
+              "name": "haynes-quest-secret"
+            }
+          }
+        ]
+      ],
+      "generation": 3,
+      "images": [
+        "ghcr.io/thaynes43/haynes-quest:sha-d932b484a32d80e4cf3ad2ece1e99d3620d4c55c@sha256:582737215e73ab34dc22445feac16f1773c20b91c27b4f82f3fdcec3ec077a27"
+      ],
+      "name": "haynes-quest-playtest",
+      "observedGeneration": 3,
+      "readyReplicas": 1,
+      "replicas": 1,
+      "selector": {
+        "matchLabels": {
+          "app.kubernetes.io/controller": "main",
+          "app.kubernetes.io/instance": "haynes-quest-playtest",
+          "app.kubernetes.io/name": "haynes-quest-playtest"
+        }
+      },
+      "updatedReplicas": 1
+    }
+  },
+  "flux": {
+    "generation": 3,
+    "healthyCondition": {
+      "lastTransitionTime": "2026-09-11T23:57:21Z",
+      "message": "Health check passed in 25.050388151s",
+      "observedGeneration": 3,
+      "reason": "Succeeded",
+      "status": "True",
+      "type": "Healthy"
+    },
+    "lastAppliedRevision": "main@sha1:eed48853ae6d96c30f3f75515d7e81d20a0005f2",
+    "name": "haynes-quest",
+    "observedGeneration": 3,
+    "readyCondition": {
+      "lastTransitionTime": "2026-09-11T23:57:21Z",
+      "message": "Applied revision: main@sha1:eed48853ae6d96c30f3f75515d7e81d20a0005f2",
+      "observedGeneration": 3,
+      "reason": "ReconciliationSucceeded",
+      "status": "True",
+      "type": "Ready"
+    }
+  },
+  "health": [
+    {
+      "body": {
+        "status": "ok"
+      },
+      "contentType": "application/json",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "url": "https://haynes-quest.haynesops.com/healthz"
+    },
+    {
+      "body": {
+        "status": "ready"
+      },
+      "contentType": "application/json",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "url": "https://haynes-quest.haynesops.com/readyz"
+    },
+    {
+      "body": {
+        "status": "ok"
+      },
+      "contentType": "application/json",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "url": "https://haynes-quest-playtest.haynesops.com/healthz"
+    },
+    {
+      "body": {
+        "status": "ready"
+      },
+      "contentType": "application/json",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "url": "https://haynes-quest-playtest.haynesops.com/readyz"
+    }
+  ],
+  "helmRelease": {
+    "generation": 3,
+    "name": "haynes-quest-playtest",
+    "observedGeneration": 3,
+    "readyCondition": {
+      "lastTransitionTime": "2026-09-11T23:57:17Z",
+      "message": "Helm upgrade succeeded for release frontend/haynes-quest-playtest.v3 with chart app-template@5.1.0+0d039f7760db",
+      "observedGeneration": 3,
+      "reason": "UpgradeSucceeded",
+      "status": "True",
+      "type": "Ready"
+    },
+    "releasedCondition": {
+      "lastTransitionTime": "2026-09-11T23:57:17Z",
+      "message": "Helm upgrade succeeded for release frontend/haynes-quest-playtest.v3 with chart app-template@5.1.0+0d039f7760db",
+      "observedGeneration": 3,
+      "reason": "UpgradeSucceeded",
+      "status": "True",
+      "type": "Released"
+    }
+  },
+  "migrationEvidence": "The new pod reached Ready only after application startup completed; migration 0004 is inferred successful from readiness. No database credential or private row was accessed.",
+  "observedAt": "2026-09-12T00:00:54.006337+00:00",
+  "podSelection": {
+    "devEnv": "Running pod selected by app.kubernetes.io/name=dev-env.",
+    "normal": "Running application pod only; the pre-existing completed database-init Job pod is excluded from identity comparison.",
+    "playtest": "Running application pod only."
+  },
+  "pods": {
+    "devEnv": [
+      {
+        "containers": [
+          {
+            "image": "sha256:6d083250f8a5163cb5c8ad7aa9ded2db381172d85f5711a134a0ab8aa1046bff",
+            "imageID": "ghcr.io/thaynes43/dev-env@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1",
+            "name": "app",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-09-11T03:31:59Z"
+              }
+            }
+          },
+          {
+            "image": "sha256:6d083250f8a5163cb5c8ad7aa9ded2db381172d85f5711a134a0ab8aa1046bff",
+            "imageID": "ghcr.io/thaynes43/dev-env@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1",
+            "name": "auth-watch",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-09-11T03:31:59Z"
+              }
+            }
+          },
+          {
+            "image": "sha256:6d083250f8a5163cb5c8ad7aa9ded2db381172d85f5711a134a0ab8aa1046bff",
+            "imageID": "ghcr.io/thaynes43/dev-env@sha256:80a2c0b8acc53e63a4174ca0f4b81fd1c40aaabff9eed2bffa587883237b9af1",
+            "name": "gh-refresher",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-09-11T03:31:59Z"
+              }
+            }
+          }
+        ],
+        "name": "dev-env-dfdd8c894-l724p",
+        "phase": "Running",
+        "uid": "c3a94756-af35-405e-93bc-eb05c2979d3a"
+      }
+    ],
+    "normal": [
+      {
+        "containers": [
+          {
+            "image": "sha256:58103b56a22dedaaf6d9ad68a8df8c28996fab956e881f0e637c00794db5f737",
+            "imageID": "ghcr.io/thaynes43/haynes-quest@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37",
+            "name": "app",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-09-11T12:17:29Z"
+              }
+            }
+          }
+        ],
+        "name": "haynes-quest-7d9b698574-nds6g",
+        "phase": "Running",
+        "uid": "d3e0117d-9dc5-4716-9343-2a740147171b"
+      }
+    ],
+    "playtest": [
+      {
+        "containers": [
+          {
+            "image": "sha256:51bb9a61dde229552499b41d408c0b7ec321665b130b2d60cad353911924e4ad",
+            "imageID": "ghcr.io/thaynes43/haynes-quest@sha256:582737215e73ab34dc22445feac16f1773c20b91c27b4f82f3fdcec3ec077a27",
+            "name": "app",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-09-11T23:57:08Z"
+              }
+            }
+          }
+        ],
+        "name": "haynes-quest-playtest-547b7f95b7-cdpbr",
+        "phase": "Running",
+        "uid": "9292abea-d1f2-4ba5-8610-b7b88eb321ec"
+      }
+    ]
+  },
+  "release": {
+    "applicationMergeSha": "d932b484a32d80e4cf3ad2ece1e99d3620d4c55c",
+    "expectedDigest": "sha256:582737215e73ab34dc22445feac16f1773c20b91c27b4f82f3fdcec3ec077a27",
+    "expectedImage": "ghcr.io/thaynes43/haynes-quest:sha-d932b484a32d80e4cf3ad2ece1e99d3620d4c55c@sha256:582737215e73ab34dc22445feac16f1773c20b91c27b4f82f3fdcec3ec077a27",
+    "opsMergeSha": "eed48853ae6d96c30f3f75515d7e81d20a0005f2"
+  },
+  "resources": {
+    "ciliumNetworkPolicies": [
+      {
+        "creationTimestamp": "2026-09-11T05:05:49Z",
+        "generation": 1,
+        "name": "haynes-quest-fixture",
+        "spec": {
+          "egress": [
+            {
+              "toEndpoints": [
+                {
+                  "matchLabels": {
+                    "io.kubernetes.pod.namespace": "kube-system",
+                    "k8s-app": "kube-dns"
+                  }
+                }
+              ],
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "53",
+                      "protocol": "ANY"
+                    }
+                  ],
+                  "rules": {
+                    "dns": [
+                      {
+                        "matchName": "postgres16-rw.database.svc.cluster.local"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "5432",
+                      "protocol": "TCP"
+                    }
+                  ]
+                }
+              ],
+              "toServices": [
+                {
+                  "k8sService": {
+                    "namespace": "database",
+                    "serviceName": "postgres16-rw"
+                  }
+                }
+              ]
+            }
+          ],
+          "endpointSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/controller": "main",
+              "app.kubernetes.io/name": "haynes-quest"
+            }
+          },
+          "ingress": [
+            {
+              "fromEndpoints": [
+                {
+                  "matchLabels": {
+                    "app.kubernetes.io/instance": "traefik-internal-network",
+                    "io.kubernetes.pod.namespace": "network"
+                  }
+                }
+              ],
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "3000",
+                      "protocol": "TCP"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "uid": "5499b732-b729-4266-993d-f22611dc4904",
+        "validCondition": {
+          "lastTransitionTime": "2026-09-11T05:05:49Z",
+          "message": "Policy validation succeeded",
+          "status": "True",
+          "type": "Valid"
+        }
+      },
+      {
+        "creationTimestamp": "2026-09-11T20:54:37Z",
+        "generation": 1,
+        "name": "haynes-quest-playtest",
+        "spec": {
+          "egress": [
+            {
+              "toEndpoints": [
+                {
+                  "matchLabels": {
+                    "io.kubernetes.pod.namespace": "kube-system",
+                    "k8s-app": "kube-dns"
+                  }
+                }
+              ],
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "53",
+                      "protocol": "ANY"
+                    }
+                  ],
+                  "rules": {
+                    "dns": [
+                      {
+                        "matchName": "postgres16-rw.database.svc.cluster.local"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "5432",
+                      "protocol": "TCP"
+                    }
+                  ]
+                }
+              ],
+              "toServices": [
+                {
+                  "k8sService": {
+                    "namespace": "database",
+                    "serviceName": "postgres16-rw"
+                  }
+                }
+              ]
+            }
+          ],
+          "endpointSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/controller": "main",
+              "app.kubernetes.io/name": "haynes-quest-playtest"
+            }
+          },
+          "ingress": [
+            {
+              "fromEndpoints": [
+                {
+                  "matchLabels": {
+                    "app.kubernetes.io/instance": "traefik-internal-network",
+                    "io.kubernetes.pod.namespace": "network"
+                  }
+                }
+              ],
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "3000",
+                      "protocol": "TCP"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "uid": "d8c0e74a-f505-4908-931d-15edf8fbd333",
+        "validCondition": {
+          "lastTransitionTime": "2026-09-11T20:54:37Z",
+          "message": "Policy validation succeeded",
+          "status": "True",
+          "type": "Valid"
+        }
+      },
+      {
+        "creationTimestamp": "2026-09-11T03:53:35Z",
+        "generation": 1,
+        "name": "haynes-quest-db-init",
+        "spec": {
+          "egress": [
+            {
+              "toEndpoints": [
+                {
+                  "matchLabels": {
+                    "io.kubernetes.pod.namespace": "kube-system",
+                    "k8s-app": "kube-dns"
+                  }
+                }
+              ],
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "53",
+                      "protocol": "ANY"
+                    }
+                  ],
+                  "rules": {
+                    "dns": [
+                      {
+                        "matchName": "postgres16-rw.database.svc.cluster.local"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "5432",
+                      "protocol": "TCP"
+                    }
+                  ]
+                }
+              ],
+              "toServices": [
+                {
+                  "k8sService": {
+                    "namespace": "database",
+                    "serviceName": "postgres16-rw"
+                  }
+                }
+              ]
+            }
+          ],
+          "endpointSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/component": "database-init",
+              "app.kubernetes.io/name": "haynes-quest"
+            }
+          },
+          "ingress": []
+        },
+        "uid": "33e909f4-cca3-4984-b719-34eb018d6c44",
+        "validCondition": {
+          "lastTransitionTime": "2026-09-11T03:53:35Z",
+          "message": "Policy validation succeeded",
+          "status": "True",
+          "type": "Valid"
+        }
+      },
+      {
+        "creationTimestamp": "2026-09-11T02:57:18Z",
+        "generation": 1,
+        "name": "haynes-quest-secret-check",
+        "spec": {
+          "egress": [
+            {
+              "toEndpoints": [
+                {
+                  "matchLabels": {
+                    "io.kubernetes.pod.namespace": "kube-system",
+                    "k8s-app": "kube-dns"
+                  }
+                }
+              ],
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "53",
+                      "protocol": "ANY"
+                    }
+                  ],
+                  "rules": {
+                    "dns": [
+                      {
+                        "matchName": "immich-server.photos.svc.cluster.local"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "toPorts": [
+                {
+                  "ports": [
+                    {
+                      "port": "2283",
+                      "protocol": "TCP"
+                    }
+                  ]
+                }
+              ],
+              "toServices": [
+                {
+                  "k8sService": {
+                    "namespace": "photos",
+                    "serviceName": "immich-server"
+                  }
+                }
+              ]
+            }
+          ],
+          "endpointSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/name": "haynes-quest-secret-check"
+            }
+          },
+          "ingress": []
+        },
+        "uid": "f3e397cf-4b19-4469-b6a4-3bb58d95eea0",
+        "validCondition": {
+          "lastTransitionTime": "2026-09-11T02:57:18Z",
+          "message": "Policy validation succeeded",
+          "status": "True",
+          "type": "Valid"
+        }
+      }
+    ],
+    "endpointSlices": [
+      {
+        "endpoints": [
+          {
+            "addresses": ["10.42.4.222"],
+            "conditions": {
+              "ready": true,
+              "serving": true,
+              "terminating": false
+            },
+            "nodeName": "talosw02",
+            "targetRef": {
+              "kind": "Pod",
+              "name": "haynes-quest-7d9b698574-nds6g",
+              "namespace": "frontend",
+              "uid": "d3e0117d-9dc5-4716-9343-2a740147171b"
+            },
+            "zone": "w"
+          }
+        ],
+        "name": "haynes-quest-dz299",
+        "ports": [
+          {
+            "name": "http",
+            "port": 3000,
+            "protocol": "TCP"
+          }
+        ],
+        "service": "haynes-quest"
+      },
+      {
+        "endpoints": [
+          {
+            "addresses": ["10.42.3.97"],
+            "conditions": {
+              "ready": true,
+              "serving": true,
+              "terminating": false
+            },
+            "nodeName": "talosw01",
+            "targetRef": {
+              "kind": "Pod",
+              "name": "haynes-quest-playtest-547b7f95b7-cdpbr",
+              "namespace": "frontend",
+              "uid": "9292abea-d1f2-4ba5-8610-b7b88eb321ec"
+            },
+            "zone": "w"
+          }
+        ],
+        "name": "haynes-quest-playtest-c55ks",
+        "ports": [
+          {
+            "name": "http",
+            "port": 3000,
+            "protocol": "TCP"
+          }
+        ],
+        "service": "haynes-quest-playtest"
+      }
+    ],
+    "ingressRoutes": [
+      {
+        "generation": 1,
+        "name": "haynes-quest",
+        "spec": {
+          "entryPoints": ["websecure"],
+          "routes": [
+            {
+              "kind": "Rule",
+              "match": "Host(`haynes-quest.haynesops.com`) && PathPrefix(`/`)",
+              "services": [
+                {
+                  "kind": "Service",
+                  "name": "haynes-quest",
+                  "port": 3000
+                }
+              ]
+            }
+          ],
+          "tls": {
+            "secretName": "certificate-haynesops"
+          }
+        },
+        "uid": "89efd0c9-ba58-4f31-b306-5b6fbc9d23a0"
+      },
+      {
+        "generation": 1,
+        "name": "haynes-quest-playtest",
+        "spec": {
+          "entryPoints": ["websecure"],
+          "routes": [
+            {
+              "kind": "Rule",
+              "match": "Host(`haynes-quest-playtest.haynesops.com`) && PathPrefix(`/`)",
+              "services": [
+                {
+                  "kind": "Service",
+                  "name": "haynes-quest-playtest",
+                  "port": 3000
+                }
+              ]
+            }
+          ],
+          "tls": {
+            "secretName": "certificate-haynesops"
+          }
+        },
+        "uid": "6bc371bf-4425-4d3b-a818-5a071625be97"
+      }
+    ],
+    "networkPolicies": [],
+    "services": [
+      {
+        "name": "haynes-quest",
+        "spec": {
+          "clusterIP": "10.43.214.26",
+          "clusterIPs": ["10.43.214.26"],
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": ["IPv4"],
+          "ipFamilyPolicy": "SingleStack",
+          "ports": [
+            {
+              "name": "http",
+              "port": 3000,
+              "protocol": "TCP",
+              "targetPort": 3000
+            }
+          ],
+          "selector": {
+            "app.kubernetes.io/controller": "main",
+            "app.kubernetes.io/instance": "haynes-quest",
+            "app.kubernetes.io/name": "haynes-quest"
+          },
+          "sessionAffinity": "None",
+          "type": "ClusterIP"
+        },
+        "uid": "822590b9-e17a-4666-8780-f975553d27ce"
+      },
+      {
+        "name": "haynes-quest-playtest",
+        "spec": {
+          "clusterIP": "10.43.174.201",
+          "clusterIPs": ["10.43.174.201"],
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": ["IPv4"],
+          "ipFamilyPolicy": "SingleStack",
+          "ports": [
+            {
+              "name": "http",
+              "port": 3000,
+              "protocol": "TCP",
+              "targetPort": 3000
+            }
+          ],
+          "selector": {
+            "app.kubernetes.io/controller": "main",
+            "app.kubernetes.io/instance": "haynes-quest-playtest",
+            "app.kubernetes.io/name": "haynes-quest-playtest"
+          },
+          "sessionAffinity": "None",
+          "type": "ClusterIP"
+        },
+        "uid": "f1c93ed4-75ae-45fa-9e1d-efe270e07c37"
+      }
+    ]
+  },
+  "schemaVersion": 1
+}

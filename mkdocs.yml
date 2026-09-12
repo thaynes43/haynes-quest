@@ -63,7 +63,7 @@ nav:
       - Runbook template: ops/000-template.md
   - Project records:
       - Current handoff: project/HANDOFF.md
-      - Playtest feedback and Besties: project/plans/006-playtest-polish-and-besties.md
+      - Playtest feedback and Besties: project/plans/completed/006-playtest-polish-and-besties.md
       - Team and routing: project/TEAM.md
       - Completed overnight MVP: project/plans/completed/004-overnight-mvp.md
       - Completed era combat rebuild: project/plans/completed/005-era-combat-loop.md
