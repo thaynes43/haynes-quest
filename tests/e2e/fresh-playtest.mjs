@@ -818,6 +818,55 @@ const diagnoseRotationCancellation = async () => {
   await delay(180);
 };
 
+const diagnoseSameOrientationResize = async () => {
+  const before = await waitForInspection(
+    (inspection) => inspection.status.grounded,
+    "input-diagnostic-resize-grounded",
+  );
+  const held = await beginStick("right", 0.3);
+  const active = await waitForInspection(
+    (inspection) => inspection.input.moveX > 0.1,
+    "input-diagnostic-resize-held",
+  );
+  await page.setViewportSize({ width: 360, height: 844 });
+  cachedWorldTapPoint = null;
+  const rebased = await waitForInspection(
+    (inspection) =>
+      inspection.input.moveX > 0.1 &&
+      Math.hypot(
+        inspection.status.position.x - active.status.position.x,
+        inspection.status.position.z - active.status.position.z,
+      ) > 0.08,
+    "input-diagnostic-resize-rebased",
+  );
+  await endTouches();
+  const released = await waitForInspection(
+    (inspection) => inspection.input.moveX === 0,
+    "input-diagnostic-resize-released",
+  );
+  assert.equal(
+    released.status.jumpSequence,
+    before.status.jumpSequence,
+    "same-orientation resize queued a jump",
+  );
+  report.gestures.sameOrientationResize = {
+    heldContactId: held.id,
+    viewportBefore: { width: 390, height: 844 },
+    viewportAfter: { width: 360, height: 844 },
+    moveXBefore: active.input.moveX,
+    moveXAfter: rebased.input.moveX,
+    moveXReleased: released.input.moveX,
+    planarDistance: Math.hypot(
+      rebased.status.position.x - active.status.position.x,
+      rebased.status.position.z - active.status.position.z,
+    ),
+    jumpSequence: released.status.jumpSequence,
+  };
+  await page.setViewportSize({ width: 390, height: 844 });
+  cachedWorldTapPoint = null;
+  await delay(180);
+};
+
 const diagnoseJumpCancellation = async () => {
   const before = await waitForInspection(
     (inspection) => inspection.status.grounded,
@@ -2148,6 +2197,7 @@ try {
       await diagnoseHeldWorldTap();
       await diagnoseHeldJumpButton();
       await diagnoseJumpCancellation();
+      await diagnoseSameOrientationResize();
       await diagnoseRotationCancellation();
       mark("input-only:complete", report.gestures);
       throw new InputDiagnosticComplete();
