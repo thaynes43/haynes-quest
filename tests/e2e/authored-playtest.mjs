@@ -650,6 +650,8 @@ async function playChapter(chapter) {
     let sawDizzy = false;
     let capturedDizzy = false;
     let combatRetries = 0;
+    let nonDizzyDamage = null;
+    const hitReactions = [];
 
     const approach = async () => {
       await moveToAnchor(
@@ -776,6 +778,7 @@ async function playChapter(chapter) {
       }
       const beforeHp = encounter.hp;
       const beforeRevision = latestSave.revision;
+      const bestiesPhaseAtAttack = inspection.status.bestiesPhase;
       if (!(await controls.tapButton(name))) {
         await delay(80);
         continue;
@@ -795,6 +798,28 @@ async function playChapter(chapter) {
       const afterHp = changed.adventure.activeLevel.encounters.find(
         (candidate) => candidate.id === encounterId,
       ).hp;
+      if (chapter === 2 && role === "boss") {
+        if (bestiesPhaseAtAttack && bestiesPhaseAtAttack !== "dizzy") {
+          nonDizzyDamage ??= {
+            phase: bestiesPhaseAtAttack,
+            beforeHp,
+            afterHp,
+            action: useSecondary ? "secondary-attack" : "attack",
+          };
+        }
+        const reaction = await waitForInspection({
+          page,
+          screenshot,
+          label: "besties-hit-reaction",
+          timeout: 1_000,
+          predicate: (candidate) =>
+            candidate.visuals?.besties?.some((actor) => actor.clip === "hit"),
+        }).catch(() => null);
+        const actor = reaction?.visuals?.besties?.find(
+          (candidate) => candidate.clip === "hit",
+        );
+        if (actor) hitReactions.push({ id: actor.id, clip: actor.clip });
+      }
       if (useSecondary) {
         secondaryAccepted = true;
         secondaryDamage += beforeHp - afterHp;
@@ -813,7 +838,14 @@ async function playChapter(chapter) {
     if (role === "boss")
       assert.ok(hits.length > 0, `${role}: boss never attacked`);
     if (chapter === 2 && role === "boss") {
-      assert.equal(sawDizzy, true, "Besties never entered dizzy state");
+      assert.ok(
+        nonDizzyDamage,
+        "Besties took no authoritative damage outside the dizzy phase",
+      );
+      assert.ok(
+        hitReactions.length > 0,
+        "Besties accepted damage without a rendered hit reaction",
+      );
       for (const id of ["bestie-pink", "bestie-black"]) {
         const actor = besties.get(id);
         assert.ok(actor?.visible, `${id}: never rendered visibly`);
@@ -845,6 +877,8 @@ async function playChapter(chapter) {
       playerHpAfter: latestSave.adventure.playerHp,
       combatRetries,
       sawDizzy,
+      ...(nonDizzyDamage ? { nonDizzyDamage } : {}),
+      ...(hitReactions.length ? { hitReactions } : {}),
       ...(besties.size ? { besties: summarizeBesties(besties) } : {}),
     };
     chapterReport.combat.push(evidence);
