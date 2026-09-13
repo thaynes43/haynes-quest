@@ -649,11 +649,9 @@ export function createAuthoredRouteDriver({
       edge.safeMissPlatformId,
       `${label}: missed jump did not land on its declared catch`,
     );
-    assert.equal(
-      caught.status.jumpSequence,
-      jumpSequence,
-      missTakeoff,
-      `${label}: deliberate miss unexpectedly jumped`,
+    assert.ok(
+      caught.status.jumpSequence > jumpSequence,
+      `${label}: deliberate miss did not use the normal jump control`,
     );
     const retryEdge = safeMissRetryEdge(document, edge);
     const evidence = {
@@ -661,7 +659,9 @@ export function createAuthoredRouteDriver({
       safeMissPlatformId: edge.safeMissPlatformId,
       landed: caught.status.position,
       recoveries,
-      jumpSequence,
+      jumpSequenceBefore: jumpSequence,
+      jumpSequenceAfter: caught.status.jumpSequence,
+      missTakeoff,
       retryEdge: {
         from: retryEdge.from,
         to: retryEdge.to,

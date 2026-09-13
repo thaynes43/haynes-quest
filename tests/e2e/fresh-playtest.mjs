@@ -818,6 +818,45 @@ const diagnoseRotationCancellation = async () => {
   await delay(180);
 };
 
+const diagnoseJumpCancellation = async () => {
+  const before = await waitForInspection(
+    (inspection) => inspection.status.grounded,
+    "input-diagnostic-cancel-grounded",
+  );
+  const held = await beginStick("left", 0.3);
+  const active = await waitForInspection(
+    (inspection) => inspection.input.moveX < -0.1,
+    "input-diagnostic-cancel-held",
+  );
+  await cancelJumpTouchWhileHeld(held);
+  const cancelled = await waitForInspection(
+    (inspection) => inspection.input.moveX === 0,
+    "input-diagnostic-cancel-cleared",
+  );
+  assert.ok(
+    cancelled.status.jumpSequence <= before.status.jumpSequence + 1,
+    "cancelled Jump contact queued more than one jump",
+  );
+  const landed = await waitForInspection(
+    (inspection) => inspection.status.grounded,
+    "input-diagnostic-cancel-landed",
+  );
+  await delay(220);
+  const settled = await inspectGame();
+  assert.equal(
+    settled.status.jumpSequence,
+    landed.status.jumpSequence,
+    "cancelled Jump contact repeated after landing",
+  );
+  report.gestures.jumpCancellation = {
+    heldContactId: held.id,
+    moveXBefore: active.input.moveX,
+    moveXAfter: cancelled.input.moveX,
+    jumpSequenceBefore: before.status.jumpSequence,
+    jumpSequenceAfter: cancelled.status.jumpSequence,
+  };
+};
+
 const recoverIfFallen = async () => {
   if (latestSave?.adventure?.phase !== "fallen") return false;
   const fallenRevision = latestSave.revision;
@@ -2108,6 +2147,7 @@ try {
       await tapPassivePanelWithoutJump(page.locator(".era-hud"), "age-hud");
       await diagnoseHeldWorldTap();
       await diagnoseHeldJumpButton();
+      await diagnoseJumpCancellation();
       await diagnoseRotationCancellation();
       mark("input-only:complete", report.gestures);
       throw new InputDiagnosticComplete();
