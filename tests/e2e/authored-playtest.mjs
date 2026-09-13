@@ -24,7 +24,6 @@ import { verifyControlLayouts } from "./landscape-controls.mjs";
 import { createPausedArtworkProbe } from "./paused-artwork-recovery.mjs";
 
 class ControlsVerified extends Error {}
-class BossGateVerified extends Error {}
 const controlsOnly = process.env.QUEST_E2E_CONTROLS_ONLY === "true";
 const retryTimeoutProbe = process.env.QUEST_E2E_RETRY_TIMEOUT_PROBE === "true";
 const bossGateProbe = process.env.QUEST_E2E_BOSS_GATE_PROBE === "true";
@@ -1175,7 +1174,7 @@ async function playChapter(chapter) {
       localRecoveriesBefore: before.obby.recoveries,
       localRecoveriesAfter: recovered.obby.recoveries,
       progressPreserved: true,
-      automatic: true,
+      automatic: !manualReturn,
       manualReturnAfterTimeout: manualReturn,
     };
     mark("recovery:automatic-memory", chapterReport.deathRecovery);
@@ -1328,6 +1327,7 @@ async function playChapter(chapter) {
             courseId: document.id,
             undefeatedOrdinaryId: undefeated[0].id,
             bossId: boss.id,
+            majorMemoryId: chapterMemoryIds.major,
             bossAvailable: boss.available,
             bossEngaged: engaged.status.bossEngaged,
             bossHudVisible: true,
@@ -1342,17 +1342,8 @@ async function playChapter(chapter) {
               hpAfter: hpAfterSecondary,
             },
           };
-          chapterReport.traversal = {
-            visitedPlatforms,
-            primaryDamage,
-            secondaryDamage,
-            ...driver.evidence,
-          };
-          report.chapters.push(chapterReport);
-          await screenshot(`chapter-${chapter}-boss-gated`);
-          throw new BossGateVerified();
-        }
-        assert.ok(ordinary.every((encounter) => encounter.defeated));
+          await screenshot(`chapter-${chapter}-boss-live`);
+        } else assert.ok(ordinary.every((encounter) => encounter.defeated));
         for (const minorRole of ["minor-one", "minor-two"]) {
           const id = chapterMemoryIds[minorRole];
           assert.ok(
@@ -1364,6 +1355,23 @@ async function playChapter(chapter) {
         }
       }
       await fight(role, anchor);
+      if (bossGateProbe && role === "boss") {
+        const ordinaryLeft = latestSave.adventure.activeLevel.encounters.find(
+          (encounter) =>
+            encounter.id === report.bossGateProbe.undefeatedOrdinaryId,
+        );
+        const defeatedBoss = latestSave.adventure.activeLevel.encounters.find(
+          (encounter) => encounter.id === report.bossGateProbe.bossId,
+        );
+        assert.equal(ordinaryLeft?.defeated, false);
+        assert.ok((ordinaryLeft?.hp ?? 0) > 0);
+        assert.equal(defeatedBoss?.defeated, true);
+        report.bossGateProbe.afterBoss = {
+          ordinaryStillUndefeated: true,
+          ordinaryHp: ordinaryLeft.hp,
+          bossDefeated: true,
+        };
+      }
     }
     if (!recoveryProved) {
       const current = await driver.read(
@@ -1474,8 +1482,8 @@ async function playChapter(chapter) {
   );
   assert.equal(
     chapterReport.combat.length,
-    5,
-    "chapter did not complete five fights",
+    bossGateProbe ? 4 : 5,
+    `chapter did not complete ${bossGateProbe ? 4 : 5} fights`,
   );
   assert.ok(primaryDamage > 0, "primary attack never damaged an enemy");
   assert.ok(secondaryDamage > 0, "secondary attack never damaged an enemy");
@@ -1565,7 +1573,11 @@ try {
   assert.equal(latestSave.completed, true);
   assert.equal(latestSave.recoveredIds.length, 6);
   assert.equal(report.chapters.length, 3 - routeStartChapter);
-  assert.ok(report.chapters.every((chapter) => chapter.combat.length === 5));
+  assert.ok(
+    report.chapters.every(
+      (chapter) => chapter.combat.length === (bossGateProbe ? 4 : 5),
+    ),
+  );
   assert.deepEqual(
     report.chapters.map((chapter) => chapter.course.id),
     ["garden-playground-v2", "besties-playground-v2"].slice(
@@ -1577,24 +1589,34 @@ try {
     assert.equal(report.injectedArtworkFailure?.retryPresses, 1);
     assert.equal(report.injectedArtworkFailure?.physicsStayedPaused, true);
   }
+  if (bossGateProbe) {
+    assert.equal(report.bossGateProbe.afterBoss.ordinaryStillUndefeated, true);
+    assert.equal(report.bossGateProbe.afterBoss.bossDefeated, true);
+    assert.equal(latestSave.adventure.activeLevel, null);
+    assert.ok(latestSave.adventure.completedLevelIds.includes("level-2-2024"));
+    report.bossGateProbe.completion = {
+      completed: true,
+      activeLevel: null,
+      ordinaryStillUndefeatedBeforeCompletion: true,
+      bossDefeatedBeforeCompletion: true,
+      majorMemoryRecovered: latestSave.recoveredIds.includes(
+        report.bossGateProbe.majorMemoryId,
+      ),
+    };
+    assert.equal(report.bossGateProbe.completion.majorMemoryRecovered, true);
+  }
   assert.deepEqual(report.responseErrors, []);
   assert.deepEqual(report.pageErrors, []);
   assert.deepEqual(report.consoleErrors, []);
   report.status = "passed";
   report.finishedAt = new Date().toISOString();
 } catch (error) {
-  if (error instanceof ControlsVerified || error instanceof BossGateVerified) {
+  if (error instanceof ControlsVerified) {
     assert.deepEqual(report.responseErrors, []);
     assert.deepEqual(report.pageErrors, []);
     assert.deepEqual(report.consoleErrors, []);
-    if (error instanceof ControlsVerified) {
-      assert.equal(report.layout.length, 1);
-      report.status = "passed";
-    } else {
-      assert.ok(report.bossGateProbe);
-      if (retryTimeoutProbe) assert.ok(report.retryTimeoutProbe.manualReturn);
-      report.status = "passed-boss-gate";
-    }
+    assert.equal(report.layout.length, 1);
+    report.status = "passed";
     report.finishedAt = new Date().toISOString();
   } else {
     report.status = "failed";
