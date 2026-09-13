@@ -192,6 +192,36 @@ describe('route-memory plan v3', () => {
     }, createInitialAdventureState(plan))).toThrow('Save unavailable');
   });
 
+  it('allows a v2 playground boss attack with ordinary encounters remaining while v1 stays gated', () => {
+    const legacyPlan = routePlan();
+    const legacyLevel = legacyPlan.levels[0]!;
+    const boss = legacyLevel.encounters.find((encounter) => encounter.role === 'boss')!;
+    let state = collect(legacyPlan, createInitialAdventureState(legacyPlan), 'attack-tool');
+
+    expect(toAdventureView(legacyPlan, state, 0).activeLevel!.encounters.find(
+      (encounter) => encounter.id === boss.id,
+    )).toMatchObject({ available: false, defeated: false, hp: boss.maxHp });
+    expect(() => apply(legacyPlan, state, {
+      type: 'attack', levelId: legacyLevel.id, encounterId: boss.id,
+    }, 0)).toThrow('ENCOUNTER_NOT_ACTIVE');
+
+    const v2Plan = structuredClone(legacyPlan);
+    (v2Plan.levels[0] as unknown as { routeId: string }).routeId = 'garden-playground-v2';
+    expect(toAdventureView(v2Plan, state, 0).activeLevel!.encounters.find(
+      (encounter) => encounter.id === boss.id,
+    )).toMatchObject({ available: true, defeated: false, hp: boss.maxHp });
+
+    state = apply(v2Plan, state, {
+      type: 'attack', levelId: legacyLevel.id, encounterId: boss.id,
+    }, 0);
+    expect(state.encounters[boss.id]).toMatchObject({
+      hp: boss.maxHp - legacyLevel.pickups.find(
+        (equipment) => equipment.kind === 'attack-tool',
+      )!.damage,
+      defeated: false,
+    });
+  });
+
   it('gives only newly created v3 Besties plans forgiving contact damage', () => {
     const plan = routePlan();
     const firstBoss = plan.levels[0]!.encounters.find((encounter) => encounter.role === 'boss')!;

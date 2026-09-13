@@ -1,4 +1,5 @@
 import type { EncounterView, SaveView } from "../shared/contracts";
+import { bossRequiresOrdinaryDefeats } from "../shared/encounter-availability";
 import type { EncounterPlacement, LevelLayout } from "./level";
 import type { EnemyFrame, EnemyPhase, PositionSnapshot } from "./types";
 
@@ -143,13 +144,17 @@ function encounterMap(save: SaveView): Map<string, RuntimeEncounterView> {
 }
 
 export function bossIsActive(save: SaveView): boolean {
-  const encounters = save.adventure?.activeLevel?.encounters ?? [];
+  const level = save.adventure?.activeLevel;
+  const encounters = level?.encounters ?? [];
   const ordinaryDefeated = encounters
     .filter((encounter) => encounter.role === "ordinary")
     .every((encounter) => encounter.defeated);
   const boss = encounters.find((encounter) => encounter.role === "boss") as
     RuntimeEncounterView | undefined;
-  return ordinaryDefeated && boss?.available !== false;
+  return (
+    (!bossRequiresOrdinaryDefeats(level?.routeId) || ordinaryDefeated) &&
+    boss?.available !== false
+  );
 }
 
 export class EnemySimulation {
