@@ -348,6 +348,16 @@ function Adventure({
     };
   }, [initialSave]);
 
+  const blockRecovery = () => {
+    const code = game.current?.inspect().status.requestErrorCode;
+    setError(
+      code
+        ? friendlyError(new Error(code))
+        : "The checkpoint retry could not start. Please try again.",
+    );
+    setRecoveryBlocked(true);
+  };
+
   useEffect(() => {
     if (view.phase !== "fallen") {
       recoveryRequested.current = null;
@@ -365,8 +375,7 @@ function Adventure({
       if (
         !game.current?.performAction({ type: "retry-level", levelId: level.id })
       ) {
-        setError("The checkpoint retry could not start. Please try again.");
-        setRecoveryBlocked(true);
+        blockRecovery();
       }
     }, 650);
     return () => clearTimeout(timer);
@@ -1034,10 +1043,7 @@ function Adventure({
                     levelId: level.id,
                   })
                 ) {
-                  setError(
-                    "The checkpoint retry could not start. Please try again.",
-                  );
-                  setRecoveryBlocked(true);
+                  blockRecovery();
                 }
               }}
             >

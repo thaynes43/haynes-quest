@@ -225,6 +225,26 @@ describe("Peripheral memory feedback and automatic recovery", () => {
     expect(handle.performAction).toHaveBeenCalledTimes(2);
   });
 
+  it("preserves a concrete runtime error when a checkpoint request is refused", async () => {
+    const save = routeMemorySave();
+    save.adventure!.phase = "fallen";
+    const handle = await renderRoute(save);
+    vi.mocked(handle.performAction).mockReturnValueOnce(false);
+    vi.mocked(handle.inspect).mockReturnValue(
+      inspection({
+        ...status(),
+        requestErrorCode: "SECURE_RANDOM_UNAVAILABLE",
+      }),
+    );
+    await act(async () => {
+      vi.advanceTimersByTime(650);
+    });
+    expect(container.textContent).toContain("SECURE_RANDOM_UNAVAILABLE");
+    expect(container.textContent).not.toContain(
+      "The checkpoint retry could not start.",
+    );
+  });
+
   it("keeps the same movement finger through a resized viewport, but clears it on rotation", async () => {
     vi.stubGlobal("innerWidth", 390);
     vi.stubGlobal("innerHeight", 844);
