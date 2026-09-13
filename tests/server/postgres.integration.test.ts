@@ -2,7 +2,12 @@ import { randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { Pool } from 'pg';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { memoryIdsForLevel, memoryRoleForLevel } from '../../src/shared/adventure.js';
+import {
+  createInitialAdventureState,
+  createRouteMemoryPlan,
+  memoryIdsForLevel,
+  memoryRoleForLevel,
+} from '../../src/shared/adventure.js';
 import type { GameplayAction, GameplayActionRequest } from '../../src/shared/contracts.js';
 import { friendlyDefinitionsForLevel } from '../../src/shared/friendly.js';
 import { PostgresQuestStore } from '../../src/server/db/postgres-store.js';
@@ -97,7 +102,7 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
         phase: 'exploring',
       },
     });
-    expect(plan.catalogVersion).toBe('parody-catalog-v4');
+    expect(plan.catalogVersion).toBe('parody-catalog-v5');
     expect(plan.levels.map((level) => ({
       routeId: level.routeId,
       memories: memoryIdsForLevel(level).map((id) => [id, memoryRoleForLevel(level, id)]),
@@ -105,7 +110,7 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
       encounterRoles: level.encounters.map((encounter) => encounter.role),
     }))).toEqual([
       {
-        routeId: 'garden-playground-v1',
+        routeId: 'garden-playground-v2',
         memories: [
           ['memory-0', 'minor'],
           ['memory-1', 'minor'],
@@ -121,7 +126,7 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
         encounterRoles: ['ordinary', 'ordinary', 'ordinary', 'ordinary', 'boss'],
       },
       {
-        routeId: 'besties-playground-v1',
+        routeId: 'besties-playground-v2',
         memories: [
           ['memory-3', 'minor'],
           ['memory-4', 'minor'],
@@ -148,7 +153,7 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
       versions: ROUTE_MEMORY_RULE_VERSIONS,
       adventurePlan: {
         version: 'era-level-plan-v3',
-        catalogVersion: 'parody-catalog-v4',
+        catalogVersion: 'parody-catalog-v5',
       },
       adventureState: {
         abilities: ['move', 'interact', 'jump'],
@@ -216,6 +221,80 @@ describe.skipIf(!testDatabaseUrl)('Postgres quest store', () => {
       });
     } finally {
       await secondRestart.close();
+    }
+  });
+
+  it('Postgres preserves a persisted v4 plan on v1 routes across a v5 default restart', async () => {
+    const firstStore = PostgresQuestStore.connect(testDatabaseUrl!);
+    const player = await firstStore.createFixtureSession(
+      randomUUID(),
+      new Date(Date.now() + 60_000),
+    );
+    const preview = await firstStore.putPreview(previewInputForDates(player.id, '2020-01-01', [
+      '2020-07-01',
+      '2022-01-01',
+      '2024-01-01',
+      '2025-01-01',
+      '2026-01-01',
+      '2027-01-01',
+    ]));
+    const created = await firstStore.createSave({
+      ownerId: player.id,
+      previewId: preview.previewId,
+      selectedIds: preview.selectedIds,
+      planMode: 'route-memories',
+    });
+    expect(created.adventurePlan).toMatchObject({
+      catalogVersion: 'parody-catalog-v5',
+      levels: [
+        { routeId: 'garden-playground-v2' },
+        { routeId: 'besties-playground-v2' },
+      ],
+    });
+
+    const archivedPlan = createRouteMemoryPlan(
+      preview.birthDate,
+      preview.memories,
+      'parody-catalog-v4',
+    );
+    const archivedState = createInitialAdventureState(archivedPlan);
+    const auditPool = new Pool({ connectionString: testDatabaseUrl, max: 1 });
+    try {
+      await auditPool.query(
+        `UPDATE quest_saves
+         SET adventure_plan = $2::jsonb, adventure_state = $3::jsonb,
+             versions = $4::jsonb
+         WHERE id = $1`,
+        [
+          created.id,
+          JSON.stringify(archivedPlan),
+          JSON.stringify(archivedState),
+          JSON.stringify({
+            ...ROUTE_MEMORY_RULE_VERSIONS,
+            catalog: 'parody-catalog-v4',
+          }),
+        ],
+      );
+    } finally {
+      await auditPool.end();
+      await firstStore.close();
+    }
+
+    const restartedStore = PostgresQuestStore.connect(testDatabaseUrl!);
+    try {
+      expect(await restartedStore.getSave(player.id, created.id)).toMatchObject({
+        versions: { catalog: 'parody-catalog-v4' },
+        adventurePlan: {
+          version: 'era-level-plan-v3',
+          catalogVersion: 'parody-catalog-v4',
+          levels: [
+            { routeId: 'garden-playground-v1' },
+            { routeId: 'besties-playground-v1' },
+          ],
+        },
+      });
+    } finally {
+      await restartedStore.close();
     }
   });
 

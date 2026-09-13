@@ -160,6 +160,12 @@ describe("authored level runtime", () => {
       levelId: "same-level",
       revision: 1,
     });
+    const activeMinorIds = new Set(
+      next.adventure!.activeLevel!.minorMemoryIds,
+    );
+    next.recoveredIds = next.recoveredIds.filter(
+      (memoryId) => !activeMinorIds.has(memoryId),
+    );
     const game = createGame({
       container: document.createElement("div"),
       save: initial,
@@ -190,7 +196,7 @@ describe("authored level runtime", () => {
     game.dispose();
   });
 
-  it("keeps the visited checkpoint through same-level fallen and retry saves", () => {
+  it("uses the recovered memory checkpoint through same-level fallen and retry saves", () => {
     const initial = makeAuthoredSave();
     const progressed = makeAuthoredSave({
       revision: 1,
@@ -205,16 +211,22 @@ describe("authored level runtime", () => {
       revision: 3,
       defeatedOrdinaryCount: 4,
     });
-    const inferredFromDefeats = checkpointForSave(
+    const recovered = authoredRoute(
+      "garden-playground-v1",
+    )!.course.checkpoints.find(
+      (checkpoint) => checkpoint.id === "picnic-safe",
+    )!;
+    const checkpoint = checkpointForSave(
       progressed,
       createLevelLayout(progressed),
     );
-    const visited = authoredRoute(
+    const oldVisited = authoredRoute(
       "garden-playground-v1",
     )!.course.checkpoints.find(
       (checkpoint) => checkpoint.id === "garden-start",
     )!;
-    expect(inferredFromDefeats).not.toEqual(visited.position);
+    expect(checkpoint).toEqual(recovered.position);
+    expect(checkpoint).not.toEqual(oldVisited.position);
 
     const game = createGame({
       container: document.createElement("div"),
@@ -223,24 +235,24 @@ describe("authored level runtime", () => {
       onRefresh: async () => initial,
     });
     warmRuntime();
-    expect(game.inspect().obby?.checkpointId).toBe("garden-start");
+    expect(game.inspect().obby?.checkpointId).toBe("picnic-safe");
 
     game.updateSave(progressed);
     game.updateSave(fallen);
     game.updateSave(retried);
 
     expect(game.inspect()).toMatchObject({
-      status: { position: visited.position, phase: "exploring" },
-      checkpoint: visited.position,
+      status: { position: recovered.position, phase: "exploring" },
+      checkpoint: recovered.position,
       obby: {
         routeId: "garden-playground-v1",
-        checkpointId: null,
+        checkpointId: "picnic-safe",
         recoveries: 0,
       },
     });
-    expect(game.inspect().status.position).not.toEqual(inferredFromDefeats);
+    expect(game.inspect().status.position).not.toEqual(oldVisited.position);
     warmRuntime();
-    expect(game.inspect().obby?.checkpointId).toBe("garden-start");
+    expect(game.inspect().obby?.checkpointId).toBe("picnic-safe");
     expect(runtimeState.instances[0]?.rebuilds).toEqual([
       {
         id: "level-authored-fixture",

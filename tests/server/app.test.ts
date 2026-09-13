@@ -217,7 +217,7 @@ describe('fixture API', () => {
     const firstBestiesBoss = besties.adventure.activeLevel.encounters.find(
       (encounter: { role: string }) => encounter.role === 'boss',
     );
-    expect(firstBestiesBoss).toMatchObject({ hp: 11, maxHp: 11, defeated: false, available: false });
+    expect(firstBestiesBoss).toMatchObject({ hp: 11, maxHp: 11, defeated: false, available: true });
 
     const repeatedBesties = await startPlaytest(ephemeral.app, cookie, 2);
     expect(repeatedBesties.id).not.toBe(besties.id);
