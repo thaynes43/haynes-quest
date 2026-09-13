@@ -170,6 +170,86 @@ const screenshot = async (name) => {
   report.screenshots.push(path);
 };
 
+const tapProbeControl = async (name, status) => {
+  const button = page.getByRole("button", { name, exact: true });
+  const dom = await button.evaluate((element) => {
+    const bounds = element.getBoundingClientRect();
+    const point = {
+      x: bounds.x + bounds.width / 2,
+      y: bounds.y + bounds.height / 2,
+    };
+    const hit = document.elementFromPoint(point.x, point.y);
+    const style = getComputedStyle(element);
+    return {
+      ariaLabel: element.getAttribute("aria-label"),
+      className: element.className,
+      disabled: element instanceof HTMLButtonElement && element.disabled,
+      visible:
+        bounds.width > 0 &&
+        bounds.height > 0 &&
+        style.display !== "none" &&
+        style.visibility !== "hidden",
+      topmost:
+        hit === element || (hit instanceof Node && element.contains(hit)),
+      topmostElement:
+        hit instanceof Element
+          ? {
+              tagName: hit.tagName,
+              ariaLabel: hit.getAttribute("aria-label"),
+              className: hit.className,
+            }
+          : null,
+      bounds: {
+        x: bounds.x,
+        y: bounds.y,
+        width: bounds.width,
+        height: bounds.height,
+      },
+      point,
+    };
+  });
+  const statusSnapshot = {
+    nearEncounterId: status.nearEncounterId,
+    attackReady: status.attackReady,
+    guardReady: status.guardReady,
+    bossEngaged: status.bossEngaged,
+    attackFeedback: status.attackFeedback,
+  };
+  try {
+    await button.tap({ timeout: 1_000 });
+    const evidence = {
+      name,
+      method: "playwright-locator-tap",
+      fallbackUsed: false,
+      dom,
+      status: statusSnapshot,
+      locatorTapError: null,
+    };
+    mark("boss-probe:control-tapped", evidence);
+    return evidence;
+  } catch (error) {
+    const locatorTapError = {
+      name: error instanceof Error ? error.name : "Error",
+      message: error instanceof Error ? error.message : String(error),
+    };
+    const evidence = {
+      name,
+      method: "physical-touchscreen-center",
+      fallbackUsed: true,
+      dom,
+      status: statusSnapshot,
+      locatorTapError,
+    };
+    mark("boss-probe:locator-tap-failed", evidence);
+    assert.equal(dom.visible, true, `${name} is not visible`);
+    assert.equal(dom.disabled, false, `${name} is disabled`);
+    assert.equal(dom.topmost, true, `${name} is obscured at its center`);
+    await page.touchscreen.tap(dom.point.x, dom.point.y);
+    mark("boss-probe:control-tapped", evidence);
+    return evidence;
+  }
+};
+
 const close = async () => {
   if (cleanupStarted) return;
   cleanupStarted = true;
@@ -1262,7 +1342,7 @@ async function playChapter(chapter) {
           const revision = latestSave.revision;
           const hp = boss.hp;
           const attackSequence = engaged.status.attackFeedback?.sequence ?? 0;
-          assert.equal(await controls.tapButton("Attack"), true);
+          const primaryInput = await tapProbeControl("Attack", engaged.status);
           const primarySave = await waitForSave((candidate) => {
             const currentBoss = candidate.adventure.activeLevel.encounters.find(
               (encounter) => encounter.id === boss.id,
@@ -1295,7 +1375,10 @@ async function playChapter(chapter) {
           );
           const secondarySequence =
             secondaryReady.status.attackFeedback?.sequence ?? 0;
-          assert.equal(await controls.tapButton("Bash"), true);
+          const secondaryInput = await tapProbeControl(
+            "Bash",
+            secondaryReady.status,
+          );
           const secondarySave = await waitForSave((candidate) => {
             const currentBoss = candidate.adventure.activeLevel.encounters.find(
               (encounter) => encounter.id === boss.id,
@@ -1335,11 +1418,13 @@ async function playChapter(chapter) {
               outcome: afterPrimary.status.attackFeedback?.outcome,
               hpBefore: hp,
               hpAfter: hpAfterPrimary,
+              input: primaryInput,
             },
             secondary: {
               outcome: afterSecondary.status.attackFeedback?.outcome,
               hpBefore: hpAfterPrimary,
               hpAfter: hpAfterSecondary,
+              input: secondaryInput,
             },
           };
           await screenshot(`chapter-${chapter}-boss-live`);
