@@ -376,6 +376,16 @@ export function createAuthoredRouteDriver({
         await controls.release();
         return inspection;
       }
+      if (distance < 0.08 && inspection.obby.supportId !== supportId) {
+        await controls.release();
+        mark("movement:support-changed", {
+          label,
+          requestedSupportId: supportId,
+          supportId: inspection.obby.supportId,
+          position: inspection.status.position,
+        });
+        return inspection;
+      }
       const dx = target.x - inspection.status.position.x;
       const dz = target.z - inspection.status.position.z;
       const hazard = allowHazardJump
