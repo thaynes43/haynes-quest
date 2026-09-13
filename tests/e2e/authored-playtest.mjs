@@ -14,6 +14,7 @@ import {
 import {
   authoredDocumentFromInspection,
   buildTraversalPlan,
+  findPlatformPath,
   planarDistance,
   summarizeAuthoredCourse,
 } from "./authored-navigation.mjs";
@@ -460,13 +461,45 @@ async function playChapter(chapter) {
     label,
     targetFor = () => anchor.position,
     done = null,
-  ) =>
-    driver.moveToPoint(targetFor, {
-      label,
-      tolerance: 0.32,
-      supportId: anchor.platformId,
-      done,
-    });
+  ) => {
+    for (let recoveryAttempt = 0; recoveryAttempt < 3; recoveryAttempt += 1) {
+      let current = await driver.read(`${label}-route-${recoveryAttempt + 1}`);
+      if (done && (await done(current))) return current;
+      if (current.obby.supportId !== anchor.platformId) {
+        const route = findPlatformPath(
+          document,
+          current.obby.supportId,
+          anchor.platformId,
+        );
+        for (const [edgeIndex, edge] of route.entries()) {
+          current = await driver.crossEdge(
+            { ...edge, index: edgeIndex },
+            `${label}-recovery-edge-${edgeIndex + 1}`,
+          );
+          if (current.obby.supportId !== edge.to) break;
+        }
+        if (current.obby.supportId !== anchor.platformId) continue;
+      }
+      const recoveryCount = current.obby.recoveries;
+      const reached = await driver.moveToPoint(targetFor, {
+        label,
+        tolerance: 0.32,
+        supportId: anchor.platformId,
+        stopOnRecovery: true,
+        done,
+      });
+      if (done && (await done(reached))) return reached;
+      if (
+        reached.obby.supportId === anchor.platformId &&
+        reached.obby.recoveries === recoveryCount
+      ) {
+        return reached;
+      }
+    }
+    throw new Error(
+      `${label}: repeated recovery prevented reaching its anchor`,
+    );
+  };
 
   const collectPickup = async (kind, anchor) => {
     if (
@@ -997,9 +1030,10 @@ async function playChapter(chapter) {
       recoveredSave.adventure.playerHp,
       recoveredSave.adventure.maxPlayerHp,
     );
-    assert.ok(
-      recovered.obby.recoveries <= before.obby.recoveries,
-      "HP recovery was counted as an additional local obstacle fall",
+    assert.equal(
+      recovered.obby.recoveries,
+      0,
+      "HP recovery did not rebuild the local traversal counter",
     );
     assert.ok(
       spatialDistance(recovered.status.position, checkpoint.position) < 0.7,
