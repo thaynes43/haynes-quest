@@ -1140,8 +1140,29 @@ async function playChapter(chapter) {
         candidate.level.encounterPositions.find(
           (entry) => entry.id === encounter.id,
         ),
-      (candidate) => candidate.status.nearEncounterId === encounter.id,
+      (candidate) => {
+        const enemy = candidate.level.encounterPositions.find(
+          (entry) => entry.id === encounter.id,
+        );
+        return enemy && planarDistance(candidate.status.position, enemy) <= 1.0;
+      },
     );
+    const approachedEnemy = before.level.encounterPositions.find(
+      (entry) => entry.id === encounter.id,
+    );
+    assert.ok(approachedEnemy, "death proof lost its rendered encounter");
+    const deathApproachDistance = planarDistance(
+      before.status.position,
+      approachedEnemy,
+    );
+    assert.ok(
+      deathApproachDistance <= 1.0,
+      `death proof stopped outside strike range: ${deathApproachDistance}`,
+    );
+    mark("recovery:death-approach", {
+      encounterId: encounter.id,
+      distance: deathApproachDistance,
+    });
     retryTimeoutProbeArmed = retryTimeoutProbe;
     await controls.release();
     const fallen = await waitForSave(
