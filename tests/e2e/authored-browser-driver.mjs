@@ -89,17 +89,22 @@ export async function createTouchControls({ page, context }) {
   const movementContacts = async (deltaX, deltaZ, strength = 1) => {
     const magnitude = Math.hypot(deltaX, deltaZ);
     assert.ok(magnitude > 0, "zero-length touch movement requested");
-    const center = await controlCenter(
-      page.getByTestId("joystick"),
-      "touch joystick",
-    );
+    const bounds = await page.getByTestId("joystick").boundingBox();
+    assert.ok(bounds, "touch joystick is unavailable");
+    const center = {
+      x: bounds.x + bounds.width / 2,
+      y: bounds.y + bounds.height / 2,
+    };
+    // A physical thumb can travel past the visible knob radius. Keep the
+    // gesture proportional to the rendered control at every phone/tablet size.
+    const dragRadius = bounds.width * 0.38;
     const id = nextPointerId++;
     return {
       origin: touchPoint(id, center.x, center.y),
       target: touchPoint(
         id,
-        center.x + (deltaX / magnitude) * 44 * strength,
-        center.y + (deltaZ / magnitude) * 44 * strength,
+        center.x + (deltaX / magnitude) * dragRadius * strength,
+        center.y + (deltaZ / magnitude) * dragRadius * strength,
       ),
     };
   };
@@ -577,9 +582,37 @@ export function createAuthoredRouteDriver({
     );
     const source = livePlatform(before, edge.from);
     const target = livePlatform(before, edge.to);
+    const catchPlatform = livePlatform(before, edge.safeMissPlatformId);
     const gateway = platformGateway(source, target);
-    if (planarDistance(before.status.position, gateway.from) > 0.5) {
-      before = await moveToPoint(() => gateway.from, {
+    const delta = {
+      x: gateway.to.x - gateway.from.x,
+      z: gateway.to.z - gateway.from.z,
+    };
+    const travelAxis = Math.abs(delta.z) >= Math.abs(delta.x) ? "z" : "x";
+    const crossAxis = travelAxis === "z" ? "x" : "z";
+    const crossHalf = source.size[crossAxis] / 2 - 0.55;
+    const targetHalf = target.size[crossAxis] / 2 + 0.4;
+    const catchHalf = catchPlatform.size[crossAxis] / 2 - 0.55;
+    const crossCandidates = [-1, 1]
+      .map(
+        (direction) =>
+          source.center[crossAxis] + direction * Math.max(0, crossHalf),
+      )
+      .filter(
+        (coordinate) =>
+          Math.abs(coordinate - target.center[crossAxis]) > targetHalf &&
+          Math.abs(coordinate - catchPlatform.center[crossAxis]) <= catchHalf,
+      );
+    assert.ok(
+      crossCandidates.length,
+      `${label}: no normal-control miss lane reaches the declared catch`,
+    );
+    const missTakeoff = {
+      ...gateway.from,
+      [crossAxis]: crossCandidates[0],
+    };
+    if (planarDistance(before.status.position, missTakeoff) > 0.5) {
+      before = await moveToPoint(() => missTakeoff, {
         label: `${label}-approach`,
         tolerance: 0.5,
         supportId: edge.from,
@@ -590,25 +623,22 @@ export function createAuthoredRouteDriver({
     assert.equal(before.obby.supportId, edge.from);
     const jumpSequence = before.status.jumpSequence;
     const recoveries = before.obby.recoveries;
-    await controls.beginToward(
-      gateway.to.x - before.status.position.x,
-      gateway.to.z - before.status.position.z,
+    await controls.jumpToward(
+      travelAxis === "x" ? delta.x : 0,
+      travelAxis === "z" ? delta.z : 0,
+      { milliseconds: 600 },
     );
     let caught;
-    try {
-      caught = await waitForInspection({
-        page,
-        screenshot,
-        label: `${label}-caught`,
-        timeout: 8_000,
-        predicate: (candidate) =>
-          (candidate.status.grounded &&
-            candidate.obby?.supportId === edge.safeMissPlatformId) ||
-          candidate.obby?.recoveries > recoveries,
-      });
-    } finally {
-      await controls.release();
-    }
+    caught = await waitForInspection({
+      page,
+      screenshot,
+      label: `${label}-caught`,
+      timeout: 8_000,
+      predicate: (candidate) =>
+        (candidate.status.grounded &&
+          candidate.obby?.supportId === edge.safeMissPlatformId) ||
+        candidate.obby?.recoveries > recoveries,
+    });
     assert.equal(
       caught.obby.recoveries,
       recoveries,
@@ -622,6 +652,7 @@ export function createAuthoredRouteDriver({
     assert.equal(
       caught.status.jumpSequence,
       jumpSequence,
+      missTakeoff,
       `${label}: deliberate miss unexpectedly jumped`,
     );
     const retryEdge = safeMissRetryEdge(document, edge);

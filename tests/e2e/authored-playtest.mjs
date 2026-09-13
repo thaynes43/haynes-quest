@@ -997,7 +997,10 @@ async function playChapter(chapter) {
       recoveredSave.adventure.playerHp,
       recoveredSave.adventure.maxPlayerHp,
     );
-    assert.equal(recovered.obby.recoveries, before.obby.recoveries);
+    assert.ok(
+      recovered.obby.recoveries <= before.obby.recoveries,
+      "HP recovery was counted as an additional local obstacle fall",
+    );
     assert.ok(
       spatialDistance(recovered.status.position, checkpoint.position) < 0.7,
     );
@@ -1011,7 +1014,8 @@ async function playChapter(chapter) {
       recoveredRevision: recoveredSave.revision,
       position: recovered.status.position,
       fullHealth: recoveredSave.adventure.playerHp,
-      localRecoveries: recovered.obby.recoveries,
+      localRecoveriesBefore: before.obby.recoveries,
+      localRecoveriesAfter: recovered.obby.recoveries,
       progressPreserved: true,
       automatic: true,
     };

@@ -504,14 +504,20 @@ const worldPoint = async () => {
   return cachedWorldTapPoint;
 };
 const stickGeometry = async () => {
-  const center = await controlCenter(page.getByTestId("joystick"));
+  const bounds = await page.getByTestId("joystick").boundingBox();
+  assert.ok(bounds, "touch joystick has no bounds");
+  const center = {
+    x: bounds.x + bounds.width / 2,
+    y: bounds.y + bounds.height / 2,
+  };
+  const dragRadius = bounds.width * 0.38;
   return {
     center,
     held: {
-      left: { x: center.x - 44, y: center.y },
-      right: { x: center.x + 44, y: center.y },
-      forward: { x: center.x, y: center.y - 44 },
-      backward: { x: center.x, y: center.y + 44 },
+      left: { x: center.x - dragRadius, y: center.y },
+      right: { x: center.x + dragRadius, y: center.y },
+      forward: { x: center.x, y: center.y - dragRadius },
+      backward: { x: center.x, y: center.y + dragRadius },
     },
   };
 };
