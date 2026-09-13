@@ -1,5 +1,7 @@
 import garden from "../shared/levels/garden-playground-v1.json";
 import party from "../shared/levels/besties-playground-v1.json";
+import gardenV2 from "../shared/levels/garden-playground-v2.json";
+import partyV2 from "../shared/levels/besties-playground-v2.json";
 import {
   resolveAuthoredLevelDocument,
   type AuthoredEncounterSlot,
@@ -11,6 +13,8 @@ import type { LevelLayout } from "./level";
 const documents: Readonly<Record<string, unknown>> = {
   "garden-playground-v1": garden,
   "besties-playground-v1": party,
+  "garden-playground-v2": gardenV2,
+  "besties-playground-v2": partyV2,
 };
 const resolved = new Map<string, ResolvedAuthoredLevel>();
 
