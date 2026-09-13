@@ -15,4 +15,10 @@ For `level_contract_audit`, exact native model `gpt-5.6-sol`, effort `xhigh`: im
 
 ## Verification and release
 
+## Recovery implementation ruling
+
+Root ratifies automatic HP defeat recovery from the furthest collected minor memory in the active authored route, mapped to a uniquely validated safe checkpoint on that memory's supporting platform. Before the first minor use chapter spawn; major recovery advances to the next chapter's spawn or completes the journey. Derive this from existing authoritative recovered IDs and frozen route order; do not add a coordinate-bearing action or migration. Preserve collected equipment, memories and beaten encounters. The existing reducer restores each still-undefeated encounter to full health for a fresh attempt; retain that behavior. Local obstacle falls still use their supported nearby checkpoint without changing health/save revision. Accepted memory collection promotes the local fallback immediately.
+
+Native Sol `level_progression_audit` owns `src/game/level.ts`, recovery sections of `src/game/createGame.ts`, and new focused checkpoint tests. It does not own `GameScreen.tsx`, the shared authored schema, existing authored-runtime test file (combat lane), or the authored-layout adapter (height lane). Height lane will enforce the unique safe checkpoint per memory platform invariant. Root integrates overlap explicitly.
+
 No implementation or new release is claimed yet. Existing hosted acceptance does not establish this feedback resolved. Preserve old failures and use distinct PLAN011 run labels. Source research: Roblox's current [layout guidance](https://create.roblox.com/docs/tutorials/curriculums/user-interface-design/wireframe-your-layouts) reserves thumbstick lower left and Jump lower right; [mobile input](https://create.roblox.com/docs/input/mobile) supports portrait and landscape, with landscape the default. Primary screenshots were located via image search; direct reference-image retrieval in dev-env currently fails DNS resolution, so no downloaded screenshot is claimed inspected.
