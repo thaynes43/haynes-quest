@@ -3,11 +3,26 @@ import { z } from "zod";
 import type { ObbyCourse } from "../game/obby";
 
 export const AUTHORED_LEVEL_SCHEMA_VERSION = "authored-level-v1" as const;
-export const AUTHORED_LEVEL_IDS = [
+export const AUTHORED_LEVEL_SCHEMA_VERSION_V2 = "authored-level-v2" as const;
+export const AUTHORED_LEVEL_SCHEMA_VERSIONS = [
+  AUTHORED_LEVEL_SCHEMA_VERSION,
+  AUTHORED_LEVEL_SCHEMA_VERSION_V2,
+] as const;
+export const AUTHORED_LEVEL_V1_IDS = [
   "garden-playground-v1",
   "besties-playground-v1",
 ] as const;
+export const AUTHORED_LEVEL_V2_IDS = [
+  "garden-playground-v2",
+  "besties-playground-v2",
+] as const;
+export const AUTHORED_LEVEL_IDS = [
+  ...AUTHORED_LEVEL_V1_IDS,
+  ...AUTHORED_LEVEL_V2_IDS,
+] as const;
 
+export type AuthoredLevelSchemaVersion =
+  (typeof AUTHORED_LEVEL_SCHEMA_VERSIONS)[number];
 export type AuthoredLevelId = (typeof AUTHORED_LEVEL_IDS)[number];
 export type AuthoredLevelTheme = "garden" | "party";
 export type AuthoredConnectionMode = "walk" | "jump" | "ride";
@@ -87,6 +102,7 @@ export interface AuthoredConnection {
   readonly from: string;
   readonly to: string;
   readonly mode: AuthoredConnectionMode;
+  readonly safeMissPlatformId?: string;
 }
 
 export interface AuthoredAnchor {
@@ -126,7 +142,7 @@ export interface AuthoredLevelAnchors {
 }
 
 export interface AuthoredLevelDocument {
-  readonly schemaVersion: typeof AUTHORED_LEVEL_SCHEMA_VERSION;
+  readonly schemaVersion: AuthoredLevelSchemaVersion;
   readonly id: AuthoredLevelId;
   readonly theme: AuthoredLevelTheme;
   readonly pieces: readonly AuthoredLevelPiece[];
@@ -182,6 +198,7 @@ export const AUTHORED_LEVEL_LIMITS = Object.freeze({
   actorHeight: 1.22,
   ordinaryAttackReach: 1.35,
   bossAttackReach: 2.25,
+  fallThresholdY: -2,
 } as const);
 
 const ID_PATTERN = /^[a-z][a-z0-9-]{0,79}$/;
@@ -303,12 +320,15 @@ const pieceSchema = z.discriminatedUnion("type", [
   sweeperPieceSchema,
   checkpointPieceSchema,
 ]);
-const connectionSchema = z
+const connectionV1Schema = z
   .object({
     from: identifierSchema,
     to: identifierSchema,
     mode: z.enum(["walk", "jump", "ride"]),
   })
+  .strict();
+const connectionV2Schema = connectionV1Schema
+  .extend({ safeMissPlatformId: identifierSchema.optional() })
   .strict();
 const anchorSchema = z
   .object({ position: positionSchema, platformId: identifierSchema })
@@ -327,65 +347,87 @@ const encounterAnchorSchema = anchorSchema.extend({
   checkpointId: identifierSchema,
 }).strict();
 
-export const authoredLevelDocumentSchema = z
+const authoredLevelAnchorsSchema = z
   .object({
-    schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION),
-    id: z.enum(AUTHORED_LEVEL_IDS),
-    theme: z.enum(["garden", "party"]),
-    pieces: z.array(pieceSchema).min(1).max(AUTHORED_LEVEL_LIMITS.maxPieces),
-    connections: z
-      .array(connectionSchema)
-      .max(AUTHORED_LEVEL_LIMITS.maxConnections),
-    mainPath: z
-      .array(identifierSchema)
-      .min(2)
-      .max(AUTHORED_LEVEL_LIMITS.maxPathNodes),
-    branches: z
-      .array(
-        z
-          .array(identifierSchema)
-          .min(3)
-          .max(AUTHORED_LEVEL_LIMITS.maxBranchNodes),
-      )
-      .max(AUTHORED_LEVEL_LIMITS.maxBranches),
-    anchors: z
+    spawn: anchorSchema,
+    finish: anchorSchema,
+    rewardRespawn: anchorSchema,
+    pickups: z
       .object({
-        spawn: anchorSchema,
-        finish: anchorSchema,
-        rewardRespawn: anchorSchema,
-        pickups: z
-          .object({
-            "attack-tool": anchorSchema,
-            "guard-tool": anchorSchema,
-          })
-          .strict(),
-        memories: z
-          .object({
-            "minor-one": anchorSchema,
-            "minor-two": anchorSchema,
-            major: anchorSchema,
-          })
-          .strict(),
-        encounters: z
-          .object({
-            "ordinary-1": encounterAnchorSchema,
-            "ordinary-2": encounterAnchorSchema,
-            "ordinary-3": encounterAnchorSchema,
-            "ordinary-4": encounterAnchorSchema,
-            boss: encounterAnchorSchema,
-          })
-          .strict(),
-        friendlies: z
-          .object({
-            "friendly-1": anchorSchema,
-            "friendly-2": anchorSchema,
-            "friendly-3": anchorSchema,
-          })
-          .strict(),
+        "attack-tool": anchorSchema,
+        "guard-tool": anchorSchema,
+      })
+      .strict(),
+    memories: z
+      .object({
+        "minor-one": anchorSchema,
+        "minor-two": anchorSchema,
+        major: anchorSchema,
+      })
+      .strict(),
+    encounters: z
+      .object({
+        "ordinary-1": encounterAnchorSchema,
+        "ordinary-2": encounterAnchorSchema,
+        "ordinary-3": encounterAnchorSchema,
+        "ordinary-4": encounterAnchorSchema,
+        boss: encounterAnchorSchema,
+      })
+      .strict(),
+    friendlies: z
+      .object({
+        "friendly-1": anchorSchema,
+        "friendly-2": anchorSchema,
+        "friendly-3": anchorSchema,
       })
       .strict(),
   })
   .strict();
+
+const authoredLevelDocumentFields = {
+  theme: z.enum(["garden", "party"]),
+  pieces: z.array(pieceSchema).min(1).max(AUTHORED_LEVEL_LIMITS.maxPieces),
+  mainPath: z
+    .array(identifierSchema)
+    .min(2)
+    .max(AUTHORED_LEVEL_LIMITS.maxPathNodes),
+  branches: z
+    .array(
+      z
+        .array(identifierSchema)
+        .min(3)
+        .max(AUTHORED_LEVEL_LIMITS.maxBranchNodes),
+    )
+    .max(AUTHORED_LEVEL_LIMITS.maxBranches),
+  anchors: authoredLevelAnchorsSchema,
+} as const;
+
+const authoredLevelV1DocumentSchema = z
+  .object({
+    schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION),
+    id: z.enum(AUTHORED_LEVEL_V1_IDS),
+    ...authoredLevelDocumentFields,
+    connections: z
+      .array(connectionV1Schema)
+      .max(AUTHORED_LEVEL_LIMITS.maxConnections),
+  })
+  .strict();
+
+const authoredLevelV2DocumentSchema = z
+  .object({
+    schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION_V2),
+    id: z.enum(AUTHORED_LEVEL_V2_IDS),
+    ...authoredLevelDocumentFields,
+    connections: z
+      .array(connectionV2Schema)
+      .max(AUTHORED_LEVEL_LIMITS.maxConnections),
+  })
+  .strict();
+
+export const authoredLevelDocumentSchema = z.discriminatedUnion(
+  "schemaVersion",
+  [authoredLevelV1DocumentSchema, authoredLevelV2DocumentSchema],
+);
 
 type PlatformPiece = AuthoredPlatformPiece | AuthoredMovingPlatformPiece;
 
@@ -761,6 +803,41 @@ function gatewayClearanceFailure(
   return null;
 }
 
+/** The narrow, avatar-width lane between the closest takeoff and landing edges. */
+function jumpGatewayCorridor(
+  from: PlatformPiece,
+  to: PlatformPiece,
+): HorizontalBounds | null {
+  const deltaX = to.center.x - from.center.x;
+  const deltaZ = to.center.z - from.center.z;
+  const travelAxis: HorizontalAxis = Math.abs(deltaX) >= Math.abs(deltaZ) ? "x" : "z";
+  const crossAxis: HorizontalAxis = travelAxis === "x" ? "z" : "x";
+  const travelDelta = travelAxis === "x" ? deltaX : deltaZ;
+  const direction: -1 | 1 = travelDelta < 0 ? -1 : 1;
+  const fromCross = platformCenterInterval(from, crossAxis);
+  const toCross = platformCenterInterval(to, crossAxis);
+  const commonCross: NumericInterval = {
+    min: Math.max(fromCross.min, toCross.min),
+    max: Math.min(fromCross.max, toCross.max),
+  };
+  if (commonCross.max - commonCross.min <= EPSILON) return null;
+
+  const laneCenter = (commonCross.min + commonCross.max) / 2;
+  const fromEdge = from.center[travelAxis] + direction * from.size[travelAxis] / 2;
+  const toEdge = to.center[travelAxis] - direction * to.size[travelAxis] / 2;
+  const travel: NumericInterval = {
+    min: Math.min(fromEdge, toEdge) - AUTHORED_LEVEL_LIMITS.supportEdgeClearance,
+    max: Math.max(fromEdge, toEdge) + AUTHORED_LEVEL_LIMITS.supportEdgeClearance,
+  };
+  const cross: NumericInterval = {
+    min: laneCenter - AUTHORED_LEVEL_LIMITS.supportEdgeClearance,
+    max: laneCenter + AUTHORED_LEVEL_LIMITS.supportEdgeClearance,
+  };
+  return travelAxis === "x"
+    ? { minX: travel.min, maxX: travel.max, minZ: cross.min, maxZ: cross.max }
+    : { minX: cross.min, maxX: cross.max, minZ: travel.min, maxZ: travel.max };
+}
+
 function checkpointEnvelope(
   checkpoint: AuthoredCheckpointPiece,
   platform: AuthoredPlatformPiece,
@@ -843,7 +920,7 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       `At most ${AUTHORED_LEVEL_LIMITS.maxCheckpoints} checkpoints are supported`,
     );
 
-  const expectedTheme = document.id === "garden-playground-v1" ? "garden" : "party";
+  const expectedTheme = document.id.startsWith("garden-") ? "garden" : "party";
   if (document.theme !== expectedTheme)
     issue(
       issues,
@@ -903,7 +980,10 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
         "support.unsafe",
         `Checkpoint must be at the supported top of ${JSON.stringify(piece.platformId)} with ${AUTHORED_LEVEL_LIMITS.supportEdgeClearance}m edge clearance`,
       );
-    if (Math.abs(piece.position.y) > EPSILON)
+    if (
+      document.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION &&
+      Math.abs(piece.position.y) > EPSILON
+    )
       issue(
         issues,
         `$.pieces[${index}].position.y`,
@@ -927,6 +1007,13 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       );
   });
 
+  const safeMissPlatformIds = new Set(
+    document.connections.flatMap((connection) =>
+      connection.safeMissPlatformId && staticPlatforms.has(connection.safeMissPlatformId)
+        ? [connection.safeMissPlatformId]
+        : [],
+    ),
+  );
   const connectionKeys = new Map<string, number>();
   document.connections.forEach((connection, index) => {
     const from = platforms.get(connection.from);
@@ -962,6 +1049,106 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
         `Connection duplicates $.connections[${prior}]`,
       );
     else connectionKeys.set(key, index);
+    if (connection.safeMissPlatformId) {
+      const catchPlatform = staticPlatforms.get(connection.safeMissPlatformId);
+      const safeMissPath = `$.connections[${index}].safeMissPlatformId`;
+      if (connection.mode !== "jump")
+        issue(
+          issues,
+          safeMissPath,
+          "safe-miss.mode",
+          "A safe miss platform may only be declared for a jump connection",
+        );
+      if (!catchPlatform)
+        issue(
+          issues,
+          safeMissPath,
+          "reference.static-platform",
+          `Safe miss support ${JSON.stringify(connection.safeMissPlatformId)} must name a static platform`,
+        );
+      if (
+        connection.safeMissPlatformId === connection.from ||
+        connection.safeMissPlatformId === connection.to
+      )
+        issue(
+          issues,
+          safeMissPath,
+          "safe-miss.endpoint",
+          "A safe miss platform must be distinct from both jump endpoints",
+        );
+      if (from && to && catchPlatform) {
+        const lowerEndpointTop = Math.min(platformTop(from), platformTop(to));
+        const catchTop = platformTop(catchPlatform);
+        if (catchTop > lowerEndpointTop + EPSILON)
+          issue(
+            issues,
+            safeMissPath,
+            "safe-miss.height",
+            "A safe miss platform must be at or below the lower jump endpoint",
+          );
+        if (catchTop <= AUTHORED_LEVEL_LIMITS.fallThresholdY + EPSILON)
+          issue(
+            issues,
+            safeMissPath,
+            "safe-miss.fall-threshold",
+            `A safe miss platform top must remain above y=${AUTHORED_LEVEL_LIMITS.fallThresholdY}`,
+          );
+        const corridor = jumpGatewayCorridor(from, to);
+        if (
+          corridor &&
+          !rectangleContains(staticPlatformBounds(catchPlatform), corridor)
+        )
+          issue(
+            issues,
+            safeMissPath,
+            "safe-miss.partial",
+            "A safe miss platform must contain the avatar-expanded jump gateway corridor",
+          );
+        if (
+          hazards.some((hazard) =>
+            rectanglesOverlap(staticPlatformBounds(catchPlatform), hazardEnvelope(hazard)),
+          )
+        )
+          issue(
+            issues,
+            safeMissPath,
+            "safe-miss.hazard",
+            "A safe miss platform must remain clear of sweeper motion envelopes",
+          );
+        if (
+          Object.values(document.anchors.encounters).some((encounter) =>
+            rectanglesOverlap(
+              staticPlatformBounds(catchPlatform),
+              encounterStrikeEnvelope(encounter),
+            ),
+          )
+        )
+          issue(
+            issues,
+            safeMissPath,
+            "safe-miss.encounter",
+            "A safe miss platform must remain clear of encounter strike envelopes",
+          );
+        const sourceMainIndex = document.mainPath.indexOf(connection.from);
+        const hasRetryRoute = document.connections.some((retry) => {
+          if (retry.from !== connection.safeMissPlatformId) return false;
+          if (retry.to === connection.from) return true;
+          const retryMainIndex = document.mainPath.indexOf(retry.to);
+          return (
+            sourceMainIndex >= 0 &&
+            retryMainIndex >= 0 &&
+            retryMainIndex <= sourceMainIndex
+          );
+        });
+        if (!hasRetryRoute)
+          issue(
+            issues,
+            safeMissPath,
+            "safe-miss.retry-route",
+            "A safe miss platform must declare an outgoing connection back toward the practice start",
+          );
+      }
+    }
     if (!from || !to) return;
     const moving = from.type === "moving-platform" || to.type === "moving-platform";
     if ((connection.mode === "ride") !== moving)
@@ -1081,7 +1268,7 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
     });
   });
   for (const id of platforms.keys()) {
-    if (!platformPathSet.has(id))
+    if (!platformPathSet.has(id) && !safeMissPlatformIds.has(id))
       issue(
         issues,
         `$.pieces[${ids.get(id)}].id`,
@@ -1119,7 +1306,10 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       );
       continue;
     }
-    if (Math.abs(anchor.position.y) > EPSILON)
+    if (
+      document.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION &&
+      Math.abs(anchor.position.y) > EPSILON
+    )
       issue(
         issues,
         `${path}.position.y`,
@@ -1157,6 +1347,21 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
         `${path}.position`,
         "clearance.hazard",
         "Anchor overlaps a sweeper motion envelope",
+      );
+  }
+
+  for (const slot of ["minor-one", "minor-two"] as const) {
+    const platformId = document.anchors.memories[slot].platformId;
+    const platformCheckpoints = document.pieces.filter(
+      (piece): piece is AuthoredCheckpointPiece =>
+        piece.type === "checkpoint" && piece.platformId === platformId,
+    );
+    if (platformCheckpoints.length !== 1)
+      issue(
+        issues,
+        `$.anchors.memories[${JSON.stringify(slot)}].platformId`,
+        "checkpoint.minor-platform-count",
+        `Minor memory platform ${JSON.stringify(platformId)} must have exactly one safe checkpoint`,
       );
   }
 
