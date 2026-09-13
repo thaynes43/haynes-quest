@@ -184,7 +184,7 @@ function App() {
               <b>Move</b> with the left stick
             </span>
             <span>
-              <b>Jump</b> by tapping the world
+              <b>Jump</b> with the arrow button on the right
             </span>
             <span>
               <b>Collect</b> by walking into things

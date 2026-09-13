@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 /**
- * Regression from WO074: replacing a pickup notice must also clear its photo.
- * An interrupted pickup timer formerly left the image attached to later attacks.
+ * PLAN011: collected pictures stay in the peripheral HUD; attacking never
+ * replaces them with instructions or opens an interaction dialog.
  */
 import React, { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
@@ -177,20 +177,20 @@ afterEach(async () => {
   vi.useRealTimers();
 });
 
-const notice = () => container.querySelector<HTMLElement>(".attack-notice");
+const memorySlots = () => container.querySelector<HTMLElement>(".memory-slots");
 
-describe("Memory pickup and attack notice lifecycle", () => {
-  it("does not resurrect the collected minor's picture on later attack notices", async () => {
+async function renderRoute(save = routeMemorySave(), onLeave = vi.fn()) {
+  root = createRoot(container);
+  await act(async () =>
+    root!.render(<GameScreen initialSave={save} onLeave={onLeave} ephemeral />),
+  );
+  return mocks.createGame.mock.results[0]!.value as GameHandle;
+}
+
+describe("Peripheral memory feedback and automatic recovery", () => {
+  it("keeps a collected picture in the HUD while repeated empty attacks show no prose or popup", async () => {
     const save = routeMemorySave();
-    root = createRoot(container);
-    await act(async () => {
-      root!.render(
-        <GameScreen initialSave={save} onLeave={vi.fn()} ephemeral />,
-      );
-    });
-    expect(options).toBeDefined();
-
-    // 1. Contact collects the first minor: the brief picture notice appears.
+    await renderRoute(save);
     const collected = structuredClone(save);
     collected.revision += 1;
     collected.memories.find((memory) => memory.id === minorId)!.state =
@@ -204,76 +204,91 @@ describe("Memory pickup and attack notice lifecycle", () => {
         action: { type: "recover-memory", levelId, memoryId: minorId },
       });
     });
-    expect(notice()?.textContent).toContain("Little memory found");
-    expect(notice()?.querySelector("img")).not.toBeNull();
-
-    // 2. Within the 2.3 s window the player taps Attack with nothing in range.
-    await act(async () => {
-      vi.advanceTimersByTime(500);
-    });
-    await act(async () => {
-      options!.onStatus?.({
-        ...status(),
-        attackFeedback: { sequence: 1, outcome: "no-target" },
+    expect(memorySlots()?.querySelectorAll("img")).toHaveLength(1);
+    for (let sequence = 1; sequence <= 10; sequence++) {
+      await act(async () => {
+        options!.onStatus?.({
+          ...status(),
+          attackFeedback: { sequence, outcome: "no-target" },
+        });
+        vi.advanceTimersByTime(300);
       });
-    });
-    expect(notice()?.textContent).toContain("Move closer to a glowing enemy");
-    expect(notice()?.querySelector("img")).toBeNull();
-    expect(container.querySelector('[role="dialog"]')).toBeNull();
-
-    // 3. The attack notice expires and nothing is shown.
-    await act(async () => {
-      vi.advanceTimersByTime(1_900);
-    });
-    expect(notice()).toBeNull();
-
-    // 4. Much later, an unrelated attack notice must not carry the old picture.
-    await act(async () => {
-      vi.advanceTimersByTime(30_000);
-    });
-    await act(async () => {
-      options!.onStatus?.({
-        ...status(),
-        attackFeedback: { sequence: 2, outcome: "no-target" },
-      });
-    });
-    const stalePicture = notice()?.querySelector("img");
-    expect(notice()?.textContent).toContain("Move closer to a glowing enemy");
-    expect(stalePicture).toBeNull();
+      expect(container.textContent).not.toContain("Move closer");
+      expect(container.querySelector(".attack-notice")).toBeNull();
+      expect(container.querySelector('[role="dialog"]')).toBeNull();
+    }
+    expect(memorySlots()?.querySelectorAll("img")).toHaveLength(1);
+    expect(
+      container.querySelector(
+        '[aria-label="1 of 2 little memories collected"]',
+      ),
+    ).not.toBeNull();
   });
 
-  it("clears the picture with the pickup notice when nothing interrupts the window (control)", async () => {
+  it("automatically requests one checkpoint retry after defeat without offering a fresh start", async () => {
     const save = routeMemorySave();
-    root = createRoot(container);
+    save.adventure!.phase = "fallen";
+    save.adventure!.playerHp = 0;
+    const onLeave = vi.fn();
+    const handle = await renderRoute(save, onLeave);
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
     await act(async () => {
-      root!.render(
-        <GameScreen initialSave={save} onLeave={vi.fn()} ephemeral />,
-      );
+      vi.advanceTimersByTime(650);
     });
-    const collected = structuredClone(save);
-    collected.revision += 1;
-    collected.memories.find((memory) => memory.id === minorId)!.state =
-      "revealed";
-    collected.recoveredIds = [minorId];
-    mocks.api.mockResolvedValueOnce(collected);
+    expect(handle.performAction).toHaveBeenCalledExactlyOnceWith({
+      type: "retry-level",
+      levelId,
+    });
     await act(async () => {
-      await options!.onAction({
-        actionId: "22222222-2222-4222-8222-222222222222",
-        expectedRevision: save.revision,
-        action: { type: "recover-memory", levelId, memoryId: minorId },
-      });
+      options!.onStatus?.({ ...status(), phase: "fallen", requestBusy: true });
+      vi.advanceTimersByTime(1000);
     });
-    expect(notice()?.querySelector("img")).not.toBeNull();
     await act(async () => {
-      vi.advanceTimersByTime(2_400);
+      options!.onStatus?.({ ...status(), phase: "fallen", requestBusy: false });
+      vi.advanceTimersByTime(2000);
     });
-    expect(notice()).toBeNull();
+    expect(handle.performAction).toHaveBeenCalledTimes(1);
+    expect(onLeave).not.toHaveBeenCalled();
+    expect(container.textContent).not.toContain("Play again");
+  });
+
+  it("keeps the journey paused and offers a bounded retry when checkpoint recovery fails", async () => {
+    const save = routeMemorySave();
+    save.adventure!.phase = "fallen";
+    const handle = await renderRoute(save);
+    await act(async () => {
+      vi.advanceTimersByTime(650);
+    });
     await act(async () => {
       options!.onStatus?.({
         ...status(),
-        attackFeedback: { sequence: 1, outcome: "no-target" },
+        phase: "fallen",
+        requestState: "error",
+        requestErrorCode: "network_error",
       });
     });
-    expect(notice()?.querySelector("img")).toBeNull();
+    expect(container.querySelector('[role="dialog"]')).not.toBeNull();
+    const retry = [...container.querySelectorAll("button")].find(
+      (button) => button.textContent === "Return to checkpoint",
+    );
+    expect(retry).toBeDefined();
+    await act(async () => {
+      vi.advanceTimersByTime(5000);
+    });
+    expect(handle.performAction).toHaveBeenCalledTimes(1);
+    await act(async () => retry!.click());
+    expect(handle.performAction).toHaveBeenCalledTimes(2);
+  });
+
+  it("cancels pending automatic recovery when the game unmounts", async () => {
+    const save = routeMemorySave();
+    save.adventure!.phase = "fallen";
+    const handle = await renderRoute(save);
+    await act(async () => root!.unmount());
+    root = undefined;
+    await act(async () => {
+      vi.advanceTimersByTime(1000);
+    });
+    expect(handle.performAction).not.toHaveBeenCalled();
   });
 });

@@ -196,7 +196,6 @@ interface PointerRecord {
   y: number;
   startX: number;
   startY: number;
-  startedAt: number;
   touch: boolean;
   dragging: boolean;
 }
@@ -239,10 +238,12 @@ export function bindBrowserInput({
     if (element?.closest("[data-quest-ui]")) return;
     if (event.pointerType !== "touch" && event.button !== 0) return;
     cameraPointers.set(event.pointerId, {
-      x: event.clientX, y: event.clientY,
-      startX: event.clientX, startY: event.clientY,
-      startedAt: event.timeStamp,
-      touch: event.pointerType === "touch", dragging: false,
+      x: event.clientX,
+      y: event.clientY,
+      startX: event.clientX,
+      startY: event.clientY,
+      touch: event.pointerType === "touch",
+      dragging: false,
     });
     target.setPointerCapture?.(event.pointerId);
     event.preventDefault();
@@ -250,26 +251,27 @@ export function bindBrowserInput({
   const onPointerMove = (event: PointerEvent): void => {
     const previous = cameraPointers.get(event.pointerId);
     if (!previous) return;
-    if (Math.hypot(event.clientX - previous.startX, event.clientY - previous.startY) > 10)
+    if (
+      Math.hypot(
+        event.clientX - previous.startX,
+        event.clientY - previous.startY,
+      ) > 10
+    )
       previous.dragging = true;
     if (!previous.touch || previous.dragging) {
-      input.addPointerLook(event.clientX - previous.x, event.clientY - previous.y);
+      input.addPointerLook(
+        event.clientX - previous.x,
+        event.clientY - previous.y,
+      );
       previous.x = event.clientX;
       previous.y = event.clientY;
     }
     event.preventDefault();
   };
   const stopPointer = (event: PointerEvent): void => {
-    const pointer = cameraPointers.get(event.pointerId);
     cameraPointers.delete(event.pointerId);
-    const elapsed = pointer ? event.timeStamp - pointer.startedAt : -1;
-    if (event.type === "pointerup" && pointer?.touch && !pointer.dragging &&
-        Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY) <= 10 &&
-        elapsed >= 0 && elapsed <= 500) {
-      input.set("jump", true);
-      input.set("jump", false);
-    }
-    if (target.hasPointerCapture?.(event.pointerId)) target.releasePointerCapture(event.pointerId);
+    if (target.hasPointerCapture?.(event.pointerId))
+      target.releasePointerCapture(event.pointerId);
   };
   const clearAll = (): void => {
     cameraPointers.clear();
@@ -285,6 +287,7 @@ export function bindBrowserInput({
   windowTarget.addEventListener("keydown", onKeyDown, { passive: false });
   windowTarget.addEventListener("keyup", onKeyUp);
   windowTarget.addEventListener("blur", clearAll);
+  windowTarget.addEventListener("resize", clearAll);
   // A browser can cancel one touch in a multi-contact gesture. Each gameplay
   // control owns its pointer, so cancelling one must not erase a still-held
   // joystick or a separate queued action.
@@ -300,7 +303,12 @@ export function bindBrowserInput({
     windowTarget.removeEventListener("keydown", onKeyDown);
     windowTarget.removeEventListener("keyup", onKeyUp);
     windowTarget.removeEventListener("blur", clearAll);
-    windowTarget.removeEventListener("pointercancel", cancelCameraPointer, true);
+    windowTarget.removeEventListener("resize", clearAll);
+    windowTarget.removeEventListener(
+      "pointercancel",
+      cancelCameraPointer,
+      true,
+    );
     target.removeEventListener("pointerdown", onPointerDown);
     target.removeEventListener("pointermove", onPointerMove);
     target.removeEventListener("pointerup", stopPointer);

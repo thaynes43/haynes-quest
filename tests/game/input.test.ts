@@ -277,7 +277,7 @@ describe("game input", () => {
     dispose();
   });
 
-  it("queues one jump for a deliberate touch tap at the movement and time limits", () => {
+  it("keeps a deliberate scenery tap separate from the Jump button", () => {
     const { input, fakeWindow, touch, dispose } = makePointerHarness();
     fakeWindow.nowMs = 100;
     touch("pointerdown", 1, 20, 30);
@@ -286,19 +286,19 @@ describe("game input", () => {
     touch("pointerup", 1, 26, 38);
 
     expect(input.consumePointerLook()).toEqual({ x: 0, y: 0 });
-    expect(input.consumeActions().jump).toBe(true);
+    expect(input.consumeActions().jump).toBe(false);
     expect(input.consumeActions().jump).toBe(false);
     dispose();
   });
 
-  it("uses pointer timestamps when delayed handlers receive a quick physical tap", () => {
+  it("does not turn a delayed scenery release into a jump", () => {
     const { input, fakeWindow, touch, dispose } = makePointerHarness();
     fakeWindow.nowMs = 21_525.5;
     touch("pointerdown", 8, 40, 50, undefined, 21_499.8);
     fakeWindow.nowMs = 22_056.8;
     touch("pointerup", 8, 40, 50, undefined, 21_510.8);
 
-    expect(input.consumeActions().jump).toBe(true);
+    expect(input.consumeActions().jump).toBe(false);
     expect(input.consumeActions().jump).toBe(false);
     dispose();
   });
@@ -333,7 +333,7 @@ describe("game input", () => {
     dispose();
   });
 
-  it("excludes menu and action-control contacts from world taps", () => {
+  it("excludes menu and action-control contacts from camera gestures", () => {
     const { input, fakeWindow, touch, dispose } = makePointerHarness();
     const uiControl = new FakeElement(true);
     fakeWindow.nowMs = 100;
@@ -361,7 +361,7 @@ describe("game input", () => {
       moveX: -0.4472135954999579,
       moveY: 0.8944271909999159,
     });
-    expect(input.consumeActions().jump).toBe(true);
+    expect(input.consumeActions().jump).toBe(false);
     expect(input.snapshot().moveY).toBeGreaterThan(0);
     touch("pointerup", 6, 25, 400, joystick);
     expect(input.consumeActions().jump).toBe(false);
