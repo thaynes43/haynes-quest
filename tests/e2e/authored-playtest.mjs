@@ -24,7 +24,10 @@ import { verifyControlLayouts } from "./landscape-controls.mjs";
 import { createPausedArtworkProbe } from "./paused-artwork-recovery.mjs";
 
 class ControlsVerified extends Error {}
+class BossGateVerified extends Error {}
 const controlsOnly = process.env.QUEST_E2E_CONTROLS_ONLY === "true";
+const retryTimeoutProbe = process.env.QUEST_E2E_RETRY_TIMEOUT_PROBE === "true";
+const bossGateProbe = process.env.QUEST_E2E_BOSS_GATE_PROBE === "true";
 
 const pausedArtworkRetry =
   process.env.QUEST_E2E_PAUSED_ARTWORK_RETRY === "true";
@@ -57,6 +60,12 @@ const report = {
   bundle: null,
   pausedArtworkRetry,
   injectedArtworkFailure: null,
+  retryTimeoutProbe: {
+    enabled: retryTimeoutProbe,
+    stalls: [],
+    manualReturn: null,
+  },
+  bossGateProbe: null,
   expectedFaults: [],
   controls: "real keyboard route movement/jumps and touch combat buttons",
   relatedTouchDiagnostic:
@@ -124,6 +133,28 @@ await context.addInitScript(() => {
     );
   }
 });
+let stalledRetryRequests = 0;
+const stalledRetryPayloads = [];
+if (retryTimeoutProbe) {
+  await context.route("**/api/saves/*/actions", async (route) => {
+    const request = route.request();
+    const action = request.postDataJSON()?.action;
+    if (action?.type !== "retry-level" || stalledRetryRequests >= 2) {
+      await route.continue();
+      return;
+    }
+    stalledRetryRequests += 1;
+    const payload = request.postDataJSON();
+    stalledRetryPayloads.push(payload);
+    const entry = { attempt: stalledRetryRequests, heldMs: null };
+    report.retryTimeoutProbe.stalls.push(entry);
+    mark("retry-timeout:stalled", { attempt: entry.attempt });
+    const startedAt = Date.now();
+    await delay(8_500);
+    entry.heldMs = Date.now() - startedAt;
+    await route.abort("timedout").catch(() => undefined);
+  });
+}
 const page = await context.newPage();
 const pausedArtworkProbe = pausedArtworkRetry
   ? await createPausedArtworkProbe(page)
@@ -1044,6 +1075,50 @@ async function playChapter(chapter) {
       0,
       "combat defeat opened a blocking retry dialog",
     );
+    let manualReturn = false;
+    if (retryTimeoutProbe) {
+      const recoveryDialog = page.getByRole("dialog", {
+        name: "Your adventure is safe",
+      });
+      await recoveryDialog.waitFor({ timeout: 25_000 });
+      while (
+        report.retryTimeoutProbe.stalls.some((entry) => entry.heldMs === null)
+      )
+        await delay(50);
+      assert.equal(stalledRetryRequests, 2);
+      assert.ok(
+        report.retryTimeoutProbe.stalls.every((entry) => entry.heldMs >= 8_000),
+        "retry-level transport was not stalled through the client timeout",
+      );
+      assert.equal(stalledRetryPayloads.length, 2);
+      assert.equal(
+        stalledRetryPayloads[1].actionId,
+        stalledRetryPayloads[0].actionId,
+        "automatic retry used a different action id after transport timeout",
+      );
+      assert.equal(
+        stalledRetryPayloads[1].expectedRevision,
+        stalledRetryPayloads[0].expectedRevision,
+        "automatic retry changed its expected revision after transport timeout",
+      );
+      assert.deepEqual(
+        stalledRetryPayloads[1].action,
+        stalledRetryPayloads[0].action,
+        "automatic retry changed its action after transport timeout",
+      );
+      const blocked = await driver.read(
+        `chapter-${chapter}-retry-timeout-blocked`,
+      );
+      assert.equal(blocked.status.requestState, "error");
+      assert.equal(blocked.status.requestErrorCode, "REQUEST_TIMEOUT");
+      assert.equal(latestSave.revision, fallen.revision);
+      assert.equal(latestSave.adventure.phase, "fallen");
+      await screenshot(`chapter-${chapter}-retry-timeout-manual-return`);
+      await recoveryDialog
+        .getByRole("button", { name: "Return to checkpoint", exact: true })
+        .tap();
+      manualReturn = true;
+    }
     const recoveredSave = await waitForSave(
       (candidate) =>
         candidate.adventure.phase === "exploring" &&
@@ -1073,6 +1148,21 @@ async function playChapter(chapter) {
       spatialDistance(recovered.status.position, checkpoint.position) < 0.7,
     );
     assert.deepEqual(saveProgress(recoveredSave), progress);
+    assert.equal(
+      recoveredSave.id,
+      fallen.id,
+      "manual checkpoint return replaced the active journey",
+    );
+    if (retryTimeoutProbe) {
+      report.retryTimeoutProbe.manualReturn = {
+        stalledRequests: stalledRetryRequests,
+        errorCode: "REQUEST_TIMEOUT",
+        fallenRevision: fallen.revision,
+        recoveredRevision: recoveredSave.revision,
+        sameJourney: true,
+        retriedExactRequest: true,
+      };
+    }
     await screenshot(`chapter-${chapter}-automatic-memory-checkpoint`);
     chapterReport.deathRecovery = {
       encounterId: encounter.id,
@@ -1086,6 +1176,7 @@ async function playChapter(chapter) {
       localRecoveriesAfter: recovered.obby.recoveries,
       progressPreserved: true,
       automatic: true,
+      manualReturnAfterTimeout: manualReturn,
     };
     mark("recovery:automatic-memory", chapterReport.deathRecovery);
   };
@@ -1122,6 +1213,15 @@ async function playChapter(chapter) {
     }
     for (const [role, anchor] of Object.entries(document.anchors.encounters)) {
       if (anchor.platformId !== platformId) continue;
+      if (bossGateProbe && role === "ordinary-4") {
+        chapterReport.contents.push({
+          type: "encounter",
+          role,
+          platformId,
+          deliberatelyLeftUndefeated: true,
+        });
+        continue;
+      }
       if (role === "boss") {
         const ordinary = latestSave.adventure.activeLevel.encounters.filter(
           (encounter) => encounter.role === "ordinary",
@@ -1131,6 +1231,127 @@ async function playChapter(chapter) {
           4,
           "authored chapter does not have four ordinary fights",
         );
+        if (bossGateProbe) {
+          const undefeated = ordinary.filter(
+            (encounter) => !encounter.defeated,
+          );
+          assert.equal(
+            undefeated.length,
+            1,
+            "boss gate probe did not leave exactly one ordinary encounter",
+          );
+          await driver.moveToPoint(() => anchor.position, {
+            label: `chapter-${chapter}-boss-gate-approach`,
+            tolerance: 0.32,
+            supportId: anchor.platformId,
+          });
+          const boss = latestSave.adventure.activeLevel.encounters.find(
+            (encounter) => encounter.role === "boss",
+          );
+          assert.ok(boss, "boss gate probe has no boss");
+          assert.equal(boss.available, true);
+          const engaged = await waitForInspection({
+            page,
+            screenshot,
+            label: `chapter-${chapter}-boss-gate-engaged`,
+            predicate: (candidate) =>
+              candidate.status.nearEncounterId === boss.id &&
+              candidate.status.bossEngaged === true &&
+              candidate.status.attackReady === true,
+          });
+          assert.equal(await page.locator(".boss-hud:visible").count(), 1);
+          const revision = latestSave.revision;
+          const hp = boss.hp;
+          const attackSequence = engaged.status.attackFeedback?.sequence ?? 0;
+          assert.equal(await controls.tapButton("Attack"), true);
+          const primarySave = await waitForSave((candidate) => {
+            const currentBoss = candidate.adventure.activeLevel.encounters.find(
+              (encounter) => encounter.id === boss.id,
+            );
+            return candidate.revision > revision && currentBoss?.hp < hp;
+          }, `chapter-${chapter}-boss-gate-primary-save`);
+          const afterPrimary = await waitForInspection({
+            page,
+            screenshot,
+            label: `chapter-${chapter}-boss-gate-attack`,
+            predicate: (candidate) =>
+              (candidate.status.attackFeedback?.sequence ?? 0) > attackSequence,
+          });
+          assert.equal(afterPrimary.status.attackFeedback?.outcome, "accepted");
+          const hpAfterPrimary =
+            primarySave.adventure.activeLevel.encounters.find(
+              (encounter) => encounter.id === boss.id,
+            )?.hp;
+          assert.ok(hpAfterPrimary < hp);
+          const secondaryReady = await moveToAnchor(
+            anchor,
+            `chapter-${chapter}-boss-gate-secondary-approach`,
+            (candidate) =>
+              candidate.level.encounterPositions.find(
+                (entry) => entry.id === boss.id,
+              ),
+            (candidate) =>
+              candidate.status.nearEncounterId === boss.id &&
+              candidate.status.guardReady === true,
+          );
+          const secondarySequence =
+            secondaryReady.status.attackFeedback?.sequence ?? 0;
+          assert.equal(await controls.tapButton("Bash"), true);
+          const secondarySave = await waitForSave((candidate) => {
+            const currentBoss = candidate.adventure.activeLevel.encounters.find(
+              (encounter) => encounter.id === boss.id,
+            );
+            return (
+              candidate.revision > primarySave.revision &&
+              currentBoss?.hp < hpAfterPrimary
+            );
+          }, `chapter-${chapter}-boss-gate-secondary-save`);
+          const afterSecondary = await waitForInspection({
+            page,
+            screenshot,
+            label: `chapter-${chapter}-boss-gate-secondary`,
+            predicate: (candidate) =>
+              (candidate.status.attackFeedback?.sequence ?? 0) >
+              secondarySequence,
+          });
+          assert.equal(
+            afterSecondary.status.attackFeedback?.outcome,
+            "accepted",
+          );
+          assert.equal(afterSecondary.status.attackFeedback?.kind, "secondary");
+          const hpAfterSecondary =
+            secondarySave.adventure.activeLevel.encounters.find(
+              (encounter) => encounter.id === boss.id,
+            )?.hp;
+          assert.ok(hpAfterSecondary < hpAfterPrimary);
+          report.bossGateProbe = {
+            courseId: document.id,
+            undefeatedOrdinaryId: undefeated[0].id,
+            bossId: boss.id,
+            bossAvailable: boss.available,
+            bossEngaged: engaged.status.bossEngaged,
+            bossHudVisible: true,
+            primary: {
+              outcome: afterPrimary.status.attackFeedback?.outcome,
+              hpBefore: hp,
+              hpAfter: hpAfterPrimary,
+            },
+            secondary: {
+              outcome: afterSecondary.status.attackFeedback?.outcome,
+              hpBefore: hpAfterPrimary,
+              hpAfter: hpAfterSecondary,
+            },
+          };
+          chapterReport.traversal = {
+            visitedPlatforms,
+            primaryDamage,
+            secondaryDamage,
+            ...driver.evidence,
+          };
+          report.chapters.push(chapterReport);
+          await screenshot(`chapter-${chapter}-boss-gated`);
+          throw new BossGateVerified();
+        }
         assert.ok(ordinary.every((encounter) => encounter.defeated));
         for (const minorRole of ["minor-one", "minor-two"]) {
           const id = chapterMemoryIds[minorRole];
@@ -1362,12 +1583,18 @@ try {
   report.status = "passed";
   report.finishedAt = new Date().toISOString();
 } catch (error) {
-  if (error instanceof ControlsVerified) {
+  if (error instanceof ControlsVerified || error instanceof BossGateVerified) {
     assert.deepEqual(report.responseErrors, []);
     assert.deepEqual(report.pageErrors, []);
     assert.deepEqual(report.consoleErrors, []);
-    assert.equal(report.layout.length, 1);
-    report.status = "passed";
+    if (error instanceof ControlsVerified) {
+      assert.equal(report.layout.length, 1);
+      report.status = "passed";
+    } else {
+      assert.ok(report.bossGateProbe);
+      if (retryTimeoutProbe) assert.ok(report.retryTimeoutProbe.manualReturn);
+      report.status = "passed-boss-gate";
+    }
     report.finishedAt = new Date().toISOString();
   } else {
     report.status = "failed";
