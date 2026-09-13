@@ -590,4 +590,46 @@ describe("authored level runtime", () => {
     expect(onAction).toHaveBeenCalledOnce();
     game.dispose();
   });
+  it("does not expose a memory contact from a different feet height", () => {
+    const save = makeAuthoredSave();
+    const memory = authoredRoute("garden-playground-v1")!.anchors.memories[
+      "minor-two"
+    ];
+    const expectedMemoryId = save.adventure!.activeLevel!.minorMemoryIds![1];
+
+    runtimeState.spawnOverrides.push({ ...memory.position });
+    const onSurface = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction: async () => save,
+      onRefresh: async () => save,
+    });
+    expect(onSurface.inspect().status.nearMemoryId).toBe(expectedMemoryId);
+    onSurface.dispose();
+
+    runtimeState.spawnOverrides.push({
+      ...memory.position,
+      y: memory.position.y - 0.5,
+    });
+    const onAction = vi.fn(async () => save);
+    const belowSurface = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction,
+      onRefresh: async () => save,
+    });
+    expect(belowSurface.inspect().status).toMatchObject({
+      position: { x: memory.position.x, y: -0.5, z: memory.position.z },
+      nearMemoryId: null,
+    });
+    expect(
+      belowSurface.performAction({
+        type: "recover-memory",
+        levelId: save.adventure!.currentLevelId!,
+        memoryId: expectedMemoryId,
+      }),
+    ).toBe(false);
+    expect(onAction).not.toHaveBeenCalled();
+    belowSurface.dispose();
+  });
 });

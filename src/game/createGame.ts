@@ -43,6 +43,7 @@ import type {
 } from "./types";
 
 const interactionRadius = 1.4;
+const interactionFeetHeightTolerance = 0.12;
 const statusIntervalSeconds = 0.1;
 const primaryAttackAnimationSeconds = 0.38;
 const secondaryAttackAnimationSeconds = 0.4;
@@ -82,6 +83,13 @@ function horizontalDistance(
   return Math.hypot(first.x - second.x, first.z - second.z);
 }
 
+function sameInteractionFeetHeight(
+  first: PositionSnapshot,
+  second: PositionSnapshot,
+): boolean {
+  return Math.abs(first.y - second.y) <= interactionFeetHeightTolerance;
+}
+
 function levelIdentity(save: SaveView): string {
   return `${save.id}:${save.adventure?.currentLevelId ?? "complete"}:${save.adventure?.activeLevel?.routeId ?? "legacy"}`;
 }
@@ -101,6 +109,7 @@ function nearestWithin<T extends { position: PositionSnapshot }>(
   let nearest: T | null = null;
   let nearestDistance = radius;
   for (const candidate of candidates) {
+    if (!sameInteractionFeetHeight(position, candidate.position)) continue;
     const candidateDistance = horizontalDistance(position, candidate.position);
     if (candidateDistance <= nearestDistance) {
       nearest = candidate;
@@ -431,6 +440,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       nearMemoryId: nearestMemoryId(),
       nearFinish:
         canConsume() &&
+        sameInteractionFeetHeight(controller.position, level.finish) &&
         horizontalDistance(controller.position, level.finish) <=
           interactionRadius,
       canConsume: canConsume(),
