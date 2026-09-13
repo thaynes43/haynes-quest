@@ -26,7 +26,9 @@ import {
   checkpointForSave,
   createLevelLayout,
   inspectLevel,
+  memoryCheckpointForSave,
   type LevelLayout,
+  type MemoryCheckpoint,
 } from "./level";
 import { GardenScene } from "./scene";
 import type {
@@ -144,6 +146,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let retainedActiveLevel = requireAdventure(save).activeLevel;
   let checkpoint = checkpointForSave(save, level);
   let controller = createObbyState(checkpoint);
+  controller.checkpointId = memoryCheckpointForSave(save, level)?.id ?? null;
   controller.grounded = true;
   let courseTime = 0;
   let traversalRecoveries = 0;
@@ -509,9 +512,19 @@ export function createGame(options: CreateGameOptions): GameHandle {
     interactionSequence += 1;
   };
 
-  const resetController = (nextCheckpoint: PositionSnapshot): void => {
+  const resetController = (
+    nextCheckpoint: PositionSnapshot,
+    checkpointId: string | null = null,
+  ): void => {
     controller = createObbyState(nextCheckpoint);
+    controller.checkpointId = checkpointId;
     controller.grounded = true;
+  };
+
+  const promoteCheckpoint = (selection: MemoryCheckpoint): void => {
+    checkpoint = { ...selection.position };
+    controller.checkpointId = selection.id;
+    Object.assign(controller.checkpoint, selection.position);
   };
 
   const applySave = (nextSave: SaveView): void => {
@@ -525,8 +538,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const previousIdentity = levelIdentity(save);
     const previousAdventure = requireAdventure(save);
     const previousPhase = previousAdventure.phase;
+    const previousRecoveredIds = new Set(save.recoveredIds);
     const nextIdentity = levelIdentity(nextSave);
     const nextAdventure = nextSave.adventure;
+    const recoveredMinor =
+      previousIdentity === nextIdentity &&
+      nextAdventure.phase === "exploring" &&
+      nextAdventure.activeLevel?.minorMemoryIds?.some(
+        (memoryId) =>
+          !previousRecoveredIds.has(memoryId) &&
+          nextSave.recoveredIds.includes(memoryId),
+      );
     const revivedEncounter = nextAdventure.activeLevel?.encounters.some(
       (nextEncounter) =>
         !nextEncounter.defeated &&
@@ -555,6 +577,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const nextLevel = retainCompletedWorld
       ? level
       : createLevelLayout(nextSave);
+    const nextMemoryCheckpoint = memoryCheckpointForSave(nextSave, nextLevel);
     const nextCheckpoint = retainCompletedWorld
       ? checkpoint
       : checkpointForSave(save, nextLevel);
@@ -568,19 +591,26 @@ export function createGame(options: CreateGameOptions): GameHandle {
       pendingHit = null;
     }
     level = nextLevel;
+    let resetCheckpointId: string | null = null;
     if (
       !level.course ||
       identityChanged ||
       retried ||
       nextAdventure.phase === "memory-released"
     ) {
+      const routeMemoryLevel = Boolean(
+        nextAdventure.activeLevel?.minorMemoryIds,
+      );
       const visited =
-        retried && !identityChanged && level.authored
+        retried && !identityChanged && level.authored && !routeMemoryLevel
           ? level.course?.checkpoints.find(
               (entry) => entry.id === controller.checkpointId,
             )
           : undefined;
       checkpoint = visited ? { ...visited.position } : nextCheckpoint;
+      if (identityChanged || retried) {
+        resetCheckpointId = visited?.id ?? nextMemoryCheckpoint?.id ?? null;
+      }
     }
     if (identityChanged || retried) {
       courseTime = 0;
@@ -591,7 +621,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       interactionAnimationUntil = 0;
       suppressedAutoFriendlyId = null;
       attackFeedback = null;
-      resetController(checkpoint);
+      resetController(checkpoint, resetCheckpointId);
       enemies.reset(level, save);
       besties = new BestiesSimulation(bestiesOrigin());
       scene.rebuildRoute(level, save);
@@ -607,6 +637,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
           controller.checkpoint = { ...checkpoint };
           controller.checkpointId = null;
         } else resetController(checkpoint);
+      } else if (recoveredMinor && nextMemoryCheckpoint) {
+        // A recovered minor is a durable death/fall floor. Promote its safe
+        // authored checkpoint without moving or interrupting the player.
+        promoteCheckpoint(nextMemoryCheckpoint);
       }
       scene.updateProgress(sceneSave);
     }
