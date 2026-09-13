@@ -134,11 +134,16 @@ await context.addInitScript(() => {
 });
 let stalledRetryRequests = 0;
 const stalledRetryPayloads = [];
+let retryTimeoutProbeArmed = false;
 if (retryTimeoutProbe) {
   await context.route("**/api/saves/*/actions", async (route) => {
     const request = route.request();
     const action = request.postDataJSON()?.action;
-    if (action?.type !== "retry-level" || stalledRetryRequests >= 2) {
+    if (
+      !retryTimeoutProbeArmed ||
+      action?.type !== "retry-level" ||
+      stalledRetryRequests >= 2
+    ) {
       await route.continue();
       return;
     }
@@ -1137,6 +1142,7 @@ async function playChapter(chapter) {
         ),
       (candidate) => candidate.status.nearEncounterId === encounter.id,
     );
+    retryTimeoutProbeArmed = retryTimeoutProbe;
     await controls.release();
     const fallen = await waitForSave(
       (candidate) => candidate.adventure.phase === "fallen",
