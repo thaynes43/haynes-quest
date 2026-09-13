@@ -49,6 +49,8 @@ class FakeElement extends FakeEventTarget {
 }
 
 class FakeWindow extends FakeEventTarget {
+  innerWidth = 390;
+  innerHeight = 844;
   readonly Element = FakeElement;
   nowMs = 0;
   readonly performance = { now: () => this.nowMs };
@@ -112,6 +114,22 @@ function makePointerHarness() {
 }
 
 describe("game input", () => {
+  it("preserves held controls on same-orientation resize and clears them on rotation", () => {
+    const { input, fakeWindow, dispose } = makePointerHarness();
+    input.set("moveY", 1);
+    input.set("jump", true);
+    fakeWindow.innerHeight = 780;
+    fakeWindow.dispatch("resize");
+    expect(input.snapshot().moveY).toBe(1);
+    expect(input.consumeActions().jump).toBe(true);
+    fakeWindow.innerWidth = 844;
+    fakeWindow.innerHeight = 390;
+    fakeWindow.dispatch("resize");
+    expect(input.snapshot().moveY).toBe(0);
+    expect(input.consumeActions().jump).toBe(false);
+    dispose();
+  });
+
   it("retains simultaneous move, camera and action pointers until cleanup", () => {
     const input = new GameInputState();
     input.set("moveX", 1);

@@ -128,6 +128,7 @@ export interface GameStatus {
   interactionSequence?: number;
   nearFriendlyId?: string | null;
   bestiesPhase?: import("./besties").BestiesPhase;
+  bossEngaged?: boolean;
   nearPickupId: string | null;
   nearEncounterId: string | null;
   nearMemoryId: string | null;

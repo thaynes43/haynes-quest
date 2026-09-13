@@ -25,6 +25,8 @@ export function friendlyError(error: unknown): string {
     return "Demo Adventurer’s fictional birth date is January 1, 2020.";
   if (code.includes("SUBJECT_UNRESOLVED"))
     return "Use Demo Adventurer for this fictional preview.";
+  if (code === "REQUEST_TIMEOUT")
+    return "The connection took too long. Your progress is still here. Please try again.";
   if (code === "INVALID_REQUEST")
     return "Check the name, birth date and date range. Choose a photo limit from 1 to 24.";
   if (code === "NO_USABLE_PHOTOS")

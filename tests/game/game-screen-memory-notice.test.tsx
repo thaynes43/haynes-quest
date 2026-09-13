@@ -175,6 +175,7 @@ afterEach(async () => {
   }
   container.remove();
   vi.useRealTimers();
+  vi.unstubAllGlobals();
 });
 
 const memorySlots = () => container.querySelector<HTMLElement>(".memory-slots");
@@ -188,6 +189,120 @@ async function renderRoute(save = routeMemorySave(), onLeave = vi.fn()) {
 }
 
 describe("Peripheral memory feedback and automatic recovery", () => {
+  it("shows boss health only after the fight engages", async () => {
+    const save = routeMemorySave();
+    save.adventure!.activeLevel!.encounters.find(
+      (enemy) => enemy.role === "boss",
+    )!.available = true;
+    await renderRoute(save);
+    expect(container.querySelector(".boss-hud")).toBeNull();
+    await act(async () =>
+      options!.onStatus?.({ ...status(), bossEngaged: true }),
+    );
+    expect(container.querySelector(".boss-hud")).not.toBeNull();
+    await act(async () =>
+      options!.onStatus?.({ ...status(), bossEngaged: false }),
+    );
+    expect(container.querySelector(".boss-hud")).toBeNull();
+  });
+
+  it("explains a refused checkpoint dispatch and permits a manual retry", async () => {
+    const save = routeMemorySave();
+    save.adventure!.phase = "fallen";
+    const handle = await renderRoute(save);
+    vi.mocked(handle.performAction).mockReturnValueOnce(false);
+    await act(async () => {
+      vi.advanceTimersByTime(650);
+    });
+    expect(container.querySelector('[role="dialog"]')).not.toBeNull();
+    expect(container.textContent).toContain(
+      "The checkpoint retry could not start.",
+    );
+    const retry = [...container.querySelectorAll("button")].find(
+      (button) => button.textContent === "Return to checkpoint",
+    );
+    await act(async () => retry!.click());
+    expect(handle.performAction).toHaveBeenCalledTimes(2);
+  });
+
+  it("keeps the same movement finger through a resized viewport, but clears it on rotation", async () => {
+    vi.stubGlobal("innerWidth", 390);
+    vi.stubGlobal("innerHeight", 844);
+    const handle = await renderRoute();
+    const stick = container.querySelector<HTMLElement>(
+      '[data-testid="joystick"]',
+    )!;
+    let top = 500;
+    stick.getBoundingClientRect = () => ({
+      x: 20,
+      y: top,
+      width: 176,
+      height: 176,
+      top,
+      left: 20,
+      right: 196,
+      bottom: top + 176,
+      toJSON: () => ({}),
+    });
+    stick.setPointerCapture = () => {};
+    const contact = (type: string, x: number, y: number) =>
+      stick.dispatchEvent(
+        new PointerEvent(type, {
+          bubbles: true,
+          pointerId: 1,
+          pointerType: "touch",
+          clientX: x,
+          clientY: y,
+        }),
+      );
+    await act(async () => {
+      contact("pointerdown", 108, 588);
+      contact("pointermove", 140, 588);
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "moveX")
+        .at(-1)![1],
+    ).toBeGreaterThan(0);
+    top = 480;
+    vi.stubGlobal("innerHeight", 824);
+    await act(async () => {
+      window.dispatchEvent(new Event("resize"));
+    });
+    // Bounds moved up: the stationary finger is now below the new centre.
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "moveY")
+        .at(-1)![1],
+    ).toBeLessThan(0);
+    await act(async () => {
+      contact("pointermove", 60, 568);
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "moveX")
+        .at(-1)![1],
+    ).toBeLessThan(0);
+    vi.stubGlobal("innerWidth", 844);
+    vi.stubGlobal("innerHeight", 390);
+    await act(async () => {
+      window.dispatchEvent(new Event("resize"));
+    });
+    expect(handle.setInput).toHaveBeenLastCalledWith("moveY", 0);
+    vi.mocked(handle.setInput).mockClear();
+    await act(async () => {
+      contact("pointermove", 140, 588);
+    });
+    expect(handle.setInput).not.toHaveBeenCalled();
+    await act(async () => {
+      contact("pointerdown", 140, 588);
+    });
+    expect(handle.setInput).toHaveBeenCalled();
+  });
+
   it("keeps a collected picture in the HUD while repeated empty attacks show no prose or popup", async () => {
     const save = routeMemorySave();
     await renderRoute(save);

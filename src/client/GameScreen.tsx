@@ -364,8 +364,10 @@ function Adventure({
       recoveryRequested.current = attempt;
       if (
         !game.current?.performAction({ type: "retry-level", levelId: level.id })
-      )
+      ) {
+        setError("The checkpoint retry could not start. Please try again.");
         setRecoveryBlocked(true);
+      }
     }, 650);
     return () => clearTimeout(timer);
   }, [
@@ -579,7 +581,7 @@ function Adventure({
       {boss &&
         boss.available !== false &&
         view.phase === "exploring" &&
-        status?.bestiesPhase !== "inactive" && (
+        status?.bossEngaged && (
           <div className="boss-hud">
             <span>{story.enemies.boss}</span>
             <meter
@@ -1031,8 +1033,12 @@ function Adventure({
                     type: "retry-level",
                     levelId: level.id,
                   })
-                )
+                ) {
+                  setError(
+                    "The checkpoint retry could not start. Please try again.",
+                  );
                   setRecoveryBlocked(true);
+                }
               }}
             >
               Return to checkpoint
@@ -1223,7 +1229,9 @@ function ActionButton({
 }
 
 function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
+  const stick = useRef<HTMLDivElement>(null);
   const pointer = useRef<number | undefined>(undefined);
+  const lastContact = useRef({ x: 0, y: 0 });
   const origin = useRef({ x: 0, y: 0 });
   const travel = useRef(44);
   const [knob, setKnob] = useState({ x: 0, y: 0 });
@@ -1233,22 +1241,42 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
     game.current?.setInput("moveX", 0);
     game.current?.setInput("moveY", 0);
   };
+  const measure = () => {
+    const bounds = stick.current?.getBoundingClientRect();
+    if (!bounds) return;
+    travel.current = Math.max(16, bounds.width * 0.29);
+    origin.current = {
+      x: bounds.x + bounds.width / 2,
+      y: bounds.y + bounds.height / 2,
+    };
+  };
   useEffect(() => {
+    let landscape = window.innerWidth > window.innerHeight;
+    const resize = () => {
+      const nextLandscape = window.innerWidth > window.innerHeight;
+      if (nextLandscape !== landscape) clear();
+      else if (pointer.current !== undefined) {
+        measure();
+        updateStick(lastContact.current.x, lastContact.current.y);
+      }
+      landscape = nextLandscape;
+    };
     window.addEventListener("blur", clear);
-    window.addEventListener("resize", clear);
+    window.addEventListener("resize", resize);
     const visibility = () => {
       if (document.hidden) clear();
     };
     document.addEventListener("visibilitychange", visibility);
     return () => {
       window.removeEventListener("blur", clear);
-      window.removeEventListener("resize", clear);
+      window.removeEventListener("resize", resize);
       document.removeEventListener("visibilitychange", visibility);
       game.current?.setInput("moveX", 0);
       game.current?.setInput("moveY", 0);
     };
   }, []);
   const updateStick = (clientX: number, clientY: number) => {
+    lastContact.current = { x: clientX, y: clientY };
     const vector = getJoystickVector(
       origin.current.x,
       origin.current.y,
@@ -1273,6 +1301,7 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
   return (
     <div
       className="joystick"
+      ref={stick}
       role="group"
       aria-label="Touch movement control"
       data-testid="joystick"
@@ -1284,12 +1313,7 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
         } catch {
           /* Release events still clear this finger. */
         }
-        const bounds = event.currentTarget.getBoundingClientRect();
-        travel.current = Math.max(16, bounds.width * 0.29);
-        origin.current = {
-          x: bounds.x + bounds.width / 2,
-          y: bounds.y + bounds.height / 2,
-        };
+        measure();
         updateStick(event.clientX, event.clientY);
       }}
       onPointerMove={(event) => {

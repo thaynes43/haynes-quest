@@ -431,9 +431,22 @@ export function createGame(options: CreateGameOptions): GameHandle {
       ? nearestSecondaryEncounter(true)
       : null;
     const media = mediaState();
+    const bossId = adventure.activeLevel?.encounters.find(
+      (enemy) => enemy.role === "boss",
+    )?.id;
+    const bossEngaged = bestiesEncounter()
+      ? !["inactive", "defeated"].includes(besties.frame().phase)
+      : enemies
+          .frames()
+          .some(
+            (enemy) =>
+              enemy.id === bossId &&
+              !["idle", "defeated"].includes(enemy.phase),
+          );
     const requestBusy = requestState.requestState === "acting";
     return {
       nearFriendlyId: nearestFriendlyId(),
+      bossEngaged,
       bestiesPhase: bestiesEncounter() ? besties.frame().phase : undefined,
       nearPickupId: nearestPickupId(),
       nearEncounterId: target?.id ?? secondaryTarget?.id ?? null,

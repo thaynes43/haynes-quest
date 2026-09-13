@@ -328,8 +328,8 @@ export function checkpointForSave(
       const safe = level.course.checkpoints.find(
         (entry) => entry.id === binding?.retryCheckpointId,
       );
-      // Reload fallback never grants unvisited obstacle progress. Session retries
-      // prefer the last actually visited safe checkpoint in createGame.
+      // Non-memory routes retain their prior encounter fallback on reload and
+      // prefer a visited local checkpoint for same-session retries in createGame.
       const anyDefeated = save.adventure?.activeLevel?.encounters.some(
         (enemy) => enemy.defeated,
       );

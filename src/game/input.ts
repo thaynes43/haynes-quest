@@ -280,6 +280,12 @@ export function bindBrowserInput({
   const cancelCameraPointer = (event: PointerEvent): void => {
     cameraPointers.delete(event.pointerId);
   };
+  let landscape = windowTarget.innerWidth > windowTarget.innerHeight;
+  const onResize = (): void => {
+    const nextLandscape = windowTarget.innerWidth > windowTarget.innerHeight;
+    if (nextLandscape !== landscape) clearAll();
+    landscape = nextLandscape;
+  };
   const onVisibility = (): void => {
     if (documentTarget.visibilityState !== "visible") clearAll();
   };
@@ -287,7 +293,7 @@ export function bindBrowserInput({
   windowTarget.addEventListener("keydown", onKeyDown, { passive: false });
   windowTarget.addEventListener("keyup", onKeyUp);
   windowTarget.addEventListener("blur", clearAll);
-  windowTarget.addEventListener("resize", clearAll);
+  windowTarget.addEventListener("resize", onResize);
   // A browser can cancel one touch in a multi-contact gesture. Each gameplay
   // control owns its pointer, so cancelling one must not erase a still-held
   // joystick or a separate queued action.
@@ -303,7 +309,7 @@ export function bindBrowserInput({
     windowTarget.removeEventListener("keydown", onKeyDown);
     windowTarget.removeEventListener("keyup", onKeyUp);
     windowTarget.removeEventListener("blur", clearAll);
-    windowTarget.removeEventListener("resize", clearAll);
+    windowTarget.removeEventListener("resize", onResize);
     windowTarget.removeEventListener(
       "pointercancel",
       cancelCameraPointer,
