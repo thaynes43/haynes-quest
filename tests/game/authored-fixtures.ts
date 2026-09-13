@@ -11,7 +11,10 @@ import { makeEraSave } from "./fixtures";
 
 export type AuthoredRouteId = Extract<
   ObbyRouteId,
-  "garden-playground-v1" | "besties-playground-v1"
+  | "garden-playground-v1"
+  | "besties-playground-v1"
+  | "garden-playground-v2"
+  | "besties-playground-v2"
 >;
 
 interface AuthoredSaveOptions {
@@ -30,18 +33,17 @@ function contentFor(
   routeId: AuthoredRouteId,
   kind: EncounterKind,
 ): FrozenEncounterContent {
-  const entry =
-    routeId === "garden-playground-v1"
-      ? kind === "ordinary-a"
-        ? "mister-hiss"
-        : kind === "ordinary-b"
-          ? "peel-patrol"
-          : "drama-dragon"
-      : kind === "ordinary-a"
-        ? "sir-flush-a-lot-besties"
-        : kind === "ordinary-b"
-          ? "peel-patrol-besties"
-          : "bickering-besties";
+  const entry = routeId.startsWith("garden-playground-")
+    ? kind === "ordinary-a"
+      ? "mister-hiss"
+      : kind === "ordinary-b"
+        ? "peel-patrol"
+        : "drama-dragon"
+    : kind === "ordinary-a"
+      ? "sir-flush-a-lot-besties"
+      : kind === "ordinary-b"
+        ? "peel-patrol-besties"
+        : "bickering-besties";
   const assetId =
     entry === "sir-flush-a-lot-besties"
       ? "sir-flush-a-lot"
@@ -58,7 +60,10 @@ function contentFor(
 
 export function makeAuthoredSave(options: AuthoredSaveOptions = {}): SaveView {
   const routeId = options.routeId ?? "garden-playground-v1";
-  const besties = routeId === "besties-playground-v1";
+  const besties = routeId.startsWith("besties-playground-");
+  const catalogVersion = routeId.endsWith("-v2")
+    ? "parody-catalog-v5"
+    : "parody-catalog-v4";
   const levelIndex = besties ? 1 : 0;
   const phase = options.phase ?? "exploring";
   const levelId = options.levelId ?? "level-authored-fixture";
@@ -126,7 +131,7 @@ export function makeAuthoredSave(options: AuthoredSaveOptions = {}): SaveView {
     hp: bossDefeated ? 0 : 8,
     attackDamage: besties ? 2 : 3,
     defeated: bossDefeated,
-    available: !bossDefeated && ordinaryDefeated,
+    available: !bossDefeated && (routeId.endsWith("-v2") || ordinaryDefeated),
   });
 
   const base = makeEraSave({
@@ -151,7 +156,7 @@ export function makeAuthoredSave(options: AuthoredSaveOptions = {}): SaveView {
     adventure: {
       ...base.adventure,
       planVersion: "era-level-plan-v3",
-      catalogVersion: "parody-catalog-v4",
+      catalogVersion,
       activeLevelIndex: levelIndex,
       currentLevelId: levelId,
       activeLevel: {
@@ -183,7 +188,7 @@ export function makeAuthoredSave(options: AuthoredSaveOptions = {}): SaveView {
       ...base.versions,
       journey: "era-level-plan-v3",
       progression: "route-major-recovery-v3",
-      catalog: "parody-catalog-v4",
+      catalog: catalogVersion,
     },
   };
 }
