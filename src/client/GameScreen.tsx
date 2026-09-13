@@ -169,10 +169,6 @@ function Adventure({
     .filter((item) => item.kind === "guard-tool" && item.collected)
     .sort((a, b) => b.tier - a.tier)[0];
   const boss = level?.encounters.find((enemy) => enemy.role === "boss");
-  const ordinaryLeft =
-    level?.encounters.filter(
-      (enemy) => enemy.role === "ordinary" && !enemy.defeated,
-    ).length ?? 0;
   const nearbyPickup = level?.pickups.find(
     (pickup) => pickup.pickupId === status?.nearPickupId,
   );
@@ -581,7 +577,7 @@ function Adventure({
         </div>
       </aside>
       {boss &&
-        ordinaryLeft === 0 &&
+        boss.available !== false &&
         view.phase === "exploring" &&
         status?.bestiesPhase !== "inactive" && (
           <div className="boss-hud">

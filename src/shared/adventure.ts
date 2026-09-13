@@ -272,7 +272,7 @@ export function createRouteMemoryPlan(
     if (!Number.isInteger(eraYear)) throw new RangeError('Adventure start date is invalid');
     const prefix = `level-${index + 1}-${eraYear}`;
     const pickups = createEquipment(prefix, index);
-    const selection = catalogVersion === 'parody-catalog-v4'
+    const selection = (catalogVersion === 'parody-catalog-v4' || catalogVersion === 'parody-catalog-v5')
       ? selectRouteMemoryLevel(startDate, ['move', 'interact', 'jump'], catalogVersion)
       : selectParodyLevel(startDate, ['move', 'interact', 'jump'], catalogVersion);
     const encounters = createEncounters(prefix, index, selection.encounters).map((encounter) =>

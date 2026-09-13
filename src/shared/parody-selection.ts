@@ -27,7 +27,7 @@ export interface ParodyLevelSelection {
 
 export interface RouteMemoryLevelSelection {
   periodId: 'block-party-v1' | 'besties-obby-v1';
-  routeId: 'garden-playground-v1' | 'besties-playground-v1';
+  routeId: 'garden-playground-v1' | 'besties-playground-v1' | 'garden-playground-v2' | 'besties-playground-v2';
   encounters: [
     SelectedParodyEncounter,
     SelectedParodyEncounter,
@@ -100,7 +100,7 @@ export function selectRouteMemoryLevel(
   catalogVersion: ParodyCatalogVersion = PARODY_CATALOG_VERSION,
   catalog: readonly ParodyCatalogEntry[] = PARODY_CATALOGS[catalogVersion],
 ): RouteMemoryLevelSelection {
-  if (catalogVersion !== 'parody-catalog-v4') {
+  if (catalogVersion !== 'parody-catalog-v4' && catalogVersion !== 'parody-catalog-v5') {
     throw new ParodyCatalogUnavailableError();
   }
   const abilities = new Set(startingAbilities);
@@ -110,7 +110,10 @@ export function selectRouteMemoryLevel(
     entry.referenceAvailableBy <= startDate &&
     entry.requiredAbilities.every((ability) => abilities.has(ability)),
   );
-  const routes = {
+  const routes = catalogVersion === 'parody-catalog-v5' ? {
+    'block-party-v1': 'garden-playground-v2',
+    'besties-obby-v1': 'besties-playground-v2',
+  } as const : {
     'block-party-v1': 'garden-playground-v1',
     'besties-obby-v1': 'besties-playground-v1',
   } as const;

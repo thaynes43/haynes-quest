@@ -120,6 +120,8 @@ const levelV3Schema = z.object({
     'gentle-jump-v1',
     'garden-playground-v1',
     'besties-playground-v1',
+    'garden-playground-v2',
+    'besties-playground-v2',
   ]),
   encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
 }).strict();
@@ -270,7 +272,7 @@ function validPlan(plan: AdventurePlan): boolean {
     const levelEncounterIds = level.encounters.map((encounter) => encounter.id);
     const playgroundPlan =
       plan.version === 'era-level-plan-v3' &&
-      plan.catalogVersion === 'parody-catalog-v4';
+      (plan.catalogVersion === 'parody-catalog-v4' || plan.catalogVersion === 'parody-catalog-v5');
     if (
       level.index !== index ||
       level.startAgeYears !== priorTargetAge ||
@@ -310,12 +312,12 @@ function validParodyPlan(plan: AdventurePlanV2 | AdventurePlanV3): boolean {
     const abilities = new Set(abilitiesForPlanAge(plan, level.startAgeYears));
     const playgroundPlan =
       plan.version === 'era-level-plan-v3' &&
-      plan.catalogVersion === 'parody-catalog-v4';
+      (plan.catalogVersion === 'parody-catalog-v4' || plan.catalogVersion === 'parody-catalog-v5');
     const expectedRoute = playgroundPlan
       ? level.periodId === 'block-party-v1'
-        ? 'garden-playground-v1'
+        ? (plan.catalogVersion === 'parody-catalog-v5' ? 'garden-playground-v2' : 'garden-playground-v1')
         : level.periodId === 'besties-obby-v1'
-          ? 'besties-playground-v1'
+          ? (plan.catalogVersion === 'parody-catalog-v5' ? 'besties-playground-v2' : 'besties-playground-v1')
           : undefined
       : abilities.has('jump')
         ? 'gentle-jump-v1'
