@@ -3,6 +3,7 @@ import type {
   GameplayActionRequest,
   SaveView,
 } from "../../src/shared/contracts";
+import { API_REQUEST_TIMEOUT_MS, api } from "../../src/client/api";
 import { ActionCoordinator } from "../../src/game/actions";
 import { makeEraSave } from "./fixtures";
 
@@ -38,7 +39,10 @@ function createCoordinator(
 }
 
 describe("authoritative action coordinator", () => {
-  afterEach(() => vi.unstubAllGlobals());
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+  });
 
   it("creates a secure v4 action id when randomUUID is unavailable", async () => {
     const getRandomValues = vi.fn((bytes: Uint8Array) => {
@@ -114,6 +118,97 @@ describe("authoritative action coordinator", () => {
       requestError: null,
       requestErrorCode: null,
     });
+  });
+
+  it("retries one timed-out action with the identical request, then settles", async () => {
+    vi.useFakeTimers();
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(
+        (_input: RequestInfo | URL, init?: RequestInit) =>
+          new Promise<Response>((_resolve, reject) => {
+            init?.signal?.addEventListener(
+              "abort",
+              () =>
+                reject(
+                  new DOMException("The operation was aborted", "AbortError"),
+                ),
+              { once: true },
+            );
+          }),
+      ),
+    );
+    const onAction = vi.fn((request: GameplayActionRequest) =>
+      api<SaveView>("/game/action", request),
+    );
+    const { coordinator, callbacks } = createCoordinator({ onAction });
+
+    expect(
+      coordinator.perform({ type: "guard", levelId: "level-1-2020" }),
+    ).toBe(true);
+    await vi.advanceTimersByTimeAsync(API_REQUEST_TIMEOUT_MS);
+
+    expect(onAction).toHaveBeenCalledTimes(2);
+    expect(onAction.mock.calls[1]?.[0]).toBe(onAction.mock.calls[0]?.[0]);
+    expect(onAction.mock.calls[0]?.[0].actionId).toBe(
+      "00000000-0000-4000-8000-000000000001",
+    );
+    expect(coordinator.inspect().requestState).toBe("acting");
+
+    await vi.advanceTimersByTimeAsync(API_REQUEST_TIMEOUT_MS);
+
+    expect(onAction).toHaveBeenCalledTimes(2);
+    expect(callbacks.onApply).not.toHaveBeenCalled();
+    expect(coordinator.inspect()).toEqual({
+      requestState: "error",
+      requestError: "guard",
+      requestErrorCode: "REQUEST_TIMEOUT",
+    });
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it("bounds a stale-save refresh without adding another retry", async () => {
+    vi.useFakeTimers();
+    const fetch = vi.fn(
+      (_input: RequestInfo | URL, init?: RequestInit) =>
+        new Promise<Response>((_resolve, reject) => {
+          init?.signal?.addEventListener(
+            "abort",
+            () =>
+              reject(
+                new DOMException("The operation was aborted", "AbortError"),
+              ),
+            { once: true },
+          );
+        }),
+    );
+    vi.stubGlobal("fetch", fetch);
+    const onAction = vi
+      .fn()
+      .mockRejectedValue(new Error("SAVE_REVISION_STALE"));
+    const onRefresh = vi.fn(() => api<SaveView>("/game/refresh"));
+    const { coordinator, callbacks } = createCoordinator({
+      onAction,
+      onRefresh,
+    });
+
+    expect(
+      coordinator.perform({ type: "guard", levelId: "level-1-2020" }),
+    ).toBe(true);
+    await Promise.resolve();
+    expect(onRefresh).toHaveBeenCalledOnce();
+    await vi.advanceTimersByTimeAsync(API_REQUEST_TIMEOUT_MS);
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onRefresh).toHaveBeenCalledOnce();
+    expect(fetch).toHaveBeenCalledOnce();
+    expect(callbacks.onApply).not.toHaveBeenCalled();
+    expect(coordinator.inspect()).toEqual({
+      requestState: "error",
+      requestError: "guard",
+      requestErrorCode: "REQUEST_TIMEOUT",
+    });
+    expect(vi.getTimerCount()).toBe(0);
   });
 
   it("refreshes a stale revision without replaying the old intent", async () => {

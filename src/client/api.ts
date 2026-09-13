@@ -1,23 +1,57 @@
 import type { ApiError } from "../shared/contracts";
-export async function api<T>(path: string, body?: unknown): Promise<T> {
-  const response = await fetch(`/api${path}`, {
-    credentials: "same-origin",
-    ...(body === undefined
-      ? {}
-      : {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Quest-Request": "1",
-          },
-          body: JSON.stringify(body),
-        }),
+
+export const API_REQUEST_TIMEOUT_MS = 8_000;
+
+function requestTimeoutError(): Error & { code: string } {
+  return Object.assign(new Error("REQUEST_TIMEOUT"), {
+    code: "REQUEST_TIMEOUT",
   });
-  if (!response.ok) {
-    const result = (await response.json().catch(() => null)) as ApiError | null;
-    throw new Error(result?.error?.code ?? "UNAVAILABLE");
+}
+
+export async function api<T>(path: string, body?: unknown): Promise<T> {
+  const controller = new AbortController();
+  let timedOut = false;
+  let timeoutId: ReturnType<typeof setTimeout>;
+  const timeout = new Promise<never>((_resolve, reject) => {
+    timeoutId = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+      reject(requestTimeoutError());
+    }, API_REQUEST_TIMEOUT_MS);
+  });
+
+  const request = (async () => {
+    const response = await fetch(`/api${path}`, {
+      credentials: "same-origin",
+      signal: controller.signal,
+      ...(body === undefined
+        ? {}
+        : {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Quest-Request": "1",
+            },
+            body: JSON.stringify(body),
+          }),
+    });
+    if (!response.ok) {
+      const result = (await response
+        .json()
+        .catch(() => null)) as ApiError | null;
+      throw new Error(result?.error?.code ?? "UNAVAILABLE");
+    }
+    return (await response.json()) as T;
+  })();
+
+  try {
+    return await Promise.race([request, timeout]);
+  } catch (error) {
+    if (timedOut) throw requestTimeoutError();
+    throw error;
+  } finally {
+    clearTimeout(timeoutId!);
   }
-  return response.json() as Promise<T>;
 }
 export function friendlyError(error: unknown): string {
   const code = error instanceof Error ? error.message.toUpperCase() : "";

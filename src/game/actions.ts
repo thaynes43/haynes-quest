@@ -23,6 +23,7 @@ export interface ActionCoordinatorCallbacks {
 const transportErrorCodes = new Set([
   "NETWORK_ERROR",
   "REQUEST_FAILED",
+  "REQUEST_TIMEOUT",
   "UNAVAILABLE",
 ]);
 
