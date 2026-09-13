@@ -258,7 +258,7 @@ describe('route-memory plan v3', () => {
     }
   });
 
-  it('keeps the player alive through four Besties contacts before the fifth causes a fall', () => {
+  it('keeps four forgiving Besties contacts and resets the unbeaten boss after death', () => {
     const plan = routePlan();
     const firstLevel = plan.levels[0]!;
     let state = createInitialAdventureState(plan);
@@ -303,6 +303,26 @@ describe('route-memory plan v3', () => {
       type: 'take-hit', levelId: bestiesLevel.id, encounterId: besties.id,
     }, hitAtMs);
     expect(state).toMatchObject({ playerHp: 0, phase: 'fallen' });
+
+    state = apply(plan, state, {
+      type: 'retry-level', levelId: bestiesLevel.id,
+    }, hitAtMs + ENEMY_HIT_COOLDOWN_MS);
+    expect(state).toMatchObject({ playerHp: 10, phase: 'exploring' });
+    for (const ordinary of bestiesLevel.encounters.filter(
+      (encounter) => encounter.role === 'ordinary',
+    )) {
+      expect(state.encounters[ordinary.id]).toMatchObject({ hp: 0, defeated: true });
+    }
+    expect(state.encounters[besties.id]).toMatchObject({
+      hp: besties.maxHp,
+      defeated: false,
+      nextReportedHitAtMs: 0,
+    });
+
+    state = apply(plan, state, {
+      type: 'attack', levelId: bestiesLevel.id, encounterId: besties.id,
+    }, hitAtMs + ENEMY_HIT_COOLDOWN_MS);
+    expect(state.encounters[besties.id]!.hp).toBe(besties.maxHp - 2);
   });
 
   it('recovers route minors without aging and makes the post-boss major the atomic age gate', () => {

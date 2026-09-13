@@ -176,6 +176,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const withinToolReach =
       horizontalDistance(controller.position, actor.position) <=
       playerAttackRange(save, "boss");
+    const withinFightHeight =
+      Math.abs(controller.position.y - actor.position.y) <=
+      maxPlayerAttackFeetDelta;
     return Boolean(
       arena &&
       (withinToolReach ||
@@ -183,7 +186,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
           controller.position.x <= arena.maxX + 1.5 &&
           controller.position.z >= arena.minZ - 1.5 &&
           controller.position.z <= arena.maxZ + 1.5)) &&
-      Math.abs(controller.position.y) < 1,
+      withinFightHeight,
     );
   };
   let pendingHit: { levelId: string; encounterId: string } | null = null;
@@ -445,7 +448,6 @@ export function createGame(options: CreateGameOptions): GameHandle {
         adventure.phase === "exploring" &&
         hasEquipment(save, "attack-tool") &&
         Boolean(target) &&
-        (target?.id !== bestiesEncounter()?.id || besties.frame().vulnerable) &&
         now >= attackCooldownUntil &&
         !requestBusy,
       attackFeedback,
@@ -456,10 +458,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         adventure.phase === "exploring" &&
         hasEquipment(save, "guard-tool") &&
         (routeMemories
-          ? Boolean(secondaryTarget) &&
-            (secondaryTarget?.id !== bestiesEncounter()?.id ||
-              besties.frame().vulnerable) &&
-            now >= secondaryCooldownUntil
+          ? Boolean(secondaryTarget) && now >= secondaryCooldownUntil
           : now >= guardCooldownUntil) &&
         !requestBusy,
       requestBusy,
@@ -783,8 +782,6 @@ export function createGame(options: CreateGameOptions): GameHandle {
         const target = nearestEncounter(false);
         if (target?.id !== action.encounterId)
           return recordAttackFeedback("no-target");
-        if (target.id === bestiesEncounter()?.id && !besties.frame().vulnerable)
-          return recordAttackFeedback("guarded");
         break;
       }
       case "secondary-attack": {
@@ -799,8 +796,6 @@ export function createGame(options: CreateGameOptions): GameHandle {
         const target = nearestSecondaryEncounter(false);
         if (target?.id !== action.encounterId)
           return recordAttackFeedback("no-target", "secondary");
-        if (target.id === bestiesEncounter()?.id && !besties.frame().vulnerable)
-          return recordAttackFeedback("guarded", "secondary");
         break;
       }
       case "take-hit":
