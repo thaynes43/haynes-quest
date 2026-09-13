@@ -5,7 +5,7 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse this cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. Source assets, review versions and thumbnail references are unchanged; the [playtest guide](playtest.md) describes their placement and gameplay.
+Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse this cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. Source assets, review versions and thumbnail references are unchanged; the [playtest guide](playtest.md) describes their placement and gameplay.
 
 **25 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions · 6 fictional memory pictures**
 

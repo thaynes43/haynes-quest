@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 /local-photos/
+/.private/
 
 # Common generated development output; tooling is chosen later
 node_modules/

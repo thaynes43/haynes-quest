@@ -118,7 +118,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "Duo actor in the private playtest; PLAN008 runtime motion/hit/defeat corrections; unchanged v001 model; final model review pending",
+      "state": "Duo actor in the private playtest; PLAN011 allows in-range hits throughout its routine; unchanged v001 model and clips; final model review pending",
       "checksums": {
         "docs/assets/media/bestie-black/v001/bestie-black.glb": "0819c67a17d38f340ace0ebdaff6bd316a800286af7f7a0da91273e898d80f05"
       },
@@ -141,7 +141,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "Duo actor in the private playtest; PLAN008 runtime motion/hit/defeat corrections; unchanged v001 model; final model review pending",
+      "state": "Duo actor in the private playtest; PLAN011 allows in-range hits throughout its routine; unchanged v001 model and clips; final model review pending",
       "checksums": {
         "docs/assets/media/bestie-pink/v001/bestie-pink.glb": "0f7020f53ed257dd88e6a8cb9e8fb0011c70e84bf33bc2e55fb671473aea96ae"
       },

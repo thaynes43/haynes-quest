@@ -1,14 +1,17 @@
 # Current handoff
 
-**The longer playgrounds are deployed and hosted acceptance is complete, September 12, 2026.** [PLAN009](plans/completed/009-daughter-playground-mvp.md) completes the level pass for Tom's six-year-old daughter; it is ready for her creative playtest. He already accepted the preceding fixes and audible sound on his iPhone. Identity and curated family photos are the next required MVP stage, prepared in [PLAN010](plans/010-parent-prepared-memories.md); the current test still uses fictional pictures and chronology.
+**PLAN011 is active after the daughter's longer-course playtest.** [WO082](work-orders/082-familiar-controls.md) records integrated controls, automatic memory checkpoints, Besties fixes and new height layouts; [DESIGN018](../docs/designs/018-familiar-touch-and-recovery.md) is the ratified contract. Root is working in `/home/dev/work/quest-familiar-controls`, branch `agent/quest-familiar-controls`. Source changes are not yet deployed. The exact live PLAN009 release and its prior evidence remain below; they do not establish the new feedback resolved.
 
+The new version has dedicated Jump lower right, larger stick lower left, peripheral memory thumbnails and no empty-attack prose. HP defeat automatically retries at the latest active memory's safe checkpoint, preserving collected gear/memories and beaten enemies. Besties take damage in every routine phase. New v2 courses also open bosses without an earlier-small-enemy prerequisite, while archived routes retain that gate. Six opening steps rise and descend over a static catch floor, and later memories/bosses occupy supported raised terraces. Shared schema/contact-height implementation, integrated browser/CI checks, current guide captures and checked private GitOps release remain open. Separate Opus review WO083 is dispatched; Fable remains unavailable. No authoring or real media is in scope.
+
+Identity and curated family photos remain required in [PLAN010](plans/010-parent-prepared-memories.md) after this feedback pass. The current test still uses fictional pictures and chronology.
 ## Open the private test
 
 - [Fresh playground test](https://haynes-quest-playtest.haynesops.com/?playtest=plan009-playgrounds): Play from the beginning or Try the Besties chapter.
 - [Visual catalog](https://haynes-quest-playtest.haynesops.com/studio/assets/catalog.html): 37 entries with 54 navigation thumbnails, inspiration images, models, animations and sound previews.
 - [Playtest guide](https://haynes-quest-playtest.haynesops.com/studio/assets/playtest.html): longer activities, controls, actual v005 captures and included/deferred scope.
 
-Garden and Besties now use distinct longer courses with optional branches, ferries, stepping sections, slow padded hazards, eight checkpoints each and four ordinary encounters before the boss. There are still two little memories along each route and a major memory after victory. World taps/Space jump at every age; contact collects things; Attack and the smaller Bash are the combat buttons. Sound/input, disappearing collected keepsakes, moving/reactive Besties and paused artwork retry repairs are preserved. Every private test starts fresh; leaving/reloading resets it.
+The currently deployed PLAN009 Garden and Besties use distinct longer courses with optional branches, ferries, stepping sections, slow padded hazards, eight checkpoints each and four ordinary encounters before the boss. There are still two little memories along each route and a major memory after victory. World taps/Space jump at every age; contact collects things; Attack and the smaller Bash are the combat buttons. Sound/input, disappearing collected keepsakes, moving/reactive Besties and paused artwork retry repairs are preserved. Every private test starts fresh; leaving/reloading resets it.
 
 ## Exact live release
 
