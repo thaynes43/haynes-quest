@@ -1,6 +1,6 @@
 # PLAN011: Familiar controls and forgiving checkpoints
 
-Status: Paused at Tom’s request on September 13, 2026 until next week’s usage reset. Application PR44 is merged and locally verified; deployment PR2898 is an intentionally held draft. Hosted acceptance and closeout remain open. See HANDOFF and WO084 before resuming.
+Status: Paused at Tom’s request on September 13, 2026 until next week’s usage reset. Application PR44 is merged and locally verified; deployment PR2898 subsequently merged at Tom’s request so he can test before next week. Rollout, all 24 isolation checks, full hosted two-chapter gameplay, sound and touch checks pass. Checkpoint PR45/documentation closeout and the owner’s new playtest feedback are deferred until the usage reset. See HANDOFF and WO084 before resuming.
 
 Tom reports that jumping was hard to discover despite familiarity with Roblox, the joystick was small, attack prose obscured the player, death led to starting over, and a later Besties attempt stayed idle and rejected hits. He requests memory checkpoints, damage whenever an attack is in range, familiar phone/tablet controls and safe upward/downward jumping practice. This pass precedes the still-required private identity and photo workflow in PLAN010.
 

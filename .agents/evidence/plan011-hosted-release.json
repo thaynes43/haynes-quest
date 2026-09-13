@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "status": "paused-by-owner-until-usage-reset",
+  "status": "deployed-and-verified-paused-for-owner-feedback",
   "applicationCommit": "191f8c2420aa00e98caf026af334987aee98e593",
   "acceptedRuntimeSource": "2fbf4a239dad7ae3104676d8f058b5a853ae2c75",
   "applicationPR": 44,
-  "operationsCommit": null,
+  "operationsCommit": "96c09bc0ba6c800858025593c606ae19f1edac05",
   "image": "ghcr.io/thaynes43/haynes-quest:sha-191f8c2420aa00e98caf026af334987aee98e593@sha256:21d4e4052609299734c10aa984feb2d1d8ed650e007b9479a768fbbdf4e059c5",
   "client": {
     "path": "/assets/index-ChX7wgsN.js",
@@ -191,7 +191,29 @@
       "retriedExactRequest": true
     }
   },
-  "hostedReports": {},
+  "hostedReports": {
+    "route": {
+      "path": "/home/dev/work/quest-familiar-controls/test-results/authored-playtest/plan011-hosted-final/report.json",
+      "sha256": "67f47a75a321a32ee4c9d19565a643aca327802057658e2a40cce1c37b9e5314",
+      "outcome": "passed"
+    },
+    "audio": {
+      "path": "/home/dev/work/quest-familiar-controls/test-results/mobile-reliability/plan011-hosted-final/report.json",
+      "sha256": "cf1dc1c80cd9f0a1c712b6f7894b0f1ce2cbaaf49575d8ed4d21ce3efbe5da14",
+      "outcome": true
+    },
+    "input": {
+      "path": "/home/dev/work/quest-familiar-controls/test-results/fresh-playtest/plan011-hosted-input-verified/report.json",
+      "sha256": "e6905b12397868116ee49bcfb2e8d9b1661a836abb6b3537981f30fd47f50eb1",
+      "outcome": "input-diagnostic"
+    },
+    "incorrectInputMode": {
+      "path": "/home/dev/work/quest-familiar-controls/test-results/fresh-playtest/plan011-hosted-input/report.json",
+      "sha256": "98a940c61eb5236fe5460f55c8964af6fe78b38e2682a7fb4f8c4a83648bb19d",
+      "outcome": "failed",
+      "adjudication": "Wrong invocation omitted QUEST_E2E_ROUTE_ONLY=true, selected legacy traversal and attempted walking through a raised step. Correct input-only invocation passed; full authored route independently passed. No game code changed."
+    }
+  },
   "limitations": [
     "Fictional fixture only; identity and curated personal photos remain PLAN010.",
     "Long traversal uses actual keyboard movement/jumps with touch combat; separate touch checks use held stick and Jump together.",
@@ -201,8 +223,27 @@
   ],
   "operationsPR": 2898,
   "operationsHead": "7ef2208d2379bdc96c51de19e48317a0a563861a",
-  "operationsDraft": true,
-  "deployed": false,
+  "operationsDraft": false,
+  "deployed": true,
   "ownedFixtureStopped": true,
-  "hostedApiVerifierAccepted": false
+  "hostedApiVerifierAccepted": false,
+  "deployment": {
+    "path": "/home/dev/work/quest-controls-release/.private/test-results/plan011-controls-release/evidence/post-release.json",
+    "sha256": "c1de031c923c28291e68c0998ecb0b183a7149471778298a6394639224d5bfba",
+    "passed": true
+  },
+  "delivery": {
+    "path": "/home/dev/work/quest-familiar-controls/test-results/plan011-hosted-delivery.json",
+    "sha256": "a7c8b6345649352a5ce233b1924342e54b649f68db7e8047620d65127e7d924d",
+    "passed": true
+  },
+  "hostedRoute": {
+    "chapters": 2,
+    "fights": 10,
+    "memories": 6,
+    "automaticMemoryRecoveryBothChapters": true,
+    "unexpectedErrors": 0
+  },
+  "releaseActivityEnded": true,
+  "browserLeaseReleased": true
 }
