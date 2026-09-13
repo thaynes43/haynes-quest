@@ -95,6 +95,20 @@ const parodyContent: Record<
   },
 };
 
+const bestiesRoutinePhases = [
+  "pink-warning",
+  "pink-trick",
+  "black-warning",
+  "black-trick",
+  "high-five",
+  "dizzy",
+] as const;
+
+const bestiesAttackCases = bestiesRoutinePhases.flatMap((phase) => [
+  { phase, input: "attack" as const, actionType: "attack" as const },
+  { phase, input: "guard" as const, actionType: "secondary-attack" as const },
+]);
+
 function routedSave(options: EraSaveOptions = {}): SaveView {
   const save = makeEraSave(options);
   const levelIndex = (options.levelIndex ?? 0) as 0 | 1;
@@ -246,13 +260,17 @@ function friendlyRouteMemorySave(
   return asRouteMemorySave(friendlyRoutedSave(options), revealedMinorCount);
 }
 
-function bestiesRoutedSave(): SaveView {
+function bestiesRoutedSave(
+  collectedKinds: EraSaveOptions["collectedKinds"] = ["attack-tool"],
+  routeMemory = false,
+): SaveView {
   const levelId = "level-2-2024";
-  const save = routedSave({
+  const routed = routedSave({
     levelIndex: 1,
-    collectedKinds: ["attack-tool"],
+    collectedKinds,
     defeatedIds: [`${levelId}-ordinary-a`, `${levelId}-ordinary-b`],
   });
+  const save = routeMemory ? asRouteMemorySave(routed) : routed;
   const activeLevel = save.adventure?.activeLevel;
   if (!save.adventure || !activeLevel)
     throw new Error("Besties fixture requires an active era level");
@@ -323,6 +341,19 @@ describe("obby game runtime", () => {
   const warmRuntime = (): void => {
     advance();
     advance();
+  };
+
+  const advanceBestiesTo = async (
+    game: ReturnType<typeof createGame>,
+    phase: (typeof bestiesRoutinePhases)[number],
+  ): Promise<void> => {
+    for (let frame = 0; frame < 300; frame += 1) {
+      if (game.inspect().status.bestiesPhase === phase) return;
+      advance();
+      await Promise.resolve();
+      await Promise.resolve();
+    }
+    throw new Error(`Besties never entered ${phase}`);
   };
 
   it("keeps movement and actions available while reporting stale artwork", () => {
@@ -1035,7 +1066,7 @@ describe("obby game runtime", () => {
     game.dispose();
   });
 
-  it("blocks guarded Besties hits and keeps an accepted hit on its actor during later busy presses", async () => {
+  it("accepts a Besties hit during its opening warning and keeps it on the struck actor during later busy presses", async () => {
     const initial = bestiesRoutedSave();
     const bossId = initial.adventure!.activeLevel!.bossId;
     let finishHit!: (save: SaveView) => void;
@@ -1059,29 +1090,8 @@ describe("obby game runtime", () => {
     expect(game.inspect().status).toMatchObject({
       bestiesPhase: "pink-warning",
       nearEncounterId: bossId,
-      attackReady: false,
-    });
-    game.setInput("attack", true);
-    game.setInput("attack", false);
-    advance();
-    expect(onAction).not.toHaveBeenCalled();
-    expect(game.inspect().status.attackFeedback).toEqual({
-      sequence: 1,
-      outcome: "guarded",
-    });
-
-    for (
-      let frame = 0;
-      frame < 200 && game.inspect().status.bestiesPhase !== "dizzy";
-      frame += 1
-    )
-      advance();
-    expect(game.inspect().status).toMatchObject({
-      bestiesPhase: "dizzy",
-      nearEncounterId: bossId,
       attackReady: true,
     });
-
     game.setInput("attack", true);
     game.setInput("attack", false);
     advance();
@@ -1094,7 +1104,7 @@ describe("obby game runtime", () => {
       },
     });
     expect(game.inspect().status.attackFeedback).toEqual({
-      sequence: 2,
+      sequence: 1,
       outcome: "accepted",
     });
     expect(sceneState.instances[0]!.frames.at(-1)!.bestiesHitActorId).toBe(
@@ -1127,6 +1137,93 @@ describe("obby game runtime", () => {
     expect(damageFrame.bestiesHitActorId).toBe("bestie-pink");
     game.dispose();
   });
+
+  it.each(bestiesAttackCases)(
+    "dispatches an in-range $actionType during $phase and applies authoritative damage",
+    async ({ phase, input, actionType }) => {
+      const initial = bestiesRoutedSave(["attack-tool", "guard-tool"], true);
+      const bossId = initial.adventure!.activeLevel!.bossId;
+      const boss = initial.adventure!.activeLevel!.encounters.find(
+        (encounter) => encounter.id === bossId,
+      )!;
+      let authoritative = structuredClone(initial);
+      const onAction = vi.fn(async (request: GameplayActionRequest) => {
+        const next = structuredClone(authoritative);
+        next.revision += 1;
+        if (
+          request.action.type === "attack" ||
+          request.action.type === "secondary-attack"
+        ) {
+          next.adventure!.activeLevel!.encounters.find(
+            (encounter) => encounter.id === bossId,
+          )!.hp -= 3;
+        }
+        authoritative = next;
+        return next;
+      });
+      const game = createGame({
+        container: document.createElement("div"),
+        save: initial,
+        onAction,
+        onRefresh: async () => initial,
+      });
+      warmRuntime();
+      game.setInput("moveY", 1);
+      for (let frame = 0; frame < 8; frame += 1) {
+        advance();
+        await Promise.resolve();
+        await Promise.resolve();
+      }
+      game.clearInput();
+      if (phase === "black-trick") {
+        await advanceBestiesTo(game, "black-warning");
+        game.setInput("moveX", 1);
+        for (let frame = 0; frame < 15; frame += 1) {
+          advance();
+          await Promise.resolve();
+          await Promise.resolve();
+        }
+        game.clearInput();
+      }
+      await advanceBestiesTo(game, phase);
+
+      expect(game.inspect().status).toMatchObject({
+        bestiesPhase: phase,
+        nearEncounterId: bossId,
+        attackReady: true,
+        guardReady: true,
+      });
+      game.setInput(input, true);
+      game.setInput(input, false);
+      advance();
+
+      await vi.waitFor(() =>
+        expect(
+          onAction.mock.calls.filter(
+            ([request]) => request.action.type === actionType,
+          ),
+        ).toHaveLength(1),
+      );
+      expect(
+        onAction.mock.calls.find(
+          ([request]) => request.action.type === actionType,
+        )?.[0].action,
+      ).toMatchObject({ type: actionType, encounterId: bossId });
+      await vi.waitFor(() =>
+        expect(
+          game.inspect().enemies.find((enemy) => enemy.id === bossId)?.hp,
+        ).toBe(boss.hp - 3),
+      );
+      expect(game.inspect().status.attackFeedback).toMatchObject({
+        outcome: "accepted",
+        ...(actionType === "secondary-attack" ? { kind: "secondary" } : {}),
+      });
+      expect(sceneState.instances[0]!.frames.at(-1)!.bestiesHitActorId).toMatch(
+        /^bestie-(pink|black)$/,
+      );
+      game.dispose();
+    },
+  );
 
   it("keeps the composite Besties boss out of generic collision and contact", () => {
     const initial = bestiesRoutedSave();

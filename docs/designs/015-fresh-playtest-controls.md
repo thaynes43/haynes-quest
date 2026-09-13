@@ -2,6 +2,8 @@
 
 Status: Accepted for the private PLAN007 slice, amended by PLAN008 after further physical iPhone feedback on September 12, 2026. Tom's feedback is the requirement; Astra ratifies the implementation choices below. This amends DESIGN006's private reward presentation and DESIGN011's age-gated jumping. Archived journeys retain their frozen contracts.
 
+[DESIGN018](018-familiar-touch-and-recovery.md) now supersedes the touch layout, world-tap jumping, central pickup notices and manual death retry described below. These earlier details remain the PLAN007/008 historical contract; current controls use dedicated Jump and automatic memory checkpoints.
+
 ## The player experience
 
 Every private test begins fresh. **Play from the beginning** starts at age zero; **Try the Besties chapter** is a labeled shortcut into chapter two with the first chapter already completed. Leaving or reloading returns to the start page. There is no save list or save-and-leave flow in this mode.

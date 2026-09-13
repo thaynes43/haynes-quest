@@ -23,6 +23,7 @@ import {
   selectRouteMemoryLevel,
   type SelectedParodyEncounter,
 } from './parody-selection.js';
+import { bossRequiresOrdinaryDefeats } from './encounter-availability.js';
 
 export const AGE_THRESHOLDS = [4, 8, 13, 18, 25, 35, 50, 65] as const;
 export const ATTACK_COOLDOWN_MS = 600;
@@ -272,7 +273,7 @@ export function createRouteMemoryPlan(
     if (!Number.isInteger(eraYear)) throw new RangeError('Adventure start date is invalid');
     const prefix = `level-${index + 1}-${eraYear}`;
     const pickups = createEquipment(prefix, index);
-    const selection = catalogVersion === 'parody-catalog-v4'
+    const selection = (catalogVersion === 'parody-catalog-v4' || catalogVersion === 'parody-catalog-v5')
       ? selectRouteMemoryLevel(startDate, ['move', 'interact', 'jump'], catalogVersion)
       : selectParodyLevel(startDate, ['move', 'interact', 'jump'], catalogVersion);
     const encounters = createEncounters(prefix, index, selection.encounters).map((encounter) =>
@@ -683,6 +684,7 @@ function requireCurrentEncounter(
   }
   if (
     requested.role === 'boss' &&
+    bossRequiresOrdinaryDefeats('routeId' in level ? level.routeId : undefined) &&
     level.encounters.some(
       (encounter) => encounter.role === 'ordinary' && !state.encounters[encounter.id]?.defeated,
     )
@@ -726,6 +728,9 @@ function levelView(
   const ordinaryDefeated = level.encounters
     .filter((encounter) => encounter.role === 'ordinary')
     .every((encounter) => state.encounters[encounter.id]?.defeated);
+  const bossAvailableWithoutOrdinaries = !bossRequiresOrdinaryDefeats(
+    'routeId' in level ? level.routeId : undefined,
+  );
   return {
     id: level.id,
     index: level.index,
@@ -747,7 +752,11 @@ function levelView(
         ...encounter,
         hp: state.encounters[encounter.id]?.hp ?? encounter.maxHp,
         defeated,
-        available: !defeated && (encounter.role === 'ordinary' || ordinaryDefeated),
+        available: !defeated && (
+          encounter.role === 'ordinary' ||
+          bossAvailableWithoutOrdinaries ||
+          ordinaryDefeated
+        ),
       };
     }),
     bossId: level.bossId,

@@ -1,0 +1,206 @@
+{
+  "status": "passed",
+  "startedAt": "2026-09-13T03:03:26.353Z",
+  "finishedAt": "2026-09-13T03:06:26.214Z",
+  "browser": "153.0.8010.12",
+  "bundle": {
+    "path": "/assets/index-ChX7wgsN.js",
+    "bytes": 1188490,
+    "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+  },
+  "layout": [
+    {
+      "chapter": 2,
+      "courseId": "besties-playground-v2",
+      "layouts": [
+        {
+          "id": "phone-portrait",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "jump": {
+            "x": 282,
+            "y": 720,
+            "width": 96,
+            "height": 96
+          },
+          "attack": {
+            "x": 202.5,
+            "y": 634,
+            "width": 80,
+            "height": 80
+          },
+          "secondary": {
+            "x": 320,
+            "y": 606,
+            "width": 58,
+            "height": 58
+          },
+          "joystick": {
+            "x": 12,
+            "y": 644.40625,
+            "width": 171.59375,
+            "height": 171.59375
+          },
+          "header": {
+            "x": 15,
+            "y": 14,
+            "width": 360,
+            "height": 60
+          }
+        },
+        {
+          "id": "phone-landscape",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "jump": {
+            "x": 738,
+            "y": 288,
+            "width": 86,
+            "height": 86
+          },
+          "attack": {
+            "x": 644,
+            "y": 204,
+            "width": 78,
+            "height": 78
+          },
+          "secondary": {
+            "x": 768,
+            "y": 194,
+            "width": 56,
+            "height": 56
+          },
+          "joystick": {
+            "x": 20,
+            "y": 234,
+            "width": 140,
+            "height": 140
+          },
+          "header": {
+            "x": 24,
+            "y": 10,
+            "width": 796,
+            "height": 57
+          }
+        },
+        {
+          "id": "tablet-portrait",
+          "viewport": {
+            "width": 768,
+            "height": 1024
+          },
+          "jump": {
+            "x": 622,
+            "y": 872,
+            "width": 116,
+            "height": 116
+          },
+          "attack": {
+            "x": 514,
+            "y": 766,
+            "width": 100,
+            "height": 100
+          },
+          "secondary": {
+            "x": 666,
+            "y": 750,
+            "width": 72,
+            "height": 72
+          },
+          "joystick": {
+            "x": 30,
+            "y": 788,
+            "width": 200,
+            "height": 200
+          },
+          "header": {
+            "x": 24,
+            "y": 22,
+            "width": 720,
+            "height": 57
+          }
+        },
+        {
+          "id": "tablet-landscape",
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "jump": {
+            "x": 878,
+            "y": 616,
+            "width": 116,
+            "height": 116
+          },
+          "attack": {
+            "x": 770,
+            "y": 510,
+            "width": 100,
+            "height": 100
+          },
+          "secondary": {
+            "x": 922,
+            "y": 494,
+            "width": 72,
+            "height": 72
+          },
+          "joystick": {
+            "x": 30,
+            "y": 532,
+            "width": 200,
+            "height": 200
+          },
+          "header": {
+            "x": 24,
+            "y": 22,
+            "width": 976,
+            "height": 57
+          }
+        }
+      ],
+      "restoredViewport": {
+        "width": 844,
+        "height": 390
+      },
+      "helpOpenedAndClosed": true
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "responseErrors": [],
+  "coverage": "Four emulated control layouts and opening safe jump/retry on Besties chapter",
+  "safePractice": {
+    "edge": {
+      "from": "party-welcome",
+      "to": "party-terrace-1",
+      "mode": "jump"
+    },
+    "safeMissPlatformId": "besties-practice-ground",
+    "landed": {
+      "x": -4.466799999999998,
+      "y": 0,
+      "z": -5.59999999999998
+    },
+    "recoveries": 0,
+    "jumpSequenceBefore": 0,
+    "jumpSequenceAfter": 1,
+    "missTakeoff": {
+      "x": -4.45,
+      "y": 0,
+      "z": -3.68
+    },
+    "retryEdge": {
+      "from": "besties-practice-ground",
+      "to": "party-welcome",
+      "mode": "walk"
+    },
+    "hpPreserved": true,
+    "progressPreserved": true,
+    "returnedTo": "party-welcome"
+  },
+  "scope": "Real keyboard traversal and actual touch buttons, no state injection."
+}

@@ -131,7 +131,7 @@ describe('frozen dated parody selection', () => {
       .toEqual(EXPECTED_2020);
   });
 
-  it('gates the five-slot playground roster to fresh v4 route-memory selection', () => {
+  it('keeps v4 on v1 playground routes while default v5 selects only v2 routes', () => {
     const garden = selectRouteMemoryLevel('2020-01-01', ['move', 'interact', 'jump']);
     const besties = selectRouteMemoryLevel('2024-01-01', ['move', 'interact', 'jump']);
     expect({
@@ -140,7 +140,7 @@ describe('frozen dated parody selection', () => {
       ids: garden.encounters.map((entry) => entry.content.catalogEntryId),
     }).toEqual({
       periodId: 'block-party-v1',
-      routeId: 'garden-playground-v1',
+      routeId: 'garden-playground-v2',
       ids: ['mister-hiss', 'peel-patrol', 'mister-hiss', 'peel-patrol', 'drama-dragon'],
     });
     expect({
@@ -149,7 +149,7 @@ describe('frozen dated parody selection', () => {
       ids: besties.encounters.map((entry) => entry.content.catalogEntryId),
     }).toEqual({
       periodId: 'besties-obby-v1',
-      routeId: 'besties-playground-v1',
+      routeId: 'besties-playground-v2',
       ids: [
         'sir-flush-a-lot-besties',
         'peel-patrol-besties',
@@ -158,6 +158,14 @@ describe('frozen dated parody selection', () => {
         'bickering-besties',
       ],
     });
+    expect([
+      selectRouteMemoryLevel(
+        '2020-01-01', ['move', 'interact', 'jump'], 'parody-catalog-v4',
+      ).routeId,
+      selectRouteMemoryLevel(
+        '2024-01-01', ['move', 'interact', 'jump'], 'parody-catalog-v4',
+      ).routeId,
+    ]).toEqual(['garden-playground-v1', 'besties-playground-v1']);
     expect(selectParodyLevel('2020-01-01', ['move', 'interact'], 'parody-catalog-v4')
       .encounters).toHaveLength(3);
     expect(() => selectRouteMemoryLevel(
@@ -216,14 +224,20 @@ describe('frozen dated parody selection', () => {
     ]);
   });
 
-  it('archives v3 unchanged and freezes v4 with the same reviewed identities', () => {
-    expect(PARODY_CATALOG_VERSION).toBe('parody-catalog-v4');
+  it('archives v3 and v4 unchanged while freezing v5 with the same reviewed identities', () => {
+    expect(PARODY_CATALOG_VERSION).toBe('parody-catalog-v5');
     expect(Object.isFrozen(PARODY_CANDIDATES)).toBe(true);
     expect(PARODY_CANDIDATES.every(Object.isFrozen)).toBe(true);
     expect(PARODY_CANDIDATES.every((entry) => Object.isFrozen(entry.requiredAbilities)))
       .toBe(true);
-    expect(PARODY_CANDIDATES).toEqual(PARODY_CATALOGS['parody-catalog-v3']);
-    expect(PARODY_CANDIDATES).not.toBe(PARODY_CATALOGS['parody-catalog-v3']);
+    expect(PARODY_CATALOGS['parody-catalog-v4']).toEqual(
+      PARODY_CATALOGS['parody-catalog-v3'],
+    );
+    expect(PARODY_CATALOGS['parody-catalog-v4']).not.toBe(
+      PARODY_CATALOGS['parody-catalog-v3'],
+    );
+    expect(PARODY_CANDIDATES).toEqual(PARODY_CATALOGS['parody-catalog-v4']);
+    expect(PARODY_CANDIDATES).not.toBe(PARODY_CATALOGS['parody-catalog-v4']);
     expect(PARODY_PERIODS['besties-obby-v1']).toEqual({
       title: 'Besties Obby',
       subtitle: 'Pink, black and one missed high-five',

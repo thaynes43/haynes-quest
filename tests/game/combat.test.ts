@@ -207,6 +207,27 @@ describe("enemy combat simulation", () => {
     ).toBe("windup");
   });
 
+  it("activates bosses with ordinary encounters remaining only on the new playground routes", () => {
+    const initial = makeEraSave();
+    const withRoute = (routeId: string) => {
+      const save = structuredClone(initial);
+      const level = save.adventure!.activeLevel! as unknown as {
+        routeId: string;
+        encounters: Array<{ role: string; available: boolean }>;
+      };
+      level.routeId = routeId;
+      level.encounters.find((encounter) => encounter.role === "boss")!.available =
+        true;
+      return save;
+    };
+
+    expect(bossIsActive(withRoute("garden-playground-v2"))).toBe(true);
+    expect(bossIsActive(withRoute("besties-playground-v2"))).toBe(true);
+    expect(bossIsActive(withRoute("garden-playground-v1"))).toBe(false);
+    expect(bossIsActive(withRoute("besties-playground-v1"))).toBe(false);
+    expect(bossIsActive(withRoute("future-playground-v3"))).toBe(false);
+  });
+
   it.each([
     { x: 0, z: -19 },
     { x: 0, z: -18.8 },

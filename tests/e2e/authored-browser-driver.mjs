@@ -5,6 +5,7 @@ import {
   livePlatform,
   planarDistance,
   platformGateway,
+  safeMissRetryEdge,
 } from "./authored-navigation.mjs";
 
 export const delay = (milliseconds) =>
@@ -72,47 +73,38 @@ const touchPoint = (id, x, y) => ({
 
 export async function createTouchControls({ page, context }) {
   const cdp = await context.newCDPSession(page);
-  const joystick = await page.getByTestId("joystick").boundingBox();
-  assert.ok(joystick, "touch joystick is unavailable");
-  const center = {
-    x: joystick.x + joystick.width / 2,
-    y: joystick.y + joystick.height / 2,
-  };
   let nextPointerId = 1;
   let held = null;
 
   const send = (type, touchPoints) =>
     cdp.send("Input.dispatchTouchEvent", { type, touchPoints });
-  const resolveWorldTap = async () => {
-    const worldTap = await page.evaluate(() => {
-      const canvas = document.querySelector("canvas[data-quest-canvas=true]");
-      if (!canvas) return null;
-      const bounds = canvas.getBoundingClientRect();
-      for (const [xRatio, yRatio] of [
-        [0.7, 0.55],
-        [0.52, 0.5],
-        [0.82, 0.42],
-        [0.45, 0.62],
-      ]) {
-        const x = bounds.left + bounds.width * xRatio;
-        const y = bounds.top + bounds.height * yRatio;
-        if (document.elementFromPoint(x, y) === canvas) return { x, y };
-      }
-      return null;
-    });
-    assert.ok(worldTap, "no unobstructed world-tap point is available");
-    return worldTap;
+  const controlCenter = async (locator, label) => {
+    const bounds = await locator.boundingBox();
+    assert.ok(bounds, `${label} is unavailable`);
+    return {
+      x: bounds.x + bounds.width / 2,
+      y: bounds.y + bounds.height / 2,
+    };
   };
-  const movementContacts = (deltaX, deltaZ, strength = 1) => {
+  const movementContacts = async (deltaX, deltaZ, strength = 1) => {
     const magnitude = Math.hypot(deltaX, deltaZ);
     assert.ok(magnitude > 0, "zero-length touch movement requested");
+    const bounds = await page.getByTestId("joystick").boundingBox();
+    assert.ok(bounds, "touch joystick is unavailable");
+    const center = {
+      x: bounds.x + bounds.width / 2,
+      y: bounds.y + bounds.height / 2,
+    };
+    // A physical thumb can travel past the visible knob radius. Keep the
+    // gesture proportional to the rendered control at every phone/tablet size.
+    const dragRadius = bounds.width * 0.38;
     const id = nextPointerId++;
     return {
       origin: touchPoint(id, center.x, center.y),
       target: touchPoint(
         id,
-        center.x + (deltaX / magnitude) * 44 * strength,
-        center.y + (deltaZ / magnitude) * 44 * strength,
+        center.x + (deltaX / magnitude) * dragRadius * strength,
+        center.y + (deltaZ / magnitude) * dragRadius * strength,
       ),
     };
   };
@@ -124,7 +116,7 @@ export async function createTouchControls({ page, context }) {
   };
   const beginToward = async (deltaX, deltaZ, strength = 1) => {
     await release();
-    const { origin, target } = movementContacts(deltaX, deltaZ, strength);
+    const { origin, target } = await movementContacts(deltaX, deltaZ, strength);
     // The fixed game camera maps +X to joystick right and -Z to joystick up.
     held = target;
     await Promise.all([
@@ -139,13 +131,12 @@ export async function createTouchControls({ page, context }) {
     { strength = 1, milliseconds = 600 } = {},
   ) => {
     await release();
-    const worldTap = await resolveWorldTap();
-    const { origin, target } = movementContacts(deltaX, deltaZ, strength);
-    const jump = touchPoint(
-      nextPointerId++,
-      worldTap.x,
-      worldTap.y,
+    const jumpCenter = await controlCenter(
+      page.getByRole("button", { name: "Jump", exact: true }),
+      "Jump button",
     );
+    const { origin, target } = await movementContacts(deltaX, deltaZ, strength);
+    const jump = touchPoint(nextPointerId++, jumpCenter.x, jumpCenter.y);
     held = target;
     // Queue the full two-finger gesture before waiting for slow CDP command
     // acknowledgements. At software-rendered frame rates, awaiting the moved
@@ -155,8 +146,7 @@ export async function createTouchControls({ page, context }) {
     const moved = send("touchMove", [target]);
     const down = send("touchStart", [held, jump]);
     await delay(10);
-    // There is deliberately no move event for the world contact, so this
-    // requests the game's normal tap-to-jump without changing camera yaw.
+    // There is deliberately no move event for the Jump contact.
     // Chromium treats the listed contact as the released pointer while the
     // captured joystick contact stays active (covered by the existing input
     // diagnostic and used here only through the normal touch surface).
@@ -173,10 +163,14 @@ export async function createTouchControls({ page, context }) {
     beginToward,
     jumpToward,
     release,
-    async pulseToward(deltaX, deltaZ, { jump = false, milliseconds = 150 } = {}) {
+    async pulseToward(
+      deltaX,
+      deltaZ,
+      { jump = false, milliseconds = 150 } = {},
+    ) {
       if (jump) return jumpToward(deltaX, deltaZ, { milliseconds });
       await release();
-      const { origin, target } = movementContacts(deltaX, deltaZ);
+      const { origin, target } = await movementContacts(deltaX, deltaZ);
       held = target;
       const started = send("touchStart", [origin]);
       const moved = send("touchMove", [target]);
@@ -206,9 +200,7 @@ export function createHybridControls({ page }) {
     if (!horizontal) return vertical ? [vertical] : [];
     if (!vertical) return [horizontal];
     // Closed-loop pulses resolve non-45-degree approaches one axis at a time.
-    return Math.abs(deltaX) > Math.abs(deltaZ)
-      ? [horizontal]
-      : [vertical];
+    return Math.abs(deltaX) > Math.abs(deltaZ) ? [horizontal] : [vertical];
   };
   const release = async () => {
     for (const key of [...heldKeys].reverse()) await page.keyboard.up(key);
@@ -233,7 +225,11 @@ export function createHybridControls({ page }) {
         await release();
       }
     },
-    async pulseToward(deltaX, deltaZ, { jump = false, milliseconds = 150 } = {}) {
+    async pulseToward(
+      deltaX,
+      deltaZ,
+      { jump = false, milliseconds = 150 } = {},
+    ) {
       await beginToward(deltaX, deltaZ);
       try {
         if (jump) await page.keyboard.press("Space", { delay: 30 });
@@ -261,8 +257,7 @@ function pointToSegmentDistance(point, start, end) {
     0,
     Math.min(
       1,
-      ((point.x - start.x) * dx + (point.z - start.z) * dz) /
-        lengthSquared,
+      ((point.x - start.x) * dx + (point.z - start.z) * dz) / lengthSquared,
     ),
   );
   return Math.hypot(
@@ -298,6 +293,7 @@ export function createAuthoredRouteDriver({
   const edgeEvidence = [];
   const ferryEvidence = [];
   const hazardJumps = [];
+  const safeMissEvidence = [];
   const edgeAttempts = new Map();
 
   const read = async (label, { allowDocumentExit = false } = {}) => {
@@ -380,6 +376,16 @@ export function createAuthoredRouteDriver({
         await controls.release();
         return inspection;
       }
+      if (distance < 0.08 && inspection.obby.supportId !== supportId) {
+        await controls.release();
+        mark("movement:support-changed", {
+          label,
+          requestedSupportId: supportId,
+          supportId: inspection.obby.supportId,
+          position: inspection.status.position,
+        });
+        return inspection;
+      }
       const dx = target.x - inspection.status.position.x;
       const dz = target.z - inspection.status.position.z;
       const hazard = allowHazardJump
@@ -400,7 +406,9 @@ export function createAuthoredRouteDriver({
       });
     }
     await screenshot(`${label}-unreachable`);
-    throw new Error(`${label}: target unreachable; nearest distance ${best.toFixed(2)}`);
+    throw new Error(
+      `${label}: target unreachable; nearest distance ${best.toFixed(2)}`,
+    );
   };
 
   const ride = async (edge, label) => {
@@ -421,7 +429,9 @@ export function createAuthoredRouteDriver({
         const gateway = platformGateway(source, moving);
         const target = gateway.to;
         const sourceEdge = gateway.from;
-        if (planarDistance(boardInspection.status.position, sourceEdge) > 0.65) {
+        if (
+          planarDistance(boardInspection.status.position, sourceEdge) > 0.65
+        ) {
           const approached = await moveToPoint(() => sourceEdge, {
             label: `${label}-board-approach`,
             tolerance: 0.6,
@@ -483,11 +493,17 @@ export function createAuthoredRouteDriver({
         z: carried.status.position.z - ferryAfterCarry.center.z,
       };
       const offsetDrift = planarDistance(riderOffset, offsetAfter);
-      assert.ok(offsetDrift < 0.08, `${label}: player was not carried by the ferry`);
+      assert.ok(
+        offsetDrift < 0.08,
+        `${label}: player was not carried by the ferry`,
+      );
       const evidence = {
         edge,
         supportId: carried.obby.supportId,
-        platformTravel: planarDistance(ferryAtBoard.center, ferryAfterCarry.center),
+        platformTravel: planarDistance(
+          ferryAtBoard.center,
+          ferryAfterCarry.center,
+        ),
         riderOffset,
         offsetDrift,
       };
@@ -545,7 +561,8 @@ export function createAuthoredRouteDriver({
           label: `${label}-landed`,
           timeout: 4_000,
           predicate: (candidate) =>
-            (candidate.status.grounded && candidate.obby?.supportId === edge.to) ||
+            (candidate.status.grounded &&
+              candidate.obby?.supportId === edge.to) ||
             candidate.obby?.recoveries > recoveriesBefore,
         }).catch(() => null);
       } finally {
@@ -555,6 +572,115 @@ export function createAuthoredRouteDriver({
       if (landed?.obby?.supportId === edge.to) return landed;
     }
     throw new Error(`${label}: moving platform never reached its landing`);
+  };
+
+  const missToSafePlatform = async (edge, label) => {
+    assert.equal(
+      edge.mode,
+      "jump",
+      `${label}: safe miss must belong to a jump`,
+    );
+    assert.ok(
+      edge.safeMissPlatformId,
+      `${label}: jump has no declared safe miss platform`,
+    );
+    let before = await read(`${label}-before`);
+    assert.equal(
+      before.obby.supportId,
+      edge.from,
+      `${label}: expected support ${edge.from}, got ${before.obby.supportId}`,
+    );
+    const source = livePlatform(before, edge.from);
+    const target = livePlatform(before, edge.to);
+    const catchPlatform = livePlatform(before, edge.safeMissPlatformId);
+    const gateway = platformGateway(source, target);
+    const delta = {
+      x: gateway.to.x - gateway.from.x,
+      z: gateway.to.z - gateway.from.z,
+    };
+    const travelAxis = Math.abs(delta.z) >= Math.abs(delta.x) ? "z" : "x";
+    const crossAxis = travelAxis === "z" ? "x" : "z";
+    const crossHalf = source.size[crossAxis] / 2 - 0.55;
+    const targetHalf = target.size[crossAxis] / 2 + 0.4;
+    const catchHalf = catchPlatform.size[crossAxis] / 2 - 0.55;
+    const crossCandidates = [-1, 1]
+      .map(
+        (direction) =>
+          source.center[crossAxis] + direction * Math.max(0, crossHalf),
+      )
+      .filter(
+        (coordinate) =>
+          Math.abs(coordinate - target.center[crossAxis]) > targetHalf &&
+          Math.abs(coordinate - catchPlatform.center[crossAxis]) <= catchHalf,
+      );
+    assert.ok(
+      crossCandidates.length,
+      `${label}: no normal-control miss lane reaches the declared catch`,
+    );
+    const missTakeoff = {
+      ...gateway.from,
+      [crossAxis]: crossCandidates[0],
+    };
+    if (planarDistance(before.status.position, missTakeoff) > 0.5) {
+      before = await moveToPoint(() => missTakeoff, {
+        label: `${label}-approach`,
+        tolerance: 0.5,
+        supportId: edge.from,
+        allowHazardJump: false,
+        stopOnRecovery: true,
+      });
+    }
+    assert.equal(before.obby.supportId, edge.from);
+    const jumpSequence = before.status.jumpSequence;
+    const recoveries = before.obby.recoveries;
+    await controls.jumpToward(
+      travelAxis === "x" ? delta.x : 0,
+      travelAxis === "z" ? delta.z : 0,
+      { milliseconds: 600 },
+    );
+    let caught;
+    caught = await waitForInspection({
+      page,
+      screenshot,
+      label: `${label}-caught`,
+      timeout: 8_000,
+      predicate: (candidate) =>
+        (candidate.status.grounded &&
+          candidate.obby?.supportId === edge.safeMissPlatformId) ||
+        candidate.obby?.recoveries > recoveries,
+    });
+    assert.equal(
+      caught.obby.recoveries,
+      recoveries,
+      `${label}: safe miss triggered local recovery`,
+    );
+    assert.equal(
+      caught.obby.supportId,
+      edge.safeMissPlatformId,
+      `${label}: missed jump did not land on its declared catch`,
+    );
+    assert.ok(
+      caught.status.jumpSequence > jumpSequence,
+      `${label}: deliberate miss did not use the normal jump control`,
+    );
+    const retryEdge = safeMissRetryEdge(document, edge);
+    const evidence = {
+      edge: { from: edge.from, to: edge.to, mode: edge.mode },
+      safeMissPlatformId: edge.safeMissPlatformId,
+      landed: caught.status.position,
+      recoveries,
+      jumpSequenceBefore: jumpSequence,
+      jumpSequenceAfter: caught.status.jumpSequence,
+      missTakeoff,
+      retryEdge: {
+        from: retryEdge.from,
+        to: retryEdge.to,
+        mode: retryEdge.mode,
+      },
+    };
+    safeMissEvidence.push(evidence);
+    mark("jump:safe-miss", evidence);
+    return { caught, retryEdge, evidence };
   };
 
   const crossEdge = async (
@@ -735,8 +861,15 @@ export function createAuthoredRouteDriver({
   return {
     read,
     moveToPoint,
+    missToSafePlatform,
     crossEdge,
-    evidence: { edgeEvidence, ferryEvidence, hazardJumps, recoveries },
+    evidence: {
+      edgeEvidence,
+      ferryEvidence,
+      hazardJumps,
+      safeMissEvidence,
+      recoveries,
+    },
     document: () => document,
   };
 }
@@ -745,19 +878,35 @@ export function chooseFallDirection(inspection) {
   assert.ok(inspection?.obby?.supportId, "fall proof needs a supported player");
   const support = livePlatform(inspection, inspection.obby.supportId);
   const options = [
-    { dx: 1, dz: 0, distance: support.center.x + support.size.x / 2 - inspection.status.position.x },
-    { dx: -1, dz: 0, distance: inspection.status.position.x - (support.center.x - support.size.x / 2) },
-    { dx: 0, dz: 1, distance: support.center.z + support.size.z / 2 - inspection.status.position.z },
-    { dx: 0, dz: -1, distance: inspection.status.position.z - (support.center.z - support.size.z / 2) },
+    {
+      dx: 1,
+      dz: 0,
+      distance:
+        support.center.x + support.size.x / 2 - inspection.status.position.x,
+    },
+    {
+      dx: -1,
+      dz: 0,
+      distance:
+        inspection.status.position.x - (support.center.x - support.size.x / 2),
+    },
+    {
+      dx: 0,
+      dz: 1,
+      distance:
+        support.center.z + support.size.z / 2 - inspection.status.position.z,
+    },
+    {
+      dx: 0,
+      dz: -1,
+      distance:
+        inspection.status.position.z - (support.center.z - support.size.z / 2),
+    },
   ];
   for (const option of options) {
     const exit = {
-      x:
-        support.center.x +
-        option.dx * (support.size.x / 2 + 1.5),
-      z:
-        support.center.z +
-        option.dz * (support.size.z / 2 + 1.5),
+      x: support.center.x + option.dx * (support.size.x / 2 + 1.5),
+      z: support.center.z + option.dz * (support.size.z / 2 + 1.5),
     };
     option.clearance = Math.min(
       ...inspection.obby.platforms

@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 import { chromium } from "playwright";
 
 import { createJourneyDriver } from "./journey-lib.mjs";
+import { verifyControlLayouts } from "./landscape-controls.mjs";
 
 const delay = (milliseconds) =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -186,8 +187,8 @@ const report = {
   routeOnly,
   routeTraversal: hybridRoute
     ? "keyboard movement and jumps; touch UI actions"
-    : "touch joystick, world taps, and touch UI actions",
-  skippedChecks: skipBossHud ? ["boss-hud-world-tap"] : [],
+    : "touch joystick, Jump button, and touch UI actions",
+  skippedChecks: skipBossHud ? ["boss-hud-pass-through"] : [],
   layout: null,
   progress: [],
   screenshots: [],
@@ -446,8 +447,7 @@ const startPlaytest = async (chapter) => {
     .locator("canvas[data-quest-canvas=true]")
     .waitFor({ timeout: 20_000 });
   cachedWorldTapPoint = null;
-  cachedStickGeometry = null;
-  await Promise.all([worldPoint(), stickGeometry()]);
+  await Promise.all([worldPoint(), stickGeometry(), jumpPoint()]);
   const save = await waitForSave(
     (candidate) =>
       candidate.id !== priorId &&
@@ -463,7 +463,6 @@ const startPlaytest = async (chapter) => {
 const cdp = await context.newCDPSession(page);
 let nextPointerId = 1;
 let cachedWorldTapPoint = null;
-let cachedStickGeometry = null;
 const point = (id, x, y) => ({
   id,
   x,
@@ -505,19 +504,25 @@ const worldPoint = async () => {
   return cachedWorldTapPoint;
 };
 const stickGeometry = async () => {
-  if (cachedStickGeometry) return cachedStickGeometry;
-  const center = await controlCenter(page.getByTestId("joystick"));
-  cachedStickGeometry = {
+  const bounds = await page.getByTestId("joystick").boundingBox();
+  assert.ok(bounds, "touch joystick has no bounds");
+  const center = {
+    x: bounds.x + bounds.width / 2,
+    y: bounds.y + bounds.height / 2,
+  };
+  const dragRadius = bounds.width * 0.38;
+  return {
     center,
     held: {
-      left: { x: center.x - 44, y: center.y },
-      right: { x: center.x + 44, y: center.y },
-      forward: { x: center.x, y: center.y - 44 },
-      backward: { x: center.x, y: center.y + 44 },
+      left: { x: center.x - dragRadius, y: center.y },
+      right: { x: center.x + dragRadius, y: center.y },
+      forward: { x: center.x, y: center.y - dragRadius },
+      backward: { x: center.x, y: center.y + dragRadius },
     },
   };
-  return cachedStickGeometry;
 };
+const jumpPoint = () =>
+  controlCenter(page.getByRole("button", { name: "Jump", exact: true }));
 const standaloneWorldTap = async () => {
   const world = await worldPoint();
   const id = nextPointerId++;
@@ -532,9 +537,9 @@ const cancelWorldTouch = async () => {
   await delay(70);
   await sendTouch("touchCancel", []);
 };
-const cancelWorldTouchWhileHeld = async (held) => {
-  const world = await worldPoint();
-  const contact = point(nextPointerId++, world.x, world.y);
+const cancelJumpTouchWhileHeld = async (held) => {
+  const jump = await jumpPoint();
+  const contact = point(nextPointerId++, jump.x, jump.y);
   await sendTouch("touchStart", [held, contact]);
   await delay(10);
   await sendTouch("touchCancel", []);
@@ -592,10 +597,10 @@ const jumpWhileMoving = async (held) => {
     await page.keyboard.press("Space", { delay: 30 });
     return { durationMs: Date.now() - startedAt, pointerId: null };
   }
-  return tapPointWhileHeld(held, await worldPoint());
+  return tapPointWhileHeld(held, await jumpPoint());
 };
 
-const tapPassivePanelToJump = async (locator, label) => {
+const tapPassivePanelWithoutJump = async (locator, label) => {
   await locator.waitFor();
   await waitForInspection(
     (inspection) => inspection.status.grounded,
@@ -620,22 +625,20 @@ const tapPassivePanelToJump = async (locator, label) => {
   await sendTouch("touchStart", [contact]);
   await delay(10);
   await sendTouch("touchEnd", []);
-  const jumped = await waitForInspection(
-    (inspection) =>
-      inspection.status.jumpSequence > before.status.jumpSequence &&
-      !inspection.status.grounded,
-    `${label}-jump`,
+  await delay(250);
+  const after = await inspectGame();
+  assert.ok(after, `${label}: inspection missing after passive panel tap`);
+  assert.equal(
+    after.status.jumpSequence,
+    before.status.jumpSequence,
+    `${label} tap queued a jump`,
   );
   report.gestures.passivePanels ??= {};
   report.gestures.passivePanels[label] = {
     hitElement,
-    ageYears: jumped.status.ageYears,
-    jumpSequence: jumped.status.jumpSequence,
+    ageYears: after.status.ageYears,
+    jumpSequence: after.status.jumpSequence,
   };
-  await waitForInspection(
-    (inspection) => inspection.status.grounded,
-    `${label}-landed`,
-  );
 };
 
 const verifyZeroVolumeRestore = async () => {
@@ -713,6 +716,12 @@ const diagnoseHeldWorldTap = async () => {
   const after = await inspectGame();
   const pointerTrace = await page.evaluate(() => window.__questPointerTrace);
   await endTouches();
+  assert.equal(
+    after.status.jumpSequence,
+    before.status.jumpSequence,
+    "world tap queued a jump while the joystick was held",
+  );
+  assert.ok(after.input.moveY > 0.9, "world tap interrupted the held joystick");
   report.gestures.heldWorldTapDiagnostic = {
     tap,
     beforeJumpSequence: before.status.jumpSequence,
@@ -722,22 +731,202 @@ const diagnoseHeldWorldTap = async () => {
     groundedAfterTap: after.status.grounded,
     pointerTrace,
   };
-  mark("input-only:complete", report.gestures.heldWorldTapDiagnostic);
+  mark("input-only:world-tap", report.gestures.heldWorldTapDiagnostic);
+};
+
+const diagnoseHeldJumpButton = async () => {
+  const before = await waitForInspection(
+    (inspection) => inspection.status.grounded,
+    "input-diagnostic-jump-grounded",
+  );
+  const held = await beginStick("forward", 0.3);
+  await waitForInspection(
+    (inspection) => inspection.input.moveY > 0.1,
+    "input-diagnostic-jump-held",
+  );
+  const tap = await tapPointWhileHeld(held, await jumpPoint());
+  const airborne = await waitForInspection(
+    (inspection) =>
+      inspection.input.moveY > 0.1 &&
+      inspection.status.jumpSequence > before.status.jumpSequence &&
+      Math.hypot(
+        inspection.status.position.x - before.status.position.x,
+        inspection.status.position.z - before.status.position.z,
+      ) > 0.08 &&
+      !inspection.status.grounded,
+    "input-diagnostic-jump-airborne",
+  );
+  await endTouches();
+  await waitForInspection(
+    (inspection) => inspection.input.moveY === 0,
+    "input-diagnostic-jump-release",
+  );
+  const landed = await waitForInspection(
+    (inspection) => inspection.status.grounded,
+    "input-diagnostic-jump-landed",
+  );
+  await delay(220);
+  const settled = await inspectGame();
+  assert.equal(
+    settled.status.jumpSequence,
+    landed.status.jumpSequence,
+    "released Jump contact repeated after landing",
+  );
+  report.gestures.heldJumpButtonDiagnostic = {
+    tap,
+    heldMoveY: airborne.input.moveY,
+    airborneY: airborne.status.position.y,
+    planarDistance: Math.hypot(
+      airborne.status.position.x - before.status.position.x,
+      airborne.status.position.z - before.status.position.z,
+    ),
+    jumpSequence: airborne.status.jumpSequence,
+    releasedMoveY: settled.input.moveY,
+  };
+};
+
+const diagnoseRotationCancellation = async () => {
+  const before = await waitForInspection(
+    (inspection) => inspection.status.grounded,
+    "input-diagnostic-rotation-grounded",
+  );
+  const held = await beginStick("right", 0.3);
+  const active = await waitForInspection(
+    (inspection) => inspection.input.moveX > 0.1,
+    "input-diagnostic-rotation-held",
+  );
+  await page.setViewportSize({ width: 844, height: 390 });
+  cachedWorldTapPoint = null;
+  const cleared = await waitForInspection(
+    (inspection) => inspection.input.moveX === 0,
+    "input-diagnostic-rotation-cleared",
+  );
+  await endTouches();
+  assert.equal(
+    cleared.status.jumpSequence,
+    before.status.jumpSequence,
+    "rotation queued a jump",
+  );
+  report.gestures.rotationCancellation = {
+    heldContactId: held.id,
+    moveXBefore: active.input.moveX,
+    moveXAfter: cleared.input.moveX,
+    jumpSequence: cleared.status.jumpSequence,
+  };
+  await page.setViewportSize({ width: 390, height: 844 });
+  cachedWorldTapPoint = null;
+  await delay(180);
+};
+
+const diagnoseSameOrientationResize = async () => {
+  const before = await waitForInspection(
+    (inspection) => inspection.status.grounded,
+    "input-diagnostic-resize-grounded",
+  );
+  const held = await beginStick("right", 0.3);
+  const active = await waitForInspection(
+    (inspection) => inspection.input.moveX > 0.1,
+    "input-diagnostic-resize-held",
+  );
+  await page.setViewportSize({ width: 360, height: 844 });
+  cachedWorldTapPoint = null;
+  const rebased = await waitForInspection(
+    (inspection) =>
+      inspection.input.moveX > 0.1 &&
+      Math.hypot(
+        inspection.status.position.x - active.status.position.x,
+        inspection.status.position.z - active.status.position.z,
+      ) > 0.08,
+    "input-diagnostic-resize-rebased",
+  );
+  await endTouches();
+  const released = await waitForInspection(
+    (inspection) => inspection.input.moveX === 0,
+    "input-diagnostic-resize-released",
+  );
+  assert.equal(
+    released.status.jumpSequence,
+    before.status.jumpSequence,
+    "same-orientation resize queued a jump",
+  );
+  report.gestures.sameOrientationResize = {
+    heldContactId: held.id,
+    viewportBefore: { width: 390, height: 844 },
+    viewportAfter: { width: 360, height: 844 },
+    moveXBefore: active.input.moveX,
+    moveXAfter: rebased.input.moveX,
+    moveXReleased: released.input.moveX,
+    planarDistance: Math.hypot(
+      rebased.status.position.x - active.status.position.x,
+      rebased.status.position.z - active.status.position.z,
+    ),
+    jumpSequence: released.status.jumpSequence,
+  };
+  await page.setViewportSize({ width: 390, height: 844 });
+  cachedWorldTapPoint = null;
+  await delay(180);
+};
+
+const diagnoseJumpCancellation = async () => {
+  const before = await waitForInspection(
+    (inspection) => inspection.status.grounded,
+    "input-diagnostic-cancel-grounded",
+  );
+  const held = await beginStick("left", 0.3);
+  const active = await waitForInspection(
+    (inspection) => inspection.input.moveX < -0.1,
+    "input-diagnostic-cancel-held",
+  );
+  await cancelJumpTouchWhileHeld(held);
+  const cancelled = await waitForInspection(
+    (inspection) => inspection.input.moveX === 0,
+    "input-diagnostic-cancel-cleared",
+  );
+  assert.ok(
+    cancelled.status.jumpSequence <= before.status.jumpSequence + 1,
+    "cancelled Jump contact queued more than one jump",
+  );
+  const landed = await waitForInspection(
+    (inspection) => inspection.status.grounded,
+    "input-diagnostic-cancel-landed",
+  );
+  await delay(220);
+  const settled = await inspectGame();
+  assert.equal(
+    settled.status.jumpSequence,
+    landed.status.jumpSequence,
+    "cancelled Jump contact repeated after landing",
+  );
+  report.gestures.jumpCancellation = {
+    heldContactId: held.id,
+    moveXBefore: active.input.moveX,
+    moveXAfter: cancelled.input.moveX,
+    jumpSequenceBefore: before.status.jumpSequence,
+    jumpSequenceAfter: cancelled.status.jumpSequence,
+  };
 };
 
 const recoverIfFallen = async () => {
-  const retry = page.getByRole("button", { name: "Try this level again" });
-  if ((await retry.count()) && (await retry.isVisible())) {
-    report.recoveries.combatRetries += 1;
-    await retry.tap();
-    await waitForInspection(
-      (inspection) => inspection.status.phase === "exploring",
-      "retry-level",
-      15_000,
-    );
-    return true;
-  }
-  return false;
+  if (latestSave?.adventure?.phase !== "fallen") return false;
+  const fallenRevision = latestSave.revision;
+  assert.equal(
+    await page.getByRole("dialog").count(),
+    0,
+    "combat defeat opened a blocking retry dialog",
+  );
+  report.recoveries.combatRetries += 1;
+  await waitForSave(
+    (save) =>
+      save.revision > fallenRevision && save.adventure.phase === "exploring",
+    "automatic-checkpoint-recovery",
+    15_000,
+  );
+  await waitForInspection(
+    (inspection) => inspection.status.phase === "exploring",
+    "automatic-checkpoint-recovery-rendered",
+    15_000,
+  );
+  return true;
 };
 
 const observedObbyRecoveries = new Map();
@@ -870,7 +1059,7 @@ const crossRunwaySweeper = async (label) => {
         return false;
       }
       if (!jumped && inspection.status.position.z <= -12.25) {
-        mark(`move:${label}:runway-world-tap`, {
+        mark(`move:${label}:runway-jump-button`, {
           position: inspection.status.position,
           hazardAngle: hazard.angle,
           jumpSequence: inspection.status.jumpSequence,
@@ -1024,13 +1213,13 @@ const moveTo = async (targetFor, done, label, maxSteps = 180) => {
       const jumpIsDue = routeJumpIsDue(inspection, direction);
       if (jumpIsDue && !jumpZoneActive) {
         const jumpSequenceBefore = inspection.status.jumpSequence;
-        mark(`move:${label}:world-tap`, {
+        mark(`move:${label}:jump-button`, {
           position: inspection.status.position,
           checkpointId: inspection.obby?.checkpointId,
           jumpSequence: jumpSequenceBefore,
         });
         const tap = await jumpWhileMoving(held);
-        mark(`move:${label}:world-tap-dispatched`, {
+        mark(`move:${label}:jump-button-dispatched`, {
           positionAtRequest: inspection.status.position,
           jumpSequenceBefore,
           tapDurationMs: tap.durationMs,
@@ -1223,17 +1412,13 @@ const summarizeBestiesVisuals = (tracker) => ({
 
 const verifyBestiesArtworkRecovery = async () => {
   mark("besties-artwork:fallback");
+  let helpDialog = null;
   if (pausedArtworkRetry) {
-    // Let the actual boss knock the standing player out. Verify the retry
-    // without resuming physics or pressing it a second time.
-    await waitForSave(
-      (save) => save.adventure.phase === "fallen",
-      "paused-artwork-fallen",
-      90_000,
-    );
-    await page
-      .getByRole("dialog", { name: "Take a breath. Try again." })
-      .waitFor();
+    await page.getByRole("button", { name: "How to play" }).tap();
+    helpDialog = page.getByRole("dialog", {
+      name: "Explore. Prepare. Face the era.",
+    });
+    await helpDialog.waitFor();
   }
   await page
     .getByText("Some artwork couldn’t load.")
@@ -1261,8 +1446,21 @@ const verifyBestiesArtworkRecovery = async () => {
     20_000,
   );
   if (pausedArtworkRetry) {
-    assert.equal(beforeRetry.status.phase, "fallen");
-    assert.equal(afterRetry.status.phase, "fallen");
+    assert.equal(afterRetry.status.phase, beforeRetry.status.phase);
+    assert.equal(
+      afterRetry.obby.timeSeconds,
+      beforeRetry.obby.timeSeconds,
+      "artwork retry advanced physics while Help was open",
+    );
+    assert.deepEqual(
+      afterRetry.status.position,
+      beforeRetry.status.position,
+      "artwork retry moved the player while Help was open",
+    );
+    await helpDialog
+      .getByRole("button", { name: "Back to the adventure" })
+      .tap();
+    await helpDialog.waitFor({ state: "detached" });
     report.pausedArtworkRetry = {
       phase: afterRetry.status.phase,
       retryPresses: 1,
@@ -1271,6 +1469,8 @@ const verifyBestiesArtworkRecovery = async () => {
       loadingAfter: afterRetry.status.mediaLoading,
       warningHidden: true,
       remainedPaused: true,
+      pauseSurface: "help",
+      timeSeconds: afterRetry.obby.timeSeconds,
     };
   }
   report.injectedArtworkFailure = {
@@ -1492,11 +1692,7 @@ const playChapter = async (expectedAge, nextAge, index) => {
     `chapter-${index + 1}-active-route`,
   );
   if (index === 0 && !report.gestures.passivePanels) {
-    await tapPassivePanelToJump(page.locator(".era-hud"), "age-hud");
-    await tapPassivePanelToJump(
-      page.locator(".era-objective"),
-      "objective-hud",
-    );
+    await tapPassivePanelWithoutJump(page.locator(".era-hud"), "age-hud");
   }
 
   await collectPickup("attack-tool", `chapter-${index + 1}-attack-tool`);
@@ -1542,7 +1738,7 @@ const playChapter = async (expectedAge, nextAge, index) => {
     "boss approached before both ordinary encounters were defeated",
   );
   if (index === 0 && !skipBossHud)
-    await tapPassivePanelToJump(page.locator(".boss-hud"), "boss-hud");
+    await tapPassivePanelWithoutJump(page.locator(".boss-hud"), "boss-hud");
   const bossFight = await fight(
     "boss",
     `chapter-${index + 1}-boss`,
@@ -1663,85 +1859,13 @@ const verifyHeldAttackDamage = async () => {
   }
 };
 
-const verifyLandscapeControls = async () => {
-  await collectPickup("attack-tool", "landscape-attack-tool");
-  await collectPickup("guard-tool", "landscape-guard-tool");
+const verifyResponsiveControls = async () => {
+  await collectPickup("attack-tool", "responsive-controls-attack-tool");
+  await collectPickup("guard-tool", "responsive-controls-guard-tool");
   await verifyHeldAttackDamage();
-  await page.setViewportSize({ width: 844, height: 390 });
+  report.layout = await verifyControlLayouts({ page, screenshot });
   cachedWorldTapPoint = null;
-  cachedStickGeometry = null;
-  await delay(350);
-
-  const attack = page.getByRole("button", { name: "Attack", exact: true });
-  const bash = page.getByRole("button", { name: "Bash", exact: true });
-  const joystick = page.getByTestId("joystick");
-  const header = page.locator(".game-header");
-  await Promise.all([
-    attack.waitFor(),
-    bash.waitFor(),
-    joystick.waitFor(),
-    header.waitFor(),
-  ]);
-  const [attackBox, bashBox, joystickBox, headerBox] = await Promise.all([
-    attack.boundingBox(),
-    bash.boundingBox(),
-    joystick.boundingBox(),
-    header.boundingBox(),
-  ]);
-  assert.ok(attackBox && bashBox && joystickBox && headerBox);
-  const withinViewport = (box) =>
-    box.x >= 0 &&
-    box.y >= 0 &&
-    box.x + box.width <= 844 &&
-    box.y + box.height <= 390;
-  const overlapArea = (left, right) =>
-    Math.max(
-      0,
-      Math.min(left.x + left.width, right.x + right.width) -
-        Math.max(left.x, right.x),
-    ) *
-    Math.max(
-      0,
-      Math.min(left.y + left.height, right.y + right.height) -
-        Math.max(left.y, right.y),
-    );
-  for (const box of [attackBox, bashBox, joystickBox, headerBox])
-    assert.equal(withinViewport(box), true, "landscape control left viewport");
-  assert.ok(
-    attackBox.width * attackBox.height > bashBox.width * bashBox.height,
-    "landscape Attack target was not larger than Bash",
-  );
-  for (const actionBox of [attackBox, bashBox]) {
-    assert.equal(overlapArea(actionBox, joystickBox), 0);
-    assert.equal(overlapArea(actionBox, headerBox), 0);
-  }
-  await screenshot("landscape-controls");
-
-  await page.getByRole("button", { name: "How to play" }).tap();
-  const dialog = page.getByRole("dialog", {
-    name: "Explore. Prepare. Face the era.",
-  });
-  await dialog.waitFor();
-  const close = dialog.getByRole("button", { name: "Back to the adventure" });
-  await close.waitFor();
-  assert.equal(await close.isVisible(), true);
-  await screenshot("landscape-help");
-  await close.tap();
-  await dialog.waitFor({ state: "detached" });
-
-  report.layout = {
-    viewport: { width: 844, height: 390 },
-    attack: attackBox,
-    bash: bashBox,
-    joystick: joystickBox,
-    header: headerBox,
-    helpOpenedAndClosed: true,
-  };
-  await page.setViewportSize({ width: 390, height: 844 });
-  cachedWorldTapPoint = null;
-  cachedStickGeometry = null;
-  await delay(250);
-  mark("landscape:complete", report.layout);
+  mark("responsive-controls:complete", report.layout);
 };
 
 const assertNoUnexpectedBrowserErrors = () => {
@@ -1810,7 +1934,7 @@ try {
       false,
       `muted gesture reached output: ${JSON.stringify(muted)}`,
     );
-    report.audio.mutedJump = muted;
+    report.audio.mutedWorldTap = muted;
     await resetAudioProbe();
     await page.getByRole("button", { name: "Enable sound" }).tap();
     await page.getByRole("button", { name: "Mute sound" }).waitFor();
@@ -1866,22 +1990,28 @@ try {
     );
     const beforeWorldTap = await inspectGame();
     await standaloneWorldTap();
-    const worldJump = await waitForInspection(
-      (inspection) =>
-        !inspection.status.grounded &&
-        inspection.status.position.y > beforeWorldTap.status.position.y + 0.08,
-      "age-zero-world-jump",
+    await delay(250);
+    const afterWorldTap = await inspectGame();
+    assert.ok(afterWorldTap, "world-tap inspection missing");
+    assert.equal(
+      afterWorldTap.status.jumpSequence,
+      beforeWorldTap.status.jumpSequence,
+      "empty scenery tap queued a jump",
+    );
+    assert.equal(afterWorldTap.status.grounded, true);
+    assert.ok(
+      Math.abs(
+        afterWorldTap.status.position.y - beforeWorldTap.status.position.y,
+      ) < 0.03,
+      "empty scenery tap moved the player vertically",
     );
     report.gestures.worldTapAtAgeZero = {
-      age: worldJump.status.ageYears,
-      startY: beforeWorldTap.status.position.y,
-      airborneY: worldJump.status.position.y,
+      age: afterWorldTap.status.ageYears,
+      before: beforeWorldTap.status.position,
+      after: afterWorldTap.status.position,
+      jumpSequence: afterWorldTap.status.jumpSequence,
     };
-    assert.equal(worldJump.status.ageYears, 0);
-    await waitForInspection(
-      (inspection) => inspection.status.grounded,
-      "world-tap-landed",
-    );
+    assert.equal(afterWorldTap.status.ageYears, 0);
 
     const initialId = latestSave.id;
     await page.getByRole("button", { name: "Leave playtest" }).tap();
@@ -1914,7 +2044,8 @@ try {
       "held-stick-attack",
     );
     const jumpSequence = simultaneousAttack.status.jumpSequence;
-    const jumpTouch = await tapPointWhileHeld(held, await worldPoint());
+    const jumpStart = simultaneousAttack.status.position;
+    const jumpTouch = await tapPointWhileHeld(held, await jumpPoint());
     report.gestures.heldJumpTouch = jumpTouch;
     report.gestures.heldJumpPointerTrace = await page.evaluate(
       () => window.__questPointerTrace,
@@ -1923,8 +2054,12 @@ try {
       (inspection) =>
         inspection.input.moveX < -0.1 &&
         inspection.status.jumpSequence > jumpSequence &&
+        Math.hypot(
+          inspection.status.position.x - jumpStart.x,
+          inspection.status.position.z - jumpStart.z,
+        ) > 0.08 &&
         !inspection.status.grounded,
-      "held-stick-world-jump",
+      "held-stick-jump-button",
     );
     await endTouches();
     report.gestures.simultaneous = {
@@ -1932,8 +2067,27 @@ try {
       heldMoveXDuringAttack: simultaneousAttack.input.moveX,
       heldMoveXDuringJump: simultaneousJump.input.moveX,
       airborneY: simultaneousJump.status.position.y,
+      planarDistance: Math.hypot(
+        simultaneousJump.status.position.x - jumpStart.x,
+        simultaneousJump.status.position.z - jumpStart.z,
+      ),
       jumpSequence: simultaneousJump.status.jumpSequence,
     };
+    await waitForInspection(
+      (inspection) => inspection.input.moveX === 0,
+      "held-stick-jump-release",
+    );
+    const landedAfterJump = await waitForInspection(
+      (inspection) => inspection.status.grounded,
+      "held-stick-jump-landed",
+    );
+    await delay(220);
+    const settledAfterJump = await inspectGame();
+    assert.equal(
+      settledAfterJump.status.jumpSequence,
+      landedAfterJump.status.jumpSequence,
+      "released Jump contact repeated after landing",
+    );
     await waitForInspection(
       (inspection) => inspection.status.grounded,
       "pre-held-stick-cancel",
@@ -1944,25 +2098,64 @@ try {
       (inspection) => inspection.input.moveX < -0.1,
       "held-stick-cancel",
     );
-    await cancelWorldTouchWhileHeld(heldForCancel);
+    await cancelJumpTouchWhileHeld(heldForCancel);
     await delay(180);
     const settledAfterCancel = await inspectGame();
-    assert.equal(
-      settledAfterCancel.status.jumpSequence,
-      beforeHeldCancel.status.jumpSequence,
-      "cancelled world pointer queued a jump while the joystick was held",
+    assert.ok(
+      settledAfterCancel.status.jumpSequence <=
+        beforeHeldCancel.status.jumpSequence + 1,
+      "cancelled Jump contact queued more than one jump",
     );
     assert.equal(
       settledAfterCancel.input.moveX,
       0,
       "touch cancellation did not clear the cancelled joystick contact",
     );
-    report.gestures.simultaneous.cancelledWorldPointer = {
+    const cancelledJumpSequence = settledAfterCancel.status.jumpSequence;
+    await waitForInspection(
+      (inspection) => inspection.status.grounded,
+      "cancelled-jump-landed",
+    );
+    await delay(220);
+    assert.equal(
+      (await inspectGame()).status.jumpSequence,
+      cancelledJumpSequence,
+      "cancelled Jump contact repeated after landing",
+    );
+    report.gestures.simultaneous.cancelledJumpPointer = {
       heldContactId: heldForCancel.id,
       heldMoveXBeforeCancel: heldAfterCancel.input.moveX,
       moveXAfterCancel: settledAfterCancel.input.moveX,
       jumpSequence: settledAfterCancel.status.jumpSequence,
     };
+
+    const beforeRotation = await inspectGame();
+    const heldForRotation = await beginStick("right", 0.3);
+    const heldBeforeRotation = await waitForInspection(
+      (inspection) => inspection.input.moveX > 0.1,
+      "held-stick-before-rotation",
+    );
+    await page.setViewportSize({ width: 844, height: 390 });
+    cachedWorldTapPoint = null;
+    const afterRotation = await waitForInspection(
+      (inspection) => inspection.input.moveX === 0,
+      "rotation-cleared-held-stick",
+    );
+    await endTouches();
+    assert.equal(
+      afterRotation.status.jumpSequence,
+      beforeRotation.status.jumpSequence,
+      "rotation queued a jump",
+    );
+    report.gestures.rotationCancellation = {
+      heldContactId: heldForRotation.id,
+      moveXBefore: heldBeforeRotation.input.moveX,
+      moveXAfter: afterRotation.input.moveX,
+      jumpSequence: afterRotation.status.jumpSequence,
+    };
+    await page.setViewportSize({ width: 390, height: 844 });
+    cachedWorldTapPoint = null;
+    await delay(180);
 
     await page.reload({ waitUntil: "domcontentloaded" });
     await page.locator("canvas").waitFor({ state: "detached" });
@@ -1994,18 +2187,19 @@ try {
       chapter: routeStartChapter,
     });
     if (landscapeOnly) {
-      await verifyLandscapeControls();
+      await verifyResponsiveControls();
       assertNoUnexpectedBrowserErrors();
       throw new LandscapeVerified();
     }
     if (inputOnly) {
       await verifyZeroVolumeRestore();
-      await tapPassivePanelToJump(page.locator(".era-hud"), "age-hud");
-      await tapPassivePanelToJump(
-        page.locator(".era-objective"),
-        "objective-hud",
-      );
+      await tapPassivePanelWithoutJump(page.locator(".era-hud"), "age-hud");
       await diagnoseHeldWorldTap();
+      await diagnoseHeldJumpButton();
+      await diagnoseJumpCancellation();
+      await diagnoseSameOrientationResize();
+      await diagnoseRotationCancellation();
+      mark("input-only:complete", report.gestures);
       throw new InputDiagnosticComplete();
     }
     if (routeStartChapter === 1) await verifyZeroVolumeRestore();

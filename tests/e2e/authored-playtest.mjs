@@ -14,16 +14,19 @@ import {
 import {
   authoredDocumentFromInspection,
   buildTraversalPlan,
+  findPlatformPath,
   planarDistance,
   summarizeAuthoredCourse,
 } from "./authored-navigation.mjs";
 
-import { verifyLandscapeControls } from "./landscape-controls.mjs";
+import { verifyControlLayouts } from "./landscape-controls.mjs";
 
 import { createPausedArtworkProbe } from "./paused-artwork-recovery.mjs";
 
 class ControlsVerified extends Error {}
 const controlsOnly = process.env.QUEST_E2E_CONTROLS_ONLY === "true";
+const retryTimeoutProbe = process.env.QUEST_E2E_RETRY_TIMEOUT_PROBE === "true";
+const bossGateProbe = process.env.QUEST_E2E_BOSS_GATE_PROBE === "true";
 
 const pausedArtworkRetry =
   process.env.QUEST_E2E_PAUSED_ARTWORK_RETRY === "true";
@@ -49,13 +52,19 @@ const report = {
   url,
   routeStartChapter,
   coverage: controlsOnly
-    ? "authored-first-pickups-and-landscape-controls"
+    ? "authored-first-pickups-and-responsive-controls"
     : "full-journey",
   layout: [],
   browser: null,
   bundle: null,
   pausedArtworkRetry,
   injectedArtworkFailure: null,
+  retryTimeoutProbe: {
+    enabled: retryTimeoutProbe,
+    stalls: [],
+    manualReturn: null,
+  },
+  bossGateProbe: null,
   expectedFaults: [],
   controls: "real keyboard route movement/jumps and touch combat buttons",
   relatedTouchDiagnostic:
@@ -123,6 +132,33 @@ await context.addInitScript(() => {
     );
   }
 });
+let stalledRetryRequests = 0;
+const stalledRetryPayloads = [];
+let retryTimeoutProbeArmed = false;
+if (retryTimeoutProbe) {
+  await context.route("**/api/saves/*/actions", async (route) => {
+    const request = route.request();
+    const action = request.postDataJSON()?.action;
+    if (
+      !retryTimeoutProbeArmed ||
+      action?.type !== "retry-level" ||
+      stalledRetryRequests >= 2
+    ) {
+      await route.continue();
+      return;
+    }
+    stalledRetryRequests += 1;
+    const payload = request.postDataJSON();
+    stalledRetryPayloads.push(payload);
+    const entry = { attempt: stalledRetryRequests, heldMs: null };
+    report.retryTimeoutProbe.stalls.push(entry);
+    mark("retry-timeout:stalled", { attempt: entry.attempt });
+    const startedAt = Date.now();
+    await delay(8_500);
+    entry.heldMs = Date.now() - startedAt;
+    await route.abort("timedout").catch(() => undefined);
+  });
+}
 const page = await context.newPage();
 const pausedArtworkProbe = pausedArtworkRetry
   ? await createPausedArtworkProbe(page)
@@ -137,6 +173,86 @@ const screenshot = async (name) => {
   const path = `${outDir}/${String(++screenshotSequence).padStart(2, "0")}-${safe}.png`;
   await page.screenshot({ path, fullPage: true });
   report.screenshots.push(path);
+};
+
+const tapProbeControl = async (name, status) => {
+  const button = page.getByRole("button", { name, exact: true });
+  const dom = await button.evaluate((element) => {
+    const bounds = element.getBoundingClientRect();
+    const point = {
+      x: bounds.x + bounds.width / 2,
+      y: bounds.y + bounds.height / 2,
+    };
+    const hit = document.elementFromPoint(point.x, point.y);
+    const style = getComputedStyle(element);
+    return {
+      ariaLabel: element.getAttribute("aria-label"),
+      className: element.className,
+      disabled: element instanceof HTMLButtonElement && element.disabled,
+      visible:
+        bounds.width > 0 &&
+        bounds.height > 0 &&
+        style.display !== "none" &&
+        style.visibility !== "hidden",
+      topmost:
+        hit === element || (hit instanceof Node && element.contains(hit)),
+      topmostElement:
+        hit instanceof Element
+          ? {
+              tagName: hit.tagName,
+              ariaLabel: hit.getAttribute("aria-label"),
+              className: hit.className,
+            }
+          : null,
+      bounds: {
+        x: bounds.x,
+        y: bounds.y,
+        width: bounds.width,
+        height: bounds.height,
+      },
+      point,
+    };
+  });
+  const statusSnapshot = {
+    nearEncounterId: status.nearEncounterId,
+    attackReady: status.attackReady,
+    guardReady: status.guardReady,
+    bossEngaged: status.bossEngaged,
+    attackFeedback: status.attackFeedback,
+  };
+  try {
+    await button.tap({ timeout: 1_000 });
+    const evidence = {
+      name,
+      method: "playwright-locator-tap",
+      fallbackUsed: false,
+      dom,
+      status: statusSnapshot,
+      locatorTapError: null,
+    };
+    mark("boss-probe:control-tapped", evidence);
+    return evidence;
+  } catch (error) {
+    const locatorTapError = {
+      name: error instanceof Error ? error.name : "Error",
+      message: error instanceof Error ? error.message : String(error),
+    };
+    const evidence = {
+      name,
+      method: "physical-touchscreen-center",
+      fallbackUsed: true,
+      dom,
+      status: statusSnapshot,
+      locatorTapError,
+    };
+    mark("boss-probe:locator-tap-failed", evidence);
+    assert.equal(dom.visible, true, `${name} is not visible`);
+    assert.equal(dom.disabled, false, `${name} is disabled`);
+    assert.equal(dom.topmost, true, `${name} is obscured at its center`);
+    await page.touchscreen.tap(dom.point.x, dom.point.y);
+    mark("boss-probe:control-tapped", evidence);
+    return evidence;
+  }
 };
 
 const close = async () => {
@@ -212,8 +328,11 @@ const waitForSave = async (
 
 const saveProgress = (save) => ({
   ageYears: save.ageYears,
+  abilities: [...save.abilities],
   phase: save.adventure.phase,
   completedLevelIds: [...save.adventure.completedLevelIds],
+  recoveredIds: [...save.recoveredIds],
+  equippedId: save.adventure.equippedId,
   inventory: save.adventure.inventory.map(({ id, kind, tier, collected }) => ({
     id,
     kind,
@@ -397,6 +516,8 @@ async function playChapter(chapter) {
     combat: [],
     branch: null,
     recovery: null,
+    safeMiss: null,
+    deathRecovery: null,
     traversal: null,
   };
   const initial = await waitForInspection({
@@ -409,7 +530,7 @@ async function playChapter(chapter) {
   });
   const document = authoredDocumentFromInspection(initial);
   const expectedId =
-    chapter === 1 ? "garden-playground-v1" : "besties-playground-v1";
+    chapter === 1 ? "garden-playground-v2" : "besties-playground-v2";
   assert.equal(document.id, expectedId);
   assert.equal(initial.obby.routeId, expectedId);
   chapterReport.course = summarizeAuthoredCourse(document);
@@ -440,6 +561,8 @@ async function playChapter(chapter) {
   const visitedPlatforms = [];
   const processed = new Set();
   let recoveryProved = false;
+  let safeMissProved = false;
+  let deathRecoveryProved = false;
   let primaryDamage = 0;
   let secondaryDamage = 0;
   const chapterMemoryIds = {
@@ -453,13 +576,45 @@ async function playChapter(chapter) {
     label,
     targetFor = () => anchor.position,
     done = null,
-  ) =>
-    driver.moveToPoint(targetFor, {
-      label,
-      tolerance: 0.32,
-      supportId: anchor.platformId,
-      done,
-    });
+  ) => {
+    for (let recoveryAttempt = 0; recoveryAttempt < 3; recoveryAttempt += 1) {
+      let current = await driver.read(`${label}-route-${recoveryAttempt + 1}`);
+      if (done && (await done(current))) return current;
+      if (current.obby.supportId !== anchor.platformId) {
+        const route = findPlatformPath(
+          document,
+          current.obby.supportId,
+          anchor.platformId,
+        );
+        for (const [edgeIndex, edge] of route.entries()) {
+          current = await driver.crossEdge(
+            { ...edge, index: edgeIndex },
+            `${label}-recovery-edge-${edgeIndex + 1}`,
+          );
+          if (current.obby.supportId !== edge.to) break;
+        }
+        if (current.obby.supportId !== anchor.platformId) continue;
+      }
+      const recoveryCount = current.obby.recoveries;
+      const reached = await driver.moveToPoint(targetFor, {
+        label,
+        tolerance: 0.32,
+        supportId: anchor.platformId,
+        stopOnRecovery: true,
+        done,
+      });
+      if (done && (await done(reached))) return reached;
+      if (
+        reached.obby.supportId === anchor.platformId &&
+        reached.obby.recoveries === recoveryCount
+      ) {
+        return reached;
+      }
+    }
+    throw new Error(
+      `${label}: repeated recovery prevented reaching its anchor`,
+    );
+  };
 
   const collectPickup = async (kind, anchor) => {
     if (
@@ -573,13 +728,23 @@ async function playChapter(chapter) {
   };
 
   const recoverCombat = async (role) => {
-    const retry = page.getByRole("button", { name: "Try this level again" });
-    if ((await retry.count()) && (await retry.isVisible())) {
-      await retry.tap();
+    if (latestSave.adventure.phase === "fallen") {
+      const fallenRevision = latestSave.revision;
+      assert.equal(
+        await page.getByRole("dialog").count(),
+        0,
+        "combat defeat opened a blocking retry dialog",
+      );
+      await waitForSave(
+        (candidate) =>
+          candidate.adventure.phase === "exploring" &&
+          candidate.revision > fallenRevision,
+        `chapter-${chapter}-${role}-automatic-retry-save`,
+      );
       await waitForInspection({
         page,
         screenshot,
-        label: `chapter-${chapter}-${role}-retry`,
+        label: `chapter-${chapter}-${role}-automatic-retry`,
         predicate: (inspection) => inspection.status.phase === "exploring",
       });
       return true;
@@ -600,6 +765,8 @@ async function playChapter(chapter) {
     let sawDizzy = false;
     let capturedDizzy = false;
     let combatRetries = 0;
+    let nonDizzyDamage = null;
+    const hitReactions = [];
 
     const approach = async () => {
       await moveToAnchor(
@@ -726,6 +893,7 @@ async function playChapter(chapter) {
       }
       const beforeHp = encounter.hp;
       const beforeRevision = latestSave.revision;
+      const bestiesPhaseAtAttack = inspection.status.bestiesPhase;
       if (!(await controls.tapButton(name))) {
         await delay(80);
         continue;
@@ -745,6 +913,28 @@ async function playChapter(chapter) {
       const afterHp = changed.adventure.activeLevel.encounters.find(
         (candidate) => candidate.id === encounterId,
       ).hp;
+      if (chapter === 2 && role === "boss") {
+        if (bestiesPhaseAtAttack && bestiesPhaseAtAttack !== "dizzy") {
+          nonDizzyDamage ??= {
+            phase: bestiesPhaseAtAttack,
+            beforeHp,
+            afterHp,
+            action: useSecondary ? "secondary-attack" : "attack",
+          };
+        }
+        const reaction = await waitForInspection({
+          page,
+          screenshot,
+          label: "besties-hit-reaction",
+          timeout: 1_000,
+          predicate: (candidate) =>
+            candidate.visuals?.besties?.some((actor) => actor.clip === "hit"),
+        }).catch(() => null);
+        const actor = reaction?.visuals?.besties?.find(
+          (candidate) => candidate.clip === "hit",
+        );
+        if (actor) hitReactions.push({ id: actor.id, clip: actor.clip });
+      }
       if (useSecondary) {
         secondaryAccepted = true;
         secondaryDamage += beforeHp - afterHp;
@@ -763,7 +953,14 @@ async function playChapter(chapter) {
     if (role === "boss")
       assert.ok(hits.length > 0, `${role}: boss never attacked`);
     if (chapter === 2 && role === "boss") {
-      assert.equal(sawDizzy, true, "Besties never entered dizzy state");
+      assert.ok(
+        nonDizzyDamage,
+        "Besties took no authoritative damage outside the dizzy phase",
+      );
+      assert.ok(
+        hitReactions.length > 0,
+        "Besties accepted damage without a rendered hit reaction",
+      );
       for (const id of ["bestie-pink", "bestie-black"]) {
         const actor = besties.get(id);
         assert.ok(actor?.visible, `${id}: never rendered visibly`);
@@ -795,6 +992,8 @@ async function playChapter(chapter) {
       playerHpAfter: latestSave.adventure.playerHp,
       combatRetries,
       sawDizzy,
+      ...(nonDizzyDamage ? { nonDizzyDamage } : {}),
+      ...(hitReactions.length ? { hitReactions } : {}),
       ...(besties.size ? { besties: summarizeBesties(besties) } : {}),
     };
     chapterReport.combat.push(evidence);
@@ -869,6 +1068,225 @@ async function playChapter(chapter) {
     mark("recovery:intentional", chapterReport.recovery);
   };
 
+  const proveSafeMiss = async (edge) => {
+    const before = await driver.read(`chapter-${chapter}-safe-miss-before`);
+    const progress = saveProgress(latestSave);
+    const revision = latestSave.revision;
+    const playerHp = latestSave.adventure.playerHp;
+    const recoveryCount = before.obby.recoveries;
+    const { caught, retryEdge, evidence } = await driver.missToSafePlatform(
+      edge,
+      `chapter-${chapter}-safe-miss`,
+    );
+    assert.equal(
+      latestSave.revision,
+      revision,
+      "safe miss wrote a save action",
+    );
+    assert.equal(latestSave.adventure.playerHp, playerHp);
+    assert.equal(caught.obby.recoveries, recoveryCount);
+    assert.deepEqual(saveProgress(latestSave), progress);
+    assert.equal(
+      retryEdge.to,
+      document.anchors.spawn.platformId,
+      "safe miss retry edge did not return to chapter practice start",
+    );
+    await screenshot(`chapter-${chapter}-safe-miss-catch`);
+    const returned = await driver.crossEdge(
+      retryEdge,
+      `chapter-${chapter}-safe-miss-retry`,
+    );
+    assert.equal(returned.obby.supportId, retryEdge.to);
+    chapterReport.safeMiss = {
+      ...evidence,
+      hpPreserved: true,
+      progressPreserved: true,
+      returnedTo: returned.obby.supportId,
+    };
+    mark("recovery:safe-miss-complete", chapterReport.safeMiss);
+  };
+
+  const proveAutomaticDeathRecovery = async () => {
+    const memoryAnchor = document.anchors.memories["minor-two"];
+    const checkpoints = document.pieces.filter(
+      (piece) =>
+        piece.type === "checkpoint" &&
+        piece.platformId === memoryAnchor.platformId,
+    );
+    assert.equal(
+      checkpoints.length,
+      1,
+      "second minor memory has no unique safe checkpoint",
+    );
+    const checkpoint = checkpoints[0];
+    const encounterEntry = Object.entries(document.anchors.encounters).find(
+      ([role, anchor]) =>
+        role !== "boss" && anchor.platformId === memoryAnchor.platformId,
+    );
+    assert.ok(encounterEntry, "second memory platform has no defeat encounter");
+    const [role, encounterAnchor] = encounterEntry;
+    const encounter = activeEncounter(
+      role,
+      await driver.read(`chapter-${chapter}-death-encounter`),
+      encounterAnchor,
+    );
+    assert.equal(encounter.defeated, false);
+    const progress = saveProgress(latestSave);
+    const hitStart = observedHits.length;
+    const before = await moveToAnchor(
+      encounterAnchor,
+      `chapter-${chapter}-death-approach`,
+      (candidate) =>
+        candidate.level.encounterPositions.find(
+          (entry) => entry.id === encounter.id,
+        ),
+      (candidate) => {
+        const enemy = candidate.level.encounterPositions.find(
+          (entry) => entry.id === encounter.id,
+        );
+        return enemy && planarDistance(candidate.status.position, enemy) <= 1.0;
+      },
+    );
+    const approachedEnemy = before.level.encounterPositions.find(
+      (entry) => entry.id === encounter.id,
+    );
+    assert.ok(approachedEnemy, "death proof lost its rendered encounter");
+    const deathApproachDistance = planarDistance(
+      before.status.position,
+      approachedEnemy,
+    );
+    assert.ok(
+      deathApproachDistance <= 1.0,
+      `death proof stopped outside strike range: ${deathApproachDistance}`,
+    );
+    mark("recovery:death-approach", {
+      encounterId: encounter.id,
+      distance: deathApproachDistance,
+    });
+    retryTimeoutProbeArmed = retryTimeoutProbe;
+    await controls.release();
+    const fallen = await waitForSave(
+      (candidate) => candidate.adventure.phase === "fallen",
+      `chapter-${chapter}-automatic-death`,
+      90_000,
+    );
+    assert.ok(
+      observedHits
+        .slice(hitStart)
+        .some((hit) => hit.encounterId === encounter.id),
+      "automatic death proof observed no authoritative enemy hit",
+    );
+    assert.equal(
+      await page.getByRole("dialog").count(),
+      0,
+      "combat defeat opened a blocking retry dialog",
+    );
+    let manualReturn = false;
+    if (retryTimeoutProbe) {
+      const recoveryDialog = page.getByRole("dialog", {
+        name: "Your adventure is safe",
+      });
+      await recoveryDialog.waitFor({ timeout: 25_000 });
+      while (
+        report.retryTimeoutProbe.stalls.some((entry) => entry.heldMs === null)
+      )
+        await delay(50);
+      assert.equal(stalledRetryRequests, 2);
+      assert.ok(
+        report.retryTimeoutProbe.stalls.every((entry) => entry.heldMs >= 8_000),
+        "retry-level transport was not stalled through the client timeout",
+      );
+      assert.equal(stalledRetryPayloads.length, 2);
+      assert.equal(
+        stalledRetryPayloads[1].actionId,
+        stalledRetryPayloads[0].actionId,
+        "automatic retry used a different action id after transport timeout",
+      );
+      assert.equal(
+        stalledRetryPayloads[1].expectedRevision,
+        stalledRetryPayloads[0].expectedRevision,
+        "automatic retry changed its expected revision after transport timeout",
+      );
+      assert.deepEqual(
+        stalledRetryPayloads[1].action,
+        stalledRetryPayloads[0].action,
+        "automatic retry changed its action after transport timeout",
+      );
+      const blocked = await driver.read(
+        `chapter-${chapter}-retry-timeout-blocked`,
+      );
+      assert.equal(blocked.status.requestState, "error");
+      assert.equal(blocked.status.requestErrorCode, "REQUEST_TIMEOUT");
+      assert.equal(latestSave.revision, fallen.revision);
+      assert.equal(latestSave.adventure.phase, "fallen");
+      await screenshot(`chapter-${chapter}-retry-timeout-manual-return`);
+      await recoveryDialog
+        .getByRole("button", { name: "Return to checkpoint", exact: true })
+        .tap();
+      manualReturn = true;
+    }
+    const recoveredSave = await waitForSave(
+      (candidate) =>
+        candidate.adventure.phase === "exploring" &&
+        candidate.revision > fallen.revision,
+      `chapter-${chapter}-automatic-checkpoint-return`,
+      20_000,
+    );
+    const recovered = await waitForInspection({
+      page,
+      screenshot,
+      label: `chapter-${chapter}-memory-checkpoint-return`,
+      timeout: 20_000,
+      predicate: (candidate) =>
+        candidate.status.phase === "exploring" &&
+        candidate.obby?.checkpointId === checkpoint.id,
+    });
+    assert.equal(
+      recoveredSave.adventure.playerHp,
+      recoveredSave.adventure.maxPlayerHp,
+    );
+    assert.equal(
+      recovered.obby.recoveries,
+      0,
+      "HP recovery did not rebuild the local traversal counter",
+    );
+    assert.ok(
+      spatialDistance(recovered.status.position, checkpoint.position) < 0.7,
+    );
+    assert.deepEqual(saveProgress(recoveredSave), progress);
+    assert.equal(
+      recoveredSave.id,
+      fallen.id,
+      "manual checkpoint return replaced the active journey",
+    );
+    if (retryTimeoutProbe) {
+      report.retryTimeoutProbe.manualReturn = {
+        stalledRequests: stalledRetryRequests,
+        errorCode: "REQUEST_TIMEOUT",
+        fallenRevision: fallen.revision,
+        recoveredRevision: recoveredSave.revision,
+        sameJourney: true,
+        retriedExactRequest: true,
+      };
+    }
+    await screenshot(`chapter-${chapter}-automatic-memory-checkpoint`);
+    chapterReport.deathRecovery = {
+      encounterId: encounter.id,
+      memoryId: chapterMemoryIds["minor-two"],
+      checkpointId: checkpoint.id,
+      fallenRevision: fallen.revision,
+      recoveredRevision: recoveredSave.revision,
+      position: recovered.status.position,
+      fullHealth: recoveredSave.adventure.playerHp,
+      localRecoveriesBefore: before.obby.recoveries,
+      localRecoveriesAfter: recovered.obby.recoveries,
+      progressPreserved: true,
+      automatic: !manualReturn,
+      manualReturnAfterTimeout: manualReturn,
+    };
+    mark("recovery:automatic-memory", chapterReport.deathRecovery);
+  };
+
   const processPlatform = async (platformId) => {
     if (processed.has(platformId)) return;
     processed.add(platformId);
@@ -879,9 +1297,12 @@ async function playChapter(chapter) {
       if (anchor.platformId === platformId) await collectPickup(kind, anchor);
     }
     if (document.anchors.pickups["guard-tool"].platformId === platformId) {
-      const layout = await verifyLandscapeControls({ page, screenshot });
+      const layout = await verifyControlLayouts({
+        page,
+        screenshot: (name) => screenshot(`chapter-${chapter}-${name}`),
+      });
       report.layout.push({ chapter, courseId: document.id, ...layout });
-      mark("landscape:complete", { chapter, ...layout });
+      mark("responsive-controls:complete", { chapter, ...layout });
       if (controlsOnly) throw new ControlsVerified();
     }
     for (const [role, anchor] of Object.entries(document.anchors.memories)) {
@@ -889,8 +1310,24 @@ async function playChapter(chapter) {
         await collectMemory(role, anchor);
       }
     }
+    if (
+      !deathRecoveryProved &&
+      document.anchors.memories["minor-two"].platformId === platformId
+    ) {
+      await proveAutomaticDeathRecovery();
+      deathRecoveryProved = true;
+    }
     for (const [role, anchor] of Object.entries(document.anchors.encounters)) {
       if (anchor.platformId !== platformId) continue;
+      if (bossGateProbe && role === "ordinary-4") {
+        chapterReport.contents.push({
+          type: "encounter",
+          role,
+          platformId,
+          deliberatelyLeftUndefeated: true,
+        });
+        continue;
+      }
       if (role === "boss") {
         const ordinary = latestSave.adventure.activeLevel.encounters.filter(
           (encounter) => encounter.role === "ordinary",
@@ -900,7 +1337,125 @@ async function playChapter(chapter) {
           4,
           "authored chapter does not have four ordinary fights",
         );
-        assert.ok(ordinary.every((encounter) => encounter.defeated));
+        if (bossGateProbe) {
+          const undefeated = ordinary.filter(
+            (encounter) => !encounter.defeated,
+          );
+          assert.equal(
+            undefeated.length,
+            1,
+            "boss gate probe did not leave exactly one ordinary encounter",
+          );
+          await driver.moveToPoint(() => anchor.position, {
+            label: `chapter-${chapter}-boss-gate-approach`,
+            tolerance: 0.32,
+            supportId: anchor.platformId,
+          });
+          const boss = latestSave.adventure.activeLevel.encounters.find(
+            (encounter) => encounter.role === "boss",
+          );
+          assert.ok(boss, "boss gate probe has no boss");
+          assert.equal(boss.available, true);
+          const engaged = await waitForInspection({
+            page,
+            screenshot,
+            label: `chapter-${chapter}-boss-gate-engaged`,
+            predicate: (candidate) =>
+              candidate.status.nearEncounterId === boss.id &&
+              candidate.status.bossEngaged === true &&
+              candidate.status.attackReady === true,
+          });
+          assert.equal(await page.locator(".boss-hud:visible").count(), 1);
+          const revision = latestSave.revision;
+          const hp = boss.hp;
+          const attackSequence = engaged.status.attackFeedback?.sequence ?? 0;
+          const primaryInput = await tapProbeControl("Attack", engaged.status);
+          const primarySave = await waitForSave((candidate) => {
+            const currentBoss = candidate.adventure.activeLevel.encounters.find(
+              (encounter) => encounter.id === boss.id,
+            );
+            return candidate.revision > revision && currentBoss?.hp < hp;
+          }, `chapter-${chapter}-boss-gate-primary-save`);
+          const afterPrimary = await waitForInspection({
+            page,
+            screenshot,
+            label: `chapter-${chapter}-boss-gate-attack`,
+            predicate: (candidate) =>
+              (candidate.status.attackFeedback?.sequence ?? 0) > attackSequence,
+          });
+          assert.equal(afterPrimary.status.attackFeedback?.outcome, "accepted");
+          const hpAfterPrimary =
+            primarySave.adventure.activeLevel.encounters.find(
+              (encounter) => encounter.id === boss.id,
+            )?.hp;
+          assert.ok(hpAfterPrimary < hp);
+          const secondaryReady = await moveToAnchor(
+            anchor,
+            `chapter-${chapter}-boss-gate-secondary-approach`,
+            (candidate) =>
+              candidate.level.encounterPositions.find(
+                (entry) => entry.id === boss.id,
+              ),
+            (candidate) =>
+              candidate.status.nearEncounterId === boss.id &&
+              candidate.status.guardReady === true,
+          );
+          const secondarySequence =
+            secondaryReady.status.attackFeedback?.sequence ?? 0;
+          const secondaryInput = await tapProbeControl(
+            "Bash",
+            secondaryReady.status,
+          );
+          const secondarySave = await waitForSave((candidate) => {
+            const currentBoss = candidate.adventure.activeLevel.encounters.find(
+              (encounter) => encounter.id === boss.id,
+            );
+            return (
+              candidate.revision > primarySave.revision &&
+              currentBoss?.hp < hpAfterPrimary
+            );
+          }, `chapter-${chapter}-boss-gate-secondary-save`);
+          const afterSecondary = await waitForInspection({
+            page,
+            screenshot,
+            label: `chapter-${chapter}-boss-gate-secondary`,
+            predicate: (candidate) =>
+              (candidate.status.attackFeedback?.sequence ?? 0) >
+              secondarySequence,
+          });
+          assert.equal(
+            afterSecondary.status.attackFeedback?.outcome,
+            "accepted",
+          );
+          assert.equal(afterSecondary.status.attackFeedback?.kind, "secondary");
+          const hpAfterSecondary =
+            secondarySave.adventure.activeLevel.encounters.find(
+              (encounter) => encounter.id === boss.id,
+            )?.hp;
+          assert.ok(hpAfterSecondary < hpAfterPrimary);
+          report.bossGateProbe = {
+            courseId: document.id,
+            undefeatedOrdinaryId: undefeated[0].id,
+            bossId: boss.id,
+            majorMemoryId: chapterMemoryIds.major,
+            bossAvailable: boss.available,
+            bossEngaged: engaged.status.bossEngaged,
+            bossHudVisible: true,
+            primary: {
+              outcome: afterPrimary.status.attackFeedback?.outcome,
+              hpBefore: hp,
+              hpAfter: hpAfterPrimary,
+              input: primaryInput,
+            },
+            secondary: {
+              outcome: afterSecondary.status.attackFeedback?.outcome,
+              hpBefore: hpAfterPrimary,
+              hpAfter: hpAfterSecondary,
+              input: secondaryInput,
+            },
+          };
+          await screenshot(`chapter-${chapter}-boss-live`);
+        } else assert.ok(ordinary.every((encounter) => encounter.defeated));
         for (const minorRole of ["minor-one", "minor-two"]) {
           const id = chapterMemoryIds[minorRole];
           assert.ok(
@@ -912,6 +1467,23 @@ async function playChapter(chapter) {
         }
       }
       await fight(role, anchor);
+      if (bossGateProbe && role === "boss") {
+        const ordinaryLeft = latestSave.adventure.activeLevel.encounters.find(
+          (encounter) =>
+            encounter.id === report.bossGateProbe.undefeatedOrdinaryId,
+        );
+        const defeatedBoss = latestSave.adventure.activeLevel.encounters.find(
+          (encounter) => encounter.id === report.bossGateProbe.bossId,
+        );
+        assert.equal(ordinaryLeft?.defeated, false);
+        assert.ok((ordinaryLeft?.hp ?? 0) > 0);
+        assert.equal(defeatedBoss?.defeated, true);
+        report.bossGateProbe.afterBoss = {
+          ordinaryStillUndefeated: true,
+          ordinaryHp: ordinaryLeft.hp,
+          bossDefeated: true,
+        };
+      }
     }
     if (!recoveryProved) {
       const current = await driver.read(
@@ -958,6 +1530,10 @@ async function playChapter(chapter) {
       continue;
     }
     const edge = plan.edges[edgeIndex];
+    if (!safeMissProved && edge.safeMissPlatformId) {
+      await proveSafeMiss(edge);
+      safeMissProved = true;
+    }
     const finishEdge = edge.to === document.anchors.finish.platformId;
     const finishReached = () =>
       ["revealed", "consumed"].includes(
@@ -1010,10 +1586,16 @@ async function playChapter(chapter) {
     true,
     "intentional checkpoint recovery was not exercised",
   );
+  assert.equal(safeMissProved, true, "declared safe miss was not exercised");
+  assert.equal(
+    deathRecoveryProved,
+    true,
+    "automatic memory checkpoint recovery was not exercised",
+  );
   assert.equal(
     chapterReport.combat.length,
-    5,
-    "chapter did not complete five fights",
+    bossGateProbe ? 4 : 5,
+    `chapter did not complete ${bossGateProbe ? 4 : 5} fights`,
   );
   assert.ok(primaryDamage > 0, "primary attack never damaged an enemy");
   assert.ok(secondaryDamage > 0, "secondary attack never damaged an enemy");
@@ -1085,7 +1667,7 @@ try {
       screenshot,
       label: "chapter-2-transition",
       predicate: (inspection) =>
-        inspection.level.authored?.id === "besties-playground-v1",
+        inspection.level.authored?.id === "besties-playground-v2",
       timeout: 20_000,
     });
   } else {
@@ -1103,10 +1685,14 @@ try {
   assert.equal(latestSave.completed, true);
   assert.equal(latestSave.recoveredIds.length, 6);
   assert.equal(report.chapters.length, 3 - routeStartChapter);
-  assert.ok(report.chapters.every((chapter) => chapter.combat.length === 5));
+  assert.ok(
+    report.chapters.every(
+      (chapter) => chapter.combat.length === (bossGateProbe ? 4 : 5),
+    ),
+  );
   assert.deepEqual(
     report.chapters.map((chapter) => chapter.course.id),
-    ["garden-playground-v1", "besties-playground-v1"].slice(
+    ["garden-playground-v2", "besties-playground-v2"].slice(
       routeStartChapter - 1,
     ),
   );
@@ -1114,6 +1700,22 @@ try {
     assert.ok(report.injectedArtworkFailure?.failures > 0);
     assert.equal(report.injectedArtworkFailure?.retryPresses, 1);
     assert.equal(report.injectedArtworkFailure?.physicsStayedPaused, true);
+  }
+  if (bossGateProbe) {
+    assert.equal(report.bossGateProbe.afterBoss.ordinaryStillUndefeated, true);
+    assert.equal(report.bossGateProbe.afterBoss.bossDefeated, true);
+    assert.equal(latestSave.adventure.activeLevel, null);
+    assert.ok(latestSave.adventure.completedLevelIds.includes("level-2-2024"));
+    report.bossGateProbe.completion = {
+      completed: true,
+      activeLevel: null,
+      ordinaryStillUndefeatedBeforeCompletion: true,
+      bossDefeatedBeforeCompletion: true,
+      majorMemoryRecovered: latestSave.recoveredIds.includes(
+        report.bossGateProbe.majorMemoryId,
+      ),
+    };
+    assert.equal(report.bossGateProbe.completion.majorMemoryRecovered, true);
   }
   assert.deepEqual(report.responseErrors, []);
   assert.deepEqual(report.pageErrors, []);

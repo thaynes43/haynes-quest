@@ -9,6 +9,7 @@ import { makeAuthoredSave } from "./authored-fixtures";
 
 const runtimeState = vi.hoisted(() => ({
   spawnOverrides: [] as Array<{ x: number; y: number; z: number }>,
+  fixedPlayerY: null as number | null,
   instances: [] as Array<{
     rebuilds: Array<{ id: string | null; routeId?: string }>;
     updates: number[];
@@ -29,6 +30,16 @@ vi.mock("../../src/game/obby", async (importOriginal) => {
         Object.assign(state.origin, override);
       }
       return state;
+    },
+    stepObby(...args: Parameters<typeof actual.stepObby>) {
+      const result = actual.stepObby(...args);
+      if (runtimeState.fixedPlayerY !== null) {
+        const state = args[0];
+        state.position.y = runtimeState.fixedPlayerY;
+        state.velocityY = 0;
+        state.grounded = true;
+      }
+      return result;
     },
   };
 });
@@ -85,6 +96,7 @@ describe("authored level runtime", () => {
 
   beforeEach(() => {
     runtimeState.spawnOverrides.length = 0;
+    runtimeState.fixedPlayerY = null;
     runtimeState.instances.length = 0;
     nextFrame = undefined;
     now = 1_000;
@@ -117,6 +129,27 @@ describe("authored level runtime", () => {
     advance();
   };
 
+  const equippedBestiesSave = (
+    options: Parameters<typeof makeAuthoredSave>[0] = {},
+  ): SaveView => {
+    const save = makeAuthoredSave({
+      routeId: "besties-playground-v1",
+      defeatedOrdinaryCount: 4,
+      ...options,
+    });
+    const adventure = save.adventure!;
+    const collected = adventure.activeLevel!.pickups.map((pickup) => ({
+      ...pickup,
+      collected: true,
+    }));
+    adventure.activeLevel!.pickups = collected;
+    adventure.inventory = collected;
+    adventure.equippedId = collected.find(
+      (pickup) => pickup.kind === "attack-tool",
+    )!.id;
+    return save;
+  };
+
   it("rebuilds when only the authoritative route identity changes", () => {
     const initial = makeAuthoredSave({
       routeId: "garden-playground-v1",
@@ -127,6 +160,12 @@ describe("authored level runtime", () => {
       levelId: "same-level",
       revision: 1,
     });
+    const activeMinorIds = new Set(
+      next.adventure!.activeLevel!.minorMemoryIds,
+    );
+    next.recoveredIds = next.recoveredIds.filter(
+      (memoryId) => !activeMinorIds.has(memoryId),
+    );
     const game = createGame({
       container: document.createElement("div"),
       save: initial,
@@ -157,7 +196,7 @@ describe("authored level runtime", () => {
     game.dispose();
   });
 
-  it("keeps the visited checkpoint through same-level fallen and retry saves", () => {
+  it("uses the recovered memory checkpoint through same-level fallen and retry saves", () => {
     const initial = makeAuthoredSave();
     const progressed = makeAuthoredSave({
       revision: 1,
@@ -172,16 +211,22 @@ describe("authored level runtime", () => {
       revision: 3,
       defeatedOrdinaryCount: 4,
     });
-    const inferredFromDefeats = checkpointForSave(
+    const recovered = authoredRoute(
+      "garden-playground-v1",
+    )!.course.checkpoints.find(
+      (checkpoint) => checkpoint.id === "picnic-safe",
+    )!;
+    const checkpoint = checkpointForSave(
       progressed,
       createLevelLayout(progressed),
     );
-    const visited = authoredRoute(
+    const oldVisited = authoredRoute(
       "garden-playground-v1",
     )!.course.checkpoints.find(
       (checkpoint) => checkpoint.id === "garden-start",
     )!;
-    expect(inferredFromDefeats).not.toEqual(visited.position);
+    expect(checkpoint).toEqual(recovered.position);
+    expect(checkpoint).not.toEqual(oldVisited.position);
 
     const game = createGame({
       container: document.createElement("div"),
@@ -190,24 +235,24 @@ describe("authored level runtime", () => {
       onRefresh: async () => initial,
     });
     warmRuntime();
-    expect(game.inspect().obby?.checkpointId).toBe("garden-start");
+    expect(game.inspect().obby?.checkpointId).toBe("picnic-safe");
 
     game.updateSave(progressed);
     game.updateSave(fallen);
     game.updateSave(retried);
 
     expect(game.inspect()).toMatchObject({
-      status: { position: visited.position, phase: "exploring" },
-      checkpoint: visited.position,
+      status: { position: recovered.position, phase: "exploring" },
+      checkpoint: recovered.position,
       obby: {
         routeId: "garden-playground-v1",
-        checkpointId: null,
+        checkpointId: "picnic-safe",
         recoveries: 0,
       },
     });
-    expect(game.inspect().status.position).not.toEqual(inferredFromDefeats);
+    expect(game.inspect().status.position).not.toEqual(oldVisited.position);
     warmRuntime();
-    expect(game.inspect().obby?.checkpointId).toBe("garden-start");
+    expect(game.inspect().obby?.checkpointId).toBe("picnic-safe");
     expect(runtimeState.instances[0]?.rebuilds).toEqual([
       {
         id: "level-authored-fixture",
@@ -247,6 +292,13 @@ describe("authored level runtime", () => {
     expect(runtimeState.instances[0]?.frames.at(-1)?.besties?.phase).toBe(
       "inactive",
     );
+    archivedLocation.setInput("attack", true);
+    archivedLocation.setInput("attack", false);
+    advance();
+    expect(onAction).not.toHaveBeenCalled();
+    expect(archivedLocation.inspect().status.attackFeedback).toMatchObject({
+      outcome: "no-target",
+    });
     archivedLocation.dispose();
 
     runtimeState.spawnOverrides.push({ ...boss.position });
@@ -271,6 +323,74 @@ describe("authored level runtime", () => {
     });
     expect(onAction).not.toHaveBeenCalled();
     authoredLocation.dispose();
+  });
+
+  it("keeps Besties inactive until every ordinary encounter is defeated", () => {
+    const save = equippedBestiesSave({ defeatedOrdinaryCount: 3 });
+    const boss = authoredRoute("besties-playground-v1")!.anchors.encounters
+      .boss;
+    const onAction = vi.fn(async () => save);
+    runtimeState.spawnOverrides.push({ ...boss.position });
+    const game = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction,
+      onRefresh: async () => save,
+    });
+    warmRuntime();
+
+    expect(game.inspect().status).toMatchObject({
+      bestiesPhase: "inactive",
+      nearEncounterId: null,
+      attackReady: false,
+      guardReady: false,
+    });
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+    expect(onAction).not.toHaveBeenCalled();
+    expect(game.inspect().status.attackFeedback).toMatchObject({
+      outcome: "no-target",
+    });
+    game.dispose();
+  });
+
+  it("retains independent primary and Secondary cooldowns during the Besties routine", () => {
+    const save = equippedBestiesSave();
+    save.adventure!.attackCooldownRemainingMs = 400;
+    save.adventure!.secondaryCooldownRemainingMs = 1_000;
+    const boss = authoredRoute("besties-playground-v1")!.anchors.encounters
+      .boss;
+    const onAction = vi.fn(async () => save);
+    runtimeState.spawnOverrides.push({ ...boss.position });
+    const game = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction,
+      onRefresh: async () => save,
+    });
+    warmRuntime();
+
+    expect(game.inspect().status).toMatchObject({
+      bestiesPhase: "pink-warning",
+      attackReady: false,
+      guardReady: false,
+    });
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+    expect(game.inspect().status.attackFeedback).toMatchObject({
+      outcome: "cooldown",
+    });
+    game.setInput("guard", true);
+    game.setInput("guard", false);
+    advance();
+    expect(game.inspect().status.attackFeedback).toMatchObject({
+      outcome: "cooldown",
+      kind: "secondary",
+    });
+    expect(onAction).not.toHaveBeenCalled();
+    game.dispose();
   });
 
   it("starts the Besties routine when the wand can target an actor at the court entrance", () => {
@@ -306,5 +426,210 @@ describe("authored level runtime", () => {
     );
     expect(game.inspect().status.bestiesPhase).toBe("pink-warning");
     game.dispose();
+  });
+
+  it("uses the same inclusive actor-relative height boundary for targeting and activation", () => {
+    const save = equippedBestiesSave();
+    const boss = authoredRoute("besties-playground-v1")!.anchors.encounters
+      .boss;
+
+    runtimeState.fixedPlayerY = boss.position.y + 1;
+    runtimeState.spawnOverrides.push({
+      x: boss.position.x + 1.25,
+      y: runtimeState.fixedPlayerY,
+      z: boss.position.z + 4.1,
+    });
+    const boundary = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction: async () => save,
+      onRefresh: async () => save,
+    });
+    warmRuntime();
+    expect(boundary.inspect().status).toMatchObject({
+      nearEncounterId: save.adventure!.activeLevel!.bossId,
+      bestiesPhase: "pink-warning",
+      attackReady: true,
+    });
+    boundary.dispose();
+
+    runtimeState.fixedPlayerY = boss.position.y + 1.001;
+    runtimeState.spawnOverrides.push({
+      x: boss.position.x + 1.25,
+      y: runtimeState.fixedPlayerY,
+      z: boss.position.z + 4.1,
+    });
+    const outside = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction: async () => save,
+      onRefresh: async () => save,
+    });
+    warmRuntime();
+    expect(outside.inspect().status).toMatchObject({
+      nearEncounterId: null,
+      bestiesPhase: "inactive",
+      attackReady: false,
+    });
+    outside.dispose();
+  });
+
+  it("starts a second Besties runtime with fresh routine and encounter state", async () => {
+    const boss = authoredRoute("besties-playground-v1")!.anchors.encounters
+      .boss;
+    const first = equippedBestiesSave({ saveId: "first-besties-run" });
+    runtimeState.spawnOverrides.push({ ...boss.position });
+    const firstGame = createGame({
+      container: document.createElement("div"),
+      save: first,
+      onAction: async () => first,
+      onRefresh: async () => first,
+    });
+    warmRuntime();
+    for (let frame = 0; frame < 30; frame += 1) advance();
+    expect(firstGame.inspect().status.bestiesPhase).toBe("pink-trick");
+    firstGame.dispose();
+
+    const second = equippedBestiesSave({ saveId: "second-besties-run" });
+    const bossId = second.adventure!.activeLevel!.bossId;
+    const damaged = structuredClone(second);
+    damaged.revision = 1;
+    damaged.adventure!.activeLevel!.encounters.find(
+      (encounter) => encounter.id === bossId,
+    )!.hp -= 3;
+    const onAction = vi.fn(async () => damaged);
+    runtimeState.spawnOverrides.push({ ...boss.position });
+    const secondGame = createGame({
+      container: document.createElement("div"),
+      save: second,
+      onAction,
+      onRefresh: async () => second,
+    });
+    warmRuntime();
+
+    expect(secondGame.inspect().status).toMatchObject({
+      bestiesPhase: "pink-warning",
+      nearEncounterId: bossId,
+      attackReady: true,
+    });
+    expect(
+      runtimeState.instances[1]!.frames.at(-1)!.besties?.phaseProgress,
+    ).toBeLessThan(0.1);
+    secondGame.setInput("attack", true);
+    secondGame.setInput("attack", false);
+    advance();
+    await vi.waitFor(() =>
+      expect(
+        secondGame.inspect().enemies.find((enemy) => enemy.id === bossId)?.hp,
+      ).toBe(5),
+    );
+    expect(onAction).toHaveBeenCalledOnce();
+    secondGame.dispose();
+  });
+
+  it("restarts Besties after a death retry while preserving defeated ordinary encounters", async () => {
+    const boss = authoredRoute("besties-playground-v1")!.anchors.encounters
+      .boss;
+    const initial = equippedBestiesSave();
+    const bossId = initial.adventure!.activeLevel!.bossId;
+    const fallen = equippedBestiesSave({ phase: "fallen", revision: 1 });
+    fallen.adventure!.playerHp = 0;
+    fallen.adventure!.activeLevel!.encounters.find(
+      (encounter) => encounter.id === bossId,
+    )!.hp = 5;
+    const retried = equippedBestiesSave({ revision: 2 });
+    const damaged = structuredClone(retried);
+    damaged.revision = 3;
+    damaged.adventure!.activeLevel!.encounters.find(
+      (encounter) => encounter.id === bossId,
+    )!.hp = 5;
+    const onAction = vi.fn(async () => damaged);
+
+    runtimeState.spawnOverrides.push({ ...boss.position });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => retried,
+    });
+    warmRuntime();
+    for (let frame = 0; frame < 30; frame += 1) advance();
+    expect(game.inspect().status.bestiesPhase).toBe("pink-trick");
+
+    game.updateSave(fallen);
+    runtimeState.spawnOverrides.push({ ...boss.position });
+    game.updateSave(retried);
+    warmRuntime();
+
+    expect(game.inspect().status).toMatchObject({
+      phase: "exploring",
+      playerHp: 10,
+      bestiesPhase: "pink-warning",
+      nearEncounterId: bossId,
+      attackReady: true,
+    });
+    expect(
+      game.inspect().enemies.filter((enemy) => enemy.id !== bossId),
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ phase: "defeated", hp: 0 }),
+      ]),
+    );
+    expect(
+      game.inspect().enemies.find((enemy) => enemy.id === bossId),
+    ).toMatchObject({ hp: 8, phase: "idle" });
+
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+    await vi.waitFor(() =>
+      expect(
+        game.inspect().enemies.find((enemy) => enemy.id === bossId)?.hp,
+      ).toBe(5),
+    );
+    expect(onAction).toHaveBeenCalledOnce();
+    game.dispose();
+  });
+  it("does not expose a memory contact from a different feet height", () => {
+    const save = makeAuthoredSave();
+    const memory = authoredRoute("garden-playground-v1")!.anchors.memories[
+      "minor-two"
+    ];
+    const expectedMemoryId = save.adventure!.activeLevel!.minorMemoryIds![1];
+
+    runtimeState.spawnOverrides.push({ ...memory.position });
+    const onSurface = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction: async () => save,
+      onRefresh: async () => save,
+    });
+    expect(onSurface.inspect().status.nearMemoryId).toBe(expectedMemoryId);
+    onSurface.dispose();
+
+    runtimeState.spawnOverrides.push({
+      ...memory.position,
+      y: memory.position.y - 0.5,
+    });
+    const onAction = vi.fn(async () => save);
+    const belowSurface = createGame({
+      container: document.createElement("div"),
+      save,
+      onAction,
+      onRefresh: async () => save,
+    });
+    expect(belowSurface.inspect().status).toMatchObject({
+      position: { x: memory.position.x, y: -0.5, z: memory.position.z },
+      nearMemoryId: null,
+    });
+    expect(
+      belowSurface.performAction({
+        type: "recover-memory",
+        levelId: save.adventure!.currentLevelId!,
+        memoryId: expectedMemoryId,
+      }),
+    ).toBe(false);
+    expect(onAction).not.toHaveBeenCalled();
+    belowSurface.dispose();
   });
 });

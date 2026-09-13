@@ -1,11 +1,11 @@
-import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 import {
-  resolveAuthoredLevelDocument,
+  AUTHORED_LEVEL_IDS,
   type AuthoredConnection,
   type ResolvedAuthoredLevel,
 } from "../../src/shared/authored-level";
+import { authoredRoute } from "../../src/game/authored-layout";
 import { getAvatarProportions } from "../../src/game/controller";
 import {
   createObbyState,
@@ -22,7 +22,7 @@ type MoveInput = { moveX: number; moveY: number };
 
 const FRAME_SECONDS = 1 / 60;
 const ROUTE_MEMORY_TUNING = { moveSpeed: 4 } as const;
-const LEVEL_FILES = ["garden-playground-v1", "besties-playground-v1"] as const;
+const LEVEL_FILES = AUTHORED_LEVEL_IDS;
 const STAGES = ["infant", "child"] as const;
 
 interface Simulation {
@@ -42,16 +42,15 @@ interface EdgeResult {
 }
 
 function loadLevel(id: (typeof LEVEL_FILES)[number]): ResolvedAuthoredLevel {
-  const input = JSON.parse(
-    readFileSync(
-      new URL(`../../src/shared/levels/${id}.json`, import.meta.url),
-      "utf8",
-    ),
-  ) as unknown;
-  return resolveAuthoredLevelDocument(input);
+  const level = authoredRoute(id);
+  if (!level) throw new Error(`Registered authored route ${id} is missing`);
+  return level;
 }
 
 const LEVELS = LEVEL_FILES.map(loadLevel);
+const V2_LEVELS = LEVELS.filter(
+  (level) => level.document.schemaVersion === "authored-level-v2",
+);
 
 function sampledPlatform(course: ObbyCourse, id: string, timeSeconds: number) {
   const platform = sampleObby(course, timeSeconds).platforms.find(
@@ -103,6 +102,103 @@ function ferryPhase(
     : (moving.motion.period * 3) / 4;
 }
 
+function inputToward(
+  state: ObbyState,
+  target: Readonly<{ x: number; z: number }>,
+): MoveInput {
+  const deltaX = target.x - state.position.x;
+  const deltaZ = target.z - state.position.z;
+  const distance = Math.hypot(deltaX, deltaZ) || 1;
+  return { moveX: deltaX / distance, moveY: -deltaZ / distance };
+}
+
+function moveTo(
+  simulation: Simulation,
+  target: Readonly<{ x: number; z: number }>,
+  maxFrames: number,
+): { reached: boolean; recovered: boolean; airborne: boolean } {
+  let recovered = false;
+  let airborne = false;
+  for (let frame = 0; frame < maxFrames; frame += 1) {
+    if (Math.hypot(
+      target.x - simulation.state.position.x,
+      target.z - simulation.state.position.z,
+    ) <= 0.08) return { reached: true, recovered, airborne };
+    const result = runtimeStep(
+      simulation,
+      inputToward(simulation.state, target),
+    );
+    recovered ||= result.recovered;
+    airborne ||= !simulation.state.grounded;
+    if (recovered) break;
+  }
+  return { reached: false, recovered, airborne };
+}
+
+/** Follows the clear side of a broad catch floor back onto its start pad. */
+function traverseSafeRetry(
+  level: ResolvedAuthoredLevel,
+  connection: AuthoredConnection,
+  stage: AppearanceStage,
+): EdgeResult {
+  const source = sampledPlatform(level.course, connection.from, 0);
+  const target = sampledPlatform(level.course, connection.to, 0);
+  const proportions = getAvatarProportions(stage);
+  const deltaX = target.center.x - source.center.x;
+  const deltaZ = target.center.z - source.center.z;
+  const travelAxis = Math.abs(deltaX) >= Math.abs(deltaZ) ? "x" : "z";
+  const direction = Math.sign(
+    travelAxis === "x" ? deltaX : deltaZ,
+  ) || 1;
+  const crossAxis = travelAxis === "x" ? "z" : "x";
+  const sourceCrossHalf = source.size[crossAxis] / 2;
+  const targetCrossHalf = target.size[crossAxis] / 2;
+  const side = source.center[crossAxis] + sourceCrossHalf -
+    proportions.colliderRadius - 0.2;
+  const targetSide = Math.min(
+    target.center[crossAxis] + targetCrossHalf - 0.5,
+    side,
+  );
+  const approachTravel =
+    target.center[travelAxis] - direction * (target.size[travelAxis] / 2 + 0.5);
+  const finishTravel =
+    source.center[travelAxis] + direction * (source.size[travelAxis] / 2 + 0.5);
+  const point = (cross: number, travel: number) =>
+    travelAxis === "x"
+      ? { x: travel, z: cross }
+      : { x: cross, z: travel };
+  const state = createObbyState({
+    ...point(side, source.center[travelAxis]),
+    y: source.center.y + source.size.y / 2,
+  });
+  const simulation: Simulation = {
+    course: level.course,
+    stage,
+    state,
+    timeSeconds: 0,
+  };
+  runtimeStep(simulation, { moveX: 0, moveY: 0 });
+  const startedOnSource = state.grounded && state.supportId === connection.from;
+  const approach = moveTo(
+    simulation,
+    point(side, approachTravel),
+    360,
+  );
+  const finish = approach.reached && !approach.recovered
+    ? moveTo(simulation, point(targetSide, finishTravel), 180)
+    : { reached: false, recovered: approach.recovered, airborne: false };
+  runtimeStep(simulation, { moveX: 0, moveY: 0 });
+  return {
+    reached:
+      finish.reached && state.grounded && state.supportId === connection.to,
+    recovered: approach.recovered || finish.recovered,
+    airborne: approach.airborne || finish.airborne,
+    startedOnSource,
+    supportId: state.supportId,
+    position: { ...state.position },
+  };
+}
+
 /** A supported feet position inside the source edge, aimed at the target centre. */
 function edgeEntry(
   course: ObbyCourse,
@@ -146,6 +242,12 @@ function traverseEdge(
   stage: AppearanceStage,
   lateral = 0,
 ): EdgeResult {
+  if (
+    connection.mode === "walk" &&
+    level.graph.connections.some(
+      (candidate) => candidate.safeMissPlatformId === connection.from,
+    )
+  ) return traverseSafeRetry(level, connection, stage);
   const startTime =
     connection.mode === "ride" ? ferryPhase(level.course, connection) : 0;
   const state = createObbyState(
@@ -153,7 +255,7 @@ function traverseEdge(
       level.course,
       connection,
       startTime,
-      connection.mode === "walk" ? 1.5 : 0.75,
+      connection.mode === "walk" ? 2 : 0.75,
       lateral,
     ),
   );
@@ -202,6 +304,83 @@ function traverseEdge(
     supportId: state.supportId,
     position: { ...state.position },
   };
+}
+
+function missOntoSafeFloor(
+  level: ResolvedAuthoredLevel,
+  connection: AuthoredConnection,
+  stage: AppearanceStage,
+): EdgeResult {
+  if (!connection.safeMissPlatformId)
+    throw new Error("A deliberate safe miss requires a catch platform");
+  const state = createObbyState(
+    edgeEntry(level.course, connection, 0, 0.75, 0),
+  );
+  const simulation: Simulation = {
+    course: level.course,
+    stage,
+    state,
+    timeSeconds: 0,
+  };
+  runtimeStep(simulation, { moveX: 0, moveY: 0 });
+  const startedOnSource = state.grounded && state.supportId === connection.from;
+  const destination = sampledPlatform(level.course, connection.to, 0);
+  const proportions = getAvatarProportions(stage);
+  const missTarget = {
+    x:
+      destination.center.x +
+      destination.size.x / 2 +
+      proportions.colliderRadius +
+      0.25,
+    z: destination.center.z,
+  };
+  let recovered = false;
+  let airborne = false;
+  let reachedTarget = false;
+  for (let frame = 0; frame < 180; frame += 1) {
+    reachedTarget ||=
+      Math.hypot(
+        missTarget.x - state.position.x,
+        missTarget.z - state.position.z,
+      ) <= 0.08;
+    const result = runtimeStep(
+      simulation,
+      reachedTarget ? { moveX: 0, moveY: 0 } : inputToward(state, missTarget),
+      frame === 0,
+    );
+    recovered ||= result.recovered;
+    airborne ||= !state.grounded;
+    if (
+      airborne &&
+      state.grounded &&
+      state.supportId === connection.safeMissPlatformId
+    ) break;
+  }
+  return {
+    reached:
+      state.grounded && state.supportId === connection.safeMissPlatformId,
+    recovered,
+    airborne,
+    startedOnSource,
+    supportId: state.supportId,
+    position: { ...state.position },
+  };
+}
+
+function settledState(
+  level: ResolvedAuthoredLevel,
+  stage: AppearanceStage,
+  position: Readonly<{ x: number; y: number; z: number }>,
+): ObbyState {
+  const state = createObbyState({ ...position });
+  const simulation: Simulation = {
+    course: level.course,
+    stage,
+    state,
+    timeSeconds: 0,
+  };
+  runtimeStep(simulation, { moveX: 0, moveY: 0 });
+  return state;
 }
 
 function edgeLabel(
@@ -370,8 +549,10 @@ describe("authored playground traversal physics", () => {
             grounded: true,
             checkpointId: checkpoint.id,
             supportId: checkpoint.triggerPlatformId,
-            position: checkpoint.position,
           });
+          expect(state.position.x).toBeCloseTo(checkpoint.position.x, 9);
+          expect(state.position.y).toBeCloseTo(checkpoint.position.y, 9);
+          expect(state.position.z).toBeCloseTo(checkpoint.position.z, 9);
           expect(state.recoveryRemaining).toBeCloseTo(
             OBBY_TUNING.recoverySeconds,
             6,
@@ -379,5 +560,121 @@ describe("authored playground traversal physics", () => {
         }
       });
     }
+  }
+
+  for (const level of V2_LEVELS) {
+    for (const stage of STAGES) {
+      it(`${level.document.id} traverses every step in its 0.9m practice profile as ${stage}`, () => {
+        const practice = level.graph.connections.filter(
+          (connection) => connection.safeMissPlatformId,
+        );
+        expect(practice).toHaveLength(7);
+        const landedHeights = [
+          sampledPlatform(level.course, practice[0]!.from, 0).center.y +
+            sampledPlatform(level.course, practice[0]!.from, 0).size.y / 2,
+        ];
+        for (const connection of practice) {
+          const result = traverseEdge(level, connection, stage);
+          expect(result.startedOnSource).toBe(true);
+          expect(result.recovered).toBe(false);
+          expect(result.reached).toBe(true);
+          landedHeights.push(result.position.y);
+        }
+        const expectedHeights = [
+          0,
+          0.3,
+          0.6,
+          0.9,
+          0.6,
+          0.3,
+          0.1,
+          0,
+        ];
+        expect(landedHeights).toHaveLength(expectedHeights.length);
+        landedHeights.forEach((height, index) => {
+          expect(height).toBeCloseTo(expectedHeights[index]!, 9);
+        });
+      });
+
+      it(`${level.document.id} catches a missed crest jump without recovery as ${stage}`, () => {
+        const crestMiss = level.graph.connections.find(
+          (connection) =>
+            connection.safeMissPlatformId &&
+            Math.abs(
+              sampledPlatform(level.course, connection.from, 0).center.y +
+                sampledPlatform(level.course, connection.from, 0).size.y / 2 -
+                0.9,
+            ) < 1e-9,
+        );
+        if (!crestMiss) throw new Error("Practice crest connection is missing");
+        const result = missOntoSafeFloor(level, crestMiss, stage);
+        expect(result.startedOnSource).toBe(true);
+        expect(result.airborne).toBe(true);
+        expect(result.recovered).toBe(false);
+        expect(result.reached).toBe(true);
+        expect(result.supportId).toBe(crestMiss.safeMissPlatformId);
+        expect(result.position.y).toBe(0);
+      });
+
+      it(`${level.document.id} supports elevated memories and boss recovery as ${stage}`, () => {
+        const elevatedMemories = Object.values(level.anchors.memories).filter(
+          (anchor) => anchor.position.y > 0,
+        );
+        expect(elevatedMemories.length).toBeGreaterThan(0);
+        for (const memory of elevatedMemories) {
+          const state = settledState(level, stage, memory.position);
+          expect(state).toMatchObject({
+            grounded: true,
+            supportId: memory.platformId,
+          });
+          expect(state.position.y).toBeCloseTo(memory.position.y, 9);
+        }
+
+        const boss = level.anchors.encounters.boss;
+        const bossState = settledState(level, stage, boss.position);
+        expect(bossState).toMatchObject({
+          grounded: true,
+          supportId: boss.platformId,
+        });
+        expect(bossState.position.y).toBeCloseTo(boss.position.y, 9);
+
+        const checkpoint = level.course.checkpoints.find(
+          (candidate) => candidate.id === boss.checkpointId,
+        );
+        if (!checkpoint) throw new Error("Boss checkpoint is missing");
+        const checkpointState = settledState(level, stage, checkpoint.position);
+        expect(checkpointState).toMatchObject({
+          grounded: true,
+          checkpointId: checkpoint.id,
+          supportId: checkpoint.triggerPlatformId,
+        });
+        expect(checkpointState.position.y).toBeCloseTo(
+          checkpoint.position.y,
+          9,
+        );
+      });
+    }
+  }
+
+  const raisedFerryLevel = V2_LEVELS.find(
+    (level) => level.document.id === "garden-playground-v2",
+  );
+  if (!raisedFerryLevel) throw new Error("Raised Garden course is missing");
+  for (const stage of STAGES) {
+    it(`garden-playground-v2 lands from its moving ferry at 0.3m as ${stage}`, () => {
+      const landing = raisedFerryLevel.graph.connections.find(
+        (connection) =>
+          connection.mode === "ride" && connection.from === "garden-ferry",
+      );
+      if (!landing) throw new Error("Raised ferry landing is missing");
+      const result = traverseEdge(raisedFerryLevel, landing, stage);
+      expect(result).toMatchObject({
+        startedOnSource: true,
+        recovered: false,
+        reached: true,
+        supportId: "dragon-clearing",
+      });
+      expect(result.position.y).toBeCloseTo(0.3, 9);
+    });
   }
 });

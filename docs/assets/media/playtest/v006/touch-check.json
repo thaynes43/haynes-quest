@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "sourceRunStatus": "input-diagnostic",
+  "sourceReport": "/home/dev/work/quest-memory-checkpoint-audit/test-results/fresh-playtest/plan011-input-final/report.json",
+  "startedAt": "2026-09-13T03:07:55.042Z",
+  "finishedAt": "2026-09-13T03:08:20.363Z",
+  "browser": "153.0.8010.12",
+  "bundle": {
+    "path": "/assets/index-ChX7wgsN.js",
+    "bytes": 1188490,
+    "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+  },
+  "scope": "Actual touch contacts in Chromium emulation: held joystick plus Jump, scenery tap, pointer cancellation, same-orientation resizing and rotation cleanup. No physical-device claim.",
+  "gestures": {
+    "passivePanels": {
+      "age-hud": {
+        "hitElement": {
+          "tag": "CANVAS",
+          "className": ""
+        },
+        "ageYears": 0,
+        "jumpSequence": 0
+      }
+    },
+    "heldWorldTapDiagnostic": {
+      "tap": {
+        "durationMs": 194,
+        "pointerId": 3
+      },
+      "beforeJumpSequence": 0,
+      "afterJumpSequence": 0,
+      "heldMoveYBeforeTap": 0.9999999999999999,
+      "heldMoveYAfterTap": 0.9999999999999999,
+      "groundedAfterTap": true
+    },
+    "heldJumpButtonDiagnostic": {
+      "tap": {
+        "durationMs": 220,
+        "pointerId": 5
+      },
+      "heldMoveY": 0.2768462869184894,
+      "airborneY": 0.7,
+      "planarDistance": 0.6829244205705232,
+      "jumpSequence": 1,
+      "releasedMoveY": 0
+    },
+    "jumpCancellation": {
+      "heldContactId": 6,
+      "moveXBefore": -0.27684592154517024,
+      "moveXAfter": 0,
+      "jumpSequenceBefore": 1,
+      "jumpSequenceAfter": 2
+    },
+    "sameOrientationResize": {
+      "heldContactId": 8,
+      "viewportBefore": {
+        "width": 390,
+        "height": 844
+      },
+      "viewportAfter": {
+        "width": 360,
+        "height": 844
+      },
+      "moveXBefore": 0.27684592154517024,
+      "moveXAfter": 0.48523010780570136,
+      "moveXReleased": 0,
+      "planarDistance": 0.4003505578474013,
+      "jumpSequence": 2
+    },
+    "rotationCancellation": {
+      "heldContactId": 9,
+      "moveXBefore": 0.27684592154517024,
+      "moveXAfter": 0,
+      "jumpSequence": 2
+    }
+  },
+  "audio": {
+    "zeroVolumeRestore": {
+      "restoredVolume": 0.8,
+      "output": {
+        "available": true,
+        "contexts": [
+          {
+            "state": "running",
+            "sampleCount": 180224,
+            "nonzeroSampleCount": 16,
+            "maxAbs": 0.022584881633520126,
+            "analyserConnected": true
+          }
+        ]
+      }
+    }
+  }
+}

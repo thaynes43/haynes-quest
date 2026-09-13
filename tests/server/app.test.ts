@@ -167,7 +167,7 @@ describe('fixture API', () => {
     expect((await resumedIdentity.json()).player).toEqual(renewed.player);
   });
 
-  it('starts distinct fresh routes and prepares the Besties shortcut through authoritative actions', async () => {
+  it('starts distinct fresh routes and repeats a fresh Besties shortcut across sessions', async () => {
     const ephemeral = makeEphemeralApp(InMemoryQuestStore.ephemeral({
       maxSessions: 2,
       maxPreviews: 3,
@@ -214,6 +214,20 @@ describe('fixture API', () => {
       },
     });
     expect(besties.revision).toBeGreaterThan(0);
+    const firstBestiesBoss = besties.adventure.activeLevel.encounters.find(
+      (encounter: { role: string }) => encounter.role === 'boss',
+    );
+    expect(firstBestiesBoss).toMatchObject({ hp: 11, maxHp: 11, defeated: false, available: true });
+
+    const repeatedBesties = await startPlaytest(ephemeral.app, cookie, 2);
+    expect(repeatedBesties.id).not.toBe(besties.id);
+    expect(repeatedBesties).toMatchObject({
+      ageYears: 4,
+      adventure: { activeLevelIndex: 1, phase: 'exploring' },
+    });
+    expect(repeatedBesties.adventure.activeLevel.encounters.find(
+      (encounter: { role: string }) => encounter.role === 'boss',
+    )).toEqual(firstBestiesBoss);
     expect((await ephemeral.app.request(`/api/saves/${first.id}`, {
       headers: { cookie },
     })).status).toBe(404);
@@ -221,8 +235,14 @@ describe('fixture API', () => {
       .toEqual({ saves: [] });
 
     const other = await startSession(ephemeral.app);
-    const otherRun = await startPlaytest(ephemeral.app, other.cookie, 1);
-    expect(otherRun).toMatchObject({ ageYears: 0, revision: 0 });
+    const otherRun = await startPlaytest(ephemeral.app, other.cookie, 2);
+    expect(otherRun).toMatchObject({
+      ageYears: 4,
+      adventure: { activeLevelIndex: 1, phase: 'exploring' },
+    });
+    expect(otherRun.adventure.activeLevel.encounters.find(
+      (encounter: { role: string }) => encounter.role === 'boss',
+    )).toEqual(firstBestiesBoss);
     expect((await ephemeral.app.request(`/api/saves/${second.id}`, {
       headers: { cookie },
     })).status).toBe(404);

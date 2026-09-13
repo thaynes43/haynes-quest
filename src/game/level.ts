@@ -265,6 +265,45 @@ export function contiguousRecoveredCount(
   return count;
 }
 
+export interface MemoryCheckpoint {
+  id: string;
+  position: PositionSnapshot;
+}
+
+/**
+ * Resolve the durable death checkpoint established by the furthest recovered
+ * minor memory in the active authored level. The frozen level orders the two
+ * milestones; `recoveredIds` only proves which milestones were collected.
+ */
+export function memoryCheckpointForSave(
+  save: SaveView,
+  level: LevelLayout,
+): MemoryCheckpoint | null {
+  const activeLevel = save.adventure?.activeLevel;
+  if (
+    save.format !== "era-combat-v2" ||
+    !activeLevel?.minorMemoryIds ||
+    !level.authored ||
+    !level.course
+  ) {
+    return null;
+  }
+  const recovered = new Set(save.recoveredIds);
+  const recoveredIndex = activeLevel.minorMemoryIds.findLastIndex((memoryId) =>
+    recovered.has(memoryId),
+  );
+  if (recoveredIndex < 0) return null;
+
+  const slot = recoveredIndex === 0 ? "minor-one" : "minor-two";
+  const platformId = level.authored.anchors.memories[slot].platformId;
+  const matches = level.course.checkpoints.filter(
+    (candidate) => candidate.triggerPlatformId === platformId,
+  );
+  if (matches.length !== 1) return null;
+  const checkpoint = matches[0]!;
+  return { id: checkpoint.id, position: { ...checkpoint.position } };
+}
+
 export function checkpointForSave(
   save: SaveView,
   level: LevelLayout,
@@ -273,6 +312,12 @@ export function checkpointForSave(
     if (level.authored && level.course) {
       if (save.adventure?.phase === "memory-released") {
         return { ...level.authored.anchors.rewardRespawn.position };
+      }
+      if (save.adventure?.activeLevel?.minorMemoryIds) {
+        return {
+          ...(memoryCheckpointForSave(save, level)?.position ??
+            level.checkpoint),
+        };
       }
       const completed = save.adventure?.activeLevel?.encounters.findLast(
         (enemy) => enemy.defeated,
@@ -283,8 +328,8 @@ export function checkpointForSave(
       const safe = level.course.checkpoints.find(
         (entry) => entry.id === binding?.retryCheckpointId,
       );
-      // Reload fallback never grants unvisited obstacle progress. Session retries
-      // prefer the last actually visited safe checkpoint in createGame.
+      // Non-memory routes retain their prior encounter fallback on reload and
+      // prefer a visited local checkpoint for same-session retries in createGame.
       const anyDefeated = save.adventure?.activeLevel?.encounters.some(
         (enemy) => enemy.defeated,
       );

@@ -45,6 +45,10 @@ function archivedRoutePlan(): AdventurePlanV3 {
   return createRouteMemoryPlan('2020-01-01', MEMORIES, 'parody-catalog-v3');
 }
 
+function archivedPlaygroundPlan(): AdventurePlanV3 {
+  return createRouteMemoryPlan('2020-01-01', MEMORIES, 'parody-catalog-v4');
+}
+
 function apply(
   plan: AdventurePlanV3,
   state: AdventureState,
@@ -139,7 +143,7 @@ describe('route-memory plan v3', () => {
 
   it('freezes two three-photo chapters on five-slot authored playground routes', () => {
     const plan = routePlan();
-    expect(plan.catalogVersion).toBe('parody-catalog-v4');
+    expect(plan.catalogVersion).toBe('parody-catalog-v5');
     expect(plan.levels.map((level) => ({
       startAgeYears: level.startAgeYears,
       targetAgeYears: level.targetAgeYears,
@@ -152,14 +156,14 @@ describe('route-memory plan v3', () => {
         targetAgeYears: 4,
         minorMemoryIds: ['memory-age-0', 'memory-age-2'],
         majorMemoryId: 'memory-age-4',
-        routeId: 'garden-playground-v1',
+        routeId: 'garden-playground-v2',
       },
       {
         startAgeYears: 4,
         targetAgeYears: 7,
         minorMemoryIds: ['memory-age-5', 'memory-age-6'],
         majorMemoryId: 'memory-age-7',
-        routeId: 'besties-playground-v1',
+        routeId: 'besties-playground-v2',
       },
     ]);
     expect(plan.levels.map((level) => level.encounters.map((encounter) => ({
@@ -192,6 +196,35 @@ describe('route-memory plan v3', () => {
     }, createInitialAdventureState(plan))).toThrow('Save unavailable');
   });
 
+  it('allows a v2 playground boss attack with ordinary encounters remaining while v1 stays gated', () => {
+    const legacyPlan = createRouteMemoryPlan('2020-01-01', MEMORIES, 'parody-catalog-v4');
+    const legacyLevel = legacyPlan.levels[0]!;
+    const boss = legacyLevel.encounters.find((encounter) => encounter.role === 'boss')!;
+    let state = collect(legacyPlan, createInitialAdventureState(legacyPlan), 'attack-tool');
+
+    expect(toAdventureView(legacyPlan, state, 0).activeLevel!.encounters.find(
+      (encounter) => encounter.id === boss.id,
+    )).toMatchObject({ available: false, defeated: false, hp: boss.maxHp });
+    expect(() => apply(legacyPlan, state, {
+      type: 'attack', levelId: legacyLevel.id, encounterId: boss.id,
+    }, 0)).toThrow('ENCOUNTER_NOT_ACTIVE');
+
+    const v2Plan = routePlan();
+    expect(toAdventureView(v2Plan, state, 0).activeLevel!.encounters.find(
+      (encounter) => encounter.id === boss.id,
+    )).toMatchObject({ available: true, defeated: false, hp: boss.maxHp });
+
+    state = apply(v2Plan, state, {
+      type: 'attack', levelId: legacyLevel.id, encounterId: boss.id,
+    }, 0);
+    expect(state.encounters[boss.id]).toMatchObject({
+      hp: boss.maxHp - legacyLevel.pickups.find(
+        (equipment) => equipment.kind === 'attack-tool',
+      )!.damage,
+      defeated: false,
+    });
+  });
+
   it('gives only newly created v3 Besties plans forgiving contact damage', () => {
     const plan = routePlan();
     const firstBoss = plan.levels[0]!.encounters.find((encounter) => encounter.role === 'boss')!;
@@ -212,7 +245,7 @@ describe('route-memory plan v3', () => {
       .encounters.find((encounter) => encounter.role === 'boss')!.attackDamage).toBe(4);
   });
 
-  it('accepts archived v3 routes and rejects cross-version playground tampering', () => {
+  it('isolates archived v4/v1 playgrounds from v5/v2 and rejects cross-version tampering', () => {
     const archived = archivedRoutePlan();
     expect(archived.levels.map((level) => ({
       routeId: level.routeId,
@@ -230,12 +263,27 @@ describe('route-memory plan v3', () => {
     expect(parseStoredAdventure(archived, createInitialAdventureState(archived)).plan)
       .toEqual(archived);
 
+    const v4 = archivedPlaygroundPlan();
+    expect(v4.levels.map((level) => level.routeId)).toEqual([
+      'garden-playground-v1',
+      'besties-playground-v1',
+    ]);
+    expect(parseStoredAdventure(v4, createInitialAdventureState(v4)).plan).toEqual(v4);
+
     const fresh = routePlan();
+    expect(fresh.levels.map((level) => level.routeId)).toEqual([
+      'garden-playground-v2',
+      'besties-playground-v2',
+    ]);
     expect(parseStoredAdventure(fresh, createInitialAdventureState(fresh)).plan).toEqual(fresh);
     const invalidPlans: unknown[] = [];
-    const legacyRoute = structuredClone(fresh);
-    legacyRoute.levels[0]!.routeId = 'gentle-jump-v1';
-    invalidPlans.push(legacyRoute);
+    const v5WithV1Route = structuredClone(fresh);
+    v5WithV1Route.levels[0]!.routeId = 'garden-playground-v1';
+    invalidPlans.push(v5WithV1Route);
+    const v4WithV2Route = structuredClone(v4);
+    v4WithV2Route.levels[0]!.routeId = 'garden-playground-v2';
+    invalidPlans.push(v4WithV2Route);
+    invalidPlans.push({ ...structuredClone(v4), catalogVersion: 'parody-catalog-v5' });
     invalidPlans.push({ ...structuredClone(fresh), catalogVersion: 'parody-catalog-v3' });
     const changedRoster = structuredClone(fresh);
     changedRoster.levels[0]!.encounters[2]!.content = structuredClone(
@@ -258,7 +306,7 @@ describe('route-memory plan v3', () => {
     }
   });
 
-  it('keeps the player alive through four Besties contacts before the fifth causes a fall', () => {
+  it('keeps four forgiving Besties contacts and resets the unbeaten boss after death', () => {
     const plan = routePlan();
     const firstLevel = plan.levels[0]!;
     let state = createInitialAdventureState(plan);
@@ -303,6 +351,26 @@ describe('route-memory plan v3', () => {
       type: 'take-hit', levelId: bestiesLevel.id, encounterId: besties.id,
     }, hitAtMs);
     expect(state).toMatchObject({ playerHp: 0, phase: 'fallen' });
+
+    state = apply(plan, state, {
+      type: 'retry-level', levelId: bestiesLevel.id,
+    }, hitAtMs + ENEMY_HIT_COOLDOWN_MS);
+    expect(state).toMatchObject({ playerHp: 10, phase: 'exploring' });
+    for (const ordinary of bestiesLevel.encounters.filter(
+      (encounter) => encounter.role === 'ordinary',
+    )) {
+      expect(state.encounters[ordinary.id]).toMatchObject({ hp: 0, defeated: true });
+    }
+    expect(state.encounters[besties.id]).toMatchObject({
+      hp: besties.maxHp,
+      defeated: false,
+      nextReportedHitAtMs: 0,
+    });
+
+    state = apply(plan, state, {
+      type: 'attack', levelId: bestiesLevel.id, encounterId: besties.id,
+    }, hitAtMs + ENEMY_HIT_COOLDOWN_MS);
+    expect(state.encounters[besties.id]!.hp).toBe(besties.maxHp - 2);
   });
 
   it('recovers route minors without aging and makes the post-boss major the atomic age gate', () => {

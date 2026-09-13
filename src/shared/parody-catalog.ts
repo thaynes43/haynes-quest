@@ -6,16 +6,19 @@ export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v2",
   "parody-catalog-v3",
   "parody-catalog-v4",
+  "parody-catalog-v5",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
-export const PARODY_CATALOG_VERSION = "parody-catalog-v4" as const;
+export const PARODY_CATALOG_VERSION = "parody-catalog-v5" as const;
 export type ParodyPeriodId =
   "block-party-v1" | "remix-runway-v1" | "remix-runway-v2" | "besties-obby-v1";
 export type ObbyRouteId =
   | "gentle-intro-v1"
   | "gentle-jump-v1"
   | "garden-playground-v1"
-  | "besties-playground-v1";
+  | "besties-playground-v1"
+  | "garden-playground-v2"
+  | "besties-playground-v2";
 export interface ParodyCatalogEntry {
   readonly id: string;
   readonly version: "v001";
@@ -224,6 +227,11 @@ const PARODY_CANDIDATES_V4: readonly ParodyCatalogEntry[] = Object.freeze(
   PARODY_CANDIDATES_V3.map(freezeV3Entry),
 );
 
+/** V5 freezes the safe-practice routes; it reuses the same candidate artwork. */
+const PARODY_CANDIDATES_V5: readonly ParodyCatalogEntry[] = Object.freeze(
+  PARODY_CANDIDATES_V4.map(freezeV3Entry),
+);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
@@ -231,6 +239,7 @@ export const PARODY_CATALOGS: Readonly<
   "parody-catalog-v2": PARODY_CANDIDATES_V2,
   "parody-catalog-v3": PARODY_CANDIDATES_V3,
   "parody-catalog-v4": PARODY_CANDIDATES_V4,
+  "parody-catalog-v5": PARODY_CANDIDATES_V5,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();

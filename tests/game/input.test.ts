@@ -49,6 +49,8 @@ class FakeElement extends FakeEventTarget {
 }
 
 class FakeWindow extends FakeEventTarget {
+  innerWidth = 390;
+  innerHeight = 844;
   readonly Element = FakeElement;
   nowMs = 0;
   readonly performance = { now: () => this.nowMs };
@@ -112,6 +114,22 @@ function makePointerHarness() {
 }
 
 describe("game input", () => {
+  it("preserves held controls on same-orientation resize and clears them on rotation", () => {
+    const { input, fakeWindow, dispose } = makePointerHarness();
+    input.set("moveY", 1);
+    input.set("jump", true);
+    fakeWindow.innerHeight = 780;
+    fakeWindow.dispatch("resize");
+    expect(input.snapshot().moveY).toBe(1);
+    expect(input.consumeActions().jump).toBe(true);
+    fakeWindow.innerWidth = 844;
+    fakeWindow.innerHeight = 390;
+    fakeWindow.dispatch("resize");
+    expect(input.snapshot().moveY).toBe(0);
+    expect(input.consumeActions().jump).toBe(false);
+    dispose();
+  });
+
   it("retains simultaneous move, camera and action pointers until cleanup", () => {
     const input = new GameInputState();
     input.set("moveX", 1);
@@ -277,7 +295,7 @@ describe("game input", () => {
     dispose();
   });
 
-  it("queues one jump for a deliberate touch tap at the movement and time limits", () => {
+  it("keeps a deliberate scenery tap separate from the Jump button", () => {
     const { input, fakeWindow, touch, dispose } = makePointerHarness();
     fakeWindow.nowMs = 100;
     touch("pointerdown", 1, 20, 30);
@@ -286,19 +304,19 @@ describe("game input", () => {
     touch("pointerup", 1, 26, 38);
 
     expect(input.consumePointerLook()).toEqual({ x: 0, y: 0 });
-    expect(input.consumeActions().jump).toBe(true);
+    expect(input.consumeActions().jump).toBe(false);
     expect(input.consumeActions().jump).toBe(false);
     dispose();
   });
 
-  it("uses pointer timestamps when delayed handlers receive a quick physical tap", () => {
+  it("does not turn a delayed scenery release into a jump", () => {
     const { input, fakeWindow, touch, dispose } = makePointerHarness();
     fakeWindow.nowMs = 21_525.5;
     touch("pointerdown", 8, 40, 50, undefined, 21_499.8);
     fakeWindow.nowMs = 22_056.8;
     touch("pointerup", 8, 40, 50, undefined, 21_510.8);
 
-    expect(input.consumeActions().jump).toBe(true);
+    expect(input.consumeActions().jump).toBe(false);
     expect(input.consumeActions().jump).toBe(false);
     dispose();
   });
@@ -333,7 +351,7 @@ describe("game input", () => {
     dispose();
   });
 
-  it("excludes menu and action-control contacts from world taps", () => {
+  it("excludes menu and action-control contacts from camera gestures", () => {
     const { input, fakeWindow, touch, dispose } = makePointerHarness();
     const uiControl = new FakeElement(true);
     fakeWindow.nowMs = 100;
@@ -361,7 +379,7 @@ describe("game input", () => {
       moveX: -0.4472135954999579,
       moveY: 0.8944271909999159,
     });
-    expect(input.consumeActions().jump).toBe(true);
+    expect(input.consumeActions().jump).toBe(false);
     expect(input.snapshot().moveY).toBeGreaterThan(0);
     touch("pointerup", 6, 25, 400, joystick);
     expect(input.consumeActions().jump).toBe(false);

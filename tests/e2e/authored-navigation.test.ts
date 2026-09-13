@@ -4,6 +4,8 @@ import { describe, expect, it } from "vitest";
 import * as navigation from "./authored-navigation.mjs";
 // @ts-expect-error The CDP helper is executable JavaScript by design.
 import * as browserDriver from "./authored-browser-driver.mjs";
+// @ts-expect-error The executable layout helper also exports pure assertions.
+import * as controlLayout from "./landscape-controls.mjs";
 
 const {
   authoredDocumentFromInspection,
@@ -11,9 +13,12 @@ const {
   findPlatformPath,
   landingPoint,
   platformGateway,
+  safeMissRetryEdge,
   summarizeAuthoredCourse,
 } = navigation;
-const { chooseFallDirection, createAuthoredRouteDriver, nearbyHazard } = browserDriver;
+const { chooseFallDirection, createAuthoredRouteDriver, nearbyHazard } =
+  browserDriver;
+const { assertControlBounds } = controlLayout;
 
 type Edge = { from: string; to: string; mode: string };
 
@@ -35,9 +40,9 @@ function documentFixture() {
     id: "garden-playground-v1",
     theme: "garden",
     pieces: [
-      ...ids.filter((id) => id !== "ferry").map((id, index) =>
-        platform(id, 30 + index * 4, -45 - index * 3),
-      ),
+      ...ids
+        .filter((id) => id !== "ferry")
+        .map((id, index) => platform(id, 30 + index * 4, -45 - index * 3)),
       {
         type: "moving-platform",
         id: "ferry",
@@ -87,7 +92,15 @@ function documentFixture() {
       },
       encounters: Object.fromEntries(
         ["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4", "boss"].map(
-          (role) => [role, { ...anchor(role === "boss" ? "finish" : "landing"), kind: "mister-hiss", arena: { halfExtents: { x: 1, z: 1 } }, checkpointId: "retry" }],
+          (role) => [
+            role,
+            {
+              ...anchor(role === "boss" ? "finish" : "landing"),
+              kind: "mister-hiss",
+              arena: { halfExtents: { x: 1, z: 1 } },
+              checkpointId: "retry",
+            },
+          ],
         ),
       ),
       friendlies: {
@@ -97,6 +110,22 @@ function documentFixture() {
       },
     },
   };
+}
+
+function documentV2Fixture() {
+  const document = documentFixture();
+  document.schemaVersion = "authored-level-v2";
+  document.pieces.push(platform("practice-catch", 34, -49));
+  const practice = document.connections.find(
+    ({ from, to }: Edge) => from === "turn" && to === "dock",
+  )!;
+  Object.assign(practice, { safeMissPlatformId: "practice-catch" });
+  document.connections.push({
+    from: "practice-catch",
+    to: "spawn",
+    mode: "walk",
+  });
+  return document;
 }
 
 function driverInspection(
@@ -188,6 +217,8 @@ describe("authored browser navigation", () => {
       mainPathPlatforms: 6,
       branches: 1,
       connections: 7,
+      safeMissConnections: 0,
+      safeMissPlatforms: 0,
     });
   });
 
@@ -256,9 +287,70 @@ describe("authored browser navigation", () => {
     });
   });
 
+  it("approaches the outer face of an overlapping raised platform", () => {
+    const gateway = platformGateway(
+      { center: { x: 7, y: -0.3, z: -72.8 }, size: { x: 4, y: 0.6, z: 6 } },
+      { center: { x: 0, y: 0, z: -76.8 }, size: { x: 12, y: 0.6, z: 10 } },
+    );
+
+    expect(gateway.from.x).toBeCloseTo(6.32);
+    expect(gateway.to.x).toBeCloseTo(5.68);
+    expect(gateway.from.y).toBeCloseTo(0);
+    expect(gateway.to.y).toBeCloseTo(0.3);
+  });
+
+  it("accepts v2 safe misses with a declared retry edge", () => {
+    const document = documentV2Fixture();
+    const plan = buildTraversalPlan(document);
+    const edge = plan.edges.find(
+      ({ from, to }: Edge) => from === "turn" && to === "dock",
+    );
+
+    expect(edge.safeMissPlatformId).toBe("practice-catch");
+    expect(safeMissRetryEdge(document, edge)).toMatchObject({
+      from: "practice-catch",
+      to: "spawn",
+      mode: "walk",
+    });
+    expect(summarizeAuthoredCourse(document)).toMatchObject({
+      schemaVersion: "authored-level-v2",
+      safeMissConnections: 1,
+      safeMissPlatforms: 1,
+    });
+  });
+
+  it("rejects an unsafe or unreturnable v2 catch", () => {
+    const movingCatch = documentV2Fixture();
+    const catchPiece = movingCatch.pieces.find(
+      (piece) => piece.id === "practice-catch",
+    )!;
+    catchPiece.type = "moving-platform";
+    expect(() => buildTraversalPlan(movingCatch)).toThrow(
+      "connection safe miss practice-catch is not a static platform",
+    );
+
+    const noRetry = documentV2Fixture();
+    noRetry.connections = noRetry.connections.filter(
+      ({ from }: Edge) => from !== "practice-catch",
+    );
+    expect(() => buildTraversalPlan(noRetry)).toThrow(
+      "safe miss practice-catch has no declared retry edge back toward the practice start",
+    );
+
+    const forwardOnly = documentV2Fixture();
+    forwardOnly.connections = forwardOnly.connections.map((connection) =>
+      connection.from === "practice-catch"
+        ? { ...connection, to: "landing" }
+        : connection,
+    );
+    expect(() => buildTraversalPlan(forwardOnly)).toThrow(
+      "safe miss practice-catch has no declared retry edge back toward the practice start",
+    );
+  });
+
   it("rejects a future authored schema instead of silently using it", () => {
     const document = documentFixture();
-    document.schemaVersion = "authored-level-v2";
+    document.schemaVersion = "authored-level-v3";
 
     expect(() => buildTraversalPlan(document)).toThrow(
       "unsupported authored level schema",
@@ -271,8 +363,16 @@ describe("authored browser navigation", () => {
       obby: {
         supportId: "current",
         platforms: [
-          { id: "current", center: { x: 0, y: -0.25, z: 0 }, size: { x: 6, y: 0.5, z: 6 } },
-          { id: "next", center: { x: 0, y: -0.25, z: -5 }, size: { x: 6, y: 0.5, z: 3 } },
+          {
+            id: "current",
+            center: { x: 0, y: -0.25, z: 0 },
+            size: { x: 6, y: 0.5, z: 6 },
+          },
+          {
+            id: "next",
+            center: { x: 0, y: -0.25, z: -5 },
+            size: { x: 6, y: 0.5, z: 3 },
+          },
         ],
       },
     });
@@ -304,23 +404,67 @@ describe("authored browser navigation", () => {
     expect(hazard?.id).toBe("rotated-sweeper");
   });
 
+  it("checks corner placement, relative action size, and control separation", () => {
+    const boxes = {
+      header: { x: 0, y: 0, width: 390, height: 60 },
+      joystick: { x: 12, y: 660, width: 172, height: 172 },
+      jump: { x: 282, y: 736, width: 96, height: 96 },
+      attack: { x: 218, y: 642, width: 80, height: 80 },
+      secondary: { x: 320, y: 620, width: 58, height: 58 },
+    };
+    expect(() =>
+      assertControlBounds({ width: 390, height: 844 }, boxes, [170, 184]),
+    ).not.toThrow();
+
+    expect(() =>
+      assertControlBounds(
+        { width: 390, height: 844 },
+        { ...boxes, jump: { ...boxes.jump, x: 80, y: 520 } },
+        [170, 184],
+      ),
+    ).toThrow("Jump is not in the lower-right thumb region");
+    expect(() =>
+      assertControlBounds(
+        { width: 390, height: 844 },
+        { ...boxes, attack: { ...boxes.attack, x: 170 } },
+        [170, 184],
+      ),
+    ).toThrow();
+  });
+
   it("gives a successfully crossed edge a fresh bounded budget after checkpoint recovery", async () => {
     const document = documentFixture();
     const at = (supportId: string, recoveries: number) =>
       driverInspection(document, supportId, recoveries);
     const queued = queuedRouteDriver([
       at("spawn", 0),
-      at("spawn", 0), at("spawn", 0), at("spawn", 0), at("spawn", 1),
-      at("spawn", 1), at("spawn", 1), at("spawn", 1), at("spawn", 2),
-      at("spawn", 2), at("spawn", 2), at("spawn", 2), at("turn", 2),
+      at("spawn", 0),
+      at("spawn", 0),
+      at("spawn", 0),
+      at("spawn", 1),
+      at("spawn", 1),
+      at("spawn", 1),
+      at("spawn", 1),
+      at("spawn", 2),
+      at("spawn", 2),
+      at("spawn", 2),
+      at("spawn", 2),
+      at("turn", 2),
       at("spawn", 3),
-      at("spawn", 3), at("spawn", 3), at("spawn", 3), at("turn", 3),
+      at("spawn", 3),
+      at("spawn", 3),
+      at("spawn", 3),
+      at("turn", 3),
     ]);
     const edge = { from: "spawn", to: "turn", mode: "walk" };
 
-    expect((await queued.driver.crossEdge(edge, "first-crossing")).obby.supportId).toBe("turn");
-    expect((await queued.driver.crossEdge(edge, "revisit-after-recovery")).obby.supportId)
-      .toBe("turn");
+    expect(
+      (await queued.driver.crossEdge(edge, "first-crossing")).obby.supportId,
+    ).toBe("turn");
+    expect(
+      (await queued.driver.crossEdge(edge, "revisit-after-recovery")).obby
+        .supportId,
+    ).toBe("turn");
     expect(queued.driver.evidence.edgeEvidence).toHaveLength(2);
     expect(queued.pulses()).toBe(4);
     expect(queued.remaining).toHaveLength(0);
@@ -331,20 +475,40 @@ describe("authored browser navigation", () => {
     const at = (supportId: string, recoveries: number) =>
       driverInspection(document, supportId, recoveries);
     const queued = queuedRouteDriver([
-      at("spawn", 0), at("spawn", 0), at("spawn", 0), at("spawn", 0), at("checkpoint", 1),
-      at("spawn", 1), at("spawn", 1), at("spawn", 1), at("spawn", 1), at("checkpoint", 2),
-      at("spawn", 2), at("spawn", 2), at("spawn", 2), at("spawn", 2), at("checkpoint", 3),
+      at("spawn", 0),
+      at("spawn", 0),
+      at("spawn", 0),
+      at("spawn", 0),
+      at("checkpoint", 1),
+      at("spawn", 1),
+      at("spawn", 1),
+      at("spawn", 1),
+      at("spawn", 1),
+      at("checkpoint", 2),
+      at("spawn", 2),
+      at("spawn", 2),
+      at("spawn", 2),
+      at("spawn", 2),
+      at("checkpoint", 3),
       at("spawn", 3),
     ]);
     const edge = { from: "spawn", to: "turn", mode: "walk" };
 
-    expect((await queued.driver.crossEdge(edge, "unresolved-crossing")).obby.supportId)
-      .toBe("checkpoint");
-    expect((await queued.driver.crossEdge(edge, "unresolved-crossing")).obby.supportId)
-      .toBe("checkpoint");
-    expect((await queued.driver.crossEdge(edge, "unresolved-crossing")).obby.supportId)
-      .toBe("checkpoint");
-    await expect(queued.driver.crossEdge(edge, "unresolved-crossing")).rejects.toThrow(
+    expect(
+      (await queued.driver.crossEdge(edge, "unresolved-crossing")).obby
+        .supportId,
+    ).toBe("checkpoint");
+    expect(
+      (await queued.driver.crossEdge(edge, "unresolved-crossing")).obby
+        .supportId,
+    ).toBe("checkpoint");
+    expect(
+      (await queued.driver.crossEdge(edge, "unresolved-crossing")).obby
+        .supportId,
+    ).toBe("checkpoint");
+    await expect(
+      queued.driver.crossEdge(edge, "unresolved-crossing"),
+    ).rejects.toThrow(
       "unresolved-crossing: walk edge exhausted its 3-attempt budget without a landing observation",
     );
     expect(queued.pulses()).toBe(3);

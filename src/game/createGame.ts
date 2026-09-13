@@ -26,7 +26,9 @@ import {
   checkpointForSave,
   createLevelLayout,
   inspectLevel,
+  memoryCheckpointForSave,
   type LevelLayout,
+  type MemoryCheckpoint,
 } from "./level";
 import { GardenScene } from "./scene";
 import type {
@@ -41,6 +43,7 @@ import type {
 } from "./types";
 
 const interactionRadius = 1.4;
+const interactionFeetHeightTolerance = 0.12;
 const statusIntervalSeconds = 0.1;
 const primaryAttackAnimationSeconds = 0.38;
 const secondaryAttackAnimationSeconds = 0.4;
@@ -80,6 +83,13 @@ function horizontalDistance(
   return Math.hypot(first.x - second.x, first.z - second.z);
 }
 
+function sameInteractionFeetHeight(
+  first: PositionSnapshot,
+  second: PositionSnapshot,
+): boolean {
+  return Math.abs(first.y - second.y) <= interactionFeetHeightTolerance;
+}
+
 function levelIdentity(save: SaveView): string {
   return `${save.id}:${save.adventure?.currentLevelId ?? "complete"}:${save.adventure?.activeLevel?.routeId ?? "legacy"}`;
 }
@@ -99,6 +109,7 @@ function nearestWithin<T extends { position: PositionSnapshot }>(
   let nearest: T | null = null;
   let nearestDistance = radius;
   for (const candidate of candidates) {
+    if (!sameInteractionFeetHeight(position, candidate.position)) continue;
     const candidateDistance = horizontalDistance(position, candidate.position);
     if (candidateDistance <= nearestDistance) {
       nearest = candidate;
@@ -144,6 +155,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let retainedActiveLevel = requireAdventure(save).activeLevel;
   let checkpoint = checkpointForSave(save, level);
   let controller = createObbyState(checkpoint);
+  controller.checkpointId = memoryCheckpointForSave(save, level)?.id ?? null;
   controller.grounded = true;
   let courseTime = 0;
   let traversalRecoveries = 0;
@@ -173,6 +185,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const withinToolReach =
       horizontalDistance(controller.position, actor.position) <=
       playerAttackRange(save, "boss");
+    const withinFightHeight =
+      Math.abs(controller.position.y - actor.position.y) <=
+      maxPlayerAttackFeetDelta;
     return Boolean(
       arena &&
       (withinToolReach ||
@@ -180,7 +195,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
           controller.position.x <= arena.maxX + 1.5 &&
           controller.position.z >= arena.minZ - 1.5 &&
           controller.position.z <= arena.maxZ + 1.5)) &&
-      Math.abs(controller.position.y) < 1,
+      withinFightHeight,
     );
   };
   let pendingHit: { levelId: string; encounterId: string } | null = null;
@@ -416,15 +431,29 @@ export function createGame(options: CreateGameOptions): GameHandle {
       ? nearestSecondaryEncounter(true)
       : null;
     const media = mediaState();
+    const bossId = adventure.activeLevel?.encounters.find(
+      (enemy) => enemy.role === "boss",
+    )?.id;
+    const bossEngaged = bestiesEncounter()
+      ? !["inactive", "defeated"].includes(besties.frame().phase)
+      : enemies
+          .frames()
+          .some(
+            (enemy) =>
+              enemy.id === bossId &&
+              !["idle", "defeated"].includes(enemy.phase),
+          );
     const requestBusy = requestState.requestState === "acting";
     return {
       nearFriendlyId: nearestFriendlyId(),
+      bossEngaged,
       bestiesPhase: bestiesEncounter() ? besties.frame().phase : undefined,
       nearPickupId: nearestPickupId(),
       nearEncounterId: target?.id ?? secondaryTarget?.id ?? null,
       nearMemoryId: nearestMemoryId(),
       nearFinish:
         canConsume() &&
+        sameInteractionFeetHeight(controller.position, level.finish) &&
         horizontalDistance(controller.position, level.finish) <=
           interactionRadius,
       canConsume: canConsume(),
@@ -442,7 +471,6 @@ export function createGame(options: CreateGameOptions): GameHandle {
         adventure.phase === "exploring" &&
         hasEquipment(save, "attack-tool") &&
         Boolean(target) &&
-        (target?.id !== bestiesEncounter()?.id || besties.frame().vulnerable) &&
         now >= attackCooldownUntil &&
         !requestBusy,
       attackFeedback,
@@ -453,10 +481,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         adventure.phase === "exploring" &&
         hasEquipment(save, "guard-tool") &&
         (routeMemories
-          ? Boolean(secondaryTarget) &&
-            (secondaryTarget?.id !== bestiesEncounter()?.id ||
-              besties.frame().vulnerable) &&
-            now >= secondaryCooldownUntil
+          ? Boolean(secondaryTarget) && now >= secondaryCooldownUntil
           : now >= guardCooldownUntil) &&
         !requestBusy,
       requestBusy,
@@ -509,9 +534,19 @@ export function createGame(options: CreateGameOptions): GameHandle {
     interactionSequence += 1;
   };
 
-  const resetController = (nextCheckpoint: PositionSnapshot): void => {
+  const resetController = (
+    nextCheckpoint: PositionSnapshot,
+    checkpointId: string | null = null,
+  ): void => {
     controller = createObbyState(nextCheckpoint);
+    controller.checkpointId = checkpointId;
     controller.grounded = true;
+  };
+
+  const promoteCheckpoint = (selection: MemoryCheckpoint): void => {
+    checkpoint = { ...selection.position };
+    controller.checkpointId = selection.id;
+    Object.assign(controller.checkpoint, selection.position);
   };
 
   const applySave = (nextSave: SaveView): void => {
@@ -525,8 +560,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const previousIdentity = levelIdentity(save);
     const previousAdventure = requireAdventure(save);
     const previousPhase = previousAdventure.phase;
+    const previousRecoveredIds = new Set(save.recoveredIds);
     const nextIdentity = levelIdentity(nextSave);
     const nextAdventure = nextSave.adventure;
+    const recoveredMinor =
+      previousIdentity === nextIdentity &&
+      nextAdventure.phase === "exploring" &&
+      nextAdventure.activeLevel?.minorMemoryIds?.some(
+        (memoryId) =>
+          !previousRecoveredIds.has(memoryId) &&
+          nextSave.recoveredIds.includes(memoryId),
+      );
     const revivedEncounter = nextAdventure.activeLevel?.encounters.some(
       (nextEncounter) =>
         !nextEncounter.defeated &&
@@ -555,6 +599,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const nextLevel = retainCompletedWorld
       ? level
       : createLevelLayout(nextSave);
+    const nextMemoryCheckpoint = memoryCheckpointForSave(nextSave, nextLevel);
     const nextCheckpoint = retainCompletedWorld
       ? checkpoint
       : checkpointForSave(save, nextLevel);
@@ -568,19 +613,26 @@ export function createGame(options: CreateGameOptions): GameHandle {
       pendingHit = null;
     }
     level = nextLevel;
+    let resetCheckpointId: string | null = null;
     if (
       !level.course ||
       identityChanged ||
       retried ||
       nextAdventure.phase === "memory-released"
     ) {
+      const routeMemoryLevel = Boolean(
+        nextAdventure.activeLevel?.minorMemoryIds,
+      );
       const visited =
-        retried && !identityChanged && level.authored
+        retried && !identityChanged && level.authored && !routeMemoryLevel
           ? level.course?.checkpoints.find(
               (entry) => entry.id === controller.checkpointId,
             )
           : undefined;
       checkpoint = visited ? { ...visited.position } : nextCheckpoint;
+      if (identityChanged || retried) {
+        resetCheckpointId = visited?.id ?? nextMemoryCheckpoint?.id ?? null;
+      }
     }
     if (identityChanged || retried) {
       courseTime = 0;
@@ -591,7 +643,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       interactionAnimationUntil = 0;
       suppressedAutoFriendlyId = null;
       attackFeedback = null;
-      resetController(checkpoint);
+      resetController(checkpoint, resetCheckpointId);
       enemies.reset(level, save);
       besties = new BestiesSimulation(bestiesOrigin());
       scene.rebuildRoute(level, save);
@@ -607,6 +659,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
           controller.checkpoint = { ...checkpoint };
           controller.checkpointId = null;
         } else resetController(checkpoint);
+      } else if (recoveredMinor && nextMemoryCheckpoint) {
+        // A recovered minor is a durable death/fall floor. Promote its safe
+        // authored checkpoint without moving or interrupting the player.
+        promoteCheckpoint(nextMemoryCheckpoint);
       }
       scene.updateProgress(sceneSave);
     }
@@ -749,8 +805,6 @@ export function createGame(options: CreateGameOptions): GameHandle {
         const target = nearestEncounter(false);
         if (target?.id !== action.encounterId)
           return recordAttackFeedback("no-target");
-        if (target.id === bestiesEncounter()?.id && !besties.frame().vulnerable)
-          return recordAttackFeedback("guarded");
         break;
       }
       case "secondary-attack": {
@@ -765,8 +819,6 @@ export function createGame(options: CreateGameOptions): GameHandle {
         const target = nearestSecondaryEncounter(false);
         if (target?.id !== action.encounterId)
           return recordAttackFeedback("no-target", "secondary");
-        if (target.id === bestiesEncounter()?.id && !besties.frame().vulnerable)
-          return recordAttackFeedback("guarded", "secondary");
         break;
       }
       case "take-hit":

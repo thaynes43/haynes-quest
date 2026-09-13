@@ -266,7 +266,7 @@ describe("GameScreen friendly and audio feedback boundaries", () => {
     expect(container.querySelector(".touch-jump-hint")).toBeNull();
     await act(async () => button('[aria-label="How to play"]').click());
     expect(container.querySelector('[role="dialog"]')?.textContent).toContain(
-      "Tap the world to jump",
+      "press the arrow button on the right to jump",
     );
   });
 

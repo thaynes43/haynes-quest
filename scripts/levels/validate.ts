@@ -5,20 +5,9 @@ import { resolveAuthoredLevelDocument } from "../../src/shared/authored-level.js
 const requested = process.argv.slice(2);
 const paths = requested.length
   ? requested
-  : [
-      fileURLToPath(
-        new URL(
-          "../../src/shared/levels/garden-playground-v1.json",
-          import.meta.url,
-        ),
-      ),
-      fileURLToPath(
-        new URL(
-          "../../src/shared/levels/besties-playground-v1.json",
-          import.meta.url,
-        ),
-      ),
-    ];
+  : ["garden-playground-v1", "besties-playground-v1", "garden-playground-v2", "besties-playground-v2"].map(
+      (id) => fileURLToPath(new URL(`../../src/shared/levels/${id}.json`, import.meta.url)),
+    );
 for (const path of paths) {
   try {
     const source = await readFile(path);

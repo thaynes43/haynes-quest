@@ -54,6 +54,20 @@ function validDocument(): AuthoredLevelDocument {
     },
     {
       type: "checkpoint",
+      id: "cp-minor-one",
+      position: { x: 0, y: 0, z: -6 },
+      platformId: "p1",
+      activation: { type: "radius", radius: 0.5 },
+    },
+    {
+      type: "checkpoint",
+      id: "cp-minor-two",
+      position: { x: 0, y: 0, z: -15 },
+      platformId: "p3",
+      activation: { type: "radius", radius: 0.5 },
+    },
+    {
+      type: "checkpoint",
       id: "cp0",
       position: { x: 0, y: 0, z: 1 },
       platformId: "p0",
@@ -175,6 +189,16 @@ describe("authored level documents", () => {
       },
     ]);
     expect(resolved.course.checkpoints).toEqual([
+      {
+        id: "cp-minor-one",
+        position: { x: 0, y: 0, z: -6 },
+        triggerRadius: 0.5,
+      },
+      {
+        id: "cp-minor-two",
+        position: { x: 0, y: 0, z: -15 },
+        triggerRadius: 0.5,
+      },
       {
         id: "cp0",
         position: { x: 0, y: 0, z: 1 },

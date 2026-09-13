@@ -2,6 +2,8 @@
 
 Status: Lead implementation contract for PLAN009, September 12, 2026. Tom accepts the prior iPhone repairs, including sound, and prioritizes longer enjoyable levels before identity and curated personal photos.
 
+[DESIGN018](018-familiar-touch-and-recovery.md) versions the next course revision after actual child playtesting: dedicated Jump, safe height practice, elevated supported anchors and automatic memory checkpoints. This document records the frozen v1 courses and PLAN009 evidence.
+
 ## Play and pacing
 
 Build a garden adventure ending at Drama Dragon and a colorful playground ending at the Besties. Each has several short obstacle activities, safe memory clearings, resident visits and four small fights before its boss. Reuse the current cast, equipment, scenery and audio. The main route changes direction and includes generous hops, low terraces, predictable padded sweepers and a ferry. A visible side path rejoins the route and offers a friendly discovery; it is never required to find the two main-path minor memories.

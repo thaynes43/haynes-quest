@@ -1,8 +1,19 @@
 import assert from "node:assert/strict";
 
 const modes = new Set(["walk", "jump", "ride"]);
+const schemaVersions = new Set(["authored-level-v1", "authored-level-v2"]);
 
 const pairKey = (from, to) => `${from}\u0000${to}`;
+
+const safeMissRetryEdges = (document, connection) => {
+  const sourceIndex = document.mainPath.indexOf(connection.from);
+  return document.connections.filter((candidate) => {
+    if (candidate.from !== connection.safeMissPlatformId) return false;
+    if (candidate.to === connection.from) return true;
+    const retryIndex = document.mainPath.indexOf(candidate.to);
+    return sourceIndex >= 0 && retryIndex >= 0 && retryIndex <= sourceIndex;
+  });
+};
 
 function requireString(value, label) {
   assert.equal(typeof value, "string", `${label} must be a string`);
@@ -30,11 +41,13 @@ export function authoredDocumentFromInspection(inspection) {
 }
 
 export function validateAuthoredNavigation(document) {
-  assert.ok(document && typeof document === "object", "authored document missing");
-  assert.equal(
-    document.schemaVersion,
-    "authored-level-v1",
-    "unsupported authored level schema",
+  assert.ok(
+    document && typeof document === "object",
+    "authored document missing",
+  );
+  assert.ok(
+    schemaVersions.has(document.schemaVersion),
+    `unsupported authored level schema ${document.schemaVersion}`,
   );
   requireString(document.id, "authored.id");
   assert.ok(Array.isArray(document.pieces), "authored.pieces must be an array");
@@ -42,11 +55,18 @@ export function validateAuthoredNavigation(document) {
     Array.isArray(document.connections),
     "authored.connections must be an array",
   );
-  assert.ok(Array.isArray(document.mainPath), "authored.mainPath must be an array");
+  assert.ok(
+    Array.isArray(document.mainPath),
+    "authored.mainPath must be an array",
+  );
   assert.ok(document.mainPath.length >= 2, "authored.mainPath is too short");
-  assert.ok(Array.isArray(document.branches), "authored.branches must be an array");
+  assert.ok(
+    Array.isArray(document.branches),
+    "authored.branches must be an array",
+  );
 
   const platformIds = new Set();
+  const staticPlatformIds = new Set();
   const pieceIds = new Set();
   for (const [index, piece] of document.pieces.entries()) {
     const id = requireString(piece?.id, `authored.pieces[${index}].id`);
@@ -56,6 +76,7 @@ export function validateAuthoredNavigation(document) {
       requirePoint(piece.center, `authored piece ${id}.center`);
       requirePoint(piece.size, `authored piece ${id}.size`);
       platformIds.add(id);
+      if (piece.type === "platform") staticPlatformIds.add(id);
     }
   }
 
@@ -65,10 +86,30 @@ export function validateAuthoredNavigation(document) {
       connection?.from,
       `authored.connections[${index}].from`,
     );
-    const to = requireString(connection?.to, `authored.connections[${index}].to`);
-    assert.ok(platformIds.has(from), `connection source ${from} is not a platform`);
+    const to = requireString(
+      connection?.to,
+      `authored.connections[${index}].to`,
+    );
+    assert.ok(
+      platformIds.has(from),
+      `connection source ${from} is not a platform`,
+    );
     assert.ok(platformIds.has(to), `connection target ${to} is not a platform`);
-    assert.ok(modes.has(connection.mode), `unsupported connection mode ${connection.mode}`);
+    assert.ok(
+      modes.has(connection.mode),
+      `unsupported connection mode ${connection.mode}`,
+    );
+    if (connection.safeMissPlatformId !== undefined) {
+      assert.equal(
+        document.schemaVersion,
+        "authored-level-v2",
+        "safeMissPlatformId requires authored-level-v2",
+      );
+      assert.ok(
+        staticPlatformIds.has(connection.safeMissPlatformId),
+        `connection safe miss ${connection.safeMissPlatformId} is not a static platform`,
+      );
+    }
     const key = pairKey(from, to);
     assert.ok(!connections.has(key), `duplicate connection ${from} -> ${to}`);
     connections.set(key, connection);
@@ -78,7 +119,10 @@ export function validateAuthoredNavigation(document) {
     assert.ok(Array.isArray(path) && path.length >= 2, `${label} is too short`);
     for (const [index, platformId] of path.entries()) {
       requireString(platformId, `${label}[${index}]`);
-      assert.ok(platformIds.has(platformId), `${label}[${index}] is not a platform`);
+      assert.ok(
+        platformIds.has(platformId),
+        `${label}[${index}] is not a platform`,
+      );
       if (index > 0) {
         const previous = path[index - 1];
         assert.ok(
@@ -89,6 +133,14 @@ export function validateAuthoredNavigation(document) {
     }
   };
   validatePath(document.mainPath, "authored.mainPath");
+
+  for (const connection of document.connections) {
+    if (connection.safeMissPlatformId === undefined) continue;
+    assert.ok(
+      safeMissRetryEdges(document, connection).length > 0,
+      `safe miss ${connection.safeMissPlatformId} has no declared retry edge back toward the practice start`,
+    );
+  }
 
   const mainIndexes = new Map(
     document.mainPath.map((platformId, index) => [platformId, index]),
@@ -155,6 +207,22 @@ export function connectionBetween(document, from, to) {
   return connection;
 }
 
+/** Returns the one declared retry edge that leaves a connection's safe catch. */
+export function safeMissRetryEdge(document, connection) {
+  validateAuthoredNavigation(document);
+  const platformId = requireString(
+    connection?.safeMissPlatformId,
+    "connection.safeMissPlatformId",
+  );
+  const retries = safeMissRetryEdges(document, connection);
+  assert.equal(
+    retries.length,
+    1,
+    `safe miss ${platformId} must have exactly one declared retry edge`,
+  );
+  return retries[0];
+}
+
 /**
  * Builds one continuous start-to-finish route. A selected branch replaces the
  * main-path segment between its start and rejoin, exactly as the authored graph
@@ -172,7 +240,10 @@ export function buildTraversalPlan(document, { branchIndex = null } = {}) {
     branch = document.branches[branchIndex];
     const start = platformIds.indexOf(branch[0]);
     const rejoin = platformIds.indexOf(branch.at(-1), start + 1);
-    assert.ok(start >= 0 && rejoin > start, "selected branch endpoints are invalid");
+    assert.ok(
+      start >= 0 && rejoin > start,
+      "selected branch endpoints are invalid",
+    );
     platformIds = [
       ...platformIds.slice(0, start),
       ...branch,
@@ -240,9 +311,15 @@ export function landingPoint(platform, from, inset = 0.45) {
   const halfX = Math.max(0, platform.size.x / 2 - inset);
   const halfZ = Math.max(0, platform.size.z / 2 - inset);
   return {
-    x: Math.max(platform.center.x - halfX, Math.min(platform.center.x + halfX, from.x)),
+    x: Math.max(
+      platform.center.x - halfX,
+      Math.min(platform.center.x + halfX, from.x),
+    ),
     y: platform.center.y + platform.size.y / 2,
-    z: Math.max(platform.center.z - halfZ, Math.min(platform.center.z + halfZ, from.z)),
+    z: Math.max(
+      platform.center.z - halfZ,
+      Math.min(platform.center.z + halfZ, from.z),
+    ),
   };
 }
 
@@ -265,17 +342,43 @@ export function platformGateway(source, target, inset = 0.32) {
       ? [sourceMax, targetMin]
       : [sourceMin, targetMax];
   };
-  const [sourceX, targetX] = coordinates("x");
-  const [sourceZ, targetZ] = coordinates("z");
+  let [sourceX, targetX] = coordinates("x");
+  let [sourceZ, targetZ] = coordinates("z");
+  const sourceTop = source.center.y + source.size.y / 2;
+  const targetTop = target.center.y + target.size.y / 2;
+  if (
+    targetTop > sourceTop + 0.001 &&
+    sourceX === targetX &&
+    sourceZ === targetZ
+  ) {
+    const deltaX = source.center.x - target.center.x;
+    const deltaZ = source.center.z - target.center.z;
+    const axis = Math.abs(deltaX) >= Math.abs(deltaZ) ? "x" : "z";
+    const direction = Math.sign(axis === "x" ? deltaX : deltaZ);
+    assert.notEqual(
+      direction,
+      0,
+      "raised overlapping platforms have no reachable outer face",
+    );
+    const targetFace =
+      target.center[axis] + direction * (target.size[axis] / 2);
+    if (axis === "x") {
+      sourceX = targetFace + direction * inset;
+      targetX = targetFace - direction * inset;
+    } else {
+      sourceZ = targetFace + direction * inset;
+      targetZ = targetFace - direction * inset;
+    }
+  }
   return {
     from: {
       x: sourceX,
-      y: source.center.y + source.size.y / 2,
+      y: sourceTop,
       z: sourceZ,
     },
     to: {
       x: targetX,
-      y: target.center.y + target.size.y / 2,
+      y: targetTop,
       z: targetZ,
     },
   };
@@ -286,14 +389,27 @@ export function summarizeAuthoredCourse(document) {
   return {
     id: document.id,
     schemaVersion: document.schemaVersion,
-    platforms: document.pieces.filter((piece) => piece.type === "platform").length,
+    platforms: document.pieces.filter((piece) => piece.type === "platform")
+      .length,
     movingPlatforms: document.pieces.filter(
       (piece) => piece.type === "moving-platform",
     ).length,
-    sweepers: document.pieces.filter((piece) => piece.type === "sweeper").length,
-    checkpoints: document.pieces.filter((piece) => piece.type === "checkpoint").length,
+    sweepers: document.pieces.filter((piece) => piece.type === "sweeper")
+      .length,
+    checkpoints: document.pieces.filter((piece) => piece.type === "checkpoint")
+      .length,
     mainPathPlatforms: document.mainPath.length,
     branches: document.branches.length,
     connections: document.connections.length,
+    safeMissConnections: document.connections.filter(
+      (connection) => connection.safeMissPlatformId !== undefined,
+    ).length,
+    safeMissPlatforms: new Set(
+      document.connections.flatMap((connection) =>
+        connection.safeMissPlatformId === undefined
+          ? []
+          : [connection.safeMissPlatformId],
+      ),
+    ).size,
   };
 }

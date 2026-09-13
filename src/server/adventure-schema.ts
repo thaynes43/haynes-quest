@@ -17,6 +17,7 @@ import {
   friendlyDefinitionsForPlan,
   type FriendlyState,
 } from '../shared/friendly.js';
+import { bossRequiresOrdinaryDefeats } from '../shared/encounter-availability.js';
 import type { Ability, RuleVersions, SubjectOption } from '../shared/contracts.js';
 import type { FrozenMemory } from './domain.js';
 import { AppError } from './errors.js';
@@ -120,6 +121,8 @@ const levelV3Schema = z.object({
     'gentle-jump-v1',
     'garden-playground-v1',
     'besties-playground-v1',
+    'garden-playground-v2',
+    'besties-playground-v2',
   ]),
   encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
 }).strict();
@@ -270,7 +273,7 @@ function validPlan(plan: AdventurePlan): boolean {
     const levelEncounterIds = level.encounters.map((encounter) => encounter.id);
     const playgroundPlan =
       plan.version === 'era-level-plan-v3' &&
-      plan.catalogVersion === 'parody-catalog-v4';
+      (plan.catalogVersion === 'parody-catalog-v4' || plan.catalogVersion === 'parody-catalog-v5');
     if (
       level.index !== index ||
       level.startAgeYears !== priorTargetAge ||
@@ -310,12 +313,12 @@ function validParodyPlan(plan: AdventurePlanV2 | AdventurePlanV3): boolean {
     const abilities = new Set(abilitiesForPlanAge(plan, level.startAgeYears));
     const playgroundPlan =
       plan.version === 'era-level-plan-v3' &&
-      plan.catalogVersion === 'parody-catalog-v4';
+      (plan.catalogVersion === 'parody-catalog-v4' || plan.catalogVersion === 'parody-catalog-v5');
     const expectedRoute = playgroundPlan
       ? level.periodId === 'block-party-v1'
-        ? 'garden-playground-v1'
+        ? (plan.catalogVersion === 'parody-catalog-v5' ? 'garden-playground-v2' : 'garden-playground-v1')
         : level.periodId === 'besties-obby-v1'
-          ? 'besties-playground-v1'
+          ? (plan.catalogVersion === 'parody-catalog-v5' ? 'besties-playground-v2' : 'besties-playground-v1')
           : undefined
       : abilities.has('jump')
         ? 'gentle-jump-v1'
@@ -480,9 +483,14 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
       definition: encounter,
       progress: state.encounters[encounter.id]!,
     }));
+    const completedEncountersValid = bossRequiresOrdinaryDefeats(
+      'routeId' in level ? level.routeId : undefined,
+    )
+      ? progresses.every(({ progress }) => progress.defeated)
+      : state.encounters[level.bossId]?.defeated === true;
     if (
       level.index < state.activeLevelIndex &&
-      progresses.some(({ progress }) => !progress.defeated)
+      !completedEncountersValid
     ) return false;
     if (
       level.index > state.activeLevelIndex &&
@@ -505,10 +513,18 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
   const bossDefinition = active.encounters.find((encounter) => encounter.id === active.bossId)!;
   const bossProgress = state.encounters[active.bossId]!;
   const bossDefeated = state.encounters[active.bossId]?.defeated === true;
-  if (!ordinaryDefeated && (bossProgress.defeated || bossProgress.hp !== bossDefinition.maxHp)) return false;
+  const requiresOrdinaryDefeats = bossRequiresOrdinaryDefeats(
+    'routeId' in active ? active.routeId : undefined,
+  );
+  if (
+    requiresOrdinaryDefeats &&
+    !ordinaryDefeated &&
+    (bossProgress.defeated || bossProgress.hp !== bossDefinition.maxHp)
+  ) return false;
   if (state.phase === 'memory-released' && !bossDefeated) return false;
   if (
     state.phase === 'memory-released' &&
+    requiresOrdinaryDefeats &&
     active.encounters.some((encounter) => !state.encounters[encounter.id]?.defeated)
   ) return false;
   if ((state.phase === 'exploring' || state.phase === 'fallen') && bossDefeated) return false;
