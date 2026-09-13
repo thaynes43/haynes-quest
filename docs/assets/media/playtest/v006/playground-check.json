@@ -1,0 +1,386 @@
+{
+  "status": "passed",
+  "startedAt": "2026-09-13T03:03:26.353Z",
+  "finishedAt": "2026-09-13T03:06:26.214Z",
+  "browser": "153.0.8010.12",
+  "bundle": {
+    "path": "/assets/index-ChX7wgsN.js",
+    "bytes": 1188490,
+    "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+  },
+  "routeStartChapter": 2,
+  "pageErrors": [],
+  "consoleErrors": [],
+  "responseErrors": [],
+  "coverage": "Besties shortcut through major memory and journey completion",
+  "scope": "Normal keyboard route traversal and touch combat; no teleports or direct API commands. Earlier Garden-to-Besties transition and Garden HP retry are recorded separately in WO082.",
+  "chapter": {
+    "chapter": 2,
+    "course": {
+      "id": "besties-playground-v2",
+      "schemaVersion": "authored-level-v2",
+      "platforms": 23,
+      "movingPlatforms": 1,
+      "sweepers": 2,
+      "checkpoints": 8,
+      "mainPathPlatforms": 21,
+      "branches": 1,
+      "connections": 24,
+      "safeMissConnections": 7,
+      "safeMissPlatforms": 1
+    },
+    "branch": {
+      "declared": [
+        "party-dock",
+        "wide-side-bridge",
+        "friend-balcony",
+        "party-grove"
+      ],
+      "visited": [
+        "wide-side-bridge",
+        "friend-balcony",
+        "party-grove"
+      ],
+      "rejoined": true
+    },
+    "safeMiss": {
+      "edge": {
+        "from": "party-welcome",
+        "to": "party-terrace-1",
+        "mode": "jump"
+      },
+      "safeMissPlatformId": "besties-practice-ground",
+      "landed": {
+        "x": -4.466799999999998,
+        "y": 0,
+        "z": -5.59999999999998
+      },
+      "recoveries": 0,
+      "jumpSequenceBefore": 0,
+      "jumpSequenceAfter": 1,
+      "missTakeoff": {
+        "x": -4.45,
+        "y": 0,
+        "z": -3.68
+      },
+      "retryEdge": {
+        "from": "besties-practice-ground",
+        "to": "party-welcome",
+        "mode": "walk"
+      },
+      "hpPreserved": true,
+      "progressPreserved": true,
+      "returnedTo": "party-welcome"
+    },
+    "recovery": {
+      "checkpointId": "party-picnic-safe",
+      "direction": {
+        "dx": 1,
+        "dz": 0,
+        "distance": 4.724078023645431,
+        "clearance": 3.624913792078369
+      },
+      "before": 0,
+      "after": 1,
+      "position": {
+        "x": 0.39999999999999997,
+        "y": 0,
+        "z": -30.8
+      },
+      "protectionSeconds": 0.7000000000000004,
+      "heldInput": 1,
+      "progressPreserved": true
+    },
+    "deathRecovery": {
+      "encounterId": "level-2-2024-encounter-3",
+      "memoryId": "demo-memory-2026-01",
+      "checkpointId": "party-grove-safe",
+      "fallenRevision": 32,
+      "recoveredRevision": 33,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -81.3
+      },
+      "fullHealth": 10,
+      "localRecoveriesBefore": 1,
+      "localRecoveriesAfter": 0,
+      "progressPreserved": true,
+      "automatic": true
+    },
+    "combat": [
+      {
+        "role": "ordinary-1",
+        "id": "level-2-2024-encounter-1",
+        "platformId": "party-picnic",
+        "primaryAccepted": true,
+        "secondaryAccepted": true,
+        "hitsReceived": 1,
+        "hpAtApproach": 10,
+        "playerHpAfter": 7,
+        "combatRetries": 0,
+        "sawDizzy": false,
+        "besties": [
+          {
+            "id": "bestie-pink",
+            "visible": true,
+            "clips": [
+              "idle"
+            ],
+            "motion": 0.008729457186142686
+          },
+          {
+            "id": "bestie-black",
+            "visible": true,
+            "clips": [
+              "idle"
+            ],
+            "motion": 0.008337857130522335
+          }
+        ]
+      },
+      {
+        "role": "ordinary-2",
+        "id": "level-2-2024-encounter-2",
+        "platformId": "ribbon-rest",
+        "primaryAccepted": true,
+        "secondaryAccepted": true,
+        "hitsReceived": 1,
+        "hpAtApproach": 7,
+        "playerHpAfter": 4,
+        "combatRetries": 0,
+        "sawDizzy": false,
+        "besties": [
+          {
+            "id": "bestie-pink",
+            "visible": true,
+            "clips": [
+              "idle"
+            ],
+            "motion": 0.008409158126987688
+          },
+          {
+            "id": "bestie-black",
+            "visible": true,
+            "clips": [
+              "idle"
+            ],
+            "motion": 0.007733562209114538
+          }
+        ]
+      },
+      {
+        "role": "ordinary-3",
+        "id": "level-2-2024-encounter-3",
+        "platformId": "party-grove",
+        "primaryAccepted": true,
+        "secondaryAccepted": true,
+        "hitsReceived": 1,
+        "hpAtApproach": 10,
+        "playerHpAfter": 7,
+        "combatRetries": 0,
+        "sawDizzy": false,
+        "besties": [
+          {
+            "id": "bestie-pink",
+            "visible": true,
+            "clips": [
+              "idle"
+            ],
+            "motion": 0.006746050813723157
+          },
+          {
+            "id": "bestie-black",
+            "visible": true,
+            "clips": [
+              "idle"
+            ],
+            "motion": 0.006848987449883799
+          }
+        ]
+      },
+      {
+        "role": "ordinary-4",
+        "id": "level-2-2024-encounter-4",
+        "platformId": "party-fair",
+        "primaryAccepted": true,
+        "secondaryAccepted": true,
+        "hitsReceived": 4,
+        "hpAtApproach": 9,
+        "playerHpAfter": 7,
+        "combatRetries": 0,
+        "sawDizzy": false,
+        "besties": [
+          {
+            "id": "bestie-pink",
+            "visible": true,
+            "clips": [
+              "idle"
+            ],
+            "motion": 0.00888483264938452
+          },
+          {
+            "id": "bestie-black",
+            "visible": true,
+            "clips": [
+              "idle"
+            ],
+            "motion": 0.009023853375092926
+          }
+        ]
+      },
+      {
+        "role": "boss",
+        "id": "level-2-2024-boss",
+        "platformId": "besties-court",
+        "primaryAccepted": true,
+        "secondaryAccepted": false,
+        "hitsReceived": 1,
+        "hpAtApproach": 7,
+        "playerHpAfter": 5,
+        "combatRetries": 0,
+        "sawDizzy": false,
+        "nonDizzyDamage": {
+          "phase": "pink-trick",
+          "beforeHp": 11,
+          "afterHp": 8,
+          "action": "attack"
+        },
+        "hitReactions": [
+          {
+            "id": "bestie-pink",
+            "clip": "hit"
+          },
+          {
+            "id": "bestie-pink",
+            "clip": "hit"
+          },
+          {
+            "id": "bestie-pink",
+            "clip": "hit"
+          },
+          {
+            "id": "bestie-pink",
+            "clip": "hit"
+          }
+        ],
+        "besties": [
+          {
+            "id": "bestie-pink",
+            "visible": true,
+            "clips": [
+              "attack",
+              "hit",
+              "defeat"
+            ],
+            "motion": 0.43090867522615794
+          },
+          {
+            "id": "bestie-black",
+            "visible": true,
+            "clips": [
+              "cheer",
+              "attack",
+              "defeat"
+            ],
+            "motion": 0.42718938774929677
+          }
+        ]
+      }
+    ],
+    "contents": [
+      {
+        "type": "friendly",
+        "role": "friendly-1",
+        "id": "level-2-2024-friendly-loop-dancer",
+        "platformId": "party-welcome",
+        "contacted": true
+      },
+      {
+        "type": "pickup",
+        "role": "attack-tool",
+        "revision": 19,
+        "platformId": "party-welcome"
+      },
+      {
+        "type": "pickup",
+        "role": "guard-tool",
+        "revision": 21,
+        "platformId": "party-picnic"
+      },
+      {
+        "type": "memory",
+        "role": "minor-one",
+        "id": "demo-memory-2025-01",
+        "revision": 21,
+        "platformId": "party-picnic",
+        "renderedHidden": true
+      },
+      {
+        "type": "encounter",
+        "role": "ordinary-1",
+        "id": "level-2-2024-encounter-1",
+        "defeated": true,
+        "platformId": "party-picnic"
+      },
+      {
+        "type": "encounter",
+        "role": "ordinary-2",
+        "id": "level-2-2024-encounter-2",
+        "defeated": true,
+        "platformId": "ribbon-rest"
+      },
+      {
+        "type": "friendly",
+        "role": "friendly-2",
+        "id": "level-2-2024-friendly-prism-mimic",
+        "platformId": "friend-balcony",
+        "contacted": true
+      },
+      {
+        "type": "memory",
+        "role": "minor-two",
+        "id": "demo-memory-2026-01",
+        "revision": 30,
+        "platformId": "party-grove",
+        "renderedHidden": true
+      },
+      {
+        "type": "encounter",
+        "role": "ordinary-3",
+        "id": "level-2-2024-encounter-3",
+        "defeated": true,
+        "platformId": "party-grove"
+      },
+      {
+        "type": "friendly",
+        "role": "friendly-3",
+        "id": "level-2-2024-friendly-trendweaver",
+        "platformId": "party-fair",
+        "contacted": true
+      },
+      {
+        "type": "encounter",
+        "role": "ordinary-4",
+        "id": "level-2-2024-encounter-4",
+        "defeated": true,
+        "platformId": "party-fair"
+      },
+      {
+        "type": "encounter",
+        "role": "boss",
+        "id": "level-2-2024-boss",
+        "defeated": true,
+        "platformId": "besties-court"
+      },
+      {
+        "type": "memory",
+        "role": "major",
+        "id": "demo-memory-2027-01",
+        "revision": 51,
+        "platformId": "party-reward",
+        "renderedHidden": true
+      }
+    ]
+  }
+}

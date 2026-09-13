@@ -1,0 +1,76 @@
+{
+  "version": "v006",
+  "captured_on": "2026-09-13",
+  "application_source_commit": "3f5dcbfb6c5d20994358e615d9eb87bd3f1bd029",
+  "driver_commit": "66ba4a1b36c65574b4d8d5bab086986daab61e9a",
+  "scope": "Actual local Chromium screenshots of fictional v2 courses. Root visually inspected all four controls layouts. Software rendering and viewport emulation do not establish physical iPhone or iPad performance.",
+  "browser": "153.0.8010.12",
+  "captures": [
+    {
+      "path": "docs/assets/media/playtest/v006/phone-portrait.png",
+      "source": "test-results/authored-playtest/plan011-besties-final-2/03-chapter-2-controls-phone-portrait.png",
+      "client": {
+        "path": "/assets/index-ChX7wgsN.js",
+        "bytes": 1188490,
+        "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+      },
+      "sha256": "e1831caa26d69d1d891fb6d038cc79bb9306816bd9f5095124c256cc7359e721",
+      "bytes": 166050
+    },
+    {
+      "path": "docs/assets/media/playtest/v006/phone-landscape.png",
+      "source": "test-results/authored-playtest/plan011-besties-final-2/04-chapter-2-controls-phone-landscape.png",
+      "client": {
+        "path": "/assets/index-ChX7wgsN.js",
+        "bytes": 1188490,
+        "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+      },
+      "sha256": "3c95ed249ab38dace3fbf97469b55cb18f57c2a6e30508eac3561f1fce916313",
+      "bytes": 209750
+    },
+    {
+      "path": "docs/assets/media/playtest/v006/tablet-portrait.png",
+      "source": "test-results/authored-playtest/plan011-besties-final-2/05-chapter-2-controls-tablet-portrait.png",
+      "client": {
+        "path": "/assets/index-ChX7wgsN.js",
+        "bytes": 1188490,
+        "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+      },
+      "sha256": "2e8f28aa55e472e66039a498e35ad5c965793fcf09e08296629223e84e502f89",
+      "bytes": 288622
+    },
+    {
+      "path": "docs/assets/media/playtest/v006/tablet-landscape.png",
+      "source": "test-results/authored-playtest/plan011-besties-final-2/06-chapter-2-controls-tablet-landscape.png",
+      "client": {
+        "path": "/assets/index-ChX7wgsN.js",
+        "bytes": 1188490,
+        "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+      },
+      "sha256": "ffe80595a37e2d0882387e4422c8e64a4e262f1db2965bd22d0f8ade99b7c07b",
+      "bytes": 313656
+    },
+    {
+      "path": "docs/assets/media/playtest/v006/safe-practice.png",
+      "source": "test-results/authored-playtest/plan011-besties-final-2/02-chapter-2-safe-miss-catch.png",
+      "client": {
+        "path": "/assets/index-ChX7wgsN.js",
+        "bytes": 1188490,
+        "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+      },
+      "sha256": "1c06bf3585dd65424e0304d95b8e8cfa984b15f5c6ae8328e395df409aa34dc9",
+      "bytes": 231027
+    },
+    {
+      "path": "docs/assets/media/playtest/v006/memory-checkpoint.png",
+      "source": "test-results/authored-playtest/plan011-besties-final-2/09-chapter-2-automatic-memory-checkpoint.png",
+      "client": {
+        "path": "/assets/index-ChX7wgsN.js",
+        "bytes": 1188490,
+        "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+      },
+      "sha256": "fb9ff16a658560f7e60865f88d1dc742fdf97a79b1c6ec7f200c6487dad2e92e",
+      "bytes": 208223
+    }
+  ]
+}

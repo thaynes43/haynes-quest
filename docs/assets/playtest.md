@@ -44,13 +44,17 @@ The [landscape phone capture](media/playtest/v006/phone-landscape.png) and [port
 
 ![A missed practice jump lands beside the low steps on solid ground, with full health](media/playtest/v006/safe-practice.png){ width="700" }
 
-The [controls check](media/playtest/v006/controls-check.json) covers all four layouts and a missed jump that preserves health and progress. The [touch check](media/playtest/v006/touch-check.json) covers moving while pressing Jump, release, cancellation and rotation. Earlier [course captures](media/playtest/v005/captures.json) and the [sound repair check](media/playtest/v005/mobile-audio-local.json) remain available as history; Tom confirmed audible sound on his iPhone during that earlier repair pass.
+The [controls check](media/playtest/v006/controls-check.json) covers all four layouts and a missed jump that preserves health and progress. The [touch check](media/playtest/v006/touch-check.json) covers moving while pressing Jump, release, cancellation, resizing and rotation. Earlier [course captures](media/playtest/v005/captures.json) and the [sound repair check](media/playtest/v005/mobile-audio-local.json) remain available as history; Tom confirmed audible sound on his iPhone during that earlier repair pass.
 
 ## The encounters
 
 Watch the padded sweepers and short gaps. A slip returns you to a nearby safe spot with your gear and collected memories. If you keep holding the stick, movement resumes after you recover. Green hearts mark friends who can heal you. Deliberately hurting one costs health; returning to make amends restores their help. Friends never block chapter progression.
 
 If your health runs out, you automatically return to the latest little memory with full health. Before the first memory, you return to the chapter start. Gear, pictures and beaten enemies stay collected or defeated; enemies still standing regain their health. A connection problem offers a checkpoint retry without starting your journey over.
+
+![After defeat, the player returns beside the second collected memory with full health and both pictures retained](media/playtest/v006/memory-checkpoint.png){ width="700" }
+
+The [Besties chapter check](media/playtest/v006/playground-check.json) records this return, both route memories, the side path, ferry, boss damage outside the dizzy pause, visible hit reactions and the final major memory.
 
 The Besties alternate a pink foam sweeper and a purple floor lane. Each warning chooses your position once, then stays fixed: jump or move to clear ground. The pair turn toward you, step into their tricks, react to hits and disappear after their defeat animation. When they miss their high-five, both become dizzy for five seconds. You can attack during that pause or any other phase while in range. Reaching a boss starts its fight even if you passed an earlier small enemy. You still need both little memories and boss victory to advance.
 
