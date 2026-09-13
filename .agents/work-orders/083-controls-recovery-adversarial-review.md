@@ -1,6 +1,6 @@
 # WO083: Controls and recovery adversarial review
 
-Status: Dispatched through agent-run as `haynes-quest-0912-222128`, separate Claude Opus 5 at xhigh; the live process arguments confirm the requested exact model/effort. Fable is unavailable under TEAM.md's temporary quota override. Review results remain pending.
+Status: Review completed on the scoped earlier commit e278f41. Exact Opus 5 xhigh execution ended successfully; probes are retained at commit 0ba9044. Read the [findings](083-controls-recovery-adversarial-results.md) and root's disposition below. This review is not an acceptance claim for the later integrated candidate.
 
 ## Exact scope
 
@@ -17,3 +17,11 @@ Focus on input loss/duplication, stuck or repeated recovery requests, stale-stat
 Known incomplete work outside this review: new v2 course JSON/catalog selection is present, but the height lane has not yet integrated its schema/registry/contact-height implementation. The new layouts are not claimed runnable or deployed at this commit. Do not report this known staging dependency as a fresh defect. Root is adding docs/catalog updates and will run integrated browser/CI/release acceptance afterwards. No physical-device pass is claimed. If your scope requires a browser to prove a suspected issue, report the precise requested check to root instead of taking the browser lease.
 
 Return concise findings/results, exact inspected commit and commands. Do not implement UX/copy changes; Astra owns those decisions.
+
+## Root disposition
+
+- F1, F7, F8 and C3 are resolved by integrated version-pinned tests, both registered v2 routes, strict shared checkpoint validation and MkDocs navigation. The later integrated suite passes; the earlier red review commit was never offered for merge.
+- F2 is accepted: finite action/refresh transport is being implemented with the existing same-ID single retry. A UI timer alone would leave an uncertain request running and is not the selected fix.
+- F3's memory-based HP checkpoint is the deliberate user-facing rule for this pass; DESIGN018 records the return-distance tradeoff. Its stale code comment is corrected. A local obstacle slip still returns to the nearby visited safe point.
+- F4, F5 and F6 are corrected in 775d56b: the boss health bar follows engagement, same-orientation resizing preserves and remeasures a held stick, rotation clears it, and a refused checkpoint request gives an explicit explanation. Nineteen focused input/UI tests pass, including regressions for these branches; typecheck and lint pass.
+- C1/C2's actual v2 runtime coverage and browser journey are being completed against the integrated registered routes. Four responsive layouts and actual simultaneous stick+Jump already pass in Chromium emulation. No physical Safari pass is claimed. The later full-suite, docs, build, browser and release evidence will be recorded in WO082.

@@ -32,25 +32,19 @@ Jump onto the ferries, ride along, then jump to the next landing. Broad platform
 
 The sound repairs accepted on Tom's iPhone are retained. The new Jump button replaces world-tap jumping, and empty attacks animate and sound without showing reading prompts over the player. Jumping works from age zero, contact collects things, and recovered little keepsakes disappear. **Sound on/off** controls mute; **Help → Play a test sound** auditions the output and offers a retry if needed. The source cues and mix are unchanged. A missing model still shows a retryable warning while play continues.
 
-## Earlier course captures
+## Familiar controls on phones and tablets
 
-These v005 captures preserve the preceding release; they do not show the new Jump button or raised course revisions. Current captures and acceptance are recorded with the [handoff](../../.agents/HANDOFF.md).
+The movement stick is larger in portrait and on tablets. Jump has its own lower-right corner; Attack and Bash sit above it. Health and small picture indicators stay at the edges of the view.
 
-![The earlier age-zero route with visible grass, fictional memories and the Attack control](media/playtest/v005/age-zero-route.png){ width="600" }
+![Portrait phone controls with a large left stick, Jump at the lower right, and attacks above it](media/playtest/v006/phone-portrait.png){ width="300" }
 
-The garden starts with a safe tool pickup and broad stepping pads. Grass and trees continue through the route, with clear space for jumping and fighting.
+![Landscape tablet controls with a larger stick and action buttons, leaving the character clear](media/playtest/v006/tablet-landscape.png){ width="700" }
 
-![A padded sweeper on the main path and a broad woodland side path to the right](media/playtest/v005/woodland-choice.png){ width="600" }
+The [landscape phone capture](media/playtest/v006/phone-landscape.png) and [portrait tablet capture](media/playtest/v006/tablet-portrait.png) show the other layouts. These are actual browser captures of the fictional playtest, recorded with the [source and file checksums](media/playtest/v006/captures.json). They are not physical-device performance measurements.
 
-The woodland path offers a friendly visit and rejoins the adventure. The main path continues over the padded bridge.
+![A missed practice jump lands beside the low steps on solid ground, with full health](media/playtest/v006/safe-practice.png){ width="700" }
 
-![The Besties during their shared dizzy window, with Attack and the smaller Bash control](media/playtest/v005/besties-dizzy.png){ width="600" }
-
-The Besties keep their missed high-five and dizzy pause, but can now take hits throughout the routine. The small Bash button appears after you collect a shield. These are actual browser captures of the preceding playground version; their [capture record](media/playtest/v005/captures.json) identifies the tested version.
-
-![Help after a successful test tap, with a repeatable sound button and visible status](media/playtest/v005/help-sound.png){ width="300" }
-
-Help scrolls on touch, and the sound button confirms a test or offers a retry. Artwork retries also update their result while a menu is open; they do not require a second tap. The [sound check](media/playtest/v005/mobile-audio-local.json) records touch scrolling, a failed sound request and a successful retry. Tom confirmed audible sound on his iPhone during the preceding repair pass.
+The [controls check](media/playtest/v006/controls-check.json) covers all four layouts and a missed jump that preserves health and progress. The [touch check](media/playtest/v006/touch-check.json) covers moving while pressing Jump, release, cancellation and rotation. Earlier [course captures](media/playtest/v005/captures.json) and the [sound repair check](media/playtest/v005/mobile-audio-local.json) remain available as history; Tom confirmed audible sound on his iPhone during that earlier repair pass.
 
 ## The encounters
 
@@ -60,7 +54,7 @@ If your health runs out, you automatically return to the latest little memory wi
 
 The Besties alternate a pink foam sweeper and a purple floor lane. Each warning chooses your position once, then stays fixed: jump or move to clear ground. The pair turn toward you, step into their tricks, react to hits and disappear after their defeat animation. When they miss their high-five, both become dizzy for five seconds. You can attack during that pause or any other phase while in range. Reaching a boss starts its fight even if you passed an earlier small enemy. You still need both little memories and boss victory to advance.
 
-For the next family test, watch whether moving and jumping together feels familiar, whether the safe steps help her practice and whether returning to a memory after defeat is clear. The [playground check](media/playtest/v005/playground-check.json) records both chapters, their side paths, ferry rides, combat and memory collection. The long automated journey uses keyboard movement with touch combat; separate [touch](media/playtest/v005/touch-smoke.json) and [landscape](media/playtest/v005/landscape-controls.json) checks cover the mobile controls. It does not establish child enjoyment or physical-device performance. The [current handoff](../../.agents/HANDOFF.md) records release status.
+For the next family test, watch whether moving and jumping together feels familiar, whether the safe steps help her practice and whether returning to a memory after defeat is clear. The long automated journey uses keyboard movement with touch combat; the separate touch check uses the actual stick and Jump button together. Browser checks do not establish child enjoyment or physical-device performance. The [current handoff](../../.agents/HANDOFF.md) records release status.
 
 ## Still to come
 
@@ -75,4 +69,4 @@ The new courses share validated, reusable pieces as the foundation for a level b
 | The Block Party | Two [Mister Hiss](reviews/mister-hiss/v001.md) and two [Peel Patrol](reviews/peel-patrol/v001.md) encounters | [Drama Dragon](reviews/drama-dragon/v001.md) | [Blockling](reviews/blockling/v001.md), [Signal Moth](reviews/signal-moth/v001.md), [Buffer Baron](reviews/buffer-baron/v001.md) |
 | Besties Obby | Two [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) and two returning Peel Patrol encounters | [The Bickering Besties](reviews/bickering-besties/v001.md) | [Loop Dancer](reviews/loop-dancer/v001.md), [Prism Mimic](reviews/prism-mimic/v001.md), [Trendweaver](reviews/trendweaver/v001.md) |
 
-[Browse the full visual catalog](catalog.md) for inspiration images, models, motion, the six fictional pictures and sound previews. The playtest uses the same 23 GLBs and four source WAVs recorded in the [artwork list](media/playtest/v002/artwork.json), with a revised runtime sound mix. The [phone and desktop catalog check](media/playtest/v005/catalog-check.json) verifies thumbnail navigation, reviews and model viewers for this candidate. The joint Besties look is approved; exact model and sound versions remain available for final review.
+[Browse the full visual catalog](catalog.md) for inspiration images, models, motion, the six fictional pictures and sound previews. The playtest uses the same 23 GLBs and four source WAVs recorded in the [artwork list](media/playtest/v002/artwork.json), with a revised runtime sound mix. The earlier [phone and desktop catalog check](media/playtest/v005/catalog-check.json) records thumbnail navigation, reviews and model viewers for these same source assets. The joint Besties look is approved; exact model and sound versions remain available for final review.
