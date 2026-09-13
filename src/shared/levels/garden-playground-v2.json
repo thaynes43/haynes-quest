@@ -134,7 +134,7 @@
       "id": "memory-grove",
       "center": {
         "x": 0,
-        "y": -0.3,
+        "y": 0.0,
         "z": -76.8
       },
       "size": {
@@ -148,7 +148,7 @@
       "id": "little-rise",
       "center": {
         "x": 0,
-        "y": -0.07999999999999999,
+        "y": 0.3,
         "z": -84.4
       },
       "size": {
@@ -162,7 +162,7 @@
       "id": "little-landing",
       "center": {
         "x": 0,
-        "y": -0.3,
+        "y": 0.0,
         "z": -88.8
       },
       "size": {
@@ -209,7 +209,7 @@
       "id": "dragon-clearing",
       "center": {
         "x": 0,
-        "y": -0.3,
+        "y": 0.0,
         "z": -111.8
       },
       "size": {
@@ -223,7 +223,7 @@
       "id": "garden-reward",
       "center": {
         "x": 0,
-        "y": -0.3,
+        "y": 0.0,
         "z": -122.8
       },
       "size": {
@@ -379,7 +379,7 @@
       "id": "grove-safe",
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 0.3,
         "z": -72.8
       },
       "platformId": "memory-grove",
@@ -405,7 +405,7 @@
       "id": "dragon-safe",
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 0.3,
         "z": -104.3
       },
       "platformId": "dragon-clearing",
@@ -418,7 +418,7 @@
       "id": "garden-reward-safe",
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 0.3,
         "z": -121.3
       },
       "platformId": "garden-reward",
@@ -599,7 +599,7 @@
     {
       "from": "woodland-side-3",
       "to": "memory-grove",
-      "mode": "walk"
+      "mode": "jump"
     },
     {
       "from": "garden-practice-ground",
@@ -650,7 +650,7 @@
       "platformId": "garden-reward",
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 0.3,
         "z": -123.8
       }
     },
@@ -658,7 +658,7 @@
       "platformId": "garden-reward",
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 0.3,
         "z": -121.3
       }
     },
@@ -693,7 +693,7 @@
         "platformId": "memory-grove",
         "position": {
           "x": -1.5,
-          "y": 0,
+          "y": 0.3,
           "z": -74.8
         }
       },
@@ -701,7 +701,7 @@
         "platformId": "garden-reward",
         "position": {
           "x": 0,
-          "y": 0,
+          "y": 0.3,
           "z": -122.3
         }
       }
@@ -743,7 +743,7 @@
         "platformId": "memory-grove",
         "position": {
           "x": 2,
-          "y": 0,
+          "y": 0.3,
           "z": -78.8
         },
         "kind": "ordinary-a",
@@ -775,7 +775,7 @@
         "platformId": "dragon-clearing",
         "position": {
           "x": 0,
-          "y": 0,
+          "y": 0.3,
           "z": -111.8
         },
         "kind": "boss",
@@ -801,7 +801,7 @@
         "platformId": "memory-grove",
         "position": {
           "x": -4.5,
-          "y": 0,
+          "y": 0.3,
           "z": -73.3
         }
       },

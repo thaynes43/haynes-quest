@@ -209,7 +209,7 @@
       "id": "final-hop-1",
       "center": {
         "x": -1.2,
-        "y": -0.3,
+        "y": 0.0,
         "z": -109.5
       },
       "size": {
@@ -223,7 +223,7 @@
       "id": "final-hop-2",
       "center": {
         "x": 1.2,
-        "y": -0.3,
+        "y": 0.3,
         "z": -113.1
       },
       "size": {
@@ -237,7 +237,7 @@
       "id": "besties-court",
       "center": {
         "x": 0,
-        "y": -0.3,
+        "y": 0.6,
         "z": -125.3
       },
       "size": {
@@ -251,7 +251,7 @@
       "id": "party-reward",
       "center": {
         "x": 0,
-        "y": -0.3,
+        "y": 0.6,
         "z": -138.3
       },
       "size": {
@@ -401,7 +401,7 @@
       "id": "besties-safe",
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 0.9,
         "z": -116.3
       },
       "platformId": "besties-court",
@@ -414,7 +414,7 @@
       "id": "party-reward-safe",
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 0.9,
         "z": -136.8
       },
       "platformId": "party-reward",
@@ -652,7 +652,7 @@
       "platformId": "party-reward",
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 0.9,
         "z": -139.8
       }
     },
@@ -660,7 +660,7 @@
       "platformId": "party-reward",
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 0.9,
         "z": -136.8
       }
     },
@@ -703,7 +703,7 @@
         "platformId": "party-reward",
         "position": {
           "x": 0,
-          "y": 0,
+          "y": 0.9,
           "z": -138.3
         }
       }
@@ -777,7 +777,7 @@
         "platformId": "besties-court",
         "position": {
           "x": 0,
-          "y": 0,
+          "y": 0.9,
           "z": -125.3
         },
         "kind": "boss",
