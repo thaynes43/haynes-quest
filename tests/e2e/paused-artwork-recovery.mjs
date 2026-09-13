@@ -31,18 +31,16 @@ export async function createPausedArtworkProbe(page) {
       );
     },
     async verify({ screenshot, mark }) {
-      assert.ok(failures > 0, "the selected Besties model must fail before retry");
-      mark("paused-artwork:await-real-defeat");
-      await waitForInspection({
-        page,
-        screenshot,
-        label: "paused-artwork-fallen",
-        timeout: 90_000,
-        predicate: (inspection) => inspection.status.phase === "fallen",
+      assert.ok(
+        failures > 0,
+        "the selected Besties model must fail before retry",
+      );
+      mark("paused-artwork:open-help");
+      await page.getByRole("button", { name: "How to play" }).tap();
+      const dialog = page.getByRole("dialog", {
+        name: "Explore. Prepare. Face the era.",
       });
-      await page
-        .getByRole("dialog", { name: "Take a breath. Try again." })
-        .waitFor();
+      await dialog.waitFor();
       await page.getByText("Some artwork couldn’t load.").waitFor();
       const before = await inspectGame(page);
       assert.ok(before.status.mediaFailed > 0);
@@ -69,8 +67,8 @@ export async function createPausedArtworkProbe(page) {
       });
       assert.equal(
         after.status.phase,
-        "fallen",
-        "artwork retry must not resume gameplay",
+        before.status.phase,
+        "artwork retry changed authoritative gameplay phase",
       );
       assert.equal(
         after.obby.timeSeconds,
@@ -80,9 +78,11 @@ export async function createPausedArtworkProbe(page) {
       assert.deepEqual(
         after.status.position,
         before.status.position,
-        "retry must not move the fallen player",
+        "retry must not move the paused player",
       );
       await screenshot("besties-paused-artwork-restored");
+      await dialog.getByRole("button", { name: "Back to the adventure" }).tap();
+      await dialog.waitFor({ state: "detached" });
       const result = {
         assetPath,
         failures,
@@ -93,6 +93,7 @@ export async function createPausedArtworkProbe(page) {
         loadingAfter: after.status.mediaLoading,
         warningHidden: true,
         physicsStayedPaused: true,
+        pauseSurface: "help",
         timeSeconds: after.obby.timeSeconds,
         actorsRestored: after.visuals.besties.map((actor) => actor.id),
       };
