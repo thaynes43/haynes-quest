@@ -342,17 +342,43 @@ export function platformGateway(source, target, inset = 0.32) {
       ? [sourceMax, targetMin]
       : [sourceMin, targetMax];
   };
-  const [sourceX, targetX] = coordinates("x");
-  const [sourceZ, targetZ] = coordinates("z");
+  let [sourceX, targetX] = coordinates("x");
+  let [sourceZ, targetZ] = coordinates("z");
+  const sourceTop = source.center.y + source.size.y / 2;
+  const targetTop = target.center.y + target.size.y / 2;
+  if (
+    targetTop > sourceTop + 0.001 &&
+    sourceX === targetX &&
+    sourceZ === targetZ
+  ) {
+    const deltaX = source.center.x - target.center.x;
+    const deltaZ = source.center.z - target.center.z;
+    const axis = Math.abs(deltaX) >= Math.abs(deltaZ) ? "x" : "z";
+    const direction = Math.sign(axis === "x" ? deltaX : deltaZ);
+    assert.notEqual(
+      direction,
+      0,
+      "raised overlapping platforms have no reachable outer face",
+    );
+    const targetFace =
+      target.center[axis] + direction * (target.size[axis] / 2);
+    if (axis === "x") {
+      sourceX = targetFace + direction * inset;
+      targetX = targetFace - direction * inset;
+    } else {
+      sourceZ = targetFace + direction * inset;
+      targetZ = targetFace - direction * inset;
+    }
+  }
   return {
     from: {
       x: sourceX,
-      y: source.center.y + source.size.y / 2,
+      y: sourceTop,
       z: sourceZ,
     },
     to: {
       x: targetX,
-      y: target.center.y + target.size.y / 2,
+      y: targetTop,
       z: targetZ,
     },
   };

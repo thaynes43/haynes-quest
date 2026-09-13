@@ -287,6 +287,18 @@ describe("authored browser navigation", () => {
     });
   });
 
+  it("approaches the outer face of an overlapping raised platform", () => {
+    const gateway = platformGateway(
+      { center: { x: 7, y: -0.3, z: -72.8 }, size: { x: 4, y: 0.6, z: 6 } },
+      { center: { x: 0, y: 0, z: -76.8 }, size: { x: 12, y: 0.6, z: 10 } },
+    );
+
+    expect(gateway.from.x).toBeCloseTo(6.32);
+    expect(gateway.to.x).toBeCloseTo(5.68);
+    expect(gateway.from.y).toBeCloseTo(0);
+    expect(gateway.to.y).toBeCloseTo(0.3);
+  });
+
   it("accepts v2 safe misses with a declared retry edge", () => {
     const document = documentV2Fixture();
     const plan = buildTraversalPlan(document);
