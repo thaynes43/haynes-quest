@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "candidate-verified-awaiting-release",
+  "status": "deployed-and-verified",
   "workOrder": ".agents/work-orders/090-app-wide-zoom-lock.md",
   "baseCommit": "d8044f751742ec542f7493dcd0a095c9cc6ab183",
   "contract": "No browser zoom gestures anywhere in the game app; preserve scrolling and independent game input.",
@@ -693,6 +693,364 @@
           }
         }
       }
+    },
+    "hosted": {
+      "status": "passed",
+      "url": "https://haynes-quest-playtest.haynesops.com",
+      "browser": "153.0.8010.12",
+      "startedAt": "2026-09-19T23:54:38.792Z",
+      "finishedAt": "2026-09-19T23:56:08.269Z",
+      "assets": {
+        "bundle": {
+          "path": "/assets/index-BbxFx3Yj.js",
+          "bytes": 1193622,
+          "sha256": "66d829432a86b1d40bc9ac56717011a36d19e84026dc3c2562f63ce4958423a2"
+        },
+        "css": {
+          "path": "/assets/index-CFAjhIJT.css",
+          "bytes": 41949,
+          "sha256": "7a844ac3d16e8641b9ef068fa2f2da08fec20bfe5023d1bd20f935084b05cf9d"
+        }
+      },
+      "viewportPolicy": "width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover",
+      "expected": {
+        "appZoomLock": true,
+        "gameTouchAction": "pan-y",
+        "headerPinchZoom": false
+      },
+      "responseErrors": [],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "rawPath": "test-results/phone-viewport-regression/hosted-app-wide-release-final/report.json",
+      "rawSha256": "1829aec33c07149714dfcb71e069e3a1272e22cf0adfdf145b524e5e0b845a34",
+      "measurements": {
+        "start-page-pinch": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "game-header-pinch": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "start-page-double-tap": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "game-header-double-tap": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "startPageScroll": {
+          "before": {
+            "scrollHeight": 865,
+            "clientHeight": 390,
+            "scrollY": 0,
+            "htmlTouchAction": "pan-x pan-y",
+            "bodyTouchAction": "pan-x pan-y",
+            "rootTouchAction": "pan-x pan-y",
+            "targetTouchAction": "auto"
+          },
+          "after": {
+            "scrollY": 295,
+            "scrollX": 0,
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 295
+            }
+          }
+        },
+        "helpScroll": {
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "after": {
+            "scrollTop": 215,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "afterPinch": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "finalViewport": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          }
+        },
+        "entryLeave": {
+          "beforeEntry": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "inGame": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "afterLeave": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          }
+        },
+        "surfaces": {
+          "canvas": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "hud": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "attack-control": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          }
+        },
+        "visibleBounds": {
+          "header": {
+            "rendered": true,
+            "x": 24,
+            "y": 10,
+            "width": 796,
+            "height": 57,
+            "right": 820,
+            "bottom": 67,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "joystick": {
+            "rendered": true,
+            "x": 20,
+            "y": 234,
+            "width": 140,
+            "height": 140,
+            "right": 160,
+            "bottom": 374,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "actions": {
+            "rendered": true,
+            "x": 644,
+            "y": 194,
+            "width": 180,
+            "height": 180,
+            "right": 824,
+            "bottom": 374,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "jump": {
+            "rendered": true,
+            "x": 738,
+            "y": 288,
+            "width": 86,
+            "height": 86,
+            "right": 824,
+            "bottom": 374,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "attack": {
+            "rendered": true,
+            "x": 644,
+            "y": 204,
+            "width": 78,
+            "height": 78,
+            "right": 722,
+            "bottom": 282,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "bash": {
+            "rendered": false
+          }
+        },
+        "guardedInputs": [
+          {
+            "type": "wheel",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": true,
+            "metaKey": false,
+            "key": null
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": false,
+            "ctrlKey": true,
+            "metaKey": false,
+            "key": "Control"
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": true,
+            "metaKey": false,
+            "key": "="
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": true,
+            "metaKey": false,
+            "key": "-"
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": false,
+            "ctrlKey": false,
+            "metaKey": true,
+            "key": "Meta"
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": false,
+            "metaKey": true,
+            "key": "="
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": false,
+            "metaKey": true,
+            "key": "-"
+          }
+        ]
+      }
     }
   },
   "limits": [
@@ -704,5 +1062,436 @@
   "harness": {
     "path": "tests/e2e/phone-viewport-regression.mjs",
     "sha256": "d943e8410ac2d97fe0b5293ea0a0e06f0a129134c7cd4ad567487e4967788d95"
+  },
+  "application": {
+    "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/50",
+    "checkedHead": "e87b965703eb3eec7baf59f2efa4895e78814c8c",
+    "mergeCommit": "2ac16b9cc4840dea19411318ac7615ccf7fd0070",
+    "mergedAt": "2026-09-19T23:45:26Z",
+    "ciApplication": 35476793417,
+    "ciDocumentation": 35476793443,
+    "testsPassed": 568,
+    "postgresTestsPassed": 12,
+    "review": "No actionable findings in independent source/test review."
+  },
+  "publication": {
+    "recordedAt": "2026-09-19T23:48:54.472332+00:00",
+    "applicationCommit": "2ac16b9cc4840dea19411318ac7615ccf7fd0070",
+    "runs": [
+      {
+        "conclusion": "success",
+        "databaseId": 35476977977,
+        "name": "Documentation",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "databaseId": 35476977957,
+        "name": "Application",
+        "status": "completed"
+      }
+    ],
+    "imageSteps": [
+      {
+        "name": "Set up job",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run docker/setup-buildx-action@v3",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run docker/login-action@v3",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run docker/build-push-action@v6",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/attest-build-provenance@v2",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run sigstore/cosign-installer@v4.1.2",
+        "conclusion": "success"
+      },
+      {
+        "name": "Sign image",
+        "conclusion": "success"
+      },
+      {
+        "name": "Record image",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run docker/build-push-action@v6",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run docker/login-action@v3",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run docker/setup-buildx-action@v3",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "conclusion": "success"
+      }
+    ],
+    "registry": {
+      "status": 200,
+      "digest": "sha256:fe0c1c06e52cbb7d3e711999d57a529014111cb0e7b9632d96f3e4473dc0aa68",
+      "bodySha256": "sha256:fe0c1c06e52cbb7d3e711999d57a529014111cb0e7b9632d96f3e4473dc0aa68",
+      "manifestBytes": 857
+    },
+    "attestationCount": 1,
+    "attestationClaim": "Presence and publication only; no independent cryptographic verification.",
+    "image": "ghcr.io/thaynes43/haynes-quest:sha-2ac16b9cc4840dea19411318ac7615ccf7fd0070@sha256:fe0c1c06e52cbb7d3e711999d57a529014111cb0e7b9632d96f3e4473dc0aa68",
+    "rawPath": "/home/dev/work/quest-app-zoom-release-20260919/.private/quest-app-zoom/publication.json",
+    "rawSha256": "2d60207e91709d612b37eb89a4770844cc9e0442b1bb971822d618604902515c"
+  },
+  "operations": {
+    "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/2986",
+    "checkedHead": "81d3ad9dbae752d6c9b738be1eda7c95ba2c0b40",
+    "fluxRun": 35477161570,
+    "diffScopeRun": 35477161568,
+    "mergeCommit": "7984c98dc217c61c0d5f5179f01ce900e49d42ac",
+    "mergedAt": "2026-09-19T23:52:56Z",
+    "checksPassed": 9,
+    "renderedChange": "Private playtest Deployment image only; edge diff empty."
+  },
+  "rollout": {
+    "baseline": {
+      "rawPath": "/home/dev/work/quest-app-zoom-release-20260919/.private/quest-app-zoom/baseline.json",
+      "rawSha256": "680a68cff66cfbcb9a18361b2cd832a7d6de6c7ee6a63f853d196aa22eae81d5",
+      "observations": {
+        "schemaVersion": 1,
+        "capturedAt": "2026-09-19T23:34:16Z",
+        "ops": {
+          "commit": "8ee4b5f40ce9856f8b5e6fb5f04b475f40756649",
+          "manifestPath": "kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml",
+          "manifestSha256": "72a49008ab520af8627c492bee4ad8d6e224a8a7b7e960a6242bc61854a72a24",
+          "currentManifestImage": "ghcr.io/thaynes43/haynes-quest:sha-9a01cbd034b50031638c81bc3e899089cd5eed1b@sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678",
+          "requiredChecks": [
+            "Diff Scope - Success",
+            "Flux Local - Filter",
+            "Flux Local - Test (main)",
+            "Flux Local - Test (edge)",
+            "Flux Local - Diff (main/helmrelease)",
+            "Flux Local - Diff (main/kustomization)",
+            "Flux Local - Diff (edge/helmrelease)",
+            "Flux Local - Diff (edge/kustomization)",
+            "Flux Local - Success"
+          ]
+        },
+        "flux": {
+          "source": {
+            "namespace": "flux-system",
+            "name": "haynes-ops",
+            "uid": "a67b6f6b-743c-497f-9e3b-aae6bfc342ab",
+            "generation": 1,
+            "observedGeneration": 1,
+            "ready": true,
+            "reason": "Succeeded",
+            "revision": "main@sha1:8ee4b5f40ce9856f8b5e6fb5f04b475f40756649",
+            "digest": "sha256:c91a4dc4db841cff973ce408b49918fd516b2acfd529d8d8b680a934f39a6ef0"
+          },
+          "kustomization": {
+            "namespace": "frontend",
+            "name": "haynes-quest",
+            "uid": "8d6a4df9-aff7-4e3c-beae-d08a450b074f",
+            "generation": 3,
+            "observedGeneration": 3,
+            "ready": true,
+            "reason": "ReconciliationSucceeded",
+            "lastAppliedRevision": "main@sha1:8ee4b5f40ce9856f8b5e6fb5f04b475f40756649",
+            "lastAttemptedRevision": "main@sha1:8ee4b5f40ce9856f8b5e6fb5f04b475f40756649"
+          },
+          "helmReleases": [
+            {
+              "namespace": "frontend",
+              "name": "haynes-quest",
+              "uid": "a0b71566-535e-4c48-991c-38fc6bbe4eaf",
+              "generation": 3,
+              "observedGeneration": 3,
+              "ready": true,
+              "reason": "UpgradeSucceeded",
+              "lastAppliedRevision": null,
+              "lastAttemptedRevision": "5.1.0+0d039f7760db",
+              "releaseStatus": "deployed",
+              "releaseVersion": 3,
+              "lastDeployed": "2026-09-11T12:17:23Z"
+            },
+            {
+              "namespace": "frontend",
+              "name": "haynes-quest-playtest",
+              "uid": "117b9801-8cf3-49b2-8f9b-7799fd4c770c",
+              "generation": 10,
+              "observedGeneration": 10,
+              "ready": true,
+              "reason": "UpgradeSucceeded",
+              "lastAppliedRevision": null,
+              "lastAttemptedRevision": "5.1.0+0d039f7760db",
+              "releaseStatus": "deployed",
+              "releaseVersion": 10,
+              "lastDeployed": "2026-09-19T23:21:55Z"
+            }
+          ]
+        },
+        "deployments": [
+          {
+            "namespace": "frontend",
+            "name": "haynes-quest",
+            "uid": "c17ee749-129e-4059-8091-ba167639604e",
+            "generation": 3,
+            "observedGeneration": 3,
+            "desired": 1,
+            "replicas": 1,
+            "updated": 1,
+            "available": 1,
+            "ready": 1,
+            "images": [
+              "ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+            ],
+            "pods": [
+              {
+                "name": "haynes-quest-7d9b698574-nds6g",
+                "uid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+                "phase": "Running",
+                "node": "talosw02",
+                "containers": [
+                  {
+                    "name": "app",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/haynes-quest@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "namespace": "frontend",
+            "name": "haynes-quest-playtest",
+            "uid": "d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b",
+            "generation": 10,
+            "observedGeneration": 10,
+            "desired": 1,
+            "replicas": 1,
+            "updated": 1,
+            "available": 1,
+            "ready": 1,
+            "images": [
+              "ghcr.io/thaynes43/haynes-quest:sha-9a01cbd034b50031638c81bc3e899089cd5eed1b@sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678"
+            ],
+            "pods": [
+              {
+                "name": "haynes-quest-playtest-67f5bf94f6-9tlzm",
+                "uid": "1af794ee-dd6b-48f0-87d0-1a5980dc1043",
+                "phase": "Running",
+                "node": "talosw01",
+                "containers": [
+                  {
+                    "name": "app",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/haynes-quest@sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "namespace": "dev",
+            "name": "dev-env",
+            "uid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+            "generation": 108,
+            "observedGeneration": 108,
+            "desired": 1,
+            "replicas": 1,
+            "updated": 1,
+            "available": 1,
+            "ready": 1,
+            "images": [
+              "ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93",
+              "ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93",
+              "ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93"
+            ],
+            "pods": [
+              {
+                "name": "dev-env-66957b4b6d-zgplf",
+                "uid": "1f601d73-df22-4602-89f4-911d27505131",
+                "phase": "Running",
+                "node": "talosw01",
+                "containers": [
+                  {
+                    "name": "app",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/dev-env@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93"
+                  },
+                  {
+                    "name": "auth-watch",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/dev-env@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93"
+                  },
+                  {
+                    "name": "gh-refresher",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/dev-env@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "hosted": {
+          "normal": {
+            "name": "normal",
+            "origin": "https://haynes-quest.haynesops.com",
+            "index": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "f99640ca64c2168c4560ba4a7e437fa48227050c52444783d9452cabe5388335"
+            },
+            "healthz": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288"
+            },
+            "readyz": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd"
+            },
+            "bundle": {
+              "path": "/assets/index-a627mZ8d.js",
+              "bytes": 799996,
+              "sha256": "cbe876ab3ba15cbe1e12bd2835b47c1fa85edad70fb15e34b3a9c191dcbde911"
+            },
+            "css": {
+              "path": "/assets/index-D69bofdy.css",
+              "bytes": 23677,
+              "sha256": "7b661f0e3309a9bd34c82cdf0cebbeb0a4bf2809e6f0961fa109c63a633dc631"
+            }
+          },
+          "playtest": {
+            "name": "playtest",
+            "origin": "https://haynes-quest-playtest.haynesops.com",
+            "index": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "bb51c65b469cf58e1a94e3bd1f9d8669c2f3d5cabd567786c7e4c03de9b0a0a2"
+            },
+            "healthz": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288"
+            },
+            "readyz": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd"
+            },
+            "bundle": {
+              "path": "/assets/index-C4SUeEy7.js",
+              "bytes": 1193022,
+              "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+            },
+            "css": {
+              "path": "/assets/index-BkwX-UiJ.css",
+              "bytes": 41908,
+              "sha256": "55c0f3cd2eaec7ac3625bd9c6356ae3fd5007dd265582f3ff5d248f8678eab12"
+            }
+          }
+        }
+      }
+    },
+    "premerge-protected": {
+      "rawPath": "/home/dev/work/quest-app-zoom-release-20260919/.private/quest-app-zoom/premerge-protected.json",
+      "rawSha256": "d7cafc49112c7cf7794ad71c58bfefb02eae64129d35f5a691b08b1969641ba2",
+      "observations": {
+        "checkedAt": "2026-09-19T23:50:13.741330+00:00",
+        "protected": [
+          {
+            "namespace": "frontend",
+            "name": "haynes-quest",
+            "uid": "c17ee749-129e-4059-8091-ba167639604e",
+            "generation": 3,
+            "unchanged": true
+          },
+          {
+            "namespace": "dev",
+            "name": "dev-env",
+            "uid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+            "generation": 108,
+            "unchanged": true
+          }
+        ]
+      }
+    },
+    "activity": "act-235124-103012",
+    "activityStatus": "ended",
+    "initialAudit": {
+      "rawPath": "/home/dev/work/quest-app-zoom-release-20260919/.private/quest-app-zoom/audit-initial.txt",
+      "rawSha256": "4caa4d9691913a08441a4b4ea0149d699462564b583782cb3619334b0dc19309",
+      "observations": [
+        "flux=ready source=main@sha1:7984c98dc217c61c0d5f5179f01ce900e49d42ac kustomization=main@sha1:7984c98dc217c61c0d5f5179f01ce900e49d42ac helmReleaseGeneration=11 releaseVersion=11",
+        "playtest=frontend/haynes-quest-playtest uid=d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b generation=11 pod=haynes-quest-playtest-55f9d449bc-xzp6x podUid=c001ebbe-8ab6-4fd2-bac4-676634ed5c63 ready image=ghcr.io/thaynes43/haynes-quest:sha-2ac16b9cc4840dea19411318ac7615ccf7fd0070@sha256:fe0c1c06e52cbb7d3e711999d57a529014111cb0e7b9632d96f3e4473dc0aa68",
+        "protected=frontend/haynes-quest uid=c17ee749-129e-4059-8091-ba167639604e generation=3 ready=1 image=ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37",
+        "protected=dev/dev-env uid=6959868c-24ba-476a-9a6c-5ab72e6545f9 generation=108 ready=1 image=ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93,ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93,ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93",
+        "http=https://haynes-quest.haynesops.com/healthz code=200 remote=192.168.40.203 sha256=a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+        "http=https://haynes-quest.haynesops.com/readyz code=200 remote=192.168.40.203 sha256=31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+        "http=https://haynes-quest-playtest.haynesops.com/healthz code=200 remote=192.168.40.203 sha256=a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+        "http=https://haynes-quest-playtest.haynesops.com/readyz code=200 remote=192.168.40.203 sha256=31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+        "http=https://haynes-quest-playtest.haynesops.com/ code=200 remote=192.168.40.203 sha256=bc29f8671f66cfad197e68f203d147ffbd931a929db2c8480f0b7b6165167669",
+        "viewport=initial/minimum/maximum-scale:1 user-scalable:no",
+        "bundle=/assets/index-BbxFx3Yj.js bytes=1193622 sha256=66d829432a86b1d40bc9ac56717011a36d19e84026dc3c2562f63ce4958423a2",
+        "css=/assets/index-CFAjhIJT.css bytes=41949 sha256=7a844ac3d16e8641b9ef068fa2f2da08fec20bfe5023d1bd20f935084b05cf9d declaration=touch-action:pan-y",
+        "PASS rollout audit appCommit=2ac16b9cc4840dea19411318ac7615ccf7fd0070 manifestDigest=sha256:fe0c1c06e52cbb7d3e711999d57a529014111cb0e7b9632d96f3e4473dc0aa68 opsCommit=7984c98dc217c61c0d5f5179f01ce900e49d42ac"
+      ]
+    },
+    "finalAudit": {
+      "rawPath": "/home/dev/work/quest-app-zoom-release-20260919/.private/quest-app-zoom/audit-final.txt",
+      "rawSha256": "4caa4d9691913a08441a4b4ea0149d699462564b583782cb3619334b0dc19309",
+      "observations": [
+        "flux=ready source=main@sha1:7984c98dc217c61c0d5f5179f01ce900e49d42ac kustomization=main@sha1:7984c98dc217c61c0d5f5179f01ce900e49d42ac helmReleaseGeneration=11 releaseVersion=11",
+        "playtest=frontend/haynes-quest-playtest uid=d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b generation=11 pod=haynes-quest-playtest-55f9d449bc-xzp6x podUid=c001ebbe-8ab6-4fd2-bac4-676634ed5c63 ready image=ghcr.io/thaynes43/haynes-quest:sha-2ac16b9cc4840dea19411318ac7615ccf7fd0070@sha256:fe0c1c06e52cbb7d3e711999d57a529014111cb0e7b9632d96f3e4473dc0aa68",
+        "protected=frontend/haynes-quest uid=c17ee749-129e-4059-8091-ba167639604e generation=3 ready=1 image=ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37",
+        "protected=dev/dev-env uid=6959868c-24ba-476a-9a6c-5ab72e6545f9 generation=108 ready=1 image=ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93,ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93,ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93",
+        "http=https://haynes-quest.haynesops.com/healthz code=200 remote=192.168.40.203 sha256=a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+        "http=https://haynes-quest.haynesops.com/readyz code=200 remote=192.168.40.203 sha256=31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+        "http=https://haynes-quest-playtest.haynesops.com/healthz code=200 remote=192.168.40.203 sha256=a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+        "http=https://haynes-quest-playtest.haynesops.com/readyz code=200 remote=192.168.40.203 sha256=31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+        "http=https://haynes-quest-playtest.haynesops.com/ code=200 remote=192.168.40.203 sha256=bc29f8671f66cfad197e68f203d147ffbd931a929db2c8480f0b7b6165167669",
+        "viewport=initial/minimum/maximum-scale:1 user-scalable:no",
+        "bundle=/assets/index-BbxFx3Yj.js bytes=1193622 sha256=66d829432a86b1d40bc9ac56717011a36d19e84026dc3c2562f63ce4958423a2",
+        "css=/assets/index-CFAjhIJT.css bytes=41949 sha256=7a844ac3d16e8641b9ef068fa2f2da08fec20bfe5023d1bd20f935084b05cf9d declaration=touch-action:pan-y",
+        "PASS rollout audit appCommit=2ac16b9cc4840dea19411318ac7615ccf7fd0070 manifestDigest=sha256:fe0c1c06e52cbb7d3e711999d57a529014111cb0e7b9632d96f3e4473dc0aa68 opsCommit=7984c98dc217c61c0d5f5179f01ce900e49d42ac"
+      ]
+    }
+  },
+  "cleanup": {
+    "checkedAt": "2026-09-19T23:57:49.719613+00:00",
+    "activityEnded": true,
+    "fixtureSession": "quest-app-zoom-fixture",
+    "fixtureStopped": true,
+    "fixturePort": 4422,
+    "fixturePortClosed": true,
+    "browserContextsClosed": true,
+    "authoringJobsOwned": false
   }
 }
