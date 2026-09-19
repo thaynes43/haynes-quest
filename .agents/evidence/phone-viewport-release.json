@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "candidate-verified-awaiting-release",
+  "status": "deployed-and-verified",
   "baseCommit": "cbbb80f967bcdaa0a0cd270a506770c49ab7427a",
   "workOrder": ".agents/work-orders/089-phone-viewport-zoom.md",
   "change": "Scope touch-action:pan-y to game-screen; preserve existing canvas/control none and dialog pan-y.",
@@ -2495,6 +2495,859 @@
       "finishedAt": "2026-09-19T22:59:17.676Z",
       "rawPath": "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/report.json",
       "rawSha256": "8a3ee4f4872361c448e85628169af60068328a8db48ed553d3df7b2308ca0c17"
+    },
+    "hosted": {
+      "startedAt": "2026-09-19T23:22:58.532Z",
+      "status": "passed",
+      "url": "https://haynes-quest-playtest.haynesops.com/",
+      "browser": "153.0.8010.12",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "assets": {
+        "bundle": {
+          "path": "/assets/index-C4SUeEy7.js",
+          "bytes": 1193022,
+          "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+        },
+        "css": {
+          "path": "/assets/index-BkwX-UiJ.css",
+          "bytes": 41908,
+          "sha256": "55c0f3cd2eaec7ac3625bd9c6356ae3fd5007dd265582f3ff5d248f8678eab12"
+        }
+      },
+      "viewportPolicy": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "expected": {
+        "gameTouchAction": "pan-y",
+        "headerPinchZoom": false
+      },
+      "scenarios": {
+        "start-page-pinch": {
+          "before": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": "h1",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": null,
+            "center": {
+              "x": 422,
+              "y": 250.6875
+            }
+          },
+          "after": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 2.155376434326172,
+              "width": 391.5789489746094,
+              "height": 180.94287109375,
+              "offsetLeft": 140,
+              "offsetTop": 208,
+              "pageLeft": 140,
+              "pageTop": 208
+            },
+            "target": {
+              "selector": "h1",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": null,
+            "center": {
+              "x": 282,
+              "y": 42.687503814697266
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/01-start-page-pinch.png",
+          "observedContacts": {
+            "eventCount": 20,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "H1",
+                "surface": "start-heading",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 404,
+                    "clientY": 250.6875
+                  }
+                ]
+              },
+              {
+                "target": "H1",
+                "surface": "start-heading",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 404,
+                    "clientY": 250.6875
+                  },
+                  {
+                    "identifier": 12,
+                    "clientX": 440,
+                    "clientY": 250.6875
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 8,
+            "trustedCancellations": 2
+          }
+        },
+        "game-header-pinch": {
+          "before": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "after": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/02-game-header-pinch.png",
+          "observedContacts": {
+            "eventCount": 29,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 375.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              },
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 375.9765625,
+                    "clientY": 38.5
+                  },
+                  {
+                    "identifier": 12,
+                    "clientX": 411.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 7,
+            "trustedCancellations": 0
+          }
+        },
+        "game-surface-boundaries": {
+          "canvas": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": "canvas",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": "canvas",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    }
+                  ]
+                },
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 440,
+                      "clientY": 195
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "hud": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".era-hud",
+                "touchAction": "auto",
+                "pointerEvents": "none"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 108,
+                "y": 115.5
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".era-hud",
+                "touchAction": "auto",
+                "pointerEvents": "none"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 108,
+                "y": 115.5
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 90,
+                      "clientY": 115.5
+                    }
+                  ]
+                },
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 90,
+                      "clientY": 115.5
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 126,
+                      "clientY": 115.5
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "attack-control": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".action-button",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 683,
+                "y": 243
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".action-button",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 683,
+                "y": 243
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "BUTTON.action-button.combat-attack",
+                  "surface": "attack-control",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 665,
+                      "clientY": 243
+                    }
+                  ]
+                },
+                {
+                  "target": "BUTTON.action-button.combat-attack",
+                  "surface": "attack-control",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 665,
+                      "clientY": 243
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 701,
+                      "clientY": 243
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "visibleBounds": {
+            "header": {
+              "rendered": true,
+              "x": 24,
+              "y": 10,
+              "width": 796,
+              "height": 57,
+              "right": 820,
+              "bottom": 67,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "joystick": {
+              "rendered": true,
+              "x": 20,
+              "y": 234,
+              "width": 140,
+              "height": 140,
+              "right": 160,
+              "bottom": 374,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "actions": {
+              "rendered": true,
+              "x": 644,
+              "y": 194,
+              "width": 180,
+              "height": 180,
+              "right": 824,
+              "bottom": 374,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "jump": {
+              "rendered": true,
+              "x": 738,
+              "y": 288,
+              "width": 86,
+              "height": 86,
+              "right": 824,
+              "bottom": 374,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "attack": {
+              "rendered": true,
+              "x": 644,
+              "y": 204,
+              "width": 78,
+              "height": 78,
+              "right": 722,
+              "bottom": 282,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "bash": {
+              "rendered": false
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/03-game-surface-boundaries.png"
+        },
+        "game-header-double-tap": {
+          "before": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "after": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/04-game-header-double-tap.png",
+          "observedContacts": {
+            "eventCount": 8,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 21,
+                    "clientX": 393.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              },
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 22,
+                    "clientX": 393.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 0,
+            "trustedCancellations": 0
+          }
+        },
+        "help-dialog-scroll": {
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "after": {
+            "scrollTop": 215,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "pinch": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".game-modal",
+                "touchAction": "pan-y",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".game-modal",
+                "touchAction": "pan-y",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "P",
+                  "surface": "help-dialog",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    }
+                  ]
+                },
+                {
+                  "target": "P",
+                  "surface": "help-dialog",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 440,
+                      "clientY": 195
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "finalViewport": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".game-modal",
+              "touchAction": "pan-y",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 422,
+              "y": 195
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/05-help-dialog-scroll.png",
+          "observedContacts": {
+            "eventCount": 13,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "SECTION.game-modal.era-modal",
+                "surface": "help-dialog",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 31,
+                    "clientX": 422,
+                    "clientY": 315.34375
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 8,
+            "trustedCancellations": 1
+          }
+        }
+      },
+      "screenshots": [
+        "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/01-start-page-pinch.png",
+        "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/02-game-header-pinch.png",
+        "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/03-game-surface-boundaries.png",
+        "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/04-game-header-double-tap.png",
+        "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/05-help-dialog-scroll.png"
+      ],
+      "networkWrites": [
+        {
+          "scenario": "game-header-pinch",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        },
+        {
+          "scenario": "game-surface-boundaries",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        },
+        {
+          "scenario": "game-header-double-tap",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        },
+        {
+          "scenario": "help-dialog-scroll",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        }
+      ],
+      "responseErrors": [],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "limits": [
+        "Chromium mobile touch emulation does not reproduce physical iPhone Safari, browser chrome, or WebKit gesture internals.",
+        "Input.dispatchTouchEvent supplies trusted browser touch contacts; this check does not use Input.synthesizePinchGesture or force a page scale.",
+        "Pointer ownership, release/rearm, independent action input, resize, and rotation are covered by the separate portrait-completion regression; this report covers only native zoom boundaries and Help scrolling."
+      ],
+      "finishedAt": "2026-09-19T23:24:21.893Z",
+      "rawPath": "test-results/phone-viewport-regression/hosted-release-final-20260919-2324/report.json",
+      "rawSha256": "d6917405905626a88c8cd210b5f01c45c86f2197c90b401dd0fecde3432547f8"
     }
   },
   "limits": [
@@ -2506,5 +3359,398 @@
   "harness": {
     "path": "tests/e2e/phone-viewport-regression.mjs",
     "sha256": "8dad2b514f5bce1ffc8c5d6387a9c485dc5969a8aa155f21081f9626714e625e"
+  },
+  "applicationPR": "https://github.com/thaynes43/haynes-quest/pull/48",
+  "applicationCommit": "9a01cbd034b50031638c81bc3e899089cd5eed1b",
+  "applicationCheckedHead": "0c478a1dd039e9d4e85bc8aa89b1dcd30ae7d700",
+  "ci": {
+    "applicationRun": 35474999066,
+    "documentationRun": 35474999074,
+    "testsPassed": 562,
+    "postgresTestsPassed": 12,
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "containerCheck": "passed",
+    "strictDocs": "passed"
+  },
+  "review": {
+    "result": "no findings",
+    "harnessSha256": "8dad2b514f5bce1ffc8c5d6387a9c485dc5969a8aa155f21081f9626714e625e",
+    "gestureSequencesIdenticalBetweenBaselineAndCandidate": true,
+    "resolvedFindings": [
+      "isolated trusted contact traces",
+      "actual hit-target assertions",
+      "two real header taps",
+      "neutral scale, offsets and page scroll",
+      "visible initial controls with honest unrendered Bash limit"
+    ]
+  },
+  "publication": {
+    "schemaVersion": 1,
+    "recordedAt": "2026-09-19T23:12:10Z",
+    "application": {
+      "commit": "9a01cbd034b50031638c81bc3e899089cd5eed1b",
+      "run": 35475207317,
+      "status": "success",
+      "verifiedSteps": [
+        "verify",
+        "image build/push with provenance and SBOM",
+        "GitHub build-provenance attestation",
+        "cosign install",
+        "Sign image",
+        "Record image"
+      ]
+    },
+    "documentation": {
+      "run": 35475207346,
+      "status": "success"
+    },
+    "registry": {
+      "tag": "sha-9a01cbd034b50031638c81bc3e899089cd5eed1b",
+      "httpStatus": 200,
+      "contentType": "application/vnd.oci.image.index.v1+json",
+      "dockerContentDigest": "sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678",
+      "bodySha256": "sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678",
+      "manifestBytes": 857
+    },
+    "attestations": {
+      "apiCount": 1,
+      "claim": "presence only; no independent cryptographic verification"
+    },
+    "rawPath": "/home/dev/work/quest-phone-zoom-release-20260919/.private/quest-phone-zoom/publication.json",
+    "rawSha256": "a12f0773214432c43d9e60e57a524ff00130193ba1f2abfc3ff8adfa45f9d088"
+  },
+  "image": "ghcr.io/thaynes43/haynes-quest:sha-9a01cbd034b50031638c81bc3e899089cd5eed1b@sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678",
+  "operations": {
+    "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/2985",
+    "checkedHead": "26e8ea7c96d39025602e0da96d823b2fd4305dff",
+    "mergeCommit": "8ee4b5f40ce9856f8b5e6fb5f04b475f40756649",
+    "mergedAt": "2026-09-19T23:21:10Z",
+    "fluxRun": 35475598591,
+    "diffScopeRun": 35475598606,
+    "checksPassed": 9,
+    "renderedChange": "Private playtest Deployment image only; edge diff empty."
+  },
+  "rollout": {
+    "activity": "act-232102-94203",
+    "activityStatus": "ended",
+    "baseline": {
+      "rawPath": "/home/dev/work/quest-phone-zoom-release-20260919/.private/quest-phone-zoom/baseline.json",
+      "rawSha256": "612eec0555b81adb5cea6e61acef67d98471321f5de10eb43ecac2179197495e",
+      "observations": {
+        "schemaVersion": 1,
+        "capturedAt": "2026-09-19T22:46:58Z",
+        "ops": {
+          "commit": "be4912ee052c5f2d40ba956c1e8c2c1a052f4874",
+          "manifestPath": "kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml",
+          "manifestSha256": "368a03e69cba4bb518a5dee02619e362691d37ba62307a22a1a51c6a8d6a008b",
+          "currentManifestImage": "ghcr.io/thaynes43/haynes-quest:sha-032b996e2e9c99271bbf47fb49bee4ee947a7473@sha256:a87013f9b806008dcd95caa2a487acc61c919374630bd49ccd4a62b8206f2dcc",
+          "requiredChecks": [
+            "Diff Scope - Success",
+            "Flux Local - Filter",
+            "Flux Local - Test (main)",
+            "Flux Local - Test (edge)",
+            "Flux Local - Diff (main/helmrelease)",
+            "Flux Local - Diff (main/kustomization)",
+            "Flux Local - Diff (edge/helmrelease)",
+            "Flux Local - Diff (edge/kustomization)",
+            "Flux Local - Success"
+          ]
+        },
+        "flux": {
+          "source": {
+            "namespace": "flux-system",
+            "name": "haynes-ops",
+            "uid": "a67b6f6b-743c-497f-9e3b-aae6bfc342ab",
+            "generation": 1,
+            "observedGeneration": 1,
+            "ready": true,
+            "reason": "Succeeded",
+            "revision": "main@sha1:be4912ee052c5f2d40ba956c1e8c2c1a052f4874",
+            "digest": "sha256:cd75e2d82c9b342df5eec3e5e04ddee6598f059f1c2d31b80f20f58c10a0aaca"
+          },
+          "kustomization": {
+            "namespace": "frontend",
+            "name": "haynes-quest",
+            "uid": "8d6a4df9-aff7-4e3c-beae-d08a450b074f",
+            "generation": 3,
+            "observedGeneration": 3,
+            "ready": true,
+            "reason": "ReconciliationSucceeded",
+            "lastAppliedRevision": "main@sha1:be4912ee052c5f2d40ba956c1e8c2c1a052f4874",
+            "lastAttemptedRevision": "main@sha1:be4912ee052c5f2d40ba956c1e8c2c1a052f4874"
+          },
+          "helmReleases": [
+            {
+              "namespace": "frontend",
+              "name": "haynes-quest",
+              "uid": "a0b71566-535e-4c48-991c-38fc6bbe4eaf",
+              "generation": 3,
+              "observedGeneration": 3,
+              "ready": true,
+              "reason": "UpgradeSucceeded",
+              "lastAppliedRevision": null,
+              "lastAttemptedRevision": "5.1.0+0d039f7760db",
+              "releaseStatus": "deployed",
+              "releaseVersion": 3,
+              "lastDeployed": "2026-09-11T12:17:23Z"
+            },
+            {
+              "namespace": "frontend",
+              "name": "haynes-quest-playtest",
+              "uid": "117b9801-8cf3-49b2-8f9b-7799fd4c770c",
+              "generation": 9,
+              "observedGeneration": 9,
+              "ready": true,
+              "reason": "UpgradeSucceeded",
+              "lastAppliedRevision": null,
+              "lastAttemptedRevision": "5.1.0+0d039f7760db",
+              "releaseStatus": "deployed",
+              "releaseVersion": 9,
+              "lastDeployed": "2026-09-19T20:42:37Z"
+            }
+          ]
+        },
+        "deployments": [
+          {
+            "namespace": "frontend",
+            "name": "haynes-quest",
+            "uid": "c17ee749-129e-4059-8091-ba167639604e",
+            "generation": 3,
+            "observedGeneration": 3,
+            "desired": 1,
+            "replicas": 1,
+            "updated": 1,
+            "available": 1,
+            "ready": 1,
+            "images": [
+              "ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+            ],
+            "pods": [
+              {
+                "name": "haynes-quest-7d9b698574-nds6g",
+                "uid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+                "phase": "Running",
+                "node": "talosw02",
+                "containers": [
+                  {
+                    "name": "app",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/haynes-quest@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "namespace": "frontend",
+            "name": "haynes-quest-playtest",
+            "uid": "d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b",
+            "generation": 9,
+            "observedGeneration": 9,
+            "desired": 1,
+            "replicas": 1,
+            "updated": 1,
+            "available": 1,
+            "ready": 1,
+            "images": [
+              "ghcr.io/thaynes43/haynes-quest:sha-032b996e2e9c99271bbf47fb49bee4ee947a7473@sha256:a87013f9b806008dcd95caa2a487acc61c919374630bd49ccd4a62b8206f2dcc"
+            ],
+            "pods": [
+              {
+                "name": "haynes-quest-playtest-5fccb56565-8fww5",
+                "uid": "e4c0a529-1372-4f89-ba39-25dbeffc6598",
+                "phase": "Running",
+                "node": "talosw01",
+                "containers": [
+                  {
+                    "name": "app",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/haynes-quest@sha256:a87013f9b806008dcd95caa2a487acc61c919374630bd49ccd4a62b8206f2dcc"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "namespace": "dev",
+            "name": "dev-env",
+            "uid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+            "generation": 108,
+            "observedGeneration": 108,
+            "desired": 1,
+            "replicas": 1,
+            "updated": 1,
+            "available": 1,
+            "ready": 1,
+            "images": [
+              "ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93",
+              "ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93",
+              "ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93"
+            ],
+            "pods": [
+              {
+                "name": "dev-env-66957b4b6d-zgplf",
+                "uid": "1f601d73-df22-4602-89f4-911d27505131",
+                "phase": "Running",
+                "node": "talosw01",
+                "containers": [
+                  {
+                    "name": "app",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/dev-env@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93"
+                  },
+                  {
+                    "name": "auth-watch",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/dev-env@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93"
+                  },
+                  {
+                    "name": "gh-refresher",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "ghcr.io/thaynes43/dev-env@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "hosted": {
+          "normal": {
+            "name": "normal",
+            "origin": "https://haynes-quest.haynesops.com",
+            "index": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "f99640ca64c2168c4560ba4a7e437fa48227050c52444783d9452cabe5388335"
+            },
+            "healthz": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288"
+            },
+            "readyz": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd"
+            },
+            "bundle": {
+              "path": "/assets/index-a627mZ8d.js",
+              "bytes": 799996,
+              "sha256": "cbe876ab3ba15cbe1e12bd2835b47c1fa85edad70fb15e34b3a9c191dcbde911"
+            },
+            "css": {
+              "path": "/assets/index-D69bofdy.css",
+              "bytes": 23677,
+              "sha256": "7b661f0e3309a9bd34c82cdf0cebbeb0a4bf2809e6f0961fa109c63a633dc631"
+            }
+          },
+          "playtest": {
+            "name": "playtest",
+            "origin": "https://haynes-quest-playtest.haynesops.com",
+            "index": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "e76b330f1b3ea21a277e8b8fe42f4aa40b84c7177e8fe739987b3c66b8c51348"
+            },
+            "healthz": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288"
+            },
+            "readyz": {
+              "code": 200,
+              "remoteIp": "192.168.40.203",
+              "sha256": "31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd"
+            },
+            "bundle": {
+              "path": "/assets/index-B6ZOcLIe.js",
+              "bytes": 1193022,
+              "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+            },
+            "css": {
+              "path": "/assets/index-B5Mykaz9.css",
+              "bytes": 41907,
+              "sha256": "eb6ee8fc419e30f41f1988c2699eb1b39df644f50e06c36703da3d417ae7f6fc"
+            }
+          }
+        }
+      }
+    },
+    "premergeProtected": {
+      "rawPath": "/home/dev/work/quest-phone-zoom-release-20260919/.private/quest-phone-zoom/premerge-protected.json",
+      "rawSha256": "3491e7a55b4250ad966fa12698cb5cf8552e0fb8497f16844746a6c71e7f7c90",
+      "observations": {
+        "checkedAt": "2026-09-19T23:17:49.982270+00:00",
+        "protected": [
+          {
+            "namespace": "frontend",
+            "name": "haynes-quest",
+            "uid": "c17ee749-129e-4059-8091-ba167639604e",
+            "generation": 3,
+            "unchanged": true
+          },
+          {
+            "namespace": "dev",
+            "name": "dev-env",
+            "uid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+            "generation": 108,
+            "unchanged": true
+          }
+        ]
+      }
+    },
+    "initialAudit": {
+      "rawPath": "/home/dev/work/quest-phone-zoom-release-20260919/.private/quest-phone-zoom/audit-initial.txt",
+      "rawSha256": "e4b2e7881e415779ec5e28f02bd389ca6e94b0fcd6f07e8fe848cb80cd67ae8b",
+      "observations": [
+        "flux=ready source=main@sha1:8ee4b5f40ce9856f8b5e6fb5f04b475f40756649 kustomization=main@sha1:8ee4b5f40ce9856f8b5e6fb5f04b475f40756649 helmReleaseGeneration=10 releaseVersion=10",
+        "playtest=frontend/haynes-quest-playtest uid=d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b generation=10 pod=haynes-quest-playtest-67f5bf94f6-9tlzm podUid=1af794ee-dd6b-48f0-87d0-1a5980dc1043 ready image=ghcr.io/thaynes43/haynes-quest:sha-9a01cbd034b50031638c81bc3e899089cd5eed1b@sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678",
+        "protected=frontend/haynes-quest uid=c17ee749-129e-4059-8091-ba167639604e generation=3 ready=1 image=ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37",
+        "protected=dev/dev-env uid=6959868c-24ba-476a-9a6c-5ab72e6545f9 generation=108 ready=1 image=ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93,ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93,ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93",
+        "http=https://haynes-quest.haynesops.com/healthz code=200 remote=192.168.40.203 sha256=a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+        "http=https://haynes-quest.haynesops.com/readyz code=200 remote=192.168.40.203 sha256=31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+        "http=https://haynes-quest-playtest.haynesops.com/healthz code=200 remote=192.168.40.203 sha256=a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+        "http=https://haynes-quest-playtest.haynesops.com/readyz code=200 remote=192.168.40.203 sha256=31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+        "http=https://haynes-quest-playtest.haynesops.com/ code=200 remote=192.168.40.203 sha256=bb51c65b469cf58e1a94e3bd1f9d8669c2f3d5cabd567786c7e4c03de9b0a0a2",
+        "bundle=/assets/index-C4SUeEy7.js bytes=1193022 sha256=c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c",
+        "css=/assets/index-BkwX-UiJ.css bytes=41908 sha256=55c0f3cd2eaec7ac3625bd9c6356ae3fd5007dd265582f3ff5d248f8678eab12 declaration=touch-action:pan-y",
+        "PASS rollout audit appCommit=9a01cbd034b50031638c81bc3e899089cd5eed1b manifestDigest=sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678 opsCommit=8ee4b5f40ce9856f8b5e6fb5f04b475f40756649"
+      ]
+    },
+    "finalAudit": {
+      "rawPath": "/home/dev/work/quest-phone-zoom-release-20260919/.private/quest-phone-zoom/audit-final.txt",
+      "rawSha256": "e4b2e7881e415779ec5e28f02bd389ca6e94b0fcd6f07e8fe848cb80cd67ae8b",
+      "observations": [
+        "flux=ready source=main@sha1:8ee4b5f40ce9856f8b5e6fb5f04b475f40756649 kustomization=main@sha1:8ee4b5f40ce9856f8b5e6fb5f04b475f40756649 helmReleaseGeneration=10 releaseVersion=10",
+        "playtest=frontend/haynes-quest-playtest uid=d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b generation=10 pod=haynes-quest-playtest-67f5bf94f6-9tlzm podUid=1af794ee-dd6b-48f0-87d0-1a5980dc1043 ready image=ghcr.io/thaynes43/haynes-quest:sha-9a01cbd034b50031638c81bc3e899089cd5eed1b@sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678",
+        "protected=frontend/haynes-quest uid=c17ee749-129e-4059-8091-ba167639604e generation=3 ready=1 image=ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37",
+        "protected=dev/dev-env uid=6959868c-24ba-476a-9a6c-5ab72e6545f9 generation=108 ready=1 image=ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93,ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93,ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93",
+        "http=https://haynes-quest.haynesops.com/healthz code=200 remote=192.168.40.203 sha256=a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+        "http=https://haynes-quest.haynesops.com/readyz code=200 remote=192.168.40.203 sha256=31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+        "http=https://haynes-quest-playtest.haynesops.com/healthz code=200 remote=192.168.40.203 sha256=a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+        "http=https://haynes-quest-playtest.haynesops.com/readyz code=200 remote=192.168.40.203 sha256=31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd",
+        "http=https://haynes-quest-playtest.haynesops.com/ code=200 remote=192.168.40.203 sha256=bb51c65b469cf58e1a94e3bd1f9d8669c2f3d5cabd567786c7e4c03de9b0a0a2",
+        "bundle=/assets/index-C4SUeEy7.js bytes=1193022 sha256=c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c",
+        "css=/assets/index-BkwX-UiJ.css bytes=41908 sha256=55c0f3cd2eaec7ac3625bd9c6356ae3fd5007dd265582f3ff5d248f8678eab12 declaration=touch-action:pan-y",
+        "PASS rollout audit appCommit=9a01cbd034b50031638c81bc3e899089cd5eed1b manifestDigest=sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678 opsCommit=8ee4b5f40ce9856f8b5e6fb5f04b475f40756649"
+      ]
+    }
+  },
+  "cleanup": {
+    "checkedAt": "2026-09-19T23:25:43.383226+00:00",
+    "activityEnded": true,
+    "fixtureTmuxSession": "quest-phone-zoom-fixture",
+    "fixtureStopped": true,
+    "fixturePort": 4421,
+    "fixturePortClosed": true,
+    "browserContextsClosed": true,
+    "authoringJobsOwned": false
   }
 }

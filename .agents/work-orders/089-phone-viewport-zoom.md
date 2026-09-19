@@ -1,6 +1,6 @@
 # WO089: Phone viewport zoom during gameplay
 
-Status: In progress, September 19, 2026. Root Astra owns `/home/dev/work/quest-phone-zoom-20260919`, branch `agent/quest-phone-zoom-20260919`, from `cbbb80f`. Operations release preparation is isolated in `/home/dev/work/quest-phone-zoom-release-20260919`.
+Status: Complete, September 19, 2026. Root Astra owns `/home/dev/work/quest-phone-zoom-20260919`, branch `agent/quest-phone-zoom-20260919`, from `cbbb80f`. Operations release preparation is isolated in `/home/dev/work/quest-phone-zoom-release-20260919`.
 
 ## Report and contract
 
@@ -24,7 +24,19 @@ Local typecheck, lint, production build, strict documentation/media build and al
 
 The final same-source viewport harness has SHA256 `8dad2b514f5bce1ffc8c5d6387a9c485dc5969a8aa155f21081f9626714e625e`. The hosted baseline report `hosted-baseline-final-20260919-1910` reproduces header zoom 1→2.4589865, width 844→343.23 and horizontal offset 0→392. Candidate `candidate-pan-y-final-20260919-1912` keeps header, canvas, passive HUD, Attack and Help pinch attempts plus header double taps at scale 1, full 844×390 viewport and zero offsets/page scroll. Actual touches remain trusted and their hit surfaces are asserted. A native Help swipe scrolls 0→215 while its viewport stays neutral; ordinary start-page pinch still reaches 2.155×. Header, joystick, action area, Jump and Attack stay entirely visible. Bash is not rendered at the unarmed spawn, so this is not a separate equipped-Bash bounds claim.
 
-The final baseline and candidate reports have no HTTP, page or console errors. Earlier diagnostic reports are retained under separate labels, not relabeled as final-harness runs. Independent review strengthened trace isolation, target assertions, viewport neutrality and visible-control checks before the final pair. Root inspected the baseline's enlarged/cropped screen and the candidate's normal framing. [The release index](../evidence/phone-viewport-release.json) preserves compact observations, exact report hashes and browser limits. Hosted verification of the new release remains pending.
+The final baseline and candidate reports have no HTTP, page or console errors. Earlier diagnostic reports are retained under separate labels, not relabeled as final-harness runs. Independent review strengthened trace isolation, target assertions, viewport neutrality and visible-control checks before the final pair. Root inspected the baseline's enlarged/cropped screen and the candidate's normal framing. [The release index](../evidence/phone-viewport-release.json) preserves compact observations, exact report hashes and browser limits. The same frozen harness also passes against the newly deployed private release; see the hosted report and rollout evidence below.
+
+## Published release and acceptance
+
+[Application PR48](https://github.com/thaynes43/haynes-quest/pull/48) merged as `9a01cbd034b50031638c81bc3e899089cd5eed1b` after exact-head application, documentation and container checks. All 562 CI tests passed, including the 12 disposable PostgreSQL cases. Main publication run `35475207317` completed image build/push, provenance, SBOM and signing. Anonymous registry retrieval confirmed the OCI index digest; attestation presence was checked, without claiming independent cryptographic verification.
+
+[Operations PR2985](https://github.com/thaynes43/haynes-ops/pull/2985) passed all nine checks at `26e8ea7c96d39025602e0da96d823b2fd4305dff` and merged as `8ee4b5f40ce9856f8b5e6fb5f04b475f40756649`. Only the private playtest image changed in the rendered deployment. Flux applied that revision and Helm release 10; the running image is `ghcr.io/thaynes43/haynes-quest:sha-9a01cbd034b50031638c81bc3e899089cd5eed1b@sha256:3d5b0fd20b05f26e8f055ae6d180c86d4d432e7c240b6f01de9f90bba66bd678`.
+
+Hosted report `hosted-release-final-20260919-2324` passed on September 19 at 23:24 UTC with SHA256 `d6917405905626a88c8cd210b5f01c45c86f2197c90b401dd0fecde3432547f8`. The frozen native-touch harness verified the exact new CSS and JS. All gameplay pinch attempts and header double taps retained scale 1, full 844×390 viewport and zero offsets/page scroll. Help scrolled 0→215; ordinary start-page pinch still reached 2.155×. Initial header, joystick, action cluster, Jump and Attack remained fully visible; Bash was absent at the unarmed spawn. HTTP, page and console errors were empty. Root inspected the normal framing in the final hosted screenshot.
+
+The final rollout audit matches the exact hosted JS and CSS above, confirms both apps' health/readiness endpoints, and proves normal Quest and dev-env retain their baseline deployment UIDs, generations, images and pod state. The private playtest is ready with zero container restarts. Scoped activity `act-232102-94203` is ended; the owned `quest-phone-zoom-fixture` tmux session is stopped and port 4421 is closed. Browser contexts are closed. [The release index](../evidence/phone-viewport-release.json) contains the audit observations and raw report hashes. Repository-only closeout records do not require a new game image promotion.
+
+This verifies Chromium 153 mobile touch emulation. Physical Safari acceptance, OS accessibility zoom, and the original phone gesture remain unverified; do not describe this as device-level proof. The earlier full two-chapter and missed-memory recovery runs remain valid evidence for the unchanged JavaScript; they were not repeated for this CSS-only repair.
 
 ## Ownership and delivery
 
