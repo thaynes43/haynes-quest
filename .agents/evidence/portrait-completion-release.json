@@ -1,0 +1,2575 @@
+{
+  "schemaVersion": 1,
+  "status": "deployed-and-verified",
+  "applicationCommit": "032b996e2e9c99271bbf47fb49bee4ee947a7473",
+  "applicationPR": "https://github.com/thaynes43/haynes-quest/pull/46",
+  "behaviorCommit": "09d6642561dc93868ea62ab82648d299ed050c0c",
+  "browserHarnessCommit": "6576a53f01d500c6749aa8c7e5f1519e61b66c1c",
+  "evidenceRoot": "/home/dev/work/quest-playtest-blockers-20260919",
+  "ci": {
+    "head": "6576a53f01d500c6749aa8c7e5f1519e61b66c1c",
+    "applicationRun": 35466929182,
+    "documentationRun": 35466929134,
+    "testFiles": 56,
+    "testsPassed": 562,
+    "postgresTestsPassed": 12
+  },
+  "reports": {
+    "baselineJoystickFailure": {
+      "status": "failed",
+      "url": "http://127.0.0.1:4410",
+      "startedAt": "2026-09-19T19:09:30.624Z",
+      "finishedAt": "2026-09-19T19:09:48.244Z",
+      "browser": "153.0.8010.12",
+      "bundle": {
+        "path": "/assets/index-ChX7wgsN.js",
+        "bytes": 1188490,
+        "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+      },
+      "path": "test-results/portrait-completion-regression/baseline-191f8c2/report.json",
+      "sha256": "35ff5e9cf1d69ee3cf143ae8d5e8d81bc8b7772fe484ab52470f650d409c0d6f",
+      "errors": {
+        "responseErrors": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0
+      },
+      "failure": {
+        "name": "AssertionError",
+        "message": "off-control release left horizontal movement latched\n+ actual - expected\n\n+ -0.7071070427275314\n- 0\n"
+      },
+      "failureDetail": "Full diagnostic and stack retained in the raw report identified by path and SHA256.",
+      "expectedFailure": true
+    },
+    "intermediateActionFailure": {
+      "status": "failed",
+      "url": "http://127.0.0.1:4411",
+      "startedAt": "2026-09-19T19:13:04.938Z",
+      "finishedAt": "2026-09-19T19:13:44.667Z",
+      "browser": "153.0.8010.12",
+      "bundle": {
+        "path": "/assets/index-BNZqw9CX.js",
+        "bytes": 1190608,
+        "sha256": "ddc8e20de6c7ff2435703f1f7143a0bb0aa4e9cb32dfc9ff3837ea333dad4444"
+      },
+      "path": "test-results/portrait-completion-regression/provisional-candidate-action-gap/report.json",
+      "sha256": "4015dd6c3ad3737a4d47a78b13f16938b246709e46adb23a746fc698a4e89b71",
+      "errors": {
+        "responseErrors": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0
+      },
+      "failure": {
+        "name": "Error",
+        "message": "action-capture-second-jump did not reach its inspected state"
+      },
+      "failureDetail": "Full diagnostic and stack retained in the raw report identified by path and SHA256.",
+      "expectedFailure": true
+    },
+    "localInput": {
+      "status": "passed",
+      "url": "http://127.0.0.1:4411",
+      "startedAt": "2026-09-19T20:22:46.417Z",
+      "finishedAt": "2026-09-19T20:23:15.599Z",
+      "browser": "153.0.8010.12",
+      "bundle": {
+        "path": "/assets/index-B6ZOcLIe.js",
+        "bytes": 1193022,
+        "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+      },
+      "path": "test-results/portrait-completion-regression/final-candidate-strengthened-20260919t2017z/report.json",
+      "sha256": "d3ecf6eb6c941bcc50c892f5f84caff4a262eb4d153cabf9ef6fde33cdf23bce",
+      "errors": {
+        "responseErrors": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0
+      },
+      "emulation": {
+        "engine": "Chromium",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "hasTouch": true,
+        "isMobile": true,
+        "limits": [
+          "Chromium touch emulation does not reproduce Mobile Safari browser chrome or WebKit pointer-event internals.",
+          "CDP creates trusted touch contacts; the forced capture exception, hidden Chromium-only capture lifecycle, and explicit release of implicit capture model a browser where capture never succeeded."
+        ]
+      },
+      "captureFailureRelease": {
+        "forcedCaptureError": true,
+        "captureRelease": {
+          "pointerId": 3,
+          "implicitCaptureBeforeRelease": true,
+          "captureAfterRelease": false
+        },
+        "owningPointerId": 3,
+        "heldInput": {
+          "moveX": -0.7071070427275314,
+          "moveY": 0.7071065196454669,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "offControlPoint": {
+          "x": 226.2,
+          "y": 405.12
+        },
+        "inputAfterOffControlMove": {
+          "moveX": 0.3673666175173789,
+          "moveY": 0.9300762164112357,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterOffControlRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "subsequentPointerId": 4,
+        "inputDuringSubsequentContact": {
+          "moveX": 0.9260408696656666,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterSubsequentRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        }
+      },
+      "actionCaptureFailure": {
+        "forcedCaptureError": true,
+        "captureRelease": {
+          "pointerId": 5,
+          "implicitCaptureBeforeRelease": true,
+          "captureAfterRelease": false,
+          "captureTarget": "path"
+        },
+        "offControlPoint": {
+          "x": 202.8,
+          "y": 405.12
+        },
+        "jumpSequenceBefore": 0,
+        "jumpSequenceFirst": 1,
+        "jumpSequenceSecond": 2,
+        "inputBeforeOwnerEnd": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": true,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterOwnerEnd": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "rearmed": true
+      },
+      "secondFinger": {
+        "movementPointerId": 7,
+        "jumpContactId": 25,
+        "unrelatedCancelPointerId": 10007,
+        "heldBeforeAction": {
+          "moveX": -0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "heldAfterActionRelease": {
+          "moveX": -0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "heldAfterUnrelatedCancel": {
+          "moveX": -0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "jumpSequenceBefore": 2,
+        "jumpSequenceAfter": 3,
+        "inputAfterMovementRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "cancelLimit": "CDP has no targeted partial touchCancel; an untrusted unrelated pointercancel verifies pointer ownership after a trusted two-contact Jump/release gesture."
+      },
+      "resize": {
+        "viewportBefore": {
+          "width": 390,
+          "height": 844
+        },
+        "viewportAfter": {
+          "width": 360,
+          "height": 844
+        },
+        "boundsBefore": {
+          "x": 12,
+          "y": 644.40625,
+          "width": 171.59375,
+          "height": 171.59375
+        },
+        "boundsAfter": {
+          "x": 12,
+          "y": 657.609375,
+          "width": 158.390625,
+          "height": 158.390625
+        },
+        "owningPointerId": 9,
+        "stationaryContact": {
+          "id": 26,
+          "x": 129.88490625,
+          "y": 730.203125,
+          "radiusX": 5,
+          "radiusY": 5,
+          "force": 1
+        },
+        "expectedAfterResize": {
+          "moveX": 0.8120459622952021,
+          "moveY": 0.13855850251631086,
+          "origin": {
+            "x": 91.1953125,
+            "y": 736.8046875
+          },
+          "travel": 45.93328125,
+          "distance": 0.8544732837207772,
+          "deadZone": 0.1741656546689662
+        },
+        "newCenter": {
+          "id": 26,
+          "x": 91.1953125,
+          "y": 736.8046875,
+          "radiusX": 5,
+          "radiusY": 5,
+          "force": 1
+        },
+        "newRightPoint": {
+          "id": 26,
+          "x": 120.81435937500001,
+          "y": 736.8046875,
+          "radiusX": 5,
+          "radiusY": 5,
+          "force": 1
+        },
+        "inputBefore": {
+          "moveX": 0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfter": {
+          "moveX": 0.812045875909505,
+          "moveY": 0.13855849957997,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAtNewCenter": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterNewRightMove": {
+          "moveX": 0.5699229900462572,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        }
+      },
+      "orientation": {
+        "pointerId": 10,
+        "viewportBefore": {
+          "width": 390,
+          "height": 844
+        },
+        "viewportAfter": {
+          "width": 844,
+          "height": 390
+        },
+        "inputBefore": {
+          "moveX": 0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfter": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        }
+      }
+    },
+    "localFullJourney": {
+      "status": "passed",
+      "url": "http://127.0.0.1:4411",
+      "startedAt": "2026-09-19T20:16:18.990Z",
+      "finishedAt": "2026-09-19T20:22:27.480Z",
+      "browser": "153.0.8010.12",
+      "bundle": {
+        "path": "/assets/index-B6ZOcLIe.js",
+        "bytes": 1193022,
+        "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+      },
+      "path": "test-results/authored-playtest/final-missed-minor-attempt-07/report.json",
+      "sha256": "b2477011bce0ee8477160c768aa3ff0f3276fc79798c66ba9de74f82bff73943",
+      "errors": {
+        "responseErrors": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0
+      },
+      "missedMinorProbe": {
+        "chapter": 1,
+        "missingRole": "minor-two",
+        "missingId": "demo-memory-2022-01",
+        "majorId": "demo-memory-2024-01",
+        "missingText": "1 little memory left. Follow the path back to find it, then return to the big memory.",
+        "layouts": [
+          {
+            "viewport": {
+              "width": 844,
+              "height": 390,
+              "visualWidth": 844,
+              "visualHeight": 390
+            },
+            "hud": {
+              "x": 26,
+              "y": 66,
+              "width": 164,
+              "height": 99,
+              "right": 190,
+              "bottom": 165,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "message": {
+              "x": 199,
+              "y": 67,
+              "width": 219.4375,
+              "height": 68.390625,
+              "right": 418.4375,
+              "bottom": 135.390625,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "joystick": {
+              "x": 20,
+              "y": 234,
+              "width": 140,
+              "height": 140,
+              "right": 160,
+              "bottom": 374,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "actions": {
+              "x": 644,
+              "y": 194,
+              "width": 180,
+              "height": 180,
+              "right": 824,
+              "bottom": 374,
+              "display": "block",
+              "visibility": "visible"
+            }
+          },
+          {
+            "viewport": {
+              "width": 390,
+              "height": 844,
+              "visualWidth": 390,
+              "visualHeight": 844
+            },
+            "hud": {
+              "x": 12,
+              "y": 78,
+              "width": 150,
+              "height": 224.1875,
+              "right": 162,
+              "bottom": 302.1875,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "message": {
+              "x": 25,
+              "y": 187,
+              "width": 124,
+              "height": 67.1875,
+              "right": 149,
+              "bottom": 254.1875,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "joystick": {
+              "x": 12,
+              "y": 644.40625,
+              "width": 171.59375,
+              "height": 171.59375,
+              "right": 183.59375,
+              "bottom": 816,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "actions": {
+              "x": 202.5,
+              "y": 606,
+              "width": 175.5,
+              "height": 210,
+              "right": 378,
+              "bottom": 816,
+              "display": "block",
+              "visibility": "visible"
+            }
+          },
+          {
+            "viewport": {
+              "width": 568,
+              "height": 320,
+              "visualWidth": 568,
+              "visualHeight": 320
+            },
+            "hud": {
+              "x": 14,
+              "y": 66,
+              "width": 164,
+              "height": 99,
+              "right": 178,
+              "bottom": 165,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "message": {
+              "x": 187,
+              "y": 67,
+              "width": 147.671875,
+              "height": 85.1875,
+              "right": 334.671875,
+              "bottom": 152.1875,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "joystick": {
+              "x": 16,
+              "y": 164,
+              "width": 140,
+              "height": 140,
+              "right": 156,
+              "bottom": 304,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "actions": {
+              "x": 372,
+              "y": 124,
+              "width": 180,
+              "height": 180,
+              "right": 552,
+              "bottom": 304,
+              "display": "block",
+              "visibility": "visible"
+            }
+          }
+        ],
+        "bossReleasedMajor": true,
+        "blockedMajor": {
+          "revision": 22,
+          "clientEligibilityPreventedDispatch": true,
+          "requestState": "idle",
+          "requestErrorCode": null,
+          "supportId": "garden-reward",
+          "contactPosition": {
+            "x": 0.050266666666597015,
+            "y": 0.3,
+            "z": -122.43717193095618
+          },
+          "majorPosition": {
+            "x": 0,
+            "y": 0.3,
+            "z": -122.3
+          }
+        },
+        "backtrack": [
+          {
+            "from": "garden-reward",
+            "to": "dragon-clearing",
+            "mode": "walk"
+          },
+          {
+            "from": "dragon-clearing",
+            "to": "garden-ferry",
+            "mode": "ride"
+          },
+          {
+            "from": "garden-ferry",
+            "to": "pond-dock",
+            "mode": "ride"
+          },
+          {
+            "from": "pond-dock",
+            "to": "little-landing",
+            "mode": "jump"
+          },
+          {
+            "from": "little-landing",
+            "to": "little-rise",
+            "mode": "jump"
+          },
+          {
+            "from": "little-rise",
+            "to": "memory-grove",
+            "mode": "jump"
+          }
+        ],
+        "recoveredMinorRevision": 24,
+        "forwardReturn": [
+          {
+            "from": "memory-grove",
+            "to": "little-rise",
+            "mode": "jump"
+          },
+          {
+            "from": "little-rise",
+            "to": "little-landing",
+            "mode": "jump"
+          },
+          {
+            "from": "little-landing",
+            "to": "pond-dock",
+            "mode": "jump"
+          },
+          {
+            "from": "pond-dock",
+            "to": "garden-ferry",
+            "mode": "ride"
+          },
+          {
+            "from": "garden-ferry",
+            "to": "dragon-clearing",
+            "mode": "ride"
+          },
+          {
+            "from": "dragon-clearing",
+            "to": "garden-reward",
+            "mode": "walk"
+          }
+        ],
+        "majorRevision": 25,
+        "chapterCompletionAccepted": true
+      },
+      "completedChapters": [
+        {
+          "stage": "chapter:1:complete",
+          "at": "2026-09-19T20:19:32.308Z",
+          "documentId": "garden-playground-v2",
+          "platforms": 21,
+          "recoveries": 1
+        },
+        {
+          "stage": "chapter:2:complete",
+          "at": "2026-09-19T20:22:27.478Z",
+          "documentId": "besties-playground-v2",
+          "platforms": 21,
+          "recoveries": 1
+        }
+      ],
+      "chapters": [
+        {
+          "chapter": 1,
+          "course": {
+            "id": "garden-playground-v2",
+            "schemaVersion": "authored-level-v2",
+            "platforms": 22,
+            "movingPlatforms": 1,
+            "sweepers": 3,
+            "checkpoints": 8,
+            "mainPathPlatforms": 19,
+            "branches": 1,
+            "connections": 23,
+            "safeMissConnections": 7,
+            "safeMissPlatforms": 1
+          },
+          "combat": [
+            {
+              "role": "ordinary-1",
+              "id": "level-1-2020-encounter-1",
+              "platformId": "picnic",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 0,
+              "hpAtApproach": 10,
+              "playerHpAfter": 10,
+              "combatRetries": 0,
+              "sawDizzy": false
+            },
+            {
+              "role": "ordinary-2",
+              "id": "level-1-2020-encounter-2",
+              "platformId": "woodland-rest",
+              "primaryAccepted": false,
+              "secondaryAccepted": false,
+              "hitsReceived": 1,
+              "hpAtApproach": 10,
+              "playerHpAfter": 8,
+              "combatRetries": 0,
+              "sawDizzy": false
+            },
+            {
+              "role": "ordinary-3",
+              "id": "level-1-2020-encounter-3",
+              "platformId": "memory-grove",
+              "primaryAccepted": true,
+              "secondaryAccepted": false,
+              "hitsReceived": 1,
+              "hpAtApproach": 10,
+              "playerHpAfter": 8,
+              "combatRetries": 0,
+              "sawDizzy": false
+            },
+            {
+              "role": "ordinary-4",
+              "id": "level-1-2020-encounter-4",
+              "platformId": "pond-dock",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 8,
+              "playerHpAfter": 6,
+              "combatRetries": 0,
+              "sawDizzy": false
+            },
+            {
+              "role": "boss",
+              "id": "level-1-2020-boss",
+              "platformId": "dragon-clearing",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 6,
+              "playerHpAfter": 3,
+              "combatRetries": 0,
+              "sawDizzy": false
+            }
+          ],
+          "recovery": {
+            "checkpointId": "picnic-safe",
+            "direction": {
+              "dx": 1,
+              "dz": 0,
+              "distance": 5.466799999999989,
+              "clearance": 3.1764760348537155
+            },
+            "before": 0,
+            "after": 1,
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -30.6
+            },
+            "protectionSeconds": 0.8,
+            "heldInput": 1,
+            "progressPreserved": true
+          },
+          "safeMiss": {
+            "edge": {
+              "from": "welcome",
+              "to": "garden-hop-1",
+              "mode": "jump"
+            },
+            "safeMissPlatformId": "garden-practice-ground",
+            "landed": {
+              "x": -4.7999999999999945,
+              "y": 0,
+              "z": -4.666800000000004
+            },
+            "recoveries": 0,
+            "jumpSequenceBefore": 0,
+            "jumpSequenceAfter": 1,
+            "missTakeoff": {
+              "x": -4.45,
+              "y": 0,
+              "z": -1.85
+            },
+            "retryEdge": {
+              "from": "garden-practice-ground",
+              "to": "welcome",
+              "mode": "walk"
+            },
+            "hpPreserved": true,
+            "progressPreserved": true,
+            "returnedTo": "welcome"
+          },
+          "deathRecovery": null,
+          "visitedPlatforms": [
+            "welcome",
+            "garden-hop-1",
+            "garden-hop-2",
+            "garden-hop-3",
+            "garden-practice-down-1",
+            "garden-practice-down-2",
+            "garden-practice-down-3",
+            "picnic",
+            "winding-east",
+            "winding-west",
+            "woodland-rest",
+            "woodland-side-1",
+            "woodland-side-2",
+            "woodland-side-3",
+            "memory-grove",
+            "little-rise",
+            "little-landing",
+            "pond-dock",
+            "garden-ferry",
+            "dragon-clearing",
+            "garden-reward"
+          ],
+          "edgeCount": 33
+        },
+        {
+          "chapter": 2,
+          "course": {
+            "id": "besties-playground-v2",
+            "schemaVersion": "authored-level-v2",
+            "platforms": 23,
+            "movingPlatforms": 1,
+            "sweepers": 2,
+            "checkpoints": 8,
+            "mainPathPlatforms": 21,
+            "branches": 1,
+            "connections": 24,
+            "safeMissConnections": 7,
+            "safeMissPlatforms": 1
+          },
+          "combat": [
+            {
+              "role": "ordinary-1",
+              "id": "level-2-2024-encounter-1",
+              "platformId": "party-picnic",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 10,
+              "playerHpAfter": 7,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.008675132701395355
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.008807490489291548
+                }
+              ]
+            },
+            {
+              "role": "ordinary-2",
+              "id": "level-2-2024-encounter-2",
+              "platformId": "ribbon-rest",
+              "primaryAccepted": false,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 7,
+              "playerHpAfter": 4,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.007576356926221036
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.007691984046704639
+                }
+              ]
+            },
+            {
+              "role": "ordinary-3",
+              "id": "level-2-2024-encounter-3",
+              "platformId": "party-grove",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 10,
+              "playerHpAfter": 7,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.008883658786775514
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.009019104288778172
+                }
+              ]
+            },
+            {
+              "role": "ordinary-4",
+              "id": "level-2-2024-encounter-4",
+              "platformId": "party-fair",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 9,
+              "playerHpAfter": 6,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.009155787092536392
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.00929438752943629
+                }
+              ]
+            },
+            {
+              "role": "boss",
+              "id": "level-2-2024-boss",
+              "platformId": "besties-court",
+              "primaryAccepted": true,
+              "secondaryAccepted": false,
+              "hitsReceived": 1,
+              "hpAtApproach": 6,
+              "playerHpAfter": 4,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "nonDizzyDamage": {
+                "phase": "pink-trick",
+                "beforeHp": 11,
+                "afterHp": 8,
+                "action": "attack"
+              },
+              "hitReactions": [
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                },
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                },
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                },
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                }
+              ],
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "attack",
+                    "hit",
+                    "defeat"
+                  ],
+                  "motion": 0.43457375625435946
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "cheer",
+                    "attack",
+                    "defeat"
+                  ],
+                  "motion": 0.42733482864332184
+                }
+              ]
+            }
+          ],
+          "recovery": {
+            "checkpointId": "party-picnic-safe",
+            "direction": {
+              "dx": 1,
+              "dz": 0,
+              "distance": 4.46640000000014,
+              "clearance": 3.624913792078369
+            },
+            "before": 0,
+            "after": 1,
+            "position": {
+              "x": 0.6,
+              "y": 0,
+              "z": -30.8
+            },
+            "protectionSeconds": 0.6500000000000006,
+            "heldInput": 1,
+            "progressPreserved": true
+          },
+          "safeMiss": {
+            "edge": {
+              "from": "party-welcome",
+              "to": "party-terrace-1",
+              "mode": "jump"
+            },
+            "safeMissPlatformId": "besties-practice-ground",
+            "landed": {
+              "x": -4.399600000000088,
+              "y": 0,
+              "z": -4.334400000000019
+            },
+            "recoveries": 0,
+            "jumpSequenceBefore": 33,
+            "jumpSequenceAfter": 34,
+            "missTakeoff": {
+              "x": -4.45,
+              "y": 0,
+              "z": -1.85
+            },
+            "retryEdge": {
+              "from": "besties-practice-ground",
+              "to": "party-welcome",
+              "mode": "walk"
+            },
+            "hpPreserved": true,
+            "progressPreserved": true,
+            "returnedTo": "party-welcome"
+          },
+          "deathRecovery": {
+            "encounterId": "level-2-2024-encounter-3",
+            "memoryId": "demo-memory-2026-01",
+            "checkpointId": "party-grove-safe",
+            "fallenRevision": 39,
+            "recoveredRevision": 40,
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -81.3
+            },
+            "fullHealth": 10,
+            "localRecoveriesBefore": 1,
+            "localRecoveriesAfter": 0,
+            "progressPreserved": true,
+            "automatic": true,
+            "manualReturnAfterTimeout": false
+          },
+          "visitedPlatforms": [
+            "party-welcome",
+            "party-terrace-1",
+            "party-terrace-2",
+            "party-terrace-3",
+            "besties-practice-down-1",
+            "besties-practice-down-2",
+            "besties-practice-down-3",
+            "party-picnic",
+            "ribbon-lane",
+            "ribbon-rest",
+            "party-ferry",
+            "party-dock",
+            "wide-side-bridge",
+            "friend-balcony",
+            "party-grove",
+            "turnstile-deck",
+            "party-fair",
+            "final-hop-1",
+            "final-hop-2",
+            "besties-court",
+            "party-reward"
+          ],
+          "edgeCount": 22
+        }
+      ]
+    },
+    "localBestiesShortcut": {
+      "status": "passed",
+      "url": "http://127.0.0.1:4411",
+      "startedAt": "2026-09-19T20:12:17.846Z",
+      "finishedAt": "2026-09-19T20:15:52.897Z",
+      "browser": "153.0.8010.12",
+      "bundle": {
+        "path": "/assets/index-B6ZOcLIe.js",
+        "bytes": 1193022,
+        "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+      },
+      "path": "test-results/authored-playtest/final-besties-shortcut-attempt-01/report.json",
+      "sha256": "e2f4d896f8a71f5d4441894b33a2af86af19a522f5730b90a8fd78b084fd0dfa",
+      "errors": {
+        "responseErrors": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0
+      },
+      "missedMinorProbe": null,
+      "completedChapters": [
+        {
+          "stage": "chapter:2:complete",
+          "at": "2026-09-19T20:15:52.895Z",
+          "documentId": "besties-playground-v2",
+          "platforms": 21,
+          "recoveries": 1
+        }
+      ],
+      "chapters": [
+        {
+          "chapter": 2,
+          "course": {
+            "id": "besties-playground-v2",
+            "schemaVersion": "authored-level-v2",
+            "platforms": 23,
+            "movingPlatforms": 1,
+            "sweepers": 2,
+            "checkpoints": 8,
+            "mainPathPlatforms": 21,
+            "branches": 1,
+            "connections": 24,
+            "safeMissConnections": 7,
+            "safeMissPlatforms": 1
+          },
+          "combat": [
+            {
+              "role": "ordinary-1",
+              "id": "level-2-2024-encounter-1",
+              "platformId": "party-picnic",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 10,
+              "playerHpAfter": 7,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.008602726730779582
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.008617592655131059
+                }
+              ]
+            },
+            {
+              "role": "ordinary-2",
+              "id": "level-2-2024-encounter-2",
+              "platformId": "ribbon-rest",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 3,
+              "hpAtApproach": 7,
+              "playerHpAfter": 10,
+              "combatRetries": 1,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.0072934232985447335
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.0072251513554291305
+                }
+              ]
+            },
+            {
+              "role": "ordinary-3",
+              "id": "level-2-2024-encounter-3",
+              "platformId": "party-grove",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 10,
+              "playerHpAfter": 7,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.007811905048205161
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.007931006345067363
+                }
+              ]
+            },
+            {
+              "role": "ordinary-4",
+              "id": "level-2-2024-encounter-4",
+              "platformId": "party-fair",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 4,
+              "hpAtApproach": 9,
+              "playerHpAfter": 7,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.006168659985322086
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.006262733849365486
+                }
+              ]
+            },
+            {
+              "role": "boss",
+              "id": "level-2-2024-boss",
+              "platformId": "besties-court",
+              "primaryAccepted": true,
+              "secondaryAccepted": false,
+              "hitsReceived": 1,
+              "hpAtApproach": 7,
+              "playerHpAfter": 5,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "nonDizzyDamage": {
+                "phase": "pink-trick",
+                "beforeHp": 11,
+                "afterHp": 8,
+                "action": "attack"
+              },
+              "hitReactions": [
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                },
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                },
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                }
+              ],
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "attack",
+                    "hit",
+                    "cheer",
+                    "defeat"
+                  ],
+                  "motion": 0.42488002223256727
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "cheer",
+                    "attack",
+                    "defeat"
+                  ],
+                  "motion": 0.42733396481827746
+                }
+              ]
+            }
+          ],
+          "recovery": {
+            "checkpointId": "party-picnic-safe",
+            "direction": {
+              "dx": 1,
+              "dz": 0,
+              "distance": 4.8004000000000016,
+              "clearance": 3.624913792078369
+            },
+            "before": 0,
+            "after": 1,
+            "position": {
+              "x": 0.4664000000000233,
+              "y": 0,
+              "z": -30.8
+            },
+            "protectionSeconds": 0.6833999999999947,
+            "heldInput": 1,
+            "progressPreserved": true
+          },
+          "safeMiss": {
+            "edge": {
+              "from": "party-welcome",
+              "to": "party-terrace-1",
+              "mode": "jump"
+            },
+            "safeMissPlatformId": "besties-practice-ground",
+            "landed": {
+              "x": -4.799999999999993,
+              "y": 0,
+              "z": -4.93319999999999
+            },
+            "recoveries": 0,
+            "jumpSequenceBefore": 0,
+            "jumpSequenceAfter": 1,
+            "missTakeoff": {
+              "x": -4.45,
+              "y": 0,
+              "z": -1.85
+            },
+            "retryEdge": {
+              "from": "besties-practice-ground",
+              "to": "party-welcome",
+              "mode": "walk"
+            },
+            "hpPreserved": true,
+            "progressPreserved": true,
+            "returnedTo": "party-welcome"
+          },
+          "deathRecovery": {
+            "encounterId": "level-2-2024-encounter-3",
+            "memoryId": "demo-memory-2026-01",
+            "checkpointId": "party-grove-safe",
+            "fallenRevision": 38,
+            "recoveredRevision": 39,
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -81.3
+            },
+            "fullHealth": 10,
+            "localRecoveriesBefore": 0,
+            "localRecoveriesAfter": 0,
+            "progressPreserved": true,
+            "automatic": true,
+            "manualReturnAfterTimeout": false
+          },
+          "visitedPlatforms": [
+            "party-welcome",
+            "party-terrace-1",
+            "party-terrace-2",
+            "party-terrace-3",
+            "besties-practice-down-1",
+            "besties-practice-down-2",
+            "besties-practice-down-3",
+            "party-picnic",
+            "ribbon-lane",
+            "ribbon-rest",
+            "party-ferry",
+            "party-dock",
+            "wide-side-bridge",
+            "friend-balcony",
+            "party-grove",
+            "turnstile-deck",
+            "party-fair",
+            "final-hop-1",
+            "final-hop-2",
+            "besties-court",
+            "party-reward"
+          ],
+          "edgeCount": 25
+        }
+      ]
+    },
+    "hostedInput": {
+      "status": "passed",
+      "url": "https://haynes-quest-playtest.haynesops.com",
+      "startedAt": "2026-09-19T20:46:48.852Z",
+      "finishedAt": "2026-09-19T20:47:18.308Z",
+      "browser": "153.0.8010.12",
+      "bundle": {
+        "path": "/assets/index-B6ZOcLIe.js",
+        "bytes": 1193022,
+        "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+      },
+      "path": "test-results/portrait-completion-regression/final-hosted-strengthened-20260919t204626z/report.json",
+      "sha256": "25d0837c900f6f04fcffa8288018adeaa49729aa6a151d362f0f23e1f274be3c",
+      "errors": {
+        "responseErrors": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0
+      },
+      "emulation": {
+        "engine": "Chromium",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "hasTouch": true,
+        "isMobile": true,
+        "limits": [
+          "Chromium touch emulation does not reproduce Mobile Safari browser chrome or WebKit pointer-event internals.",
+          "CDP creates trusted touch contacts; the forced capture exception, hidden Chromium-only capture lifecycle, and explicit release of implicit capture model a browser where capture never succeeded."
+        ]
+      },
+      "captureFailureRelease": {
+        "forcedCaptureError": true,
+        "captureRelease": {
+          "pointerId": 3,
+          "implicitCaptureBeforeRelease": true,
+          "captureAfterRelease": false
+        },
+        "owningPointerId": 3,
+        "heldInput": {
+          "moveX": -0.7071070427275314,
+          "moveY": 0.7071065196454669,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "offControlPoint": {
+          "x": 226.2,
+          "y": 405.12
+        },
+        "inputAfterOffControlMove": {
+          "moveX": 0.3673666175173789,
+          "moveY": 0.9300762164112357,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterOffControlRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "subsequentPointerId": 4,
+        "inputDuringSubsequentContact": {
+          "moveX": 0.9260408696656666,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterSubsequentRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        }
+      },
+      "actionCaptureFailure": {
+        "forcedCaptureError": true,
+        "captureRelease": {
+          "pointerId": 5,
+          "implicitCaptureBeforeRelease": true,
+          "captureAfterRelease": false,
+          "captureTarget": "path"
+        },
+        "offControlPoint": {
+          "x": 202.8,
+          "y": 405.12
+        },
+        "jumpSequenceBefore": 0,
+        "jumpSequenceFirst": 1,
+        "jumpSequenceSecond": 2,
+        "inputBeforeOwnerEnd": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": true,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterOwnerEnd": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "rearmed": true
+      },
+      "secondFinger": {
+        "movementPointerId": 7,
+        "jumpContactId": 25,
+        "unrelatedCancelPointerId": 10007,
+        "heldBeforeAction": {
+          "moveX": -0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "heldAfterActionRelease": {
+          "moveX": -0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "heldAfterUnrelatedCancel": {
+          "moveX": -0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "jumpSequenceBefore": 2,
+        "jumpSequenceAfter": 3,
+        "inputAfterMovementRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "cancelLimit": "CDP has no targeted partial touchCancel; an untrusted unrelated pointercancel verifies pointer ownership after a trusted two-contact Jump/release gesture."
+      },
+      "resize": {
+        "viewportBefore": {
+          "width": 390,
+          "height": 844
+        },
+        "viewportAfter": {
+          "width": 360,
+          "height": 844
+        },
+        "boundsBefore": {
+          "x": 12,
+          "y": 644.40625,
+          "width": 171.59375,
+          "height": 171.59375
+        },
+        "boundsAfter": {
+          "x": 12,
+          "y": 657.609375,
+          "width": 158.390625,
+          "height": 158.390625
+        },
+        "owningPointerId": 9,
+        "stationaryContact": {
+          "id": 26,
+          "x": 129.88490625,
+          "y": 730.203125,
+          "radiusX": 5,
+          "radiusY": 5,
+          "force": 1
+        },
+        "expectedAfterResize": {
+          "moveX": 0.8120459622952021,
+          "moveY": 0.13855850251631086,
+          "origin": {
+            "x": 91.1953125,
+            "y": 736.8046875
+          },
+          "travel": 45.93328125,
+          "distance": 0.8544732837207772,
+          "deadZone": 0.1741656546689662
+        },
+        "newCenter": {
+          "id": 26,
+          "x": 91.1953125,
+          "y": 736.8046875,
+          "radiusX": 5,
+          "radiusY": 5,
+          "force": 1
+        },
+        "newRightPoint": {
+          "id": 26,
+          "x": 120.81435937500001,
+          "y": 736.8046875,
+          "radiusX": 5,
+          "radiusY": 5,
+          "force": 1
+        },
+        "inputBefore": {
+          "moveX": 0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfter": {
+          "moveX": 0.812045875909505,
+          "moveY": 0.13855849957997,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAtNewCenter": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterNewRightMove": {
+          "moveX": 0.5699229900462572,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        }
+      },
+      "orientation": {
+        "pointerId": 10,
+        "viewportBefore": {
+          "width": 390,
+          "height": 844
+        },
+        "viewportAfter": {
+          "width": 844,
+          "height": 390
+        },
+        "inputBefore": {
+          "moveX": 0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfter": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        }
+      }
+    },
+    "hostedFullJourney": {
+      "status": "passed",
+      "url": "https://haynes-quest-playtest.haynesops.com",
+      "startedAt": "2026-09-19T20:54:00.113Z",
+      "finishedAt": "2026-09-19T21:01:34.615Z",
+      "browser": "153.0.8010.12",
+      "bundle": {
+        "path": "/assets/index-B6ZOcLIe.js",
+        "bytes": 1193022,
+        "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+      },
+      "path": "test-results/authored-playtest/final-hosted-missed-minor-attempt-02-20260919t205349z/report.json",
+      "sha256": "64ea943f048556779328049b2e010302ccf4175efbed7b6f022b2e7b29743678",
+      "errors": {
+        "responseErrors": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0
+      },
+      "missedMinorProbe": {
+        "chapter": 1,
+        "missingRole": "minor-two",
+        "missingId": "demo-memory-2022-01",
+        "majorId": "demo-memory-2024-01",
+        "missingText": "1 little memory left. Follow the path back to find it, then return to the big memory.",
+        "layouts": [
+          {
+            "viewport": {
+              "width": 844,
+              "height": 390,
+              "visualWidth": 844,
+              "visualHeight": 390
+            },
+            "hud": {
+              "x": 26,
+              "y": 66,
+              "width": 164,
+              "height": 99,
+              "right": 190,
+              "bottom": 165,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "message": {
+              "x": 199,
+              "y": 67,
+              "width": 219.4375,
+              "height": 68.390625,
+              "right": 418.4375,
+              "bottom": 135.390625,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "joystick": {
+              "x": 20,
+              "y": 234,
+              "width": 140,
+              "height": 140,
+              "right": 160,
+              "bottom": 374,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "actions": {
+              "x": 644,
+              "y": 194,
+              "width": 180,
+              "height": 180,
+              "right": 824,
+              "bottom": 374,
+              "display": "block",
+              "visibility": "visible"
+            }
+          },
+          {
+            "viewport": {
+              "width": 390,
+              "height": 844,
+              "visualWidth": 390,
+              "visualHeight": 844
+            },
+            "hud": {
+              "x": 12,
+              "y": 78,
+              "width": 150,
+              "height": 224.1875,
+              "right": 162,
+              "bottom": 302.1875,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "message": {
+              "x": 25,
+              "y": 187,
+              "width": 124,
+              "height": 67.1875,
+              "right": 149,
+              "bottom": 254.1875,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "joystick": {
+              "x": 12,
+              "y": 644.40625,
+              "width": 171.59375,
+              "height": 171.59375,
+              "right": 183.59375,
+              "bottom": 816,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "actions": {
+              "x": 202.5,
+              "y": 606,
+              "width": 175.5,
+              "height": 210,
+              "right": 378,
+              "bottom": 816,
+              "display": "block",
+              "visibility": "visible"
+            }
+          },
+          {
+            "viewport": {
+              "width": 568,
+              "height": 320,
+              "visualWidth": 568,
+              "visualHeight": 320
+            },
+            "hud": {
+              "x": 14,
+              "y": 66,
+              "width": 164,
+              "height": 99,
+              "right": 178,
+              "bottom": 165,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "message": {
+              "x": 187,
+              "y": 67,
+              "width": 147.671875,
+              "height": 85.1875,
+              "right": 334.671875,
+              "bottom": 152.1875,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "joystick": {
+              "x": 16,
+              "y": 164,
+              "width": 140,
+              "height": 140,
+              "right": 156,
+              "bottom": 304,
+              "display": "block",
+              "visibility": "visible"
+            },
+            "actions": {
+              "x": 372,
+              "y": 124,
+              "width": 180,
+              "height": 180,
+              "right": 552,
+              "bottom": 304,
+              "display": "block",
+              "visibility": "visible"
+            }
+          }
+        ],
+        "bossReleasedMajor": true,
+        "blockedMajor": {
+          "revision": 26,
+          "clientEligibilityPreventedDispatch": true,
+          "requestState": "idle",
+          "requestErrorCode": null,
+          "supportId": "garden-reward",
+          "contactPosition": {
+            "x": -0.01613333333325312,
+            "y": 0.3,
+            "z": -122.0374573533502
+          },
+          "majorPosition": {
+            "x": 0,
+            "y": 0.3,
+            "z": -122.3
+          }
+        },
+        "backtrack": [
+          {
+            "from": "garden-reward",
+            "to": "dragon-clearing",
+            "mode": "walk"
+          },
+          {
+            "from": "dragon-clearing",
+            "to": "garden-ferry",
+            "mode": "ride"
+          },
+          {
+            "from": "garden-ferry",
+            "to": "pond-dock",
+            "mode": "ride"
+          },
+          {
+            "from": "pond-dock",
+            "to": "little-landing",
+            "mode": "jump"
+          },
+          {
+            "from": "little-landing",
+            "to": "little-rise",
+            "mode": "jump"
+          },
+          {
+            "from": "little-rise",
+            "to": "memory-grove",
+            "mode": "jump"
+          }
+        ],
+        "recoveredMinorRevision": 28,
+        "forwardReturn": [
+          {
+            "from": "memory-grove",
+            "to": "little-rise",
+            "mode": "jump"
+          },
+          {
+            "from": "little-rise",
+            "to": "little-landing",
+            "mode": "jump"
+          },
+          {
+            "from": "little-landing",
+            "to": "pond-dock",
+            "mode": "jump"
+          },
+          {
+            "from": "pond-dock",
+            "to": "garden-ferry",
+            "mode": "ride"
+          },
+          {
+            "from": "garden-ferry",
+            "to": "dragon-clearing",
+            "mode": "ride"
+          },
+          {
+            "from": "dragon-clearing",
+            "to": "garden-reward",
+            "mode": "walk"
+          }
+        ],
+        "majorRevision": 29,
+        "chapterCompletionAccepted": true
+      },
+      "completedChapters": [
+        {
+          "stage": "chapter:1:complete",
+          "at": "2026-09-19T20:58:04.276Z",
+          "documentId": "garden-playground-v2",
+          "platforms": 21,
+          "recoveries": 4
+        },
+        {
+          "stage": "chapter:2:complete",
+          "at": "2026-09-19T21:01:34.613Z",
+          "documentId": "besties-playground-v2",
+          "platforms": 21,
+          "recoveries": 1
+        }
+      ],
+      "chapters": [
+        {
+          "chapter": 1,
+          "course": {
+            "id": "garden-playground-v2",
+            "schemaVersion": "authored-level-v2",
+            "platforms": 22,
+            "movingPlatforms": 1,
+            "sweepers": 3,
+            "checkpoints": 8,
+            "mainPathPlatforms": 19,
+            "branches": 1,
+            "connections": 23,
+            "safeMissConnections": 7,
+            "safeMissPlatforms": 1
+          },
+          "combat": [
+            {
+              "role": "ordinary-1",
+              "id": "level-1-2020-encounter-1",
+              "platformId": "picnic",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 10,
+              "playerHpAfter": 8,
+              "combatRetries": 0,
+              "sawDizzy": false
+            },
+            {
+              "role": "ordinary-2",
+              "id": "level-1-2020-encounter-2",
+              "platformId": "woodland-rest",
+              "primaryAccepted": false,
+              "secondaryAccepted": false,
+              "hitsReceived": 1,
+              "hpAtApproach": 8,
+              "playerHpAfter": 6,
+              "combatRetries": 0,
+              "sawDizzy": false
+            },
+            {
+              "role": "ordinary-3",
+              "id": "level-1-2020-encounter-3",
+              "platformId": "memory-grove",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 8,
+              "playerHpAfter": 6,
+              "combatRetries": 0,
+              "sawDizzy": false
+            },
+            {
+              "role": "ordinary-4",
+              "id": "level-1-2020-encounter-4",
+              "platformId": "pond-dock",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 6,
+              "playerHpAfter": 4,
+              "combatRetries": 0,
+              "sawDizzy": false
+            },
+            {
+              "role": "boss",
+              "id": "level-1-2020-boss",
+              "platformId": "dragon-clearing",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 3,
+              "hpAtApproach": 4,
+              "playerHpAfter": 7,
+              "combatRetries": 1,
+              "sawDizzy": false
+            }
+          ],
+          "recovery": {
+            "checkpointId": "picnic-safe",
+            "direction": {
+              "dx": 1,
+              "dz": 0,
+              "distance": 5.333600000000016,
+              "clearance": 3.1764760348537155
+            },
+            "before": 0,
+            "after": 1,
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -30.6
+            },
+            "protectionSeconds": 0.8,
+            "heldInput": 1,
+            "progressPreserved": true
+          },
+          "safeMiss": {
+            "edge": {
+              "from": "welcome",
+              "to": "garden-hop-1",
+              "mode": "jump"
+            },
+            "safeMissPlatformId": "garden-practice-ground",
+            "landed": {
+              "x": -4.400000000000003,
+              "y": 0,
+              "z": -4.2671999999999946
+            },
+            "recoveries": 0,
+            "jumpSequenceBefore": 0,
+            "jumpSequenceAfter": 1,
+            "missTakeoff": {
+              "x": -4.45,
+              "y": 0,
+              "z": -1.85
+            },
+            "retryEdge": {
+              "from": "garden-practice-ground",
+              "to": "welcome",
+              "mode": "walk"
+            },
+            "hpPreserved": true,
+            "progressPreserved": true,
+            "returnedTo": "welcome"
+          },
+          "deathRecovery": null,
+          "visitedPlatforms": [
+            "welcome",
+            "garden-hop-1",
+            "garden-hop-2",
+            "garden-hop-3",
+            "garden-practice-down-1",
+            "garden-practice-down-2",
+            "garden-practice-down-3",
+            "picnic",
+            "winding-east",
+            "winding-west",
+            "woodland-rest",
+            "woodland-side-1",
+            "woodland-side-2",
+            "woodland-side-3",
+            "memory-grove",
+            "little-rise",
+            "little-landing",
+            "pond-dock",
+            "garden-ferry",
+            "dragon-clearing",
+            "garden-reward"
+          ],
+          "edgeCount": 45
+        },
+        {
+          "chapter": 2,
+          "course": {
+            "id": "besties-playground-v2",
+            "schemaVersion": "authored-level-v2",
+            "platforms": 23,
+            "movingPlatforms": 1,
+            "sweepers": 2,
+            "checkpoints": 8,
+            "mainPathPlatforms": 21,
+            "branches": 1,
+            "connections": 24,
+            "safeMissConnections": 7,
+            "safeMissPlatforms": 1
+          },
+          "combat": [
+            {
+              "role": "ordinary-1",
+              "id": "level-2-2024-encounter-1",
+              "platformId": "party-picnic",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 10,
+              "playerHpAfter": 7,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.008779643956193557
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.008913625791233674
+                }
+              ]
+            },
+            {
+              "role": "ordinary-2",
+              "id": "level-2-2024-encounter-2",
+              "platformId": "ribbon-rest",
+              "primaryAccepted": false,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 7,
+              "playerHpAfter": 4,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.009008972315149452
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.009146498999636024
+                }
+              ]
+            },
+            {
+              "role": "ordinary-3",
+              "id": "level-2-2024-encounter-3",
+              "platformId": "party-grove",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 1,
+              "hpAtApproach": 10,
+              "playerHpAfter": 7,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.009186128415335799
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.009326174192426583
+                }
+              ]
+            },
+            {
+              "role": "ordinary-4",
+              "id": "level-2-2024-encounter-4",
+              "platformId": "party-fair",
+              "primaryAccepted": true,
+              "secondaryAccepted": true,
+              "hitsReceived": 8,
+              "hpAtApproach": 9,
+              "playerHpAfter": 7,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.008877103938641715
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "idle"
+                  ],
+                  "motion": 0.009011365816013188
+                }
+              ]
+            },
+            {
+              "role": "boss",
+              "id": "level-2-2024-boss",
+              "platformId": "besties-court",
+              "primaryAccepted": true,
+              "secondaryAccepted": false,
+              "hitsReceived": 1,
+              "hpAtApproach": 7,
+              "playerHpAfter": 5,
+              "combatRetries": 0,
+              "sawDizzy": false,
+              "nonDizzyDamage": {
+                "phase": "pink-trick",
+                "beforeHp": 11,
+                "afterHp": 8,
+                "action": "attack"
+              },
+              "hitReactions": [
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                },
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                },
+                {
+                  "id": "bestie-pink",
+                  "clip": "hit"
+                }
+              ],
+              "besties": [
+                {
+                  "id": "bestie-pink",
+                  "visible": true,
+                  "clips": [
+                    "attack",
+                    "hit",
+                    "defeat"
+                  ],
+                  "motion": 0.4292289243403166
+                },
+                {
+                  "id": "bestie-black",
+                  "visible": true,
+                  "clips": [
+                    "cheer",
+                    "attack",
+                    "defeat"
+                  ],
+                  "motion": 0.4273339648182758
+                }
+              ]
+            }
+          ],
+          "recovery": {
+            "checkpointId": "party-picnic-safe",
+            "direction": {
+              "dx": 1,
+              "dz": 0,
+              "distance": 5.334400000000255,
+              "clearance": 3.624913792078369
+            },
+            "before": 0,
+            "after": 1,
+            "position": {
+              "x": 0.6,
+              "y": 0,
+              "z": -30.8
+            },
+            "protectionSeconds": 0.6500000000000006,
+            "heldInput": 1,
+            "progressPreserved": true
+          },
+          "safeMiss": {
+            "edge": {
+              "from": "party-welcome",
+              "to": "party-terrace-1",
+              "mode": "jump"
+            },
+            "safeMissPlatformId": "besties-practice-ground",
+            "landed": {
+              "x": -4.200400000000019,
+              "y": 0,
+              "z": -4.8668000000000395
+            },
+            "recoveries": 0,
+            "jumpSequenceBefore": 51,
+            "jumpSequenceAfter": 52,
+            "missTakeoff": {
+              "x": -4.45,
+              "y": 0,
+              "z": -1.85
+            },
+            "retryEdge": {
+              "from": "besties-practice-ground",
+              "to": "party-welcome",
+              "mode": "walk"
+            },
+            "hpPreserved": true,
+            "progressPreserved": true,
+            "returnedTo": "party-welcome"
+          },
+          "deathRecovery": {
+            "encounterId": "level-2-2024-encounter-3",
+            "memoryId": "demo-memory-2026-01",
+            "checkpointId": "party-grove-safe",
+            "fallenRevision": 43,
+            "recoveredRevision": 44,
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -81.3
+            },
+            "fullHealth": 10,
+            "localRecoveriesBefore": 1,
+            "localRecoveriesAfter": 0,
+            "progressPreserved": true,
+            "automatic": true,
+            "manualReturnAfterTimeout": false
+          },
+          "visitedPlatforms": [
+            "party-welcome",
+            "party-terrace-1",
+            "party-terrace-2",
+            "party-terrace-3",
+            "besties-practice-down-1",
+            "besties-practice-down-2",
+            "besties-practice-down-3",
+            "party-picnic",
+            "ribbon-lane",
+            "ribbon-rest",
+            "party-ferry",
+            "party-dock",
+            "wide-side-bridge",
+            "friend-balcony",
+            "party-grove",
+            "turnstile-deck",
+            "party-fair",
+            "final-hop-1",
+            "final-hop-2",
+            "besties-court",
+            "party-reward"
+          ],
+          "edgeCount": 26
+        }
+      ]
+    },
+    "hostedInitialScenarioFailure": {
+      "status": "failed",
+      "url": "https://haynes-quest-playtest.haynesops.com",
+      "startedAt": "2026-09-19T20:47:22.973Z",
+      "finishedAt": "2026-09-19T20:50:38.199Z",
+      "browser": "153.0.8010.12",
+      "bundle": {
+        "path": "/assets/index-B6ZOcLIe.js",
+        "bytes": 1193022,
+        "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+      },
+      "path": "test-results/authored-playtest/final-hosted-missed-minor-20260919t204626z/report.json",
+      "sha256": "ad3276b143c127af380803f09ff382e23903c1b8a6d26a905c617dd8f412a55d",
+      "errors": {
+        "responseErrors": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0
+      },
+      "failure": {
+        "name": "AssertionError",
+        "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'exploring'\n- 'memory-released'\n"
+      },
+      "failureDetail": "Full diagnostic and stack retained in the raw report identified by path and SHA256.",
+      "adjudication": "The boss-death retry took the shortest graph route and incidentally collected the deliberately deferred minor. The game then advanced legitimately. The driver now preserves its existing forward plan during retries and asserts the minor remains released after the boss. Hosted attempt 02 passed that strengthened scenario using actual controls."
+    }
+  },
+  "limits": [
+    "Chromium 153 software-rendered touch emulation; not physical iPhone/iPad Safari acceptance or a phone frame-time measurement.",
+    "Focused capture-failure cases use trusted CDP contacts plus explicit fault injection to remove Chromium implicit capture.",
+    "Lifecycle blur/pagehide/freeze/visibility and canvas-camera capture failures have unit coverage; the focused browser cases cover capture release/rearm, multiple fingers, resize geometry and rotation.",
+    "The missed-minor scenario reproduces a matching symptom; the exact prerequisite state of the original phone report was not captured."
+  ],
+  "operationsPR": "https://github.com/thaynes43/haynes-ops/pull/2983",
+  "image": "ghcr.io/thaynes43/haynes-quest:sha-032b996e2e9c99271bbf47fb49bee4ee947a7473@sha256:a87013f9b806008dcd95caa2a487acc61c919374630bd49ccd4a62b8206f2dcc",
+  "publication": {
+    "applicationRun": 35467300966,
+    "documentationRun": 35467300988,
+    "testsPassed": 562,
+    "postgresTestsPassed": 12,
+    "imageBuildPush": "success",
+    "provenanceAttestationStep": "success",
+    "cosignSignStep": "success",
+    "manifestMediaType": "application/vnd.oci.image.index.v1+json",
+    "headerAndBodyDigest": "sha256:a87013f9b806008dcd95caa2a487acc61c919374630bd49ccd4a62b8206f2dcc",
+    "githubAttestationBundles": 1,
+    "provenanceType": "https://slsa.dev/provenance/v1",
+    "independentCryptographicSignatureVerification": false
+  },
+  "operationsCommit": "be4912ee052c5f2d40ba956c1e8c2c1a052f4874",
+  "operationsCheckedHead": "02b74abbaa08a91daa06ae41eaa346f1e1cc794a",
+  "operationsChecksPassed": 9,
+  "operationsInitialValidationFailure": {
+    "run": 35467621388,
+    "step": "main HelmRelease rendered comparison",
+    "cause": "unknown; runner log blob domain inaccessible, annotations nonspecific, older local CLI inconclusive",
+    "resolution": "normal documentation push started fresh validation; all nine checks and isolated rendered image diff passed on the final head"
+  },
+  "rollout": {
+    "auditPath": "/home/dev/work/quest-blockers-release-20260919/.private/quest-blockers/hosted-rollout-audit.txt",
+    "auditSha256": "965586d6db6757b9638e7bd789cff3c9914451b02227454f6960b019ea3bcea8",
+    "passed": true,
+    "fluxRevision": "main@sha1:be4912ee052c5f2d40ba956c1e8c2c1a052f4874",
+    "helmReleaseReady": true,
+    "helmReleaseVersion": 9,
+    "deploymentGeneration": 9,
+    "podName": "haynes-quest-playtest-5fccb56565-8fww5",
+    "podUid": "e4c0a529-1372-4f89-ba39-25dbeffc6598",
+    "healthAndReadinessStatuses": [
+      200,
+      200,
+      200,
+      200
+    ],
+    "normalQuestUnchanged": true,
+    "devEnvUnchangedFromPostInterruptionBaseline": true,
+    "activity": "act-204155-42536",
+    "activityEnded": true,
+    "finalAuditPath": "/home/dev/work/quest-blockers-release-20260919/.private/quest-blockers/hosted-rollout-final-audit.txt",
+    "finalAuditSha256": "965586d6db6757b9638e7bd789cff3c9914451b02227454f6960b019ea3bcea8",
+    "finalAuditPassed": true
+  },
+  "delivery": {
+    "verifiedAt": "2026-09-19T20:47:11.367Z",
+    "indexStatus": 200,
+    "indexNoStore": true,
+    "css": {
+      "path": "/assets/index-B5Mykaz9.css",
+      "bytes": 41907,
+      "sha256": "eb6ee8fc419e30f41f1988c2699eb1b39df644f50e06c36703da3d417ae7f6fc",
+      "matchesLocalBuild": true
+    },
+    "guideStatus": 200,
+    "updatedMemoryGuidance": true,
+    "catalogStatus": 200
+  },
+  "hostedHarnessAtRun": {
+    "baseCommit": "032b996e2e9c99271bbf47fb49bee4ee947a7473",
+    "changes": "Prefer existing forward plan edges during retries and assert the deferred minor remains released after boss defeat.",
+    "files": {
+      "tests/e2e/authored-playtest.mjs": "41deeeed73437e7ef4d9ebd15c0d0b0df4c31714068839e76afe329889260e75",
+      "tests/e2e/authored-browser-driver.mjs": "b7bd42688591f835475e96c6bcc120717f8dc77be090bf9778a6a90a4857e230",
+      "tests/e2e/portrait-completion-regression.mjs": "97ff9484920d69ca5108c7063d892ed9534621787ea7a124b36e431ba46f09b9"
+    }
+  },
+  "hostedHarnessAfterRun": {
+    "change": "Preserve original edge.index when present instead of renumbering sliced route diagnostics. Traversal unchanged; full journey not repeated for this metadata-only edit.",
+    "file": "tests/e2e/authored-playtest.mjs",
+    "sha256": "2c1bbfd4f7e657c03ec10b3b6a711c613d2ce22cf5930a68ed218072bb9020a7",
+    "checks": [
+      "node --check",
+      "scoped ESLint",
+      "15 navigation tests",
+      "git diff --check"
+    ]
+  },
+  "cleanup": {
+    "ownedFixtureSession": "quest-blockers-fixtures",
+    "sessionStopped": true,
+    "portsConfirmedStopped": [
+      4410,
+      4411
+    ],
+    "browserLaneOwnedProcessStopped": true,
+    "recordedAt": "2026-09-19T21:04:37.923278+00:00"
+  },
+  "visualReview": {
+    "reviewer": "root",
+    "hostedCaptures": [
+      "test-results/authored-playtest/final-hosted-missed-minor-attempt-02-20260919t205349z/11-chapter-1-postboss-missing-minor-portrait.png",
+      "test-results/authored-playtest/final-hosted-missed-minor-attempt-02-20260919t205349z/27-chapter-2-complete.png"
+    ],
+    "findings": "Portrait hint is legible and clear of controls; completion shows two eras and six memories."
+  }
+}

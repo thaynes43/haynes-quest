@@ -666,14 +666,21 @@ async function playChapter(chapter) {
       let current = await driver.read(`${label}-route-${recoveryAttempt + 1}`);
       if (done && (await done(current))) return current;
       if (current.obby.supportId !== anchor.platformId) {
-        const route = findPlatformPath(
-          document,
+        const currentPlanIndex = plan.platformIds.indexOf(
           current.obby.supportId,
-          anchor.platformId,
         );
+        const targetPlanIndex = plan.platformIds.indexOf(anchor.platformId);
+        const route =
+          currentPlanIndex >= 0 && targetPlanIndex > currentPlanIndex
+            ? plan.edges.slice(currentPlanIndex, targetPlanIndex)
+            : findPlatformPath(
+                document,
+                current.obby.supportId,
+                anchor.platformId,
+              );
         for (const [edgeIndex, edge] of route.entries()) {
           current = await driver.crossEdge(
-            { ...edge, index: edgeIndex },
+            { ...edge, index: edge.index ?? edgeIndex },
             `${label}-recovery-edge-${edgeIndex + 1}`,
           );
           if (current.obby.supportId !== edge.to) break;
@@ -1763,6 +1770,26 @@ async function playChapter(chapter) {
         }
       }
       await fight(role, anchor);
+      if (role === "boss" && deferredMinorRole) {
+        const deferredMinorId = chapterMemoryIds[deferredMinorRole];
+        assert.equal(
+          latestSave.adventure.phase,
+          "memory-released",
+          "boss defeat advanced before the deferred memory recovery proof",
+        );
+        assert.equal(
+          latestSave.memories.find(
+            (memory) => memory.id === deferredMinorId,
+          )?.state,
+          "released",
+          "boss retry route collected the deliberately deferred memory",
+        );
+        mark("memory:deferred-after-boss", {
+          role: deferredMinorRole,
+          id: deferredMinorId,
+          state: "released",
+        });
+      }
       if (bossGateProbe && role === "boss") {
         const ordinaryLeft = latestSave.adventure.activeLevel.encounters.find(
           (encounter) =>
