@@ -10,8 +10,11 @@ import { GameScreen } from "./GameScreen";
 import { MemoryImage } from "./MemoryImage";
 import { api, friendlyError } from "./api";
 import { installMultiTouchActivation } from "./touch-activation";
+import { installViewportZoomLock } from "./viewport-zoom";
 import "./styles.css";
 
+const disposeViewportZoomLock = installViewportZoomLock(document);
+import.meta.hot?.dispose(disposeViewportZoomLock);
 const disposeMultiTouchActivation = installMultiTouchActivation(document);
 import.meta.hot?.dispose(disposeMultiTouchActivation);
 
