@@ -10,6 +10,7 @@ const expectedCssSha256 = process.env.QUEST_E2E_CSS_SHA256;
 const expectedGameTouchAction = process.env.QUEST_E2E_GAME_TOUCH_ACTION;
 const expectHeaderPinchZoom =
   process.env.QUEST_E2E_EXPECT_HEADER_PINCH_ZOOM === "true";
+const expectAppZoomLock = process.env.QUEST_E2E_EXPECT_APP_ZOOM_LOCK === "true";
 const timeoutMs = Number(process.env.QUEST_E2E_TIMEOUT_MS ?? 180_000);
 const viewport = { width: 844, height: 390 };
 const outDir = `test-results/phone-viewport-regression/${runLabel}`;
@@ -41,6 +42,7 @@ const report = {
   assets: null,
   viewportPolicy: null,
   expected: {
+    appZoomLock: expectAppZoomLock,
     gameTouchAction: expectedGameTouchAction,
     headerPinchZoom: expectHeaderPinchZoom,
   },
@@ -53,7 +55,8 @@ const report = {
   limits: [
     "Chromium mobile touch emulation does not reproduce physical iPhone Safari, browser chrome, or WebKit gesture internals.",
     "Input.dispatchTouchEvent supplies trusted browser touch contacts; this check does not use Input.synthesizePinchGesture or force a page scale.",
-    "Pointer ownership, release/rearm, independent action input, resize, and rotation are covered by the separate portrait-completion regression; this report covers only native zoom boundaries and Help scrolling.",
+    "Pointer ownership, release/rearm, independent action input, resize, and rotation are covered by the separate portrait-completion regression; this report covers native zoom boundaries and native page/dialog scrolling.",
+    "Trusted Chromium control-wheel and key events verify that the in-page guard cancels those inputs. Browser-menu zoom, operating-system magnification, and Safari-reserved shortcuts remain outside webpage control.",
   ],
 };
 
@@ -120,6 +123,7 @@ async function createScenario(name, { startGame = false } = {}) {
       if (target.closest(".combat-attack")) return "attack-control";
       if (target.closest(".era-modal")) return "help-dialog";
       if (target.closest(".playtest-start h1")) return "start-heading";
+      if (target.closest(".playtest-start")) return "start-page";
       if (target.closest("canvas[data-quest-canvas=true]")) return "canvas";
       return "other";
     };
@@ -266,16 +270,21 @@ async function snapshot(page, locator) {
         hitChain,
       };
     },
-    { ...center, selector: await locator.evaluate((element) => {
-      if (element.id) return `#${CSS.escape(element.id)}`;
-      if (element.getAttribute("data-testid"))
-        return `[data-testid="${CSS.escape(element.getAttribute("data-testid"))}"]`;
-      const className =
-        typeof element.className === "string"
-          ? element.className.trim().split(/\s+/).filter(Boolean)[0]
-          : null;
-      return className ? `.${CSS.escape(className)}` : element.tagName.toLowerCase();
-    }) },
+    {
+      ...center,
+      selector: await locator.evaluate((element) => {
+        if (element.id) return `#${CSS.escape(element.id)}`;
+        if (element.getAttribute("data-testid"))
+          return `[data-testid="${CSS.escape(element.getAttribute("data-testid"))}"]`;
+        const className =
+          typeof element.className === "string"
+            ? element.className.trim().split(/\s+/).filter(Boolean)[0]
+            : null;
+        return className
+          ? `.${CSS.escape(className)}`
+          : element.tagName.toLowerCase();
+      }),
+    },
   );
 }
 
@@ -330,7 +339,10 @@ async function pinch({ page, cdp, locator, label, expectedSurface }) {
     });
     await cdp.send("Input.dispatchTouchEvent", { type, touchPoints });
   };
-  await send("touchStart", [point(firstId, x - 18, y), point(secondId, x + 18, y)]);
+  await send("touchStart", [
+    point(firstId, x - 18, y),
+    point(secondId, x + 18, y),
+  ]);
   for (const distance of [28, 40, 52, 64, 76, 88, 94]) {
     await send("touchMove", [
       point(firstId, x - distance, y),
@@ -369,7 +381,7 @@ async function pinch({ page, cdp, locator, label, expectedSurface }) {
   return { before, after, dispatches, trace };
 }
 
-async function doubleTap({ page, cdp, locator }) {
+async function doubleTap({ page, cdp, locator, label, expectedSurface }) {
   await clearGestureTrace(page);
   const before = await snapshot(page, locator);
   const { x, y } = before.center;
@@ -396,13 +408,21 @@ async function doubleTap({ page, cdp, locator }) {
       event.type === "touchstart" &&
       event.isTrusted &&
       event.touches.length === 1 &&
-      event.surface === "chapter-pill",
+      event.surface === expectedSurface,
   );
   const trustedEnds = trace.filter(
     (event) => event.type === "touchend" && event.isTrusted,
   );
-  assert.equal(trustedStarts.length, 2, "double tap did not deliver two starts");
-  assert.equal(trustedEnds.length, 2, "double tap did not deliver two ends");
+  assert.equal(
+    trustedStarts.length,
+    2,
+    `${label} did not deliver two trusted starts on ${expectedSurface}`,
+  );
+  assert.equal(
+    trustedEnds.length,
+    2,
+    `${label} did not deliver two trusted ends`,
+  );
   return {
     before,
     after: await snapshot(page, locator),
@@ -480,8 +500,7 @@ async function runGameBoundaryScenario() {
       const visualViewport = window.visualViewport;
       if (!visualViewport) throw new Error("visual viewport unavailable");
       return Object.fromEntries(
-        Object.entries(selectors).map(
-          ([label, { selector, required }]) => {
+        Object.entries(selectors).map(([label, { selector, required }]) => {
           const element = document.querySelector(selector);
           if (!element) {
             if (required) throw new Error(`${label} is unavailable`);
@@ -504,8 +523,7 @@ async function runGameBoundaryScenario() {
               visualBottom: visualViewport.offsetTop + visualViewport.height,
             },
           ];
-          },
-        ),
+        }),
       );
     });
     for (const [label, bounds] of Object.entries(results.visibleBounds)) {
@@ -525,17 +543,286 @@ async function runGameBoundaryScenario() {
   }
 }
 
-async function runDoubleTapScenario() {
+async function runStartDoubleTapScenario() {
+  const name = "start-page-double-tap";
+  mark(name);
+  const scenario = await createScenario(name);
+  try {
+    const locator = scenario.page.locator(".playtest-start h1");
+    const result = await doubleTap({
+      ...scenario,
+      locator,
+      label: name,
+      expectedSurface: "start-heading",
+    });
+    if (expectAppZoomLock)
+      assertNeutralViewport(result.after, "start-page double tap");
+    result.screenshot = await takeScreenshot(scenario.page, name);
+    report.scenarios[name] = result;
+  } finally {
+    await scenario.finish();
+  }
+}
+
+async function runGameDoubleTapScenario() {
   const name = "game-header-double-tap";
   mark(name);
   const scenario = await createScenario(name, { startGame: true });
   try {
     const locator = scenario.page.locator(".chapter-pill");
-    const result = await doubleTap({ ...scenario, locator });
+    const result = await doubleTap({
+      ...scenario,
+      locator,
+      label: name,
+      expectedSurface: "chapter-pill",
+    });
     if (!expectHeaderPinchZoom)
       assertNeutralViewport(result.after, "header double tap");
     result.screenshot = await takeScreenshot(scenario.page, name);
     report.scenarios[name] = result;
+  } finally {
+    await scenario.finish();
+  }
+}
+
+async function runStartPageScrollScenario() {
+  const name = "start-page-scroll";
+  mark(name);
+  const scenario = await createScenario(name);
+  try {
+    const start = scenario.page.locator(".playtest-start");
+    await start.waitFor({ timeout: 10_000 });
+    const before = await start.evaluate((element) => ({
+      scrollHeight: document.documentElement.scrollHeight,
+      clientHeight: document.documentElement.clientHeight,
+      scrollY: window.scrollY,
+      htmlTouchAction: getComputedStyle(document.documentElement).touchAction,
+      bodyTouchAction: getComputedStyle(document.body).touchAction,
+      rootTouchAction: getComputedStyle(document.querySelector("#root"))
+        .touchAction,
+      targetTouchAction: getComputedStyle(element).touchAction,
+    }));
+    assert.ok(
+      before.scrollHeight > before.clientHeight,
+      "start page did not have overflow content",
+    );
+    const bounds = await start.boundingBox();
+    assert.ok(bounds, "start page has no bounds");
+    const x = Math.min(
+      viewport.width - 24,
+      Math.max(24, bounds.x + bounds.width * 0.75),
+    );
+    const startY = viewport.height - 32;
+    const endY = 48;
+    const dispatches = [];
+    const contactId = 41;
+    const send = async (type, touchPoints) => {
+      dispatches.push({
+        type,
+        touchPoints: touchPoints.map(({ id, x: pointX, y: pointY }) => ({
+          id,
+          x: pointX,
+          y: pointY,
+        })),
+      });
+      await scenario.cdp.send("Input.dispatchTouchEvent", {
+        type,
+        touchPoints,
+      });
+    };
+    await clearGestureTrace(scenario.page);
+    await send("touchStart", [point(contactId, x, startY)]);
+    for (let step = 1; step <= 10; step += 1) {
+      const y = startY + ((endY - startY) * step) / 10;
+      await send("touchMove", [point(contactId, x, y)]);
+      await delay(22);
+    }
+    await send("touchEnd", []);
+    await delay(450);
+    const after = await scenario.page.evaluate(() => {
+      const visualViewport = window.visualViewport;
+      return {
+        scrollY: window.scrollY,
+        scrollX: window.scrollX,
+        visualViewport: visualViewport
+          ? {
+              scale: visualViewport.scale,
+              width: visualViewport.width,
+              height: visualViewport.height,
+              offsetLeft: visualViewport.offsetLeft,
+              offsetTop: visualViewport.offsetTop,
+              pageLeft: visualViewport.pageLeft,
+              pageTop: visualViewport.pageTop,
+            }
+          : null,
+      };
+    });
+    assert.ok(
+      after.scrollY > 40,
+      "trusted vertical swipe did not scroll start page",
+    );
+    assert.equal(
+      after.scrollX,
+      0,
+      "start-page vertical swipe scrolled horizontally",
+    );
+    assert.ok(after.visualViewport, "start-page scroll has no visual viewport");
+    assert.ok(
+      Math.abs(after.visualViewport.scale - 1) <= 0.01 &&
+        Math.abs(after.visualViewport.width - viewport.width) <= 1 &&
+        Math.abs(after.visualViewport.height - viewport.height) <= 1,
+      "start-page scroll changed visual viewport scale or size",
+    );
+    assert.ok(
+      Math.abs(after.visualViewport.offsetLeft) <= 0.5 &&
+        Math.abs(after.visualViewport.offsetTop) <= 0.5 &&
+        Math.abs(after.visualViewport.pageLeft) <= 0.5 &&
+        Math.abs(after.visualViewport.pageTop - after.scrollY) <= 1,
+      "start-page scroll shifted the visual viewport independently",
+    );
+    const trace = await gestureTrace(scenario.page);
+    const swipeStart = trace.find(
+      (event) =>
+        event.type === "touchstart" &&
+        event.isTrusted &&
+        event.touches.length === 1,
+    );
+    assert.ok(swipeStart, "start-page scroll did not begin with trusted touch");
+    assert.equal(
+      swipeStart.surface,
+      "start-page",
+      "start-page swipe began on the wrong surface",
+    );
+    assert.ok(
+      trace.some((event) => event.type === "pointercancel" && event.isTrusted),
+      "start-page scroll did not transfer to native panning",
+    );
+    report.scenarios[name] = {
+      before,
+      after,
+      dispatches,
+      trace,
+      screenshot: await takeScreenshot(scenario.page, name),
+    };
+  } finally {
+    await scenario.finish();
+  }
+}
+
+async function runGuardedDesktopGestureScenario() {
+  const name = "guarded-desktop-zoom-gestures";
+  mark(name);
+  const scenario = await createScenario(name);
+  try {
+    const heading = scenario.page.locator(".playtest-start h1");
+    await heading.waitFor({ timeout: 10_000 });
+    await scenario.page.evaluate(() => {
+      window.__questZoomGuardTrace = [];
+      for (const type of ["wheel", "keydown"])
+        window.addEventListener(type, (event) => {
+          window.__questZoomGuardTrace.push({
+            type,
+            isTrusted: event.isTrusted,
+            defaultPrevented: event.defaultPrevented,
+            ctrlKey: event.ctrlKey,
+            metaKey: event.metaKey,
+            key: "key" in event ? event.key : null,
+          });
+        });
+    });
+    const before = await snapshot(scenario.page, heading);
+    const bounds = await heading.boundingBox();
+    assert.ok(bounds, "start heading has no bounds");
+    const x = bounds.x + bounds.width / 2;
+    const y = bounds.y + bounds.height / 2;
+    await scenario.cdp.send("Input.dispatchMouseEvent", {
+      type: "mouseMoved",
+      x,
+      y,
+    });
+    await scenario.cdp.send("Input.dispatchMouseEvent", {
+      type: "mouseWheel",
+      x,
+      y,
+      deltaX: 0,
+      deltaY: -180,
+      modifiers: 2,
+    });
+    await scenario.page.keyboard.down("Control");
+    await scenario.page.keyboard.press("=");
+    await scenario.page.keyboard.press("-");
+    await scenario.page.keyboard.up("Control");
+    await scenario.page.keyboard.down("Meta");
+    await scenario.page.keyboard.press("=");
+    await scenario.page.keyboard.press("-");
+    await scenario.page.keyboard.up("Meta");
+    await delay(300);
+    const trace = await scenario.page.evaluate(
+      () => window.__questZoomGuardTrace ?? [],
+    );
+    const wheel = trace.find(
+      (event) => event.type === "wheel" && event.isTrusted && event.ctrlKey,
+    );
+    assert.ok(wheel, "control-wheel was not delivered as trusted input");
+    assert.equal(
+      wheel.defaultPrevented,
+      true,
+      "control-wheel was not cancelled",
+    );
+    for (const modifier of ["ctrlKey", "metaKey"])
+      for (const key of ["=", "-"])
+        assert.ok(
+          trace.some(
+            (event) =>
+              event.type === "keydown" &&
+              event.isTrusted &&
+              event[modifier] &&
+              event.key === key &&
+              event.defaultPrevented,
+          ),
+          `${modifier} ${key} was not cancelled`,
+        );
+    const after = await snapshot(scenario.page, heading);
+    assertNeutralViewport(after, "guarded desktop zoom gestures");
+    report.scenarios[name] = {
+      before,
+      after,
+      trace,
+      screenshot: await takeScreenshot(scenario.page, name),
+    };
+  } finally {
+    await scenario.finish();
+  }
+}
+
+async function runEntryLeaveViewportScenario() {
+  const name = "entry-leave-viewport";
+  mark(name);
+  const scenario = await createScenario(name);
+  try {
+    const heading = scenario.page.locator(".playtest-start h1");
+    await heading.waitFor({ timeout: 10_000 });
+    const beforeEntry = await snapshot(scenario.page, heading);
+    assertNeutralViewport(beforeEntry, "before game entry");
+    await scenario.page
+      .getByRole("button", { name: "Play from the beginning", exact: true })
+      .tap();
+    const canvas = scenario.page.locator("canvas[data-quest-canvas=true]");
+    await canvas.waitFor({ timeout: 20_000 });
+    const inGame = await snapshot(scenario.page, canvas);
+    assertNeutralViewport(inGame, "after game entry");
+    await scenario.page
+      .getByRole("button", { name: /Leave playtest|Save & leave/ })
+      .tap();
+    await heading.waitFor({ timeout: 10_000 });
+    const afterLeave = await snapshot(scenario.page, heading);
+    assertNeutralViewport(afterLeave, "after leaving game");
+    report.scenarios[name] = {
+      beforeEntry,
+      inGame,
+      afterLeave,
+      screenshot: await takeScreenshot(scenario.page, name),
+    };
   } finally {
     await scenario.finish();
   }
@@ -574,7 +861,10 @@ async function runHelpScrollScenario() {
     const bounds = await dialog.boundingBox();
     assert.ok(bounds, "Help dialog has no bounds");
     const x = bounds.x + bounds.width / 2;
-    const startY = Math.min(bounds.y + bounds.height - 44, viewport.height - 24);
+    const startY = Math.min(
+      bounds.y + bounds.height - 44,
+      viewport.height - 24,
+    );
     const endY = Math.max(bounds.y + 44, startY - 230);
     const dispatches = [];
     const contactId = 31;
@@ -587,7 +877,10 @@ async function runHelpScrollScenario() {
           y: pointY,
         })),
       });
-      await scenario.cdp.send("Input.dispatchTouchEvent", { type, touchPoints });
+      await scenario.cdp.send("Input.dispatchTouchEvent", {
+        type,
+        touchPoints,
+      });
     };
     await clearGestureTrace(scenario.page);
     await send("touchStart", [point(contactId, x, startY)]);
@@ -604,7 +897,10 @@ async function runHelpScrollScenario() {
       clientHeight: element.clientHeight,
       touchAction: getComputedStyle(element).touchAction,
     }));
-    assert.ok(after.scrollTop > 40, "trusted vertical swipe did not scroll Help");
+    assert.ok(
+      after.scrollTop > 40,
+      "trusted vertical swipe did not scroll Help",
+    );
     const trace = await gestureTrace(scenario.page);
     const swipeStart = trace.find(
       (event) =>
@@ -661,8 +957,15 @@ try {
     /<meta\s+name="viewport"\s+content="([^"]+)"/,
   )?.[1];
   assert.match(report.viewportPolicy ?? "", /width=device-width/);
-  assert.doesNotMatch(report.viewportPolicy ?? "", /user-scalable=no/);
-  assert.doesNotMatch(report.viewportPolicy ?? "", /maximum-scale=1/);
+  if (expectAppZoomLock) {
+    assert.match(report.viewportPolicy ?? "", /user-scalable=no/);
+    assert.match(report.viewportPolicy ?? "", /minimum-scale=1(?:\.0)?/);
+    assert.match(report.viewportPolicy ?? "", /maximum-scale=1(?:\.0)?/);
+  } else {
+    assert.doesNotMatch(report.viewportPolicy ?? "", /user-scalable=no/);
+    assert.doesNotMatch(report.viewportPolicy ?? "", /minimum-scale=1(?:\.0)?/);
+    assert.doesNotMatch(report.viewportPolicy ?? "", /maximum-scale=1(?:\.0)?/);
+  }
 
   browser = await chromium.launch({
     headless: true,
@@ -681,11 +984,15 @@ try {
     startGame: false,
     locatorFor: (page) => page.locator(".playtest-start h1"),
     expectedSurface: "start-heading",
-    assertion: (result) =>
-      assert.ok(
-        result.after.visualViewport.scale > 1.05,
-        "ordinary start-page pinch zoom was blocked",
-      ),
+    assertion: (result) => {
+      if (expectAppZoomLock)
+        assertNeutralViewport(result.after, "start-page pinch");
+      else
+        assert.ok(
+          result.after.visualViewport.scale > 1.05,
+          "baseline start-page pinch did not reproduce page zoom",
+        );
+    },
   });
   await runPinchScenario({
     name: "game-header-pinch",
@@ -703,12 +1010,15 @@ try {
           result.after.visualViewport.scale > 1.05,
           "baseline header pinch did not reproduce page zoom",
         );
-      else
-        assertNeutralViewport(result.after, "game header pinch");
+      else assertNeutralViewport(result.after, "game header pinch");
     },
   });
   await runGameBoundaryScenario();
-  await runDoubleTapScenario();
+  await runStartDoubleTapScenario();
+  await runGameDoubleTapScenario();
+  await runStartPageScrollScenario();
+  if (expectAppZoomLock) await runGuardedDesktopGestureScenario();
+  await runEntryLeaveViewportScenario();
   await runHelpScrollScenario();
 
   assert.equal(report.responseErrors.length, 0, "HTTP failures observed");

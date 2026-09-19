@@ -13,6 +13,12 @@
 * {
   box-sizing: border-box;
 }
+html,
+body,
+#root {
+  /* Keep every app screen scrollable without admitting browser zoom. */
+  touch-action: pan-x pan-y;
+}
 body {
   margin: 0;
 }
@@ -663,7 +669,7 @@ footer {
   min-height: 44px;
   color: #403b31;
   font-family: Arial, sans-serif;
-  font-size: 12px;
+  font-size: 16px;
 }
 .setup-form small {
   display: block;

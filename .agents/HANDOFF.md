@@ -1,5 +1,7 @@
 # Current handoff
 
+**Active correction: [WO090](work-orders/090-app-wide-zoom-lock.md).** Tom clarified his son was playing and browser zoom must be disabled throughout the game app. The prior release below deliberately kept start-page zoom and is superseded by this requirement. Root owns the new app/release worktrees named in WO090; port 4422 is reserved for its candidate. Enemy models and platform requirements follow this repair.
+
 **September 19: the phone page-zoom repair is deployed and verified.** [WO089](work-orders/089-phone-viewport-zoom.md) and its [release index](evidence/phone-viewport-release.json) preserve exact source, images, test results and cleanup. Tom reported that the previous joystick and memory repairs worked on his phone; this follow-up addresses the enlarged view that required quitting. No model authoring is running.
 
 A trusted two-finger pinch over the old chapter heading reproduced browser zoom to 2.46× and cropped the controls. The game screen now uses `touch-action: pan-y`, blocking page magnification across its chrome while preserving vertical dialog scrolling. The canvas and thumb controls retain their existing gesture handling. Browser zoom outside gameplay remains available. JavaScript, camera behavior, geometry, progression and artwork are unchanged.

@@ -1,0 +1,708 @@
+{
+  "schemaVersion": 1,
+  "status": "candidate-verified-awaiting-release",
+  "workOrder": ".agents/work-orders/090-app-wide-zoom-lock.md",
+  "baseCommit": "d8044f751742ec542f7493dcd0a095c9cc6ab183",
+  "contract": "No browser zoom gestures anywhere in the game app; preserve scrolling and independent game input.",
+  "localChecks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "strictDocs": "passed",
+    "testsPassed": 556,
+    "postgresSkipped": 12
+  },
+  "reports": {
+    "candidate": {
+      "status": "passed",
+      "url": "http://127.0.0.1:4422",
+      "browser": "153.0.8010.12",
+      "startedAt": "2026-09-19T23:38:01.028Z",
+      "finishedAt": "2026-09-19T23:39:45.035Z",
+      "assets": {
+        "bundle": {
+          "path": "/assets/index-BbxFx3Yj.js",
+          "bytes": 1193622,
+          "sha256": "66d829432a86b1d40bc9ac56717011a36d19e84026dc3c2562f63ce4958423a2"
+        },
+        "css": {
+          "path": "/assets/index-CFAjhIJT.css",
+          "bytes": 41949,
+          "sha256": "7a844ac3d16e8641b9ef068fa2f2da08fec20bfe5023d1bd20f935084b05cf9d"
+        }
+      },
+      "viewportPolicy": "width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover",
+      "expected": {
+        "appZoomLock": true,
+        "gameTouchAction": "pan-y",
+        "headerPinchZoom": false
+      },
+      "responseErrors": [],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "rawPath": "test-results/phone-viewport-regression/app-wide-candidate-final/report.json",
+      "rawSha256": "3b84560219750e38f5e78e4b177af7c4fdbafcc23010cf4e5bfa16ef79e5b9d3",
+      "measurements": {
+        "start-page-pinch": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "game-header-pinch": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "start-page-double-tap": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "game-header-double-tap": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "startPageScroll": {
+          "before": {
+            "scrollHeight": 865,
+            "clientHeight": 390,
+            "scrollY": 0,
+            "htmlTouchAction": "pan-x pan-y",
+            "bodyTouchAction": "pan-x pan-y",
+            "rootTouchAction": "pan-x pan-y",
+            "targetTouchAction": "auto"
+          },
+          "after": {
+            "scrollY": 295,
+            "scrollX": 0,
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 295
+            }
+          }
+        },
+        "helpScroll": {
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "after": {
+            "scrollTop": 215,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "afterPinch": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "finalViewport": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          }
+        },
+        "entryLeave": {
+          "beforeEntry": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "inGame": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "afterLeave": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          }
+        },
+        "surfaces": {
+          "canvas": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "hud": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "attack-control": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          }
+        },
+        "visibleBounds": {
+          "header": {
+            "rendered": true,
+            "x": 24,
+            "y": 10,
+            "width": 796,
+            "height": 57,
+            "right": 820,
+            "bottom": 67,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "joystick": {
+            "rendered": true,
+            "x": 20,
+            "y": 234,
+            "width": 140,
+            "height": 140,
+            "right": 160,
+            "bottom": 374,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "actions": {
+            "rendered": true,
+            "x": 644,
+            "y": 194,
+            "width": 180,
+            "height": 180,
+            "right": 824,
+            "bottom": 374,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "jump": {
+            "rendered": true,
+            "x": 738,
+            "y": 288,
+            "width": 86,
+            "height": 86,
+            "right": 824,
+            "bottom": 374,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "attack": {
+            "rendered": true,
+            "x": 644,
+            "y": 204,
+            "width": 78,
+            "height": 78,
+            "right": 722,
+            "bottom": 282,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "bash": {
+            "rendered": false
+          }
+        },
+        "guardedInputs": [
+          {
+            "type": "wheel",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": true,
+            "metaKey": false,
+            "key": null
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": false,
+            "ctrlKey": true,
+            "metaKey": false,
+            "key": "Control"
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": true,
+            "metaKey": false,
+            "key": "="
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": true,
+            "metaKey": false,
+            "key": "-"
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": false,
+            "ctrlKey": false,
+            "metaKey": true,
+            "key": "Meta"
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": false,
+            "metaKey": true,
+            "key": "="
+          },
+          {
+            "type": "keydown",
+            "isTrusted": true,
+            "defaultPrevented": true,
+            "ctrlKey": false,
+            "metaKey": true,
+            "key": "-"
+          }
+        ]
+      }
+    },
+    "portrait": {
+      "status": "passed",
+      "url": "http://127.0.0.1:4422",
+      "browser": "153.0.8010.12",
+      "startedAt": "2026-09-19T23:35:34.746Z",
+      "finishedAt": "2026-09-19T23:36:08.632Z",
+      "bundle": {
+        "path": "/assets/index-BbxFx3Yj.js",
+        "bytes": 1193622,
+        "sha256": "66d829432a86b1d40bc9ac56717011a36d19e84026dc3c2562f63ce4958423a2"
+      },
+      "responseErrors": [],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "rawPath": "test-results/portrait-completion-regression/app-zoom-lock-candidate/report.json",
+      "rawSha256": "76f3f15abe66e662b38e703eb669f5c0d7e5856c79811a3c2a8fe134b0b6d861",
+      "scenariosPassed": [
+        "failed capture release/rearm",
+        "independent jump/movement contacts",
+        "same-orientation resize geometry",
+        "rotation clears held input"
+      ]
+    },
+    "baseline": {
+      "status": "passed",
+      "url": "https://haynes-quest-playtest.haynesops.com",
+      "browser": "153.0.8010.12",
+      "startedAt": "2026-09-19T23:38:01.049Z",
+      "finishedAt": "2026-09-19T23:39:44.434Z",
+      "assets": {
+        "bundle": {
+          "path": "/assets/index-C4SUeEy7.js",
+          "bytes": 1193022,
+          "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+        },
+        "css": {
+          "path": "/assets/index-BkwX-UiJ.css",
+          "bytes": 41908,
+          "sha256": "55c0f3cd2eaec7ac3625bd9c6356ae3fd5007dd265582f3ff5d248f8678eab12"
+        }
+      },
+      "viewportPolicy": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "expected": {
+        "appZoomLock": false,
+        "gameTouchAction": "pan-y",
+        "headerPinchZoom": false
+      },
+      "responseErrors": [],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "rawPath": "test-results/phone-viewport-regression/hosted-pre-app-lock-baseline-final/report.json",
+      "rawSha256": "f3899d22a86b900560725db5b3cb432f6ba51ffc959f81317c81204e6e52bf0f",
+      "measurements": {
+        "start-page-pinch": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 2.155376434326172,
+            "width": 391.5789489746094,
+            "height": 180.94287109375,
+            "offsetLeft": 140,
+            "offsetTop": 208,
+            "pageLeft": 140,
+            "pageTop": 208
+          },
+          "trustedTouchStarts": 2
+        },
+        "game-header-pinch": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "start-page-double-tap": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "game-header-double-tap": {
+          "before": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "after": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "trustedTouchStarts": 2
+        },
+        "startPageScroll": {
+          "before": {
+            "scrollHeight": 865,
+            "clientHeight": 390,
+            "scrollY": 0,
+            "htmlTouchAction": "auto",
+            "bodyTouchAction": "auto",
+            "rootTouchAction": "auto",
+            "targetTouchAction": "auto"
+          },
+          "after": {
+            "scrollY": 295,
+            "scrollX": 0,
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 295
+            }
+          }
+        },
+        "helpScroll": {
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "after": {
+            "scrollTop": 215,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "afterPinch": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "finalViewport": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          }
+        },
+        "entryLeave": {
+          "beforeEntry": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "inGame": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "afterLeave": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          }
+        },
+        "surfaces": {
+          "canvas": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "hud": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          },
+          "attack-control": {
+            "scale": 1,
+            "width": 844,
+            "height": 390,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0
+          }
+        },
+        "visibleBounds": {
+          "header": {
+            "rendered": true,
+            "x": 24,
+            "y": 10,
+            "width": 796,
+            "height": 57,
+            "right": 820,
+            "bottom": 67,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "joystick": {
+            "rendered": true,
+            "x": 20,
+            "y": 234,
+            "width": 140,
+            "height": 140,
+            "right": 160,
+            "bottom": 374,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "actions": {
+            "rendered": true,
+            "x": 644,
+            "y": 194,
+            "width": 180,
+            "height": 180,
+            "right": 824,
+            "bottom": 374,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "jump": {
+            "rendered": true,
+            "x": 738,
+            "y": 288,
+            "width": 86,
+            "height": 86,
+            "right": 824,
+            "bottom": 374,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "attack": {
+            "rendered": true,
+            "x": 644,
+            "y": 204,
+            "width": 78,
+            "height": 78,
+            "right": 722,
+            "bottom": 282,
+            "visualLeft": 0,
+            "visualTop": 0,
+            "visualRight": 844,
+            "visualBottom": 390
+          },
+          "bash": {
+            "rendered": false
+          }
+        }
+      }
+    }
+  },
+  "limits": [
+    "Chromium 153 touch emulation is not physical Safari acceptance.",
+    "Safari gesture cancellation is unit-tested; no actual WebKit pinch device test.",
+    "Browser menu/accessibility overrides and OS magnification remain outside page control.",
+    "Bash is absent at the unarmed browser-test spawn; no equipped-Bash bounds claim."
+  ],
+  "harness": {
+    "path": "tests/e2e/phone-viewport-regression.mjs",
+    "sha256": "d943e8410ac2d97fe0b5293ea0a0e06f0a129134c7cd4ad567487e4967788d95"
+  }
+}
