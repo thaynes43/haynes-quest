@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "status": "deployed-and-verified-paused-for-owner-feedback",
+  "applicationCommit": "191f8c2420aa00e98caf026af334987aee98e593",
+  "acceptedRuntimeSource": "2fbf4a239dad7ae3104676d8f058b5a853ae2c75",
+  "applicationPR": 44,
+  "operationsCommit": "96c09bc0ba6c800858025593c606ae19f1edac05",
+  "image": "ghcr.io/thaynes43/haynes-quest:sha-191f8c2420aa00e98caf026af334987aee98e593@sha256:21d4e4052609299734c10aa984feb2d1d8ed650e007b9479a768fbbdf4e059c5",
+  "client": {
+    "path": "/assets/index-ChX7wgsN.js",
+    "bytes": 1188490,
+    "sha256": "c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860"
+  },
+  "localReports": {
+    "besties": {
+      "path": "/home/dev/work/quest-memory-checkpoint-audit/test-results/authored-playtest/plan011-besties-final-2/report.json",
+      "sha256": "6af6c56d265c32ae77f7cb3bee727153ee22bd11c04e97f63d527cd76e286a57",
+      "outcome": "passed",
+      "startedAt": "2026-09-13T03:03:26.353Z",
+      "finishedAt": "2026-09-13T03:06:26.214Z"
+    },
+    "input": {
+      "path": "/home/dev/work/quest-memory-checkpoint-audit/test-results/fresh-playtest/plan011-input-final/report.json",
+      "sha256": "484e1fed1d50106cdc678c98c04ada0bf8bf599fd455ab8e24cef593d8cd20e5",
+      "outcome": "input-diagnostic",
+      "startedAt": "2026-09-13T03:07:55.042Z",
+      "finishedAt": "2026-09-13T03:08:20.363Z"
+    },
+    "timeoutAndOrdinaryLeft": {
+      "path": "/home/dev/work/quest-memory-checkpoint-audit/test-results/authored-playtest/plan011-retry-live-boss-fixed-4/report.json",
+      "sha256": "27ad0fb069c9ca2bca6bd4edf1758830068d28dcca4938df633eb4c9be6f70c6",
+      "outcome": "passed",
+      "startedAt": "2026-09-13T03:46:42.882Z",
+      "finishedAt": "2026-09-13T03:50:07.589Z"
+    },
+    "persistedStateFailure": {
+      "path": "/home/dev/work/quest-memory-checkpoint-audit/test-results/authored-playtest/plan011-retry-live-boss-final/report.json",
+      "sha256": "08175e0e18daa86c34d407f3e11499f5773a00f66d8af7aa6275438956a87078",
+      "outcome": "failed",
+      "startedAt": "2026-09-13T03:14:21.224Z",
+      "finishedAt": "2026-09-13T03:17:26.743Z"
+    },
+    "unclassifiedLocatorFailure": {
+      "path": "/home/dev/work/quest-memory-checkpoint-audit/test-results/authored-playtest/plan011-retry-live-boss-fixed/report.json",
+      "sha256": "ded76775f936c8e49961515e7c1a249577df45338bf7c788744ed952d7ba0e35",
+      "outcome": "failed",
+      "startedAt": "2026-09-13T03:30:12.917Z",
+      "finishedAt": "2026-09-13T03:32:59.993Z"
+    },
+    "earlyFaultInjectionFailure": {
+      "path": "/home/dev/work/quest-memory-checkpoint-audit/test-results/authored-playtest/plan011-retry-live-boss-fixed-2/report.json",
+      "sha256": "1f6036ab298a351a2a2bde6dc17e564ebbe235bc84de528146aae968a8d4759e",
+      "outcome": "failed",
+      "startedAt": "2026-09-13T03:37:39.625Z",
+      "finishedAt": "2026-09-13T03:39:17.175Z"
+    },
+    "strikeApproachFailure": {
+      "path": "/home/dev/work/quest-memory-checkpoint-audit/test-results/authored-playtest/plan011-retry-live-boss-fixed-3/report.json",
+      "sha256": "58be61913e58ed4ef013cbecbd0503ec41303d4ebcdc3e63d87680fcfca0084a",
+      "outcome": "failed",
+      "startedAt": "2026-09-13T03:40:41.848Z",
+      "finishedAt": "2026-09-13T03:44:24.809Z"
+    }
+  },
+  "acceptedFaultDriver": "8bacb9de1777a843d4181bbf08b5b4f3e75d9e1c",
+  "ordinaryLeftProof": {
+    "courseId": "besties-playground-v2",
+    "undefeatedOrdinaryId": "level-2-2024-encounter-4",
+    "bossId": "level-2-2024-boss",
+    "majorMemoryId": "demo-memory-2027-01",
+    "bossAvailable": true,
+    "bossEngaged": true,
+    "bossHudVisible": true,
+    "primary": {
+      "outcome": "accepted",
+      "hpBefore": 11,
+      "hpAfter": 8,
+      "input": {
+        "name": "Attack",
+        "method": "playwright-locator-tap",
+        "fallbackUsed": false,
+        "dom": {
+          "ariaLabel": "Attack",
+          "className": "action-button combat-attack available",
+          "disabled": false,
+          "visible": true,
+          "topmost": true,
+          "topmostElement": {
+            "tagName": "SPAN",
+            "ariaLabel": null,
+            "className": ""
+          },
+          "bounds": {
+            "x": 644,
+            "y": 204,
+            "width": 78,
+            "height": 78
+          },
+          "point": {
+            "x": 683,
+            "y": 243
+          }
+        },
+        "status": {
+          "nearEncounterId": "level-2-2024-boss",
+          "attackReady": true,
+          "guardReady": true,
+          "bossEngaged": true,
+          "attackFeedback": {
+            "sequence": 12,
+            "outcome": "accepted"
+          }
+        },
+        "locatorTapError": null
+      }
+    },
+    "secondary": {
+      "outcome": "accepted",
+      "hpBefore": 8,
+      "hpAfter": 5,
+      "input": {
+        "name": "Bash",
+        "method": "playwright-locator-tap",
+        "fallbackUsed": false,
+        "dom": {
+          "ariaLabel": "Bash",
+          "className": "action-button combat-guard available",
+          "disabled": false,
+          "visible": true,
+          "topmost": true,
+          "topmostElement": {
+            "tagName": "SPAN",
+            "ariaLabel": null,
+            "className": ""
+          },
+          "bounds": {
+            "x": 768,
+            "y": 194,
+            "width": 56,
+            "height": 56
+          },
+          "point": {
+            "x": 796,
+            "y": 222
+          }
+        },
+        "status": {
+          "nearEncounterId": "level-2-2024-boss",
+          "attackReady": false,
+          "guardReady": true,
+          "bossEngaged": true,
+          "attackFeedback": {
+            "sequence": 13,
+            "outcome": "accepted"
+          }
+        },
+        "locatorTapError": null
+      }
+    },
+    "afterBoss": {
+      "ordinaryStillUndefeated": true,
+      "ordinaryHp": 7,
+      "bossDefeated": true
+    },
+    "completion": {
+      "completed": true,
+      "activeLevel": null,
+      "ordinaryStillUndefeatedBeforeCompletion": true,
+      "bossDefeatedBeforeCompletion": true,
+      "majorMemoryRecovered": true
+    }
+  },
+  "timeoutProof": {
+    "enabled": true,
+    "stalls": [
+      {
+        "attempt": 1,
+        "heldMs": 8501
+      },
+      {
+        "attempt": 2,
+        "heldMs": 8499
+      }
+    ],
+    "manualReturn": {
+      "stalledRequests": 2,
+      "errorCode": "REQUEST_TIMEOUT",
+      "fallenRevision": 32,
+      "recoveredRevision": 33,
+      "sameJourney": true,
+      "retriedExactRequest": true
+    }
+  },
+  "hostedReports": {
+    "route": {
+      "path": "/home/dev/work/quest-familiar-controls/test-results/authored-playtest/plan011-hosted-final/report.json",
+      "sha256": "67f47a75a321a32ee4c9d19565a643aca327802057658e2a40cce1c37b9e5314",
+      "outcome": "passed"
+    },
+    "audio": {
+      "path": "/home/dev/work/quest-familiar-controls/test-results/mobile-reliability/plan011-hosted-final/report.json",
+      "sha256": "cf1dc1c80cd9f0a1c712b6f7894b0f1ce2cbaaf49575d8ed4d21ce3efbe5da14",
+      "outcome": true
+    },
+    "input": {
+      "path": "/home/dev/work/quest-familiar-controls/test-results/fresh-playtest/plan011-hosted-input-verified/report.json",
+      "sha256": "e6905b12397868116ee49bcfb2e8d9b1661a836abb6b3537981f30fd47f50eb1",
+      "outcome": "input-diagnostic"
+    },
+    "incorrectInputMode": {
+      "path": "/home/dev/work/quest-familiar-controls/test-results/fresh-playtest/plan011-hosted-input/report.json",
+      "sha256": "98a940c61eb5236fe5460f55c8964af6fe78b38e2682a7fb4f8c4a83648bb19d",
+      "outcome": "failed",
+      "adjudication": "Wrong invocation omitted QUEST_E2E_ROUTE_ONLY=true, selected legacy traversal and attempted walking through a raised step. Correct input-only invocation passed; full authored route independently passed. No game code changed."
+    }
+  },
+  "limitations": [
+    "Fictional fixture only; identity and curated personal photos remain PLAN010.",
+    "Long traversal uses actual keyboard movement/jumps with touch combat; separate touch checks use held stick and Jump together.",
+    "Chromium uses software rendering and viewport emulation; physical iPhone/iPad performance and child enjoyment are not established.",
+    "The earlier locator failure swallowed its exception, so its exact cause remains unclassified. The final successful probe used ordinary locator taps without fallback.",
+    "No new asset generation or promotion; existing final-model/audio review remains separate."
+  ],
+  "operationsPR": 2898,
+  "operationsHead": "7ef2208d2379bdc96c51de19e48317a0a563861a",
+  "operationsDraft": false,
+  "deployed": true,
+  "ownedFixtureStopped": true,
+  "hostedApiVerifierAccepted": false,
+  "deployment": {
+    "path": "/home/dev/work/quest-controls-release/.private/test-results/plan011-controls-release/evidence/post-release.json",
+    "sha256": "c1de031c923c28291e68c0998ecb0b183a7149471778298a6394639224d5bfba",
+    "passed": true
+  },
+  "delivery": {
+    "path": "/home/dev/work/quest-familiar-controls/test-results/plan011-hosted-delivery.json",
+    "sha256": "a7c8b6345649352a5ce233b1924342e54b649f68db7e8047620d65127e7d924d",
+    "passed": true
+  },
+  "hostedRoute": {
+    "chapters": 2,
+    "fights": 10,
+    "memories": 6,
+    "automaticMemoryRecoveryBothChapters": true,
+    "unexpectedErrors": 0
+  },
+  "releaseActivityEnded": true,
+  "browserLeaseReleased": true
+}

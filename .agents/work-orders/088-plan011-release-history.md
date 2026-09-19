@@ -1,0 +1,23 @@
+# WO088: Preserved September 13 controls release evidence
+
+Status: Historical record, preserved September 19, 2026. The current release is [WO085](085-portrait-and-completion-repair.md). This record retains unique evidence from the superseded [PR45](https://github.com/thaynes43/haynes-quest/pull/45) checkpoint at `4ad5e038a24b52aed2d28afa78c9282fb1c66f7c`; it does not restore that checkpoint's paused status or older live image. The original work order was numbered WO084, now used by the memory diagnosis, so this historical summary uses WO088.
+
+The [original evidence index](../evidence/plan011-hosted-release.json) is preserved byte-for-byte from PR45, SHA256 `079cef77741b7e510255adcb81b945945d855f73eb57a7a325958f30f6eb95a6`. Its status, paths, release hashes and validation claims describe September 13. Raw report availability has not been re-audited during the September 19 repair; do not relabel these as fresh runs. The original WO084 text remains in PR45 at that exact commit, SHA256 `44369b99f0023c4b24c89edbe26edd921c8f89af9022b1497149d156020ac32a`.
+
+## Previous release and acceptance
+
+Application PR44 merged as `191f8c2420aa00e98caf026af334987aee98e593` after 551 tests, including 12 PostgreSQL cases, documentation and container checks. Operations PR2898 merged as `96c09bc0ba6c800858025593c606ae19f1edac05` after nine checks and image-only render review. The publication record identifies image digest `sha256:21d4e4052609299734c10aa984feb2d1d8ed650e007b9479a768fbbdf4e059c5`, client SHA256 `c1d813dd64e5d6af8038dad2198326c8d285f4c969a1e456f8995ad626d13860`, and 24 passing rollout/isolation checks.
+
+The retained local `plan011-retry-live-boss-fixed-4` proof completed Besties with ordinary-4 still alive at HP7. Touch Attack reduced boss HP11→8 and Bash 8→5, followed by boss defeat, major collection and completion. Two deliberately stalled recovery requests reused the same payload identity; manual retry restored the same journey at the memory checkpoint with full health and preserved progress. The index includes exact report hashes, accepted action observations and timeout evidence.
+
+Earlier reports distinguish a fixed production `503 SAVE_DATA_INVALID` defect at three persisted-state boundaries from driver failures. One locator failure swallowed its exception and remains unclassified. Other retained failures injected timeouts at the wrong defeat or stayed outside ordinary-enemy strike distance. The final diagnostic preserved actual locator errors, armed fault injection at the intended checkpoint and measured strike distance; the successful run needed no touch fallback or direct game-state mutation.
+
+The previous hosted `plan011-hosted-final` run passed September 13, 04:29:25–04:35:58 UTC: both v2 courses, ten fights, six memories, safe practice, branches/ferries, four responsive layouts per chapter and automatic memory recovery in both chapters. Separate hosted sound-button/failure/retry and held-stick/Jump input checks passed. An initial input invocation omitted `QUEST_E2E_ROUTE_ONLY=true` and entered legacy traversal; it remains a failed invocation, while the corrected input-only run passed. All six then-current guide PNGs and the hosted client matched accepted local bytes. These were Chromium emulation results, not physical-device performance or a new full model-viewer audit.
+
+## Retired private verifier
+
+The prior release never accepted its separate ignored utility, `/home/dev/work/quest-controls-release/.private/test-results/plan011-controls-release/tools/hosted-api-verify.mjs`. Its initial localhost self-test was insufficient: independent review found missing exact boss ID/role and expected positive weapon-damage assertions (Garden2/Besties3), a constant ordinary-enemy-change count instead of checking all four persisted HP/defeated values, and missing exact manifest-derived per-chapter memory ID/role comparisons. A repair attempt was interrupted by usage limits.
+
+That ad hoc utility is retired from release acceptance. Use the maintained `tests/e2e/authored-playtest.mjs` and focused input regression with reviewed report evidence. Its historical self-test establishes no hosted acceptance. Reintroducing the private utility would require a new reviewed implementation and independent negative cases for all three gaps; no such resurrection is part of this repair.
+
+The earlier owned fixture and browser lease were released, and activity `act-042810-1845665` ended. PR45's mutable handoff, AGENTS and active-plan changes are superseded by the September 19 records. The unique historical index is preserved here so closing that draft loses no release evidence.
