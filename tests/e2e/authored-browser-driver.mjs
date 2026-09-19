@@ -212,14 +212,18 @@ export function createHybridControls({ page }) {
     assert.ok(heldKeys.length, "zero-length keyboard movement requested");
     for (const key of heldKeys) await page.keyboard.down(key);
   };
+  const beginJumpToward = async (deltaX, deltaZ) => {
+    await beginToward(deltaX, deltaZ);
+    await page.keyboard.press("Space", { delay: 30 });
+  };
   return {
     kind: "keyboard-route-touch-actions",
     beginToward,
+    beginJumpToward,
     release,
     async jumpToward(deltaX, deltaZ, { milliseconds = 600 } = {}) {
-      await beginToward(deltaX, deltaZ);
+      await beginJumpToward(deltaX, deltaZ);
       try {
-        await page.keyboard.press("Space", { delay: 30 });
         await delay(milliseconds);
       } finally {
         await release();
@@ -621,6 +625,28 @@ export function createAuthoredRouteDriver({
       ...gateway.from,
       [crossAxis]: crossCandidates[0],
     };
+    const catchMin =
+      catchPlatform.center[travelAxis] - catchPlatform.size[travelAxis] / 2;
+    const catchMax =
+      catchPlatform.center[travelAxis] + catchPlatform.size[travelAxis] / 2;
+    if (
+      missTakeoff[travelAxis] >= catchMin &&
+      missTakeoff[travelAxis] <= catchMax
+    ) {
+      const direction = Math.sign(delta[travelAxis]);
+      assert.notEqual(direction, 0, `${label}: safe miss has no travel axis`);
+      const nearCatchFace =
+        catchPlatform.center[travelAxis] -
+        direction * (catchPlatform.size[travelAxis] / 2);
+      const sourceMin =
+        source.center[travelAxis] - source.size[travelAxis] / 2 + 0.55;
+      const sourceMax =
+        source.center[travelAxis] + source.size[travelAxis] / 2 - 0.55;
+      missTakeoff[travelAxis] = Math.max(
+        sourceMin,
+        Math.min(sourceMax, nearCatchFace - direction * 0.65),
+      );
+    }
     if (planarDistance(before.status.position, missTakeoff) > 0.5) {
       before = await moveToPoint(() => missTakeoff, {
         label: `${label}-approach`,
@@ -633,22 +659,28 @@ export function createAuthoredRouteDriver({
     assert.equal(before.obby.supportId, edge.from);
     const jumpSequence = before.status.jumpSequence;
     const recoveries = before.obby.recoveries;
-    await controls.jumpToward(
-      travelAxis === "x" ? delta.x : 0,
-      travelAxis === "z" ? delta.z : 0,
-      { milliseconds: 600 },
-    );
     let caught;
-    caught = await waitForInspection({
-      page,
-      screenshot,
-      label: `${label}-caught`,
-      timeout: 8_000,
-      predicate: (candidate) =>
-        (candidate.status.grounded &&
-          candidate.obby?.supportId === edge.safeMissPlatformId) ||
-        candidate.obby?.recoveries > recoveries,
-    });
+    try {
+      const moveX = travelAxis === "x" ? delta.x : 0;
+      const moveZ = travelAxis === "z" ? delta.z : 0;
+      if (typeof controls.beginJumpToward === "function") {
+        await controls.beginJumpToward(moveX, moveZ);
+      } else {
+        await controls.jumpToward(moveX, moveZ, { milliseconds: 600 });
+      }
+      caught = await waitForInspection({
+        page,
+        screenshot,
+        label: `${label}-caught`,
+        timeout: 8_000,
+        predicate: (candidate) =>
+          (candidate.status.grounded &&
+            candidate.obby?.supportId === edge.safeMissPlatformId) ||
+          candidate.obby?.recoveries > recoveries,
+      });
+    } finally {
+      await controls.release();
+    }
     assert.equal(
       caught.obby.recoveries,
       recoveries,
@@ -736,11 +768,14 @@ export function createAuthoredRouteDriver({
             position: current.status.position,
             jumpSequence,
           });
-          await controls.jumpToward(
-            landing.x - current.status.position.x,
-            landing.z - current.status.position.z,
-          );
           try {
+            const deltaX = landing.x - current.status.position.x;
+            const deltaZ = landing.z - current.status.position.z;
+            if (typeof controls.beginJumpToward === "function") {
+              await controls.beginJumpToward(deltaX, deltaZ);
+            } else {
+              await controls.jumpToward(deltaX, deltaZ);
+            }
             after = await waitForInspection({
               page,
               screenshot,
@@ -748,7 +783,7 @@ export function createAuthoredRouteDriver({
               timeout: 6_000,
               predicate: (candidate) =>
                 (candidate.status.grounded &&
-                  candidate.obby?.supportId === edge.to) ||
+                  candidate.obby?.supportId !== edge.from) ||
                 candidate.obby?.recoveries > attemptRecoveries,
             }).catch(() => null);
           } finally {

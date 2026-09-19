@@ -10,6 +10,8 @@ The same input layer also allowed a failed canvas capture to throw and retained 
 
 Before the implementation change, the new focused reproduction failed with the last `moveY` still `0.7071067811865475` after an off-control window release instead of the expected zero. This was a deterministic unit failure against base `191f8c2`, not a physical-Safari observation.
 
+The browser lane independently reproduced the adjacent action-button form of the same defect on its provisional build: after an off-control Jump release, Jump remained logically held and the next trusted press did not advance beyond sequence 1. That made the action-button repair required input lifecycle work rather than a speculative expansion.
+
 ## Repair
 
 - The joystick now observes movement and terminal pointer events in the window capture phase. Capture success is an optimization rather than a correctness dependency. Only the exact owning `pointerId` may update or release movement.

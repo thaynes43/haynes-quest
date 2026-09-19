@@ -20,7 +20,7 @@ Browser automation uses software-rendered Chromium emulation. It is not physical
 
 ## Current resources and release
 
-Root owns the baseline ephemeral fixture on port4410, isolated from the deployed game and copied under ignored `test-results/baseline-191f8c2/`. Candidate fixture port4411 is reserved. Browser work runs serially. Release worktree: `/home/dev/work/quest-blockers-release-20260919`, branch `agent/quest-blockers-release-20260919` in haynes-ops. Only the private playtest image will change; normal Quest and dev-env stay protected. No scoped rollout activity is active yet. Do not claim fixes live until checked app publication, GitOps merge and hosted verification finish.
+Root owns the baseline ephemeral fixture on port4410, isolated from the deployed game and copied under ignored `test-results/baseline-191f8c2/`. The candidate fixture runs on port4411; after interruption both fixtures are owned by tmux session `quest-blockers-fixtures`. Browser work runs serially. Release worktree: `/home/dev/work/quest-blockers-release-20260919`, branch `agent/quest-blockers-release-20260919` in haynes-ops. Only the private playtest image will change; normal Quest and dev-env stay protected. No scoped rollout activity is active yet. Do not claim fixes live until checked app publication, GitOps merge and hosted verification finish.
 
 ## Next content and personal stage
 
