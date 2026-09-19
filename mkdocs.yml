@@ -66,7 +66,7 @@ nav:
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
-      - Familiar controls and checkpoints: project/plans/011-familiar-controls-and-checkpoints.md
+      - Familiar controls and checkpoints: project/plans/completed/011-familiar-controls-and-checkpoints.md
       - Parent-prepared memories: project/plans/010-parent-prepared-memories.md
       - Daughter playground MVP: project/plans/completed/009-daughter-playground-mvp.md
       - Mobile reliability and builder direction: project/plans/completed/008-mobile-reliability-and-builder-direction.md

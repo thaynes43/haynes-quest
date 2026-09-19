@@ -1,6 +1,6 @@
 # PLAN011: Familiar controls and forgiving checkpoints
 
-Status: In progress. Owner feedback after the longer-course child playtest, September 12, 2026.
+Status: Completed September 19, 2026. Owner feedback after the longer-course child playtest, September 12, 2026.
 
 Tom reports that jumping was hard to discover despite familiarity with Roblox, the joystick was small, attack prose obscured the player, death led to starting over, and a later Besties attempt stayed idle and rejected hits. He requests memory checkpoints, damage whenever an attack is in range, familiar phone/tablet controls and safe upward/downward jumping practice. This pass precedes the still-required private identity and photo workflow in PLAN010.
 
@@ -19,6 +19,8 @@ Tom reports that jumping was hard to discover despite familiarity with Roblox, t
 - Exercise phone portrait/landscape and tablet portrait/landscape; retain actual screenshots, input/respawn/second-run evidence and limitations. Use Opus 5 xhigh through agent-run only if a separate adversarial review is needed; Fable remains unavailable until the reported Monday reset.
 - Carry checked application and private image-only GitOps PRs through squash merge. Verify the exact hosted client and gameplay plus normal Quest/dev-env isolation before closing this plan.
 
-The initial implementation shipped through application PR44 (`191f8c2`) and operations PR2898 (`96c09bc`) on September 13. September 19 physical playtesting exposed a portrait input latch and unclear post-boss memory gating; [WO085](../work-orders/085-portrait-and-completion-repair.md) tracks their repair and fresh hosted verification before closing this plan.
+The initial implementation shipped through application PR44 (`191f8c2`) and operations PR2898 (`96c09bc`) on September 13. September 19 physical playtesting exposed a portrait input latch and unclear post-boss memory gating. [WO085](../../work-orders/085-portrait-and-completion-repair.md) records the completed repair: application PR46 (`032b996`) and operations PR2983 (`be4912e`), with all 562 CI tests and required checks passing.
 
-Current root worktree: `/home/dev/work/quest-playtest-blockers-20260919`, branch `agent/quest-playtest-blockers-20260919`, base `191f8c2`. No new authoring or private-media access is part of this pass.
+The exact hosted client passed focused portrait control regressions and a complete two-chapter journey, including deliberately missing a minor, defeating the dragon, seeing guidance, backtracking and returning to collect the major. An independent local Besties shortcut also passed. [WO086](../../work-orders/086-portrait-completion-browser-evidence.md) and the [release index](../../evidence/portrait-completion-release.json) retain exact hashes, recovery, combat, layout and failure-before/fix-after evidence. Normal Quest and dev-env remained unchanged during the private rollout; temporary fixtures and the activity declaration are closed.
+
+Validation uses Chromium 153 touch emulation, not physical Safari acceptance or measured phone performance. New physical-device feedback remains actionable; this completion records the implemented contract and verified release. No new authoring or private-media access was part of this pass. PLAN010 remains the required personal-photo stage.
