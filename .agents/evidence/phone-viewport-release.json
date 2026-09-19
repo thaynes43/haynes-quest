@@ -1,0 +1,2510 @@
+{
+  "schemaVersion": 1,
+  "status": "candidate-verified-awaiting-release",
+  "baseCommit": "cbbb80f967bcdaa0a0cd270a506770c49ab7427a",
+  "workOrder": ".agents/work-orders/089-phone-viewport-zoom.md",
+  "change": "Scope touch-action:pan-y to game-screen; preserve existing canvas/control none and dialog pan-y.",
+  "localChecks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "strictDocs": "passed",
+    "testsPassed": 550,
+    "postgresTestsSkipped": 12
+  },
+  "reports": {
+    "candidate": {
+      "startedAt": "2026-09-19T22:59:31.389Z",
+      "status": "passed",
+      "url": "http://127.0.0.1:4421/",
+      "browser": "153.0.8010.12",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "assets": {
+        "bundle": {
+          "path": "/assets/index-C4SUeEy7.js",
+          "bytes": 1193022,
+          "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+        },
+        "css": {
+          "path": "/assets/index-BkwX-UiJ.css",
+          "bytes": 41908,
+          "sha256": "55c0f3cd2eaec7ac3625bd9c6356ae3fd5007dd265582f3ff5d248f8678eab12"
+        }
+      },
+      "viewportPolicy": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "expected": {
+        "gameTouchAction": "pan-y",
+        "headerPinchZoom": false
+      },
+      "scenarios": {
+        "start-page-pinch": {
+          "before": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": "h1",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": null,
+            "center": {
+              "x": 422,
+              "y": 250.6875
+            }
+          },
+          "after": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 2.155376434326172,
+              "width": 391.5789489746094,
+              "height": 180.94287109375,
+              "offsetLeft": 140,
+              "offsetTop": 208,
+              "pageLeft": 140,
+              "pageTop": 208
+            },
+            "target": {
+              "selector": "h1",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": null,
+            "center": {
+              "x": 282,
+              "y": 42.687503814697266
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/01-start-page-pinch.png",
+          "observedContacts": {
+            "eventCount": 20,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "H1",
+                "surface": "start-heading",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 404,
+                    "clientY": 250.6875
+                  }
+                ]
+              },
+              {
+                "target": "H1",
+                "surface": "start-heading",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 404,
+                    "clientY": 250.6875
+                  },
+                  {
+                    "identifier": 12,
+                    "clientX": 440,
+                    "clientY": 250.6875
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 8,
+            "trustedCancellations": 2
+          }
+        },
+        "game-header-pinch": {
+          "before": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "after": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/02-game-header-pinch.png",
+          "observedContacts": {
+            "eventCount": 29,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 375.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              },
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 375.9765625,
+                    "clientY": 38.5
+                  },
+                  {
+                    "identifier": 12,
+                    "clientX": 411.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 7,
+            "trustedCancellations": 0
+          }
+        },
+        "game-surface-boundaries": {
+          "canvas": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": "canvas",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": "canvas",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    }
+                  ]
+                },
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 440,
+                      "clientY": 195
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "hud": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".era-hud",
+                "touchAction": "auto",
+                "pointerEvents": "none"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 108,
+                "y": 115.5
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".era-hud",
+                "touchAction": "auto",
+                "pointerEvents": "none"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 108,
+                "y": 115.5
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 90,
+                      "clientY": 115.5
+                    }
+                  ]
+                },
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 90,
+                      "clientY": 115.5
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 126,
+                      "clientY": 115.5
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "attack-control": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".action-button",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 683,
+                "y": 243
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".action-button",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 683,
+                "y": 243
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "BUTTON.action-button.combat-attack",
+                  "surface": "attack-control",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 665,
+                      "clientY": 243
+                    }
+                  ]
+                },
+                {
+                  "target": "BUTTON.action-button.combat-attack",
+                  "surface": "attack-control",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 665,
+                      "clientY": 243
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 701,
+                      "clientY": 243
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "visibleBounds": {
+            "header": {
+              "rendered": true,
+              "x": 24,
+              "y": 10,
+              "width": 796,
+              "height": 57,
+              "right": 820,
+              "bottom": 67,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "joystick": {
+              "rendered": true,
+              "x": 20,
+              "y": 234,
+              "width": 140,
+              "height": 140,
+              "right": 160,
+              "bottom": 374,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "actions": {
+              "rendered": true,
+              "x": 644,
+              "y": 194,
+              "width": 180,
+              "height": 180,
+              "right": 824,
+              "bottom": 374,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "jump": {
+              "rendered": true,
+              "x": 738,
+              "y": 288,
+              "width": 86,
+              "height": 86,
+              "right": 824,
+              "bottom": 374,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "attack": {
+              "rendered": true,
+              "x": 644,
+              "y": 204,
+              "width": 78,
+              "height": 78,
+              "right": 722,
+              "bottom": 282,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "bash": {
+              "rendered": false
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/03-game-surface-boundaries.png"
+        },
+        "game-header-double-tap": {
+          "before": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "after": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/04-game-header-double-tap.png",
+          "observedContacts": {
+            "eventCount": 8,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 21,
+                    "clientX": 393.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              },
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 22,
+                    "clientX": 393.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 0,
+            "trustedCancellations": 0
+          }
+        },
+        "help-dialog-scroll": {
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "after": {
+            "scrollTop": 215,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "pinch": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".game-modal",
+                "touchAction": "pan-y",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".game-modal",
+                "touchAction": "pan-y",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "pan-y",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "P",
+                  "surface": "help-dialog",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    }
+                  ]
+                },
+                {
+                  "target": "P",
+                  "surface": "help-dialog",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 440,
+                      "clientY": 195
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "finalViewport": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".game-modal",
+              "touchAction": "pan-y",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "pan-y",
+            "center": {
+              "x": 422,
+              "y": 195
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/05-help-dialog-scroll.png",
+          "observedContacts": {
+            "eventCount": 13,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "SECTION.game-modal.era-modal",
+                "surface": "help-dialog",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 31,
+                    "clientX": 422,
+                    "clientY": 315.34375
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 8,
+            "trustedCancellations": 1
+          }
+        }
+      },
+      "screenshots": [
+        "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/01-start-page-pinch.png",
+        "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/02-game-header-pinch.png",
+        "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/03-game-surface-boundaries.png",
+        "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/04-game-header-double-tap.png",
+        "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/05-help-dialog-scroll.png"
+      ],
+      "networkWrites": [
+        {
+          "scenario": "game-header-pinch",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        },
+        {
+          "scenario": "game-surface-boundaries",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        },
+        {
+          "scenario": "game-header-double-tap",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        },
+        {
+          "scenario": "help-dialog-scroll",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        }
+      ],
+      "responseErrors": [],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "limits": [
+        "Chromium mobile touch emulation does not reproduce physical iPhone Safari, browser chrome, or WebKit gesture internals.",
+        "Input.dispatchTouchEvent supplies trusted browser touch contacts; this check does not use Input.synthesizePinchGesture or force a page scale.",
+        "Pointer ownership, release/rearm, independent action input, resize, and rotation are covered by the separate portrait-completion regression; this report covers only native zoom boundaries and Help scrolling."
+      ],
+      "finishedAt": "2026-09-19T23:00:54.028Z",
+      "rawPath": "test-results/phone-viewport-regression/candidate-pan-y-final-20260919-1912/report.json",
+      "rawSha256": "2530921a7ade56600db8cc57ffd7f5c7f37c4bf5345972f6a1e6cd3647a991ee"
+    },
+    "portrait": {
+      "startedAt": "2026-09-19T22:46:30.460Z",
+      "status": "passed",
+      "url": "http://127.0.0.1:4421",
+      "browser": "153.0.8010.12",
+      "bundle": {
+        "path": "/assets/index-C4SUeEy7.js",
+        "bytes": 1193022,
+        "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+      },
+      "emulation": {
+        "engine": "Chromium",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "hasTouch": true,
+        "isMobile": true,
+        "limits": [
+          "Chromium touch emulation does not reproduce Mobile Safari browser chrome or WebKit pointer-event internals.",
+          "CDP creates trusted touch contacts; the forced capture exception, hidden Chromium-only capture lifecycle, and explicit release of implicit capture model a browser where capture never succeeded."
+        ]
+      },
+      "captureFailureRelease": {
+        "forcedCaptureError": true,
+        "captureRelease": {
+          "pointerId": 3,
+          "implicitCaptureBeforeRelease": true,
+          "captureAfterRelease": false
+        },
+        "owningPointerId": 3,
+        "heldInput": {
+          "moveX": -0.7071070427275314,
+          "moveY": 0.7071065196454669,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "offControlPoint": {
+          "x": 226.2,
+          "y": 405.12
+        },
+        "inputAfterOffControlMove": {
+          "moveX": 0.3673666175173789,
+          "moveY": 0.9300762164112357,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterOffControlRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "subsequentPointerId": 4,
+        "inputDuringSubsequentContact": {
+          "moveX": 0.9260408696656666,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterSubsequentRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        }
+      },
+      "actionCaptureFailure": {
+        "forcedCaptureError": true,
+        "captureRelease": {
+          "pointerId": 5,
+          "implicitCaptureBeforeRelease": true,
+          "captureAfterRelease": false,
+          "captureTarget": "path"
+        },
+        "offControlPoint": {
+          "x": 202.8,
+          "y": 405.12
+        },
+        "jumpSequenceBefore": 0,
+        "jumpSequenceFirst": 1,
+        "jumpSequenceSecond": 2,
+        "inputBeforeOwnerEnd": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": true,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterOwnerEnd": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "rearmed": true
+      },
+      "secondFinger": {
+        "movementPointerId": 7,
+        "jumpContactId": 25,
+        "unrelatedCancelPointerId": 10007,
+        "heldBeforeAction": {
+          "moveX": -0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "heldAfterActionRelease": {
+          "moveX": -0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "heldAfterUnrelatedCancel": {
+          "moveX": -0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "jumpSequenceBefore": 2,
+        "jumpSequenceAfter": 3,
+        "inputAfterMovementRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "cancelLimit": "CDP has no targeted partial touchCancel; an untrusted unrelated pointercancel verifies pointer ownership after a trusted two-contact Jump/release gesture."
+      },
+      "resize": {
+        "viewportBefore": {
+          "width": 390,
+          "height": 844
+        },
+        "viewportAfter": {
+          "width": 360,
+          "height": 844
+        },
+        "boundsBefore": {
+          "x": 12,
+          "y": 644.40625,
+          "width": 171.59375,
+          "height": 171.59375
+        },
+        "boundsAfter": {
+          "x": 12,
+          "y": 657.609375,
+          "width": 158.390625,
+          "height": 158.390625
+        },
+        "owningPointerId": 9,
+        "stationaryContact": {
+          "id": 26,
+          "x": 129.88490625,
+          "y": 730.203125,
+          "radiusX": 5,
+          "radiusY": 5,
+          "force": 1
+        },
+        "expectedAfterResize": {
+          "moveX": 0.8120459622952021,
+          "moveY": 0.13855850251631086,
+          "origin": {
+            "x": 91.1953125,
+            "y": 736.8046875
+          },
+          "travel": 45.93328125,
+          "distance": 0.8544732837207772,
+          "deadZone": 0.1741656546689662
+        },
+        "newCenter": {
+          "id": 26,
+          "x": 91.1953125,
+          "y": 736.8046875,
+          "radiusX": 5,
+          "radiusY": 5,
+          "force": 1
+        },
+        "newRightPoint": {
+          "id": 26,
+          "x": 120.81435937500001,
+          "y": 736.8046875,
+          "radiusX": 5,
+          "radiusY": 5,
+          "force": 1
+        },
+        "inputBefore": {
+          "moveX": 0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfter": {
+          "moveX": 0.812045875909505,
+          "moveY": 0.13855849957997,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAtNewCenter": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterNewRightMove": {
+          "moveX": 0.5699229900462572,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfterRelease": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        }
+      },
+      "orientation": {
+        "pointerId": 10,
+        "viewportBefore": {
+          "width": 390,
+          "height": 844
+        },
+        "viewportAfter": {
+          "width": 844,
+          "height": 390
+        },
+        "inputBefore": {
+          "moveX": 0.576790378954684,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        },
+        "inputAfter": {
+          "moveX": 0,
+          "moveY": 0,
+          "lookX": 0,
+          "lookY": 0,
+          "jump": false,
+          "interact": false,
+          "attack": false,
+          "guard": false
+        }
+      },
+      "pointerTrace": [
+        {
+          "type": "pointermove",
+          "pointerId": 1,
+          "pointerType": "mouse",
+          "target": "HTML.",
+          "x": 0,
+          "y": 0,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "target": "BUTTON.primary",
+          "x": 195,
+          "y": 361.0899963378906,
+          "trusted": true
+        },
+        {
+          "type": "gotpointercapture",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "target": "BUTTON.primary",
+          "x": 195,
+          "y": 361.0899963378906,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "target": "BUTTON.primary",
+          "x": 195,
+          "y": 361.0899963378906,
+          "trusted": true
+        },
+        {
+          "type": "lostpointercapture",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "target": "BUTTON.primary",
+          "x": 195,
+          "y": 361.0899963378906,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 3,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 97.796875,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "forced-capture-error",
+          "pointerId": 3,
+          "target": "Touch movement control",
+          "trusted": null
+        },
+        {
+          "type": "suppressed-gotpointercapture",
+          "pointerId": 3,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 56.542938232421875,
+          "y": 688.94921875,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 3,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 56.542938232421875,
+          "y": 688.94921875,
+          "trusted": true
+        },
+        {
+          "type": "suppressed-lostpointercapture",
+          "pointerId": 3,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 226.1999969482422,
+          "y": 405.1199951171875,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 3,
+          "pointerType": "touch",
+          "target": "CANVAS.",
+          "x": 226.1999969482422,
+          "y": 405.1199951171875,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 3,
+          "pointerType": "touch",
+          "target": "CANVAS.",
+          "x": 226.1999969482422,
+          "y": 405.1199951171875,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 4,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 97.796875,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "forced-capture-error",
+          "pointerId": 4,
+          "target": "Touch movement control",
+          "trusted": null
+        },
+        {
+          "type": "suppressed-gotpointercapture",
+          "pointerId": 4,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 144.47036743164062,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 4,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 144.47036743164062,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 4,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 144.47036743164062,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "suppressed-lostpointercapture",
+          "pointerId": 4,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 144.47036743164062,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 5,
+          "pointerType": "touch",
+          "target": "path.[object SVGAnimatedString]",
+          "x": 330,
+          "y": 768,
+          "trusted": true
+        },
+        {
+          "type": "forced-capture-error",
+          "pointerId": 5,
+          "target": "Jump",
+          "trusted": null
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 5,
+          "pointerType": "touch",
+          "target": "CANVAS.",
+          "x": 202.8000030517578,
+          "y": 405.1199951171875,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 5,
+          "pointerType": "touch",
+          "target": "CANVAS.",
+          "x": 202.8000030517578,
+          "y": 405.1199951171875,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 6,
+          "pointerType": "touch",
+          "target": "path.[object SVGAnimatedString]",
+          "x": 330,
+          "y": 768,
+          "trusted": true
+        },
+        {
+          "type": "forced-capture-error",
+          "pointerId": 6,
+          "target": "Jump",
+          "trusted": null
+        },
+        {
+          "type": "suppressed-gotpointercapture",
+          "pointerId": 6,
+          "pointerType": "touch",
+          "target": "Jump",
+          "x": 330,
+          "y": 768,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 6,
+          "pointerType": "touch",
+          "target": "path.[object SVGAnimatedString]",
+          "x": 330,
+          "y": 768,
+          "trusted": true
+        },
+        {
+          "type": "suppressed-lostpointercapture",
+          "pointerId": 6,
+          "pointerType": "touch",
+          "target": "Jump",
+          "x": 330,
+          "y": 768,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 7,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 97.796875,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "forced-capture-error",
+          "pointerId": 7,
+          "target": "Touch movement control",
+          "trusted": null
+        },
+        {
+          "type": "suppressed-gotpointercapture",
+          "pointerId": 7,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 65.70884704589844,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 7,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 65.70884704589844,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 8,
+          "pointerType": "touch",
+          "target": "path.[object SVGAnimatedString]",
+          "x": 330,
+          "y": 768,
+          "trusted": true
+        },
+        {
+          "type": "forced-capture-error",
+          "pointerId": 8,
+          "target": "Jump",
+          "trusted": null
+        },
+        {
+          "type": "suppressed-gotpointercapture",
+          "pointerId": 8,
+          "pointerType": "touch",
+          "target": "Jump",
+          "x": 330,
+          "y": 768,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 8,
+          "pointerType": "touch",
+          "target": "path.[object SVGAnimatedString]",
+          "x": 330,
+          "y": 768,
+          "trusted": true
+        },
+        {
+          "type": "suppressed-lostpointercapture",
+          "pointerId": 8,
+          "pointerType": "touch",
+          "target": "Jump",
+          "x": 330,
+          "y": 768,
+          "trusted": true
+        },
+        {
+          "type": "pointercancel",
+          "pointerId": 10007,
+          "pointerType": "touch",
+          "target": "BUTTON.action-button combat-jump ",
+          "x": 0,
+          "y": 0,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 7,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 65.70884704589844,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "suppressed-lostpointercapture",
+          "pointerId": 7,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 65.70884704589844,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 9,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 97.796875,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "forced-capture-error",
+          "pointerId": 9,
+          "target": "Touch movement control",
+          "trusted": null
+        },
+        {
+          "type": "suppressed-gotpointercapture",
+          "pointerId": 9,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 129.88490295410156,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 9,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 129.88490295410156,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 9,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 91.1953125,
+          "y": 736.8046875,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 9,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 120.81436157226562,
+          "y": 736.8046875,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 9,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 120.81436157226562,
+          "y": 736.8046875,
+          "trusted": true
+        },
+        {
+          "type": "suppressed-lostpointercapture",
+          "pointerId": 9,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 120.81436157226562,
+          "y": 736.8046875,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "pointerId": 10,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 97.796875,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "forced-capture-error",
+          "pointerId": 10,
+          "target": "Touch movement control",
+          "trusted": null
+        },
+        {
+          "type": "suppressed-gotpointercapture",
+          "pointerId": 10,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 129.88490295410156,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "pointerId": 10,
+          "pointerType": "touch",
+          "target": "DIV.joystick",
+          "x": 129.88490295410156,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "suppressed-lostpointercapture",
+          "pointerId": 10,
+          "pointerType": "touch",
+          "target": "Touch movement control",
+          "x": 129.88490295410156,
+          "y": 730.203125,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "pointerId": 10,
+          "pointerType": "touch",
+          "target": "HTML.",
+          "x": 129.88490295410156,
+          "y": 730.203125,
+          "trusted": true
+        }
+      ],
+      "screenshots": [
+        "test-results/portrait-completion-regression/phone-zoom-candidate/01-capture-failure-recovered.png",
+        "test-results/portrait-completion-regression/phone-zoom-candidate/02-landscape-orientation-cleared.png"
+      ],
+      "responseErrors": [],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "finishedAt": "2026-09-19T22:47:02.127Z",
+      "rawPath": "test-results/portrait-completion-regression/phone-zoom-candidate/report.json",
+      "rawSha256": "1b663a67d0e773694e541d67babb054b726f70d62bf2196ae51528addb45070e"
+    },
+    "baseline": {
+      "startedAt": "2026-09-19T22:57:53.722Z",
+      "status": "passed",
+      "url": "https://haynes-quest-playtest.haynesops.com/",
+      "browser": "153.0.8010.12",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "assets": {
+        "bundle": {
+          "path": "/assets/index-B6ZOcLIe.js",
+          "bytes": 1193022,
+          "sha256": "c1ebea0d164c81561b58495dc2a992149bcb9ff1ccc34d651408b3cf319de81c"
+        },
+        "css": {
+          "path": "/assets/index-B5Mykaz9.css",
+          "bytes": 41907,
+          "sha256": "eb6ee8fc419e30f41f1988c2699eb1b39df644f50e06c36703da3d417ae7f6fc"
+        }
+      },
+      "viewportPolicy": "width=device-width,initial-scale=1,viewport-fit=cover",
+      "expected": {
+        "gameTouchAction": "auto",
+        "headerPinchZoom": true
+      },
+      "scenarios": {
+        "start-page-pinch": {
+          "before": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": "h1",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": null,
+            "center": {
+              "x": 422,
+              "y": 250.6875
+            }
+          },
+          "after": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 2.155376434326172,
+              "width": 391.5789489746094,
+              "height": 180.94287109375,
+              "offsetLeft": 140,
+              "offsetTop": 208,
+              "pageLeft": 140,
+              "pageTop": 208
+            },
+            "target": {
+              "selector": "h1",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": null,
+            "center": {
+              "x": 282,
+              "y": 42.687503814697266
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/01-start-page-pinch.png",
+          "observedContacts": {
+            "eventCount": 20,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "H1",
+                "surface": "start-heading",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 404,
+                    "clientY": 250.6875
+                  }
+                ]
+              },
+              {
+                "target": "H1",
+                "surface": "start-heading",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 404,
+                    "clientY": 250.6875
+                  },
+                  {
+                    "identifier": 12,
+                    "clientX": 440,
+                    "clientY": 250.6875
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 8,
+            "trustedCancellations": 2
+          }
+        },
+        "game-header-pinch": {
+          "before": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "auto",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "after": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 2.458986520767212,
+              "width": 343.2308349609375,
+              "height": 158.6019287109375,
+              "offsetLeft": 392,
+              "offsetTop": 0,
+              "pageLeft": 392,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "auto",
+            "center": {
+              "x": 1.9765663146972656,
+              "y": 38.5
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/02-game-header-pinch.png",
+          "observedContacts": {
+            "eventCount": 19,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 375.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              },
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 11,
+                    "clientX": 375.9765625,
+                    "clientY": 38.5
+                  },
+                  {
+                    "identifier": 12,
+                    "clientX": 411.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 7,
+            "trustedCancellations": 2
+          }
+        },
+        "game-surface-boundaries": {
+          "canvas": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": "canvas",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "auto",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": "canvas",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "auto",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    }
+                  ]
+                },
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 440,
+                      "clientY": 195
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "hud": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".era-hud",
+                "touchAction": "auto",
+                "pointerEvents": "none"
+              },
+              "gameScreenTouchAction": "auto",
+              "center": {
+                "x": 108,
+                "y": 115.5
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".era-hud",
+                "touchAction": "auto",
+                "pointerEvents": "none"
+              },
+              "gameScreenTouchAction": "auto",
+              "center": {
+                "x": 108,
+                "y": 115.5
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 90,
+                      "clientY": 115.5
+                    }
+                  ]
+                },
+                {
+                  "target": "CANVAS",
+                  "surface": "canvas",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 90,
+                      "clientY": 115.5
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 126,
+                      "clientY": 115.5
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "attack-control": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".action-button",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "auto",
+              "center": {
+                "x": 683,
+                "y": 243
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".action-button",
+                "touchAction": "none",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "auto",
+              "center": {
+                "x": 683,
+                "y": 243
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "BUTTON.action-button.combat-attack",
+                  "surface": "attack-control",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 665,
+                      "clientY": 243
+                    }
+                  ]
+                },
+                {
+                  "target": "BUTTON.action-button.combat-attack",
+                  "surface": "attack-control",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 665,
+                      "clientY": 243
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 701,
+                      "clientY": 243
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "visibleBounds": {
+            "header": {
+              "rendered": true,
+              "x": 24,
+              "y": 10,
+              "width": 796,
+              "height": 57,
+              "right": 820,
+              "bottom": 67,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "joystick": {
+              "rendered": true,
+              "x": 20,
+              "y": 234,
+              "width": 140,
+              "height": 140,
+              "right": 160,
+              "bottom": 374,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "actions": {
+              "rendered": true,
+              "x": 644,
+              "y": 194,
+              "width": 180,
+              "height": 180,
+              "right": 824,
+              "bottom": 374,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "jump": {
+              "rendered": true,
+              "x": 738,
+              "y": 288,
+              "width": 86,
+              "height": 86,
+              "right": 824,
+              "bottom": 374,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "attack": {
+              "rendered": true,
+              "x": 644,
+              "y": 204,
+              "width": 78,
+              "height": 78,
+              "right": 722,
+              "bottom": 282,
+              "visualLeft": 0,
+              "visualTop": 0,
+              "visualRight": 844,
+              "visualBottom": 390
+            },
+            "bash": {
+              "rendered": false
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/03-game-surface-boundaries.png"
+        },
+        "game-header-double-tap": {
+          "before": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "auto",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "after": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".chapter-pill",
+              "touchAction": "auto",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "auto",
+            "center": {
+              "x": 393.9765625,
+              "y": 38.5
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/04-game-header-double-tap.png",
+          "observedContacts": {
+            "eventCount": 8,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 21,
+                    "clientX": 393.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              },
+              {
+                "target": "STRONG",
+                "surface": "chapter-pill",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 22,
+                    "clientX": 393.9765625,
+                    "clientY": 38.5
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 0,
+            "trustedCancellations": 0
+          }
+        },
+        "help-dialog-scroll": {
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "after": {
+            "scrollTop": 215,
+            "scrollHeight": 920,
+            "clientHeight": 327,
+            "touchAction": "pan-y"
+          },
+          "pinch": {
+            "before": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".game-modal",
+                "touchAction": "pan-y",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "auto",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "after": {
+              "layoutViewport": {
+                "width": 844,
+                "height": 390,
+                "scrollX": 0,
+                "scrollY": 0
+              },
+              "visualViewport": {
+                "scale": 1,
+                "width": 844,
+                "height": 390,
+                "offsetLeft": 0,
+                "offsetTop": 0,
+                "pageLeft": 0,
+                "pageTop": 0
+              },
+              "target": {
+                "selector": ".game-modal",
+                "touchAction": "pan-y",
+                "pointerEvents": "auto"
+              },
+              "gameScreenTouchAction": "auto",
+              "center": {
+                "x": 422,
+                "y": 195
+              }
+            },
+            "observedContacts": {
+              "eventCount": 29,
+              "untrustedEventCount": 0,
+              "touchStarts": [
+                {
+                  "target": "P",
+                  "surface": "help-dialog",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    }
+                  ]
+                },
+                {
+                  "target": "P",
+                  "surface": "help-dialog",
+                  "isTrusted": true,
+                  "touches": [
+                    {
+                      "identifier": 11,
+                      "clientX": 404,
+                      "clientY": 195
+                    },
+                    {
+                      "identifier": 12,
+                      "clientX": 440,
+                      "clientY": 195
+                    }
+                  ]
+                }
+              ],
+              "trustedMoves": 7,
+              "trustedCancellations": 0
+            }
+          },
+          "finalViewport": {
+            "layoutViewport": {
+              "width": 844,
+              "height": 390,
+              "scrollX": 0,
+              "scrollY": 0
+            },
+            "visualViewport": {
+              "scale": 1,
+              "width": 844,
+              "height": 390,
+              "offsetLeft": 0,
+              "offsetTop": 0,
+              "pageLeft": 0,
+              "pageTop": 0
+            },
+            "target": {
+              "selector": ".game-modal",
+              "touchAction": "pan-y",
+              "pointerEvents": "auto"
+            },
+            "gameScreenTouchAction": "auto",
+            "center": {
+              "x": 422,
+              "y": 195
+            }
+          },
+          "screenshot": "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/05-help-dialog-scroll.png",
+          "observedContacts": {
+            "eventCount": 13,
+            "untrustedEventCount": 0,
+            "touchStarts": [
+              {
+                "target": "SECTION.game-modal.era-modal",
+                "surface": "help-dialog",
+                "isTrusted": true,
+                "touches": [
+                  {
+                    "identifier": 31,
+                    "clientX": 422,
+                    "clientY": 315.34375
+                  }
+                ]
+              }
+            ],
+            "trustedMoves": 8,
+            "trustedCancellations": 1
+          }
+        }
+      },
+      "screenshots": [
+        "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/01-start-page-pinch.png",
+        "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/02-game-header-pinch.png",
+        "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/03-game-surface-boundaries.png",
+        "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/04-game-header-double-tap.png",
+        "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/05-help-dialog-scroll.png"
+      ],
+      "networkWrites": [
+        {
+          "scenario": "game-header-pinch",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        },
+        {
+          "scenario": "game-surface-boundaries",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        },
+        {
+          "scenario": "game-header-double-tap",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        },
+        {
+          "scenario": "help-dialog-scroll",
+          "method": "POST",
+          "path": "/api/playtest/start"
+        }
+      ],
+      "responseErrors": [],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "limits": [
+        "Chromium mobile touch emulation does not reproduce physical iPhone Safari, browser chrome, or WebKit gesture internals.",
+        "Input.dispatchTouchEvent supplies trusted browser touch contacts; this check does not use Input.synthesizePinchGesture or force a page scale.",
+        "Pointer ownership, release/rearm, independent action input, resize, and rotation are covered by the separate portrait-completion regression; this report covers only native zoom boundaries and Help scrolling."
+      ],
+      "finishedAt": "2026-09-19T22:59:17.676Z",
+      "rawPath": "test-results/phone-viewport-regression/hosted-baseline-final-20260919-1910/report.json",
+      "rawSha256": "8a3ee4f4872361c448e85628169af60068328a8db48ed553d3df7b2308ca0c17"
+    }
+  },
+  "limits": [
+    "Chromium 153 touch emulation is not physical Safari acceptance or OS accessibility zoom testing.",
+    "Trusted touch trajectories reproduce native page zoom on the old header; the exact original phone gesture is unknown.",
+    "The JavaScript bytes are unchanged. This release requires an exact stylesheet digest check.",
+    "The viewport suite covers native zoom and Help scrolling. Pointer release, re-arm, multi-touch, resize and rotation are covered by the separate portrait suite."
+  ],
+  "harness": {
+    "path": "tests/e2e/phone-viewport-regression.mjs",
+    "sha256": "8dad2b514f5bce1ffc8c5d6387a9c485dc5969a8aa155f21081f9626714e625e"
+  }
+}

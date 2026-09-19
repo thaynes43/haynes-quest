@@ -837,7 +837,8 @@ footer {
   background: #819982;
   position: relative;
   overflow: hidden;
-  touch-action: auto;
+  /* Block page zoom across gameplay chrome while keeping dialog scrolling. */
+  touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
   color: #f8f1de;
