@@ -19,4 +19,6 @@ Tom reports that jumping was hard to discover despite familiarity with Roblox, t
 - Exercise phone portrait/landscape and tablet portrait/landscape; retain actual screenshots, input/respawn/second-run evidence and limitations. Use Opus 5 xhigh through agent-run only if a separate adversarial review is needed; Fable remains unavailable until the reported Monday reset.
 - Carry checked application and private image-only GitOps PRs through squash merge. Verify the exact hosted client and gameplay plus normal Quest/dev-env isolation before closing this plan.
 
-Current root worktree: `/home/dev/work/quest-familiar-controls`, branch `agent/quest-familiar-controls`, base `8b3a24d`. No new authoring or private-media access is part of this pass.
+The initial implementation shipped through application PR44 (`191f8c2`) and operations PR2898 (`96c09bc`) on September 13. September 19 physical playtesting exposed a portrait input latch and unclear post-boss memory gating; [WO085](../work-orders/085-portrait-and-completion-repair.md) tracks their repair and fresh hosted verification before closing this plan.
+
+Current root worktree: `/home/dev/work/quest-playtest-blockers-20260919`, branch `agent/quest-playtest-blockers-20260919`, base `191f8c2`. No new authoring or private-media access is part of this pass.

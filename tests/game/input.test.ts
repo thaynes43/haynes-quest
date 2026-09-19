@@ -62,8 +62,10 @@ class FakeGameTarget extends FakeElement {
     visibilityState: DocumentVisibilityState;
   };
   private readonly capturedPointers = new Set<number>();
+  captureFails = false;
 
   setPointerCapture(pointerId: number): void {
+    if (this.captureFails) throw new DOMException("Pointer capture unavailable");
     this.capturedPointers.add(pointerId);
   }
 
@@ -241,6 +243,14 @@ describe("game input", () => {
     expect(input.snapshot().moveY).toBe(0);
     fakeDocument.visibilityState = "visible";
 
+    input.set("moveX", -1);
+    fakeWindow.dispatch("pagehide");
+    expect(input.snapshot().moveX).toBe(0);
+
+    input.set("moveY", -1);
+    fakeDocument.dispatch("freeze");
+    expect(input.snapshot().moveY).toBe(0);
+
     fakeWindow.dispatch("keydown", keyEvent("KeyW"));
     fakeWindow.dispatch("keydown", keyEvent("Space"));
     expect(input.consumeActions().jump).toBe(true);
@@ -306,6 +316,17 @@ describe("game input", () => {
     expect(input.consumePointerLook()).toEqual({ x: 0, y: 0 });
     expect(input.consumeActions().jump).toBe(false);
     expect(input.consumeActions().jump).toBe(false);
+    dispose();
+  });
+
+  it("retires a camera contact at the window when pointer capture fails", () => {
+    const { input, fakeWindow, target, touch, dispose } = makePointerHarness();
+    target.captureFails = true;
+    expect(() => touch("pointerdown", 31, 20, 30)).not.toThrow();
+    fakeWindow.dispatch("pointerup", { pointerId: 31 });
+    touch("pointermove", 31, 60, 70);
+
+    expect(input.consumePointerLook()).toEqual({ x: 0, y: 0 });
     dispose();
   });
 

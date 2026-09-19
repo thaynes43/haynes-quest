@@ -245,7 +245,11 @@ export function bindBrowserInput({
       touch: event.pointerType === "touch",
       dragging: false,
     });
-    target.setPointerCapture?.(event.pointerId);
+    try {
+      target.setPointerCapture?.(event.pointerId);
+    } catch {
+      // Window-level termination still retires the contact if capture fails.
+    }
     event.preventDefault();
   };
   const onPointerMove = (event: PointerEvent): void => {
@@ -293,32 +297,38 @@ export function bindBrowserInput({
   windowTarget.addEventListener("keydown", onKeyDown, { passive: false });
   windowTarget.addEventListener("keyup", onKeyUp);
   windowTarget.addEventListener("blur", clearAll);
+  windowTarget.addEventListener("pagehide", clearAll);
   windowTarget.addEventListener("resize", onResize);
   // A browser can cancel one touch in a multi-contact gesture. Each gameplay
   // control owns its pointer, so cancelling one must not erase a still-held
   // joystick or a separate queued action.
   windowTarget.addEventListener("pointercancel", cancelCameraPointer, true);
+  windowTarget.addEventListener("pointerup", cancelCameraPointer, true);
   target.addEventListener("pointerdown", onPointerDown, { passive: false });
   target.addEventListener("pointermove", onPointerMove, { passive: false });
   target.addEventListener("pointerup", stopPointer);
   target.addEventListener("pointercancel", stopPointer);
   documentTarget.addEventListener("visibilitychange", onVisibility);
+  documentTarget.addEventListener("freeze", clearAll);
 
   return () => {
     clearAll();
     windowTarget.removeEventListener("keydown", onKeyDown);
     windowTarget.removeEventListener("keyup", onKeyUp);
     windowTarget.removeEventListener("blur", clearAll);
+    windowTarget.removeEventListener("pagehide", clearAll);
     windowTarget.removeEventListener("resize", onResize);
     windowTarget.removeEventListener(
       "pointercancel",
       cancelCameraPointer,
       true,
     );
+    windowTarget.removeEventListener("pointerup", cancelCameraPointer, true);
     target.removeEventListener("pointerdown", onPointerDown);
     target.removeEventListener("pointermove", onPointerMove);
     target.removeEventListener("pointerup", stopPointer);
     target.removeEventListener("pointercancel", stopPointer);
     documentTarget.removeEventListener("visibilitychange", onVisibility);
+    documentTarget.removeEventListener("freeze", clearAll);
   };
 }

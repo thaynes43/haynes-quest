@@ -1867,6 +1867,13 @@ footer {
   font-size: 10px;
   color: #e4c988;
 }
+.memory-next-step {
+  max-width: 25ch;
+  margin: 8px 0;
+  color: #fff0d4;
+  font-size: 12px;
+  line-height: 1.4;
+}
 .era-objective {
   pointer-events: none;
   position: absolute;
@@ -2947,6 +2954,18 @@ footer {
   }
   .era-game .age-line strong {
     font-size: 18px;
+  }
+  .era-game .memory-next-step {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 10px);
+    width: min(26vw, 220px);
+    max-width: none;
+    margin: 0;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: #302d43e0;
+    border: 1px solid #dbc69550;
   }
   .era-game .equipment-line {
     display: none;

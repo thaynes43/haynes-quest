@@ -582,6 +582,13 @@ function Adventure({
             <b aria-hidden="true">{minorCount} / 2</b>
           </div>
         )}
+        {routeMemories && view.phase === "memory-released" && (
+          <p className="memory-next-step" role="status">
+            {minorCount < 2
+              ? `${2 - minorCount} little ${minorCount === 1 ? "memory" : "memories"} left. Follow the path back to find ${minorCount === 1 ? "it" : "them"}, then return to the big memory.`
+              : "Walk into the big memory to finish this chapter."}
+          </p>
+        )}
         <div className="equipment-line">
           <span>✦ {equipmentName(weapon)}</span>
           {shield && <span>◈ {equipmentName(shield)}</span>}
@@ -1201,26 +1208,141 @@ function ActionButton({
   input: (action: GameInputAction, value: boolean) => void;
   cancelInput: (action: GameInputAction) => void;
 }) {
+  const control = useRef<HTMLButtonElement>(null);
+  const pointer = useRef<number | undefined>(undefined);
+  const pointerIsTouch = useRef(false);
+  const touchIdentifier = useRef<number | undefined>(undefined);
+  const pendingTouches = useRef(new Map<number, { x: number; y: number }>());
+  const lastContact = useRef({ x: 0, y: 0 });
+  const inputRef = useRef(input);
+  const cancelInputRef = useRef(cancelInput);
+  inputRef.current = input;
+  cancelInputRef.current = cancelInput;
+  const associateTouch = (clientX: number, clientY: number) => {
+    if (touchIdentifier.current !== undefined) return;
+    let closest: number | undefined;
+    let closestDistance = Number.POSITIVE_INFINITY;
+    for (const [identifier, contact] of pendingTouches.current) {
+      const distance = Math.hypot(
+        contact.x - clientX,
+        contact.y - clientY,
+      );
+      if (distance < closestDistance) {
+        closest = identifier;
+        closestDistance = distance;
+      }
+    }
+    touchIdentifier.current = closest;
+  };
+  const release = (cancelled: boolean) => {
+    const activePointer = pointer.current;
+    pointer.current = undefined;
+    pointerIsTouch.current = false;
+    touchIdentifier.current = undefined;
+    pendingTouches.current.clear();
+    if (activePointer !== undefined) {
+      try {
+        if (control.current?.hasPointerCapture?.(activePointer))
+          control.current.releasePointerCapture(activePointer);
+      } catch {
+        // The browser may already have retired an interrupted pointer.
+      }
+    }
+    if (cancelled) cancelInputRef.current(action);
+    else inputRef.current(action, false);
+  };
+  useEffect(() => {
+    const endPointer = (event: PointerEvent) => {
+      if (event.pointerId === pointer.current) release(false);
+    };
+    const cancelPointer = (event: PointerEvent) => {
+      if (event.pointerId === pointer.current) release(true);
+    };
+    const endTouch = (event: TouchEvent) => {
+      let ownerEnded = false;
+      for (let index = 0; index < event.changedTouches.length; index++) {
+        const identifier = event.changedTouches[index]?.identifier;
+        if (identifier === undefined) continue;
+        pendingTouches.current.delete(identifier);
+        if (identifier === touchIdentifier.current) ownerEnded = true;
+      }
+      if (ownerEnded) release(false);
+    };
+    const cancelTouch = (event: TouchEvent) => {
+      let ownerCancelled = false;
+      for (let index = 0; index < event.changedTouches.length; index++) {
+        const identifier = event.changedTouches[index]?.identifier;
+        if (identifier === undefined) continue;
+        pendingTouches.current.delete(identifier);
+        if (identifier === touchIdentifier.current) ownerCancelled = true;
+      }
+      if (ownerCancelled) release(true);
+    };
+    const interrupt = () => release(true);
+    const visibility = () => {
+      if (document.hidden) release(true);
+    };
+    window.addEventListener("pointerup", endPointer, true);
+    window.addEventListener("pointercancel", cancelPointer, true);
+    window.addEventListener("touchend", endTouch, true);
+    window.addEventListener("touchcancel", cancelTouch, true);
+    window.addEventListener("blur", interrupt);
+    window.addEventListener("pagehide", interrupt);
+    window.addEventListener("orientationchange", interrupt);
+    document.addEventListener("visibilitychange", visibility);
+    document.addEventListener("freeze", interrupt);
+    return () => {
+      window.removeEventListener("pointerup", endPointer, true);
+      window.removeEventListener("pointercancel", cancelPointer, true);
+      window.removeEventListener("touchend", endTouch, true);
+      window.removeEventListener("touchcancel", cancelTouch, true);
+      window.removeEventListener("blur", interrupt);
+      window.removeEventListener("pagehide", interrupt);
+      window.removeEventListener("orientationchange", interrupt);
+      document.removeEventListener("visibilitychange", visibility);
+      document.removeEventListener("freeze", interrupt);
+      release(true);
+    };
+  }, [action]);
   return (
     <button
+      ref={control}
       className={`action-button combat-${action} ${active ? "available" : ""}`}
       data-quest-pointer-action
       aria-label={label}
       disabled={disabled}
       onPointerDown={(event) => {
         if (event.pointerType !== "touch" && event.button !== 0) return;
-        input(action, true);
+        if (pointer.current !== undefined) return;
+        pointer.current = event.pointerId;
+        pointerIsTouch.current = event.pointerType === "touch";
+        lastContact.current = { x: event.clientX, y: event.clientY };
+        if (pointerIsTouch.current)
+          associateTouch(event.clientX, event.clientY);
+        inputRef.current(action, true);
         // Queue the press before requesting capture. A browser-specific capture
         // failure must not turn a valid touch into a silent no-op.
         try {
           event.currentTarget.setPointerCapture(event.pointerId);
         } catch {
-          // The pointer-up fallback below still releases the input.
+          // Window pointer/touch termination still releases the input.
         }
       }}
-      onPointerUp={() => input(action, false)}
-      onPointerCancel={() => cancelInput(action)}
-      onLostPointerCapture={() => input(action, false)}
+      onTouchStart={(event) => {
+        for (let index = 0; index < event.changedTouches.length; index++) {
+          const touch = event.changedTouches[index];
+          if (touch)
+            pendingTouches.current.set(touch.identifier, {
+              x: touch.clientX,
+              y: touch.clientY,
+            });
+        }
+        if (pointer.current !== undefined && pointerIsTouch.current)
+          associateTouch(lastContact.current.x, lastContact.current.y);
+      }}
+      onLostPointerCapture={(event) => {
+        if (event.pointerId === pointer.current) release(false);
+      }}
       onClick={(event) => {
         if (event.detail === 0) {
           input(action, true);
@@ -1237,15 +1359,49 @@ function ActionButton({
 function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
   const stick = useRef<HTMLDivElement>(null);
   const pointer = useRef<number | undefined>(undefined);
+  const pointerIsTouch = useRef(false);
+  const touchIdentifier = useRef<number | undefined>(undefined);
+  const pendingTouches = useRef(new Map<number, { x: number; y: number }>());
   const lastContact = useRef({ x: 0, y: 0 });
   const origin = useRef({ x: 0, y: 0 });
   const travel = useRef(44);
   const [knob, setKnob] = useState({ x: 0, y: 0 });
-  const clear = () => {
-    pointer.current = undefined;
-    setKnob({ x: 0, y: 0 });
+  const returnToNeutral = (renderKnob: boolean) => {
+    if (renderKnob) setKnob({ x: 0, y: 0 });
     game.current?.setInput("moveX", 0);
     game.current?.setInput("moveY", 0);
+  };
+  const clear = (renderKnob = true) => {
+    const activePointer = pointer.current;
+    pointer.current = undefined;
+    pointerIsTouch.current = false;
+    touchIdentifier.current = undefined;
+    pendingTouches.current.clear();
+    if (activePointer !== undefined) {
+      try {
+        if (stick.current?.hasPointerCapture?.(activePointer))
+          stick.current.releasePointerCapture(activePointer);
+      } catch {
+        // The browser may already have retired an interrupted pointer.
+      }
+    }
+    returnToNeutral(renderKnob);
+  };
+  const associateTouch = (clientX: number, clientY: number) => {
+    if (touchIdentifier.current !== undefined) return;
+    let closest: number | undefined;
+    let closestDistance = Number.POSITIVE_INFINITY;
+    for (const [identifier, contact] of pendingTouches.current) {
+      const distance = Math.hypot(
+        contact.x - clientX,
+        contact.y - clientY,
+      );
+      if (distance < closestDistance) {
+        closest = identifier;
+        closestDistance = distance;
+      }
+    }
+    touchIdentifier.current = closest;
   };
   const measure = () => {
     const bounds = stick.current?.getBoundingClientRect();
@@ -1258,6 +1414,30 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
   };
   useEffect(() => {
     let landscape = window.innerWidth > window.innerHeight;
+    const endPointer = (event: PointerEvent) => {
+      if (event.pointerId === pointer.current) clear();
+    };
+    const endTouch = (event: TouchEvent) => {
+      const activeTouch = touchIdentifier.current;
+      let ownerEnded = false;
+      for (let index = 0; index < event.changedTouches.length; index++) {
+        const identifier = event.changedTouches[index]?.identifier;
+        if (identifier === undefined) continue;
+        pendingTouches.current.delete(identifier);
+        if (identifier === activeTouch) ownerEnded = true;
+      }
+      if (ownerEnded) clear();
+    };
+    const movePointer = (event: PointerEvent) => {
+      if (event.pointerId !== pointer.current) return;
+      updateStick(event.clientX, event.clientY);
+      event.preventDefault();
+    };
+    const leaveViewport = (event: PointerEvent) => {
+      if (event.pointerId === pointer.current && event.relatedTarget === null)
+        clear();
+    };
+    const interrupt = () => clear();
     const resize = () => {
       const nextLandscape = window.innerWidth > window.innerHeight;
       if (nextLandscape !== landscape) clear();
@@ -1267,18 +1447,42 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
       }
       landscape = nextLandscape;
     };
-    window.addEventListener("blur", clear);
+    window.addEventListener("blur", interrupt);
+    window.addEventListener("pagehide", interrupt);
     window.addEventListener("resize", resize);
+    window.addEventListener("orientationchange", interrupt);
+    window.addEventListener("pointermove", movePointer, {
+      capture: true,
+      passive: false,
+    });
+    window.addEventListener("pointerup", endPointer, true);
+    window.addEventListener("pointercancel", endPointer, true);
+    window.addEventListener("pointerout", leaveViewport, true);
+    window.addEventListener("touchend", endTouch, true);
+    window.addEventListener("touchcancel", endTouch, true);
+    window.visualViewport?.addEventListener("resize", resize);
+    window.visualViewport?.addEventListener("scroll", resize);
     const visibility = () => {
       if (document.hidden) clear();
     };
     document.addEventListener("visibilitychange", visibility);
+    document.addEventListener("freeze", interrupt);
     return () => {
-      window.removeEventListener("blur", clear);
+      window.removeEventListener("blur", interrupt);
+      window.removeEventListener("pagehide", interrupt);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("orientationchange", interrupt);
+      window.removeEventListener("pointermove", movePointer, true);
+      window.removeEventListener("pointerup", endPointer, true);
+      window.removeEventListener("pointercancel", endPointer, true);
+      window.removeEventListener("pointerout", leaveViewport, true);
+      window.removeEventListener("touchend", endTouch, true);
+      window.removeEventListener("touchcancel", endTouch, true);
+      window.visualViewport?.removeEventListener("resize", resize);
+      window.visualViewport?.removeEventListener("scroll", resize);
       document.removeEventListener("visibilitychange", visibility);
-      game.current?.setInput("moveX", 0);
-      game.current?.setInput("moveY", 0);
+      document.removeEventListener("freeze", interrupt);
+      clear(false);
     };
   }, []);
   const updateStick = (clientX: number, clientY: number) => {
@@ -1312,8 +1516,12 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
       aria-label="Touch movement control"
       data-testid="joystick"
       onPointerDown={(event) => {
+        if (event.pointerType !== "touch" && event.button !== 0) return;
         if (pointer.current !== undefined) return;
         pointer.current = event.pointerId;
+        pointerIsTouch.current = event.pointerType === "touch";
+        if (pointerIsTouch.current)
+          associateTouch(event.clientX, event.clientY);
         try {
           event.currentTarget.setPointerCapture(event.pointerId);
         } catch {
@@ -1322,15 +1530,17 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
         measure();
         updateStick(event.clientX, event.clientY);
       }}
-      onPointerMove={(event) => {
-        if (event.pointerId !== pointer.current) return;
-        updateStick(event.clientX, event.clientY);
-      }}
-      onPointerUp={(event) => {
-        if (event.pointerId === pointer.current) clear();
-      }}
-      onPointerCancel={(event) => {
-        if (event.pointerId === pointer.current) clear();
+      onTouchStart={(event) => {
+        for (let index = 0; index < event.changedTouches.length; index++) {
+          const touch = event.changedTouches[index];
+          if (touch)
+            pendingTouches.current.set(touch.identifier, {
+              x: touch.clientX,
+              y: touch.clientY,
+            });
+        }
+        if (pointer.current !== undefined && pointerIsTouch.current)
+          associateTouch(lastContact.current.x, lastContact.current.y);
       }}
       onLostPointerCapture={(event) => {
         if (event.pointerId === pointer.current) clear();

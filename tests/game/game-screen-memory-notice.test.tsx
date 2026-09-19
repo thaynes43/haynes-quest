@@ -189,6 +189,67 @@ async function renderRoute(save = routeMemorySave(), onLeave = vi.fn()) {
 }
 
 describe("Peripheral memory feedback and automatic recovery", () => {
+  it.each([0, 1, 2])(
+    "explains major-memory collection after victory with %i little memories",
+    async (collected) => {
+      const save = routeMemorySave();
+      save.adventure!.phase = "memory-released";
+      save.memories[2]!.state = "released";
+      for (const memory of save.memories.slice(0, collected)) {
+        memory.state = "revealed";
+        save.recoveredIds.push(memory.id);
+      }
+      await renderRoute(save);
+      const hint = container.querySelector(".era-hud .memory-next-step");
+      expect(hint?.getAttribute("role")).toBe("status");
+      if (collected < 2) {
+        expect(hint?.textContent).toContain(
+          `${2 - collected} little ${collected === 1 ? "memory" : "memories"} left`,
+        );
+        expect(hint?.textContent).toContain("Follow the path back");
+        expect(hint?.textContent).toContain("return to the big memory");
+      } else {
+        expect(hint?.textContent).toBe(
+          "Walk into the big memory to finish this chapter.",
+        );
+      }
+      expect(container.querySelector('[role="dialog"]')).toBeNull();
+      expect(container.querySelector('[data-testid="joystick"]')).not.toBeNull();
+    },
+  );
+
+  it("updates the post-boss guidance when the missing little memory is collected", async () => {
+    const save = routeMemorySave();
+    save.adventure!.phase = "memory-released";
+    save.memories[0]!.state = "revealed";
+    save.memories[2]!.state = "released";
+    save.recoveredIds = [save.memories[0]!.id];
+    await renderRoute(save);
+    expect(container.querySelector(".memory-next-step")?.textContent).toContain(
+      "1 little memory left",
+    );
+    const recovered = structuredClone(save);
+    recovered.revision += 1;
+    recovered.memories[1]!.state = "revealed";
+    recovered.recoveredIds.push(recovered.memories[1]!.id);
+    mocks.api.mockResolvedValueOnce(recovered);
+    await act(async () => {
+      await options!.onAction({
+        actionId: "missed-memory-after-boss",
+        expectedRevision: save.revision,
+        action: {
+          type: "recover-memory",
+          levelId: save.adventure!.currentLevelId!,
+          memoryId: save.memories[1]!.id,
+        },
+      });
+    });
+    expect(container.querySelector(".memory-next-step")?.textContent).toBe(
+      "Walk into the big memory to finish this chapter.",
+    );
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
+  });
+
   it("shows boss health only after the fight engages", async () => {
     const save = routeMemorySave();
     save.adventure!.activeLevel!.encounters.find(
@@ -248,6 +309,8 @@ describe("Peripheral memory feedback and automatic recovery", () => {
   it("keeps the same movement finger through a resized viewport, but clears it on rotation", async () => {
     vi.stubGlobal("innerWidth", 390);
     vi.stubGlobal("innerHeight", 844);
+    const visualViewport = new EventTarget();
+    vi.stubGlobal("visualViewport", visualViewport);
     const handle = await renderRoute();
     const stick = container.querySelector<HTMLElement>(
       '[data-testid="joystick"]',
@@ -288,7 +351,7 @@ describe("Peripheral memory feedback and automatic recovery", () => {
     top = 480;
     vi.stubGlobal("innerHeight", 824);
     await act(async () => {
-      window.dispatchEvent(new Event("resize"));
+      visualViewport.dispatchEvent(new Event("resize"));
     });
     // Bounds moved up: the stationary finger is now below the new centre.
     expect(
@@ -321,6 +384,239 @@ describe("Peripheral memory feedback and automatic recovery", () => {
       contact("pointerdown", 140, 588);
     });
     expect(handle.setInput).toHaveBeenCalled();
+  });
+
+  it("releases an upper-left stick when capture fails and the finger ends off-control", async () => {
+    const handle = await renderRoute();
+    const stick = container.querySelector<HTMLElement>(
+      '[data-testid="joystick"]',
+    )!;
+    stick.getBoundingClientRect = () => ({
+      x: 20,
+      y: 500,
+      width: 176,
+      height: 176,
+      top: 500,
+      left: 20,
+      right: 196,
+      bottom: 676,
+      toJSON: () => ({}),
+    });
+    stick.setPointerCapture = () => {
+      throw new DOMException("Pointer capture unavailable");
+    };
+
+    const contact = (
+      target: EventTarget,
+      type: string,
+      x: number,
+      y: number,
+      pointerId = 9,
+    ) =>
+      target.dispatchEvent(
+        new PointerEvent(type, {
+          bubbles: true,
+          cancelable: true,
+          pointerId,
+          pointerType: "touch",
+          clientX: x,
+          clientY: y,
+        }),
+      );
+    const rawTouch = (
+      target: EventTarget,
+      type: "touchstart" | "touchend" | "touchcancel",
+      identifier: number,
+      x: number,
+      y: number,
+    ) => {
+      const event = new Event(type, { bubbles: true, cancelable: true });
+      Object.defineProperty(event, "changedTouches", {
+        value: [{ identifier, clientX: x, clientY: y }],
+      });
+      target.dispatchEvent(event);
+    };
+
+    await act(async () => {
+      rawTouch(stick, "touchstart", 41, 108, 588);
+      rawTouch(stick, "touchstart", 42, 109, 588);
+      rawTouch(window, "touchend", 42, 109, 588);
+      contact(stick, "pointerdown", 109, 588);
+      contact(stick, "pointermove", 56, 536);
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "moveX")
+        .at(-1)![1],
+    ).toBeLessThan(0);
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "moveY")
+        .at(-1)![1],
+    ).toBeGreaterThan(0);
+
+    // A different finger ending or being cancelled cannot release movement.
+    await act(async () => {
+      rawTouch(window, "touchcancel", 43, 240, 540);
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "moveY")
+        .at(-1)![1],
+    ).toBeGreaterThan(0);
+
+    // Safari can deliver only the raw touch end to the page after pointer
+    // capture fails. The active movement contact still owns this release.
+    await act(async () => {
+      rawTouch(window, "touchend", 41, 56, 536);
+    });
+    expect(handle.setInput).toHaveBeenLastCalledWith("moveY", 0);
+
+    vi.mocked(handle.setInput).mockClear();
+    await act(async () => {
+      contact(stick, "pointerdown", 108, 588);
+      contact(stick, "pointermove", 150, 588);
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "moveX")
+        .at(-1)![1],
+    ).toBeGreaterThan(0);
+
+    await act(async () => {
+      window.dispatchEvent(new PageTransitionEvent("pagehide"));
+    });
+    expect(handle.setInput).toHaveBeenLastCalledWith("moveY", 0);
+  });
+
+  it("releases an action off-button after capture failure without dropping a held stick", async () => {
+    const handle = await renderRoute();
+    const stick = container.querySelector<HTMLElement>(
+      '[data-testid="joystick"]',
+    )!;
+    stick.getBoundingClientRect = () =>
+      ({ x: 20, y: 500, width: 176, height: 176 }) as DOMRect;
+    stick.setPointerCapture = () => {};
+    const jump = container.querySelector<HTMLButtonElement>(
+      'button[aria-label="Jump"]',
+    )!;
+    jump.setPointerCapture = () => {
+      throw new DOMException("Pointer capture unavailable");
+    };
+    const pointer = (
+      target: EventTarget,
+      type: string,
+      pointerId: number,
+      x: number,
+      y: number,
+      pointerType = "touch",
+    ) =>
+      target.dispatchEvent(
+        new PointerEvent(type, {
+          bubbles: true,
+          cancelable: true,
+          pointerId,
+          pointerType,
+          clientX: x,
+          clientY: y,
+        }),
+      );
+    const touch = (
+      target: EventTarget,
+      type: "touchstart" | "touchend",
+      contacts: Array<{ identifier: number; x: number; y: number }>,
+    ) => {
+      const event = new Event(type, { bubbles: true, cancelable: true });
+      Object.defineProperty(event, "changedTouches", {
+        value: contacts.map(({ identifier, x, y }) => ({
+          identifier,
+          clientX: x,
+          clientY: y,
+        })),
+      });
+      target.dispatchEvent(event);
+    };
+
+    await act(async () => {
+      pointer(stick, "pointerdown", 1, 108, 588);
+      pointer(stick, "pointermove", 1, 108, 540);
+    });
+    const heldMoveY = vi
+      .mocked(handle.setInput)
+      .mock.calls.filter(([axis]) => axis === "moveY")
+      .at(-1)![1];
+    expect(heldMoveY).toBeGreaterThan(0);
+
+    // Exercise the opposite compatibility order from the joystick regression.
+    await act(async () => {
+      pointer(jump, "pointerdown", 2, 300, 600);
+      touch(jump, "touchstart", [
+        { identifier: 53, x: 340, y: 600 },
+        { identifier: 52, x: 300, y: 600 },
+      ]);
+      touch(window, "touchend", [{ identifier: 53, x: 340, y: 600 }]);
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "jump"),
+    ).toEqual([["jump", true]]);
+    await act(async () => {
+      touch(window, "touchend", [{ identifier: 52, x: 300, y: 600 }]);
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "jump"),
+    ).toEqual([
+      ["jump", true],
+      ["jump", false],
+    ]);
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis]) => axis === "moveY")
+        .at(-1)![1],
+    ).toBe(heldMoveY);
+
+    await act(async () => {
+      pointer(jump, "pointerdown", 3, 300, 600);
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis, value]) => axis === "jump" && value === true),
+    ).toHaveLength(2);
+
+    await act(async () => {
+      pointer(window, "pointerup", 3, 300, 600);
+    });
+    const releasesBeforeUnrelatedTouch = vi
+      .mocked(handle.setInput)
+      .mock.calls.filter(([axis, value]) => axis === "jump" && value === false)
+      .length;
+    await act(async () => {
+      pointer(jump, "pointerdown", 4, 300, 600, "mouse");
+      touch(jump, "touchstart", [{ identifier: 54, x: 300, y: 600 }]);
+      touch(window, "touchend", [{ identifier: 54, x: 300, y: 600 }]);
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis, value]) => axis === "jump" && value === false),
+    ).toHaveLength(releasesBeforeUnrelatedTouch);
+    await act(async () => {
+      pointer(window, "pointerup", 4, 300, 600, "mouse");
+    });
+    expect(
+      vi
+        .mocked(handle.setInput)
+        .mock.calls.filter(([axis, value]) => axis === "jump" && value === false),
+    ).toHaveLength(releasesBeforeUnrelatedTouch + 1);
   });
 
   it("keeps a collected picture in the HUD while repeated empty attacks show no prose or popup", async () => {

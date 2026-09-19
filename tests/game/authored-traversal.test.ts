@@ -676,5 +676,40 @@ describe("authored playground traversal physics", () => {
       });
       expect(result.position.y).toBeCloseTo(0.3, 9);
     });
+
+    it(`garden-playground-v2 lets a ${stage} backtrack from the dragon to the second memory`, () => {
+      const backtrackIds = new Set([
+        "memory-grove",
+        "little-rise",
+        "little-landing",
+        "pond-dock",
+        "garden-ferry",
+        "dragon-clearing",
+      ]);
+      const reverseConnections = raisedFerryLevel.graph.connections
+        .filter(
+          (connection) =>
+            backtrackIds.has(connection.from) &&
+            backtrackIds.has(connection.to),
+        )
+        .reverse()
+        .map((connection) => ({
+          ...connection,
+          from: connection.to,
+          to: connection.from,
+        }));
+      expect(reverseConnections).toHaveLength(5);
+      for (const connection of reverseConnections) {
+        const result = traverseEdge(raisedFerryLevel, connection, stage);
+        const label = edgeLabel(raisedFerryLevel, connection, stage, 0);
+        expect(result.startedOnSource, `${label} must start supported`).toBe(
+          true,
+        );
+        expect(result.recovered, `${label} recovered before landing`).toBe(
+          false,
+        );
+        expect(result.reached, `${label} did not reach its target`).toBe(true);
+      }
+    });
   }
 });
