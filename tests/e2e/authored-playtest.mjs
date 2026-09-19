@@ -15,6 +15,7 @@ import {
   authoredDocumentFromInspection,
   buildTraversalPlan,
   findPlatformPath,
+  livePlatform,
   planarDistance,
   summarizeAuthoredCourse,
 } from "./authored-navigation.mjs";
@@ -27,6 +28,8 @@ class ControlsVerified extends Error {}
 const controlsOnly = process.env.QUEST_E2E_CONTROLS_ONLY === "true";
 const retryTimeoutProbe = process.env.QUEST_E2E_RETRY_TIMEOUT_PROBE === "true";
 const bossGateProbe = process.env.QUEST_E2E_BOSS_GATE_PROBE === "true";
+const missedMinorProbe =
+  process.env.QUEST_E2E_MISSED_MINOR_PROBE === "true";
 
 const pausedArtworkRetry =
   process.env.QUEST_E2E_PAUSED_ARTWORK_RETRY === "true";
@@ -43,6 +46,10 @@ assert.ok(Number.isFinite(timeoutMs) && timeoutMs >= 180_000);
 assert.ok(
   routeStartChapter === 1 || routeStartChapter === 2,
   "QUEST_E2E_START_CHAPTER must be 1 or 2",
+);
+assert.ok(
+  !missedMinorProbe || routeStartChapter === 1,
+  "QUEST_E2E_MISSED_MINOR_PROBE requires QUEST_E2E_START_CHAPTER=1",
 );
 await fs.mkdir(outDir, { recursive: true });
 
@@ -65,6 +72,7 @@ const report = {
     manualReturn: null,
   },
   bossGateProbe: null,
+  missedMinorProbe: null,
   expectedFaults: [],
   controls: "real keyboard route movement/jumps and touch combat buttons",
   relatedTouchDiagnostic:
@@ -165,6 +173,7 @@ const pausedArtworkProbe = pausedArtworkRetry
   : null;
 let latestSave = null;
 const observedHits = [];
+const observedActions = [];
 let screenshotSequence = 0;
 let cleanupStarted = false;
 
@@ -273,6 +282,16 @@ page.on("console", (message) => {
   if (pausedArtworkProbe?.isExpectedConsole(message)) {
     report.expectedFaults.push({ type: "console", message: message.text() });
   } else report.consoleErrors.push(message.text());
+});
+page.on("request", (request) => {
+  const parsed = new URL(request.url());
+  if (
+    request.method() !== "POST" ||
+    !/\/api\/saves\/[^/]+\/actions$/.test(parsed.pathname)
+  )
+    return;
+  const action = request.postDataJSON()?.action;
+  if (action) observedActions.push(action);
 });
 page.on("response", async (response) => {
   const parsed = new URL(response.url());
@@ -570,6 +589,72 @@ async function playChapter(chapter) {
     "minor-two": latestSave.adventure.activeLevel.minorMemoryIds[1],
     major: latestSave.adventure.activeLevel.majorMemoryId,
   };
+  const deferredMinorRole =
+    missedMinorProbe && chapter === 1 ? "minor-two" : null;
+
+  const hudLayout = async (viewport, label) => {
+    await page.setViewportSize(viewport);
+    await delay(180);
+    const layout = await page.evaluate(() => {
+      const rectangle = (selector) => {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+        const bounds = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        return {
+          x: bounds.x,
+          y: bounds.y,
+          width: bounds.width,
+          height: bounds.height,
+          right: bounds.right,
+          bottom: bounds.bottom,
+          display: style.display,
+          visibility: style.visibility,
+        };
+      };
+      return {
+        viewport: {
+          width: window.innerWidth,
+          height: window.innerHeight,
+          visualWidth: window.visualViewport?.width ?? null,
+          visualHeight: window.visualViewport?.height ?? null,
+        },
+        hud: rectangle(".era-hud"),
+        message: rectangle(".memory-next-step"),
+        joystick: rectangle('[data-testid="joystick"]'),
+        actions: rectangle(".combat-actions"),
+      };
+    });
+    const overlaps = (left, right) =>
+      left &&
+      right &&
+      left.x < right.right &&
+      left.right > right.x &&
+      left.y < right.bottom &&
+      left.bottom > right.y;
+    assert.ok(layout.message, `${label}: post-boss memory hint is missing`);
+    assert.equal(
+      layout.message.display === "none" ||
+        layout.message.visibility === "hidden",
+      false,
+      `${label}: post-boss memory hint is hidden`,
+    );
+    assert.ok(layout.message.x >= 0 && layout.message.y >= 0);
+    assert.ok(layout.message.right <= layout.viewport.width + 0.5);
+    assert.ok(layout.message.bottom <= layout.viewport.height + 0.5);
+    assert.equal(
+      overlaps(layout.message, layout.joystick),
+      false,
+      `${label}: post-boss hint overlaps the joystick`,
+    );
+    assert.equal(
+      overlaps(layout.message, layout.actions),
+      false,
+      `${label}: post-boss hint overlaps the action controls`,
+    );
+    await screenshot(`chapter-${chapter}-${label}`);
+    return layout;
+  };
 
   const moveToAnchor = async (
     anchor,
@@ -696,6 +781,188 @@ async function playChapter(chapter) {
     });
   };
 
+  const proveMissedMinorRecovery = async (majorAnchor) => {
+    const missingRole = deferredMinorRole;
+    assert.ok(missingRole, "missed-minor recovery has no deferred memory");
+    const missingAnchor = document.anchors.memories[missingRole];
+    const missingId = chapterMemoryIds[missingRole];
+    const majorId = chapterMemoryIds.major;
+    assert.equal(latestSave.adventure.phase, "memory-released");
+    assert.equal(
+      latestSave.memories.find((memory) => memory.id === missingId)?.state,
+      "released",
+    );
+    assert.equal(
+      latestSave.memories.find((memory) => memory.id === majorId)?.state,
+      "released",
+    );
+    const released = await driver.read(
+      `chapter-${chapter}-postboss-missing-minor`,
+    );
+    assert.equal(
+      released.visuals.memories.find((memory) => memory.id === majorId)
+        ?.visible,
+      true,
+      "boss victory did not reveal the major memory",
+    );
+    const missingText =
+      "1 little memory left. Follow the path back to find it, then return to the big memory.";
+    await page.locator(".memory-next-step").getByText(missingText).waitFor();
+    const layouts = [];
+    layouts.push(
+      await hudLayout(
+        { width: 844, height: 390 },
+        "postboss-missing-minor-landscape",
+      ),
+    );
+    layouts.push(
+      await hudLayout(
+        { width: 390, height: 844 },
+        "postboss-missing-minor-portrait",
+      ),
+    );
+    layouts.push(
+      await hudLayout(
+        { width: 568, height: 320 },
+        "postboss-missing-minor-compact-landscape",
+      ),
+    );
+    await page.setViewportSize({ width: 844, height: 390 });
+    await delay(180);
+
+    const revisionBeforeBlockedMajor = latestSave.revision;
+    const actionCountBeforeMajor = observedActions.length;
+    await moveToAnchor(
+      majorAnchor,
+      `chapter-${chapter}-major-blocked-missing-minor`,
+    );
+    await delay(400);
+    const blocked = await driver.read(
+      `chapter-${chapter}-major-client-gated`,
+    );
+    assert.equal(latestSave.revision, revisionBeforeBlockedMajor);
+    assert.equal(latestSave.adventure.phase, "memory-released");
+    assert.equal(
+      latestSave.memories.find((memory) => memory.id === majorId)?.state,
+      "released",
+    );
+    assert.notEqual(blocked.status.nearMemoryId, majorId);
+    assert.equal(blocked.status.requestState, "idle");
+    assert.equal(blocked.status.requestErrorCode, null);
+    assert.equal(
+      observedActions
+        .slice(actionCountBeforeMajor)
+        .some(
+          (action) =>
+            action.type === "recover-memory" && action.memoryId === majorId,
+        ),
+      false,
+      "client dispatched an ineligible major-memory action",
+    );
+    await page.locator(".memory-next-step").getByText(missingText).waitFor();
+    await screenshot(`chapter-${chapter}-major-blocked-missing-minor`);
+    const contactPosition = blocked.status.position;
+    assert.equal(blocked.obby.supportId, majorAnchor.platformId);
+    assert.ok(spatialDistance(contactPosition, majorAnchor.position) < 0.5);
+
+    const routePlatforms = plan.platformIds;
+    const missingIndex = routePlatforms.indexOf(missingAnchor.platformId);
+    const majorIndex = routePlatforms.indexOf(majorAnchor.platformId);
+    assert.ok(missingIndex >= 0 && majorIndex > missingIndex);
+    const returnEdges = plan.edges
+      .slice(missingIndex, majorIndex)
+      .reverse()
+      .map((edge) => ({
+        ...edge,
+        from: edge.to,
+        to: edge.from,
+      }));
+    for (const [index, edge] of returnEdges.entries()) {
+      await driver.crossEdge(
+        edge,
+        `chapter-${chapter}-missing-minor-return-${index + 1}`,
+      );
+    }
+    const returned = await driver.read(
+      `chapter-${chapter}-missing-minor-returned`,
+    );
+    assert.equal(returned.obby.supportId, missingAnchor.platformId);
+    await collectMemory(missingRole, missingAnchor);
+    for (const [role, anchor] of Object.entries(
+      document.anchors.friendlies,
+    )) {
+      if (anchor.platformId === missingAnchor.platformId)
+        await visitFriendly(role, anchor);
+    }
+    const recoveredMinorRevision = latestSave.revision;
+    assert.ok(recoveredMinorRevision > revisionBeforeBlockedMajor);
+    await page
+      .locator(".memory-next-step")
+      .getByText("Walk into the big memory to finish this chapter.")
+      .waitFor();
+    await screenshot(`chapter-${chapter}-missing-minor-recovered`);
+
+    const outboundEdges = plan.edges.slice(missingIndex, majorIndex);
+    for (const [index, edge] of outboundEdges.entries()) {
+      const finishEdge = edge.to === majorAnchor.platformId;
+      await driver.crossEdge(
+        edge,
+        `chapter-${chapter}-major-return-${index + 1}`,
+        {
+          allowFinishTrigger: finishEdge,
+          finishReached: () =>
+            ["revealed", "consumed"].includes(
+              latestSave.memories.find((memory) => memory.id === majorId)
+                ?.state,
+            ),
+        },
+      );
+    }
+    const readyForMajor = await inspectGame(page);
+    assert.ok(readyForMajor);
+    if (readyForMajor.level.authored?.id === document.id)
+      assert.equal(readyForMajor.obby.supportId, majorAnchor.platformId);
+    await collectMemory("major", majorAnchor);
+    assert.ok(latestSave.revision > recoveredMinorRevision);
+    assert.ok(
+      ["revealed", "consumed"].includes(
+        latestSave.memories.find((memory) => memory.id === majorId)?.state,
+      ),
+    );
+    report.missedMinorProbe = {
+      chapter,
+      missingRole,
+      missingId,
+      majorId,
+      missingText,
+      layouts,
+      bossReleasedMajor: true,
+      blockedMajor: {
+        revision: revisionBeforeBlockedMajor,
+        clientEligibilityPreventedDispatch: true,
+        requestState: blocked.status.requestState,
+        requestErrorCode: blocked.status.requestErrorCode,
+        supportId: blocked.obby.supportId,
+        contactPosition,
+        majorPosition: majorAnchor.position,
+      },
+      backtrack: returnEdges.map(({ from, to, mode }) => ({
+        from,
+        to,
+        mode,
+      })),
+      recoveredMinorRevision,
+      forwardReturn: outboundEdges.map(({ from, to, mode }) => ({
+        from,
+        to,
+        mode,
+      })),
+      majorRevision: latestSave.revision,
+      chapterCompletionAccepted: true,
+    };
+    mark("memory:missed-minor-recovered", report.missedMinorProbe);
+  };
+
   const visitFriendly = async (role, anchor) => {
     const inspection = await inspectGame(page);
     const live = closest(
@@ -745,7 +1012,10 @@ async function playChapter(chapter) {
         page,
         screenshot,
         label: `chapter-${chapter}-${role}-automatic-retry`,
-        predicate: (inspection) => inspection.status.phase === "exploring",
+        predicate: (inspection) =>
+          inspection.status.phase === "exploring" &&
+          inspection.status.grounded &&
+          Boolean(inspection.obby?.supportId),
       });
       return true;
     }
@@ -1291,7 +1561,14 @@ async function playChapter(chapter) {
     if (processed.has(platformId)) return;
     processed.add(platformId);
     for (const [role, anchor] of Object.entries(document.anchors.friendlies)) {
-      if (anchor.platformId === platformId) await visitFriendly(role, anchor);
+      const deferredPlatform = deferredMinorRole
+        ? document.anchors.memories[deferredMinorRole].platformId
+        : null;
+      if (
+        anchor.platformId === platformId &&
+        platformId !== deferredPlatform
+      )
+        await visitFriendly(role, anchor);
     }
     for (const [kind, anchor] of Object.entries(document.anchors.pickups)) {
       if (anchor.platformId === platformId) await collectPickup(kind, anchor);
@@ -1307,11 +1584,22 @@ async function playChapter(chapter) {
     }
     for (const [role, anchor] of Object.entries(document.anchors.memories)) {
       if (anchor.platformId === platformId && role !== "major") {
+        if (role === deferredMinorRole) {
+          chapterReport.contents.push({
+            type: "memory",
+            role,
+            id: chapterMemoryIds[role],
+            platformId,
+            deliberatelyMissedUntilPostBoss: true,
+          });
+          continue;
+        }
         await collectMemory(role, anchor);
       }
     }
     if (
       !deathRecoveryProved &&
+      deferredMinorRole !== "minor-two" &&
       document.anchors.memories["minor-two"].platformId === platformId
     ) {
       await proveAutomaticDeathRecovery();
@@ -1458,6 +1746,14 @@ async function playChapter(chapter) {
         } else assert.ok(ordinary.every((encounter) => encounter.defeated));
         for (const minorRole of ["minor-one", "minor-two"]) {
           const id = chapterMemoryIds[minorRole];
+          if (minorRole === deferredMinorRole) {
+            assert.equal(
+              latestSave.memories.find((memory) => memory.id === id)?.state,
+              "released",
+              `${minorRole} was not left recoverable before boss`,
+            );
+            continue;
+          }
           assert.ok(
             ["revealed", "consumed"].includes(
               latestSave.memories.find((memory) => memory.id === id)?.state,
@@ -1501,7 +1797,10 @@ async function playChapter(chapter) {
       }
     }
     const major = document.anchors.memories.major;
-    if (major.platformId === platformId) await collectMemory("major", major);
+    if (major.platformId === platformId) {
+      if (deferredMinorRole) await proveMissedMinorRecovery(major);
+      else await collectMemory("major", major);
+    }
   };
 
   await processPlatform(plan.platformIds[0]);
@@ -1516,10 +1815,95 @@ async function playChapter(chapter) {
     );
     const current = await driver.read(`chapter-${chapter}-route-${edgeIndex}`);
     const supportIndex = plan.platformIds.indexOf(current.obby.supportId);
-    assert.ok(
-      supportIndex >= 0,
-      `live support ${current.obby.supportId} is outside the route plan`,
-    );
+    if (supportIndex < 0) {
+      const landedOnDeclaredCatch = document.connections.some(
+        (connection) =>
+          connection.safeMissPlatformId === current.obby.supportId,
+      );
+      assert.equal(
+        landedOnDeclaredCatch,
+        true,
+        `live support ${current.obby.supportId} is outside the route plan`,
+      );
+      const retryPath = findPlatformPath(
+        document,
+        current.obby.supportId,
+        plan.platformIds[0],
+      );
+      assert.ok(
+        retryPath.length > 0,
+        `declared safe catch ${current.obby.supportId} has no route retry`,
+      );
+      const catchPlatform = livePlatform(current, current.obby.supportId);
+      const retryTarget = livePlatform(current, retryPath[0].to);
+      const travelAxis =
+        Math.abs(retryTarget.center.x - catchPlatform.center.x) >=
+        Math.abs(retryTarget.center.z - catchPlatform.center.z)
+          ? "x"
+          : "z";
+      const crossAxis = travelAxis === "x" ? "z" : "x";
+      const direction = Math.sign(
+        retryTarget.center[travelAxis] - catchPlatform.center[travelAxis],
+      );
+      assert.notEqual(direction, 0, "safe-catch retry has no travel axis");
+      const usableCrossHalf =
+        Math.min(
+          catchPlatform.size[crossAxis] / 2,
+          retryTarget.size[crossAxis] / 2,
+        ) - 0.65;
+      assert.ok(usableCrossHalf > 0, "safe-catch retry has no side lane");
+      const side =
+        current.status.position[crossAxis] >=
+        catchPlatform.center[crossAxis]
+          ? 1
+          : -1;
+      const lateral = {
+        ...current.status.position,
+        [crossAxis]:
+          catchPlatform.center[crossAxis] + side * usableCrossHalf,
+      };
+      const staged = {
+        ...lateral,
+        [travelAxis]:
+          retryTarget.center[travelAxis] -
+          direction * (retryTarget.size[travelAxis] / 2 + 0.75),
+      };
+      const bypassed = await driver.moveToPoint(() => lateral, {
+        label: `chapter-${chapter}-unplanned-safe-miss-side-lane`,
+        tolerance: 0.35,
+        supportId: catchPlatform.id,
+        allowHazardJump: false,
+        stopOnRecovery: true,
+      });
+      assert.equal(bypassed.obby.supportId, catchPlatform.id);
+      const stagedForRetry = await driver.moveToPoint(() => staged, {
+        label: `chapter-${chapter}-unplanned-safe-miss-stage`,
+        tolerance: 0.35,
+        supportId: catchPlatform.id,
+        allowHazardJump: false,
+        stopOnRecovery: true,
+      });
+      assert.equal(stagedForRetry.obby.supportId, catchPlatform.id);
+      for (const [retryIndex, retryEdge] of retryPath.entries()) {
+        await driver.crossEdge(
+          retryEdge,
+          `chapter-${chapter}-unplanned-safe-miss-retry-${retryIndex + 1}`,
+        );
+      }
+      mark("recovery:unplanned-safe-miss", {
+        caughtOn: current.obby.supportId,
+        returnedTo: plan.platformIds[0],
+        lateral,
+        staged,
+        retryPath: retryPath.map(({ from, to, mode }) => ({
+          from,
+          to,
+          mode,
+        })),
+      });
+      edgeIndex = 0;
+      continue;
+    }
     if (supportIndex !== edgeIndex) {
       assert.ok(
         supportIndex < edgeIndex,
@@ -1587,11 +1971,12 @@ async function playChapter(chapter) {
     "intentional checkpoint recovery was not exercised",
   );
   assert.equal(safeMissProved, true, "declared safe miss was not exercised");
-  assert.equal(
-    deathRecoveryProved,
-    true,
-    "automatic memory checkpoint recovery was not exercised",
-  );
+  if (!deferredMinorRole)
+    assert.equal(
+      deathRecoveryProved,
+      true,
+      "automatic memory checkpoint recovery was not exercised",
+    );
   assert.equal(
     chapterReport.combat.length,
     bossGateProbe ? 4 : 5,
@@ -1696,6 +2081,20 @@ try {
       routeStartChapter - 1,
     ),
   );
+  if (missedMinorProbe) {
+    assert.ok(
+      report.missedMinorProbe,
+      "missed-minor mode did not exercise its recovery probe",
+    );
+    assert.equal(report.missedMinorProbe.chapter, 1);
+    assert.ok(report.missedMinorProbe.backtrack.length > 0);
+    assert.ok(report.missedMinorProbe.forwardReturn.length > 0);
+    assert.equal(
+      report.missedMinorProbe.blockedMajor.clientEligibilityPreventedDispatch,
+      true,
+    );
+    assert.equal(report.missedMinorProbe.chapterCompletionAccepted, true);
+  }
   if (pausedArtworkRetry) {
     assert.ok(report.injectedArtworkFailure?.failures > 0);
     assert.equal(report.injectedArtworkFailure?.retryPresses, 1);

@@ -340,6 +340,146 @@ describe("registered authored v2 runtime", () => {
     },
   );
 
+  it("keeps a missed minor as the only post-boss major gate and still accepts it", async () => {
+    const routeId = "garden-playground-v2" as const;
+    const route = authoredRoute(routeId)!;
+    const released = withRecoveredMinors(1, {
+      routeId,
+      phase: "memory-released",
+      bossDefeated: true,
+    });
+    const majorId = released.adventure!.activeLevel!.majorMemoryId!;
+    const recovered = withRecoveredMinors(2, {
+      routeId,
+      revision: 1,
+      phase: "memory-released",
+      bossDefeated: true,
+    });
+    const onAction = vi.fn(
+      async (_request: GameplayActionRequest) => recovered,
+    );
+    runtimeState.spawnOverrides.push({
+      ...route.anchors.memories.major.position,
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: released,
+      onAction,
+      onRefresh: async () => released,
+    });
+    warmRuntime();
+
+    expect(game.inspect()).toMatchObject({
+      status: {
+        phase: "memory-released",
+        nearMemoryId: null,
+        position: route.anchors.memories.major.position,
+      },
+      level: {
+        authored: { id: routeId },
+        memoryPositions: expect.arrayContaining([
+          expect.objectContaining({ id: majorId, state: "released" }),
+        ]),
+      },
+      obby: {
+        supportId: route.anchors.memories.major.platformId,
+      },
+    });
+    expect(onAction).not.toHaveBeenCalled();
+
+    const secondMinor = route.anchors.memories["minor-two"];
+    const controller = runtimeState.controllers.at(-1)!;
+    Object.assign(controller.position, secondMinor.position);
+    Object.assign(controller.checkpoint, secondMinor.position);
+    controller.velocityY = 0;
+    controller.grounded = true;
+    controller.recoveryRemaining = 0;
+    advance();
+    await vi.waitFor(() => expect(onAction).toHaveBeenCalledOnce());
+    expect(onAction.mock.calls[0]![0].action).toEqual({
+      type: "recover-memory",
+      levelId: released.adventure!.activeLevel!.id,
+      memoryId: released.adventure!.activeLevel!.minorMemoryIds![1],
+    });
+    game.dispose();
+  });
+
+  it("walks over the raised Garden reward terrace to collect an eligible major and enter chapter two", async () => {
+    const routeId = "garden-playground-v2" as const;
+    const route = authoredRoute(routeId)!;
+    const released = withRecoveredMinors(2, {
+      routeId,
+      levelId: "level-authored-one",
+      phase: "memory-released",
+      bossDefeated: true,
+    });
+    const majorId = released.adventure!.activeLevel!.majorMemoryId!;
+    const nextChapter = makeAuthoredSave({
+      routeId: "besties-playground-v2",
+      levelId: "level-authored-two",
+      revision: 1,
+    });
+    const nextLevel = nextChapter.adventure!.activeLevel!;
+    const nextMemoryIds = new Set(nextLevel.memoryIds);
+    nextChapter.recoveredIds = nextChapter.recoveredIds.filter(
+      (memoryId) => !nextMemoryIds.has(memoryId),
+    );
+    for (const memory of nextChapter.memories) {
+      if (nextLevel.minorMemoryIds!.includes(memory.id))
+        memory.state = "released";
+      else if (memory.id === nextLevel.majorMemoryId) memory.state = "locked";
+    }
+    const onAction = vi.fn(
+      async (_request: GameplayActionRequest) => nextChapter,
+    );
+    runtimeState.spawnOverrides.push({
+      ...route.anchors.encounters.boss.position,
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: released,
+      onAction,
+      onRefresh: async () => released,
+    });
+    warmRuntime();
+    expect(game.inspect().obby).toMatchObject({
+      supportId: route.anchors.encounters.boss.platformId,
+    });
+
+    game.setInput("moveY", 1);
+    for (
+      let frame = 0;
+      frame < 240 && onAction.mock.calls.length === 0;
+      frame += 1
+    ) {
+      advance(1000 / 60);
+      await Promise.resolve();
+    }
+    game.setInput("moveY", 0);
+
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]![0].action).toEqual({
+      type: "recover-memory",
+      levelId: "level-authored-one",
+      memoryId: majorId,
+    });
+    await vi.waitFor(() =>
+      expect(game.inspect().status).toMatchObject({
+        activeLevelId: "level-authored-two",
+        ageYears: 4,
+        phase: "exploring",
+      }),
+    );
+    expect(game.inspect()).toMatchObject({
+      level: { authored: { id: "besties-playground-v2" } },
+      status: {
+        position: authoredRoute("besties-playground-v2")!.anchors.spawn
+          .position,
+      },
+    });
+    game.dispose();
+  });
+
   it("starts a second v2 Besties runtime fresh and attackable after death retry", async () => {
     const routeId = "besties-playground-v2" as const;
     const bossAnchor = authoredRoute(routeId)!.anchors.encounters.boss;

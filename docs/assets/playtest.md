@@ -19,6 +19,8 @@ Hold the movement stick with one thumb and press Jump with the other. Attack sit
 
 Find two little memories along each route. Their keepsakes disappear on collection and their pictures fill the small indicators beside your health. Collecting a little memory also sets a checkpoint, without stopping movement or aging the player. You can revisit collected pictures in Memories. Beat the boss, then walk into the big memory beyond it: collecting all three advances your age and opens the next chapter. Missing little memories remain on the path after victory.
 
+If the big memory does not collect, check the picture indicators beside your health. After victory, they tell you how many little memories remain. Follow the path back to collect them, then return to the big memory; the defeated boss stays beaten. Once both little pictures are collected, the message tells you to walk into the big memory to finish the chapter.
+
 ## What changed for this test
 
 Both chapters begin with six low steps that climb and descend over solid ground. A missed practice hop lets you try again without losing health. Later clearings and boss terraces also rise above the path. Each course mixes short jumping activities with safe stopping places, four goofy enemy encounters, two little memories and a boss. An optional side path lets you visit a friendly resident before rejoining the adventure.
