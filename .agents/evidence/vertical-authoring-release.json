@@ -141,17 +141,21 @@
     "activeDeclarationsAfterRelease": 0
   },
   "evidencePaths": {
-    "root": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence",
-    "procedure": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/README.md",
-    "artifactAudit": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/artifact-audit.json",
-    "candidateAssets": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/candidate-assets.json",
-    "baseline": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/evidence/baseline.json",
-    "publication": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/evidence/publication.json",
-    "opsChecks": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/evidence/ops-pr-checks.log",
-    "fluxStatus": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/evidence/flux-status.log",
-    "rolloutAudit": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/evidence/audit-rollout.log",
-    "activityStart": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/evidence/activity-start.log",
-    "activityEnd": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034af/.private/ops-release-evidence/evidence/activity-end.log"
+    "root": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release",
+    "procedure": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/README.md",
+    "helperReview": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/helper-review.md",
+    "releaseRecord": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/vertical-release.json",
+    "artifactAudit": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/artifact-audit.json",
+    "candidateAssets": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/candidate-assets.json",
+    "baseline": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/baseline.json",
+    "publication": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/publication.json",
+    "opsChecks": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/ops-pr-checks.log",
+    "fluxStatus": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/flux-status.log",
+    "rolloutAudit": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/audit-rollout.log",
+    "activityStart": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/activity-start.log",
+    "activityEnd": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/activity-end.log",
+    "browserSummary": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/hosted-browser/vertical-browser-summary.md",
+    "hostedBrowserReport": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/hosted-browser/report.json"
   },
   "archive": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a",
   "verification": {
@@ -251,5 +255,6 @@
     "Chromium emulation does not establish physical Safari acceptance or hardware frame-time performance.",
     "Optional geometry is not automatically promised reachable; explicit connections and required objective safety remain validated.",
     "The winding-east deck retains its intentional sweeper; verified side lanes are described in the core review."
-  ]
+  ],
+  "opsArchiveManifestSha256": "229c33e0107e0d1b8257c61d578a4c00c5a085ea797db994cdf228101f898fee"
 }
