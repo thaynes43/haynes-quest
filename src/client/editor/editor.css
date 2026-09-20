@@ -892,3 +892,26 @@
   text-align: center;
   min-height: 40px;
 }
+
+.editor-section-builder .editor-section-warning {
+  padding: 8px;
+  border-radius: 5px;
+  color: #653e30;
+  background: #f4dfd1;
+  overflow-wrap: anywhere;
+}
+
+.editor-banner.editor-command-error {
+  max-height: 25vh;
+  overflow-y: auto;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.editor-command-error span {
+  min-width: 0;
+}
+
+.editor-command-error button {
+  flex: none;
+}

@@ -866,7 +866,7 @@ export function EditorWorkspace({
         </div>
       )}
       {commandFailure && (
-        <div className="editor-banner" role="alert">
+        <div className="editor-banner editor-command-error" role="alert">
           <span>{commandFailure}</span>
           <button type="button" onClick={() => setCommandFailure("")}>Dismiss</button>
         </div>
