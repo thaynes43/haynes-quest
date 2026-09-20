@@ -9,6 +9,7 @@
  * coordinates.
  */
 import {
+  applyLevelEditorCommand,
   createLevelEditorProject,
   parseLevelEditorProject,
   type LevelEditorChapterId,
@@ -87,6 +88,25 @@ export function rotatedGardenProject(): LevelEditorProject {
   level.pieces = level.pieces.filter((piece) => piece.type !== "sweeper");
   rotateInPlace(level);
   return parseLevelEditorProject(raw);
+}
+
+/** A valid uneven-height long span that needs one extra descent landing. */
+export function raisedGardenPicnicProject(): LevelEditorProject {
+  const template = createLevelEditorProject({
+    projectId: "raised-garden-picnic",
+    name: "Raised garden picnic",
+  });
+  const moved = applyLevelEditorCommand(template, {
+    type: "piece.move",
+    chapterId: "chapter-1",
+    pieceId: "picnic",
+    position: { x: 0, y: 0, z: -33.8 },
+  });
+  if (!moved.ok)
+    throw new Error(
+      `Could not raise the garden picnic fixture: ${JSON.stringify(moved.issues)}`,
+    );
+  return moved.project;
 }
 
 export function chapterLevel(

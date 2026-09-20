@@ -55,7 +55,7 @@ const GATEWAY_CLEARANCE_LENGTH = 0.75;
 
 export const LEVEL_EDITOR_SECTION_LIMITS = Object.freeze({
   minSteps: 2,
-  maxSteps: 6,
+  maxSteps: 12,
   defaultSteps: 4,
   minRise: 0.1,
   maxRise: AUTHORED_LEVEL_LIMITS.maxConnectionRise,
@@ -617,7 +617,25 @@ export function planLevelEditorSection(
         ),
       ],
     };
-  const descentIntervals = Math.max(1, Math.ceil(descentHeight / rise - EPSILON));
+  const verticalDescentIntervals = Math.max(
+    1,
+    Math.ceil(descentHeight / rise - EPSILON),
+  );
+  // `steps` describes the requested climb. The descent is derived, so it may
+  // use additional landings when the height-derived profile would make each
+  // landing deeper than the section contract permits. This preserves every
+  // requested riser while still fitting a long, uneven span.
+  const minimumSpacingIntervals = Math.ceil(
+    run / (limits.maxStepDepth + limits.stepGap) - EPSILON,
+  );
+  const fittingDescentIntervals =
+    Math.abs(startTop - rejoinTop) > EPSILON
+      ? minimumSpacingIntervals - steps + 2
+      : verticalDescentIntervals;
+  const descentIntervals = Math.max(
+    verticalDescentIntervals,
+    fittingDescentIntervals,
+  );
   const descentRise = round(descentHeight / descentIntervals);
   const stepCount = steps + descentIntervals - 1;
   // Never thicker than the smallest riser, so no step dips below the height of
@@ -649,6 +667,13 @@ export function planLevelEditorSection(
       ],
     };
 
+  const budget = budgetIssues(
+    level,
+    stepCount,
+    stepCount * depth * limits.stepWidth,
+  );
+  if (budget.length > 0) return { ok: false, issues: budget };
+
   // Lane placement works in outward coordinates: `sideSign * cross`, so a
   // larger number is always further from the main course whichever way the
   // route runs.
@@ -669,37 +694,18 @@ export function planLevelEditorSection(
       ? round(startTop + (index + 1) * rise)
       : round(apexTop - (index - steps + 1) * descentRise);
   const tops = Array.from({ length: stepCount }, (_, index) => topFor(index));
-  const lowestStep = Math.min(...tops) - thickness;
-  const highestStep = Math.max(...tops);
 
-  // Ground within an avatar height of the section's surfaces has to be cleared
-  // sideways: below it the steps would cut through it or wall off its edge, and
-  // above it there is no headroom. Anything further away can be passed over.
+  // Ground is considered at each landing's actual travel coordinate and
+  // height. A route can therefore rise over a deck, then bend around a later
+  // obstruction, without moving both endpoint hops out of reach.
   const travelSpread = (platform: PlatformPiece): number =>
     platform.size[travelAxis] / 2 +
     (platform.type === "moving-platform" && platform.motion.axis === travelAxis
       ? platform.motion.distance
       : 0);
-  const sectionTravelMin =
-    Math.min(from.center[travelAxis], to.center[travelAxis]) - depth / 2;
-  const sectionTravelMax =
-    Math.max(from.center[travelAxis], to.center[travelAxis]) + depth / 2;
-  const blockers = level.pieces.filter(isPlatform).filter((platform) => {
-    if (
-      platformTop(platform) <= lowestStep - AUTHORED_LEVEL_LIMITS.actorHeight + EPSILON ||
-      platformBottom(platform) >=
-        highestStep + AUTHORED_LEVEL_LIMITS.actorHeight - EPSILON
-    )
-      return false;
-    return (
-      platform.center[travelAxis] + travelSpread(platform) > sectionTravelMin + EPSILON &&
-      platform.center[travelAxis] - travelSpread(platform) < sectionTravelMax - EPSILON
-    );
-  });
-
-  let laneFrom = outerEdge(from) + limits.stepGap + limits.stepWidth / 2;
-  let laneTo = outerEdge(to) + limits.stepGap + limits.stepWidth / 2;
-  const laneFor = (index: number): number => {
+  const laneFrom = outerEdge(from) + limits.stepGap + limits.stepWidth / 2;
+  const laneTo = outerEdge(to) + limits.stepGap + limits.stepWidth / 2;
+  const baseLaneFor = (index: number): number => {
     const progress = index / (stepCount - 1);
     const interior = index > 0 && index < stepCount - 1;
     return (
@@ -708,37 +714,94 @@ export function planLevelEditorSection(
       (interior && index % 2 === 1 ? weave : 0)
     );
   };
+  const lanes = Array.from({ length: stepCount }, (_, index) =>
+    baseLaneFor(index),
+  );
+  const maxLateral = Math.min(
+    limits.stepWidth - 2 * AUTHORED_LEVEL_LIMITS.supportEdgeClearance,
+    spacing,
+  );
+  // Leave room for six-decimal coordinate rounding below.
+  const lateralLimit = maxLateral - 0.001;
+  const blockers = level.pieces.filter(isPlatform);
   let blocked: AuthoredPlatformPiece | AuthoredMovingPlatformPiece | undefined;
-  for (let pass = 0; pass <= blockers.length; pass += 1) {
-    const lanes = Array.from({ length: stepCount }, (_, index) => laneFor(index));
-    const bandInner = Math.min(...lanes) - limits.stepWidth / 2;
-    const bandOuter = Math.max(...lanes) + limits.stepWidth / 2;
-    let required = Number.NEGATIVE_INFINITY;
-    let culprit: PlatformPiece | undefined;
-    for (const platform of blockers) {
-      if (
-        outerEdge(platform) <= bandInner + EPSILON ||
-        innerEdge(platform) >= bandOuter - EPSILON
-      )
-        continue;
-      const clear =
-        outerEdge(platform) +
-        AUTHORED_LEVEL_LIMITS.supportEdgeClearance +
-        limits.stepWidth / 2;
-      if (clear <= required) continue;
-      required = clear;
-      culprit = platform;
+  const clearanceFor = (
+    index: number,
+    platform: PlatformPiece,
+  ): number | undefined => {
+    const stepTop = tops[index]!;
+    const stepBottom = stepTop - thickness;
+    const otherTop = platformTop(platform);
+    const difference = stepTop - otherTop;
+    let clearance: number;
+    let travelClearance: number;
+    if (Math.abs(difference) <= limits.flushTolerance) {
+      // `clearanceIssues` expands both supports by the avatar radius.
+      clearance = AUTHORED_LEVEL_LIMITS.supportEdgeClearance * 2;
+      travelClearance = clearance;
+    } else if (
+      otherTop > stepBottom - AUTHORED_LEVEL_LIMITS.actorHeight + EPSILON &&
+      platformBottom(platform) <
+        stepTop + AUTHORED_LEVEL_LIMITS.actorHeight - EPSILON
+    ) {
+      clearance = AUTHORED_LEVEL_LIMITS.supportEdgeClearance;
+      travelClearance = 0;
+    } else {
+      return undefined;
     }
-    if (culprit === undefined || required <= Math.min(laneFrom, laneTo) + EPSILON)
-      break;
-    blocked = culprit;
-    laneFrom = Math.max(laneFrom, required);
-    laneTo = Math.max(laneTo, required);
+
+    const travel = from.center[travelAxis] + direction * spacing * index;
+    const travelDistance = Math.abs(travel - platform.center[travelAxis]);
+    if (
+      travelDistance >=
+      depth / 2 + travelSpread(platform) + travelClearance - EPSILON
+    )
+      return undefined;
+
+    const lane = lanes[index]!;
+    const halfWidth = limits.stepWidth / 2;
+    if (
+      lane - halfWidth >= outerEdge(platform) + clearance - EPSILON ||
+      lane + halfWidth <= innerEdge(platform) - clearance + EPSILON
+    )
+      return undefined;
+    return outerEdge(platform) + clearance + halfWidth;
+  };
+
+  // Pushing one local landing outward can require a gradual approach on its
+  // neighbours. Both operations only increase outward distance, so this
+  // converges after crossing each finite blocker band.
+  const passLimit = (blockers.length + 1) * (stepCount + 1);
+  for (let pass = 0; pass < passLimit; pass += 1) {
+    let changed = false;
+    for (let index = 0; index < stepCount; index += 1) {
+      for (const platform of blockers) {
+        const required = clearanceFor(index, platform);
+        if (required === undefined || required <= lanes[index]! + EPSILON)
+          continue;
+        lanes[index] = required;
+        blocked = platform;
+        changed = true;
+      }
+    }
+    for (let index = 1; index < stepCount; index += 1) {
+      const required = lanes[index - 1]! - lateralLimit;
+      if (required <= lanes[index]! + EPSILON) continue;
+      lanes[index] = required;
+      changed = true;
+    }
+    for (let index = stepCount - 2; index >= 0; index -= 1) {
+      const required = lanes[index + 1]! - lateralLimit;
+      if (required <= lanes[index]! + EPSILON) continue;
+      lanes[index] = required;
+      changed = true;
+    }
+    if (!changed) break;
   }
 
   const hop = (lane: number, platform: AuthoredPlatformPiece): number =>
     lane - limits.stepWidth / 2 - outerEdge(platform);
-  const longestHop = Math.max(hop(laneFrom, from), hop(laneTo, to));
+  const longestHop = Math.max(hop(lanes[0]!, from), hop(lanes.at(-1)!, to));
   if (longestHop > AUTHORED_LEVEL_LIMITS.maxConnectionGap + EPSILON)
     return {
       ok: false,
@@ -751,15 +814,11 @@ export function planLevelEditorSection(
       ],
     };
 
-  const crossFor = (index: number): number => round(outward(laneFor(index)));
+  const crossFor = (index: number): number => round(outward(lanes[index]!));
 
   // Two landings offset sideways by more than the step width less the avatar
   // inset share no centre lane, and one offset further than the forward spacing
   // turns the hop sideways onto the shallow face.
-  const maxLateral = Math.min(
-    limits.stepWidth - 2 * AUTHORED_LEVEL_LIMITS.supportEdgeClearance,
-    spacing,
-  );
   for (let index = 0; index + 1 < stepCount; index += 1) {
     const lateral = Math.abs(crossFor(index + 1) - crossFor(index));
     if (lateral < maxLateral - EPSILON) continue;
@@ -811,14 +870,8 @@ export function planLevelEditorSection(
     size: size(travelAxis, depth, thickness, limits.stepWidth),
   }));
 
-  const budget = budgetIssues(
-    level,
-    stepCount,
-    stepCount * depth * limits.stepWidth,
-  );
   const span = sceneSpanIssue(level, platforms);
-  if (span) budget.push(span);
-  if (budget.length > 0) return { ok: false, issues: budget };
+  if (span) return { ok: false, issues: [span] };
 
   const clearance = clearanceIssues(level, platforms);
   if (clearance.length > 0) return { ok: false, issues: clearance };

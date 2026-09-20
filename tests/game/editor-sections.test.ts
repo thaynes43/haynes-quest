@@ -28,6 +28,7 @@ import gardenPlayground from "../../src/shared/levels/garden-playground-v2.json"
 import {
   chapterLevel,
   platformTop,
+  raisedGardenPicnicProject,
   rotatePoint,
   rotatedGardenProject,
   sectionSteps,
@@ -354,6 +355,44 @@ describe("shared vertical section command", () => {
     }
   });
 
+  it("adds descent landings when an uneven long span would make them too deep", () => {
+    const base = raisedGardenPicnicProject();
+    const level = chapterLevel(base, "chapter-1");
+    const planned = planLevelEditorSection(level, {
+      idPrefix: "uneven-climb",
+      fromPlatformId: "welcome",
+      toPlatformId: "picnic",
+      pattern: "arch",
+      side: "left",
+      steps: 4,
+      rise: 0.3,
+    });
+    expect(planned.ok).toBe(true);
+    if (!planned.ok) return;
+
+    expect(planned.plan.stepIds).toHaveLength(7);
+    expect(planned.plan.measurements.descentSteps).toBe(3);
+    expect(planned.plan.measurements.descentRise).toBeCloseTo(0.225, 6);
+    expect(planned.plan.measurements.stepDepth).toBeLessThanOrEqual(
+      LEVEL_EDITOR_SECTION_LIMITS.maxStepDepth,
+    );
+
+    const result = applyLevelEditorCommand(
+      base,
+      section("chapter-1", "welcome", "picnic", {
+        idPrefix: "uneven-climb",
+        side: "left",
+        steps: 4,
+        rise: 0.3,
+      }),
+    );
+    const after = applied(result);
+    expect(validateLevelEditorProject(after)).toEqual([]);
+    expect(
+      sectionSteps(chapterLevel(after, "chapter-1"), "uneven-climb"),
+    ).toHaveLength(7);
+  });
+
   it("reports the derived profile so a caller can describe the section", () => {
     const level = chapterLevel(project(), "chapter-1");
     const planned = planLevelEditorSection(level, {
@@ -400,8 +439,9 @@ describe("shared vertical section command", () => {
       applied(
         applyLevelEditorCommand(
           base,
-          section("chapter-1", "welcome", "picnic", {
+          section("chapter-1", "welcome", "woodland-rest", {
             steps: LEVEL_EDITOR_SECTION_LIMITS.maxSteps,
+            side: "left",
           }),
         ),
       ),
@@ -410,13 +450,21 @@ describe("shared vertical section command", () => {
     expect(sectionSteps(largest, "climb")).toHaveLength(
       LEVEL_EDITOR_SECTION_LIMITS.maxSteps * 2 - 1,
     );
+    expect(
+      Math.max(...sectionSteps(largest, "climb").map(platformTop)),
+    ).toBeGreaterThanOrEqual(3);
   });
 
   it("refuses malformed requests before touching the draft", () => {
     const base = project();
     const cases: ReadonlyArray<readonly [string, LevelEditorCommand]> = [
       ["too few steps", section("chapter-1", "welcome", "picnic", { steps: 1 })],
-      ["too many steps", section("chapter-1", "welcome", "picnic", { steps: 7 })],
+      [
+        "too many steps",
+        section("chapter-1", "welcome", "picnic", {
+          steps: LEVEL_EDITOR_SECTION_LIMITS.maxSteps + 1,
+        }),
+      ],
       [
         "fractional steps",
         section("chapter-1", "welcome", "picnic", { steps: 3.5 }),
@@ -488,8 +536,40 @@ describe("shared vertical section command", () => {
     expect(tooLong[0]!.message).toContain("deep landings");
   });
 
-  it("refuses a lane the course already fills", () => {
+  it("bends around local blockers without moving safe endpoint hops", () => {
     const base = project();
+    for (const side of ["left", "right"] as const) {
+      const built = applied(
+        applyLevelEditorCommand(
+          base,
+          section("chapter-2", "party-welcome", "ribbon-rest", {
+            idPrefix: `ribbon-${side}`,
+            side,
+            steps: 6,
+          }),
+        ),
+      );
+      expect(validateLevelEditorProject(built)).toEqual([]);
+      const steps = sectionSteps(
+        chapterLevel(built, "chapter-2"),
+        `ribbon-${side}`,
+      );
+      expect(steps).toHaveLength(11);
+      expect(Math.abs(steps[0]!.center.x)).toBeLessThanOrEqual(7.5);
+      expect(Math.abs(steps.at(-1)!.center.x)).toBeLessThanOrEqual(9.8);
+    }
+
+    const safeSide = applied(
+      applyLevelEditorCommand(
+        base,
+        section("chapter-1", "welcome", "woodland-rest", {
+          side: "left",
+          steps: 6,
+        }),
+      ),
+    );
+    expect(validateLevelEditorProject(safeSide)).toEqual([]);
+
     const issues = rejection(
       base,
       applyLevelEditorCommand(

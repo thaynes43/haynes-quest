@@ -22,15 +22,23 @@ import {
 } from "../../src/shared/editor-project";
 import type { ResolvedAuthoredLevel } from "../../src/shared/authored-level";
 import {
+  edgeEntry,
   edgeLabel,
+  inputToward,
   runtimeStep,
+  sampledPlatform,
   settledState,
   STAGES,
   traverseEdge,
   type AppearanceStage,
   type Simulation,
 } from "./authored-traversal-lib";
-import { platformTop, rotatedGardenProject, sectionSteps } from "./editor-section-fixtures";
+import {
+  platformTop,
+  raisedGardenPicnicProject,
+  rotatedGardenProject,
+  sectionSteps,
+} from "./editor-section-fixtures";
 
 const PREFIX = "climb";
 
@@ -84,6 +92,55 @@ const CASES: readonly SectionCase[] = [
     },
   },
   {
+    title: "an uneven long arch with an added descent landing",
+    chapterId: "chapter-1",
+    routeId: "garden-playground-v2",
+    command: {
+      fromPlatformId: "welcome",
+      toPlatformId: "picnic",
+      pattern: "arch",
+      side: "left",
+      steps: 4,
+    },
+    project: raisedGardenPicnicProject,
+  },
+  {
+    title: "a tall arch from welcome to woodland rest",
+    chapterId: "chapter-1",
+    routeId: "garden-playground-v2",
+    command: {
+      fromPlatformId: "welcome",
+      toPlatformId: "woodland-rest",
+      pattern: "arch",
+      side: "left",
+      steps: 12,
+    },
+  },
+  {
+    title: "a locally routed arch to ribbon rest",
+    chapterId: "chapter-2",
+    routeId: "besties-playground-v2",
+    command: {
+      fromPlatformId: "party-welcome",
+      toPlatformId: "ribbon-rest",
+      pattern: "arch",
+      side: "right",
+      steps: 6,
+    },
+  },
+  {
+    title: "a locally routed zigzag to ribbon rest",
+    chapterId: "chapter-2",
+    routeId: "besties-playground-v2",
+    command: {
+      fromPlatformId: "party-welcome",
+      toPlatformId: "ribbon-rest",
+      pattern: "zigzag",
+      side: "left",
+      steps: 6,
+    },
+  },
+  {
     title: "an arch on a course that runs along x",
     chapterId: "chapter-1",
     routeId: "garden-playground-v2",
@@ -112,6 +169,49 @@ function build(entry: SectionCase): ResolvedAuthoredLevel {
   expect(result.ok, JSON.stringify(result.issues, null, 2)).toBe(true);
   expect(result.issues).toEqual([]);
   return resolveLevelEditorProject(result.project).levels[entry.routeId];
+}
+
+function reachesSweeperSideLane(
+  level: ResolvedAuthoredLevel,
+  stage: AppearanceStage,
+  timeSeconds: number,
+  lateral: -1 | 1,
+): boolean {
+  const connection = level.graph.connections.find(
+    (candidate) =>
+      candidate.from === `${PREFIX}-step-3` && candidate.to === "winding-east",
+  );
+  if (!connection) throw new Error("Missing final winding-east section edge");
+  const state = createObbyState(
+    edgeEntry(level.course, connection, timeSeconds, 0.75, lateral),
+  );
+  const simulation: Simulation = {
+    course: level.course,
+    stage,
+    state,
+    timeSeconds,
+  };
+  runtimeStep(simulation, { moveX: 0, moveY: 0 });
+  if (!state.grounded || state.supportId !== connection.from) return false;
+
+  for (let frame = 0; frame < 180; frame += 1) {
+    const target = sampledPlatform(
+      level.course,
+      connection.to,
+      simulation.timeSeconds + 1 / 60,
+    );
+    const result = runtimeStep(
+      simulation,
+      inputToward(state, {
+        x: target.center.x,
+        z: target.center.z - lateral,
+      }),
+      frame === 0,
+    );
+    if (result.recovered) return false;
+    if (state.grounded && state.supportId === connection.to) return true;
+  }
+  return false;
 }
 
 describe("generated section traversal", () => {
@@ -193,10 +293,25 @@ describe("generated section traversal", () => {
         };
         runtimeStep(simulation, { moveX: 0, moveY: 0 });
         expect(state.checkpointId).toBe(checkpoint.id);
+        const firstStep = steps[0]!;
+        const lastStep = steps.at(-1)!;
+        const source = sampledPlatform(
+          level.course,
+          entry.command.fromPlatformId,
+          0,
+        );
+        const travelAxis =
+          Math.abs(lastStep.center.x - firstStep.center.x) >=
+          Math.abs(lastStep.center.z - firstStep.center.z)
+            ? "x"
+            : "z";
+        const crossAxis = travelAxis === "x" ? "z" : "x";
+        const outward =
+          Math.sign(crestStep.center[crossAxis] - source.center[crossAxis]) || 1;
         const away =
-          crestStep.size.x < crestStep.size.z
-            ? { moveX: Math.sign(crestStep.center.x) || 1, moveY: 0 }
-            : { moveX: 0, moveY: -Math.sign(crestStep.center.z) || 1 };
+          crossAxis === "x"
+            ? { moveX: outward, moveY: 0 }
+            : { moveX: 0, moveY: -outward };
         let recovered = false;
         for (let frame = 0; frame < 900 && !recovered; frame += 1)
           recovered = runtimeStep(simulation, away).recovered;
@@ -209,4 +324,28 @@ describe("generated section traversal", () => {
       });
     }
   }
+
+  it("keeps a real side lane around the winding-east sweeper", () => {
+    for (const pattern of ["arch", "zigzag"] as const) {
+      const level = build({
+        title: `${pattern} into winding-east`,
+        chapterId: "chapter-1",
+        routeId: "garden-playground-v2",
+        command: {
+          fromPlatformId: "picnic",
+          toPlatformId: "winding-east",
+          pattern,
+          side: "right",
+          steps: 2,
+        },
+      });
+      for (const stage of STAGES)
+        for (const timeSeconds of [0, 2.5, 5, 7.5, 10])
+          for (const lateral of [-1, 1] as const)
+            expect(
+              reachesSweeperSideLane(level, stage, timeSeconds, lateral),
+              `${pattern} ${stage} t=${timeSeconds}s lateral=${lateral}`,
+            ).toBe(true);
+    }
+  });
 });

@@ -20,6 +20,8 @@ In **Add → Build a section**, choose a **Raised arch** or **Zigzag ridge**, a 
 
 Try `welcome` to `picnic` in Level 1 with the defaults. The route climbs and descends beside the opening course. Up to twelve climbing steps are available for taller routes; use a longer span to retain broad landings. A short span may not fit the requested number of broad steps; choose a farther rejoin platform or fewer steps. If a lane is occupied, try the other side or different endpoints. The builder shows its platform count and peak height before adding it. If the section does not fit, it explains what to change and leaves the draft intact.
 
+For a taller example, start with a fresh Level 1 and build a **Raised arch** from `welcome` to `woodland-rest`, on the **Left**, with **12** climbing steps and **0.3** rise. Its crest stands 3.6 units above the starting platform, with a checkpoint on every landing. Use a fresh draft for each example so the earlier section does not occupy the same space.
+
 Start with broad landings and an easy climb, add a bend or change in rhythm, and place a safe pause where the player can see the next jump. Mix quiet discovery areas with short obstacle sections. Height alone does not make a course interesting: walk the new route in Playtest, miss a jump deliberately, and check the recovery before adding more.
 
 These sections are side routes. They preserve the template's main progression and gameplay objects. Use **Route** and **Properties** when deliberately changing the required journey. **Top surface Y** shows the standing height of a platform; **Snap → 0.3 units** matches the template's rise between steps.
