@@ -9,6 +9,7 @@ import type {
 import { GameScreen } from "./GameScreen";
 import { MemoryImage } from "./MemoryImage";
 import { api, friendlyError } from "./api";
+import { EditorApp, EditorUnavailable } from "./editor/EditorApp";
 import { installMultiTouchActivation } from "./touch-activation";
 import { installViewportZoomLock } from "./viewport-zoom";
 import "./styles.css";
@@ -65,6 +66,9 @@ function Brand() {
 const initialName = "Demo Adventurer";
 
 function App() {
+  const editorRoute =
+    window.location.pathname === "/editor" ||
+    window.location.pathname.startsWith("/editor/");
   const [session, setSession] = useState<SessionView>();
   const [saves, setSaves] = useState<SaveSummary[]>([]);
   const [page, setPage] = useState<"home" | "setup" | "game">("home");
@@ -139,6 +143,12 @@ function App() {
         </main>
       </div>
     );
+  if (editorRoute)
+    return session.progressMode === "ephemeral" ? (
+      <EditorApp />
+    ) : (
+      <EditorUnavailable />
+    );
   if (page === "game" && save)
     return (
       <GameScreen
@@ -152,6 +162,9 @@ function App() {
       <div className="app-shell fresh-playtest">
         <header className="site-header">
           <Brand />
+          <a className="studio-link" href="/editor">
+            Level editor
+          </a>
           <a className="studio-link" href="/studio/assets/catalog.html">
             Asset catalog <Arrow />
           </a>
