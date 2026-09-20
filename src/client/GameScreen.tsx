@@ -5,9 +5,13 @@ import type {
   MemoryView,
   SaveView,
 } from "../shared/contracts";
-import { createGame } from "../game/index";
+import { authoredRoute, createGame } from "../game/index";
 import { getJoystickVector } from "../game/input";
-import type { GameHandle, GameStatus } from "../game/index";
+import type {
+  AuthoredLevelResolver,
+  GameHandle,
+  GameStatus,
+} from "../game/index";
 import type { GameInputAction } from "../game/types";
 import { api, friendlyError } from "./api";
 
@@ -33,22 +37,43 @@ const friendlyNames: Record<string, string> = {
   trendweaver: "Trendweaver",
 };
 
+/** Every optional prop below exists for the level editor preview. Omitting all
+ *  of them is ordinary private play, byte-for-byte unchanged. */
+export interface GameScreenPreviewProps {
+  /** Resolves the active route's authored document from a frozen snapshot. */
+  authoredLevelResolver?: AuthoredLevelResolver;
+  /** Replaces the label and accessible name of every leave control. */
+  leaveLabel?: string;
+  /** Chapter display names keyed by route ID; labels only, never mechanics. */
+  chapterTitles?: Readonly<Partial<Record<string, string>>>;
+}
+
 export function GameScreen({
   initialSave,
   onLeave,
   ephemeral = false,
+  authoredLevelResolver,
+  leaveLabel,
+  chapterTitles,
 }: {
   initialSave: SaveView;
   onLeave: () => void;
   ephemeral?: boolean;
-}) {
+} & GameScreenPreviewProps) {
   return initialSave.format === "legacy-v1" ? (
-    <LegacyJourney save={initialSave} onLeave={onLeave} />
+    <LegacyJourney
+      save={initialSave}
+      onLeave={onLeave}
+      leaveLabel={leaveLabel}
+    />
   ) : (
     <Adventure
       initialSave={initialSave}
       onLeave={onLeave}
       ephemeral={ephemeral}
+      authoredLevelResolver={authoredLevelResolver}
+      leaveLabel={leaveLabel}
+      chapterTitles={chapterTitles}
     />
   );
 }
@@ -56,9 +81,11 @@ export function GameScreen({
 function LegacyJourney({
   save,
   onLeave,
+  leaveLabel,
 }: {
   save: SaveView;
   onLeave: () => void;
+  leaveLabel?: string;
 }) {
   return (
     <main className="legacy-journey">
@@ -80,7 +107,7 @@ function LegacyJourney({
           ))}
       </div>
       <button className="primary" onClick={onLeave}>
-        Back to your journeys
+        {leaveLabel ?? "Back to your journeys"}
       </button>
     </main>
   );
@@ -111,11 +138,14 @@ function Adventure({
   initialSave,
   onLeave,
   ephemeral = false,
+  authoredLevelResolver,
+  leaveLabel,
+  chapterTitles,
 }: {
   initialSave: SaveView;
   onLeave: () => void;
   ephemeral?: boolean;
-}) {
+} & GameScreenPreviewProps) {
   const container = useRef<HTMLDivElement>(null);
   const game = useRef<GameHandle | undefined>(undefined);
   const [save, setSave] = useState(initialSave);
@@ -141,6 +171,10 @@ function Adventure({
   const [chapterMemoryId, setChapterMemoryId] = useState<string | null>(null);
   const [photoDetail, setPhotoDetail] = useState<string | null>(null);
   const mounted = useRef(true);
+  // Latched so a preview can hand over a new frozen snapshot without tearing
+  // down a running game; the resolver is read again on every level rebuild.
+  const authoredResolver = useRef(authoredLevelResolver);
+  authoredResolver.current = authoredLevelResolver;
   const latest = useRef(initialSave);
   const requestBusy = useRef(false);
   const recoveryRequested = useRef<string | null>(null);
@@ -156,6 +190,9 @@ function Adventure({
       ["revealed", "consumed"].includes(memory.state ?? ""),
   ).length;
   const story = eraStory(level?.eraYear, level);
+  const chapterTitle =
+    (level?.routeId ? chapterTitles?.[level.routeId] : undefined) ??
+    story.title;
   const bundle = save.memories.filter((memory) =>
     level?.memoryIds.includes(memory.id),
   );
@@ -291,6 +328,12 @@ function Adventure({
         game.current = createGame({
           container: container.current,
           save: initialSave,
+          ...(authoredLevelResolver
+            ? {
+                authoredLevelResolver: (routeId: string | undefined) =>
+                  (authoredResolver.current ?? authoredRoute)(routeId),
+              }
+            : {}),
           onAction: act,
           onRefresh: async () =>
             update(await api<SaveView>(`/saves/${initialSave.id}`)),
@@ -476,6 +519,8 @@ function Adventure({
   const cancelActionInput = (action: GameInputAction) =>
     game.current?.cancelInput(action);
   const activePhoto = save.memories.find((memory) => memory.id === photoDetail);
+  const leaveText =
+    leaveLabel ?? (ephemeral ? "Leave playtest" : "Save & leave");
 
   return (
     <div
@@ -487,15 +532,15 @@ function Adventure({
       <header className="game-header" data-quest-ui>
         <button
           className="glass-button leave-button"
-          aria-label={ephemeral ? "Leave playtest" : "Save & leave"}
+          aria-label={leaveText}
           disabled={busy || requestBusy.current}
           onClick={onLeave}
         >
-          ← <span>{ephemeral ? "Leave playtest" : "Save & leave"}</span>
+          ← <span>{leaveText}</span>
         </button>
         <div className="chapter-pill">
           <span>{level?.eraYear ?? "JOURNEY COMPLETE"}</span>
-          <strong>{level ? story.title : "A life remembered"}</strong>
+          <strong>{level ? chapterTitle : "A life remembered"}</strong>
         </div>
         <div className="game-tools">
           <button
@@ -1012,7 +1057,7 @@ function Adventure({
         <Modal
           notice={feedback}
           title={`Welcome to ${level?.eraYear}.`}
-          eyebrow={`AGE ${save.ageYears} · ${story.title.toUpperCase()}`}
+          eyebrow={`AGE ${save.ageYears} · ${chapterTitle.toUpperCase()}`}
           onClose={() => setChapterNotice("")}
         >
           {chapterMemoryId && (
@@ -1109,7 +1154,7 @@ function Adventure({
             ))}
           </div>
           <button className="primary" onClick={onLeave}>
-            {ephemeral ? "Play again" : "Back to your journeys"}
+            {leaveLabel ?? (ephemeral ? "Play again" : "Back to your journeys")}
           </button>
         </Modal>
       )}

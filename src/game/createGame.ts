@@ -151,7 +151,8 @@ function facingDifference(from: number, to: number): number {
 export function createGame(options: CreateGameOptions): GameHandle {
   requireAdventure(options.save);
   let save = options.save;
-  let level = createLevelLayout(save);
+  const resolveAuthored = options.authoredLevelResolver;
+  let level = createLevelLayout(save, resolveAuthored);
   let retainedActiveLevel = requireAdventure(save).activeLevel;
   let checkpoint = checkpointForSave(save, level);
   let controller = createObbyState(checkpoint);
@@ -598,7 +599,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       : nextSave;
     const nextLevel = retainCompletedWorld
       ? level
-      : createLevelLayout(nextSave);
+      : createLevelLayout(nextSave, resolveAuthored);
     const nextMemoryCheckpoint = memoryCheckpointForSave(nextSave, nextLevel);
     const nextCheckpoint = retainCompletedWorld
       ? checkpoint

@@ -4,6 +4,11 @@ export { EnemySimulation, bossIsActive, findAttackTarget } from "./combat";
 export { getAvatarProportions } from "./controller";
 export { getJoystickVector, GameInputState } from "./input";
 export { checkpointForSave, createLevelLayout } from "./level";
+export { authoredLevelResolverFor, authoredRoute } from "./authored-layout";
+export type {
+  AuthoredLevelRegistry,
+  AuthoredLevelResolver,
+} from "./authored-layout";
 export type {
   AvatarProportions,
   AttackAttemptOutcome,

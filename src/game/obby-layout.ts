@@ -1,6 +1,6 @@
 import type { ObbyRouteId } from "../shared/parody-catalog";
 import type { ObbyCourse, ObbyPlatform } from "./obby";
-import { authoredRoute } from "./authored-layout";
+import { authoredRoute, type AuthoredLevelResolver } from "./authored-layout";
 
 function island(
   id: string,
@@ -16,8 +16,11 @@ function island(
 }
 
 /** Lead-authored generous main routes. The sampled boxes also drive their visible surfaces. */
-export function createObbyCourse(routeId: ObbyRouteId): ObbyCourse {
-  const authored = authoredRoute(routeId);
+export function createObbyCourse(
+  routeId: ObbyRouteId,
+  resolver: AuthoredLevelResolver = authoredRoute,
+): ObbyCourse {
+  const authored = resolver(routeId);
   if (authored) return authored.course;
   const checkpoints = [
     { id: "start", position: { x: 0, y: 0, z: 1 }, triggerRadius: 1.25 },
