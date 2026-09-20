@@ -292,6 +292,36 @@ describe("shared level editor projects", () => {
     );
   });
 
+  it("resolves an added optional v2 platform without topology edits", () => {
+    const template = project();
+    const original = chapter(template, "chapter-1").level;
+    const added = applied(
+      applyLevelEditorCommand(template, {
+        type: "piece.add",
+        chapterId: "chapter-1",
+        piece: {
+          type: "platform",
+          id: "optional-platform",
+          center: { x: 24, y: 0.3, z: -10 },
+          size: { x: 4, y: 0.6, z: 4 },
+        },
+      }),
+    );
+    const updated = chapter(added.project, "chapter-1").level;
+
+    expect(added.issues).toEqual([]);
+    expect(updated.connections).toEqual(original.connections);
+    expect(updated.mainPath).toEqual(original.mainPath);
+    expect(updated.branches).toEqual(original.branches);
+
+    const preview = resolveLevelEditorProject(added.project);
+    expect(
+      preview.levels["garden-playground-v2"].course.platforms.some(
+        ({ id }) => id === "optional-platform",
+      ),
+    ).toBe(true);
+  });
+
   it("carries supported checkpoints, anchors and encounter arenas with platform edits", () => {
     const template = project();
     const before = chapter(template, "chapter-1").level;

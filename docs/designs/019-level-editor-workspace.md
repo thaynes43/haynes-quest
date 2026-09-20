@@ -39,3 +39,9 @@ Below desktop width, collapse rails into **Objects**, **Properties**, **Checks**
 ## Verification
 
 Test both untouched template documents resolving identically to current shipped levels. Use actual UI editing to change a platform/anchor in a valid way, undo/redo it, export/import, reload the draft and see that placement in the real playtest inspection. Test malformed import, semantic errors, storage failure, scene disposal, pointer interaction, preview snapshot isolation and return-to-editor preservation. Complete both chapters through the shared preview path using normal controls and retain the ordinary private playtest as a regression boundary.
+
+## Optional geometry and vertical building (PLAN013)
+
+Tom's subsequent floating-platform feedback corrects the MVP's blanket route-membership restriction. In v2 documents, adding a static or moving platform does not require listing it in Main route or Branches. It is ordinary visible, solid geometry and can be used for exploration or decoration. Explicit connections still receive jump/walk safety checks. Gameplay anchors retain route membership and required progression retains main-route ordering, so the change does not allow stranding required memories or encounters. V1 documents keep their original validation semantics.
+
+Broad climbing platforms use the existing jump mechanics and conservative connection limits. Reusable section tooling will add ordinary editable geometry and connections in one undo transaction through the same command contract used by agents. Optional geometry does not guarantee reachability or a collision-free camera; actual Playtest remains part of building.

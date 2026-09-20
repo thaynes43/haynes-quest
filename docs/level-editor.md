@@ -16,11 +16,13 @@ To add a course piece, use **Add** in the left panel. Platforms, moving platform
 
 ## Connect the course
 
-Geometry and route connections work together. In **Route**, connect platforms with **From**, **To** and **Mode**, then update **Main route** or **Branches** to include the intended path. **Safe landing** identifies a catch platform below a jump.
+Floating platforms are supported. Add a **Platform** and raise its **Y** in Properties, or drag the green handle. Platform Y is its center; the standing surface is Y plus half its Height. Extra platforms can stay outside the named routes and still appear as solid platforms in Playtest.
 
-Validation checks whether jumps are reachable, landing areas are clear, checkpoints are supported, and required gameplay objects can be reached. It also checks the room needed for the Besties boss routine. A draft can stay unfinished while you edit; **Playtest** requires both levels to pass.
+Use **Route** for the intended course: connect platforms with **From**, **To** and **Mode**, then update **Main route** or **Branches**. Gameplay objects still need a route; required equipment, memories and fights belong on the main route in progression order. **Safe landing** identifies a catch platform below a jump.
 
-Select the **issues to fix** button to find a problem and select its object. If moving a platform breaks a jump, move the adjoining platform or revise the route. Validation deliberately keeps jumps within the game's forgiving course limits.
+Validation checks declared jump distances and rises, landing clearance, checkpoint support and required gameplay routes. Optional geometry is not automatically checked for a path to it. It also checks the room needed for the Besties boss routine. A draft can stay unfinished while you edit; **Playtest** requires both levels to pass.
+
+Select the **issues to fix** button to find a problem and select its object. If moving a platform breaks a jump, move the adjoining platform or revise the route. Declared jumps allow up to 0.35 units of height change and 1.4 units of gap. Build a climb from several broad steps; a platform directly above another can block the jump with its underside. Leave space above the player and test both climbing and returning.
 
 The Besties encounter needs a flat, clear court for its scripted attacks. These checks explain edits that would break that routine:
 
