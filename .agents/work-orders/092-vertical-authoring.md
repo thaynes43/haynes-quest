@@ -24,4 +24,6 @@ Native `vertical_runtime_audit` owns the minimal v2 validator correction and tar
 
 ## Evidence
 
-In progress. No gameplay artwork, family media, normal Quest deployment or dev-env restart is authorized by this work order.
+The optional-platform correction is committed in `baa9617`; 50 targeted tests, typecheck and lint pass. Chromium baseline `test-results/vertical-authoring/optional-baseline/report.json` proves a visibly added platform at center `(24,3,-10)` resolves into normal preview collisions with unchanged route arrays and zero issues, and survives return/reload. Strict docs build populated the local static asset site; final rerun reports no HTTP/page/console errors. Source/UI/core integration and final candidate verification remain in progress.
+
+WO093 owns spatial CLI inspection; WO094 owns shared section construction and controller tests. Root owns SectionBuilder UI and top-surface/snap improvements. Separate read-only release preparation is saved at `/home/dev/work/haynes-ops-0919-234521/.private/quest-vertical-release-prep/`; capture a fresh protected baseline at release time. No gameplay artwork, family media, normal Quest deployment or dev-env restart is authorized by this work order.
