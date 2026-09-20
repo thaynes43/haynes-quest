@@ -1,6 +1,6 @@
 # WO094: Shared vertical section command
 
-- **Status:** In progress — core integrated; review corrections in progress
+- **Status:** Completed
 - **Dispatch:** Explicitly authorized Opus 5 xhigh
 - **Owned paths:** `src/shared/editor-project.ts`, NEW `src/shared/editor-sections.ts`, NEW targeted tests under `tests/game/` for section commands/controller traversal. Do not modify authored-level.ts, existing editor-project tests, CLI, UI, documentation, published level JSON, or runtime physics.
 
@@ -13,4 +13,9 @@ Work in your own task worktree. Commit owned files only, no PR/merge. Report the
 
 ## Review corrections and taller sections
 
-Core `508e065` is integrated as `119afbd`. Native Sol `vertical_runtime_audit` owns the final planner correction in the coordinator worktree: increase descent landing count when needed for long spans with differing endpoint heights; handle blockers locally along the lane rather than pushing both endpoints because of a distant wide deck. Enforce actual traversal on the reported welcome-to-rest cases. The final contract raises maximum climbing steps from six to twelve, default four unchanged, to support a representative peak of at least three units. Existing object/route/checkpoint budgets and jump physics remain unchanged. Root owns UI/docs; regression tests from WO093/surface review are integrated separately.
+Core `508e065` is integrated as `119afbd`. Native Sol `vertical_runtime_audit` completed the final planner correction in the coordinator worktree: increase descent landing count when needed for long spans with differing endpoint heights; handle blockers locally along the lane rather than pushing both endpoints because of a distant wide deck. Actual controller traversal passes on the reported welcome-to-rest cases. The final contract raises maximum climbing steps from six to twelve, default four unchanged, to support a representative peak of at least three units. Existing object/route/checkpoint budgets and jump physics remain unchanged. Root integrated the UI/docs and the WO093/surface-review regression tests.
+
+
+## Final intake
+
+Delivered in app PR54 and verified under [WO092](092-vertical-authoring.md). The release index and archived reports there supersede the temporary worktree/report paths in this dispatch. All owned implementation is integrated; no work remains in the original agent worktree.

@@ -1,6 +1,6 @@
 # PLAN013: Floating platforms and vertical course building
 
-- **Status:** In progress
+- **Status:** Completed, September 20, 2026
 - **Depends on:** Completed PLAN012
 - **Requirements/designs:** PRD002 R-03/R-04/R-06; DESIGN011/016/019; ADR003
 
@@ -28,4 +28,8 @@ Screenshot-equivalent added floating geometry can preview. Required objective sa
 
 ## Result
 
-In progress.
+[App PR54](https://github.com/thaynes43/haynes-quest/pull/54) merged as `c7f034af16ff39f0007d76697569db382a83d562`. [Ops PR2992](https://github.com/thaynes43/haynes-ops/pull/2992) deployed it through Flux as `275b0f8d087a87cd3d11b12e019c21bce6470071`. The exact image and served assets match the verified candidate; normal Quest and dev-env remained unchanged.
+
+757 CI tests pass, including PostgreSQL, alongside all required checks. Local browser coverage passes the new vertical flow, all 18 editor scenarios and three authoring groups. Hosted Chromium repeats optional-platform persistence/runtime resolution, section undo/redo, all eight generated jumps, deliberate crest recovery, and phone/tablet authoring controls with no page, console or HTTP errors. The separate 12-step example creates 23 platforms/checkpoints and reaches 3.6 units, with exact preview geometry. Controller tests cover both avatar stages and preserved original routes. Physical Safari acceptance remains a device playtest.
+
+[WO092](../../work-orders/092-vertical-authoring.md) and the [release index](../../evidence/vertical-authoring-release.json) retain exact evidence. The local fixture and browser contexts are closed; the scoped activity is ended. No new assets, family media or gameplay physics changes were made.

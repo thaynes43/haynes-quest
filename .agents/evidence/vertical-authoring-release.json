@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-20T05:00:00Z",
+  "status": "deployed-and-browser-verified",
+  "source": {
+    "implementationCommit": "cf038e9d55b77280cafc8057338cd7fdd022e11f",
+    "mainCommit": "c7f034af16ff39f0007d76697569db382a83d562",
+    "treeMatchedReviewedImplementation": true,
+    "appPullRequest": {
+      "number": 54,
+      "url": "https://github.com/thaynes43/haynes-quest/pull/54",
+      "state": "MERGED"
+    }
+  },
+  "publication": {
+    "applicationRunId": 35490089572,
+    "documentationRunId": 35490089506,
+    "workflowsSucceeded": true,
+    "digest": "sha256:798d34aed190766547b2bc19e3cd8f398b45bf2bc35e1c0ed09888013fb48569",
+    "digestRecomputedFromManifestBytes": true,
+    "manifestBytes": 857,
+    "attestationCount": 1,
+    "attestationClaim": "Presence and publication only; no independent cryptographic verification.",
+    "image": "ghcr.io/thaynes43/haynes-quest:sha-c7f034af16ff39f0007d76697569db382a83d562@sha256:798d34aed190766547b2bc19e3cd8f398b45bf2bc35e1c0ed09888013fb48569"
+  },
+  "ops": {
+    "pullRequest": {
+      "number": 2992,
+      "url": "https://github.com/thaynes43/haynes-ops/pull/2992",
+      "state": "MERGED",
+      "allNineChecksPassed": true,
+      "sourceCommit": "780634126131fe79d202d3568a6f6c3049ed5d6a"
+    },
+    "mergeCommit": "275b0f8d087a87cd3d11b12e019c21bce6470071",
+    "changedFiles": [
+      "kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml"
+    ],
+    "changeShape": "two source comments and playtest image tag only"
+  },
+  "flux": {
+    "sourceRevision": "main@sha1:275b0f8d087a87cd3d11b12e019c21bce6470071",
+    "kustomization": "frontend/haynes-quest",
+    "lastAppliedRevision": "main@sha1:275b0f8d087a87cd3d11b12e019c21bce6470071",
+    "ready": true,
+    "targetedReconcile": true
+  },
+  "deployment": {
+    "helmRelease": "frontend/haynes-quest-playtest",
+    "helmReleaseUid": "117b9801-8cf3-49b2-8f9b-7799fd4c770c",
+    "generation": 13,
+    "observedGeneration": 13,
+    "releaseVersion": 13,
+    "releaseStatus": "deployed",
+    "lastDeployed": "2026-09-20T04:58:37Z",
+    "deploymentUid": "d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b",
+    "pod": {
+      "name": "haynes-quest-playtest-588675bc44-8qhqq",
+      "uid": "f62aebd1-07a9-43b9-b0b8-b55e38529469",
+      "node": "talosw01",
+      "phase": "Running",
+      "ready": true,
+      "restartCount": 0,
+      "startedAt": "2026-09-20T04:58:38Z"
+    },
+    "imageMatchesPublication": true
+  },
+  "assets": {
+    "index": {
+      "path": "/",
+      "status": 200,
+      "bytes": 594,
+      "sha256": "5b289b7c999fda7c351fcfb51cdf7cd0e8290005716ef86a16c503ee7d1c0206"
+    },
+    "javascript": {
+      "path": "/assets/index-D0_JVj6_.js",
+      "bytes": 1321491,
+      "sha256": "cbb0220284bb2633e650fc3fef4887eaf155398517b7de4f977691852705a9c6"
+    },
+    "css": {
+      "path": "/assets/index-Bs8n_p7X.css",
+      "bytes": 54680,
+      "sha256": "7f7187a1c7e018e5cc834c268093cf954e129a136af81f6cac18babc6edf4de9"
+    },
+    "exactCandidateMatch": true,
+    "editor": {
+      "path": "/editor",
+      "status": 200,
+      "documentMatchesIndex": true,
+      "referencesExactCandidateAssets": true
+    }
+  },
+  "guide": {
+    "path": "/studio/level-editor.html",
+    "status": 200,
+    "sha256": "14692a97237583cfb39f658a7164d2461a26f62fc953cd03aba95f46d936a266",
+    "markers": [
+      "Build a climbing section",
+      "woodland-rest",
+      "section.add",
+      "sectionLimits"
+    ],
+    "tallExample": {
+      "pattern": "Raised arch",
+      "from": "welcome",
+      "to": "woodland-rest",
+      "side": "Left",
+      "steps": 12,
+      "rise": 0.3,
+      "crestHeight": 3.6
+    }
+  },
+  "protected": {
+    "normalQuest": {
+      "unchangedFromBaseline": true,
+      "deploymentUid": "c17ee749-129e-4059-8091-ba167639604e",
+      "generation": 3,
+      "podName": "haynes-quest-7d9b698574-nds6g",
+      "podUid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+      "restartCount": 0,
+      "image": "ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37"
+    },
+    "devEnv": {
+      "unchangedFromBaseline": true,
+      "deploymentUid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+      "generation": 108,
+      "podName": "dev-env-66957b4b6d-zgplf",
+      "podUid": "1f601d73-df22-4602-89f4-911d27505131",
+      "allContainersReady": true,
+      "allRestartCounts": 0,
+      "imageDigest": "sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93"
+    }
+  },
+  "activity": {
+    "id": "act-045405-291465",
+    "scope": [
+      "frontend",
+      "haynes-quest-playtest"
+    ],
+    "startedAt": "2026-09-20T04:54:05Z",
+    "ended": true,
+    "activeDeclarationsAfterRelease": 0
+  },
+  "evidencePaths": {
+    "root": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release",
+    "procedure": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/README.md",
+    "helperReview": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/helper-review.md",
+    "releaseRecord": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/vertical-release.json",
+    "artifactAudit": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/artifact-audit.json",
+    "candidateAssets": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/candidate-assets.json",
+    "baseline": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/baseline.json",
+    "publication": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/publication.json",
+    "opsChecks": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/ops-pr-checks.log",
+    "fluxStatus": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/flux-status.log",
+    "rolloutAudit": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/audit-rollout.log",
+    "activityStart": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/activity-start.log",
+    "activityEnd": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/evidence/activity-end.log",
+    "browserSummary": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/hosted-browser/vertical-browser-summary.md",
+    "hostedBrowserReport": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a/ops-release/hosted-browser/report.json"
+  },
+  "archive": "/home/dev/artifacts/haynes-quest/vertical-authoring-20260920-c7f034a",
+  "verification": {
+    "localTests": {
+      "passed": 745,
+      "skipped": 12,
+      "skipReason": "Database cases run in CI"
+    },
+    "ciTests": {
+      "passed": 757,
+      "skipped": 0,
+      "includesPostgres": 12,
+      "applicationRunId": 35489716793
+    },
+    "requiredChecks": [
+      "typecheck",
+      "lint",
+      "all four immutable level documents",
+      "production build",
+      "strict documentation/media build",
+      "container build"
+    ],
+    "controller": [
+      "infant and child traversal of generated and preserved routes",
+      "3.6-unit crest",
+      "uneven endpoints",
+      "rotated courses",
+      "checkpoint recovery",
+      "intentional sweeper side lanes"
+    ],
+    "localEditorScenarios": 18,
+    "localAuthoringGroups": 3,
+    "hostedNormalInputEdges": 8,
+    "hostedCheckpointRecovery": "arch-checkpoint-4",
+    "responsiveViewports": [
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 834,
+        "height": 1112
+      }
+    ],
+    "browser": "Chromium 153",
+    "pageErrors": [],
+    "consoleErrors": [],
+    "responseErrors": []
+  },
+  "reports": [
+    {
+      "path": "test-results/vertical-authoring/vertical-final/report.json",
+      "sha256": "1fac1f4676b98319216c34bff3f0838fc8e97718ab425e35b50f8fb8441dba07"
+    },
+    {
+      "path": "test-results/vertical-authoring/vertical-hosted/report.json",
+      "sha256": "9319624ea7fa371b1bbaffba0d4900c41955efbda4d5fcdd935914881f67e647"
+    },
+    {
+      "path": "test-results/vertical-authoring/tall-visual/report.json",
+      "sha256": "42adf10d37790c1421bb6b46cdee57c39f43ca804483021284da1b289dc5840c"
+    },
+    {
+      "path": "test-results/level-editor/vertical-final-regression/report.json",
+      "sha256": "7f7f1353c9475cb6bfe5feff322171b3a51f9aeaabce4471ee589c748091e09f"
+    },
+    {
+      "path": "test-results/editor-authoring/vertical-final-regression/report.json",
+      "sha256": "e33a68bc50d2dce4e663285a871092f9b13d5ea301afa279c0c465266137d0e5"
+    },
+    {
+      "path": ".private/vertical-core-final-review.md",
+      "sha256": "a398f78b4e5c947a96db91614122e23a2ecf83507a76a0cf66b318be8fa3fd31"
+    },
+    {
+      "path": ".private/vertical-browser-summary.md",
+      "sha256": "0274dcbd62140a6622a867117cbb66184782bf3c1f3b583fcc84dce0b617a98f"
+    },
+    {
+      "path": ".private/app-ci-verify.log",
+      "sha256": "39ab9ea930799dbaa3b150ed8cd777b56b6f1e3c025862f272a23e56a22b676d"
+    },
+    {
+      "path": ".private/tall-garden-project.json",
+      "sha256": "557db8725251f1f2824f5d15ac1ad80bad94afdfd259e0d652a1e96d465d93f3"
+    }
+  ],
+  "cleanup": {
+    "activityEnded": true,
+    "browserContextsClosed": true,
+    "localFixtureStopped": true,
+    "port4430ClosedIPv4AndIPv6": true,
+    "separateCliWorktreesReaped": true,
+    "noBlenderOrAudioOwnership": true
+  },
+  "limitations": [
+    "Chromium emulation does not establish physical Safari acceptance or hardware frame-time performance.",
+    "Optional geometry is not automatically promised reachable; explicit connections and required objective safety remain validated.",
+    "The winding-east deck retains its intentional sweeper; verified side lanes are described in the core review."
+  ],
+  "opsArchiveManifestSha256": "229c33e0107e0d1b8257c61d578a4c00c5a085ea797db994cdf228101f898fee"
+}
