@@ -885,7 +885,7 @@ export function EditorWorkspace({
           selection={cursor.object}
           onSelect={selectAndFrame}
           onAdd={addPiece}
-              sectionBuilder={<SectionBuilder key={cursor.chapterId} document={document} selectedPlatformId={cursor.object?.type === "piece" ? cursor.object.id : undefined} onBuild={addSection} />}
+              sectionBuilder={<SectionBuilder key={cursor.chapterId} document={document} selectedPlatformId={cursor.object?.type === "piece" ? cursor.object.id : undefined} onBuild={addSection} onSelectStart={(id) => selectAndFrame({ type: "piece", id })} />}
         />
         <EditorViewport
           ref={viewport}

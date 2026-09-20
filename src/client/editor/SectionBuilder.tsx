@@ -12,10 +12,12 @@ export function SectionBuilder({
   document,
   selectedPlatformId,
   onBuild,
+  onSelectStart,
 }: {
   document: AuthoredLevelDocument;
   selectedPlatformId?: string;
   onBuild(options: SectionOptions): void;
+  onSelectStart(id: string): void;
 }) {
   const platforms = useMemo(
     () =>
@@ -51,6 +53,7 @@ export function SectionBuilder({
 
   const changeStart = (id: string) => {
     setFrom(id);
+    onSelectStart(id);
     const next = platforms.slice(platforms.indexOf(id) + 1);
     setTo(next[Math.min(6, next.length - 1)] ?? "");
   };
