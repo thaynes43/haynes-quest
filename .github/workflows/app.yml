@@ -34,6 +34,7 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm test
+      - run: pnpm levels:validate
       - run: pnpm build
   container-check:
     if: github.event_name == 'pull_request'

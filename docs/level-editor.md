@@ -35,3 +35,45 @@ Reloading the page ends that test and reopens the saved draft. Playtest progress
 A failed import leaves your current project intact. A valid project with unfinished route checks opens for editing. If browser storage is unavailable, export before closing the page.
 
 The MVP includes the current two chapters and their existing game assets. New campaign structures, additional mechanics, personal photos and shared publishing will build on this format later.
+
+## Work with an agent
+
+Agents use the same project JSON and validation as the browser editor. From the repository, create and inspect a template:
+
+```bash
+pnpm --silent levels:editor template garden-remix "Garden remix" > project.json
+pnpm --silent levels:editor inspect project.json
+pnpm --silent levels:editor schema commands > commands.schema.json
+```
+
+Ask the agent to produce a command batch using that schema. Set `expectedRevision` to the revision reported by `inspect`. A batch either applies in full or leaves the project unchanged. For example:
+
+```json
+{
+  "expectedRevision": 0,
+  "commands": [
+    { "type": "project.rename", "name": "Garden remix" },
+    {
+      "type": "anchor.move",
+      "chapterId": "chapter-1",
+      "slot": "friendly.friendly-1",
+      "position": { "x": -2.75, "y": 0, "z": 1 }
+    }
+  ]
+}
+```
+
+Save the batch as `commands.json`. Apply it to a new file, inspect its result, and validate before importing it into the browser:
+
+```bash
+pnpm --silent levels:editor apply project.json commands.json > result.json
+jq -e 'select(.ok == true) | .project' result.json > revised-project.json
+pnpm --silent levels:editor validate revised-project.json
+pnpm --silent levels:editor export revised-project.json > import-this-project.json
+```
+
+The example uses `jq` to extract the updated project from the result envelope. `ok: true` means the commands applied; `issues` may still describe an unfinished route. Validation must return `ok: true` before Playtest. If a command fails, use the returned issue path and code to repair it and retry against the unchanged revision.
+
+Commands cover names, adding, moving, updating, duplicating and removing pieces, gameplay anchors, encounter arenas, connections, main routes and branches. Platform moves carry supported objects by default; set `carryAttached: false` only for an intentional independent move. `schema project` describes the complete portable document. Keep array order intact, including the `pieces` array: checkpoint recovery uses its ordering.
+
+Give a building agent the project, the command schema, and a concrete change such as “widen the early platforms while keeping every jump valid.” Have it apply small batches, read validation issues, and export the result. New character models, encounter behavior and physics still belong in the asset and game-mechanics workflows.
