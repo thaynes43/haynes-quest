@@ -404,6 +404,97 @@ describe('POST /api/editor/playtests', () => {
       });
     });
 
+    it('retains two frozen previews as independently playable saves', async () => {
+      const { app } = makeApp();
+      const cookie = await startSession(app);
+      const firstProject = parseLevelEditorProject({
+        ...editedProject(-0.5),
+        name: 'Left garden run',
+      });
+      const secondProject = parseLevelEditorProject({
+        ...editedProject(0.75),
+        name: 'Right garden run',
+      });
+
+      const firstResponse = await preview(app, cookie, {
+        project: firstProject,
+        chapterId: 'chapter-1',
+        scope: 'adventure',
+      });
+      const secondResponse = await preview(app, cookie, {
+        project: secondProject,
+        chapterId: 'chapter-1',
+        scope: 'adventure',
+      });
+      expect(firstResponse.status).toBe(201);
+      expect(secondResponse.status).toBe(201);
+      const first = await firstResponse.json();
+      const second = await secondResponse.json();
+
+      expect(first.save.id).not.toBe(second.save.id);
+      expect(first.project).toEqual(JSON.parse(JSON.stringify(firstProject)));
+      expect(second.project).toEqual(JSON.parse(JSON.stringify(secondProject)));
+      expect(first.project.name).toBe('Left garden run');
+      expect(second.project.name).toBe('Right garden run');
+      expect(first.project.chapters[0].level).not.toEqual(second.project.chapters[0].level);
+
+      const firstPickup = first.save.adventure.activeLevel.pickups.find(
+        (entry: { kind: string }) => entry.kind === 'attack-tool',
+      );
+      const secondPickup = second.save.adventure.activeLevel.pickups.find(
+        (entry: { kind: string }) => entry.kind === 'guard-tool',
+      );
+
+      const firstAction = await app.request(
+        `/api/saves/${first.save.id}/actions`,
+        mutation(cookie, {
+          actionId: randomUUID(),
+          expectedRevision: first.save.revision,
+          action: {
+            type: 'collect-equipment',
+            levelId: first.save.adventure.currentLevelId,
+            pickupId: firstPickup.pickupId,
+          },
+        }),
+      );
+      expect(firstAction.status).toBe(200);
+
+      const secondAction = await app.request(
+        `/api/saves/${second.save.id}/actions`,
+        mutation(cookie, {
+          actionId: randomUUID(),
+          expectedRevision: second.save.revision,
+          action: {
+            type: 'collect-equipment',
+            levelId: second.save.adventure.currentLevelId,
+            pickupId: secondPickup.pickupId,
+          },
+        }),
+      );
+      expect(secondAction.status).toBe(200);
+
+      const [firstAfter, secondAfter] = await Promise.all([
+        app.request(`/api/saves/${first.save.id}`, { headers: { cookie } }),
+        app.request(`/api/saves/${second.save.id}`, { headers: { cookie } }),
+      ]);
+      expect(firstAfter.status).toBe(200);
+      expect(secondAfter.status).toBe(200);
+      const firstSave = await firstAfter.json();
+      const secondSave = await secondAfter.json();
+      expect(firstSave.revision).toBe(first.save.revision + 1);
+      expect(secondSave.revision).toBe(second.save.revision + 1);
+      expect(
+        firstSave.adventure.inventory
+          .filter((entry: { collected: boolean }) => entry.collected)
+          .map((entry: { kind: string }) => entry.kind),
+      ).toEqual(['attack-tool']);
+      expect(
+        secondSave.adventure.inventory
+          .filter((entry: { collected: boolean }) => entry.collected)
+          .map((entry: { kind: string }) => entry.kind),
+      ).toEqual(['guard-tool']);
+    });
+
     it('fingerprints edits apart and identical submissions together', async () => {
       const { app } = makeApp();
       const cookie = await startSession(app);
@@ -413,24 +504,32 @@ describe('POST /api/editor/playtests', () => {
         chapterId: 'chapter-1' as const,
         scope: 'adventure' as const,
       };
-      const [first, second, renamed] = await Promise.all([
-        preview(app, cookie, request),
-        preview(app, cookie, request),
-        preview(app, cookie, {
-          ...request,
-          project: parseLevelEditorProject({ ...project, name: 'Ivy garden run' }),
-        }),
-      ]);
+      const first = await preview(app, cookie, request);
+      const second = await preview(app, cookie, request);
+      const renamed = await preview(app, cookie, {
+        ...request,
+        project: parseLevelEditorProject({ ...project, name: 'Ivy garden run' }),
+      });
       const bodies = await Promise.all([first.json(), second.json(), renamed.json()]);
 
       expect(bodies[0].fingerprint).toBe(bodies[1].fingerprint);
       expect(bodies[2].fingerprint).not.toBe(bodies[0].fingerprint);
-      // Separate previews are separate saves, so two drafts can run side by side.
-      expect(bodies[0].save.id).not.toBe(bodies[1].save.id);
       expect(bodies[2].project.name).toBe('Ivy garden run');
       expect(bodies[2].project.chapters[0].level).toEqual(
         bodies[0].project.chapters[0].level,
       );
+
+      // Fingerprints describe submitted snapshots, not save retention. The
+      // intentional two-run owner cap expires the oldest save on request three.
+      const [expired, retainedSecond, retainedRenamed] = await Promise.all([
+        app.request(`/api/saves/${bodies[0].save.id}`, { headers: { cookie } }),
+        app.request(`/api/saves/${bodies[1].save.id}`, { headers: { cookie } }),
+        app.request(`/api/saves/${bodies[2].save.id}`, { headers: { cookie } }),
+      ]);
+      expect(expired.status).toBe(404);
+      expect((await expired.json()).error.code).toBe('SAVE_NOT_FOUND');
+      expect(retainedSecond.status).toBe(200);
+      expect(retainedRenamed.status).toBe(200);
     });
 
     it('keeps edited chapter names without changing the roster', async () => {
