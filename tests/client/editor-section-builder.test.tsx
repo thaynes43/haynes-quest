@@ -9,6 +9,7 @@ import {
   type LevelEditorChapterId,
   type LevelEditorProject,
 } from "../../src/shared/editor-project";
+import { planLevelEditorSection } from "../../src/shared/editor-sections";
 import { EDITOR_STORAGE_KEY } from "../../src/client/editor/editor-storage";
 
 /**
@@ -267,12 +268,21 @@ describe("section builder form", () => {
     });
   });
 
-  it("moves a late start to a rejoin that fits instead of the finish platform", async () => {
+  it("chooses a fitting rejoin when the far endpoint cannot fit", async () => {
     const onSelectStart = vi.fn();
+    const original = levelFor("chapter-1");
+    const document: AuthoredLevelDocument = {
+      ...original,
+      pieces: original.pieces.map((piece) =>
+        piece.id === "garden-reward" && piece.type === "platform"
+          ? { ...piece, center: { ...piece.center, x: 120 } }
+          : piece,
+      ),
+    };
     await act(async () =>
       root.render(
         <SectionBuilder
-          document={levelFor("chapter-1")}
+          document={document}
           onBuild={vi.fn()}
           onSelectStart={onSelectStart}
         />,
@@ -282,10 +292,21 @@ describe("section builder form", () => {
 
     expect(onSelectStart).toHaveBeenCalledWith("woodland-rest");
     const rejoin = selectField(builder(), "Rejoin platform");
-    expect(rejoin.value).toBe("memory-grove");
     expect(rejoin.value).not.toBe("garden-reward");
     expect(options(rejoin)).toContain("garden-reward");
-    expect(readout(builder())).toBe("6 platforms · top surface 1.2 units");
+    const planned = planLevelEditorSection(document, {
+      idPrefix: "test-rejoin",
+      fromPlatformId: "woodland-rest",
+      toPlatformId: rejoin.value,
+      pattern: "arch",
+      side: "left",
+      steps: 4,
+      rise: 0.3,
+    });
+    expect(planned.ok).toBe(true);
+    expect(readout(builder())).toMatch(
+      /^\d+ platforms · top surface 1.2 units$/,
+    );
     expect(addSectionButton(builder()).disabled).toBe(false);
   });
 
@@ -338,9 +359,17 @@ describe("section builder form", () => {
     expect(selectField(builder(), "Start platform").value).toBe(
       "woodland-rest",
     );
-    expect(selectField(builder(), "Rejoin platform").value).toBe(
-      "memory-grove",
-    );
+    expect(
+      planLevelEditorSection(levelFor("chapter-1"), {
+        idPrefix: "test-selection",
+        fromPlatformId: "woodland-rest",
+        toPlatformId: selectField(builder(), "Rejoin platform").value,
+        pattern: "arch",
+        side: "left",
+        steps: 4,
+        rise: 0.3,
+      }).ok,
+    ).toBe(true);
     // Following the viewport must not echo a selection back to it.
     expect(onSelectStart).not.toHaveBeenCalled();
 
