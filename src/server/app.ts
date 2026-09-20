@@ -19,9 +19,15 @@ import { fixtureSvg, type PrivateMediaProvider } from './media.js';
 import { FixturePhotoSource } from './photos/fixture.js';
 import { createPreview } from './photos/setup.js';
 import type { JourneyPhotoSource } from './photos/source.js';
+import {
+  EDITOR_PLAYTEST_MAX_BODY_BYTES,
+  editorChapterNumber,
+  prepareEditorPreview,
+} from './editor-preview.js';
 import { enforceMutationSecurity, FixtureSessions, RequestLimiter } from './security.js';
 import {
   createSaveSchema,
+  editorPlaytestSchema,
   finishSchema,
   gameplayActionRequestSchema,
   parseJson,
@@ -74,6 +80,7 @@ const DIAGNOSTIC_ROUTES = new Set([
   '/readyz',
   '/api/session',
   '/api/playtest/start',
+  '/api/editor/playtests',
   '/api/fixture-media/:memoryId',
   '/api/saves',
   '/api/setup/preview',
@@ -148,30 +155,69 @@ export function createApp(options: AppOptions): Hono {
     });
 
     if (options.ephemeralPlaytest) {
+      // One ordinary ephemeral playtest save, used by both the plain private
+      // playtest and the editor preview so neither hand-edits save state.
+      const startFictionalChapter = async (
+        playerId: string,
+        chapter: 1 | 2,
+      ): Promise<SaveRecord> => {
+        const startedAt = now();
+        const preview = await createPreview(options.store, photoSource!, playerId, {
+          name: 'Demo Adventurer',
+          birthDate: '2020-01-01',
+        }, startedAt);
+        const created = await options.store.createSave({
+          ownerId: playerId,
+          previewId: preview.previewId,
+          selectedIds: preview.selectedIds,
+          planMode: 'route-memories',
+        });
+        return prepareRouteMemoryChapter(
+          options.store,
+          playerId,
+          created,
+          chapter,
+          startedAt,
+        );
+      };
+
       app.post('/api/playtest/start', async (context) => {
         enforceMutationSecurity(context, options.appOrigin);
         const player = await requirePlayer(context, sessions);
         limiter.take(`write:${player.id}`);
         const request = await parseJson(context, playtestStartSchema);
-        const startedAt = now();
-        const preview = await createPreview(options.store, photoSource!, player.id, {
-          name: 'Demo Adventurer',
-          birthDate: '2020-01-01',
-        }, startedAt);
-        const created = await options.store.createSave({
-          ownerId: player.id,
-          previewId: preview.previewId,
-          selectedIds: preview.selectedIds,
-          planMode: 'route-memories',
-        });
-        const save = await prepareRouteMemoryChapter(
-          options.store,
-          player.id,
-          created,
-          request.chapter,
-          startedAt,
-        );
+        const save = await startFictionalChapter(player.id, request.chapter);
         return context.json(toSaveView(save, save.updatedAt), 201);
+      });
+
+      // Level editor preview. The frozen project travels back to the browser and
+      // stays there: gameplay continues through the ordinary save action routes,
+      // because no reducer reads course geometry.
+      app.post('/api/editor/playtests', async (context) => {
+        enforceMutationSecurity(context, options.appOrigin);
+        const player = await requirePlayer(context, sessions);
+        limiter.take(`write:${player.id}`);
+        const request = await parseJson(
+          context,
+          editorPlaytestSchema,
+          EDITOR_PLAYTEST_MAX_BODY_BYTES,
+        );
+        // Validate and freeze before touching the store: an invalid project must
+        // never leave a save behind.
+        const prepared = prepareEditorPreview(request.project);
+        if (!prepared.ok) return context.json(prepared.body, 422);
+        const save = await startFictionalChapter(
+          player.id,
+          request.scope === 'adventure' ? 1 : editorChapterNumber(request.chapterId),
+        );
+        return context.json(
+          {
+            save: toSaveView(save, save.updatedAt),
+            project: prepared.bundle.project,
+            fingerprint: prepared.bundle.fingerprint,
+          },
+          201,
+        );
       });
     }
   }
@@ -286,11 +332,18 @@ export function createApp(options: AppOptions): Hono {
     root: options.studioDir,
     rewriteRequestPath: (path) => path.replace(/^\/studio/, ''),
   }));
-  app.use('/', async (context, next) => {
-    await next();
-    context.header('Cache-Control', 'no-store');
-  });
-  app.get('/', serveStatic({ root: options.clientDir, path: 'index.html' }));
+  // The SPA answers '/' and '/editor' alike; a direct or deep editor link has to
+  // boot the same bundle, which then decides what the surface can offer.
+  const spaShell = ['/', '/editor', '/editor/*'];
+  for (const path of spaShell) {
+    app.use(path, async (context, next) => {
+      await next();
+      context.header('Cache-Control', 'no-store');
+    });
+  }
+  for (const path of spaShell) {
+    app.get(path, serveStatic({ root: options.clientDir, path: 'index.html' }));
+  }
   app.use('/assets/*', async (context, next) => {
     await next();
     if (context.res.status === 200 || context.res.status === 206) {
