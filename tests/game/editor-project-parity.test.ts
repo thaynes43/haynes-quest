@@ -20,8 +20,10 @@ import {
   LEVEL_EDITOR_TEMPLATE_ROUTE_IDS,
   parseLevelEditorProject,
   parseLevelEditorProjectJson,
+  LevelEditorProjectValidationError,
   resolveLevelEditorProject,
   serializeLevelEditorProject,
+  validateLevelEditorProject,
   type LevelEditorProject,
   type LevelEditorTemplateRouteId,
 } from "../../src/shared/editor-project";
@@ -194,6 +196,65 @@ describe("level editor project parity", () => {
       }
     });
   }
+});
+
+/**
+ * The Besties court guard is only useful if the editor's own validator
+ * surfaces it. Prove the whole path: a narrowed court reaches
+ * `validateLevelEditorProject` as a semantic issue against the right chapter,
+ * and blocks preview by making `resolveLevelEditorProject` throw.
+ */
+describe("Besties court guard through the editor validator", () => {
+  function withNarrowedCourt(sizeX: number): LevelEditorProject {
+    const project = template();
+    const besties = project.chapters[1].level;
+    return parseLevelEditorProject({
+      ...project,
+      chapters: [
+        project.chapters[0],
+        {
+          ...project.chapters[1],
+          level: {
+            ...besties,
+            pieces: besties.pieces.map((piece) =>
+              piece.type === "platform" && piece.id === "besties-court"
+                ? { ...piece, size: { ...piece.size, x: sizeX } }
+                : piece,
+            ),
+          },
+        },
+      ],
+    });
+  }
+
+  it("reports the shipped project clean and a narrowed court as a chapter-2 semantic issue", () => {
+    expect(validateLevelEditorProject(template())).toEqual([]);
+
+    const narrowed = withNarrowedCourt(10);
+    // The published structural validator still sees nothing wrong.
+    expect(validateAuthoredLevelDocument(narrowed.chapters[1].level)).toEqual(
+      [],
+    );
+    const issues = validateLevelEditorProject(narrowed);
+    expect(issues.map((entry) => entry.code)).toEqual([
+      "besties.support-footprint",
+    ]);
+    expect(issues[0]).toMatchObject({ source: "semantic" });
+    expect(issues[0]?.path).toContain("chapters[1]");
+    expect(issues[0]?.path).toContain("boss");
+  });
+
+  it("blocks preview on a narrowed court but still resolves the widened one", () => {
+    expect(() => resolveLevelEditorProject(withNarrowedCourt(10))).toThrow(
+      LevelEditorProjectValidationError,
+    );
+    expect(
+      resolveLevelEditorProject(withNarrowedCourt(13.2)).levels[
+        "besties-playground-v2"
+      ].course.platforms.find((platform) => platform.id === "besties-court")
+        ?.size.x,
+    ).toBe(13.2);
+  });
 });
 
 /**
