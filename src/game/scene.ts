@@ -27,6 +27,7 @@ import {
 import { equipmentArtwork, parodyArtwork } from "./scene-catalog";
 import { EnemyAnimation } from "./enemy-animation";
 import { enemyAttackRange } from "./combat";
+import { bossRequiresOrdinaryDefeats } from "../shared/encounter-availability";
 import { TravelerEquipment } from "./traveler-equipment";
 
 type PhotoState = {
@@ -1082,9 +1083,14 @@ export class GardenScene {
       return;
     }
     visual.model.rotation.y = enemy.facing;
+    // Only routes that still gate the boss behind its ordinaries render it
+    // dormant. Share the rule with combat and the server so a v2 boss is never
+    // fought with a hidden health bar.
+    const activeLevel = this.save.adventure?.activeLevel;
     const dormant =
       visual.boss &&
-      this.save.adventure?.activeLevel?.encounters.some(
+      bossRequiresOrdinaryDefeats(activeLevel?.routeId) &&
+      activeLevel?.encounters.some(
         (item) => item.role === "ordinary" && !item.defeated,
       );
     const defeated = enemy.phase === "defeated";
