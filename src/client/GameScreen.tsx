@@ -5,7 +5,7 @@ import type {
   MemoryView,
   SaveView,
 } from "../shared/contracts";
-import { authoredRoute, createGame } from "../game/index";
+import { createGame } from "../game/index";
 import { getJoystickVector } from "../game/input";
 import type {
   AuthoredLevelResolver,
@@ -171,10 +171,6 @@ function Adventure({
   const [chapterMemoryId, setChapterMemoryId] = useState<string | null>(null);
   const [photoDetail, setPhotoDetail] = useState<string | null>(null);
   const mounted = useRef(true);
-  // Latched so a preview can hand over a new frozen snapshot without tearing
-  // down a running game; the resolver is read again on every level rebuild.
-  const authoredResolver = useRef(authoredLevelResolver);
-  authoredResolver.current = authoredLevelResolver;
   const latest = useRef(initialSave);
   const requestBusy = useRef(false);
   const recoveryRequested = useRef<string | null>(null);
@@ -329,10 +325,7 @@ function Adventure({
           container: container.current,
           save: initialSave,
           ...(authoredLevelResolver
-            ? {
-                authoredLevelResolver: (routeId: string | undefined) =>
-                  (authoredResolver.current ?? authoredRoute)(routeId),
-              }
+            ? { authoredLevelResolver }
             : {}),
           onAction: act,
           onRefresh: async () =>
