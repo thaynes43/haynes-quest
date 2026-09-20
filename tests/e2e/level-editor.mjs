@@ -849,13 +849,22 @@ try {
       true,
       `a valid import was rejected: ${JSON.stringify(imported)}`,
     );
+    const importedRevision = exported.project.revision + 1;
     const afterImport = await waitForStoredProject(
       page,
-      (project) => projectDocuments(project).length === 2,
+      (project) => project.revision === importedRevision,
       "valid-import",
     );
     assert.equal(
-      canonicalText(afterImport),
+      afterImport.revision,
+      importedRevision,
+      "the imported project was not committed as the next revision",
+    );
+    assert.equal(
+      canonicalText({
+        ...afterImport,
+        revision: exported.project.revision,
+      }),
       canonicalText(exported.project),
       "the re-imported project is not semantically equal to the exported file",
     );
@@ -875,6 +884,34 @@ try {
       ? await undoAfterImport.locator.isEnabled()
       : false;
     assert.equal(undoEnabled, true, "a successful import left nothing to undo");
+    await undoAfterImport.locator.click();
+    const afterImportUndo = await waitForStoredProject(
+      page,
+      (project) => project.revision === exported.project.revision,
+      "undo-valid-import",
+    );
+    assert.equal(
+      canonicalText(afterImportUndo),
+      canonicalText(stored),
+      "undoing the import did not restore the pre-import project",
+    );
+    const redoAfterImport = await resolveControl(page, "Redo");
+    assert.equal(
+      redoAfterImport.found ? await redoAfterImport.locator.isEnabled() : false,
+      true,
+      "undoing the import left nothing to redo",
+    );
+    await redoAfterImport.locator.click();
+    const afterImportRedo = await waitForStoredProject(
+      page,
+      (project) => project.revision === importedRevision,
+      "redo-valid-import",
+    );
+    assert.equal(
+      canonicalText(afterImportRedo),
+      canonicalText(afterImport),
+      "redoing the import did not restore the imported project",
+    );
     return {
       filename: exported.filename,
       bytes: exported.bytes,
@@ -882,6 +919,12 @@ try {
       sha256: createHash("sha256").update(exported.text).digest("hex"),
       pieceOrder: beforeOrder,
       importAlerts: imported.alerts,
+      revisions: {
+        exported: exported.project.revision,
+        imported: afterImport.revision,
+        undone: afterImportUndo.revision,
+        redone: afterImportRedo.revision,
+      },
     };
   });
 
