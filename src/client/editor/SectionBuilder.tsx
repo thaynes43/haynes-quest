@@ -42,10 +42,14 @@ export function SectionBuilder({
   const [steps, setSteps] = useState(4);
   const [rise, setRise] = useState(0.3);
   const fromIndex = platforms.indexOf(fromPlatformId);
-  const destinations = platforms.slice(fromIndex + 1);
+  const destinations = useMemo(
+    () => platforms.slice(fromIndex + 1),
+    [platforms, fromIndex],
+  );
 
   useEffect(() => {
-    if (!platforms.slice(0, -1).includes(fromPlatformId)) setFrom(platforms[0] ?? "");
+    if (!platforms.slice(0, -1).includes(fromPlatformId))
+      setFrom(platforms[0] ?? "");
     if (!destinations.includes(toPlatformId)) {
       setTo(destinations[Math.min(6, destinations.length - 1)] ?? "");
     }

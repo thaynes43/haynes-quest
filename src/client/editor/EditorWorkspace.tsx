@@ -428,10 +428,19 @@ export function EditorWorkspace({
     );
   };
 
-  const addSection = (options: Omit<Extract<LevelEditorCommand, { type: "section.add" }>, "type" | "chapterId" | "idPrefix">) => {
+  const addSection = (
+    options: Omit<
+      Extract<LevelEditorCommand, { type: "section.add" }>,
+      "type" | "chapterId" | "idPrefix"
+    >,
+  ) => {
     let idPrefix: string = options.pattern;
     let suffix = 2;
-    while (document.pieces.some((piece) => piece.id === idPrefix || piece.id.startsWith(`${idPrefix}-`))) {
+    while (
+      document.pieces.some(
+        (piece) => piece.id === idPrefix || piece.id.startsWith(`${idPrefix}-`),
+      )
+    ) {
       idPrefix = `${options.pattern}-${suffix++}`;
     }
     runCommand(
@@ -885,7 +894,17 @@ export function EditorWorkspace({
           selection={cursor.object}
           onSelect={selectAndFrame}
           onAdd={addPiece}
-              sectionBuilder={<SectionBuilder key={cursor.chapterId} document={document} selectedPlatformId={cursor.object?.type === "piece" ? cursor.object.id : undefined} onBuild={addSection} onSelectStart={(id) => selectAndFrame({ type: "piece", id })} />}
+          sectionBuilder={
+            <SectionBuilder
+              key={cursor.chapterId}
+              document={document}
+              selectedPlatformId={
+                cursor.object?.type === "piece" ? cursor.object.id : undefined
+              }
+              onBuild={addSection}
+              onSelectStart={(id) => selectAndFrame({ type: "piece", id })}
+            />
+          }
         />
         <EditorViewport
           ref={viewport}
