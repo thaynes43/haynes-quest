@@ -1,0 +1,19 @@
+{
+  "expectedRevision": 0,
+  "commands": [
+    {
+      "type": "project.rename",
+      "name": "Agent garden remix"
+    },
+    {
+      "type": "anchor.move",
+      "chapterId": "chapter-1",
+      "slot": "friendly.friendly-1",
+      "position": {
+        "x": -2.75,
+        "y": 0,
+        "z": 1
+      }
+    }
+  ]
+}
