@@ -15,6 +15,7 @@ import {
   validateEditorGameplayGuards,
 } from "../../src/shared/editor-gameplay-guards";
 import {
+  AUTHORED_LEVEL_LIMITS,
   AUTHORED_LEVEL_IDS,
   validateAuthoredLevelDocument,
   type AuthoredLevelDocument,
@@ -395,6 +396,127 @@ describe("Besties court edits", () => {
     expect(validateEditorGameplayGuards(document as AuthoredLevelDocument)).toEqual([]);
   });
 
+  it("ignores horizontal overlap wholly below the floor or above actor height", () => {
+    const document = edit("besties-playground-v2");
+    const support = court(document as AuthoredLevelDocument);
+    const boss = document.anchors.encounters.boss;
+    const floor = support.center.y + support.size.y / 2;
+    const head = floor + AUTHORED_LEVEL_LIMITS.actorHeight;
+
+    document.pieces.push(
+      {
+        type: "platform",
+        id: "static-below-court",
+        center: { x: boss.position.x, y: floor - 0.2, z: boss.position.z },
+        size: { x: 2, y: 0.4, z: 2 },
+      } as Mutable<AuthoredLevelPiece>,
+      {
+        type: "platform",
+        id: "static-above-avatar",
+        center: { x: boss.position.x, y: head + 0.2, z: boss.position.z },
+        size: { x: 2, y: 0.4, z: 2 },
+      } as Mutable<AuthoredLevelPiece>,
+      {
+        type: "moving-platform",
+        id: "moving-below-court",
+        center: { x: boss.position.x, y: floor - 0.2, z: boss.position.z },
+        size: { x: 2, y: 0.4, z: 2 },
+        motion: { axis: "x", distance: 1, period: 6 },
+      } as Mutable<AuthoredLevelPiece>,
+      {
+        type: "moving-platform",
+        id: "moving-above-avatar",
+        center: { x: boss.position.x, y: head + 0.2, z: boss.position.z },
+        size: { x: 2, y: 0.4, z: 2 },
+        motion: { axis: "z", distance: 1, period: 6 },
+      } as Mutable<AuthoredLevelPiece>,
+      {
+        type: "sweeper",
+        id: "sweeper-below-court",
+        center: { x: boss.position.x, y: floor - 0.2, z: boss.position.z },
+        halfLength: 1,
+        radius: 0.2,
+        rotation: { period: 6 },
+      } as Mutable<AuthoredLevelPiece>,
+      {
+        type: "sweeper",
+        id: "sweeper-above-avatar",
+        center: { x: boss.position.x, y: head + 0.2, z: boss.position.z },
+        halfLength: 1,
+        radius: 0.2,
+        rotation: { period: 6 },
+      } as Mutable<AuthoredLevelPiece>,
+    );
+
+    expect(validateEditorGameplayGuards(document as AuthoredLevelDocument)).toEqual([]);
+  });
+
+  it("rejects each obstacle type as soon as its vertical AABB enters the actor band", () => {
+    const template = edit("besties-playground-v2");
+    const support = court(template as AuthoredLevelDocument);
+    const boss = template.anchors.encounters.boss;
+    const floor = support.center.y + support.size.y / 2;
+    const head = floor + AUTHORED_LEVEL_LIMITS.actorHeight;
+    const penetration = 2e-6;
+    const issuesFor = (piece: AuthoredLevelPiece): string[] => {
+      const document = edit("besties-playground-v2");
+      document.pieces.push(piece as Mutable<AuthoredLevelPiece>);
+      return codes(validateEditorGameplayGuards(document as AuthoredLevelDocument));
+    };
+
+    expect(
+      issuesFor({
+        type: "platform",
+        id: "static-floor-protrusion",
+        center: {
+          x: boss.position.x,
+          y: floor - 0.2 + penetration,
+          z: boss.position.z,
+        },
+        size: { x: 2, y: 0.4, z: 2 },
+      }),
+    ).toEqual(["besties.footprint-height"]);
+    expect(
+      issuesFor({
+        type: "moving-platform",
+        id: "moving-floor-protrusion",
+        center: {
+          x: boss.position.x,
+          y: floor - 0.2 + penetration,
+          z: boss.position.z,
+        },
+        size: { x: 2, y: 0.4, z: 2 },
+        motion: { axis: "x", distance: 1, period: 6 },
+      }),
+    ).toEqual(["besties.footprint-obstructed"]);
+    expect(
+      issuesFor({
+        type: "sweeper",
+        id: "sweeper-floor-protrusion",
+        center: {
+          x: boss.position.x,
+          y: floor - 0.2 + penetration,
+          z: boss.position.z,
+        },
+        halfLength: 1,
+        radius: 0.2,
+        rotation: { period: 6 },
+      }),
+    ).toEqual(["besties.footprint-obstructed"]);
+    expect(
+      issuesFor({
+        type: "platform",
+        id: "static-head-intrusion",
+        center: {
+          x: boss.position.x,
+          y: head + 0.2 - penetration,
+          z: boss.position.z,
+        },
+        size: { x: 2, y: 0.4, z: 2 },
+      }),
+    ).toEqual(["besties.footprint-height"]);
+  });
+
   it("rejects a moving platform or sweeper crossing the footprint", () => {
     const boss = SHIPPED["besties-playground-v2"]!.anchors.encounters.boss;
 
@@ -427,7 +549,7 @@ describe("Besties court edits", () => {
     ]);
   });
 
-  it("returns sorted issues and tolerates a structurally broken draft", () => {
+  it("returns sorted issues and tolerates a semantically broken draft", () => {
     const document = edit("besties-playground-v2");
     // The editor keeps repairable drafts; a dangling support reference is the
     // published validator's `reference.static-platform`, not ours.

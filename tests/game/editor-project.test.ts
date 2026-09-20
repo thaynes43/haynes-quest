@@ -262,6 +262,36 @@ describe("shared level editor projects", () => {
     );
   });
 
+  it("includes editor-only gameplay guards in prefixed semantic issues", () => {
+    const template = project();
+    const bestiesCourt = chapter(template, "chapter-2").level.pieces.find(
+      (piece) => piece.id === "besties-court",
+    );
+    if (bestiesCourt?.type !== "platform")
+      throw new Error("Besties court fixture is missing");
+
+    const narrowed = applied(
+      applyLevelEditorCommand(template, {
+        type: "piece.update",
+        chapterId: "chapter-2",
+        pieceId: bestiesCourt.id,
+        piece: {
+          ...bestiesCourt,
+          size: { ...bestiesCourt.size, x: 13.19 },
+        },
+      }),
+    );
+    expect(narrowed.issues).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          source: "semantic",
+          code: "besties.support-footprint",
+          path: '$.chapters[1].level.anchors.encounters["boss"].position',
+        }),
+      ]),
+    );
+  });
+
   it("carries supported checkpoints, anchors and encounter arenas with platform edits", () => {
     const template = project();
     const before = chapter(template, "chapter-1").level;

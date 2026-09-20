@@ -18,6 +18,7 @@ import {
   type AuthoredPosition,
   type ResolvedAuthoredLevel,
 } from "./authored-level";
+import { validateEditorGameplayGuards } from "./editor-gameplay-guards";
 
 export const LEVEL_EDITOR_PROJECT_SCHEMA_VERSION =
   "level-editor-project-v1" as const;
@@ -316,7 +317,11 @@ export function validateLevelEditorProject(
   const issues: LevelEditorIssue[] = [];
   project.chapters.forEach((chapter, index) => {
     const prefix = `$.chapters[${index}].level`;
-    for (const entry of validateAuthoredLevelDocument(chapter.level))
+    const chapterIssues = [
+      ...validateAuthoredLevelDocument(chapter.level),
+      ...validateEditorGameplayGuards(chapter.level),
+    ];
+    for (const entry of chapterIssues)
       issues.push(
         issue(
           "semantic",

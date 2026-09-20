@@ -39,6 +39,11 @@ interface HorizontalBounds {
   readonly maxZ: number;
 }
 
+interface VerticalBounds {
+  readonly minY: number;
+  readonly maxY: number;
+}
+
 /**
  * The Besties routine's horizontal reach, expressed relative to the boss
  * anchor. Every number is measured from `src/game/besties.ts`, which keeps all
@@ -115,6 +120,22 @@ function platformTop(
   return platform.center.y + platform.size.y / 2;
 }
 
+function platformVerticalBounds(
+  platform: AuthoredPlatformPiece | AuthoredMovingPlatformPiece,
+): VerticalBounds {
+  return {
+    minY: platform.center.y - platform.size.y / 2,
+    maxY: platform.center.y + platform.size.y / 2,
+  };
+}
+
+function sweeperVerticalBounds(hazard: AuthoredSweeperPiece): VerticalBounds {
+  return {
+    minY: hazard.center.y - hazard.radius,
+    maxY: hazard.center.y + hazard.radius,
+  };
+}
+
 /** Full travel envelope of a moving platform, both directions on its axis. */
 function movingPlatformEnvelope(
   platform: AuthoredMovingPlatformPiece,
@@ -183,6 +204,16 @@ function rectanglesHaveInteriorOverlap(
   );
 }
 
+function verticalBoundsHaveInteriorOverlap(
+  first: VerticalBounds,
+  second: VerticalBounds,
+): boolean {
+  return (
+    Math.min(first.maxY, second.maxY) - Math.max(first.minY, second.minY) >
+    EPSILON
+  );
+}
+
 function describeBounds(bounds: HorizontalBounds): string {
   const round = (value: number): string => String(Number(value.toFixed(6)));
   return `x[${round(bounds.minX)}, ${round(bounds.maxX)}] z[${round(bounds.minZ)}, ${round(bounds.maxZ)}]`;
@@ -201,7 +232,7 @@ function hostsBestiesRoutine(
  * issues come back sorted by `path` then `code`, matching the published
  * validator's contract so both lists can be concatenated and rendered together.
  *
- * A document that is structurally invalid is still accepted here — the editor
+ * A document that is semantically invalid is still accepted here — the editor
  * keeps repairable drafts (ADR003 C-05) — so every lookup degrades to "skip this
  * check" rather than throwing.
  */
@@ -255,28 +286,34 @@ function collectBestiesCourtIssues(
   }
 
   const supportTop = platformTop(support);
+  const actorBand: VerticalBounds = {
+    minY: supportTop,
+    maxY: supportTop + AUTHORED_LEVEL_LIMITS.actorHeight,
+  };
   for (const piece of statics.values()) {
     if (piece.id === support.id) continue;
     if (!rectanglesHaveInteriorOverlap(staticPlatformBounds(piece), footprint)) continue;
+    if (!verticalBoundsHaveInteriorOverlap(platformVerticalBounds(piece), actorBand))
+      continue;
     // Contact is gated on the player's feet staying within 0.35m of the arena
     // origin, and every hazard is drawn on the support surface. A platform
-    // standing proud of the court inside the footprint makes the duo
-    // un-hittable from it and floats the floor lane. Anything at or below the
-    // court is covered by the court itself.
-    if (platformTop(piece) > supportTop + EPSILON) {
-      issues.push({
-        path: `${path}.position`,
-        code: "besties.footprint-height",
-        message:
-          `Platform ${JSON.stringify(piece.id)} stands above ` +
-          `${JSON.stringify(boss.platformId)} inside the Besties routine footprint ` +
-          `${describeBounds(footprint)}; the routine needs one flat support surface.`,
-      });
-    }
+    // protruding into the actor-height band makes the duo un-hittable from it
+    // and floats the floor lane. Geometry wholly below the floor or above the
+    // avatar's head cannot obstruct this routine.
+    issues.push({
+      path: `${path}.position`,
+      code: "besties.footprint-height",
+      message:
+        `Platform ${JSON.stringify(piece.id)} stands above ` +
+        `${JSON.stringify(boss.platformId)} inside the Besties routine footprint ` +
+        `${describeBounds(footprint)}; the routine needs one flat support surface.`,
+    });
   }
 
   for (const piece of moving) {
     if (!rectanglesHaveInteriorOverlap(movingPlatformEnvelope(piece), footprint)) continue;
+    if (!verticalBoundsHaveInteriorOverlap(platformVerticalBounds(piece), actorBand))
+      continue;
     issues.push({
       path: `${path}.position`,
       code: "besties.footprint-obstructed",
@@ -287,6 +324,8 @@ function collectBestiesCourtIssues(
   }
   for (const piece of sweepers) {
     if (!rectanglesHaveInteriorOverlap(sweeperEnvelope(piece), footprint)) continue;
+    if (!verticalBoundsHaveInteriorOverlap(sweeperVerticalBounds(piece), actorBand))
+      continue;
     issues.push({
       path: `${path}.position`,
       code: "besties.footprint-obstructed",
