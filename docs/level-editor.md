@@ -22,6 +22,14 @@ Validation checks whether jumps are reachable, landing areas are clear, checkpoi
 
 Use **Review issues** to find a problem and select its object. If moving a platform breaks a jump, move the adjoining platform or revise the route. Validation deliberately keeps jumps within the game's forgiving course limits.
 
+The Besties encounter needs a flat, clear court for its scripted attacks. These checks explain edits that would break that routine:
+
+| Issue code | How to repair it |
+| --- | --- |
+| `besties.support-footprint` | Widen the support platform, or move it and the boss together so the full attack area stays supported. |
+| `besties.footprint-height` | Move or lower a platform protruding into the court's playable space. |
+| `besties.footprint-obstructed` | Move the sweeper or moving platform out of the attack area. |
+
 ## Try it in the game
 
 Choose **Playtest**, then **From this level** or **Full adventure**. The game runs a snapshot of your draft with its normal controls and mechanics. **Back to editor** returns to the draft and its undo history. Changes made after starting a test take effect in the next test.

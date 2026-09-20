@@ -97,8 +97,8 @@ describe("level editor project parity", () => {
       // The whole resolved bundle: document, collision course, authoring graph
       // and every gameplay anchor.
       expect(reimported).toEqual(published);
-      // `toEqual` tolerates array reordering inside object values only when
-      // lengths differ, so pin the two orders gameplay actually reads.
+      // Keep explicit assertions for the orders gameplay reads so a failure
+      // identifies checkpoint or platform ordering immediately.
       expect(pieceIds(reimported)).toEqual(pieceIds(published));
       expect(reimported.course.checkpoints.map((entry) => entry.id)).toEqual(
         published.course.checkpoints.map((entry) => entry.id),
