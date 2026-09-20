@@ -20,6 +20,13 @@ import {
   summarizeAuthoredCourse,
 } from "./authored-navigation.mjs";
 
+import {
+  EDITOR_PLAYTEST_PATH,
+  startEditorPreview,
+  switchChapter,
+  waitForEditorWorkspace,
+} from "./editor-driver.mjs";
+
 import { verifyControlLayouts } from "./landscape-controls.mjs";
 
 import { createPausedArtworkProbe } from "./paused-artwork-recovery.mjs";
@@ -42,6 +49,14 @@ const outDir = runLabel
 const reportPath = `${outDir}/report.json`;
 const timeoutMs = Number(process.env.QUEST_E2E_TIMEOUT_MS ?? 900_000);
 const routeStartChapter = Number(process.env.QUEST_E2E_START_CHAPTER ?? 1);
+// PLAN012: the same journey, entered through the level editor's frozen preview
+// instead of the private start screen. Every control below stays unchanged.
+const entryMode = process.env.QUEST_E2E_ENTRY ?? "start-screen";
+const editorEntry = entryMode === "editor";
+assert.ok(
+  ["start-screen", "editor"].includes(entryMode),
+  "QUEST_E2E_ENTRY must be start-screen or editor",
+);
 assert.ok(Number.isFinite(timeoutMs) && timeoutMs >= 180_000);
 assert.ok(
   routeStartChapter === 1 || routeStartChapter === 2,
@@ -58,6 +73,8 @@ const report = {
   status: "running",
   url,
   routeStartChapter,
+  entryMode,
+  editorEntry: null,
   coverage: controlsOnly
     ? "authored-first-pickups-and-responsive-controls"
     : "full-journey",
@@ -312,9 +329,15 @@ page.on("response", async (response) => {
     response.ok() &&
     response.request().method() === "POST" &&
     (parsed.pathname === "/api/playtest/start" ||
+      parsed.pathname === EDITOR_PLAYTEST_PATH ||
       /\/api\/saves\/[^/]+\/actions$/.test(parsed.pathname))
   ) {
-    const save = await response.json().catch(() => null);
+    const payload = await response.json().catch(() => null);
+    // The editor preview answers {save, project, fingerprint}.
+    const save =
+      parsed.pathname === EDITOR_PLAYTEST_PATH
+        ? (payload?.save ?? null)
+        : payload;
     if (!save?.id || !Number.isInteger(save.revision)) return;
     const action = response.request().postDataJSON()?.action;
     if (action?.type === "take-hit") {
@@ -507,11 +530,34 @@ async function proveDynamicPieces(document) {
 
 async function startChapter(chapter) {
   const priorId = latestSave?.id;
-  const button = page.getByRole("button", {
-    name: chapter === 1 ? "Play from the beginning" : "Try the Besties chapter",
-    exact: true,
-  });
-  await button.tap();
+  if (editorEntry) {
+    await switchChapter(page, chapter);
+    const scope = routeStartChapter === 1 ? "adventure" : "chapter";
+    const preview = await startEditorPreview(page, { scope, timeout: 60_000 });
+    assert.equal(
+      preview.started,
+      true,
+      `editor preview did not start: ${JSON.stringify(preview)}`,
+    );
+    report.editorEntry = {
+      chapter,
+      scope,
+      requests: preview.requests.map((request) => ({
+        method: request.method,
+        chapterId: request.body?.chapterId ?? null,
+        scope: request.body?.scope ?? null,
+        carriedProject: Boolean(request.body?.project),
+      })),
+    };
+    mark("editor-entry:preview-started", report.editorEntry);
+  } else {
+    const button = page.getByRole("button", {
+      name:
+        chapter === 1 ? "Play from the beginning" : "Try the Besties chapter",
+      exact: true,
+    });
+    await button.tap();
+  }
   await page
     .locator("canvas[data-quest-canvas=true]")
     .waitFor({ timeout: 20_000 });
@@ -2047,7 +2093,7 @@ async function playChapter(chapter) {
 try {
   const index = await fetch(url);
   assert.equal(index.status, 200, "authored playtest fixture unavailable");
-  await page.goto(url);
+  await page.goto(editorEntry ? new URL("/editor", url).href : url);
   const bundlePath = await page
     .locator('script[type="module"][src]')
     .getAttribute("src");
@@ -2064,9 +2110,13 @@ try {
   };
   if (expectedBundleSha256)
     assert.equal(report.bundle.sha256, expectedBundleSha256);
-  await page
-    .getByRole("button", { name: "Play from the beginning", exact: true })
-    .waitFor();
+  if (editorEntry) {
+    await waitForEditorWorkspace(page, { timeout: 60_000 });
+  } else {
+    await page
+      .getByRole("button", { name: "Play from the beginning", exact: true })
+      .waitFor();
+  }
   if (routeStartChapter === 1) {
     await startChapter(1);
     await playChapter(1);
