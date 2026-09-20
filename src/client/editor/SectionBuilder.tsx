@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AuthoredLevelDocument } from "../../shared/authored-level";
 import type { LevelEditorCommand } from "../../shared/editor-project";
 import {
+  LEVEL_EDITOR_SECTION_LIMITS,
   planLevelEditorSection,
   type LevelEditorSectionRequest,
 } from "../../shared/editor-sections";
@@ -207,7 +208,7 @@ export function SectionBuilder({
           value={steps}
           onCommit={setSteps}
           min={2}
-          max={6}
+          max={LEVEL_EDITOR_SECTION_LIMITS.maxSteps}
           step={1}
         />
         <NumberField
