@@ -885,13 +885,17 @@ try {
       : false;
     assert.equal(undoEnabled, true, "a successful import left nothing to undo");
     await undoAfterImport.locator.click();
+    const undoRevision = importedRevision + 1;
     const afterImportUndo = await waitForStoredProject(
       page,
-      (project) => project.revision === exported.project.revision,
+      (project) => project.revision === undoRevision,
       "undo-valid-import",
     );
     assert.equal(
-      canonicalText(afterImportUndo),
+      canonicalText({
+        ...afterImportUndo,
+        revision: stored.revision,
+      }),
       canonicalText(stored),
       "undoing the import did not restore the pre-import project",
     );
@@ -902,13 +906,17 @@ try {
       "undoing the import left nothing to redo",
     );
     await redoAfterImport.locator.click();
+    const redoRevision = undoRevision + 1;
     const afterImportRedo = await waitForStoredProject(
       page,
-      (project) => project.revision === importedRevision,
+      (project) => project.revision === redoRevision,
       "redo-valid-import",
     );
     assert.equal(
-      canonicalText(afterImportRedo),
+      canonicalText({
+        ...afterImportRedo,
+        revision: afterImport.revision,
+      }),
       canonicalText(afterImport),
       "redoing the import did not restore the imported project",
     );
