@@ -157,14 +157,15 @@
   z-index: 7;
   display: flex;
   min-height: 48px;
-  flex: 0 0 48px;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
   align-items: center;
+  align-content: center;
   gap: 6px;
   padding: 7px 12px;
-  overflow-x: auto;
+  overflow: visible;
   border-bottom: 1px solid var(--editor-border);
   background: #f7efe2;
-  scrollbar-width: thin;
 }
 
 .editor-secondary-actions > select {
