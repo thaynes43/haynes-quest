@@ -298,20 +298,60 @@ export function disposeEditorObjectTree(root: THREE.Object3D): void {
   root.removeFromParent();
 }
 
+function boxCorners(box: THREE.Box3): THREE.Vector3[] {
+  const { min, max } = box;
+  return [
+    new THREE.Vector3(min.x, min.y, min.z),
+    new THREE.Vector3(min.x, min.y, max.z),
+    new THREE.Vector3(min.x, max.y, min.z),
+    new THREE.Vector3(min.x, max.y, max.z),
+    new THREE.Vector3(max.x, min.y, min.z),
+    new THREE.Vector3(max.x, min.y, max.z),
+    new THREE.Vector3(max.x, max.y, min.z),
+    new THREE.Vector3(max.x, max.y, max.z),
+  ];
+}
+
 export function editorCameraFitDistance(
-  radius: number,
+  box: THREE.Box3,
   verticalFovDegrees: number,
   aspect: number,
+  direction: THREE.Vector3,
+  up = new THREE.Vector3(0, 1, 0),
 ): number {
+  const viewDirection = direction.clone().normalize();
+  if (viewDirection.lengthSq() < 1e-8)
+    viewDirection.set(0.9, 0.8, 1.25).normalize();
+  const right = new THREE.Vector3().crossVectors(up, viewDirection);
+  if (right.lengthSq() < 1e-8) {
+    const fallbackUp =
+      Math.abs(viewDirection.y) < 0.9
+        ? new THREE.Vector3(0, 1, 0)
+        : new THREE.Vector3(1, 0, 0);
+    right.crossVectors(fallbackUp, viewDirection);
+  }
+  right.normalize();
+  const cameraUp = new THREE.Vector3()
+    .crossVectors(viewDirection, right)
+    .normalize();
+  const center = box.getCenter(new THREE.Vector3());
   const verticalHalfFov = THREE.MathUtils.degToRad(verticalFovDegrees / 2);
   const horizontalHalfFov = Math.atan(
     Math.tan(verticalHalfFov) * Math.max(0.05, aspect),
   );
-  return (
-    Math.max(2, radius) /
-    Math.sin(Math.min(verticalHalfFov, horizontalHalfFov)) /
-    0.9
-  );
+  const verticalSlope = Math.tan(verticalHalfFov) * 0.9;
+  const horizontalSlope = Math.tan(horizontalHalfFov) * 0.9;
+  const frontPadding = Math.max(0.5, box.getSize(new THREE.Vector3()).length() * 0.01);
+  return boxCorners(box).reduce((distance, corner) => {
+    const offset = corner.sub(center);
+    const longitudinal = offset.dot(viewDirection);
+    return Math.max(
+      distance,
+      longitudinal + Math.abs(offset.dot(right)) / horizontalSlope,
+      longitudinal + Math.abs(offset.dot(cameraUp)) / verticalSlope,
+      longitudinal + frontPadding,
+    );
+  }, 2);
 }
 
 function fitCamera(
@@ -320,16 +360,22 @@ function fitCamera(
   box: THREE.Box3,
 ): void {
   if (box.isEmpty()) return;
-  const sphere = box.getBoundingSphere(new THREE.Sphere());
-  const radius = Math.max(2, sphere.radius);
-  const distance = editorCameraFitDistance(radius, camera.fov, camera.aspect);
   const direction = camera.position.clone().sub(controls.target).normalize();
   if (direction.lengthSq() < 1e-8) direction.set(0.9, 0.8, 1.25).normalize();
-  controls.target.copy(sphere.center);
-  camera.position.copy(sphere.center).addScaledVector(direction, distance);
+  const center = box.getCenter(new THREE.Vector3());
+  const span = box.getSize(new THREE.Vector3()).length();
+  const distance = editorCameraFitDistance(
+    box,
+    camera.fov,
+    camera.aspect,
+    direction,
+    camera.up,
+  );
+  controls.target.copy(center);
+  camera.position.copy(center).addScaledVector(direction, distance);
   controls.maxDistance = Math.max(280, distance * 2);
-  camera.near = Math.max(0.05, radius / 500);
-  camera.far = Math.max(250, distance + radius * 6);
+  camera.near = 0.05;
+  camera.far = Math.max(250, distance + span * 3);
   camera.updateProjectionMatrix();
   controls.update();
 }

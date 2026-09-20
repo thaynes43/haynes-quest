@@ -23,22 +23,40 @@ describe("level editor scene disposal", () => {
     expect(root.parent).toBeNull();
   });
 
-  it("fits the enclosing scene sphere at desktop and narrow aspect ratios", () => {
-    const radius = 70;
+  it("fits every scene-box corner at desktop and narrow aspect ratios", () => {
+    const box = new THREE.Box3(
+      new THREE.Vector3(-8, -1, -120),
+      new THREE.Vector3(8, 5, 0),
+    );
     const fov = 46;
+    const direction = new THREE.Vector3(22, 18, 63).normalize();
     for (const aspect of [16 / 9, 0.55]) {
-      const distance = editorCameraFitDistance(radius, fov, aspect);
-      const verticalHalfFov = THREE.MathUtils.degToRad(fov / 2);
-      const horizontalHalfFov = Math.atan(
-        Math.tan(verticalHalfFov) * aspect,
-      );
-      const sphereHalfAngle = Math.asin(radius / distance);
-      expect(sphereHalfAngle).toBeLessThan(
-        Math.min(verticalHalfFov, horizontalHalfFov),
-      );
+      const distance = editorCameraFitDistance(box, fov, aspect, direction);
+      const center = box.getCenter(new THREE.Vector3());
+      const camera = new THREE.PerspectiveCamera(fov, aspect, 0.05, 1_000);
+      camera.position.copy(center).addScaledVector(direction, distance);
+      camera.lookAt(center);
+      camera.updateProjectionMatrix();
+      camera.updateMatrixWorld();
+      const projected = [
+        new THREE.Vector3(box.min.x, box.min.y, box.min.z),
+        new THREE.Vector3(box.min.x, box.min.y, box.max.z),
+        new THREE.Vector3(box.min.x, box.max.y, box.min.z),
+        new THREE.Vector3(box.min.x, box.max.y, box.max.z),
+        new THREE.Vector3(box.max.x, box.min.y, box.min.z),
+        new THREE.Vector3(box.max.x, box.min.y, box.max.z),
+        new THREE.Vector3(box.max.x, box.max.y, box.min.z),
+        new THREE.Vector3(box.max.x, box.max.y, box.max.z),
+      ].map((corner) => corner.project(camera));
+      expect(
+        Math.max(...projected.map((corner) => Math.abs(corner.x))),
+      ).toBeLessThanOrEqual(0.900001);
+      expect(
+        Math.max(...projected.map((corner) => Math.abs(corner.y))),
+      ).toBeLessThanOrEqual(0.900001);
     }
-    expect(editorCameraFitDistance(radius, fov, 0.55)).toBeGreaterThan(
-      editorCameraFitDistance(radius, fov, 16 / 9),
+    expect(editorCameraFitDistance(box, fov, 0.55, direction)).toBeGreaterThan(
+      editorCameraFitDistance(box, fov, 16 / 9, direction),
     );
   });
 });

@@ -748,10 +748,30 @@
     flex: 0 0 auto;
     flex-wrap: wrap;
     min-height: 45px;
-    max-height: 112px;
+    max-height: none;
     padding-inline: 8px;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: visible;
+  }
+
+  .editor-secondary-actions > .editor-field {
+    position: relative;
+    display: block;
+    flex: 0 0 150px;
+  }
+
+  .editor-secondary-actions > .editor-field span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .editor-secondary-actions > .editor-field input {
+    width: 150px;
   }
 
   .editor-storage-status {
