@@ -1,5 +1,6 @@
 import { readFile, stat } from "node:fs/promises";
 import { z } from "zod";
+import { LEVEL_EDITOR_SECTION_LIMITS } from "../../src/shared/editor-sections.js";
 
 import {
   AUTHORED_LEVEL_LIMITS,
@@ -308,6 +309,7 @@ async function run(args: readonly string[]): Promise<void> {
         name: project.name,
         revision: project.revision,
         limits: AUTHORED_LEVEL_LIMITS,
+        sectionLimits: LEVEL_EDITOR_SECTION_LIMITS,
         chapters: project.chapters.map((chapter) => ({
           chapterId: chapter.chapterId,
           name: chapter.name,
