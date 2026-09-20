@@ -22,6 +22,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Level editor: level-editor.md
   - Asset studio:
       - Overview: assets/README.md
       - Art direction: assets/art-direction.md
