@@ -1,5 +1,7 @@
 # Astra coordination and authoring team
 
+**September 20 editor MVP directive:** use Sol Ultra whenever possible for ordinary work and freely use explicitly authorized Opus 5 dev-env sessions for bounded parallel tasks. Conserve Astra usage for architecture, UX, tricky mechanics/art and final review. Deliver PLAN012 autonomously through a deployed testable MVP. This overrides the older ordinary-task effort and enemy-model-first sequencing.
+
 Tom's latest project instruction governs the model exceptions below. The pod's native Sol default remains useful for ordinary work; **Blender always uses Astra**, and **separate Fable sessions are explicitly authorized** for this project. No dev-env startup change is needed to apply these project rules.
 
 ## Temporary review quota override
@@ -13,7 +15,7 @@ Tom reports on September 12, 2026 that Fable usage is exhausted until Monday at 
 | Lead, architecture, art direction, story, user-facing text, integration | GPT-6 Astra (`gpt-6-astra`, `max`) | Keep full lead context; coordinate bounded tasks and review every handoff. |
 | Image concepts and revisions | Driving Astra using the built-in image generation tool | One generation/edit at a time, across the project. Inspect each result and retain the common references before starting the next. Never fan image generation out to agents. |
 | **Any Blender work**, including scripts, modeling, materials, rigs, animation, optimization and renders | **Native GPT-6 Astra subagent**, `model: "gpt-6-astra"`, `reasoning_effort: "max"`, `fork_turns: "none"` | Start a fresh subagent for each bounded Blender task, including a separately dispatched revision; grant one exclusive owner of the live scene. Return editable masters, exports, renders and evidence. Do not route Blender work to Sol, Fable or Opus. |
-| Bounded coding, tests, research, non-Blender tooling, audio execution and verification | Native GPT-5.6 Sol, `model: "gpt-5.6-sol"`, `reasoning_effort: "xhigh"`, `fork_turns: "none"` | Default delegation lane. Audio direction and final judgment stay with Astra. |
+| Bounded coding, tests, research, non-Blender tooling, audio execution and verification | Native GPT-5.6 Sol, `model: "gpt-5.6-sol"`, `reasoning_effort: "ultra"`, `fork_turns: "none"` | Default delegation lane. Audio direction and final judgment stay with Astra. |
 | Adversarial review or bounded coding to balance plan use | Separate Claude Code **Fable 5.1**, `claude-fable-5-1`, `xhigh`, through `agent-run`; apply the temporary quota override above first | Explicitly authorized by Tom. Fresh session with a repository work order, scoped paths and concrete evidence. Fable may challenge Astra's decisions; Astra resolves findings. |
 | Subagents inside a Claude Code session | Claude Opus (`claude-opus-5`, `xhigh`) | Follow Claude's pod policy. A Fable session must return any Blender task to the Astra lead. |
 

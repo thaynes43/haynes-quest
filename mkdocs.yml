@@ -30,11 +30,13 @@ nav:
       - Review template: assets/000-review-template.md
   - Product:
       - Project brief: prds/001-project-brief.md
+      - Level editor MVP: prds/002-level-editor-mvp.md
       - PRD template: prds/000-template.md
       - Backlog: BACKLOG.md
   - Architecture:
       - Authentik sign-in: adrs/001-authentik-sign-in.md
       - Proposed web game stack: adrs/002-web-game-stack.md
+      - Shared editor documents: adrs/003-shared-level-editor-documents.md
       - ADR template: adrs/000-template.md
   - Domain language:
       - Ubiquitous language: domain-driven-design/001-ubiquitous-language.md
@@ -58,6 +60,7 @@ nav:
       - Personalized authored levels: designs/016-authored-levels.md
       - Daughter playground adventures: designs/017-daughter-playgrounds.md
       - Familiar touch and recovery: designs/018-familiar-touch-and-recovery.md
+      - Level editor workspace: designs/019-level-editor-workspace.md
       - Design template: designs/000-template.md
   - Operations:
       - Hosting context: ops/001-hosting-context.md
@@ -66,6 +69,7 @@ nav:
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
+      - Level editor MVP: project/plans/012-level-editor-mvp.md
       - Familiar controls and checkpoints: project/plans/completed/011-familiar-controls-and-checkpoints.md
       - Parent-prepared memories: project/plans/010-parent-prepared-memories.md
       - Daughter playground MVP: project/plans/completed/009-daughter-playground-mvp.md
