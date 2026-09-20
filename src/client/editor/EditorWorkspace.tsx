@@ -50,6 +50,7 @@ import {
 import {
   EDITOR_STORAGE_KEY,
   ensureImportSize,
+  installEditorPagehideAutosave,
   loadEditorDraft,
   readableProjectFilename,
   saveEditorDraft,
@@ -231,6 +232,25 @@ export function EditorWorkspace({
     }, 260);
     return () => window.clearTimeout(timeout);
   }, [corruptRaw, project, storageUnavailable]);
+
+  useEffect(() => {
+    if (corruptRaw !== null || storageUnavailable) return;
+    return installEditorPagehideAutosave(window, () => {
+      try {
+        saveEditorDraft(
+          window.localStorage,
+          canonicalLevelEditorProjectJson(
+            latestHistory.current.present.project,
+          ),
+        );
+      } catch {
+        setStorageUnavailable(true);
+        setStorageStatus(
+          "Browser storage is unavailable. Export your draft to keep it.",
+        );
+      }
+    });
+  }, [corruptRaw, storageUnavailable]);
 
   const replaceCursor = useCallback((next: EditorCursor) => {
     const history = replaceEditorSelection(latestHistory.current, next);

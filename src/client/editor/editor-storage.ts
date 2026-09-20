@@ -30,6 +30,14 @@ export function saveEditorDraft(
   storage.setItem(EDITOR_STORAGE_KEY, text);
 }
 
+export function installEditorPagehideAutosave(
+  target: EventTarget,
+  flush: () => void,
+): () => void {
+  target.addEventListener("pagehide", flush);
+  return () => target.removeEventListener("pagehide", flush);
+}
+
 export function ensureImportSize(text: string): void {
   if (new TextEncoder().encode(text).byteLength > LEVEL_EDITOR_PROJECT_MAX_BYTES) {
     parseLevelEditorProjectJson(text);

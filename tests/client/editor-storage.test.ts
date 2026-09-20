@@ -6,6 +6,7 @@ import {
 import {
   EDITOR_STORAGE_KEY,
   ensureImportSize,
+  installEditorPagehideAutosave,
   loadEditorDraft,
   readableProjectFilename,
   saveEditorDraft,
@@ -29,6 +30,17 @@ describe("level editor browser storage helpers", () => {
     const setItem = vi.fn();
     saveEditorDraft({ setItem }, "project-json");
     expect(setItem).toHaveBeenCalledWith(EDITOR_STORAGE_KEY, "project-json");
+  });
+
+  it("flushes once on pagehide and removes the handler on disposal", () => {
+    const target = new EventTarget();
+    const flush = vi.fn();
+    const dispose = installEditorPagehideAutosave(target, flush);
+    target.dispatchEvent(new Event("pagehide"));
+    expect(flush).toHaveBeenCalledOnce();
+    dispose();
+    target.dispatchEvent(new Event("pagehide"));
+    expect(flush).toHaveBeenCalledOnce();
   });
 
   it("uses the shared import byte limit and shared error wording", () => {
