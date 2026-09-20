@@ -49,6 +49,7 @@ interface InspectedPlatform {
   readonly branchIndices: readonly number[];
   readonly optional: boolean;
   readonly checkpointIds: readonly string[];
+  readonly safeMissFor: readonly number[];
   readonly motion?: {
     readonly axis: "x" | "z";
     readonly distance: number;
@@ -314,6 +315,25 @@ describe("level editor CLI", () => {
         branchIndices: [],
         optional: true,
       });
+      // Route-optional does not mean free to move: the catch deck names every
+      // jump it rescues, so a builder reading `optional` alone cannot mistake
+      // it for scenery.
+      const catchDeck = platformById(garden, "garden-practice-ground");
+      expect(catchDeck.safeMissFor).toEqual(
+        garden.spatial.connections
+          .filter(
+            (connection) =>
+              connection.safeMissPlatformId === "garden-practice-ground",
+          )
+          .map((connection) => connection.index),
+      );
+      expect(catchDeck.safeMissFor.length).toBeGreaterThan(0);
+      for (const index of catchDeck.safeMissFor)
+        expect(garden.spatial.connections[index]).toMatchObject({
+          index,
+          safeMissPlatformId: "garden-practice-ground",
+        });
+      expect(platformById(garden, "welcome").safeMissFor).toEqual([]);
       const ferry = platformById(garden, "garden-ferry");
       expect(ferry.type).toBe("moving-platform");
       expect(ferry.motion?.distance).toBeGreaterThan(0);
@@ -458,6 +478,11 @@ describe("level editor CLI", () => {
         true,
         true,
         true,
+      ]);
+      expect(stack.map((platform) => platform.safeMissFor)).toEqual([
+        [],
+        [],
+        [],
       ]);
       expect(stack.map((platform) => platform.topY)).toEqual([1, 1.3, 1.6]);
       for (let index = 1; index < stack.length; index += 1)
