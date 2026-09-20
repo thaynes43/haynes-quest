@@ -36,6 +36,8 @@ Choose **Playtest**, then **From this level** or **Full adventure**. The game ru
 
 Reloading the page ends that test and reopens the saved draft. Playtest progress is temporary.
 
+The private playtest keeps two recent runs per browser session. Starting another can expire an older game tab; your saved editor draft is separate from those runs.
+
 ## Keep and share your work
 
 **Saved in this browser** means this browser has a local copy. It does not sync to another device. Use **Export** to keep a portable JSON backup or hand your project to an agent. **Import** opens an exported project from a file or pasted JSON.

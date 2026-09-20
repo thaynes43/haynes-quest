@@ -18,3 +18,7 @@ A visual editor and agent CLI share validated, portable documents and can recrea
 ## Completion evidence
 
 Require shared-schema round trips and immutable-template equivalence, command/undo/validation tests, request/preview isolation tests, browser editing and draft recovery, successful import/export with a visible runtime change, both existing chapter mechanics/progression through the shared preview path, healthy deployed editor/preview and no regression to the normal private playtest. No new art or family-photo data is required.
+
+## Implementation checkpoint
+
+Shared project/commands/CLI, visual editor, private snapshot preview and additive Besties footprint validation are implemented. Current local checks pass typecheck, lint, 644 tests (12 Postgres checks await CI), immutable course validation, production build and strict documentation build; subsequent pagehide flush has its focused test pass. Independent review corrected snapshot latching, hidden-editor shortcuts, import read races, immediate storage warnings and camera framing. The established two-run ephemeral retention limit is explicit in ADR003; isolation tests must exercise both retained saves rather than imply unlimited concurrent runs. Browser editing and both-chapter traversal, integrated PR/image, private GitOps rollout and hosted acceptance remain required before completion.
