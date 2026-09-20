@@ -70,7 +70,7 @@ nav:
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
-      - Level editor MVP: project/plans/012-level-editor-mvp.md
+      - Level editor MVP: project/plans/completed/012-level-editor-mvp.md
       - Familiar controls and checkpoints: project/plans/completed/011-familiar-controls-and-checkpoints.md
       - Parent-prepared memories: project/plans/010-parent-prepared-memories.md
       - Daughter playground MVP: project/plans/completed/009-daughter-playground-mvp.md

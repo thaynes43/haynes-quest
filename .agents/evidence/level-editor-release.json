@@ -1,0 +1,748 @@
+{
+  "schemaVersion": 1,
+  "status": "deployed-and-verified",
+  "recordedAt": "2026-09-20T02:55:21.964782+00:00",
+  "workOrder": ".agents/work-orders/091-level-editor-mvp.md",
+  "plan": ".agents/plans/completed/012-level-editor-mvp.md",
+  "archiveRoot": "/home/dev/artifacts/haynes-quest/level-editor-mvp-20260920-e017c58",
+  "verification": {
+    "localFullSuiteSource": "d201cbcb102532ffbd2afbbd4cdc64c314377bde",
+    "localTestsPassed": 663,
+    "postgresReservedForCi": 12,
+    "ciTestsPassed": 675,
+    "ciTestFilesPassed": 73,
+    "finalBuildAndCiHead": "ddafb250de02e0c9225697156d65de3ac179f0bf",
+    "typecheck": "passed",
+    "lint": "passed",
+    "levelsValidation": "passed",
+    "productionBuild": "passed",
+    "strictDocsAndMediaLinks": "passed",
+    "requiredPrChecks": {
+      "verify": "SUCCESS",
+      "build": "SUCCESS",
+      "container-check": "SUCCESS",
+      "image": "SKIPPED"
+    }
+  },
+  "release": {
+    "appPR": {
+      "number": 52,
+      "url": "https://github.com/thaynes43/haynes-quest/pull/52",
+      "state": "MERGED",
+      "mergedAt": "2026-09-20T02:32:05Z",
+      "mergeCommit": "e017c58fa79d3fd63fd899124ec7a8929ba067d7",
+      "headRefOid": "ddafb250de02e0c9225697156d65de3ac179f0bf",
+      "mainRuns": {
+        "Application": {
+          "id": 35484238763,
+          "conclusion": "success"
+        },
+        "Documentation": {
+          "id": 35484238780,
+          "conclusion": "success"
+        }
+      }
+    },
+    "image": {
+      "ref": "ghcr.io/thaynes43/haynes-quest:sha-e017c58fa79d3fd63fd899124ec7a8929ba067d7@sha256:6c6b12f6f7c776ab361c131af24770e0c746874d4cb091d6ec261c0135d9940c",
+      "repository": "ghcr.io/thaynes43/haynes-quest",
+      "tag": "sha-e017c58fa79d3fd63fd899124ec7a8929ba067d7",
+      "digest": "sha256:6c6b12f6f7c776ab361c131af24770e0c746874d4cb091d6ec261c0135d9940c",
+      "manifestFetch": {
+        "status": 200,
+        "bytes": 857,
+        "digestRederivedFromBody": true
+      },
+      "attestationCount": 1,
+      "attestationClaim": "Presence and publication only; no independent cryptographic verification."
+    },
+    "opsPR": {
+      "number": 2988,
+      "url": "https://github.com/thaynes43/haynes-ops/pull/2988",
+      "state": "MERGED",
+      "mergedAt": "2026-09-20T02:39:52Z",
+      "mergeSHA": "445ab293aa30e0e7b8a187c92ba1db8aa399b352",
+      "branchCommit": "7d5b3a7b13c3af0b494d620d6c4bbc54953adda9",
+      "filesChanged": [
+        "kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml"
+      ],
+      "runtimeDiff": "one image tag line on controllers.main.containers.app (plus its source-linkage comment)",
+      "renderedFluxLocalDiff": "single image line on Deployment frontend/haynes-quest-playtest only; no other object on main or edge",
+      "selfSquashMerged": true
+    },
+    "checks": {
+      "required": 9,
+      "all": {
+        "Diff Scope - Success": "pass",
+        "Flux Local - Filter": "pass",
+        "Flux Local - Diff (edge/helmrelease)": "pass",
+        "Flux Local - Diff (edge/kustomization)": "pass",
+        "Flux Local - Diff (main/helmrelease)": "pass",
+        "Flux Local - Diff (main/kustomization)": "pass",
+        "Flux Local - Test (edge)": "pass",
+        "Flux Local - Test (main)": "pass",
+        "Flux Local - Success": "pass"
+      },
+      "allGreen": true
+    },
+    "fluxVerification": {
+      "gitRepository": {
+        "name": "haynes-ops",
+        "namespace": "flux-system",
+        "revision": "main@sha1:445ab293aa30e0e7b8a187c92ba1db8aa399b352",
+        "ready": true
+      },
+      "kustomization": {
+        "name": "haynes-quest",
+        "namespace": "frontend",
+        "lastAppliedRevision": "main@sha1:445ab293aa30e0e7b8a187c92ba1db8aa399b352",
+        "ready": true,
+        "reconcileScope": "haynes-quest only (no broad Flux action)"
+      },
+      "helmRelease": {
+        "name": "haynes-quest-playtest",
+        "namespace": "frontend",
+        "generation": 12,
+        "observedGeneration": 12,
+        "status": "deployed",
+        "version": 12,
+        "ready": true
+      },
+      "deployment": {
+        "name": "haynes-quest-playtest",
+        "namespace": "frontend",
+        "generation": 12,
+        "observedGeneration": 12,
+        "ready": "1/1",
+        "updatedReplicas": 1,
+        "image": "ghcr.io/thaynes43/haynes-quest:sha-e017c58fa79d3fd63fd899124ec7a8929ba067d7@sha256:6c6b12f6f7c776ab361c131af24770e0c746874d4cb091d6ec261c0135d9940c"
+      },
+      "pod": {
+        "name": "haynes-quest-playtest-76bd888b99-942w2",
+        "uid": "7d171076-8884-4da8-9b1c-5955a0612a75",
+        "phase": "Running",
+        "ready": true,
+        "restartCount": 0,
+        "imageID": "ghcr.io/thaynes43/haynes-quest@sha256:6c6b12f6f7c776ab361c131af24770e0c746874d4cb091d6ec261c0135d9940c"
+      }
+    },
+    "httpAssetVerification": {
+      "origin": "https://haynes-quest-playtest.haynesops.com",
+      "healthz": 200,
+      "readyz": 200,
+      "index": 200,
+      "editor": {
+        "url": "https://haynes-quest-playtest.haynesops.com/editor",
+        "code": 200,
+        "document": "identical-to-index (SPA shell)",
+        "sha256": "34a5b273457cd460783c7014565d13c0f2c16abf774cf29b0909aa063d1bec21",
+        "bundle": "/assets/index-6s8dBlhu.js",
+        "css": "/assets/index-Bq4qRH_A.css"
+      },
+      "assetsMatchGate": true,
+      "bundle": {
+        "path": "/assets/index-6s8dBlhu.js",
+        "bytes": 1305195,
+        "sha256": "af327cb9e1de233a01924c64c9935f7298a3334876d6675ae1627257246f1078"
+      },
+      "css": {
+        "path": "/assets/index-Bq4qRH_A.css",
+        "bytes": 54055,
+        "sha256": "d3f267a3a7372b5409d89e35f198ced924235441d28936f1b2ce45e5d8bb0622"
+      }
+    },
+    "protectedUnchanged": {
+      "assertedAgainst": "baseline.json captured 2026-09-20T02:34:56Z (pre-rollout)",
+      "comparedBy": [
+        "deployment UID",
+        "generation",
+        "images",
+        "readyReplicas",
+        "per-pod name/UID/phase/ready/restartCount/imageID"
+      ],
+      "frontend/haynes-quest": {
+        "uid": "c17ee749-129e-4059-8091-ba167639604e",
+        "generation": 3,
+        "ready": 1,
+        "image": "ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37",
+        "unchanged": true,
+        "hostedHealthz": 200,
+        "hostedReadyz": 200
+      },
+      "dev/dev-env": {
+        "uid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+        "generation": 108,
+        "ready": 1,
+        "image": "ghcr.io/thaynes43/dev-env:0.6.2@sha256:8b962179b3b2dd394733cc83b8c3f9eef8f341f4b53aa02027eac7bd0d818c93",
+        "containers": 3,
+        "restarts": 0,
+        "unchanged": true
+      }
+    },
+    "activity": {
+      "id": "act-023946-191874",
+      "scope": [
+        "frontend",
+        "haynes-quest-playtest"
+      ],
+      "declaredBeforeMerge": true,
+      "ended": true,
+      "endedEarly": true,
+      "declaredAt": "2026-09-20T02:39:46Z"
+    }
+  },
+  "releaseRawEvidence": {
+    "path": ".private/ops-release-evidence/release-result.json",
+    "sha256": "bd9f5d76659c86d2f2719237d8616270ca549b9d46bf53aa8933e1a98c46a701",
+    "auditPath": ".private/ops-release-evidence/audit-rollout.log"
+  },
+  "browser": {
+    "generatedAt": "2026-09-20T02:55:28.738Z",
+    "releaseTarget": {
+      "ready": true,
+      "url": "https://haynes-quest-playtest.haynesops.com",
+      "sourceCommit": "e017c58fa79d3fd63fd899124ec7a8929ba067d7",
+      "assets": [
+        {
+          "path": "/assets/index-6s8dBlhu.js",
+          "bytes": 1305195,
+          "sha256": "af327cb9e1de233a01924c64c9935f7298a3334876d6675ae1627257246f1078"
+        },
+        {
+          "path": "/assets/index-Bq4qRH_A.css",
+          "bytes": 54055,
+          "sha256": "d3f267a3a7372b5409d89e35f198ced924235441d28936f1b2ce45e5d8bb0622"
+        }
+      ]
+    },
+    "hosted": {
+      "matrix": {
+        "path": "test-results/level-editor/hosted-editor-final/report.json",
+        "sha256": "4cb03bdb26b7068a85a819e9d4ac1f6907bf052407a61adbae50f81cba479553",
+        "status": "passed",
+        "startedAt": "2026-09-20T02:42:00.970Z",
+        "finishedAt": "2026-09-20T02:44:32.858Z",
+        "recordedAt": "2026-09-20T02:44:32.860Z",
+        "url": "https://haynes-quest-playtest.haynesops.com",
+        "sourceCommit": "e017c58fa79d3fd63fd899124ec7a8929ba067d7",
+        "browser": "153.0.8010.12",
+        "bundle": {
+          "path": "/assets/index-6s8dBlhu.js",
+          "bytes": 1305195,
+          "sha256": "af327cb9e1de233a01924c64c9935f7298a3334876d6675ae1627257246f1078"
+        },
+        "scenarios": {
+          "total": 18,
+          "passed": 18,
+          "failed": 0,
+          "results": [
+            {
+              "name": "editor-route-and-shell",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:01.152Z",
+              "finishedAt": "2026-09-20T02:42:31.872Z"
+            },
+            {
+              "name": "initial-two-chapter-project",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:31.872Z",
+              "finishedAt": "2026-09-20T02:42:31.878Z"
+            },
+            {
+              "name": "templates-match-the-shipped-runtime-documents",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:31.879Z",
+              "finishedAt": "2026-09-20T02:42:34.703Z"
+            },
+            {
+              "name": "object-selection-and-properties",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:34.703Z",
+              "finishedAt": "2026-09-20T02:42:36.573Z"
+            },
+            {
+              "name": "supported-anchor-edit-stays-valid",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:36.574Z",
+              "finishedAt": "2026-09-20T02:42:37.615Z"
+            },
+            {
+              "name": "chapter-switch-keeps-both-documents",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:37.615Z",
+              "finishedAt": "2026-09-20T02:42:38.197Z"
+            },
+            {
+              "name": "move-attached-objects-translates-anchors",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:38.197Z",
+              "finishedAt": "2026-09-20T02:42:40.262Z"
+            },
+            {
+              "name": "undo-and-redo-the-anchor-edit",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:40.262Z",
+              "finishedAt": "2026-09-20T02:42:41.213Z"
+            },
+            {
+              "name": "export-import-round-trip",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:41.214Z",
+              "finishedAt": "2026-09-20T02:42:44.897Z"
+            },
+            {
+              "name": "malformed-import-leaves-the-project-intact",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:42:44.897Z",
+              "finishedAt": "2026-09-20T02:43:31.375Z"
+            },
+            {
+              "name": "invalid-draft-is-retained-and-blocks-playtest",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:43:31.376Z",
+              "finishedAt": "2026-09-20T02:43:33.157Z"
+            },
+            {
+              "name": "reload-restores-the-browser-draft",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:43:33.158Z",
+              "finishedAt": "2026-09-20T02:43:35.076Z"
+            },
+            {
+              "name": "preview-chapter-one-uses-the-edited-document",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:43:35.076Z",
+              "finishedAt": "2026-09-20T02:43:54.691Z"
+            },
+            {
+              "name": "preview-chapter-two-and-full-adventure",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:43:54.692Z",
+              "finishedAt": "2026-09-20T02:44:24.123Z"
+            },
+            {
+              "name": "desktop-layout-and-zoom-lock",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:44:24.124Z",
+              "finishedAt": "2026-09-20T02:44:25.000Z"
+            },
+            {
+              "name": "narrow-touch-layout-and-drawers",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:44:25.000Z",
+              "finishedAt": "2026-09-20T02:44:29.443Z"
+            },
+            {
+              "name": "toolbar-controls-stay-reachable",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:44:29.443Z",
+              "finishedAt": "2026-09-20T02:44:32.854Z"
+            },
+            {
+              "name": "clean-console-and-network",
+              "status": "passed",
+              "startedAt": "2026-09-20T02:44:32.854Z",
+              "finishedAt": "2026-09-20T02:44:32.855Z"
+            }
+          ]
+        },
+        "errors": {
+          "failures": [],
+          "expectedFaults": [],
+          "responseErrors": [],
+          "pageErrors": [],
+          "consoleErrors": []
+        }
+      },
+      "authoring": {
+        "path": "test-results/editor-authoring/hosted-editor-final/report.json",
+        "sha256": "db8de46d036917121ee0e9b33cc50a360093dcda9b8ac23c51826e5b87fa978c",
+        "status": "passed",
+        "startedAt": null,
+        "finishedAt": null,
+        "recordedAt": "2026-09-20T02:44:58.972Z",
+        "url": "https://haynes-quest-playtest.haynesops.com",
+        "bundle": {
+          "path": "/assets/index-6s8dBlhu.js",
+          "bytes": 1305195,
+          "sha256": "af327cb9e1de233a01924c64c9935f7298a3334876d6675ae1627257246f1078",
+          "source": ".private/editor-hosted-target.json"
+        },
+        "scenarios": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "results": [
+            {
+              "scenario": "add-duplicate-delete",
+              "addedTypes": [
+                "platform",
+                "moving-platform",
+                "sweeper",
+                "checkpoint"
+              ],
+              "duplicateRestored": true,
+              "revision": 7
+            },
+            {
+              "scenario": "route-forms",
+              "connectionEditExported": 1,
+              "duplicateConnectionRepaired": 6,
+              "invalidMainPathExported": [
+                "welcome",
+                "missing-platform"
+              ],
+              "branchEditExported": 11,
+              "routeEscapeCanceled": true,
+              "finalRevision": 12
+            },
+            {
+              "scenario": "gizmo-transactions",
+              "interruptedDragRevision": 0,
+              "completedDragRevision": 1,
+              "originalCenter": {
+                "x": 0,
+                "y": -0.3,
+                "z": 0
+              },
+              "movedCenter": {
+                "x": 1.5,
+                "y": -0.3,
+                "z": 0
+              },
+              "oneUndoRestoredCenter": true
+            }
+          ]
+        },
+        "errors": []
+      },
+      "adventure": {
+        "path": "test-results/authored-playtest/hosted-editor-adventure-final/report.json",
+        "sha256": "33fb5ae6ccb3d9d1b2c023eece2da5f31b021897ca52e59944d2892328e34dd0",
+        "status": "passed",
+        "startedAt": "2026-09-20T02:45:13.155Z",
+        "finishedAt": "2026-09-20T02:52:39.314Z",
+        "recordedAt": "2026-09-20T02:52:39.310Z",
+        "url": "https://haynes-quest-playtest.haynesops.com",
+        "browser": "153.0.8010.12",
+        "bundle": {
+          "path": "/assets/index-6s8dBlhu.js",
+          "bytes": 1305195,
+          "sha256": "af327cb9e1de233a01924c64c9935f7298a3334876d6675ae1627257246f1078"
+        },
+        "entryMode": "editor",
+        "coverage": "full-journey",
+        "editorEntry": {
+          "chapter": 1,
+          "scope": "adventure",
+          "requests": [
+            {
+              "method": "POST",
+              "chapterId": "chapter-1",
+              "scope": "adventure",
+              "carriedProject": true
+            }
+          ]
+        },
+        "courseIds": [
+          "garden-playground-v2",
+          "besties-playground-v2"
+        ],
+        "completions": [
+          {
+            "stage": "chapter:1:complete",
+            "at": "2026-09-20T02:48:56.420Z",
+            "documentId": "garden-playground-v2",
+            "platforms": 21,
+            "recoveries": 3
+          },
+          {
+            "stage": "chapter:2:complete",
+            "at": "2026-09-20T02:52:39.312Z",
+            "documentId": "besties-playground-v2",
+            "platforms": 21,
+            "recoveries": 1
+          }
+        ],
+        "errors": {
+          "failures": [],
+          "expectedFaults": [],
+          "responseErrors": [],
+          "pageErrors": [],
+          "consoleErrors": []
+        }
+      }
+    },
+    "candidate": {
+      "authoring": {
+        "path": "test-results/editor-authoring/final-d201cbc/report.json",
+        "sha256": "441dc1e5dfccbd4abff53598ef9cc997b97b10146ad2dcb2fa30e3ef05648286",
+        "status": "passed",
+        "startedAt": null,
+        "finishedAt": null,
+        "recordedAt": "2026-09-20T02:19:37.498Z",
+        "url": "http://127.0.0.1:4430",
+        "bundle": {
+          "path": "/assets/index-6s8dBlhu.js",
+          "bytes": 1305195,
+          "sha256": "af327cb9e1de233a01924c64c9935f7298a3334876d6675ae1627257246f1078",
+          "source": ".private/editor-hosted-target.json"
+        },
+        "scenarios": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "results": [
+            {
+              "scenario": "add-duplicate-delete",
+              "addedTypes": [
+                "platform",
+                "moving-platform",
+                "sweeper",
+                "checkpoint"
+              ],
+              "duplicateRestored": true,
+              "revision": 7
+            },
+            {
+              "scenario": "route-forms",
+              "connectionEditExported": 1,
+              "duplicateConnectionRepaired": 6,
+              "invalidMainPathExported": [
+                "welcome",
+                "missing-platform"
+              ],
+              "branchEditExported": 11,
+              "routeEscapeCanceled": true,
+              "finalRevision": 12
+            },
+            {
+              "scenario": "gizmo-transactions",
+              "interruptedDragRevision": 0,
+              "completedDragRevision": 1,
+              "originalCenter": {
+                "x": 0,
+                "y": -0.3,
+                "z": 0
+              },
+              "movedCenter": {
+                "x": 1.5,
+                "y": -0.3,
+                "z": 0
+              },
+              "oneUndoRestoredCenter": true
+            }
+          ]
+        },
+        "errors": []
+      },
+      "toolbar": {
+        "path": ".private/editor-toolbar-final-ddafb25/report.json",
+        "sha256": "1a353b6b8be9172a2132ec58b92eb3238aed2bbdd8aa6246872574cef69476c4",
+        "status": "passed",
+        "startedAt": null,
+        "finishedAt": null,
+        "recordedAt": "2026-09-20T02:26:58.575Z",
+        "url": "http://127.0.0.1:4430",
+        "bundle": {
+          "path": "/assets/index-6s8dBlhu.js",
+          "bytes": 1305195,
+          "sha256": "af327cb9e1de233a01924c64c9935f7298a3334876d6675ae1627257246f1078",
+          "source": ".private/editor-hosted-target.json"
+        },
+        "checks": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0
+        },
+        "surfaces": [
+          {
+            "surface": "phone",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "horizontalOverflow": 0,
+            "toolbar": {
+              "top": 137.5,
+              "bottom": 269.5,
+              "height": 132,
+              "clientHeight": 131,
+              "scrollHeight": 131
+            },
+            "unreachable": []
+          },
+          {
+            "surface": "tablet",
+            "viewport": {
+              "width": 834,
+              "height": 1112
+            },
+            "horizontalOverflow": 0,
+            "toolbar": {
+              "top": 114.5,
+              "bottom": 208.5,
+              "height": 94,
+              "clientHeight": 93,
+              "scrollHeight": 93
+            },
+            "unreachable": []
+          },
+          {
+            "surface": "desktop",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "horizontalOverflow": 0,
+            "toolbar": {
+              "top": 60,
+              "bottom": 116,
+              "height": 56,
+              "clientHeight": 55,
+              "scrollHeight": 55
+            },
+            "unreachable": []
+          }
+        ],
+        "errors": []
+      },
+      "tabletTabs": {
+        "path": ".private/editor-toolbar-final-ddafb25/tablet-tabs-report.json",
+        "sha256": "b57fb7981360af58d9677b92f3edcbe380856207e329797018da8fef031ad952",
+        "status": "passed",
+        "startedAt": null,
+        "finishedAt": null,
+        "recordedAt": "2026-09-20T02:27:29.088Z",
+        "bundle": {
+          "path": "/assets/index-6s8dBlhu.js",
+          "bytes": 1305195,
+          "sha256": "af327cb9e1de233a01924c64c9935f7298a3334876d6675ae1627257246f1078",
+          "source": ".private/editor-hosted-target.json"
+        },
+        "checks": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0
+        },
+        "states": [
+          {
+            "name": "view",
+            "selected": "View",
+            "workspaceClass": "editor-workspace is-mobile-view",
+            "viewport": "block",
+            "objects": "none",
+            "properties": "none"
+          },
+          {
+            "name": "objects",
+            "selected": "Objects",
+            "workspaceClass": "editor-workspace is-mobile-objects",
+            "viewport": "none",
+            "objects": "flex",
+            "properties": "none"
+          },
+          {
+            "name": "properties",
+            "selected": "Properties",
+            "workspaceClass": "editor-workspace is-mobile-properties",
+            "viewport": "none",
+            "objects": "none",
+            "properties": "flex"
+          },
+          {
+            "name": "view-return",
+            "selected": "View",
+            "workspaceClass": "editor-workspace is-mobile-view",
+            "viewport": "block",
+            "objects": "none",
+            "properties": "none"
+          }
+        ],
+        "errors": []
+      }
+    },
+    "preserved": {
+      "opusFullAdventure": {
+        "path": ".private/opus-browser-evidence/test-results/authored-playtest/editor-entry-both-chapters/report.json",
+        "sha256": "993fc87ab5706527fb57a861b8ee622ae3a4c4d06cdcc6747f5974c6dc7acdc5",
+        "status": "passed",
+        "startedAt": "2026-09-20T01:59:10.800Z",
+        "finishedAt": "2026-09-20T02:06:37.634Z",
+        "recordedAt": "2026-09-20T02:06:37.632Z",
+        "url": "http://127.0.0.1:4430",
+        "browser": "153.0.8010.12",
+        "bundle": {
+          "path": "/assets/index-Cg4sHnlJ.js",
+          "bytes": 1303795,
+          "sha256": "7c98acc5cb089d5ef38b3ac02fe477910eff05457e3a416a6ff006f6c0facba9"
+        },
+        "entryMode": "editor",
+        "coverage": "full-journey",
+        "editorEntry": {
+          "chapter": 1,
+          "scope": "adventure",
+          "requests": [
+            {
+              "method": "POST",
+              "chapterId": "chapter-1",
+              "scope": "adventure",
+              "carriedProject": true
+            }
+          ]
+        },
+        "courseIds": [
+          "garden-playground-v2",
+          "besties-playground-v2"
+        ],
+        "completions": [
+          {
+            "stage": "chapter:1:complete",
+            "at": "2026-09-20T02:03:05.289Z",
+            "documentId": "garden-playground-v2",
+            "platforms": 21,
+            "recoveries": 2
+          },
+          {
+            "stage": "chapter:2:complete",
+            "at": "2026-09-20T02:06:37.631Z",
+            "documentId": "besties-playground-v2",
+            "platforms": 21,
+            "recoveries": 1
+          }
+        ],
+        "errors": {
+          "failures": [],
+          "expectedFaults": [],
+          "responseErrors": [],
+          "pageErrors": [],
+          "consoleErrors": []
+        }
+      }
+    }
+  },
+  "cleanup": {
+    "checkedAt": "2026-09-20T02:42:38.182180+00:00",
+    "fixtureSession": "quest-editor-candidate",
+    "fixtureStopped": true,
+    "fixturePort": 4430,
+    "closedHosts": [
+      "127.0.0.1",
+      "::1"
+    ],
+    "authoringJobsOwned": false,
+    "releaseActivityEnded": true,
+    "separateAgentWorktreesReaped": true,
+    "browserContextsClosed": true
+  },
+  "limits": [
+    "Chromium desktop/touch emulation does not establish physical Safari or hardware performance.",
+    "Browser-local drafts require JSON export for portable backup/sharing.",
+    "Two fixed current chapters and existing mechanics/assets define this MVP.",
+    "Attestation presence and publication were verified; independent cryptographic verification is not claimed."
+  ],
+  "browserRawEvidence": {
+    "path": ".private/editor-browser-release.json",
+    "sha256": "6f17ca65ec20266a82029a473e72011848a5385170b0d1e223852f7895417d87"
+  }
+}

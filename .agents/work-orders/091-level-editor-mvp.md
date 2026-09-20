@@ -1,6 +1,6 @@
 # WO091: Human and agent level editor MVP
 
-Status: Integrated candidate under final acceptance. September 20, 2026. Governed by PLAN012, PRD002, ADR003 and DESIGN019. Root worktree `/home/dev/work/quest-level-editor-mvp`, branch `agent/quest-level-editor-mvp`, base `903ef93`. Application PR52; private operations release follows exact reviewed source publication.
+Status: Complete, deployed and verified. September 20, 2026. Governed by PLAN012, PRD002, ADR003 and DESIGN019. Root worktree `/home/dev/work/quest-level-editor-mvp`, branch `agent/quest-level-editor-mvp`, base `903ef93`. Application PR52; private operations release follows exact reviewed source publication.
 
 ## Owner direction and delivery
 
@@ -16,6 +16,14 @@ The browser workflow verifies actual inspector edits, attached movement, undo/re
 
 Normal-input report `editor-entry-both-chapters` passed both chapters through the editor on candidate `310fcb7`: expected v2 course identities, equipment, minor memories, ordinary and boss combat, safe-miss landings, checkpoint recovery, moving platforms, major memories, chapter transition and completion. Its report SHA256 is `993fc87ab5706527fb57a861b8ee622ae3a4c4d06cdcc6747f5974c6dc7acdc5`; candidate JavaScript SHA256 is `7c98acc5cb089d5ef38b3ac02fe477910eff05457e3a416a6ff006f6c0facba9`. HTTP/page/console error arrays are empty. Separate concurrent runs exposed test-driver timing assumptions; they are retained as failed attempts, not counted as passes.
 
-## Completion gate
+## Published release and hosted acceptance
 
-Integrate and review final browser harnesses; validate completed/interrupted gizmo transactions and all route forms; pass exact-head required CI; self-merge app PR52; verify published immutable image; self-merge scoped private GitOps release; verify Flux, live assets and hosted authoring/gameplay. Preserve normal Quest and dev-env identity/state. Record release hashes and cleanup before marking PLAN012 complete. Chromium desktop/touch emulation does not establish physical Safari or hardware performance.
+[App PR52](https://github.com/thaynes43/haynes-quest/pull/52) passed exact-head checks at `ddafb250de02e0c9225697156d65de3ac179f0bf` and merged as `e017c58fa79d3fd63fd899124ec7a8929ba067d7`. All 675 CI tests pass, including real PostgreSQL. Main Application `35484238763` and Documentation `35484238780` succeeded. Publication and attestation presence were verified; independent cryptographic verification is not claimed.
+
+[Ops PR2988](https://github.com/thaynes43/haynes-ops/pull/2988) passed all nine required checks and merged as `445ab293aa30e0e7b8a187c92ba1db8aa399b352`. The only runtime change is the private image, now `ghcr.io/thaynes43/haynes-quest:sha-e017c58fa79d3fd63fd899124ec7a8929ba067d7@sha256:6c6b12f6f7c776ab361c131af24770e0c746874d4cb091d6ec261c0135d9940c`. Flux/Helm applied generation12, deployment1/1 ready with zero restarts. `/editor` serves the expected shell and exact reviewed assets; the guide and health endpoints return200. Normal Quest and dev-env identities, generations, images and pod state remain unchanged.
+
+The exact hosted bundle passes all 18 workflow scenarios and three authoring groups. Actual edited geometry survives a normal pickup/save round trip; import, undo/redo, invalid-draft handling, draft reload, route forms, duplicate-connection repair and completed/interrupted gizmo transactions pass. Phone, tablet and desktop controls are reachable, tablet tabs work and browser zoom remains locked. A separate full normal-input editor adventure completes both chapters, bosses, final memories, chapter transition and final completion. HTTP/page/console error arrays are empty. No gameplay state was seeded to claim these journeys. Failed diagnostic attempts remain separate from passing evidence.
+
+[The release index](../evidence/level-editor-release.json) records exact hashes, report paths and compact results. Raw evidence is archived at `/home/dev/artifacts/haynes-quest/level-editor-mvp-20260920-e017c58`. Activity `act-023946-191874` is ended, local fixture4430 is closed, browser contexts are closed and separate agent worktrees are reaped. No Blender/audio jobs are owned. Repository-only closeout records require no second game-image promotion.
+
+Chromium desktop/touch emulation does not establish physical Safari or hardware performance. Current assets and the fixed two-chapter roster remain the MVP scope; browser-local drafts require Export for portable backup or sharing. Personal photos and shared publishing remain future platform work, not hidden dependencies of this release.
