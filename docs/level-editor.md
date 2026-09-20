@@ -20,7 +20,7 @@ Geometry and route connections work together. In **Route**, connect platforms wi
 
 Validation checks whether jumps are reachable, landing areas are clear, checkpoints are supported, and required gameplay objects can be reached. It also checks the room needed for the Besties boss routine. A draft can stay unfinished while you edit; **Playtest** requires both levels to pass.
 
-Use **Review issues** to find a problem and select its object. If moving a platform breaks a jump, move the adjoining platform or revise the route. Validation deliberately keeps jumps within the game's forgiving course limits.
+Select the **issues to fix** button to find a problem and select its object. If moving a platform breaks a jump, move the adjoining platform or revise the route. Validation deliberately keeps jumps within the game's forgiving course limits.
 
 The Besties encounter needs a flat, clear court for its scripted attacks. These checks explain edits that would break that routine:
 
