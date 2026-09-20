@@ -9,24 +9,36 @@ import { platformIds, staticPlatformIds } from "./editor-selection";
 function SequenceField({
   label,
   value,
+  minItems,
   onCommit,
 }: {
   label: string;
   value: readonly string[];
+  minItems: number;
   onCommit(value: readonly string[]): void;
 }) {
   const serialized = value.join(", ");
   const [text, setText] = useState(serialized);
   const editing = useRef(false);
+  const cancelBlur = useRef(false);
   useEffect(() => {
     if (!editing.current) setText(serialized);
   }, [serialized]);
   const commit = () => {
     editing.current = false;
+    if (cancelBlur.current) {
+      cancelBlur.current = false;
+      setText(serialized);
+      return;
+    }
     const next = text
       .split(/[\s,]+/)
       .map((part) => part.trim())
       .filter(Boolean);
+    if (next.length < minItems) {
+      setText(serialized);
+      return;
+    }
     setText(next.join(", "));
     if (next.join("\0") !== value.join("\0")) onCommit(next);
   };
@@ -47,6 +59,7 @@ function SequenceField({
             event.currentTarget.blur();
           }
           if (event.key === "Escape") {
+            cancelBlur.current = true;
             setText(serialized);
             event.currentTarget.blur();
           }
@@ -114,18 +127,30 @@ export function RouteEditor({
     if (!from || !to) return;
     onAddConnection({ from, to, mode: "walk" });
   };
+  const addBranch = () => {
+    const seed = document.mainPath.slice(0, 3);
+    while (seed.length < 3) seed.push(seed.at(-1)!);
+    onAddBranch(seed);
+  };
   return (
     <div className="editor-route-editor">
       <section className="editor-route-section">
         <div className="editor-section-heading">
           <h2>Connections</h2>
-          <button type="button" onClick={addConnection} disabled={!platforms.length}>
+          <button
+            type="button"
+            onClick={addConnection}
+            disabled={!platforms.length}
+          >
             Add connection
           </button>
         </div>
         <div className="editor-connection-list">
           {document.connections.map((connection, index) => (
-            <div className="editor-connection" key={`${connection.from}:${connection.to}:${index}`}>
+            <div
+              className="editor-connection"
+              key={`${connection.from}:${connection.to}:${index}`}
+            >
               <ConnectionSelect
                 label="From"
                 value={connection.from}
@@ -179,13 +204,14 @@ export function RouteEditor({
         <SequenceField
           label="IDs"
           value={document.mainPath}
+          minItems={2}
           onCommit={onSetMainPath}
         />
       </section>
       <section className="editor-route-section">
         <div className="editor-section-heading">
           <h2>Branches</h2>
-          <button type="button" onClick={() => onAddBranch([])}>
+          <button type="button" onClick={addBranch}>
             Add branch
           </button>
         </div>
@@ -194,6 +220,7 @@ export function RouteEditor({
             <SequenceField
               label={`${index + 1}`}
               value={branch}
+              minItems={3}
               onCommit={(value) => onUpdateBranch(index, value)}
             />
             <button type="button" onClick={() => onRemoveBranch(index)}>

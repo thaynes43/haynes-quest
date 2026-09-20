@@ -6,7 +6,6 @@ import {
   useState,
 } from "react";
 import type {
-  AuthoredConnection,
   AuthoredLevelPiece,
   AuthoredPosition,
 } from "../../shared/authored-level";
@@ -47,6 +46,7 @@ import {
   uniquePieceId,
   type EditorSelection,
 } from "./editor-selection";
+import { connectionMatchForCommand } from "./editor-command-adapters";
 import {
   EDITOR_STORAGE_KEY,
   ensureImportSize,
@@ -153,10 +153,6 @@ function importError(error: unknown): string {
     return issue ? `${issue.path}: ${issue.message}` : error.message;
   }
   return error instanceof Error ? error.message : "";
-}
-
-function connectionMatch(connection: AuthoredConnection): AuthoredConnection {
-  return { ...connection };
 }
 
 export function EditorWorkspace({
@@ -611,7 +607,10 @@ export function EditorWorkspace({
                 runCommand({
                   type: "connection.update",
                   chapterId: cursor.chapterId,
-                  match: connectionMatch(document.connections[index]),
+                  match: connectionMatchForCommand(
+                    document.connections[index],
+                    index,
+                  ),
                   connection,
                 })
               }
@@ -619,7 +618,10 @@ export function EditorWorkspace({
                 runCommand({
                   type: "connection.remove",
                   chapterId: cursor.chapterId,
-                  match: connectionMatch(document.connections[index]),
+                  match: connectionMatchForCommand(
+                    document.connections[index],
+                    index,
+                  ),
                 })
               }
               onSetMainPath={(platformIds) =>
