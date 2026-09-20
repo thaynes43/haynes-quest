@@ -14,13 +14,27 @@ Open **Level editor** from the private playtest's start screen, or visit `/edito
 
 To add a course piece, use **Add** in the left panel. Platforms, moving platforms, sweepers and checkpoints are available. The template's memories, equipment, enemies and friends can be repositioned; their gameplay roles stay fixed in this MVP.
 
+## Build a climbing section
+
+In **Add → Build a section**, choose a **Raised arch** or **Zigzag ridge**, a **Start platform**, a **Rejoin platform** and a side. **Climbing steps** and **Rise per step** set the climb. Select **Add section** to create its platforms, connections, checkpoints and side route together. **Undo** removes the whole section; the individual pieces remain editable afterward.
+
+Try `welcome` to `picnic` in Level 1 with the defaults. The route climbs and descends beside the opening course. Up to twelve climbing steps are available for taller routes; use a longer span to retain broad landings. A short span may not fit the requested number of broad steps; choose a farther rejoin platform or fewer steps. If a lane is occupied, try the other side or different endpoints. The builder shows its platform count and peak height before adding it. If the section does not fit, it explains what to change and leaves the draft intact.
+
+For a taller example, start with a fresh Level 1 and build a **Raised arch** from `welcome` to `woodland-rest`, on the **Left**, with **12** climbing steps and **0.3** rise. Its crest stands 3.6 units above the starting platform, with a checkpoint on every landing. Use a fresh draft for each example so the earlier section does not occupy the same space.
+
+Start with broad landings and an easy climb, add a bend or change in rhythm, and place a safe pause where the player can see the next jump. Mix quiet discovery areas with short obstacle sections. Height alone does not make a course interesting: walk the new route in Playtest, miss a jump deliberately, and check the recovery before adding more.
+
+These sections are side routes. They preserve the template's main progression and gameplay objects. Use **Route** and **Properties** when deliberately changing the required journey. **Top surface Y** shows the standing height of a platform; **Snap → 0.3 units** matches the template's rise between steps.
+
 ## Connect the course
 
-Geometry and route connections work together. In **Route**, connect platforms with **From**, **To** and **Mode**, then update **Main route** or **Branches** to include the intended path. **Safe landing** identifies a catch platform below a jump.
+Floating platforms are supported. Add a **Platform** and raise its **Y** in Properties, or drag the green handle. Platform Y is its center; the standing surface is Y plus half its Height. Extra platforms can stay outside the named routes and still appear as solid platforms in Playtest.
 
-Validation checks whether jumps are reachable, landing areas are clear, checkpoints are supported, and required gameplay objects can be reached. It also checks the room needed for the Besties boss routine. A draft can stay unfinished while you edit; **Playtest** requires both levels to pass.
+Use **Route** for the intended course: connect platforms with **From**, **To** and **Mode**, then update **Main route** or **Branches**. Gameplay objects still need a route; required equipment, memories and fights belong on the main route in progression order. **Safe landing** identifies a catch platform below a jump.
 
-Select the **issues to fix** button to find a problem and select its object. If moving a platform breaks a jump, move the adjoining platform or revise the route. Validation deliberately keeps jumps within the game's forgiving course limits.
+Validation checks declared jump distances and rises, landing clearance, checkpoint support and required gameplay routes. Optional geometry is not automatically checked for a path to it. It also checks the room needed for the Besties boss routine. A draft can stay unfinished while you edit; **Playtest** requires both levels to pass.
+
+Select the **issues to fix** button to find a problem and select its object. If moving a platform breaks a jump, move the adjoining platform or revise the route. Declared jumps allow up to 0.35 units of height change and 1.4 units of gap. Build a climb from several broad steps; a platform directly above another can block the jump with its underside. Leave space above the player and test both climbing and returning.
 
 The Besties encounter needs a flat, clear court for its scripted attacks. These checks explain edits that would break that routine:
 
@@ -86,4 +100,27 @@ The example uses `jq` to extract the updated project from the result envelope. `
 
 Commands cover names, adding, moving, updating, duplicating and removing pieces, gameplay anchors, encounter arenas, connections, main routes and branches. Platform moves carry supported objects by default; set `carryAttached: false` only for an intentional independent move. `schema project` describes the complete portable document. For an ambiguous connection, include its zero-based `index` together with `from`, `to` and `mode` in the command’s `match`; the index must still identify that connection. Keep array order intact, including the `pieces` array: checkpoint recovery uses its ordering.
 
-Give a building agent the project, the command schema, and a concrete change such as “widen the early platforms while keeping every jump valid.” Have it apply small batches, read validation issues, and export the result. New character models, encounter behavior and physics still belong in the asset and game-mechanics workflows.
+Give a building agent the project, the command schema, and a concrete change such as “add a raised zigzag side route, keep the main progression intact, and verify every new jump.” Have it apply small batches, read validation issues, and export the result. New character models, encounter behavior and physics still belong in the asset and game-mechanics workflows.
+
+### Build sections with one command
+
+`inspect` includes `chapters[].spatial`: platform placements and `topY`, route membership (`mainPathIndex`, `branchIndices`, `optional`), connections, anchors and bounds. Its top-level `limits` comes from the shared validator; `sectionLimits` reports the builder’s defaults and bounds. `optional` means outside the named routes; a catch floor can still be referenced by a jump’s safe landing, listed in `safeMissFor` by connection index. Use these to choose the start, rejoin and available space, then apply a section command:
+
+```json
+{
+  "expectedRevision": 0,
+  "commands": [{
+    "type": "section.add",
+    "chapterId": "chapter-1",
+    "idPrefix": "sky-garden",
+    "fromPlatformId": "welcome",
+    "toPlatformId": "picnic",
+    "pattern": "arch",
+    "side": "left",
+    "steps": 4,
+    "rise": 0.3
+  }]
+}
+```
+
+Use `zigzag` for a ridge with alternating lateral steps. Choose a fresh `idPrefix` for each section. The command adds a branch between ordered static main-route platforms, preserves existing anchors and geometry, and rejects unsafe placements or exceeded scene limits atomically. It uses the game's existing platforms and collision rules, so the result needs no custom script, asset or rebuild. Validate and playtest the exported project before treating it as a finished level.

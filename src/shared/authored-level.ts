@@ -1007,13 +1007,6 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       );
   });
 
-  const safeMissPlatformIds = new Set(
-    document.connections.flatMap((connection) =>
-      connection.safeMissPlatformId && staticPlatforms.has(connection.safeMissPlatformId)
-        ? [connection.safeMissPlatformId]
-        : [],
-    ),
-  );
   const connectionKeys = new Map<string, number>();
   document.connections.forEach((connection, index) => {
     const from = platforms.get(connection.from);
@@ -1268,7 +1261,12 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
     });
   });
   for (const id of platforms.keys()) {
-    if (!platformPathSet.has(id) && !safeMissPlatformIds.has(id))
+    // V2 editor platforms may be optional collision geometry. Its authored
+    // paths remain explicit safety assertions rather than an exhaustive list.
+    if (
+      document.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION &&
+      !platformPathSet.has(id)
+    )
       issue(
         issues,
         `$.pieces[${ids.get(id)}].id`,

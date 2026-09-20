@@ -872,3 +872,46 @@
     text-overflow: ellipsis;
   }
 }
+
+.editor-section-builder {
+  display: grid;
+  gap: 10px;
+  padding-top: 16px;
+  margin-top: 8px;
+  border-top: 1px solid var(--editor-border);
+}
+
+.editor-section-builder h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.editor-section-builder .editor-primary {
+  text-align: center;
+  min-height: 40px;
+}
+
+.editor-section-builder .editor-section-warning {
+  padding: 8px;
+  border-radius: 5px;
+  color: #653e30;
+  background: #f4dfd1;
+  overflow-wrap: anywhere;
+}
+
+.editor-banner.editor-command-error {
+  max-height: 25vh;
+  overflow-y: auto;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.editor-command-error span {
+  min-width: 0;
+}
+
+.editor-command-error button {
+  flex: none;
+}

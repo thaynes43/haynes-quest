@@ -14,11 +14,23 @@ import {
   type AuthoredEncounterAnchor,
   type AuthoredEncounterSlot,
   type AuthoredLevelDocument,
+  type AuthoredLevelIssue,
   type AuthoredLevelPiece,
   type AuthoredPosition,
   type ResolvedAuthoredLevel,
 } from "./authored-level";
 import { validateEditorGameplayGuards } from "./editor-gameplay-guards";
+import {
+  levelEditorSectionIdPrefixSchema,
+  levelEditorSectionPatternSchema,
+  levelEditorSectionRiseSchema,
+  levelEditorSectionSideSchema,
+  levelEditorSectionStepsSchema,
+  newAuthoredLevelIssues,
+  planLevelEditorSection,
+  type LevelEditorSectionPattern,
+  type LevelEditorSectionSide,
+} from "./editor-sections";
 
 export const LEVEL_EDITOR_PROJECT_SCHEMA_VERSION =
   "level-editor-project-v1" as const;
@@ -304,6 +316,14 @@ function prefixedAuthoredPath(prefix: string, path: string): string {
   return path === "$" ? prefix : `${prefix}${path.startsWith("$") ? path.slice(1) : `.${path}`}`;
 }
 
+/** Every published gameplay check one chapter document has to answer. */
+function levelIssues(level: AuthoredLevelDocument): readonly AuthoredLevelIssue[] {
+  return [
+    ...validateAuthoredLevelDocument(level),
+    ...validateEditorGameplayGuards(level),
+  ];
+}
+
 export function validateLevelEditorProject(
   input: unknown,
 ): readonly LevelEditorIssue[] {
@@ -318,11 +338,7 @@ export function validateLevelEditorProject(
   const issues: LevelEditorIssue[] = [];
   project.chapters.forEach((chapter, index) => {
     const prefix = `$.chapters[${index}].level`;
-    const chapterIssues = [
-      ...validateAuthoredLevelDocument(chapter.level),
-      ...validateEditorGameplayGuards(chapter.level),
-    ];
-    for (const entry of chapterIssues)
+    for (const entry of levelIssues(chapter.level))
       issues.push(
         issue(
           "semantic",
@@ -503,7 +519,17 @@ export type LevelEditorCommand =
       readonly index: number;
       readonly platformIds: readonly string[];
     } & ChapterCommand)
-  | ({ readonly type: "branch.remove"; readonly index: number } & ChapterCommand);
+  | ({ readonly type: "branch.remove"; readonly index: number } & ChapterCommand)
+  | ({
+      readonly type: "section.add";
+      readonly idPrefix: string;
+      readonly fromPlatformId: string;
+      readonly toPlatformId: string;
+      readonly pattern: LevelEditorSectionPattern;
+      readonly side: LevelEditorSectionSide;
+      readonly steps?: number;
+      readonly rise?: number;
+    } & ChapterCommand);
 
 const chapterIdField = { chapterId: z.enum(LEVEL_EDITOR_CHAPTER_IDS) } as const;
 const pieceIdField = { pieceId: identifierSchema } as const;
@@ -641,6 +667,19 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
       index: z.number().int().nonnegative(),
     })
     .strict(),
+  z
+    .object({
+      type: z.literal("section.add"),
+      ...chapterIdField,
+      idPrefix: levelEditorSectionIdPrefixSchema,
+      fromPlatformId: identifierSchema,
+      toPlatformId: identifierSchema,
+      pattern: levelEditorSectionPatternSchema,
+      side: levelEditorSectionSideSchema,
+      steps: levelEditorSectionStepsSchema.optional(),
+      rise: levelEditorSectionRiseSchema.optional(),
+    })
+    .strict(),
 ]);
 
 export interface LevelEditorCommandBatch {
@@ -695,6 +734,21 @@ class CommandApplicationError extends Error {
 
 function commandError(path: string, code: string, message: string): never {
   throw new CommandApplicationError(path, code, message);
+}
+
+/**
+ * A command that fails for several independent reasons at once, such as a
+ * section whose lane collides with more than one platform. The batch rolls back
+ * exactly as it does for a single failure; only the reporting differs.
+ */
+class CommandIssuesError extends Error {
+  readonly issues: readonly AuthoredLevelIssue[];
+
+  constructor(issues: readonly AuthoredLevelIssue[]) {
+    super(issues.map((entry) => entry.message).join(" "));
+    this.name = "CommandIssuesError";
+    this.issues = issues;
+  }
 }
 
 function chapterFor(
@@ -1132,6 +1186,29 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
           "Branch index is outside the branch list",
         );
       level.branches.splice(command.index, 1);
+      return;
+    case "section.add": {
+      const before = levelIssues(level);
+      const planned = planLevelEditorSection(level, command);
+      if (!planned.ok) throw new CommandIssuesError(planned.issues);
+      for (const piece of planned.plan.pieces)
+        level.pieces.push(cloneJson(piece) as DeepMutable<AuthoredLevelPiece>);
+      for (const connection of planned.plan.connections)
+        level.connections.push(cloneJson(connection));
+      level.branches.push([...planned.plan.branch]);
+      // The published validators are the last word on whether the section is
+      // safe. Pre-existing problems in an in-progress draft stay the author's
+      // to fix; anything this command would add fails it instead.
+      const added = newAuthoredLevelIssues(before, levelIssues(level));
+      if (added.length > 0)
+        throw new CommandIssuesError(
+          added.map((entry) => ({
+            path: "$",
+            code: "section.unsafe",
+            message: `The section would add a new problem at ${entry.path}: ${entry.message} (${entry.code})`,
+          })),
+        );
+    }
   }
 }
 
@@ -1214,6 +1291,22 @@ export function applyLevelEditorCommands(
               commandIndex,
             ),
           ]),
+        });
+      if (error instanceof CommandIssuesError)
+        return Object.freeze({
+          ok: false,
+          project,
+          issues: freezeIssues(
+            error.issues.map((entry) =>
+              issue(
+                "command",
+                `$.commands[${commandIndex}]${entry.path.slice(1)}`,
+                entry.code,
+                entry.message,
+                commandIndex,
+              ),
+            ),
+          ),
         });
       if (error instanceof LevelEditorProjectValidationError)
         return Object.freeze({

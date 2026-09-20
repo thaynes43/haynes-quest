@@ -26,6 +26,7 @@ import {
 } from "../../shared/editor-project";
 import { EditorViewport, type EditorSnap, type EditorViewportHandle } from "./EditorViewport";
 import { ObjectRail } from "./ObjectRail";
+import { SectionBuilder } from "./SectionBuilder";
 import { PropertiesInspector } from "./PropertiesInspector";
 import { RouteEditor } from "./RouteEditor";
 import { TextField } from "./EditorFields";
@@ -44,6 +45,7 @@ import {
   pieceForSelection,
   positionForSelection,
   uniquePieceId,
+  uniqueSectionPrefix,
   type EditorSelection,
 } from "./editor-selection";
 import { connectionMatchForCommand } from "./editor-command-adapters";
@@ -176,6 +178,7 @@ export function EditorWorkspace({
   const [issues, setIssues] = useState<readonly LevelEditorIssue[]>(() =>
     validateLevelEditorProject(initial.history.present.project),
   );
+  const [commandFailure, setCommandFailure] = useState("");
   const [checksOpen, setChecksOpen] = useState(false);
   const [playtestBlocked, setPlaytestBlocked] = useState(false);
   const [playtestMenuOpen, setPlaytestMenuOpen] = useState(false);
@@ -187,7 +190,7 @@ export function EditorWorkspace({
   const [inspectorTab, setInspectorTab] = useState<"properties" | "route">(
     "properties",
   );
-  const [snap, setSnap] = useState<EditorSnap>(0.5);
+  const [snap, setSnap] = useState<EditorSnap>(0.25);
   const [moveAttached, setMoveAttached] = useState(true);
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>("view");
   const workspace = useRef<HTMLDivElement>(null);
@@ -201,6 +204,10 @@ export function EditorWorkspace({
   const cursor = cursorForProject(project, history.present.selection);
   const chapter = chapterFor(project, cursor.chapterId);
   const document = chapter.level;
+
+  useEffect(() => {
+    setCommandFailure("");
+  }, [project, cursor.chapterId]);
 
   useEffect(() => {
     const timeout = window.setTimeout(() => {
@@ -258,11 +265,13 @@ export function EditorWorkspace({
     (command: LevelEditorCommand, nextObject?: EditorSelection | null) => {
       const current = latestHistory.current;
       const result = applyLevelEditorCommand(current.present.project, command);
-      setIssues(result.issues);
       if (!result.ok) {
-        setChecksOpen(true);
-        return;
+        setIssues(validateLevelEditorProject(current.present.project));
+        setCommandFailure(`Edit not applied. ${result.issues[0]?.message ?? "Check the values and try again."}`);
+        return false;
       }
+      setCommandFailure("");
+      setIssues(result.issues);
       const selection = cursorForProject(result.project, {
         ...current.present.selection,
         object:
@@ -276,11 +285,13 @@ export function EditorWorkspace({
       });
       latestHistory.current = history;
       setHistory(history);
+      return true;
     },
     [],
   );
 
   const undo = useCallback(() => {
+    setCommandFailure("");
     const current = latestHistory.current;
     const revision = current.present.project.revision + 1;
     const restored = undoEditorHistory(current, (snapshot) =>
@@ -301,6 +312,7 @@ export function EditorWorkspace({
   }, []);
 
   const redo = useCallback(() => {
+    setCommandFailure("");
     const current = latestHistory.current;
     const revision = current.present.project.revision + 1;
     const restored = redoEditorHistory(current, (snapshot) =>
@@ -427,6 +439,20 @@ export function EditorWorkspace({
     );
   };
 
+  const addSection = (
+    options: Omit<
+      Extract<LevelEditorCommand, { type: "section.add" }>,
+      "type" | "chapterId" | "idPrefix"
+    >,
+  ) => {
+    const idPrefix = uniqueSectionPrefix(document, options.pattern);
+    const applied = runCommand(
+      { type: "section.add", chapterId: cursor.chapterId, idPrefix, ...options },
+      { type: "piece", id: `${idPrefix}-step-1` },
+    );
+    if (applied) window.requestAnimationFrame(() => viewport.current?.frameSelection());
+  };
+
   const moveSelection = (position: AuthoredPosition) => {
     if (cursor.object?.type === "piece") {
       runCommand({
@@ -539,7 +565,7 @@ export function EditorWorkspace({
   };
 
   const projectStatus = issues.length === 0 ? "Ready to play" : "Draft";
-  const issueSummary = `${issues.length} issues to fix`;
+  const issueSummary = `${issues.length} ${issues.length === 1 ? "issue" : "issues"} to fix`;
 
   const rightInspector = useMemo(
     () => (
@@ -810,6 +836,7 @@ export function EditorWorkspace({
             >
               <option value={0}>Off</option>
               <option value={0.25}>0.25 units</option>
+              <option value={0.3}>0.3 units</option>
               <option value={0.5}>0.5 units</option>
               <option value={1}>1 units</option>
             </select>
@@ -842,6 +869,12 @@ export function EditorWorkspace({
           )}
         </div>
       )}
+      {commandFailure && (
+        <div className="editor-banner editor-command-error" role="alert">
+          <span>{commandFailure}</span>
+          <button type="button" onClick={() => setCommandFailure("")}>Dismiss</button>
+        </div>
+      )}
       {playtestError && (
         <div className="editor-banner" role="alert">
           {playtestError}
@@ -870,6 +903,17 @@ export function EditorWorkspace({
           selection={cursor.object}
           onSelect={selectAndFrame}
           onAdd={addPiece}
+          sectionBuilder={
+            <SectionBuilder
+              key={cursor.chapterId}
+              document={document}
+              selectedPlatformId={
+                cursor.object?.type === "piece" ? cursor.object.id : undefined
+              }
+              onBuild={addSection}
+              onSelectStart={(id) => selectAndFrame({ type: "piece", id })}
+            />
+          }
         />
         <EditorViewport
           ref={viewport}

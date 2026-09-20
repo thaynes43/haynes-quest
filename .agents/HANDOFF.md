@@ -1,5 +1,7 @@
 # Current handoff
 
+**[PLAN013](plans/013-vertical-level-authoring.md) is in progress:** Tom's floating-platform feedback exposed an unnecessary v2 route-membership restriction. The focused fix is implemented and passes targeted validator/editor tests plus a real browser preview/reload check. Shared climbing-section commands, spatial inspection and the human builder are being integrated under [WO092](work-orders/092-vertical-authoring.md). Worktree `/home/dev/work/quest-vertical-authoring`, branch `agent/quest-vertical-authoring`; the live release below remains unchanged until the new candidate is verified and deployed.
+
 **[PLAN012](plans/completed/012-level-editor-mvp.md) is complete: the human/agent level editor is deployed and verified.** [App PR52](https://github.com/thaynes43/haynes-quest/pull/52), source `e017c58fa79d3fd63fd899124ec7a8929ba067d7`, supplies the private release. [WO091](work-orders/091-level-editor-mvp.md) and [the release index](evidence/level-editor-release.json) record source, checks, live assets, browser evidence and cleanup. Native Sol Ultra and authorized Opus 5 handled bounded implementation, testing and release; Astra retained architecture, UX and final review.
 
 ## Editor MVP

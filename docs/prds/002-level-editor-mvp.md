@@ -26,3 +26,10 @@ A human or inexpensive language model can assemble worlds and obby courses from 
 Parity means equal resolved course and placement data plus the same playable mechanics, not a second renderer that merely resembles screenshots. Templates retain the existing two-chapter fictional roster, equipment, three memory roles per chapter and current art/foliage behavior. The editor changes layouts and placements; arbitrary campaign length, new enemy mechanics, final-art approval, multi-user editing and account-synced publishing are later platform decisions. Browser-local drafts do not claim cross-device persistence; exported files provide portability.
 
 Acceptance covers template round trips, deterministic command edits, rejection of malformed/unsafe data, runtime snapshot isolation, visual authoring, undo/redo, draft restoration, import/export, and actual edited playtesting. A graph validator cannot establish that a course is enjoyable; the Playtest action remains part of authoring.
+
+## Vertical authoring correction (PLAN013)
+
+| ID | Requirement |
+| --- | --- |
+| R-11 | Authors may add floating and optional platforms without route bookkeeping blocking preview; required objectives and explicit routes retain their safety checks. |
+| R-12 | Humans and agents share reusable commands for elevated, varied obby sections, including automatic piece/connection creation and undoable human authoring. Generated geometry remains editable and is exercised with the real movement controller. |

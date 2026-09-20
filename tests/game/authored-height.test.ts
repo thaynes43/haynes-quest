@@ -142,6 +142,93 @@ describe("authored-level-v2 height contract", () => {
     );
   });
 
+  it("allows unlisted v2 platforms and compiles them into the collision course", () => {
+    const document = v2Document();
+    const graphBefore = {
+      connections: structuredClone(document.connections),
+      mainPath: [...document.mainPath],
+      branches: structuredClone(document.branches),
+    };
+    (document.pieces as AuthoredLevelPiece[]).push(
+      {
+        type: "platform",
+        id: "bonus-platform",
+        center: { x: 24, y: 0.3, z: -10 },
+        size: { x: 4, y: 0.6, z: 4 },
+      },
+      {
+        type: "moving-platform",
+        id: "bonus-ferry",
+        center: { x: 30, y: 0.3, z: -10 },
+        size: { x: 3.4, y: 0.6, z: 3.4 },
+        motion: { axis: "x", distance: 1, period: 8 },
+      },
+    );
+
+    expect(validateAuthoredLevelDocument(document)).toEqual([]);
+    const resolved = resolveAuthoredLevelDocument(document);
+    expect(resolved.course.platforms.map(({ id }) => id)).toEqual(
+      expect.arrayContaining(["bonus-platform", "bonus-ferry"]),
+    );
+    expect(resolved.graph).toEqual(graphBefore);
+  });
+
+  it("keeps anchors and required objectives on authored routes", () => {
+    const document = v2Document();
+    (document.pieces as AuthoredLevelPiece[]).push({
+      type: "platform",
+      id: "bonus-platform",
+      center: { x: 24, y: -0.3, z: -10 },
+      size: { x: 4, y: 0.6, z: 4 },
+    });
+    Object.assign(document.anchors.pickups["attack-tool"], {
+      platformId: "bonus-platform",
+      position: { x: 24, y: 0, z: -10 },
+    });
+
+    expect(validateAuthoredLevelDocument(document)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: '$.anchors.pickups["attack-tool"].platformId',
+          code: "graph.unreachable-anchor",
+        }),
+        expect.objectContaining({
+          path: '$.anchors.pickups["attack-tool"].platformId',
+          code: "ordering.main-path",
+        }),
+      ]),
+    );
+  });
+
+  it("still validates explicit connections to otherwise unlisted platforms", () => {
+    const document = v2Document();
+    (document.pieces as AuthoredLevelPiece[]).push({
+      type: "platform",
+      id: "bonus-platform",
+      center: { x: 40, y: 0.7, z: 0 },
+      size: { x: 4, y: 0.6, z: 4 },
+    });
+    const connectionIndex = document.connections.length;
+    (document.connections as MutableConnection[]).push({
+      from: "welcome",
+      to: "bonus-platform",
+      mode: "jump",
+    });
+
+    expect(validateAuthoredLevelDocument(document)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: `$.connections[${connectionIndex}]`,
+          code: "connection.gap",
+        }),
+        expect.objectContaining({
+          path: `$.connections[${connectionIndex}]`,
+          code: "connection.rise",
+        }),
+      ]),
+    );
+  });
+
   it("accepts a static catch covering the expanded gateway with a safe retry route", () => {
     const document = safePracticeDocument();
     const resolved = resolveAuthoredLevelDocument(document);
@@ -233,17 +320,10 @@ describe("authored-level-v2 height contract", () => {
     expect(issueCodes(document)).toContain(code);
   });
 
-  it("exempts only referenced safe supports from authored paths", () => {
+  it("keeps safe-miss checks conditional on an explicit catch reference", () => {
     const document = safePracticeDocument();
     delete (document.connections[0] as MutableConnection).safeMissPlatformId;
-    expect(validateAuthoredLevelDocument(document)).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          path: expect.stringMatching(/^\$\.pieces\[\d+\]\.id$/),
-          code: "graph.unused-platform",
-        }),
-      ]),
-    );
+    expect(validateAuthoredLevelDocument(document)).toEqual([]);
   });
 
   it("requires exactly one checkpoint on each minor-memory platform", () => {

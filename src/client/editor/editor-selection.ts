@@ -215,3 +215,13 @@ export function selectionFromIssuePath(
   }
   return null;
 }
+
+export function uniqueSectionPrefix(document: AuthoredLevelDocument, pattern: string): string {
+  let prefix = pattern;
+  let suffix = 2;
+  while (document.pieces.some((piece) =>
+    piece.id.startsWith(`${prefix}-step-`) || piece.id.startsWith(`${prefix}-checkpoint-`))) {
+    prefix = `${pattern}-${suffix++}`;
+  }
+  return prefix;
+}
