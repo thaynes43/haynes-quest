@@ -31,11 +31,42 @@ export function authoredRoute(
   return result;
 }
 
+/**
+ * Supplies the one resolved document every part of a level build reads. The
+ * parameter is `string | undefined` because `ActiveLevelView.routeId` is
+ * optional, matching `authoredRoute`.
+ */
+export type AuthoredLevelResolver = (
+  routeId: string | undefined,
+) => ResolvedAuthoredLevel | null;
+
+/** Resolved documents keyed by the route ID they replace. */
+export type AuthoredLevelRegistry = Readonly<
+  Partial<Record<string, ResolvedAuthoredLevel>>
+>;
+
+/**
+ * Build a resolver over an already frozen set of documents, such as an editor
+ * preview snapshot. Route IDs the caller does not carry fall back to the
+ * immutable published registry, and nothing here writes to that registry or its
+ * cache, so two previews can run side by side without seeing each other.
+ */
+export function authoredLevelResolverFor(
+  levels: AuthoredLevelRegistry,
+): AuthoredLevelResolver {
+  const frozen = new Map(Object.entries(levels));
+  return (routeId) => {
+    const supplied = routeId === undefined ? undefined : frozen.get(routeId);
+    return supplied ?? authoredRoute(routeId);
+  };
+}
+
 export function authoredLevelLayout(
   save: SaveView,
   active: ActiveLevelView,
+  resolver: AuthoredLevelResolver = authoredRoute,
 ): LevelLayout | null {
-  const route = authoredRoute(active.routeId);
+  const route = resolver(active.routeId);
   if (!route) return null;
   if (!active.minorMemoryIds || !active.majorMemoryId) {
     throw new Error(

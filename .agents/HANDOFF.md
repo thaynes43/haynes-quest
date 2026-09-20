@@ -1,5 +1,7 @@
 # Current handoff
 
+**Active: [PLAN012](plans/012-level-editor-mvp.md), the human/agent level editor MVP.** Tom authorizes autonomous development/deployment with parity for both current chapters, using Sol Ultra and authorized Opus 5 sessions to conserve lead usage. Root worktree `/home/dev/work/quest-level-editor-mvp` from `903ef93`. PRD002/ADR003 govern the bounded fictional editor; new enemy art and personal-photo setup follow later. The verified previous release below remains the live baseline until the editor rollout.
+
 **September 19: app-wide browser zoom prevention is deployed and verified.** [WO090](work-orders/090-app-wide-zoom-lock.md) and [its release index](evidence/app-zoom-lock-release.json) record the exact source, live build, checks and cleanup. Tom clarified that his son was playing and zoom must be disabled throughout the game app. This supersedes WO089's intentional start-page exception. No model or audio authoring is running.
 
 Loading, start/setup, gameplay and menus now share a fixed viewport and document-wide scroll-only touch policy. A document-lifetime guard cancels Safari pinch defaults, Ctrl-wheel and app-received Ctrl/Cmd plus/minus shortcuts. Text-entry fields use 16px text. Ordinary page/Help scrolling, separate movement/action contacts and camera dragging remain available. Ctrl/Cmd-0 can restore the default browser scale.

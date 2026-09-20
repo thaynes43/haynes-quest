@@ -61,6 +61,17 @@ export const playtestStartSchema = z.object({
   chapter: z.union([z.literal(1), z.literal(2)]),
 }).strict();
 
+/**
+ * Only the envelope. `project` stays `unknown` on purpose: the shared editor
+ * module owns the project schema, its size caps and its actionable issue paths,
+ * so duplicating any of that here would let the two drift apart.
+ */
+export const editorPlaytestSchema = z.object({
+  project: z.unknown(),
+  chapterId: z.enum(['chapter-1', 'chapter-2']),
+  scope: z.enum(['chapter', 'adventure']),
+}).strict();
+
 const gameplayLevelId = z.string().min(1).max(160);
 const gameplayActionSchema = z.discriminatedUnion('type', [
   z.object({

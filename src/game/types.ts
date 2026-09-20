@@ -1,4 +1,5 @@
 import type { AuthoredLevelDocument } from "../shared/authored-level";
+import type { AuthoredLevelResolver } from "./authored-layout";
 import type { ObbySample } from "./obby";
 import type { ObbyRouteId } from "../shared/parody-catalog";
 import type {
@@ -213,6 +214,13 @@ export interface CreateGameOptions {
   onAction: (request: GameplayActionRequest) => Promise<SaveView>;
   onRefresh: () => Promise<SaveView>;
   onStatus?: (status: GameStatus) => void;
+  /**
+   * Resolves the authored document behind the active route. An editor preview
+   * passes its frozen per-project resolver; every rebuild this game performs
+   * reads it again, so an action response or a chapter transition cannot fall
+   * back to the published route. Omit it for ordinary play.
+   */
+  authoredLevelResolver?: AuthoredLevelResolver;
 }
 
 export interface GameHandle {

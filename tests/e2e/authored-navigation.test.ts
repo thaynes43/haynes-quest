@@ -130,8 +130,12 @@ function documentV2Fixture() {
 
 function driverInspection(
   document: ReturnType<typeof documentFixture>,
-  supportId: string,
+  supportId: string | null,
   recoveries: number,
+  overrides: {
+    position?: { x: number; y: number; z: number };
+    grounded?: boolean;
+  } = {},
 ) {
   const centers = {
     spawn: { x: 0, y: 0, z: 0 },
@@ -140,8 +144,11 @@ function driverInspection(
   };
   return {
     status: {
-      position: centers[supportId as keyof typeof centers] ?? centers.spawn,
-      grounded: true,
+      position:
+        overrides.position ??
+        centers[supportId as keyof typeof centers] ??
+        centers.spawn,
+      grounded: overrides.grounded ?? true,
       jumpSequence: 0,
     },
     input: { moveX: 0, moveY: 0 },
@@ -163,6 +170,8 @@ function driverInspection(
 function queuedRouteDriver(samples: ReturnType<typeof driverInspection>[]) {
   const remaining = [...samples];
   let pulses = 0;
+  let releases = 0;
+  const marks: Array<{ stage: string; details: unknown }> = [];
   const page = {
     isClosed: () => false,
     evaluate: async (_callback: unknown) => {
@@ -172,7 +181,9 @@ function queuedRouteDriver(samples: ReturnType<typeof driverInspection>[]) {
     },
   };
   const controls = {
-    release: async () => undefined,
+    release: async () => {
+      releases += 1;
+    },
     jumpToward: async () => undefined,
     pulseToward: async () => {
       pulses += 1;
@@ -183,11 +194,13 @@ function queuedRouteDriver(samples: ReturnType<typeof driverInspection>[]) {
       page,
       controls,
       screenshot: async () => undefined,
-      mark: () => undefined,
+      mark: (stage: string, details: unknown) => marks.push({ stage, details }),
       maxRecoveries: 10,
     }),
     remaining,
     pulses: () => pulses,
+    releases: () => releases,
+    marks: () => marks,
   };
 }
 
@@ -467,6 +480,70 @@ describe("authored browser navigation", () => {
     ).toBe("turn");
     expect(queued.driver.evidence.edgeEvidence).toHaveLength(2);
     expect(queued.pulses()).toBe(4);
+    expect(queued.remaining).toHaveLength(0);
+  });
+
+  it("waits for an airborne planar arrival to settle on its requested support", async () => {
+    const document = documentFixture();
+    const target = { x: 4, y: 0, z: 0 };
+    const queued = queuedRouteDriver([
+      driverInspection(document, "spawn", 0),
+      driverInspection(document, null, 0, {
+        position: { ...target, y: 0.23 },
+        grounded: false,
+      }),
+      driverInspection(document, null, 0, {
+        position: { ...target, y: 0.08 },
+        grounded: false,
+      }),
+      driverInspection(document, "turn", 0),
+    ]);
+
+    const arrived = await queued.driver.moveToPoint(() => target, {
+      label: "airborne-arrival",
+      tolerance: 0.5,
+      supportId: "turn",
+    });
+
+    expect(arrived.status.grounded).toBe(true);
+    expect(arrived.obby.supportId).toBe("turn");
+    expect(queued.pulses()).toBe(0);
+    expect(queued.releases()).toBe(1);
+    expect(queued.marks()).toEqual([]);
+    expect(queued.remaining).toHaveLength(0);
+  });
+
+  it("returns a different grounded support for the route caller to reject", async () => {
+    const document = documentFixture();
+    const target = { x: 4, y: 0, z: 0 };
+    const queued = queuedRouteDriver([
+      driverInspection(document, "spawn", 0),
+      driverInspection(document, null, 0, {
+        position: { ...target, y: 0.23 },
+        grounded: false,
+      }),
+      driverInspection(document, "checkpoint", 0, { position: target }),
+    ]);
+
+    const arrived = await queued.driver.moveToPoint(() => target, {
+      label: "wrong-support-arrival",
+      tolerance: 0.5,
+      supportId: "turn",
+    });
+
+    expect(arrived.status.grounded).toBe(true);
+    expect(arrived.obby.supportId).toBe("checkpoint");
+    expect(queued.marks()).toEqual([
+      {
+        stage: "movement:support-changed",
+        details: {
+          label: "wrong-support-arrival",
+          requestedSupportId: "turn",
+          supportId: "checkpoint",
+          position: target,
+        },
+      },
+    ]);
     expect(queued.remaining).toHaveLength(0);
   });
 

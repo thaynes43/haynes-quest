@@ -1,5 +1,9 @@
 import type { AuthoredLevelDocument } from "../shared/authored-level";
-import { authoredLevelLayout } from "./authored-layout";
+import {
+  authoredLevelLayout,
+  authoredRoute,
+  type AuthoredLevelResolver,
+} from "./authored-layout";
 import type {
   EncounterKind,
   EncounterRole,
@@ -136,7 +140,10 @@ function memoryBundleX(index: number, count: number): number {
   return -1.1 + (index * 2.2) / (count - 1);
 }
 
-function createEraLevelLayout(save: SaveView): LevelLayout {
+function createEraLevelLayout(
+  save: SaveView,
+  resolver: AuthoredLevelResolver,
+): LevelLayout {
   const activeLevel = save.adventure?.activeLevel ?? null;
   if (!activeLevel) {
     return {
@@ -153,7 +160,7 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
       maxZ: 3,
     };
   }
-  const authored = authoredLevelLayout(save, activeLevel);
+  const authored = authoredLevelLayout(save, activeLevel, resolver);
   if (authored) return authored;
   const memoriesById = new Map(
     save.memories.map((memory) => [memory.id, memory]),
@@ -181,7 +188,7 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
     ...(activeLevel.routeId
       ? {
           routeId: activeLevel.routeId,
-          course: createObbyCourse(activeLevel.routeId),
+          course: createObbyCourse(activeLevel.routeId, resolver),
         }
       : {}),
     memories,
@@ -242,9 +249,17 @@ function createEraLevelLayout(save: SaveView): LevelLayout {
   };
 }
 
-export function createLevelLayout(save: SaveView): LevelLayout {
+/**
+ * Build the one layout every consumer of this level reads. An editor preview
+ * passes its frozen per-project resolver; omitting it uses the immutable
+ * published route registry, which is what ordinary play does.
+ */
+export function createLevelLayout(
+  save: SaveView,
+  resolver: AuthoredLevelResolver = authoredRoute,
+): LevelLayout {
   return save.format === "era-combat-v2"
-    ? createEraLevelLayout(save)
+    ? createEraLevelLayout(save, resolver)
     : createLegacyLevelLayout(save);
 }
 
