@@ -888,11 +888,6 @@
   font-weight: 400;
 }
 
-.editor-section-builder .editor-field select {
-  width: 100%;
-  min-width: 0;
-}
-
 .editor-section-builder .editor-primary {
   text-align: center;
   min-height: 40px;

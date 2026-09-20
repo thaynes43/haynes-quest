@@ -18,7 +18,7 @@ To add a course piece, use **Add** in the left panel. Platforms, moving platform
 
 In **Add → Build a section**, choose a **Raised arch** or **Zigzag ridge**, a **Start platform**, a **Rejoin platform** and a side. **Climbing steps** and **Rise per step** set the climb. Select **Add section** to create its platforms, connections, checkpoints and side route together. **Undo** removes the whole section; the individual pieces remain editable afterward.
 
-Try `welcome` to `picnic` in Level 1 with the defaults. The route climbs and descends beside the opening course. A short span may not fit the requested number of broad steps; choose a farther rejoin platform or fewer steps. If a lane is occupied, try the other side or different endpoints. The builder reports a problem without inserting a partial section.
+Try `welcome` to `picnic` in Level 1 with the defaults. The route climbs and descends beside the opening course. A short span may not fit the requested number of broad steps; choose a farther rejoin platform or fewer steps. If a lane is occupied, try the other side or different endpoints. The builder shows its platform count and peak height before adding it. If the section does not fit, it explains what to change and leaves the draft intact.
 
 Start with broad landings and an easy climb, add a bend or change in rhythm, and place a safe pause where the player can see the next jump. Mix quiet discovery areas with short obstacle sections. Height alone does not make a course interesting: walk the new route in Playtest, miss a jump deliberately, and check the recovery before adding more.
 
@@ -102,7 +102,7 @@ Give a building agent the project, the command schema, and a concrete change suc
 
 ### Build sections with one command
 
-`inspect` includes `chapters[].spatial`: platform placements and `topY`, route membership (`mainPathIndex`, `branchIndices`, `optional`), connections, anchors and bounds. Its top-level `limits` comes from the shared validator. `optional` means outside the named routes; a catch floor can still be referenced by a jump’s safe landing. Use these to choose the start, rejoin and available space, then apply a section command:
+`inspect` includes `chapters[].spatial`: platform placements and `topY`, route membership (`mainPathIndex`, `branchIndices`, `optional`), connections, anchors and bounds. Its top-level `limits` comes from the shared validator. `optional` means outside the named routes; a catch floor can still be referenced by a jump’s safe landing, listed in `safeMissFor` by connection index. Use these to choose the start, rejoin and available space, then apply a section command:
 
 ```json
 {

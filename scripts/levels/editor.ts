@@ -259,6 +259,9 @@ function describeChapterSpace(level: LevelEditorLevelDocument) {
         // Optional v2 geometry is simply a platform no authored route names.
         optional: mainPathIndex === undefined && branches.length === 0,
         checkpointIds: checkpointIds.get(platform.id) ?? [],
+        safeMissFor: level.connections.flatMap((connection, index) =>
+          connection.safeMissPlatformId === platform.id ? [index] : [],
+        ),
         ...(platform.type === "moving-platform"
           ? { motion: platform.motion }
           : {}),

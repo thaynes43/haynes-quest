@@ -45,6 +45,7 @@ import {
   pieceForSelection,
   positionForSelection,
   uniquePieceId,
+  uniqueSectionPrefix,
   type EditorSelection,
 } from "./editor-selection";
 import { connectionMatchForCommand } from "./editor-command-adapters";
@@ -177,6 +178,7 @@ export function EditorWorkspace({
   const [issues, setIssues] = useState<readonly LevelEditorIssue[]>(() =>
     validateLevelEditorProject(initial.history.present.project),
   );
+  const [commandFailure, setCommandFailure] = useState("");
   const [checksOpen, setChecksOpen] = useState(false);
   const [playtestBlocked, setPlaytestBlocked] = useState(false);
   const [playtestMenuOpen, setPlaytestMenuOpen] = useState(false);
@@ -259,11 +261,13 @@ export function EditorWorkspace({
     (command: LevelEditorCommand, nextObject?: EditorSelection | null) => {
       const current = latestHistory.current;
       const result = applyLevelEditorCommand(current.present.project, command);
-      setIssues(result.issues);
       if (!result.ok) {
-        setChecksOpen(true);
-        return;
+        setIssues(validateLevelEditorProject(current.present.project));
+        setCommandFailure(result.issues[0]?.message ?? "This edit could not be applied.");
+        return false;
       }
+      setCommandFailure("");
+      setIssues(result.issues);
       const selection = cursorForProject(result.project, {
         ...current.present.selection,
         object:
@@ -277,11 +281,13 @@ export function EditorWorkspace({
       });
       latestHistory.current = history;
       setHistory(history);
+      return true;
     },
     [],
   );
 
   const undo = useCallback(() => {
+    setCommandFailure("");
     const current = latestHistory.current;
     const revision = current.present.project.revision + 1;
     const restored = undoEditorHistory(current, (snapshot) =>
@@ -302,6 +308,7 @@ export function EditorWorkspace({
   }, []);
 
   const redo = useCallback(() => {
+    setCommandFailure("");
     const current = latestHistory.current;
     const revision = current.present.project.revision + 1;
     const restored = redoEditorHistory(current, (snapshot) =>
@@ -434,20 +441,12 @@ export function EditorWorkspace({
       "type" | "chapterId" | "idPrefix"
     >,
   ) => {
-    let idPrefix: string = options.pattern;
-    let suffix = 2;
-    while (
-      document.pieces.some(
-        (piece) => piece.id === idPrefix || piece.id.startsWith(`${idPrefix}-`),
-      )
-    ) {
-      idPrefix = `${options.pattern}-${suffix++}`;
-    }
-    runCommand(
+    const idPrefix = uniqueSectionPrefix(document, options.pattern);
+    const applied = runCommand(
       { type: "section.add", chapterId: cursor.chapterId, idPrefix, ...options },
       { type: "piece", id: `${idPrefix}-step-1` },
     );
-    window.requestAnimationFrame(() => viewport.current?.frameSelection());
+    if (applied) window.requestAnimationFrame(() => viewport.current?.frameSelection());
   };
 
   const moveSelection = (position: AuthoredPosition) => {
@@ -562,7 +561,7 @@ export function EditorWorkspace({
   };
 
   const projectStatus = issues.length === 0 ? "Ready to play" : "Draft";
-  const issueSummary = `${issues.length} issues to fix`;
+  const issueSummary = `${issues.length} ${issues.length === 1 ? "issue" : "issues"} to fix`;
 
   const rightInspector = useMemo(
     () => (
@@ -864,6 +863,12 @@ export function EditorWorkspace({
               Download saved draft
             </button>
           )}
+        </div>
+      )}
+      {commandFailure && (
+        <div className="editor-banner" role="alert">
+          <span>{commandFailure}</span>
+          <button type="button" onClick={() => setCommandFailure("")}>Dismiss</button>
         </div>
       )}
       {playtestError && (

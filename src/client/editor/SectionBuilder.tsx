@@ -1,12 +1,46 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { AuthoredLevelDocument } from "../../shared/authored-level";
 import type { LevelEditorCommand } from "../../shared/editor-project";
+import {
+  planLevelEditorSection,
+  type LevelEditorSectionRequest,
+} from "../../shared/editor-sections";
+import { uniqueSectionPrefix } from "./editor-selection";
 import { NumberField } from "./EditorFields";
 
 type SectionOptions = Omit<
   Extract<LevelEditorCommand, { type: "section.add" }>,
   "type" | "chapterId" | "idPrefix"
 >;
+
+function defaultRejoin(
+  document: AuthoredLevelDocument,
+  platforms: readonly string[],
+  fromPlatformId: string,
+  options: Pick<
+    LevelEditorSectionRequest,
+    "pattern" | "side" | "steps" | "rise"
+  > = { pattern: "arch", side: "left", steps: 4, rise: 0.3 },
+): string {
+  const later = platforms.slice(platforms.indexOf(fromPlatformId) + 1);
+  // Prefer the opening-course span, then find a fitting alternative. A nearby
+  // endpoint is not necessarily useful: a broad climb needs enough length.
+  const candidates = [...later.slice(6), ...later.slice(0, 6)];
+  const idPrefix = uniqueSectionPrefix(document, options.pattern);
+  return (
+    candidates.find(
+      (toPlatformId) =>
+        planLevelEditorSection(document, {
+          ...options,
+          idPrefix,
+          fromPlatformId,
+          toPlatformId,
+        }).ok,
+    ) ??
+    later[0] ??
+    ""
+  );
+}
 
 export function SectionBuilder({
   document,
@@ -33,9 +67,8 @@ export function SectionBuilder({
       ? selectedPlatformId
       : (platforms[0] ?? "");
   const [fromPlatformId, setFrom] = useState(first);
-  const [toPlatformId, setTo] = useState(
-    platforms[Math.min(platforms.indexOf(first) + 7, platforms.length - 1)] ??
-      "",
+  const [toPlatformId, setTo] = useState(() =>
+    defaultRejoin(document, platforms, first),
   );
   const [pattern, setPattern] = useState<"arch" | "zigzag">("arch");
   const [side, setSide] = useState<"left" | "right">("left");
@@ -51,15 +84,67 @@ export function SectionBuilder({
     if (!platforms.slice(0, -1).includes(fromPlatformId))
       setFrom(platforms[0] ?? "");
     if (!destinations.includes(toPlatformId)) {
-      setTo(destinations[Math.min(6, destinations.length - 1)] ?? "");
+      setTo(
+        defaultRejoin(document, platforms, fromPlatformId, {
+          pattern,
+          side,
+          steps,
+          rise,
+        }),
+      );
     }
-  }, [platforms, destinations, fromPlatformId, toPlatformId]);
+  }, [
+    document,
+    platforms,
+    destinations,
+    fromPlatformId,
+    toPlatformId,
+    pattern,
+    side,
+    steps,
+    rise,
+  ]);
+
+  const previousSelection = useRef(selectedPlatformId);
+  useEffect(() => {
+    if (previousSelection.current === selectedPlatformId) return;
+    previousSelection.current = selectedPlatformId;
+    if (
+      selectedPlatformId &&
+      platforms.slice(0, -1).includes(selectedPlatformId)
+    ) {
+      setFrom(selectedPlatformId);
+      setTo(
+        defaultRejoin(document, platforms, selectedPlatformId, {
+          pattern,
+          side,
+          steps,
+          rise,
+        }),
+      );
+    }
+  }, [selectedPlatformId, document, platforms, pattern, side, steps, rise]);
+
+  const preview = useMemo(
+    () =>
+      planLevelEditorSection(document, {
+        idPrefix: uniqueSectionPrefix(document, pattern),
+        fromPlatformId,
+        toPlatformId,
+        pattern,
+        side,
+        steps,
+        rise,
+      }),
+    [document, fromPlatformId, toPlatformId, pattern, side, steps, rise],
+  );
 
   const changeStart = (id: string) => {
     setFrom(id);
     onSelectStart(id);
-    const next = platforms.slice(platforms.indexOf(id) + 1);
-    setTo(next[Math.min(6, next.length - 1)] ?? "");
+    setTo(
+      defaultRejoin(document, platforms, id, { pattern, side, steps, rise }),
+    );
   };
 
   return (
@@ -118,8 +203,9 @@ export function SectionBuilder({
       <div className="editor-field-grid">
         <NumberField
           label="Climbing steps"
+          integer
           value={steps}
-          onCommit={(value) => setSteps(Math.round(value))}
+          onCommit={setSteps}
           min={2}
           max={6}
           step={1}
@@ -137,10 +223,23 @@ export function SectionBuilder({
         Connections and safe checkpoints are added with the steps. Undo removes
         the whole section.
       </p>
+      <p
+        className={
+          preview.ok ? "editor-section-preview" : "editor-section-warning"
+        }
+        role="status"
+      >
+        {preview.ok
+          ? `${preview.plan.stepIds.length} platforms · top surface ${preview.plan.measurements.apexTop} units`
+          : preview.issues[0]?.message}
+      </p>
       <button
         className="editor-primary"
         disabled={
-          fromIndex < 0 || !toPlatformId || !destinations.includes(toPlatformId)
+          !preview.ok ||
+          fromIndex < 0 ||
+          !toPlatformId ||
+          !destinations.includes(toPlatformId)
         }
         onClick={() =>
           onBuild({ fromPlatformId, toPlatformId, pattern, side, steps, rise })

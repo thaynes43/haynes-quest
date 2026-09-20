@@ -7,6 +7,7 @@ export function NumberField({
   min,
   max,
   step = 0.1,
+  integer = false,
 }: {
   label: string;
   value: number;
@@ -14,6 +15,7 @@ export function NumberField({
   min?: number;
   max?: number;
   step?: number;
+  integer?: boolean;
 }) {
   const [text, setText] = useState(String(value));
   const editing = useRef(false);
@@ -35,6 +37,7 @@ export function NumberField({
     const parsed = Number(text);
     if (
       !Number.isFinite(parsed) ||
+      (integer && !Number.isInteger(parsed)) ||
       (min !== undefined && parsed < min) ||
       (max !== undefined && parsed > max)
     ) {
