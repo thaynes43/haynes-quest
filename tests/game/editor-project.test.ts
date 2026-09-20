@@ -572,6 +572,92 @@ describe("shared level editor projects", () => {
     expect(edited.issues).toEqual([]);
   });
 
+  it("repairs duplicate connections by index without retargeting stale rows", () => {
+    const template = project();
+    const original = chapter(template, "chapter-1").level;
+    const connection = original.connections[0];
+    if (!connection) throw new Error("Garden template has no connections");
+    const duplicateIndex = original.connections.length;
+    const match = {
+      index: duplicateIndex,
+      from: connection.from,
+      to: connection.to,
+      mode: connection.mode,
+    } as const;
+
+    const duplicated = applied(
+      applyLevelEditorCommand(template, {
+        type: "connection.add",
+        chapterId: "chapter-1",
+        connection,
+      }),
+    );
+    expect(duplicated.issues).toEqual(
+      expect.arrayContaining([expect.objectContaining({ source: "semantic" })]),
+    );
+
+    const ambiguous = applyLevelEditorCommand(duplicated.project, {
+      type: "connection.remove",
+      chapterId: "chapter-1",
+      match: {
+        from: connection.from,
+        to: connection.to,
+        mode: connection.mode,
+      },
+    });
+    expect(ambiguous).toMatchObject({
+      ok: false,
+      issues: [expect.objectContaining({ code: "connection.ambiguous" })],
+    });
+    expect(ambiguous.project).toEqual(duplicated.project);
+    expect(ambiguous.project.revision).toBe(duplicated.project.revision);
+
+    const replacement = { ...connection, mode: "walk" as const };
+    const updated = applied(
+      applyLevelEditorCommand(duplicated.project, {
+        type: "connection.update",
+        chapterId: "chapter-1",
+        match,
+        connection: replacement,
+      }),
+    );
+    const updatedConnections = chapter(updated.project, "chapter-1").level
+      .connections;
+    expect(updatedConnections.slice(0, duplicateIndex)).toEqual(
+      original.connections,
+    );
+    expect(updatedConnections[duplicateIndex]).toEqual(replacement);
+
+    const stale = applyLevelEditorCommand(updated.project, {
+      type: "connection.remove",
+      chapterId: "chapter-1",
+      match,
+    });
+    expect(stale).toMatchObject({
+      ok: false,
+      issues: [
+        expect.objectContaining({
+          path: "$.commands[0].match.index",
+          code: "connection.stale",
+        }),
+      ],
+    });
+    expect(stale.project).toEqual(updated.project);
+    expect(stale.project.revision).toBe(updated.project.revision);
+
+    const repaired = applied(
+      applyLevelEditorCommand(updated.project, {
+        type: "connection.remove",
+        chapterId: "chapter-1",
+        match: { ...match, mode: replacement.mode },
+      }),
+    );
+    expect(chapter(repaired.project, "chapter-1").level.connections).toEqual(
+      original.connections,
+    );
+    expect(repaired.issues).toEqual([]);
+  });
+
   it("rejects revision conflicts and oversized batches without partial changes", () => {
     const template = project();
     const conflict = applyLevelEditorCommands(template, {

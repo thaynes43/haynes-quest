@@ -126,6 +126,7 @@ const arenaSchema = encounterAnchorSchema.shape.arena;
 const connectionSchema = authoredLevelV2Schema.shape.connections.element;
 const connectionMatchSchema = z
   .object({
+    index: z.number().int().nonnegative().optional(),
     from: identifierSchema,
     to: identifierSchema,
     mode: z.enum(["walk", "jump", "ride"]),
@@ -425,7 +426,7 @@ export type LevelEditorAnchorSlot = (typeof LEVEL_EDITOR_ANCHOR_SLOTS)[number];
 export type LevelEditorConnectionMatch = Pick<
   AuthoredConnection,
   "from" | "to" | "mode"
->;
+> & { readonly index?: number };
 
 interface ChapterCommand {
   readonly chapterId: LevelEditorChapterId;
@@ -910,6 +911,17 @@ function matchingConnectionIndex(
   level: MutableLevel,
   match: LevelEditorConnectionMatch,
 ): number {
+  if (match.index !== undefined) {
+    const connection = level.connections[match.index];
+    if (connection === undefined || !connectionMatches(connection, match))
+      commandError(
+        "$.match.index",
+        "connection.stale",
+        "The connection index no longer identifies the matching connection",
+      );
+    return match.index;
+  }
+
   const matches = level.connections.flatMap((connection, index) =>
     connectionMatches(connection, match) ? [index] : [],
   );
