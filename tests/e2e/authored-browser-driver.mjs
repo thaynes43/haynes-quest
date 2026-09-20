@@ -382,6 +382,37 @@ export function createAuthoredRouteDriver({
       }
       if (distance < 0.08 && inspection.obby.supportId !== supportId) {
         await controls.release();
+        if (!inspection.status.grounded) {
+          const settleDeadline = Date.now() + 6_000;
+          while (Date.now() < settleDeadline) {
+            await delay(45);
+            const settled = await read(`${label}-arrival-settle`, {
+              allowDocumentExit,
+            });
+            if (settled.level.authored?.id !== document.id) {
+              assert.ok(
+                done && (await done(settled)),
+                `${label}: left the authored document before reaching the target`,
+              );
+              return settled;
+            }
+            if (settled.obby.recoveries > recoveryCount) return settled;
+            if (!settled.status.grounded) continue;
+            if (settled.obby.supportId !== supportId) {
+              mark("movement:support-changed", {
+                label,
+                requestedSupportId: supportId,
+                supportId: settled.obby.supportId,
+                position: settled.status.position,
+              });
+            }
+            return settled;
+          }
+          await screenshot(`${label}-arrival-unsettled`);
+          throw new Error(
+            `${label}: planar arrival stayed airborne without a supported landing`,
+          );
+        }
         mark("movement:support-changed", {
           label,
           requestedSupportId: supportId,
