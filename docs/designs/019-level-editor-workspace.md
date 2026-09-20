@@ -28,7 +28,7 @@ Autosave only the current project, not a running test or credentials. Storage st
 
 Import supports a JSON file and paste text, with **Import project**, **Choose file**, **Paste JSON**, **Cancel** and **Import**. Reject oversized/malformed/structurally unsafe data without replacing the current draft. A structurally valid project with semantic errors imports as an editable draft. A successful import is undoable. Export names a readable `.json` file and uses deterministic canonical serialization; it must preserve all supported fields. Validation errors use the existing shared issue messages with object/path context, not an opaque stack trace.
 
-Validation summary: **Ready to play**, **{count} issues to fix**, **Review issues**. Issue rows select the affected chapter/object where possible. Semantic validation can update after edits with a short debounce; it must not freeze the viewport. **Playtest** validates both chapters and, on error, opens the issues panel with **Fix these issues before playtesting.** Runtime/server failures show **Could not start the playtest. Your draft is safe.** plus a concise safe error detail.
+Validation summary: **Ready to play** or a **{count} issues to fix** button that opens the issues panel. Issue rows select the affected chapter/object where possible. Semantic validation can update after edits with a short debounce; it must not freeze the viewport. **Playtest** validates both chapters and, on error, opens the issues panel with **Fix these issues before playtesting.** Runtime/server failures show **Could not start the playtest. Your draft is safe.** plus a concise safe error detail.
 
 ## Playtest and smaller screens
 
