@@ -26,6 +26,7 @@ import {
 } from "../../shared/editor-project";
 import { EditorViewport, type EditorSnap, type EditorViewportHandle } from "./EditorViewport";
 import { ObjectRail } from "./ObjectRail";
+import { SectionBuilder } from "./SectionBuilder";
 import { PropertiesInspector } from "./PropertiesInspector";
 import { RouteEditor } from "./RouteEditor";
 import { TextField } from "./EditorFields";
@@ -187,7 +188,7 @@ export function EditorWorkspace({
   const [inspectorTab, setInspectorTab] = useState<"properties" | "route">(
     "properties",
   );
-  const [snap, setSnap] = useState<EditorSnap>(0.5);
+  const [snap, setSnap] = useState<EditorSnap>(0.25);
   const [moveAttached, setMoveAttached] = useState(true);
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>("view");
   const workspace = useRef<HTMLDivElement>(null);
@@ -425,6 +426,19 @@ export function EditorWorkspace({
       { type: "piece.add", chapterId: cursor.chapterId, piece },
       { type: "piece", id: piece.id },
     );
+  };
+
+  const addSection = (options: Omit<Extract<LevelEditorCommand, { type: "section.add" }>, "type" | "chapterId" | "idPrefix">) => {
+    let idPrefix: string = options.pattern;
+    let suffix = 2;
+    while (document.pieces.some((piece) => piece.id === idPrefix || piece.id.startsWith(`${idPrefix}-`))) {
+      idPrefix = `${options.pattern}-${suffix++}`;
+    }
+    runCommand(
+      { type: "section.add", chapterId: cursor.chapterId, idPrefix, ...options },
+      { type: "piece", id: `${idPrefix}-step-1` },
+    );
+    window.requestAnimationFrame(() => viewport.current?.frameSelection());
   };
 
   const moveSelection = (position: AuthoredPosition) => {
@@ -810,6 +824,7 @@ export function EditorWorkspace({
             >
               <option value={0}>Off</option>
               <option value={0.25}>0.25 units</option>
+              <option value={0.3}>0.3 units</option>
               <option value={0.5}>0.5 units</option>
               <option value={1}>1 units</option>
             </select>
@@ -870,6 +885,7 @@ export function EditorWorkspace({
           selection={cursor.object}
           onSelect={selectAndFrame}
           onAdd={addPiece}
+              sectionBuilder={<SectionBuilder key={cursor.chapterId} document={document} selectedPlatformId={cursor.object?.type === "piece" ? cursor.object.id : undefined} onBuild={addSection} />}
         />
         <EditorViewport
           ref={viewport}

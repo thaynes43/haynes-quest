@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import type { AuthoredLevelDocument } from "../../shared/authored-level";
 import {
   objectRows,
@@ -13,7 +13,9 @@ export function ObjectRail({
   selection,
   onSelect,
   onAdd,
+  sectionBuilder,
 }: {
+  sectionBuilder?: ReactNode;
   document: AuthoredLevelDocument;
   selection: EditorSelection | null;
   onSelect(selection: EditorSelection): void;
@@ -88,7 +90,8 @@ export function ObjectRail({
           </button>
           <button onClick={() => onAdd("sweeper")}>Sweeper</button>
           <button onClick={() => onAdd("checkpoint")}>Checkpoint</button>
-          <p>Gameplay objects are included with the template.</p>
+          <p>Gameplay objects are included with the template. Extra platforms can float outside the named routes.</p>
+          {sectionBuilder}
         </div>
       )}
     </aside>

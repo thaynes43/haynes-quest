@@ -110,6 +110,10 @@ function PieceProperties({
       {(piece.type === "platform" || piece.type === "moving-platform") && (
         <fieldset className="editor-fieldset">
           <legend>Dimensions</legend>
+          <div className="editor-readonly-field">
+            <span>Top surface Y</span>
+            <strong>{Number((piece.center.y + piece.size.y / 2).toFixed(3))}</strong>
+          </div>
           <DimensionFields
             size={piece.size}
             onCommit={(size) => onUpdate({ ...piece, size })}

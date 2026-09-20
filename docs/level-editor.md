@@ -14,6 +14,16 @@ Open **Level editor** from the private playtest's start screen, or visit `/edito
 
 To add a course piece, use **Add** in the left panel. Platforms, moving platforms, sweepers and checkpoints are available. The template's memories, equipment, enemies and friends can be repositioned; their gameplay roles stay fixed in this MVP.
 
+## Build a climbing section
+
+In **Add → Build a section**, choose a **Raised arch** or **Zigzag ridge**, a **Start platform**, a **Rejoin platform** and a side. **Climbing steps** and **Rise per step** set the climb. Select **Add section** to create its platforms, connections, checkpoints and side route together. **Undo** removes the whole section; the individual pieces remain editable afterward.
+
+Try `welcome` to `picnic` in Level 1 with the defaults. The route climbs and descends beside the opening course. A short span may not fit the requested number of broad steps; choose a farther rejoin platform or fewer steps. If a lane is occupied, try the other side or different endpoints. The builder reports a problem without inserting a partial section.
+
+Start with broad landings and an easy climb, add a bend or change in rhythm, and place a safe pause where the player can see the next jump. Mix quiet discovery areas with short obstacle sections. Height alone does not make a course interesting: walk the new route in Playtest, miss a jump deliberately, and check the recovery before adding more.
+
+These sections are side routes. They preserve the template's main progression and gameplay objects. Use **Route** and **Properties** when deliberately changing the required journey. **Top surface Y** shows the standing height of a platform; **Snap → 0.3 units** matches the template's rise between steps.
+
 ## Connect the course
 
 Floating platforms are supported. Add a **Platform** and raise its **Y** in Properties, or drag the green handle. Platform Y is its center; the standing surface is Y plus half its Height. Extra platforms can stay outside the named routes and still appear as solid platforms in Playtest.
@@ -88,4 +98,27 @@ The example uses `jq` to extract the updated project from the result envelope. `
 
 Commands cover names, adding, moving, updating, duplicating and removing pieces, gameplay anchors, encounter arenas, connections, main routes and branches. Platform moves carry supported objects by default; set `carryAttached: false` only for an intentional independent move. `schema project` describes the complete portable document. For an ambiguous connection, include its zero-based `index` together with `from`, `to` and `mode` in the command’s `match`; the index must still identify that connection. Keep array order intact, including the `pieces` array: checkpoint recovery uses its ordering.
 
-Give a building agent the project, the command schema, and a concrete change such as “widen the early platforms while keeping every jump valid.” Have it apply small batches, read validation issues, and export the result. New character models, encounter behavior and physics still belong in the asset and game-mechanics workflows.
+Give a building agent the project, the command schema, and a concrete change such as “add a raised zigzag side route, keep the main progression intact, and verify every new jump.” Have it apply small batches, read validation issues, and export the result. New character models, encounter behavior and physics still belong in the asset and game-mechanics workflows.
+
+### Build sections with one command
+
+`inspect` includes spatial placements, platform surface heights and route membership alongside the summary counts. Use these to choose the start, rejoin and available space, then apply a section command:
+
+```json
+{
+  "expectedRevision": 0,
+  "commands": [{
+    "type": "section.add",
+    "chapterId": "chapter-1",
+    "idPrefix": "sky-garden",
+    "fromPlatformId": "welcome",
+    "toPlatformId": "picnic",
+    "pattern": "arch",
+    "side": "left",
+    "steps": 4,
+    "rise": 0.3
+  }]
+}
+```
+
+Use `zigzag` for a ridge with alternating lateral steps. Choose a fresh `idPrefix` for each section. The command adds a branch between ordered static main-route platforms, preserves existing anchors and geometry, and rejects unsafe placements or exceeded scene limits atomically. It uses the game's existing platforms and collision rules, so the result needs no custom script, asset or rebuild. Validate and playtest the exported project before treating it as a finished level.

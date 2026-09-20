@@ -21,7 +21,7 @@ import {
   type EditorSelection,
 } from "./editor-selection";
 
-export type EditorSnap = 0 | 0.25 | 0.5 | 1;
+export type EditorSnap = 0 | 0.25 | 0.3 | 0.5 | 1;
 
 export interface EditorViewportHandle {
   frameLevel(): void;

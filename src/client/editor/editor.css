@@ -872,3 +872,28 @@
     text-overflow: ellipsis;
   }
 }
+
+.editor-section-builder {
+  display: grid;
+  gap: 10px;
+  padding-top: 16px;
+  margin-top: 8px;
+  border-top: 1px solid var(--editor-border);
+}
+
+.editor-section-builder h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.editor-section-builder .editor-field select {
+  width: 100%;
+  min-width: 0;
+}
+
+.editor-section-builder .editor-primary {
+  text-align: center;
+  min-height: 40px;
+}
