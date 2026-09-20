@@ -206,6 +206,10 @@ export function EditorWorkspace({
   const document = chapter.level;
 
   useEffect(() => {
+    setCommandFailure("");
+  }, [project, cursor.chapterId]);
+
+  useEffect(() => {
     const timeout = window.setTimeout(() => {
       setIssues(validateLevelEditorProject(project));
     }, 140);
@@ -263,7 +267,7 @@ export function EditorWorkspace({
       const result = applyLevelEditorCommand(current.present.project, command);
       if (!result.ok) {
         setIssues(validateLevelEditorProject(current.present.project));
-        setCommandFailure(result.issues[0]?.message ?? "This edit could not be applied.");
+        setCommandFailure(`Edit not applied. ${result.issues[0]?.message ?? "Check the values and try again."}`);
         return false;
       }
       setCommandFailure("");
