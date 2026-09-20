@@ -102,7 +102,7 @@ Give a building agent the project, the command schema, and a concrete change suc
 
 ### Build sections with one command
 
-`inspect` includes spatial placements, platform surface heights and route membership alongside the summary counts. Use these to choose the start, rejoin and available space, then apply a section command:
+`inspect` includes `chapters[].spatial`: platform placements and `topY`, route membership (`mainPathIndex`, `branchIndices`, `optional`), connections, anchors and bounds. Its top-level `limits` comes from the shared validator. `optional` means outside the named routes; a catch floor can still be referenced by a jump’s safe landing. Use these to choose the start, rejoin and available space, then apply a section command:
 
 ```json
 {

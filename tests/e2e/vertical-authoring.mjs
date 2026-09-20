@@ -30,9 +30,12 @@ import {
   commitNumberProperty,
   commitSelectProperty,
   documentById,
+  measureLayout,
   openEditor,
   readNumberProperty,
   readTextProperty,
+  resolveControl,
+  resolvePropertyField,
   returnToEditor,
   selectObject,
   startEditorPreview,
@@ -73,6 +76,7 @@ const report = {
   preview: null,
   persisted: null,
   section: null,
+  responsive: null,
   screenshots: [],
   pageErrors: [],
   consoleErrors: [],
@@ -88,6 +92,26 @@ let browser;
 let context;
 let page;
 let timer;
+
+function watchPage(target, surface) {
+  target.on("pageerror", (error) =>
+    report.pageErrors.push({ surface, message: error.message }),
+  );
+  target.on("console", (message) => {
+    if (message.type() === "error") {
+      report.consoleErrors.push({ surface, message: message.text() });
+    }
+  });
+  target.on("response", (response) => {
+    if (response.status() < 400) return;
+    report.responseErrors.push({
+      surface,
+      method: response.request().method(),
+      path: new URL(response.url()).pathname,
+      status: response.status(),
+    });
+  });
+}
 
 function levelDocument(project) {
   const found = documentById(project, chapterDocumentId);
@@ -122,13 +146,16 @@ function assertPlatform(candidate, expected, stage) {
   assert.deepEqual(candidate.size, expected.size, `${stage} changed its size`);
 }
 
-async function waitForReady(stage, timeout = 10_000) {
+async function waitForReady(
+  stage,
+  { target = page, timeout = 10_000 } = {},
+) {
   const deadline = Date.now() + timeout;
   let latest = null;
   while (Date.now() < deadline) {
-    latest = await validationSummary(page);
+    latest = await validationSummary(target);
     if (latest.state === "ready") return latest;
-    await page.waitForTimeout(120);
+    await target.waitForTimeout(120);
   }
   throw new Error(`${stage} never became ready: ${JSON.stringify(latest)}`);
 }
@@ -138,6 +165,129 @@ async function capture(name) {
   await page.screenshot({ path, fullPage: false });
   report.screenshots.push(path);
   return path;
+}
+
+async function hitTestField(target, label) {
+  const field = await resolvePropertyField(target, label);
+  assert.equal(field.count, 1, `${label} is unavailable`);
+  await field.locator.scrollIntoViewIfNeeded();
+  await target.waitForTimeout(80);
+  const measured = await field.locator.evaluate((element) => {
+    const bounds = element.getBoundingClientRect();
+    const centerX = bounds.left + bounds.width / 2;
+    const centerY = bounds.top + bounds.height / 2;
+    const hit = document.elementFromPoint(centerX, centerY);
+    return {
+      left: Math.round(bounds.left),
+      right: Math.round(bounds.right),
+      top: Math.round(bounds.top),
+      bottom: Math.round(bounds.bottom),
+      width: Math.round(bounds.width),
+      height: Math.round(bounds.height),
+      fontSize: Number.parseFloat(getComputedStyle(element).fontSize),
+      inViewport:
+        bounds.top >= 0 &&
+        bounds.left >= 0 &&
+        bounds.bottom <= innerHeight &&
+        bounds.right <= innerWidth,
+      topmost:
+        hit === element ||
+        element.contains(hit) ||
+        (hit ? hit.contains(element) : false),
+    };
+  });
+  assert.equal(measured.inViewport, true, `${label} is outside the viewport`);
+  assert.equal(measured.topmost, true, `${label} is covered at its center`);
+  assert.ok(measured.fontSize >= 16, `${label} uses text below 16px`);
+  await field.locator.tap();
+  await target.keyboard.press("Escape");
+  return measured;
+}
+
+async function probeSectionBuilder(viewport, name) {
+  const probeContext = await browser.newContext({
+    viewport,
+    deviceScaleFactor: 1,
+    hasTouch: true,
+    isMobile: true,
+  });
+  const probe = await probeContext.newPage();
+  watchPage(probe, name);
+  try {
+    await openEditor(probe, url);
+    const panels = probe.getByRole("navigation", { name: "Editor panels" });
+    await panels.getByRole("button", { name: "Objects", exact: true }).tap();
+    await activateControl(probe, "Add");
+    const fields = {};
+    for (const label of [
+      "Shape",
+      "Start platform",
+      "Rejoin platform",
+      "Side",
+      "Climbing steps",
+      "Rise per step",
+    ]) {
+      fields[label] = await hitTestField(probe, label);
+    }
+    const action = await resolveControl(probe, "Add section", {
+      roles: ["button"],
+    });
+    assert.equal(action.found, true, `${name} has no Add section action`);
+    await action.locator.scrollIntoViewIfNeeded();
+    await probe.waitForTimeout(80);
+    const actionHit = await action.locator.evaluate((element) => {
+      const bounds = element.getBoundingClientRect();
+      const hit = document.elementFromPoint(
+        bounds.left + bounds.width / 2,
+        bounds.top + bounds.height / 2,
+      );
+      return {
+        left: Math.round(bounds.left),
+        right: Math.round(bounds.right),
+        top: Math.round(bounds.top),
+        bottom: Math.round(bounds.bottom),
+        width: Math.round(bounds.width),
+        height: Math.round(bounds.height),
+        inViewport:
+          bounds.top >= 0 &&
+          bounds.left >= 0 &&
+          bounds.bottom <= innerHeight &&
+          bounds.right <= innerWidth,
+        topmost:
+          hit === element ||
+          element.contains(hit) ||
+          (hit ? hit.contains(element) : false),
+      };
+    });
+    assert.equal(actionHit.inViewport, true, `${name} action is off-screen`);
+    assert.equal(actionHit.topmost, true, `${name} action is covered`);
+    await action.locator.tap();
+    const built = await waitForStoredProject(
+      probe,
+      (project) => Boolean(piece(levelDocument(project), "arch-step-1")),
+      `${name} Add section tap did not build the default arch`,
+    );
+    await waitForReady(`${name} default arch`, { target: probe });
+    const layout = await measureLayout(probe);
+    assert.ok(
+      layout.horizontalOverflow <= 1,
+      `${name} overflows horizontally by ${layout.horizontalOverflow}px`,
+    );
+    const screenshotPath = `${outputDirectory}/section-builder-${name}.png`;
+    await probe.screenshot({ path: screenshotPath, fullPage: false });
+    report.screenshots.push(screenshotPath);
+    return {
+      viewport,
+      fields,
+      action: actionHit,
+      horizontalOverflow: layout.horizontalOverflow,
+      builtBranch: levelDocument(built).branches.find((branch) =>
+        branch.includes("arch-step-1"),
+      ),
+    };
+  } finally {
+    await probeContext.close();
+  }
 }
 
 /**
@@ -203,18 +353,7 @@ try {
     deviceScaleFactor: 1,
   });
   page = await context.newPage();
-  page.on("pageerror", (error) => report.pageErrors.push(error.message));
-  page.on("console", (message) => {
-    if (message.type() === "error") report.consoleErrors.push(message.text());
-  });
-  page.on("response", (response) => {
-    if (response.status() < 400) return;
-    report.responseErrors.push({
-      method: response.request().method(),
-      path: new URL(response.url()).pathname,
-      status: response.status(),
-    });
-  });
+  watchPage(page, "desktop");
   timer = setTimeout(() => {
     void browser?.close();
   }, timeoutMs);
@@ -520,10 +659,10 @@ try {
     "section preview did not freeze the redone document",
   );
 
-  const sectionInspection = await inspectPreviewPlatforms([
-    optionalPlatform,
-    ...sectionPlatforms,
-  ], "raised-arch-preview");
+  const sectionInspection = await inspectPreviewPlatforms(
+    [optionalPlatform, ...sectionPlatforms],
+    "raised-arch-preview",
+  );
   for (const expected of sectionPlatforms) {
     const sampled = sectionInspection.obby.platforms.find(
       (candidate) => candidate.id === expected.id,
@@ -642,6 +781,16 @@ try {
       storage: await storageStatus(page),
       draftPreserved: true,
     },
+  };
+
+  report.responsive = {
+    phone: await probeSectionBuilder({ width: 390, height: 844 }, "phone"),
+    tablet: await probeSectionBuilder(
+      { width: 834, height: 1112 },
+      "tablet",
+    ),
+    scope:
+      "Control visibility, center hit-testing and command dispatch only; no mobile gameplay or performance claim.",
   };
 
   assert.deepEqual(report.pageErrors, [], "the page raised runtime errors");
