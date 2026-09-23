@@ -42,6 +42,14 @@
       "prompt": "construction/jackrabbit-drummer-prompt.txt",
       "prompt_sha256": "7f86d65d29bd3389cf2af8e7f5cf7c74300cec15c87597dacbcb5079e4c37340",
       "source_reference": "concept.png"
+    },
+    {
+      "performer": "fox-card-shark",
+      "image": "construction/fox-card-shark.png",
+      "image_sha256": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
+      "prompt": "construction/fox-card-shark-prompt.txt",
+      "prompt_sha256": "e0d78ac2b93585bd3c8534f7889891a86f7a7bedb9e214ba6879d57561ed549b",
+      "source_reference": "concept.png"
     }
   ],
   "research_sources": [
