@@ -1,6 +1,6 @@
 # WO096 · Skyline toybox environment kit
 
-- **Status:** Three static model candidates delivered, technically checked and cataloged; publication and exact owner review pending
+- **Status:** Three static model candidates delivered, technically checked, cataloged and published; exact owner review pending
 - **Owner:** Fresh native GPT-6 Astra subagent at max; exclusive scene claimed after WO095 and now released
 - **Asset/version:** `skyline-toybox-kit/v001`
 - **Scope:** Three original static environment props for isolated asset-studio review, not gameplay promotion
@@ -35,4 +35,4 @@ Each export is one static mesh with identity transforms and a floor-centered ori
 
 The lantern deliberately has no face or bird features. Fine grain and felt fibers are simplified to matte rounded geometry and broad vertex colors. This is isolated asset review, with no gameplay placement, physics or physical Safari performance claim. Owner approval remains pending.
 
-The [precise catalog intake](../../docs/assets/media/skyline-toybox-kit/v001/catalog-intake.json), [export measurements](../../docs/assets/media/skyline-toybox-kit/v001/glb-measurements.json), [browser evidence](../../docs/assets/media/skyline-toybox-kit/v001/browser-report.json), [remote source/artifact record](../../docs/assets/media/skyline-toybox-kit/v001/remote-artifacts.json) and [local checksums](../../docs/assets/media/skyline-toybox-kit/v001/checksums.sha256) accompany the deliverable. The coordinator added all three separately reviewable models to the shared inventory and catalog cards; checked publication through the application image remains open.
+The [precise catalog intake](../../docs/assets/media/skyline-toybox-kit/v001/catalog-intake.json), [export measurements](../../docs/assets/media/skyline-toybox-kit/v001/glb-measurements.json), [browser evidence](../../docs/assets/media/skyline-toybox-kit/v001/browser-report.json), [remote source/artifact record](../../docs/assets/media/skyline-toybox-kit/v001/remote-artifacts.json) and [local checksums](../../docs/assets/media/skyline-toybox-kit/v001/checksums.sha256) accompany the deliverable. The coordinator added all three separately reviewable models to the shared inventory and catalog cards. The private [published review](https://haynes-quest-playtest.haynesops.com/studio/assets/reviews/skyline-toybox-kit/v001.html), concept and all three exact GLBs returned 200 with matching hashes; desktop/phone catalog audit passed. [Release record](../evidence/world-builder-release.json). Tom's exact-version decision remains pending.
