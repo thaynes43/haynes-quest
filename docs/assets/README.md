@@ -8,7 +8,7 @@ The [Midnight Pizza Arcade](reviews/midnight-arcade-kit/v001.md) and [Skyline To
 
 The darker [Rat Casino kit](reviews/rat-casino-kit/v001.md) has three separately inspectable static model candidates: a marquee arch, roulette dais and slot cabinet. These models also remain studio-only pending Tom's exact-version review.
 
-The [Rat Casino ensemble](reviews/rat-casino-ensemble/v001.md) now shows the proposed six-character spooky animatronic lineup. It is a concept-only pitch; Tom's cast/look feedback comes before character Blender work, and no Rat Casino character model is in gameplay.
+The [Rat Casino ensemble v003](reviews/rat-casino-ensemble/v003.md) shows the corrected six-character classic mascot lineup with the rat at center and Chick-flia beside him. Earlier glossy versions remain linked as superseded history. The first Rat Pit Boss rigged export is paused and unvalidated after Tom's visual correction; a new Blender version is in production. No Rat Casino character model is in gameplay.
 
 Every candidate gets a review record, including concepts and paused or partial work. Show its source images, available model views or audio player, exact version, actual checks and feedback history; label what is still missing. The [review template](000-review-template.md) defines the record, and the [catalog maintenance rule](../PROCESS.md#asset-catalog-must-stay-current) requires matching inventory and thumbnail navigation with every asset change. Catalog inclusion does not require final artwork approval.
 

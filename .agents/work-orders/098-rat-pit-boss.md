@@ -1,6 +1,6 @@
 # WO098 · Rat Pit Boss Blender character v001
 
-- **Status:** Paused before construction for Tom's node restart; exclusive scene released
+- **Status:** Superseded after first rigged export; paused before final validation on Tom's classic-mascot correction; exclusive scene released
 - **Owner:** Fresh native GPT-6 Astra subagent at max, `fork_turns: none`
 - **Asset/version:** `rat-pit-boss/v001`
 - **Scene lease:** Exclusive shared Blender scene from health/idle check through saved release; remote artifacts under `/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v001/`
@@ -29,3 +29,7 @@ Transfer the required public-safe artifacts to `docs/assets/media/rat-pit-boss/v
 ## Pause checkpoint · September 23
 
 The fresh Astra author visually inspected v002 and drafted construction source, then stopped at Tom's node restart request **before executing geometry**. No Rat Pit Boss model, GLB, rig or clip exists. The remote scene still holds the unchanged Rat Casino prop master and no authoring job is running. The durable local backup `/home/dev/artifacts/haynes-quest/rat-casino-cast/rat-pit-boss/v001/checkpoint-release.json` lists source scripts, SHA-256 hashes, prior-master identity and exact resume steps. A new exclusive Astra scene author must first check service readiness/ownership, then execute and correct the script; do not treat this checkpoint as an asset candidate.
+
+## Art-direction pause after restart · September 23
+
+A fresh Astra author resumed from the checkpoint, produced a first rigged v001 GLB, then stopped when Tom said the enemy images read as glam rock and requested the classic original FNAF-era mood. The unvalidated first export is 14,144 triangles, two materials, 2.15 m including hat and 1,916,492 bytes, with authored `idle`, `move`, `attack`, `hit`, `defeat`. **Final Khronos, Three adapter, exact-GLB animation browser checks and final renders were not run**, so this is a paused partial asset, not a completed model candidate. GLB SHA-256: `09a4dadbb4f9eabdddf32b05e7f6ee574e23580127ac9c4a94f991b95bcabc4a`. The durable checkpoint manifest at `/home/dev/artifacts/haynes-quest/rat-casino-cast/rat-pit-boss/v001/paused-art-direction/pause-art-direction.json` and source/master backups retain the exact state; scene lease was released at 19:54:59 UTC. [WO099](099-rat-pit-boss-classic.md) starts a separate v002 asset from the corrected v003 visual brief, without overwriting v001.

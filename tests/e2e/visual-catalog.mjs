@@ -48,20 +48,21 @@ const requiredBestiesClips = [
   "high-five",
   "dizzy",
 ];
+const expectedPartialModelIds = ["nap-captain", "rat-pit-boss"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 50,
+  entries: 51,
   reference_sheet_entries: 8,
-  model_entries: 35,
-  model_files: 35,
+  model_entries: 36,
+  model_files: 36,
   completed_model_candidates: 34,
-  paused_partial_model_candidates: 1,
+  paused_partial_model_candidates: 2,
   concept_only_entries: 2,
   audio_entries: 4,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 67;
+const expectedThumbnailFiles = 69;
 const integratedAssetIds = [
   "bestie-pink",
   "bestie-black",
@@ -567,21 +568,33 @@ async function inspectLanding(
       expectedInventoryCounts.model_entries,
       `${scope}: every model entry has a card`,
     );
-    const nap = modelAssets.find((entry) => entry.id === "nap-captain");
-    assert.ok(nap, `${scope}: Nap Captain model card exists`);
+    const partialModelAssets = modelAssets.filter((entry) =>
+      expectedPartialModelIds.includes(entry.id),
+    );
+    assert.deepEqual(
+      partialModelAssets.map((entry) => entry.id).sort(),
+      [...expectedPartialModelIds].sort(),
+      `${scope}: expected paused partial model cards exist`,
+    );
     assert.equal(
-      modelAssets.filter((entry) => entry.id !== "nap-captain").length,
+      partialModelAssets.length,
+      expectedInventoryCounts.paused_partial_model_candidates,
+      `${scope}: paused partial model candidates have cards`,
+    );
+    const completedModelAssets = modelAssets.filter(
+      (entry) => !expectedPartialModelIds.includes(entry.id),
+    );
+    assert.equal(
+      completedModelAssets.length,
       expectedInventoryCounts.completed_model_candidates,
       `${scope}: completed model candidates have cards`,
     );
     assert.ok(
-      modelAssets
-        .filter((entry) => entry.id !== "nap-captain")
-        .every(
-          (entry) =>
-            /completed/i.test(entry.stateText) ||
-            entry.gameplay_use === "private-candidate",
-        ),
+      completedModelAssets.every(
+        (entry) =>
+          /completed/i.test(entry.stateText) ||
+          entry.gameplay_use === "private-candidate",
+      ),
       `${scope}: completed model records are completed or in the current playtest`,
     );
     for (const id of integratedAssetIds) {
@@ -599,14 +612,16 @@ async function inspectLanding(
         `${scope}: ${id} card records current gameplay use`,
       );
     }
-    const napState = await page
-      .locator('.catalog-card[data-asset-id="nap-captain"] .catalog-state')
-      .innerText();
-    assert.match(
-      `${nap.stateText} ${napState}`,
-      /partial|paused|unfinished|correction/i,
-      `${scope}: Nap Captain is plainly unfinished`,
-    );
+    for (const asset of partialModelAssets) {
+      const cardState = await page
+        .locator(`.catalog-card[data-asset-id="${asset.id}"] .catalog-state`)
+        .innerText();
+      assert.match(
+        `${asset.stateText} ${cardState}`,
+        /partial|paused|unfinished|correction|superseded/i,
+        `${scope}: ${asset.id} is plainly a paused partial model`,
+      );
+    }
 
     const images = await waitForImages(
       page,

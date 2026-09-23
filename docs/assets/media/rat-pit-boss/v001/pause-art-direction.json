@@ -1,0 +1,109 @@
+{
+  "work_order": "WO098",
+  "asset_id": "rat-pit-boss",
+  "version": "v001",
+  "status": "paused-owner-art-direction; unvalidated construction and animation checkpoint",
+  "utc": "2026-09-23T19:54:59.665681+00:00",
+  "scene_lease": "released",
+  "authoring_model": "gpt-6-astra max",
+  "remote_root": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v001",
+  "saved_scene": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v001/paused-art-direction.blend",
+  "owner_steering": "The enemy turnarounds read too glam rock. Owner wants the classic original FNAF vibe; wait for revised art direction from the lead.",
+  "exists": [
+    "One original rigged rat mesh, 14,144 runtime triangles, two materials, one 1024px original atlas.",
+    "Total neutral height 2.15 m including the top hat.",
+    "Five baked animation clips: idle 2.4 s, move 1.2 s, attack 2.0 s, hit 0.7 s, defeat 2.4 s.",
+    "Attack authored contact 1.25 s / fraction 0.625; held final defeat authored. Neither has been export-verified.",
+    "Editable named parts and three construction/animation scripts.",
+    "Early exact-GLB front/side/back/beauty Chromium checkpoint from the initial unoptimized 27,172-triangle mesh."
+  ],
+  "not_completed": [
+    "Final Khronos validation.",
+    "Final Three.js enemy adapter, deformation, floor/clip contract checks.",
+    "Final exact-GLB Chromium animation/model-viewer playback.",
+    "Final renders, motion evidence and owner/lead art review.",
+    "Public catalog delivery or gameplay promotion."
+  ],
+  "process_audit": [
+    {
+      "pid": "1",
+      "command": "/opt/blender-authoring/blender-mcp/.venv/bin/python /opt/blender-authoring/service.py "
+    },
+    {
+      "pid": "9",
+      "command": "Xvfb :90 -screen 0 1280x720x24 -nolisten tcp -auth /tmp/blender-authoring-1000/Xauthority -noreset "
+    },
+    {
+      "pid": "12",
+      "command": "/usr/local/bin/blender --factory-startup --disable-autoexec -noaudio --gpu-backend opengl --python-exit-code 1 --python /opt/blender-authoring/bootstrap.py "
+    }
+  ],
+  "author_jobs_running": false,
+  "files": [
+    {
+      "file": "paused-art-direction.blend",
+      "bytes": 2276086,
+      "sha256": "5abb3196c1168000cfbc9b3328520a722cbeba12a4e4c682da3ec60962b1e54a"
+    },
+    {
+      "file": "rat-pit-boss.blend",
+      "bytes": 2274721,
+      "sha256": "1796a6e96ea435eba6eee870394a75895fc025984e704f4b8669d5cad3dcd3ef"
+    },
+    {
+      "file": "rat-pit-boss.glb",
+      "bytes": 1916492,
+      "sha256": "09a4dadbb4f9eabdddf32b05e7f6ee574e23580127ac9c4a94f991b95bcabc4a"
+    },
+    {
+      "file": "rat-pit-boss-checkpoint.glb",
+      "bytes": 1766856,
+      "sha256": "fa4a7885f5d555899b5c41e5b84969207c61804deea025847add7f2cb616f801"
+    },
+    {
+      "file": "pigment.png",
+      "bytes": 952815,
+      "sha256": "0acb7f90c6965dc876117e4cdf67fb558cbfac5a08ea95e225d697229249f21a"
+    },
+    {
+      "file": "construction.json",
+      "bytes": 43251,
+      "sha256": "e445723c29819b45d4f33937c1b2b27b00ceb3e03566ec5506b3640ba90bdfda"
+    },
+    {
+      "file": "scene-lease.json",
+      "bytes": 516,
+      "sha256": "c5dbe7199e95faa5323d70fbfa2176a3c31c2fe029c9397187c3cffffb56521e"
+    },
+    {
+      "file": "source/build.py",
+      "bytes": 20735,
+      "sha256": "2ed258663a4cd59bebafae49081370ae962ad23e7eb4ccc460afd96caa50bbd9"
+    },
+    {
+      "file": "source/common.py",
+      "bytes": 8599,
+      "sha256": "d467e16fc2c87189f501194c926827c8169e4bf1a0f3fde3458584dcd12f4a7a"
+    },
+    {
+      "file": "source/animate.py",
+      "bytes": 9522,
+      "sha256": "379e0244814b082762666b9c326e9a1c5d1932caac37cab0f2af708b11998973"
+    },
+    {
+      "file": "source/rig-rest.json",
+      "bytes": 4666,
+      "sha256": "37425d1843b68e40241acb1bf60e3c8221e262364c538aa43194cbea3e6b9ee4"
+    }
+  ],
+  "prior_master_unchanged": {
+    "path": "/workspace/haynes-quest/rat-casino-kit/v001/rat-casino-kit.blend",
+    "sha256": "99791504d602bf3f3abd06182f4c00e3b68dd954a14b5a05843c8208752c609e"
+  },
+  "resume": [
+    "Read revised art direction before further geometry decisions.",
+    "Verify service health, scene ownership and no active authoring jobs.",
+    "Use a fresh exclusive Astra Blender work order.",
+    "Do not treat existing rigged GLB or early stills as a technically validated or owner-approved candidate."
+  ]
+}
