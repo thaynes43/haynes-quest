@@ -1,0 +1,24 @@
+{
+  "blenderVersion": "4.5.13 LTS",
+  "engine": "Cycles",
+  "device": "CPU",
+  "samples": 32,
+  "denoised": true,
+  "viewTransform": "AgX",
+  "look": "Medium High Contrast",
+  "exposure": -0.2,
+  "isolatedStillsPixels": [
+    960,
+    960
+  ],
+  "assemblyPixels": [
+    1200,
+    900
+  ],
+  "scaleProxy": {
+    "shape": "neutral cylinder and sphere",
+    "heightMeters": 1.2,
+    "diameterMeters": 0.34
+  },
+  "note": "Source renders; assembly offsets and scale proxy are not in the GLB files."
+}

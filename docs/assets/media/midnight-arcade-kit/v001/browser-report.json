@@ -1,0 +1,67 @@
+{
+  "browser": "153.0.8010.12",
+  "viewer": "model-viewer 4.3.1 (bundled)",
+  "renderer": "Chromium headless / software WebGL (SwiftShader)",
+  "viewportPixels": [
+    1000,
+    850
+  ],
+  "tested": "Actual separately exported static GLBs, loaded from a local HTTP server",
+  "limitation": "Desktop browser rendering check; not physical iPhone/iPad or gameplay performance acceptance.",
+  "inspected": [
+    {
+      "asset": "ticket-arch",
+      "loaded": true,
+      "dimensions": {
+        "x": 6.080000162124634,
+        "y": 3.384999990463257,
+        "z": 0.7380000054836273
+      },
+      "center": {
+        "x": 1.1920928955078125e-7,
+        "y": 1.6924999952316284,
+        "z": 0.05900000035762787
+      },
+      "availableAnimations": [],
+      "screenshot": "ticket-arch-browser.png",
+      "cameraOrbit": "0.4886921905584123rad 1.2566370614359172rad 13.21853248892565m"
+    },
+    {
+      "asset": "arcade-cabinet",
+      "loaded": true,
+      "dimensions": {
+        "x": 0.9459999799728394,
+        "y": 1.7899999618530273,
+        "z": 1.0199999809265137
+      },
+      "center": {
+        "x": 0,
+        "y": 0.8949999809265137,
+        "z": 0.009999990463256836
+      },
+      "availableAnimations": [],
+      "screenshot": "arcade-cabinet-browser.png",
+      "cameraOrbit": "0.4886921905584123rad 1.2566370614359172rad 4.475237018328418m"
+    },
+    {
+      "asset": "joystick-bollard",
+      "loaded": true,
+      "dimensions": {
+        "x": 0.8500000238418579,
+        "y": 1.0499999523162842,
+        "z": 0.8500000238418579
+      },
+      "center": {
+        "x": 0,
+        "y": 0.5249999761581421,
+        "z": 0
+      },
+      "availableAnimations": [],
+      "screenshot": "joystick-bollard-browser.png",
+      "cameraOrbit": "0.4886921905584123rad 1.2566370614359172rad 2.6683996524121723m"
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "consoleErrors": []
+}

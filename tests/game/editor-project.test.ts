@@ -16,6 +16,7 @@ import {
   rebaseLevelEditorProject,
   resolveLevelEditorProject,
   serializeLevelEditorProject,
+  type LevelEditorProject,
 } from "../../src/shared/editor-project";
 import bestiesPlayground from "../../src/shared/levels/besties-playground-v2.json";
 import gardenPlayground from "../../src/shared/levels/garden-playground-v2.json";
@@ -46,7 +47,10 @@ function project(): EditorProject {
   });
 }
 
-function chapter(source: EditorProject, chapterId: "chapter-1" | "chapter-2") {
+function chapter(
+  source: LevelEditorProject,
+  chapterId: "chapter-1" | "chapter-2",
+) {
   const found = source.chapters.find((entry) => entry.chapterId === chapterId);
   if (!found) throw new Error(`Missing ${chapterId}`);
   return found;

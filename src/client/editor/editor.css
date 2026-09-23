@@ -278,7 +278,7 @@
 .editor-tab-list {
   display: grid;
   flex: 0 0 42px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   padding: 5px;
   border-bottom: 1px solid var(--editor-border);
   background: #f7efe2;
@@ -440,6 +440,113 @@
 
 .editor-inspector-scroll {
   padding: 10px;
+}
+
+.editor-world-panel {
+  display: grid;
+  gap: 16px;
+  padding-bottom: 16px;
+}
+
+.editor-world-section {
+  min-width: 0;
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--editor-border);
+}
+
+.editor-world-section h2 {
+  margin: 2px 0 7px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.editor-world-section p,
+.editor-candidate-form p,
+.editor-world-note {
+  margin: 0 0 10px;
+  color: #696356;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.editor-world-levels {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 9px;
+  padding: 0;
+  list-style: none;
+}
+
+.editor-world-levels button {
+  display: grid;
+  width: 100%;
+  gap: 2px;
+  text-align: left;
+}
+
+.editor-world-levels button[aria-current="step"] {
+  border-color: var(--editor-honey);
+  background: #f3e4bd;
+  font-weight: 700;
+}
+
+.editor-world-levels small {
+  color: #696356;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.editor-world-actions {
+  display: grid;
+  gap: 5px;
+}
+
+.editor-world-order {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.editor-world-order button {
+  flex: 1 1 90px;
+  font-size: 11px;
+}
+
+.editor-world-encounter {
+  margin: 8px 0;
+  padding: 8px;
+  border: 1px solid var(--editor-border);
+  border-radius: 6px;
+  background: #fbf4e9;
+}
+
+.editor-world-encounter > button {
+  width: 100%;
+  font-size: 11px;
+  text-align: left;
+}
+
+.editor-world-choice-state {
+  margin: -3px 0 7px !important;
+  color: #705d4f !important;
+}
+
+.editor-world-show-more {
+  width: 100%;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.editor-candidate-form {
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid var(--editor-border);
+}
+
+.editor-candidate-form h3 {
+  margin: 0 0 6px;
+  font-size: 12px;
 }
 
 .editor-empty-state {
@@ -788,7 +895,7 @@
     display: grid;
     min-height: 43px;
     flex: 0 0 43px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 3px;
     padding: 5px;
     border-bottom: 1px solid var(--editor-border);
@@ -820,7 +927,8 @@
 
   .editor-workspace.is-mobile-view .editor-viewport,
   .editor-workspace.is-mobile-objects .editor-left-rail,
-  .editor-workspace.is-mobile-properties .editor-right-rail {
+  .editor-workspace.is-mobile-properties .editor-right-rail,
+  .editor-workspace.is-mobile-world .editor-right-rail {
     display: flex;
   }
 

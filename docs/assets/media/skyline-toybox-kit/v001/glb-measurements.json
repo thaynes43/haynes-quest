@@ -1,0 +1,188 @@
+{
+  "workOrder": "WO096",
+  "validator": "Khronos glTF Validator",
+  "assets": [
+    {
+      "asset": "block-tower",
+      "file": "block-tower.glb",
+      "sha256": "f7d9109a3f39a52db248423b680344393d94471b3420838c5bf717de243531e4",
+      "bytes": 33728,
+      "meshes": 1,
+      "primitives": 1,
+      "triangles": 1324,
+      "materials": [
+        {
+          "name": "Toybox_matte_painted_wood",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8399999737739563
+          },
+          "extensions": {
+            "KHR_materials_specular": {
+              "specularFactor": 0.46000000834465027
+            }
+          }
+        }
+      ],
+      "images": 0,
+      "animations": 0,
+      "skins": 0,
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "extensionsRequired": [],
+      "checks": {
+        "khronosNoErrors": true,
+        "khronosNoWarnings": true,
+        "triangleCeiling3000": true,
+        "materialCeiling3": true,
+        "singleExportMesh": true,
+        "allPrimitivesColored": true,
+        "noTextures": true,
+        "noAnimationOrSkin": true,
+        "resourcesEmbedded": true,
+        "noRequiredExtensions": true,
+        "opaqueMaterials": true
+      },
+      "validatorIssues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "asset": "safety-rail",
+      "file": "safety-rail.glb",
+      "sha256": "fd5b45ac33852017c51a46877e85b7bbb2c25edff6f362b8e8451a32ab5d4f7d",
+      "bytes": 38988,
+      "meshes": 1,
+      "primitives": 1,
+      "triangles": 1532,
+      "materials": [
+        {
+          "name": "Toybox_matte_painted_wood",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8399999737739563
+          },
+          "extensions": {
+            "KHR_materials_specular": {
+              "specularFactor": 0.46000000834465027
+            }
+          }
+        }
+      ],
+      "images": 0,
+      "animations": 0,
+      "skins": 0,
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "extensionsRequired": [],
+      "checks": {
+        "khronosNoErrors": true,
+        "khronosNoWarnings": true,
+        "triangleCeiling3000": true,
+        "materialCeiling3": true,
+        "singleExportMesh": true,
+        "allPrimitivesColored": true,
+        "noTextures": true,
+        "noAnimationOrSkin": true,
+        "resourcesEmbedded": true,
+        "noRequiredExtensions": true,
+        "opaqueMaterials": true
+      },
+      "validatorIssues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "asset": "windup-lantern",
+      "file": "windup-lantern.glb",
+      "sha256": "fc6bdef3e83df930abc7cdaf4d898a8e4bed0c1476f7496fb3ff3aa54ac33948",
+      "bytes": 68200,
+      "meshes": 1,
+      "primitives": 3,
+      "triangles": 2664,
+      "materials": [
+        {
+          "name": "Toybox_matte_painted_wood",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8399999737739563
+          },
+          "extensions": {
+            "KHR_materials_specular": {
+              "specularFactor": 0.46000000834465027
+            }
+          }
+        },
+        {
+          "name": "Toybox_honey_light",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6700000166893005
+          },
+          "emissive": [
+            0.8500000238418579,
+            0.5361435951175011,
+            0.16542516665739626
+          ],
+          "extensions": {
+            "KHR_materials_specular": {
+              "specularFactor": 0.46000000834465027
+            }
+          }
+        },
+        {
+          "name": "Toybox_satin_honey_key",
+          "pbr": {
+            "metallicFactor": 0.15000000596046448,
+            "roughnessFactor": 0.5
+          },
+          "extensions": {
+            "KHR_materials_specular": {
+              "specularFactor": 0.46000000834465027
+            }
+          }
+        }
+      ],
+      "images": 0,
+      "animations": 0,
+      "skins": 0,
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "extensionsRequired": [],
+      "checks": {
+        "khronosNoErrors": true,
+        "khronosNoWarnings": true,
+        "triangleCeiling3000": true,
+        "materialCeiling3": true,
+        "singleExportMesh": true,
+        "allPrimitivesColored": true,
+        "noTextures": true,
+        "noAnimationOrSkin": true,
+        "resourcesEmbedded": true,
+        "noRequiredExtensions": true,
+        "opaqueMaterials": true
+      },
+      "validatorIssues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    }
+  ]
+}

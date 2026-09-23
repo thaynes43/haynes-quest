@@ -21,6 +21,7 @@ import { createPreview } from './photos/setup.js';
 import type { JourneyPhotoSource } from './photos/source.js';
 import {
   EDITOR_PLAYTEST_MAX_BODY_BYTES,
+  editorChapterIndex,
   editorChapterNumber,
   prepareEditorPreview,
 } from './editor-preview.js';
@@ -106,6 +107,9 @@ export function createApp(options: AppOptions): Hono {
   }
 
   const app = new Hono();
+  const editorPlaytestStore = options.ephemeralPlaytest
+    ? options.store as InMemoryQuestStore
+    : null;
   const sessions = options.fixtureMode
     ? new FixtureSessions(options.store, options.sessionSecret, options.appOrigin.startsWith('https://'))
     : null;
@@ -190,9 +194,8 @@ export function createApp(options: AppOptions): Hono {
         return context.json(toSaveView(save, save.updatedAt), 201);
       });
 
-      // Level editor preview. The frozen project travels back to the browser and
-      // stays there: gameplay continues through the ordinary save action routes,
-      // because no reducer reads course geometry.
+      // Level editor preview. V2 freezes a validated, editor-only adventure plan
+      // in the ephemeral store; gameplay then uses the ordinary action routes.
       app.post('/api/editor/playtests', async (context) => {
         enforceMutationSecurity(context, options.appOrigin);
         const player = await requirePlayer(context, sessions);
@@ -206,10 +209,24 @@ export function createApp(options: AppOptions): Hono {
         // never leave a save behind.
         const prepared = prepareEditorPreview(request.project);
         if (!prepared.ok) return context.json(prepared.body, 422);
-        const save = await startFictionalChapter(
-          player.id,
-          request.scope === 'adventure' ? 1 : editorChapterNumber(request.chapterId),
-        );
+        const requestedIndex = editorChapterIndex(prepared.bundle.project, request.chapterId);
+        if (requestedIndex === null) {
+          throw new AppError(422, 'INVALID_REQUEST', 'Invalid request');
+        }
+        const save = prepared.bundle.world
+          ? await editorPlaytestStore!.createEditorPlaytest({
+              ownerId: player.id,
+              title: prepared.bundle.project.name,
+              birthDate: prepared.bundle.world.birthDate,
+              memories: prepared.bundle.world.memories.map((memory) => structuredClone(memory)),
+              plan: prepared.bundle.world.plan,
+              startLevelIndex: request.scope === 'adventure' ? 0 : requestedIndex,
+              startedAt: now(),
+            })
+          : await startFictionalChapter(
+              player.id,
+              request.scope === 'adventure' ? 1 : editorChapterNumber(request.chapterId),
+            );
         return context.json(
           {
             save: toSaveView(save, save.updatedAt),

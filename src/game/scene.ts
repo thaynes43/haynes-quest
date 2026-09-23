@@ -21,7 +21,6 @@ import {
   createEncounterStudy,
   groundRing,
   material,
-  palettes,
   shapeMesh,
 } from "./scene-art";
 import { equipmentArtwork, parodyArtwork } from "./scene-catalog";
@@ -29,6 +28,10 @@ import { EnemyAnimation } from "./enemy-animation";
 import { enemyAttackRange } from "./combat";
 import { bossRequiresOrdinaryDefeats } from "../shared/encounter-availability";
 import { TravelerEquipment } from "./traveler-equipment";
+import {
+  resolveRuntimeWorldTheme,
+  type RuntimeWorldTheme,
+} from "./world-themes";
 
 type PhotoState = {
   url: string;
@@ -53,6 +56,28 @@ type EncounterVisual = {
   animation?: EnemyAnimation;
   besties?: BestiesScene;
 };
+
+function setInstanceTransform(
+  mesh: THREE.InstancedMesh,
+  index: number,
+  dummy: THREE.Object3D,
+  position: readonly [number, number, number],
+  scale: readonly [number, number, number],
+  rotationY = 0,
+): void {
+  dummy.position.set(...position);
+  dummy.rotation.set(0, rotationY, 0);
+  dummy.scale.set(...scale);
+  dummy.updateMatrix();
+  mesh.setMatrixAt(index, dummy.matrix);
+}
+
+function finishInstances(mesh: THREE.InstancedMesh): void {
+  mesh.instanceMatrix.needsUpdate = true;
+  if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+  mesh.computeBoundingBox();
+  mesh.computeBoundingSphere();
+}
 
 export class GardenScene {
   readonly canvas: HTMLCanvasElement;
@@ -225,6 +250,7 @@ export class GardenScene {
     this.friendlyVisual = null;
     this.scene.remove(this.world);
     disposeTree(this.world);
+    this.particles = null;
     this.world = new THREE.Group();
     this.world.name = `era-world-${save.adventure?.activeLevel?.eraYear ?? "complete"}`;
     this.scene.add(this.world);
@@ -237,12 +263,18 @@ export class GardenScene {
         period === "remix-runway-v2" ||
         period === "besties-obby-v1"
       : (save.adventure?.activeLevel?.eraYear ?? 2020) >= 2024;
-    const palette = later ? palettes.fair : palettes.orchard;
-    const sky = level.course && !later ? 0xcde5ef : palette.sky;
+    const worldTheme = resolveRuntimeWorldTheme(level.authored, later);
+    const palette = worldTheme.palette;
+    const environmentAssets = worldTheme.environment.assets;
+    this.world.userData.worldTheme = worldTheme.id;
+    this.world.userData.environmentKitState = worldTheme.environment.state;
+    const sky = level.course ? worldTheme.course.sky : palette.sky;
     this.scene.background = new THREE.Color(sky);
     this.scene.fog = new THREE.Fog(sky, 20, 52);
-    this.sun.color.setHex(level.course ? 0xfff4df : palette.light);
-    this.renderer.toneMappingExposure = later ? 0.85 : 0.82;
+    this.sun.color.setHex(
+      level.course ? worldTheme.course.light : palette.light,
+    );
+    this.renderer.toneMappingExposure = worldTheme.course.exposure;
     const routeCenterX = level.authored ? (level.minX + level.maxX) / 2 : 0;
     const routeCenterZ = level.authored ? (level.minZ + level.maxZ) / 2 : -13;
     const routeDepth = level.authored ? level.maxZ - level.minZ : 30;
@@ -256,14 +288,14 @@ export class GardenScene {
         48,
         80,
       ),
-      material(level.course ? 0x88c1c5 : palette.grass),
+      material(level.course ? worldTheme.course.ground : palette.grass),
       [routeCenterX, level.course ? -1.4 : -0.045, routeCenterZ],
     );
     ground.rotation.x = -Math.PI / 2;
     ground.castShadow = false;
     this.world.add(ground);
     if (level.course) {
-      this.obbyVisual = new ObbyScene(level.course, later);
+      this.obbyVisual = new ObbyScene(level.course, worldTheme.obby);
       this.world.add(this.obbyVisual.root);
       for (const side of [-1, 1])
         this.world.add(
@@ -291,7 +323,7 @@ export class GardenScene {
       for (const platform of level.course.platforms) {
         if (
           platform.motion ||
-          later ||
+          !worldTheme.usesPathTiles ||
           platform.size.x < 4 ||
           platform.center.y + platform.size.y / 2 > 0.01
         )
@@ -311,7 +343,8 @@ export class GardenScene {
         for (const x of xs) {
           if (
             level.course &&
-            (later || !this.onIsland(level.course, x, z, 1.05))
+            (!worldTheme.usesPathTiles ||
+              !this.onIsland(level.course, x, z, 1.05))
           )
             continue;
           const tile = new THREE.Group();
@@ -322,17 +355,18 @@ export class GardenScene {
         }
       }
     }
-    this.assets.attachInstances(
-      modelUrls.path,
-      this.world,
-      pathPlacements,
-      valid,
-      {
-        castShadow: false,
-      },
-    );
+    if (environmentAssets)
+      this.assets.attachInstances(
+        environmentAssets.path,
+        this.world,
+        pathPlacements,
+        valid,
+        {
+          castShadow: false,
+        },
+      );
     const groundColor = new THREE.Color(
-      level.course ? 0x88c1c5 : palette.grass,
+      level.course ? worldTheme.course.ground : palette.grass,
     );
     const groundPositions = ground.geometry.getAttribute("position");
     const colors = new Float32Array(groundPositions.count * 3);
@@ -408,7 +442,7 @@ export class GardenScene {
           const planting = new THREE.Object3D();
           planting.position.set(x, platform.center.y + platform.size.y / 2, z);
           planting.rotation.y = side * z * 0.35;
-          planting.scale.setScalar(later ? 0.8 : 0.9);
+          planting.scale.setScalar(worldTheme.environmentScale);
           planting.updateMatrix();
           treePlacements.push(planting.matrix.clone());
         }
@@ -421,53 +455,66 @@ export class GardenScene {
             const planting = new THREE.Object3D();
             planting.position.set(side * 5.55, 0, z);
             planting.rotation.y = side * z * 0.35;
-            planting.scale.setScalar(later ? 0.8 : 0.9);
+            planting.scale.setScalar(worldTheme.environmentScale);
             planting.updateMatrix();
             treePlacements.push(planting.matrix.clone());
           }
         }
       }
     }
-    this.assets.attachInstances(
-      modelUrls.tree,
-      this.world,
-      treePlacements,
-      valid,
-    );
-    this.assets.attachInstances(
-      modelUrls.stone,
-      this.world,
-      stonePlacements,
-      valid,
-    );
-    for (let i = 0; i < (level.authored ? 12 : 8); i++) {
-      const hill = shapeMesh(
-        new THREE.SphereGeometry(5 + (i % 3), 16, 8),
-        material(i % 2 ? palette.leaf : palette.mist),
-        [
-          level.authored
-            ? i % 2
-              ? level.maxX + 10
-              : level.minX - 10
-            : (i % 2 ? 1 : -1) * (16 + (i % 3)),
-          -2,
-          level.authored
-            ? level.maxZ - (Math.floor(i / 2) * routeDepth) / 5
-            : 10 - Math.floor(i / 2) * 14,
-        ],
+    if (environmentAssets) {
+      this.assets.attachInstances(
+        environmentAssets.tree,
+        this.world,
+        treePlacements,
+        valid,
       );
-      hill.scale.y = 0.7;
-      hill.castShadow = false;
-      hill.receiveShadow = false;
-      this.world.add(hill);
+      this.assets.attachInstances(
+        environmentAssets.stone,
+        this.world,
+        stonePlacements,
+        valid,
+      );
     }
-    this.addMeadow(later, level.course, level.authored ? level : undefined);
+    if (worldTheme.environment.state === "pending-kit") {
+      this.addPendingWorldScenery(worldTheme, level);
+    } else {
+      for (let i = 0; i < (level.authored ? 12 : 8); i++) {
+        const hill = shapeMesh(
+          new THREE.SphereGeometry(5 + (i % 3), 16, 8),
+          material(i % 2 ? palette.leaf : palette.mist),
+          [
+            level.authored
+              ? i % 2
+                ? level.maxX + 10
+                : level.minX - 10
+              : (i % 2 ? 1 : -1) * (16 + (i % 3)),
+            -2,
+            level.authored
+              ? level.maxZ - (Math.floor(i / 2) * routeDepth) / 5
+              : 10 - Math.floor(i / 2) * 14,
+          ],
+        );
+        hill.name = `outdoor-hill-${i + 1}`;
+        hill.scale.y = 0.7;
+        hill.castShadow = false;
+        hill.receiveShadow = false;
+        this.world.add(hill);
+      }
+      this.addMeadow(
+        worldTheme.meadow,
+        level.course,
+        level.authored ? level : undefined,
+      );
+    }
     if (!level.course) this.addEraDetails(later);
     const gate = new THREE.Group();
     gate.position.set(level.finish.x, level.finish.y, level.finish.z);
     gate.scale.setScalar(1.4);
     this.world.add(gate);
-    this.assets.attach(modelUrls.gate, gate, valid);
+    if (environmentAssets)
+      this.assets.attach(environmentAssets.gate, gate, valid);
+    else this.addPendingEnvironmentMarker(gate, worldTheme);
     for (const placement of level.memories) {
       const memory = new THREE.Group();
       memory.position.set(
@@ -510,14 +557,18 @@ export class GardenScene {
         (item) => item.id === placement.id,
       )?.content;
       const artwork = content ? parodyArtwork(content) : null;
-      if (content && !artwork) this.unsupportedContentCount += 1;
+      if (content && !artwork && content.placeholder !== "neutral-candidate-v1")
+        this.unsupportedContentCount += 1;
       const model = new THREE.Group();
       const fallback =
         artwork?.kind === "duo"
           ? null
           : createEncounterStudy(placement.kind, later);
       if (fallback) {
-        fallback.name = "encounter-artwork-fallback";
+        fallback.name =
+          content?.placeholder === "neutral-candidate-v1"
+            ? "enemy-candidate-placeholder"
+            : "encounter-artwork-fallback";
         model.add(fallback);
       }
       root.add(model);
@@ -1089,7 +1140,10 @@ export class GardenScene {
     const activeLevel = this.save.adventure?.activeLevel;
     const dormant =
       visual.boss &&
-      bossRequiresOrdinaryDefeats(activeLevel?.routeId) &&
+      bossRequiresOrdinaryDefeats(
+        activeLevel?.routeId,
+        activeLevel?.bossGate,
+      ) &&
       activeLevel?.encounters.some(
         (item) => item.role === "ordinary" && !item.defeated,
       );
@@ -1158,8 +1212,512 @@ export class GardenScene {
     );
   }
 
+  private addPendingWorldScenery(
+    theme: RuntimeWorldTheme,
+    level: LevelLayout,
+  ): void {
+    if (theme.environment.state !== "pending-kit") return;
+    const root = new THREE.Group();
+    root.name = `${theme.id}-pending-kit-placeholder-scenery`;
+    root.userData.environmentKitState = theme.environment.state;
+    root.userData.worldTheme = theme.id;
+    if (theme.id === "arcade") this.addArcadePlaceholders(root, theme, level);
+    if (theme.id === "toybox") this.addToyboxPlaceholders(root, theme, level);
+    this.world.add(root);
+  }
+
+  private addArcadePlaceholders(
+    root: THREE.Group,
+    theme: RuntimeWorldTheme,
+    level: LevelLayout,
+  ): void {
+    const rowFractions = [0.045, 0.12, 0.23, 0.38, 0.57, 0.78] as const;
+    const cabinetCount = rowFractions.length * 2;
+    const dummy = new THREE.Object3D();
+    const silhouettes = new THREE.InstancedMesh(
+      new THREE.BoxGeometry(1, 1, 1),
+      material(0xffffff),
+      cabinetCount * 3,
+    );
+    silhouettes.name = "arcade-cabinet-silhouettes";
+    silhouettes.castShadow = true;
+    const screenMaterial = material(theme.palette.light, theme.palette.light);
+    screenMaterial.color.multiplyScalar(0.38);
+    screenMaterial.emissiveIntensity = 0.32;
+    const screens = new THREE.InstancedMesh(
+      new THREE.BoxGeometry(1, 1, 1),
+      screenMaterial,
+      cabinetCount,
+    );
+    screens.name = "arcade-cabinet-honey-screens";
+    const controls = new THREE.InstancedMesh(
+      new THREE.SphereGeometry(0.08, 8, 6),
+      material(theme.palette.accent),
+      cabinetCount * 2,
+    );
+    controls.name = "arcade-cabinet-cherry-controls";
+
+    const routeDepth = Math.max(1, level.maxZ - level.minZ);
+    for (let index = 0; index < cabinetCount; index++) {
+      const side = index % 2 === 0 ? -1 : 1;
+      const row = Math.floor(index / 2);
+      const z = level.maxZ - rowFractions[row]! * routeDepth;
+      const x = this.pendingSidePosition(level, z, side, 0.55, 0.55);
+      const facing = side < 0 ? Math.PI / 2 : -Math.PI / 2;
+      const bodyIndex = index * 3;
+      setInstanceTransform(
+        silhouettes,
+        bodyIndex,
+        dummy,
+        [x, 0.08, z],
+        [1, 0.16, 1.08],
+        facing,
+      );
+      setInstanceTransform(
+        silhouettes,
+        bodyIndex + 1,
+        dummy,
+        [x, 0.72, z],
+        [0.72, 1.44, 0.86],
+        facing,
+      );
+      setInstanceTransform(
+        silhouettes,
+        bodyIndex + 2,
+        dummy,
+        [x, 1.56, z],
+        [0.82, 0.3, 0.96],
+        facing,
+      );
+      const cabinetColor = new THREE.Color(
+        index % 4 < 2 ? theme.palette.grass : theme.palette.leaf,
+      );
+      silhouettes.setColorAt(bodyIndex, cabinetColor);
+      silhouettes.setColorAt(bodyIndex + 1, cabinetColor);
+      silhouettes.setColorAt(bodyIndex + 2, cabinetColor);
+      const faceX = x + (side < 0 ? 0.45 : -0.45);
+      setInstanceTransform(
+        screens,
+        index,
+        dummy,
+        [faceX, 1.08, z],
+        [0.5, 0.48, 0.035],
+        facing,
+      );
+      for (const controlSide of [-1, 1])
+        setInstanceTransform(
+          controls,
+          index * 2 + (controlSide > 0 ? 1 : 0),
+          dummy,
+          [faceX + (side < 0 ? 0.025 : -0.025), 0.67, z + controlSide * 0.16],
+          [1, 1, 1],
+        );
+    }
+    finishInstances(silhouettes);
+    finishInstances(screens);
+    finishInstances(controls);
+
+    const strings = 3;
+    const bulbsPerString = 9;
+    const lights = new THREE.InstancedMesh(
+      new THREE.SphereGeometry(0.08, 8, 6),
+      material(theme.palette.light, theme.palette.light),
+      strings * bulbsPerString,
+    );
+    lights.name = "arcade-warm-string-lights";
+    (lights.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.65;
+    const highestSurface = Math.max(
+      level.checkpoint.y,
+      level.finish.y,
+      ...(level.course?.platforms.map(
+        (platform) => platform.center.y + platform.size.y / 2,
+      ) ?? []),
+    );
+    const lightMinX = level.minX + Math.min(1, (level.maxX - level.minX) / 4);
+    const lightMaxX = level.maxX - Math.min(1, (level.maxX - level.minX) / 4);
+    let lightIndex = 0;
+    for (let string = 0; string < strings; string++) {
+      const z = level.maxZ - ((string + 1) * routeDepth) / (strings + 1);
+      for (let bulb = 0; bulb < bulbsPerString; bulb++) {
+        const across = bulb / (bulbsPerString - 1);
+        setInstanceTransform(
+          lights,
+          lightIndex++,
+          dummy,
+          [
+            THREE.MathUtils.lerp(lightMinX, lightMaxX, across),
+            highestSurface + 3.2 - Math.sin(across * Math.PI) * 0.28,
+            z,
+          ],
+          [1, 1, 1],
+        );
+      }
+    }
+    finishInstances(lights);
+    const floorTiles = this.createPendingFloorTiles(
+      "arcade-plum-floor-tiles",
+      theme.palette.grass,
+      level,
+      112,
+    );
+    const guidance = this.createPendingRouteGuidance(
+      "arcade-honey-route-guidance",
+      theme.palette.light,
+      level,
+      48,
+    );
+    root.add(silhouettes, screens, controls, lights, floorTiles, guidance);
+  }
+
+  private addToyboxPlaceholders(
+    root: THREE.Group,
+    theme: RuntimeWorldTheme,
+    level: LevelLayout,
+  ): void {
+    const dummy = new THREE.Object3D();
+    const peachTransforms: Array<{
+      position: [number, number, number];
+      rotation: number;
+    }> = [];
+    const blueTransforms: typeof peachTransforms = [];
+    const accents: Array<[number, number, number]> = [];
+    const routeDepth = Math.max(1, level.maxZ - level.minZ);
+    const rowFractions = [0.04, 0.14, 0.3, 0.55] as const;
+    const towerCount = rowFractions.length * 2;
+    for (let tower = 0; tower < towerCount; tower++) {
+      const side = tower % 2 === 0 ? -1 : 1;
+      const row = Math.floor(tower / 2);
+      const baseZ = level.maxZ - rowFractions[row]! * routeDepth;
+      const baseX = this.pendingSidePosition(level, baseZ, side, 0.7, 0.7);
+      for (let layer = 0; layer < 3; layer++) {
+        const transform = {
+          position: [
+            baseX + side * (layer % 2) * 0.12,
+            0.38 + layer * 0.76,
+            baseZ + (layer % 2 ? 0.12 : -0.1),
+          ] as [number, number, number],
+          rotation: (tower + layer) * 0.11,
+        };
+        (layer % 2 === 0 ? peachTransforms : blueTransforms).push(transform);
+      }
+      accents.push([baseX + side * 0.08, 2.72, baseZ]);
+    }
+    const createBlocks = (
+      name: string,
+      color: number,
+      transforms: typeof peachTransforms,
+    ): THREE.InstancedMesh => {
+      const blocks = new THREE.InstancedMesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        material(color),
+        transforms.length,
+      );
+      blocks.name = name;
+      blocks.castShadow = true;
+      transforms.forEach((transform, index) =>
+        setInstanceTransform(
+          blocks,
+          index,
+          dummy,
+          transform.position,
+          [0.9, 0.72, 0.9],
+          transform.rotation,
+        ),
+      );
+      finishInstances(blocks);
+      return blocks;
+    };
+    const peach = createBlocks(
+      "toybox-soft-blocks-peach",
+      theme.obby.platformSide,
+      peachTransforms,
+    );
+    const blue = createBlocks(
+      "toybox-soft-blocks-blue",
+      theme.obby.platformRails ?? theme.palette.leaf,
+      blueTransforms,
+    );
+    const honey = new THREE.InstancedMesh(
+      new THREE.SphereGeometry(0.15, 10, 7),
+      material(theme.palette.accent, theme.palette.accent),
+      accents.length,
+    );
+    honey.name = "toybox-honey-accents";
+    (honey.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.3;
+    accents.forEach((position, index) =>
+      setInstanceTransform(honey, index, dummy, position, [1, 1, 1]),
+    );
+    finishInstances(honey);
+    const floorTiles = this.createPendingFloorTiles(
+      "toybox-blue-playmat-tiles",
+      theme.obby.platformRails ?? theme.palette.leaf,
+      level,
+      92,
+    );
+    const guidance = this.createPendingRouteGuidance(
+      "toybox-honey-route-guidance",
+      theme.palette.accent,
+      level,
+      40,
+    );
+    root.add(peach, blue, honey, floorTiles, guidance);
+  }
+
+  private pendingSidePosition(
+    level: LevelLayout,
+    z: number,
+    side: -1 | 1,
+    halfWidth: number,
+    halfDepth: number,
+  ): number {
+    let edge = level.checkpoint.x + side * 3.5;
+    for (const platform of level.course?.platforms ?? []) {
+      const motionX =
+        platform.motion?.axis === "x" ? Math.abs(platform.motion.distance) : 0;
+      const motionZ =
+        platform.motion?.axis === "z" ? Math.abs(platform.motion.distance) : 0;
+      const near = platform.center.z + platform.size.z / 2 + motionZ;
+      const far = platform.center.z - platform.size.z / 2 - motionZ;
+      if (z + halfDepth + 0.45 < far || z - halfDepth - 0.45 > near) continue;
+      const platformEdge =
+        platform.center.x + side * (platform.size.x / 2 + motionX);
+      edge =
+        side < 0 ? Math.min(edge, platformEdge) : Math.max(edge, platformEdge);
+    }
+    let candidate = edge + side * (halfWidth + 0.55);
+    for (let attempt = 0; attempt < 20; attempt++) {
+      if (this.pendingSceneryClear(level, candidate, z, halfWidth, halfDepth))
+        return candidate;
+      candidate += side * 0.4;
+    }
+    return candidate;
+  }
+
+  private pendingSceneryClear(
+    level: LevelLayout,
+    x: number,
+    z: number,
+    halfWidth: number,
+    halfDepth: number,
+  ): boolean {
+    const clearance = 0.45;
+    for (const platform of level.course?.platforms ?? []) {
+      const motionX =
+        platform.motion?.axis === "x" ? Math.abs(platform.motion.distance) : 0;
+      const motionZ =
+        platform.motion?.axis === "z" ? Math.abs(platform.motion.distance) : 0;
+      if (
+        Math.abs(x - platform.center.x) <=
+          halfWidth + platform.size.x / 2 + motionX + clearance &&
+        Math.abs(z - platform.center.z) <=
+          halfDepth + platform.size.z / 2 + motionZ + clearance
+      )
+        return false;
+    }
+    for (const encounter of level.encounters) {
+      const arena = encounter.arena;
+      if (
+        arena &&
+        x + halfWidth + clearance >= arena.minX &&
+        x - halfWidth - clearance <= arena.maxX &&
+        z + halfDepth + clearance >= arena.minZ &&
+        z - halfDepth - clearance <= arena.maxZ
+      )
+        return false;
+    }
+    const objectives = [
+      ...level.memories,
+      ...level.pickups,
+      ...(level.friendlies ?? []),
+      { position: level.checkpoint },
+      { position: level.finish },
+    ];
+    return objectives.every(
+      ({ position }) =>
+        Math.abs(x - position.x) > halfWidth + 1.25 ||
+        Math.abs(z - position.z) > halfDepth + 1.25,
+    );
+  }
+
+  private pendingDetailClear(
+    level: LevelLayout,
+    x: number,
+    z: number,
+  ): boolean {
+    for (const encounter of level.encounters) {
+      const arena = encounter.arena;
+      if (
+        arena &&
+        x >= arena.minX - 0.25 &&
+        x <= arena.maxX + 0.25 &&
+        z >= arena.minZ - 0.25 &&
+        z <= arena.maxZ + 0.25
+      )
+        return false;
+    }
+    return [
+      ...level.memories,
+      ...level.pickups,
+      ...(level.friendlies ?? []),
+    ].every(({ position }) => Math.hypot(x - position.x, z - position.z) > 1.1);
+  }
+
+  private createPendingFloorTiles(
+    name: string,
+    color: number,
+    level: LevelLayout,
+    maxInstances: number,
+  ): THREE.InstancedMesh {
+    const transforms: Array<{
+      position: [number, number, number];
+      scale: [number, number, number];
+    }> = [];
+    const platforms = [...(level.course?.platforms ?? [])]
+      .filter((platform) => !platform.motion)
+      .sort((left, right) => right.center.z - left.center.z);
+    for (const platform of platforms) {
+      const columns = Math.max(
+        1,
+        Math.min(6, Math.floor((platform.size.x - 0.35) / 1.45)),
+      );
+      const rows = Math.max(
+        1,
+        Math.min(12, Math.floor((platform.size.z - 0.35) / 1.45)),
+      );
+      const cellX = (platform.size.x - 0.35) / columns;
+      const cellZ = (platform.size.z - 0.35) / rows;
+      for (let row = 0; row < rows; row++) {
+        for (let column = 0; column < columns; column++) {
+          if ((row + column) % 2 !== 0) continue;
+          const x =
+            platform.center.x -
+            platform.size.x / 2 +
+            0.175 +
+            cellX * (column + 0.5);
+          const z =
+            platform.center.z -
+            platform.size.z / 2 +
+            0.175 +
+            cellZ * (row + 0.5);
+          if (!this.pendingDetailClear(level, x, z)) continue;
+          transforms.push({
+            position: [x, platform.center.y + platform.size.y / 2 + 0.009, z],
+            scale: [cellX * 0.72, 0.018, cellZ * 0.72],
+          });
+          if (transforms.length >= maxInstances) break;
+        }
+        if (transforms.length >= maxInstances) break;
+      }
+      if (transforms.length >= maxInstances) break;
+    }
+    const surface = material(color, color);
+    surface.emissiveIntensity = 0.12;
+    const tiles = new THREE.InstancedMesh(
+      new THREE.BoxGeometry(1, 1, 1),
+      surface,
+      transforms.length,
+    );
+    tiles.name = name;
+    const dummy = new THREE.Object3D();
+    transforms.forEach((transform, index) =>
+      setInstanceTransform(
+        tiles,
+        index,
+        dummy,
+        transform.position,
+        transform.scale,
+      ),
+    );
+    finishInstances(tiles);
+    return tiles;
+  }
+
+  private createPendingRouteGuidance(
+    name: string,
+    color: number,
+    level: LevelLayout,
+    maxInstances: number,
+  ): THREE.InstancedMesh {
+    const transforms: Array<{
+      position: [number, number, number];
+      scale: [number, number, number];
+    }> = [];
+    const platforms = [...(level.course?.platforms ?? [])]
+      .filter((platform) => !platform.motion)
+      .sort((left, right) => right.center.z - left.center.z);
+    for (const platform of platforms) {
+      const segments = Math.max(
+        1,
+        Math.min(4, Math.floor(platform.size.z / 4)),
+      );
+      for (let segment = 0; segment < segments; segment++) {
+        const z =
+          platform.center.z -
+          platform.size.z / 2 +
+          ((segment + 0.5) * platform.size.z) / segments;
+        if (!this.pendingDetailClear(level, platform.center.x, z)) continue;
+        transforms.push({
+          position: [
+            platform.center.x,
+            platform.center.y + platform.size.y / 2 + 0.022,
+            z,
+          ],
+          scale: [
+            Math.min(1.4, Math.max(0.5, platform.size.x * 0.22)),
+            0.025,
+            0.16,
+          ],
+        });
+        if (transforms.length >= maxInstances) break;
+      }
+      if (transforms.length >= maxInstances) break;
+    }
+    const surface = material(color, color);
+    surface.emissiveIntensity = 0.48;
+    const guidance = new THREE.InstancedMesh(
+      new THREE.BoxGeometry(1, 1, 1),
+      surface,
+      transforms.length,
+    );
+    guidance.name = name;
+    const dummy = new THREE.Object3D();
+    transforms.forEach((transform, index) =>
+      setInstanceTransform(
+        guidance,
+        index,
+        dummy,
+        transform.position,
+        transform.scale,
+      ),
+    );
+    finishInstances(guidance);
+    return guidance;
+  }
+
+  private addPendingEnvironmentMarker(
+    root: THREE.Group,
+    theme: RuntimeWorldTheme,
+  ): void {
+    if (theme.environment.state !== "pending-kit") return;
+    root.name = theme.environment.fallbackName;
+    root.userData.environmentKitState = theme.environment.state;
+    root.userData.worldTheme = theme.id;
+    const surface = material(theme.palette.accent);
+    for (const x of [-0.72, 0.72])
+      root.add(
+        shapeMesh(new THREE.BoxGeometry(0.18, 1.55, 0.18), surface, [
+          x,
+          0.78,
+          0,
+        ]),
+      );
+    root.add(
+      shapeMesh(new THREE.BoxGeometry(1.62, 0.18, 0.18), surface, [0, 1.53, 0]),
+    );
+  }
+
   private addMeadow(
-    later: boolean,
+    palette: RuntimeWorldTheme["meadow"],
     course?: ObbyCourse,
     authoredLevel?: LevelLayout,
   ): void {
@@ -1176,7 +1734,7 @@ export class GardenScene {
       ),
     );
     bladeGeometry.computeVertexNormals();
-    const grassMat = material(later ? 0x7ba95b : 0x71a64d);
+    const grassMat = material(palette.grass);
     grassMat.side = THREE.DoubleSide;
     const clearZones = authoredLevel
       ? [
@@ -1208,9 +1766,10 @@ export class GardenScene {
     const flowerCount = Math.ceil(planting.length / 13);
     const flowers = new THREE.InstancedMesh(
       new THREE.SphereGeometry(0.06, 5, 4),
-      material(later ? 0xd7b7dd : 0xffe9af),
+      material(palette.flower),
       flowerCount,
     );
+    flowers.name = "route-flowers";
     const dummy = new THREE.Object3D();
     let flowerIndex = 0;
     for (let i = 0; i < planting.length; i++) {
@@ -1247,13 +1806,14 @@ export class GardenScene {
     this.particles = new THREE.Points(
       geometry,
       new THREE.PointsMaterial({
-        color: later ? 0xcfbbff : 0xffdf8b,
+        color: palette.particles,
         size: 0.035,
         transparent: true,
         opacity: 0.65,
         depthWrite: false,
       }),
     );
+    this.particles.name = "route-particles";
     this.world.add(this.particles);
   }
 

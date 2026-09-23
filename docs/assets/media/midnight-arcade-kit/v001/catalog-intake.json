@@ -1,0 +1,124 @@
+{
+  "assetId": "midnight-arcade-kit",
+  "version": "v001",
+  "workOrder": "WO095",
+  "dateUtc": "2026-09-23",
+  "authoringModel": "gpt-6-astra at max",
+  "blenderVersion": "4.5.13 LTS",
+  "sceneOwnership": "Released; no further live scene changes by WO095 author",
+  "status": "Technical candidate ready for final coordinator review and Tom's exact-version review",
+  "ownerApproval": "pending",
+  "gameplayUse": "none",
+  "catalogUnit": "One environment kit review entry containing three separate static props",
+  "suggestedThumbnail": "assembly.png",
+  "concept": "concept.png",
+  "conceptSha256": "77806c6609dcbe2833b389cb334f7ea1b0fbbd79ac80551ef79d86ddad3ec45b",
+  "sourceProvenance": "source.json",
+  "editableMaster": {
+    "remotePath": "/workspace/haynes-quest/midnight-arcade-kit/v001/midnight-arcade-kit.blend",
+    "artifactPath": "haynes-quest/midnight-arcade-kit/v001/midnight-arcade-kit.blend",
+    "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/midnight-arcade-kit/v001/midnight-arcade-kit.blend",
+    "bytes": 1755878,
+    "sha256": "60ebbb1387e5402ffa5c3ea2c32bf701896398976e8a0db5967de54f7e765be8",
+    "contents": "121 named editable mesh parts in three asset collections, studio camera/lights/floor, embedded construction/render/validation scripts",
+    "reopenEvidence": "Saved master reopened successfully in an isolated Blender background process to correct the arch side framing"
+  },
+  "coordinateContract": {
+    "units": "meters",
+    "blenderUp": "+Z",
+    "blenderFront": "-Y",
+    "gltfUp": "+Y",
+    "gltfFront": "+Z",
+    "origin": "Floor center of each base footprint",
+    "transforms": "All GLB node transforms are identity; minimum Y is zero"
+  },
+  "props": [
+    {
+      "id": "ticket-arch",
+      "model": "ticket-arch.glb",
+      "beauty": "ticket-arch-beauty.png",
+      "side": "ticket-arch-side.png",
+      "browser": "ticket-arch-browser.png",
+      "validator": "ticket-arch-validator.json",
+      "triangles": 2924,
+      "materials": 3,
+      "meshes": 1,
+      "primitives": 3,
+      "dimensionsXYZMeters": [6.08, 3.385, 0.738],
+      "bytes": 236656,
+      "sha256": "bd06ceeacde3401dc1d484711c2d579bf5e72fca5dcc12f6885fada62b49a265",
+      "clearance": "4.041 m between the feet, 4.12 m between the posts, 3.95 m between the capitals, 2.80 m inner crown height; no floor-crossing geometry"
+    },
+    {
+      "id": "arcade-cabinet",
+      "model": "arcade-cabinet.glb",
+      "beauty": "arcade-cabinet-beauty.png",
+      "side": "arcade-cabinet-side.png",
+      "browser": "arcade-cabinet-browser.png",
+      "validator": "arcade-cabinet-validator.json",
+      "triangles": 2544,
+      "materials": 3,
+      "meshes": 1,
+      "primitives": 3,
+      "dimensionsXYZMeters": [0.946, 1.79, 1.02],
+      "bytes": 194624,
+      "sha256": "63a54542acd25a1aededf63b563b2926002ff87b14069fa470fe2919c0f20142"
+    },
+    {
+      "id": "joystick-bollard",
+      "model": "joystick-bollard.glb",
+      "beauty": "joystick-bollard-beauty.png",
+      "side": "joystick-bollard-side.png",
+      "browser": "joystick-bollard-browser.png",
+      "validator": "joystick-bollard-validator.json",
+      "triangles": 1076,
+      "materials": 2,
+      "meshes": 1,
+      "primitives": 2,
+      "dimensionsXYZMeters": [0.85, 1.05, 0.85],
+      "bytes": 84880,
+      "sha256": "11719fe4ef27242a409e7cb81137a1429903545593f1dcb61e69ae80d9d4754d"
+    }
+  ],
+  "assembly": {
+    "still": "assembly.png",
+    "pixels": [1200, 900],
+    "travelerScaleProxy": "Simple 1.20 m tall, 0.42 m diameter cylinder; review staging only"
+  },
+  "validation": {
+    "khronosVersion": "2.0.0-dev.3.10",
+    "eachGlb": "Zero errors, warnings, infos or hints; unit-length normals; self-contained static buffers",
+    "measurements": "glb-measurements.json",
+    "browserEvidence": "browser-report.json",
+    "browser": "Chromium 153.0.8010.12, bundled model-viewer 4.3.1, software WebGL",
+    "actualGlbBrowserResult": "All three loaded and rendered, matching exported dimensions, zero page errors, console errors or failed requests",
+    "manualInspection": "All seven final Blender stills and all three actual-GLB browser screenshots inspected",
+    "transferredArtifactVerification": "All 19 local files corresponding to remote render/export/script/evidence records match their remote SHA256 values",
+    "master": "Preserved on the remote authoring PVC; exact artifact path and checksum above"
+  },
+  "designSimplifications": [
+    "Kept the three requested props; omitted the concept's foliage, cabinet stool, room architecture and tiny painted texture details",
+    "Used rounded geometry, broad vertex-color surfaces and three shared material definitions instead of texture maps",
+    "The wide arch is a shallow ellipse to keep the requested approximately four-meter passage within a 3.385-meter overall height",
+    "The bollard collar was lowered so its short stalk remains visible within its 1.05-meter total height"
+  ],
+  "technicalLimits": [
+    "No animations, skins, texture images, gameplay interaction or collision shapes",
+    "Future arch collision must preserve the opening; its full bounding box is not a traversal collider",
+    "Browser evidence uses desktop Chromium software rendering; physical iPhone/iPad quality and gameplay frame time are not established",
+    "Final owner asset approval and any promotion into gameplay remain pending"
+  ],
+  "artifactRecords": {
+    "remoteFiles": "remote-artifacts.json",
+    "allLocalFiles": "checksums.sha256",
+    "construction": "build-kit.py",
+    "renders": "render-kit.py",
+    "validatorRunner": "validate-kit.cjs",
+    "browserRunner": "browser-intake.mjs"
+  },
+  "coordinatorIntake": [
+    "Update the versioned review page to display the selected concept, all three local GLB viewers, beauty/side fallbacks, assembly and actual browser evidence",
+    "Update catalog inventory, thumbnail card and thumbnail manifest from concept-only to the completed modeled candidate",
+    "Preserve pending owner approval and zero ordinary gameplay use"
+  ]
+}

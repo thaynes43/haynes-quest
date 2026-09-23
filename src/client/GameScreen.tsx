@@ -17,7 +17,7 @@ import { api, friendlyError } from "./api";
 
 import { QuestAudio } from "./audio";
 import { MemoryImage } from "./MemoryImage";
-import { equipmentName, eraStory } from "./era";
+import { draftEncounterLabel, equipmentName, eraStory } from "./era";
 
 // Touch and pen activate the browser on release; starting a resume promise on
 // pointerdown can strand it before the valid gesture reaches the audio engine.
@@ -46,6 +46,9 @@ export interface GameScreenPreviewProps {
   leaveLabel?: string;
   /** Chapter display names keyed by route ID; labels only, never mechanics. */
   chapterTitles?: Readonly<Partial<Record<string, string>>>;
+  chapterSubtitles?: Readonly<Partial<Record<string, string>>>;
+  /** Author-written introduction for each preview route. */
+  chapterDescriptions?: Readonly<Partial<Record<string, string>>>;
 }
 
 export function GameScreen({
@@ -55,6 +58,8 @@ export function GameScreen({
   authoredLevelResolver,
   leaveLabel,
   chapterTitles,
+  chapterSubtitles,
+  chapterDescriptions,
 }: {
   initialSave: SaveView;
   onLeave: () => void;
@@ -74,6 +79,8 @@ export function GameScreen({
       authoredLevelResolver={authoredLevelResolver}
       leaveLabel={leaveLabel}
       chapterTitles={chapterTitles}
+      chapterSubtitles={chapterSubtitles}
+      chapterDescriptions={chapterDescriptions}
     />
   );
 }
@@ -141,6 +148,8 @@ function Adventure({
   authoredLevelResolver,
   leaveLabel,
   chapterTitles,
+  chapterSubtitles,
+  chapterDescriptions,
 }: {
   initialSave: SaveView;
   onLeave: () => void;
@@ -189,6 +198,16 @@ function Adventure({
   const chapterTitle =
     (level?.routeId ? chapterTitles?.[level.routeId] : undefined) ??
     story.title;
+  const chapterDescription =
+    (level?.routeId ? chapterDescriptions?.[level.routeId] : undefined) ??
+    story.description;
+  const chapterSubtitle =
+    level?.routeId ? chapterSubtitles?.[level.routeId] : undefined;
+  const previewChapterCount =
+    level?.totalLevels ?? Math.max(1, Math.ceil(save.memories.length / 3));
+  const hasDraftEnemy = level?.encounters.some(
+    (encounter) => encounter.content?.placeholder === "neutral-candidate-v1",
+  );
   const bundle = save.memories.filter((memory) =>
     level?.memoryIds.includes(memory.id),
   );
@@ -213,6 +232,10 @@ function Adventure({
   );
   const target = level?.encounters.find(
     (enemy) => enemy.id === status?.nearEncounterId,
+  );
+  const draftTargetName = draftEncounterLabel(
+    level?.encounters,
+    status?.nearEncounterId,
   );
 
   useEffect(() => {
@@ -649,6 +672,12 @@ function Adventure({
             </small>
           </div>
         )}
+      {!modalOpen && draftTargetName && view.phase === "exploring" && (
+        <div className="target-hint" data-encounter-id={target?.id}>
+          <strong>{draftTargetName}</strong>
+          <small>Current target · draft character</small>
+        </div>
+      )}
       {!modalOpen && feedback}
       {!modalOpen && (
         <div className="game-bottom" data-quest-ui>
@@ -766,7 +795,7 @@ function Adventure({
         </button>
       )}
       <div className="placeholder-label" data-quest-ui>
-        Two-chapter playtest · Fictional memories · Candidate artwork
+        {previewChapterCount} {previewChapterCount === 1 ? "chapter" : "chapters"} · Fictional memories · {hasDraftEnemy ? "Draft enemy uses placeholder art" : "Candidate artwork"}
       </div>
 
       {activeModal === "friend" && selectedFriend && level && (
@@ -1061,7 +1090,8 @@ function Adventure({
             />
           )}
           <p>{chapterNotice}</p>
-          <p>{story.description}</p>
+          {chapterSubtitle && <p>{chapterSubtitle}</p>}
+          <p>{chapterDescription}</p>
           <button className="primary" onClick={() => setChapterNotice("")}>
             Enter the next era
           </button>

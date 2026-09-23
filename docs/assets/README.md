@@ -4,6 +4,8 @@ Browse the [asset catalog](catalog.md) by picture to choose what to review. Each
 
 The catalog includes travelers, world pieces, equipment, parody characters, friendly characters, reference images and sound auditions. Finished candidates and paused work are labeled separately. The [two-chapter playtest](playtest.md) identifies the temporary cast used in the isolated review game; no final artwork approval is implied.
 
+The [Midnight Pizza Arcade](reviews/midnight-arcade-kit/v001.md) and [Skyline Toybox](reviews/skyline-toybox-kit/v001.md) environment kits have concept art and six inspectable model candidates. They are studio previews. The world builder uses separate procedural scenery for its fictional arcade and toybox playtests while the exact model versions await Tom's review.
+
 Every candidate gets a review record, including concepts and paused or partial work. Show its source images, available model views or audio player, exact version, actual checks and feedback history; label what is still missing. The [review template](000-review-template.md) defines the record, and the [catalog maintenance rule](../PROCESS.md#asset-catalog-must-stay-current) requires matching inventory and thumbnail navigation with every asset change. Catalog inclusion does not require final artwork approval.
 
 | Label | Meaning |

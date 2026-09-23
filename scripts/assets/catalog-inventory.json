@@ -2,18 +2,198 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 37,
-    "reference_sheet_entries": 5,
-    "model_entries": 26,
-    "model_files": 26,
+    "entries": 45,
+    "reference_sheet_entries": 7,
+    "model_entries": 32,
+    "model_files": 32,
     "concept_only_entries": 1,
     "audio_entries": 4,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 25,
+    "completed_model_candidates": 31,
     "paused_partial_model_candidates": 1,
     "owner_approved_entries": 1
   },
   "assets": [
+    {
+      "id": "toybox-block-tower",
+      "title": "Skyline toybox block tower",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/skyline-toybox-kit/v001.md#block-tower",
+      "concept_images": [
+        "docs/assets/media/skyline-toybox-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/skyline-toybox-kit/v001/block-tower-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/skyline-toybox-kit/v001/block-tower.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate; ready for Tom review; studio only",
+      "checksums": {
+        "docs/assets/media/skyline-toybox-kit/v001/concept.png": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa",
+        "docs/assets/media/skyline-toybox-kit/v001/block-tower-beauty.png": "21db526ce28bb6332899d6486a85a8bb3d5783bad6ae821bc45022400768a38e",
+        "docs/assets/media/skyline-toybox-kit/v001/block-tower.glb": "f7d9109a3f39a52db248423b680344393d94471b3420838c5bf717de243531e4"
+      }
+    },
+    {
+      "id": "toybox-safety-rail",
+      "title": "Skyline toybox safety rail",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/skyline-toybox-kit/v001.md#safety-rail",
+      "concept_images": [
+        "docs/assets/media/skyline-toybox-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/skyline-toybox-kit/v001/safety-rail-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/skyline-toybox-kit/v001/safety-rail.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate; ready for Tom review; studio only",
+      "checksums": {
+        "docs/assets/media/skyline-toybox-kit/v001/concept.png": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa",
+        "docs/assets/media/skyline-toybox-kit/v001/safety-rail-beauty.png": "7a12ebc0746b33219d679bc8cecd96139188cd5a02d2ec6874fcd0babc736c09",
+        "docs/assets/media/skyline-toybox-kit/v001/safety-rail.glb": "fd5b45ac33852017c51a46877e85b7bbb2c25edff6f362b8e8451a32ab5d4f7d"
+      }
+    },
+    {
+      "id": "toybox-windup-lantern",
+      "title": "Skyline toybox wind-up lantern",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/skyline-toybox-kit/v001.md#windup-lantern",
+      "concept_images": [
+        "docs/assets/media/skyline-toybox-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/skyline-toybox-kit/v001/windup-lantern-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/skyline-toybox-kit/v001/windup-lantern.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate; ready for Tom review; studio only",
+      "checksums": {
+        "docs/assets/media/skyline-toybox-kit/v001/concept.png": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa",
+        "docs/assets/media/skyline-toybox-kit/v001/windup-lantern-beauty.png": "7ab5237cbdd6659b355fc8f336f34a7043d6e30edb98afaf24587806d15bd3e4",
+        "docs/assets/media/skyline-toybox-kit/v001/windup-lantern.glb": "fc6bdef3e83df930abc7cdaf4d898a8e4bed0c1476f7496fb3ff3aa54ac33948"
+      }
+    },
+    {
+      "id": "midnight-ticket-arch",
+      "title": "Midnight arcade ticket arch",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/midnight-arcade-kit/v001.md#ticket-arch",
+      "concept_images": [
+        "docs/assets/media/midnight-arcade-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/midnight-arcade-kit/v001/ticket-arch-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/midnight-arcade-kit/v001/ticket-arch.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate; ready for Tom review; studio only",
+      "checksums": {
+        "docs/assets/media/midnight-arcade-kit/v001/concept.png": "77806c6609dcbe2833b389cb334f7ea1b0fbbd79ac80551ef79d86ddad3ec45b",
+        "docs/assets/media/midnight-arcade-kit/v001/ticket-arch-beauty.png": "0728d4498d851f46ed12535c8217884b102e6f6c2d8ed3eee82997d9c48cdf62",
+        "docs/assets/media/midnight-arcade-kit/v001/ticket-arch.glb": "bd06ceeacde3401dc1d484711c2d579bf5e72fca5dcc12f6885fada62b49a265"
+      }
+    },
+    {
+      "id": "midnight-arcade-cabinet",
+      "title": "Midnight arcade cabinet",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/midnight-arcade-kit/v001.md#arcade-cabinet",
+      "concept_images": [
+        "docs/assets/media/midnight-arcade-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/midnight-arcade-kit/v001/arcade-cabinet-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/midnight-arcade-kit/v001/arcade-cabinet.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate; ready for Tom review; studio only",
+      "checksums": {
+        "docs/assets/media/midnight-arcade-kit/v001/concept.png": "77806c6609dcbe2833b389cb334f7ea1b0fbbd79ac80551ef79d86ddad3ec45b",
+        "docs/assets/media/midnight-arcade-kit/v001/arcade-cabinet-beauty.png": "22d60dd4c6a47fc8f7531797fae8e89ebf7855dff6815fee834dce9f1bc678e8",
+        "docs/assets/media/midnight-arcade-kit/v001/arcade-cabinet.glb": "63a54542acd25a1aededf63b563b2926002ff87b14069fa470fe2919c0f20142"
+      }
+    },
+    {
+      "id": "midnight-joystick-bollard",
+      "title": "Midnight joystick bollard",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/midnight-arcade-kit/v001.md#joystick-bollard",
+      "concept_images": [
+        "docs/assets/media/midnight-arcade-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/midnight-arcade-kit/v001/joystick-bollard-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/midnight-arcade-kit/v001/joystick-bollard.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate; ready for Tom review; studio only",
+      "checksums": {
+        "docs/assets/media/midnight-arcade-kit/v001/concept.png": "77806c6609dcbe2833b389cb334f7ea1b0fbbd79ac80551ef79d86ddad3ec45b",
+        "docs/assets/media/midnight-arcade-kit/v001/joystick-bollard-beauty.png": "b073c250e4dfa2d85709dea9fd021a734e8b9d1eb878ca0c1e75b0ca7237a77d",
+        "docs/assets/media/midnight-arcade-kit/v001/joystick-bollard.glb": "11719fe4ef27242a409e7cb81137a1429903545593f1dcb61e69ae80d9d4754d"
+      }
+    },
+    {
+      "id": "skyline-toybox-kit",
+      "title": "Skyline toybox · environment concept",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/skyline-toybox-kit/v001.md",
+      "concept_images": [
+        "docs/assets/media/skyline-toybox-kit/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected construction reference; three separately inventoried model candidates; Tom review pending",
+      "checksums": {
+        "docs/assets/media/skyline-toybox-kit/v001/concept.png": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa"
+      }
+    },
+    {
+      "id": "midnight-arcade-kit",
+      "title": "Midnight arcade · environment concept",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/midnight-arcade-kit/v001.md",
+      "concept_images": [
+        "docs/assets/media/midnight-arcade-kit/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected construction reference; three separately inventoried model candidates; Tom review pending",
+      "checksums": {
+        "docs/assets/media/midnight-arcade-kit/v001/concept.png": "77806c6609dcbe2833b389cb334f7ea1b0fbbd79ac80551ef79d86ddad3ec45b"
+      }
+    },
     {
       "id": "storybook-reference-clearing",
       "title": "The clearing",

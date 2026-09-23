@@ -1,0 +1,154 @@
+{
+  "assetId": "skyline-toybox-kit",
+  "version": "v001",
+  "workOrder": "WO096",
+  "dateUtc": "2026-09-23",
+  "authoringModel": "gpt-6-astra at max",
+  "blenderVersion": "4.5.13 LTS",
+  "sceneOwnership": "Released; no further live scene changes by WO096 author; scene-release.json records the handoff",
+  "status": "Technical candidate delivered for coordinator intake and exact owner art review",
+  "ownerApproval": "pending",
+  "gameplayUse": "none",
+  "catalogUnit": "Three separately reviewable environment props with separate inventory entries and cards; shared versioned kit review",
+  "suggestedKitThumbnail": "assembly.png",
+  "suggestedPropThumbnails": "Use each prop beauty still and the shared concept as inspiration",
+  "concept": "concept.png",
+  "conceptSha256": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa",
+  "sourceProvenance": "source.json",
+  "editableMaster": {
+    "remotePath": "/workspace/haynes-quest/skyline-toybox-kit/v001/skyline-toybox-kit.blend",
+    "file": "skyline-toybox-kit.blend",
+    "artifactPath": "haynes-quest/skyline-toybox-kit/v001/skyline-toybox-kit.blend",
+    "bytes": 1848058,
+    "sha256": "dcfcac4a9360529edd6d818827db7b0f3bd9d75534c0b49a5ac5b245358ae1f3",
+    "url": "http://blender-authoring.dev.svc.cluster.local:8000/artifacts/haynes-quest/skyline-toybox-kit/v001/skyline-toybox-kit.blend",
+    "contents": "39 named editable mesh parts in three prop collections, separate studio camera/lights/floor, embedded build/render/validation scripts",
+    "reopenEvidence": "Final saved master reopened in an isolated Blender background process for the corrected rail side still; final render completed"
+  },
+  "coordinateContract": {
+    "units": "meters",
+    "blenderUp": "+Z",
+    "blenderFront": "-Y",
+    "gltfUp": "+Y",
+    "gltfFront": "+Z",
+    "origin": "Floor center of each entire exported footprint, including the lantern key",
+    "transforms": "All three GLB nodes have identity transforms; browser bounds confirm minimum Y zero and X/Z centers zero"
+  },
+  "props": [
+    {
+      "id": "block-tower",
+      "model": "block-tower.glb",
+      "beauty": "block-tower-beauty.png",
+      "side": "block-tower-side.png",
+      "browser": "block-tower-browser.png",
+      "validator": "block-tower-validator.json",
+      "triangles": 1324,
+      "materials": 1,
+      "materialNames": [
+        "Toybox_matte_painted_wood"
+      ],
+      "meshes": 1,
+      "primitives": 1,
+      "dimensionsXYZMeters": [
+        1.7000000476837158,
+        2.376694440841675,
+        0.9120000004768372
+      ],
+      "bytes": 33728,
+      "sha256": "f7d9109a3f39a52db248423b680344393d94471b3420838c5bf717de243531e4"
+    },
+    {
+      "id": "safety-rail",
+      "model": "safety-rail.glb",
+      "beauty": "safety-rail-beauty.png",
+      "side": "safety-rail-side.png",
+      "browser": "safety-rail-browser.png",
+      "validator": "safety-rail-validator.json",
+      "triangles": 1532,
+      "materials": 1,
+      "materialNames": [
+        "Toybox_matte_painted_wood"
+      ],
+      "meshes": 1,
+      "primitives": 1,
+      "dimensionsXYZMeters": [
+        2.4000000953674316,
+        0.7559999823570251,
+        0.3799999952316284
+      ],
+      "bytes": 38988,
+      "sha256": "fd5b45ac33852017c51a46877e85b7bbb2c25edff6f362b8e8451a32ab5d4f7d"
+    },
+    {
+      "id": "windup-lantern",
+      "model": "windup-lantern.glb",
+      "beauty": "windup-lantern-beauty.png",
+      "side": "windup-lantern-side.png",
+      "browser": "windup-lantern-browser.png",
+      "validator": "windup-lantern-validator.json",
+      "triangles": 2664,
+      "materials": 3,
+      "materialNames": [
+        "Toybox_matte_painted_wood",
+        "Toybox_honey_light",
+        "Toybox_satin_honey_key"
+      ],
+      "meshes": 1,
+      "primitives": 3,
+      "dimensionsXYZMeters": [
+        0.659000039100647,
+        0.8140000104904175,
+        0.4267435073852539
+      ],
+      "bytes": 68200,
+      "sha256": "fc6bdef3e83df930abc7cdaf4d898a8e4bed0c1476f7496fb3ff3aa54ac33948"
+    }
+  ],
+  "assembly": {
+    "still": "assembly.png",
+    "pixels": [
+      1200,
+      900
+    ],
+    "travelerScaleProxy": "Neutral deep-plum cylinder and sphere, 1.20 m total height and 0.34 m diameter; staging only, never exported"
+  },
+  "validation": {
+    "khronosVersion": "2.0.0-dev.3.10",
+    "eachGlb": "Zero errors, warnings, infos and hints",
+    "measurements": "glb-measurements.json",
+    "browserEvidence": "browser-report.json",
+    "browser": "Chromium 153.0.8010.12, bundled model-viewer 4.3.1 (Three.js), software WebGL",
+    "actualGlbBrowserResult": "All three exact hashes loaded and rendered; expected Y-up dimensions, centered ground origins and material counts; zero page errors, console errors, failed requests or external requests",
+    "manualInspection": "All seven final Blender stills and three actual-GLB browser screenshots inspected",
+    "transferredArtifactVerification": "All 19 local counterparts of remote exported/rendered/script/report files match the remote SHA256 values",
+    "master": "Saved on the authoring PVC; exact master path, size and checksum included"
+  },
+  "designSimplifications": [
+    "Rounded wood and painted forms preserve the selected palette; fine grain, felt fibers and distant concept scenery are omitted",
+    "Tower uses three principal modules: broad peach arch, soft teal middle block and muted-blue roof; decorative inset and pegs remain editable source parts",
+    "Wind-up toy is a faceless lantern rather than the concept image bird; no beak, eyes, feet or creature identifiers",
+    "Each GLB is one static mesh; vertex colors carry the palette. Tower and rail each use one matte material; lantern adds honey light and satin key for three total",
+    "The lantern has constant honey emission compatible with glTF and does not depend on bloom"
+  ],
+  "technicalLimits": [
+    "Scenery only: no physics, colliders, animations, skins, textures, character roles or gameplay manifest integration",
+    "The tower opening is decorative at this scale; future course collision and traversal clearance require separate authored validation",
+    "Rail geometry implies no safety guarantee or automatic collision; course safety remains code-defined",
+    "Desktop Chromium software rendering does not establish physical iPhone/iPad Safari quality or gameplay frame time",
+    "Coordinator visual intake, Tom exact-version approval and any gameplay promotion remain pending"
+  ],
+  "artifactRecords": {
+    "remoteFiles": "remote-artifacts.json",
+    "allLocalFiles": "checksums.sha256",
+    "sceneRelease": "scene-release.json",
+    "construction": "build-kit.py",
+    "renders": "render-kit.py",
+    "validatorRunner": "validate-glbs.mjs",
+    "browserRunner": "browser-intake.mjs"
+  },
+  "coordinatorIntake": [
+    "Update the versioned kit review with all three GLB viewers, beauty/side fallbacks, assembly, shared concept, actual browser evidence and source/checksum records",
+    "Give each prop its own inventory entry and thumbnail card, update exact counts, regenerate thumbnails and keep source inspiration visible",
+    "Preserve pending owner approval and zero gameplay use; complete the strict docs/browser checks and publication in the same PR"
+  ]
+}

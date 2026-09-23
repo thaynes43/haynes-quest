@@ -24,7 +24,7 @@ import {
   resolveLevelEditorProject,
   serializeLevelEditorProject,
   validateLevelEditorProject,
-  type LevelEditorProject,
+  type LevelEditorProjectV1,
   type LevelEditorTemplateRouteId,
 } from "../../src/shared/editor-project";
 import {
@@ -56,19 +56,30 @@ const PUBLISHED = {
   "besties-playground-v2": bestiesPlayground,
 } as const satisfies Record<LevelEditorTemplateRouteId, unknown>;
 
-function template(): LevelEditorProject {
+function template(): LevelEditorProjectV1 {
   return createLevelEditorProject({ projectId: "parity-fixture" });
 }
 
+function parseLegacyProject(input: unknown): LevelEditorProjectV1 {
+  const parsed = parseLevelEditorProject(input);
+  if (parsed.schemaVersion !== "level-editor-project-v1")
+    throw new Error("Expected a legacy editor project");
+  return parsed;
+}
+
 /** The full durable handoff: export to text, reimport it, resolve it. */
-function roundTrip(project: LevelEditorProject): LevelEditorProject {
-  return parseLevelEditorProjectJson(serializeLevelEditorProject(project));
+function roundTrip(project: LevelEditorProjectV1): LevelEditorProjectV1 {
+  return parseLevelEditorProjectJson(
+    serializeLevelEditorProject(project),
+  ) as LevelEditorProjectV1;
 }
 
 function resolvedRoundTrip(
-  project: LevelEditorProject = template(),
-): Record<LevelEditorTemplateRouteId, ResolvedAuthoredLevel> {
-  return resolveLevelEditorProject(roundTrip(project)).levels;
+  project: LevelEditorProjectV1 = template(),
+): Readonly<Record<LevelEditorTemplateRouteId, ResolvedAuthoredLevel>> {
+  return resolveLevelEditorProject(roundTrip(project)).levels as Readonly<
+    Record<LevelEditorTemplateRouteId, ResolvedAuthoredLevel>
+  >;
 }
 
 function pieceIds(level: ResolvedAuthoredLevel): string[] {
@@ -205,10 +216,10 @@ describe("level editor project parity", () => {
  * and blocks preview by making `resolveLevelEditorProject` throw.
  */
 describe("Besties court guard through the editor validator", () => {
-  function withNarrowedCourt(sizeX: number): LevelEditorProject {
+  function withNarrowedCourt(sizeX: number): LevelEditorProjectV1 {
     const project = template();
     const besties = project.chapters[1].level;
-    return parseLevelEditorProject({
+    return parseLegacyProject({
       ...project,
       chapters: [
         project.chapters[0],
@@ -334,7 +345,7 @@ describe("fall-recovery fallback ordering", () => {
       [],
     );
 
-    const level = resolvedRoundTrip(parseLevelEditorProject(reordered))[
+    const level = resolvedRoundTrip(parseLegacyProject(reordered))[
       "garden-playground-v2"
     ];
     expect(level.course.checkpoints.map((entry) => entry.id)).toEqual([
@@ -386,7 +397,7 @@ describe("radius and box checkpoint activation through the editor path", () => {
       ],
     };
     expect(validateAuthoredLevelDocument(edited.chapters[0].level)).toEqual([]);
-    return resolvedRoundTrip(parseLevelEditorProject(edited))[
+    return resolvedRoundTrip(parseLegacyProject(edited))[
       "garden-playground-v2"
     ];
   }

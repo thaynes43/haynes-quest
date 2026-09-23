@@ -68,7 +68,7 @@ export const playtestStartSchema = z.object({
  */
 export const editorPlaytestSchema = z.object({
   project: z.unknown(),
-  chapterId: z.enum(['chapter-1', 'chapter-2']),
+  chapterId: z.string().regex(/^[a-z][a-z0-9-]{0,79}$/),
   scope: z.enum(['chapter', 'adventure']),
 }).strict();
 

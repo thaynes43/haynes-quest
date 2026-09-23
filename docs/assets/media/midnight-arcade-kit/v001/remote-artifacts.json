@@ -1,0 +1,129 @@
+{
+  "asset": "midnight-arcade-kit",
+  "version": "v001",
+  "workOrder": "WO095",
+  "blenderVersion": "4.5.13 LTS",
+  "sceneSaved": true,
+  "files": [
+    {
+      "file": "midnight-arcade-kit.blend",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/midnight-arcade-kit.blend",
+      "bytes": 1755878,
+      "sha256": "60ebbb1387e5402ffa5c3ea2c32bf701896398976e8a0db5967de54f7e765be8"
+    },
+    {
+      "file": "build-kit.py",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/build-kit.py",
+      "bytes": 20710,
+      "sha256": "9781264f9432df1253b5b865df37f1409148ee5b1ba8c7892f005a3768c3cd22"
+    },
+    {
+      "file": "render-kit.py",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/render-kit.py",
+      "bytes": 3420,
+      "sha256": "34ccf65e4ed3df6197744090f8fa98b08a4e6b96732ce4abfd6964299fadc30b"
+    },
+    {
+      "file": "validate-kit.cjs",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/validate-kit.cjs",
+      "bytes": 4353,
+      "sha256": "e2ad90947a0c10cb004500c64b94b12cd470e73443bf4f150da3e8572ad0807e"
+    },
+    {
+      "file": "construction-measurements.json",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/construction-measurements.json",
+      "bytes": 1698,
+      "sha256": "f2d0d0df295008ec1f5f25379618f0890a47587b93b7877555c6d82e88f66bfd"
+    },
+    {
+      "file": "glb-measurements.json",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/glb-measurements.json",
+      "bytes": 3906,
+      "sha256": "dd5f2da8acf501d895815bd33fa73f0facc38eff5b214082f7da05fefca91af4"
+    },
+    {
+      "file": "render-settings.json",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/render-settings.json",
+      "bytes": 475,
+      "sha256": "cc8e74f575984b7fcb779933a53d1020ab0f44a4c4a7c8c73cb24f4cc68973bd"
+    },
+    {
+      "file": "assembly.png",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/assembly.png",
+      "bytes": 1237916,
+      "sha256": "bbb45d04084530662161afcbed10ed42e0cf7944db1c7a53ac5db351f35b5084"
+    },
+    {
+      "file": "ticket-arch.glb",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/ticket-arch.glb",
+      "bytes": 236656,
+      "sha256": "bd06ceeacde3401dc1d484711c2d579bf5e72fca5dcc12f6885fada62b49a265"
+    },
+    {
+      "file": "ticket-arch-beauty.png",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/ticket-arch-beauty.png",
+      "bytes": 1005287,
+      "sha256": "0728d4498d851f46ed12535c8217884b102e6f6c2d8ed3eee82997d9c48cdf62"
+    },
+    {
+      "file": "ticket-arch-side.png",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/ticket-arch-side.png",
+      "bytes": 951725,
+      "sha256": "aca9c064bc6442148d83c0703cfd80d6cad7ee4ea8e2ca5f77f56cc4fe07bf86"
+    },
+    {
+      "file": "ticket-arch-validator.json",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/ticket-arch-validator.json",
+      "bytes": 931,
+      "sha256": "da73cdb218d0fa871fffe9239543122b847796c63e917ef3ea72d457d16c9038"
+    },
+    {
+      "file": "arcade-cabinet.glb",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/arcade-cabinet.glb",
+      "bytes": 194624,
+      "sha256": "63a54542acd25a1aededf63b563b2926002ff87b14069fa470fe2919c0f20142"
+    },
+    {
+      "file": "arcade-cabinet-beauty.png",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/arcade-cabinet-beauty.png",
+      "bytes": 1049903,
+      "sha256": "22d60dd4c6a47fc8f7531797fae8e89ebf7855dff6815fee834dce9f1bc678e8"
+    },
+    {
+      "file": "arcade-cabinet-side.png",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/arcade-cabinet-side.png",
+      "bytes": 975191,
+      "sha256": "86ac3c74e4426cf12f897a1523d165d6e61dcdc7e726610b647793fcf3fe3164"
+    },
+    {
+      "file": "arcade-cabinet-validator.json",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/arcade-cabinet-validator.json",
+      "bytes": 934,
+      "sha256": "1fcd2d1f4d43d32d1297473319440270d1166a1b217ff72827245afabd896dd5"
+    },
+    {
+      "file": "joystick-bollard.glb",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/joystick-bollard.glb",
+      "bytes": 84880,
+      "sha256": "11719fe4ef27242a409e7cb81137a1429903545593f1dcb61e69ae80d9d4754d"
+    },
+    {
+      "file": "joystick-bollard-beauty.png",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/joystick-bollard-beauty.png",
+      "bytes": 956985,
+      "sha256": "b073c250e4dfa2d85709dea9fd021a734e8b9d1eb878ca0c1e75b0ca7237a77d"
+    },
+    {
+      "file": "joystick-bollard-side.png",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/joystick-bollard-side.png",
+      "bytes": 950610,
+      "sha256": "ef3520acbcdb47d919cf4eb7c4231e6451afc9a99ebc3f61adc982ac88148cb1"
+    },
+    {
+      "file": "joystick-bollard-validator.json",
+      "artifactPath": "haynes-quest/midnight-arcade-kit/v001/joystick-bollard-validator.json",
+      "bytes": 935,
+      "sha256": "884c07229db2201479b7840dc784dc27fe9595c78117bd05b0199ff6407b7650"
+    }
+  ]
+}

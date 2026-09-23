@@ -1,5 +1,6 @@
 import type {
   ActiveLevelView,
+  EncounterView,
   EncounterKind,
   EquipmentView,
 } from "../shared/contracts";
@@ -7,6 +8,17 @@ import {
   ALL_PARODY_CANDIDATES,
   PARODY_PERIODS,
 } from "../shared/parody-catalog";
+
+/** Candidate names follow the frozen encounter ID, including repeated kinds. */
+export function draftEncounterLabel(
+  encounters: readonly EncounterView[] | undefined,
+  encounterId: string | null | undefined,
+): string | undefined {
+  const target = encounters?.find((encounter) => encounter.id === encounterId);
+  return target && !target.defeated && target.content?.placeholder === "neutral-candidate-v1"
+    ? target.content.displayName
+    : undefined;
+}
 
 export function eraStory(year = 2020, level?: ActiveLevelView | null) {
   const period =
@@ -34,6 +46,8 @@ export function eraStory(year = 2020, level?: ActiveLevelView | null) {
             candidate.assetVersion === identity.assetVersion,
         );
       if (entry) enemies[encounter.kind] = entry.title;
+      else if (identity?.placeholder === "neutral-candidate-v1" && identity.displayName)
+        enemies[encounter.kind] = identity.displayName;
     }
     return { ...period, subtitle: `${year} · ${period.subtitle}`, enemies };
   }

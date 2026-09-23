@@ -1,0 +1,107 @@
+{
+  "workOrder": "WO096",
+  "browser": "153.0.8010.12",
+  "viewer": "model-viewer 4.3.1 (bundled, Three.js-based)",
+  "renderer": "Chromium headless / software WebGL (SwiftShader)",
+  "viewportPixels": [
+    1000,
+    850
+  ],
+  "tested": "Exact exported static GLBs with verified hashes, Y-up dimensions, origins and visible materials",
+  "limitation": "Isolated desktop browser rendering; not physical Safari, gameplay performance or owner approval.",
+  "inspected": [
+    {
+      "asset": "block-tower",
+      "loaded": true,
+      "dimensions": {
+        "x": 1.7000000476837158,
+        "y": 2.376694440841675,
+        "z": 0.9120000004768372
+      },
+      "center": {
+        "x": 0,
+        "y": 1.1883472204208374,
+        "z": 0
+      },
+      "availableAnimations": [],
+      "materials": [
+        "Toybox_matte_painted_wood"
+      ],
+      "sha256": "f7d9109a3f39a52db248423b680344393d94471b3420838c5bf717de243531e4",
+      "screenshot": "block-tower-browser.png",
+      "cameraOrbit": "0.5585053606381855rad 1.2915436464758039rad 6.072939381319506m",
+      "checks": {
+        "loaded": true,
+        "exactGlbHash": true,
+        "yUpDimensions": true,
+        "floorCentered": true,
+        "static": true,
+        "materialCount": true
+      }
+    },
+    {
+      "asset": "safety-rail",
+      "loaded": true,
+      "dimensions": {
+        "x": 2.4000000953674316,
+        "y": 0.7559999823570251,
+        "z": 0.3799999952316284
+      },
+      "center": {
+        "x": 0,
+        "y": 0.3779999911785126,
+        "z": 0
+      },
+      "availableAnimations": [],
+      "materials": [
+        "Toybox_matte_painted_wood"
+      ],
+      "sha256": "fd5b45ac33852017c51a46877e85b7bbb2c25edff6f362b8e8451a32ab5d4f7d",
+      "screenshot": "safety-rail-browser.png",
+      "cameraOrbit": "0.5585053606381855rad 1.2915436464758039rad 5.103740002686011m",
+      "checks": {
+        "loaded": true,
+        "exactGlbHash": true,
+        "yUpDimensions": true,
+        "floorCentered": true,
+        "static": true,
+        "materialCount": true
+      }
+    },
+    {
+      "asset": "windup-lantern",
+      "loaded": true,
+      "dimensions": {
+        "x": 0.659000039100647,
+        "y": 0.8140000104904175,
+        "z": 0.4267435073852539
+      },
+      "center": {
+        "x": 0,
+        "y": 0.40700000524520874,
+        "z": 0
+      },
+      "availableAnimations": [],
+      "materials": [
+        "Toybox_matte_painted_wood",
+        "Toybox_honey_light",
+        "Toybox_satin_honey_key"
+      ],
+      "sha256": "fc6bdef3e83df930abc7cdaf4d898a8e4bed0c1476f7496fb3ff3aa54ac33948",
+      "screenshot": "windup-lantern-browser.png",
+      "cameraOrbit": "0.5585053606381855rad 1.2915436464758039rad 2.13434904724625m",
+      "checks": {
+        "loaded": true,
+        "exactGlbHash": true,
+        "yUpDimensions": true,
+        "floorCentered": true,
+        "static": true,
+        "materialCount": true
+      }
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "consoleErrors": [],
+  "externalRequests": []
+}

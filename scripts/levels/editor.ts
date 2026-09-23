@@ -19,6 +19,7 @@ import {
   type LevelEditorLevelDocument,
   applyLevelEditorCommands,
   createLevelEditorProject,
+  createWorldEditorProject,
   levelEditorCommandBatchSchema,
   levelEditorProjectSchema,
   parseLevelEditorProjectJson,
@@ -28,6 +29,7 @@ import {
 
 const usage = `Usage:
   tsx scripts/levels/editor.ts template <project-id> [name]
+  tsx scripts/levels/editor.ts world-template <project-id> [name]
   tsx scripts/levels/editor.ts inspect <project.json>
   tsx scripts/levels/editor.ts validate <project.json>
   tsx scripts/levels/editor.ts apply <project.json> <commands.json>
@@ -299,6 +301,21 @@ async function run(args: readonly string[]): Promise<void> {
       return;
     }
 
+    case "world-template": {
+      requireArgumentCount(values, 1, 2);
+      const [projectId, name] = values;
+      requireArgument(projectId, "project id");
+      process.stdout.write(
+        serializeLevelEditorProject(
+          createWorldEditorProject({
+            projectId,
+            ...(name === undefined ? {} : { name }),
+          }),
+        ),
+      );
+      return;
+    }
+
     case "inspect": {
       requireArgumentCount(values, 1);
       const [path] = values;
@@ -313,7 +330,21 @@ async function run(args: readonly string[]): Promise<void> {
         chapters: project.chapters.map((chapter) => ({
           chapterId: chapter.chapterId,
           name: chapter.name,
-          templateRouteId: chapter.templateRouteId,
+          ...(project.schemaVersion === "level-editor-project-v2" &&
+          "routeId" in chapter
+            ? {
+                routeId: chapter.routeId,
+                sourceTemplateId: chapter.sourceTemplateId,
+                representedDateRange: chapter.representedDateRange,
+                recoveredAge: chapter.recoveredAge,
+                previewMemories: chapter.previewMemories,
+                encounterSlots: chapter.encounterSlots,
+              }
+            : {
+                templateRouteId: "templateRouteId" in chapter
+                  ? chapter.templateRouteId
+                  : undefined,
+              }),
           pieces: chapter.level.pieces.length,
           platforms: chapter.level.pieces.filter(
             (piece) =>
@@ -377,13 +408,12 @@ async function run(args: readonly string[]): Promise<void> {
       const target = values[0] ?? "commands";
       if (target !== "project" && target !== "commands")
         throw new Error(`Unknown schema ${JSON.stringify(target)}\n${usage}`);
-      writeJson(
-        z.toJSONSchema(
-          target === "project"
-            ? levelEditorProjectSchema
-            : levelEditorCommandBatchSchema,
-        ),
+      const schema = z.toJSONSchema(
+        target === "project"
+          ? levelEditorProjectSchema
+          : levelEditorCommandBatchSchema,
       );
+      writeJson(target === "project" ? { ...schema, type: "object" } : schema);
       return;
     }
 

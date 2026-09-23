@@ -5,9 +5,9 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse this cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. Source assets, review versions and thumbnail references are unchanged; the [playtest guide](playtest.md) describes their placement and gameplay.
+Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The new arcade and toybox environment models below are studio candidates; the [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**25 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions · 6 fictional memory pictures**
+**31 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -161,7 +161,7 @@ The two existing age stages share a costume and a common inspiration sheet. Each
 
 ## World and keepsakes {#world-and-keepsakes}
 
-Browse every clearing piece separately. The keepsake review uses the corrected inspiration image with the rear wedge visible.
+Browse each clearing piece and the new arcade and toybox scenery separately. The keepsake review uses the corrected inspiration image with the rear wedge visible.
 
 <div class="catalog-grid" markdown="1">
 
@@ -246,6 +246,78 @@ Browse every clearing piece separately. The keepsake review uses the corrected i
 <span class="catalog-state">3D model · v001 · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/6ea1ca071b476e9c.webp" alt="Inspiration for Lantern gateway" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="midnight-ticket-arch" markdown="1">
+
+[![Model render: Midnight arcade ticket arch](media/catalog-thumbnails/v001/7121289732038583.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/midnight-arcade-kit/v001.md#ticket-arch)
+
+### [Midnight arcade ticket arch](reviews/midnight-arcade-kit/v001.md#ticket-arch)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/38c349cd1fdf003b.webp" alt="Inspiration for Midnight arcade ticket arch" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="midnight-arcade-cabinet" markdown="1">
+
+[![Model render: Midnight arcade cabinet](media/catalog-thumbnails/v001/9c31f38926337ae5.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/midnight-arcade-kit/v001.md#arcade-cabinet)
+
+### [Midnight arcade cabinet](reviews/midnight-arcade-kit/v001.md#arcade-cabinet)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/38c349cd1fdf003b.webp" alt="Inspiration for Midnight arcade cabinet" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="midnight-joystick-bollard" markdown="1">
+
+[![Model render: Midnight joystick bollard](media/catalog-thumbnails/v001/0be9e422414cdb69.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/midnight-arcade-kit/v001.md#joystick-bollard)
+
+### [Midnight joystick bollard](reviews/midnight-arcade-kit/v001.md#joystick-bollard)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/38c349cd1fdf003b.webp" alt="Inspiration for Midnight joystick bollard" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="toybox-block-tower" markdown="1">
+
+[![Model render: Skyline toybox block tower](media/catalog-thumbnails/v001/8e08103ff7a9f456.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/skyline-toybox-kit/v001.md#block-tower)
+
+### [Skyline toybox block tower](reviews/skyline-toybox-kit/v001.md#block-tower)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/14a4da7f33f28300.webp" alt="Inspiration for Skyline toybox block tower" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="toybox-safety-rail" markdown="1">
+
+[![Model render: Skyline toybox safety rail](media/catalog-thumbnails/v001/5653fa267d91fced.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/skyline-toybox-kit/v001.md#safety-rail)
+
+### [Skyline toybox safety rail](reviews/skyline-toybox-kit/v001.md#safety-rail)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/14a4da7f33f28300.webp" alt="Inspiration for Skyline toybox safety rail" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="toybox-windup-lantern" markdown="1">
+
+[![Model render: Skyline toybox wind-up lantern](media/catalog-thumbnails/v001/f09b90cfa2723c1a.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/skyline-toybox-kit/v001.md#windup-lantern)
+
+### [Skyline toybox wind-up lantern](reviews/skyline-toybox-kit/v001.md#windup-lantern)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/14a4da7f33f28300.webp" alt="Inspiration for Skyline toybox wind-up lantern" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
 </div>
 
@@ -396,6 +468,26 @@ Meet the helpful residents of the journey. Their greetings provide healing bonus
 Original inspiration and construction images. These are illustrations; related model reviews appear in the groups above.
 
 <div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="skyline-toybox-kit" markdown="1">
+
+[![Skyline toybox environment concept with broad steps, safe rails and isolated prop shapes](media/catalog-thumbnails/v001/14a4da7f33f28300.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/skyline-toybox-kit/v001.md)
+
+### [Skyline toybox kit](reviews/skyline-toybox-kit/v001.md)
+
+<span class="catalog-state">Environment concept · v001 · Three model candidates ready</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="midnight-arcade-kit" markdown="1">
+
+[![Midnight arcade environment concept with a wide route and isolated prop shapes](media/catalog-thumbnails/v001/38c349cd1fdf003b.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/midnight-arcade-kit/v001.md)
+
+### [Midnight arcade kit](reviews/midnight-arcade-kit/v001.md)
+
+<span class="catalog-state">Environment concept · v001 · Three model candidates ready</span>
+
+</div>
 
 <div class="catalog-card" data-asset-id="bickering-besties" markdown="1">
 

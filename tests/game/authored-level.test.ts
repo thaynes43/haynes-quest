@@ -575,6 +575,35 @@ describe("authored level documents", () => {
     });
   });
 
+  it("accepts generic v3 route ids and registered themes without weakening legacy ids", () => {
+    const local = {
+      ...clone(),
+      schemaVersion: "authored-level-v3",
+      id: "midnight-arcade-route",
+      theme: "arcade",
+    };
+    expect(issuesFor(local)).toEqual([]);
+    expect(resolveAuthoredLevelDocument(local).document).toMatchObject({
+      schemaVersion: "authored-level-v3",
+      id: "midnight-arcade-route",
+      theme: "arcade",
+    });
+
+    expect(
+      issuesFor({ ...local, id: "skyline-toybox-route", theme: "toybox" }),
+    ).toEqual([]);
+    expect(issuesFor({ ...local, id: "garden-playground-v2" })).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ path: "$.id", code: "schema.custom" }),
+      ]),
+    );
+
+    const wrongLegacyTheme = { ...clone(), theme: "party" };
+    expectIssue(wrongLegacyTheme, "identity.theme", "$.theme");
+    expect(issuesFor(gardenPlayground)).toEqual([]);
+    expect(issuesFor(bestiesPlayground)).toEqual([]);
+  });
+
   it("throws a typed error carrying the exact validation issues", () => {
     const invalid = clone();
     (invalid.mainPath as string[])[0] = "missing";

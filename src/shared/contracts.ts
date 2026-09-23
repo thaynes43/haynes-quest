@@ -1,4 +1,4 @@
-import type { ObbyRouteId, ParodyPeriodId } from './parody-catalog.js';
+import type { ParodyPeriodId } from './parody-catalog.js';
 
 export type Ability = "move" | "interact" | "jump";
 export type AppearanceStage = "infant" | "child";
@@ -9,6 +9,7 @@ export type AdventurePhase = "exploring" | "memory-released" | "fallen" | "compl
 export type EquipmentKind = "attack-tool" | "guard-tool";
 export type EncounterRole = "ordinary" | "boss";
 export type EncounterKind = "ordinary-a" | "ordinary-b" | "boss";
+export type BossGate = "independent" | "after-ordinaries";
 export interface SubjectOption {
   id: string;
   label: string;
@@ -53,6 +54,10 @@ export interface FrozenEncounterContent {
   catalogEntryVersion: string;
   assetId: string;
   assetVersion: string;
+  /** Frozen author-facing identity for a project-local candidate. */
+  displayName?: string;
+  /** A candidate remains neutral placeholder art until its exact asset is reviewed. */
+  placeholder?: "neutral-candidate-v1";
 }
 export interface EncounterView {
   id: string;
@@ -84,7 +89,10 @@ export interface ActiveLevelView {
   startDate: string;
   eraYear: number;
   periodId?: ParodyPeriodId;
-  routeId?: ObbyRouteId;
+  /** Published route ID or a validated project-local editor route ID. */
+  routeId?: string;
+  /** Explicit only when a frozen plan overrides the published route policy. */
+  bossGate?: BossGate;
   memoryIds: string[];
   /** Present for route-memory plans; `memoryIds` remains the ordered combined view. */
   minorMemoryIds?: [string, string];

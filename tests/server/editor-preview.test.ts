@@ -8,10 +8,16 @@ import { InMemoryQuestStore } from '../../src/server/db/memory-store.js';
 import {
   canonicalLevelEditorProjectJson,
   createLevelEditorProject,
+  createWorldEditorProject,
+  isLevelEditorProjectV2,
   LEVEL_EDITOR_PROJECT_MAX_BYTES,
   parseLevelEditorProject,
   type LevelEditorProject,
+  type LevelEditorProjectV2,
 } from '../../src/shared/editor-project.js';
+import { createAdventureStateAtLevel } from '../../src/shared/adventure.js';
+import { parseStoredAdventure } from '../../src/server/adventure-schema.js';
+import { prepareEditorPreview } from '../../src/server/editor-preview.js';
 import { shiftAuthoredLevelX } from '../editor-project-fixtures.js';
 
 const ORIGIN = 'https://quest.test';
@@ -103,6 +109,13 @@ interface DraftProject {
   }>;
 }
 
+interface MutableWorldProjectDraft {
+  chapters: Array<{
+    encounterSlots: Record<string, Record<string, unknown>>;
+  }>;
+  enemyCandidates: Array<Record<string, unknown>>;
+}
+
 function draftProject(): DraftProject {
   return JSON.parse(JSON.stringify(templateProject())) as DraftProject;
 }
@@ -118,6 +131,84 @@ function editedProject(dx: number): LevelEditorProject {
       level: shiftAuthoredLevelX(chapter.level, dx),
     })),
   });
+}
+
+function threeLevelWorldProject(
+  candidateName = 'Midnight Pizza Gremlin',
+): LevelEditorProjectV2 {
+  const base = createWorldEditorProject({ projectId: 'complete-world-preview' });
+  const candidates = [
+    {
+      id: 'midnight-sprinter',
+      name: candidateName,
+      periodId: 'besties-obby-v1' as const,
+      recognizableReference: 'A fast arcade mascot parody',
+      visualJoke: 'A pizza box cape that keeps folding shut',
+      obstacleOrAttack: 'Runs a short familiar chase pattern',
+      eligibility: { startDate: '2027-01-01', endDate: '2030-01-01' },
+      role: 'ordinary' as const,
+      kind: 'ordinary-a' as const,
+      behaviorPreset: 'ordinary-a' as const,
+    },
+    {
+      id: 'midnight-bouncer',
+      name: 'Token Bouncer',
+      periodId: 'besties-obby-v1' as const,
+      recognizableReference: 'A bulky arcade guard parody',
+      visualJoke: 'Counts pizza toppings instead of tickets',
+      obstacleOrAttack: 'Uses the second ordinary movement preset',
+      eligibility: { startDate: '2027-01-01', endDate: '2030-01-01' },
+      role: 'ordinary' as const,
+      kind: 'ordinary-b' as const,
+      behaviorPreset: 'ordinary-b' as const,
+    },
+    {
+      id: 'midnight-manager',
+      name: 'The Midnight Manager',
+      periodId: 'besties-obby-v1' as const,
+      recognizableReference: 'A dramatic family arcade boss parody',
+      visualJoke: 'Wields an enormous receipt like a royal scroll',
+      obstacleOrAttack: 'Uses the known boss pursuit preset',
+      eligibility: { startDate: '2027-01-01', endDate: '2030-01-01' },
+      role: 'boss' as const,
+      kind: 'boss' as const,
+      behaviorPreset: 'boss' as const,
+    },
+  ];
+  const source = base.chapters[1]!;
+  const routeId = 'midnight-pizza-arcade';
+  const parsed = parseLevelEditorProject({
+    ...base,
+    enemyCandidates: candidates,
+    chapters: [
+      ...base.chapters,
+      {
+        ...structuredClone(source),
+        chapterId: 'chapter-3',
+        routeId,
+        name: 'Midnight Pizza Arcade',
+        subtitle: 'Pizza, prizes and a manager who never clocks out',
+        description: 'Cross the arcade course and recover the last fictional memory.',
+        level: { ...structuredClone(source.level), id: routeId },
+        representedDateRange: { startDate: '2027-01-01', endDate: '2030-01-01' },
+        recoveredAge: { fromYears: 7, toYears: 10 },
+        previewMemories: [
+          { slotId: 'minor-one', date: '2028-01-01', label: 'The glowing token' },
+          { slotId: 'minor-two', date: '2029-01-01', label: 'The giant prize' },
+          { slotId: 'major', date: '2030-01-01', label: 'The midnight marquee' },
+        ],
+        encounterSlots: {
+          'ordinary-1': { source: 'candidate', candidateId: 'midnight-sprinter' },
+          'ordinary-2': { source: 'candidate', candidateId: 'midnight-bouncer' },
+          'ordinary-3': { source: 'candidate', candidateId: 'midnight-sprinter' },
+          'ordinary-4': { source: 'candidate', candidateId: 'midnight-bouncer' },
+          boss: { source: 'candidate', candidateId: 'midnight-manager' },
+        },
+      },
+    ],
+  });
+  if (!isLevelEditorProjectV2(parsed)) throw new Error('Expected a v2 editor project');
+  return parsed;
 }
 
 function fingerprintOf(project: unknown): string {
@@ -646,6 +737,217 @@ describe('POST /api/editor/playtests', () => {
       expect(await (await app.request('/api/saves', { headers: { cookie } })).json()).toEqual({
         saves: [],
       });
+    });
+
+    it('freezes a three-level world, starts at level three and advances level two into it', async () => {
+      let clockMs = Date.now();
+      const { app } = makeApp({ now: () => new Date(clockMs) });
+      const cookie = await startSession(app);
+      const project = threeLevelWorldProject();
+
+      const full = await preview(app, cookie, {
+        project,
+        chapterId: 'chapter-3',
+        scope: 'adventure',
+      });
+      expect(full.status).toBe(201);
+      expect((await full.json()).save.adventure).toMatchObject({
+        planVersion: 'editor-world-plan-v1',
+        activeLevelIndex: 0,
+        activeLevel: { totalLevels: 3, routeId: 'chapter-1-route' },
+      });
+
+      const selected = await preview(app, cookie, {
+        project,
+        chapterId: 'chapter-3',
+        scope: 'chapter',
+      });
+      expect(selected.status).toBe(201);
+      const selectedBody = await selected.json();
+      expect(selectedBody.save).toMatchObject({
+        ageYears: 7,
+        recoveredIds: expect.arrayContaining([
+          'chapter-1-route-memory-major',
+          'chapter-2-route-memory-major',
+        ]),
+        adventure: {
+          planVersion: 'editor-world-plan-v1',
+          catalogVersion: 'parody-catalog-v5',
+          activeLevelIndex: 2,
+          completedLevelIds: ['chapter-1-route', 'chapter-2-route'],
+          consumedMemoryIds: expect.arrayContaining([
+            'chapter-1-route-memory-minor-one',
+            'chapter-2-route-memory-major',
+          ]),
+          activeLevel: {
+            totalLevels: 3,
+            routeId: 'midnight-pizza-arcade',
+            bossGate: 'independent',
+          },
+        },
+      });
+      expect(new Set(selectedBody.save.memories.map((memory: { id: string }) => memory.id)).size)
+        .toBe(9);
+      expect(selectedBody.save.memories.slice(-3).map((memory: { label: string }) => memory.label))
+        .toEqual(['The glowing token', 'The giant prize', 'The midnight marquee']);
+      const activeFixtureMemory = selectedBody.save.memories.at(-3);
+      expect(activeFixtureMemory).toMatchObject({ state: 'released', mediaUrl: expect.any(String) });
+      const fixtureMedia = await app.request(activeFixtureMemory.mediaUrl, { headers: { cookie } });
+      expect(fixtureMedia.status).toBe(200);
+      expect(fixtureMedia.headers.get('content-type')).toContain('image/svg+xml');
+      expect(await fixtureMedia.text()).toContain('Fictional illustration');
+      expect(selectedBody.save.adventure.activeLevel.encounters).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            content: expect.objectContaining({
+              displayName: 'Midnight Pizza Gremlin',
+              placeholder: 'neutral-candidate-v1',
+              assetId: 'neutral-enemy-placeholder',
+            }),
+          }),
+        ]),
+      );
+
+      const levelTwoStart = await preview(app, cookie, {
+        project,
+        chapterId: 'chapter-2',
+        scope: 'chapter',
+      });
+      expect(levelTwoStart.status).toBe(201);
+      let save = (await levelTwoStart.json()).save;
+      const perform = async (action: Record<string, unknown>) => {
+        const response = await app.request(
+          `/api/saves/${save.id}/actions`,
+          mutation(cookie, {
+            actionId: randomUUID(),
+            expectedRevision: save.revision,
+            action,
+          }),
+        );
+        expect(response.status, JSON.stringify(await response.clone().json())).toBe(200);
+        save = await response.json();
+        clockMs += 500;
+      };
+      const levelTwo = save.adventure.activeLevel;
+      const attackTool = levelTwo.pickups.find(
+        (pickup: { kind: string }) => pickup.kind === 'attack-tool',
+      );
+      await perform({
+        type: 'collect-equipment',
+        levelId: levelTwo.id,
+        pickupId: attackTool.pickupId,
+      });
+      for (const memoryId of levelTwo.minorMemoryIds) {
+        await perform({ type: 'recover-memory', levelId: levelTwo.id, memoryId });
+      }
+      const boss = levelTwo.encounters.find(
+        (encounter: { role: string }) => encounter.role === 'boss',
+      );
+      while (!save.adventure.activeLevel.encounters.find(
+        (encounter: { id: string }) => encounter.id === boss.id,
+      ).defeated) {
+        await perform({ type: 'attack', levelId: levelTwo.id, encounterId: boss.id });
+      }
+      await perform({
+        type: 'recover-memory',
+        levelId: levelTwo.id,
+        memoryId: levelTwo.majorMemoryId,
+      });
+      expect(save.adventure).toMatchObject({
+        activeLevelIndex: 2,
+        phase: 'exploring',
+        activeLevel: { routeId: 'midnight-pizza-arcade' },
+      });
+    });
+
+    it('keeps candidate identities and progress isolated between concurrent world runs', async () => {
+      const { app } = makeApp();
+      const cookie = await startSession(app);
+      const starts = await Promise.all([
+        preview(app, cookie, {
+          project: threeLevelWorldProject('Pepperoni Phantom'),
+          chapterId: 'chapter-3',
+          scope: 'chapter',
+        }),
+        preview(app, cookie, {
+          project: threeLevelWorldProject('Mozzarella Meteor'),
+          chapterId: 'chapter-3',
+          scope: 'chapter',
+        }),
+      ]);
+      expect(starts.map((response) => response.status)).toEqual([201, 201]);
+      const [first, second] = await Promise.all(starts.map((response) => response.json()));
+      expect(first.save.id).not.toBe(second.save.id);
+      expect(first.fingerprint).not.toBe(second.fingerprint);
+      expect(first.save.adventure.activeLevel.encounters[0].content.displayName)
+        .toBe('Pepperoni Phantom');
+      expect(second.save.adventure.activeLevel.encounters[0].content.displayName)
+        .toBe('Mozzarella Meteor');
+
+      const pickup = first.save.adventure.activeLevel.pickups.find(
+        (entry: { kind: string }) => entry.kind === 'attack-tool',
+      );
+      const changed = await app.request(
+        `/api/saves/${first.save.id}/actions`,
+        mutation(cookie, {
+          actionId: randomUUID(),
+          expectedRevision: first.save.revision,
+          action: {
+            type: 'collect-equipment',
+            levelId: first.save.adventure.activeLevel.id,
+            pickupId: pickup.pickupId,
+          },
+        }),
+      );
+      expect(changed.status).toBe(200);
+      const untouched = await app.request(`/api/saves/${second.save.id}`, { headers: { cookie } });
+      expect((await untouched.json()).revision).toBe(second.save.revision);
+    });
+
+    it('rejects missing candidates, unprepared catalog art and project asset URLs before storage', async () => {
+      const { app, store } = makeApp();
+      const { cookie, playerId } = await openSession(app);
+      const invalidProjects: unknown[] = [];
+      const missingCandidate = structuredClone(threeLevelWorldProject()) as unknown as MutableWorldProjectDraft;
+      missingCandidate.chapters[2]!.encounterSlots['ordinary-1']!.candidateId = 'missing-candidate';
+      invalidProjects.push(missingCandidate);
+      const pausedAsset = structuredClone(
+        createWorldEditorProject({ projectId: 'paused-art' }),
+      ) as unknown as MutableWorldProjectDraft;
+      pausedAsset.chapters[0]!.encounterSlots['ordinary-2'] = {
+        source: 'catalog',
+        catalogEntryId: 'nap-captain',
+        catalogEntryVersion: 'v001',
+      };
+      invalidProjects.push(pausedAsset);
+      const embeddedUrl = structuredClone(threeLevelWorldProject()) as unknown as MutableWorldProjectDraft;
+      embeddedUrl.enemyCandidates[0]!.assetUrl = 'https://example.test/creature.glb';
+      invalidProjects.push(embeddedUrl);
+
+      for (const project of invalidProjects) {
+        const response = await preview(app, cookie, {
+          project,
+          chapterId: 'chapter-1',
+          scope: 'adventure',
+        });
+        expect(response.status).toBe(422);
+        expect((await response.json()).error.code).toBe('EDITOR_PROJECT_INVALID');
+      }
+      expect(await store.listSaves(playerId)).toEqual([]);
+    });
+
+    it('keeps editor plans behind the explicit fixture parser gate', () => {
+      const prepared = prepareEditorPreview(threeLevelWorldProject());
+      if (!prepared.ok || !prepared.bundle.world) throw new Error('Expected editor world');
+      const state = createAdventureStateAtLevel(prepared.bundle.world.plan, 2);
+      expect(() => parseStoredAdventure(prepared.bundle.world!.plan, state)).toThrow(
+        'Save unavailable',
+      );
+      expect(parseStoredAdventure(
+        prepared.bundle.world.plan,
+        state,
+        { allowEditorPreviewPlan: true },
+      ).plan.version).toBe('editor-world-plan-v1');
     });
   });
 });

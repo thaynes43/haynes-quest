@@ -4,6 +4,7 @@ import type {
   AdventurePhase,
   AdventureView,
   AppearanceStage,
+  BossGate,
   EncounterKind,
   EncounterRole,
   EquipmentKind,
@@ -95,7 +96,23 @@ export interface FrozenLevelPlanV3 extends FrozenLevelPlanBase {
   encounters: FrozenEncounterDefinitionV2[];
 }
 
-export type FrozenLevelPlan = FrozenLevelPlanV1 | FrozenLevelPlanV2 | FrozenLevelPlanV3;
+/** Fixture-only authored world level. It is never accepted by production save parsing. */
+export interface FrozenEditorWorldLevelPlan extends FrozenLevelPlanBase {
+  minorMemoryIds: [string, string];
+  majorMemoryId: string;
+  periodId: ParodyPeriodId;
+  /** Project-local route identity used to resolve the frozen authored geometry. */
+  routeId: string;
+  representedEndDate: string;
+  bossGate: BossGate;
+  encounters: FrozenEncounterDefinitionV2[];
+}
+
+export type FrozenLevelPlan =
+  | FrozenLevelPlanV1
+  | FrozenLevelPlanV2
+  | FrozenLevelPlanV3
+  | FrozenEditorWorldLevelPlan;
 
 export interface AdventurePlanV1 {
   version: 'era-level-plan-v1';
@@ -114,7 +131,18 @@ export interface AdventurePlanV3 {
   levels: FrozenLevelPlanV3[];
 }
 
-export type AdventurePlan = AdventurePlanV1 | AdventurePlanV2 | AdventurePlanV3;
+export interface EditorWorldAdventurePlan {
+  version: 'editor-world-plan-v1';
+  catalogVersion: ParodyCatalogVersion;
+  projectFingerprint: string;
+  levels: FrozenEditorWorldLevelPlan[];
+}
+
+export type AdventurePlan =
+  | AdventurePlanV1
+  | AdventurePlanV2
+  | AdventurePlanV3
+  | EditorWorldAdventurePlan;
 
 export interface EncounterProgress {
   hp: number;
@@ -185,9 +213,15 @@ export function abilitiesForPlanAge(
   plan: Pick<AdventurePlan, 'version'>,
   ageYears: number,
 ): Ability[] {
-  return plan.version === 'era-level-plan-v3'
+  return usesRouteMemoryRules(plan)
     ? ['move', 'interact', 'jump']
     : abilitiesForAge(ageYears);
+}
+
+export function usesRouteMemoryRules(
+  plan: Pick<AdventurePlan, 'version'>,
+): boolean {
+  return plan.version === 'era-level-plan-v3' || plan.version === 'editor-world-plan-v1';
 }
 
 export function appearanceForAge(ageYears: number): AppearanceStage {
@@ -310,6 +344,7 @@ export function createInitialAdventureState(plan: AdventurePlan): AdventureState
       { hp: encounter.maxHp, defeated: false, nextReportedHitAtMs: 0 },
     ]),
   );
+  const startingAge = plan.levels[0]?.startAgeYears ?? 0;
   return {
     version: 'era-combat-state-v2',
     activeLevelIndex: 0,
@@ -323,14 +358,48 @@ export function createInitialAdventureState(plan: AdventurePlan): AdventureState
     revealedMemoryIds: [],
     consumedMemoryIds: [],
     completedLevelIds: [],
-    ageYears: 0,
-    abilities: abilitiesForPlanAge(plan, 0),
-    appearanceStage: appearanceForAge(0),
+    ageYears: startingAge,
+    abilities: abilitiesForPlanAge(plan, startingAge),
+    appearanceStage: appearanceForAge(startingAge),
     attackReadyAtMs: 0,
     guardActiveUntilMs: 0,
     guardReadyAtMs: 0,
     actionReceipts: [],
   };
+}
+
+/**
+ * Start an isolated preview at a later authored level while preserving the
+ * same state invariants as a legitimately completed prefix. No combat gear is
+ * carried forward, so the selected level still begins at its authored pickup.
+ */
+export function createAdventureStateAtLevel(
+  plan: AdventurePlan,
+  levelIndex: number,
+): AdventureState {
+  if (!Number.isInteger(levelIndex) || levelIndex < 0 || levelIndex >= plan.levels.length) {
+    throw new RangeError('Adventure start level is invalid');
+  }
+  const state = createInitialAdventureState(plan);
+  for (const level of plan.levels.slice(0, levelIndex)) {
+    for (const encounter of level.encounters) {
+      state.encounters[encounter.id] = {
+        hp: 0,
+        defeated: true,
+        nextReportedHitAtMs: 0,
+      };
+    }
+    for (const memoryId of memoryIdsForLevel(level)) {
+      state.revealedMemoryIds.push(memoryId);
+      state.consumedMemoryIds.push(memoryId);
+    }
+    state.completedLevelIds.push(level.id);
+  }
+  state.activeLevelIndex = levelIndex;
+  state.ageYears = plan.levels[levelIndex]!.startAgeYears;
+  state.abilities = abilitiesForPlanAge(plan, state.ageYears);
+  state.appearanceStage = appearanceForAge(state.ageYears);
+  return state;
 }
 
 /**
@@ -364,7 +433,7 @@ export function reduceAdventureAction(
     state.guardActiveUntilMs = 0;
     state.guardReadyAtMs = 0;
     for (const encounter of level.encounters) {
-      if (plan.version === 'era-level-plan-v3' && state.encounters[encounter.id]?.defeated) {
+      if (usesRouteMemoryRules(plan) && state.encounters[encounter.id]?.defeated) {
         continue;
       }
       state.encounters[encounter.id] = {
@@ -399,7 +468,7 @@ export function reduceAdventureAction(
   if (action.type === 'attack') {
     requirePhase(state, 'exploring');
     const encounter = requireCurrentEncounter(level, state, action.encounterId);
-    const attackCooldownMs = plan.version === 'era-level-plan-v3'
+    const attackCooldownMs = usesRouteMemoryRules(plan)
       ? ROUTE_ATTACK_COOLDOWN_MS
       : ATTACK_COOLDOWN_MS;
     if (boundedRemainingMs(state.attackReadyAtMs, nowMs, attackCooldownMs) > 0) {
@@ -418,7 +487,7 @@ export function reduceAdventureAction(
   }
 
   if (action.type === 'secondary-attack') {
-    if (plan.version !== 'era-level-plan-v3') {
+    if (!usesRouteMemoryRules(plan)) {
       throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
     }
     requirePhase(state, 'exploring');
@@ -457,7 +526,7 @@ export function reduceAdventureAction(
   }
 
   if (action.type === 'guard') {
-    if (plan.version === 'era-level-plan-v3') {
+    if (usesRouteMemoryRules(plan)) {
       throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
     }
     requirePhase(state, 'exploring');
@@ -474,7 +543,7 @@ export function reduceAdventureAction(
   }
 
   if (action.type === 'recover-memory') {
-    if (plan.version === 'era-level-plan-v3') {
+    if (usesRouteMemoryRules(plan)) {
       if (!isRouteMemoryLevel(level)) throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
       const role = memoryRoleForLevel(level, action.memoryId);
       if (!role) throw new AdventureRuleError('MEMORY_NOT_FOUND');
@@ -501,7 +570,7 @@ export function reduceAdventureAction(
     return state;
   }
 
-  if (plan.version === 'era-level-plan-v3') {
+  if (usesRouteMemoryRules(plan)) {
     throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
   }
   requirePhase(state, 'memory-released');
@@ -523,7 +592,7 @@ export function toAdventureView(
   const inventory = allEquipment
     .filter((equipment) => state.inventoryIds.includes(equipment.id))
     .map((equipment) => equipmentView(equipment, state));
-  const attackCooldownMs = plan.version === 'era-level-plan-v3'
+  const attackCooldownMs = usesRouteMemoryRules(plan)
     ? ROUTE_ATTACK_COOLDOWN_MS
     : ATTACK_COOLDOWN_MS;
   return {
@@ -541,10 +610,10 @@ export function toAdventureView(
     maxPlayerHp: state.maxPlayerHp,
     attackCooldownRemainingMs: boundedRemainingMs(state.attackReadyAtMs, nowMs, attackCooldownMs),
     guardActiveRemainingMs: boundedRemainingMs(state.guardActiveUntilMs, nowMs, GUARD_ACTIVE_MS),
-    guardCooldownRemainingMs: plan.version === 'era-level-plan-v3'
+    guardCooldownRemainingMs: usesRouteMemoryRules(plan)
       ? 0
       : boundedRemainingMs(state.guardReadyAtMs, nowMs, GUARD_COOLDOWN_MS),
-    ...(plan.version === 'era-level-plan-v3' ? {
+    ...(usesRouteMemoryRules(plan) ? {
       secondaryCooldownRemainingMs: boundedRemainingMs(
         state.guardReadyAtMs,
         nowMs,
@@ -591,7 +660,9 @@ export function memoryRoleForLevel(
   return level.majorMemoryId === memoryId ? 'major' : null;
 }
 
-function isRouteMemoryLevel(level: FrozenLevelPlan): level is FrozenLevelPlanV3 {
+function isRouteMemoryLevel(
+  level: FrozenLevelPlan,
+): level is FrozenLevelPlanV3 | FrozenEditorWorldLevelPlan {
   return 'minorMemoryIds' in level;
 }
 
@@ -684,7 +755,10 @@ function requireCurrentEncounter(
   }
   if (
     requested.role === 'boss' &&
-    bossRequiresOrdinaryDefeats('routeId' in level ? level.routeId : undefined) &&
+    bossRequiresOrdinaryDefeats(
+      'routeId' in level ? level.routeId : undefined,
+      'bossGate' in level ? level.bossGate : undefined,
+    ) &&
     level.encounters.some(
       (encounter) => encounter.role === 'ordinary' && !state.encounters[encounter.id]?.defeated,
     )
@@ -730,6 +804,7 @@ function levelView(
     .every((encounter) => state.encounters[encounter.id]?.defeated);
   const bossAvailableWithoutOrdinaries = !bossRequiresOrdinaryDefeats(
     'routeId' in level ? level.routeId : undefined,
+    'bossGate' in level ? level.bossGate : undefined,
   );
   return {
     id: level.id,
@@ -740,6 +815,7 @@ function levelView(
     startDate: level.startDate,
     eraYear: level.eraYear,
     ...('periodId' in level ? { periodId: level.periodId, routeId: level.routeId } : {}),
+    ...('bossGate' in level ? { bossGate: level.bossGate } : {}),
     memoryIds: memoryIdsForLevel(level),
     ...('minorMemoryIds' in level ? {
       minorMemoryIds: [...level.minorMemoryIds] as [string, string],

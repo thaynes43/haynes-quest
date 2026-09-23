@@ -3,6 +3,7 @@ import {
   ROUTE_ATTACK_COOLDOWN_MS,
   AdventureRuleError,
   boundedRemainingMs,
+  usesRouteMemoryRules,
   type AdventurePlan,
   type AdventureState,
 } from './adventure.js';
@@ -237,7 +238,7 @@ export function reduceFriendlyAction(
     throw new AdventureRuleError('ACTION_NOT_AVAILABLE');
   }
   if (progress.defeated) throw new AdventureRuleError('FRIENDLY_NOT_ACTIVE');
-  const attackCooldownMs = plan.version === 'era-level-plan-v3'
+  const attackCooldownMs = usesRouteMemoryRules(plan)
     ? ROUTE_ATTACK_COOLDOWN_MS
     : ATTACK_COOLDOWN_MS;
   if (

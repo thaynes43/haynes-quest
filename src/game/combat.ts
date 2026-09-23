@@ -152,7 +152,7 @@ export function bossIsActive(save: SaveView): boolean {
   const boss = encounters.find((encounter) => encounter.role === "boss") as
     RuntimeEncounterView | undefined;
   return (
-    (!bossRequiresOrdinaryDefeats(level?.routeId) || ordinaryDefeated) &&
+    (!bossRequiresOrdinaryDefeats(level?.routeId, level?.bossGate) || ordinaryDefeated) &&
     boss?.available !== false
   );
 }

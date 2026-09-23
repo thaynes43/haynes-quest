@@ -131,6 +131,62 @@ export function TextField({
   );
 }
 
+export function TextAreaField({
+  label,
+  value,
+  onCommit,
+  maxLength = 240,
+  rows = 3,
+}: {
+  label: string;
+  value: string;
+  onCommit(value: string): void;
+  maxLength?: number;
+  rows?: number;
+}) {
+  const [text, setText] = useState(value);
+  const editing = useRef(false);
+  const cancelBlur = useRef(false);
+  useEffect(() => {
+    if (!editing.current) setText(value);
+  }, [value]);
+  const commit = () => {
+    editing.current = false;
+    if (cancelBlur.current) {
+      cancelBlur.current = false;
+      setText(value);
+      return;
+    }
+    const normalized = text.trim();
+    if (!normalized) {
+      setText(value);
+      return;
+    }
+    setText(normalized);
+    if (normalized !== value) onCommit(normalized);
+  };
+  return (
+    <label className="editor-field">
+      <span>{label}</span>
+      <textarea
+        rows={rows}
+        maxLength={maxLength}
+        value={text}
+        onFocus={() => { editing.current = true; }}
+        onChange={(event) => setText(event.target.value)}
+        onBlur={commit}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            cancelBlur.current = true;
+            setText(value);
+            event.currentTarget.blur();
+          }
+        }}
+      />
+    </label>
+  );
+}
+
 export function SelectField<T extends string>({
   label,
   value,

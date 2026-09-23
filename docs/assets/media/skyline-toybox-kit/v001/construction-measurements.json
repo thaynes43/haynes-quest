@@ -1,0 +1,87 @@
+{
+  "workOrder": "WO096",
+  "assetKit": "skyline-toybox-kit",
+  "version": "v001",
+  "blenderVersion": "4.5.13 LTS",
+  "authoringFrame": "Meters, Z up, front -Y",
+  "exportFrame": "Meters, Y up, front +Z; origins at floor center",
+  "geometry": "Static opaque mesh scenery; vertex colors and embedded geometry; no external resources",
+  "ownerApproval": "pending",
+  "gameplayUse": "none",
+  "props": {
+    "block-tower": {
+      "triangles": 1324,
+      "materials": [
+        "Toybox_matte_painted_wood"
+      ],
+      "sourceMeshParts": 9,
+      "authoringBoundsZUp": {
+        "min": [
+          -0.8500000238418579,
+          -0.4560000002384186,
+          0.0
+        ],
+        "max": [
+          0.8500000238418579,
+          0.4560000002384186,
+          2.376694440841675
+        ],
+        "size": [
+          1.7000000476837158,
+          0.9120000004768372,
+          2.376694440841675
+        ]
+      }
+    },
+    "safety-rail": {
+      "triangles": 1532,
+      "materials": [
+        "Toybox_matte_painted_wood"
+      ],
+      "sourceMeshParts": 13,
+      "authoringBoundsZUp": {
+        "min": [
+          -1.2000000476837158,
+          -0.1899999976158142,
+          0.0
+        ],
+        "max": [
+          1.2000000476837158,
+          0.1899999976158142,
+          0.7559999823570251
+        ],
+        "size": [
+          2.4000000953674316,
+          0.3799999952316284,
+          0.7559999823570251
+        ]
+      }
+    },
+    "windup-lantern": {
+      "triangles": 2664,
+      "materials": [
+        "Toybox_honey_light",
+        "Toybox_matte_painted_wood",
+        "Toybox_satin_honey_key"
+      ],
+      "sourceMeshParts": 17,
+      "authoringBoundsZUp": {
+        "min": [
+          -0.3295000195503235,
+          -0.21337175369262695,
+          0.0
+        ],
+        "max": [
+          0.3295000195503235,
+          0.21337175369262695,
+          0.8140000104904175
+        ],
+        "size": [
+          0.659000039100647,
+          0.4267435073852539,
+          0.8140000104904175
+        ]
+      }
+    }
+  }
+}
