@@ -89,6 +89,10 @@ The current combat implementation and unfinished required assets belong to PLAN-
 
 ## Ratified replacement slice and frozen selection
 
+### Proposed Haynesnightmares asset pass · September 23, 2026
+
+Tom now requests a full original FNAF-esque animatronic parody cast with Rat Casino and Halloween Haynesnightmares themes, with Blender models before new levels. The [first six-character visual pitch](../assets/reviews/rat-casino-ensemble/v001.md) awaits his lineup/look feedback under DESIGN012; no member has a runtime encounter ID yet. The retro casino setting is an art choice, not evidence that the parody belongs in a 1990s photo period. The [original game's publisher listing](https://store.steampowered.com/app/319510/Five_Nights_at_Freddys/) dates the first Five Nights at Freddy's release to August 18, 2014. Treat that as the earliest possible source date for the broad reference; any later-specific character influence needs its own source and curated window. An eventual local period override must retain its explicit reason and all asset/progression gates. No proposed encounter enters a saved journey until the model is ready, its behavior is ability-safe and its exact version has Tom's review.
+
 The lead's replacement candidates below name concrete recognizable references. These are production briefs, not owner approvals. [WO-022](../../.agents/work-orders/022-parody-period-evidence.md) records primary historical sources. The initial catalog supports bounded 2020–2023 and 2024–2026 curation windows; those are authored coverage choices, not claims that a reference debuted or peaked at either boundary. References are available before every supported day. Broader coverage must be curated explicitly; unknown dates cannot silently borrow a modern cast.
 
 | Candidate | Recognizable target and joke | Readable encounter |

@@ -17,6 +17,12 @@ This is the starting art brief. The coordinator may refine its concrete choices 
 
 Do not import Disney or Roblox characters, logos, costumes, music or distinctive locations. Record any licensed inputs separately. Later era enemies use the original-design brief in [DESIGN-005](../designs/005-era-enemy-catalog.md).
 
+## Haynesnightmares · Rat Casino proposal (September 2026)
+
+Tom has asked for a complete spooky animatronic parody lineup, a retro Rat Casino and a Halloween Haynesnightmares world. The first Midnight Arcade treatment felt too young; its arcade setting was still the right direction. This branch uses deeper plum shadows, faded casino red, oxidized teal, tarnished brass and warm amber bulbs. Taller segmented mascot silhouettes, small glass eyes, face plates and worn stage fabrics add age to the cast without gore, realistic injury or a sudden full-screen scare. Long visible attack warnings and funny mechanical breakdowns keep the course readable for a younger player while the stage lighting and stillness can engage an older player.
+
+The [six-character lineup sheet](reviews/rat-casino-ensemble/v001.md) is a pitch awaiting Tom's lineup/look feedback. The [three-prop Rat Casino sheet](media/rat-casino-kit/v001/concept.png) gives static set pieces a coherent construction reference. Neither image is a finalized 3D asset. Separately review each resulting model and retain the existing arcade and toybox kits as earlier studio candidates.
+
 ## Establish the reference set first
 
 The driving Astra generates and inspects these images **in sequence**:

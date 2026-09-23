@@ -325,6 +325,20 @@
       "sha256": "2618c041dc7f4cfa99411bef15427be5cd767f3470962e09170825bf680c95a0"
     },
     {
+      "source": "docs/assets/media/rat-casino-ensemble/v001/concept.png",
+      "source_sha256": "c99f7a747ffe3e8369291a0a288a98c06c929d9bc8608ab7f19f0612e54591c1",
+      "path": "docs/assets/media/catalog-thumbnails/v001/c2a31b3b8c678576.webp",
+      "bytes": 52410,
+      "sha256": "e8abdf0cabd31edc2cfca0e7adf22fbb6e97bd7cdec5d5b293fa13e4eff36598"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-kit/v001/concept.png",
+      "source_sha256": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4",
+      "path": "docs/assets/media/catalog-thumbnails/v001/af65e6eeb3b4a8ae.webp",
+      "bytes": 55022,
+      "sha256": "e1c5b3c501fc71977f28f8acc7535a0fc66447239bd70840120b2ee95bfc537d"
+    },
+    {
       "source": "docs/assets/media/signal-moth/v001/beauty.png",
       "source_sha256": "47fd5059603291c0036fa709add8a16668399f5d758b08968d0fd830c61b0359",
       "path": "docs/assets/media/catalog-thumbnails/v001/b50a0119ee089f01.webp",

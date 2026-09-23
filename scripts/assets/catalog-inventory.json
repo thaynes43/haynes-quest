@@ -2,11 +2,11 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 45,
-    "reference_sheet_entries": 7,
+    "entries": 47,
+    "reference_sheet_entries": 8,
     "model_entries": 32,
     "model_files": 32,
-    "concept_only_entries": 1,
+    "concept_only_entries": 2,
     "audio_entries": 4,
     "fixture_illustration_sets": 1,
     "completed_model_candidates": 31,
@@ -14,6 +14,43 @@
     "owner_approved_entries": 1
   },
   "assets": [
+    {
+      "id": "rat-casino-kit",
+      "title": "Rat Casino · environment concept",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/rat-casino-kit/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-kit/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected construction reference; three static models in Blender production; Tom exact-version review pending",
+      "checksums": {
+        "docs/assets/media/rat-casino-kit/v001/concept.png": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4"
+      }
+    },
+    {
+      "id": "rat-casino-ensemble",
+      "title": "Rat Casino animatronic ensemble",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/rat-casino-ensemble/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "concept-only six-character visual pitch; Tom lineup/look feedback pending; no model or gameplay use",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v001/concept.png": "c99f7a747ffe3e8369291a0a288a98c06c929d9bc8608ab7f19f0612e54591c1"
+      }
+    },
     {
       "id": "toybox-block-tower",
       "title": "Skyline toybox block tower",

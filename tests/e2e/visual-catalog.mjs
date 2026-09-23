@@ -50,18 +50,18 @@ const requiredBestiesClips = [
 ];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 45,
-  reference_sheet_entries: 7,
+  entries: 47,
+  reference_sheet_entries: 8,
   model_entries: 32,
   model_files: 32,
   completed_model_candidates: 31,
   paused_partial_model_candidates: 1,
-  concept_only_entries: 1,
+  concept_only_entries: 2,
   audio_entries: 4,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 62;
+const expectedThumbnailFiles = 64;
 const integratedAssetIds = [
   "bestie-pink",
   "bestie-black",
