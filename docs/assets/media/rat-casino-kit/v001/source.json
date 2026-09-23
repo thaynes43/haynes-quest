@@ -1,0 +1,12 @@
+{
+  "asset_id": "rat-casino-kit",
+  "version": "v001",
+  "created_utc": "2026-09-23",
+  "generator": "OpenAI image generation via driving GPT-6 Astra",
+  "source_image": "concept.png",
+  "source_sha256": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4",
+  "reference_images": [],
+  "seed": null,
+  "private_media_used": false,
+  "status": "coordinator-selected construction concept; three separately reviewable static model candidates completed, Tom's exact-version review pending"
+}

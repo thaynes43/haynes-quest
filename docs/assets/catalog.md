@@ -5,9 +5,9 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The new arcade and toybox environment models below are studio candidates; the [playtest guide](playtest.md) describes the artwork currently used in the game.
+Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The new arcade, toybox and Rat Casino work below is studio-only; the [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**31 completed models · 1 partial model · 1 concept awaiting a model · 4 sound auditions · 6 fictional memory pictures**
+**34 completed models · 1 partial model · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -27,9 +27,19 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Parody characters {#parody-characters}
 
-The two Besties actors join four completed parody characters in the playtest library. Nap Captain and The One-Star Diva are paused.
+The two Besties actors join four completed parody characters in the playtest library. Nap Captain and The One-Star Diva are paused. The new Rat Casino cast is a six-character image pitch; the lineup and look await Tom's feedback before Blender modeling.
 
 <div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="rat-casino-ensemble" markdown="1">
+
+[![Concept image: six Rat Casino animatronics in a spooky retro casino](media/catalog-thumbnails/v001/c2a31b3b8c678576.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-casino-ensemble/v001.md)
+
+### [Rat Casino ensemble](reviews/rat-casino-ensemble/v001.md)
+
+<span class="catalog-state">Six-character concept · v001 · Look feedback pending</span>
+
+</div>
 
 <div class="catalog-card" data-asset-id="bestie-pink" markdown="1">
 
@@ -161,9 +171,45 @@ The two existing age stages share a costume and a common inspiration sheet. Each
 
 ## World and keepsakes {#world-and-keepsakes}
 
-Browse each clearing piece and the new arcade and toybox scenery separately. The keepsake review uses the corrected inspiration image with the rear wedge visible.
+Browse each clearing piece and the arcade, toybox and Rat Casino scenery separately. The keepsake review uses the corrected inspiration image with the rear wedge visible.
 
 <div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="rat-casino-marquee-arch" markdown="1">
+
+[![Model render: Rat Casino marquee arch](media/catalog-thumbnails/v001/832b7c82c1a9edbb.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-casino-kit/v001.md#marquee-arch)
+
+### [Rat Casino marquee arch](reviews/rat-casino-kit/v001.md#marquee-arch)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/af65e6eeb3b4a8ae.webp" alt="Rat Casino kit inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="rat-casino-roulette-dais" markdown="1">
+
+[![Model render: Rat Casino roulette dais](media/catalog-thumbnails/v001/67b376503d42874c.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-casino-kit/v001.md#roulette-dais)
+
+### [Rat Casino roulette dais](reviews/rat-casino-kit/v001.md#roulette-dais)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/af65e6eeb3b4a8ae.webp" alt="Rat Casino kit inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="rat-casino-slot-cabinet" markdown="1">
+
+[![Model render: Rat Casino slot cabinet](media/catalog-thumbnails/v001/f1ad0c4498c3627e.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-casino-kit/v001.md#slot-cabinet)
+
+### [Rat Casino slot cabinet](reviews/rat-casino-kit/v001.md#slot-cabinet)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/af65e6eeb3b4a8ae.webp" alt="Rat Casino kit inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
+
+</div>
 
 <div class="catalog-card" data-asset-id="memory-keepsake" markdown="1">
 
@@ -468,6 +514,16 @@ Meet the helpful residents of the journey. Their greetings provide healing bonus
 Original inspiration and construction images. These are illustrations; related model reviews appear in the groups above.
 
 <div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="rat-casino-kit" markdown="1">
+
+[![Rat Casino environment concept with a marquee arch, roulette dais and slot cabinet](media/catalog-thumbnails/v001/af65e6eeb3b4a8ae.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-casino-kit/v001.md)
+
+### [Rat Casino kit](reviews/rat-casino-kit/v001.md)
+
+<span class="catalog-state">Environment concept · v001 · Three model candidates ready</span>
+
+</div>
 
 <div class="catalog-card" data-asset-id="skyline-toybox-kit" markdown="1">
 

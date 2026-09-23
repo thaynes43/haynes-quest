@@ -1,0 +1,201 @@
+{
+  "workOrder": "WO097",
+  "validator": "Khronos glTF Validator",
+  "assets": [
+    {
+      "asset": "marquee-arch",
+      "file": "marquee-arch.glb",
+      "sha256": "1f939c9e11004397f2a7046390d788dd8ab54a0c26450eaa88b1dc983dcd6e8b",
+      "bytes": 247248,
+      "meshes": 1,
+      "primitives": 3,
+      "triangles": 4876,
+      "materials": [
+        {
+          "name": "Casino_matte_wood_and_velvet",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8100000023841858
+          }
+        },
+        {
+          "name": "Casino_aged_brass",
+          "pbr": {
+            "metallicFactor": 0.6800000071525574,
+            "roughnessFactor": 0.46000000834465027
+          }
+        },
+        {
+          "name": "Casino_warm_amber_bulbs",
+          "pbr": {
+            "metallicFactor": 0.03999999910593033,
+            "roughnessFactor": 0.33000001311302185
+          },
+          "emissive": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929
+          ]
+        }
+      ],
+      "images": 0,
+      "animations": 0,
+      "skins": 0,
+      "extensionsUsed": [],
+      "extensionsRequired": [],
+      "checks": {
+        "khronosNoErrors": true,
+        "khronosNoWarnings": true,
+        "triangleCeiling5000": true,
+        "materialCeiling4": true,
+        "byteCeiling1_5MiB": true,
+        "sourceTriangleAgreement": true,
+        "singleExportMesh": true,
+        "allPrimitivesColored": true,
+        "noTextures": true,
+        "noAnimationOrSkin": true,
+        "resourcesEmbedded": true,
+        "noRequiredExtensions": true,
+        "opaqueMaterials": true
+      },
+      "validatorIssues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "asset": "roulette-dais",
+      "file": "roulette-dais.glb",
+      "sha256": "574644bcccf8038cb929aebd1d63eebbfbce976e732ec314e388cdef8cd52df6",
+      "bytes": 234276,
+      "meshes": 1,
+      "primitives": 3,
+      "triangles": 4872,
+      "materials": [
+        {
+          "name": "Casino_aged_brass",
+          "pbr": {
+            "metallicFactor": 0.6800000071525574,
+            "roughnessFactor": 0.46000000834465027
+          }
+        },
+        {
+          "name": "Casino_matte_wood_and_velvet",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8100000023841858
+          }
+        },
+        {
+          "name": "Casino_warm_amber_bulbs",
+          "pbr": {
+            "metallicFactor": 0.03999999910593033,
+            "roughnessFactor": 0.33000001311302185
+          },
+          "emissive": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929
+          ]
+        }
+      ],
+      "images": 0,
+      "animations": 0,
+      "skins": 0,
+      "extensionsUsed": [],
+      "extensionsRequired": [],
+      "checks": {
+        "khronosNoErrors": true,
+        "khronosNoWarnings": true,
+        "triangleCeiling5000": true,
+        "materialCeiling4": true,
+        "byteCeiling1_5MiB": true,
+        "sourceTriangleAgreement": true,
+        "singleExportMesh": true,
+        "allPrimitivesColored": true,
+        "noTextures": true,
+        "noAnimationOrSkin": true,
+        "resourcesEmbedded": true,
+        "noRequiredExtensions": true,
+        "opaqueMaterials": true
+      },
+      "validatorIssues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    },
+    {
+      "asset": "slot-cabinet",
+      "file": "slot-cabinet.glb",
+      "sha256": "06f1460afc516a4dd56c8ab33cc4ba84c2bcdb5a33f954cf6060af06fd9aabe3",
+      "bytes": 194096,
+      "meshes": 1,
+      "primitives": 3,
+      "triangles": 3302,
+      "materials": [
+        {
+          "name": "Casino_matte_wood_and_velvet",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8100000023841858
+          }
+        },
+        {
+          "name": "Casino_aged_brass",
+          "pbr": {
+            "metallicFactor": 0.6800000071525574,
+            "roughnessFactor": 0.46000000834465027
+          }
+        },
+        {
+          "name": "Casino_warm_amber_bulbs",
+          "pbr": {
+            "metallicFactor": 0.03999999910593033,
+            "roughnessFactor": 0.33000001311302185
+          },
+          "emissive": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929
+          ]
+        }
+      ],
+      "images": 0,
+      "animations": 0,
+      "skins": 0,
+      "extensionsUsed": [],
+      "extensionsRequired": [],
+      "checks": {
+        "khronosNoErrors": true,
+        "khronosNoWarnings": true,
+        "triangleCeiling5000": true,
+        "materialCeiling4": true,
+        "byteCeiling1_5MiB": true,
+        "sourceTriangleAgreement": true,
+        "singleExportMesh": true,
+        "allPrimitivesColored": true,
+        "noTextures": true,
+        "noAnimationOrSkin": true,
+        "resourcesEmbedded": true,
+        "noRequiredExtensions": true,
+        "opaqueMaterials": true
+      },
+      "validatorIssues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 0,
+        "numHints": 0,
+        "messages": [],
+        "truncated": false
+      }
+    }
+  ]
+}

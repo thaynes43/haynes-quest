@@ -1,0 +1,226 @@
+{
+  "workOrder": "WO097",
+  "verifiedAt": "2026-09-23T18:21:37.616258+00:00",
+  "allRemoteLocalHashesMatch": true,
+  "verifiedFiles": 31,
+  "editableMasterBackup": "/home/dev/artifacts/haynes-quest/rat-casino-kit/v001/rat-casino-kit.blend",
+  "files": [
+    {
+      "file": "rat-casino-kit.blend",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/rat-casino-kit.blend",
+      "sha256": "99791504d602bf3f3abd06182f4c00e3b68dd954a14b5a05843c8208752c609e",
+      "bytes": 494421,
+      "matchesRemote": true
+    },
+    {
+      "file": "build-kit.py",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/build-kit.py",
+      "sha256": "549273055bac00151d495d879cf33de2a1574e2962cac5f28da288a3420cbe06",
+      "bytes": 26780,
+      "matchesRemote": true
+    },
+    {
+      "file": "render-kit.py",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/render-kit.py",
+      "sha256": "07b97fcd2d39822133947f240f0f2a7f93c0ff47d06f9db583e2c5fef62f905a",
+      "bytes": 3355,
+      "matchesRemote": true
+    },
+    {
+      "file": "release-scene.py",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/release-scene.py",
+      "sha256": "25cbf504f6f81ee43d6a06dd935e5392ce028578fc472877ced9b95c35727bca",
+      "bytes": 5157,
+      "matchesRemote": true
+    },
+    {
+      "file": "validate-glbs.mjs",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/validate-glbs.mjs",
+      "sha256": "f3706b1e336aba89da38a7e8ac04d37a4668f158341dcdf2fc22780f4b810c1f",
+      "bytes": 3088,
+      "matchesRemote": true
+    },
+    {
+      "file": "browser-intake.mjs",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/browser-intake.mjs",
+      "sha256": "9f0588e98e68302d5289029b86418141ea77f4c6f1e57882cc9b6c38c2fbc8d4",
+      "bytes": 5571,
+      "matchesRemote": true
+    },
+    {
+      "file": "concept.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/concept.png",
+      "sha256": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4",
+      "bytes": 2527072,
+      "matchesRemote": true
+    },
+    {
+      "file": "prompt.txt",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/prompt.txt",
+      "sha256": "f4c728aca46eff531a1c0db8972c4c80ac44a64d9ad1ebc96e7b500acf3d7d6f",
+      "bytes": 1862,
+      "matchesRemote": true
+    },
+    {
+      "file": "source.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/source.json",
+      "sha256": "ff638d9a743df649d71b0fb2e4fac2d96d22673e18677f677af002955384e438",
+      "bytes": 502,
+      "matchesRemote": true
+    },
+    {
+      "file": "construction-measurements.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/construction-measurements.json",
+      "sha256": "3d520de1a09a60317d9350851b6ae8c303fd76a1baacc95c63dec66f668eb50c",
+      "bytes": 2918,
+      "matchesRemote": true
+    },
+    {
+      "file": "glb-measurements.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/glb-measurements.json",
+      "sha256": "4837bf0fe4a02d81f587067741f13fb2f65f6ef576b76fd1ecd090574e6be03b",
+      "bytes": 5398,
+      "matchesRemote": true
+    },
+    {
+      "file": "browser-report.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/browser-report.json",
+      "sha256": "f3b1207dc3f1de0daccc1701c5ae685586d11da12386ca81e59bb03318dbcbec",
+      "bytes": 3207,
+      "matchesRemote": true
+    },
+    {
+      "file": "render-settings.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/render-settings.json",
+      "sha256": "55b700cebac54c25656ea1309dda8a9a2134ce080c6631de32318bbe2327839f",
+      "bytes": 515,
+      "matchesRemote": true
+    },
+    {
+      "file": "assembly.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/assembly.png",
+      "sha256": "d7aa87abe335c20da3d3806257898d5364c635426b4585ec218c0cf0d5b5736e",
+      "bytes": 1407979,
+      "matchesRemote": true
+    },
+    {
+      "file": "scene-release.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/scene-release.json",
+      "sha256": "245ff60313a7f533b0cf3cf75581b90c4bf9e3a6a515ee1d4e46e2ec5b72df7a",
+      "bytes": 560,
+      "matchesRemote": true
+    },
+    {
+      "file": "catalog-intake.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/catalog-intake.json",
+      "sha256": "b1ebfe15cb01a78d976e1c4e55ba93cc0b92c56d86ef59e8a416ffe7f26efd77",
+      "bytes": 3829,
+      "matchesRemote": true
+    },
+    {
+      "file": "marquee-arch.glb",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/marquee-arch.glb",
+      "sha256": "1f939c9e11004397f2a7046390d788dd8ab54a0c26450eaa88b1dc983dcd6e8b",
+      "bytes": 247248,
+      "matchesRemote": true
+    },
+    {
+      "file": "marquee-arch-beauty.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/marquee-arch-beauty.png",
+      "sha256": "4aefc44bfc678f05bde02aaa41e245a5448288cec6910a8c07301a092a803a07",
+      "bytes": 920695,
+      "matchesRemote": true
+    },
+    {
+      "file": "marquee-arch-side.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/marquee-arch-side.png",
+      "sha256": "137b04a58883e7c34f7ade83aa0155810afc9217637d6007106524f6481ffeba",
+      "bytes": 817731,
+      "matchesRemote": true
+    },
+    {
+      "file": "marquee-arch-browser.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/marquee-arch-browser.png",
+      "sha256": "32c64bce189db337a92e1dc4daf56d85d55a62f92ee657c2a30cf685f821a0a4",
+      "bytes": 79436,
+      "matchesRemote": true
+    },
+    {
+      "file": "marquee-arch-validator.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/marquee-arch-validator.json",
+      "sha256": "04546397b5f862b49fcceab6fc2d0ef2d082d057978c6c399ef3ef94c976a75e",
+      "bytes": 870,
+      "matchesRemote": true
+    },
+    {
+      "file": "roulette-dais.glb",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/roulette-dais.glb",
+      "sha256": "574644bcccf8038cb929aebd1d63eebbfbce976e732ec314e388cdef8cd52df6",
+      "bytes": 234276,
+      "matchesRemote": true
+    },
+    {
+      "file": "roulette-dais-beauty.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/roulette-dais-beauty.png",
+      "sha256": "34f625e7139ff2aa9a6eedfd9d31cffd8c1e6eb615cb60012ba96d84d4c4d573",
+      "bytes": 966085,
+      "matchesRemote": true
+    },
+    {
+      "file": "roulette-dais-side.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/roulette-dais-side.png",
+      "sha256": "fcd1190b019e6f30fa0a99f6b3eeb09923cf526fc82fe8aa37333a8dc94fe69a",
+      "bytes": 876341,
+      "matchesRemote": true
+    },
+    {
+      "file": "roulette-dais-browser.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/roulette-dais-browser.png",
+      "sha256": "136ad6915571167edc509e29720a5f570219ab3ad152be3ee649715249943e96",
+      "bytes": 118209,
+      "matchesRemote": true
+    },
+    {
+      "file": "roulette-dais-validator.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/roulette-dais-validator.json",
+      "sha256": "53450ea946e736ae1f6f9c31304c47746ab62af7d7d1a39ecbf2216ee649418f",
+      "bytes": 871,
+      "matchesRemote": true
+    },
+    {
+      "file": "slot-cabinet.glb",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/slot-cabinet.glb",
+      "sha256": "06f1460afc516a4dd56c8ab33cc4ba84c2bcdb5a33f954cf6060af06fd9aabe3",
+      "bytes": 194096,
+      "matchesRemote": true
+    },
+    {
+      "file": "slot-cabinet-beauty.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/slot-cabinet-beauty.png",
+      "sha256": "6f5d8f78ab34fd71833dffdc9e9c743cbd79ce65469c05953316e22cda9b57b2",
+      "bytes": 987906,
+      "matchesRemote": true
+    },
+    {
+      "file": "slot-cabinet-side.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/slot-cabinet-side.png",
+      "sha256": "9eeff09e7fc449caadea6ac2f74289f0aeece3b8133125973f22c858b9676338",
+      "bytes": 878733,
+      "matchesRemote": true
+    },
+    {
+      "file": "slot-cabinet-browser.png",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/slot-cabinet-browser.png",
+      "sha256": "d6ca93efac49c6afa663df491990d196bf20ca2030b86460fae474c3445f743c",
+      "bytes": 130680,
+      "matchesRemote": true
+    },
+    {
+      "file": "slot-cabinet-validator.json",
+      "artifactPath": "haynes-quest/rat-casino-kit/v001/slot-cabinet-validator.json",
+      "sha256": "ef0048852c59418e531ff726c14b7c14f85261bcf02c8876ed2dff4964860eb2",
+      "bytes": 870,
+      "matchesRemote": true
+    }
+  ]
+}

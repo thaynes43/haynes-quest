@@ -20,7 +20,7 @@ Record the project export and deterministic CLI commands; validator/test results
 
 ## Active decision
 
-PRD003 Q-01 is on Tom's phone. Builder work and non-character authoring can proceed independently. Character modeling starts after the selected concept is inspected with him under DESIGN012.
+Tom answered the world/theme direction on September 23: a full original haunted animatronic parody cast in a spooky retro Rat Casino and Halloween Haynesnightmares mood. The prior Midnight Arcade treatment is too young; its arcade theme is still the right direction. He explicitly put Blender models before more level building. The [six-character concept pitch](../../docs/assets/reviews/rat-casino-ensemble/v001.md) is being inspected with him under DESIGN012 before expensive character modeling. Its cast size and look remain a question, not an approved decision.
 
 ## Released checkpoint · September 23
 

@@ -2,18 +2,127 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 45,
-    "reference_sheet_entries": 7,
-    "model_entries": 32,
-    "model_files": 32,
-    "concept_only_entries": 1,
+    "entries": 50,
+    "reference_sheet_entries": 8,
+    "model_entries": 35,
+    "model_files": 35,
+    "concept_only_entries": 2,
     "audio_entries": 4,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 31,
+    "completed_model_candidates": 34,
     "paused_partial_model_candidates": 1,
     "owner_approved_entries": 1
   },
   "assets": [
+    {
+      "id": "rat-casino-marquee-arch",
+      "title": "Rat Casino marquee arch",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/rat-casino-kit/v001.md#marquee-arch",
+      "concept_images": [
+        "docs/assets/media/rat-casino-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rat-casino-kit/v001/marquee-arch-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/rat-casino-kit/v001/marquee-arch.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate; ready for Tom review; studio only",
+      "checksums": {
+        "docs/assets/media/rat-casino-kit/v001/concept.png": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4",
+        "docs/assets/media/rat-casino-kit/v001/marquee-arch-beauty.png": "4aefc44bfc678f05bde02aaa41e245a5448288cec6910a8c07301a092a803a07",
+        "docs/assets/media/rat-casino-kit/v001/marquee-arch.glb": "1f939c9e11004397f2a7046390d788dd8ab54a0c26450eaa88b1dc983dcd6e8b"
+      }
+    },
+    {
+      "id": "rat-casino-roulette-dais",
+      "title": "Rat Casino roulette dais",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/rat-casino-kit/v001.md#roulette-dais",
+      "concept_images": [
+        "docs/assets/media/rat-casino-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rat-casino-kit/v001/roulette-dais-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/rat-casino-kit/v001/roulette-dais.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate; ready for Tom review; studio only",
+      "checksums": {
+        "docs/assets/media/rat-casino-kit/v001/concept.png": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4",
+        "docs/assets/media/rat-casino-kit/v001/roulette-dais-beauty.png": "34f625e7139ff2aa9a6eedfd9d31cffd8c1e6eb615cb60012ba96d84d4c4d573",
+        "docs/assets/media/rat-casino-kit/v001/roulette-dais.glb": "574644bcccf8038cb929aebd1d63eebbfbce976e732ec314e388cdef8cd52df6"
+      }
+    },
+    {
+      "id": "rat-casino-slot-cabinet",
+      "title": "Rat Casino slot cabinet",
+      "category": "world-and-keepsakes",
+      "review": "docs/assets/reviews/rat-casino-kit/v001.md#slot-cabinet",
+      "concept_images": [
+        "docs/assets/media/rat-casino-kit/v001/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rat-casino-kit/v001/slot-cabinet-beauty.png"
+      ],
+      "models": [
+        "docs/assets/media/rat-casino-kit/v001/slot-cabinet.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate; ready for Tom review; studio only",
+      "checksums": {
+        "docs/assets/media/rat-casino-kit/v001/concept.png": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4",
+        "docs/assets/media/rat-casino-kit/v001/slot-cabinet-beauty.png": "6f5d8f78ab34fd71833dffdc9e9c743cbd79ce65469c05953316e22cda9b57b2",
+        "docs/assets/media/rat-casino-kit/v001/slot-cabinet.glb": "06f1460afc516a4dd56c8ab33cc4ba84c2bcdb5a33f954cf6060af06fd9aabe3"
+      }
+    },
+    {
+      "id": "rat-casino-kit",
+      "title": "Rat Casino · environment concept",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/rat-casino-kit/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-kit/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected construction reference; three separately inventoried static model candidates; Tom exact-version review pending",
+      "checksums": {
+        "docs/assets/media/rat-casino-kit/v001/concept.png": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4"
+      }
+    },
+    {
+      "id": "rat-casino-ensemble",
+      "title": "Rat Casino animatronic ensemble",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/rat-casino-ensemble/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "concept-only six-character visual pitch; Tom lineup/look feedback pending; no model or gameplay use",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v001/concept.png": "c99f7a747ffe3e8369291a0a288a98c06c929d9bc8608ab7f19f0612e54591c1"
+      }
+    },
     {
       "id": "toybox-block-tower",
       "title": "Skyline toybox block tower",
