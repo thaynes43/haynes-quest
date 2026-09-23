@@ -1,6 +1,6 @@
 # WO098 · Rat Pit Boss Blender character v001
 
-- **Status:** Ready for exclusive Blender author
+- **Status:** Paused before construction for Tom's node restart; exclusive scene released
 - **Owner:** Fresh native GPT-6 Astra subagent at max, `fork_turns: none`
 - **Asset/version:** `rat-pit-boss/v001`
 - **Scene lease:** Exclusive shared Blender scene from health/idle check through saved release; remote artifacts under `/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v001/`
@@ -25,3 +25,7 @@ Provide exactly one working clip for each runtime-required name `idle`, `move`, 
 Save an editable `.blend`, construction/export scripts, the exact `rat-pit-boss.glb`, front/side/back and three-quarter beauty stills, a useful motion-contact sheet or short MP4, measured bounds/triangle/material/file-size report, remote artifact manifest with SHA-256 and scene-release marker. Validate the exact exported GLB with Khronos glTF Validator for zero errors/warnings. Reimport the GLB with Three.js and run the enemy animation adapter's clip contract: each exact lowercase clip has positive duration, tracks resolve below the loaded scene root, no scene-root transform track exists, sampled deformation actually occurs and every clip visibly changes a rendered frame. Verify orientation, scale and materials too. Inspect the exact model in a real Chromium browser viewer with clip playback and record any page/console/HTTP/external failures. A Blender still alone is insufficient. Compare matching angles with the v002 concept and correct silhouette/material faults before declaring the export reviewable.
 
 Transfer the required public-safe artifacts to `docs/assets/media/rat-pit-boss/v001/` in the current cast worktree, verify remote/local hashes and retain a checked master backup under `/home/dev/artifacts/haynes-quest/rat-casino-cast/rat-pit-boss/v001/`. The lead will write the user-facing review, update inventory/card/thumbnail, run strict docs and browser audits, then publish the studio candidate. Tell the lead exact filenames, checksums, dimensions, triangles, materials, clips, validator and browser results, any deviations and that the live scene is saved/released. The GLB remains studio-only until Tom reviews the exact version and later gameplay gates are met.
+
+## Pause checkpoint · September 23
+
+The fresh Astra author visually inspected v002 and drafted construction source, then stopped at Tom's node restart request **before executing geometry**. No Rat Pit Boss model, GLB, rig or clip exists. The remote scene still holds the unchanged Rat Casino prop master and no authoring job is running. The durable local backup `/home/dev/artifacts/haynes-quest/rat-casino-cast/rat-pit-boss/v001/checkpoint-release.json` lists source scripts, SHA-256 hashes, prior-master identity and exact resume steps. A new exclusive Astra scene author must first check service readiness/ownership, then execute and correct the script; do not treat this checkpoint as an asset candidate.
