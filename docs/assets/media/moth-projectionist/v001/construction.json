@@ -2354,12 +2354,12 @@
   },
   "files": {
     "moth-projectionist.blend": {
-      "bytes": 2157735,
-      "sha256": "2ea9c6c06a8d1ad3c755460db1038ba5ddc3d8a963a451c80de5f71027624064"
+      "bytes": 2175200,
+      "sha256": "ba4eb25f1c4f14745b1132bc8a63cddde0c5a4de44ecc6f40b2cc189d26923fc"
     },
     "moth-projectionist.glb": {
-      "bytes": 1420712,
-      "sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9"
+      "bytes": 1420724,
+      "sha256": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1"
     },
     "pigment.png": {
       "bytes": 262765,
@@ -2388,5 +2388,13 @@
         0.48
       ]
     }
+  },
+  "metadata_correction": {
+    "work_order": "WO105",
+    "created_utc": "2026-09-23T22:18:17.533802+00:00",
+    "candidate_status": "WO103 Moth Projectionist v001 studio candidate; exact owner art and later gameplay/device gates remain pending.",
+    "original_glb_sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
+    "original_master_sha256": "2ea9c6c06a8d1ad3c755460db1038ba5ddc3d8a963a451c80de5f71027624064",
+    "method": "Opened exact original master and re-exported with identical options; changed scene metadata and embedded source text only."
   }
 }

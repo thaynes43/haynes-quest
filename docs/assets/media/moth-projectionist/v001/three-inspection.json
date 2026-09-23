@@ -1,7 +1,7 @@
 {
   "asset_id": "moth-projectionist",
   "version": "v001",
-  "glb_sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
+  "glb_sha256": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1",
   "three_revision": "186",
   "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Wing/body clearance uses a conservative chest-local depth separating axis; intended bolted hinge/spar attachment excluded from panel surface group. Antenna base attachment intentionally touches head; distal feather points are checked separately. Contact measures physical shutter, wing and projector gesture, with no beam or damage claim.",
   "rest_bounds_y_up": {

@@ -12,6 +12,7 @@ const primitives=gltf.meshes.flatMap(m=>m.primitives);
 const triangles=primitives.reduce((n,p)=>n+gltf.accessors[p.indices].count/3,0);
 const clips=(gltf.animations||[]).map(a=>({name:a.name,duration_s:Math.max(...a.samplers.map(s=>gltf.accessors[s.input].max[0])),channels:a.channels.length}));
 const checks={gltf_2:gltf.asset.version==='2.0',khronos_no_errors:report.issues.numErrors===0,khronos_no_warnings:report.issues.numWarnings===0,
+ correct_scene_identity:gltf.scenes.every(s=>s.extras?.work_order==='WO103'&&s.extras?.candidate_status?.startsWith('WO103 Moth Projectionist v001')&&!s.extras?.candidate_status?.includes('WO102')),
  five_exact_clips:clips.map(c=>c.name).sort().join()===['idle','move','attack','hit','defeat'].sort().join(),positive_animated_clips:clips.every(c=>c.duration_s>0&&c.channels>0),
  triangle_budget_15000:triangles<=15000,material_budget_2:gltf.materials.length<=2,primitive_budget_2:primitives.length<=2,glb_budget_2_mib:data.length<=2097152,
  one_embedded_atlas:gltf.images?.length===1,embedded_resources:[...(gltf.buffers||[]),...(gltf.images||[])].every(r=>!r.uri),no_required_extensions:!(gltf.extensionsRequired?.length),

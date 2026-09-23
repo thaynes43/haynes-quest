@@ -360,8 +360,8 @@
       "gameplay_use": "none",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
-        "docs/assets/media/moth-projectionist/v001/moth-projectionist.glb": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
-        "docs/assets/media/moth-projectionist/v001/moth-projectionist.blend": "2ea9c6c06a8d1ad3c755460db1038ba5ddc3d8a963a451c80de5f71027624064",
+        "docs/assets/media/moth-projectionist/v001/moth-projectionist.glb": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1",
+        "docs/assets/media/moth-projectionist/v001/moth-projectionist.blend": "ba4eb25f1c4f14745b1132bc8a63cddde0c5a4de44ecc6f40b2cc189d26923fc",
         "docs/assets/media/moth-projectionist/v001/beauty.png": "825ac3b8176b1ec9f9c8e9c163cf5d0fe480e439c8e985b5793d40fb76ba1724",
         "docs/assets/media/moth-projectionist/v001/front.png": "301cc6dd34bc024b0dd284af5f136fd541e9d3efb6fe03329a37eac8dc43cb66",
         "docs/assets/media/moth-projectionist/v001/side.png": "d36bf4fcb060d66c700d3b93db0937c6aa8ac222a65e7d1cb42527862911aea8",
@@ -371,16 +371,17 @@
         "docs/assets/media/moth-projectionist/v001/motion-contact-sheet.png": "3b8fb382b17478b3fc2d8a064142ba51ecdc1952433591173ee1112ec0c9d376",
         "docs/assets/media/moth-projectionist/v001/attack-strip.png": "c3322aed73410e6a8e034437c574bf8a246fd28ffa7e06dfaf19afb2372adbd4",
         "docs/assets/media/moth-projectionist/v001/attack-gameplay-scale.png": "dad5bbaed2edba32ebc4319181f0468e89dbee979df03f955304d28cc2f31004",
-        "docs/assets/media/moth-projectionist/v001/construction.json": "73ceff39b8760cceb486339e2bc105bfbdee701f0dab7661edcc9859b0d8ff17",
-        "docs/assets/media/moth-projectionist/v001/validation.json": "59eb411977c1762b6738b5c15e243370071e18860c57f42aade51a1be86290e5",
-        "docs/assets/media/moth-projectionist/v001/three-inspection.json": "a6c10395cbcea9899c9d53a0f42045fc4bd412985fc63ceb805dd24e2bf44ecf",
-        "docs/assets/media/moth-projectionist/v001/browser-inspection.json": "3f78cb6f39f50e6931bb78abd506071e7f8fbae91a55b34f9facd18a51ddda20",
-        "docs/assets/media/moth-projectionist/v001/visual-review.json": "0ebf3d9f386598015c0604d643cbbf7c81a61619034feab9ec3a2cc1077df361",
-        "docs/assets/media/moth-projectionist/v001/scene-release.json": "885649dc7d776549dea62055b1c7b8dfdcb5ad536645c3599d076cb4af591b59",
-        "docs/assets/media/moth-projectionist/v001/provenance.json": "92ba6c2b244b760b79895ad6730cbee3f3d9855da682ee1af830ad65eff2efa0",
-        "docs/assets/media/moth-projectionist/v001/tool-settings.json": "76fafcfe6df1538ac3fd08d0dd56015b1f00d6b530cbd2b75d45790440a70257",
+        "docs/assets/media/moth-projectionist/v001/construction.json": "45a01053b292b1722f9c1e914aef483ed1efd5c88270096d1591fccbe96e3da8",
+        "docs/assets/media/moth-projectionist/v001/validation.json": "ec2189acd9a3cc3f442948e8f4cf164779f8b4bb4ab4d7af18f5aeed39ffbd1d",
+        "docs/assets/media/moth-projectionist/v001/three-inspection.json": "9fa9d9260ac630268182caaa800755c0bab56e1aab824b75ded29e7983950464",
+        "docs/assets/media/moth-projectionist/v001/browser-inspection.json": "3146c0611d267cbd29962f79d1257c15dd2d43c0235d72a376d1d2236cc93871",
+        "docs/assets/media/moth-projectionist/v001/visual-review.json": "837055ac9ea9a37acaed345c12b7538774f2c0ea18e8e244ecb7485dc9b7995c",
+        "docs/assets/media/moth-projectionist/v001/metadata-correction.json": "4a46ce468d28f409e4c21fe9b03000fbec1ad7a5df1bcf2af3ef0aa2784348b7",
+        "docs/assets/media/moth-projectionist/v001/scene-release.json": "ad8d055504b30ba5d27c487ce14154777badb1ae8a967fb1d72e56bf6ee63d82",
+        "docs/assets/media/moth-projectionist/v001/provenance.json": "8e8a87f8d60566be9df4a6d2f1b63aee368004f240da7dae530df746ec1f5513",
+        "docs/assets/media/moth-projectionist/v001/tool-settings.json": "042e16c6cbf220a20949b0bd3352e69b91ff2360b61c0f3355d94772c79ace3a",
         "docs/assets/media/moth-projectionist/v001/source-prompt.txt": "6c36c7d4fa2a426fefda549314fa7bf6a55f6cef7b61500b570d4d4694d3722a",
-        "docs/assets/media/moth-projectionist/v001/sha256-manifest.json": "f7b9fcd3ea5fc200e4ac898a4cf1b663bdc16e38233a8660375aaafe6778fc7c"
+        "docs/assets/media/moth-projectionist/v001/sha256-manifest.json": "a3cf583a0690b46ce161c7a999f0772d281411959387a6a8331a7f6af22edfc2"
       }
     },
     {

@@ -35,6 +35,7 @@ if sys.argv[1]=='stage':
  for p in sorted((LOCAL/'final-preview').iterdir()):
   if p.suffix=='.png':upload('final-preview/'+p.name)
  for name in ['three-inspection.json','visual-review.json','provenance.json','source-prompt.txt','tool-settings.json']:upload(name)
+ if (LOCAL/'metadata-correction.json').exists():upload('metadata-correction.json')
  for name in ['moth-projectionist.blend','moth-projectionist.glb','pigment.png','construction.json','validation.json','source/rig-rest.json']:fetch(name)
  reports=[json.loads((LOCAL/name).read_text()) for name in ['validation.json','three-inspection.json','browser-inspection.json']]
  expected=sha((LOCAL/'moth-projectionist.glb').read_bytes())
@@ -45,6 +46,7 @@ elif sys.argv[1]=='finish':
  for name in ['scene-lease.json','scene-release.json','live-scene-release.blend']:fetch(name)
  assert json.loads((LOCAL/'scene-release.json').read_text())['scene_lease']=='released'
  names=['moth-projectionist.blend','moth-projectionist.glb','pigment.png','construction.json','validation.json','three-inspection.json','browser-inspection.json','visual-review.json','provenance.json','source-prompt.txt','tool-settings.json','scene-lease.json','scene-release.json','live-scene-release.blend','front.png','side.png','back.png','beauty.png','detail.png','hinge.png','motion-contact-sheet.png','attack-strip.png','attack-gameplay-scale.png']
+ if (LOCAL/'metadata-correction.json').exists():names.append('metadata-correction.json')
  names += ['source/'+p.name for p in sorted((LOCAL/'source').iterdir()) if p.is_file()]
  names += ['final-preview/'+p.name for p in sorted((LOCAL/'final-preview').iterdir()) if p.suffix=='.png']
  files=[]
@@ -56,6 +58,8 @@ elif sys.argv[1]=='finish':
    remote=urlopen(BASE+name,timeout=40).read();assert sha(data)==sha(remote),name
   files.append({'path':name,'bytes':len(data),'sha256':sha(data),'remote_local_match':True})
  record={'work_order':'WO103','asset_id':'moth-projectionist','version':'v001','created_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'local_root':str(LOCAL),'remote_root':REMOTE,'scene_lease':'released','candidate_status':'Validated studio candidate; exact owner review pending; no gameplay mapping','files':files,'all_remote_local_hashes_match':True,'verification_method':'MCP SHA-256 for source/script/text extensions (artifact HTTP route does not serve them); HTTP byte roundtrip for media, JSON and masters.','excluded_checkpoints':['early-preview/','revised-preview/','revised-attack-preview/','moth-projectionist-checkpoint.glb','moth-projectionist-construction.blend'],'manifest_self_hash':'Excluded to avoid recursive hashing.'}
+ if (LOCAL/'metadata-correction.json').exists():
+  record['correction_work_order']='WO105';record['excluded_checkpoints']+=['pre-WO105-metadata-correction/','corrected-preview/']
  (LOCAL/'sha256-manifest.json').write_text(json.dumps(record,indent=2)+'\n');upload('sha256-manifest.json')
  print(json.dumps({'stage':'complete','files':len(files),'manifest_sha256':sha((LOCAL/'sha256-manifest.json').read_bytes()),'scene_lease':'released','glb_sha256':sha((LOCAL/'moth-projectionist.glb').read_bytes())}))
 else:raise SystemExit('Use stage or finish')

@@ -2,8 +2,8 @@
   "asset_id": "moth-projectionist",
   "version": "v001",
   "file": "moth-projectionist.glb",
-  "sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
-  "bytes": 1420712,
+  "sha256": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1",
+  "bytes": 1420724,
   "triangles": 14698,
   "draw_primitives": 2,
   "materials": [
@@ -92,6 +92,7 @@
     "gltf_2": true,
     "khronos_no_errors": true,
     "khronos_no_warnings": true,
+    "correct_scene_identity": true,
     "five_exact_clips": true,
     "positive_animated_clips": true,
     "triangle_budget_15000": true,
@@ -110,7 +111,7 @@
     "uri": "moth-projectionist.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-09-23T21:49:38.375Z",
+    "validatedAt": "2026-09-23T22:19:02.575Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,

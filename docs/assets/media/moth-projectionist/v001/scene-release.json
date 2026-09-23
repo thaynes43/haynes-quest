@@ -2,12 +2,12 @@
   "work_order": "WO103",
   "asset_id": "moth-projectionist",
   "version": "v001",
-  "released_utc": "2026-09-23T21:53:07.083410+00:00",
+  "released_utc": "2026-09-23T22:23:35.651026+00:00",
   "scene_owner": "none",
   "scene_lease": "released",
   "saved_live_scene": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/live-scene-release.blend",
-  "saved_live_scene_sha256": "da5efade6fef5207b4b68f953fba6a16b8d878d6f7ba0e6f379d7b1509a617a5",
-  "glb_sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
+  "saved_live_scene_sha256": "106464b9d3eb81890499a0d3850dc16a360fa1ad76d69537b95be231e9f0daf5",
+  "glb_sha256": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1",
   "author_jobs_running": false,
   "job_checks": {
     "RENDER": false,
@@ -54,7 +54,38 @@
       "path": "/workspace/haynes-quest/rat-casino-cast/fox-card-shark/v001/fox-card-shark.blend",
       "exists": true,
       "sha256": "d8868821affad96e55a3b63d0908e0bed88f7bf24626b7f22d77a73969554c6c"
+    },
+    "golden_master": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/golden-after-hours-rat.blend",
+      "exists": true,
+      "sha256": "f08904c3ebe10813065e62f2d0d2d1f0072f39f889e696218f767960e72a46ae"
+    },
+    "golden_release": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/live-scene-release.blend",
+      "exists": true,
+      "sha256": "0c6f20cb314b9a6cd2f7b5c108462a502a659513ea4ed70f765fc050e818b4e8"
+    },
+    "golden_glb": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/golden-after-hours-rat.glb",
+      "exists": true,
+      "sha256": "b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184"
+    },
+    "moth_original_master": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/pre-WO105-metadata-correction/moth-projectionist.blend",
+      "exists": true,
+      "sha256": "2ea9c6c06a8d1ad3c755460db1038ba5ddc3d8a963a451c80de5f71027624064"
+    },
+    "moth_original_glb": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/pre-WO105-metadata-correction/moth-projectionist.glb",
+      "exists": true,
+      "sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9"
+    },
+    "moth_original_release": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/pre-WO105-metadata-correction/live-scene-release.blend",
+      "exists": true,
+      "sha256": "da5efade6fef5207b4b68f953fba6a16b8d878d6f7ba0e6f379d7b1509a617a5"
     }
   },
-  "scope": "Studio candidate only. No levels, gameplay mapping or owner-art approval."
+  "scope": "Studio candidate only. No levels, gameplay mapping or owner-art approval.",
+  "correction_work_order": "WO105"
 }

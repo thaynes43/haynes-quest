@@ -1,7 +1,7 @@
 {
   "asset_id": "moth-projectionist",
   "version": "v001",
-  "glb_sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
+  "glb_sha256": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1",
   "blender_version": "4.5.13 LTS",
   "units": "meters; Blender Z-up/+Y forward, exported Three Y-up/-Z forward",
   "root": "stationary floor-centered identity/unit scale",
@@ -64,7 +64,7 @@
   "budgets": {
     "triangles": 14698,
     "materials": 2,
-    "bytes": 1420712,
+    "bytes": 1420724,
     "within_all_limits": true
   },
   "measured_dimensions_m": [
@@ -88,5 +88,11 @@
   "attack_contact_fraction": 0.625,
   "minimum_wing_body_clearance_m": 0.020579796836592945,
   "minimum_distal_antenna_head_clearance_m": 0.006264509739165369,
-  "deviations": []
+  "deviations": [],
+  "metadata_correction": {
+    "work_order": "WO105",
+    "report": "metadata-correction.json",
+    "export_options_unchanged": true,
+    "all_three_measurements_unchanged": true
+  }
 }

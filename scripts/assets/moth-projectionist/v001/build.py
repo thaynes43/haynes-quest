@@ -38,6 +38,7 @@ def atlas():
  (ROOT/'pigment.png').write_bytes(png)
 atlas();C.setup('v001',1.65,1.25,2,[('Matte worn teal felt, faded wings and simple pale face',.98,0),('Old practical glass, shutter and dull bronze joints',.62,.045)])
 sc=bpy.context.scene;sc['work_order']='WO103';sc['scene_owner']='/root/moth_classic_blender';sc['scene_lease']='active'
+sc['candidate_status']='WO103 Moth Projectionist v001 studio candidate; exact owner art and later gameplay/device gates remain pending.'
 sc['source_concept_sha256']='4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb';sc['authoring_model']='gpt-6-astra max';sc['orientation']='Blender +Z up/+Y forward; glTF +Y up/-Z forward; stationary identity floor root'
 for t in list(bpy.data.texts):bpy.data.texts.remove(t)
 for im in list(bpy.data.images):

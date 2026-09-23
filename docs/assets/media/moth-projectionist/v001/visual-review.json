@@ -2,26 +2,13 @@
   "work_order": "WO103",
   "asset_id": "moth-projectionist",
   "version": "v001",
-  "created_utc": "2026-09-23T21:52:13.986421+00:00",
-  "glb_sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
+  "created_utc": "2026-09-23T22:22:53.328313+00:00",
+  "glb_sha256": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1",
   "method": "Real Chromium WebGL exported-GLB screenshots and real-time playback, followed by Astra visual inspection. Normal scale and 35% camera zoom use the same exact asset; small attack strip uses crops of actual 35% screenshots.",
   "reviewed_files": [
-    "front.png",
-    "side.png",
-    "back.png",
     "beauty.png",
-    "detail.png",
-    "hinge.png",
     "motion-contact-sheet.png",
-    "attack-strip.png",
-    "attack-gameplay-scale.png",
-    "final-preview/attack-front-windup.png",
-    "final-preview/attack-front-contact.png",
-    "final-preview/defeat-side-held.png",
-    "final-preview/idle-small-0p625.png",
-    "final-preview/move-small-0p625.png",
-    "final-preview/hit-small-0p625.png",
-    "final-preview/defeat-small-0p625.png"
+    "final-preview/all-clips-small-contact-sheet.png"
   ],
   "lead_corrections": [
     "Softened spotted fabric pigment into subtle felt wear.",
@@ -48,5 +35,13 @@
   "limits": [
     "Software WebGL inspection is not a physical Safari/iPhone/iPad performance or device acceptance test.",
     "No gameplay mapping, projectile, damage volume, beam or encounter was authored."
-  ]
+  ],
+  "correction_work_order": "WO105",
+  "metadata_correction_review": {
+    "report": "metadata-correction.json",
+    "all_56_original_preview_rasters_byte_identical": true,
+    "all_five_clips_visually_reinspected_at_normal_and_35_percent_scale": true,
+    "observed_changes_to_geometry_materials_animation_or_silhouette": false,
+    "method": "Fresh corrected-GLB Chromium playback and raster generation; Astra inspected the beauty, all-clip motion sheet and a 20-frame 35% contact sheet."
+  }
 }
