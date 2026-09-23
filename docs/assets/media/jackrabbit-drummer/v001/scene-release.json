@@ -1,0 +1,45 @@
+{
+  "work_order": "WO101",
+  "asset_id": "jackrabbit-drummer",
+  "version": "v001",
+  "released_utc": "2026-09-23T21:11:56.807611+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "saved_live_scene": "/workspace/haynes-quest/rat-casino-cast/jackrabbit-drummer/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "74dbf6ffeebe084c79f6531c6ede6f24a609a1b0b15247500a3d1f665352a249",
+  "glb_sha256": "00096fb0bdef15c5b45a32a2265e2744d91c54b10004014de5e45e5682672da3",
+  "author_jobs_running": false,
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false
+  },
+  "prior_masters_unchanged": {
+    "rat_v002": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v002/rat-pit-boss.blend",
+      "exists": true,
+      "sha256": "498afc3120eb223164baa7d7da05e29846d2f99f89389cfb7364fa62a4aa1761"
+    },
+    "rat_v001": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v001/rat-pit-boss.blend",
+      "exists": true,
+      "sha256": "1796a6e96ea435eba6eee870394a75895fc025984e704f4b8669d5cad3dcd3ef"
+    },
+    "rat_casino": {
+      "path": "/workspace/haynes-quest/rat-casino-kit/v001/rat-casino-kit.blend",
+      "exists": true,
+      "sha256": "99791504d602bf3f3abd06182f4c00e3b68dd954a14b5a05843c8208752c609e"
+    },
+    "chick_flia_v001": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/chick-flia/v001/chick-flia.blend",
+      "exists": true,
+      "sha256": "fec0fae84e0d5a50a0b6706f21decd4baeb48e8b7be6d0b616cf68932a9d3aed"
+    },
+    "chick_flia_release": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/chick-flia/v001/live-scene-release.blend",
+      "exists": true,
+      "sha256": "2512360ce88baaca745045be75f5920427b183e50920dfcb1047f21534e0bd9d"
+    }
+  },
+  "scope": "Studio candidate only. No levels, gameplay mapping or owner-art approval."
+}

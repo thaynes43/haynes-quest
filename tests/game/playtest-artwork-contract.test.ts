@@ -111,17 +111,27 @@ describe("current playtest artwork manifest", () => {
       friendly_catalog: "friendly-catalog-v1",
     });
     expect(inventory.counts).toMatchObject({
-      entries: 50,
+      entries: 57,
       fixture_illustration_sets: 1,
       reference_sheet_entries: 8,
-      model_entries: 35,
-      model_files: 35,
-      completed_model_candidates: 34,
-      paused_partial_model_candidates: 1,
+      model_entries: 42,
+      model_files: 42,
+      completed_model_candidates: 40,
+      paused_partial_model_candidates: 2,
       concept_only_entries: 2,
       audio_entries: 4,
       owner_approved_entries: 1,
     });
+    expect(
+      inventory.assets
+        .filter(
+          (entry) =>
+            entry.models.length > 0 &&
+            /paused partial model/i.test(entry.state),
+        )
+        .map((entry) => entry.id)
+        .sort(),
+    ).toEqual(["nap-captain", "rat-pit-boss-v001-checkpoint"]);
 
     const expectedPaths = runtimeModelPaths();
     expect(expectedPaths).toHaveLength(23);

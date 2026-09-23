@@ -1,0 +1,28 @@
+{
+  "method": "Union of all exported skinned vertices at 60 Hz through each clip plus rest pose, padded by 0.005 m per axis. Rechecked against final GLB.",
+  "sample_glb_sha256": "e531f2f7e7cc0df87ad201bd33a948c773f2a36ae9bbe338ad877a77b99bd820",
+  "safe_culling_envelope": {
+    "min": [
+      -0.607441,
+      -0.005001,
+      -0.750239
+    ],
+    "max": [
+      0.607441,
+      1.965,
+      0.302723
+    ]
+  },
+  "sampled_bounds_y_up": {
+    "min": [
+      -0.6024405071133256,
+      -9.686858981666127e-07,
+      -0.7452386600199715
+    ],
+    "max": [
+      0.6024405071133256,
+      1.9600000973124387,
+      0.29772293008863926
+    ]
+  }
+}

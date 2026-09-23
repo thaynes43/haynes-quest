@@ -1,0 +1,40 @@
+{
+  "asset_id": "golden-after-hours-rat",
+  "version": "v001",
+  "work_order": "WO104",
+  "created_utc": "2026-09-23T22:11:29.944214+00:00",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "author": "/root/golden_classic_blender",
+  "concept_generation": "Driving Astra; see exact original prompt and source record in rat-casino-ensemble/v003. Blender author generated no new images.",
+  "inputs": [
+    {
+      "role": "ensemble",
+      "repository_path": "docs/assets/media/rat-casino-ensemble/v003/concept.png",
+      "sha256": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f"
+    },
+    {
+      "role": "construction",
+      "repository_path": "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png",
+      "sha256": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782"
+    },
+    {
+      "role": "prompt",
+      "repository_path": "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat-prompt.txt",
+      "sha256": "ccea7a5ea925079a97ba82fc4fc38c9830f5a2699245f44aa32ae31bc63b1e3a"
+    }
+  ],
+  "construction": "All character geometry independently scripted with original primitive/mesh helpers. No Rat Pit Boss face or costume geometry reused. Procedural texture atlas authored from deterministic palette and faded cloth fields.",
+  "shared_tooling": "Local copy of earlier character primitive, skin, GLB export, supported MCP transfer and browser evidence helpers; original asset geometry, articulation and texture palette authored by WO104.",
+  "excluded_inputs": [
+    "Superseded glossy v002 golden studies",
+    "franchise images",
+    "downloaded meshes or textures",
+    "private media",
+    "family likenesses"
+  ],
+  "source_reference_note": "The lead-rat sheet referenced by the original image prompt supplied construction-language consistency to the image concept only. The Blender mesh does not copy the lead-rat face/costume.",
+  "owner_approval": "pending exact-version review",
+  "gameplay_use": false,
+  "lead_review": "Closed faceplate gasket/latch, seated ear trim and subdued mustard wear accepted for final candidate validation in the lead task; final technical/motion review follows exact hashes."
+}

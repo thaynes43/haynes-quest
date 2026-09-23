@@ -73,6 +73,13 @@
       "sha256": "1288b40fd112d078ce1c4832916f0e4f325f7bc29af34b3adc530c05994ad9bd"
     },
     {
+      "source": "docs/assets/media/chick-flia/v001/beauty.png",
+      "source_sha256": "8872e6f300911749c95a9649924896a0a2c0aae2a33bcd5a0ac33517602e0807",
+      "path": "docs/assets/media/catalog-thumbnails/v001/b72c2f131107d0eb.webp",
+      "bytes": 7926,
+      "sha256": "d05b81af50de22ff8d07a88b4a5e33434d53db6135cea7afd00f7f1a837b932a"
+    },
+    {
       "source": "docs/assets/media/clearing-path-kit/v001/concept.png",
       "source_sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042",
       "path": "docs/assets/media/catalog-thumbnails/v001/bb4f038050d6453a.webp",
@@ -192,6 +199,27 @@
       "sha256": "80c2c1a107a88042809cc7a179d335da1072b003d7989519136b7bbb27b3c09b"
     },
     {
+      "source": "docs/assets/media/fox-card-shark/v001/beauty.png",
+      "source_sha256": "304707cf19cae515a0a3736cbac9f45cb1eec2b5a230aaf9c50dad7cf8e7b2cc",
+      "path": "docs/assets/media/catalog-thumbnails/v001/9f143c2b2ec00ffb.webp",
+      "bytes": 7794,
+      "sha256": "a078ddfeaaf8ec4fc899ab6876d95f457bb47b019bb25a3929bf1047dc3e62ab"
+    },
+    {
+      "source": "docs/assets/media/golden-after-hours-rat/v001/beauty.png",
+      "source_sha256": "7523ea63bb66c61d5d5508f9624197ce5c38a7b428d6a443a785b33b66123f72",
+      "path": "docs/assets/media/catalog-thumbnails/v001/65a4d2e6b9d0e070.webp",
+      "bytes": 8906,
+      "sha256": "21b996d271a2d565cf89896760a3a1b3eea21765b58e1f4136d4c94872936c00"
+    },
+    {
+      "source": "docs/assets/media/jackrabbit-drummer/v001/beauty.png",
+      "source_sha256": "886f370ce3c8b27406435f8e354834c8aae82eb35144051137c2e7c8890aee02",
+      "path": "docs/assets/media/catalog-thumbnails/v001/7b9d7f82100c5daa.webp",
+      "bytes": 7570,
+      "sha256": "1fb62ed15de292eaa23b1881a99dfb92047a252d7020b1dc591f38afef0271a4"
+    },
+    {
       "source": "docs/assets/media/loop-dancer/v001/beauty.png",
       "source_sha256": "0dc4f6a6cdaabf33493b405204634d597895fdcc8b0b7e799ac7192f7db35998",
       "path": "docs/assets/media/catalog-thumbnails/v001/d3ea5ccdf2a63a03.webp",
@@ -269,6 +297,13 @@
       "sha256": "306497c08c74ef2a1bfb05b2e1060985291c102727b77a41f08672ec9e404752"
     },
     {
+      "source": "docs/assets/media/moth-projectionist/v001/beauty.png",
+      "source_sha256": "825ac3b8176b1ec9f9c8e9c163cf5d0fe480e439c8e985b5793d40fb76ba1724",
+      "path": "docs/assets/media/catalog-thumbnails/v001/fbb8d260e003d630.webp",
+      "bytes": 9134,
+      "sha256": "d63a54d405007f291ee2b3e0117cc975db16edc3acf1734b7c4137c13ba735fa"
+    },
+    {
       "source": "docs/assets/media/movement-landed/v001/waveform.svg",
       "source_sha256": "51f086486e7c1e1e01c00fd365a139ef1a75b7d789bbd879bb7e9a4f32ce9e06",
       "path": "docs/assets/media/catalog-thumbnails/v001/cd8bcf785cf094f2.webp",
@@ -325,11 +360,60 @@
       "sha256": "2618c041dc7f4cfa99411bef15427be5cd767f3470962e09170825bf680c95a0"
     },
     {
-      "source": "docs/assets/media/rat-casino-ensemble/v001/concept.png",
-      "source_sha256": "c99f7a747ffe3e8369291a0a288a98c06c929d9bc8608ab7f19f0612e54591c1",
-      "path": "docs/assets/media/catalog-thumbnails/v001/c2a31b3b8c678576.webp",
-      "bytes": 52410,
-      "sha256": "e8abdf0cabd31edc2cfca0e7adf22fbb6e97bd7cdec5d5b293fa13e4eff36598"
+      "source": "docs/assets/media/rat-casino-ensemble/v002/concept.png",
+      "source_sha256": "3f0b6894d8136cdd40b61701ac1b32378e2e182dce842ae4a191641e266897d6",
+      "path": "docs/assets/media/catalog-thumbnails/v001/9198fefde16788da.webp",
+      "bytes": 56926,
+      "sha256": "15edce291bf95dfdfb23336a3900918786ee829f10fb9553332a3eb4f952ba0b"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/concept.png",
+      "source_sha256": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
+      "path": "docs/assets/media/catalog-thumbnails/v001/805517d530fd0dd2.webp",
+      "bytes": 31314,
+      "sha256": "ff478f59d3a0d07a7c336ab73c29ecb5c24e27377410af5b9442848f78ebf939"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia.png",
+      "source_sha256": "ee84ce15ce47820db78bbf075c58f1be15caa88f1586b369c5f388d627e80936",
+      "path": "docs/assets/media/catalog-thumbnails/v001/43a706b5c74e9426.webp",
+      "bytes": 32558,
+      "sha256": "07def25a72709d747baa3d9022ecef9f4b6e965db6af8cfba2b967a7b26cf363"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png",
+      "source_sha256": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
+      "path": "docs/assets/media/catalog-thumbnails/v001/dfd3b00a6743df8f.webp",
+      "bytes": 38444,
+      "sha256": "22cd5e4ad7531b2355b0800ce8caac2ddd47c047a5f42490fa3999c72450e8aa"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png",
+      "source_sha256": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
+      "path": "docs/assets/media/catalog-thumbnails/v001/858e699da2011d07.webp",
+      "bytes": 48272,
+      "sha256": "4369960c11ce68c452007412480071727400a77b7255df30a961825ce0db4d2a"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png",
+      "source_sha256": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
+      "path": "docs/assets/media/catalog-thumbnails/v001/8405105c636196ae.webp",
+      "bytes": 30130,
+      "sha256": "95441b4e2abdcc37173deb5b6c86df36360a1a33d35d1e0909fbc0db3a44508c"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png",
+      "source_sha256": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
+      "path": "docs/assets/media/catalog-thumbnails/v001/af80381698071ed6.webp",
+      "bytes": 40972,
+      "sha256": "7e3a0bd3fdb0eab001b38cab4feb9cf6086cb08b6fa4d81713d544d7b2e62f2f"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png",
+      "source_sha256": "b32b2f702e0912585199399e6f49b21be2080e06770ae04ddc3d93fc428caf3f",
+      "path": "docs/assets/media/catalog-thumbnails/v001/01f1c1460f6d96d1.webp",
+      "bytes": 41868,
+      "sha256": "fa76b4a74dd1ccf77e927d71bc16b7b777fd6f4bc211a5877063788a7b6a0cc5"
     },
     {
       "source": "docs/assets/media/rat-casino-kit/v001/concept.png",
@@ -358,6 +442,20 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/f1ad0c4498c3627e.webp",
       "bytes": 11772,
       "sha256": "e4832b4cb8ba329af4913cb8a918592b7bb3ae2b013640c87cbded8b755f2bd6"
+    },
+    {
+      "source": "docs/assets/media/rat-pit-boss/v001/three-quarter.png",
+      "source_sha256": "3ca8fee0d3ab2ba8c759f863870fc952386abd26ce1a63cf7c43a8d11ced0cae",
+      "path": "docs/assets/media/catalog-thumbnails/v001/8eb2cc754f7a4543.webp",
+      "bytes": 8422,
+      "sha256": "8776404286696d5631117cb6e844af558de94ee0d2180a15354eb17f9b94e0d0"
+    },
+    {
+      "source": "docs/assets/media/rat-pit-boss/v002/beauty.png",
+      "source_sha256": "ed4b681f12975ce5cd0b0afd8df03c285e13187252ff60393c916579474e4ce1",
+      "path": "docs/assets/media/catalog-thumbnails/v001/5e202b9474fb5e71.webp",
+      "bytes": 7650,
+      "sha256": "0eb888a81c41b62f0ceaebbf7a628802fc98913d789278f6ee6c49927b8520af"
     },
     {
       "source": "docs/assets/media/signal-moth/v001/beauty.png",

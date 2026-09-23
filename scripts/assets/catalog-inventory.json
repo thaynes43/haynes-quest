@@ -2,15 +2,15 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 50,
+    "entries": 57,
     "reference_sheet_entries": 8,
-    "model_entries": 35,
-    "model_files": 35,
+    "model_entries": 42,
+    "model_files": 42,
     "concept_only_entries": 2,
     "audio_entries": 4,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 34,
-    "paused_partial_model_candidates": 1,
+    "completed_model_candidates": 40,
+    "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
   "assets": [
@@ -88,7 +88,7 @@
     },
     {
       "id": "rat-casino-kit",
-      "title": "Rat Casino · environment concept",
+      "title": "Rat Casino \u00b7 environment concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/rat-casino-kit/v001.md",
       "concept_images": [
@@ -108,19 +108,365 @@
       "id": "rat-casino-ensemble",
       "title": "Rat Casino animatronic ensemble",
       "category": "parody-characters",
-      "review": "docs/assets/reviews/rat-casino-ensemble/v001.md",
+      "review": "docs/assets/reviews/rat-casino-ensemble/v003.md",
       "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/concept.png",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia.png",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia-draft.png",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png",
+        "docs/assets/media/rat-casino-ensemble/v002/concept.png",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/chick-flia.png",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/jackrabbit-drummer.png",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/fox-card-shark.png",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/moth-projectionist.png",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/golden-after-hours-rat.png",
         "docs/assets/media/rat-casino-ensemble/v001/concept.png"
       ],
       "model_images": [],
       "models": [],
       "audio": [],
       "thumbnail": null,
-      "version": "v001",
-      "state": "concept-only six-character visual pitch; Tom lineup/look feedback pending; no model or gameplay use",
+      "version": "v003",
+      "state": "classic original-era worn mascot concept and all six turnarounds selected after Tom rejected glam-rock v001/v002 finish; six performers, central lead rat; corrected rat, Chick-flia, Jackrabbit, Fox and Moth models completed for exact owner review, one supporting model pending; studio only",
       "gameplay_use": "none",
       "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/concept.png": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png": "b32b2f702e0912585199399e6f49b21be2080e06770ae04ddc3d93fc428caf3f",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia.png": "ee84ce15ce47820db78bbf075c58f1be15caa88f1586b369c5f388d627e80936",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia-draft.png": "ca7e92cf2dc415cb271104705881bd718470494080a2969ebaf9413bb565a66b",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
+        "docs/assets/media/rat-casino-ensemble/v002/concept.png": "3f0b6894d8136cdd40b61701ac1b32378e2e182dce842ae4a191641e266897d6",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/chick-flia.png": "13a8670861740932176df04f0ae87236d2f3d88647d114d2070fddb0c256c9ea",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/jackrabbit-drummer.png": "4c0757dc56d4cc4c40894c0fe35bb02744506b319a878390ed43506719bb68c9",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/fox-card-shark.png": "5d147bfa1ccfdba03adb504c498e34bf88ce85bf835a2d14b65f975ab6243262",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/moth-projectionist.png": "06af140bb2f4abf47ad23cc2a26afd3c2d69c54533e9c6730920e6fafece071a",
+        "docs/assets/media/rat-casino-ensemble/v002/construction/golden-after-hours-rat.png": "bc5e58f811b14742a2004673845d36324480d69a65fcbe0ac4dd30953a919d24",
         "docs/assets/media/rat-casino-ensemble/v001/concept.png": "c99f7a747ffe3e8369291a0a288a98c06c929d9bc8608ab7f19f0612e54591c1"
+      }
+    },
+    {
+      "id": "rat-pit-boss",
+      "title": "Rat Pit Boss",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/rat-pit-boss/v002.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rat-pit-boss/v002/beauty.png",
+        "docs/assets/media/rat-pit-boss/v002/front.png",
+        "docs/assets/media/rat-pit-boss/v002/side.png",
+        "docs/assets/media/rat-pit-boss/v002/back.png",
+        "docs/assets/media/rat-pit-boss/v002/motion-contact-sheet.png",
+        "docs/assets/media/rat-pit-boss/v002/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/rat-pit-boss/v002/rat-pit-boss.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v002 corrected classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png": "b32b2f702e0912585199399e6f49b21be2080e06770ae04ddc3d93fc428caf3f",
+        "docs/assets/media/rat-pit-boss/v002/rat-pit-boss.glb": "2f41912e67ba27f7f1d5a6c8ac7bc60fbe8d3dba6e4a775f7186750f608b620d",
+        "docs/assets/media/rat-pit-boss/v002/rat-pit-boss.blend": "498afc3120eb223164baa7d7da05e29846d2f99f89389cfb7364fa62a4aa1761",
+        "docs/assets/media/rat-pit-boss/v002/beauty.png": "ed4b681f12975ce5cd0b0afd8df03c285e13187252ff60393c916579474e4ce1",
+        "docs/assets/media/rat-pit-boss/v002/front.png": "e1ec74e664a3a1942e8a271a5caa153293717b3258c96a39bcb024c0b63d249b",
+        "docs/assets/media/rat-pit-boss/v002/side.png": "c9da53c65ba89c4620b83d5f920b5fcd8d1713a90bbc58f2e08f7b6ec7b10e98",
+        "docs/assets/media/rat-pit-boss/v002/back.png": "d3d02cd8424318b5c96ae919d7b97e39db3b45eaacb33b8e7038b0679e138446",
+        "docs/assets/media/rat-pit-boss/v002/motion-contact-sheet.png": "e611c4ae97832172079418799b8be90866de186ee86373f434040c789f8d9e6b",
+        "docs/assets/media/rat-pit-boss/v002/attack-gameplay-scale.png": "f6f67466b106d31b2d3dfdb2dff194993cd0588ff4d279507a0d972171019379",
+        "docs/assets/media/rat-pit-boss/v002/validation.json": "52adef92f08922cea533213a612229690e1123c1456533699998b933da1c8e1a",
+        "docs/assets/media/rat-pit-boss/v002/three-inspection.json": "59dad17977077feff5c91729b3796cd6313a03c3b0087abddefb9c6901df5749",
+        "docs/assets/media/rat-pit-boss/v002/browser-inspection.json": "478393e7223dea6403d77577df7b780f61eeacc6c43d5879fd9a95d290635d9e",
+        "docs/assets/media/rat-pit-boss/v002/scene-release.json": "539f8d89e9a3eeaa9322793c44756242e68c36828eb8be5a6b723bc6ce517292",
+        "docs/assets/media/rat-pit-boss/v002/visual-review.json": "b8b805bb05ad79020dedcaff3b154ccf5b2721aea035bf834ca5520a75211a5a",
+        "docs/assets/media/rat-pit-boss/v002/sha256-manifest.json": "f86698a46a3ce2809db8294b0874014fb1d201430ba042d485abc5d03e127bc7"
+      }
+    },
+    {
+      "id": "chick-flia",
+      "title": "Chick-flia",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/chick-flia/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia.png"
+      ],
+      "model_images": [
+        "docs/assets/media/chick-flia/v001/beauty.png",
+        "docs/assets/media/chick-flia/v001/front.png",
+        "docs/assets/media/chick-flia/v001/side.png",
+        "docs/assets/media/chick-flia/v001/back.png",
+        "docs/assets/media/chick-flia/v001/motion-contact-sheet.png",
+        "docs/assets/media/chick-flia/v001/attack-strip.png",
+        "docs/assets/media/chick-flia/v001/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/chick-flia/v001/chick-flia.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia.png": "ee84ce15ce47820db78bbf075c58f1be15caa88f1586b369c5f388d627e80936",
+        "docs/assets/media/chick-flia/v001/chick-flia.glb": "4f72a94c89debf8ee00a8a5db4eaf6b681375a64a08b743b0cbe07fbdf6eb396",
+        "docs/assets/media/chick-flia/v001/chick-flia.blend": "fec0fae84e0d5a50a0b6706f21decd4baeb48e8b7be6d0b616cf68932a9d3aed",
+        "docs/assets/media/chick-flia/v001/beauty.png": "8872e6f300911749c95a9649924896a0a2c0aae2a33bcd5a0ac33517602e0807",
+        "docs/assets/media/chick-flia/v001/front.png": "b8a2bac4884f8d69b751d217d26768b83c562e59fc9ef84525831481f4f7c632",
+        "docs/assets/media/chick-flia/v001/side.png": "6c47a40c66e7fb40ab264a4a12b1490b83e4681815c9c09492daa677e59797cc",
+        "docs/assets/media/chick-flia/v001/back.png": "f8dc30791d5ba2aaff1b93faec518a23997081be8e0232c6f05cd40f8e66ff71",
+        "docs/assets/media/chick-flia/v001/motion-contact-sheet.png": "2054d2a3014013898b9bc1f9e484f1931c0f457623483adac72a146ab24ed611",
+        "docs/assets/media/chick-flia/v001/attack-strip.png": "eaa46efbab193cf8b547dd9036c45aff53b24b9dfce9c3e12fe1aa3ed43d9738",
+        "docs/assets/media/chick-flia/v001/attack-gameplay-scale.png": "9ae7a3fa93c36e1cc093afe9f28166226bd326acbe8e0c88f394bccfe4acec29",
+        "docs/assets/media/chick-flia/v001/validation.json": "e5d4b8a6e12ef4b262c48589b38686f71805cb4f585d28518a2792d95b9178c9",
+        "docs/assets/media/chick-flia/v001/three-inspection.json": "26b2f0512435cca3451bcef8246fc839cc64d5ced8e7a6a33e1a8afd71791941",
+        "docs/assets/media/chick-flia/v001/browser-inspection.json": "c4f1bcb705ca38d04138e8134089cc32149d05d32567602256891372f27b8e32",
+        "docs/assets/media/chick-flia/v001/scene-release.json": "232ccfe9a78b82c8b57d78f05067cfc341e07d61d5cecd8d31617a002882bbd8",
+        "docs/assets/media/chick-flia/v001/visual-review.json": "95886e563817b419b06a00d73f046392b2c00512906d529d7ed192b2e8825577",
+        "docs/assets/media/chick-flia/v001/sha256-manifest.json": "be308bd8bebe8d06e3b623db9a7fd2a767f76270f3ec782f94712334f4681a73"
+      }
+    },
+    {
+      "id": "jackrabbit-drummer",
+      "title": "Jackrabbit Drummer",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/jackrabbit-drummer/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png"
+      ],
+      "model_images": [
+        "docs/assets/media/jackrabbit-drummer/v001/beauty.png",
+        "docs/assets/media/jackrabbit-drummer/v001/front.png",
+        "docs/assets/media/jackrabbit-drummer/v001/side.png",
+        "docs/assets/media/jackrabbit-drummer/v001/back.png",
+        "docs/assets/media/jackrabbit-drummer/v001/motion-contact-sheet.png",
+        "docs/assets/media/jackrabbit-drummer/v001/attack-strip.png",
+        "docs/assets/media/jackrabbit-drummer/v001/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
+        "docs/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.glb": "00096fb0bdef15c5b45a32a2265e2744d91c54b10004014de5e45e5682672da3",
+        "docs/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.blend": "9c2a45b5e91db402ffebc4d9171e0d7bed128312a20996f30652f7ba0ab57a0e",
+        "docs/assets/media/jackrabbit-drummer/v001/beauty.png": "886f370ce3c8b27406435f8e354834c8aae82eb35144051137c2e7c8890aee02",
+        "docs/assets/media/jackrabbit-drummer/v001/front.png": "9826f53fad89f079940b77bf51b5287b6d70421f34033b62ba3ebb7b97f47ed2",
+        "docs/assets/media/jackrabbit-drummer/v001/side.png": "c932c179ed18992d8a18d6b21b91848c19f967ae546d8bb18e1f650aff745ecb",
+        "docs/assets/media/jackrabbit-drummer/v001/back.png": "89d19242dab57634c032d47ce3fe372d34cab0c42f061903d8de44f424ba0fed",
+        "docs/assets/media/jackrabbit-drummer/v001/motion-contact-sheet.png": "465bd9c5fd68e334d7eef4256e5e13724acf7275e12d1d1a23dce44ce98fe1fa",
+        "docs/assets/media/jackrabbit-drummer/v001/attack-strip.png": "1ff6d69ed90285a735093ab2676cec55d9f00e355080f75069bc52c0f90e4368",
+        "docs/assets/media/jackrabbit-drummer/v001/attack-gameplay-scale.png": "1a9b4de308e6028d72fe1d0373e98c9cd233e9d67d494c33ee67249a1f093c35",
+        "docs/assets/media/jackrabbit-drummer/v001/construction.json": "628bfaeee7cebb37b73a52c604631c2f24802dee271efe48107b2aef94e9aaf5",
+        "docs/assets/media/jackrabbit-drummer/v001/validation.json": "23bfbebd56c79caa3d0daca03265d22a7b01766700eb291528ef94a4083185b8",
+        "docs/assets/media/jackrabbit-drummer/v001/three-inspection.json": "1c30d5944762b079dac9625c58709c2f2817a1759ab329242ec1c1b1bf32c46b",
+        "docs/assets/media/jackrabbit-drummer/v001/browser-inspection.json": "fbf6aa203c298bac9b710fc8dc796c92be6ed70e1d1800f48d3c4e0f7cddc253",
+        "docs/assets/media/jackrabbit-drummer/v001/visual-review.json": "12663bc35fcbf0b36b2d84dd48a351a5afdf074af52e54689145886c00832ab6",
+        "docs/assets/media/jackrabbit-drummer/v001/scene-release.json": "3ba8fb0d2c53a764e14258b440c443723e0ae9b153a905099f826754f65b0695",
+        "docs/assets/media/jackrabbit-drummer/v001/provenance.json": "8d78411656123e498feec69b73091e925b8408803ee8764115e17c065a54a69a",
+        "docs/assets/media/jackrabbit-drummer/v001/source-prompt.txt": "7f86d65d29bd3389cf2af8e7f5cf7c74300cec15c87597dacbcb5079e4c37340",
+        "docs/assets/media/jackrabbit-drummer/v001/sha256-manifest.json": "2fdab95263840ece57bced69631c2ce9d048ac5d516ca7c4da68aa6f5505d0bb"
+      }
+    },
+    {
+      "id": "fox-card-shark",
+      "title": "Fox Card Shark",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/fox-card-shark/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png"
+      ],
+      "model_images": [
+        "docs/assets/media/fox-card-shark/v001/beauty.png",
+        "docs/assets/media/fox-card-shark/v001/front.png",
+        "docs/assets/media/fox-card-shark/v001/side.png",
+        "docs/assets/media/fox-card-shark/v001/back.png",
+        "docs/assets/media/fox-card-shark/v001/motion-contact-sheet.png",
+        "docs/assets/media/fox-card-shark/v001/attack-strip.png",
+        "docs/assets/media/fox-card-shark/v001/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/fox-card-shark/v001/fox-card-shark.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
+        "docs/assets/media/fox-card-shark/v001/fox-card-shark.glb": "77346890c1d989e669f586bf3c361d028d6c2fa7f1130bf6bc039d793380791c",
+        "docs/assets/media/fox-card-shark/v001/fox-card-shark.blend": "d8868821affad96e55a3b63d0908e0bed88f7bf24626b7f22d77a73969554c6c",
+        "docs/assets/media/fox-card-shark/v001/beauty.png": "304707cf19cae515a0a3736cbac9f45cb1eec2b5a230aaf9c50dad7cf8e7b2cc",
+        "docs/assets/media/fox-card-shark/v001/front.png": "b0fe086c1406b106ace972311e05fccb6f6c52dfdabce79ea2671bd009b4bf12",
+        "docs/assets/media/fox-card-shark/v001/side.png": "4a2524a18afc9b43758dcc239923581ec94df1e2a2e573feec2f27138409eb97",
+        "docs/assets/media/fox-card-shark/v001/back.png": "63e904524b899eaa16b07ec5992983334c947d9ab8db598b21975e3c1324de93",
+        "docs/assets/media/fox-card-shark/v001/motion-contact-sheet.png": "39b0631c3b0284506dd9c79309f18f65664f390a5fd6f44e707cc0d66cf32c7d",
+        "docs/assets/media/fox-card-shark/v001/attack-strip.png": "972294238a77aadb49cf1658cd9c34ba9209812fee710b02937a06f6c8a2aa33",
+        "docs/assets/media/fox-card-shark/v001/attack-gameplay-scale.png": "6625abca76bb83a53f86d7fe9b629b489be261d8d4f0a618692a3a1d02bc4d23",
+        "docs/assets/media/fox-card-shark/v001/construction.json": "a86fd854a69fefe335e7a9b87c5934d809b577ea8a2fb350f9e5dff5f6b2140a",
+        "docs/assets/media/fox-card-shark/v001/validation.json": "21821d26e690719054a99d7bd89011f042ce084fb5cf70507d1e0d6773633b6d",
+        "docs/assets/media/fox-card-shark/v001/three-inspection.json": "ccee146343d8d2646015eadc1370278a9e0830695fd83ddf5f26f8e7b3c0f938",
+        "docs/assets/media/fox-card-shark/v001/browser-inspection.json": "6741e0110da3ccfed79a6aead6771b5420b35e0da4160da0b85b78654b1b794d",
+        "docs/assets/media/fox-card-shark/v001/visual-review.json": "0cb184a5006d5f135de25a988156e0e69ea0a34be6d2ee32ef0de4eaa7a7d77f",
+        "docs/assets/media/fox-card-shark/v001/scene-release.json": "a12cc5e9f5cea8c5b3e3cc7a15b955113f53bbd25445c15e2bc223a0ec92c07d",
+        "docs/assets/media/fox-card-shark/v001/provenance.json": "c583450d78ac7af2811ab4d133682d928c02ba554a9440fe73dfc322671688ab",
+        "docs/assets/media/fox-card-shark/v001/source-prompt.txt": "e0d78ac2b93585bd3c8534f7889891a86f7a7bedb9e214ba6879d57561ed549b",
+        "docs/assets/media/fox-card-shark/v001/sha256-manifest.json": "3c4935582706f7b3f85206d8813d97e24e8360f9bbd8aa0fc918b1d7ddc80e33"
+      }
+    },
+    {
+      "id": "moth-projectionist",
+      "title": "Moth Projectionist",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/moth-projectionist/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png"
+      ],
+      "model_images": [
+        "docs/assets/media/moth-projectionist/v001/beauty.png",
+        "docs/assets/media/moth-projectionist/v001/front.png",
+        "docs/assets/media/moth-projectionist/v001/side.png",
+        "docs/assets/media/moth-projectionist/v001/back.png",
+        "docs/assets/media/moth-projectionist/v001/detail.png",
+        "docs/assets/media/moth-projectionist/v001/hinge.png",
+        "docs/assets/media/moth-projectionist/v001/motion-contact-sheet.png",
+        "docs/assets/media/moth-projectionist/v001/attack-strip.png",
+        "docs/assets/media/moth-projectionist/v001/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/moth-projectionist/v001/moth-projectionist.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
+        "docs/assets/media/moth-projectionist/v001/moth-projectionist.glb": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1",
+        "docs/assets/media/moth-projectionist/v001/moth-projectionist.blend": "ba4eb25f1c4f14745b1132bc8a63cddde0c5a4de44ecc6f40b2cc189d26923fc",
+        "docs/assets/media/moth-projectionist/v001/beauty.png": "825ac3b8176b1ec9f9c8e9c163cf5d0fe480e439c8e985b5793d40fb76ba1724",
+        "docs/assets/media/moth-projectionist/v001/front.png": "301cc6dd34bc024b0dd284af5f136fd541e9d3efb6fe03329a37eac8dc43cb66",
+        "docs/assets/media/moth-projectionist/v001/side.png": "d36bf4fcb060d66c700d3b93db0937c6aa8ac222a65e7d1cb42527862911aea8",
+        "docs/assets/media/moth-projectionist/v001/back.png": "d29e3007af8881bae8bd5e163ef1743f16da2a7161a39bfa52fbed03aa42f2e8",
+        "docs/assets/media/moth-projectionist/v001/detail.png": "43add919f3bef07aa9de2edeb764fcd29f253f0b3c3fba9d57d9be0d093af350",
+        "docs/assets/media/moth-projectionist/v001/hinge.png": "217c25658d74a5d28dfca63cac7a9616b5cae58f491f465328512b36d977b6f4",
+        "docs/assets/media/moth-projectionist/v001/motion-contact-sheet.png": "3b8fb382b17478b3fc2d8a064142ba51ecdc1952433591173ee1112ec0c9d376",
+        "docs/assets/media/moth-projectionist/v001/attack-strip.png": "c3322aed73410e6a8e034437c574bf8a246fd28ffa7e06dfaf19afb2372adbd4",
+        "docs/assets/media/moth-projectionist/v001/attack-gameplay-scale.png": "dad5bbaed2edba32ebc4319181f0468e89dbee979df03f955304d28cc2f31004",
+        "docs/assets/media/moth-projectionist/v001/construction.json": "45a01053b292b1722f9c1e914aef483ed1efd5c88270096d1591fccbe96e3da8",
+        "docs/assets/media/moth-projectionist/v001/validation.json": "ec2189acd9a3cc3f442948e8f4cf164779f8b4bb4ab4d7af18f5aeed39ffbd1d",
+        "docs/assets/media/moth-projectionist/v001/three-inspection.json": "9fa9d9260ac630268182caaa800755c0bab56e1aab824b75ded29e7983950464",
+        "docs/assets/media/moth-projectionist/v001/browser-inspection.json": "3146c0611d267cbd29962f79d1257c15dd2d43c0235d72a376d1d2236cc93871",
+        "docs/assets/media/moth-projectionist/v001/visual-review.json": "837055ac9ea9a37acaed345c12b7538774f2c0ea18e8e244ecb7485dc9b7995c",
+        "docs/assets/media/moth-projectionist/v001/metadata-correction.json": "4a46ce468d28f409e4c21fe9b03000fbec1ad7a5df1bcf2af3ef0aa2784348b7",
+        "docs/assets/media/moth-projectionist/v001/scene-release.json": "ad8d055504b30ba5d27c487ce14154777badb1ae8a967fb1d72e56bf6ee63d82",
+        "docs/assets/media/moth-projectionist/v001/provenance.json": "8e8a87f8d60566be9df4a6d2f1b63aee368004f240da7dae530df746ec1f5513",
+        "docs/assets/media/moth-projectionist/v001/tool-settings.json": "042e16c6cbf220a20949b0bd3352e69b91ff2360b61c0f3355d94772c79ace3a",
+        "docs/assets/media/moth-projectionist/v001/source-prompt.txt": "6c36c7d4fa2a426fefda549314fa7bf6a55f6cef7b61500b570d4d4694d3722a",
+        "docs/assets/media/moth-projectionist/v001/sha256-manifest.json": "a3cf583a0690b46ce161c7a999f0772d281411959387a6a8331a7f6af22edfc2"
+      }
+    },
+    {
+      "id": "golden-after-hours-rat",
+      "title": "Golden After-Hours Rat",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/golden-after-hours-rat/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png"
+      ],
+      "model_images": [
+        "docs/assets/media/golden-after-hours-rat/v001/beauty.png",
+        "docs/assets/media/golden-after-hours-rat/v001/front.png",
+        "docs/assets/media/golden-after-hours-rat/v001/side.png",
+        "docs/assets/media/golden-after-hours-rat/v001/back.png",
+        "docs/assets/media/golden-after-hours-rat/v001/detail.png",
+        "docs/assets/media/golden-after-hours-rat/v001/hinge.png",
+        "docs/assets/media/golden-after-hours-rat/v001/motion-contact-sheet.png",
+        "docs/assets/media/golden-after-hours-rat/v001/attack-strip.png",
+        "docs/assets/media/golden-after-hours-rat/v001/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
+        "docs/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb": "b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184",
+        "docs/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.blend": "f08904c3ebe10813065e62f2d0d2d1f0072f39f889e696218f767960e72a46ae",
+        "docs/assets/media/golden-after-hours-rat/v001/beauty.png": "7523ea63bb66c61d5d5508f9624197ce5c38a7b428d6a443a785b33b66123f72",
+        "docs/assets/media/golden-after-hours-rat/v001/front.png": "e5203689a1f5e6b0c726d8800f2cdadccf315ac7e39fb4f7ef5c98cb116ff15d",
+        "docs/assets/media/golden-after-hours-rat/v001/side.png": "0f6b9e6c4ccf13a4dbe8ead34a0b0cdc7e25bc1075b37f3c7d1b97c8df3559c9",
+        "docs/assets/media/golden-after-hours-rat/v001/back.png": "6d14dcdadc69b8c6f1ddb4a4eadea669510c30cf23bdd4a183d2cda7206e567c",
+        "docs/assets/media/golden-after-hours-rat/v001/detail.png": "7dcdcc4064bde6580ce6f5b1b5cf64333a07d83df5203752031d7fa3b1efbb67",
+        "docs/assets/media/golden-after-hours-rat/v001/hinge.png": "d1c6345f6655efc013c46795856798348bf147c409135cc86d86f78400e69bd8",
+        "docs/assets/media/golden-after-hours-rat/v001/motion-contact-sheet.png": "26958f95abdcdadcf6f029f01b494bb098fb6efd1d0e6a7f6167655e191e11a4",
+        "docs/assets/media/golden-after-hours-rat/v001/attack-strip.png": "34161d2efe9f490100a128c6e448d935c703225702fef273521df45c57155395",
+        "docs/assets/media/golden-after-hours-rat/v001/attack-gameplay-scale.png": "f4aafcce4efeafba827578411350c96e407816ec070b38aab199390984e80479",
+        "docs/assets/media/golden-after-hours-rat/v001/construction.json": "c79f0289964db78e1e165f78bf6d65a48aca2f7d8514d7da94e20105e3db1f57",
+        "docs/assets/media/golden-after-hours-rat/v001/validation.json": "80afc872d367cd2028b3935e85681b7c32acf8e7f4b9d757aecfd9a7a7a4118d",
+        "docs/assets/media/golden-after-hours-rat/v001/three-inspection.json": "998572f3cb9d2ca1052a4269f41a5acb222b80fef0364b4a7f4ac0050f791704",
+        "docs/assets/media/golden-after-hours-rat/v001/browser-inspection.json": "9880fa0c8e6c1a53eb0001113060a814bb15751722e6dddf6e74d5d0adbe7ca2",
+        "docs/assets/media/golden-after-hours-rat/v001/visual-review.json": "6f3a90ffdababe467cd6bcd5baa6de0b355cf9d00c0b44dbab2c2d09d3853e81",
+        "docs/assets/media/golden-after-hours-rat/v001/scene-release.json": "96fc21fcdb1f4fbb9ecb4e5a3322ffdcad6548cea923ae67e8eb2aa8fd0a5c09",
+        "docs/assets/media/golden-after-hours-rat/v001/provenance.json": "d630f86200c9d0bc05b1d6af3936ca0bac5dd77cc5062645c7c272a3a62c55c6",
+        "docs/assets/media/golden-after-hours-rat/v001/tool-settings.json": "fc5e2458b46bfb5c6f08dbcb908cb79edb6aab1e19b2d1f51fee572a00d78510",
+        "docs/assets/media/golden-after-hours-rat/v001/source-prompt.txt": "ccea7a5ea925079a97ba82fc4fc38c9830f5a2699245f44aa32ae31bc63b1e3a",
+        "docs/assets/media/golden-after-hours-rat/v001/sha256-manifest.json": "614b9f5f02e18501c2ac51ceaeb9b913b4f7b33fe94f87490cbe2071054614b4"
+      }
+    },
+    {
+      "id": "rat-pit-boss-v001-checkpoint",
+      "title": "Rat Pit Boss \u00b7 v001 checkpoint",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/rat-pit-boss/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v002/concept.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rat-pit-boss/v001/three-quarter.png",
+        "docs/assets/media/rat-pit-boss/v001/front.png"
+      ],
+      "models": [
+        "docs/assets/media/rat-pit-boss/v001/rat-pit-boss.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 first rigged export",
+      "state": "paused partial model with superseded glam-rock appearance; final validator, animation and owner review incomplete; no gameplay approval",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v002/concept.png": "3f0b6894d8136cdd40b61701ac1b32378e2e182dce842ae4a191641e266897d6",
+        "docs/assets/media/rat-pit-boss/v001/three-quarter.png": "3ca8fee0d3ab2ba8c759f863870fc952386abd26ce1a63cf7c43a8d11ced0cae",
+        "docs/assets/media/rat-pit-boss/v001/front.png": "c6b4b5a3ec096a99bb0953d95d3a805201f5407c19c918da2730571effa41b95",
+        "docs/assets/media/rat-pit-boss/v001/rat-pit-boss.glb": "09a4dadbb4f9eabdddf32b05e7f6ee574e23580127ac9c4a94f991b95bcabc4a",
+        "docs/assets/media/rat-pit-boss/v001/paused-art-direction.blend": "5abb3196c1168000cfbc9b3328520a722cbeba12a4e4c682da3ec60962b1e54a",
+        "docs/assets/media/rat-pit-boss/v001/pause-art-direction.json": "d730dded1b8b063d037d41acc9b3ad936e19950bac0ddd9dd8d751ae57284f22",
+        "docs/assets/media/rat-pit-boss/v001/preview-browser.json": "7fa6a99aa89944fd41027fe20036954ffe2071a9185fe048c739501cb276dfa0",
+        "docs/assets/media/rat-pit-boss/v001/preview-method.md": "a75bf482cdd46aacb23bfb01bea44a8d00460a537b94d35e93dbc69bbbded802",
+        "docs/assets/media/rat-pit-boss/v001/SHA256SUMS": "3edfeb0aea28b37fd8aa51ec210a06b3c2680bf541c659edde1e2413b763551e",
+        "scripts/assets/rat-pit-boss/preview.mjs": "52beb3030b6e4e6c2dd804880641de6c04ceb9f0162227c55dfca64632eb484b"
       }
     },
     {
@@ -269,7 +615,7 @@
     },
     {
       "id": "skyline-toybox-kit",
-      "title": "Skyline toybox · environment concept",
+      "title": "Skyline toybox \u00b7 environment concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/skyline-toybox-kit/v001.md",
       "concept_images": [
@@ -287,7 +633,7 @@
     },
     {
       "id": "midnight-arcade-kit",
-      "title": "Midnight arcade · environment concept",
+      "title": "Midnight arcade \u00b7 environment concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/midnight-arcade-kit/v001.md",
       "concept_images": [

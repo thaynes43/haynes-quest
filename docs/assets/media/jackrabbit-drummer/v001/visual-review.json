@@ -1,0 +1,73 @@
+{
+  "work_order": "WO101",
+  "asset_id": "jackrabbit-drummer",
+  "version": "v001",
+  "glb_sha256": "00096fb0bdef15c5b45a32a2265e2744d91c54b10004014de5e45e5682672da3",
+  "created_utc": "2026-09-23T21:11:27.972636+00:00",
+  "lead_visual_review": {
+    "status": "passed",
+    "basis": "Lead independently inspected revised exact-export front/side/back/beauty, attack strip and five-clip sheet; authorized final technical packaging.",
+    "revisions": [
+      "Mostly upright ear with soft tip fold versus sharply drooped ear.",
+      "Continuous cloth at ear bends.",
+      "Continuous back harness and waist belt.",
+      "Curved burgundy diamonds on old snare shell."
+    ],
+    "final_export_change_after_art_pass": "60 Hz bake and conservative measured bounds metadata; no geometry/material changes."
+  },
+  "author_visual_inspection": {
+    "full_size": [
+      "front",
+      "side",
+      "back",
+      "beauty",
+      "attack front warning/contact/recovery",
+      "attack side warning/contact/recovery",
+      "defeat side held",
+      "all five clips contact sheet"
+    ],
+    "small_scale": [
+      "idle",
+      "move",
+      "attack",
+      "hit",
+      "defeat"
+    ],
+    "observed": "Broad indigo rabbit, tired eyes and buck teeth remain readable. Ear asymmetry and snare read at small scale. Stick warning rises above shoulders; one simultaneous snare strike occurs at 1.25 s; defeat holds a comic slump beside/over the attached drum. No hidden mesh, fade, scale disappearance or floor incursion observed."
+  },
+  "geometry_evidence": {
+    "all_checks": true,
+    "snare_and_stick_max_attachment_matrix_drift": 2.218536382381231e-07,
+    "bead_surface_gap_at_1_25_s_m": {
+      "R": -3.4767074455488434e-08,
+      "L": -3.4767074455488434e-08
+    },
+    "snare_volume_tolerance_m": 0.00075,
+    "floor_tolerance_m": 1e-05,
+    "rest_floor_residual_m": -9.686858981666127e-07
+  },
+  "browser_evidence": {
+    "all_checks": true,
+    "all_clips_played_realtime_at_scales": [
+      1,
+      0.35
+    ],
+    "console_errors": 0,
+    "console_warnings": 0,
+    "http_errors": 0,
+    "webgl_errors": 0,
+    "external_requests": 0,
+    "browser": "153.0.8010.12",
+    "physical_device_test": false,
+    "safari_test": false
+  },
+  "owner_exact_art_approval": false,
+  "gameplay_use": false,
+  "deviations": [],
+  "checks": {
+    "lead_visual_review_passed": true,
+    "author_final_views_reviewed": true,
+    "all_five_normal_and_small_clips_reviewed": true,
+    "exact_technical_checks_passed": true
+  }
+}

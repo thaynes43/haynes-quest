@@ -1,0 +1,46 @@
+{
+  "work_order": "WO101",
+  "asset_id": "jackrabbit-drummer",
+  "version": "v001",
+  "authoring_model": "gpt-6-astra",
+  "reasoning_effort": "max",
+  "created_utc": "2026-09-23T21:10:20.247671+00:00",
+  "inputs": [
+    {
+      "role": "ensemble",
+      "repository_path": "docs/assets/media/rat-casino-ensemble/v003/concept.png",
+      "sha256": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f"
+    },
+    {
+      "role": "construction",
+      "repository_path": "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png",
+      "sha256": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea"
+    },
+    {
+      "role": "prompt",
+      "repository_path": "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer-prompt.txt",
+      "sha256": "7f86d65d29bd3389cf2af8e7f5cf7c74300cec15c87597dacbcb5079e4c37340"
+    }
+  ],
+  "input_policy": "Only original public-safe Rat Casino v003 ensemble and construction sheet used as visual references; no franchise image, downloaded mesh/texture, private media or character face copied. Earlier glam-rock concepts excluded.",
+  "original_procedural_texture": {
+    "source": "build.py atlas()",
+    "seed": 10101,
+    "size": [
+      1024,
+      1024
+    ],
+    "sha256": "e486b67597aa325adaf1e7c1465eb2aee50036d01707d21dc2e4ffe00346fc82"
+  },
+  "coordinate_contract": "Blender +Z up/+Y forward; exported glTF and Three.js +Y up/-Z forward. Scene root identity and floor centered.",
+  "pipeline": "Named original mesh islands, deterministic worn 1024 atlas, a joined 14700-triangle skin, one rigid influence per vertex, 28 named skeleton pivots, 60 Hz baked actions and uncompressed self-contained GLB.",
+  "lead_review": "Original broad indigo rabbit and face selected, then requested ear asymmetry, fold closure, continuous rear harness and curved snare diamonds; revised exact GLB views and all-clip/contact sheet passed lead visual review.",
+  "owner_exact_art_approval": false,
+  "gameplay_use": false,
+  "deviations": [],
+  "limitations": [
+    "Studio candidate only; Tom exact-version art review remains pending.",
+    "Chromium SwiftShader is a real WebGL inspection, not physical iPhone/iPad or Safari acceptance.",
+    "No damage, sound, hazard, encounter mapping, level or runtime disappearance is supplied by this asset."
+  ]
+}

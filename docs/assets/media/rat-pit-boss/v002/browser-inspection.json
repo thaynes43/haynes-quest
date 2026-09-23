@@ -1,0 +1,768 @@
+{
+  "clips": {
+    "idle": {
+      "duration_s": 2.4000000953674316,
+      "frames": [
+        {
+          "fraction": 0,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5171647272737139,
+            0.922863172191583,
+            -0.04117229506055922
+          ],
+          "raster_sha256": "d73b6b37eca23bdc10087352425a0d63f41d003d5625b00e3c959800748c558d"
+        },
+        {
+          "fraction": 0.3,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5247990909817898,
+            0.9428994122038635,
+            -0.05694324796795193
+          ],
+          "raster_sha256": "5ca3453b71dea59e4a1133642fb53d25b8733503d0bdcbf026e3e90e262b0fa5"
+        },
+        {
+          "fraction": 0.625,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5114840412080193,
+            0.9079515775155557,
+            -0.0617437247719802
+          ],
+          "raster_sha256": "988aa5860f1acb529b2846909ff4eba39e5cb8559aa3bedd6753d0059f54ca84"
+        },
+        {
+          "fraction": 1,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5171647074923704,
+            0.9228631579286798,
+            -0.04117229334680568
+          ],
+          "raster_sha256": "10afdd84790cef576826368ade6d65ae5963a53b07becf4600ef92e1ee8f561d"
+        }
+      ],
+      "distinct_rasters": 4
+    },
+    "move": {
+      "duration_s": 1.2000000476837158,
+      "frames": [
+        {
+          "fraction": 0,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5171647720981276,
+            0.9329053775382635,
+            0.009037945356213176
+          ],
+          "raster_sha256": "bd37051e9a07b9d68586281d86f0af0041abacd18d04aa0583d2b1acc2598b2e"
+        },
+        {
+          "fraction": 0.3,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5266955553921597,
+            0.9424055644789324,
+            -0.05665782289951975
+          ],
+          "raster_sha256": "763df1c919bbfe4531285be5cdce267ec1f0d31825a054a22d8f4027f936e56d"
+        },
+        {
+          "fraction": 0.625,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5101070522216585,
+            0.9257974718038511,
+            -0.076554026708505
+          ],
+          "raster_sha256": "8300e0d0b2bc287802e028dc1afa800ca42e65a0af5cd34fe27420741a264612"
+        },
+        {
+          "fraction": 1,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5171647537048453,
+            0.9329053593352308,
+            0.009037954430071233
+          ],
+          "raster_sha256": "78f305f4ae4900b33d91e9d84e7bfdd681bdc6c27cb75d9da9f4bdffc831e64b"
+        }
+      ],
+      "distinct_rasters": 4
+    },
+    "attack": {
+      "duration_s": 2,
+      "frames": [
+        {
+          "fraction": 0,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5171647272737139,
+            0.922863172191583,
+            -0.04117229506055922
+          ],
+          "raster_sha256": "defbdc8f24791b28bc9d02ea7ac6368ee247f309d711b51f79c23f4ee2ac3503"
+        },
+        {
+          "fraction": 0.3,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5775486595523924,
+            1.5677640886909292,
+            -0.0033317123943978136
+          ],
+          "raster_sha256": "ae7e05b48d91090f4e6fecb934e267f222bbd31794ea0965e9360289a07c3011"
+        },
+        {
+          "fraction": 0.625,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.3497735292360985,
+            1.2912987958556248,
+            -0.4380256803538537
+          ],
+          "raster_sha256": "d97acd52c45dc724db390ce67a68ff61e77e8f2ab687a9eefa20e43ad3f5484b"
+        },
+        {
+          "fraction": 1,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5171647074923704,
+            0.9228631579286798,
+            -0.04117229334680568
+          ],
+          "raster_sha256": "defbdc8f24791b28bc9d02ea7ac6368ee247f309d711b51f79c23f4ee2ac3503"
+        }
+      ],
+      "distinct_rasters": 3
+    },
+    "hit": {
+      "duration_s": 0.699999988079071,
+      "frames": [
+        {
+          "fraction": 0,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5256453683491932,
+            0.9652650976676463,
+            -0.024863798906561912
+          ],
+          "raster_sha256": "ba6487cef9ef218010473a21856cbd0a5ac3b97c16c0de8c8b94cc7c9666dbf0"
+        },
+        {
+          "fraction": 0.3,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5424896584198213,
+            1.0491151014961257,
+            0.007385474972156483
+          ],
+          "raster_sha256": "5ecbb145f9e9d358b0896483f6ba03f4c469782507f210d108d3a7215a264aa5"
+        },
+        {
+          "fraction": 0.625,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5185052996256316,
+            0.9293886518633674,
+            -0.03865820105246844
+          ],
+          "raster_sha256": "bf52e55c05a275118fd1f3d1e9579413b821224d81e7a6ae3016ab09ff634e90"
+        },
+        {
+          "fraction": 1,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5171647074923704,
+            0.9228631579286798,
+            -0.04117229334680568
+          ],
+          "raster_sha256": "defbdc8f24791b28bc9d02ea7ac6368ee247f309d711b51f79c23f4ee2ac3503"
+        }
+      ],
+      "distinct_rasters": 4
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "frames": [
+        {
+          "fraction": 0,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5171649131256221,
+            0.9270806072872119,
+            -0.04117230910347973
+          ],
+          "raster_sha256": "e5b17efa00109bc01c446f2eb18bc639ad211a8dfb7b04281b01c63a9e149125"
+        },
+        {
+          "fraction": 0.3,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.5169865148112038,
+            0.9681405351295356,
+            -0.04475516069767584
+          ],
+          "raster_sha256": "b3b2b0d35593474505eb9d281bb25d29bddc5330d24f474c131d487bec3099d5"
+        },
+        {
+          "fraction": 0.625,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.48434946056802697,
+            0.7710013328323639,
+            -0.12571073954346948
+          ],
+          "raster_sha256": "0d602da813c79f315d8c921a3414c8741f7dd3c29c667fdc3fba9f4875a0666e"
+        },
+        {
+          "fraction": 1,
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2.4000000953674316
+            },
+            {
+              "name": "move",
+              "duration": 1.2000000476837158
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14700,
+          "glError": 0,
+          "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": [
+            0.47933884818728845,
+            0.7532415039478269,
+            -0.1357248238482503
+          ],
+          "raster_sha256": "9bfd8141a3d36a376d945e39a548725a4f876450791180f6697bb8abb72d94d3"
+        }
+      ],
+      "distinct_rasters": 4
+    }
+  },
+  "calls": 3,
+  "triangles": 14700,
+  "glError": 0,
+  "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "pose": [
+    0.5171649496480285,
+    0.9228632001447254,
+    -0.04117246391874525
+  ],
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "requests": [
+    "http://127.0.0.1:35447/",
+    "http://127.0.0.1:35447/three/build/three.module.js",
+    "http://127.0.0.1:35447/three/examples/jsm/loaders/GLTFLoader.js",
+    "http://127.0.0.1:35447/three/examples/jsm/utils/BufferGeometryUtils.js",
+    "http://127.0.0.1:35447/three/examples/jsm/utils/SkeletonUtils.js",
+    "http://127.0.0.1:35447/three/build/three.core.js",
+    "http://127.0.0.1:35447/asset.glb",
+    "blob:http://127.0.0.1:35447/9029a49f-6443-47e5-9c50-6b6c282ebd69"
+  ],
+  "browser": "153.0.8010.12",
+  "glb_sha256": "2f41912e67ba27f7f1d5a6c8ac7bc60fbe8d3dba6e4a775f7186750f608b620d",
+  "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+  "checks": {
+    "five_clips": true,
+    "every_clip_changes_raster": true,
+    "zero_console_errors": true,
+    "zero_http_errors": true,
+    "zero_webgl_errors": true,
+    "no_external_requests": true,
+    "two_character_draws": true
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "asset_id": "rat-casino-ensemble",
+  "version": "v002 supporting construction studies",
+  "created_utc": "2026-09-23",
+  "generator": "OpenAI image generation via driving GPT-6 Astra, one performer at a time",
+  "reference_image": "../concept.png",
+  "reference_sha256": "3f0b6894d8136cdd40b61701ac1b32378e2e182dce842ae4a191641e266897d6",
+  "studies": [
+    {
+      "performer": "chick-flia",
+      "image": "chick-flia.png",
+      "image_sha256": "13a8670861740932176df04f0ae87236d2f3d88647d114d2070fddb0c256c9ea",
+      "prompt": "chick-flia-prompt.txt",
+      "prompt_sha256": "e15bb6438959de0236e303682793559f791c85a3a552c9a9a9c78f0935ee420c"
+    },
+    {
+      "performer": "jackrabbit-drummer",
+      "image": "jackrabbit-drummer.png",
+      "image_sha256": "4c0757dc56d4cc4c40894c0fe35bb02744506b319a878390ed43506719bb68c9",
+      "prompt": "jackrabbit-drummer-prompt.txt",
+      "prompt_sha256": "d8a7612715cb77b6d2fb97672b2d9847fa9b8271acecacd6ab15f0f86bb27db3"
+    },
+    {
+      "performer": "fox-card-shark",
+      "image": "fox-card-shark.png",
+      "image_sha256": "5d147bfa1ccfdba03adb504c498e34bf88ce85bf835a2d14b65f975ab6243262",
+      "prompt": "fox-card-shark-prompt.txt",
+      "prompt_sha256": "eab13260a04a08809d49da3ac03391e014c4947f266174880e60378221e2e1ef"
+    },
+    {
+      "performer": "moth-projectionist",
+      "image": "moth-projectionist.png",
+      "image_sha256": "06af140bb2f4abf47ad23cc2a26afd3c2d69c54533e9c6730920e6fafece071a",
+      "prompt": "moth-projectionist-prompt.txt",
+      "prompt_sha256": "cab2d892455e26813c7da0c27e144af49a80851b666aec7eef0b17aa7437472c"
+    },
+    {
+      "performer": "golden-after-hours-rat",
+      "image": "golden-after-hours-rat.png",
+      "image_sha256": "bc5e58f811b14742a2004673845d36324480d69a65fcbe0ac4dd30953a919d24",
+      "prompt": "golden-after-hours-rat-prompt.txt",
+      "prompt_sha256": "c74b27c21b55a1bea32c1ce0bfebf4188d05df0ee6f271f89603378e125d3a6e"
+    }
+  ],
+  "seed": null,
+  "private_media_used": false,
+  "status": "Concept construction references only; generated turnarounds require 3D interpretation and have no exact model approval or gameplay use"
+}

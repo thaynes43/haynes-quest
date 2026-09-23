@@ -1,0 +1,18 @@
+{
+  "asset_id": "rat-casino-ensemble",
+  "version": "v002",
+  "created_utc": "2026-09-23",
+  "generator": "OpenAI image generation via driving GPT-6 Astra",
+  "source_image": "concept.png",
+  "source_sha256": "3f0b6894d8136cdd40b61701ac1b32378e2e182dce842ae4a191641e266897d6",
+  "reference_images": [
+    {
+      "path": "../v001/concept.png",
+      "sha256": "c99f7a747ffe3e8369291a0a288a98c06c929d9bc8608ab7f19f0612e54591c1"
+    }
+  ],
+  "owner_direction": "Keep the Rat Casino cast; put the rat at center stage as the main character, make Chick-flia a side character, and lean closer to haunted animatronic mascot suspense while retaining an original casino parody.",
+  "seed": null,
+  "private_media_used": false,
+  "status": "coordinator-selected construction concept after Tom's v001 feedback; no exact model approval or gameplay use"
+}

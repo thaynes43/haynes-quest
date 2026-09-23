@@ -1,0 +1,29 @@
+{
+  "clips": [
+    {
+      "name": "idle",
+      "duration": 2.4000000953674316
+    },
+    {
+      "name": "move",
+      "duration": 1.2000000476837158
+    },
+    {
+      "name": "attack",
+      "duration": 2
+    },
+    {
+      "name": "hit",
+      "duration": 0.699999988079071
+    },
+    {
+      "name": "defeat",
+      "duration": 2.4000000953674316
+    }
+  ],
+  "calls": 3,
+  "triangles": 14146,
+  "glError": 0,
+  "errors": [],
+  "browser": "153.0.8010.12"
+}

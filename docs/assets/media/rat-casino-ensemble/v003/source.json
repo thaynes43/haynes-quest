@@ -1,0 +1,80 @@
+{
+  "asset_id": "rat-casino-ensemble",
+  "version": "v003",
+  "created_utc": "2026-09-23",
+  "generator": "OpenAI image generation via driving GPT-6 Astra",
+  "source_image": "concept.png",
+  "source_sha256": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
+  "prompt": "prompt.txt",
+  "prompt_sha256": "4239dcf7524154d8ada2cc455a036c0b3083cbde153cf72bf5e3c2e1ce2a6d66",
+  "reference_images": [
+    {
+      "path": "../v002/concept.png",
+      "sha256": "3f0b6894d8136cdd40b61701ac1b32378e2e182dce842ae4a191641e266897d6",
+      "purpose": "Preserve original cast identities, hierarchy and Rat Casino premise while replacing rejected glam-rock treatment"
+    }
+  ],
+  "construction_studies": [
+    {
+      "performer": "rat-pit-boss",
+      "image": "construction/rat-pit-boss.png",
+      "image_sha256": "b32b2f702e0912585199399e6f49b21be2080e06770ae04ddc3d93fc428caf3f",
+      "prompt": "construction/rat-pit-boss-prompt.txt",
+      "prompt_sha256": "00caf5117cb57e551e96a7c96508ac1ba000dfd87f99dded50fa9dd61c8bff53"
+    },
+    {
+      "performer": "chick-flia",
+      "image": "construction/chick-flia.png",
+      "image_sha256": "ee84ce15ce47820db78bbf075c58f1be15caa88f1586b369c5f388d627e80936",
+      "source_reference": "concept.png",
+      "draft_image": "construction/chick-flia-draft.png",
+      "draft_image_sha256": "ca7e92cf2dc415cb271104705881bd718470494080a2969ebaf9413bb565a66b",
+      "draft_prompt": "construction/chick-flia-draft-prompt.txt",
+      "draft_prompt_sha256": "ee36ebb5bdedeb6eb9aadaf6e581212be0a9ea08dccd25b6152b51889a3f52eb",
+      "edit_prompt": "construction/chick-flia-edit-prompt.txt",
+      "edit_prompt_sha256": "41208afb91a59ebb110d71246b432e4a5fe97694c61efdeb24ef1ab5c416d4c6",
+      "decision": "Removed residual eyelash and purple makeup styling; retained the worn padded body and apron"
+    },
+    {
+      "performer": "jackrabbit-drummer",
+      "image": "construction/jackrabbit-drummer.png",
+      "image_sha256": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
+      "prompt": "construction/jackrabbit-drummer-prompt.txt",
+      "prompt_sha256": "7f86d65d29bd3389cf2af8e7f5cf7c74300cec15c87597dacbcb5079e4c37340",
+      "source_reference": "concept.png"
+    },
+    {
+      "performer": "fox-card-shark",
+      "image": "construction/fox-card-shark.png",
+      "image_sha256": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
+      "prompt": "construction/fox-card-shark-prompt.txt",
+      "prompt_sha256": "e0d78ac2b93585bd3c8534f7889891a86f7a7bedb9e214ba6879d57561ed549b",
+      "source_reference": "concept.png"
+    },
+    {
+      "performer": "moth-projectionist",
+      "image": "construction/moth-projectionist.png",
+      "image_sha256": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
+      "prompt": "construction/moth-projectionist-prompt.txt",
+      "prompt_sha256": "6c36c7d4fa2a426fefda549314fa7bf6a55f6cef7b61500b570d4d4694d3722a",
+      "source_references": ["concept.png", "construction/fox-card-shark.png"]
+    },
+    {
+      "performer": "golden-after-hours-rat",
+      "image": "construction/golden-after-hours-rat.png",
+      "image_sha256": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
+      "prompt": "construction/golden-after-hours-rat-prompt.txt",
+      "prompt_sha256": "ccea7a5ea925079a97ba82fc4fc38c9830f5a2699245f44aa32ae31bc63b1e3a",
+      "source_references": ["concept.png", "construction/rat-pit-boss.png"]
+    }
+  ],
+  "research_sources": [
+    "https://store.steampowered.com/app/319510/Five_Nights_at_Freddys/",
+    "https://store.steampowered.com/app/747660/Five_Nights_at_Freddys_Security_Breach/"
+  ],
+  "owner_direction": "The prior enemy images read glam rock; children want the classic original FNAF-era vibe. Rat remains center-stage lead and Chick-flia remains a side character.",
+  "seed": null,
+  "private_media_used": false,
+  "external_franchise_images_used": false,
+  "status": "coordinator-selected corrected construction concept; exact model approval and gameplay use pending"
+}

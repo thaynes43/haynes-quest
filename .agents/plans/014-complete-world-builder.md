@@ -20,7 +20,7 @@ Record the project export and deterministic CLI commands; validator/test results
 
 ## Active decision
 
-Tom answered the world/theme direction on September 23: a full original haunted animatronic parody cast in a spooky retro Rat Casino and Halloween Haynesnightmares mood. The prior Midnight Arcade treatment is too young; its arcade theme is still the right direction. He explicitly put Blender models before more level building. The [six-character concept pitch](../../docs/assets/reviews/rat-casino-ensemble/v001.md) is being inspected with him under DESIGN012 before expensive character modeling. Its cast size and look remain a question, not an approved decision.
+Tom selected a full original haunted animatronic parody cast in a spooky retro Rat Casino and Halloween Haynesnightmares mood. The rat leads and Chick-flia supports. The prior Midnight Arcade treatment was too young, and the later cast images read too glam rock; he selected the worn classic-animatronic direction recorded in the [v003 cast review](../../docs/assets/reviews/rat-casino-ensemble/v003.md). He explicitly put the six Blender character models before new level building. [PLAN015](015-haynesnightmares-asset-first.md) owns that asset-first release. The builder's versioned project, new enemy candidates and three-level fictional fixture preview are already deployed; the first owner-selected Rat Casino level and exact-art gameplay mapping remain pending the model and review gates.
 
 ## Released checkpoint · September 23
 

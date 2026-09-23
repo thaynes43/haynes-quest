@@ -1,0 +1,15 @@
+{
+  "method": "All vertices of exact glTF skin sampled at 60 Hz across all five clips, plus bind pose; rounded outward with 25 mm margin. Final exact-file inspection checks every sampled vertex against this envelope.",
+  "safe_culling_envelope": {
+    "min": [
+      -0.589,
+      -0.026,
+      -0.622
+    ],
+    "max": [
+      0.850,
+      1.826,
+      0.744
+    ]
+  }
+}

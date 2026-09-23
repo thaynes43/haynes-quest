@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The new arcade, toybox and Rat Casino work below is studio-only; the [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**34 completed models · 1 partial model · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**40 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -27,17 +27,101 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Parody characters {#parody-characters}
 
-The two Besties actors join four completed parody characters in the playtest library. Nap Captain and The One-Star Diva are paused. The new Rat Casino cast is a six-character image pitch; the lineup and look await Tom's feedback before Blender modeling.
+The two Besties actors join four completed parody characters in the playtest library. All six Rat Casino performers have separate technically checked Blender candidates awaiting Tom's exact-art review; Nap Captain and the first Rat Pit Boss export are paused partial models. The One-Star Diva is a paused concept. The classic mascot ensemble keeps the broad Rat Pit Boss center stage and Chick-flia at his side. Its earlier glossy studies and first rat export remain in the review history. No Rat Casino character is mapped into gameplay.
 
 <div class="catalog-grid" markdown="1">
 
 <div class="catalog-card" data-asset-id="rat-casino-ensemble" markdown="1">
 
-[![Concept image: six Rat Casino animatronics in a spooky retro casino](media/catalog-thumbnails/v001/c2a31b3b8c678576.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-casino-ensemble/v001.md)
+[![Concept image: central worn Rat Pit Boss with five supporting Rat Casino mascots on a dim token stage](media/catalog-thumbnails/v001/805517d530fd0dd2.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-casino-ensemble/v003.md)
 
-### [Rat Casino ensemble](reviews/rat-casino-ensemble/v001.md)
+### [Rat Casino ensemble](reviews/rat-casino-ensemble/v003.md)
 
-<span class="catalog-state">Six-character concept · v001 · Look feedback pending</span>
+<span class="catalog-state">Classic worn-mascot concept + six turnarounds · v003 · Studio only</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="rat-pit-boss" markdown="1">
+
+[![Exact corrected Rat Pit Boss model with a broad worn gray-brown mascot suit and burgundy vest](media/catalog-thumbnails/v001/5e202b9474fb5e71.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-pit-boss/v002.md)
+
+### [Rat Pit Boss](reviews/rat-pit-boss/v002.md)
+
+<span class="catalog-state">3D model · v002 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/01f1c1460f6d96d1.webp" alt="Corrected worn Rat Pit Boss front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="chick-flia" markdown="1">
+
+[![Exact Chick-flia model with a padded cream hen shell, faded burgundy apron and old microphone](media/catalog-thumbnails/v001/b72c2f131107d0eb.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/chick-flia/v001.md)
+
+### [Chick-flia](reviews/chick-flia/v001.md)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/43a706b5c74e9426.webp" alt="Corrected plain-eyed Chick-flia front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="jackrabbit-drummer" markdown="1">
+
+[![Exact Jackrabbit Drummer model with a broad indigo mascot shell, uneven ears and attached snare](media/catalog-thumbnails/v001/7b9d7f82100c5daa.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/jackrabbit-drummer/v001.md)
+
+### [Jackrabbit Drummer](reviews/jackrabbit-drummer/v001.md)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/8405105c636196ae.webp" alt="Corrected patched Jackrabbit Drummer front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="fox-card-shark" markdown="1">
+
+[![Exact Fox Card Shark model with a worn russet shell, tired eyes, plain green vest and card fan](media/catalog-thumbnails/v001/9f143c2b2ec00ffb.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/fox-card-shark/v001.md)
+
+### [Fox Card Shark](reviews/fox-card-shark/v001.md)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/dfd3b00a6743df8f.webp" alt="Corrected worn russet Fox Card Shark front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="moth-projectionist" markdown="1">
+
+[![Exact Moth Projectionist model with a worn teal shell, hinged wings and physical chest projector](media/catalog-thumbnails/v001/fbb8d260e003d630.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/moth-projectionist/v001.md)
+
+### [Moth Projectionist](reviews/moth-projectionist/v001.md)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/af80381698071ed6.webp" alt="Corrected muted teal Moth Projectionist front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="golden-after-hours-rat" markdown="1">
+
+[![Exact Golden After-Hours Rat model with a smaller faded mustard shell, closed pale faceplate and mismatched paw](media/catalog-thumbnails/v001/65a4d2e6b9d0e070.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/golden-after-hours-rat/v001.md)
+
+### [Golden After-Hours Rat](reviews/golden-after-hours-rat/v001.md)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/858e699da2011d07.webp" alt="Corrected worn golden spare-rat front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="rat-pit-boss-v001-checkpoint" markdown="1">
+
+[![Exact paused first Rat Pit Boss GLB rendered in Chromium, with a slim glossy dealer costume](media/catalog-thumbnails/v001/8eb2cc754f7a4543.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-pit-boss/v001.md)
+
+### [Rat Pit Boss · first export](reviews/rat-pit-boss/v001.md)
+
+<span class="catalog-state">Partial model · v001 · Superseded look · Not validated</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/9198fefde16788da.webp" alt="Superseded glossy Rat Casino v002 inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Earlier inspiration included</span></div>
 
 </div>
 
