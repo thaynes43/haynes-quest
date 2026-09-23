@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-23T18:56:47.939300+00:00",
+  "status": "deployed-studio-candidates; character look decision pending",
+  "direction": "Spooky retro Rat Casino and Halloween Haynesnightmares; Blender models before new levels",
+  "application": {
+    "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/58",
+    "reviewedHead": "6d7f9682b94e15a1d79e6b17ccd8841ca51325f9",
+    "mergeCommit": "daed6c471a6f00ef19da38106f1e6fed25eefcc3",
+    "reviewedHeadTreeEqualsMergeTree": true,
+    "mainApplicationRun": 35903991472,
+    "mainDocumentationRun": 35903991471,
+    "checks": "PR and main source, real PostgreSQL, container and strict documentation checks passed."
+  },
+  "publication": {
+    "image": "ghcr.io/thaynes43/haynes-quest:sha-daed6c471a6f00ef19da38106f1e6fed25eefcc3@sha256:4733a8744db1080aeb4c1ceb17d05fef9b9688a26d4998f7aa5f3e4d00f2e77f",
+    "ociIndexDigest": "sha256:4733a8744db1080aeb4c1ceb17d05fef9b9688a26d4998f7aa5f3e4d00f2e77f",
+    "registryManifestSha256EqualsDockerContentDigest": true,
+    "imageJobPublishedAttestedAndSigned": true,
+    "attestationPresenceOnly": true,
+    "rawEvidence": "/home/dev/artifacts/haynes-quest/rat-casino-20260923/release/publication.json",
+    "rawEvidenceSha256": "d3851bbfd9a70acdb1a2a64309669b1449a2568f15e5ef82dea83a29683717fd"
+  },
+  "gitops": {
+    "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/3135",
+    "reviewedHead": "d108bcb712e56a3ad08cf84376da335482674f93",
+    "mergeCommit": "c996a7973c5469681bfa75e879c6623c802f044c",
+    "reviewedHeadTreeEqualsMergeTree": true,
+    "changedFiles": [
+      "kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml"
+    ],
+    "normalizedChange": "Only frontend/haynes-quest-playtest HelmRelease image tag changed",
+    "requiredChecks": [
+      "Diff Scope - Success",
+      "Flux Local - Success"
+    ],
+    "allChecksPassed": true,
+    "fluxRevision": "main@sha1:c996a7973c5469681bfa75e879c6623c802f044c",
+    "kustomizationReady": true,
+    "helmReleaseReady": true,
+    "activity": {
+      "id": "act-185036-312704",
+      "ended": true
+    }
+  },
+  "deployment": {
+    "playtest": {
+      "uid": "d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b",
+      "generation": 15,
+      "images": [
+        [
+          "app",
+          "ghcr.io/thaynes43/haynes-quest:sha-daed6c471a6f00ef19da38106f1e6fed25eefcc3@sha256:4733a8744db1080aeb4c1ceb17d05fef9b9688a26d4998f7aa5f3e4d00f2e77f"
+        ]
+      ],
+      "pods": [
+        {
+          "name": "haynes-quest-playtest-78b5c555b5-phwjd",
+          "uid": "f104debe-48b8-417e-9d99-0c816bcb2855",
+          "ready": true,
+          "restarts": [
+            [
+              "app",
+              0
+            ]
+          ],
+          "imageID": [
+            [
+              "app",
+              "ghcr.io/thaynes43/haynes-quest@sha256:4733a8744db1080aeb4c1ceb17d05fef9b9688a26d4998f7aa5f3e4d00f2e77f"
+            ]
+          ]
+        }
+      ]
+    },
+    "normalQuestAndDevEnvUIDImagePodAndRestartsUnchanged": true,
+    "exactPlaytestImageReadyZeroRestarts": true,
+    "healthzReadyzCatalogHttp": [
+      200,
+      200,
+      200
+    ],
+    "baselineEvidence": "/home/dev/artifacts/haynes-quest/rat-casino-20260923/release/baseline.json",
+    "afterEvidence": "/home/dev/artifacts/haynes-quest/rat-casino-20260923/release/after.json"
+  },
+  "assetStudio": {
+    "catalogUrl": "https://haynes-quest-playtest.haynesops.com/studio/assets/catalog.html",
+    "ensembleReviewUrl": "https://haynes-quest-playtest.haynesops.com/studio/assets/reviews/rat-casino-ensemble/v001.html",
+    "kitReviewUrl": "https://haynes-quest-playtest.haynesops.com/studio/assets/reviews/rat-casino-kit/v001.html",
+    "inventoryEntries": 50,
+    "modelFiles": 35,
+    "completedModels": 34,
+    "partialModels": 1,
+    "thumbnailFiles": 67,
+    "newConcepts": {
+      "ensemble": "c99f7a747ffe3e8369291a0a288a98c06c929d9bc8608ab7f19f0612e54591c1",
+      "environment": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4"
+    },
+    "newModels": {
+      "marquee-arch": "1f939c9e11004397f2a7046390d788dd8ab54a0c26450eaa88b1dc983dcd6e8b",
+      "roulette-dais": "574644bcccf8038cb929aebd1d63eebbfbce976e732ec314e388cdef8cd52df6",
+      "slot-cabinet": "06f1460afc516a4dd56c8ab33cc4ba84c2bcdb5a33f954cf6060af06fd9aabe3"
+    },
+    "exactHostedFilesMatchedLocalBytes": 44,
+    "mediaEvidence": "/home/dev/artifacts/haynes-quest/rat-casino-20260923/release/hosted-media.json",
+    "mediaEvidenceSha256": "a1bf17a953fcf44367c4198495e86f05a058977bfddaa0958944aee7b45f4688",
+    "hostedDesktopPhoneCatalogAudit": {
+      "outcome": "passed",
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "httpErrors": 0,
+      "externalRequests": 0,
+      "report": "/home/dev/artifacts/haynes-quest/rat-casino-20260923/release/hosted-catalog-report.json",
+      "reportSha256": "76b1df4b653589a5348a3fe4828a9176e86fef7d5c263aa88ab46f6151d4a0e0"
+    },
+    "hostedStudioAudit": {
+      "outcome": "passed",
+      "pages": 12,
+      "models": 9,
+      "clips": 7,
+      "audio": 4,
+      "media": 113,
+      "pageErrors": 0,
+      "report": "/home/dev/artifacts/haynes-quest/rat-casino-20260923/release/hosted-studio.log",
+      "reportSha256": "1dda337ec25d76279a1e0d97c7a36f0928706988ec54602e9fed5348578cb209"
+    },
+    "gameplayUse": "No new character or prop mapped into a level; prior neutral candidate visuals remain."
+  },
+  "blender": {
+    "serviceAtCloseout": {
+      "healthy": true,
+      "ready": true,
+      "busy": false
+    },
+    "workOrder": ".agents/work-orders/097-rat-casino-kit.md",
+    "masterRemote": "/workspace/haynes-quest/rat-casino-kit/v001/rat-casino-kit.blend",
+    "masterBackup": "/home/dev/artifacts/haynes-quest/rat-casino-kit/v001/rat-casino-kit.blend",
+    "masterSha256": "99791504d602bf3f3abd06182f4c00e3b68dd954a14b5a05843c8208752c609e",
+    "allThreeGlbsKhronosZeroErrorsWarningsAndBrowserLoaded": true,
+    "sceneReleased": true
+  },
+  "pendingDecisions": [
+    "Tom to decide the look and lineup of the six-character Rat Casino concept before expensive character modeling.",
+    "Tom to review exact exported environment model versions before any gameplay use.",
+    "New levels follow a reviewable character-model lineup and separate progression/period checks; no new level was built in this release.",
+    "Physical Safari art and gameplay quality were not tested by these browser audits."
+  ]
+}

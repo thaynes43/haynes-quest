@@ -16,4 +16,4 @@
 
 ## Acceptance evidence
 
-The release record lists the resolved roster, exact source image and model versions, Blender master and export checksums, validator and browser results, live catalog URLs and review status. Levels are a later milestone. The present concept is a pitch; no new character model is complete yet.
+The [first asset release record](../evidence/rat-casino-assets-release.json) verifies the original six-character concept, three static Blender set pieces, exact source/export checksums, validator and browser results, live catalog URLs, isolated image and review status. It does not resolve the roster: Tom's look/lineup feedback is still pending, so no character model is complete yet. The full plan remains in progress. Levels are a later milestone after the cast is reviewable.
