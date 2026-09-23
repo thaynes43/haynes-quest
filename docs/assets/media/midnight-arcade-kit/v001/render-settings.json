@@ -1,0 +1,24 @@
+{
+  "blenderVersion": "4.5.13 LTS",
+  "engine": "Cycles",
+  "device": "CPU",
+  "samples": 32,
+  "denoised": true,
+  "viewTransform": "AgX",
+  "look": "Medium High Contrast",
+  "exposure": -0.35,
+  "isolatedStillsPixels": [
+    960,
+    960
+  ],
+  "assemblyPixels": [
+    1200,
+    900
+  ],
+  "scaleProxy": {
+    "shape": "cylinder",
+    "heightMeters": 1.2,
+    "diameterMeters": 0.42
+  },
+  "note": "Blender source renders, separate from exported-GLB browser inspection."
+}

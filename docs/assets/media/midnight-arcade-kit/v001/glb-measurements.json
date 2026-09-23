@@ -1,0 +1,178 @@
+[
+  {
+    "file": "ticket-arch.glb",
+    "bytes": 236656,
+    "sha256": "bd06ceeacde3401dc1d484711c2d579bf5e72fca5dcc12f6885fada62b49a265",
+    "validator": {
+      "version": "2.0.0-dev.3.10",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "hints": 0,
+      "report": "ticket-arch-validator.json"
+    },
+    "meshes": 1,
+    "nodes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "materialNames": [
+      "Craft_Matte",
+      "Warm_Satin",
+      "Honey_Glow"
+    ],
+    "triangles": 2924,
+    "exportedVertices": 5996,
+    "normals": {
+      "count": 5996,
+      "minimumLength": 0.9999999441878239,
+      "maximumLength": 1.0000001168487858
+    },
+    "boundingBoxYUp": {
+      "min": [
+        -3.0399999618530273,
+        0,
+        -0.3100000023841858
+      ],
+      "max": [
+        3.0400002002716064,
+        3.384999990463257,
+        0.42800000309944153
+      ]
+    },
+    "dimensionsMeters": [
+      6.080000162124634,
+      3.384999990463257,
+      0.7380000054836273
+    ],
+    "animations": 0,
+    "skins": 0,
+    "images": 0,
+    "textures": 0,
+    "selfContained": true,
+    "identityNodes": true,
+    "rootAtFloor": true,
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "floor center of base footprint",
+    "extensionsUsed": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "arcade-cabinet.glb",
+    "bytes": 194624,
+    "sha256": "63a54542acd25a1aededf63b563b2926002ff87b14069fa470fe2919c0f20142",
+    "validator": {
+      "version": "2.0.0-dev.3.10",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "hints": 0,
+      "report": "arcade-cabinet-validator.json"
+    },
+    "meshes": 1,
+    "nodes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "materialNames": [
+      "Warm_Satin",
+      "Craft_Matte",
+      "Honey_Glow"
+    ],
+    "triangles": 2544,
+    "exportedVertices": 4892,
+    "normals": {
+      "count": 4892,
+      "minimumLength": 0.9999999309431519,
+      "maximumLength": 1.0000001028804222
+    },
+    "boundingBoxYUp": {
+      "min": [
+        -0.4729999899864197,
+        0,
+        -0.5
+      ],
+      "max": [
+        0.4729999899864197,
+        1.7899999618530273,
+        0.5199999809265137
+      ]
+    },
+    "dimensionsMeters": [
+      0.9459999799728394,
+      1.7899999618530273,
+      1.0199999809265137
+    ],
+    "animations": 0,
+    "skins": 0,
+    "images": 0,
+    "textures": 0,
+    "selfContained": true,
+    "identityNodes": true,
+    "rootAtFloor": true,
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "floor center of base footprint",
+    "extensionsUsed": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "joystick-bollard.glb",
+    "bytes": 84880,
+    "sha256": "11719fe4ef27242a409e7cb81137a1429903545593f1dcb61e69ae80d9d4754d",
+    "validator": {
+      "version": "2.0.0-dev.3.10",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "hints": 0,
+      "report": "joystick-bollard-validator.json"
+    },
+    "meshes": 1,
+    "nodes": 1,
+    "primitives": 2,
+    "materials": 2,
+    "materialNames": [
+      "Craft_Matte",
+      "Warm_Satin"
+    ],
+    "triangles": 1076,
+    "exportedVertices": 2116,
+    "normals": {
+      "count": 2116,
+      "minimumLength": 0.9999999480577353,
+      "maximumLength": 1.0000001108002108
+    },
+    "boundingBoxYUp": {
+      "min": [
+        -0.42500001192092896,
+        0,
+        -0.42500001192092896
+      ],
+      "max": [
+        0.42500001192092896,
+        1.0499999523162842,
+        0.42500001192092896
+      ]
+    },
+    "dimensionsMeters": [
+      0.8500000238418579,
+      1.0499999523162842,
+      0.8500000238418579
+    ],
+    "animations": 0,
+    "skins": 0,
+    "images": 0,
+    "textures": 0,
+    "selfContained": true,
+    "identityNodes": true,
+    "rootAtFloor": true,
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "floor center of base footprint",
+    "extensionsUsed": [
+      "KHR_materials_specular"
+    ]
+  }
+]

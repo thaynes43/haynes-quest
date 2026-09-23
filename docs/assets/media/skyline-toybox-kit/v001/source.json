@@ -1,0 +1,24 @@
+{
+  "assetId": "skyline-toybox-kit",
+  "version": "v001",
+  "createdUtc": "2026-09-23",
+  "tool": "OpenAI built-in image generation via driving GPT-6 Astra",
+  "seed": null,
+  "concept": {
+    "path": "docs/assets/media/skyline-toybox-kit/v001/concept.png",
+    "sha256": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa",
+    "size": "1536x1024"
+  },
+  "referenceImages": [
+    {
+      "path": "docs/assets/media/storybook-reference/v001/environment.png",
+      "sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908"
+    },
+    {
+      "path": "docs/assets/media/storybook-reference/v001/props-materials.png",
+      "sha256": "1f15acf9aeb14cd7f4b00f6bb0b6d15ecbd97eb3775c9eac5a0b546c7a89f251"
+    }
+  ],
+  "promptPath": "docs/assets/media/skyline-toybox-kit/v001/prompt.txt",
+  "ownerApproval": "pending"
+}

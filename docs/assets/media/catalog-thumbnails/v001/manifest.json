@@ -227,6 +227,34 @@
       "sha256": "ac981f6b22d4046203253a073be284760d5b0936df61f65bd97cb87518214cb4"
     },
     {
+      "source": "docs/assets/media/midnight-arcade-kit/v001/arcade-cabinet-beauty.png",
+      "source_sha256": "22d60dd4c6a47fc8f7531797fae8e89ebf7855dff6815fee834dce9f1bc678e8",
+      "path": "docs/assets/media/catalog-thumbnails/v001/9c31f38926337ae5.webp",
+      "bytes": 10042,
+      "sha256": "219801b08e814d396333e2d1677457c1d1e747276a432e2add15a24a779d501c"
+    },
+    {
+      "source": "docs/assets/media/midnight-arcade-kit/v001/concept.png",
+      "source_sha256": "77806c6609dcbe2833b389cb334f7ea1b0fbbd79ac80551ef79d86ddad3ec45b",
+      "path": "docs/assets/media/catalog-thumbnails/v001/38c349cd1fdf003b.webp",
+      "bytes": 55950,
+      "sha256": "5455f390e16ef9c2ebd8768a8963514f5ea60bf3fbe6157dba1b3c79838c24b4"
+    },
+    {
+      "source": "docs/assets/media/midnight-arcade-kit/v001/joystick-bollard-beauty.png",
+      "source_sha256": "b073c250e4dfa2d85709dea9fd021a734e8b9d1eb878ca0c1e75b0ca7237a77d",
+      "path": "docs/assets/media/catalog-thumbnails/v001/0be9e422414cdb69.webp",
+      "bytes": 5484,
+      "sha256": "af3ae4ed4b4e44a2b8637780bee644ab4d8920b78958e86bc9822c4d67354c46"
+    },
+    {
+      "source": "docs/assets/media/midnight-arcade-kit/v001/ticket-arch-beauty.png",
+      "source_sha256": "0728d4498d851f46ed12535c8217884b102e6f6c2d8ed3eee82997d9c48cdf62",
+      "path": "docs/assets/media/catalog-thumbnails/v001/7121289732038583.webp",
+      "bytes": 6638,
+      "sha256": "aae984930e0e081fece9a868c6e484769a2c1ab3b2fb40efc1dd5d2ae4868a5b"
+    },
+    {
       "source": "docs/assets/media/mister-hiss/v001/beauty.png",
       "source_sha256": "b7bb218ec5436a8288a51f8f64da960d0b1d79ddb62d3c505a011ec38e1f007a",
       "path": "docs/assets/media/catalog-thumbnails/v001/c165726c58d4ded7.webp",
@@ -323,6 +351,34 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/6b744e6e7e7e2580.webp",
       "bytes": 42432,
       "sha256": "4fd94cebfae22cb88e47e162aa9d9695115c52bd49cb1e0af1788441dadb7952"
+    },
+    {
+      "source": "docs/assets/media/skyline-toybox-kit/v001/block-tower-beauty.png",
+      "source_sha256": "21db526ce28bb6332899d6486a85a8bb3d5783bad6ae821bc45022400768a38e",
+      "path": "docs/assets/media/catalog-thumbnails/v001/8e08103ff7a9f456.webp",
+      "bytes": 3828,
+      "sha256": "f709dcc9cae407c8ae7804c30b3094b16ea809b60f5c8d1bf0ce7bcde044d2dc"
+    },
+    {
+      "source": "docs/assets/media/skyline-toybox-kit/v001/concept.png",
+      "source_sha256": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa",
+      "path": "docs/assets/media/catalog-thumbnails/v001/14a4da7f33f28300.webp",
+      "bytes": 52242,
+      "sha256": "a052addb58e70276c46538190a231713bc3f081d86f366c17e4faca1bf1698d3"
+    },
+    {
+      "source": "docs/assets/media/skyline-toybox-kit/v001/safety-rail-beauty.png",
+      "source_sha256": "7a12ebc0746b33219d679bc8cecd96139188cd5a02d2ec6874fcd0babc736c09",
+      "path": "docs/assets/media/catalog-thumbnails/v001/5653fa267d91fced.webp",
+      "bytes": 3428,
+      "sha256": "bf61ba796542e0f0b582228505c6ead8ea08bcf9bf0982f01e597dd777a67bb8"
+    },
+    {
+      "source": "docs/assets/media/skyline-toybox-kit/v001/windup-lantern-beauty.png",
+      "source_sha256": "7ab5237cbdd6659b355fc8f336f34a7043d6e30edb98afaf24587806d15bd3e4",
+      "path": "docs/assets/media/catalog-thumbnails/v001/f09b90cfa2723c1a.webp",
+      "bytes": 4872,
+      "sha256": "990513fc3c39f74e87d21c429ae8e97fd169c1c9a0740533fcdc058fd0c1c946"
     },
     {
       "source": "docs/assets/media/storybook-reference/v001/environment.png",

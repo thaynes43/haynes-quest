@@ -1940,12 +1940,23 @@ footer {
   left: 50%;
   transform: translateX(-50%);
   bottom: 190px;
+  max-width: min(320px, calc(100vw - 30px));
   padding: 8px 15px;
   border-radius: 20px;
   background: #302d43d9;
   color: #fff0d4;
   font-size: 12px;
+  text-align: center;
   pointer-events: none;
+}
+.target-hint strong,
+.target-hint small {
+  display: block;
+}
+.target-hint small {
+  margin-top: 2px;
+  color: #e4cba6;
+  font-size: 9px;
 }
 .attack-notice {
   position: absolute;

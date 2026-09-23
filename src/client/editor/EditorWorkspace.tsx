@@ -14,7 +14,9 @@ import {
   LevelEditorProjectValidationError,
   applyLevelEditorCommand,
   canonicalLevelEditorProjectJson,
-  createLevelEditorProject,
+  createWorldEditorProject,
+  isLevelEditorProjectV2,
+  migrateLevelEditorProjectToV2,
   parseLevelEditorProjectJson,
   rebaseLevelEditorProject,
   serializeLevelEditorProject,
@@ -23,6 +25,8 @@ import {
   type LevelEditorCommand,
   type LevelEditorIssue,
   type LevelEditorProject,
+  type LevelEditorProjectV2,
+  type LevelEditorTemplateRouteId,
 } from "../../shared/editor-project";
 import { EditorViewport, type EditorSnap, type EditorViewportHandle } from "./EditorViewport";
 import { ObjectRail } from "./ObjectRail";
@@ -31,6 +35,7 @@ import { PropertiesInspector } from "./PropertiesInspector";
 import { RouteEditor } from "./RouteEditor";
 import { TextField } from "./EditorFields";
 import { ValidationPanel } from "./ValidationPanel";
+import { WorldPanel } from "./WorldPanel";
 import {
   commitEditorHistory,
   createEditorHistory,
@@ -71,7 +76,7 @@ interface EditorCursor {
 }
 
 type ProjectHistory = EditorHistory<LevelEditorProject, EditorCursor>;
-type MobilePanel = "view" | "objects" | "properties" | "checks";
+type MobilePanel = "view" | "objects" | "properties" | "world" | "checks";
 
 interface InitialEditorState {
   readonly history: ProjectHistory;
@@ -84,7 +89,7 @@ function createProjectId(): string {
 }
 
 function newProject(): LevelEditorProject {
-  return createLevelEditorProject({
+  return createWorldEditorProject({
     projectId: createProjectId(),
     name: "Untitled adventure",
     chapterNames: {
@@ -92,6 +97,21 @@ function newProject(): LevelEditorProject {
       "chapter-2": "Besties Obby",
     },
   });
+}
+
+function uniqueWorldId(project: LevelEditorProjectV2, kind: "chapter" | "route", name = "") {
+  const slug = name.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 38);
+  const taken = new Set([
+    ...project.chapters.flatMap((item) => [item.chapterId, item.routeId]),
+    ...project.enemyCandidates.map((item) => item.id),
+  ]);
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    const suffix = globalThis.crypto?.randomUUID?.().replace(/-/g, "").slice(0, 10)
+      ?? `${Date.now().toString(36)}${attempt}`;
+    const id = `${kind === "route" ? "draft-world" : "chapter"}${slug ? `-${slug}` : ""}-${suffix}`;
+    if (!taken.has(id)) return id;
+  }
+  throw new Error("Could not create a unique draft ID");
 }
 
 function initialEditorState(): InitialEditorState {
@@ -187,9 +207,10 @@ export function EditorWorkspace({
   const [importOpen, setImportOpen] = useState(false);
   const [importText, setImportText] = useState("");
   const [importFailure, setImportFailure] = useState("");
-  const [inspectorTab, setInspectorTab] = useState<"properties" | "route">(
-    "properties",
+  const [inspectorTab, setInspectorTab] = useState<"properties" | "route" | "world">(
+    "world",
   );
+  const [addLevelMenuOpen, setAddLevelMenuOpen] = useState(false);
   const [snap, setSnap] = useState<EditorSnap>(0.25);
   const [moveAttached, setMoveAttached] = useState(true);
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>("view");
@@ -453,6 +474,59 @@ export function EditorWorkspace({
     if (applied) window.requestAnimationFrame(() => viewport.current?.frameSelection());
   };
 
+  const addLevel = (sourceTemplateId: LevelEditorTemplateRouteId) => {
+    if (!isLevelEditorProjectV2(project)) return;
+    const newChapterId = uniqueWorldId(project, "chapter");
+    const newRouteId = uniqueWorldId(project, "route");
+    const added = runCommand({
+      type: "chapter.add",
+      newChapterId,
+      newRouteId,
+      sourceTemplateId,
+      name: sourceTemplateId === "garden-playground-v2" ? "New garden world" : "New obby world",
+      index: project.chapters.length,
+    });
+    setAddLevelMenuOpen(false);
+    if (added) {
+      replaceCursor({ chapterId: newChapterId, object: null });
+      setInspectorTab("world");
+      setMobilePanel("world");
+      window.requestAnimationFrame(() => viewport.current?.frameLevel());
+    }
+  };
+
+  const duplicateLevel = () => {
+    if (!isLevelEditorProjectV2(project)) return;
+    const newChapterId = uniqueWorldId(project, "chapter", chapter.name);
+    const newRouteId = uniqueWorldId(project, "route", chapter.name);
+    const added = runCommand({
+      type: "chapter.duplicate",
+      chapterId: chapter.chapterId,
+      newChapterId,
+      newRouteId,
+      name: `${chapter.name.slice(0, 75)} copy`,
+      index: project.chapters.findIndex((item) => item.chapterId === chapter.chapterId) + 1,
+    });
+    if (added) {
+      replaceCursor({ chapterId: newChapterId, object: null });
+      window.requestAnimationFrame(() => viewport.current?.frameLevel());
+    }
+  };
+
+  const upgradeProject = () => {
+    const current = latestHistory.current;
+    if (isLevelEditorProjectV2(current.present.project)) return;
+    const upgraded = migrateLevelEditorProjectToV2(current.present.project);
+    const next = commitEditorHistory(current, {
+      project: rebaseLevelEditorProject(upgraded, current.present.project.revision + 1),
+      selection: { chapterId: current.present.selection.chapterId, object: null },
+    });
+    latestHistory.current = next;
+    setHistory(next);
+    setInspectorTab("world");
+    setMobilePanel("world");
+  };
+
   const moveSelection = (position: AuthoredPosition) => {
     if (cursor.object?.type === "piece") {
       runCommand({
@@ -585,6 +659,13 @@ export function EditorWorkspace({
           >
             Route
           </button>
+          <button
+            role="tab"
+            aria-selected={inspectorTab === "world"}
+            onClick={() => setInspectorTab("world")}
+          >
+            World
+          </button>
         </div>
         <div className="editor-inspector-scroll">
           {inspectorTab === "properties" ? (
@@ -619,7 +700,7 @@ export function EditorWorkspace({
               onDuplicatePiece={duplicatePiece}
               onDeletePiece={deleteSelection}
             />
-          ) : (
+          ) : inspectorTab === "route" ? (
             <RouteEditor
               document={document}
               onAddConnection={(connection) =>
@@ -680,6 +761,68 @@ export function EditorWorkspace({
                 })
               }
             />
+          ) : isLevelEditorProjectV2(project) ? (
+            <WorldPanel
+              project={project}
+              chapter={project.chapters.find((item) => item.chapterId === cursor.chapterId)!}
+              onSelectChapter={(chapterId) => {
+                replaceCursor({ chapterId, object: null });
+                window.requestAnimationFrame(() => viewport.current?.frameLevel());
+              }}
+              onAddLevel={addLevel}
+              onDuplicateLevel={duplicateLevel}
+              onMoveLevel={(direction) =>
+                runCommand({
+                  type: "chapter.reorder",
+                  chapterId: cursor.chapterId,
+                  index: project.chapters.findIndex((item) => item.chapterId === cursor.chapterId) + direction,
+                })
+              }
+              onRemoveLevel={() => {
+                if (!window.confirm(`Remove ${chapter.name} from this draft? You can undo this edit.`)) return;
+                runCommand({ type: "chapter.remove", chapterId: cursor.chapterId });
+              }}
+              onSetDetails={(changes) => {
+                const current = project.chapters.find((item) => item.chapterId === cursor.chapterId)!;
+                runCommand({
+                  type: "chapter.details.set",
+                  chapterId: cursor.chapterId,
+                  subtitle: changes.subtitle ?? current.subtitle ?? "",
+                  description: changes.description ?? current.description ?? "",
+                  theme: current.level.theme,
+                  representedDateRange: changes.representedDateRange ?? current.representedDateRange,
+                  recoveredAge: changes.recoveredAge ?? current.recoveredAge,
+                  previewMemories: changes.previewMemories ?? current.previewMemories,
+                });
+              }}
+              onSetTheme={(theme) => {
+                const current = project.chapters.find((item) => item.chapterId === cursor.chapterId)!;
+                runCommand({
+                  type: "chapter.details.set",
+                  chapterId: cursor.chapterId,
+                  subtitle: current.subtitle ?? "",
+                  description: current.description ?? "",
+                  theme,
+                  representedDateRange: current.representedDateRange,
+                  recoveredAge: current.recoveredAge,
+                  previewMemories: current.previewMemories,
+                });
+              }}
+              onSetBirthDate={(fictionalBirthDate) => runCommand({ type: "project.birthdate.set", fictionalBirthDate })}
+              onAssignEncounter={(slot, encounter) => runCommand({ type: "encounter.assign", chapterId: cursor.chapterId, slot, encounter })}
+              onCreateCandidate={(slot, candidate) => runCommand({
+                type: "enemy.add",
+                chapterId: cursor.chapterId,
+                slot,
+                candidate,
+              })}
+            />
+          ) : (
+            <section className="editor-world-section">
+              <h2>Build a complete world</h2>
+              <p className="editor-empty-state">This saved draft uses the original two-level format. Upgrade it to add levels, shape their story and choose a cast. Your course edits carry across.</p>
+              <button type="button" className="editor-primary" onClick={upgradeProject}>Upgrade this draft</button>
+            </section>
           )}
         </div>
       </aside>
@@ -773,6 +916,24 @@ export function EditorWorkspace({
               </option>
             ))}
           </select>
+          {isLevelEditorProjectV2(project) && (
+            <div className="editor-playtest-menu editor-add-level-menu">
+              <button
+                type="button"
+                disabled={project.chapters.length >= 8}
+                aria-expanded={addLevelMenuOpen}
+                onClick={() => setAddLevelMenuOpen((open) => !open)}
+              >
+                Add level
+              </button>
+              {addLevelMenuOpen && (
+                <div className="editor-menu" role="menu">
+                  <button type="button" role="menuitem" onClick={() => addLevel("garden-playground-v2")}>From garden course</button>
+                  <button type="button" role="menuitem" onClick={() => addLevel("besties-playground-v2")}>From obby course</button>
+                </div>
+              )}
+            </div>
+          )}
           <TextField
             label="Chapter name"
             value={chapter.name}
@@ -882,13 +1043,15 @@ export function EditorWorkspace({
       )}
 
       <nav className="editor-mobile-tabs" aria-label="Editor panels">
-        {(["view", "objects", "properties", "checks"] as const).map((panel) => (
+        {(["view", "objects", "properties", "world", "checks"] as const).map((panel) => (
           <button
             type="button"
             key={panel}
             aria-current={mobilePanel === panel ? "page" : undefined}
             onClick={() => {
               setMobilePanel(panel);
+              if (panel === "world") setInspectorTab("world");
+              if (panel === "properties") setInspectorTab("properties");
               if (panel === "checks") setChecksOpen(true);
             }}
           >

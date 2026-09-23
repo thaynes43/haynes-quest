@@ -5,6 +5,8 @@ import bestiesTemplate from "./levels/besties-playground-v2.json";
 import {
   AUTHORED_LEVEL_LIMITS,
   AUTHORED_LEVEL_SCHEMA_VERSION_V2,
+  AUTHORED_LEVEL_SCHEMA_VERSION_V3,
+  AUTHORED_LEVEL_IDS,
   authoredLevelDocumentSchema,
   resolveAuthoredLevelDocument,
   validateAuthoredLevelDocument,
@@ -16,9 +18,11 @@ import {
   type AuthoredLevelDocument,
   type AuthoredLevelIssue,
   type AuthoredLevelPiece,
+  type AuthoredLevelTheme,
   type AuthoredPosition,
   type ResolvedAuthoredLevel,
 } from "./authored-level";
+import type { EncounterKind, EncounterRole } from "./contracts";
 import { validateEditorGameplayGuards } from "./editor-gameplay-guards";
 import {
   levelEditorSectionIdPrefixSchema,
@@ -31,9 +35,23 @@ import {
   type LevelEditorSectionPattern,
   type LevelEditorSectionSide,
 } from "./editor-sections";
+import {
+  ALL_PARODY_CANDIDATES,
+  PARODY_CANDIDATES,
+  PARODY_CATALOG_VERSION,
+  PARODY_PERIODS,
+  type ParodyCatalogEntry,
+  type ParodyPeriodId,
+} from "./parody-catalog";
 
 export const LEVEL_EDITOR_PROJECT_SCHEMA_VERSION =
   "level-editor-project-v1" as const;
+export const LEVEL_EDITOR_PROJECT_SCHEMA_VERSION_V2 =
+  "level-editor-project-v2" as const;
+export const LEVEL_EDITOR_PROJECT_SCHEMA_VERSIONS = [
+  LEVEL_EDITOR_PROJECT_SCHEMA_VERSION,
+  LEVEL_EDITOR_PROJECT_SCHEMA_VERSION_V2,
+] as const;
 export const LEVEL_EDITOR_CHAPTER_IDS = ["chapter-1", "chapter-2"] as const;
 export const LEVEL_EDITOR_TEMPLATE_ROUTE_IDS = [
   "garden-playground-v2",
@@ -47,38 +65,137 @@ export const LEVEL_EDITOR_PROJECT_MAX_BYTES = 320 * 1024;
 export const LEVEL_EDITOR_LEVEL_MAX_BYTES = 128 * 1024;
 export const LEVEL_EDITOR_COMMAND_BATCH_MAX_BYTES = 256 * 1024;
 export const LEVEL_EDITOR_MAX_COMMANDS_PER_BATCH = 256;
+export const LEVEL_EDITOR_PROJECT_LIMITS = Object.freeze({
+  minChapters: 1,
+  maxChapters: 8,
+  maxEnemyCandidates: 32,
+  maxCandidateTextLength: 240,
+} as const);
 
-export type LevelEditorChapterId = (typeof LEVEL_EDITOR_CHAPTER_IDS)[number];
+export type LevelEditorChapterId = string;
 export type LevelEditorTemplateRouteId =
   (typeof LEVEL_EDITOR_TEMPLATE_ROUTE_IDS)[number];
-export type LevelEditorLevelDocument = Omit<
+export type LevelEditorLegacyLevelDocument = Omit<
   AuthoredLevelDocument,
   "schemaVersion" | "id"
 > & {
   readonly schemaVersion: typeof AUTHORED_LEVEL_SCHEMA_VERSION_V2;
   readonly id: LevelEditorTemplateRouteId;
 };
+export type WorldEditorLevelDocument = Omit<
+  AuthoredLevelDocument,
+  "schemaVersion" | "id"
+> & {
+  readonly schemaVersion: typeof AUTHORED_LEVEL_SCHEMA_VERSION_V3;
+  readonly id: string;
+};
+export type LevelEditorLevelDocument =
+  | LevelEditorLegacyLevelDocument
+  | WorldEditorLevelDocument;
 
-export interface LevelEditorChapter<
-  ChapterId extends LevelEditorChapterId = LevelEditorChapterId,
+export interface LevelEditorChapterV1<
+  ChapterId extends (typeof LEVEL_EDITOR_CHAPTER_IDS)[number] = (typeof LEVEL_EDITOR_CHAPTER_IDS)[number],
   TemplateRouteId extends LevelEditorTemplateRouteId = LevelEditorTemplateRouteId,
 > {
   readonly chapterId: ChapterId;
   readonly name: string;
   readonly templateRouteId: TemplateRouteId;
-  readonly level: LevelEditorLevelDocument & { readonly id: TemplateRouteId };
+  readonly level: LevelEditorLegacyLevelDocument & { readonly id: TemplateRouteId };
 }
 
-export interface LevelEditorProject {
+export interface LevelEditorProjectV1 {
   readonly schemaVersion: typeof LEVEL_EDITOR_PROJECT_SCHEMA_VERSION;
   readonly projectId: string;
   readonly name: string;
   readonly revision: number;
   readonly chapters: readonly [
-    LevelEditorChapter<"chapter-1", "garden-playground-v2">,
-    LevelEditorChapter<"chapter-2", "besties-playground-v2">,
+    LevelEditorChapterV1<"chapter-1", "garden-playground-v2">,
+    LevelEditorChapterV1<"chapter-2", "besties-playground-v2">,
   ];
 }
+
+export interface LevelEditorRepresentedDateRange {
+  readonly startDate: string;
+  readonly endDate: string;
+}
+
+export interface LevelEditorRecoveredAge {
+  readonly fromYears: number;
+  readonly toYears: number;
+}
+
+export type LevelEditorPreviewMemorySlot =
+  | "minor-one"
+  | "minor-two"
+  | "major";
+
+export interface LevelEditorPreviewMemory {
+  readonly slotId: LevelEditorPreviewMemorySlot;
+  readonly date: string;
+  readonly label: string;
+}
+
+export type LevelEditorEncounterReference =
+  | {
+      readonly source: "catalog";
+      readonly catalogEntryId: string;
+      readonly catalogEntryVersion: "v001";
+    }
+  | {
+      readonly source: "candidate";
+      readonly candidateId: string;
+    };
+
+export type LevelEditorEncounterSlots = Readonly<
+  Record<AuthoredEncounterSlot, LevelEditorEncounterReference>
+>;
+
+export type LevelEditorEnemyBehaviorPreset = EncounterKind;
+
+export interface LevelEditorEnemyCandidate {
+  readonly id: string;
+  readonly name: string;
+  readonly periodId: ParodyPeriodId;
+  readonly recognizableReference: string;
+  readonly visualJoke: string;
+  readonly obstacleOrAttack: string;
+  readonly eligibility: LevelEditorRepresentedDateRange;
+  readonly role: EncounterRole;
+  readonly kind: EncounterKind;
+  readonly behaviorPreset: LevelEditorEnemyBehaviorPreset;
+}
+
+export interface LevelEditorChapterV2 {
+  readonly chapterId: LevelEditorChapterId;
+  readonly routeId: string;
+  readonly name: string;
+  readonly subtitle: string;
+  readonly description: string;
+  readonly sourceTemplateId: LevelEditorTemplateRouteId;
+  readonly level: WorldEditorLevelDocument;
+  readonly representedDateRange: LevelEditorRepresentedDateRange;
+  readonly recoveredAge: LevelEditorRecoveredAge;
+  readonly previewMemories: readonly [
+    LevelEditorPreviewMemory & { readonly slotId: "minor-one" },
+    LevelEditorPreviewMemory & { readonly slotId: "minor-two" },
+    LevelEditorPreviewMemory & { readonly slotId: "major" },
+  ];
+  readonly encounterSlots: LevelEditorEncounterSlots;
+}
+
+export interface LevelEditorProjectV2 {
+  readonly schemaVersion: typeof LEVEL_EDITOR_PROJECT_SCHEMA_VERSION_V2;
+  readonly projectId: string;
+  readonly name: string;
+  readonly revision: number;
+  readonly fictionalBirthDate: string;
+  readonly catalogVersion: typeof PARODY_CATALOG_VERSION;
+  readonly enemyCandidates: readonly LevelEditorEnemyCandidate[];
+  readonly chapters: readonly LevelEditorChapterV2[];
+}
+
+export type LevelEditorChapter = LevelEditorChapterV1 | LevelEditorChapterV2;
+export type LevelEditorProject = LevelEditorProjectV1 | LevelEditorProjectV2;
 
 export type LevelEditorIssueSource = "structure" | "semantic" | "command";
 
@@ -92,16 +209,22 @@ export interface LevelEditorIssue {
 
 export interface ResolvedLevelEditorProject {
   readonly project: LevelEditorProject;
-  readonly levels: Readonly<
-    Record<LevelEditorTemplateRouteId, ResolvedAuthoredLevel>
-  >;
+  readonly levels: Readonly<Record<string, ResolvedAuthoredLevel>>;
 }
 
 export interface CreateLevelEditorProjectOptions {
   readonly projectId: string;
   readonly name?: string;
   readonly chapterNames?: Readonly<
-    Partial<Record<LevelEditorChapterId, string>>
+    Partial<Record<(typeof LEVEL_EDITOR_CHAPTER_IDS)[number], string>>
+  >;
+}
+
+export interface CreateWorldEditorProjectOptions {
+  readonly projectId: string;
+  readonly name?: string;
+  readonly chapterNames?: Readonly<
+    Partial<Record<(typeof LEVEL_EDITOR_CHAPTER_IDS)[number], string>>
   >;
 }
 
@@ -126,9 +249,46 @@ const displayNameSchema = z
   .max(80)
   .refine((value) => value.trim().length > 0, "Name cannot be blank");
 const revisionSchema = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER);
+const ageYearsSchema = z.number().int().min(0).max(120);
+const dateOnlySchema = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, "Date must use YYYY-MM-DD")
+  .refine((value) => {
+    const [year, month, day] = value.split("-").map(Number);
+    if (year === undefined || month === undefined || day === undefined) return false;
+    const parsed = new Date(Date.UTC(year, month - 1, day));
+    return (
+      parsed.getUTCFullYear() === year &&
+      parsed.getUTCMonth() === month - 1 &&
+      parsed.getUTCDate() === day
+    );
+  }, "Date must be a real calendar day");
+const portableProseSchema = (maximum: number) =>
+  z
+    .string()
+    .min(1)
+    .max(maximum)
+    .refine((value) => value.trim().length > 0, "Text cannot be blank")
+    .refine(
+      (value) => !/(?:https?:|data:|javascript:|file:|blob:)/iu.test(value),
+      "Portable project text cannot contain a URL or executable URI",
+    );
+const periodIdSchema = z.enum(
+  Object.keys(PARODY_PERIODS) as [ParodyPeriodId, ...ParodyPeriodId[]],
+);
+const encounterKindSchema = z.enum(["ordinary-a", "ordinary-b", "boss"]);
+const encounterRoleSchema = z.enum(["ordinary", "boss"]);
+const encounterSlotSchema = z.enum([
+  "ordinary-1",
+  "ordinary-2",
+  "ordinary-3",
+  "ordinary-4",
+  "boss",
+]);
 // Reuse the published v2 schema's public Zod shape so command JSON Schema
 // describes complete payloads without creating a second structural contract.
 const authoredLevelV2Schema = authoredLevelDocumentSchema.options[1];
+const authoredLevelV3Schema = authoredLevelDocumentSchema.options[2];
 const pieceSchema = authoredLevelV2Schema.shape.pieces.element;
 const anchorSchema = authoredLevelV2Schema.shape.anchors.shape.spawn;
 const encounterAnchorSchema =
@@ -166,7 +326,7 @@ const chapterTwoSchema = z
   })
   .strict();
 
-export const levelEditorProjectSchema = z
+export const levelEditorProjectV1Schema = z
   .object({
     schemaVersion: z.literal(LEVEL_EDITOR_PROJECT_SCHEMA_VERSION),
     projectId: identifierSchema,
@@ -175,6 +335,144 @@ export const levelEditorProjectSchema = z
     chapters: z.tuple([chapterOneSchema, chapterTwoSchema]),
   })
   .strict();
+
+export const levelEditorRepresentedDateRangeSchema = z
+  .object({ startDate: dateOnlySchema, endDate: dateOnlySchema })
+  .strict();
+
+export const levelEditorRecoveredAgeSchema = z
+  .object({ fromYears: ageYearsSchema, toYears: ageYearsSchema })
+  .strict();
+
+const previewMemorySchema = <Slot extends LevelEditorPreviewMemorySlot>(
+  slotId: Slot,
+) =>
+  z
+    .object({
+      slotId: z.literal(slotId),
+      date: dateOnlySchema,
+      label: portableProseSchema(160),
+    })
+    .strict();
+
+export const levelEditorEncounterReferenceSchema = z.discriminatedUnion(
+  "source",
+  [
+    z
+      .object({
+        source: z.literal("catalog"),
+        catalogEntryId: identifierSchema,
+        catalogEntryVersion: z.literal("v001"),
+      })
+      .strict(),
+    z
+      .object({
+        source: z.literal("candidate"),
+        candidateId: identifierSchema,
+      })
+      .strict(),
+  ],
+);
+
+export const levelEditorEncounterSlotsSchema = z
+  .object({
+    "ordinary-1": levelEditorEncounterReferenceSchema,
+    "ordinary-2": levelEditorEncounterReferenceSchema,
+    "ordinary-3": levelEditorEncounterReferenceSchema,
+    "ordinary-4": levelEditorEncounterReferenceSchema,
+    boss: levelEditorEncounterReferenceSchema,
+  })
+  .strict();
+
+export const levelEditorEnemyCandidateSchema = z
+  .object({
+    id: identifierSchema,
+    name: portableProseSchema(80),
+    periodId: periodIdSchema,
+    recognizableReference: portableProseSchema(
+      LEVEL_EDITOR_PROJECT_LIMITS.maxCandidateTextLength,
+    ),
+    visualJoke: portableProseSchema(
+      LEVEL_EDITOR_PROJECT_LIMITS.maxCandidateTextLength,
+    ),
+    obstacleOrAttack: portableProseSchema(
+      LEVEL_EDITOR_PROJECT_LIMITS.maxCandidateTextLength,
+    ),
+    eligibility: levelEditorRepresentedDateRangeSchema,
+    role: encounterRoleSchema,
+    kind: encounterKindSchema,
+    behaviorPreset: encounterKindSchema,
+  })
+  .strict();
+
+export const levelEditorChapterV2Schema = z
+  .object({
+    chapterId: identifierSchema,
+    routeId: identifierSchema,
+    name: displayNameSchema,
+    subtitle: portableProseSchema(100),
+    description: portableProseSchema(240),
+    sourceTemplateId: z.enum(LEVEL_EDITOR_TEMPLATE_ROUTE_IDS),
+    level: authoredLevelV3Schema,
+    representedDateRange: levelEditorRepresentedDateRangeSchema,
+    recoveredAge: levelEditorRecoveredAgeSchema,
+    previewMemories: z.tuple([
+      previewMemorySchema("minor-one"),
+      previewMemorySchema("minor-two"),
+      previewMemorySchema("major"),
+    ]),
+    encounterSlots: levelEditorEncounterSlotsSchema,
+  })
+  .strict();
+
+export const levelEditorProjectV2Schema = z
+  .object({
+    schemaVersion: z.literal(LEVEL_EDITOR_PROJECT_SCHEMA_VERSION_V2),
+    projectId: identifierSchema,
+    name: displayNameSchema,
+    revision: revisionSchema,
+    fictionalBirthDate: dateOnlySchema,
+    catalogVersion: z.literal(PARODY_CATALOG_VERSION),
+    enemyCandidates: z
+      .array(levelEditorEnemyCandidateSchema)
+      .max(LEVEL_EDITOR_PROJECT_LIMITS.maxEnemyCandidates),
+    chapters: z
+      .array(levelEditorChapterV2Schema)
+      .min(LEVEL_EDITOR_PROJECT_LIMITS.minChapters)
+      .max(LEVEL_EDITOR_PROJECT_LIMITS.maxChapters),
+  })
+  .strict();
+
+export const levelEditorProjectSchema = z.discriminatedUnion("schemaVersion", [
+  levelEditorProjectV1Schema,
+  levelEditorProjectV2Schema,
+]);
+
+const LEVEL_EDITOR_READY_IDENTITIES = new Set([
+  "mister-hiss@v001:mister-hiss@v001",
+  "peel-patrol@v001:peel-patrol@v001",
+  "drama-dragon@v001:drama-dragon@v001",
+  "sir-flush-a-lot-encore@v001:sir-flush-a-lot@v001",
+  "peel-patrol-encore@v001:peel-patrol@v001",
+  "drama-dragon-encore@v001:drama-dragon@v001",
+  "sir-flush-a-lot-besties@v001:sir-flush-a-lot@v001",
+  "peel-patrol-besties@v001:peel-patrol@v001",
+  "bickering-besties@v001:bickering-besties@v001",
+]);
+
+/**
+ * Exact identities with artwork already exercised by the private route-memory
+ * playtest. Paused Nap Captain and One-Star Diva work stays visible in the
+ * asset studio but is not assignable as prepared gameplay art.
+ */
+export const LEVEL_EDITOR_PREPARED_ENEMIES: readonly ParodyCatalogEntry[] =
+  Object.freeze(
+    PARODY_CANDIDATES.filter((entry) =>
+      LEVEL_EDITOR_READY_IDENTITIES.has(
+        `${entry.id}@${entry.version}:${entry.assetId}@${entry.assetVersion}`,
+      ),
+    ),
+  );
 
 function utf8Bytes(value: string): number {
   return new TextEncoder().encode(value).byteLength;
@@ -254,6 +552,19 @@ function sizeIssue(path: string, maximum: number): LevelEditorIssue {
   );
 }
 
+export function isLevelEditorProjectV2(
+  project: LevelEditorProject,
+): project is LevelEditorProjectV2 {
+  return project.schemaVersion === LEVEL_EDITOR_PROJECT_SCHEMA_VERSION_V2;
+}
+
+export function parseLevelEditorProject(
+  input: LevelEditorProjectV1,
+): LevelEditorProjectV1;
+export function parseLevelEditorProject(
+  input: LevelEditorProjectV2,
+): LevelEditorProjectV2;
+export function parseLevelEditorProject(input: unknown): LevelEditorProject;
 export function parseLevelEditorProject(input: unknown): LevelEditorProject {
   const compact = jsonText(input);
   if (compact === undefined)
@@ -317,11 +628,369 @@ function prefixedAuthoredPath(prefix: string, path: string): string {
 }
 
 /** Every published gameplay check one chapter document has to answer. */
-function levelIssues(level: AuthoredLevelDocument): readonly AuthoredLevelIssue[] {
+function levelIssues(
+  level: AuthoredLevelDocument,
+  hostsBestiesRoutine?: boolean,
+): readonly AuthoredLevelIssue[] {
   return [
     ...validateAuthoredLevelDocument(level),
-    ...validateEditorGameplayGuards(level),
+    ...validateEditorGameplayGuards(level, {
+      ...(hostsBestiesRoutine === undefined ? {} : { hostsBestiesRoutine }),
+    }),
   ];
+}
+
+function wholeYearsAt(birthDate: string, eventDate: string): number {
+  const [birthYear, birthMonth, birthDay] = birthDate.split("-").map(Number) as [
+    number,
+    number,
+    number,
+  ];
+  const [eventYear, eventMonth, eventDay] = eventDate.split("-").map(Number) as [
+    number,
+    number,
+    number,
+  ];
+  const beforeBirthday =
+    eventMonth < birthMonth ||
+    (eventMonth === birthMonth && eventDay < birthDay);
+  return eventYear - birthYear - (beforeBirthday ? 1 : 0);
+}
+
+function expectedRole(kind: EncounterKind): EncounterRole {
+  return kind === "boss" ? "boss" : "ordinary";
+}
+
+interface EditorEncounterIdentity {
+  readonly id: string;
+  readonly periodId: ParodyPeriodId;
+  readonly eligibleFrom: string;
+  readonly eligibleThrough: string;
+  readonly referenceAvailableBy?: string;
+  readonly role: EncounterRole;
+  readonly kind: EncounterKind;
+  readonly assetId?: string;
+}
+
+function encounterIdentity(
+  reference: LevelEditorEncounterReference,
+  candidates: ReadonlyMap<string, LevelEditorEnemyCandidate>,
+): EditorEncounterIdentity | undefined {
+  if (reference.source === "catalog") {
+    const entry = LEVEL_EDITOR_PREPARED_ENEMIES.find(
+      (candidate) =>
+        candidate.id === reference.catalogEntryId &&
+        candidate.version === reference.catalogEntryVersion,
+    );
+    return entry
+      ? {
+          id: entry.id,
+          periodId: entry.periodId,
+          eligibleFrom: entry.eligibleFrom,
+          eligibleThrough: entry.eligibleThrough,
+          referenceAvailableBy: entry.referenceAvailableBy,
+          role: entry.role,
+          kind: entry.kind,
+          assetId: entry.assetId,
+        }
+      : undefined;
+  }
+  const candidate = candidates.get(reference.candidateId);
+  return candidate
+    ? {
+        id: candidate.id,
+        periodId: candidate.periodId,
+        eligibleFrom: candidate.eligibility.startDate,
+        eligibleThrough: candidate.eligibility.endDate,
+        role: candidate.role,
+        kind: candidate.kind,
+      }
+    : undefined;
+}
+
+function validateWorldProject(
+  project: LevelEditorProjectV2,
+  issues: LevelEditorIssue[],
+): void {
+  const candidateIds = new Map<string, number>();
+  const preparedIds = new Set(
+    ALL_PARODY_CANDIDATES.map((entry) => entry.id),
+  );
+  project.enemyCandidates.forEach((candidate, index) => {
+    const prefix = `$.enemyCandidates[${index}]`;
+    const previous = candidateIds.get(candidate.id);
+    if (previous !== undefined)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.id`,
+          "candidate.duplicate-id",
+          `Candidate id ${JSON.stringify(candidate.id)} duplicates $.enemyCandidates[${previous}].id`,
+        ),
+      );
+    else candidateIds.set(candidate.id, index);
+    if (preparedIds.has(candidate.id))
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.id`,
+          "candidate.catalog-id",
+          `Candidate id ${JSON.stringify(candidate.id)} is already used by the prepared catalog`,
+        ),
+      );
+    if (candidate.eligibility.startDate > candidate.eligibility.endDate)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.eligibility.endDate`,
+          "date.order",
+          "Candidate eligibility must end on or after it starts",
+        ),
+      );
+    if (candidate.role !== expectedRole(candidate.kind))
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.role`,
+          "candidate.role-kind",
+          `Role ${candidate.role} is incompatible with kind ${candidate.kind}`,
+        ),
+      );
+    if (candidate.behaviorPreset !== candidate.kind)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.behaviorPreset`,
+          "candidate.behavior-kind",
+          `Behavior preset ${candidate.behaviorPreset} must match kind ${candidate.kind}`,
+        ),
+      );
+  });
+
+  const candidates = new Map(
+    project.enemyCandidates.map((candidate) => [candidate.id, candidate]),
+  );
+  const chapterIds = new Map<string, number>();
+  const routeIds = new Map<string, number>();
+  const publishedRouteIds = new Set<string>(AUTHORED_LEVEL_IDS);
+  let previousChapter: LevelEditorChapterV2 | undefined;
+
+  project.chapters.forEach((chapter, index) => {
+    const prefix = `$.chapters[${index}]`;
+    const priorChapter = chapterIds.get(chapter.chapterId);
+    if (priorChapter !== undefined)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.chapterId`,
+          "chapter.duplicate-id",
+          `Chapter id ${JSON.stringify(chapter.chapterId)} duplicates $.chapters[${priorChapter}].chapterId`,
+        ),
+      );
+    else chapterIds.set(chapter.chapterId, index);
+    const priorRoute = routeIds.get(chapter.routeId);
+    if (priorRoute !== undefined)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.routeId`,
+          "route.duplicate-id",
+          `Route id ${JSON.stringify(chapter.routeId)} duplicates $.chapters[${priorRoute}].routeId`,
+        ),
+      );
+    else routeIds.set(chapter.routeId, index);
+    if (publishedRouteIds.has(chapter.routeId))
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.routeId`,
+          "route.published-id",
+          "A project-local route id cannot reuse an immutable published route id",
+        ),
+      );
+    if (chapter.level.id !== chapter.routeId)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.level.id`,
+          "route.level-id",
+          "The authored level id must equal its chapter route id",
+        ),
+      );
+
+    const { startDate, endDate } = chapter.representedDateRange;
+    const [minorOne, minorTwo, major] = chapter.previewMemories;
+    if (startDate > endDate)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.representedDateRange.endDate`,
+          "date.order",
+          "The represented date range must end on or after it starts",
+        ),
+      );
+    const orderedDates = [startDate, minorOne.date, minorTwo.date, major.date, endDate];
+    for (let dateIndex = 1; dateIndex < orderedDates.length; dateIndex += 1) {
+      if (orderedDates[dateIndex]! < orderedDates[dateIndex - 1]!)
+        issues.push(
+          issue(
+            "semantic",
+            dateIndex === 4
+              ? `${prefix}.representedDateRange.endDate`
+              : `${prefix}.previewMemories[${dateIndex - 1}].date`,
+            "memory.date-order",
+            "Fictional preview memories must be chronological and stay inside the represented date range",
+          ),
+        );
+    }
+    if (major.date !== endDate)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.previewMemories[2].date`,
+          "memory.major-end-date",
+          "The major memory date must close the represented date range",
+        ),
+      );
+    if (index === 0 && startDate !== project.fictionalBirthDate)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.representedDateRange.startDate`,
+          "date.birth-start",
+          "The first represented date range must start on the fictional birth date",
+        ),
+      );
+    if (chapter.recoveredAge.fromYears >= chapter.recoveredAge.toYears)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.recoveredAge.toYears`,
+          "age.advance",
+          "The major memory must advance recovered age",
+        ),
+      );
+    if (
+      chapter.recoveredAge.fromYears !==
+      wholeYearsAt(project.fictionalBirthDate, startDate)
+    )
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.recoveredAge.fromYears`,
+          "age.start-date",
+          "Recovered starting age must match the fictional birth and represented start dates",
+        ),
+      );
+    if (
+      chapter.recoveredAge.toYears !==
+      wholeYearsAt(project.fictionalBirthDate, major.date)
+    )
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.recoveredAge.toYears`,
+          "age.major-date",
+          "Recovered target age must match the fictional birth and major memory dates",
+        ),
+      );
+    if (previousChapter) {
+      if (startDate !== previousChapter.representedDateRange.endDate)
+        issues.push(
+          issue(
+            "semantic",
+            `${prefix}.representedDateRange.startDate`,
+            "date.chapter-continuity",
+            "A chapter must start on the preceding chapter's end date",
+          ),
+        );
+      if (chapter.recoveredAge.fromYears !== previousChapter.recoveredAge.toYears)
+        issues.push(
+          issue(
+            "semantic",
+            `${prefix}.recoveredAge.fromYears`,
+            "age.chapter-continuity",
+            "A chapter must start at the preceding chapter's recovered age",
+          ),
+        );
+    }
+
+    let periodId: ParodyPeriodId | undefined;
+    for (const slot of [
+      "ordinary-1",
+      "ordinary-2",
+      "ordinary-3",
+      "ordinary-4",
+      "boss",
+    ] as const) {
+      const reference = chapter.encounterSlots[slot];
+      const identity = encounterIdentity(reference, candidates);
+      const slotPath = `${prefix}.encounterSlots[${JSON.stringify(slot)}]`;
+      if (!identity) {
+        issues.push(
+          issue(
+            "semantic",
+            slotPath,
+            reference.source === "catalog"
+              ? "encounter.catalog-missing"
+              : "encounter.candidate-missing",
+            reference.source === "catalog"
+              ? `Prepared catalog entry ${JSON.stringify(reference.catalogEntryId)} ${reference.catalogEntryVersion} is unavailable in ${project.catalogVersion}`
+              : `Project candidate ${JSON.stringify(reference.candidateId)} does not exist`,
+          ),
+        );
+        continue;
+      }
+      const anchor = chapter.level.anchors.encounters[slot];
+      if (identity.role !== expectedRole(anchor.kind))
+        issues.push(
+          issue(
+            "semantic",
+            slotPath,
+            "encounter.role",
+            `Encounter ${JSON.stringify(identity.id)} has role ${identity.role}; slot ${slot} requires ${expectedRole(anchor.kind)}`,
+          ),
+        );
+      if (identity.kind !== anchor.kind)
+        issues.push(
+          issue(
+            "semantic",
+            slotPath,
+            "encounter.kind",
+            `Encounter ${JSON.stringify(identity.id)} has kind ${identity.kind}; slot ${slot} requires ${anchor.kind}`,
+          ),
+        );
+      // Match the frozen adventure selector: encounter relevance is chosen at
+      // the chapter's represented start. The major memory may close the range
+      // after that catalog window without rewriting the chosen identity.
+      if (
+        startDate < identity.eligibleFrom ||
+        startDate > identity.eligibleThrough ||
+        (identity.referenceAvailableBy !== undefined &&
+          startDate < identity.referenceAvailableBy)
+      )
+        issues.push(
+          issue(
+            "semantic",
+            slotPath,
+            "encounter.date-eligibility",
+            `Encounter ${JSON.stringify(identity.id)} is not eligible on ${startDate}`,
+          ),
+        );
+      if (periodId === undefined) periodId = identity.periodId;
+      else if (identity.periodId !== periodId)
+        issues.push(
+          issue(
+            "semantic",
+            slotPath,
+            "encounter.period",
+            `Encounter ${JSON.stringify(identity.id)} belongs to ${identity.periodId}; this chapter uses ${periodId}`,
+          ),
+        );
+    }
+
+    previousChapter = chapter;
+  });
 }
 
 export function validateLevelEditorProject(
@@ -338,7 +1007,22 @@ export function validateLevelEditorProject(
   const issues: LevelEditorIssue[] = [];
   project.chapters.forEach((chapter, index) => {
     const prefix = `$.chapters[${index}].level`;
-    for (const entry of levelIssues(chapter.level))
+    const hostsBestiesRoutine =
+      isLevelEditorProjectV2(project) && "encounterSlots" in chapter
+      ? (() => {
+          const boss = chapter.encounterSlots.boss;
+          return (
+            boss.source === "catalog" &&
+            LEVEL_EDITOR_PREPARED_ENEMIES.some(
+              (entry) =>
+                entry.id === boss.catalogEntryId &&
+                entry.version === boss.catalogEntryVersion &&
+                entry.assetId === "bickering-besties",
+            )
+          );
+        })()
+      : undefined;
+    for (const entry of levelIssues(chapter.level, hostsBestiesRoutine))
       issues.push(
         issue(
           "semantic",
@@ -348,6 +1032,7 @@ export function validateLevelEditorProject(
         ),
       );
   });
+  if (isLevelEditorProjectV2(project)) validateWorldProject(project, issues);
   return freezeIssues(issues);
 }
 
@@ -357,14 +1042,16 @@ export function resolveLevelEditorProject(
   const project = parseLevelEditorProject(input);
   const issues = validateLevelEditorProject(project);
   if (issues.length > 0) throw new LevelEditorProjectValidationError(issues);
-  const levels = Object.freeze({
-    "garden-playground-v2": resolveAuthoredLevelDocument(
-      project.chapters[0].level,
+  const levels = Object.freeze(
+    Object.fromEntries(
+      project.chapters.map((chapter) => [
+        isLevelEditorProjectV2(project)
+          ? (chapter as LevelEditorChapterV2).routeId
+          : (chapter as LevelEditorChapterV1).templateRouteId,
+        resolveAuthoredLevelDocument(chapter.level),
+      ]),
     ),
-    "besties-playground-v2": resolveAuthoredLevelDocument(
-      project.chapters[1].level,
-    ),
-  });
+  );
   return Object.freeze({ project, levels });
 }
 
@@ -388,7 +1075,7 @@ export function serializeLevelEditorProject(input: unknown): string {
 
 export function createLevelEditorProject(
   options: CreateLevelEditorProjectOptions,
-): LevelEditorProject {
+): LevelEditorProjectV1 {
   return parseLevelEditorProject({
     schemaVersion: LEVEL_EDITOR_PROJECT_SCHEMA_VERSION,
     projectId: options.projectId,
@@ -408,7 +1095,190 @@ export function createLevelEditorProject(
         level: bestiesTemplate,
       },
     ],
+  }) as LevelEditorProjectV1;
+}
+
+const DEFAULT_WORLD_CHAPTERS = Object.freeze({
+  "chapter-1": {
+    routeId: "chapter-1-route",
+    sourceTemplateId: "garden-playground-v2",
+    name: "The Block Party",
+    subtitle: "A playful course with memories, gear and a final showdown",
+    description:
+      "Collect both tools and two memories, clear the encounters, then recover the major memory after the boss.",
+    representedDateRange: {
+      startDate: "2020-01-01",
+      endDate: "2024-01-01",
+    },
+    recoveredAge: { fromYears: 0, toYears: 4 },
+    previewMemories: [
+      { slotId: "minor-one", date: "2020-07-01", label: "The first glow" },
+      { slotId: "minor-two", date: "2022-01-01", label: "A small discovery" },
+      { slotId: "major", date: "2024-01-01", label: "A taller path" },
+    ],
+    encounterSlots: {
+      "ordinary-1": {
+        source: "catalog",
+        catalogEntryId: "mister-hiss",
+        catalogEntryVersion: "v001",
+      },
+      "ordinary-2": {
+        source: "catalog",
+        catalogEntryId: "peel-patrol",
+        catalogEntryVersion: "v001",
+      },
+      "ordinary-3": {
+        source: "catalog",
+        catalogEntryId: "mister-hiss",
+        catalogEntryVersion: "v001",
+      },
+      "ordinary-4": {
+        source: "catalog",
+        catalogEntryId: "peel-patrol",
+        catalogEntryVersion: "v001",
+      },
+      boss: {
+        source: "catalog",
+        catalogEntryId: "drama-dragon",
+        catalogEntryVersion: "v001",
+      },
+    },
+  },
+  "chapter-2": {
+    routeId: "chapter-2-route",
+    sourceTemplateId: "besties-playground-v2",
+    name: "Besties Obby",
+    subtitle: "A forgiving obby with memories, rivals and a boss arena",
+    description:
+      "Cross the course, collect both tools and two memories, then win the boss encounter and recover the major memory.",
+    representedDateRange: {
+      startDate: "2024-01-01",
+      endDate: "2027-01-01",
+    },
+    recoveredAge: { fromYears: 4, toYears: 7 },
+    previewMemories: [
+      { slotId: "minor-one", date: "2025-01-01", label: "A bright detour" },
+      { slotId: "minor-two", date: "2026-01-01", label: "A brave crossing" },
+      { slotId: "major", date: "2027-01-01", label: "The lantern gate" },
+    ],
+    encounterSlots: {
+      "ordinary-1": {
+        source: "catalog",
+        catalogEntryId: "sir-flush-a-lot-besties",
+        catalogEntryVersion: "v001",
+      },
+      "ordinary-2": {
+        source: "catalog",
+        catalogEntryId: "peel-patrol-besties",
+        catalogEntryVersion: "v001",
+      },
+      "ordinary-3": {
+        source: "catalog",
+        catalogEntryId: "sir-flush-a-lot-besties",
+        catalogEntryVersion: "v001",
+      },
+      "ordinary-4": {
+        source: "catalog",
+        catalogEntryId: "peel-patrol-besties",
+        catalogEntryVersion: "v001",
+      },
+      boss: {
+        source: "catalog",
+        catalogEntryId: "bickering-besties",
+        catalogEntryVersion: "v001",
+      },
+    },
+  },
+} as const);
+
+function worldLevelFromTemplate(
+  templateId: LevelEditorTemplateRouteId,
+  routeId: string,
+): WorldEditorLevelDocument {
+  const template = templateId === "garden-playground-v2"
+    ? gardenTemplate
+    : bestiesTemplate;
+  return {
+    ...cloneJson(template),
+    schemaVersion: AUTHORED_LEVEL_SCHEMA_VERSION_V3,
+    id: routeId,
+  } as WorldEditorLevelDocument;
+}
+
+function defaultWorldChapter(
+  chapterId: (typeof LEVEL_EDITOR_CHAPTER_IDS)[number],
+  name?: string,
+): LevelEditorChapterV2 {
+  const definition = DEFAULT_WORLD_CHAPTERS[chapterId];
+  return {
+    chapterId,
+    routeId: definition.routeId,
+    name: name ?? definition.name,
+    subtitle: definition.subtitle,
+    description: definition.description,
+    sourceTemplateId: definition.sourceTemplateId,
+    level: worldLevelFromTemplate(
+      definition.sourceTemplateId,
+      definition.routeId,
+    ),
+    representedDateRange: cloneJson(definition.representedDateRange),
+    recoveredAge: cloneJson(definition.recoveredAge),
+    previewMemories: cloneJson(definition.previewMemories),
+    encounterSlots: cloneJson(definition.encounterSlots),
+  };
+}
+
+export function createWorldEditorProject(
+  options: CreateWorldEditorProjectOptions,
+): LevelEditorProjectV2 {
+  return parseLevelEditorProject({
+    schemaVersion: LEVEL_EDITOR_PROJECT_SCHEMA_VERSION_V2,
+    projectId: options.projectId,
+    name: options.name ?? "Untitled adventure",
+    revision: 0,
+    fictionalBirthDate: "2020-01-01",
+    catalogVersion: PARODY_CATALOG_VERSION,
+    enemyCandidates: [],
+    chapters: [
+      defaultWorldChapter("chapter-1", options.chapterNames?.["chapter-1"]),
+      defaultWorldChapter("chapter-2", options.chapterNames?.["chapter-2"]),
+    ],
   });
+}
+
+export function migrateLevelEditorProjectV1(
+  input: LevelEditorProjectV1,
+): LevelEditorProjectV2 {
+  const project = parseLevelEditorProject(input);
+  const defaults = createWorldEditorProject({
+    projectId: project.projectId,
+    name: project.name,
+    chapterNames: {
+      "chapter-1": project.chapters[0].name,
+      "chapter-2": project.chapters[1].name,
+    },
+  });
+  return parseLevelEditorProject({
+    ...defaults,
+    revision: project.revision,
+    chapters: defaults.chapters.map((chapter, index) => ({
+      ...chapter,
+      level: {
+        ...cloneJson(project.chapters[index]!.level),
+        schemaVersion: AUTHORED_LEVEL_SCHEMA_VERSION_V3,
+        id: chapter.routeId,
+      },
+    })),
+  });
+}
+
+export function migrateLevelEditorProjectToV2(
+  input: unknown,
+): LevelEditorProjectV2 {
+  const project = parseLevelEditorProject(input);
+  return isLevelEditorProjectV2(project)
+    ? project
+    : migrateLevelEditorProjectV1(project);
 }
 
 export function rebaseLevelEditorProject(
@@ -450,7 +1320,49 @@ interface ChapterCommand {
 
 export type LevelEditorCommand =
   | { readonly type: "project.rename"; readonly name: string }
+  | {
+      readonly type: "project.birthdate.set";
+      readonly fictionalBirthDate: string;
+    }
+  | {
+      readonly type: "chapter.add";
+      readonly newChapterId: string;
+      readonly newRouteId: string;
+      readonly sourceTemplateId: LevelEditorTemplateRouteId;
+      readonly name?: string;
+      readonly subtitle?: string;
+      readonly description?: string;
+      readonly index?: number;
+    }
+  | ({
+      readonly type: "chapter.duplicate";
+      readonly newChapterId: string;
+      readonly newRouteId: string;
+      readonly name?: string;
+      readonly index?: number;
+    } & ChapterCommand)
+  | ({ readonly type: "chapter.remove" } & ChapterCommand)
+  | ({ readonly type: "chapter.reorder"; readonly index: number } & ChapterCommand)
   | ({ readonly type: "chapter.rename"; readonly name: string } & ChapterCommand)
+  | ({
+      readonly type: "chapter.details.set";
+      readonly subtitle: string;
+      readonly description: string;
+      readonly theme: AuthoredLevelTheme;
+      readonly representedDateRange: LevelEditorRepresentedDateRange;
+      readonly recoveredAge: LevelEditorRecoveredAge;
+      readonly previewMemories: LevelEditorChapterV2["previewMemories"];
+    } & ChapterCommand)
+  | ({
+      readonly type: "encounter.assign";
+      readonly slot: AuthoredEncounterSlot;
+      readonly encounter: LevelEditorEncounterReference;
+    } & ChapterCommand)
+  | ({
+      readonly type: "enemy.add";
+      readonly slot: AuthoredEncounterSlot;
+      readonly candidate: LevelEditorEnemyCandidate;
+    } & ChapterCommand)
   | ({ readonly type: "piece.add"; readonly piece: AuthoredLevelPiece } & ChapterCommand)
   | ({
       readonly type: "piece.update";
@@ -531,7 +1443,7 @@ export type LevelEditorCommand =
       readonly rise?: number;
     } & ChapterCommand);
 
-const chapterIdField = { chapterId: z.enum(LEVEL_EDITOR_CHAPTER_IDS) } as const;
+const chapterIdField = { chapterId: identifierSchema } as const;
 const pieceIdField = { pieceId: identifierSchema } as const;
 const pathIdsSchema = z
   .array(identifierSchema)
@@ -544,9 +1456,79 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("project.rename"), name: displayNameSchema }).strict(),
   z
     .object({
+      type: z.literal("project.birthdate.set"),
+      fictionalBirthDate: dateOnlySchema,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("chapter.add"),
+      newChapterId: identifierSchema,
+      newRouteId: identifierSchema,
+      sourceTemplateId: z.enum(LEVEL_EDITOR_TEMPLATE_ROUTE_IDS),
+      name: displayNameSchema.optional(),
+      subtitle: portableProseSchema(100).optional(),
+      description: portableProseSchema(240).optional(),
+      index: z.number().int().nonnegative().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("chapter.duplicate"),
+      ...chapterIdField,
+      newChapterId: identifierSchema,
+      newRouteId: identifierSchema,
+      name: displayNameSchema.optional(),
+      index: z.number().int().nonnegative().optional(),
+    })
+    .strict(),
+  z
+    .object({ type: z.literal("chapter.remove"), ...chapterIdField })
+    .strict(),
+  z
+    .object({
+      type: z.literal("chapter.reorder"),
+      ...chapterIdField,
+      index: z.number().int().nonnegative(),
+    })
+    .strict(),
+  z
+    .object({
       type: z.literal("chapter.rename"),
       ...chapterIdField,
       name: displayNameSchema,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("chapter.details.set"),
+      ...chapterIdField,
+      subtitle: portableProseSchema(100),
+      description: portableProseSchema(240),
+      theme: z.enum(["garden", "party", "arcade", "toybox"]),
+      representedDateRange: levelEditorRepresentedDateRangeSchema,
+      recoveredAge: levelEditorRecoveredAgeSchema,
+      previewMemories: z.tuple([
+        previewMemorySchema("minor-one"),
+        previewMemorySchema("minor-two"),
+        previewMemorySchema("major"),
+      ]),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("encounter.assign"),
+      ...chapterIdField,
+      slot: encounterSlotSchema,
+      encounter: levelEditorEncounterReferenceSchema,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("enemy.add"),
+      ...chapterIdField,
+      slot: encounterSlotSchema,
+      candidate: levelEditorEnemyCandidateSchema,
     })
     .strict(),
   z
@@ -716,6 +1698,8 @@ type DeepMutable<T> = T extends readonly (infer Entry)[]
     : T;
 type MutableProject = DeepMutable<LevelEditorProject>;
 type MutableChapter = MutableProject["chapters"][number];
+type MutableWorldProject = DeepMutable<LevelEditorProjectV2>;
+type MutableWorldChapter = DeepMutable<LevelEditorChapterV2>;
 type MutableLevel = MutableChapter["level"];
 type MutableAnchor = DeepMutable<AuthoredAnchor>;
 type MutableEncounterAnchor = DeepMutable<AuthoredEncounterAnchor>;
@@ -763,6 +1747,184 @@ function chapterFor(
       `Chapter ${chapterId} does not exist`,
     );
   return chapter;
+}
+
+function worldProjectForCommand(project: MutableProject): MutableWorldProject {
+  if (project.schemaVersion !== LEVEL_EDITOR_PROJECT_SCHEMA_VERSION_V2)
+    commandError(
+      "$",
+      "project.version",
+      "This command requires a level-editor-project-v2 project",
+    );
+  return project as MutableWorldProject;
+}
+
+function worldChapterForCommand(chapter: MutableChapter): MutableWorldChapter {
+  if (!("routeId" in chapter))
+    commandError(
+      "$.chapterId",
+      "project.version",
+      "This command requires a level-editor-project-v2 chapter",
+    );
+  return chapter as MutableWorldChapter;
+}
+
+function rejectReservedRouteId(routeId: string, path: string): void {
+  if ((AUTHORED_LEVEL_IDS as readonly string[]).includes(routeId))
+    commandError(
+      path,
+      "route.published-id",
+      "A project-local route id cannot reuse an immutable published route id",
+    );
+}
+
+function ensureNewWorldIdentity(
+  project: MutableWorldProject,
+  chapterId: string,
+  routeId: string,
+): void {
+  if (project.chapters.some((chapter) => chapter.chapterId === chapterId))
+    commandError(
+      "$.newChapterId",
+      "chapter.duplicate-id",
+      `Chapter ${chapterId} already exists`,
+    );
+  if (project.chapters.some((chapter) => chapter.routeId === routeId))
+    commandError(
+      "$.newRouteId",
+      "route.duplicate-id",
+      `Route ${routeId} already exists`,
+    );
+  rejectReservedRouteId(routeId, "$.newRouteId");
+}
+
+function insertWorldChapter(
+  project: MutableWorldProject,
+  chapter: LevelEditorChapterV2,
+  index: number | undefined,
+): void {
+  if (project.chapters.length >= LEVEL_EDITOR_PROJECT_LIMITS.maxChapters)
+    commandError(
+      "$.newChapterId",
+      "chapter.limit",
+      `A project can contain at most ${LEVEL_EDITOR_PROJECT_LIMITS.maxChapters} chapters`,
+    );
+  const insertionIndex = index ?? project.chapters.length;
+  if (insertionIndex > project.chapters.length)
+    commandError(
+      "$.index",
+      "chapter.index",
+      "Chapter insertion index is outside the chapter list",
+    );
+  project.chapters.splice(
+    insertionIndex,
+    0,
+    cloneJson(chapter) as unknown as DeepMutable<LevelEditorChapterV2>,
+  );
+}
+
+function seededWorldChapter(
+  command: Extract<LevelEditorCommand, { readonly type: "chapter.add" }>,
+  project: MutableWorldProject,
+  insertionIndex: number,
+): LevelEditorChapterV2 {
+  const seedId = command.sourceTemplateId === "garden-playground-v2"
+    ? "chapter-1"
+    : "chapter-2";
+  const seed = defaultWorldChapter(seedId);
+  const previous = insertionIndex > 0
+    ? project.chapters[insertionIndex - 1]
+    : undefined;
+  const startDate = previous?.representedDateRange.endDate ??
+    project.fictionalBirthDate;
+  const minorOneDate = offsetCalendarMonths(startDate, 4);
+  const minorTwoDate = offsetCalendarMonths(startDate, 8);
+  const endDate = offsetCalendarMonths(startDate, 12);
+  return {
+    ...seed,
+    chapterId: command.newChapterId,
+    routeId: command.newRouteId,
+    name: command.name ?? "New level",
+    subtitle: command.subtitle ?? "A new authored world ready to shape",
+    description:
+      command.description ??
+      "Collect the tools and memories, clear the encounters, defeat the boss and recover the major memory.",
+    sourceTemplateId: command.sourceTemplateId,
+    level: worldLevelFromTemplate(command.sourceTemplateId, command.newRouteId),
+    representedDateRange: { startDate, endDate },
+    recoveredAge: {
+      fromYears: wholeYearsAt(project.fictionalBirthDate, startDate),
+      toYears: wholeYearsAt(project.fictionalBirthDate, endDate),
+    },
+    previewMemories: [
+      { slotId: "minor-one", date: minorOneDate, label: "A first discovery" },
+      { slotId: "minor-two", date: minorTwoDate, label: "A bright detour" },
+      { slotId: "major", date: endDate, label: "The world finale" },
+    ],
+  };
+}
+
+function offsetCalendarMonths(date: string, months: number): string {
+  const [year, month, day] = date.split("-").map(Number) as [number, number, number];
+  const first = new Date(Date.UTC(year, month - 1 + months, 1));
+  const lastDay = new Date(
+    Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 0),
+  ).getUTCDate();
+  first.setUTCDate(Math.min(day, lastDay));
+  return first.toISOString().slice(0, 10);
+}
+
+function candidateMapFor(
+  project: MutableWorldProject,
+): ReadonlyMap<string, LevelEditorEnemyCandidate> {
+  return new Map(
+    project.enemyCandidates.map((candidate) => [
+      candidate.id,
+      candidate as LevelEditorEnemyCandidate,
+    ]),
+  );
+}
+
+function assertEncounterFitsSlot(
+  project: MutableWorldProject,
+  chapter: MutableWorldChapter,
+  slot: AuthoredEncounterSlot,
+  reference: LevelEditorEncounterReference,
+  path: string,
+): void {
+  const identity = encounterIdentity(reference, candidateMapFor(project));
+  if (!identity)
+    commandError(
+      path,
+      reference.source === "catalog"
+        ? "encounter.catalog-missing"
+        : "encounter.candidate-missing",
+      reference.source === "catalog"
+        ? `Prepared catalog entry ${reference.catalogEntryId} is unavailable`
+        : `Project candidate ${reference.candidateId} does not exist`,
+    );
+  const expectedKind = chapter.level.anchors.encounters[slot].kind;
+  if (identity.kind !== expectedKind || identity.role !== expectedRole(expectedKind))
+    commandError(
+      path,
+      "encounter.slot",
+      `Encounter ${identity.id} (${identity.role}/${identity.kind}) cannot fill ${slot} (${expectedRole(expectedKind)}/${expectedKind})`,
+    );
+}
+
+function chapterHostsBestiesRoutine(
+  chapter: MutableWorldChapter,
+): boolean {
+  const boss = chapter.encounterSlots.boss;
+  return (
+    boss.source === "catalog" &&
+    LEVEL_EDITOR_PREPARED_ENEMIES.some(
+      (entry) =>
+        entry.id === boss.catalogEntryId &&
+        entry.version === boss.catalogEntryVersion &&
+        entry.assetId === "bickering-besties",
+    )
+  );
 }
 
 function pieceIndex(level: MutableLevel, pieceId: string): number {
@@ -1025,13 +2187,140 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
     project.name = command.name;
     return;
   }
+  if (command.type === "project.birthdate.set") {
+    worldProjectForCommand(project).fictionalBirthDate =
+      command.fictionalBirthDate;
+    return;
+  }
+  if (command.type === "chapter.add") {
+    const world = worldProjectForCommand(project);
+    ensureNewWorldIdentity(world, command.newChapterId, command.newRouteId);
+    const insertionIndex = command.index ?? world.chapters.length;
+    insertWorldChapter(
+      world,
+      seededWorldChapter(command, world, insertionIndex),
+      insertionIndex,
+    );
+    return;
+  }
 
   const chapter = chapterFor(project, command.chapterId);
+  if (command.type === "chapter.duplicate") {
+    const world = worldProjectForCommand(project);
+    const source = worldChapterForCommand(chapter);
+    ensureNewWorldIdentity(world, command.newChapterId, command.newRouteId);
+    const sourceIndex = world.chapters.findIndex(
+      (entry) => entry.chapterId === source.chapterId,
+    );
+    const duplicate = cloneJson(source) as unknown as LevelEditorChapterV2;
+    insertWorldChapter(
+      world,
+      {
+        ...duplicate,
+        chapterId: command.newChapterId,
+        routeId: command.newRouteId,
+        name: command.name ?? `${source.name} copy`,
+        level: { ...duplicate.level, id: command.newRouteId },
+      },
+      command.index ?? sourceIndex + 1,
+    );
+    return;
+  }
+  if (command.type === "chapter.remove") {
+    const world = worldProjectForCommand(project);
+    if (world.chapters.length <= LEVEL_EDITOR_PROJECT_LIMITS.minChapters)
+      commandError(
+        "$.chapterId",
+        "chapter.minimum",
+        "A project must retain at least one chapter",
+      );
+    const index = world.chapters.findIndex(
+      (entry) => entry.chapterId === command.chapterId,
+    );
+    world.chapters.splice(index, 1);
+    return;
+  }
+  if (command.type === "chapter.reorder") {
+    const world = worldProjectForCommand(project);
+    if (command.index >= world.chapters.length)
+      commandError(
+        "$.index",
+        "chapter.index",
+        "Chapter destination index is outside the chapter list",
+      );
+    const sourceIndex = world.chapters.findIndex(
+      (entry) => entry.chapterId === command.chapterId,
+    );
+    const [moved] = world.chapters.splice(sourceIndex, 1);
+    world.chapters.splice(command.index, 0, moved!);
+    return;
+  }
   const level = chapter.level;
   switch (command.type) {
     case "chapter.rename":
       chapter.name = command.name;
       return;
+    case "chapter.details.set": {
+      const worldChapter = worldChapterForCommand(chapter);
+      worldChapter.subtitle = command.subtitle;
+      worldChapter.description = command.description;
+      worldChapter.level.theme = command.theme;
+      worldChapter.representedDateRange = cloneJson(
+        command.representedDateRange,
+      );
+      worldChapter.recoveredAge = cloneJson(command.recoveredAge);
+      worldChapter.previewMemories = cloneJson(
+        command.previewMemories,
+      ) as unknown as MutableWorldChapter["previewMemories"];
+      return;
+    }
+    case "encounter.assign": {
+      const world = worldProjectForCommand(project);
+      const worldChapter = worldChapterForCommand(chapter);
+      assertEncounterFitsSlot(
+        world,
+        worldChapter,
+        command.slot,
+        command.encounter,
+        "$.encounter",
+      );
+      worldChapter.encounterSlots[command.slot] = cloneJson(command.encounter);
+      return;
+    }
+    case "enemy.add": {
+      const world = worldProjectForCommand(project);
+      const worldChapter = worldChapterForCommand(chapter);
+      if (
+        world.enemyCandidates.some((entry) => entry.id === command.candidate.id) ||
+        ALL_PARODY_CANDIDATES.some(
+          (entry) => entry.id === command.candidate.id,
+        )
+      )
+        commandError(
+          "$.candidate.id",
+          "candidate.duplicate-id",
+          `Enemy identity ${command.candidate.id} already exists`,
+        );
+      const expectedKind = worldChapter.level.anchors.encounters[command.slot].kind;
+      if (
+        command.candidate.kind !== expectedKind ||
+        command.candidate.role !== expectedRole(expectedKind) ||
+        command.candidate.behaviorPreset !== expectedKind
+      )
+        commandError(
+          "$.candidate",
+          "candidate.slot",
+          `Candidate role, kind and behavior preset must match ${command.slot} (${expectedRole(expectedKind)}/${expectedKind})`,
+        );
+      world.enemyCandidates.push(
+        cloneJson(command.candidate) as DeepMutable<LevelEditorEnemyCandidate>,
+      );
+      worldChapter.encounterSlots[command.slot] = {
+        source: "candidate",
+        candidateId: command.candidate.id,
+      };
+      return;
+    }
     case "piece.add": {
       const proposedId = isRecord(command.piece) ? command.piece.id : undefined;
       if (
@@ -1188,7 +2477,10 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
       level.branches.splice(command.index, 1);
       return;
     case "section.add": {
-      const before = levelIssues(level);
+      const hostsBesties = "routeId" in chapter
+        ? chapterHostsBestiesRoutine(worldChapterForCommand(chapter))
+        : undefined;
+      const before = levelIssues(level, hostsBesties);
       const planned = planLevelEditorSection(level, command);
       if (!planned.ok) throw new CommandIssuesError(planned.issues);
       for (const piece of planned.plan.pieces)
@@ -1199,7 +2491,10 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
       // The published validators are the last word on whether the section is
       // safe. Pre-existing problems in an in-progress draft stay the author's
       // to fix; anything this command would add fails it instead.
-      const added = newAuthoredLevelIssues(before, levelIssues(level));
+      const added = newAuthoredLevelIssues(
+        before,
+        levelIssues(level, hostsBesties),
+      );
       if (added.length > 0)
         throw new CommandIssuesError(
           added.map((entry) => ({

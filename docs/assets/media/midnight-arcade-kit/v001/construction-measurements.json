@@ -1,0 +1,79 @@
+{
+  "asset": "midnight-arcade-kit",
+  "version": "v001",
+  "workOrder": "WO095",
+  "blenderVersion": "4.5.13 LTS",
+  "units": "meters",
+  "authoringFrame": {
+    "up": "+Z",
+    "front": "-Y",
+    "origin": "floor center"
+  },
+  "exportFrame": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "floor center"
+  },
+  "approval": "candidate; owner review pending",
+  "props": {
+    "ticket-arch": {
+      "triangles": 2924,
+      "materials": 3,
+      "blenderBounds": {
+        "min": [
+          -3.0399999618530273,
+          -0.42800000309944153,
+          0.0
+        ],
+        "max": [
+          3.0400002002716064,
+          0.3100000023841858,
+          3.384999990463257
+        ]
+      },
+      "namedEditableParts": 66
+    },
+    "arcade-cabinet": {
+      "triangles": 2544,
+      "materials": 3,
+      "blenderBounds": {
+        "min": [
+          -0.4729999899864197,
+          -0.5199999809265137,
+          0.0
+        ],
+        "max": [
+          0.4729999899864197,
+          0.5,
+          1.7899999618530273
+        ]
+      },
+      "namedEditableParts": 45
+    },
+    "joystick-bollard": {
+      "triangles": 1076,
+      "materials": 2,
+      "blenderBounds": {
+        "min": [
+          -0.42500001192092896,
+          -0.42500001192092896,
+          0.0
+        ],
+        "max": [
+          0.42500001192092896,
+          0.42500001192092896,
+          1.0499999523162842
+        ]
+      },
+      "namedEditableParts": 10
+    }
+  },
+  "archClearance": {
+    "minimumFootGapMeters": 4.041,
+    "postGapMeters": 4.12,
+    "capitalGapMeters": 3.95,
+    "springHeightMeters": 1.8,
+    "innerCrownHeightMeters": 2.8,
+    "collisionGeometry": "none; visual candidate only"
+  }
+}

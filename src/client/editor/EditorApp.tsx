@@ -63,9 +63,27 @@ export function EditorApp() {
           leaveLabel="Back to editor"
           chapterTitles={Object.fromEntries(
             preview.project.chapters.map((chapter) => [
-              chapter.templateRouteId,
+              "routeId" in chapter ? chapter.routeId : chapter.templateRouteId,
               chapter.name,
             ]),
+          )}
+          chapterSubtitles={Object.fromEntries(
+            preview.project.chapters.flatMap((chapter) =>
+              "routeId" in chapter && chapter.subtitle
+                ? [[chapter.routeId, chapter.subtitle]]
+                : [],
+            ),
+          )}
+          chapterDescriptions={Object.fromEntries(
+            preview.project.chapters.flatMap((chapter) =>
+              "routeId" in chapter
+                ? [[
+                    chapter.routeId,
+                    chapter.description ??
+                      "Find the memories, cross the course and face this world's boss.",
+                  ]]
+                : [],
+            ),
           )}
         />
       )}

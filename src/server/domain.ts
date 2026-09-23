@@ -14,6 +14,7 @@ import {
   toAdventureView,
   type AdventurePlan,
   type AdventureState,
+  type EditorWorldAdventurePlan,
 } from '../shared/adventure.js';
 import { PARODY_CATALOG_VERSION } from '../shared/parody-catalog.js';
 import { ParodyCatalogUnavailableError } from '../shared/parody-selection.js';
@@ -61,6 +62,12 @@ export const ROUTE_MEMORY_RULE_VERSIONS: RuleVersions = {
   ...RULE_VERSIONS,
   journey: 'era-level-plan-v3',
   progression: 'route-major-recovery-v3',
+};
+
+export const EDITOR_WORLD_RULE_VERSIONS: RuleVersions = {
+  ...ROUTE_MEMORY_RULE_VERSIONS,
+  journey: 'editor-world-plan-v1',
+  progression: 'editor-world-route-memory-v1',
 };
 
 export interface PlayerRecord {
@@ -127,6 +134,21 @@ export interface CreateSaveCommand {
   title?: string;
   /** Server-selected mode; never accepted directly from the player request. */
   planMode?: 'route-memories';
+}
+
+export interface CreateEditorPlaytestCommand {
+  ownerId: string;
+  title: string;
+  birthDate: string;
+  memories: FrozenMemory[];
+  plan: EditorWorldAdventurePlan;
+  startLevelIndex: number;
+  startedAt: Date;
+}
+
+export interface SaveValidationOptions {
+  /** Fixture-only. Production stores must always leave this false. */
+  allowEditorPreviewPlan?: boolean;
 }
 
 export interface FixtureMaintenanceResult {
@@ -223,6 +245,7 @@ export function applyGameplayActionToSave(
   save: SaveRecord,
   request: GameplayActionRequest,
   now: Date,
+  validationOptions: SaveValidationOptions = {},
 ): { save: SaveRecord; replay: boolean } {
   if (save.saveFormat !== 'era-combat-v2' || !save.adventurePlan || !save.adventureState) {
     throw new AppError(409, 'LEGACY_SAVE_READ_ONLY', 'Legacy save is read only');
@@ -290,7 +313,7 @@ export function applyGameplayActionToSave(
     friendlyState,
     revision,
     updatedAt: now,
-  });
+  }, validationOptions);
   return { replay: false, save: next };
 }
 
@@ -389,7 +412,10 @@ export function canAccessSaveMemory(save: SaveRecord, memoryId: string): boolean
   );
 }
 
-export function validateSaveRecord(save: SaveRecord): SaveRecord {
+export function validateSaveRecord(
+  save: SaveRecord,
+  options: SaveValidationOptions = {},
+): SaveRecord {
   const stored = parseStoredSaveJson({
     subject: save.subject,
     memories: save.memories,
@@ -418,7 +444,11 @@ export function validateSaveRecord(save: SaveRecord): SaveRecord {
     return { ...normalized, friendlyState: null };
   }
   if (normalized.saveFormat !== 'era-combat-v2') invalidSave();
-  const { plan, state } = parseStoredAdventure(normalized.adventurePlan, normalized.adventureState);
+  const { plan, state } = parseStoredAdventure(
+    normalized.adventurePlan,
+    normalized.adventureState,
+    { allowEditorPreviewPlan: options.allowEditorPreviewPlan },
+  );
   const friendlyState = normalized.friendlyState == null
     ? null
     : parseStoredFriendlyState(normalized.friendlyState, plan, state);
@@ -431,7 +461,10 @@ export function validateSaveRecord(save: SaveRecord): SaveRecord {
     (plan.version !== 'era-level-plan-v1' && normalized.versions.catalog !== plan.catalogVersion) ||
     (plan.version === 'era-level-plan-v3' &&
       normalized.versions.progression !== ROUTE_MEMORY_RULE_VERSIONS.progression) ||
-    plan.levels[0]?.startDate !== normalized.birthDate ||
+    (plan.version === 'editor-world-plan-v1' &&
+      normalized.versions.progression !== EDITOR_WORLD_RULE_VERSIONS.progression) ||
+    (plan.version !== 'editor-world-plan-v1' &&
+      plan.levels[0]?.startDate !== normalized.birthDate) ||
     plan.levels.some((level, index) => {
       const lastMemoryId = memoryIdsForLevel(level).at(-1);
       const lastMemory = normalized.memories.find((memory) => memory.id === lastMemoryId);
@@ -440,7 +473,15 @@ export function validateSaveRecord(save: SaveRecord): SaveRecord {
       const priorLast = normalized.memories.find((memory) => memory.id === priorLastId);
       return !lastMemory ||
         lastMemory.ageYears !== level.targetAgeYears ||
-        (index > 0 && level.startDate !== priorLast?.date);
+        (plan.version !== 'editor-world-plan-v1' &&
+          index > 0 && level.startDate !== priorLast?.date) ||
+        (plan.version === 'editor-world-plan-v1' && 'representedEndDate' in level && (
+          wholeYearsAt(normalized.birthDate, level.startDate) !== level.startAgeYears ||
+          memoryIdsForLevel(level).some((memoryId) => {
+            const memory = normalized.memories.find((candidate) => candidate.id === memoryId);
+            return !memory || memory.date < level.startDate || memory.date > level.representedEndDate;
+          })
+        ));
     }) ||
     normalized.recoveredIds.length !== state.revealedMemoryIds.length ||
     normalized.recoveredIds.some((id, index) => id !== state.revealedMemoryIds[index]) ||

@@ -4,9 +4,11 @@ import type { ObbyCourse } from "../game/obby";
 
 export const AUTHORED_LEVEL_SCHEMA_VERSION = "authored-level-v1" as const;
 export const AUTHORED_LEVEL_SCHEMA_VERSION_V2 = "authored-level-v2" as const;
+export const AUTHORED_LEVEL_SCHEMA_VERSION_V3 = "authored-level-v3" as const;
 export const AUTHORED_LEVEL_SCHEMA_VERSIONS = [
   AUTHORED_LEVEL_SCHEMA_VERSION,
   AUTHORED_LEVEL_SCHEMA_VERSION_V2,
+  AUTHORED_LEVEL_SCHEMA_VERSION_V3,
 ] as const;
 export const AUTHORED_LEVEL_V1_IDS = [
   "garden-playground-v1",
@@ -23,8 +25,13 @@ export const AUTHORED_LEVEL_IDS = [
 
 export type AuthoredLevelSchemaVersion =
   (typeof AUTHORED_LEVEL_SCHEMA_VERSIONS)[number];
-export type AuthoredLevelId = (typeof AUTHORED_LEVEL_IDS)[number];
-export type AuthoredLevelTheme = "garden" | "party";
+/**
+ * V1/V2 documents use one of the immutable published ids above. V3 documents
+ * use a project-local identifier, so consumers must treat the resolved id as
+ * an opaque string rather than infer gameplay or art from its spelling.
+ */
+export type AuthoredLevelId = (typeof AUTHORED_LEVEL_IDS)[number] | string;
+export type AuthoredLevelTheme = "garden" | "party" | "arcade" | "toybox";
 export type AuthoredConnectionMode = "walk" | "jump" | "ride";
 export type AuthoredEncounterSlot =
   | "ordinary-1"
@@ -206,6 +213,10 @@ const EPSILON = 1e-6;
 const GATEWAY_CLEARANCE_LENGTH = 0.75;
 
 const identifierSchema = z.string().regex(ID_PATTERN);
+export const authoredLevelProjectRouteIdSchema = identifierSchema.refine(
+  (value) => !(AUTHORED_LEVEL_IDS as readonly string[]).includes(value),
+  "Project-local route ids cannot reuse an immutable published route id",
+);
 const horizontalNumberSchema = z
   .number()
   .min(-AUTHORED_LEVEL_LIMITS.coordinateMagnitude)
@@ -385,7 +396,6 @@ const authoredLevelAnchorsSchema = z
   .strict();
 
 const authoredLevelDocumentFields = {
-  theme: z.enum(["garden", "party"]),
   pieces: z.array(pieceSchema).min(1).max(AUTHORED_LEVEL_LIMITS.maxPieces),
   mainPath: z
     .array(identifierSchema)
@@ -406,6 +416,7 @@ const authoredLevelV1DocumentSchema = z
   .object({
     schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION),
     id: z.enum(AUTHORED_LEVEL_V1_IDS),
+    theme: z.enum(["garden", "party"]),
     ...authoredLevelDocumentFields,
     connections: z
       .array(connectionV1Schema)
@@ -417,6 +428,19 @@ const authoredLevelV2DocumentSchema = z
   .object({
     schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION_V2),
     id: z.enum(AUTHORED_LEVEL_V2_IDS),
+    theme: z.enum(["garden", "party"]),
+    ...authoredLevelDocumentFields,
+    connections: z
+      .array(connectionV2Schema)
+      .max(AUTHORED_LEVEL_LIMITS.maxConnections),
+  })
+  .strict();
+
+const authoredLevelV3DocumentSchema = z
+  .object({
+    schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION_V3),
+    id: authoredLevelProjectRouteIdSchema,
+    theme: z.enum(["garden", "party", "arcade", "toybox"]),
     ...authoredLevelDocumentFields,
     connections: z
       .array(connectionV2Schema)
@@ -426,7 +450,11 @@ const authoredLevelV2DocumentSchema = z
 
 export const authoredLevelDocumentSchema = z.discriminatedUnion(
   "schemaVersion",
-  [authoredLevelV1DocumentSchema, authoredLevelV2DocumentSchema],
+  [
+    authoredLevelV1DocumentSchema,
+    authoredLevelV2DocumentSchema,
+    authoredLevelV3DocumentSchema,
+  ],
 );
 
 type PlatformPiece = AuthoredPlatformPiece | AuthoredMovingPlatformPiece;
@@ -920,14 +948,16 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       `At most ${AUTHORED_LEVEL_LIMITS.maxCheckpoints} checkpoints are supported`,
     );
 
-  const expectedTheme = document.id.startsWith("garden-") ? "garden" : "party";
-  if (document.theme !== expectedTheme)
-    issue(
-      issues,
-      "$.theme",
-      "identity.theme",
-      `${document.id} requires theme ${expectedTheme}`,
-    );
+  if (document.schemaVersion !== AUTHORED_LEVEL_SCHEMA_VERSION_V3) {
+    const expectedTheme = document.id.startsWith("garden-") ? "garden" : "party";
+    if (document.theme !== expectedTheme)
+      issue(
+        issues,
+        "$.theme",
+        "identity.theme",
+        `${document.id} requires theme ${expectedTheme}`,
+      );
+  }
 
   const allGeometryBounds: HorizontalBounds[] = [
     ...[...platforms.values()].map(platformBounds),

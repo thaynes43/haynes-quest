@@ -1,4 +1,3 @@
-import type { ObbyRouteId } from "../shared/parody-catalog";
 import type { ObbyCourse, ObbyPlatform } from "./obby";
 import { authoredRoute, type AuthoredLevelResolver } from "./authored-layout";
 
@@ -17,7 +16,7 @@ function island(
 
 /** Lead-authored generous main routes. The sampled boxes also drive their visible surfaces. */
 export function createObbyCourse(
-  routeId: ObbyRouteId,
+  routeId: string,
   resolver: AuthoredLevelResolver = authoredRoute,
 ): ObbyCourse {
   const authored = resolver(routeId);

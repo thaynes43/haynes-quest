@@ -14,7 +14,6 @@ import type {
 } from "../shared/contracts";
 import type { LevelInspection, PositionSnapshot } from "./types";
 import type { ObbyCourse } from "./obby";
-import type { ObbyRouteId } from "../shared/parody-catalog";
 import { createObbyCourse } from "./obby-layout";
 
 export interface MemoryPlacement {
@@ -49,7 +48,7 @@ export interface StepPlacement {
 
 export interface LevelLayout {
   id: string | null;
-  routeId?: ObbyRouteId;
+  routeId?: string;
   course?: ObbyCourse;
   authored?: AuthoredLevelDocument;
   memories: MemoryPlacement[];

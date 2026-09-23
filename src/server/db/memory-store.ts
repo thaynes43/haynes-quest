@@ -1,11 +1,15 @@
 import { randomUUID } from 'node:crypto';
 import type { GameplayActionRequest } from '../../shared/contracts.js';
+import { createAdventureStateAtLevel, memoryIdsForLevel } from '../../shared/adventure.js';
 import { createInitialFriendlyState } from '../../shared/friendly.js';
 import {
+  EDITOR_WORLD_RULE_VERSIONS,
+  FIXTURE_SUBJECT,
   applyGameplayActionToSave,
   appearanceForAge,
   createAdventureForSave,
   isValidFrozenManifest,
+  type CreateEditorPlaytestCommand,
   type CreateSaveCommand,
   type FixtureMaintenanceResult,
   type NewPreviewRecord,
@@ -46,7 +50,12 @@ export class InMemoryQuestStore implements QuestStore {
     private readonly ephemeralLimits: EphemeralStoreLimits | null = null,
   ) {
     if (ephemeralLimits) validateEphemeralLimits(ephemeralLimits);
-    for (const save of initialSaves) this.saves.set(save.id, cloneSave(validateSaveRecord(save)));
+    for (const save of initialSaves) {
+      const validated = validateSaveRecord(save, {
+        allowEditorPreviewPlan: ephemeralLimits !== null,
+      });
+      this.saves.set(save.id, cloneSave(validated, ephemeralLimits !== null));
+    }
     for (const session of initialSessions) {
       this.sessions.set(session.sessionId, {
         player: { ...session.player },
@@ -118,7 +127,7 @@ export class InMemoryQuestStore implements QuestStore {
         if (!sameSelection(existing.memories, command.selectedIds)) {
           throw new AppError(409, 'PREVIEW_ALREADY_USED', 'Preview already used');
         }
-        return cloneSave(existing);
+        return cloneSave(existing, this.ephemeralLimits !== null);
       }
       if (!preview.chosenSubject) throw new AppError(422, 'SUBJECT_UNRESOLVED', 'Subject unresolved');
       if (!isValidFrozenManifest(preview.birthDate, preview.memories)) {
@@ -164,7 +173,61 @@ export class InMemoryQuestStore implements QuestStore {
       if (this.ephemeralLimits) this.makeEphemeralSaveSpace(command.ownerId);
       this.saves.set(save.id, save);
       if (this.ephemeralLimits) this.touchSave(save.id);
-      return cloneSave(save);
+      return cloneSave(save, this.ephemeralLimits !== null);
+    });
+  }
+
+  async createEditorPlaytest(command: CreateEditorPlaytestCommand): Promise<SaveRecord> {
+    if (!this.ephemeralLimits) {
+      throw new AppError(404, 'NOT_FOUND', 'Not found');
+    }
+    if (!isValidFrozenManifest(command.birthDate, command.memories)) {
+      throw new AppError(422, 'INVALID_MANIFEST', 'Invalid memory manifest');
+    }
+    const plannedIds = command.plan.levels.flatMap(memoryIdsForLevel);
+    const memoryIds = command.memories.map((memory) => memory.id);
+    if (
+      plannedIds.length !== memoryIds.length ||
+      plannedIds.some((id, index) => id !== memoryIds[index])
+    ) {
+      throw new AppError(422, 'INVALID_MANIFEST', 'Invalid memory manifest');
+    }
+    return this.exclusive(() => {
+      this.pruneExpiredEphemeralRecords(new Date());
+      const adventureState = createAdventureStateAtLevel(
+        command.plan,
+        command.startLevelIndex,
+      );
+      const save: SaveRecord = {
+        id: randomUUID(),
+        ownerId: command.ownerId,
+        previewId: randomUUID(),
+        title: command.title,
+        subject: structuredClone(FIXTURE_SUBJECT),
+        birthDate: command.birthDate,
+        memories: structuredClone(command.memories),
+        recoveredIds: [...adventureState.revealedMemoryIds],
+        ageYears: adventureState.ageYears,
+        abilities: [...adventureState.abilities],
+        appearanceStage: adventureState.appearanceStage,
+        completed: false,
+        saveFormat: 'era-combat-v2',
+        adventurePlan: structuredClone(command.plan),
+        adventureState,
+        friendlyState: createInitialFriendlyState(command.plan),
+        revision: 0,
+        createdAt: new Date(command.startedAt),
+        updatedAt: new Date(command.startedAt),
+        versions: {
+          ...EDITOR_WORLD_RULE_VERSIONS,
+          catalog: command.plan.catalogVersion,
+        },
+      };
+      const validated = validateSaveRecord(save, { allowEditorPreviewPlan: true });
+      this.makeEphemeralSaveSpace(command.ownerId);
+      this.saves.set(validated.id, validated);
+      this.touchSave(validated.id);
+      return cloneSave(validated, true);
     });
   }
 
@@ -172,14 +235,14 @@ export class InMemoryQuestStore implements QuestStore {
     return [...this.saves.values()]
       .filter((save) => save.ownerId === ownerId)
       .sort((left, right) => right.updatedAt.valueOf() - left.updatedAt.valueOf())
-      .map(cloneSave);
+      .map((save) => cloneSave(save, this.ephemeralLimits !== null));
   }
 
   async getSave(ownerId: string, saveId: string): Promise<SaveRecord | null> {
     const save = this.saves.get(saveId);
     if (!save || save.ownerId !== ownerId) return null;
     if (this.ephemeralLimits) this.touchSave(saveId);
-    return cloneSave(save);
+    return cloneSave(save, this.ephemeralLimits !== null);
   }
 
   async applyGameplayAction(
@@ -192,9 +255,15 @@ export class InMemoryQuestStore implements QuestStore {
       const save = this.saves.get(saveId);
       if (!save || save.ownerId !== ownerId) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
       if (this.ephemeralLimits) this.touchSave(saveId);
-      const result = applyGameplayActionToSave(validateSaveRecord(save), request, now);
+      const allowEditorPreviewPlan = this.ephemeralLimits !== null;
+      const result = applyGameplayActionToSave(
+        validateSaveRecord(save, { allowEditorPreviewPlan }),
+        request,
+        now,
+        { allowEditorPreviewPlan },
+      );
       if (!result.replay) this.saves.set(saveId, result.save);
-      return cloneSave(result.save);
+      return cloneSave(result.save, allowEditorPreviewPlan);
     });
   }
 
@@ -358,12 +427,12 @@ function sameSelection(memories: { id: string }[], selectedIds: string[]): boole
   return memories.length === selected.size && memories.every((memory) => selected.has(memory.id));
 }
 
-function cloneSave(save: SaveRecord): SaveRecord {
+function cloneSave(save: SaveRecord, allowEditorPreviewPlan = false): SaveRecord {
   return validateSaveRecord({
     ...structuredClone(save),
     createdAt: new Date(save.createdAt),
     updatedAt: new Date(save.updatedAt),
-  });
+  }, { allowEditorPreviewPlan });
 }
 
 function clonePreview(preview: PreviewRecord): PreviewRecord {

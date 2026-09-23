@@ -1,7 +1,6 @@
 import type { AuthoredLevelDocument } from "../shared/authored-level";
 import type { AuthoredLevelResolver } from "./authored-layout";
 import type { ObbySample } from "./obby";
-import type { ObbyRouteId } from "../shared/parody-catalog";
 import type {
   Ability,
   AdventurePhase,
@@ -199,7 +198,7 @@ export interface GameInspection {
   enemies: EnemyFrame[];
   visuals?: SceneVisualInspection;
   obby?: ObbySample & {
-    routeId: ObbyRouteId;
+    routeId: string;
     checkpointId: string | null;
     supportId: string | null;
     recoveryRemaining: number;
