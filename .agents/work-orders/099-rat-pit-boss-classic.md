@@ -1,6 +1,6 @@
 # WO099 · Rat Pit Boss classic mascot Blender character v002
 
-- **Status:** Blender candidate complete and scene released; exact owner-art review and studio publication pending
+- **Status:** Blender candidate complete, scene released and private studio published; exact owner-art review pending
 - **Owner:** Fresh native GPT-6 Astra subagent at max, `fork_turns: none`
 - **Asset/version:** `rat-pit-boss/v002`, corrected classic mascot candidate
 - **Scene lease:** Exclusive shared Blender scene from health/idle check through saved release; author under `/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v002/`
@@ -12,7 +12,7 @@ Tom rejected the glam-rock feel of the first Rat Casino images and asked for the
 
 The earlier [WO098](098-rat-pit-boss.md) rigged `v001` export was paused before final validation when Tom corrected the look. Its GLB SHA-256 is `09a4dadbb4f9eabdddf32b05e7f6ee574e23580127ac9c4a94f991b95bcabc4a` and its checkpoint is at `/home/dev/artifacts/haynes-quest/rat-casino-cast/rat-pit-boss/v001/paused-art-direction/pause-art-direction.json`. Keep all v001 masters, GLB, scripts and stills unchanged; they are retained for honest historical review. Technical script functions may be reused after inspection, but do not carry v001's polished slim silhouette, red tailored jacket, shiny limb finish, ornate trim, cane or staged showman pose into v002. Use `scripts/assets/rat-pit-boss-v002/` for new source so the previous untracked scripts are not overwritten.
 
-Read [TEAM](../TEAM.md), [DESIGN002](../../docs/designs/002-asset-pipeline.md), `src/game/enemy-animation.ts` and [PLAN015](../plans/015-haynesnightmares-asset-first.md). The dedicated Blender service is a single shared live scene. The v001 author released it after the checkpoint at 2026-09-23 19:54:59 UTC; verify health, readiness, no active lease/jobs and current scene identity yourself before claiming exclusive ownership. Preserve the prior Rat Casino prop master and all other assets. Work only in the versioned v002 path. Save early checkpoints; if interrupted, leave an exact manifest and release the scene.
+Read [TEAM](../TEAM.md), [DESIGN002](../../docs/designs/002-asset-pipeline.md), `src/game/enemy-animation.ts` and [PLAN015](../plans/completed/015-haynesnightmares-asset-first.md). The dedicated Blender service is a single shared live scene. The v001 author released it after the checkpoint at 2026-09-23 19:54:59 UTC; verify health, readiness, no active lease/jobs and current scene identity yourself before claiming exclusive ownership. Preserve the prior Rat Casino prop master and all other assets. Work only in the versioned v002 path. Save early checkpoints; if interrupted, leave an exact manifest and release the scene.
 
 ## Model and motion
 

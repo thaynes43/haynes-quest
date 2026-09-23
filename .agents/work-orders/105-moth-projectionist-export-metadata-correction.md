@@ -1,6 +1,6 @@
 # WO105 · Moth Projectionist v001 exact export metadata correction
 
-- **Status:** Delivered, scene released and catalog checks complete; isolated studio publication pending
+- **Status:** Delivered, scene released, catalog checks complete and private studio published; exact owner-art review pending
 - **Owner:** One fresh native GPT-6 Astra subagent at max, `fork_turns: "none"`
 - **Asset/version:** `moth-projectionist/v001`, corrected exact export; no visual or animation redesign
 - **Scene lease:** Exclusive shared Blender scene from the first mutation through saved release; work only under `/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/`

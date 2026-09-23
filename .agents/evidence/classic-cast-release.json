@@ -1,0 +1,363 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-23T23:12:04.758860+00:00",
+  "status": "deployed studio candidates; exact owner art review pending",
+  "direction": "Original classic-era worn Rat Casino animatronics for Haynesnightmares; Rat Pit Boss leads, Chick-flia supports; Blender models before new levels",
+  "application": {
+    "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/60",
+    "reviewedHead": "bf77e9cc5221729766f3a977015c7a2a43740e32",
+    "mergeCommit": "a125eec24304ad924f5f754c5316594428f34d7e",
+    "reviewedHeadTreeEqualsMergeTree": true,
+    "mainApplicationRun": 35929835370,
+    "mainDocumentationRun": 35929835383,
+    "checks": "PR verify, build and container-check passed; main application and documentation publication passed; strict docs/media and local desktop/phone catalog audits passed"
+  },
+  "publication": {
+    "image": "ghcr.io/thaynes43/haynes-quest:sha-a125eec24304ad924f5f754c5316594428f34d7e@sha256:9f73640848b8d6f03be2869e09d1e797e77db8c95a3a9995e8b42eb231814972",
+    "ociIndexDigest": "sha256:9f73640848b8d6f03be2869e09d1e797e77db8c95a3a9995e8b42eb231814972",
+    "registryManifestSha256EqualsDockerContentDigest": true,
+    "imageJobPublishedAttestedAndSigned": true,
+    "rawEvidence": "/home/dev/artifacts/haynes-quest/classic-cast-release-0923/publication.json",
+    "rawEvidenceSha256": "b7a85fa2652ccb0b9ea1cbd84d2d98cc90beeb50c91331cece7ba20c0acb9c8d",
+    "registryEvidence": "/home/dev/artifacts/haynes-quest/classic-cast-release-0923/registry.json",
+    "registryEvidenceSha256": "cd42a33cff0197adc8f9f4c6abe46cefba8dce3dd5fd8c5844b140240e0ed0b2"
+  },
+  "gitops": {
+    "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/3142",
+    "reviewedHead": "96fdcad30fca6a5df11fd97edf2a9981d071138e",
+    "mergeCommit": "7da7b95716323593703a5aa2f517cd268c3aa113",
+    "reviewedHeadTreeEqualsMergeTree": true,
+    "changedFiles": [
+      "kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml"
+    ],
+    "normalizedChange": "Only private playtest image pin and comment; Helm values, Helm render and Kustomize render otherwise byte-identical to baseline",
+    "helmLintPassed": true,
+    "requiredChecks": [
+      "Diff Scope - Success",
+      "Flux Local - Success"
+    ],
+    "allChecksPassed": true,
+    "fluxRevision": "main@sha1:7da7b95716323593703a5aa2f517cd268c3aa113",
+    "kustomizationReady": true,
+    "helmReleaseReady": true,
+    "activity": {
+      "id": "act-225505-210105",
+      "ended": true
+    }
+  },
+  "deployment": {
+    "playtest": {
+      "uid": "d069cbd2-3d92-45f5-8ba6-b93f6cd9c12b",
+      "generation": 16,
+      "image": "ghcr.io/thaynes43/haynes-quest:sha-a125eec24304ad924f5f754c5316594428f34d7e@sha256:9f73640848b8d6f03be2869e09d1e797e77db8c95a3a9995e8b42eb231814972",
+      "readyReplicas": 1,
+      "pod": {
+        "name": "haynes-quest-playtest-5967c6cc54-9lqkf",
+        "uid": "da28f3e3-22af-45e7-acd1-e2108f4a0220",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "image_ids": [
+          "ghcr.io/thaynes43/haynes-quest@sha256:9f73640848b8d6f03be2869e09d1e797e77db8c95a3a9995e8b42eb231814972"
+        ]
+      }
+    },
+    "normalQuestAndDevEnvUnchanged": true,
+    "healthzReadyzCatalogAndEditorHttp": [
+      200,
+      200,
+      200,
+      200
+    ],
+    "baselineEvidence": "/home/dev/artifacts/haynes-quest/classic-cast-release-0923/baseline-cluster.json",
+    "baselineEvidenceSha256": "ab73cada6ed8e3f37ad1448868cfad81c79fc9c63b0969f7716b1fd6dba28471",
+    "afterEvidence": "/home/dev/artifacts/haynes-quest/classic-cast-release-0923/after-cluster.json",
+    "afterEvidenceSha256": "af0a911ff4e4222de57424a1ede1737d617e84fcab78cce1c0ba6f12e6b0227e",
+    "comparisonEvidence": "/home/dev/artifacts/haynes-quest/classic-cast-release-0923/cluster-comparison.json",
+    "comparisonEvidenceSha256": "2053163b74867139653fe48874402cf60e9eaddbac88726331c1be695367190c"
+  },
+  "assetStudio": {
+    "catalogUrl": "https://haynes-quest-playtest.haynesops.com/studio/assets/catalog.html",
+    "ensembleReviewUrl": "https://haynes-quest-playtest.haynesops.com/studio/assets/reviews/rat-casino-ensemble/v003.html",
+    "inventoryEntries": 57,
+    "modelFiles": 42,
+    "completedModels": 40,
+    "partialModels": 2,
+    "thumbnailFiles": 81,
+    "models": [
+      {
+        "id": "rat-pit-boss",
+        "version": "v002 corrected classic mascot",
+        "review": "docs/assets/reviews/rat-pit-boss/v002.md",
+        "model": "docs/assets/media/rat-pit-boss/v002/rat-pit-boss.glb",
+        "glbSha256": "2f41912e67ba27f7f1d5a6c8ac7bc60fbe8d3dba6e4a775f7186750f608b620d",
+        "master": "docs/assets/media/rat-pit-boss/v002/rat-pit-boss.blend",
+        "masterSha256": "498afc3120eb223164baa7d7da05e29846d2f99f89389cfb7364fa62a4aa1761",
+        "clips": [
+          {
+            "name": "idle",
+            "duration_s": 2.4,
+            "channels": 72
+          },
+          {
+            "name": "move",
+            "duration_s": 1.2,
+            "channels": 72
+          },
+          {
+            "name": "attack",
+            "duration_s": 2,
+            "channels": 72
+          },
+          {
+            "name": "hit",
+            "duration_s": 0.7,
+            "channels": 72
+          },
+          {
+            "name": "defeat",
+            "duration_s": 2.4,
+            "channels": 72
+          }
+        ],
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "stage": "studio candidate; exact owner art review pending"
+      },
+      {
+        "id": "chick-flia",
+        "version": "v001 classic mascot",
+        "review": "docs/assets/reviews/chick-flia/v001.md",
+        "model": "docs/assets/media/chick-flia/v001/chick-flia.glb",
+        "glbSha256": "4f72a94c89debf8ee00a8a5db4eaf6b681375a64a08b743b0cbe07fbdf6eb396",
+        "master": "docs/assets/media/chick-flia/v001/chick-flia.blend",
+        "masterSha256": "fec0fae84e0d5a50a0b6706f21decd4baeb48e8b7be6d0b616cf68932a9d3aed",
+        "clips": [
+          {
+            "name": "idle",
+            "duration_s": 2.8,
+            "channels": 63
+          },
+          {
+            "name": "move",
+            "duration_s": 1.4,
+            "channels": 63
+          },
+          {
+            "name": "attack",
+            "duration_s": 2,
+            "channels": 63
+          },
+          {
+            "name": "hit",
+            "duration_s": 0.7,
+            "channels": 63
+          },
+          {
+            "name": "defeat",
+            "duration_s": 2.4,
+            "channels": 63
+          }
+        ],
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "stage": "studio candidate; exact owner art review pending"
+      },
+      {
+        "id": "jackrabbit-drummer",
+        "version": "v001 classic mascot",
+        "review": "docs/assets/reviews/jackrabbit-drummer/v001.md",
+        "model": "docs/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.glb",
+        "glbSha256": "00096fb0bdef15c5b45a32a2265e2744d91c54b10004014de5e45e5682672da3",
+        "master": "docs/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.blend",
+        "masterSha256": "9c2a45b5e91db402ffebc4d9171e0d7bed128312a20996f30652f7ba0ab57a0e",
+        "clips": [
+          {
+            "name": "idle",
+            "duration_s": 2.8,
+            "channels": 84
+          },
+          {
+            "name": "move",
+            "duration_s": 1.4,
+            "channels": 84
+          },
+          {
+            "name": "attack",
+            "duration_s": 2,
+            "channels": 84
+          },
+          {
+            "name": "hit",
+            "duration_s": 0.7,
+            "channels": 84
+          },
+          {
+            "name": "defeat",
+            "duration_s": 2.4,
+            "channels": 84
+          }
+        ],
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "stage": "studio candidate; exact owner art review pending"
+      },
+      {
+        "id": "fox-card-shark",
+        "version": "v001 classic mascot",
+        "review": "docs/assets/reviews/fox-card-shark/v001.md",
+        "model": "docs/assets/media/fox-card-shark/v001/fox-card-shark.glb",
+        "glbSha256": "77346890c1d989e669f586bf3c361d028d6c2fa7f1130bf6bc039d793380791c",
+        "master": "docs/assets/media/fox-card-shark/v001/fox-card-shark.blend",
+        "masterSha256": "d8868821affad96e55a3b63d0908e0bed88f7bf24626b7f22d77a73969554c6c",
+        "clips": [
+          {
+            "name": "idle",
+            "duration_s": 2.8,
+            "channels": 75
+          },
+          {
+            "name": "move",
+            "duration_s": 1.4,
+            "channels": 75
+          },
+          {
+            "name": "attack",
+            "duration_s": 2,
+            "channels": 75
+          },
+          {
+            "name": "hit",
+            "duration_s": 0.7,
+            "channels": 75
+          },
+          {
+            "name": "defeat",
+            "duration_s": 2.4,
+            "channels": 75
+          }
+        ],
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "stage": "studio candidate; exact owner art review pending"
+      },
+      {
+        "id": "moth-projectionist",
+        "version": "v001 classic mascot",
+        "review": "docs/assets/reviews/moth-projectionist/v001.md",
+        "model": "docs/assets/media/moth-projectionist/v001/moth-projectionist.glb",
+        "glbSha256": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1",
+        "master": "docs/assets/media/moth-projectionist/v001/moth-projectionist.blend",
+        "masterSha256": "ba4eb25f1c4f14745b1132bc8a63cddde0c5a4de44ecc6f40b2cc189d26923fc",
+        "clips": [
+          {
+            "name": "idle",
+            "duration_s": 2.8,
+            "channels": 84
+          },
+          {
+            "name": "move",
+            "duration_s": 1.4,
+            "channels": 84
+          },
+          {
+            "name": "attack",
+            "duration_s": 2,
+            "channels": 84
+          },
+          {
+            "name": "hit",
+            "duration_s": 0.7,
+            "channels": 84
+          },
+          {
+            "name": "defeat",
+            "duration_s": 2.4,
+            "channels": 84
+          }
+        ],
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "stage": "studio candidate; exact owner art review pending"
+      },
+      {
+        "id": "golden-after-hours-rat",
+        "version": "v001 classic mascot",
+        "review": "docs/assets/reviews/golden-after-hours-rat/v001.md",
+        "model": "docs/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb",
+        "glbSha256": "b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184",
+        "master": "docs/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.blend",
+        "masterSha256": "f08904c3ebe10813065e62f2d0d2d1f0072f39f889e696218f767960e72a46ae",
+        "clips": [
+          {
+            "name": "idle",
+            "duration_s": 3.2,
+            "channels": 81
+          },
+          {
+            "name": "move",
+            "duration_s": 1.6,
+            "channels": 81
+          },
+          {
+            "name": "attack",
+            "duration_s": 2,
+            "channels": 81
+          },
+          {
+            "name": "hit",
+            "duration_s": 0.7,
+            "channels": 81
+          },
+          {
+            "name": "defeat",
+            "duration_s": 2.4,
+            "channels": 81
+          }
+        ],
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "stage": "studio candidate; exact owner art review pending"
+      }
+    ],
+    "hostedMediaFilesMatchedLocalBytes": 162,
+    "hostedReviewPagesHttp200": 11,
+    "hostedCatalogHasFullCast": true,
+    "mediaEvidence": "/home/dev/artifacts/haynes-quest/classic-cast-release-0923/live-media.json",
+    "mediaEvidenceSha256": "52bfb14142dc0861d702c7453f64e8f459872058d61d1d5bb8f587eb31e53910",
+    "gameplayUse": "None of the six models mapped to an encounter, boss or published level",
+    "hostedBrowserAudit": {
+      "outcome": "passed",
+      "browser": "Chromium 153 SwiftShader software WebGL",
+      "viewports": [
+        "desktop 1440x1000",
+        "phone 390x844"
+      ],
+      "inventoryEntries": 57,
+      "thumbnailFiles": 81,
+      "modelFilesWithMatchingHash": 42,
+      "mascotViewerPaths": 12,
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "httpErrors": 0,
+      "failedRequests": 0,
+      "externalRequests": 0,
+      "report": "/home/dev/artifacts/haynes-quest/classic-cast-release-0923/hosted-catalog/report.json",
+      "reportSha256": "f8528de8b4a9f88f320ee573560be1e9994f7691eb7f4ef52982e92e0d6db95b",
+      "physicalSafari": false
+    }
+  },
+  "pendingDecisions": [
+    "Tom to review these six exact GLB/Blender versions and request changes or approve art before gameplay use.",
+    "A first Rat Casino level, date eligibility, motion/height mapping and environment mapping remain later stage work.",
+    "Physical iPhone/iPad Safari visual and frame-time quality remain untested by software Chromium or hosted checksum checks."
+  ],
+  "closeoutVerification": {
+    "strictMkdocsBuild": "passed; 239 Markdown files and local media references checked",
+    "typecheck": "passed",
+    "lint": "passed",
+    "unitAndIntegrationTests": "773 passed, 12 skipped across 80 passing and one skipped file; local dedicated Postgres URL not set",
+    "productionBuild": "passed",
+    "scope": "documentation and stale inventory status correction; no gameplay manifest or normal release change"
+  }
+}
