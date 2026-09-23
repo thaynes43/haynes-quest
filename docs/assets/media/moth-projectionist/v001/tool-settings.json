@@ -1,0 +1,92 @@
+{
+  "asset_id": "moth-projectionist",
+  "version": "v001",
+  "glb_sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
+  "blender_version": "4.5.13 LTS",
+  "units": "meters; Blender Z-up/+Y forward, exported Three Y-up/-Z forward",
+  "root": "stationary floor-centered identity/unit scale",
+  "construction": "Named editable islands retained in hidden source collection; final runtime joined skin simplified from 24988 to 14698 triangles. Rigid padded shells use one bone per vertex.",
+  "rig": {
+    "skins": 1,
+    "bones": 28,
+    "max_influences": 1,
+    "animation_bake_fps": 60,
+    "runtime_ik": false
+  },
+  "materials": {
+    "count": 2,
+    "opaque": true,
+    "unlit": false,
+    "animated_emission": false,
+    "atlas": {
+      "embedded": true,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "sha256": "0b908118186f4533d9ed79a16f7d9467ebecbae04a36c266d561d8952584dc95"
+    }
+  },
+  "export": {
+    "format": "GLB",
+    "animation_mode": "NLA_TRACKS",
+    "export_yup": true,
+    "export_force_sampling": true,
+    "frame_step": 1,
+    "export_optimize_animation_size": true,
+    "export_current_frame": false,
+    "export_rest_position_armature": true,
+    "export_all_influences": false,
+    "export_influence_nb": 4,
+    "export_armature_object_remove": true,
+    "required_extensions": [],
+    "external_resources": [],
+    "draco": false,
+    "cameras": false,
+    "lights": false
+  },
+  "preview": {
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport": [
+      800,
+      900
+    ],
+    "projection": "orthographic; true front/side/back and three-quarter; detail and hinge close cameras",
+    "tone_mapping": "ACESFilmic, exposure 1, sRGB output",
+    "scale_checks": [
+      1,
+      0.35
+    ],
+    "physical_device": false
+  },
+  "budgets": {
+    "triangles": 14698,
+    "materials": 2,
+    "bytes": 1420712,
+    "within_all_limits": true
+  },
+  "measured_dimensions_m": [
+    1.1213867794567765,
+    1.649592018043472,
+    0.8079980221295007
+  ],
+  "animated_bounds_y_up": {
+    "min": [
+      -0.7148377358929802,
+      -1.126532458906978e-06,
+      -0.46005683154940846
+    ],
+    "max": [
+      0.7159323441026426,
+      1.6495908915110131,
+      0.47424376282928066
+    ]
+  },
+  "attack_contact_seconds": 1.25,
+  "attack_contact_fraction": 0.625,
+  "minimum_wing_body_clearance_m": 0.020579796836592945,
+  "minimum_distal_antenna_head_clearance_m": 0.006264509739165369,
+  "deviations": []
+}

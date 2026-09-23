@@ -1,0 +1,163 @@
+{
+  "asset_id": "moth-projectionist",
+  "version": "v001",
+  "file": "moth-projectionist.glb",
+  "sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
+  "bytes": 1420712,
+  "triangles": 14698,
+  "draw_primitives": 2,
+  "materials": [
+    {
+      "name": "Matte worn teal felt, faded wings and simple pale face",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.9800000190734863
+      }
+    },
+    {
+      "name": "Old practical glass, shutter and dull bronze joints",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0.04500000178813934,
+        "roughnessFactor": 0.6200000047683716
+      }
+    }
+  ],
+  "joints": [
+    "root",
+    "hips",
+    "chest",
+    "neck",
+    "head",
+    "antenna_R",
+    "antenna_L",
+    "projector",
+    "shutter_R",
+    "shutter_L",
+    "clavicle_R",
+    "upper_arm_R",
+    "forearm_R",
+    "hand_R",
+    "wing_hinge_R",
+    "wing_panel_R",
+    "clavicle_L",
+    "upper_arm_L",
+    "forearm_L",
+    "hand_L",
+    "wing_hinge_L",
+    "wing_panel_L",
+    "thigh_R",
+    "shin_R",
+    "foot_R",
+    "thigh_L",
+    "shin_L",
+    "foot_L"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.8,
+      "channels": 84
+    },
+    {
+      "name": "move",
+      "duration_s": 1.4,
+      "channels": 84
+    },
+    {
+      "name": "attack",
+      "duration_s": 2,
+      "channels": 84
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "channels": 84
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "channels": 84
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "triangle_budget_15000": true,
+    "material_budget_2": true,
+    "primitive_budget_2": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_atlas": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "all_have_uvs": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true
+  },
+  "validator": {
+    "uri": "moth-projectionist.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-23T21:49:38.375Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 1335140
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 2,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 2,
+      "totalVertexCount": 15300,
+      "totalTriangleCount": 14698,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "work_order": "WO103",
+  "asset_id": "moth-projectionist",
+  "version": "v001",
+  "created_utc": "2026-09-23T21:52:13.986421+00:00",
+  "glb_sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9",
+  "method": "Real Chromium WebGL exported-GLB screenshots and real-time playback, followed by Astra visual inspection. Normal scale and 35% camera zoom use the same exact asset; small attack strip uses crops of actual 35% screenshots.",
+  "reviewed_files": [
+    "front.png",
+    "side.png",
+    "back.png",
+    "beauty.png",
+    "detail.png",
+    "hinge.png",
+    "motion-contact-sheet.png",
+    "attack-strip.png",
+    "attack-gameplay-scale.png",
+    "final-preview/attack-front-windup.png",
+    "final-preview/attack-front-contact.png",
+    "final-preview/defeat-side-held.png",
+    "final-preview/idle-small-0p625.png",
+    "final-preview/move-small-0p625.png",
+    "final-preview/hit-small-0p625.png",
+    "final-preview/defeat-small-0p625.png"
+  ],
+  "lead_corrections": [
+    "Softened spotted fabric pigment into subtle felt wear.",
+    "Rounded both wing lobe perimeters while preserving separate two-lobed panels.",
+    "Lowered asymmetrical pale eyelids and made the plain brow heavier.",
+    "Replaced pointed collar beads with a continuous compact worn shag collar.",
+    "Reversed wing warning rotation to lift and unfold the lower panels beyond the neutral silhouette at front and three-quarter views.",
+    "Moved canvas panels 28 mm farther behind body while extending their rigid hinge spars, to establish positive all-frame conservative clearance."
+  ],
+  "visual_checks": {
+    "compact_matte_teal_identity": true,
+    "pale_tired_uneven_eyelids": true,
+    "compact_worn_collar": true,
+    "feathered_antennae_and_rounded_wings": true,
+    "physical_hinges_and_projector": true,
+    "warning_lifts_and_unfurls_beyond_neutral": true,
+    "shutters_visibly_open_at_contact": true,
+    "comic_held_defeat_lens_down": true,
+    "five_clips_inspected_at_both_scales": true,
+    "no_observed_detachment_floor_or_silhouette_fault": true
+  },
+  "lead_art_direction": "Accepted as studio candidate; final beauty, 35% attack strip and frontal windup/contact inspected after clearance change.",
+  "owner_approval": "Tom exact-version review remains pending.",
+  "limits": [
+    "Software WebGL inspection is not a physical Safari/iPhone/iPad performance or device acceptance test.",
+    "No gameplay mapping, projectile, damage volume, beam or encounter was authored."
+  ]
+}

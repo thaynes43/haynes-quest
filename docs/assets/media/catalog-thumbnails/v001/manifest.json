@@ -290,6 +290,13 @@
       "sha256": "306497c08c74ef2a1bfb05b2e1060985291c102727b77a41f08672ec9e404752"
     },
     {
+      "source": "docs/assets/media/moth-projectionist/v001/beauty.png",
+      "source_sha256": "825ac3b8176b1ec9f9c8e9c163cf5d0fe480e439c8e985b5793d40fb76ba1724",
+      "path": "docs/assets/media/catalog-thumbnails/v001/fbb8d260e003d630.webp",
+      "bytes": 9134,
+      "sha256": "d63a54d405007f291ee2b3e0117cc975db16edc3acf1734b7c4137c13ba735fa"
+    },
+    {
       "source": "docs/assets/media/movement-landed/v001/waveform.svg",
       "source_sha256": "51f086486e7c1e1e01c00fd365a139ef1a75b7d789bbd879bb7e9a4f32ce9e06",
       "path": "docs/assets/media/catalog-thumbnails/v001/cd8bcf785cf094f2.webp",
@@ -379,6 +386,13 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/8405105c636196ae.webp",
       "bytes": 30130,
       "sha256": "95441b4e2abdcc37173deb5b6c86df36360a1a33d35d1e0909fbc0db3a44508c"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png",
+      "source_sha256": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
+      "path": "docs/assets/media/catalog-thumbnails/v001/af80381698071ed6.webp",
+      "bytes": 40972,
+      "sha256": "7e3a0bd3fdb0eab001b38cab4feb9cf6086cb08b6fa4d81713d544d7b2e62f2f"
     },
     {
       "source": "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png",

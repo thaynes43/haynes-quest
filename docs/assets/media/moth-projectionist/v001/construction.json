@@ -1,0 +1,2392 @@
+{
+  "asset_id": "moth-projectionist",
+  "version": "v001",
+  "work_order": "WO103",
+  "authoring_model": "gpt-6-astra max",
+  "blender_version": "4.5.13 LTS",
+  "source_concept_sha256": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
+  "source_concept_path": "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png",
+  "source_prompt_sha256": "6c36c7d4fa2a426fefda549314fa7bf6a55f6cef7b61500b570d4d4694d3722a",
+  "source_prompt_path": "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist-prompt.txt",
+  "ensemble_sha256": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
+  "ensemble_path": "docs/assets/media/rat-casino-ensemble/v003/concept.png",
+  "spec": {
+    "asset_id": "moth-projectionist",
+    "height": 1.65,
+    "contact_time_s": 1.25,
+    "attack_duration_s": 2,
+    "contact_fraction": 0.625,
+    "version": "v001",
+    "source_concept_sha256": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb"
+  },
+  "height_m": 1.65,
+  "construction_scale_factor": 1.0007036272569996,
+  "construction_ground_shift": 0.0,
+  "triangles_before_export_simplification": 24988,
+  "triangles": 14698,
+  "vertices": 8114,
+  "material_count": 2,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic teal felt, worn wing canvas, pale face and practical dull glass pigment; no external texture."
+  },
+  "bone_count": 28,
+  "parts": [
+    {
+      "name": "Squat moth teal padded torso",
+      "triangles": 516,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Moth broad hip shell",
+      "triangles": 356,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Front uneven torso center seam",
+      "triangles": 66,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Back original sewn body seam",
+      "triangles": 96,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Back torso repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back torso repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back torso repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back torso repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back torso repair stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Wing hinge support backplate",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Backplate worn fixing -1",
+      "triangles": 28,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Backplate worn fixing 1",
+      "triangles": 28,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Old neck coupling",
+      "triangles": 164,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R shoulder socket",
+      "triangles": 136,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R thick padded upper arm",
+      "triangles": 92,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R elbow bearing",
+      "triangles": 136,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R elbow pivot",
+      "triangles": 36,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R broad forearm shell",
+      "triangles": 80,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R wrist coupling",
+      "triangles": 136,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R padded palm",
+      "triangles": 188,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R blunt mitten finger 0",
+      "triangles": 76,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R finger joint mark 0",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "R blunt mitten finger 1",
+      "triangles": 76,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R finger joint mark 1",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "R blunt mitten finger 2",
+      "triangles": 76,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R finger joint mark 2",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "R mitten thumb",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R arm sewn repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R arm sewn repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R arm sewn repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R arm sewn repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R hip covered ball",
+      "triangles": 136,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R chunky thigh",
+      "triangles": 92,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R knee joint",
+      "triangles": 136,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R knee pivot",
+      "triangles": 36,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R worn lower leg",
+      "triangles": 80,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R ankle socket",
+      "triangles": 108,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R broad teal foot",
+      "triangles": 284,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R broad soft toe 0",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R blunt toe cap 0",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R broad soft toe 1",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R blunt toe cap 1",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R broad soft toe 2",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R blunt toe cap 2",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R shin old seam",
+      "triangles": 66,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "R lower leg repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R lower leg repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R lower leg repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R lower leg repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shoulder socket",
+      "triangles": 136,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L thick padded upper arm",
+      "triangles": 92,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L elbow bearing",
+      "triangles": 136,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L elbow pivot",
+      "triangles": 36,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L broad forearm shell",
+      "triangles": 80,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L wrist coupling",
+      "triangles": 136,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L padded palm",
+      "triangles": 188,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L blunt mitten finger 0",
+      "triangles": 76,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L finger joint mark 0",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "L blunt mitten finger 1",
+      "triangles": 76,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L finger joint mark 1",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "L blunt mitten finger 2",
+      "triangles": 76,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L finger joint mark 2",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "L mitten thumb",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L arm sewn repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L arm sewn repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L arm sewn repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L arm sewn repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L hip covered ball",
+      "triangles": 136,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L chunky thigh",
+      "triangles": 92,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L knee joint",
+      "triangles": 136,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L knee pivot",
+      "triangles": 36,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L worn lower leg",
+      "triangles": 80,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L ankle socket",
+      "triangles": 108,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L broad teal foot",
+      "triangles": 284,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L broad soft toe 0",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L blunt toe cap 0",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L broad soft toe 1",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L blunt toe cap 1",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L broad soft toe 2",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L blunt toe cap 2",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L shin old seam",
+      "triangles": 66,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "L lower leg repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L lower leg repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L lower leg repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L lower leg repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Asymmetric repaired left forearm",
+      "triangles": 108,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Asymmetric repaired left forearm stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Asymmetric repaired left forearm stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Asymmetric repaired left forearm stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Asymmetric repaired left forearm stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Asymmetric repaired left forearm stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Asymmetric repaired left forearm stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Asymmetric repaired left forearm stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Asymmetric repaired left forearm stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single thigh felt patch",
+      "triangles": 108,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Single thigh felt patch stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single thigh felt patch stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single thigh felt patch stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single thigh felt patch stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single thigh felt patch stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single thigh felt patch stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single thigh felt patch stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single thigh felt patch stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small continuous worn fuzzy collar",
+      "triangles": 480,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Collar short stitched fur wisp 0",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 1",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 2",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 3",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 4",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 5",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 6",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 7",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 8",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 9",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 10",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 11",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 12",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 13",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 14",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 15",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 16",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 17",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 18",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Collar short stitched fur wisp 19",
+      "triangles": 66,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small faded cloth projector tie | left folded loop",
+      "triangles": 76,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Small faded cloth projector tie | right folded loop",
+      "triangles": 76,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Small faded cloth projector tie | sewn center knot",
+      "triangles": 108,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Round worn teal head",
+      "triangles": 668,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Simple pale moth faceplate",
+      "triangles": 568,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Side head hinge -1",
+      "triangles": 40,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Dark socket behind tired glass -1",
+      "triangles": 356,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Cheap amber ivory glass eye -1",
+      "triangles": 436,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 11
+    },
+    {
+      "name": "Simple old eye ring -1",
+      "triangles": 246,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Small still moth pupil -1",
+      "triangles": 136,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 10
+    },
+    {
+      "name": "Dull small eye catchlight -1",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "Plain half lowered pale eyelid -1",
+      "triangles": 176,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Plain heavy pale brow -1",
+      "triangles": 116,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Short tired brow seam -1",
+      "triangles": 66,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Side head hinge 1",
+      "triangles": 40,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Dark socket behind tired glass 1",
+      "triangles": 356,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Cheap amber ivory glass eye 1",
+      "triangles": 436,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 11
+    },
+    {
+      "name": "Simple old eye ring 1",
+      "triangles": 246,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Small still moth pupil 1",
+      "triangles": 136,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 10
+    },
+    {
+      "name": "Dull small eye catchlight 1",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "Plain half lowered pale eyelid 1",
+      "triangles": 176,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Plain heavy pale brow 1",
+      "triangles": 116,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Short tired brow seam 1",
+      "triangles": 66,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Small rounded dark moth nose",
+      "triangles": 316,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Tiny simple mouth seam",
+      "triangles": 66,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Blunt lower face tooth -0.019",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Blunt lower face tooth 0.019",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Faceplate old vertical seam",
+      "triangles": 96,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Faceplate repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Faceplate repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Faceplate repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Faceplate repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head vertical repair",
+      "triangles": 96,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Back head stitching stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head stitching stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head stitching stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head stitching stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head stitching stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head stitching stitch 5",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single pale side cheek repair",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Single pale side cheek repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single pale side cheek repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single pale side cheek repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single pale side cheek repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single pale side cheek repair stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single pale side cheek repair stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single pale side cheek repair stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Single pale side cheek repair stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R antenna round base",
+      "triangles": 36,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R feather antenna stem",
+      "triangles": 126,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R feather barb 0 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 0 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 1 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 1 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 2 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 2 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 3 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 3 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 4 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 4 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 5 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 5 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 6 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 6 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 7 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 7 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 8 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R feather barb 8 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L antenna round base",
+      "triangles": 36,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L feather antenna stem",
+      "triangles": 126,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L feather barb 0 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 0 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 1 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 1 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 2 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 2 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 3 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 3 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 4 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 4 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 5 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 5 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 6 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 6 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 7 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 7 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 8 -1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L feather barb 8 1",
+      "triangles": 26,
+      "bone_groups": [
+        "antenna_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R continuous upper and lower moth wing",
+      "triangles": 200,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "R wing bound edge -1",
+      "triangles": 516,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein -10",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein -11",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein -12",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein -13",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein -14",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing worn token circle -10",
+      "triangles": 48,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "R wing worn token circle -11",
+      "triangles": 48,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "R wing bound edge 1",
+      "triangles": 516,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein 10",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein 11",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein 12",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein 13",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing faded vein 14",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R wing worn token circle 10",
+      "triangles": 48,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "R wing worn token circle 11",
+      "triangles": 48,
+      "bone_groups": [
+        "wing_panel_R"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "R wing pivot barrel 0.875",
+      "triangles": 36,
+      "bone_groups": [
+        "wing_hinge_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R wing hinge bracket 0.875",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R wing pivot barrel 0.932",
+      "triangles": 36,
+      "bone_groups": [
+        "wing_hinge_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R wing hinge bracket 0.932",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R wing short rigid spar",
+      "triangles": 20,
+      "bone_groups": [
+        "wing_hinge_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L continuous upper and lower moth wing",
+      "triangles": 200,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "L wing bound edge -1",
+      "triangles": 516,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein -10",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein -11",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein -12",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein -13",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein -14",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing worn token circle -10",
+      "triangles": 48,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "L wing worn token circle -11",
+      "triangles": 48,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "L wing bound edge 1",
+      "triangles": 516,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein 10",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein 11",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein 12",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein 13",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing faded vein 14",
+      "triangles": 66,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L wing worn token circle 10",
+      "triangles": 48,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "L wing worn token circle 11",
+      "triangles": 48,
+      "bone_groups": [
+        "wing_panel_L"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "L wing pivot barrel 0.875",
+      "triangles": 36,
+      "bone_groups": [
+        "wing_hinge_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L wing hinge bracket 0.875",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L wing pivot barrel 0.932",
+      "triangles": 36,
+      "bone_groups": [
+        "wing_hinge_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L wing hinge bracket 0.932",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L wing short rigid spar",
+      "triangles": 20,
+      "bone_groups": [
+        "wing_hinge_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Chest projector cloth mounting pad",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Old chest projector box",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Flat practical projector front plate",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "Projector lens outer barrel",
+      "triangles": 100,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Projector dull brass lens rim",
+      "triangles": 368,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Projector warm white glass lens",
+      "triangles": 480,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "Projector inner glass rim",
+      "triangles": 216,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Projector old corner screw -0.1230.796",
+      "triangles": 28,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Projector old corner screw -0.1230.994",
+      "triangles": 28,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Projector old corner screw 0.1230.796",
+      "triangles": 28,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Projector old corner screw 0.1230.994",
+      "triangles": 28,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Projector faded token diamond -1",
+      "triangles": 12,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Projector faded token diamond 1",
+      "triangles": 12,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "R physical projector shutter leaf",
+      "triangles": 108,
+      "bone_groups": [
+        "shutter_R"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "R shutter leaf dull leading edge",
+      "triangles": 108,
+      "bone_groups": [
+        "shutter_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R shutter guide top",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R shutter guide bottom",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L physical projector shutter leaf",
+      "triangles": 108,
+      "bone_groups": [
+        "shutter_L"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "L shutter leaf dull leading edge",
+      "triangles": 108,
+      "bone_groups": [
+        "shutter_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L shutter guide top",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L shutter guide bottom",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Old projector side vent 0",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Old projector side vent 1",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Old projector side vent 2",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Old projector side vent 3",
+      "triangles": 108,
+      "bone_groups": [
+        "projector"
+      ],
+      "pigment_tile": 6
+    }
+  ],
+  "notes": [
+    "Compact 1.65 m matte teal moth below the 2.15 m lead rat.",
+    "Two separate thin hinged folded wing panels and two feathered antenna pivots.",
+    "Rigid practical chest projector with actual sliding shutter leaves, no beam or animated emission.",
+    "One runtime skin; rigid padded shell islands retain credible mechanical separations.",
+    "All geometry and surface pigment original. No franchise meshes, textures, logos, private media or face/costume copying."
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.8,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": 1.766667
+    }
+  ],
+  "export_bake_fps": 60,
+  "contact_bake_note": "60 Hz baking places the 1.25 s projector contact exactly on frame 75.",
+  "rig": "One skin with rigid padded shell islands, separate named wing hinges and projector shutters. Analytic two-bone limb targets bake to local transforms with level feet. Projector housing local transform stays fixed to the chest. No locomotion track or runtime IK.",
+  "bounds_blender": {
+    "min": [
+      -0.5600252747535706,
+      -0.3864644467830658,
+      -1.1173847269674297e-06
+    ],
+    "max": [
+      0.5613614320755005,
+      0.42153358459472656,
+      1.6495908498764038
+    ]
+  },
+  "files": {
+    "moth-projectionist.blend": {
+      "bytes": 2157735,
+      "sha256": "2ea9c6c06a8d1ad3c755460db1038ba5ddc3d8a963a451c80de5f71027624064"
+    },
+    "moth-projectionist.glb": {
+      "bytes": 1420712,
+      "sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9"
+    },
+    "pigment.png": {
+      "bytes": 262765,
+      "sha256": "0b908118186f4533d9ed79a16f7d9467ebecbae04a36c266d561d8952584dc95"
+    }
+  },
+  "lead_review_corrections": [
+    "Softened spotted fabric pigment into subtle felt wear.",
+    "Rounded both wing lobe perimeters while preserving separate two-lobed panels.",
+    "Lowered asymmetrical pale eyelids and made the plain brow heavier.",
+    "Replaced pointed collar beads with a continuous compact worn shag collar.",
+    "Reversed wing warning rotation to lift and unfold the lower panels beyond the neutral silhouette at front and three-quarter views.",
+    "Moved canvas panels 28 mm farther behind body while extending their rigid hinge spars, to establish positive all-frame conservative clearance."
+  ],
+  "bounds_evidence": {
+    "method": "All exact exported skin vertices, rest and every clip at 60 Hz; conservative 0.005 m padding per axis.",
+    "safe_culling_envelope": {
+      "min": [
+        -0.717,
+        -0.006,
+        -0.466
+      ],
+      "max": [
+        0.718,
+        1.655,
+        0.48
+      ]
+    }
+  }
+}
