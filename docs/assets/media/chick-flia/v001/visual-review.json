@@ -1,0 +1,71 @@
+{
+  "work_order": "WO100",
+  "asset_id": "chick-flia",
+  "version": "v001",
+  "glb_sha256": "4f72a94c89debf8ee00a8a5db4eaf6b681375a64a08b743b0cbe07fbdf6eb396",
+  "reviewed_utc": "2026-09-23T20:50:40.880301+00:00",
+  "reviewer": "Native GPT-6 Astra max author; driving Astra reviewed early and corrected exact-GLB views",
+  "lead_visual_review": "Updated front, side, back and motion sheet accepted as a coherent studio candidate on 2026-09-23. Exact Tom art review remains pending.",
+  "reference_images": {
+    "v003_ensemble": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
+    "corrected_chick_flia_turnaround": "ee84ce15ce47820db78bbf075c58f1be15caa88f1586b369c5f388d627e80936"
+  },
+  "matching_views": [
+    "front.png",
+    "side.png",
+    "back.png",
+    "beauty.png"
+  ],
+  "motion_evidence": [
+    "motion-contact-sheet.png",
+    "attack-strip.png",
+    "attack-gameplay-scale.png",
+    "final-preview/attack-front-contact.png",
+    "final-preview/attack-side-contact.png",
+    "final-preview/defeat-side-held.png"
+  ],
+  "visual_findings": [
+    "Plain cream eyelid plates, tired glass eyes and worn ochre beak; no lashes, makeup or glamour costume.",
+    "Cream shoulder caps enclose the old mechanisms; broad padded body, softer hem and fuller knees retain the reference silhouette.",
+    "Simple short burgundy apron follows the belly, with a flat club token patch and plain rear ties.",
+    "The microphone is visibly held by a wing grip at rest and rises outside the face silhouette during the attack warning.",
+    "Attack contact at 1.25 s is visible from front, side and gameplay-scale strip.",
+    "The held defeat is a shallow failed curtsy with both feet planted and microphone retained.",
+    "No visible face/wing/prop collision or floor intersection in inspected rest, warning, contact, recoil or held-defeat views. Dark mechanical overlaps at articulation gaps are intentional."
+  ],
+  "measured": {
+    "dimensions_xyz_y_up_m": [
+      0.992688094233461,
+      1.7200012544588377,
+      0.5822620689868927
+    ],
+    "triangles": 14698,
+    "bytes": 1307460,
+    "materials": 2,
+    "joints": 21,
+    "atlas": {
+      "count": 1,
+      "width": 1024,
+      "height": 1024
+    },
+    "attack_duration_s": 2,
+    "attack_contact_s": 1.25,
+    "attack_contact_fraction": 0.625,
+    "height_ratio_to_rat_pit_boss_v002": 0.8,
+    "minimum_animated_foot_clearance_m": 0.001901317741901481,
+    "minimum_microphone_clearance_m": 0.4698109949883742,
+    "max_microphone_attachment_drift": 1.1920928955078125e-07
+  },
+  "budget_deviations": [],
+  "interpretations": [
+    "No reference pixels used as a texture. The cloth and molded surfaces use an original compact procedural pigment atlas.",
+    "The construction-sheet microphone is held low in a real rest grip rather than floating as a detached illustration inset.",
+    "Feather panels and surface repairs are simplified for the mobile triangle ceiling."
+  ],
+  "limitations": [
+    "Real Chromium WebGL with SwiftShader was inspected; physical iPhone/iPad Safari and PC performance acceptance remain later gates.",
+    "The clip provides a microphone gesture only; no sound-ring hazard or encounter has been implemented.",
+    "Studio candidate only; no gameplay mapping or owner-art approval."
+  ],
+  "all_technical_checks_pass": true
+}

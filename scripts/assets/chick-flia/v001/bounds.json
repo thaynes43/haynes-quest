@@ -1,0 +1,16 @@
+{
+  "method": "All exact-GLB skin vertices sampled at 60 Hz through Three.js, plus rest bounds and 0.015 m numerical/culling margin.",
+  "safe_culling_envelope": {
+    "min": [
+      -0.5613,
+      -0.015,
+      -0.4222
+    ],
+    "max": [
+      0.5855,
+      1.735,
+      0.2984
+    ]
+  },
+  "reference_glb_sha256": "3dc19e15af2f350b41c9cc6462c47345c7d3bfd61e4b72b5dcfba1f2f2acd32d"
+}

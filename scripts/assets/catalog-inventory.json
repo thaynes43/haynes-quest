@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 52,
+    "entries": 53,
     "reference_sheet_entries": 8,
-    "model_entries": 37,
-    "model_files": 37,
+    "model_entries": 38,
+    "model_files": 38,
     "concept_only_entries": 2,
     "audio_entries": 4,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 35,
+    "completed_model_candidates": 36,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -191,6 +191,50 @@
         "docs/assets/media/rat-pit-boss/v002/scene-release.json": "539f8d89e9a3eeaa9322793c44756242e68c36828eb8be5a6b723bc6ce517292",
         "docs/assets/media/rat-pit-boss/v002/visual-review.json": "b8b805bb05ad79020dedcaff3b154ccf5b2721aea035bf834ca5520a75211a5a",
         "docs/assets/media/rat-pit-boss/v002/sha256-manifest.json": "f86698a46a3ce2809db8294b0874014fb1d201430ba042d485abc5d03e127bc7"
+      }
+    },
+    {
+      "id": "chick-flia",
+      "title": "Chick-flia",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/chick-flia/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia.png"
+      ],
+      "model_images": [
+        "docs/assets/media/chick-flia/v001/beauty.png",
+        "docs/assets/media/chick-flia/v001/front.png",
+        "docs/assets/media/chick-flia/v001/side.png",
+        "docs/assets/media/chick-flia/v001/back.png",
+        "docs/assets/media/chick-flia/v001/motion-contact-sheet.png",
+        "docs/assets/media/chick-flia/v001/attack-strip.png",
+        "docs/assets/media/chick-flia/v001/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/chick-flia/v001/chick-flia.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia.png": "ee84ce15ce47820db78bbf075c58f1be15caa88f1586b369c5f388d627e80936",
+        "docs/assets/media/chick-flia/v001/chick-flia.glb": "4f72a94c89debf8ee00a8a5db4eaf6b681375a64a08b743b0cbe07fbdf6eb396",
+        "docs/assets/media/chick-flia/v001/chick-flia.blend": "fec0fae84e0d5a50a0b6706f21decd4baeb48e8b7be6d0b616cf68932a9d3aed",
+        "docs/assets/media/chick-flia/v001/beauty.png": "8872e6f300911749c95a9649924896a0a2c0aae2a33bcd5a0ac33517602e0807",
+        "docs/assets/media/chick-flia/v001/front.png": "b8a2bac4884f8d69b751d217d26768b83c562e59fc9ef84525831481f4f7c632",
+        "docs/assets/media/chick-flia/v001/side.png": "6c47a40c66e7fb40ab264a4a12b1490b83e4681815c9c09492daa677e59797cc",
+        "docs/assets/media/chick-flia/v001/back.png": "f8dc30791d5ba2aaff1b93faec518a23997081be8e0232c6f05cd40f8e66ff71",
+        "docs/assets/media/chick-flia/v001/motion-contact-sheet.png": "2054d2a3014013898b9bc1f9e484f1931c0f457623483adac72a146ab24ed611",
+        "docs/assets/media/chick-flia/v001/attack-strip.png": "eaa46efbab193cf8b547dd9036c45aff53b24b9dfce9c3e12fe1aa3ed43d9738",
+        "docs/assets/media/chick-flia/v001/attack-gameplay-scale.png": "9ae7a3fa93c36e1cc093afe9f28166226bd326acbe8e0c88f394bccfe4acec29",
+        "docs/assets/media/chick-flia/v001/validation.json": "e5d4b8a6e12ef4b262c48589b38686f71805cb4f585d28518a2792d95b9178c9",
+        "docs/assets/media/chick-flia/v001/three-inspection.json": "26b2f0512435cca3451bcef8246fc839cc64d5ced8e7a6a33e1a8afd71791941",
+        "docs/assets/media/chick-flia/v001/browser-inspection.json": "c4f1bcb705ca38d04138e8134089cc32149d05d32567602256891372f27b8e32",
+        "docs/assets/media/chick-flia/v001/scene-release.json": "232ccfe9a78b82c8b57d78f05067cfc341e07d61d5cecd8d31617a002882bbd8",
+        "docs/assets/media/chick-flia/v001/visual-review.json": "95886e563817b419b06a00d73f046392b2c00512906d529d7ed192b2e8825577",
+        "docs/assets/media/chick-flia/v001/sha256-manifest.json": "be308bd8bebe8d06e3b623db9a7fd2a767f76270f3ec782f94712334f4681a73"
       }
     },
     {

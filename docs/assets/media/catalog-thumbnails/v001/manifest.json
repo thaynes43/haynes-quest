@@ -73,6 +73,13 @@
       "sha256": "1288b40fd112d078ce1c4832916f0e4f325f7bc29af34b3adc530c05994ad9bd"
     },
     {
+      "source": "docs/assets/media/chick-flia/v001/beauty.png",
+      "source_sha256": "8872e6f300911749c95a9649924896a0a2c0aae2a33bcd5a0ac33517602e0807",
+      "path": "docs/assets/media/catalog-thumbnails/v001/b72c2f131107d0eb.webp",
+      "bytes": 7926,
+      "sha256": "d05b81af50de22ff8d07a88b4a5e33434d53db6135cea7afd00f7f1a837b932a"
+    },
+    {
       "source": "docs/assets/media/clearing-path-kit/v001/concept.png",
       "source_sha256": "6d8848179863270c80a30354fa492d3170e442945a1209a625bc1a47daa06042",
       "path": "docs/assets/media/catalog-thumbnails/v001/bb4f038050d6453a.webp",
@@ -337,6 +344,13 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/805517d530fd0dd2.webp",
       "bytes": 31314,
       "sha256": "ff478f59d3a0d07a7c336ab73c29ecb5c24e27377410af5b9442848f78ebf939"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia.png",
+      "source_sha256": "ee84ce15ce47820db78bbf075c58f1be15caa88f1586b369c5f388d627e80936",
+      "path": "docs/assets/media/catalog-thumbnails/v001/43a706b5c74e9426.webp",
+      "bytes": 32558,
+      "sha256": "07def25a72709d747baa3d9022ecef9f4b6e965db6af8cfba2b967a7b26cf363"
     },
     {
       "source": "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png",
