@@ -1,6 +1,6 @@
 # WO104 · Golden After-Hours Rat classic mascot Blender character v001
 
-- **Status:** Delivered and scene released; catalog and studio publication in progress
+- **Status:** Delivered, scene released and catalog checks complete; isolated studio publication pending
 - **Owner:** One fresh native GPT-6 Astra subagent at max, `fork_turns: "none"`
 - **Asset/version:** `golden-after-hours-rat/v001`, optional Rat Casino encounter candidate with no role locked
 - **Scene lease:** Exclusive shared Blender scene from the first mutation through saved release; author only under `/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/`
