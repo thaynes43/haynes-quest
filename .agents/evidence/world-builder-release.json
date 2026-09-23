@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-23T17:27:00Z",
+  "status": "deployed-and-browser-verified",
+  "application": {
+    "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/56",
+    "reviewedHead": "81326aa46a1e4312fb85e2c0e6ed2728fbf1bc14",
+    "mergeCommit": "5632426c2bc037ca6b0e933c6317563dab7f1b64",
+    "reviewedHeadTreeEqualsMergeTree": true,
+    "pullRequestApplicationRun": 35891538291,
+    "pullRequestDocumentationRun": 35891538828,
+    "mainApplicationRun": 35892568018,
+    "mainDocumentationRun": 35892568027,
+    "checks": "All PR and main checks passed; main image job completed build, provenance publication, cosign sign and record steps; CI passed 785 tests including 12 PostgreSQL cases, typecheck, lint, level validation, production and container builds, and strict MkDocs/media checks."
+  },
+  "publication": {
+    "image": "ghcr.io/thaynes43/haynes-quest:sha-5632426c2bc037ca6b0e933c6317563dab7f1b64@sha256:0dec1bf9ec2a850489204351289d40abb119108f0403b9f89dd5e89c30691727",
+    "ociIndexDigest": "sha256:0dec1bf9ec2a850489204351289d40abb119108f0403b9f89dd5e89c30691727",
+    "registryHttp": 200,
+    "ciDigestEqualsRegistryHeaderAndManifestHash": true,
+    "attestationClaim": "Published attestation present; no independent cryptographic verification.",
+    "rawEvidence": "/home/dev/artifacts/haynes-quest/world-builder-20260923/ops-release/evidence/publication.json"
+  },
+  "gitops": {
+    "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/3133",
+    "reviewedHead": "10b977995d4fe07e8b7f7d607e6448ce827999e2",
+    "mergeCommit": "ad5afa3a5f37c3375571b4b6aef6ca54aa7df578",
+    "changedFiles": ["kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml"],
+    "changeShape": "Two publication comments and the immutable playtest app image tag only. Normalized YAML is otherwise identical; rendered HelmRelease and Kustomization diffs changed only the playtest Deployment image.",
+    "requiredChecks": ["Diff Scope - Success", "Flux Local - Success"],
+    "allReportedChecksPassed": true,
+    "activity": {"id": "act-170905-219308", "ended": true},
+    "fluxRevision": "main@sha1:ad5afa3a5f37c3375571b4b6aef6ca54aa7df578",
+    "kustomization": "frontend/haynes-quest",
+    "kustomizationReady": true,
+    "helmRelease": "frontend/haynes-quest-playtest",
+    "helmReleaseGeneration": 14,
+    "helmReleaseObservedGeneration": 14,
+    "helmReleaseVersion": 15,
+    "helmReleaseReady": true,
+    "targetedReconcile": true
+  },
+  "deployment": {
+    "playtestDeploymentGeneration": 14,
+    "playtestPod": "haynes-quest-playtest-5544db89df-5fkml",
+    "playtestPodReady": true,
+    "playtestPodRestartCount": 0,
+    "playtestImageIdMatchesOciIndex": true,
+    "normalQuestDeploymentPodImageAndThreePriorRestartsUnchanged": true,
+    "devEnvDeploymentPodImageAndZeroRestartsUnchanged": true,
+    "healthzReadyzEditorGuideCatalogHttp": 200,
+    "servedClient": {
+      "javascript": {"path": "/assets/index-CcVbuan9.js", "bytes": 1364474, "sha256": "4c40737ef55bd796031c51b4f9d6dbdf5ba77bcdf5ff73379f082b388414c5bb"},
+      "css": {"path": "/assets/index-BeWvaqbI.css", "bytes": 56299, "sha256": "a5769720b58705d4b04b8060f637f3fcfcb8dc4ce6ffdc6bf3b4108bfe042214"}
+    }
+  },
+  "assetStudio": {
+    "blenderAuthoringServiceAtCloseout": {"healthy": true, "ready": true, "busy": false},
+    "catalogUrl": "https://haynes-quest-playtest.haynesops.com/studio/assets/catalog.html",
+    "midnightArcadeReview": "https://haynes-quest-playtest.haynesops.com/studio/assets/reviews/midnight-arcade-kit/v001.html",
+    "skylineToyboxReview": "https://haynes-quest-playtest.haynesops.com/studio/assets/reviews/skyline-toybox-kit/v001.html",
+    "entries": 45,
+    "modelFiles": 32,
+    "thumbnailFiles": 62,
+    "bothReviewsBothConceptsAndSixModelFilesMatchedCheckedLocalBytes": true,
+    "hostedDesktopPhoneCatalogAudit": {"outcome": "passed", "pageErrors": 0, "consoleErrors": 0, "httpErrors": 0, "externalRequests": 0, "reportSha256": "f29edf591b6841e778ef285441af04432658ac746729c58c953feef621feba54", "reportArchive": "/home/dev/artifacts/haynes-quest/world-builder-20260923/hosted-catalog-report.json"},
+    "gameplayUse": "Neither new environment kit is in the game manifest; the two fictional themes use procedural scenery. New encounter candidates use neutral placeholders."
+  },
+  "browser": {
+    "fictionalThreeWorldProject": {"sha256": "feff12c9a774f5d03cf67b9fed43adbd5e84f60690ec52cb24f9be27ed0c84a7", "archive": "/home/dev/artifacts/haynes-quest/world-builder-20260923/browser/three-world-project.json", "generatorSha256": "1ae7ec471edb5fd773d85b6819b4be28f07ea1c56f1513d6d56545f3a4baa9b4", "cliValidate": "pnpm --silent levels:editor validate test-results/world-editor/three-world-project.json → 0 issues", "cliInspectChapterCount": 3, "cliExportSha256": "d0a7ab6fb6b55b95142ac30fcf72d2ba97b1d259f18441fa5e67631940e2b489"},
+    "localFullAdventure": {"outcome": "passed", "routes": 3, "recoveredMemories": 9, "ages": [0, 4, 7, 8], "normalControls": "WASD, Space, F and Shift", "pageConsoleHttpErrors": 0, "reportSha256": "0cf49acaabe90ca8bc7b2c4c93ca7e9a7750f578b125740887892e1031dab24d", "reportArchive": "/home/dev/artifacts/haynes-quest/world-builder-20260923/browser/local-full-adventure/report.json"},
+    "hostedFullAdventure": {"outcome": "passed", "url": "https://haynes-quest-playtest.haynesops.com", "command": "QUEST_E2E_URL=https://haynes-quest-playtest.haynesops.com QUEST_JOURNEY_STOP_AFTER=3 QUEST_JOURNEY_RUN_LABEL=hosted-exact-image-rerun2 node test-results/world-editor/full-three-level-journey.mjs", "routes": ["chapter-1-route", "chapter-2-route", "draft-arcade-route"], "recoveredMemories": 9, "ages": [0, 4, 7, 8], "encountersDefeated": 15, "normalControls": "WASD, Space, F and Shift", "pageConsoleHttpErrors": 0, "candidateNames": ["Arcade Rusher", "Arcade Feinter", "Arcade Boss"], "candidateArt": "neutral-candidate-v1", "reportSha256": "fe8c1f595128f980561a5b6d4a94d6d4788e6375a137a48c52a10422ecf6eac5", "reportArchive": "/home/dev/artifacts/haynes-quest/world-builder-20260923/browser/hosted-full-adventure/report.json", "candidateScreenshotSha256": "4a1563859c32a360a84fba945ab1b9b6b620df757902d7c932c8448f0e7cf699", "completionScreenshotSha256": "9af6758a1403516eadf2c06d5b7b9aa2de9b40203e92cc091f68fa89f6ed8525", "harnessArchive": "/home/dev/artifacts/haynes-quest/world-builder-20260923/browser/full-three-level-journey.mjs", "harnessSha256": "5f5d13d419a764c9afc0d2003db68a46e3cd91d3baa8de714a7572f5491f0447"},
+    "hostedHarnessAttempts": "Two earlier runs stopped on browser-driver bookkeeping after normal checkpoint recovery and transient landing settlement. Their reports and screenshots are retained separately in the raw evidence archive; the final bounded retry passed without source changes.",
+    "physicalSafari": "not tested"
+  },
+  "pendingDecisions": [
+    "PRD003 Q-01 asks Tom to choose the first new enemy/world encounter pitch; character Blender work starts after his choice and concept feedback.",
+    "Tom's exact-version review of the six studio-only environment models is pending before gameplay promotion."
+  ],
+  "rawEvidenceRoot": "/home/dev/artifacts/haynes-quest/world-builder-20260923"
+}

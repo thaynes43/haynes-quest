@@ -21,3 +21,7 @@ Record the project export and deterministic CLI commands; validator/test results
 ## Active decision
 
 PRD003 Q-01 is on Tom's phone. Builder work and non-character authoring can proceed independently. Character modeling starts after the selected concept is inspected with him under DESIGN012.
+
+## Released checkpoint · September 23
+
+The versioned builder, shared CLI, three-level fictional fixture preview, arcade/toybox procedural themes, two concept sheets and six studio-only Blender props are implemented, checked and deployed through [app PR56](https://github.com/thaynes43/haynes-quest/pull/56) and [ops PR3133](https://github.com/thaynes43/haynes-ops/pull/3133). [The release record](../evidence/world-builder-release.json) tracks exact checks, image, Flux revision and browser proof. The plan remains in progress for the owner-selected encounter, its concept feedback, Blender character candidate and exact-version art review. No family media was used.
