@@ -1,6 +1,6 @@
 # WO104 · Golden After-Hours Rat classic mascot Blender character v001
 
-- **Status:** Ready only after WO103 explicitly releases the single Blender scene
+- **Status:** Delivered and scene released; catalog and studio publication in progress
 - **Owner:** One fresh native GPT-6 Astra subagent at max, `fork_turns: "none"`
 - **Asset/version:** `golden-after-hours-rat/v001`, optional Rat Casino encounter candidate with no role locked
 - **Scene lease:** Exclusive shared Blender scene from the first mutation through saved release; author only under `/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/`
@@ -29,3 +29,7 @@ Use new source scripts under `scripts/assets/golden-after-hours-rat/` and delive
 Run Khronos glTF Validator on that exact GLB and require zero errors and zero warnings. Load the exact file with the repository's real Three.js stack and instantiate the actual `EnemyAnimation` adapter from `src/game/enemy-animation.ts`; verify all five unique clips, positive duration, resolved below-root tracks, actual skinned deformation, no scene-root track, rest/animated bounds, attack contact and held defeat. In a real Chromium viewer, play and visually inspect every clip at normal and small gameplay scale; record changing frames plus console, HTTP, WebGL and external-resource results, and correct ear, eye, faceplate, paw, waistcoat, tail, floor, silhouette or material faults before handoff.
 
 Return exact remote/local paths, matching hashes, measured results, clip timings, validator/adapter/Chromium reports, deviations, provenance and an explicit scene-release marker. The lead owns public-safe media selection, review/catalog/inventory/thumbnail updates and publication. This exact model remains **studio only** until Tom reviews its exact artifacts and the later date-eligibility, encounter, device and gameplay gates pass.
+
+## Delivery checkpoint · September 23
+
+WO103 released its scene before WO104 independently checked and claimed it. The author delivered the [exact v001 candidate](../../docs/assets/reviews/golden-after-hours-rat/v001.md) and released the scene at 22:13:32 UTC, with no job running and predecessor masters unchanged. The final GLB SHA-256 is `b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184`; the editable master SHA-256 is `f08904c3ebe10813065e62f2d0d2d1f0072f39f889e696218f767960e72a46ae`. The 1.700 m model has 14,700 triangles, two materials and five checked clips. Khronos reports zero errors and warnings; the actual Three.js enemy adapter, all-vertex bounds and normal/small Chromium playback pass. The lead accepted the revised faceplate, wear and seated ear trim for candidate validation. Exact owner art review, gameplay mapping and physical-device acceptance remain open.

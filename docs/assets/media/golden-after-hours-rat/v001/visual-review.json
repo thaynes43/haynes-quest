@@ -1,0 +1,59 @@
+{
+  "work_order": "WO104",
+  "asset_id": "golden-after-hours-rat",
+  "version": "v001",
+  "reviewer": "WO104 native GPT-6 Astra Blender author; lead visual direction checked separately",
+  "reviewed_utc": "2026-09-23T22:12:57.965877+00:00",
+  "glb_sha256": "b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184",
+  "master_sha256": "f08904c3ebe10813065e62f2d0d2d1f0072f39f889e696218f767960e72a46ae",
+  "lead_visual_review": "Lead reviewed revised beauty/detail and true side and approved this visual model for final candidate validation. Owner exact-art approval remains pending.",
+  "viewing_method": "Actual exact GLB in local Chromium WebGL. Every clip played for its full duration at normal and 35% scale; framewise visual inspection used the five-clip contact sheet, small gameplay-scale attack sheet, individual small idle/move/hit/defeat frames, front/side warning/contact frames, side held defeat, matched neutral views and faceplate/tail-base details.",
+  "examined_views": [
+    "front.png",
+    "side.png",
+    "back.png",
+    "beauty.png",
+    "detail.png",
+    "hinge.png",
+    "motion-contact-sheet.png",
+    "attack-gameplay-scale.png",
+    "final-preview/idle-small-0p625.png",
+    "final-preview/move-small-0p625.png",
+    "final-preview/hit-small-0p3.png",
+    "final-preview/defeat-small-1.png",
+    "final-preview/attack-front-windup.png",
+    "final-preview/attack-front-contact.png",
+    "final-preview/attack-side-contact.png",
+    "final-preview/defeat-side-held.png"
+  ],
+  "findings": [
+    "The small 1.70 m shell remains below the 2.15 m lead rat, with compact padded mustard forms.",
+    "Closed cream faceplate has a visible narrow gasket and discreet latch; tired modest eyes remain visible.",
+    "Repaired round ear and pale replacement paw remain legible at small scale.",
+    "Short waistcoat, token-slot badge and diffuse faded cloth wear read as an old spare suit.",
+    "Thin segmented tail remains attached; no visual body or floor intersection was found in the examined motion frames.",
+    "Pale paw rises outside the torso silhouette, holds warning from 0.82\u20131.10 s, and delivers a single short forward shove at 1.25 s. Faceplate and repaired ear lag behind the initial paw lift.",
+    "Powered-off defeat settles into a planted comic slump, with tail and paw visible and attached through the held final pose."
+  ],
+  "corrected_faults": [
+    "Seated the ear piping against its padded disk after true-side inspection.",
+    "Added a narrow dark faceplate perimeter gasket and one discreet side closure latch; the panel remains closed and integrated.",
+    "Dulled the mustard cloth, added broad diffuse faded scuffs and a few restrained repaired patches on the vest and limbs."
+  ],
+  "geometry_checks": {
+    "samples": 602,
+    "exported_vertices_per_sample": 14196,
+    "min_distal_tail_body_clearance_m": 0.032892747336321505,
+    "min_paw_torso_clearance_m": 0.022177006110415176,
+    "max_attached_pivot_drift_m": 2.6554291527266406e-07,
+    "held_defeat_max_vertex_change_m": 4.613220503210621e-07,
+    "floor_numerical_tolerance_m": 1e-05,
+    "rest_min_y_m": -7.103961395022775e-07
+  },
+  "all_validation_checks_pass": true,
+  "budget_exceptions": [],
+  "browser": "153.0.8010.12",
+  "owner_exact_art_review": "pending",
+  "gameplay_mapping": false,
+  "physical_device_acceptance": "not performed; Chromium SwiftShader is software browser evidence only"
+}

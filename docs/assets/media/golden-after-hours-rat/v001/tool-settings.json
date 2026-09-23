@@ -1,0 +1,130 @@
+{
+  "work_order": "WO104",
+  "asset_id": "golden-after-hours-rat",
+  "version": "v001",
+  "blender": "4.5.13 LTS",
+  "authoring": "Blender MCP execute_blender_code; dedicated authoring service, no authoring environment restart",
+  "coordinate_system": {
+    "authoring": "Z up, +Y forward",
+    "gltf_three": "Y up, -Z forward",
+    "root": "Identity unit-scale stationary floor-centered scene root"
+  },
+  "geometry": {
+    "editable_parts_collection": "EDITABLE Golden spare rat original parts - excluded from GLB",
+    "runtime_skin_count": 1,
+    "bone_count": 27,
+    "max_skin_influences_measured": 2,
+    "triangles": 14700,
+    "source_triangles": 26944,
+    "simplification": "Blender decimate applied to runtime copy, editable original islands retained"
+  },
+  "materials": [
+    {
+      "name": "Dusty mustard felt and pale replacement cloth",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.9800000190734863
+      }
+    },
+    {
+      "name": "Dull old joints and inexpensive glass",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0.02500000037252903,
+        "roughnessFactor": 0.5799999833106995
+      }
+    }
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "format": "Embedded PNG",
+    "bytes": 292770,
+    "sha256": "a8cdbcb18b76c42120be7be3d044f28d9679e891a7b2d2cd31d14b18d46e1671"
+  },
+  "animation": {
+    "fps": 60,
+    "clips": [
+      {
+        "name": "idle",
+        "duration_s": 3.2,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "held_final_pose_from_s": null
+      },
+      {
+        "name": "move",
+        "duration_s": 1.6,
+        "loop": true,
+        "clamp_when_finished": false,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "held_final_pose_from_s": null
+      },
+      {
+        "name": "attack",
+        "duration_s": 2.0,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": 1.25,
+        "contact_fraction": 0.625,
+        "held_final_pose_from_s": null
+      },
+      {
+        "name": "hit",
+        "duration_s": 0.7,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "held_final_pose_from_s": null
+      },
+      {
+        "name": "defeat",
+        "duration_s": 2.4,
+        "loop": false,
+        "clamp_when_finished": true,
+        "contact_time_s": null,
+        "contact_fraction": null,
+        "held_final_pose_from_s": 1.766667
+      }
+    ],
+    "method": "Analytic two-bone limb targets baked into ordinary bone transforms, fixed level feet, no runtime IK; delayed paw warning, lagging faceplate and repaired ear, weighted attached tail",
+    "interpolation": "LINEAR baked keys; authored easing before bake",
+    "root_motion": false,
+    "scale_or_hide_defeat": false
+  },
+  "export": {
+    "format": "GLB",
+    "selection": "One rig and runtime skin only",
+    "export_yup": true,
+    "export_animation_mode": "NLA_TRACKS",
+    "export_armature_object_remove": true,
+    "export_rest_position_armature": true,
+    "export_influence_nb": 4,
+    "export_force_sampling": true,
+    "export_optimize_animation_size": true,
+    "export_extras": true,
+    "export_draco_mesh_compression_enable": false,
+    "external_resources": false,
+    "required_extensions": []
+  },
+  "validation": {
+    "khronos_errors": 0,
+    "khronos_warnings": 0,
+    "three_revision": "186",
+    "actual_adapter": "src/game/enemy-animation.ts",
+    "bounds": "Every exported skin vertex at 60 Hz for every clip, with conservative stored envelope"
+  },
+  "limitations": [
+    "Chromium software WebGL does not establish physical iPhone/iPad Safari behavior or performance.",
+    "No gameplay mapping, date eligibility or owner exact-art approval."
+  ]
+}

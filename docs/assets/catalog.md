@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The new arcade, toybox and Rat Casino work below is studio-only; the [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**39 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**40 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -27,7 +27,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Parody characters {#parody-characters}
 
-The two Besties actors join four completed parody characters in the playtest library. Rat Pit Boss, Chick-flia, Jackrabbit Drummer, Fox Card Shark and Moth Projectionist now have technically checked studio models awaiting Tom's exact-art review; Nap Captain and the first Rat Pit Boss export are paused partial models. The One-Star Diva is a paused concept. The Rat Casino cast has a six-character classic mascot image with a central lead rat and side-stage Chick-flia. Its earlier glossy studies and first rat export remain in the review history while character modeling proceeds before new levels.
+The two Besties actors join four completed parody characters in the playtest library. All six Rat Casino performers have separate technically checked Blender candidates awaiting Tom's exact-art review; Nap Captain and the first Rat Pit Boss export are paused partial models. The One-Star Diva is a paused concept. The classic mascot ensemble keeps the broad Rat Pit Boss center stage and Chick-flia at his side. Its earlier glossy studies and first rat export remain in the review history. No Rat Casino character is mapped into gameplay.
 
 <div class="catalog-grid" markdown="1">
 
@@ -98,6 +98,18 @@ The two Besties actors join four completed parody characters in the playtest lib
 <span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/af80381698071ed6.webp" alt="Corrected muted teal Moth Projectionist front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="golden-after-hours-rat" markdown="1">
+
+[![Exact Golden After-Hours Rat model with a smaller faded mustard shell, closed pale faceplate and mismatched paw](media/catalog-thumbnails/v001/65a4d2e6b9d0e070.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/golden-after-hours-rat/v001.md)
+
+### [Golden After-Hours Rat](reviews/golden-after-hours-rat/v001.md)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/858e699da2011d07.webp" alt="Corrected worn golden spare-rat front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
 </div>
 

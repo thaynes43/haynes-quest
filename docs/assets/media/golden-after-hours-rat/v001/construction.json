@@ -1,0 +1,2303 @@
+{
+  "asset_id": "golden-after-hours-rat",
+  "version": "v001",
+  "work_order": "WO104",
+  "authoring_model": "gpt-6-astra max",
+  "blender_version": "4.5.13 LTS",
+  "source_concept_sha256": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
+  "source_concept_path": "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png",
+  "source_prompt_sha256": "ccea7a5ea925079a97ba82fc4fc38c9830f5a2699245f44aa32ae31bc63b1e3a",
+  "source_prompt_path": "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat-prompt.txt",
+  "ensemble_sha256": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
+  "ensemble_path": "docs/assets/media/rat-casino-ensemble/v003/concept.png",
+  "spec": {
+    "asset_id": "golden-after-hours-rat",
+    "height": 1.7,
+    "contact_time_s": 1.25,
+    "attack_duration_s": 2,
+    "contact_fraction": 0.625,
+    "version": "v001",
+    "source_concept_sha256": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782"
+  },
+  "height_m": 1.7,
+  "construction_scale_factor": 0.9803921077954415,
+  "construction_ground_shift": 0.0,
+  "triangles_before_export_simplification": 26944,
+  "triangles": 14700,
+  "vertices": 7931,
+  "material_count": 2,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic dusty mustard felt, cream faceplate and paw, muted ear cloth and worn tail pigment; no external texture."
+  },
+  "bone_count": 27,
+  "parts": [
+    {
+      "name": "Compact mustard spare shell torso",
+      "triangles": 516,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Round loose belly and hip shell",
+      "triangles": 392,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Belly sewn seam",
+      "triangles": 66,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Old belly repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old belly repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old belly repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old belly repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Short visible neck coupling",
+      "triangles": 164,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R shoulder socket",
+      "triangles": 136,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R padded upper arm",
+      "triangles": 92,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R elbow bearing",
+      "triangles": 136,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R elbow old pivot",
+      "triangles": 36,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R stout forearm",
+      "triangles": 92,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R wrist swivel",
+      "triangles": 136,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Original mustard paw",
+      "triangles": 316,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R blunt finger 0",
+      "triangles": 92,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R finger crease 0",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R blunt finger 1",
+      "triangles": 92,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R finger crease 1",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R blunt finger 2",
+      "triangles": 92,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R finger crease 2",
+      "triangles": 108,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R thumb",
+      "triangles": 136,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R paw sewn line stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R paw sewn line stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R paw sewn line stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R paw sewn line stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R arm repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R arm repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R arm repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R arm repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R covered hip bearing",
+      "triangles": 136,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R broad padded thigh",
+      "triangles": 104,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R knee bearing",
+      "triangles": 136,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R old knee pivot",
+      "triangles": 36,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R worn shin shell",
+      "triangles": 92,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R ankle joint",
+      "triangles": 108,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R broad soft foot",
+      "triangles": 356,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R rounded toe 0",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R blunt toe cap 0",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R rounded toe 1",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R blunt toe cap 1",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R rounded toe 2",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R blunt toe cap 2",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R shin side seam",
+      "triangles": 66,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "R shin repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R shin repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R shin repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R shin repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shoulder socket",
+      "triangles": 136,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L padded upper arm",
+      "triangles": 92,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L elbow bearing",
+      "triangles": 136,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L elbow old pivot",
+      "triangles": 36,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L stout forearm",
+      "triangles": 92,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L wrist swivel",
+      "triangles": 136,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L pale replacement paw",
+      "triangles": 316,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "L blunt finger 0",
+      "triangles": 92,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "L finger crease 0",
+      "triangles": 108,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L blunt finger 1",
+      "triangles": 92,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "L finger crease 1",
+      "triangles": 108,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L blunt finger 2",
+      "triangles": 92,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "L finger crease 2",
+      "triangles": 108,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L thumb",
+      "triangles": 136,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "L paw sewn line stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L paw sewn line stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L paw sewn line stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L paw sewn line stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "replacement_paw"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L arm repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L arm repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L arm repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L arm repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L covered hip bearing",
+      "triangles": 136,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L broad padded thigh",
+      "triangles": 104,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L knee bearing",
+      "triangles": 136,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L old knee pivot",
+      "triangles": 36,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L worn shin shell",
+      "triangles": 92,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L ankle joint",
+      "triangles": 108,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L broad soft foot",
+      "triangles": 356,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L rounded toe 0",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L blunt toe cap 0",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L rounded toe 1",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L blunt toe cap 1",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L rounded toe 2",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L blunt toe cap 2",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L shin side seam",
+      "triangles": 66,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "L shin repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shin repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shin repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shin repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven thigh cloth patch",
+      "triangles": 108,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Uneven thigh cloth patch stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven thigh cloth patch stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven thigh cloth patch stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven thigh cloth patch stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven thigh cloth patch stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven thigh cloth patch stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven thigh cloth patch stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven thigh cloth patch stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old shoulder cloth patch",
+      "triangles": 108,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Old shoulder cloth patch stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old shoulder cloth patch stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old shoulder cloth patch stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old shoulder cloth patch stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old shoulder cloth patch stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old shoulder cloth patch stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old shoulder cloth patch stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old shoulder cloth patch stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Older forearm faded cloth repair",
+      "triangles": 108,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Older forearm faded cloth repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Older forearm faded cloth repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Older forearm faded cloth repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Older forearm faded cloth repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Older forearm faded cloth repair stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Older forearm faded cloth repair stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Older forearm faded cloth repair stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Older forearm faded cloth repair stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small mismatched lower shin repair",
+      "triangles": 108,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Small mismatched lower shin repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small mismatched lower shin repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small mismatched lower shin repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small mismatched lower shin repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small mismatched lower shin repair stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small mismatched lower shin repair stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small mismatched lower shin repair stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small mismatched lower shin repair stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Short waistcoat curved back and sides",
+      "triangles": 200,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Right faded waistcoat front",
+      "triangles": 64,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Plain short vest front edge -1",
+      "triangles": 126,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Short vest hem -1",
+      "triangles": 246,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Vest armhole rolled edge -1",
+      "triangles": 66,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Short folded vest lapel -1",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Left faded waistcoat front",
+      "triangles": 64,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Plain short vest front edge 1",
+      "triangles": 126,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Short vest hem 1",
+      "triangles": 246,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Vest armhole rolled edge 1",
+      "triangles": 66,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Short folded vest lapel 1",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Plain faded waistcoat mending",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Plain faded waistcoat mending stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Plain faded waistcoat mending stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Plain faded waistcoat mending stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Plain faded waistcoat mending stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Plain faded waistcoat mending stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Plain faded waistcoat mending stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Plain faded waistcoat mending stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Plain faded waistcoat mending stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small pale undershirt triangle",
+      "triangles": 80,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Small crooked dark bow tie | left folded loop",
+      "triangles": 76,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "Small crooked dark bow tie | right folded loop",
+      "triangles": 76,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "Small crooked dark bow tie | sewn center knot",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "Plain old waistcoat button 0.943",
+      "triangles": 40,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Plain old waistcoat button 0.873",
+      "triangles": 40,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Plain old waistcoat button 0.812",
+      "triangles": 40,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Tiny integrated token badge frame",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Token badge dark inset",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Single vertical token slot",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 10
+    },
+    {
+      "name": "Badge small screw 0.976",
+      "triangles": 20,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Badge small screw 1.027",
+      "triangles": 20,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Back waistcoat center seam",
+      "triangles": 66,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Short back waistcoat adjustment tab",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Back tab button -0.073",
+      "triangles": 28,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Back tab button 0.073",
+      "triangles": 28,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Round mustard spare rat head",
+      "triangles": 716,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Thin dark faceplate perimeter gasket",
+      "triangles": 612,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Pale removable forehead cheek faceplate",
+      "triangles": 612,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "R round padded ear",
+      "triangles": 392,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R recessed ear cloth",
+      "triangles": 356,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R old round ear piping",
+      "triangles": 276,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "R head ear coupling",
+      "triangles": 108,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R plain recessed eye socket",
+      "triangles": 392,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R modest ivory glass eye",
+      "triangles": 356,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "R uneven gray green iris",
+      "triangles": 220,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 11
+    },
+    {
+      "name": "R small dark pupil",
+      "triangles": 136,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 10
+    },
+    {
+      "name": "R soft glass glint",
+      "triangles": 76,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "R heavy tired eyelid",
+      "triangles": 176,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "R simple dark eyebrow",
+      "triangles": 80,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "R pale rounded cheek",
+      "triangles": 392,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "R faceplate side fixing",
+      "triangles": 28,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R short old whisker 0",
+      "triangles": 66,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "R short old whisker 1",
+      "triangles": 66,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "R short old whisker 2",
+      "triangles": 66,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "L round padded ear",
+      "triangles": 392,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L recessed ear cloth",
+      "triangles": 356,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L old round ear piping",
+      "triangles": 276,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "L head ear coupling",
+      "triangles": 108,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Uneven repaired ear insert",
+      "triangles": 108,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Uneven repaired ear insert stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven repaired ear insert stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven repaired ear insert stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven repaired ear insert stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven repaired ear insert stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven repaired ear insert stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven repaired ear insert stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Uneven repaired ear insert stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Repaired ear crooked seam",
+      "triangles": 66,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "Visible repaired ear stitches stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Visible repaired ear stitches stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Visible repaired ear stitches stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Visible repaired ear stitches stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Visible repaired ear stitches stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Visible repaired ear stitches stitch 5",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Visible repaired ear stitches stitch 6",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L plain recessed eye socket",
+      "triangles": 392,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L modest ivory glass eye",
+      "triangles": 356,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "L uneven gray green iris",
+      "triangles": 220,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 11
+    },
+    {
+      "name": "L small dark pupil",
+      "triangles": 136,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 10
+    },
+    {
+      "name": "L soft glass glint",
+      "triangles": 76,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "L heavy tired eyelid",
+      "triangles": 176,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "L simple dark eyebrow",
+      "triangles": 80,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "L pale rounded cheek",
+      "triangles": 392,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "L faceplate side fixing",
+      "triangles": 28,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L short old whisker 0",
+      "triangles": 66,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "L short old whisker 1",
+      "triangles": 66,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "L short old whisker 2",
+      "triangles": 66,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Blunt pale rat muzzle",
+      "triangles": 568,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Small soft black rat nose",
+      "triangles": 316,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Blunt snout center seam",
+      "triangles": 36,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Muzzle small worn whisker dot -0.0441.329",
+      "triangles": 76,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Muzzle small worn whisker dot -0.0681.31",
+      "triangles": 76,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Muzzle small worn whisker dot -0.0451.293",
+      "triangles": 76,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Muzzle small worn whisker dot 0.0441.329",
+      "triangles": 76,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Muzzle small worn whisker dot 0.0681.31",
+      "triangles": 76,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Muzzle small worn whisker dot 0.0451.293",
+      "triangles": 76,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Small lower jaw shell",
+      "triangles": 356,
+      "bone_groups": [
+        "jaw"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Simple narrow mouth gap",
+      "triangles": 192,
+      "bone_groups": [
+        "jaw"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Small square rat incisor -0.016",
+      "triangles": 108,
+      "bone_groups": [
+        "jaw"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "Small square rat incisor 0.016",
+      "triangles": 108,
+      "bone_groups": [
+        "jaw"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "Narrow removable faceplate gasket seam",
+      "triangles": 336,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "Discreet faceplate side latch barrel",
+      "triangles": 36,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Faceplate latch short tab 1.336",
+      "triangles": 108,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Faceplate latch short tab 1.364",
+      "triangles": 108,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "One faceplate latch fastening",
+      "triangles": 28,
+      "bone_groups": [
+        "faceplate"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Head worn center seam",
+      "triangles": 96,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Back head cloth stitches stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head cloth stitches stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head cloth stitches stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head cloth stitches stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head cloth stitches stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head cloth stitches stitch 5",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small head side repair",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Small head side repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small head side repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small head side repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small head side repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small head side repair stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small head side repair stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small head side repair stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small head side repair stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Thin continuous segmented spare rat tail",
+      "triangles": 576,
+      "bone_groups": [
+        "tail_base",
+        "tail_mid",
+        "tail_tip"
+      ],
+      "pigment_tile": 15
+    },
+    {
+      "name": "Tail base padded attachment plate",
+      "triangles": 68,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Tail base attachment screw -0.033",
+      "triangles": 28,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Tail base attachment screw 0.033",
+      "triangles": 28,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Tail molded segment seam 1",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_base"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 2",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_base"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 3",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_base"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 4",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_base"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 5",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_base",
+        "tail_mid"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 6",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_base",
+        "tail_mid"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 7",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_base",
+        "tail_mid"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 8",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_mid"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 9",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_mid"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 10",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_mid",
+        "tail_tip"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 11",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_mid",
+        "tail_tip"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 12",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_mid",
+        "tail_tip"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 13",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_tip",
+        "tail_mid"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 14",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_tip"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 15",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_tip"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 16",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_tip"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 17",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_tip"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 18",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_tip"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Tail molded segment seam 19",
+      "triangles": 126,
+      "bone_groups": [
+        "tail_tip"
+      ],
+      "pigment_tile": 5
+    }
+  ],
+  "notes": [
+    "Compact 1.70 m spare shell clearly below the 2.15 m lead rat.",
+    "Original independent face and costume geometry; no lead-rat geometry copied.",
+    "Cream removable faceplate, pale replacement left paw, repaired left ear, short faded mustard waistcoat and tiny token-slot badge.",
+    "Thin continuous weighted tail remains attached through named base/mid/tip pivots.",
+    "One runtime skin with mechanically separate padded shell islands.",
+    "All geometry and pigment original; no franchise images, meshes, textures, logos or private media."
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.2,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.6,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": 1.766667
+    }
+  ],
+  "bounds_evidence": {
+    "method": "Every exact exported skinned vertex in rest and all clips at 60 Hz; 0.005 m conservative padding.",
+    "safe_culling_envelope": {
+      "min": [
+        -0.531,
+        -0.006,
+        -0.491
+      ],
+      "max": [
+        0.655,
+        1.706,
+        0.406
+      ]
+    }
+  },
+  "export_bake_fps": 60,
+  "contact_bake_note": "60 Hz baking places the 1.25 s replacement-paw contact exactly on frame 75.",
+  "rig": "One skin with padded shell islands, named lagging faceplate/jaw and ear pivots, a rigid replacement paw and continuous weighted tail. Analytic two-bone limb targets bake to local transforms with level feet. No locomotion track or runtime IK.",
+  "bounds_blender": {
+    "min": [
+      -0.4725016951560974,
+      -0.3697643578052521,
+      -8.757375553614111e-07
+    ],
+    "max": [
+      0.4725016951560974,
+      0.39075538516044617,
+      1.70000159740448
+    ]
+  },
+  "files": {
+    "golden-after-hours-rat.blend": {
+      "bytes": 2385392,
+      "sha256": "f08904c3ebe10813065e62f2d0d2d1f0072f39f889e696218f767960e72a46ae"
+    },
+    "golden-after-hours-rat.glb": {
+      "bytes": 1417060,
+      "sha256": "b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184"
+    },
+    "pigment.png": {
+      "bytes": 292770,
+      "sha256": "a8cdbcb18b76c42120be7be3d044f28d9679e891a7b2d2cd31d14b18d46e1671"
+    }
+  },
+  "lead_review_corrections": [
+    "Seated the ear piping against its padded disk after true-side inspection.",
+    "Added a narrow dark faceplate perimeter gasket and one discreet side closure latch; the panel remains closed and integrated.",
+    "Dulled the mustard cloth, added broad diffuse faded scuffs and a few restrained repaired patches on the vest and limbs."
+  ]
+}

@@ -206,6 +206,13 @@
       "sha256": "a078ddfeaaf8ec4fc899ab6876d95f457bb47b019bb25a3929bf1047dc3e62ab"
     },
     {
+      "source": "docs/assets/media/golden-after-hours-rat/v001/beauty.png",
+      "source_sha256": "7523ea63bb66c61d5d5508f9624197ce5c38a7b428d6a443a785b33b66123f72",
+      "path": "docs/assets/media/catalog-thumbnails/v001/65a4d2e6b9d0e070.webp",
+      "bytes": 8906,
+      "sha256": "21b996d271a2d565cf89896760a3a1b3eea21765b58e1f4136d4c94872936c00"
+    },
+    {
       "source": "docs/assets/media/jackrabbit-drummer/v001/beauty.png",
       "source_sha256": "886f370ce3c8b27406435f8e354834c8aae82eb35144051137c2e7c8890aee02",
       "path": "docs/assets/media/catalog-thumbnails/v001/7b9d7f82100c5daa.webp",
@@ -379,6 +386,13 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/dfd3b00a6743df8f.webp",
       "bytes": 38444,
       "sha256": "22cd5e4ad7531b2355b0800ce8caac2ddd47c047a5f42490fa3999c72450e8aa"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png",
+      "source_sha256": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
+      "path": "docs/assets/media/catalog-thumbnails/v001/858e699da2011d07.webp",
+      "bytes": 48272,
+      "sha256": "4369960c11ce68c452007412480071727400a77b7255df30a961825ce0db4d2a"
     },
     {
       "source": "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png",

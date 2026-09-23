@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 56,
+    "entries": 57,
     "reference_sheet_entries": 8,
-    "model_entries": 41,
-    "model_files": 41,
+    "model_entries": 42,
+    "model_files": 42,
     "concept_only_entries": 2,
     "audio_entries": 4,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 39,
+    "completed_model_candidates": 40,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -381,6 +381,58 @@
         "docs/assets/media/moth-projectionist/v001/tool-settings.json": "76fafcfe6df1538ac3fd08d0dd56015b1f00d6b530cbd2b75d45790440a70257",
         "docs/assets/media/moth-projectionist/v001/source-prompt.txt": "6c36c7d4fa2a426fefda549314fa7bf6a55f6cef7b61500b570d4d4694d3722a",
         "docs/assets/media/moth-projectionist/v001/sha256-manifest.json": "f7b9fcd3ea5fc200e4ac898a4cf1b663bdc16e38233a8660375aaafe6778fc7c"
+      }
+    },
+    {
+      "id": "golden-after-hours-rat",
+      "title": "Golden After-Hours Rat",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/golden-after-hours-rat/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png"
+      ],
+      "model_images": [
+        "docs/assets/media/golden-after-hours-rat/v001/beauty.png",
+        "docs/assets/media/golden-after-hours-rat/v001/front.png",
+        "docs/assets/media/golden-after-hours-rat/v001/side.png",
+        "docs/assets/media/golden-after-hours-rat/v001/back.png",
+        "docs/assets/media/golden-after-hours-rat/v001/detail.png",
+        "docs/assets/media/golden-after-hours-rat/v001/hinge.png",
+        "docs/assets/media/golden-after-hours-rat/v001/motion-contact-sheet.png",
+        "docs/assets/media/golden-after-hours-rat/v001/attack-strip.png",
+        "docs/assets/media/golden-after-hours-rat/v001/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
+        "docs/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb": "b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184",
+        "docs/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.blend": "f08904c3ebe10813065e62f2d0d2d1f0072f39f889e696218f767960e72a46ae",
+        "docs/assets/media/golden-after-hours-rat/v001/beauty.png": "7523ea63bb66c61d5d5508f9624197ce5c38a7b428d6a443a785b33b66123f72",
+        "docs/assets/media/golden-after-hours-rat/v001/front.png": "e5203689a1f5e6b0c726d8800f2cdadccf315ac7e39fb4f7ef5c98cb116ff15d",
+        "docs/assets/media/golden-after-hours-rat/v001/side.png": "0f6b9e6c4ccf13a4dbe8ead34a0b0cdc7e25bc1075b37f3c7d1b97c8df3559c9",
+        "docs/assets/media/golden-after-hours-rat/v001/back.png": "6d14dcdadc69b8c6f1ddb4a4eadea669510c30cf23bdd4a183d2cda7206e567c",
+        "docs/assets/media/golden-after-hours-rat/v001/detail.png": "7dcdcc4064bde6580ce6f5b1b5cf64333a07d83df5203752031d7fa3b1efbb67",
+        "docs/assets/media/golden-after-hours-rat/v001/hinge.png": "d1c6345f6655efc013c46795856798348bf147c409135cc86d86f78400e69bd8",
+        "docs/assets/media/golden-after-hours-rat/v001/motion-contact-sheet.png": "26958f95abdcdadcf6f029f01b494bb098fb6efd1d0e6a7f6167655e191e11a4",
+        "docs/assets/media/golden-after-hours-rat/v001/attack-strip.png": "34161d2efe9f490100a128c6e448d935c703225702fef273521df45c57155395",
+        "docs/assets/media/golden-after-hours-rat/v001/attack-gameplay-scale.png": "f4aafcce4efeafba827578411350c96e407816ec070b38aab199390984e80479",
+        "docs/assets/media/golden-after-hours-rat/v001/construction.json": "c79f0289964db78e1e165f78bf6d65a48aca2f7d8514d7da94e20105e3db1f57",
+        "docs/assets/media/golden-after-hours-rat/v001/validation.json": "80afc872d367cd2028b3935e85681b7c32acf8e7f4b9d757aecfd9a7a7a4118d",
+        "docs/assets/media/golden-after-hours-rat/v001/three-inspection.json": "998572f3cb9d2ca1052a4269f41a5acb222b80fef0364b4a7f4ac0050f791704",
+        "docs/assets/media/golden-after-hours-rat/v001/browser-inspection.json": "9880fa0c8e6c1a53eb0001113060a814bb15751722e6dddf6e74d5d0adbe7ca2",
+        "docs/assets/media/golden-after-hours-rat/v001/visual-review.json": "6f3a90ffdababe467cd6bcd5baa6de0b355cf9d00c0b44dbab2c2d09d3853e81",
+        "docs/assets/media/golden-after-hours-rat/v001/scene-release.json": "96fc21fcdb1f4fbb9ecb4e5a3322ffdcad6548cea923ae67e8eb2aa8fd0a5c09",
+        "docs/assets/media/golden-after-hours-rat/v001/provenance.json": "d630f86200c9d0bc05b1d6af3936ca0bac5dd77cc5062645c7c272a3a62c55c6",
+        "docs/assets/media/golden-after-hours-rat/v001/tool-settings.json": "fc5e2458b46bfb5c6f08dbcb908cb79edb6aab1e19b2d1f51fee572a00d78510",
+        "docs/assets/media/golden-after-hours-rat/v001/source-prompt.txt": "ccea7a5ea925079a97ba82fc4fc38c9830f5a2699245f44aa32ae31bc63b1e3a",
+        "docs/assets/media/golden-after-hours-rat/v001/sha256-manifest.json": "614b9f5f02e18501c2ac51ceaeb9b913b4f7b33fe94f87490cbe2071054614b4"
       }
     },
     {

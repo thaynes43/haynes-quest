@@ -28,4 +28,4 @@ Create a third level through the browser and the CLI, assign a different cast, e
 
 ## Owner decision
 
-**Q-01:** Which first new world and encounter should be taken through concept art and Blender? The September 23 phone question offers Midnight Pizza Arcade, Skyline Toybox and an agent surprise. The answer and any look feedback will be recorded here before character modeling.
+**Q-01 resolved, September 23:** Tom chose a spooky retro Rat Casino for the first new world, with a full original animatronic parody lineup and a Halloween Haynesnightmares mood. The rat leads; Chick-flia is a supporting character. After reviewing the early images, he rejected their glam-rock finish and selected a classic, worn family-venue animatronic direction. The [v003 cast reference](../assets/reviews/rat-casino-ensemble/v003.md) and [PLAN015](../../.agents/plans/015-haynesnightmares-asset-first.md) record that correction. Tom asked for the Blender models before building the level. Exact model versions still require his final art review before gameplay use.
