@@ -1,0 +1,18 @@
+{
+  "workOrder": "WO097",
+  "asset": "rat-casino-kit",
+  "version": "v001",
+  "released": true,
+  "releasedAt": "2026-09-23T18:18:39.718412+00:00",
+  "sceneOwner": null,
+  "savedMaster": {
+    "file": "rat-casino-kit.blend",
+    "artifactPath": "haynes-quest/rat-casino-kit/v001/rat-casino-kit.blend",
+    "bytes": 494421,
+    "sha256": "99791504d602bf3f3abd06182f4c00e3b68dd954a14b5a05843c8208752c609e"
+  },
+  "outstandingAuthoringJobs": [],
+  "priorToyboxMasterUnchanged": true,
+  "runtimePromotion": false,
+  "ownerReview": "pending exact-version review"
+}

@@ -1,0 +1,124 @@
+{
+  "workOrder": "WO097",
+  "blenderVersion": "4.5.13 LTS",
+  "units": "meters",
+  "authoringUp": "+Z",
+  "authoringForward": "+Y",
+  "exportUp": "+Y",
+  "exportForward": "-Z",
+  "origin": "floor-centered bounds",
+  "props": {
+    "marquee-arch": {
+      "authoringBoundsZUp": {
+        "min": [
+          -3.0199999809265137,
+          -0.534000039100647,
+          0.0
+        ],
+        "max": [
+          3.0199999809265137,
+          0.534000039100647,
+          3.690000057220459
+        ],
+        "size": [
+          6.039999961853027,
+          1.068000078201294,
+          3.690000057220459
+        ]
+      },
+      "sourceObjects": 97,
+      "triangles": 4876,
+      "materials": [
+        "Casino_aged_brass",
+        "Casino_matte_wood_and_velvet",
+        "Casino_warm_amber_bulbs"
+      ],
+      "floorCenterShift": [
+        -0.0,
+        -0.06400002539157867,
+        -0.0
+      ],
+      "static": true,
+      "textures": 0,
+      "walkway": {
+        "clearWidthMeters": 4.1,
+        "clearHeightMeters": 2.6,
+        "depth": "full asset depth",
+        "triangleAabbOverlapCount": 0,
+        "overlaps": []
+      },
+      "bytes": 247248,
+      "sha256": "1f939c9e11004397f2a7046390d788dd8ab54a0c26450eaa88b1dc983dcd6e8b"
+    },
+    "roulette-dais": {
+      "authoringBoundsZUp": {
+        "min": [
+          -1.7534602880477905,
+          -1.751577615737915,
+          0.0
+        ],
+        "max": [
+          1.7534602880477905,
+          1.751577615737915,
+          0.5619999766349792
+        ],
+        "size": [
+          3.506920576095581,
+          3.50315523147583,
+          0.5619999766349792
+        ]
+      },
+      "sourceObjects": 107,
+      "triangles": 4872,
+      "materials": [
+        "Casino_aged_brass",
+        "Casino_matte_wood_and_velvet",
+        "Casino_warm_amber_bulbs"
+      ],
+      "floorCenterShift": [
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "static": true,
+      "textures": 0,
+      "bytes": 234276,
+      "sha256": "574644bcccf8038cb929aebd1d63eebbfbce976e732ec314e388cdef8cd52df6"
+    },
+    "slot-cabinet": {
+      "authoringBoundsZUp": {
+        "min": [
+          -0.5165409445762634,
+          -0.5505000352859497,
+          0.0
+        ],
+        "max": [
+          0.5165409445762634,
+          0.5504999756813049,
+          2.134000062942505
+        ],
+        "size": [
+          1.0330818891525269,
+          1.1010000109672546,
+          2.134000062942505
+        ]
+      },
+      "sourceObjects": 86,
+      "triangles": 3302,
+      "materials": [
+        "Casino_aged_brass",
+        "Casino_matte_wood_and_velvet",
+        "Casino_warm_amber_bulbs"
+      ],
+      "floorCenterShift": [
+        -0.056540921330451965,
+        -0.12050001323223114,
+        -0.0
+      ],
+      "static": true,
+      "textures": 0,
+      "bytes": 194096,
+      "sha256": "06f1460afc516a4dd56c8ab33cc4ba84c2bcdb5a33f954cf6060af06fd9aabe3"
+    }
+  }
+}

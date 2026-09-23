@@ -50,18 +50,18 @@ const requiredBestiesClips = [
 ];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 47,
+  entries: 50,
   reference_sheet_entries: 8,
-  model_entries: 32,
-  model_files: 32,
-  completed_model_candidates: 31,
+  model_entries: 35,
+  model_files: 35,
+  completed_model_candidates: 34,
   paused_partial_model_candidates: 1,
   concept_only_entries: 2,
   audio_entries: 4,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 64;
+const expectedThumbnailFiles = 67;
 const integratedAssetIds = [
   "bestie-pink",
   "bestie-black",
@@ -562,13 +562,17 @@ async function inspectLanding(
     }
 
     const modelAssets = inventory.filter((entry) => entry.models.length > 0);
-    assert.equal(modelAssets.length, 32, `${scope}: all 32 models have cards`);
+    assert.equal(
+      modelAssets.length,
+      expectedInventoryCounts.model_entries,
+      `${scope}: every model entry has a card`,
+    );
     const nap = modelAssets.find((entry) => entry.id === "nap-captain");
     assert.ok(nap, `${scope}: Nap Captain model card exists`);
     assert.equal(
       modelAssets.filter((entry) => entry.id !== "nap-captain").length,
-      31,
-      `${scope}: 31 other completed model candidates`,
+      expectedInventoryCounts.completed_model_candidates,
+      `${scope}: completed model candidates have cards`,
     );
     assert.ok(
       modelAssets
@@ -578,7 +582,7 @@ async function inspectLanding(
             /completed/i.test(entry.stateText) ||
             entry.gameplay_use === "private-candidate",
         ),
-      `${scope}: the other 25 model records are completed or in the current playtest`,
+      `${scope}: completed model records are completed or in the current playtest`,
     );
     for (const id of integratedAssetIds) {
       const asset = inventory.find((entry) => entry.id === id);
@@ -868,7 +872,11 @@ async function verifyModelDeliveries(inventory, report) {
   const models = inventory.flatMap((asset) =>
     asset.models.map((model) => ({ assetId: asset.id, ...model })),
   );
-  assert.equal(models.length, 32, "inventory declares exactly 32 model files");
+  assert.equal(
+    models.length,
+    expectedInventoryCounts.model_files,
+    "inventory declares the expected model files",
+  );
   assert.equal(
     new Set(models.map((model) => model.path)).size,
     models.length,

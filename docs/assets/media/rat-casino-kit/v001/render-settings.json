@@ -1,0 +1,25 @@
+{
+  "workOrder": "WO097",
+  "engine": "Cycles",
+  "device": "CPU",
+  "samples": 32,
+  "denoised": true,
+  "viewTransform": "AgX",
+  "look": "Medium High Contrast",
+  "exposure": 0,
+  "isolatedStillsPixels": [
+    1000,
+    1000
+  ],
+  "assemblyPixels": [
+    1500,
+    1000
+  ],
+  "scaleProxy": {
+    "shape": "neutral cylinder",
+    "heightMeters": 1.2,
+    "diameterMeters": 0.38
+  },
+  "front": "Blender +Y = glTF -Z",
+  "note": "Assembly offsets, stage and neutral scale cylinder are excluded from all GLBs."
+}

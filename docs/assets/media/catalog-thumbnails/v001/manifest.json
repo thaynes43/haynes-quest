@@ -339,6 +339,27 @@
       "sha256": "e1c5b3c501fc71977f28f8acc7535a0fc66447239bd70840120b2ee95bfc537d"
     },
     {
+      "source": "docs/assets/media/rat-casino-kit/v001/marquee-arch-beauty.png",
+      "source_sha256": "4aefc44bfc678f05bde02aaa41e245a5448288cec6910a8c07301a092a803a07",
+      "path": "docs/assets/media/catalog-thumbnails/v001/832b7c82c1a9edbb.webp",
+      "bytes": 9288,
+      "sha256": "41f52c2ee8466c1e88f119744488ea52c0920c29c4e167fba7006b4646d1be76"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-kit/v001/roulette-dais-beauty.png",
+      "source_sha256": "34f625e7139ff2aa9a6eedfd9d31cffd8c1e6eb615cb60012ba96d84d4c4d573",
+      "path": "docs/assets/media/catalog-thumbnails/v001/67b376503d42874c.webp",
+      "bytes": 10882,
+      "sha256": "1ca600aeb8b5cd274db833cd5614c9161f65b9da64b6c221f3b834ffc49486c6"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-kit/v001/slot-cabinet-beauty.png",
+      "source_sha256": "6f5d8f78ab34fd71833dffdc9e9c743cbd79ce65469c05953316e22cda9b57b2",
+      "path": "docs/assets/media/catalog-thumbnails/v001/f1ad0c4498c3627e.webp",
+      "bytes": 11772,
+      "sha256": "e4832b4cb8ba329af4913cb8a918592b7bb3ae2b013640c87cbded8b755f2bd6"
+    },
+    {
       "source": "docs/assets/media/signal-moth/v001/beauty.png",
       "source_sha256": "47fd5059603291c0036fa709add8a16668399f5d758b08968d0fd830c61b0359",
       "path": "docs/assets/media/catalog-thumbnails/v001/b50a0119ee089f01.webp",

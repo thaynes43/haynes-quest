@@ -1,0 +1,111 @@
+{
+  "workOrder": "WO097",
+  "browser": "153.0.8010.12",
+  "viewer": "model-viewer 4.3.1 (bundled, Three.js-based)",
+  "renderer": "Chromium headless / software WebGL (SwiftShader)",
+  "viewportPixels": [
+    1000,
+    850
+  ],
+  "tested": "Exact exported static GLBs with verified hashes, Y-up dimensions, origins and visible materials",
+  "limitation": "Isolated desktop browser rendering; not physical Safari, gameplay performance or owner approval.",
+  "inspected": [
+    {
+      "asset": "marquee-arch",
+      "loaded": true,
+      "dimensions": {
+        "x": 6.039999723434448,
+        "y": 3.690000057220459,
+        "z": 1.068000078201294
+      },
+      "center": {
+        "x": -1.1920928955078125e-7,
+        "y": 1.8450000286102295,
+        "z": 0
+      },
+      "availableAnimations": [],
+      "materials": [
+        "Casino_matte_wood_and_velvet",
+        "Casino_aged_brass",
+        "Casino_warm_amber_bulbs"
+      ],
+      "sha256": "1f939c9e11004397f2a7046390d788dd8ab54a0c26450eaa88b1dc983dcd6e8b",
+      "screenshot": "marquee-arch-browser.png",
+      "cameraOrbit": "2.5830872929516078rad 1.2217304763960306rad 14.452935125290315m",
+      "checks": {
+        "loaded": true,
+        "exactGlbHash": true,
+        "yUpDimensions": true,
+        "floorCentered": true,
+        "static": true,
+        "materialCount": true
+      }
+    },
+    {
+      "asset": "roulette-dais",
+      "loaded": true,
+      "dimensions": {
+        "x": 3.506920576095581,
+        "y": 0.5619999766349792,
+        "z": 3.50315523147583
+      },
+      "center": {
+        "x": 0,
+        "y": 0.2809999883174896,
+        "z": 0
+      },
+      "availableAnimations": [],
+      "materials": [
+        "Casino_aged_brass",
+        "Casino_matte_wood_and_velvet",
+        "Casino_warm_amber_bulbs"
+      ],
+      "sha256": "574644bcccf8038cb929aebd1d63eebbfbce976e732ec314e388cdef8cd52df6",
+      "screenshot": "roulette-dais-browser.png",
+      "cameraOrbit": "2.5830872929516078rad 1.2217304763960306rad 7.115959032674272m",
+      "checks": {
+        "loaded": true,
+        "exactGlbHash": true,
+        "yUpDimensions": true,
+        "floorCentered": true,
+        "static": true,
+        "materialCount": true
+      }
+    },
+    {
+      "asset": "slot-cabinet",
+      "loaded": true,
+      "dimensions": {
+        "x": 1.0330818891525269,
+        "y": 2.134000062942505,
+        "z": 1.1010000109672546
+      },
+      "center": {
+        "x": 0,
+        "y": 1.0670000314712524,
+        "z": 2.9802322387695312e-8
+      },
+      "availableAnimations": [],
+      "materials": [
+        "Casino_matte_wood_and_velvet",
+        "Casino_aged_brass",
+        "Casino_warm_amber_bulbs"
+      ],
+      "sha256": "06f1460afc516a4dd56c8ab33cc4ba84c2bcdb5a33f954cf6060af06fd9aabe3",
+      "screenshot": "slot-cabinet-browser.png",
+      "cameraOrbit": "2.5830872929516078rad 1.2217304763960306rad 5.221030660693999m",
+      "checks": {
+        "loaded": true,
+        "exactGlbHash": true,
+        "yUpDimensions": true,
+        "floorCentered": true,
+        "static": true,
+        "materialCount": true
+      }
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "consoleErrors": [],
+  "externalRequests": []
+}
