@@ -34,6 +34,14 @@
       "edit_prompt": "construction/chick-flia-edit-prompt.txt",
       "edit_prompt_sha256": "41208afb91a59ebb110d71246b432e4a5fe97694c61efdeb24ef1ab5c416d4c6",
       "decision": "Removed residual eyelash and purple makeup styling; retained the worn padded body and apron"
+    },
+    {
+      "performer": "jackrabbit-drummer",
+      "image": "construction/jackrabbit-drummer.png",
+      "image_sha256": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
+      "prompt": "construction/jackrabbit-drummer-prompt.txt",
+      "prompt_sha256": "7f86d65d29bd3389cf2af8e7f5cf7c74300cec15c87597dacbcb5079e4c37340",
+      "source_reference": "concept.png"
     }
   ],
   "research_sources": [

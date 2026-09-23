@@ -37,7 +37,7 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Rat Casino ensemble](reviews/rat-casino-ensemble/v003.md)
 
-<span class="catalog-state">Classic worn-mascot concept + Rat and Chick-flia turnarounds · v003 · Studio only</span>
+<span class="catalog-state">Classic worn-mascot concept + three turnarounds · v003 · Studio only</span>
 
 </div>
 
