@@ -1,6 +1,6 @@
 # PLAN015: Haynesnightmares asset-first cast
 
-- **Status:** Complete — six model candidates published; Tom's exact-version art review remains a separate gameplay gate
+- **Status:** Completed — six model candidates published; Tom's exact-version art review remains a separate gameplay gate
 - **Date:** 2026-09-23
 - **Owner direction:** A complete FNAF-esque original parody lineup, spooky retro Rat Casino, and Halloween Haynesnightmares; Blender models before new levels.
 - **Contracts:** [DESIGN005](../../../docs/designs/005-era-enemy-catalog.md), [DESIGN012](../../../docs/designs/012-player-journey-curation.md), [DESIGN002](../../../docs/designs/002-asset-pipeline.md), [asset catalog process](../../../docs/PROCESS.md#asset-catalog-must-stay-current).
