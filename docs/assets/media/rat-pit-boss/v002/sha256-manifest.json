@@ -1,0 +1,400 @@
+{
+  "work_order": "WO099",
+  "asset_id": "rat-pit-boss",
+  "version": "v002",
+  "created_utc": "2026-09-23T20:33:18.360014+00:00",
+  "local_root": "/home/dev/artifacts/haynes-quest/rat-casino-cast/rat-pit-boss/v002",
+  "remote_root": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v002",
+  "scene_lease": "released",
+  "candidate_status": "Validated studio candidate; exact owner review pending; no gameplay mapping",
+  "files": [
+    {
+      "path": "rat-pit-boss.blend",
+      "bytes": 1702758,
+      "sha256": "498afc3120eb223164baa7d7da05e29846d2f99f89389cfb7364fa62a4aa1761",
+      "remote_local_match": true
+    },
+    {
+      "path": "rat-pit-boss.glb",
+      "bytes": 1363724,
+      "sha256": "2f41912e67ba27f7f1d5a6c8ac7bc60fbe8d3dba6e4a775f7186750f608b620d",
+      "remote_local_match": true
+    },
+    {
+      "path": "pigment.png",
+      "bytes": 364824,
+      "sha256": "b6cccdd2c241a93aa197aa0c63de230d8da3bd2afcf8723aea4af7d65ba44cb6",
+      "remote_local_match": true
+    },
+    {
+      "path": "construction.json",
+      "bytes": 45910,
+      "sha256": "dafc057a731cbcf9787937c1df29e5ebf9d330c6f7ae311364633371871b4cdd",
+      "remote_local_match": true
+    },
+    {
+      "path": "validation.json",
+      "bytes": 3435,
+      "sha256": "52adef92f08922cea533213a612229690e1123c1456533699998b933da1c8e1a",
+      "remote_local_match": true
+    },
+    {
+      "path": "three-inspection.json",
+      "bytes": 62388,
+      "sha256": "59dad17977077feff5c91729b3796cd6313a03c3b0087abddefb9c6901df5749",
+      "remote_local_match": true
+    },
+    {
+      "path": "browser-inspection.json",
+      "bytes": 20772,
+      "sha256": "478393e7223dea6403d77577df7b780f61eeacc6c43d5879fd9a95d290635d9e",
+      "remote_local_match": true
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 2000,
+      "sha256": "b8b805bb05ad79020dedcaff3b154ccf5b2721aea035bf834ca5520a75211a5a",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-lease.json",
+      "bytes": 688,
+      "sha256": "746795a4fd7fece18bc7920039c73e558ceae4dcd9b12a79ba43d896c308e2d3",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-release.json",
+      "bytes": 912,
+      "sha256": "539f8d89e9a3eeaa9322793c44756242e68c36828eb8be5a6b723bc6ce517292",
+      "remote_local_match": true
+    },
+    {
+      "path": "live-scene-release.blend",
+      "bytes": 1704253,
+      "sha256": "13846cee831dcea5522cf18ebbdb085457363f6f8544581f45f73e98542f5f86",
+      "remote_local_match": true
+    },
+    {
+      "path": "front.png",
+      "bytes": 216562,
+      "sha256": "e1ec74e664a3a1942e8a271a5caa153293717b3258c96a39bcb024c0b63d249b",
+      "remote_local_match": true
+    },
+    {
+      "path": "side.png",
+      "bytes": 127484,
+      "sha256": "c9da53c65ba89c4620b83d5f920b5fcd8d1713a90bbc58f2e08f7b6ec7b10e98",
+      "remote_local_match": true
+    },
+    {
+      "path": "back.png",
+      "bytes": 195864,
+      "sha256": "d3d02cd8424318b5c96ae919d7b97e39db3b45eaacb33b8e7038b0679e138446",
+      "remote_local_match": true
+    },
+    {
+      "path": "beauty.png",
+      "bytes": 222272,
+      "sha256": "ed4b681f12975ce5cd0b0afd8df03c285e13187252ff60393c916579474e4ce1",
+      "remote_local_match": true
+    },
+    {
+      "path": "motion-contact-sheet.png",
+      "bytes": 1130511,
+      "sha256": "e611c4ae97832172079418799b8be90866de186ee86373f434040c789f8d9e6b",
+      "remote_local_match": true
+    },
+    {
+      "path": "attack-strip.png",
+      "bytes": 188720,
+      "sha256": "68d6f3bcc0aa6bc09e60c3d2775bd9fcafe7ac1073a26853ab47d8cfde844e08",
+      "remote_local_match": true
+    },
+    {
+      "path": "attack-gameplay-scale.png",
+      "bytes": 109046,
+      "sha256": "f6f67466b106d31b2d3dfdb2dff194993cd0588ff4d279507a0d972171019379",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/animate.py",
+      "bytes": 10128,
+      "sha256": "697ce71b465ea07edd83ee1ebe32191959a1d27029fac3df144048e0e6ef32a4",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/bounds.json",
+      "bytes": 798,
+      "sha256": "8be6113f4108b8bf9a85ff0e36930eae3c028e92d1a9409ecc30ab89e006ec86",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/build.py",
+      "bytes": 24163,
+      "sha256": "3a025f61d0ca58dd657abe2a17c4fc551093a27400a5eb717a60f206a49dd534",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/common.py",
+      "bytes": 8605,
+      "sha256": "5cf2bfe76e99f632603e58dc482f9121fd05cf30d83882c1c6d1f607f14d275d",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/delivery.py",
+      "bytes": 5056,
+      "sha256": "907119948964122f2a36db3dd83ec9529da0005028c97b3d9adbd17b2bf1c3ce",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/inspect-three.mjs",
+      "bytes": 8949,
+      "sha256": "7f3b2cdb5cddcef1379d43cbcf5cfb0ece7edb127062824e4635a6a990b68377",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/preview.mjs",
+      "bytes": 7170,
+      "sha256": "bcb07343383bf5f77313c6ebe52fd1d65429922e8985bf160380e99c07d827af",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/release.py",
+      "bytes": 2262,
+      "sha256": "690d73aa9360785a41002d4fb175027d48615d037a69a028baca107c82ead03f",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/rig-rest.json",
+      "bytes": 4805,
+      "sha256": "e5d239132856d386d5e191f646029dd931af86f621f30d08fefa35223c98ad0d",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/transfer.py",
+      "bytes": 2391,
+      "sha256": "9717453fabc0628c9f9b9d72b07314f698ebf8aa6936e5f8310727690b1007cf",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/validate.mjs",
+      "bytes": 2683,
+      "sha256": "0b36907f01a8d4f25529669e58318c3b620ab399e325d70d8050e5b4e5129628",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0.png",
+      "bytes": 223956,
+      "sha256": "defbdc8f24791b28bc9d02ea7ac6368ee247f309d711b51f79c23f4ee2ac3503",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p3.png",
+      "bytes": 219607,
+      "sha256": "ae7e05b48d91090f4e6fecb934e267f222bbd31794ea0965e9360289a07c3011",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p625.png",
+      "bytes": 210545,
+      "sha256": "d97acd52c45dc724db390ce67a68ff61e77e8f2ab687a9eefa20e43ad3f5484b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-1.png",
+      "bytes": 223956,
+      "sha256": "defbdc8f24791b28bc9d02ea7ac6368ee247f309d711b51f79c23f4ee2ac3503",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-contact.png",
+      "bytes": 205087,
+      "sha256": "c21dd14d5c83afa0f0433c123efbaf0493ad2974292690ed8ea751575fafd1c5",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-recovery.png",
+      "bytes": 216244,
+      "sha256": "91abc5582227072a0874a755325e6002de317529a7b7bf3911b3879be0f52d50",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-windup.png",
+      "bytes": 216032,
+      "sha256": "4109b131b56ff9e4d96eb459c510c5bf4ac475426183e2cc90fb05f4965e0f4b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-gameplay-scale.png",
+      "bytes": 109046,
+      "sha256": "f6f67466b106d31b2d3dfdb2dff194993cd0588ff4d279507a0d972171019379",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-contact.png",
+      "bytes": 132507,
+      "sha256": "27e6c2df8d11db5e318f3893bea16ae4a10e3e5ee448f640081ab383f3ff8395",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-recovery.png",
+      "bytes": 127865,
+      "sha256": "b11ed2d9847e3ab38fb38ec807650fdde26f8f2a327cd60f0184a3cf4be9ecfd",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-windup.png",
+      "bytes": 129910,
+      "sha256": "318020b6d900778d0ceee76d5f58b0d5a0ee8265ecae85ef0b67223f5e0a41ee",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-strip.png",
+      "bytes": 188720,
+      "sha256": "68d6f3bcc0aa6bc09e60c3d2775bd9fcafe7ac1073a26853ab47d8cfde844e08",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/back.png",
+      "bytes": 195864,
+      "sha256": "d3d02cd8424318b5c96ae919d7b97e39db3b45eaacb33b8e7038b0679e138446",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/beauty.png",
+      "bytes": 222272,
+      "sha256": "ed4b681f12975ce5cd0b0afd8df03c285e13187252ff60393c916579474e4ce1",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0.png",
+      "bytes": 223848,
+      "sha256": "e5b17efa00109bc01c446f2eb18bc639ad211a8dfb7b04281b01c63a9e149125",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0p3.png",
+      "bytes": 224698,
+      "sha256": "b3b2b0d35593474505eb9d281bb25d29bddc5330d24f474c131d487bec3099d5",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0p625.png",
+      "bytes": 211730,
+      "sha256": "0d602da813c79f315d8c921a3414c8741f7dd3c29c667fdc3fba9f4875a0666e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-1.png",
+      "bytes": 208882,
+      "sha256": "9bfd8141a3d36a376d945e39a548725a4f876450791180f6697bb8abb72d94d3",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-side-held.png",
+      "bytes": 135743,
+      "sha256": "cd5396203b4502492c5a82506ace396d42724ef4d2ff067740fd25b9cddd12f5",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/front.png",
+      "bytes": 216562,
+      "sha256": "e1ec74e664a3a1942e8a271a5caa153293717b3258c96a39bcb024c0b63d249b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0.png",
+      "bytes": 225125,
+      "sha256": "ba6487cef9ef218010473a21856cbd0a5ac3b97c16c0de8c8b94cc7c9666dbf0",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0p3.png",
+      "bytes": 224637,
+      "sha256": "5ecbb145f9e9d358b0896483f6ba03f4c469782507f210d108d3a7215a264aa5",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0p625.png",
+      "bytes": 223515,
+      "sha256": "bf52e55c05a275118fd1f3d1e9579413b821224d81e7a6ae3016ab09ff634e90",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-1.png",
+      "bytes": 223956,
+      "sha256": "defbdc8f24791b28bc9d02ea7ac6368ee247f309d711b51f79c23f4ee2ac3503",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0.png",
+      "bytes": 223898,
+      "sha256": "d73b6b37eca23bdc10087352425a0d63f41d003d5625b00e3c959800748c558d",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0p3.png",
+      "bytes": 223142,
+      "sha256": "5ca3453b71dea59e4a1133642fb53d25b8733503d0bdcbf026e3e90e262b0fa5",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0p625.png",
+      "bytes": 223633,
+      "sha256": "988aa5860f1acb529b2846909ff4eba39e5cb8559aa3bedd6753d0059f54ca84",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-1.png",
+      "bytes": 223898,
+      "sha256": "10afdd84790cef576826368ade6d65ae5963a53b07becf4600ef92e1ee8f561d",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/motion-contact-sheet.png",
+      "bytes": 1130511,
+      "sha256": "e611c4ae97832172079418799b8be90866de186ee86373f434040c789f8d9e6b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0.png",
+      "bytes": 223483,
+      "sha256": "bd37051e9a07b9d68586281d86f0af0041abacd18d04aa0583d2b1acc2598b2e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0p3.png",
+      "bytes": 223594,
+      "sha256": "763df1c919bbfe4531285be5cdce267ec1f0d31825a054a22d8f4027f936e56d",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0p625.png",
+      "bytes": 221526,
+      "sha256": "8300e0d0b2bc287802e028dc1afa800ca42e65a0af5cd34fe27420741a264612",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-1.png",
+      "bytes": 223482,
+      "sha256": "78f305f4ae4900b33d91e9d84e7bfdd681bdc6c27cb75d9da9f4bdffc831e64b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/side.png",
+      "bytes": 127484,
+      "sha256": "c9da53c65ba89c4620b83d5f920b5fcd8d1713a90bbc58f2e08f7b6ec7b10e98",
+      "remote_local_match": true
+    }
+  ],
+  "all_remote_local_hashes_match": true,
+  "verification_method": "MCP SHA-256 for source extensions; HTTP byte roundtrip for media, JSON and masters.",
+  "excluded_checkpoints": [
+    "early-preview/",
+    "corrected-preview/",
+    "attack-revision-preview/",
+    "rat-pit-boss-checkpoint.glb",
+    "pigment-source.png"
+  ],
+  "manifest_self_hash": "Excluded to avoid recursive hashing."
+}

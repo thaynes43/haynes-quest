@@ -50,6 +50,22 @@
       "prompt": "construction/fox-card-shark-prompt.txt",
       "prompt_sha256": "e0d78ac2b93585bd3c8534f7889891a86f7a7bedb9e214ba6879d57561ed549b",
       "source_reference": "concept.png"
+    },
+    {
+      "performer": "moth-projectionist",
+      "image": "construction/moth-projectionist.png",
+      "image_sha256": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
+      "prompt": "construction/moth-projectionist-prompt.txt",
+      "prompt_sha256": "6c36c7d4fa2a426fefda549314fa7bf6a55f6cef7b61500b570d4d4694d3722a",
+      "source_references": ["concept.png", "construction/fox-card-shark.png"]
+    },
+    {
+      "performer": "golden-after-hours-rat",
+      "image": "construction/golden-after-hours-rat.png",
+      "image_sha256": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
+      "prompt": "construction/golden-after-hours-rat-prompt.txt",
+      "prompt_sha256": "ccea7a5ea925079a97ba82fc4fc38c9830f5a2699245f44aa32ae31bc63b1e3a",
+      "source_references": ["concept.png", "construction/rat-pit-boss.png"]
     }
   ],
   "research_sources": [

@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The new arcade, toybox and Rat Casino work below is studio-only; the [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**34 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**35 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -27,7 +27,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Parody characters {#parody-characters}
 
-The two Besties actors join four completed parody characters in the playtest library. Nap Captain and the first Rat Pit Boss export are paused partial models; The One-Star Diva is a paused concept. The Rat Casino cast now has a six-character classic mascot concept with a central lead rat and side-stage Chick-flia. The earlier glossy studies and first rat export remain in the review history while corrected character modeling proceeds before new levels.
+The two Besties actors join four completed parody characters in the playtest library. The corrected Rat Pit Boss is a technically checked studio candidate awaiting Tom's exact-art review; Nap Captain and the first Rat Pit Boss export are paused partial models. The One-Star Diva is a paused concept. The Rat Casino cast has a six-character classic mascot image with a central lead rat and side-stage Chick-flia. Its earlier glossy studies and first rat export remain in the review history while character modeling proceeds before new levels.
 
 <div class="catalog-grid" markdown="1">
 
@@ -37,11 +37,23 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Rat Casino ensemble](reviews/rat-casino-ensemble/v003.md)
 
-<span class="catalog-state">Classic worn-mascot concept + four turnarounds · v003 · Studio only</span>
+<span class="catalog-state">Classic worn-mascot concept + six turnarounds · v003 · Studio only</span>
 
 </div>
 
 <div class="catalog-card" data-asset-id="rat-pit-boss" markdown="1">
+
+[![Exact corrected Rat Pit Boss model with a broad worn gray-brown mascot suit and burgundy vest](media/catalog-thumbnails/v001/5e202b9474fb5e71.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-pit-boss/v002.md)
+
+### [Rat Pit Boss](reviews/rat-pit-boss/v002.md)
+
+<span class="catalog-state">3D model · v002 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/01f1c1460f6d96d1.webp" alt="Corrected worn Rat Pit Boss front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="rat-pit-boss-v001-checkpoint" markdown="1">
 
 [![Exact paused first Rat Pit Boss GLB rendered in Chromium, with a slim glossy dealer costume](media/catalog-thumbnails/v001/8eb2cc754f7a4543.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-pit-boss/v001.md)
 

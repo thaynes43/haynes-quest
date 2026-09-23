@@ -1,0 +1,35 @@
+{
+  "work_order": "WO099",
+  "asset_id": "rat-pit-boss",
+  "version": "v002",
+  "glb_sha256": "2f41912e67ba27f7f1d5a6c8ac7bc60fbe8d3dba6e4a775f7186750f608b620d",
+  "reviewed_utc": "2026-09-23T20:31:15.220683+00:00",
+  "construction_reference": "rat-casino-ensemble/v003/construction/rat-pit-boss.png",
+  "construction_reference_sha256": "b32b2f702e0912585199399e6f49b21be2080e06770ae04ddc3d93fc428caf3f",
+  "author_observations": [
+    "Matched front, side, back and three-quarter views inspected from the exact rigged GLB.",
+    "Muted gray-brown shell, padded belly/limbs, long blunt muzzle and round ears preserve the rat silhouette.",
+    "Plain fitted burgundy vest, seam repairs and tired eyelids replace the paused glossy slim treatment.",
+    "All five exact clips inspected in Chromium; stronger attack warning is readable at about 200 px body height.",
+    "Attack side contact, held defeat side, back tail attachment and dice hand checked visually; no visible detached part or floor/suit penetration."
+  ],
+  "lead_feedback_integrated": [
+    "Shirt and vest now follow the curved torso.",
+    "Padded pelvis, reduced shoulder motors and matte joints.",
+    "Gray-brown shell and visible repairs.",
+    "Heavier eyelids and reduced stare.",
+    "Raised free fist and restrained upper-body/head lean at attack; defeat unchanged."
+  ],
+  "lead_decision": "Accepted construction and revised attack motion direction before final packaging.",
+  "owner_exact_art_decision": "Pending",
+  "gameplay_use": "None; studio only",
+  "deviations": [
+    "Original synthetic construction resolves the reference as a 14,698-triangle mobile candidate, without photoreal fur strands.",
+    "Procedural atlas uses 256 colors at 1024 px to preserve the selected matte palette within the 2 MiB budget.",
+    "No budget exceptions."
+  ],
+  "limitations": [
+    "Chromium software WebGL, not a physical iPad/iPhone Safari test.",
+    "No gameplay integration or frame-time performance acceptance claimed."
+  ]
+}

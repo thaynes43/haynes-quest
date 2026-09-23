@@ -1,0 +1,39 @@
+{
+  "measured_rest": {
+    "min": [
+      -0.6283614833937939,
+      -4.836787291142073e-07,
+      -0.42572909593582153
+    ],
+    "max": [
+      0.599654999927403,
+      2.150000186908314,
+      0.3652247688421789
+    ]
+  },
+  "measured_rest_and_clips": {
+    "min": [
+      -0.6342746600908697,
+      -4.836787291142073e-07,
+      -0.4823787935899956
+    ],
+    "max": [
+      0.6831689961023695,
+      2.150000186908314,
+      0.5343462002385635
+    ]
+  },
+  "safe_culling_envelope": {
+    "min": [
+      -0.645,
+      -0.011,
+      -0.493
+    ],
+    "max": [
+      0.694,
+      2.161,
+      0.545
+    ]
+  },
+  "method": "All exact exported vertices sampled at 60 Hz across every clip, union with rest and 10 mm outward margin. Coordinates are model-space glTF Y-up; root remains stationary."
+}

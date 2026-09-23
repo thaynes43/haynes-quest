@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 51,
+    "entries": 52,
     "reference_sheet_entries": 8,
-    "model_entries": 36,
-    "model_files": 36,
+    "model_entries": 37,
+    "model_files": 37,
     "concept_only_entries": 2,
     "audio_entries": 4,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 34,
+    "completed_model_candidates": 35,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -116,6 +116,8 @@
         "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia-draft.png",
         "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png",
         "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png",
         "docs/assets/media/rat-casino-ensemble/v002/concept.png",
         "docs/assets/media/rat-casino-ensemble/v002/construction/chick-flia.png",
         "docs/assets/media/rat-casino-ensemble/v002/construction/jackrabbit-drummer.png",
@@ -129,7 +131,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v003",
-      "state": "classic original-era worn mascot concept with rat, Chick-flia, jackrabbit and fox turnarounds selected after Tom rejected glam-rock v001/v002 finish; six performers, central lead rat; models pending; studio only",
+      "state": "classic original-era worn mascot concept and all six turnarounds selected after Tom rejected glam-rock v001/v002 finish; six performers, central lead rat; corrected rat model completed for exact owner review, supporting models pending; studio only",
       "gameplay_use": "none",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/concept.png": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
@@ -138,6 +140,8 @@
         "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia-draft.png": "ca7e92cf2dc415cb271104705881bd718470494080a2969ebaf9413bb565a66b",
         "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
         "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
+        "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
         "docs/assets/media/rat-casino-ensemble/v002/concept.png": "3f0b6894d8136cdd40b61701ac1b32378e2e182dce842ae4a191641e266897d6",
         "docs/assets/media/rat-casino-ensemble/v002/construction/chick-flia.png": "13a8670861740932176df04f0ae87236d2f3d88647d114d2070fddb0c256c9ea",
         "docs/assets/media/rat-casino-ensemble/v002/construction/jackrabbit-drummer.png": "4c0757dc56d4cc4c40894c0fe35bb02744506b319a878390ed43506719bb68c9",
@@ -150,6 +154,48 @@
     {
       "id": "rat-pit-boss",
       "title": "Rat Pit Boss",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/rat-pit-boss/v002.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rat-pit-boss/v002/beauty.png",
+        "docs/assets/media/rat-pit-boss/v002/front.png",
+        "docs/assets/media/rat-pit-boss/v002/side.png",
+        "docs/assets/media/rat-pit-boss/v002/back.png",
+        "docs/assets/media/rat-pit-boss/v002/motion-contact-sheet.png",
+        "docs/assets/media/rat-pit-boss/v002/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/rat-pit-boss/v002/rat-pit-boss.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v002 corrected classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png": "b32b2f702e0912585199399e6f49b21be2080e06770ae04ddc3d93fc428caf3f",
+        "docs/assets/media/rat-pit-boss/v002/rat-pit-boss.glb": "2f41912e67ba27f7f1d5a6c8ac7bc60fbe8d3dba6e4a775f7186750f608b620d",
+        "docs/assets/media/rat-pit-boss/v002/rat-pit-boss.blend": "498afc3120eb223164baa7d7da05e29846d2f99f89389cfb7364fa62a4aa1761",
+        "docs/assets/media/rat-pit-boss/v002/beauty.png": "ed4b681f12975ce5cd0b0afd8df03c285e13187252ff60393c916579474e4ce1",
+        "docs/assets/media/rat-pit-boss/v002/front.png": "e1ec74e664a3a1942e8a271a5caa153293717b3258c96a39bcb024c0b63d249b",
+        "docs/assets/media/rat-pit-boss/v002/side.png": "c9da53c65ba89c4620b83d5f920b5fcd8d1713a90bbc58f2e08f7b6ec7b10e98",
+        "docs/assets/media/rat-pit-boss/v002/back.png": "d3d02cd8424318b5c96ae919d7b97e39db3b45eaacb33b8e7038b0679e138446",
+        "docs/assets/media/rat-pit-boss/v002/motion-contact-sheet.png": "e611c4ae97832172079418799b8be90866de186ee86373f434040c789f8d9e6b",
+        "docs/assets/media/rat-pit-boss/v002/attack-gameplay-scale.png": "f6f67466b106d31b2d3dfdb2dff194993cd0588ff4d279507a0d972171019379",
+        "docs/assets/media/rat-pit-boss/v002/validation.json": "52adef92f08922cea533213a612229690e1123c1456533699998b933da1c8e1a",
+        "docs/assets/media/rat-pit-boss/v002/three-inspection.json": "59dad17977077feff5c91729b3796cd6313a03c3b0087abddefb9c6901df5749",
+        "docs/assets/media/rat-pit-boss/v002/browser-inspection.json": "478393e7223dea6403d77577df7b780f61eeacc6c43d5879fd9a95d290635d9e",
+        "docs/assets/media/rat-pit-boss/v002/scene-release.json": "539f8d89e9a3eeaa9322793c44756242e68c36828eb8be5a6b723bc6ce517292",
+        "docs/assets/media/rat-pit-boss/v002/visual-review.json": "b8b805bb05ad79020dedcaff3b154ccf5b2721aea035bf834ca5520a75211a5a",
+        "docs/assets/media/rat-pit-boss/v002/sha256-manifest.json": "f86698a46a3ce2809db8294b0874014fb1d201430ba042d485abc5d03e127bc7"
+      }
+    },
+    {
+      "id": "rat-pit-boss-v001-checkpoint",
+      "title": "Rat Pit Boss \u00b7 v001 checkpoint",
       "category": "parody-characters",
       "review": "docs/assets/reviews/rat-pit-boss/v001.md",
       "concept_images": [
