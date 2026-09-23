@@ -199,6 +199,20 @@
       "sha256": "80c2c1a107a88042809cc7a179d335da1072b003d7989519136b7bbb27b3c09b"
     },
     {
+      "source": "docs/assets/media/fox-card-shark/v001/beauty.png",
+      "source_sha256": "304707cf19cae515a0a3736cbac9f45cb1eec2b5a230aaf9c50dad7cf8e7b2cc",
+      "path": "docs/assets/media/catalog-thumbnails/v001/9f143c2b2ec00ffb.webp",
+      "bytes": 7794,
+      "sha256": "a078ddfeaaf8ec4fc899ab6876d95f457bb47b019bb25a3929bf1047dc3e62ab"
+    },
+    {
+      "source": "docs/assets/media/jackrabbit-drummer/v001/beauty.png",
+      "source_sha256": "886f370ce3c8b27406435f8e354834c8aae82eb35144051137c2e7c8890aee02",
+      "path": "docs/assets/media/catalog-thumbnails/v001/7b9d7f82100c5daa.webp",
+      "bytes": 7570,
+      "sha256": "1fb62ed15de292eaa23b1881a99dfb92047a252d7020b1dc591f38afef0271a4"
+    },
+    {
       "source": "docs/assets/media/loop-dancer/v001/beauty.png",
       "source_sha256": "0dc4f6a6cdaabf33493b405204634d597895fdcc8b0b7e799ac7192f7db35998",
       "path": "docs/assets/media/catalog-thumbnails/v001/d3ea5ccdf2a63a03.webp",
@@ -351,6 +365,20 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/43a706b5c74e9426.webp",
       "bytes": 32558,
       "sha256": "07def25a72709d747baa3d9022ecef9f4b6e965db6af8cfba2b967a7b26cf363"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png",
+      "source_sha256": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
+      "path": "docs/assets/media/catalog-thumbnails/v001/dfd3b00a6743df8f.webp",
+      "bytes": 38444,
+      "sha256": "22cd5e4ad7531b2355b0800ce8caac2ddd47c047a5f42490fa3999c72450e8aa"
+    },
+    {
+      "source": "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png",
+      "source_sha256": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
+      "path": "docs/assets/media/catalog-thumbnails/v001/8405105c636196ae.webp",
+      "bytes": 30130,
+      "sha256": "95441b4e2abdcc37173deb5b6c86df36360a1a33d35d1e0909fbc0db3a44508c"
     },
     {
       "source": "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png",

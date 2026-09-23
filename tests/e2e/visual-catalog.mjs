@@ -21,7 +21,7 @@ const thumbnailManifestPath = path.join(
   "docs/assets/media/catalog-thumbnails/v001/manifest.json",
 );
 const overallTimeoutMs = Number(
-  process.env.QUEST_E2E_OVERALL_TIMEOUT_MS ?? 240_000,
+  process.env.QUEST_E2E_OVERALL_TIMEOUT_MS ?? 360_000,
 );
 
 assert.ok(
@@ -37,7 +37,7 @@ const viewports = [
   { name: "desktop", width: 1440, height: 1000, hasTouch: false },
   { name: "phone", width: 390, height: 844, hasTouch: true },
 ];
-const requiredNapClips = ["idle", "move", "attack", "hit", "defeat"];
+const requiredFiveClips = ["idle", "move", "attack", "hit", "defeat"];
 const requiredBestiesClips = [
   "idle",
   "move",
@@ -48,21 +48,27 @@ const requiredBestiesClips = [
   "high-five",
   "dizzy",
 ];
+const mascotCandidateIds = [
+  "rat-pit-boss",
+  "chick-flia",
+  "jackrabbit-drummer",
+  "fox-card-shark",
+];
 const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 53,
+  entries: 55,
   reference_sheet_entries: 8,
-  model_entries: 38,
-  model_files: 38,
-  completed_model_candidates: 36,
+  model_entries: 40,
+  model_files: 40,
+  completed_model_candidates: 38,
   paused_partial_model_candidates: 2,
   concept_only_entries: 2,
   audio_entries: 4,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 73;
+const expectedThumbnailFiles = 77;
 const integratedAssetIds = [
   "bestie-pink",
   "bestie-black",
@@ -954,6 +960,302 @@ async function verifyModelDeliveries(inventory, report) {
   }
 }
 
+async function inspectMascotCandidates(browser, inventory, report) {
+  const entries = mascotCandidateIds.map((id) => {
+    const entry = inventory.find((candidate) => candidate.id === id);
+    assert.ok(entry, `${id} is in inventory`);
+    assert.equal(entry.models.length, 1, `${id} has one candidate model`);
+    return entry;
+  });
+  const results = [];
+
+  for (const viewport of viewports) {
+    const context = await browser.newContext({
+      viewport: { width: viewport.width, height: viewport.height },
+      hasTouch: viewport.hasTouch,
+      deviceScaleFactor: 1,
+    });
+    await context.addInitScript(() => {
+      globalThis.__questMascotWebglProbe = {
+        calls: 0,
+        successfulContexts: 0,
+      };
+      for (const constructor of [
+        globalThis.HTMLCanvasElement,
+        globalThis.OffscreenCanvas,
+      ]) {
+        if (!constructor) continue;
+        const original = constructor.prototype.getContext;
+        constructor.prototype.getContext = function (type, ...args) {
+          const result = original.call(this, type, ...args);
+          if (["webgl", "webgl2", "experimental-webgl"].includes(type)) {
+            globalThis.__questMascotWebglProbe.calls += 1;
+            if (result) {
+              globalThis.__questMascotWebglProbe.successfulContexts += 1;
+            }
+          }
+          return result;
+        };
+      }
+    });
+    const page = await context.newPage();
+    page.setDefaultTimeout(20_000);
+    page.setDefaultNavigationTimeout(30_000);
+    const scope = `mascot-candidates-${viewport.name}`;
+    attachDiagnostics(page, report, scope);
+    const modelRequests = [];
+    page.on("request", (browserRequest) => {
+      if (/\.glb(?:$|[?#])/i.test(browserRequest.url())) {
+        modelRequests.push(comparableUrl(browserRequest.url()));
+      }
+    });
+
+    try {
+      for (const entry of entries) {
+        modelRequests.length = 0;
+        const reviewUrl = repositoryPathToUrl(entry.review);
+        reviewUrl.hash = "";
+        const navigation = await page.goto(reviewUrl.href, {
+          waitUntil: "domcontentloaded",
+        });
+        assert.equal(
+          navigation?.status(),
+          200,
+          `${scope}: ${entry.id} review response`,
+        );
+
+        const expectedModel = comparableUrl(
+          repositoryPathToUrl(entry.models[0].path),
+        );
+        const viewer = page.locator("model-viewer[data-quest-clips][src]");
+        assert.equal(
+          await viewer.count(),
+          1,
+          `${scope}: ${entry.id} has one animated model viewer`,
+        );
+        assert.equal(
+          comparableUrl(
+            await viewer.evaluate(
+              (element) =>
+                new URL(element.getAttribute("src"), location.href).href,
+            ),
+          ),
+          expectedModel,
+          `${scope}: ${entry.id} viewer uses the exact inventory model`,
+        );
+        await viewer.scrollIntoViewIfNeeded();
+        await viewer.evaluate(
+          (element) =>
+            new Promise((resolve, reject) => {
+              if (element.loaded) return resolve();
+              const timer = setTimeout(
+                () => reject(new Error("mascot model-viewer load timeout")),
+                20_000,
+              );
+              element.addEventListener(
+                "load",
+                () => {
+                  clearTimeout(timer);
+                  resolve();
+                },
+                { once: true },
+              );
+              element.addEventListener(
+                "error",
+                () => {
+                  clearTimeout(timer);
+                  reject(new Error("mascot model-viewer load error"));
+                },
+                { once: true },
+              );
+            }),
+        );
+        await viewer.evaluate(
+          () =>
+            new Promise((resolve) =>
+              requestAnimationFrame(() => requestAnimationFrame(resolve)),
+            ),
+        );
+        const inspection = await viewer.evaluate((element) => {
+          const dimensions = element.getDimensions();
+          const canvas = element.shadowRoot?.querySelector("canvas");
+          const bounds = element.getBoundingClientRect();
+          return {
+            clips: [...element.availableAnimations],
+            dimensions: {
+              x: dimensions.x,
+              y: dimensions.y,
+              z: dimensions.z,
+            },
+            loaded: element.loaded,
+            modelIsVisible: element.modelIsVisible,
+            renderSurface: canvas
+              ? { width: canvas.width, height: canvas.height }
+              : undefined,
+            src: new URL(element.src, location.href).href,
+            visibleInViewport:
+              bounds.bottom > 0 &&
+              bounds.right > 0 &&
+              bounds.top < innerHeight &&
+              bounds.left < innerWidth,
+            webgl: globalThis.__questMascotWebglProbe,
+          };
+        });
+        assert.equal(
+          comparableUrl(inspection.src),
+          expectedModel,
+          `${scope}: ${entry.id} loaded the exact inventory model`,
+        );
+        assert.equal(
+          inspection.loaded,
+          true,
+          `${scope}: ${entry.id} model loaded`,
+        );
+        assert.equal(
+          inspection.modelIsVisible,
+          true,
+          `${scope}: ${entry.id} model is visible`,
+        );
+        assert.equal(
+          inspection.visibleInViewport,
+          true,
+          `${scope}: ${entry.id} viewer is visible after scroll`,
+        );
+        assert.ok(
+          Object.values(inspection.dimensions).every(
+            (dimension) => Number.isFinite(dimension) && dimension > 0,
+          ),
+          `${scope}: ${entry.id} has positive finite dimensions`,
+        );
+        assert.ok(
+          inspection.renderSurface?.width > 0 &&
+            inspection.renderSurface?.height > 0,
+          `${scope}: ${entry.id} viewer has a non-empty canvas`,
+        );
+        assert.ok(
+          inspection.webgl.successfulContexts > 0,
+          `${scope}: ${entry.id} viewer created a WebGL context`,
+        );
+        assert.deepEqual(
+          [...inspection.clips].sort(),
+          [...requiredFiveClips].sort(),
+          `${scope}: ${entry.id} exposes all five required clips`,
+        );
+
+        const controls = viewer.locator(
+          "xpath=following-sibling::div[contains(concat(' ', normalize-space(@class), ' '), ' studio-model-controls ')][1]",
+        );
+        await controls.waitFor({ state: "visible" });
+        const selector = controls.locator(
+          'select[aria-label="Choose a movement clip"]',
+        );
+        const play = controls.locator('button[type="button"]');
+        assert.equal(
+          await selector.count(),
+          1,
+          `${scope}: ${entry.id} has one clip selector`,
+        );
+        assert.deepEqual(
+          (await selector.locator("option").allTextContents()).sort(),
+          [...requiredFiveClips].sort(),
+          `${scope}: ${entry.id} selector exposes all five clips`,
+        );
+        await selector.selectOption("attack");
+        const selected = await viewer.evaluate((element) => ({
+          animationName: element.animationName,
+          currentTime: element.currentTime,
+          paused: element.paused,
+        }));
+        assert.equal(
+          selected.animationName,
+          "attack",
+          `${scope}: ${entry.id} selector changes the animation`,
+        );
+        assert.ok(
+          selected.currentTime <= 0.01,
+          `${scope}: ${entry.id} selector resets playback time`,
+        );
+        assert.equal(
+          selected.paused,
+          true,
+          `${scope}: ${entry.id} selection remains paused`,
+        );
+        if (viewport.hasTouch) await play.tap();
+        else await play.click();
+        await viewer.evaluate(
+          (element) =>
+            new Promise((resolve, reject) => {
+              const deadline = performance.now() + 3_000;
+              const inspect = () => {
+                if (
+                  element.animationName === "attack" &&
+                  !element.paused &&
+                  element.currentTime > 0.03
+                ) {
+                  resolve();
+                  return;
+                }
+                if (performance.now() >= deadline) {
+                  reject(new Error("mascot attack did not begin playback"));
+                  return;
+                }
+                requestAnimationFrame(inspect);
+              };
+              inspect();
+            }),
+        );
+        const playing = await viewer.evaluate((element) => ({
+          animationName: element.animationName,
+          currentTime: element.currentTime,
+          paused: element.paused,
+        }));
+        assert.equal(
+          await play.textContent(),
+          "Pause",
+          `${scope}: ${entry.id} play control reflects playback`,
+        );
+        if (viewport.hasTouch) await play.tap();
+        else await play.click();
+        assert.equal(
+          await viewer.evaluate((element) => element.paused),
+          true,
+          `${scope}: ${entry.id} playback pauses`,
+        );
+        assert.equal(
+          await play.textContent(),
+          "Play",
+          `${scope}: ${entry.id} pause restores the control label`,
+        );
+        assert.deepEqual(
+          [...new Set(modelRequests)],
+          [expectedModel],
+          `${scope}: ${entry.id} requests only its exact inventory model`,
+        );
+        const screenshot = path.join(
+          resultsDir,
+          `${entry.id}-viewer-${viewport.name}.png`,
+        );
+        await viewer.screenshot({ path: screenshot });
+        results.push({
+          id: entry.id,
+          viewport: viewport.name,
+          ...inspection,
+          src: publicLocation(inspection.src),
+          selected,
+          playing,
+          modelRequests: [...new Set(modelRequests)].map(publicLocation),
+          screenshot: path.basename(screenshot),
+          qualityAssessment: "not performed",
+        });
+      }
+    } finally {
+      await context.close();
+    }
+  }
+
+  return results;
+}
+
 async function exerciseTouchOrbit(context, page, viewer) {
   const before = await viewer.evaluate((element) => ({
     ...element.getCameraOrbit(),
@@ -1156,7 +1458,7 @@ async function inspectNapCaptain(browser, inventory, report) {
     );
     assert.deepEqual(
       [...inspection.clips].sort(),
-      [...requiredNapClips].sort(),
+      [...requiredFiveClips].sort(),
       "Nap Captain partial model exposes the five existing clips",
     );
     assert.deepEqual(
@@ -1522,6 +1824,7 @@ const report = {
   landing: [],
   reviews: [],
   modelDeliveries: [],
+  mascotCandidates: [],
   napCaptain: undefined,
   besties: undefined,
   pageErrors: [],
@@ -1532,7 +1835,7 @@ const report = {
   externalRequests: [],
   physicalSafari: "not tested",
   scope:
-    "catalog delivery, responsive navigation, exact model files, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
+    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
   harnessNotes: [
     "The current first inspiration image must be displayed inline; retained superseded concepts may instead remain reachable as local links.",
     "Browser-cancelled preload=metadata requests are separated only for exact video URLs declared by an inspected review in the same browser scope; HTTP errors and every other request failure remain fatal, while video playback remains covered by earlier focused audits.",
@@ -1601,6 +1904,11 @@ try {
   }
   report.reviews = await inspectReviewPages(browser, inventory, report);
   report.modelDeliveries = await verifyModelDeliveries(inventory, report);
+  report.mascotCandidates = await inspectMascotCandidates(
+    browser,
+    inventory,
+    report,
+  );
   report.napCaptain = await inspectNapCaptain(browser, inventory, report);
   report.besties = await inspectBesties(browser, inventory, report);
 

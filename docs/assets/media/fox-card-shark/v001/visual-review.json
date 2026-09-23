@@ -1,0 +1,37 @@
+{
+  "work_order": "WO102",
+  "asset_id": "fox-card-shark",
+  "version": "v001",
+  "inspected_utc": "2026-09-23T21:30:06.489513+00:00",
+  "glb_sha256": "77346890c1d989e669f586bf3c361d028d6c2fa7f1130bf6bc039d793380791c",
+  "views_source": "Final exact GLB loaded in repository Three.js 186 and Chromium 153 with software WebGL. Stills are exported-model raster, not authoring viewport.",
+  "lead_review": {
+    "status": "accepted as studio candidate",
+    "source": "Lead /root reviewed four early and revised views, then exact final beauty and approximately 200 px attack strip.",
+    "corrections": [
+      "Closed lower vest/shirt overlap.",
+      "Made cream tail section abut rather than overlap russet shell.",
+      "Moved contact fan outward while retaining forward extension for the three-quarter camera."
+    ]
+  },
+  "visual_inspection": {
+    "front": "Broad russet head and segmented limbs, tired lowered lids, blunt muzzle, plain worn green vest and distinct hand card fan.",
+    "side": "Long blunt muzzle and thick attached tail; no muzzle/card intersections.",
+    "back": "One attached padded russet/cream tail, repaired seam, plain green back panel.",
+    "beauty": "Supporting-performer scale and subdued non-pirate appearance.",
+    "idle": "Small mechanical head, ear and card motion; steady padded feet.",
+    "move": "Stationary stiff shuffle, alternating lift and visible small-scale motion.",
+    "attack": "Raised fan warning, held 0.85 to 1.08 s; forward/outward card snap at 1.25 s, outside vest in final gameplay-scale frame.",
+    "hit": "Short mechanical recoil without detachment.",
+    "defeat": "Bent knees and bowed head with card droop and tail fold; visible held final pose, no authored hiding or scaling.",
+    "small_scale": "All five clips sampled at 0%, 30%, 62.5%, 100% and played continuously at 0.35 camera zoom. Distinct frames are recorded for each."
+  },
+  "technical_limits": [
+    "Chromium ANGLE SwiftShader proves actual WebGL loading and animation; it does not establish iPhone/iPad Safari or physical-device frame time.",
+    "Contact time is authored pose timing; collision, projectiles, effects and encounter eligibility belong to later gameplay.",
+    "Conservative all-frame card clearance is distance between exact deformed card/head/torso AABBs. It is a lower bound on actual surface separation.",
+    "Bind-pose floor minimum -0.00000119 m is floating-point skin/transform noise within 0.00001 m tolerance. Animated feet remain at least 0.001970 m above floor.",
+    "The two-material character uses a single roughness class for old glass and mechanics, so the glass remains deliberately dull."
+  ],
+  "owner_review": "Tom exact exported art review remains pending. Studio only; no gameplay change."
+}

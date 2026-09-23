@@ -1,0 +1,2323 @@
+{
+  "asset_id": "jackrabbit-drummer",
+  "version": "v001",
+  "work_order": "WO101",
+  "authoring_model": "gpt-6-astra max",
+  "blender_version": "4.5.13 LTS",
+  "source_concept_sha256": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
+  "source_concept_path": "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png",
+  "source_prompt_sha256": "7f86d65d29bd3389cf2af8e7f5cf7c74300cec15c87597dacbcb5079e4c37340",
+  "source_prompt_path": "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer-prompt.txt",
+  "ensemble_sha256": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
+  "ensemble_path": "docs/assets/media/rat-casino-ensemble/v003/concept.png",
+  "spec": {
+    "asset_id": "jackrabbit-drummer",
+    "height": 1.96,
+    "contact_time_s": 1.25,
+    "attack_duration_s": 2,
+    "contact_fraction": 0.625,
+    "version": "v001",
+    "source_concept_sha256": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea"
+  },
+  "height_m": 1.96,
+  "construction_scale_factor": 0.9875235307127745,
+  "construction_ground_shift": 0.0010000020265579224,
+  "triangles_before_export_simplification": 25478,
+  "triangles": 14700,
+  "vertices": 7902,
+  "material_count": 2,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic worn indigo cloth, cream drum skin and dull mechanical pigment; no external texture."
+  },
+  "bone_count": 28,
+  "parts": [
+    {
+      "name": "Broad slumped purple torso",
+      "triangles": 612,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Round padded hip shell",
+      "triangles": 356,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Faded plain cream belly inset",
+      "triangles": 392,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Old plain belly button 0.94",
+      "triangles": 28,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Old plain belly button 1.035",
+      "triangles": 28,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Old plain belly button 1.126",
+      "triangles": 28,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Rear center body panel seam",
+      "triangles": 96,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Back shell center repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back shell center repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back shell center repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back shell center repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back shell center repair stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back shell center repair stitch 5",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back shell center repair stitch 6",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Lower flank stitched cloth patch",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Lower flank stitched cloth patch stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Lower flank stitched cloth patch stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Lower flank stitched cloth patch stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Lower flank stitched cloth patch stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Lower flank stitched cloth patch stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Lower flank stitched cloth patch stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Lower flank stitched cloth patch stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Lower flank stitched cloth patch stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Small shabby rabbit tail",
+      "triangles": 220,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Tail uneven tuft 0",
+      "triangles": 76,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Tail uneven tuft 1",
+      "triangles": 76,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Tail uneven tuft 2",
+      "triangles": 76,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Tail uneven tuft 3",
+      "triangles": 76,
+      "bone_groups": [
+        "hips"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Dark neck coupling",
+      "triangles": 164,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Neck bearing 1.228",
+      "triangles": 156,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Neck bearing 1.269",
+      "triangles": 156,
+      "bone_groups": [
+        "neck"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R shoulder black bearing",
+      "triangles": 164,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R padded shoulder cap",
+      "triangles": 220,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R chunky upper sleeve",
+      "triangles": 316,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R elbow black bearing",
+      "triangles": 164,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R repaired elbow pin",
+      "triangles": 28,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R thick padded forearm",
+      "triangles": 316,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R wrist coupling",
+      "triangles": 164,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R blocky padded palm",
+      "triangles": 188,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R curled drumstick finger 0",
+      "triangles": 116,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R curled drumstick finger 1",
+      "triangles": 116,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R curled drumstick finger 2",
+      "triangles": 116,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R padded gripping thumb",
+      "triangles": 136,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R sleeve seam stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R sleeve seam stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R sleeve seam stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R sleeve seam stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R sleeve seam stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R sleeve seam stitch 5",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "DETACHABLE R old wooden drumstick",
+      "triangles": 44,
+      "bone_groups": [
+        "prop_stick_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R drumstick worn bead",
+      "triangles": 92,
+      "bone_groups": [
+        "prop_stick_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R padded upper leg",
+      "triangles": 316,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R knee motor",
+      "triangles": 164,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R knee pin",
+      "triangles": 28,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R chunky lower leg",
+      "triangles": 316,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R ankle repaired coupling",
+      "triangles": 164,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "R broad padded foot",
+      "triangles": 356,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "R blunt toe -1",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R old molded toe tip -1",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R blunt toe 0",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R old molded toe tip 0",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R blunt toe 1",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "R old molded toe tip 1",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "R shin repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R shin repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R shin repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R shin repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R shin repair stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R shin repair stitch 5",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R shin repair stitch 6",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shoulder black bearing",
+      "triangles": 164,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L padded shoulder cap",
+      "triangles": 220,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L chunky upper sleeve",
+      "triangles": 316,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L elbow black bearing",
+      "triangles": 164,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L repaired elbow pin",
+      "triangles": 28,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L thick padded forearm",
+      "triangles": 316,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L wrist coupling",
+      "triangles": 164,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L blocky padded palm",
+      "triangles": 188,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L curled drumstick finger 0",
+      "triangles": 116,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L curled drumstick finger 1",
+      "triangles": 116,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L curled drumstick finger 2",
+      "triangles": 116,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L padded gripping thumb",
+      "triangles": 136,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L sleeve seam stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L sleeve seam stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L sleeve seam stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L sleeve seam stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L sleeve seam stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L sleeve seam stitch 5",
+      "triangles": 16,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "DETACHABLE L old wooden drumstick",
+      "triangles": 44,
+      "bone_groups": [
+        "prop_stick_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L drumstick worn bead",
+      "triangles": 92,
+      "bone_groups": [
+        "prop_stick_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L padded upper leg",
+      "triangles": 316,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L knee motor",
+      "triangles": 164,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L knee pin",
+      "triangles": 28,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L chunky lower leg",
+      "triangles": 316,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L ankle repaired coupling",
+      "triangles": 164,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L broad padded foot",
+      "triangles": 356,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "L blunt toe -1",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L old molded toe tip -1",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L blunt toe 0",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L old molded toe tip 0",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L blunt toe 1",
+      "triangles": 136,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "L old molded toe tip 1",
+      "triangles": 76,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "L shin repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shin repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shin repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shin repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shin repair stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shin repair stitch 5",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "L shin repair stitch 6",
+      "triangles": 16,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old right thigh square cloth repair",
+      "triangles": 108,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Old right thigh square cloth repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old right thigh square cloth repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old right thigh square cloth repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old right thigh square cloth repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old right thigh square cloth repair stitch 0.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old right thigh square cloth repair stitch 1.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old right thigh square cloth repair stitch 2.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Old right thigh square cloth repair stitch 3.001",
+      "triangles": 16,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Broad padded rabbit head",
+      "triangles": 668,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Recessed eye socket -1",
+      "triangles": 316,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Cloudy old glass eye -1",
+      "triangles": 392,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 11
+    },
+    {
+      "name": "Muted olive iris -1",
+      "triangles": 164,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "Small tired pupil -1",
+      "triangles": 136,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 10
+    },
+    {
+      "name": "Weak eye reflection -1",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "Heavy plain sleepy eyelid -1",
+      "triangles": 332,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Eyelid fabric lower rim -1",
+      "triangles": 96,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Plain padded brow -1",
+      "triangles": 80,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Blunt cream muzzle pad -1",
+      "triangles": 356,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Muzzle whisker pit -10",
+      "triangles": 20,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Muzzle whisker pit -11",
+      "triangles": 20,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Muzzle whisker pit -12",
+      "triangles": 20,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Stubby bent whisker -10",
+      "triangles": 66,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Stubby bent whisker -11",
+      "triangles": 66,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Recessed eye socket 1",
+      "triangles": 316,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Cloudy old glass eye 1",
+      "triangles": 392,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 11
+    },
+    {
+      "name": "Muted olive iris 1",
+      "triangles": 164,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 9
+    },
+    {
+      "name": "Small tired pupil 1",
+      "triangles": 136,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 10
+    },
+    {
+      "name": "Weak eye reflection 1",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "Heavy plain sleepy eyelid 1",
+      "triangles": 332,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Eyelid fabric lower rim 1",
+      "triangles": 96,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Plain padded brow 1",
+      "triangles": 80,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Blunt cream muzzle pad 1",
+      "triangles": 356,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Muzzle whisker pit 10",
+      "triangles": 20,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Muzzle whisker pit 11",
+      "triangles": 20,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Muzzle whisker pit 12",
+      "triangles": 20,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Stubby bent whisker 10",
+      "triangles": 66,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Stubby bent whisker 11",
+      "triangles": 66,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Small dark rabbit mouth",
+      "triangles": 284,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 10
+    },
+    {
+      "name": "Blunt padded chin",
+      "triangles": 252,
+      "bone_groups": [
+        "jaw"
+      ],
+      "pigment_tile": 2
+    },
+    {
+      "name": "Blunt buck tooth -1",
+      "triangles": 108,
+      "bone_groups": [
+        "jaw"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "Blunt buck tooth 1",
+      "triangles": 108,
+      "bone_groups": [
+        "jaw"
+      ],
+      "pigment_tile": 14
+    },
+    {
+      "name": "Plain black rabbit nose",
+      "triangles": 220,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 10
+    },
+    {
+      "name": "Short nose cleft",
+      "triangles": 36,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Head stitched center seam",
+      "triangles": 126,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Forehead repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Forehead repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Forehead repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Forehead repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Forehead repair stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head shell seam",
+      "triangles": 96,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 12
+    },
+    {
+      "name": "Back head repair stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head repair stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head repair stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head repair stitch 3",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Back head repair stitch 4",
+      "triangles": 16,
+      "bone_groups": [
+        "head"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "R ear root repaired hinge",
+      "triangles": 164,
+      "bone_groups": [
+        "ear_base_R"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "L ear root repaired hinge",
+      "triangles": 164,
+      "bone_groups": [
+        "ear_base_L"
+      ],
+      "pigment_tile": 0
+    },
+    {
+      "name": "Taller mostly upright left padded ear",
+      "triangles": 92,
+      "bone_groups": [
+        "ear_base_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Taller mostly upright left padded ear faded pink-gray inset",
+      "triangles": 76,
+      "bone_groups": [
+        "ear_base_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Taller mostly upright left padded ear panel cross stitch 1 stit",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Taller mostly upright left padded ear panel cross stitch 1 sti",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Taller mostly upright left padded ear panel cross stitch 1 st",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Taller mostly upright left padded ear panel cross stitch 2 stit",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Taller mostly upright left padded ear panel cross stitch 2 sti",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Taller mostly upright left padded ear panel cross stitch 2 st",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Left soft ear tip fold",
+      "triangles": 92,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Left soft ear tip fold faded pink-gray inset",
+      "triangles": 76,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Left soft ear tip fold panel cross stitch 1 stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Left soft ear tip fold panel cross stitch 1 stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Left soft ear tip fold panel cross stitch 1 stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Left soft ear tip fold panel cross stitch 2 stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Left soft ear tip fold panel cross stitch 2 stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Left soft ear tip fold panel cross stitch 2 stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Left continuous cloth fold",
+      "triangles": 164,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Left worn ear tip",
+      "triangles": 136,
+      "bone_groups": [
+        "ear_tip_L"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Shorter right bent ear",
+      "triangles": 92,
+      "bone_groups": [
+        "ear_base_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Shorter right bent ear faded pink-gray inset",
+      "triangles": 76,
+      "bone_groups": [
+        "ear_base_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Shorter right bent ear panel cross stitch 1 stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Shorter right bent ear panel cross stitch 1 stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Shorter right bent ear panel cross stitch 1 stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Shorter right bent ear panel cross stitch 2 stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Shorter right bent ear panel cross stitch 2 stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Shorter right bent ear panel cross stitch 2 stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_base_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Right hanging ear flap",
+      "triangles": 92,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Right hanging ear flap faded pink-gray inset",
+      "triangles": 76,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 5
+    },
+    {
+      "name": "Right hanging ear flap panel cross stitch 1 stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Right hanging ear flap panel cross stitch 1 stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Right hanging ear flap panel cross stitch 1 stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Right hanging ear flap panel cross stitch 2 stitch 0",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Right hanging ear flap panel cross stitch 2 stitch 1",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Right hanging ear flap panel cross stitch 2 stitch 2",
+      "triangles": 16,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 13
+    },
+    {
+      "name": "Right cloth bend bridge",
+      "triangles": 164,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 1
+    },
+    {
+      "name": "Right worn ear tip",
+      "triangles": 136,
+      "bone_groups": [
+        "ear_tip_R"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Plain old burgundy bow tie | left folded loop",
+      "triangles": 76,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Plain old burgundy bow tie | right folded loop",
+      "triangles": 76,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Plain old burgundy bow tie | sewn center knot",
+      "triangles": 108,
+      "bone_groups": [
+        "chest"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Harness over shoulder -1",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Harness plain front buckle -1",
+      "triangles": 108,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Harness buckle dark center -1",
+      "triangles": 108,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Harness rigid snare hook -1",
+      "triangles": 32,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Harness front tack -11.17",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Harness front tack -11.115",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Harness over shoulder 1",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Harness plain front buckle 1",
+      "triangles": 108,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Harness buckle dark center 1",
+      "triangles": 108,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Harness rigid snare hook 1",
+      "triangles": 32,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Harness front tack 11.17",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Harness front tack 11.115",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Continuous harness waist belt",
+      "triangles": 326,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Harness flat rear cross plate",
+      "triangles": 108,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Rear harness plate rivet -0.031.0",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Rear harness plate rivet -0.031.062",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Rear harness plate rivet 0.031.0",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Rear harness plate rivet 0.031.062",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_harness"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "DETACHABLE snare faded wooden shell",
+      "triangles": 124,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 8
+    },
+    {
+      "name": "Snare dull old rim 0.728",
+      "triangles": 404,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare dark hoop seam 0.728",
+      "triangles": 276,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Snare dull old rim 0.978",
+      "triangles": 404,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare dark hoop seam 0.978",
+      "triangles": 276,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 6
+    },
+    {
+      "name": "Snare worn drum head",
+      "triangles": 124,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 3
+    },
+    {
+      "name": "Snare faded burgundy diamond 0",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 0",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 00.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 00.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded burgundy diamond 1",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 1",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 10.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 10.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded burgundy diamond 2",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 2",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 20.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 20.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded burgundy diamond 3",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 3",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 30.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 30.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded burgundy diamond 4",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 4",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 40.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 40.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded burgundy diamond 5",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 5",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 50.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 50.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded burgundy diamond 6",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 6",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 60.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 60.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded burgundy diamond 7",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 7",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 70.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 70.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded burgundy diamond 8",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 8",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 80.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 80.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded burgundy diamond 9",
+      "triangles": 24,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 4
+    },
+    {
+      "name": "Snare old tension rod 9",
+      "triangles": 20,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 90.744",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare rod nut 90.962",
+      "triangles": 76,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 7
+    },
+    {
+      "name": "Snare faded strike wear",
+      "triangles": 226,
+      "bone_groups": [
+        "prop_snare"
+      ],
+      "pigment_tile": 13
+    }
+  ],
+  "notes": [
+    "Broad quiet rabbit is shorter than the 2.15 m lead rat.",
+    "One tall folded ear and one lower drooped ear with separate pivots.",
+    "Plain faded burgundy bow, broad padded body, small tail, heavy muzzle and buck teeth.",
+    "Snare and crossed harness inherit chest; each stick inherits its gripping hand.",
+    "One skin, one rigid influence per vertex; source pieces remain editable."
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.8,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": 1.766667
+    }
+  ],
+  "rig": "One skin with rigid padded shell islands, one influence per vertex. Analytic two-bone limb targets bake to local transforms, level feet and a chest harness and hand-parented drumsticks. No locomotion track or runtime IK.",
+  "bounds_blender": {
+    "min": [
+      -0.5068145394325256,
+      -0.27303484082221985,
+      -1.0193504067501635e-06
+    ],
+    "max": [
+      0.5068145394325256,
+      0.7400075793266296,
+      1.9600000381469727
+    ]
+  },
+  "files": {
+    "jackrabbit-drummer.blend": {
+      "bytes": 2209443,
+      "sha256": "9c2a45b5e91db402ffebc4d9171e0d7bed128312a20996f30652f7ba0ab57a0e"
+    },
+    "jackrabbit-drummer.glb": {
+      "bytes": 1435260,
+      "sha256": "00096fb0bdef15c5b45a32a2265e2744d91c54b10004014de5e45e5682672da3"
+    },
+    "pigment.png": {
+      "bytes": 339671,
+      "sha256": "e486b67597aa325adaf1e7c1465eb2aee50036d01707d21dc2e4ffe00346fc82"
+    }
+  },
+  "lead_review_corrections": [
+    "Made one ear mostly upright with a soft fold and the other sharply bent for small-scale silhouette.",
+    "Closed padded ear bends.",
+    "Conformed continuous crossed rear straps and connected waist belt to the body.",
+    "Curved burgundy snare diamonds onto the cylinder."
+  ],
+  "bounds_evidence": {
+    "method": "Union of all exported skinned vertices at 60 Hz through each clip plus rest pose, padded by 0.005 m per axis. Rechecked against final GLB.",
+    "sample_glb_sha256": "e531f2f7e7cc0df87ad201bd33a948c773f2a36ae9bbe338ad877a77b99bd820",
+    "safe_culling_envelope": {
+      "min": [
+        -0.607441,
+        -0.005001,
+        -0.750239
+      ],
+      "max": [
+        0.607441,
+        1.965,
+        0.302723
+      ]
+    },
+    "sampled_bounds_y_up": {
+      "min": [
+        -0.6024405071133256,
+        -9.686858981666127e-07,
+        -0.7452386600199715
+      ],
+      "max": [
+        0.6024405071133256,
+        1.9600000973124387,
+        0.29772293008863926
+      ]
+    }
+  },
+  "export_bake_fps": 60,
+  "contact_bake_note": "60 Hz baking places the 1.25 s snare contact exactly on frame 75."
+}

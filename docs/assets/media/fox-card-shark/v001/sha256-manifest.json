@@ -1,0 +1,537 @@
+{
+  "work_order": "WO102",
+  "asset_id": "fox-card-shark",
+  "version": "v001",
+  "created_utc": "2026-09-23T21:30:30.437898+00:00",
+  "local_root": "/home/dev/artifacts/haynes-quest/rat-casino-cast/fox-card-shark/v001",
+  "remote_root": "/workspace/haynes-quest/rat-casino-cast/fox-card-shark/v001",
+  "scene_lease": "released",
+  "candidate_status": "Validated studio candidate; exact owner review pending; no gameplay mapping",
+  "files": [
+    {
+      "path": "fox-card-shark.blend",
+      "bytes": 2168151,
+      "sha256": "d8868821affad96e55a3b63d0908e0bed88f7bf24626b7f22d77a73969554c6c",
+      "remote_local_match": true
+    },
+    {
+      "path": "fox-card-shark.glb",
+      "bytes": 1401492,
+      "sha256": "77346890c1d989e669f586bf3c361d028d6c2fa7f1130bf6bc039d793380791c",
+      "remote_local_match": true
+    },
+    {
+      "path": "pigment.png",
+      "bytes": 328178,
+      "sha256": "a4468546e461b3f46d8f6a8c015ca8764fa85a191e0315106e5e83d7211aec1e",
+      "remote_local_match": true
+    },
+    {
+      "path": "construction.json",
+      "bytes": 39636,
+      "sha256": "a86fd854a69fefe335e7a9b87c5934d809b577ea8a2fb350f9e5dff5f6b2140a",
+      "remote_local_match": true
+    },
+    {
+      "path": "validation.json",
+      "bytes": 3490,
+      "sha256": "21821d26e690719054a99d7bd89011f042ce084fb5cf70507d1e0d6773633b6d",
+      "remote_local_match": true
+    },
+    {
+      "path": "three-inspection.json",
+      "bytes": 74985,
+      "sha256": "ccee146343d8d2646015eadc1370278a9e0830695fd83ddf5f26f8e7b3c0f938",
+      "remote_local_match": true
+    },
+    {
+      "path": "browser-inspection.json",
+      "bytes": 158021,
+      "sha256": "6741e0110da3ccfed79a6aead6771b5420b35e0da4160da0b85b78654b1b794d",
+      "remote_local_match": true
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 2762,
+      "sha256": "0cb184a5006d5f135de25a988156e0e69ea0a34be6d2ee32ef0de4eaa7a7d77f",
+      "remote_local_match": true
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 3082,
+      "sha256": "c583450d78ac7af2811ab4d133682d928c02ba554a9440fe73dfc322671688ab",
+      "remote_local_match": true
+    },
+    {
+      "path": "source-prompt.txt",
+      "bytes": 1567,
+      "sha256": "e0d78ac2b93585bd3c8534f7889891a86f7a7bedb9e214ba6879d57561ed549b",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-lease.json",
+      "bytes": 2278,
+      "sha256": "381588948042e993931d5df8dbe1bce35f38b1a0d4aa89ca3b1baec5b66db127",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-release.json",
+      "bytes": 2351,
+      "sha256": "a12cc5e9f5cea8c5b3e3cc7a15b955113f53bbd25445c15e2bc223a0ec92c07d",
+      "remote_local_match": true
+    },
+    {
+      "path": "live-scene-release.blend",
+      "bytes": 2169716,
+      "sha256": "aec42f661728ab70a3ee6c8eef571083f6281927e70e4c91bd04fa359c17b549",
+      "remote_local_match": true
+    },
+    {
+      "path": "front.png",
+      "bytes": 191567,
+      "sha256": "b0fe086c1406b106ace972311e05fccb6f6c52dfdabce79ea2671bd009b4bf12",
+      "remote_local_match": true
+    },
+    {
+      "path": "side.png",
+      "bytes": 140579,
+      "sha256": "4a2524a18afc9b43758dcc239923581ec94df1e2a2e573feec2f27138409eb97",
+      "remote_local_match": true
+    },
+    {
+      "path": "back.png",
+      "bytes": 173813,
+      "sha256": "63e904524b899eaa16b07ec5992983334c947d9ab8db598b21975e3c1324de93",
+      "remote_local_match": true
+    },
+    {
+      "path": "beauty.png",
+      "bytes": 189934,
+      "sha256": "304707cf19cae515a0a3736cbac9f45cb1eec2b5a230aaf9c50dad7cf8e7b2cc",
+      "remote_local_match": true
+    },
+    {
+      "path": "motion-contact-sheet.png",
+      "bytes": 1040455,
+      "sha256": "39b0631c3b0284506dd9c79309f18f65664f390a5fd6f44e707cc0d66cf32c7d",
+      "remote_local_match": true
+    },
+    {
+      "path": "attack-strip.png",
+      "bytes": 180758,
+      "sha256": "972294238a77aadb49cf1658cd9c34ba9209812fee710b02937a06f6c8a2aa33",
+      "remote_local_match": true
+    },
+    {
+      "path": "attack-gameplay-scale.png",
+      "bytes": 104894,
+      "sha256": "6625abca76bb83a53f86d7fe9b629b489be261d8d4f0a618692a3a1d02bc4d23",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/animate.py",
+      "bytes": 11416,
+      "sha256": "28484d0a58dbc6b0f4a589cd4236f9b84c05fcfaba55998b175c7cc06119d01b",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/bounds.json",
+      "bytes": 372,
+      "sha256": "66c8b9568c5b21effd04078ff5d89d1e9f8d7b556eacfda8e3cdaf097d260272",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/build.py",
+      "bytes": 24443,
+      "sha256": "691a7d81f166862cc6034ec7d7057acea0d928c29687757800a731857c756e84",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/common.py",
+      "bytes": 8617,
+      "sha256": "8e0d99a725f6adf62a68b34d3cb57b9884bac05b6e75641903db9952ee18eefc",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/delivery.py",
+      "bytes": 5199,
+      "sha256": "7408515a1aa0c94af09ef909e58cfca11de7e3f5cedf3eee0db91ff7b4bb7b79",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/inspect-three.mjs",
+      "bytes": 12639,
+      "sha256": "0e06bfd8969f5159962b944af5af62e79076c1770e158848be6c28e95a80090c",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/preview.mjs",
+      "bytes": 9232,
+      "sha256": "76acc7336034b6ac43e46ef087b9d0ee4bf2140781b8b1541b698d7418a0bbce",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/release.py",
+      "bytes": 2094,
+      "sha256": "4b6f3f32010da61b927e3d65ab65c1fe33813fbe103650650a793685e61ec292",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/rig-rest.json",
+      "bytes": 4747,
+      "sha256": "7c2318befef481cc3226ce04a872636232ad3230854d5d979f7ff093706a095b",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/transfer.py",
+      "bytes": 2393,
+      "sha256": "995dca28841a7d93037a052d2e8cf8e253bd9be6ecba5c51a750567828ac6e29",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/validate.mjs",
+      "bytes": 2687,
+      "sha256": "d1a54b3b4fa1347d657dcc52095e02cc807605cd8fea109c16116ab6f03c12d2",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0.png",
+      "bytes": 192164,
+      "sha256": "a5d3511478872dd7baf7a3b2f28cc47519f0b2f6cb29cdaceb46704ed000f842",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p3.png",
+      "bytes": 191400,
+      "sha256": "1005f36c792e1c57f7ca8990726150f6bff8dac5c9740f0f299dfd236317c518",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p625.png",
+      "bytes": 187064,
+      "sha256": "8bc842dcce0e2ed38e0b1f9a99994be7c21efe3acf8045a7182973fe80778562",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-1.png",
+      "bytes": 191981,
+      "sha256": "089be412f981b9ac072c0fe7d784fa39edf0836cb345bdfca579293a47403ce6",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-contact.png",
+      "bytes": 195845,
+      "sha256": "5e0e4854cfa5c72ac947498813eb1316db937cc162016d31d4444221dabe0a0f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-recovery.png",
+      "bytes": 192676,
+      "sha256": "cc46dcd2f42aa336f0eb1cdee602d12b36a17aca4c130647d19a54515eba0b29",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-windup.png",
+      "bytes": 195163,
+      "sha256": "97571de57fa9fa7900470fef22a885ec32e2ccf81b0667b2f3930b3c73790768",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-gameplay-scale.png",
+      "bytes": 104894,
+      "sha256": "6625abca76bb83a53f86d7fe9b629b489be261d8d4f0a618692a3a1d02bc4d23",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-contact.png",
+      "bytes": 144985,
+      "sha256": "a7cbac28a926b3e4e63eef582a51a2df611ddddc98c741e0b666926d3e16ce43",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-recovery.png",
+      "bytes": 140802,
+      "sha256": "d9f08b8dd2dffd09e7471a97e532b750f3cbb5d1f8b4bc75fb2584001f3d9bf6",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-windup.png",
+      "bytes": 138694,
+      "sha256": "a91b0e06dcf897bd9316001011053f03d0040cd465067f46afc17c53d3a20cd0",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0.png",
+      "bytes": 39703,
+      "sha256": "0e9f197729654b05d90692bb3578787cb50e1e03c07c4cd2c5f323cc4cba1dd1",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0p3.png",
+      "bytes": 39471,
+      "sha256": "8b6d84084541735d4024045695da66a64ab1617c07cd156b89aa78e19c272c52",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0p625.png",
+      "bytes": 38529,
+      "sha256": "7de387f665a2f2679e131bc0a41176449a5b93349666dee061d032bb06e4dfc2",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-1.png",
+      "bytes": 39676,
+      "sha256": "08c303758f60658e4650864033235bc91d5e9203cb0aa715cd2e7b47deab25b6",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-strip.png",
+      "bytes": 180758,
+      "sha256": "972294238a77aadb49cf1658cd9c34ba9209812fee710b02937a06f6c8a2aa33",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/back.png",
+      "bytes": 173813,
+      "sha256": "63e904524b899eaa16b07ec5992983334c947d9ab8db598b21975e3c1324de93",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/beauty.png",
+      "bytes": 189934,
+      "sha256": "304707cf19cae515a0a3736cbac9f45cb1eec2b5a230aaf9c50dad7cf8e7b2cc",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0.png",
+      "bytes": 192183,
+      "sha256": "0f2f893f8d8052c07783ed55bc0124674e8366f84fb8697c007d646779cd6829",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0p3.png",
+      "bytes": 192031,
+      "sha256": "20c3214d670268366381bd578bfc743d1deafd52a03bf7d47a2aee976bb92fa8",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0p625.png",
+      "bytes": 186209,
+      "sha256": "7602fd02d37fee96f1920a2aeacb04b59cb4da853bf98c4dbaf3ddb2539f14c1",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-1.png",
+      "bytes": 184170,
+      "sha256": "457e954287b91fd6da1e1f6ad90222c0d01c86cc5c57faba7d842e2aab378a49",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-side-held.png",
+      "bytes": 148397,
+      "sha256": "431dbd3a97066553df163d3c21bc351cbe7a21536f66e6f42480d9ee6df90c47",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-0.png",
+      "bytes": 39721,
+      "sha256": "905a420a38b20e5310b568a9cc2b265d5a806594f5095a41950ed5d41c4b598b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-0p3.png",
+      "bytes": 39692,
+      "sha256": "7f1dcc0fc2838f5eabfb7687df24fe8fd53a6452a6ae2c5297fffff82c56d37b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-0p625.png",
+      "bytes": 38506,
+      "sha256": "c84066d0e98b2f86ea97495a45e8f52de2b26af91438be6ddda23e03e407a27c",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-1.png",
+      "bytes": 38204,
+      "sha256": "78d6720a262e109d87450777ff143dcd68822c13ed0d6c8964968b2387737415",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/front.png",
+      "bytes": 191567,
+      "sha256": "b0fe086c1406b106ace972311e05fccb6f6c52dfdabce79ea2671bd009b4bf12",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0.png",
+      "bytes": 192119,
+      "sha256": "abb91f54c954d41ea00554da20e93a8228b3c1b04eead096103b501a0232796c",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0p3.png",
+      "bytes": 191299,
+      "sha256": "e5b1f887657066a192609442474bb89d051f8a59dbfd2108f80934c867150802",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0p625.png",
+      "bytes": 192224,
+      "sha256": "d1bea016fd97cce2dc2a4108dc00ef8a425bf656ba1788d6f22edc5f24278147",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-1.png",
+      "bytes": 192143,
+      "sha256": "bceea8bd9c65af9d65e52efd3948f710f7c327a1fb4b30b0404f303ffa92c8cf",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-0.png",
+      "bytes": 39669,
+      "sha256": "f2a4e8bbb0d387277447b35705d56ae6e22863ad06d084141ee4709ae55486c3",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-0p3.png",
+      "bytes": 39608,
+      "sha256": "503ce3fc0f23cba0715d141333da681e046164639863135e5abd3766ddaa1f79",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-0p625.png",
+      "bytes": 39597,
+      "sha256": "b8d76c18ca29d3413116d49b38a20ff180b62a5366dea08c42a09c6165805bb1",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-1.png",
+      "bytes": 39703,
+      "sha256": "fcd178ec4c5f1ba29cc5d0a63fd7475560a164071d6f891e3c8946fb3df16903",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0.png",
+      "bytes": 192164,
+      "sha256": "a5564292a22a92a14ba4d495c583b39fdabe315df17309a8ca42c1a86658fb30",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0p3.png",
+      "bytes": 192169,
+      "sha256": "9f53632b18fd100514f5e522c9a77b00ea93461507660d94fb00c28483b3cb29",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0p625.png",
+      "bytes": 192243,
+      "sha256": "dda695d73718067414b811f4bc99c3ff5909bc0c0af198948d3db7c25b70eef1",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-1.png",
+      "bytes": 192164,
+      "sha256": "572cb66cedb7b3f89a92e85bc1602f3fc55a579ecbc825a407e45dd80430b819",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0.png",
+      "bytes": 39703,
+      "sha256": "0e9f197729654b05d90692bb3578787cb50e1e03c07c4cd2c5f323cc4cba1dd1",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0p3.png",
+      "bytes": 39668,
+      "sha256": "73e190cc54352265fc990c0f2a9cb720802a3d01208c333f2ad776f85b1ab6e6",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0p625.png",
+      "bytes": 39778,
+      "sha256": "4f41d9ddc944af47b249eefabde772af674b485e6c1322419564ed25563da378",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-1.png",
+      "bytes": 39703,
+      "sha256": "0e9f197729654b05d90692bb3578787cb50e1e03c07c4cd2c5f323cc4cba1dd1",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/motion-contact-sheet.png",
+      "bytes": 1040455,
+      "sha256": "39b0631c3b0284506dd9c79309f18f65664f390a5fd6f44e707cc0d66cf32c7d",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0.png",
+      "bytes": 192651,
+      "sha256": "f99424f59c511af38743fa0650e37f36db11bc52292d6a3f49eaec227cba3857",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0p3.png",
+      "bytes": 191771,
+      "sha256": "82dfb1005a3ed5cddee93ecd37697dfaa9a1bd32565f63149bc2d984fe22e168",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0p625.png",
+      "bytes": 190752,
+      "sha256": "55f22e88c55e4a3689a37ef92a630b3b4ae249e6056f346583dc8fba7feed0b1",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-1.png",
+      "bytes": 192651,
+      "sha256": "81a634153ede85c680324ed4964e3b844c64faecbc8cc64b834a2e02c13b48d9",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0.png",
+      "bytes": 39663,
+      "sha256": "f1e97ffa24bcca79ad8f35566e1e6c6213d8f1e9eee7618ccd4dd9c49f091f9f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0p3.png",
+      "bytes": 39526,
+      "sha256": "3e304b2e210e1d9ab97590ea86ee9edb6172fd1a4f4695d65030d20314c784dd",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0p625.png",
+      "bytes": 39394,
+      "sha256": "ccb2c8e860643d220405d08ea09d0ac77a04f0fd018ab781486bdbfd8ffff699",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-1.png",
+      "bytes": 39663,
+      "sha256": "f1e97ffa24bcca79ad8f35566e1e6c6213d8f1e9eee7618ccd4dd9c49f091f9f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/side.png",
+      "bytes": 140579,
+      "sha256": "4a2524a18afc9b43758dcc239923581ec94df1e2a2e573feec2f27138409eb97",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/small-scale-motion-sheet.png",
+      "bytes": 738280,
+      "sha256": "f0ba39db1941f7b4f482729c8d5547531a3ce615c817ca5619d07f6893fa57f7",
+      "remote_local_match": true
+    }
+  ],
+  "all_remote_local_hashes_match": true,
+  "verification_method": "MCP SHA-256 for source/script/text extensions (artifact HTTP route does not serve them); HTTP byte roundtrip for media, JSON and masters.",
+  "excluded_checkpoints": [
+    "early-preview/",
+    "revised-preview/",
+    "fox-card-shark-checkpoint.glb",
+    "fox-card-shark-construction.blend"
+  ],
+  "manifest_self_hash": "Excluded to avoid recursive hashing."
+}

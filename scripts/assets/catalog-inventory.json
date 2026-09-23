@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 53,
+    "entries": 55,
     "reference_sheet_entries": 8,
-    "model_entries": 38,
-    "model_files": 38,
+    "model_entries": 40,
+    "model_files": 40,
     "concept_only_entries": 2,
     "audio_entries": 4,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 36,
+    "completed_model_candidates": 38,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -131,7 +131,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v003",
-      "state": "classic original-era worn mascot concept and all six turnarounds selected after Tom rejected glam-rock v001/v002 finish; six performers, central lead rat; corrected rat model completed for exact owner review, supporting models pending; studio only",
+      "state": "classic original-era worn mascot concept and all six turnarounds selected after Tom rejected glam-rock v001/v002 finish; six performers, central lead rat; corrected rat, Chick-flia, Jackrabbit and Fox models completed for exact owner review, two supporting models pending; studio only",
       "gameplay_use": "none",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/concept.png": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
@@ -238,6 +238,100 @@
       }
     },
     {
+      "id": "jackrabbit-drummer",
+      "title": "Jackrabbit Drummer",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/jackrabbit-drummer/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png"
+      ],
+      "model_images": [
+        "docs/assets/media/jackrabbit-drummer/v001/beauty.png",
+        "docs/assets/media/jackrabbit-drummer/v001/front.png",
+        "docs/assets/media/jackrabbit-drummer/v001/side.png",
+        "docs/assets/media/jackrabbit-drummer/v001/back.png",
+        "docs/assets/media/jackrabbit-drummer/v001/motion-contact-sheet.png",
+        "docs/assets/media/jackrabbit-drummer/v001/attack-strip.png",
+        "docs/assets/media/jackrabbit-drummer/v001/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
+        "docs/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.glb": "00096fb0bdef15c5b45a32a2265e2744d91c54b10004014de5e45e5682672da3",
+        "docs/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.blend": "9c2a45b5e91db402ffebc4d9171e0d7bed128312a20996f30652f7ba0ab57a0e",
+        "docs/assets/media/jackrabbit-drummer/v001/beauty.png": "886f370ce3c8b27406435f8e354834c8aae82eb35144051137c2e7c8890aee02",
+        "docs/assets/media/jackrabbit-drummer/v001/front.png": "9826f53fad89f079940b77bf51b5287b6d70421f34033b62ba3ebb7b97f47ed2",
+        "docs/assets/media/jackrabbit-drummer/v001/side.png": "c932c179ed18992d8a18d6b21b91848c19f967ae546d8bb18e1f650aff745ecb",
+        "docs/assets/media/jackrabbit-drummer/v001/back.png": "89d19242dab57634c032d47ce3fe372d34cab0c42f061903d8de44f424ba0fed",
+        "docs/assets/media/jackrabbit-drummer/v001/motion-contact-sheet.png": "465bd9c5fd68e334d7eef4256e5e13724acf7275e12d1d1a23dce44ce98fe1fa",
+        "docs/assets/media/jackrabbit-drummer/v001/attack-strip.png": "1ff6d69ed90285a735093ab2676cec55d9f00e355080f75069bc52c0f90e4368",
+        "docs/assets/media/jackrabbit-drummer/v001/attack-gameplay-scale.png": "1a9b4de308e6028d72fe1d0373e98c9cd233e9d67d494c33ee67249a1f093c35",
+        "docs/assets/media/jackrabbit-drummer/v001/construction.json": "628bfaeee7cebb37b73a52c604631c2f24802dee271efe48107b2aef94e9aaf5",
+        "docs/assets/media/jackrabbit-drummer/v001/validation.json": "23bfbebd56c79caa3d0daca03265d22a7b01766700eb291528ef94a4083185b8",
+        "docs/assets/media/jackrabbit-drummer/v001/three-inspection.json": "1c30d5944762b079dac9625c58709c2f2817a1759ab329242ec1c1b1bf32c46b",
+        "docs/assets/media/jackrabbit-drummer/v001/browser-inspection.json": "fbf6aa203c298bac9b710fc8dc796c92be6ed70e1d1800f48d3c4e0f7cddc253",
+        "docs/assets/media/jackrabbit-drummer/v001/visual-review.json": "12663bc35fcbf0b36b2d84dd48a351a5afdf074af52e54689145886c00832ab6",
+        "docs/assets/media/jackrabbit-drummer/v001/scene-release.json": "3ba8fb0d2c53a764e14258b440c443723e0ae9b153a905099f826754f65b0695",
+        "docs/assets/media/jackrabbit-drummer/v001/provenance.json": "8d78411656123e498feec69b73091e925b8408803ee8764115e17c065a54a69a",
+        "docs/assets/media/jackrabbit-drummer/v001/source-prompt.txt": "7f86d65d29bd3389cf2af8e7f5cf7c74300cec15c87597dacbcb5079e4c37340",
+        "docs/assets/media/jackrabbit-drummer/v001/sha256-manifest.json": "2fdab95263840ece57bced69631c2ce9d048ac5d516ca7c4da68aa6f5505d0bb"
+      }
+    },
+    {
+      "id": "fox-card-shark",
+      "title": "Fox Card Shark",
+      "category": "parody-characters",
+      "review": "docs/assets/reviews/fox-card-shark/v001.md",
+      "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png"
+      ],
+      "model_images": [
+        "docs/assets/media/fox-card-shark/v001/beauty.png",
+        "docs/assets/media/fox-card-shark/v001/front.png",
+        "docs/assets/media/fox-card-shark/v001/side.png",
+        "docs/assets/media/fox-card-shark/v001/back.png",
+        "docs/assets/media/fox-card-shark/v001/motion-contact-sheet.png",
+        "docs/assets/media/fox-card-shark/v001/attack-strip.png",
+        "docs/assets/media/fox-card-shark/v001/attack-gameplay-scale.png"
+      ],
+      "models": [
+        "docs/assets/media/fox-card-shark/v001/fox-card-shark.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001 classic mascot",
+      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
+        "docs/assets/media/fox-card-shark/v001/fox-card-shark.glb": "77346890c1d989e669f586bf3c361d028d6c2fa7f1130bf6bc039d793380791c",
+        "docs/assets/media/fox-card-shark/v001/fox-card-shark.blend": "d8868821affad96e55a3b63d0908e0bed88f7bf24626b7f22d77a73969554c6c",
+        "docs/assets/media/fox-card-shark/v001/beauty.png": "304707cf19cae515a0a3736cbac9f45cb1eec2b5a230aaf9c50dad7cf8e7b2cc",
+        "docs/assets/media/fox-card-shark/v001/front.png": "b0fe086c1406b106ace972311e05fccb6f6c52dfdabce79ea2671bd009b4bf12",
+        "docs/assets/media/fox-card-shark/v001/side.png": "4a2524a18afc9b43758dcc239923581ec94df1e2a2e573feec2f27138409eb97",
+        "docs/assets/media/fox-card-shark/v001/back.png": "63e904524b899eaa16b07ec5992983334c947d9ab8db598b21975e3c1324de93",
+        "docs/assets/media/fox-card-shark/v001/motion-contact-sheet.png": "39b0631c3b0284506dd9c79309f18f65664f390a5fd6f44e707cc0d66cf32c7d",
+        "docs/assets/media/fox-card-shark/v001/attack-strip.png": "972294238a77aadb49cf1658cd9c34ba9209812fee710b02937a06f6c8a2aa33",
+        "docs/assets/media/fox-card-shark/v001/attack-gameplay-scale.png": "6625abca76bb83a53f86d7fe9b629b489be261d8d4f0a618692a3a1d02bc4d23",
+        "docs/assets/media/fox-card-shark/v001/construction.json": "a86fd854a69fefe335e7a9b87c5934d809b577ea8a2fb350f9e5dff5f6b2140a",
+        "docs/assets/media/fox-card-shark/v001/validation.json": "21821d26e690719054a99d7bd89011f042ce084fb5cf70507d1e0d6773633b6d",
+        "docs/assets/media/fox-card-shark/v001/three-inspection.json": "ccee146343d8d2646015eadc1370278a9e0830695fd83ddf5f26f8e7b3c0f938",
+        "docs/assets/media/fox-card-shark/v001/browser-inspection.json": "6741e0110da3ccfed79a6aead6771b5420b35e0da4160da0b85b78654b1b794d",
+        "docs/assets/media/fox-card-shark/v001/visual-review.json": "0cb184a5006d5f135de25a988156e0e69ea0a34be6d2ee32ef0de4eaa7a7d77f",
+        "docs/assets/media/fox-card-shark/v001/scene-release.json": "a12cc5e9f5cea8c5b3e3cc7a15b955113f53bbd25445c15e2bc223a0ec92c07d",
+        "docs/assets/media/fox-card-shark/v001/provenance.json": "c583450d78ac7af2811ab4d133682d928c02ba554a9440fe73dfc322671688ab",
+        "docs/assets/media/fox-card-shark/v001/source-prompt.txt": "e0d78ac2b93585bd3c8534f7889891a86f7a7bedb9e214ba6879d57561ed549b",
+        "docs/assets/media/fox-card-shark/v001/sha256-manifest.json": "3c4935582706f7b3f85206d8813d97e24e8360f9bbd8aa0fc918b1d7ddc80e33"
+      }
+    },
+    {
       "id": "rat-pit-boss-v001-checkpoint",
       "title": "Rat Pit Boss \u00b7 v001 checkpoint",
       "category": "parody-characters",
@@ -262,7 +356,12 @@
         "docs/assets/media/rat-pit-boss/v001/three-quarter.png": "3ca8fee0d3ab2ba8c759f863870fc952386abd26ce1a63cf7c43a8d11ced0cae",
         "docs/assets/media/rat-pit-boss/v001/front.png": "c6b4b5a3ec096a99bb0953d95d3a805201f5407c19c918da2730571effa41b95",
         "docs/assets/media/rat-pit-boss/v001/rat-pit-boss.glb": "09a4dadbb4f9eabdddf32b05e7f6ee574e23580127ac9c4a94f991b95bcabc4a",
-        "docs/assets/media/rat-pit-boss/v001/paused-art-direction.blend": "5abb3196c1168000cfbc9b3328520a722cbeba12a4e4c682da3ec60962b1e54a"
+        "docs/assets/media/rat-pit-boss/v001/paused-art-direction.blend": "5abb3196c1168000cfbc9b3328520a722cbeba12a4e4c682da3ec60962b1e54a",
+        "docs/assets/media/rat-pit-boss/v001/pause-art-direction.json": "d730dded1b8b063d037d41acc9b3ad936e19950bac0ddd9dd8d751ae57284f22",
+        "docs/assets/media/rat-pit-boss/v001/preview-browser.json": "7fa6a99aa89944fd41027fe20036954ffe2071a9185fe048c739501cb276dfa0",
+        "docs/assets/media/rat-pit-boss/v001/preview-method.md": "a75bf482cdd46aacb23bfb01bea44a8d00460a537b94d35e93dbc69bbbded802",
+        "docs/assets/media/rat-pit-boss/v001/SHA256SUMS": "3edfeb0aea28b37fd8aa51ec210a06b3c2680bf541c659edde1e2413b763551e",
+        "scripts/assets/rat-pit-boss/preview.mjs": "52beb3030b6e4e6c2dd804880641de6c04ceb9f0162227c55dfca64632eb484b"
       }
     },
     {

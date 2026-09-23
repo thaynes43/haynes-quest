@@ -1,0 +1,57 @@
+{
+  "work_order": "WO102",
+  "asset_id": "fox-card-shark",
+  "version": "v001",
+  "authoring_model": "gpt-6-astra max",
+  "created_utc": "2026-09-23T21:29:14.839575+00:00",
+  "selected_inputs": [
+    {
+      "kind": "ensemble",
+      "repo_path": "docs/assets/media/rat-casino-ensemble/v003/concept.png",
+      "sha256": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
+      "verified": true
+    },
+    {
+      "kind": "turnaround",
+      "repo_path": "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png",
+      "sha256": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
+      "verified": true
+    },
+    {
+      "kind": "prompt",
+      "repo_path": "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark-prompt.txt",
+      "sha256": "e0d78ac2b93585bd3c8534f7889891a86f7a7bedb9e214ba6879d57561ed549b",
+      "verified": true
+    }
+  ],
+  "direction": "Original sturdy classic-era worn russet fox mascot, plain dark-green dealer vest, one faded original spade token patch, tired glass eyes, repaired heavy tail and hand-parented small four-card fan.",
+  "source_policy": {
+    "franchise_images_used": false,
+    "downloaded_meshes_or_textures_used": false,
+    "private_media_used": false,
+    "pirate_motifs": false,
+    "new_generation": false
+  },
+  "construction": {
+    "geometry": "Original Blender procedural authored mesh, named editable source pieces retained.",
+    "atlas": "Original 1024x1024 indexed PNG; deterministic tactile pigment using NumPy seed 10201.",
+    "skin": "One skin, 25 bones, two material primitives. Maximum two nonzero skin weights, only flexible tail uses blending.",
+    "coordinates": "Blender Z-up/+Y forward; glTF Y-up/-Z forward. Identity scene root at floor; no animated scene root.",
+    "scale_m": 1.8,
+    "blender_version": "4.5.13 LTS",
+    "three_revision": "186",
+    "validator_version": "2.0.0-dev.3.10",
+    "export": "Blender glTF 2.0 GLB; NLA_TRACKS; 60 Hz sampled ordinary bone transforms; no required extension/decoder; embedded texture; no runtime IK.",
+    "budget_exception": null
+  },
+  "actual_artifact_sha256": "77346890c1d989e669f586bf3c361d028d6c2fa7f1130bf6bc039d793380791c",
+  "clip_semantics": {
+    "idle": "Loop, 2.8 seconds; small still mechanical head/ear/card motions.",
+    "move": "Loop, 1.4 seconds; stationary local shuffle with level padded feet.",
+    "attack": "Once, 2.0 seconds; fan lifted and held 0.85\u20131.08 seconds, outward forward snap at 1.25 seconds, fraction 0.625.",
+    "hit": "Once, 0.7 seconds; stiff short recoil.",
+    "defeat": "Once, 2.4 seconds; comic tail/card-droop slump held from 1.766667 seconds. No authored fade, hiding, or root scaling."
+  },
+  "runtime_scope": "Studio only. No level or gameplay encounter mapping changed. Tom exact-art review and later eligibility/device/gameplay gates remain open.",
+  "reference_license_note": "Uses project-generated selected concept direction and original authored geometry/texture. Source concept terms stay with the existing versioned source record."
+}

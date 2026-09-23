@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The new arcade, toybox and Rat Casino work below is studio-only; the [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**36 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**38 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -27,7 +27,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Parody characters {#parody-characters}
 
-The two Besties actors join four completed parody characters in the playtest library. Rat Pit Boss and Chick-flia now have technically checked studio models awaiting Tom's exact-art review; Nap Captain and the first Rat Pit Boss export are paused partial models. The One-Star Diva is a paused concept. The Rat Casino cast has a six-character classic mascot image with a central lead rat and side-stage Chick-flia. Its earlier glossy studies and first rat export remain in the review history while character modeling proceeds before new levels.
+The two Besties actors join four completed parody characters in the playtest library. Rat Pit Boss, Chick-flia, Jackrabbit Drummer and Fox Card Shark now have technically checked studio models awaiting Tom's exact-art review; Nap Captain and the first Rat Pit Boss export are paused partial models. The One-Star Diva is a paused concept. The Rat Casino cast has a six-character classic mascot image with a central lead rat and side-stage Chick-flia. Its earlier glossy studies and first rat export remain in the review history while character modeling proceeds before new levels.
 
 <div class="catalog-grid" markdown="1">
 
@@ -62,6 +62,30 @@ The two Besties actors join four completed parody characters in the playtest lib
 <span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/43a706b5c74e9426.webp" alt="Corrected plain-eyed Chick-flia front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="jackrabbit-drummer" markdown="1">
+
+[![Exact Jackrabbit Drummer model with a broad indigo mascot shell, uneven ears and attached snare](media/catalog-thumbnails/v001/7b9d7f82100c5daa.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/jackrabbit-drummer/v001.md)
+
+### [Jackrabbit Drummer](reviews/jackrabbit-drummer/v001.md)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/8405105c636196ae.webp" alt="Corrected patched Jackrabbit Drummer front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="fox-card-shark" markdown="1">
+
+[![Exact Fox Card Shark model with a worn russet shell, tired eyes, plain green vest and card fan](media/catalog-thumbnails/v001/9f143c2b2ec00ffb.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/fox-card-shark/v001.md)
+
+### [Fox Card Shark](reviews/fox-card-shark/v001.md)
+
+<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/dfd3b00a6743df8f.webp" alt="Corrected worn russet Fox Card Shark front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
 </div>
 
