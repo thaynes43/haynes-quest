@@ -88,7 +88,7 @@
     },
     {
       "id": "rat-casino-kit",
-      "title": "Rat Casino · environment concept",
+      "title": "Rat Casino \u00b7 environment concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/rat-casino-kit/v001.md",
       "concept_images": [
@@ -108,18 +108,20 @@
       "id": "rat-casino-ensemble",
       "title": "Rat Casino animatronic ensemble",
       "category": "parody-characters",
-      "review": "docs/assets/reviews/rat-casino-ensemble/v001.md",
+      "review": "docs/assets/reviews/rat-casino-ensemble/v002.md",
       "concept_images": [
+        "docs/assets/media/rat-casino-ensemble/v002/concept.png",
         "docs/assets/media/rat-casino-ensemble/v001/concept.png"
       ],
       "model_images": [],
       "models": [],
       "audio": [],
       "thumbnail": null,
-      "version": "v001",
-      "state": "concept-only six-character visual pitch; Tom lineup/look feedback pending; no model or gameplay use",
+      "version": "v002",
+      "state": "six-character construction concept revised from Tom feedback; central lead rat and side-stage Chick-flia; models in progress; studio only",
       "gameplay_use": "none",
       "checksums": {
+        "docs/assets/media/rat-casino-ensemble/v002/concept.png": "3f0b6894d8136cdd40b61701ac1b32378e2e182dce842ae4a191641e266897d6",
         "docs/assets/media/rat-casino-ensemble/v001/concept.png": "c99f7a747ffe3e8369291a0a288a98c06c929d9bc8608ab7f19f0612e54591c1"
       }
     },
@@ -269,7 +271,7 @@
     },
     {
       "id": "skyline-toybox-kit",
-      "title": "Skyline toybox · environment concept",
+      "title": "Skyline toybox \u00b7 environment concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/skyline-toybox-kit/v001.md",
       "concept_images": [
@@ -287,7 +289,7 @@
     },
     {
       "id": "midnight-arcade-kit",
-      "title": "Midnight arcade · environment concept",
+      "title": "Midnight arcade \u00b7 environment concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/midnight-arcade-kit/v001.md",
       "concept_images": [

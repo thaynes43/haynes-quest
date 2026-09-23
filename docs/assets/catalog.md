@@ -27,17 +27,17 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Parody characters {#parody-characters}
 
-The two Besties actors join four completed parody characters in the playtest library. Nap Captain and The One-Star Diva are paused. The new Rat Casino cast is a six-character image pitch; the lineup and look await Tom's feedback before Blender modeling.
+The two Besties actors join four completed parody characters in the playtest library. Nap Captain and The One-Star Diva are paused. The new Rat Casino cast is a six-character image pitch revised from Tom's feedback: the rat now leads at center stage and Chick-flia supports from the side. Character modeling follows this construction reference before new levels.
 
 <div class="catalog-grid" markdown="1">
 
 <div class="catalog-card" data-asset-id="rat-casino-ensemble" markdown="1">
 
-[![Concept image: six Rat Casino animatronics in a spooky retro casino](media/catalog-thumbnails/v001/c2a31b3b8c678576.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-casino-ensemble/v001.md)
+[![Concept image: central Rat Pit Boss with five supporting Rat Casino animatronics](media/catalog-thumbnails/v001/9198fefde16788da.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rat-casino-ensemble/v002.md)
 
-### [Rat Casino ensemble](reviews/rat-casino-ensemble/v001.md)
+### [Rat Casino ensemble](reviews/rat-casino-ensemble/v002.md)
 
-<span class="catalog-state">Six-character concept · v001 · Look feedback pending</span>
+<span class="catalog-state">Six-character concept · v002 · Rat leads · Models in progress</span>
 
 </div>
 
