@@ -48,4 +48,5 @@ Slice 1 is implemented and verified locally; the playtest deployment and hosted 
   - Its first local run found a placement bug. The golden-view ticket stood on a strip of balcony that the fox card room covers 0.3 m higher. Placement now keeps every item out of platforms and off covered floor, with a regression test.
   - A real-time run with ordinary keyboard play then made 13 route crossings, won two fights and took the corrected ticket (30 tokens, 1 of 3 tickets).
   - The other attempts stopped at the seventh jump's takeoff. That is a limit of the route driver at about five frames a second, and it also stopped earlier runs on unmodified code. The complete course and its closing haul still need the hosted run on faster hardware.
-- **Open:** the playtest pin through haynes-ops, a hosted check from the home network, physical-device feel and sound, and the children's reactions.
+- **Deployment:** app PR67 merged at `dc52e4b`. [Ops PR3169](https://github.com/thaynes43/haynes-ops/pull/3169) pinned the signed image `sha256:e8a4aba0…7521` to the private playtest only and merged at `5a25d6f`. The rollout has not been verified from the cloud session.
+- **Open:** a hosted check from the home network, including the full-course journey, plus physical-device feel and sound, and the children's reactions.
