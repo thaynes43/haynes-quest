@@ -1,7 +1,10 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it, vi } from "vitest";
 import { equipmentArtwork, parodyArtwork } from "../../src/game/scene-catalog";
-import { PARODY_CANDIDATES } from "../../src/shared/parody-catalog";
+import {
+  PARODY_CANDIDATES,
+  PARODY_CATALOGS,
+} from "../../src/shared/parody-catalog";
 
 const { versionProbeIdentity } = vi.hoisted(() => ({
   versionProbeIdentity: {
@@ -47,6 +50,52 @@ function exportedModel(url: string) {
 }
 
 describe("candidate artwork is present in the published catalog", () => {
+  it("resolves all six exact Rat Casino cast versions and measured heights", () => {
+    const expected = {
+      "chick-flia": { assetVersion: "v001", height: 1.72, role: "ordinary", kind: "ordinary-a" },
+      "jackrabbit-drummer": { assetVersion: "v001", height: 1.96, role: "ordinary", kind: "ordinary-b" },
+      "fox-card-shark": { assetVersion: "v001", height: 1.8, role: "ordinary", kind: "ordinary-a" },
+      "moth-projectionist": { assetVersion: "v001", height: 1.65, role: "ordinary", kind: "ordinary-b" },
+      "rat-pit-boss": { assetVersion: "v002", height: 2.15, role: "boss", kind: "boss" },
+      "golden-after-hours-rat": { assetVersion: "v001", height: 1.7, role: "ordinary", kind: "ordinary-a" },
+    } as const;
+    const catalog = PARODY_CATALOGS["parody-catalog-v6"];
+    expect(Object.isFrozen(catalog)).toBe(true);
+
+    for (const [id, contract] of Object.entries(expected)) {
+      const entry = catalog.find((candidate) => candidate.id === id);
+      expect(entry).toMatchObject({
+        assetId: id,
+        assetVersion: contract.assetVersion,
+        role: contract.role,
+        kind: contract.kind,
+        periodId: "rat-casino-v1",
+        eligibleFrom: "2024-01-01",
+        eligibleThrough: "2026-12-31",
+        referenceAvailableBy: "2014-08-18",
+      });
+      if (!entry) throw new Error(`Missing Rat Casino entry ${id}`);
+      expect(Object.isFrozen(entry)).toBe(true);
+      expect(Object.isFrozen(entry.requiredAbilities)).toBe(true);
+      const artwork = parodyArtwork({
+        catalogEntryId: entry.id,
+        catalogEntryVersion: entry.version,
+        assetId: entry.assetId,
+        assetVersion: entry.assetVersion,
+      });
+      expect(artwork).toEqual({
+        id,
+        kind: "single",
+        contactFraction: 0.625,
+        height: contract.height,
+        url: `/studio/assets/media/${id}/${contract.assetVersion}/${id}.glb`,
+      });
+      if (!artwork || artwork.kind !== "single")
+        throw new Error(`Rat Casino artwork ${id} did not resolve`);
+      exportedModel(artwork.url);
+    }
+  });
+
   it("threads a matched asset version through both Besties model URLs", () => {
     expect(parodyArtwork(versionProbeIdentity)).toMatchObject({
       kind: "duo",

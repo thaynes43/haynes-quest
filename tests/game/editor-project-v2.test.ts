@@ -10,6 +10,7 @@ import {
   createLevelEditorProject,
   createWorldEditorProject,
   isLevelEditorProjectV2,
+  levelEditorPreparedEnemies,
   migrateLevelEditorProjectToV2,
   parseLevelEditorProjectJson,
   resolveLevelEditorProject,
@@ -351,5 +352,162 @@ describe("complete-world editor project contract", () => {
       "peel-patrol-besties@v001:peel-patrol@v001",
       "bickering-besties@v001:bickering-besties@v001",
     ].sort());
+  });
+
+  it("keeps v5 projects on their pinned roster and exposes Rat Casino only to v6", () => {
+    const v5 = project();
+    const v6 = createWorldEditorProject({
+      projectId: "rat-casino-catalog-test",
+      catalogVersion: "parody-catalog-v6",
+    });
+    expect(v5.catalogVersion).toBe("parody-catalog-v5");
+    expect(v6.catalogVersion).toBe("parody-catalog-v6");
+    expect(() =>
+      parseLevelEditorProjectJson(JSON.stringify({
+        ...v6,
+        catalogVersion: "parody-catalog-v4",
+      })),
+    ).toThrow(LevelEditorProjectValidationError);
+
+    const v5Ids = levelEditorPreparedEnemies(v5.catalogVersion).map(
+      (entry) => entry.id,
+    );
+    const v6Ids = levelEditorPreparedEnemies(v6.catalogVersion).map(
+      (entry) => entry.id,
+    );
+    expect(v5Ids).not.toContain("chick-flia");
+    expect(v5Ids).not.toContain("rat-pit-boss");
+    expect(v6Ids).toEqual(
+      expect.arrayContaining([
+        "chick-flia",
+        "jackrabbit-drummer",
+        "fox-card-shark",
+        "moth-projectionist",
+        "rat-pit-boss",
+      ]),
+    );
+    expect(v6Ids).not.toContain("golden-after-hours-rat");
+
+    const chapter = v6.chapters[1]!;
+    const ratCasino = {
+      ...v6,
+      chapters: [
+        v6.chapters[0]!,
+        {
+          ...chapter,
+          encounterSlots: {
+            "ordinary-1": {
+              source: "catalog",
+              catalogEntryId: "chick-flia",
+              catalogEntryVersion: "v001",
+            },
+            "ordinary-2": {
+              source: "catalog",
+              catalogEntryId: "jackrabbit-drummer",
+              catalogEntryVersion: "v001",
+            },
+            "ordinary-3": {
+              source: "catalog",
+              catalogEntryId: "fox-card-shark",
+              catalogEntryVersion: "v001",
+            },
+            "ordinary-4": {
+              source: "catalog",
+              catalogEntryId: "moth-projectionist",
+              catalogEntryVersion: "v001",
+            },
+            boss: {
+              source: "catalog",
+              catalogEntryId: "rat-pit-boss",
+              catalogEntryVersion: "v001",
+            },
+          },
+        },
+      ],
+    } as const satisfies LevelEditorProjectV2;
+    expect(validateLevelEditorProject(ratCasino)).toEqual([]);
+    expect(
+      validateLevelEditorProject({
+        ...ratCasino,
+        catalogVersion: "parody-catalog-v5",
+      }),
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: "encounter.catalog-missing" }),
+      ]),
+    );
+  });
+
+  it("enforces the Rat Casino cast's 2014 boundary independently of scenery", () => {
+    const base = createWorldEditorProject({
+      projectId: "rat-casino-date-boundary",
+      catalogVersion: "parody-catalog-v6",
+    });
+    const chapter = base.chapters[0]!;
+    const slots = [
+      ["ordinary-1", "first-mascot", "ordinary-a"],
+      ["ordinary-2", "second-mascot", "ordinary-b"],
+      ["ordinary-3", "third-mascot", "ordinary-a"],
+      ["ordinary-4", "fourth-mascot", "ordinary-b"],
+      ["boss", "lead-mascot", "boss"],
+    ] as const;
+    const enemyCandidates: LevelEditorEnemyCandidate[] = slots.map(
+      ([, id, kind]) =>
+        ordinaryCandidate({
+          id,
+          name: id,
+          periodId: "rat-casino-v1",
+          eligibility: { startDate: "2010-01-01", endDate: "2014-12-31" },
+          role: kind === "boss" ? "boss" : "ordinary",
+          kind,
+          behaviorPreset: kind,
+        }),
+    );
+    const tooEarly = {
+      ...base,
+      fictionalBirthDate: "2010-01-01",
+      enemyCandidates,
+      chapters: [
+        {
+          ...chapter,
+          representedDateRange: {
+            startDate: "2010-01-01",
+            endDate: "2014-01-01",
+          },
+          recoveredAge: { fromYears: 0, toYears: 4 },
+          previewMemories: [
+            { slotId: "minor-one", date: "2010-07-01", label: "First" },
+            { slotId: "minor-two", date: "2012-01-01", label: "Second" },
+            { slotId: "major", date: "2014-01-01", label: "Major" },
+          ],
+          encounterSlots: {
+            "ordinary-1": { source: "candidate", candidateId: "first-mascot" },
+            "ordinary-2": { source: "candidate", candidateId: "second-mascot" },
+            "ordinary-3": { source: "candidate", candidateId: "third-mascot" },
+            "ordinary-4": { source: "candidate", candidateId: "fourth-mascot" },
+            boss: { source: "candidate", candidateId: "lead-mascot" },
+          },
+        },
+      ],
+    } as const satisfies LevelEditorProjectV2;
+
+    expect(validateLevelEditorProject(tooEarly)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: "period.date-eligibility" }),
+      ]),
+    );
+    expect(
+      validateLevelEditorProject({
+        ...tooEarly,
+        enemyCandidates: enemyCandidates.map((candidate) => ({
+          ...candidate,
+          periodId: "block-party-v1" as const,
+        })),
+        chapters: [{
+          ...tooEarly.chapters[0]!,
+          level: { ...chapter.level, theme: "casino" },
+        }],
+      }),
+    ).toEqual([]);
   });
 });

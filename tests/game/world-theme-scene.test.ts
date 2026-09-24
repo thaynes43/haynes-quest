@@ -104,11 +104,13 @@ function previewSave(): SaveView {
   return save;
 }
 
-function previewFor(theme: AuthoredLevelTheme): {
+function previewFor(theme: AuthoredLevelTheme, ratCast = false): {
   scene: GardenScene;
   level: LevelLayout;
 } {
   const save = previewSave();
+  if (ratCast && save.adventure?.activeLevel)
+    save.adventure.activeLevel.periodId = "rat-casino-v1";
   const resolver = authoredLevelResolverFor({
     [customRouteId]: v3Route(theme),
   });
@@ -331,6 +333,57 @@ describe("GardenScene world theme assets", () => {
         (position) => position.z > -2 && Math.abs(position.x) < 8,
       ),
     ).toBe(true);
+    scene.dispose();
+  });
+
+  it("uses the exact Rat Casino kit and spare mascot only in a casino preview", () => {
+    const { scene, level } = previewFor("casino", true);
+    const world = worldOf(scene);
+    const requested = [...harness.attached, ...harness.instanced];
+    for (const url of clearingAssetUrls) expect(requested).not.toContain(url);
+    expect(world.userData).toMatchObject({
+      worldTheme: "casino",
+      environmentKitState: "prepared-kit",
+    });
+    expect(requested).toContain(
+      "/studio/assets/media/rat-casino-kit/v001/marquee-arch.glb",
+    );
+    expect(requested).toContain(
+      "/studio/assets/media/rat-casino-kit/v001/roulette-dais.glb",
+    );
+    expect(requested).toContain(
+      "/studio/assets/media/rat-casino-kit/v001/slot-cabinet.glb",
+    );
+    expect(requested).toContain(
+      "/studio/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb",
+    );
+    const scenery = world.getObjectByName("casino-prepared-kit-scenery");
+    expect(scenery).toBeInstanceOf(THREE.Group);
+    expect(scenery?.getObjectByName("casino-marquee-arch")).toBeDefined();
+    expect(scenery?.getObjectByName("casino-roulette-dais")).toBeDefined();
+    expect(scenery?.getObjectByName("casino-slot-cabinet")).toBeDefined();
+    const cameo = scenery?.getObjectByName("casino-golden-cameo");
+    expect(cameo).toBeDefined();
+    expect(cameo?.userData.scenicOnly).toBe(true);
+    const boss = level.encounters.find((entry) => entry.role === "boss");
+    expect(boss).toBeDefined();
+    expect(cameo!.position.x).toBeGreaterThan(boss!.arena!.maxX);
+    expect(world.getObjectByName("casino-exit-arch")).toBeDefined();
+    expect(world.getObjectByName("outdoor-hill-1")).toBeUndefined();
+    scene.dispose();
+  });
+
+  it("allows casino scenery for another cast without importing the Golden mascot", () => {
+    const { scene } = previewFor("casino");
+    const world = worldOf(scene);
+    const requested = [...harness.attached, ...harness.instanced];
+    expect(requested).toContain(
+      "/studio/assets/media/rat-casino-kit/v001/marquee-arch.glb",
+    );
+    expect(requested).not.toContain(
+      "/studio/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb",
+    );
+    expect(world.getObjectByName("casino-golden-cameo")).toBeUndefined();
     scene.dispose();
   });
 

@@ -1,8 +1,8 @@
-# A fresh two-chapter playtest
+# Fresh playtests and Rat Casino
 
-Choose **Play from the beginning** for the full age 0 → 4 → 7 route, or **Try the Besties chapter** to jump straight to chapter two. Every test starts fresh. Leaving or reloading resets the run; there is no save or resume list in this playtest.
+Choose **Play from the beginning** for the established age 0 → 4 → 7 route, or **Try the Besties chapter** to jump straight to its second chapter. **Enter Rat Casino** starts a separate fictional three-chapter project's new final level, at recovered age five. Its chapter-only finish shows the three memories earned there; the [level editor](../level-editor.md) can open, inspect, reshape and test the complete project. Every test starts fresh. Leaving or reloading resets the run; there is no save or resume list in this playtest.
 
-This private review uses [six fictional pictures](reviews/fixture-route-memories/v001.md). Familiar controls, memory checkpoints and safe jumping practice for a six-year-old are the current focus. Identity and curated family photos are the next required part of the MVP; this fixture's ages and pictures are still fictional.
+The established two-chapter route uses [six fictional pictures](reviews/fixture-route-memories/v001.md); the separate Rat Casino project adds three more synthetic memories. Familiar controls, memory checkpoints and safe jumping practice for a six-year-old are the current focus. Identity and curated family photos are the next required part of the MVP; every fixture age and picture is fictional.
 
 ## How to play
 
@@ -23,14 +23,23 @@ If the big memory does not collect, check the picture indicators beside your hea
 
 ## What changed for this test
 
-Both chapters begin with six low steps that climb and descend over solid ground. A missed practice hop lets you try again without losing health. Later clearings and boss terraces also rise above the path. Each course mixes short jumping activities with safe stopping places, four goofy enemy encounters, two little memories and a boss. An optional side path lets you visit a friendly resident before rejoining the adventure.
+The original two chapters begin with six low steps that climb and descend over solid ground. Rat Casino retains this forgiving practice pattern and adds two optional raised routes. A missed practice hop lets you try again without losing health. Each course mixes short jumping activities with safe stopping places, four enemy encounters, two little memories and a boss. An optional side path lets you visit a friendly resident before rejoining the adventure.
 
 | Chapter | Places to explore |
 | --- | --- |
 | The Block Party | Practice steps, a picnic clearing, winding padded sweepers, a woodland side path, a raised memory grove and a small ferry to the dragon terrace. |
 | Besties Obby | Practice steps, a ribbon lane, a sideways ferry, a choice of stepping pads or a broad side bridge, a slow turnstile and a climb to the Besties court. |
+| Rat Casino | An amber-lit foyer, padded token steps, cabinet landing, roulette zigzag, two optional raised side routes, four worn mascots and the Rat Pit Boss's final stage. Golden waits in a noncombat stage alcove. |
 
-Jump onto the ferries, ride along, then jump to the next landing. Broad platforms leave room to line up a jump. A slip returns you nearby with your gear and memories; there is no lives counter or race timer. Grass, flowers and the existing trees extend through the longer routes, with clear space around fights and memories.
+![Rat Casino entrance with the exact marquee arch above a broad practice lane](media/playtest/v007/rat-casino-foyer.png){ width="700" }
+
+![The casino card room with the exact Fox Card Shark, cabinets, side characters and clear jumping platforms](media/playtest/v007/rat-casino-card-room.png){ width="700" }
+
+![Rat Pit Boss center stage with the exact roulette dais and Golden After-Hours Rat at the right as a noncombat cameo](media/playtest/v007/rat-casino-boss-stage.png){ width="700" }
+
+These [local browser captures](media/playtest/v007/captures.json) show the checked-in fictional route and exact Blender models. They are headless Chromium images, not physical iPhone/iPad Safari performance evidence.
+
+In the original courses, jump onto the ferries, ride along, then jump to the next landing. Broad platforms leave room to line up a jump. A slip returns you nearby with your gear and memories; there is no lives counter or race timer. Casino scenery stays beside the playable route and leaves clear space around fights and memories.
 
 The sound repairs accepted on Tom's iPhone are retained. The new Jump button replaces world-tap jumping, and empty attacks animate and sound without showing reading prompts over the player. Jumping works from age zero, contact collects things, and recovered little keepsakes disappear. **Sound on/off** controls mute; **Help → Play a test sound** auditions the output and offers a retry if needed. The source cues and mix are unchanged. A missing model still shows a retryable warning while play continues.
 
@@ -66,7 +75,7 @@ For the next family test, watch whether moving and jumping together feels famili
 
 Identity, birthday setup and curated personal photos follow the longer levels as required MVP work. A parent will choose the little memories and the big memory for each chapter; the daughter's actual chronology will replace the fixture's 0 → 4 → 7 sequence. Authorized photo integrations and manual uploads belong to that personalized experience.
 
-The new courses share validated, reusable pieces as the foundation for a level builder. A visual editor, freely placed memories, period suggestions with Show more, more chapters and the full baby-to-adult journey remain later extensions. The Besties shortcut prepares the first chapter for testing; it is not a saved journey.
+The new courses use the shared visual and agent level builder. The Rat Casino sample is a portable fictional project with its own route ID, chapter date and exact model assignments. Parent-prepared memories, authorized family media, shared publishing and the full baby-to-adult journey remain later work. These shortcuts are temporary playtests, not saved journeys.
 
 ## Cast and artwork
 
@@ -74,5 +83,6 @@ The new courses share validated, reusable pieces as the foundation for a level b
 | --- | --- | --- | --- |
 | The Block Party | Two [Mister Hiss](reviews/mister-hiss/v001.md) and two [Peel Patrol](reviews/peel-patrol/v001.md) encounters | [Drama Dragon](reviews/drama-dragon/v001.md) | [Blockling](reviews/blockling/v001.md), [Signal Moth](reviews/signal-moth/v001.md), [Buffer Baron](reviews/buffer-baron/v001.md) |
 | Besties Obby | Two [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) and two returning Peel Patrol encounters | [The Bickering Besties](reviews/bickering-besties/v001.md) | [Loop Dancer](reviews/loop-dancer/v001.md), [Prism Mimic](reviews/prism-mimic/v001.md), [Trendweaver](reviews/trendweaver/v001.md) |
+| Rat Casino · private project | [Chick-flia](reviews/chick-flia/v001.md), [Jackrabbit Drummer](reviews/jackrabbit-drummer/v001.md), [Fox Card Shark](reviews/fox-card-shark/v001.md), [Moth Projectionist](reviews/moth-projectionist/v001.md) | [Rat Pit Boss v002](reviews/rat-pit-boss/v002.md) | [Golden After-Hours Rat](reviews/golden-after-hours-rat/v001.md) is a noncombat cameo; the standard friendly residents remain separate. |
 
-[Browse the full visual catalog](catalog.md) for inspiration images, models, motion, the six fictional pictures and sound previews. The playtest uses the same 23 GLBs and four source WAVs recorded in the [artwork list](media/playtest/v002/artwork.json), with a revised runtime sound mix. The earlier [phone and desktop catalog check](media/playtest/v005/catalog-check.json) records thumbnail navigation, reviews and model viewers for these same source assets. The joint Besties look is approved; exact model and sound versions remain available for final review.
+[Browse the full visual catalog](catalog.md) for inspiration images, models, motion, fictional pictures and sound previews. The established chapters use the 23 GLBs and four source WAVs recorded in the [earlier artwork list](media/playtest/v002/artwork.json); Rat Casino adds the six exact classic mascot GLBs and three static scenery GLBs linked above. The earlier [phone and desktop catalog check](media/playtest/v005/catalog-check.json) remains historical evidence for the established assets. Rat Casino's private trial follows Tom's “Looks great, let’s move forward” direction; physical device and final art acceptance remain open.

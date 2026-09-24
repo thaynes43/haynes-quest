@@ -2,13 +2,14 @@ import { createHash } from 'node:crypto';
 import {
   canonicalLevelEditorProjectJson,
   LEVEL_EDITOR_CHAPTER_ROUTES,
-  LEVEL_EDITOR_PREPARED_ENEMIES,
   LEVEL_EDITOR_PROJECT_MAX_BYTES,
   LevelEditorProjectValidationError,
   isLevelEditorProjectV2,
+  levelEditorPreparedEnemies,
   resolveLevelEditorProject,
   type LevelEditorChapterV2,
   type LevelEditorChapterId,
+  type LevelEditorCatalogVersion,
   type LevelEditorEnemyCandidate,
   type LevelEditorEncounterReference,
   type LevelEditorIssue,
@@ -152,7 +153,12 @@ function prepareEditorWorld(
   const candidates = new Map(project.enemyCandidates.map((candidate) => [candidate.id, candidate]));
   const memories: FrozenMemory[] = [];
   const levels = project.chapters.map((chapter, index) => {
-    const level = editorWorldLevel(chapter, index, candidates);
+    const level = editorWorldLevel(
+      chapter,
+      index,
+      candidates,
+      project.catalogVersion,
+    );
     for (const memory of chapter.previewMemories) {
       const id = `${chapter.routeId}-memory-${memory.slotId}`;
       const fixtureKey = FIXTURE_MEDIA_KEYS[memories.length % FIXTURE_MEDIA_KEYS.length]!;
@@ -182,6 +188,7 @@ function editorWorldLevel(
   chapter: LevelEditorChapterV2,
   index: number,
   candidates: ReadonlyMap<string, LevelEditorEnemyCandidate>,
+  catalogVersion: LevelEditorCatalogVersion,
 ): FrozenEditorWorldLevelPlan {
   const resolved = EDITOR_ENCOUNTER_SLOTS.map((slot) => {
     const reference = chapter.encounterSlots[slot];
@@ -189,7 +196,7 @@ function editorWorldLevel(
       ? candidates.get(reference.candidateId)
       : undefined;
     const catalogEntry = reference.source === 'catalog'
-      ? preparedCatalogEntry(reference)
+      ? preparedCatalogEntry(reference, catalogVersion)
       : undefined;
     const periodId = candidate?.periodId ?? catalogEntry?.periodId;
     if (!periodId) throw new Error('Validated editor encounter is unavailable');
@@ -253,9 +260,12 @@ function editorWorldLevel(
   };
 }
 
-function preparedCatalogEntry(reference: Extract<LevelEditorEncounterReference, { source: 'catalog' }>):
+function preparedCatalogEntry(
+  reference: Extract<LevelEditorEncounterReference, { source: 'catalog' }>,
+  catalogVersion: LevelEditorCatalogVersion,
+):
   ParodyCatalogEntry | undefined {
-  return LEVEL_EDITOR_PREPARED_ENEMIES.find((entry) =>
+  return levelEditorPreparedEnemies(catalogVersion).find((entry) =>
     entry.id === reference.catalogEntryId &&
     entry.version === reference.catalogEntryVersion,
   );

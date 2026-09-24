@@ -7,11 +7,16 @@ export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v3",
   "parody-catalog-v4",
   "parody-catalog-v5",
+  "parody-catalog-v6",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
 export const PARODY_CATALOG_VERSION = "parody-catalog-v5" as const;
 export type ParodyPeriodId =
-  "block-party-v1" | "remix-runway-v1" | "remix-runway-v2" | "besties-obby-v1";
+  | "block-party-v1"
+  | "remix-runway-v1"
+  | "remix-runway-v2"
+  | "besties-obby-v1"
+  | "rat-casino-v1";
 export type ObbyRouteId =
   | "gentle-intro-v1"
   | "gentle-jump-v1"
@@ -32,7 +37,7 @@ export interface ParodyCatalogEntry {
   readonly referenceAvailableBy: string;
   readonly requiredAbilities: readonly Ability[];
   readonly assetId: string;
-  readonly assetVersion: "v001";
+  readonly assetVersion: "v001" | "v002";
 }
 
 export const PARODY_PERIODS = {
@@ -59,6 +64,12 @@ export const PARODY_PERIODS = {
     subtitle: "Pink, black and one missed high-five",
     description:
       "Two rivals take turns building obstacle tricks. Their missed high-five leaves them dizzy.",
+  },
+  "rat-casino-v1": {
+    title: "Rat Casino",
+    subtitle: "Worn mascots, old tokens and an after-hours pit boss",
+    description:
+      "Cross the quiet casino floor, outlast its supporting cast and face the Rat Pit Boss.",
   },
 } as const;
 
@@ -232,6 +243,106 @@ const PARODY_CANDIDATES_V5: readonly ParodyCatalogEntry[] = Object.freeze(
   PARODY_CANDIDATES_V4.map(freezeV3Entry),
 );
 
+/**
+ * V6 preserves every v5 identity and adds the exact Rat Casino studio cast.
+ * Golden After-Hours Rat is intentionally retained as a reserved cameo: it is
+ * catalog-addressable and renderable, but the editor's prepared encounter
+ * allowlist does not assign it to one of the five combat slots.
+ */
+const PARODY_CANDIDATES_V6: readonly ParodyCatalogEntry[] = Object.freeze([
+  ...PARODY_CANDIDATES_V5.map(freezeV3Entry),
+  freezeV3Entry({
+    id: "chick-flia",
+    version: "v001",
+    title: "Chick-flia",
+    reference: "Classic worn family-venue hen animatronic parody",
+    role: "ordinary",
+    kind: "ordinary-a",
+    periodId: "rat-casino-v1",
+    eligibleFrom: "2024-01-01",
+    eligibleThrough: "2026-12-31",
+    referenceAvailableBy: "2014-08-18",
+    requiredAbilities: ["move"],
+    assetId: "chick-flia",
+    assetVersion: "v001",
+  }),
+  freezeV3Entry({
+    id: "jackrabbit-drummer",
+    version: "v001",
+    title: "Jackrabbit Drummer",
+    reference: "Classic worn family-venue rabbit animatronic parody",
+    role: "ordinary",
+    kind: "ordinary-b",
+    periodId: "rat-casino-v1",
+    eligibleFrom: "2024-01-01",
+    eligibleThrough: "2026-12-31",
+    referenceAvailableBy: "2014-08-18",
+    requiredAbilities: ["move"],
+    assetId: "jackrabbit-drummer",
+    assetVersion: "v001",
+  }),
+  freezeV3Entry({
+    id: "fox-card-shark",
+    version: "v001",
+    title: "Fox Card Shark",
+    reference: "Classic worn family-venue fox animatronic parody",
+    role: "ordinary",
+    kind: "ordinary-a",
+    periodId: "rat-casino-v1",
+    eligibleFrom: "2024-01-01",
+    eligibleThrough: "2026-12-31",
+    referenceAvailableBy: "2014-08-18",
+    requiredAbilities: ["move"],
+    assetId: "fox-card-shark",
+    assetVersion: "v001",
+  }),
+  freezeV3Entry({
+    id: "moth-projectionist",
+    version: "v001",
+    title: "Moth Projectionist",
+    reference: "Classic worn family-venue moth animatronic parody",
+    role: "ordinary",
+    kind: "ordinary-b",
+    periodId: "rat-casino-v1",
+    eligibleFrom: "2024-01-01",
+    eligibleThrough: "2026-12-31",
+    referenceAvailableBy: "2014-08-18",
+    requiredAbilities: ["move"],
+    assetId: "moth-projectionist",
+    assetVersion: "v001",
+  }),
+  freezeV3Entry({
+    id: "rat-pit-boss",
+    version: "v001",
+    title: "Rat Pit Boss",
+    reference: "Classic worn family-venue lead rat animatronic parody",
+    role: "boss",
+    kind: "boss",
+    periodId: "rat-casino-v1",
+    eligibleFrom: "2024-01-01",
+    eligibleThrough: "2026-12-31",
+    referenceAvailableBy: "2014-08-18",
+    requiredAbilities: ["move"],
+    assetId: "rat-pit-boss",
+    assetVersion: "v002",
+  }),
+  freezeV3Entry({
+    id: "golden-after-hours-rat",
+    version: "v001",
+    title: "Golden After-Hours Rat",
+    reference: "Classic worn family-venue spare rat animatronic parody",
+    role: "ordinary",
+    kind: "ordinary-a",
+    periodId: "rat-casino-v1",
+    eligibleFrom: "2024-01-01",
+    eligibleThrough: "2026-12-31",
+    referenceAvailableBy: "2014-08-18",
+    requiredAbilities: ["move"],
+    assetId: "golden-after-hours-rat",
+    assetVersion: "v001",
+  }),
+]);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
@@ -240,6 +351,7 @@ export const PARODY_CATALOGS: Readonly<
   "parody-catalog-v3": PARODY_CANDIDATES_V3,
   "parody-catalog-v4": PARODY_CANDIDATES_V4,
   "parody-catalog-v5": PARODY_CANDIDATES_V5,
+  "parody-catalog-v6": PARODY_CANDIDATES_V6,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();

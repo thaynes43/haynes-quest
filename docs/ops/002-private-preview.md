@@ -8,7 +8,7 @@ The existing [Haynes Quest demo](https://haynes-quest.haynesops.com) remains ava
 
 The earlier deployed MVP passed complete keyboard and Chromium touch-emulation journeys on September 11, 2026. A separate live test retained the same signed session and complete save state across replacement of the application pod. See the [verification record](004-overnight-verification.md) for exact versions, checks and limitations.
 
-The corrected two-chapter candidate is prepared for a separate private review at [Haynes Quest Playtest](https://haynes-quest-playtest.haynesops.com). Check the [current release handoff](../../.agents/HANDOFF.md) for rollout status. Its [playtest guide](../assets/playtest.md) describes what is included and still open. The review uses its own host-only browser session, fictional data and visibly labeled candidate artwork; the normal demo retains its existing image until final artwork review.
+The separate private review runs at [Haynes Quest Playtest](https://haynes-quest-playtest.haynesops.com). Check the [current release handoff](../../.agents/HANDOFF.md) for rollout status. Its [playtest guide](../assets/playtest.md) describes the established two-chapter run and the Rat Casino fictional project. The review uses its own host-only browser session, fictional data and visibly labeled candidate artwork; the normal demo retains its existing image until final artwork review.
 
 ## Local development
 
@@ -22,9 +22,9 @@ For client development, set the API origin to `http://localhost:5173`, run `pnpm
 
 ## Playing the current review
 
-Choose **Play from the beginning**, or use **Try the Besties chapter** for the explicit chapter-two shortcut. The [playtest guide](../assets/playtest.md) describes the current controls and loop. Move with the touch stick or WASD/arrows; tap the world or press Space to jump at every age. Drag to look. Walk into gear and pictures to collect them. F or the large Attack button swings the equipped tool; Shift or the smaller Bash button uses the shield for a secondary attack.
+Choose **Enter Rat Casino** for the new fictional level, **Play from the beginning** for the established two-chapter route, or **Try the Besties chapter** for its second-chapter shortcut. The [level editor](../level-editor.md) can open the complete Rat Casino sample and play all three of its fictional chapters. The [playtest guide](../assets/playtest.md) describes the current controls and loop. Move with the touch stick or WASD/arrows; press the dedicated Jump button or Space to jump at every age. Drag to look. Walk into gear and pictures to collect them. F or the large Attack button swings the equipped tool; Shift or the smaller Bash button uses the shield for a secondary attack.
 
-Two minor memories lie along each route. The major memory appears after its boss and advances the chapter once both minors are collected. The complete fixture progresses age 0 → 4 → 7. Leaving or reloading returns to the fresh start screen. Earlier saved journeys remain outside this playtest's discovery UI.
+Two minor memories lie along each route. The major memory appears after its boss and advances the chapter once both minors are collected. The established fixture progresses age 0 → 4 → 7; the separate Rat Casino sample continues from fictional age five to six. Leaving or reloading returns to the fresh start screen. Earlier saved journeys remain outside this playtest's discovery UI.
 
 The four existing sound candidates play in the isolated review with a revised mix. The labeled sound control mutes/unmutes; Help provides volume and a repeatable test sound. Physical iPhone/iPad listening remains necessary. Missing artwork uses a recoverable warning and visible encounter fallback, without freezing play or requiring save-and-leave.
 

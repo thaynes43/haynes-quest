@@ -84,6 +84,15 @@ const integratedAssetIds = [
   "ability-unlocked",
   "movement-landed",
   "ui-confirmed",
+  "rat-pit-boss",
+  "chick-flia",
+  "jackrabbit-drummer",
+  "fox-card-shark",
+  "moth-projectionist",
+  "golden-after-hours-rat",
+  "rat-casino-marquee-arch",
+  "rat-casino-roulette-dais",
+  "rat-casino-slot-cabinet",
 ];
 
 function sha256(bytes) {
@@ -616,7 +625,7 @@ async function inspectLanding(
       const cardState = cardInspections.find((entry) => entry.id === id)?.state;
       assert.match(
         cardState ?? "",
-        /in playtest/i,
+        /in (?:private )?playtest/i,
         `${scope}: ${id} card records current gameplay use`,
       );
     }

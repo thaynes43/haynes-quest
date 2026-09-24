@@ -15,11 +15,17 @@ const mocks = vi.hoisted(() => ({
   workspaceProps: [] as Array<{
     active?: boolean;
     onPlaytest(request: unknown): Promise<void>;
+    starterProject?: {
+      project: LevelEditorProject;
+      chapterId: string;
+      actionLabel: string;
+    };
   }>,
   gameProps: [] as Array<{
     onLeave(): void;
     leaveLabel?: string;
     chapterTitles?: Readonly<Partial<Record<string, string>>>;
+    chapterOnlyRouteId?: string;
     authoredLevelResolver?: (routeId: string | undefined) => unknown;
   }>,
 }));
@@ -110,6 +116,19 @@ describe("level editor preview shell", () => {
     await act(async () => root.render(<EditorApp />));
     expect(mocks.workspaceMounts).toBe(1);
     expect(mocks.workspaceProps.at(-1)?.active).toBe(true);
+    expect(mocks.workspaceProps.at(-1)?.starterProject).toMatchObject({
+      chapterId: "rat-casino",
+      actionLabel: "Open Rat Casino sample",
+      project: {
+        schemaVersion: "level-editor-project-v2",
+        chapters: expect.arrayContaining([
+          expect.objectContaining({
+            chapterId: "rat-casino",
+            routeId: "rat-casino-v1",
+          }),
+        ]),
+      },
+    });
 
     await act(async () => {
       container.querySelector<HTMLButtonElement>("button")!.click();
@@ -129,6 +148,7 @@ describe("level editor preview shell", () => {
       "garden-playground-v2": "Garden edit",
       "besties-playground-v2": "Party edit",
     });
+    expect(game.chapterOnlyRouteId).toBe("besties-playground-v2");
     expect(game.authoredLevelResolver?.("garden-playground-v2")).not.toBeNull();
 
     await act(async () => {

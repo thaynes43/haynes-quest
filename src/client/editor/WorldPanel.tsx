@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { AuthoredEncounterSlot } from "../../shared/authored-level";
 import {
-  LEVEL_EDITOR_PREPARED_ENEMIES,
+  levelEditorPreparedEnemies,
   type LevelEditorChapterV2,
   type LevelEditorEncounterReference,
   type LevelEditorEnemyCandidate,
@@ -14,6 +14,7 @@ import {
 import {
   ALL_PARODY_CANDIDATES,
   PARODY_PERIODS,
+  type ParodyCatalogEntry,
   type ParodyPeriodId,
 } from "../../shared/parody-catalog";
 import { NumberField, TextAreaField, TextField } from "./EditorFields";
@@ -31,6 +32,7 @@ const themeNames = {
   party: "Block party",
   arcade: "Midnight arcade · preview kit",
   toybox: "Skyline toybox · preview kit",
+  casino: "Rat Casino · private playtest kit",
 } as const;
 
 type Theme = keyof typeof themeNames;
@@ -54,7 +56,7 @@ export interface WorldPanelProps {
 }
 
 function visibleCatalogEntry(
-  entry: (typeof LEVEL_EDITOR_PREPARED_ENEMIES)[number],
+  entry: ParodyCatalogEntry,
   chapter: LevelEditorChapterV2,
 ): boolean {
   const { startDate } = chapter.representedDateRange;
@@ -82,13 +84,17 @@ function suggestedCandidateId(name: string): string {
   return slug ? `enemy-${slug}` : "";
 }
 
-function currentPeriod(project: LevelEditorProjectV2, chapter: LevelEditorChapterV2): ParodyPeriodId {
+function currentPeriod(
+  project: LevelEditorProjectV2,
+  chapter: LevelEditorChapterV2,
+  preparedEnemies: readonly ParodyCatalogEntry[],
+): ParodyPeriodId {
   const boss = chapter.encounterSlots.boss;
   if (boss.source === "candidate") {
     const candidate = project.enemyCandidates.find((item) => item.id === boss.candidateId);
     if (candidate) return candidate.periodId;
   } else {
-    const entry = LEVEL_EDITOR_PREPARED_ENEMIES.find((item) => item.id === boss.catalogEntryId);
+    const entry = preparedEnemies.find((item) => item.id === boss.catalogEntryId);
     if (entry) return entry.periodId;
   }
   return "block-party-v1";
@@ -222,7 +228,8 @@ export function WorldPanel({
   const [showMore, setShowMore] = useState(false);
   const [candidateSlot, setCandidateSlot] = useState<AuthoredEncounterSlot | null>(null);
   const selectedIndex = project.chapters.findIndex((item) => item.chapterId === chapter.chapterId);
-  const periodId = currentPeriod(project, chapter);
+  const preparedEnemies = levelEditorPreparedEnemies(project.catalogVersion);
+  const periodId = currentPeriod(project, chapter, preparedEnemies);
   const occupiedIds = new Set([
     ...project.enemyCandidates.map((item) => item.id),
     ...ALL_PARODY_CANDIDATES.map((item) => item.id),
@@ -282,6 +289,8 @@ export function WorldPanel({
         <TextAreaField label="What happens here?" value={chapter.description ?? ""} maxLength={240} onCommit={(description) => onSetDetails({ description })} />
         {(chapter.level.theme === "arcade" || chapter.level.theme === "toybox") &&
           <p className="editor-world-note">This theme has a preview kit while its final art is being reviewed.</p>}
+        {chapter.level.theme === "casino" &&
+          <p className="editor-world-note">This theme uses the reviewed Rat Casino scenery kit in the private playtest.</p>}
       </section>
 
       <section className="editor-world-section">
@@ -316,7 +325,7 @@ export function WorldPanel({
           const kind = chapter.level.anchors.encounters[slot].kind;
           const selected = chapter.encounterSlots[slot];
           const selectedValue = selectedReferenceValue(selected);
-          const prepared = LEVEL_EDITOR_PREPARED_ENEMIES.filter((entry) =>
+          const prepared = preparedEnemies.filter((entry) =>
             entry.role === role && entry.kind === kind &&
             (showMore || visibleCatalogEntry(entry, chapter)),
           );
@@ -329,7 +338,7 @@ export function WorldPanel({
           ];
           if (!choices.some((entry) => entry.value === selectedValue)) {
             const selectedEntry = selected.source === "catalog"
-              ? LEVEL_EDITOR_PREPARED_ENEMIES.find((entry) => entry.id === selected.catalogEntryId)
+              ? preparedEnemies.find((entry) => entry.id === selected.catalogEntryId)
               : project.enemyCandidates.find((entry) => entry.id === selected.candidateId);
             choices.unshift({ value: selectedValue, label: `${selectedEntry && "title" in selectedEntry ? selectedEntry.title : selectedEntry?.name ?? "Missing character"} · current choice` });
           }

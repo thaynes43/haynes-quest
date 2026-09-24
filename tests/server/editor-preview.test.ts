@@ -211,6 +211,53 @@ function threeLevelWorldProject(
   return parsed;
 }
 
+function ratCasinoCatalogProject(): LevelEditorProjectV2 {
+  const base = createWorldEditorProject({
+    projectId: 'rat-casino-preview',
+    catalogVersion: 'parody-catalog-v6',
+  });
+  const chapter = base.chapters[1]!;
+  const parsed = parseLevelEditorProject({
+    ...base,
+    chapters: [
+      base.chapters[0],
+      {
+        ...chapter,
+        level: { ...chapter.level, theme: 'casino' },
+        encounterSlots: {
+          'ordinary-1': {
+            source: 'catalog',
+            catalogEntryId: 'chick-flia',
+            catalogEntryVersion: 'v001',
+          },
+          'ordinary-2': {
+            source: 'catalog',
+            catalogEntryId: 'jackrabbit-drummer',
+            catalogEntryVersion: 'v001',
+          },
+          'ordinary-3': {
+            source: 'catalog',
+            catalogEntryId: 'fox-card-shark',
+            catalogEntryVersion: 'v001',
+          },
+          'ordinary-4': {
+            source: 'catalog',
+            catalogEntryId: 'moth-projectionist',
+            catalogEntryVersion: 'v001',
+          },
+          boss: {
+            source: 'catalog',
+            catalogEntryId: 'rat-pit-boss',
+            catalogEntryVersion: 'v001',
+          },
+        },
+      },
+    ],
+  });
+  if (!isLevelEditorProjectV2(parsed)) throw new Error('Expected a v2 Rat Casino project');
+  return parsed;
+}
+
 function fingerprintOf(project: unknown): string {
   return createHash('sha256')
     .update(canonicalLevelEditorProjectJson(project), 'utf8')
@@ -416,6 +463,70 @@ describe('POST /api/editor/playtests', () => {
   });
 
   describe('accepted previews', () => {
+    it('freezes the v6 Rat Casino roster from its project-pinned catalog', async () => {
+      const { app } = makeApp();
+      const cookie = await startSession(app);
+      const response = await preview(app, cookie, {
+        project: ratCasinoCatalogProject(),
+        chapterId: 'chapter-2',
+        scope: 'chapter',
+      });
+
+      expect(response.status).toBe(201);
+      const body = await response.json();
+      expect(body.save.adventure).toMatchObject({
+        planVersion: 'editor-world-plan-v1',
+        catalogVersion: 'parody-catalog-v6',
+        activeLevel: { periodId: 'rat-casino-v1' },
+      });
+      expect(
+        body.save.adventure.activeLevel.encounters.map(
+          (encounter: {
+            role: string;
+            content: { catalogEntryId: string; assetId: string; assetVersion: string };
+          }) => ({
+            role: encounter.role,
+            entry: encounter.content.catalogEntryId,
+            asset: `${encounter.content.assetId}@${encounter.content.assetVersion}`,
+          }),
+        ),
+      ).toEqual([
+        { role: 'ordinary', entry: 'chick-flia', asset: 'chick-flia@v001' },
+        { role: 'ordinary', entry: 'jackrabbit-drummer', asset: 'jackrabbit-drummer@v001' },
+        { role: 'ordinary', entry: 'fox-card-shark', asset: 'fox-card-shark@v001' },
+        { role: 'ordinary', entry: 'moth-projectionist', asset: 'moth-projectionist@v001' },
+        { role: 'boss', entry: 'rat-pit-boss', asset: 'rat-pit-boss@v002' },
+      ]);
+    });
+
+    it('rejects Golden as a forged combat encounter while keeping its v6 cameo identity', () => {
+      const prepared = prepareEditorPreview(ratCasinoCatalogProject());
+      if (!prepared.ok || !prepared.bundle.world) throw new Error('Expected Rat Casino world');
+      const plan = structuredClone(prepared.bundle.world.plan);
+      const forged = plan as unknown as {
+        levels: Array<{
+          encounters: Array<{
+            content: {
+              catalogEntryId: string;
+              catalogEntryVersion: string;
+              assetId: string;
+              assetVersion: string;
+            };
+          }>;
+        }>;
+      };
+      forged.levels[1]!.encounters[0]!.content = {
+        catalogEntryId: 'golden-after-hours-rat',
+        catalogEntryVersion: 'v001',
+        assetId: 'golden-after-hours-rat',
+        assetVersion: 'v001',
+      };
+      const state = createAdventureStateAtLevel(prepared.bundle.world.plan, 1);
+
+      expect(() => parseStoredAdventure(forged, state, { allowEditorPreviewPlan: true }))
+        .toThrow('Save unavailable');
+    });
+
     it('starts chapter one for the full adventure and returns the frozen project', async () => {
       const { app } = makeApp();
       const cookie = await startSession(app);

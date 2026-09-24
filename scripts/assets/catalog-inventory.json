@@ -31,7 +31,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate; ready for Tom review; studio only",
+      "state": "completed static model candidate; exact v001 in private Rat Casino playtest; final device/art acceptance pending",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rat-casino-kit/v001/concept.png": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4",
         "docs/assets/media/rat-casino-kit/v001/marquee-arch-beauty.png": "4aefc44bfc678f05bde02aaa41e245a5448288cec6910a8c07301a092a803a07",
@@ -55,7 +56,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate; ready for Tom review; studio only",
+      "state": "completed static model candidate; exact v001 in private Rat Casino playtest; final device/art acceptance pending",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rat-casino-kit/v001/concept.png": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4",
         "docs/assets/media/rat-casino-kit/v001/roulette-dais-beauty.png": "34f625e7139ff2aa9a6eedfd9d31cffd8c1e6eb615cb60012ba96d84d4c4d573",
@@ -79,7 +81,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate; ready for Tom review; studio only",
+      "state": "completed static model candidate; exact v001 in private Rat Casino playtest; final device/art acceptance pending",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rat-casino-kit/v001/concept.png": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4",
         "docs/assets/media/rat-casino-kit/v001/slot-cabinet-beauty.png": "6f5d8f78ab34fd71833dffdc9e9c743cbd79ce65469c05953316e22cda9b57b2",
@@ -99,7 +102,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "coordinator-selected construction reference; three separately inventoried static model candidates; Tom exact-version review pending",
+      "state": "coordinator-selected construction reference; three separately inventoried static models now appear as scenery in the private Rat Casino trial; final device/art acceptance pending",
       "checksums": {
         "docs/assets/media/rat-casino-kit/v001/concept.png": "eb10826504b05d8e2cfaee9f7881a994640c29a9f22401a00c32bce56fe4fee4"
       }
@@ -131,7 +134,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v003",
-      "state": "classic original-era worn mascot concept and all six turnarounds selected after Tom rejected glam-rock v001/v002 finish; six performers, central lead rat; all six corrected Blender models published for exact owner review; studio only",
+      "state": "classic original-era worn mascot concept and all six turnarounds selected after Tom rejected glam-rock v001/v002 finish; six performers, central lead rat; Tom liked the displayed exact classic cast and asked to move into a private Rat Casino level trial; final device/art acceptance pending",
       "gameplay_use": "none",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/concept.png": "df8b390adf7750a9a91ce63c13d2df5e033cb7e95c2b3975d6ddbac202439a9f",
@@ -173,8 +176,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v002 corrected classic mascot",
-      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
-      "gameplay_use": "none",
+      "state": "completed validated rigged model candidate; exact v002 Rat Casino boss in private playtest; final device/art acceptance pending",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/construction/rat-pit-boss.png": "b32b2f702e0912585199399e6f49b21be2080e06770ae04ddc3d93fc428caf3f",
         "docs/assets/media/rat-pit-boss/v002/rat-pit-boss.glb": "2f41912e67ba27f7f1d5a6c8ac7bc60fbe8d3dba6e4a775f7186750f608b620d",
@@ -216,8 +219,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001 classic mascot",
-      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
-      "gameplay_use": "none",
+      "state": "completed validated rigged model candidate; exact v001 Rat Casino ordinary encounter in private playtest; final device/art acceptance pending",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/construction/chick-flia.png": "ee84ce15ce47820db78bbf075c58f1be15caa88f1586b369c5f388d627e80936",
         "docs/assets/media/chick-flia/v001/chick-flia.glb": "4f72a94c89debf8ee00a8a5db4eaf6b681375a64a08b743b0cbe07fbdf6eb396",
@@ -260,8 +263,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001 classic mascot",
-      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
-      "gameplay_use": "none",
+      "state": "completed validated rigged model candidate; exact v001 Rat Casino ordinary encounter in private playtest; final device/art acceptance pending",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/construction/jackrabbit-drummer.png": "47fc84778feac83642e94bded8ff5f84647a84b35870f8a932e0cc348b0a38ea",
         "docs/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.glb": "00096fb0bdef15c5b45a32a2265e2744d91c54b10004014de5e45e5682672da3",
@@ -307,8 +310,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001 classic mascot",
-      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
-      "gameplay_use": "none",
+      "state": "completed validated rigged model candidate; exact v001 Rat Casino ordinary encounter in private playtest; final device/art acceptance pending",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/construction/fox-card-shark.png": "37a5e7f947693331eba472eb8d6e391837bfa82075e8df266345cd7bf05f46e2",
         "docs/assets/media/fox-card-shark/v001/fox-card-shark.glb": "77346890c1d989e669f586bf3c361d028d6c2fa7f1130bf6bc039d793380791c",
@@ -356,8 +359,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001 classic mascot",
-      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
-      "gameplay_use": "none",
+      "state": "completed validated rigged model candidate; exact v001 Rat Casino ordinary encounter in private playtest; final device/art acceptance pending",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/construction/moth-projectionist.png": "4af1fe64f067c01445f3facbf4781a4a4e53ee3dd57b4185eae7c2f4675050fb",
         "docs/assets/media/moth-projectionist/v001/moth-projectionist.glb": "3ac425ac69c8ebac34f32b51377a5bca3c794ee43b893102169ae84e161cddf1",
@@ -409,8 +412,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001 classic mascot",
-      "state": "completed validated rigged model candidate; exact owner art approval pending; studio only",
-      "gameplay_use": "none",
+      "state": "completed validated rigged model candidate; exact v001 noncombat cameo in private Rat Casino playtest; final device/art acceptance pending",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rat-casino-ensemble/v003/construction/golden-after-hours-rat.png": "7ceb9648bbc6cc6b24139d86a8f4d63e7c878b6e8a4d81fad5f6d90e2dad7782",
         "docs/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb": "b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184",

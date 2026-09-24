@@ -4,6 +4,8 @@ The private level editor starts with editable copies of **The Block Party** and 
 
 Open **Level editor** from the private playtest's start screen, or visit `/editor` on that host. A computer with a mouse is the easiest way to build. On a narrow screen, use **View**, **Objects**, **Properties**, **World** and **Checks** to switch panels.
 
+**Open Rat Casino sample** loads the checked-in fictional three-level project with a new casino course and the exact private-trial cast. The editor asks before replacing your current view, downloads your current draft first and keeps it in Undo history. You can also enter the Rat Casino level directly from the playtest start screen. The portable sample is `src/shared/levels/rat-casino-world-v1.json`; its deterministic command batch is `scripts/levels/rat-casino-world.commands.json` in the source repository.
+
 ## Make your first change
 
 1. Choose a level in the toolbar. Select an object in **Objects**, or click it in the scene.
@@ -18,7 +20,7 @@ To add a course piece, use **Add** in the left panel. Platforms, moving platform
 
 Choose **Add level** beside the level picker, then **From garden course** or **From obby course**. The new level copies a complete playable course with its own route ID. Select **World** to change its story, theme, dates and cast. **Duplicate this level** makes an independent copy; **Move earlier**, **Move later** and **Remove level** change the adventure order. Removing a level asks for confirmation and can be undone.
 
-Four themes are available. **Storybook garden** and **Block party** retain the current scenery. **Midnight arcade** and **Skyline toybox** have distinct preview colors and simple placeholder scenery while their exact art is reviewed. Theme choices change the look, not the collision or required route.
+Five themes are available. **Storybook garden** and **Block party** retain the current scenery. **Midnight arcade** and **Skyline toybox** have distinct preview colors and simple placeholder scenery while their exact art is reviewed. **Rat Casino** uses its reviewed v001 marquee, roulette dais and cabinet models in the private fixture trial. Theme choices change the look, not the collision or required route.
 
 Set the fictional birth date and each level's **Period starts**, **Period ends**, **Age from** and **Age after boss** in World. Enter dates as `YYYY-MM-DD`. The two small preview memories must occur in order; the boss memory closes the period. A level starts on the previous level's end date and carries its recovered age forward. These are fictional test records; the editor does not search family photos or publish a real person's journey.
 

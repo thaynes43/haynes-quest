@@ -25,7 +25,8 @@ export function eraStory(year = 2020, level?: ActiveLevelView | null) {
     level?.periodId === "block-party-v1" ||
     level?.periodId === "remix-runway-v1" ||
     level?.periodId === "remix-runway-v2" ||
-    level?.periodId === "besties-obby-v1"
+    level?.periodId === "besties-obby-v1" ||
+    level?.periodId === "rat-casino-v1"
       ? PARODY_PERIODS[level.periodId]
       : null;
   if (period && level) {

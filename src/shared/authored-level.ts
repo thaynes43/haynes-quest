@@ -31,7 +31,7 @@ export type AuthoredLevelSchemaVersion =
  * an opaque string rather than infer gameplay or art from its spelling.
  */
 export type AuthoredLevelId = (typeof AUTHORED_LEVEL_IDS)[number] | string;
-export type AuthoredLevelTheme = "garden" | "party" | "arcade" | "toybox";
+export type AuthoredLevelTheme = "garden" | "party" | "arcade" | "toybox" | "casino";
 export type AuthoredConnectionMode = "walk" | "jump" | "ride";
 export type AuthoredEncounterSlot =
   | "ordinary-1"
@@ -440,7 +440,7 @@ const authoredLevelV3DocumentSchema = z
   .object({
     schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION_V3),
     id: authoredLevelProjectRouteIdSchema,
-    theme: z.enum(["garden", "party", "arcade", "toybox"]),
+    theme: z.enum(["garden", "party", "arcade", "toybox", "casino"]),
     ...authoredLevelDocumentFields,
     connections: z
       .array(connectionV2Schema)
