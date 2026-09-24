@@ -1,5 +1,16 @@
 # Current handoff
 
+## Rat Casino fun pass, slice 1 · September 24, 2026
+
+Tom said the game "needs a lot of work, it's very boring" for his 6–12-year-olds and approved starting with a Rat Casino fun pass. [DESIGN-022](../docs/designs/022-rat-casino-fun-pass.md) records the diagnosis, the principles and the later slices; [PLAN-017](plans/017-rat-casino-fun-pass.md) tracks slice 1. This work was done in a Claude Code cloud session, which has no GPU, home-network access, Safari or audio output.
+
+- **Instant contact everywhere.** An accepted swing now plays the flinch, sparks, impact sound, a 70 ms hit-stop and a small camera shake at its contact moment (90 ms), before the server replies. The server still owns health and defeat; its confirmation no longer replays the flinch or sound. Defeats burst into confetti.
+- **Buffered presses.** A press during the last 0.25 s of cooldown, or while another request is pending, is held for up to 0.3 s instead of being dropped. A press while the player's own attack awaits its reply is still refused as busy.
+- **Casino tokens and golden tickets, Rat Casino only.** 145 code-native tokens follow the route, branch trails and arcs over jumps, never on floor that a higher, overlapping room covers. Three golden tickets sit on the highest platform of each side route: the golden-view balcony, the ticket loft's crest and the roulette bypass. The HUD shows a coin count and ticket slots, and the closing card shows the haul. Counts last for the run on the client only; nothing is stored or spent.
+- **Motion and sound.** Shake and hit-stop follow the reduced-motion setting. The existing `ui-confirmed`, `ability-unlocked` and `memory-collected` candidates are reused unchanged at other pitches; their review pages and inventory record this use.
+
+Garden and Besties courses, the level schema, server rules and published routes are unchanged. Local checks, a focused browser run and the [capture gallery](../docs/assets/playtest.md#casino-tokens-and-golden-tickets) are recorded in PLAN-017. Remaining gates: the playtest deployment and a hosted run of the extended full-course journey, which in this container usually stopped at the seventh jump at about five frames a second; feel and sound on physical devices; and the children's reactions. Later slices, including the ★ decisions on double jump and boss vulnerability windows, wait for Tom.
+
 ## Rat Casino playground revision · September 24, 2026
 
 Tom found the first Rat Casino playtest image barren and flat. [Completed PLAN016](plans/completed/016-rat-casino-playground.md) puts the height changes on the required route: broad terraced rooms, short token and roulette jumps, a wider moving tray, backstage pads and Rat's stage 3 m above the entrance. The optional ticket loft reaches 3.3 m. Instanced cabinets, brass/plum room frames, bulbs, floor details and a framed stage fill the player-camera view while preserving clear fight and exit lanes. The exact nine Blender GLBs, fictional memories, cast and prior two published courses remain unchanged. The [playtest guide](../docs/assets/playtest.md) shows six new checked local captures and the earlier layout as history.

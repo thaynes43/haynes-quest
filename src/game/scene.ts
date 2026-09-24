@@ -3,6 +3,9 @@ import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { BestiesScene } from "./besties-scene";
 import { CasinoScene } from "./casino-scene";
+import type { CollectiblePlacement, CollectiblePlan } from "./casino-tokens";
+import { EffectsScene } from "./effects-scene";
+import { TokenScene } from "./token-scene";
 import type { BestiesFrame, BestieActorId } from "./besties";
 import { FriendlyScene } from "./friendly-scene";
 import { ObbyScene } from "./obby-scene";
@@ -151,6 +154,13 @@ export class GardenScene {
   private secondaryAt = -10;
   private previousSecondary = false;
   private unsupportedContentCount = 0;
+  private readonly effects = new EffectsScene();
+  private tokens: TokenScene | null = null;
+  /** Smoothed camera position; shake is added on top so it never accumulates. */
+  private readonly cameraRig = new THREE.Vector3();
+  private wasGrounded = true;
+  /** Visual time of a predicted contact per enemy, to skip the confirming flinch. */
+  private readonly anticipated = new Map<string, number>();
 
   constructor(
     private readonly container: HTMLElement,
@@ -218,6 +228,7 @@ export class GardenScene {
     this.spell.add(this.spellCore, this.spellGlow, this.spellImpact);
     this.spell.visible = false;
     this.scene.add(this.spell);
+    this.scene.add(this.effects.root);
     this.loadTraveler();
     this.rebuildRoute(level, save);
     const Observer = container.ownerDocument.defaultView?.ResizeObserver;
@@ -247,6 +258,10 @@ export class GardenScene {
       enemy.besties?.dispose();
     }
     this.enemies.clear();
+    this.effects.clear();
+    this.anticipated.clear();
+    this.tokens?.dispose();
+    this.tokens = null;
     this.obbyVisual = null;
     this.friendlyVisual?.dispose();
     this.friendlyVisual = null;
@@ -722,7 +737,63 @@ export class GardenScene {
         visible: root.visible,
       })),
       ...(besties.length > 0 ? { besties } : {}),
+      ...(this.tokens ? { collectibles: this.tokens.inspect() } : {}),
+      particles: this.effects.aliveCount,
     };
+  }
+
+  /** Shows a level's casino tokens and tickets; `null` removes them. */
+  setCollectibles(
+    plan: CollectiblePlan | null,
+    collected: ReadonlySet<string> = new Set(),
+  ): void {
+    if (this.disposed) return;
+    this.tokens?.dispose();
+    this.tokens = plan ? new TokenScene(plan, collected) : null;
+    if (this.tokens) this.world.add(this.tokens.root);
+  }
+
+  /** Pops a touched token or ticket with a sparkle. */
+  collectItem(item: CollectiblePlacement): void {
+    const at = this.tokens?.collect(item.id, this.visualTime);
+    if (at) this.effects.emit(item.kind === "ticket" ? "ticket" : "token", at);
+  }
+
+  /**
+   * Marks a swing the client has accepted. The server's confirming HP drop
+   * for this enemy then doesn't replay the flinch that contact already played.
+   */
+  expectHit(encounterId: string): void {
+    this.anticipated.set(encounterId, this.visualTime);
+    this.enemies.get(encounterId)?.animation?.expectHit();
+  }
+
+  /** Plays contact now: the target at `at` flinches and sparks fly. */
+  anticipateHit(encounterId: string, at: PositionSnapshot): void {
+    const visual = this.enemies.get(encounterId);
+    if (visual && !visual.besties) {
+      visual.hitUntil = this.visualTime + 0.2;
+      visual.animation?.anticipateHit();
+    }
+    // Sparks leave the side facing the traveler, where the swing lands,
+    // rather than from inside the target's body.
+    const towardX = this.traveler.position.x - at.x;
+    const towardZ = this.traveler.position.z - at.z;
+    const distance = Math.hypot(towardX, towardZ);
+    const surface = distance > 0 ? Math.min(0.45, distance / 2) / distance : 0;
+    this.effects.emit("hit", {
+      x: at.x + towardX * surface,
+      y: at.y + 0.9,
+      z: at.z + towardZ * surface,
+    });
+  }
+
+  /** A confetti burst where an enemy was defeated. */
+  celebrate(encounterId: string, boss: boolean): void {
+    const visual = this.enemies.get(encounterId);
+    if (!visual) return;
+    const { x, y, z } = visual.root.position;
+    this.effects.emit(boss ? "boss-defeat" : "defeat", { x, y: y + 1, z });
   }
 
   retryMedia(): void {
@@ -757,13 +828,19 @@ export class GardenScene {
     frame?: SceneFrame,
   ): void {
     if (this.disposed) return;
-    const dt = frame?.deltaSeconds ?? 0;
+    // Hit-stop holds animation time only; the camera follows in real time.
+    const dt = frame?.visualDeltaSeconds ?? frame?.deltaSeconds ?? 0;
+    const realDt = frame?.deltaSeconds ?? dt;
     const elapsed = (this.visualTime += dt);
     if (frame?.obby)
       this.obbyVisual?.update(frame.obby, frame.checkpointId ?? null);
     (this.guardRing.material as THREE.MeshBasicMaterial).opacity =
       frame?.recovering ? 0.6 : 0.8;
     this.traveler.position.set(position.x, position.y, position.z);
+    const grounded = frame?.grounded ?? true;
+    if (grounded && !this.wasGrounded && !frame?.recovering)
+      this.effects.emit("landing", position);
+    this.wasGrounded = grounded;
     this.traveler.rotation.y = facing;
     const newAttack =
       frame?.attackSequence !== undefined &&
@@ -883,11 +960,17 @@ export class GardenScene {
         Math.sin(this.cameraPitch) * distance,
       position.z + Math.cos(this.cameraYaw) * flat,
     );
-    this.camera.position.lerp(
-      this.desiredCamera,
-      this.cameraPlaced ? 1 - Math.exp(-dt * 14) : 1,
-    );
+    if (this.cameraPlaced)
+      this.cameraRig.lerp(this.desiredCamera, 1 - Math.exp(-realDt * 14));
+    else this.cameraRig.copy(this.desiredCamera);
     this.cameraPlaced = true;
+    this.camera.position.copy(this.cameraRig);
+    const shake = frame?.cameraShake;
+    if (shake) {
+      this.camera.position.x += shake.x;
+      this.camera.position.y += shake.y;
+      this.camera.position.z += shake.z;
+    }
     this.camera.lookAt(this.target);
     this.sun.position.set(position.x - 7, 13, position.z + 6);
     this.sun.target.position.set(position.x, 0, position.z - 4);
@@ -913,6 +996,8 @@ export class GardenScene {
       );
     if (this.particles)
       this.particles.rotation.y = Math.sin(elapsed * 0.03) * 0.02;
+    this.tokens?.update(elapsed);
+    this.effects.update(dt);
     this.renderer.render(this.scene, this.camera);
   }
 
@@ -936,6 +1021,9 @@ export class GardenScene {
     this.equipment = null;
     this.friendlyVisual?.dispose();
     this.casinoVisual?.dispose();
+    this.tokens?.dispose();
+    this.tokens = null;
+    this.effects.dispose();
     this.mixer?.stopAllAction();
     if (this.avatarRoot) this.mixer?.uncacheRoot(this.avatarRoot);
     this.avatarRoot = null;
@@ -1172,7 +1260,13 @@ export class GardenScene {
     const defeated = enemy.phase === "defeated";
     const animation = visual.animation?.update(enemy, deltaSeconds);
     visual.root.visible = animation?.visible ?? !defeated;
-    if (enemy.hp < visual.lastHp) visual.hitUntil = elapsed + 0.2;
+    if (enemy.hp < visual.lastHp) {
+      // A predicted contact already flinched (or will at contact); don't repeat it.
+      const predicted = this.anticipated.get(enemy.id);
+      if (predicted === undefined || elapsed - predicted > 1.5)
+        visual.hitUntil = elapsed + 0.2;
+      this.anticipated.delete(enemy.id);
+    }
     visual.lastHp = enemy.hp;
     visual.model.scale.setScalar(
       animation ? 1 - animation.vanish : elapsed < visual.hitUntil ? 0.9 : 1,

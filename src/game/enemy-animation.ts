@@ -127,6 +127,9 @@ export class EnemyAnimation {
   private lastPhase: EnemyPhase | null = null;
   private lastHp: number | null = null;
   private hitQueued = false;
+  /** A client-predicted contact is pending; its confirming HP drop is not a second hit. */
+  private swallowNextDrop = false;
+  private expectedSeconds = 0;
   private vanish = 0;
   private visible = true;
   private disposed = false;
@@ -185,6 +188,20 @@ export class EnemyAnimation {
     return { visible: this.visible, vanish: this.vanish };
   }
 
+  /** The client accepted a swing at this enemy; the server's HP drop will confirm it. */
+  expectHit(): void {
+    if (this.disposed) return;
+    this.swallowNextDrop = true;
+    this.expectedSeconds = 0;
+  }
+
+  /** Plays the hit reaction for a predicted contact at the next allowed moment. */
+  anticipateHit(): void {
+    if (this.disposed || this.mode === "defeat" || this.mode === "hidden")
+      return;
+    this.hitQueued = true;
+  }
+
   /** Stops playback and releases the mixer's hold on the root; shared geometry stays intact. */
   dispose(): void {
     if (this.disposed) return;
@@ -230,7 +247,15 @@ export class EnemyAnimation {
   private updateAlive(frame: EnemyFrame, dt: number): void {
     if (this.mode === null || this.mode === "defeat" || this.mode === "hidden")
       this.startFresh();
-    const hpDropped = this.lastHp !== null && frame.hp < this.lastHp;
+    let hpDropped = this.lastHp !== null && frame.hp < this.lastHp;
+    if (this.swallowNextDrop) {
+      // Predicted contact plays the reaction; the server's drop only confirms it.
+      this.expectedSeconds += dt;
+      if (hpDropped) {
+        hpDropped = false;
+        this.swallowNextDrop = false;
+      } else if (this.expectedSeconds > 1.5) this.swallowNextDrop = false;
+    }
     const hpRose = this.lastHp !== null && frame.hp > this.lastHp;
     // A retry restoring HP ends any hit feedback; the phase switch below
     // cross-fades from the hit pose instead of snapping.
@@ -276,6 +301,7 @@ export class EnemyAnimation {
   private startFresh(): void {
     this.mixer.stopAllAction();
     this.hitQueued = false;
+    this.swallowNextDrop = false;
     this.current = null;
     this.mode = "locomotion";
     this.visible = true;

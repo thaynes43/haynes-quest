@@ -2895,6 +2895,71 @@ footer {
   font-size: 9px;
   gap: 5px;
 }
+.casino-tally {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 8px;
+  color: #f8e7b1;
+}
+.token-count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.token-coin {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #5b3a86;
+  background: radial-gradient(circle at 35% 30%, #fff4c2, #f2c14e 48%, #b07d1c);
+}
+.token-count b {
+  display: inline-block;
+  min-width: 2ch;
+  font:
+    20px Georgia,
+    serif;
+  color: #ffe08a;
+}
+.ticket-slots {
+  display: flex;
+  gap: 4px;
+}
+.ticket-slot {
+  width: 17px;
+  height: 11px;
+  border: 1px dashed #f8e7b16b;
+  border-radius: 2px;
+}
+.ticket-slot.collected {
+  border: 1px solid #fff0b8;
+  background: linear-gradient(135deg, #ffe58f, #f2c14e 60%, #c9921f);
+  box-shadow: 0 0 7px #ffd76acc;
+}
+.casino-haul {
+  color: #ffe08a;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .token-count b {
+    animation: token-bump 0.28s ease-out;
+  }
+  .ticket-slot.collected {
+    animation: ticket-pop 0.55s ease-out;
+  }
+}
+@keyframes token-bump {
+  from {
+    transform: scale(1.4);
+    color: #ffffff;
+  }
+}
+@keyframes ticket-pop {
+  from {
+    transform: scale(2) rotate(-10deg);
+  }
+}
 .era-game .boss-hud {
   left: auto;
   right: max(16px, calc(env(safe-area-inset-right) + 12px));

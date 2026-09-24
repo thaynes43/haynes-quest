@@ -49,6 +49,8 @@ await fs.mkdir(outputDirectory, { recursive: true });
 
 const ROUTE_ID = "rat-casino-v1";
 const CHAPTER_ID = "rat-casino";
+// DESIGN-022: the journey explores the golden-view side route for its ticket.
+const TICKET_PLATFORM_ID = "golden-view-balcony";
 const ENCOUNTER_ART = Object.freeze({
   "chick-flia": "/studio/assets/media/chick-flia/v001/chick-flia.glb",
   "jackrabbit-drummer":
@@ -104,6 +106,7 @@ const report = {
   editorSample: null,
   fullAdventure: null,
   completion: null,
+  collectibles: null,
   narrow: null,
   actions: [],
   screenshots: [],
@@ -427,8 +430,42 @@ try {
     );
     await screenshot(page, "casino-opening-art");
 
+    const planned = opening.collectibles;
+    assert.ok(planned, "the casino chapter planned no tokens");
+    assert.equal(planned.counts.tokens, 0);
+    assert.equal(planned.counts.tickets, 0);
+    assert.equal(planned.counts.ticketTotal, 3);
+    assert.ok(planned.counts.tokenTotal >= 100, "too few casino tokens");
+    const ticket = planned.items.find(
+      (item) =>
+        item.kind === "ticket" && item.platformId === TICKET_PLATFORM_ID,
+    );
+    assert.ok(ticket, `${TICKET_PLATFORM_ID}: golden ticket missing`);
+    const tally = page.locator(".casino-tally");
+    await tally.waitFor({ state: "visible", timeout: 5_000 });
+    assert.equal(
+      await tally.getAttribute("aria-label"),
+      "0 casino tokens, 0 of 3 golden tickets",
+    );
+    report.collectibles = {
+      planned: {
+        tokens: planned.counts.tokenTotal,
+        tickets: planned.counts.ticketTotal,
+        ticketPlatforms: planned.items
+          .filter((item) => item.kind === "ticket")
+          .map((item) => item.platformId),
+      },
+      ticket: null,
+      haul: null,
+      input: "ordinary keyboard movement and jumps; no collection shortcut",
+    };
+
     const document = navigationDocument(opening.level.authored);
-    const plan = buildTraversalPlan(document, { branchIndex: null });
+    const ticketBranch = document.branches.findIndex((branch) =>
+      branch.includes(TICKET_PLATFORM_ID),
+    );
+    assert.ok(ticketBranch >= 0, "golden-view branch missing");
+    const plan = buildTraversalPlan(document, { branchIndex: ticketBranch });
     const controls = createHybridControls({ page });
     let driver = createAuthoredRouteDriver({
       page: navigationPage(page),
@@ -715,9 +752,54 @@ try {
       mark("combat:defeated", fights.at(-1));
     };
 
+    const collectTicket = async () => {
+      const taken = (inspection) =>
+        inspection.collectibles?.items.find((item) => item.id === ticket.id)
+          ?.collected === true;
+      await screenshot(page, "casino-golden-ticket-ahead");
+      await moveToAnchor(
+        { platformId: ticket.platformId, position: ticket.position },
+        "golden-ticket",
+        undefined,
+        taken,
+      );
+      const collected = await waitForInspection({
+        page,
+        screenshot: (name) => screenshot(page, name),
+        label: "golden-ticket-collected",
+        timeout: 10_000,
+        predicate: taken,
+      });
+      await page
+        .locator(".casino-tally .ticket-slot.collected")
+        .first()
+        .waitFor({ state: "visible", timeout: 5_000 });
+      report.collectibles.ticket = {
+        id: ticket.id,
+        platformId: ticket.platformId,
+        tokensSoFar: collected.collectibles.counts.tokens,
+        tally: await tally.getAttribute("aria-label"),
+      };
+      mark("collectibles:ticket", report.collectibles.ticket);
+      await screenshot(page, "casino-golden-ticket-collected");
+      // A corner ticket can sit beside a raised neighbour. Step back to the
+      // platform's middle row, as a player would, before rejoining the route.
+      const middle = collected.obby.platforms.find(
+        (entry) => entry.id === ticket.platformId,
+      ).center.z;
+      await moveToAnchor(
+        {
+          platformId: ticket.platformId,
+          position: { ...ticket.position, z: middle },
+        },
+        "golden-ticket-return",
+      );
+    };
+
     const processPlatform = async (platformId) => {
       if (visited.has(platformId) || levelFinished()) return;
       visited.add(platformId);
+      if (platformId === ticket.platformId) await collectTicket();
       for (const [kind, anchor] of Object.entries(document.anchors.pickups))
         if (anchor.platformId === platformId) await collectPickup(kind, anchor);
       for (const [role, anchor] of Object.entries(document.anchors.memories))
@@ -880,6 +962,23 @@ try {
       memoryCards: 3,
       copy: "3 fictional memories reclaimed.",
     };
+    const haulCopy =
+      (await completionDialog.locator(".casino-haul").textContent()) ?? "";
+    const haul = haulCopy.match(
+      /You grabbed (\d+) of (\d+) casino tokens and (\d+) of (\d+) golden tickets\./,
+    );
+    assert.ok(haul, `completion haul missing: ${haulCopy}`);
+    const [tokens, tokenTotal, tickets, ticketTotal] = haul
+      .slice(1)
+      .map(Number);
+    assert.equal(tokenTotal, planned.counts.tokenTotal);
+    assert.equal(ticketTotal, 3);
+    assert.ok(tickets >= 1, "the golden ticket was not counted");
+    assert.ok(
+      tokens >= 10,
+      `only ${tokens} tokens collected on the explorer route`,
+    );
+    report.collectibles.haul = { tokens, tokenTotal, tickets, ticketTotal };
     await screenshot(page, "rat-casino-complete");
 
     const fullAdventureContext = await browser.newContext({
@@ -1046,6 +1145,9 @@ try {
       await narrowPage
         .getByRole("button", { name, exact: true })
         .waitFor({ state: "visible", timeout: 5_000 });
+    await narrowPage
+      .locator(".casino-tally")
+      .waitFor({ state: "visible", timeout: 5_000 });
     const canvasBox = await narrowPage
       .locator("canvas[data-quest-canvas=true]")
       .boundingBox();

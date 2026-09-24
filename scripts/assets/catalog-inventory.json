@@ -1389,7 +1389,7 @@
       ],
       "thumbnail": "docs/assets/media/memory-collected/v001/waveform.svg",
       "version": "v001",
-      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; physical listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; DESIGN-022 casino reward and defeat reuse; physical listening review pending",
       "checksums": {
         "docs/assets/media/memory-collected/v001/cue.wav": "86ed72b341775dbb6f60414994912ec0d0292140e6408c20de54e5eb7ba0d358",
         "docs/assets/media/memory-collected/v001/source.wav": "90dfbc573fbf5923508c025b4e7c33438a166449fbd4c2e3cfb988c164ac526b"
@@ -1410,7 +1410,7 @@
       ],
       "thumbnail": "docs/assets/media/ability-unlocked/v001/waveform.svg",
       "version": "v001",
-      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; physical listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; DESIGN-022 casino reward and defeat reuse; physical listening review pending",
       "checksums": {
         "docs/assets/media/ability-unlocked/v001/cue.wav": "46318afe6c77579a6b063fa704e887cd6112601b4cc4144351fa9085845115c0",
         "docs/assets/media/ability-unlocked/v001/source.wav": "c6d084ce680ab407b20c351cb49509ade12290efb291453fdfc350ce3ef7a904"
@@ -1453,7 +1453,7 @@
       ],
       "thumbnail": "docs/assets/media/ui-confirmed/v001/waveform.svg",
       "version": "v001",
-      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; physical listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; DESIGN-022 casino reward and defeat reuse; physical listening review pending",
       "checksums": {
         "docs/assets/media/ui-confirmed/v001/cue.wav": "e9a0541c87b518de9b7d989ae4b6ef99d3ee03e40bfc1e65855bfe9069597608",
         "docs/assets/media/ui-confirmed/v001/source.wav": "416cdbb0fbb82da0b701f7fdac2fb4176b1f5933c4e1a236fab246e130ac941b",
