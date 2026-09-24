@@ -361,6 +361,15 @@ export function createApp(options: AppOptions): Hono {
   for (const path of spaShell) {
     app.get(path, serveStatic({ root: options.clientDir, path: 'index.html' }));
   }
+  // Browsers and iOS home screens request these fixed root paths. Vite copies
+  // them from public/; nothing else at the client root is served.
+  for (const icon of ['favicon.ico', 'favicon.svg', 'apple-touch-icon.png']) {
+    app.use(`/${icon}`, async (context, next) => {
+      await next();
+      if (context.res.status === 200) context.header('Cache-Control', 'no-cache');
+    });
+    app.get(`/${icon}`, serveStatic({ root: options.clientDir, path: icon }));
+  }
   app.use('/assets/*', async (context, next) => {
     await next();
     if (context.res.status === 200 || context.res.status === 206) {

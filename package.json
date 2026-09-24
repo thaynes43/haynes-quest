@@ -17,6 +17,7 @@
     "test:db": "vitest run tests/server --testNamePattern Postgres",
     "levels:editor": "tsx scripts/levels/editor.ts",
     "levels:validate": "tsx scripts/levels/validate.ts",
+    "brand:icons": "tsx scripts/brand/build-icons.ts",
     "start": "node dist/server/index.js",
     "docs:build": "scripts/docs/build.sh"
   },
