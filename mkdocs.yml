@@ -65,6 +65,7 @@ nav:
       - Familiar touch and recovery: designs/018-familiar-touch-and-recovery.md
       - Level editor workspace: designs/019-level-editor-workspace.md
       - Complete world builder: designs/020-complete-world-builder.md
+      - Rat Casino level: designs/021-rat-casino-level.md
       - Design template: designs/000-template.md
   - Operations:
       - Hosting context: ops/001-hosting-context.md

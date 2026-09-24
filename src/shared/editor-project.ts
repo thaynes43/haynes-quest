@@ -37,10 +37,11 @@ import {
 } from "./editor-sections";
 import {
   ALL_PARODY_CANDIDATES,
-  PARODY_CANDIDATES,
+  PARODY_CATALOGS,
   PARODY_CATALOG_VERSION,
   PARODY_PERIODS,
   type ParodyCatalogEntry,
+  type ParodyCatalogVersion,
   type ParodyPeriodId,
 } from "./parody-catalog";
 
@@ -52,6 +53,12 @@ export const LEVEL_EDITOR_PROJECT_SCHEMA_VERSIONS = [
   LEVEL_EDITOR_PROJECT_SCHEMA_VERSION,
   LEVEL_EDITOR_PROJECT_SCHEMA_VERSION_V2,
 ] as const;
+export const LEVEL_EDITOR_CATALOG_VERSIONS = [
+  "parody-catalog-v5",
+  "parody-catalog-v6",
+] as const satisfies readonly ParodyCatalogVersion[];
+export type LevelEditorCatalogVersion =
+  (typeof LEVEL_EDITOR_CATALOG_VERSIONS)[number];
 export const LEVEL_EDITOR_CHAPTER_IDS = ["chapter-1", "chapter-2"] as const;
 export const LEVEL_EDITOR_TEMPLATE_ROUTE_IDS = [
   "garden-playground-v2",
@@ -189,7 +196,7 @@ export interface LevelEditorProjectV2 {
   readonly name: string;
   readonly revision: number;
   readonly fictionalBirthDate: string;
-  readonly catalogVersion: typeof PARODY_CATALOG_VERSION;
+  readonly catalogVersion: LevelEditorCatalogVersion;
   readonly enemyCandidates: readonly LevelEditorEnemyCandidate[];
   readonly chapters: readonly LevelEditorChapterV2[];
 }
@@ -223,6 +230,8 @@ export interface CreateLevelEditorProjectOptions {
 export interface CreateWorldEditorProjectOptions {
   readonly projectId: string;
   readonly name?: string;
+  /** Defaults to the established v5 roster; callers opt into later catalogs explicitly. */
+  readonly catalogVersion?: LevelEditorCatalogVersion;
   readonly chapterNames?: Readonly<
     Partial<Record<(typeof LEVEL_EDITOR_CHAPTER_IDS)[number], string>>
   >;
@@ -432,7 +441,7 @@ export const levelEditorProjectV2Schema = z
     name: displayNameSchema,
     revision: revisionSchema,
     fictionalBirthDate: dateOnlySchema,
-    catalogVersion: z.literal(PARODY_CATALOG_VERSION),
+    catalogVersion: z.enum(LEVEL_EDITOR_CATALOG_VERSIONS),
     enemyCandidates: z
       .array(levelEditorEnemyCandidateSchema)
       .max(LEVEL_EDITOR_PROJECT_LIMITS.maxEnemyCandidates),
@@ -458,21 +467,33 @@ const LEVEL_EDITOR_READY_IDENTITIES = new Set([
   "sir-flush-a-lot-besties@v001:sir-flush-a-lot@v001",
   "peel-patrol-besties@v001:peel-patrol@v001",
   "bickering-besties@v001:bickering-besties@v001",
+  "chick-flia@v001:chick-flia@v001",
+  "jackrabbit-drummer@v001:jackrabbit-drummer@v001",
+  "fox-card-shark@v001:fox-card-shark@v001",
+  "moth-projectionist@v001:moth-projectionist@v001",
+  "rat-pit-boss@v001:rat-pit-boss@v002",
 ]);
 
 /**
- * Exact identities with artwork already exercised by the private route-memory
- * playtest. Paused Nap Captain and One-Star Diva work stays visible in the
- * asset studio but is not assignable as prepared gameplay art.
+ * Exact reviewed identities prepared for private gameplay. Paused entries and
+ * reserved cameos stay catalog-addressable but cannot fill an editor combat slot.
  */
-export const LEVEL_EDITOR_PREPARED_ENEMIES: readonly ParodyCatalogEntry[] =
-  Object.freeze(
-    PARODY_CANDIDATES.filter((entry) =>
+export function levelEditorPreparedEnemies(
+  catalogVersion: LevelEditorCatalogVersion,
+): readonly ParodyCatalogEntry[] {
+  return Object.freeze(
+    PARODY_CATALOGS[catalogVersion].filter((entry) =>
       LEVEL_EDITOR_READY_IDENTITIES.has(
         `${entry.id}@${entry.version}:${entry.assetId}@${entry.assetVersion}`,
       ),
     ),
   );
+}
+
+/** Prepared roster for the default v5 project; pinned projects use the function above. */
+export const LEVEL_EDITOR_PREPARED_ENEMIES = levelEditorPreparedEnemies(
+  PARODY_CATALOG_VERSION,
+);
 
 function utf8Bytes(value: string): number {
   return new TextEncoder().encode(value).byteLength;
@@ -675,9 +696,10 @@ interface EditorEncounterIdentity {
 function encounterIdentity(
   reference: LevelEditorEncounterReference,
   candidates: ReadonlyMap<string, LevelEditorEnemyCandidate>,
+  catalogVersion: LevelEditorCatalogVersion,
 ): EditorEncounterIdentity | undefined {
   if (reference.source === "catalog") {
-    const entry = LEVEL_EDITOR_PREPARED_ENEMIES.find(
+    const entry = levelEditorPreparedEnemies(catalogVersion).find(
       (candidate) =>
         candidate.id === reference.catalogEntryId &&
         candidate.version === reference.catalogEntryVersion,
@@ -924,7 +946,11 @@ function validateWorldProject(
       "boss",
     ] as const) {
       const reference = chapter.encounterSlots[slot];
-      const identity = encounterIdentity(reference, candidates);
+      const identity = encounterIdentity(
+        reference,
+        candidates,
+        project.catalogVersion,
+      );
       const slotPath = `${prefix}.encounterSlots[${JSON.stringify(slot)}]`;
       if (!identity) {
         issues.push(
@@ -988,6 +1014,15 @@ function validateWorldProject(
           ),
         );
     }
+    if (periodId === "rat-casino-v1" && startDate < "2014-08-18")
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.representedDateRange.startDate`,
+          "period.date-eligibility",
+          "The Rat Casino cast requires a represented start date on or after 2014-08-18",
+        ),
+      );
 
     previousChapter = chapter;
   });
@@ -1013,7 +1048,7 @@ export function validateLevelEditorProject(
           const boss = chapter.encounterSlots.boss;
           return (
             boss.source === "catalog" &&
-            LEVEL_EDITOR_PREPARED_ENEMIES.some(
+            levelEditorPreparedEnemies(project.catalogVersion).some(
               (entry) =>
                 entry.id === boss.catalogEntryId &&
                 entry.version === boss.catalogEntryVersion &&
@@ -1237,7 +1272,7 @@ export function createWorldEditorProject(
     name: options.name ?? "Untitled adventure",
     revision: 0,
     fictionalBirthDate: "2020-01-01",
-    catalogVersion: PARODY_CATALOG_VERSION,
+    catalogVersion: options.catalogVersion ?? PARODY_CATALOG_VERSION,
     enemyCandidates: [],
     chapters: [
       defaultWorldChapter("chapter-1", options.chapterNames?.["chapter-1"]),
@@ -1505,7 +1540,7 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
       ...chapterIdField,
       subtitle: portableProseSchema(100),
       description: portableProseSchema(240),
-      theme: z.enum(["garden", "party", "arcade", "toybox"]),
+      theme: z.enum(["garden", "party", "arcade", "toybox", "casino"]),
       representedDateRange: levelEditorRepresentedDateRangeSchema,
       recoveredAge: levelEditorRecoveredAgeSchema,
       previewMemories: z.tuple([
@@ -1892,7 +1927,11 @@ function assertEncounterFitsSlot(
   reference: LevelEditorEncounterReference,
   path: string,
 ): void {
-  const identity = encounterIdentity(reference, candidateMapFor(project));
+  const identity = encounterIdentity(
+    reference,
+    candidateMapFor(project),
+    project.catalogVersion,
+  );
   if (!identity)
     commandError(
       path,
@@ -1913,12 +1952,13 @@ function assertEncounterFitsSlot(
 }
 
 function chapterHostsBestiesRoutine(
+  project: MutableWorldProject,
   chapter: MutableWorldChapter,
 ): boolean {
   const boss = chapter.encounterSlots.boss;
   return (
     boss.source === "catalog" &&
-    LEVEL_EDITOR_PREPARED_ENEMIES.some(
+    levelEditorPreparedEnemies(project.catalogVersion).some(
       (entry) =>
         entry.id === boss.catalogEntryId &&
         entry.version === boss.catalogEntryVersion &&
@@ -2478,7 +2518,10 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
       return;
     case "section.add": {
       const hostsBesties = "routeId" in chapter
-        ? chapterHostsBestiesRoutine(worldChapterForCommand(chapter))
+        ? chapterHostsBestiesRoutine(
+            worldProjectForCommand(project),
+            worldChapterForCommand(chapter),
+          )
         : undefined;
       const before = levelIssues(level, hostsBesties);
       const planned = planLevelEditorSection(level, command);

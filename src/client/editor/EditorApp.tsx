@@ -1,29 +1,17 @@
 import { useState } from "react";
-import { authoredLevelResolverFor } from "../../game/authored-layout";
-import type { SaveView } from "../../shared/contracts";
-import {
-  resolveLevelEditorProject,
-  type LevelEditorProject,
-} from "../../shared/editor-project";
 import { GameScreen } from "../GameScreen";
 import { api } from "../api";
+import {
+  RAT_CASINO_CHAPTER_ID,
+  RAT_CASINO_WORLD_PROJECT,
+  resolveEditorPlaytestResponse,
+  type EditorPlaytestResponse,
+  type ResolvedEditorPlaytest,
+} from "../rat-casino-project";
 import {
   EditorWorkspace,
   type EditorPlaytestRequest,
 } from "./EditorWorkspace";
-
-interface EditorPlaytestResponse {
-  readonly save: SaveView;
-  readonly project: LevelEditorProject;
-  readonly fingerprint: string;
-}
-
-interface EditorPreview {
-  readonly save: SaveView;
-  readonly project: LevelEditorProject;
-  readonly resolver: ReturnType<typeof authoredLevelResolverFor>;
-  readonly fingerprint: string;
-}
 
 export function EditorUnavailable() {
   return (
@@ -35,23 +23,40 @@ export function EditorUnavailable() {
 }
 
 export function EditorApp() {
-  const [preview, setPreview] = useState<EditorPreview | null>(null);
+  const [preview, setPreview] = useState<
+    (ResolvedEditorPlaytest & { chapterOnlyRouteId?: string }) | null
+  >(null);
 
   const startPlaytest = async (request: EditorPlaytestRequest) => {
     const response = await api<EditorPlaytestResponse>("/editor/playtests", request);
-    const resolved = resolveLevelEditorProject(response.project);
+    const resolved = resolveEditorPlaytestResponse(response);
+    const chapter = resolved.project.chapters.find(
+      (candidate) => candidate.chapterId === request.chapterId,
+    );
     setPreview({
-      save: response.save,
-      project: resolved.project,
-      resolver: authoredLevelResolverFor(resolved.levels),
-      fingerprint: response.fingerprint,
+      ...resolved,
+      ...(request.scope === "chapter" && chapter
+        ? { chapterOnlyRouteId: "routeId" in chapter
+            ? chapter.routeId
+            : chapter.templateRouteId }
+        : {}),
     });
   };
 
   return (
     <>
       <div className={preview ? "editor-suspended" : undefined}>
-        <EditorWorkspace active={!preview} onPlaytest={startPlaytest} />
+        <EditorWorkspace
+          active={!preview}
+          onPlaytest={startPlaytest}
+          starterProject={{
+            project: RAT_CASINO_WORLD_PROJECT,
+            chapterId: RAT_CASINO_CHAPTER_ID,
+            actionLabel: "Open Rat Casino sample",
+            confirmation:
+              "Open the Rat Casino sample? Your current draft will download first, and Undo can restore it in this editor.",
+          }}
+        />
       </div>
       {preview && (
         <GameScreen
@@ -61,30 +66,10 @@ export function EditorApp() {
           ephemeral
           authoredLevelResolver={preview.resolver}
           leaveLabel="Back to editor"
-          chapterTitles={Object.fromEntries(
-            preview.project.chapters.map((chapter) => [
-              "routeId" in chapter ? chapter.routeId : chapter.templateRouteId,
-              chapter.name,
-            ]),
-          )}
-          chapterSubtitles={Object.fromEntries(
-            preview.project.chapters.flatMap((chapter) =>
-              "routeId" in chapter && chapter.subtitle
-                ? [[chapter.routeId, chapter.subtitle]]
-                : [],
-            ),
-          )}
-          chapterDescriptions={Object.fromEntries(
-            preview.project.chapters.flatMap((chapter) =>
-              "routeId" in chapter
-                ? [[
-                    chapter.routeId,
-                    chapter.description ??
-                      "Find the memories, cross the course and face this world's boss.",
-                  ]]
-                : [],
-            ),
-          )}
+          chapterTitles={preview.chapterTitles}
+          chapterSubtitles={preview.chapterSubtitles}
+          chapterDescriptions={preview.chapterDescriptions}
+          chapterOnlyRouteId={preview.chapterOnlyRouteId}
         />
       )}
     </>

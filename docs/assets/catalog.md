@@ -5,7 +5,7 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The new arcade, toybox and Rat Casino work below is studio-only; the [playtest guide](playtest.md) describes the artwork currently used in the game.
+Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. Arcade and toybox kits remain studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
 **40 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
@@ -27,7 +27,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Parody characters {#parody-characters}
 
-The two Besties actors join four completed parody characters in the playtest library. All six Rat Casino performers have separate technically checked Blender candidates awaiting Tom's exact-art review; Nap Captain and the first Rat Pit Boss export are paused partial models. The One-Star Diva is a paused concept. The classic mascot ensemble keeps the broad Rat Pit Boss center stage and Chick-flia at his side. Its earlier glossy studies and first rat export remain in the review history. No Rat Casino character is mapped into gameplay.
+The two Besties actors join four completed parody characters in the playtest library. The six technically checked Rat Casino performers now appear in a private fictional level trial: the broad Rat Pit Boss leads, Chick-flia and three other mascots fill ordinary encounters, and Golden waits beside the stage as a noncombat cameo. Final device/art acceptance remains open. Nap Captain and the first Rat Pit Boss export are paused partial models; the One-Star Diva is a paused concept. Earlier glossy studies remain in the review history.
 
 <div class="catalog-grid" markdown="1">
 
@@ -37,7 +37,7 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Rat Casino ensemble](reviews/rat-casino-ensemble/v003.md)
 
-<span class="catalog-state">Classic worn-mascot concept + six turnarounds · v003 · Studio only</span>
+<span class="catalog-state">Classic worn-mascot concept + six turnarounds · v003 · Private level trial</span>
 
 </div>
 
@@ -47,7 +47,7 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Rat Pit Boss](reviews/rat-pit-boss/v002.md)
 
-<span class="catalog-state">3D model · v002 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v002 · Rat Casino boss in private playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/01f1c1460f6d96d1.webp" alt="Corrected worn Rat Pit Boss front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -59,7 +59,7 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Chick-flia](reviews/chick-flia/v001.md)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Rat Casino encounter in private playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/43a706b5c74e9426.webp" alt="Corrected plain-eyed Chick-flia front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -71,7 +71,7 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Jackrabbit Drummer](reviews/jackrabbit-drummer/v001.md)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Rat Casino encounter in private playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/8405105c636196ae.webp" alt="Corrected patched Jackrabbit Drummer front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -83,7 +83,7 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Fox Card Shark](reviews/fox-card-shark/v001.md)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Rat Casino encounter in private playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/dfd3b00a6743df8f.webp" alt="Corrected worn russet Fox Card Shark front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -95,7 +95,7 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Moth Projectionist](reviews/moth-projectionist/v001.md)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Rat Casino encounter in private playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/af80381698071ed6.webp" alt="Corrected muted teal Moth Projectionist front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -107,7 +107,7 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Golden After-Hours Rat](reviews/golden-after-hours-rat/v001.md)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Rat Casino noncombat cameo in private playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/858e699da2011d07.webp" alt="Corrected worn golden spare-rat front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -265,7 +265,7 @@ Browse each clearing piece and the arcade, toybox and Rat Casino scenery separat
 
 ### [Rat Casino marquee arch](reviews/rat-casino-kit/v001.md#marquee-arch)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Rat Casino scenery in private playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/af65e6eeb3b4a8ae.webp" alt="Rat Casino kit inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -277,7 +277,7 @@ Browse each clearing piece and the arcade, toybox and Rat Casino scenery separat
 
 ### [Rat Casino roulette dais](reviews/rat-casino-kit/v001.md#roulette-dais)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Rat Casino scenery in private playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/af65e6eeb3b4a8ae.webp" alt="Rat Casino kit inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -289,7 +289,7 @@ Browse each clearing piece and the arcade, toybox and Rat Casino scenery separat
 
 ### [Rat Casino slot cabinet](reviews/rat-casino-kit/v001.md#slot-cabinet)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Rat Casino scenery in private playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/af65e6eeb3b4a8ae.webp" alt="Rat Casino kit inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -605,7 +605,7 @@ Original inspiration and construction images. These are illustrations; related m
 
 ### [Rat Casino kit](reviews/rat-casino-kit/v001.md)
 
-<span class="catalog-state">Environment concept · v001 · Three model candidates ready</span>
+<span class="catalog-state">Environment concept · v001 · Three scenic models in private playtest</span>
 
 </div>
 

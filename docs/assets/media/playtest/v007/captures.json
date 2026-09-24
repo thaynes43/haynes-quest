@@ -1,0 +1,24 @@
+{
+  "version": "v007",
+  "routeId": "rat-casino-v1",
+  "projectId": "rat-casino-adventure",
+  "projectSha256": "3565b382bc3b8ec5f95315cf5e427c3674b7ced2e9bc63bd5db0570509ea5c43",
+  "browser": "headless Chromium 153.0.8010.12 with ANGLE/SwiftShader software WebGL",
+  "method": "Local ephemeral playtest; ordinary keyboard movement, jump and attack; no fixture action shortcuts",
+  "sourceRun": "tests/e2e/rat-casino.mjs, final-source local candidate",
+  "physicalDeviceEvidence": false,
+  "screenshots": [
+    {
+      "file": "rat-casino-foyer.png",
+      "sha256": "8d491c02260aedaa595f705d8576610ba5cbf5a2186534f92b27f3f777a2a4c5"
+    },
+    {
+      "file": "rat-casino-card-room.png",
+      "sha256": "b3531ded5c05b8b8edd91d300f336f32bffd14a06033092dc7fb6052cc6dd103"
+    },
+    {
+      "file": "rat-casino-boss-stage.png",
+      "sha256": "7cb6cdc30809fb637a5d1efee5d4c25a5f4ef9fe66c5a123c5fee1b94a0ff680"
+    }
+  ]
+}

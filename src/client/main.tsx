@@ -10,6 +10,13 @@ import { GameScreen } from "./GameScreen";
 import { MemoryImage } from "./MemoryImage";
 import { api, friendlyError } from "./api";
 import { EditorApp, EditorUnavailable } from "./editor/EditorApp";
+import {
+  RAT_CASINO_PLAYTEST_REQUEST,
+  RAT_CASINO_ROUTE_ID,
+  resolveEditorPlaytestResponse,
+  type EditorPlaytestResponse,
+  type ResolvedEditorPlaytest,
+} from "./rat-casino-project";
 import { installMultiTouchActivation } from "./touch-activation";
 import { installViewportZoomLock } from "./viewport-zoom";
 import "./styles.css";
@@ -73,6 +80,8 @@ function App() {
   const [saves, setSaves] = useState<SaveSummary[]>([]);
   const [page, setPage] = useState<"home" | "setup" | "game">("home");
   const [save, setSave] = useState<SaveView>();
+  const [editorPlaytest, setEditorPlaytest] =
+    useState<ResolvedEditorPlaytest>();
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const refresh = useCallback(async () => {
@@ -99,6 +108,7 @@ function App() {
     setError("");
     try {
       setSave(await api<SaveView>(`/saves/${id}`));
+      setEditorPlaytest(undefined);
       setPage("game");
     } catch (e) {
       setError(friendlyError(e));
@@ -109,6 +119,7 @@ function App() {
   async function leave() {
     setPage("home");
     setSave(undefined);
+    setEditorPlaytest(undefined);
     try {
       if (session?.progressMode !== "ephemeral") await refresh();
     } catch (e) {
@@ -120,6 +131,25 @@ function App() {
     setError("");
     try {
       setSave(await api<SaveView>("/playtest/start", { chapter }));
+      setEditorPlaytest(undefined);
+      setPage("game");
+    } catch (e) {
+      setError(friendlyError(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function startRatCasino() {
+    setBusy(true);
+    setError("");
+    try {
+      const response = await api<EditorPlaytestResponse>(
+        "/editor/playtests",
+        RAT_CASINO_PLAYTEST_REQUEST,
+      );
+      const resolved = resolveEditorPlaytestResponse(response);
+      setEditorPlaytest(resolved);
+      setSave(resolved.save);
       setPage("game");
     } catch (e) {
       setError(friendlyError(e));
@@ -155,6 +185,11 @@ function App() {
         initialSave={save}
         ephemeral={session?.progressMode === "ephemeral"}
         onLeave={() => void leave()}
+        authoredLevelResolver={editorPlaytest?.resolver}
+        chapterTitles={editorPlaytest?.chapterTitles}
+        chapterSubtitles={editorPlaytest?.chapterSubtitles}
+        chapterDescriptions={editorPlaytest?.chapterDescriptions}
+        chapterOnlyRouteId={editorPlaytest ? RAT_CASINO_ROUTE_ID : undefined}
       />
     );
   if (session?.progressMode === "ephemeral")
@@ -170,18 +205,25 @@ function App() {
           </a>
         </header>
         <main className="playtest-start">
-          <span className="eyebrow">A LITTLE ADVENTURE, EVERY TIME</span>
+          <span className="eyebrow">HAYNESNIGHTMARES · RAT CASINO</span>
           <h1>Jump in.</h1>
           <p>
-            Find your gear, collect little memories and take on a goofy boss.
+            Explore Rat Casino, or revisit the garden and Besties chapters.
           </p>
           <div className="playtest-start-actions">
             <button
               className="primary"
               disabled={busy}
+              onClick={() => void startRatCasino()}
+            >
+              {busy ? "Opening…" : "Enter Rat Casino"}
+            </button>
+            <button
+              className="secondary"
+              disabled={busy}
               onClick={() => void startPlaytest(1)}
             >
-              {busy ? "Opening the clearing…" : "Play from the beginning"}
+              Play from the beginning
             </button>
             <button
               className="secondary"
@@ -215,7 +257,7 @@ function App() {
           </p>
         </main>
         <footer>
-          <span>Two chapters · Six fictional memories</span>
+          <span>Three chapters · Fictional memories</span>
           <span>Family-photo setup comes later.</span>
         </footer>
       </div>

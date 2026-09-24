@@ -13,6 +13,7 @@ import {
   PARODY_CATALOGS,
   PARODY_CATALOG_VERSIONS,
 } from '../shared/parody-catalog.js';
+import { levelEditorPreparedEnemies } from '../shared/editor-project.js';
 import {
   FRIENDLY_CATALOG_VERSIONS,
   friendlyDefinitionsForPlan,
@@ -113,6 +114,7 @@ const levelV2Schema = z.object({
     'remix-runway-v1',
     'remix-runway-v2',
     'besties-obby-v1',
+    'rat-casino-v1',
   ]),
   routeId: z.enum([
     'gentle-intro-v1',
@@ -131,6 +133,7 @@ const levelV3Schema = z.object({
     'remix-runway-v1',
     'remix-runway-v2',
     'besties-obby-v1',
+    'rat-casino-v1',
   ]),
   routeId: z.enum([
     'gentle-intro-v1',
@@ -151,6 +154,7 @@ const editorWorldLevelSchema = z.object({
     'remix-runway-v1',
     'remix-runway-v2',
     'besties-obby-v1',
+    'rat-casino-v1',
   ]),
   routeId: identifier,
   representedEndDate: dateOnly,
@@ -354,8 +358,11 @@ function validPlan(plan: AdventurePlan): boolean {
 }
 
 function validEditorWorldPlan(plan: EditorWorldAdventurePlan): boolean {
-  const catalog = PARODY_CATALOGS[plan.catalogVersion];
-  if (!catalog || plan.catalogVersion !== 'parody-catalog-v5') return false;
+  if (
+    (plan.catalogVersion !== 'parody-catalog-v5' &&
+      plan.catalogVersion !== 'parody-catalog-v6')
+  ) return false;
+  const catalog = levelEditorPreparedEnemies(plan.catalogVersion);
   for (const level of plan.levels) {
     const expectedKinds = ['ordinary-a', 'ordinary-b', 'ordinary-a', 'ordinary-b', 'boss'] as const;
     const expectedRoles = ['ordinary', 'ordinary', 'ordinary', 'ordinary', 'boss'] as const;

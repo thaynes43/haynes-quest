@@ -4,6 +4,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createLevelEditorProject,
+  createWorldEditorProject,
   isLevelEditorProjectV2,
   parseLevelEditorProjectJson,
 } from "../../src/shared/editor-project";
@@ -153,5 +154,79 @@ describe("complete world editor", () => {
       candidateId: project.enemyCandidates[0]?.id,
     });
     expect(JSON.stringify(project.enemyCandidates)).not.toMatch(/assetUrl|https?:\/\//);
+  });
+
+  it("downloads the current draft before opening a sample and keeps the replacement undoable", async () => {
+    const current = createWorldEditorProject({
+      projectId: "project-before-sample",
+      name: "Current draft",
+    });
+    const sample = createWorldEditorProject({
+      projectId: "project-rat-casino-sample",
+      name: "Rat Casino sample",
+    });
+    window.localStorage.setItem(EDITOR_STORAGE_KEY, JSON.stringify(current));
+    const confirm = vi.spyOn(window, "confirm").mockReturnValue(true);
+    const anchorClick = vi
+      .spyOn(HTMLAnchorElement.prototype, "click")
+      .mockImplementation(() => undefined);
+    const createObjectUrl = vi.fn(() => "blob:editor-backup");
+    const revokeObjectUrl = vi.fn();
+    Object.defineProperty(URL, "createObjectURL", {
+      configurable: true,
+      value: createObjectUrl,
+    });
+    Object.defineProperty(URL, "revokeObjectURL", {
+      configurable: true,
+      value: revokeObjectUrl,
+    });
+
+    await act(async () =>
+      root.render(
+        <EditorWorkspace
+          onPlaytest={vi.fn(async () => {})}
+          starterProject={{
+            project: sample,
+            chapterId: "chapter-2",
+            actionLabel: "Open Rat Casino sample",
+            confirmation: "Open sample?",
+          }}
+        />,
+      ),
+    );
+    await press("Open Rat Casino sample");
+    await settleAutosave();
+
+    expect(confirm).toHaveBeenCalledWith("Open sample?");
+    expect(createObjectUrl).toHaveBeenCalledOnce();
+    expect(anchorClick).toHaveBeenCalledOnce();
+    expect(revokeObjectUrl).toHaveBeenCalledWith("blob:editor-backup");
+    let saved = parseLevelEditorProjectJson(
+      window.localStorage.getItem(EDITOR_STORAGE_KEY)!,
+    );
+    expect(saved).toMatchObject({
+      projectId: "project-rat-casino-sample",
+      name: "Rat Casino sample",
+      revision: 1,
+    });
+    expect(
+      (container.querySelector('select[aria-label="Chapter"]') as HTMLSelectElement)
+        .value,
+    ).toBe("chapter-2");
+
+    await press("Undo");
+    await settleAutosave();
+    saved = parseLevelEditorProjectJson(
+      window.localStorage.getItem(EDITOR_STORAGE_KEY)!,
+    );
+    expect(saved).toMatchObject({
+      projectId: "project-before-sample",
+      name: "Current draft",
+      revision: 2,
+    });
+    confirm.mockRestore();
+    anchorClick.mockRestore();
+    delete (URL as unknown as { createObjectURL?: unknown }).createObjectURL;
+    delete (URL as unknown as { revokeObjectURL?: unknown }).revokeObjectURL;
   });
 });

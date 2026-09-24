@@ -12,6 +12,12 @@ const parodyMotion: Record<
   "sir-flush-a-lot": { contactFraction: 0.625, height: 1 },
   "nap-captain": { contactFraction: 0.6, height: 1.05 },
   "one-star-diva": { contactFraction: 0.625, height: 1.65 },
+  "chick-flia": { contactFraction: 0.625, height: 1.72 },
+  "jackrabbit-drummer": { contactFraction: 0.625, height: 1.96 },
+  "fox-card-shark": { contactFraction: 0.625, height: 1.8 },
+  "moth-projectionist": { contactFraction: 0.625, height: 1.65 },
+  "rat-pit-boss": { contactFraction: 0.625, height: 2.15 },
+  "golden-after-hours-rat": { contactFraction: 0.625, height: 1.7 },
 };
 
 interface ParodyArtworkBase {

@@ -37,8 +37,7 @@ const friendlyNames: Record<string, string> = {
   trendweaver: "Trendweaver",
 };
 
-/** Every optional prop below exists for the level editor preview. Omitting all
- *  of them is ordinary private play, byte-for-byte unchanged. */
+/** Preview-only presentation; omitting these leaves ordinary private play unchanged. */
 export interface GameScreenPreviewProps {
   /** Resolves the active route's authored document from a frozen snapshot. */
   authoredLevelResolver?: AuthoredLevelResolver;
@@ -49,6 +48,8 @@ export interface GameScreenPreviewProps {
   chapterSubtitles?: Readonly<Partial<Record<string, string>>>;
   /** Author-written introduction for each preview route. */
   chapterDescriptions?: Readonly<Partial<Record<string, string>>>;
+  /** A chapter-only trial shows only memories earned in its selected chapter. */
+  chapterOnlyRouteId?: string;
 }
 
 export function GameScreen({
@@ -60,6 +61,7 @@ export function GameScreen({
   chapterTitles,
   chapterSubtitles,
   chapterDescriptions,
+  chapterOnlyRouteId,
 }: {
   initialSave: SaveView;
   onLeave: () => void;
@@ -81,6 +83,7 @@ export function GameScreen({
       chapterTitles={chapterTitles}
       chapterSubtitles={chapterSubtitles}
       chapterDescriptions={chapterDescriptions}
+      chapterOnlyRouteId={chapterOnlyRouteId}
     />
   );
 }
@@ -150,6 +153,7 @@ function Adventure({
   chapterTitles,
   chapterSubtitles,
   chapterDescriptions,
+  chapterOnlyRouteId,
 }: {
   initialSave: SaveView;
   onLeave: () => void;
@@ -188,6 +192,27 @@ function Adventure({
   victoryOpen.current = showVictory;
   const view = save.adventure!;
   const level = view.activeLevel;
+  const initialLevel = initialSave.adventure?.activeLevel;
+  const selectedPreviewLevel =
+    chapterOnlyRouteId &&
+    initialLevel?.routeId === chapterOnlyRouteId &&
+    initialLevel.majorMemoryId
+      ? initialLevel
+      : null;
+  const selectedMemoryIds = selectedPreviewLevel
+    ? new Set([
+        ...(selectedPreviewLevel.minorMemoryIds ?? []),
+        ...(selectedPreviewLevel.majorMemoryId
+          ? [selectedPreviewLevel.majorMemoryId]
+          : []),
+      ])
+    : null;
+  const visibleMemories = selectedMemoryIds
+    ? save.memories.filter((memory) => selectedMemoryIds.has(memory.id))
+    : save.memories;
+  const visibleRecoveredCount = visibleMemories.filter((memory) =>
+    save.recoveredIds.includes(memory.id),
+  ).length;
   const routeMemories = Boolean(level?.majorMemoryId);
   const minorCount = save.memories.filter(
     (memory) =>
@@ -203,8 +228,9 @@ function Adventure({
     story.description;
   const chapterSubtitle =
     level?.routeId ? chapterSubtitles?.[level.routeId] : undefined;
-  const previewChapterCount =
-    level?.totalLevels ?? Math.max(1, Math.ceil(save.memories.length / 3));
+  const previewChapterCount = selectedMemoryIds
+    ? 1
+    : level?.totalLevels ?? Math.max(1, Math.ceil(save.memories.length / 3));
   const hasDraftEnemy = level?.encounters.some(
     (encounter) => encounter.content?.placeholder === "neutral-candidate-v1",
   );
@@ -1139,18 +1165,18 @@ function Adventure({
         <Modal
           notice={feedback}
           title="Your remembered world."
-          eyebrow={`${save.recoveredIds.length} OF ${save.memories.length} MEMORIES`}
+          eyebrow={`${visibleRecoveredCount} OF ${visibleMemories.length} MEMORIES`}
           onClose={() => setShowAlbum(false)}
           wide
         >
           <div className="memory-grid">
-            {save.memories
+            {visibleMemories
               .filter((memory) => save.recoveredIds.includes(memory.id))
               .map((memory) => (
                 <MemoryCard key={memory.id} memory={memory} />
               ))}
           </div>
-          {!save.recoveredIds.length && (
+          {!visibleRecoveredCount && (
             <p>
               Look for two little memories along the path and a big memory after
               the boss.
@@ -1161,18 +1187,19 @@ function Adventure({
       {activeModal === "complete" && (
         <Modal
           notice={feedback}
-          title="Every chapter, a little more you."
-          eyebrow="JOURNEY COMPLETE"
+          title={selectedMemoryIds
+            ? `${chapterTitles?.[chapterOnlyRouteId ?? ""] ?? "Chapter"} complete.`
+            : "Every chapter, a little more you."}
+          eyebrow={selectedMemoryIds ? "CHAPTER COMPLETE" : "JOURNEY COMPLETE"}
           wide
         >
           <p>
-            {view.completedLevelIds.length} eras faced.{" "}
-            {save.recoveredIds.length} memories reclaimed. Your traveler reached
-            age {save.ageYears}; this journey ends where its selected memories
-            end.
+            {selectedMemoryIds
+              ? `${visibleRecoveredCount} fictional memories reclaimed. Your traveler reached age ${save.ageYears}.`
+              : `${view.completedLevelIds.length} eras faced. ${save.recoveredIds.length} memories reclaimed. Your traveler reached age ${save.ageYears}; this journey ends where its selected memories end.`}
           </p>
           <div className="memory-grid">
-            {save.memories.map((memory) => (
+            {visibleMemories.map((memory) => (
               <MemoryCard key={memory.id} memory={memory} />
             ))}
           </div>

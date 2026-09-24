@@ -70,6 +70,13 @@ export interface EditorPlaytestRequest {
   readonly scope: "chapter" | "adventure";
 }
 
+export interface EditorStarterProject {
+  readonly project: LevelEditorProject;
+  readonly chapterId: LevelEditorChapterId;
+  readonly actionLabel: string;
+  readonly confirmation: string;
+}
+
 interface EditorCursor {
   readonly chapterId: LevelEditorChapterId;
   readonly object: EditorSelection | null;
@@ -180,9 +187,11 @@ function importError(error: unknown): string {
 export function EditorWorkspace({
   active = true,
   onPlaytest,
+  starterProject,
 }: {
   active?: boolean;
   onPlaytest(request: EditorPlaytestRequest): Promise<void>;
+  starterProject?: EditorStarterProject;
 }) {
   const [initial] = useState(initialEditorState);
   const [history, setHistory] = useState(initial.history);
@@ -638,6 +647,48 @@ export function EditorWorkspace({
     }
   };
 
+  const openStarterProject = () => {
+    if (!starterProject || !window.confirm(starterProject.confirmation)) return;
+    const current = latestHistory.current;
+    const starterChapter = starterProject.project.chapters.find(
+      (candidate) => candidate.chapterId === starterProject.chapterId,
+    );
+    if (!starterChapter) {
+      setCommandFailure("The sample project could not be opened.");
+      return;
+    }
+
+    if (corruptRaw !== null) {
+      downloadText(corruptRaw, "saved-draft.json");
+    } else {
+      downloadText(
+        serializeLevelEditorProject(current.present.project),
+        readableProjectFilename(current.present.project.name),
+      );
+    }
+
+    const nextProject = rebaseLevelEditorProject(
+      starterProject.project,
+      current.present.project.revision + 1,
+    );
+    const next = commitEditorHistory(current, {
+      project: nextProject,
+      selection: { chapterId: starterChapter.chapterId, object: null },
+    });
+    latestHistory.current = next;
+    setHistory(next);
+    setIssues(validateLevelEditorProject(nextProject));
+    setCorruptRaw(null);
+    setCommandFailure("");
+    setPlaytestBlocked(false);
+    setPlaytestError("");
+    setChecksOpen(false);
+    setInspectorTab("world");
+    setMobilePanel("world");
+    if (!storageUnavailable) setStorageStatus("Saving…");
+    window.requestAnimationFrame(() => viewport.current?.frameLevel());
+  };
+
   const projectStatus = issues.length === 0 ? "Ready to play" : "Draft";
   const issueSummary = `${issues.length} ${issues.length === 1 ? "issue" : "issues"} to fix`;
 
@@ -976,6 +1027,11 @@ export function EditorWorkspace({
           >
             New project
           </button>
+          {starterProject && (
+            <button type="button" onClick={openStarterProject}>
+              {starterProject.actionLabel}
+            </button>
+          )}
           <button type="button" onClick={validateNow}>
             Validate
           </button>

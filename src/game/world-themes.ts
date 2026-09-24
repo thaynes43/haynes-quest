@@ -50,6 +50,12 @@ export type EnvironmentKit =
       readonly state: "pending-kit";
       readonly assets: null;
       readonly fallbackName: string;
+    }
+  | {
+      /** Exact local Blender scenery selected for the private Rat Casino trial. */
+      readonly state: "prepared-kit";
+      readonly assets: null;
+      readonly fallbackName: null;
     };
 
 export interface RuntimeWorldTheme {
@@ -248,9 +254,54 @@ const toybox: RuntimeWorldTheme = {
   usesPathTiles: false,
 };
 
+const casino: RuntimeWorldTheme = {
+  id: "casino",
+  palette: {
+    sky: 0x292333,
+    grass: 0x34283c,
+    leaf: 0x594354,
+    light: 0xffd59a,
+    accent: 0xb28a57,
+    mist: 0x4b3a4e,
+  },
+  course: {
+    sky: 0x292333,
+    ground: 0x34283c,
+    light: 0xffd59a,
+    exposure: 1.03,
+  },
+  obby: {
+    platformSide: 0x493548,
+    platformTop: 0x674957,
+    platformEdge: 0xc09b60,
+    platformCenter: 0x79545f,
+    platformRails: 0x9b784d,
+    ferrySide: 0x4b3448,
+    ferryTop: 0x85624f,
+    ferryEdge: 0xd2aa70,
+    ferryDetail: 0x9b784d,
+    hazard: 0x825069,
+    hazardBand: 0xe3bc78,
+    checkpointInactive: 0xb78755,
+    checkpointActive: 0xa4c4ac,
+  },
+  meadow: {
+    grass: 0x493548,
+    flower: 0xc09b60,
+    particles: 0xe3bc78,
+  },
+  environment: {
+    state: "prepared-kit",
+    assets: null,
+    fallbackName: null,
+  },
+  environmentScale: 1,
+  usesPathTiles: false,
+};
+
 export const WORLD_THEMES: Readonly<
   Record<AuthoredLevelTheme, RuntimeWorldTheme>
-> = Object.freeze({ garden, party, arcade, toybox });
+> = Object.freeze({ garden, party, arcade, toybox, casino });
 
 /**
  * V3 preview routes choose their own world. Published v1/v2 and legacy saves

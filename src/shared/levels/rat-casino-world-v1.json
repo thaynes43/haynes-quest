@@ -1,0 +1,3261 @@
+{
+  "catalogVersion": "parody-catalog-v6",
+  "chapters": [
+    {
+      "chapterId": "chapter-1",
+      "description": "Collect both tools and two memories, clear the encounters, then recover the major memory after the boss.",
+      "encounterSlots": {
+        "boss": {
+          "catalogEntryId": "drama-dragon",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-1": {
+          "catalogEntryId": "mister-hiss",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-2": {
+          "catalogEntryId": "peel-patrol",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-3": {
+          "catalogEntryId": "mister-hiss",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-4": {
+          "catalogEntryId": "peel-patrol",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        }
+      },
+      "level": {
+        "anchors": {
+          "encounters": {
+            "boss": {
+              "arena": {
+                "maxX": 3.8,
+                "maxZ": -110.3,
+                "minX": -3.8,
+                "minZ": -113.8
+              },
+              "checkpointId": "dragon-safe",
+              "kind": "boss",
+              "platformId": "dragon-clearing",
+              "position": {
+                "x": 0,
+                "y": 0.3,
+                "z": -111.8
+              }
+            },
+            "ordinary-1": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -33.8,
+                "minX": -4,
+                "minZ": -36.8
+              },
+              "checkpointId": "picnic-safe",
+              "kind": "ordinary-a",
+              "platformId": "picnic",
+              "position": {
+                "x": 2,
+                "y": 0,
+                "z": -35.3
+              }
+            },
+            "ordinary-2": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -55.8,
+                "minX": -4,
+                "minZ": -58.8
+              },
+              "checkpointId": "woodland-safe",
+              "kind": "ordinary-b",
+              "platformId": "woodland-rest",
+              "position": {
+                "x": 2,
+                "y": 0,
+                "z": -57.3
+              }
+            },
+            "ordinary-3": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -76.8,
+                "minX": -3,
+                "minZ": -80.8
+              },
+              "checkpointId": "grove-safe",
+              "kind": "ordinary-a",
+              "platformId": "memory-grove",
+              "position": {
+                "x": 2,
+                "y": 0.3,
+                "z": -78.8
+              }
+            },
+            "ordinary-4": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -93.8,
+                "minX": -4,
+                "minZ": -96.8
+              },
+              "checkpointId": "pond-safe",
+              "kind": "ordinary-b",
+              "platformId": "pond-dock",
+              "position": {
+                "x": 2,
+                "y": 0,
+                "z": -94.8
+              }
+            }
+          },
+          "finish": {
+            "platformId": "garden-reward",
+            "position": {
+              "x": 0,
+              "y": 0.3,
+              "z": -123.8
+            }
+          },
+          "friendlies": {
+            "friendly-1": {
+              "platformId": "welcome",
+              "position": {
+                "x": -3,
+                "y": 0,
+                "z": 1
+              }
+            },
+            "friendly-2": {
+              "platformId": "memory-grove",
+              "position": {
+                "x": -4.5,
+                "y": 0.3,
+                "z": -73.3
+              }
+            },
+            "friendly-3": {
+              "platformId": "woodland-side-2",
+              "position": {
+                "x": 9,
+                "y": 0,
+                "z": -66.8
+              }
+            }
+          },
+          "memories": {
+            "major": {
+              "platformId": "garden-reward",
+              "position": {
+                "x": 0,
+                "y": 0.3,
+                "z": -122.3
+              }
+            },
+            "minor-one": {
+              "platformId": "picnic",
+              "position": {
+                "x": -1,
+                "y": 0,
+                "z": -31.8
+              }
+            },
+            "minor-two": {
+              "platformId": "memory-grove",
+              "position": {
+                "x": -1.5,
+                "y": 0.3,
+                "z": -74.8
+              }
+            }
+          },
+          "pickups": {
+            "attack-tool": {
+              "platformId": "welcome",
+              "position": {
+                "x": -0.7,
+                "y": 0,
+                "z": -0.5
+              }
+            },
+            "guard-tool": {
+              "platformId": "picnic",
+              "position": {
+                "x": 1,
+                "y": 0,
+                "z": -31.8
+              }
+            }
+          },
+          "rewardRespawn": {
+            "platformId": "garden-reward",
+            "position": {
+              "x": 0,
+              "y": 0.3,
+              "z": -121.3
+            }
+          },
+          "spawn": {
+            "platformId": "welcome",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 1
+            }
+          }
+        },
+        "branches": [
+          [
+            "woodland-rest",
+            "woodland-side-1",
+            "woodland-side-2",
+            "woodland-side-3",
+            "memory-grove"
+          ]
+        ],
+        "connections": [
+          {
+            "from": "welcome",
+            "mode": "jump",
+            "safeMissPlatformId": "garden-practice-ground",
+            "to": "garden-hop-1"
+          },
+          {
+            "from": "garden-hop-1",
+            "mode": "jump",
+            "safeMissPlatformId": "garden-practice-ground",
+            "to": "garden-hop-2"
+          },
+          {
+            "from": "garden-hop-2",
+            "mode": "jump",
+            "safeMissPlatformId": "garden-practice-ground",
+            "to": "garden-hop-3"
+          },
+          {
+            "from": "garden-hop-3",
+            "mode": "jump",
+            "safeMissPlatformId": "garden-practice-ground",
+            "to": "garden-practice-down-1"
+          },
+          {
+            "from": "garden-practice-down-1",
+            "mode": "jump",
+            "safeMissPlatformId": "garden-practice-ground",
+            "to": "garden-practice-down-2"
+          },
+          {
+            "from": "garden-practice-down-2",
+            "mode": "jump",
+            "safeMissPlatformId": "garden-practice-ground",
+            "to": "garden-practice-down-3"
+          },
+          {
+            "from": "garden-practice-down-3",
+            "mode": "jump",
+            "safeMissPlatformId": "garden-practice-ground",
+            "to": "picnic"
+          },
+          {
+            "from": "picnic",
+            "mode": "jump",
+            "to": "winding-east"
+          },
+          {
+            "from": "winding-east",
+            "mode": "jump",
+            "to": "winding-west"
+          },
+          {
+            "from": "winding-west",
+            "mode": "jump",
+            "to": "woodland-rest"
+          },
+          {
+            "from": "woodland-rest",
+            "mode": "jump",
+            "to": "padded-bridge"
+          },
+          {
+            "from": "padded-bridge",
+            "mode": "jump",
+            "to": "memory-grove"
+          },
+          {
+            "from": "memory-grove",
+            "mode": "jump",
+            "to": "little-rise"
+          },
+          {
+            "from": "little-rise",
+            "mode": "jump",
+            "to": "little-landing"
+          },
+          {
+            "from": "little-landing",
+            "mode": "jump",
+            "to": "pond-dock"
+          },
+          {
+            "from": "pond-dock",
+            "mode": "ride",
+            "to": "garden-ferry"
+          },
+          {
+            "from": "garden-ferry",
+            "mode": "ride",
+            "to": "dragon-clearing"
+          },
+          {
+            "from": "dragon-clearing",
+            "mode": "walk",
+            "to": "garden-reward"
+          },
+          {
+            "from": "woodland-rest",
+            "mode": "walk",
+            "to": "woodland-side-1"
+          },
+          {
+            "from": "woodland-side-1",
+            "mode": "jump",
+            "to": "woodland-side-2"
+          },
+          {
+            "from": "woodland-side-2",
+            "mode": "jump",
+            "to": "woodland-side-3"
+          },
+          {
+            "from": "woodland-side-3",
+            "mode": "jump",
+            "to": "memory-grove"
+          },
+          {
+            "from": "garden-practice-ground",
+            "mode": "walk",
+            "to": "welcome"
+          }
+        ],
+        "id": "chapter-1-route",
+        "mainPath": [
+          "welcome",
+          "garden-hop-1",
+          "garden-hop-2",
+          "garden-hop-3",
+          "garden-practice-down-1",
+          "garden-practice-down-2",
+          "garden-practice-down-3",
+          "picnic",
+          "winding-east",
+          "winding-west",
+          "woodland-rest",
+          "padded-bridge",
+          "memory-grove",
+          "little-rise",
+          "little-landing",
+          "pond-dock",
+          "garden-ferry",
+          "dragon-clearing",
+          "garden-reward"
+        ],
+        "pieces": [
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": 0
+            },
+            "id": "welcome",
+            "size": {
+              "x": 10,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1,
+              "y": 0,
+              "z": -6.2
+            },
+            "id": "garden-hop-1",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1,
+              "y": 0.3,
+              "z": -10.4
+            },
+            "id": "garden-hop-2",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1,
+              "y": 0.6,
+              "z": -14.6
+            },
+            "id": "garden-hop-3",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -33.8
+            },
+            "id": "picnic",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 3,
+              "y": -0.3,
+              "z": -41.8
+            },
+            "id": "winding-east",
+            "size": {
+              "x": 6,
+              "y": 0.6,
+              "z": 6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1,
+              "y": -0.3,
+              "z": -48.8
+            },
+            "id": "winding-west",
+            "size": {
+              "x": 8,
+              "y": 0.6,
+              "z": 6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -56.8
+            },
+            "id": "woodland-rest",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -66.3
+            },
+            "id": "padded-bridge",
+            "size": {
+              "x": 6,
+              "y": 0.6,
+              "z": 9
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0,
+              "z": -76.8
+            },
+            "id": "memory-grove",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 10
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0.3,
+              "z": -84.4
+            },
+            "id": "little-rise",
+            "size": {
+              "x": 6,
+              "y": 0.6,
+              "z": 3.2
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0,
+              "z": -88.8
+            },
+            "id": "little-landing",
+            "size": {
+              "x": 6,
+              "y": 0.6,
+              "z": 3.2
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -94.8
+            },
+            "id": "pond-dock",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 7
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -100.8
+            },
+            "id": "garden-ferry",
+            "motion": {
+              "axis": "z",
+              "distance": 0.5,
+              "period": 8
+            },
+            "size": {
+              "x": 3.4,
+              "y": 0.6,
+              "z": 3.4
+            },
+            "type": "moving-platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0,
+              "z": -111.8
+            },
+            "id": "dragon-clearing",
+            "size": {
+              "x": 14,
+              "y": 0.6,
+              "z": 17
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0,
+              "z": -122.8
+            },
+            "id": "garden-reward",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 5
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 7,
+              "y": -0.3,
+              "z": -60.8
+            },
+            "id": "woodland-side-1",
+            "size": {
+              "x": 4,
+              "y": 0.6,
+              "z": 6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 9,
+              "y": -0.3,
+              "z": -66.8
+            },
+            "id": "woodland-side-2",
+            "size": {
+              "x": 6,
+              "y": 0.6,
+              "z": 5
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 7,
+              "y": -0.3,
+              "z": -72.8
+            },
+            "id": "woodland-side-3",
+            "size": {
+              "x": 4,
+              "y": 0.6,
+              "z": 6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 3,
+              "y": 0.22,
+              "z": -41.8
+            },
+            "halfLength": 1,
+            "id": "east-padded-bar",
+            "motion": {
+              "axis": "x",
+              "distance": 1.5,
+              "period": 10,
+              "phase": 1.5707963267948966
+            },
+            "radius": 0.18,
+            "type": "sweeper"
+          },
+          {
+            "center": {
+              "x": -1,
+              "y": 0.22,
+              "z": -49.8
+            },
+            "halfLength": 1,
+            "id": "west-padded-bar",
+            "motion": {
+              "axis": "x",
+              "distance": 2.5,
+              "period": 11,
+              "phase": -1.5707963267948966
+            },
+            "radius": 0.18,
+            "type": "sweeper"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0.22,
+              "z": -66.8
+            },
+            "halfLength": 1.05,
+            "id": "garden-turnstile",
+            "radius": 0.18,
+            "rotation": {
+              "period": 13
+            },
+            "type": "sweeper"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "garden-start",
+            "platformId": "welcome",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 1
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "picnic-safe",
+            "platformId": "picnic",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -30.6
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "winding-safe",
+            "platformId": "winding-west",
+            "position": {
+              "x": -1,
+              "y": 0,
+              "z": -46.6
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "woodland-safe",
+            "platformId": "woodland-rest",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -53.6
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "grove-safe",
+            "platformId": "memory-grove",
+            "position": {
+              "x": 0,
+              "y": 0.3,
+              "z": -72.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "pond-safe",
+            "platformId": "pond-dock",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -92.1
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "dragon-safe",
+            "platformId": "dragon-clearing",
+            "position": {
+              "x": 0,
+              "y": 0.3,
+              "z": -104.3
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "garden-reward-safe",
+            "platformId": "garden-reward",
+            "position": {
+              "x": 0,
+              "y": 0.3,
+              "z": -121.3
+            },
+            "type": "checkpoint"
+          },
+          {
+            "center": {
+              "x": -1,
+              "y": 0.3,
+              "z": -18.8
+            },
+            "id": "garden-practice-down-1",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1,
+              "y": 0,
+              "z": -23
+            },
+            "id": "garden-practice-down-2",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1,
+              "y": -0.2,
+              "z": -27.2
+            },
+            "id": "garden-practice-down-3",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -16.75
+            },
+            "id": "garden-practice-ground",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 28.5
+            },
+            "type": "platform"
+          }
+        ],
+        "schemaVersion": "authored-level-v3",
+        "theme": "garden"
+      },
+      "name": "The Block Party",
+      "previewMemories": [
+        {
+          "date": "2020-07-01",
+          "label": "The first glow",
+          "slotId": "minor-one"
+        },
+        {
+          "date": "2022-01-01",
+          "label": "A small discovery",
+          "slotId": "minor-two"
+        },
+        {
+          "date": "2024-01-01",
+          "label": "A taller path",
+          "slotId": "major"
+        }
+      ],
+      "recoveredAge": {
+        "fromYears": 0,
+        "toYears": 4
+      },
+      "representedDateRange": {
+        "endDate": "2024-01-01",
+        "startDate": "2020-01-01"
+      },
+      "routeId": "chapter-1-route",
+      "sourceTemplateId": "garden-playground-v2",
+      "subtitle": "A playful course with memories, gear and a final showdown"
+    },
+    {
+      "chapterId": "chapter-2",
+      "description": "Cross the course, collect both tools and two memories, then win the boss encounter and recover the major memory.",
+      "encounterSlots": {
+        "boss": {
+          "catalogEntryId": "bickering-besties",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-1": {
+          "catalogEntryId": "sir-flush-a-lot-besties",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-2": {
+          "catalogEntryId": "peel-patrol-besties",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-3": {
+          "catalogEntryId": "sir-flush-a-lot-besties",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-4": {
+          "catalogEntryId": "peel-patrol-besties",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        }
+      },
+      "level": {
+        "anchors": {
+          "encounters": {
+            "boss": {
+              "arena": {
+                "maxX": 3.8,
+                "maxZ": -123.3,
+                "minX": -3.8,
+                "minZ": -127.3
+              },
+              "checkpointId": "besties-safe",
+              "kind": "boss",
+              "platformId": "besties-court",
+              "position": {
+                "x": 0,
+                "y": 0.9,
+                "z": -125.3
+              }
+            },
+            "ordinary-1": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -34.3,
+                "minX": -4,
+                "minZ": -37.3
+              },
+              "checkpointId": "party-picnic-safe",
+              "kind": "ordinary-a",
+              "platformId": "party-picnic",
+              "position": {
+                "x": 2,
+                "y": 0,
+                "z": -35.3
+              }
+            },
+            "ordinary-2": {
+              "arena": {
+                "maxX": 0,
+                "maxZ": -51.3,
+                "minX": -7,
+                "minZ": -55.3
+              },
+              "checkpointId": "ribbon-safe",
+              "kind": "ordinary-b",
+              "platformId": "ribbon-rest",
+              "position": {
+                "x": -4,
+                "y": 0,
+                "z": -53.3
+              }
+            },
+            "ordinary-3": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -84.3,
+                "minX": -4,
+                "minZ": -87.3
+              },
+              "checkpointId": "party-grove-safe",
+              "kind": "ordinary-a",
+              "platformId": "party-grove",
+              "position": {
+                "x": 2,
+                "y": 0,
+                "z": -85.3
+              }
+            },
+            "ordinary-4": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -102.3,
+                "minX": -4,
+                "minZ": -105.3
+              },
+              "checkpointId": "party-fair-safe",
+              "kind": "ordinary-b",
+              "platformId": "party-fair",
+              "position": {
+                "x": 2,
+                "y": 0,
+                "z": -103.3
+              }
+            }
+          },
+          "finish": {
+            "platformId": "party-reward",
+            "position": {
+              "x": 0,
+              "y": 0.9,
+              "z": -139.8
+            }
+          },
+          "friendlies": {
+            "friendly-1": {
+              "platformId": "party-welcome",
+              "position": {
+                "x": -3,
+                "y": 0,
+                "z": 1
+              }
+            },
+            "friendly-2": {
+              "platformId": "friend-balcony",
+              "position": {
+                "x": 4,
+                "y": 0,
+                "z": -78.8
+              }
+            },
+            "friendly-3": {
+              "platformId": "party-fair",
+              "position": {
+                "x": -5.3,
+                "y": 0,
+                "z": -98.9
+              }
+            }
+          },
+          "memories": {
+            "major": {
+              "platformId": "party-reward",
+              "position": {
+                "x": 0,
+                "y": 0.9,
+                "z": -138.3
+              }
+            },
+            "minor-one": {
+              "platformId": "party-picnic",
+              "position": {
+                "x": -1,
+                "y": 0,
+                "z": -31.8
+              }
+            },
+            "minor-two": {
+              "platformId": "party-grove",
+              "position": {
+                "x": -1.5,
+                "y": 0,
+                "z": -82.3
+              }
+            }
+          },
+          "pickups": {
+            "attack-tool": {
+              "platformId": "party-welcome",
+              "position": {
+                "x": -0.7,
+                "y": 0,
+                "z": -0.5
+              }
+            },
+            "guard-tool": {
+              "platformId": "party-picnic",
+              "position": {
+                "x": 1,
+                "y": 0,
+                "z": -31.8
+              }
+            }
+          },
+          "rewardRespawn": {
+            "platformId": "party-reward",
+            "position": {
+              "x": 0,
+              "y": 0.9,
+              "z": -136.8
+            }
+          },
+          "spawn": {
+            "platformId": "party-welcome",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 1
+            }
+          }
+        },
+        "branches": [
+          [
+            "party-dock",
+            "wide-side-bridge",
+            "friend-balcony",
+            "party-grove"
+          ]
+        ],
+        "connections": [
+          {
+            "from": "party-welcome",
+            "mode": "jump",
+            "safeMissPlatformId": "besties-practice-ground",
+            "to": "party-terrace-1"
+          },
+          {
+            "from": "party-terrace-1",
+            "mode": "jump",
+            "safeMissPlatformId": "besties-practice-ground",
+            "to": "party-terrace-2"
+          },
+          {
+            "from": "party-terrace-2",
+            "mode": "jump",
+            "safeMissPlatformId": "besties-practice-ground",
+            "to": "party-terrace-3"
+          },
+          {
+            "from": "party-terrace-3",
+            "mode": "jump",
+            "safeMissPlatformId": "besties-practice-ground",
+            "to": "besties-practice-down-1"
+          },
+          {
+            "from": "besties-practice-down-1",
+            "mode": "jump",
+            "safeMissPlatformId": "besties-practice-ground",
+            "to": "besties-practice-down-2"
+          },
+          {
+            "from": "besties-practice-down-2",
+            "mode": "jump",
+            "safeMissPlatformId": "besties-practice-ground",
+            "to": "besties-practice-down-3"
+          },
+          {
+            "from": "besties-practice-down-3",
+            "mode": "jump",
+            "safeMissPlatformId": "besties-practice-ground",
+            "to": "party-picnic"
+          },
+          {
+            "from": "party-picnic",
+            "mode": "jump",
+            "to": "ribbon-lane"
+          },
+          {
+            "from": "ribbon-lane",
+            "mode": "jump",
+            "to": "ribbon-rest"
+          },
+          {
+            "from": "ribbon-rest",
+            "mode": "ride",
+            "to": "party-ferry"
+          },
+          {
+            "from": "party-ferry",
+            "mode": "ride",
+            "to": "party-dock"
+          },
+          {
+            "from": "party-dock",
+            "mode": "jump",
+            "to": "zigzag-hop-1"
+          },
+          {
+            "from": "zigzag-hop-1",
+            "mode": "jump",
+            "to": "zigzag-hop-2"
+          },
+          {
+            "from": "zigzag-hop-2",
+            "mode": "jump",
+            "to": "party-grove"
+          },
+          {
+            "from": "party-grove",
+            "mode": "jump",
+            "to": "turnstile-deck"
+          },
+          {
+            "from": "turnstile-deck",
+            "mode": "jump",
+            "to": "party-fair"
+          },
+          {
+            "from": "party-fair",
+            "mode": "jump",
+            "to": "final-hop-1"
+          },
+          {
+            "from": "final-hop-1",
+            "mode": "jump",
+            "to": "final-hop-2"
+          },
+          {
+            "from": "final-hop-2",
+            "mode": "jump",
+            "to": "besties-court"
+          },
+          {
+            "from": "besties-court",
+            "mode": "walk",
+            "to": "party-reward"
+          },
+          {
+            "from": "party-dock",
+            "mode": "walk",
+            "to": "wide-side-bridge"
+          },
+          {
+            "from": "wide-side-bridge",
+            "mode": "walk",
+            "to": "friend-balcony"
+          },
+          {
+            "from": "friend-balcony",
+            "mode": "walk",
+            "to": "party-grove"
+          },
+          {
+            "from": "besties-practice-ground",
+            "mode": "walk",
+            "to": "party-welcome"
+          }
+        ],
+        "id": "chapter-2-route",
+        "mainPath": [
+          "party-welcome",
+          "party-terrace-1",
+          "party-terrace-2",
+          "party-terrace-3",
+          "besties-practice-down-1",
+          "besties-practice-down-2",
+          "besties-practice-down-3",
+          "party-picnic",
+          "ribbon-lane",
+          "ribbon-rest",
+          "party-ferry",
+          "party-dock",
+          "zigzag-hop-1",
+          "zigzag-hop-2",
+          "party-grove",
+          "turnstile-deck",
+          "party-fair",
+          "final-hop-1",
+          "final-hop-2",
+          "besties-court",
+          "party-reward"
+        ],
+        "pieces": [
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": 0
+            },
+            "id": "party-welcome",
+            "size": {
+              "x": 10,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1.2,
+              "y": 0,
+              "z": -6.2
+            },
+            "id": "party-terrace-1",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": 0.3,
+              "z": -10.4
+            },
+            "id": "party-terrace-2",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1.2,
+              "y": 0.6,
+              "z": -14.6
+            },
+            "id": "party-terrace-3",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -34.3
+            },
+            "id": "party-picnic",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 9
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": -0.3,
+              "z": -43.3
+            },
+            "id": "ribbon-lane",
+            "size": {
+              "x": 7,
+              "y": 0.6,
+              "z": 7
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": -0.3,
+              "z": -52.3
+            },
+            "id": "ribbon-rest",
+            "size": {
+              "x": 10,
+              "y": 0.6,
+              "z": 9
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": -0.3,
+              "z": -59.3
+            },
+            "id": "party-ferry",
+            "motion": {
+              "axis": "x",
+              "distance": 0.6,
+              "period": 9
+            },
+            "size": {
+              "x": 3.4,
+              "y": 0.6,
+              "z": 3.4
+            },
+            "type": "moving-platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": -0.3,
+              "z": -65.8
+            },
+            "id": "party-dock",
+            "size": {
+              "x": 10,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -4.8,
+              "y": -0.3,
+              "z": -72.6
+            },
+            "id": "zigzag-hop-1",
+            "size": {
+              "x": 5,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": -0.3,
+              "z": -77.2
+            },
+            "id": "zigzag-hop-2",
+            "size": {
+              "x": 5,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -84.3
+            },
+            "id": "party-grove",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 3,
+              "y": -0.3,
+              "z": -93.3
+            },
+            "id": "turnstile-deck",
+            "size": {
+              "x": 10,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -102.8
+            },
+            "id": "party-fair",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 9
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": 0,
+              "z": -109.5
+            },
+            "id": "final-hop-1",
+            "size": {
+              "x": 4.4,
+              "y": 0.6,
+              "z": 2.8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1.2,
+              "y": 0.3,
+              "z": -113.1
+            },
+            "id": "final-hop-2",
+            "size": {
+              "x": 4.4,
+              "y": 0.6,
+              "z": 2.8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0.6,
+              "z": -125.3
+            },
+            "id": "besties-court",
+            "size": {
+              "x": 14,
+              "y": 0.6,
+              "z": 20
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0.6,
+              "z": -138.3
+            },
+            "id": "party-reward",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 3,
+              "y": -0.3,
+              "z": -72.3
+            },
+            "id": "wide-side-bridge",
+            "size": {
+              "x": 6,
+              "y": 0.6,
+              "z": 10
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 4,
+              "y": -0.3,
+              "z": -78.8
+            },
+            "id": "friend-balcony",
+            "size": {
+              "x": 6,
+              "y": 0.6,
+              "z": 5
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": 0.22,
+              "z": -43.3
+            },
+            "halfLength": 1,
+            "id": "ribbon-padded-bar",
+            "motion": {
+              "axis": "x",
+              "distance": 2,
+              "period": 10
+            },
+            "radius": 0.18,
+            "type": "sweeper"
+          },
+          {
+            "center": {
+              "x": 3,
+              "y": 0.22,
+              "z": -93.3
+            },
+            "halfLength": 1.15,
+            "id": "party-turnstile",
+            "radius": 0.18,
+            "rotation": {
+              "period": 14
+            },
+            "type": "sweeper"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-start",
+            "platformId": "party-welcome",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 1
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-picnic-safe",
+            "platformId": "party-picnic",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -30.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ribbon-safe",
+            "platformId": "ribbon-rest",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": -48.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-dock-safe",
+            "platformId": "party-dock",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": -62.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-grove-safe",
+            "platformId": "party-grove",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -81.3
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-fair-safe",
+            "platformId": "party-fair",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -99.3
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "besties-safe",
+            "platformId": "besties-court",
+            "position": {
+              "x": 0,
+              "y": 0.9,
+              "z": -116.3
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-reward-safe",
+            "platformId": "party-reward",
+            "position": {
+              "x": 0,
+              "y": 0.9,
+              "z": -136.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": 0.3,
+              "z": -18.8
+            },
+            "id": "besties-practice-down-1",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1.2,
+              "y": 0,
+              "z": -23
+            },
+            "id": "besties-practice-down-2",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": -0.2,
+              "z": -27.2
+            },
+            "id": "besties-practice-down-3",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -16.75
+            },
+            "id": "besties-practice-ground",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 28.5
+            },
+            "type": "platform"
+          }
+        ],
+        "schemaVersion": "authored-level-v3",
+        "theme": "party"
+      },
+      "name": "Besties Obby",
+      "previewMemories": [
+        {
+          "date": "2024-08-01",
+          "label": "A bright detour",
+          "slotId": "minor-one"
+        },
+        {
+          "date": "2025-04-01",
+          "label": "A brave crossing",
+          "slotId": "minor-two"
+        },
+        {
+          "date": "2025-10-31",
+          "label": "The lantern gate",
+          "slotId": "major"
+        }
+      ],
+      "recoveredAge": {
+        "fromYears": 4,
+        "toYears": 5
+      },
+      "representedDateRange": {
+        "endDate": "2025-10-31",
+        "startDate": "2024-01-01"
+      },
+      "routeId": "chapter-2-route",
+      "sourceTemplateId": "besties-playground-v2",
+      "subtitle": "A forgiving obby with memories, rivals and a boss arena"
+    },
+    {
+      "chapterId": "rat-casino",
+      "description": "Follow the amber tickets through padded token jumps and cabinet alcoves. Find two memories, face the four stage mascots, and bring the Rat Pit Boss's last show to a close.",
+      "encounterSlots": {
+        "boss": {
+          "catalogEntryId": "rat-pit-boss",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-1": {
+          "catalogEntryId": "chick-flia",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-2": {
+          "catalogEntryId": "jackrabbit-drummer",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-3": {
+          "catalogEntryId": "fox-card-shark",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        },
+        "ordinary-4": {
+          "catalogEntryId": "moth-projectionist",
+          "catalogEntryVersion": "v001",
+          "source": "catalog"
+        }
+      },
+      "level": {
+        "anchors": {
+          "encounters": {
+            "boss": {
+              "arena": {
+                "maxX": 3.8,
+                "maxZ": -123.3,
+                "minX": -3.8,
+                "minZ": -127.3
+              },
+              "checkpointId": "besties-safe",
+              "kind": "boss",
+              "platformId": "rat-pit-stage",
+              "position": {
+                "x": 0,
+                "y": 0.9,
+                "z": -125.3
+              }
+            },
+            "ordinary-1": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -34.3,
+                "minX": -4,
+                "minZ": -37.3
+              },
+              "checkpointId": "party-picnic-safe",
+              "kind": "ordinary-a",
+              "platformId": "ticket-counter",
+              "position": {
+                "x": 2,
+                "y": 0,
+                "z": -35.3
+              }
+            },
+            "ordinary-2": {
+              "arena": {
+                "maxX": 0,
+                "maxZ": -51.3,
+                "minX": -7,
+                "minZ": -55.3
+              },
+              "checkpointId": "ribbon-safe",
+              "kind": "ordinary-b",
+              "platformId": "drum-break",
+              "position": {
+                "x": -4,
+                "y": 0,
+                "z": -53.3
+              }
+            },
+            "ordinary-3": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -84.3,
+                "minX": -4,
+                "minZ": -87.3
+              },
+              "checkpointId": "party-grove-safe",
+              "kind": "ordinary-a",
+              "platformId": "fox-card-room",
+              "position": {
+                "x": 2,
+                "y": 0,
+                "z": -85.3
+              }
+            },
+            "ordinary-4": {
+              "arena": {
+                "maxX": 4,
+                "maxZ": -102.3,
+                "minX": -4,
+                "minZ": -105.3
+              },
+              "checkpointId": "party-fair-safe",
+              "kind": "ordinary-b",
+              "platformId": "moth-projection-room",
+              "position": {
+                "x": 2,
+                "y": 0,
+                "z": -103.3
+              }
+            }
+          },
+          "finish": {
+            "platformId": "after-hours-exit",
+            "position": {
+              "x": 0,
+              "y": 0.9,
+              "z": -139.8
+            }
+          },
+          "friendlies": {
+            "friendly-1": {
+              "platformId": "casino-foyer",
+              "position": {
+                "x": -3,
+                "y": 0,
+                "z": 1
+              }
+            },
+            "friendly-2": {
+              "platformId": "golden-view-balcony",
+              "position": {
+                "x": 4,
+                "y": 0,
+                "z": -78.8
+              }
+            },
+            "friendly-3": {
+              "platformId": "moth-projection-room",
+              "position": {
+                "x": -5.3,
+                "y": 0,
+                "z": -98.9
+              }
+            }
+          },
+          "memories": {
+            "major": {
+              "platformId": "after-hours-exit",
+              "position": {
+                "x": 0,
+                "y": 0.9,
+                "z": -138.3
+              }
+            },
+            "minor-one": {
+              "platformId": "ticket-counter",
+              "position": {
+                "x": -1,
+                "y": 0,
+                "z": -31.8
+              }
+            },
+            "minor-two": {
+              "platformId": "fox-card-room",
+              "position": {
+                "x": -1.5,
+                "y": 0,
+                "z": -82.3
+              }
+            }
+          },
+          "pickups": {
+            "attack-tool": {
+              "platformId": "casino-foyer",
+              "position": {
+                "x": -0.7,
+                "y": 0,
+                "z": -0.5
+              }
+            },
+            "guard-tool": {
+              "platformId": "ticket-counter",
+              "position": {
+                "x": 1,
+                "y": 0,
+                "z": -31.8
+              }
+            }
+          },
+          "rewardRespawn": {
+            "platformId": "after-hours-exit",
+            "position": {
+              "x": 0,
+              "y": 0.9,
+              "z": -136.8
+            }
+          },
+          "spawn": {
+            "platformId": "casino-foyer",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 1
+            }
+          }
+        },
+        "branches": [
+          [
+            "cabinet-landing",
+            "cabinet-side-bridge",
+            "golden-view-balcony",
+            "fox-card-room"
+          ],
+          [
+            "casino-foyer",
+            "ticket-loft-step-1",
+            "ticket-loft-step-2",
+            "ticket-loft-step-3",
+            "ticket-loft-step-4",
+            "ticket-loft-step-5",
+            "ticket-loft-step-6",
+            "ticket-loft-step-7",
+            "ticket-loft-step-8",
+            "ticket-loft-step-9",
+            "ticket-loft-step-10",
+            "ticket-loft-step-11",
+            "ticket-counter"
+          ],
+          [
+            "cabinet-landing",
+            "roulette-bypass-step-1",
+            "roulette-bypass-step-2",
+            "roulette-bypass-step-3",
+            "roulette-bypass-step-4",
+            "roulette-bypass-step-5",
+            "roulette-bypass-step-6",
+            "roulette-bypass-step-7",
+            "fox-card-room"
+          ]
+        ],
+        "connections": [
+          {
+            "from": "casino-foyer",
+            "mode": "jump",
+            "safeMissPlatformId": "casino-padded-floor",
+            "to": "token-step-one"
+          },
+          {
+            "from": "token-step-one",
+            "mode": "jump",
+            "safeMissPlatformId": "casino-padded-floor",
+            "to": "token-step-two"
+          },
+          {
+            "from": "token-step-two",
+            "mode": "jump",
+            "safeMissPlatformId": "casino-padded-floor",
+            "to": "token-step-three"
+          },
+          {
+            "from": "token-step-three",
+            "mode": "jump",
+            "safeMissPlatformId": "casino-padded-floor",
+            "to": "token-descent-one"
+          },
+          {
+            "from": "token-descent-one",
+            "mode": "jump",
+            "safeMissPlatformId": "casino-padded-floor",
+            "to": "token-descent-two"
+          },
+          {
+            "from": "token-descent-two",
+            "mode": "jump",
+            "safeMissPlatformId": "casino-padded-floor",
+            "to": "token-descent-three"
+          },
+          {
+            "from": "token-descent-three",
+            "mode": "jump",
+            "safeMissPlatformId": "casino-padded-floor",
+            "to": "ticket-counter"
+          },
+          {
+            "from": "ticket-counter",
+            "mode": "jump",
+            "to": "jackrabbit-beat-lane"
+          },
+          {
+            "from": "jackrabbit-beat-lane",
+            "mode": "jump",
+            "to": "drum-break"
+          },
+          {
+            "from": "drum-break",
+            "mode": "ride",
+            "to": "token-tray"
+          },
+          {
+            "from": "token-tray",
+            "mode": "ride",
+            "to": "cabinet-landing"
+          },
+          {
+            "from": "cabinet-landing",
+            "mode": "jump",
+            "to": "roulette-hop-one"
+          },
+          {
+            "from": "roulette-hop-one",
+            "mode": "jump",
+            "to": "roulette-hop-two"
+          },
+          {
+            "from": "roulette-hop-two",
+            "mode": "jump",
+            "to": "fox-card-room"
+          },
+          {
+            "from": "fox-card-room",
+            "mode": "jump",
+            "to": "backstage-turn"
+          },
+          {
+            "from": "backstage-turn",
+            "mode": "jump",
+            "to": "moth-projection-room"
+          },
+          {
+            "from": "moth-projection-room",
+            "mode": "jump",
+            "to": "last-ticket-one"
+          },
+          {
+            "from": "last-ticket-one",
+            "mode": "jump",
+            "to": "last-ticket-two"
+          },
+          {
+            "from": "last-ticket-two",
+            "mode": "jump",
+            "to": "rat-pit-stage"
+          },
+          {
+            "from": "rat-pit-stage",
+            "mode": "walk",
+            "to": "after-hours-exit"
+          },
+          {
+            "from": "cabinet-landing",
+            "mode": "walk",
+            "to": "cabinet-side-bridge"
+          },
+          {
+            "from": "cabinet-side-bridge",
+            "mode": "walk",
+            "to": "golden-view-balcony"
+          },
+          {
+            "from": "golden-view-balcony",
+            "mode": "walk",
+            "to": "fox-card-room"
+          },
+          {
+            "from": "casino-padded-floor",
+            "mode": "walk",
+            "to": "casino-foyer"
+          },
+          {
+            "from": "casino-foyer",
+            "mode": "jump",
+            "to": "ticket-loft-step-1"
+          },
+          {
+            "from": "ticket-loft-step-1",
+            "mode": "jump",
+            "to": "ticket-loft-step-2"
+          },
+          {
+            "from": "ticket-loft-step-2",
+            "mode": "jump",
+            "to": "ticket-loft-step-3"
+          },
+          {
+            "from": "ticket-loft-step-3",
+            "mode": "jump",
+            "to": "ticket-loft-step-4"
+          },
+          {
+            "from": "ticket-loft-step-4",
+            "mode": "jump",
+            "to": "ticket-loft-step-5"
+          },
+          {
+            "from": "ticket-loft-step-5",
+            "mode": "jump",
+            "to": "ticket-loft-step-6"
+          },
+          {
+            "from": "ticket-loft-step-6",
+            "mode": "jump",
+            "to": "ticket-loft-step-7"
+          },
+          {
+            "from": "ticket-loft-step-7",
+            "mode": "jump",
+            "to": "ticket-loft-step-8"
+          },
+          {
+            "from": "ticket-loft-step-8",
+            "mode": "jump",
+            "to": "ticket-loft-step-9"
+          },
+          {
+            "from": "ticket-loft-step-9",
+            "mode": "jump",
+            "to": "ticket-loft-step-10"
+          },
+          {
+            "from": "ticket-loft-step-10",
+            "mode": "jump",
+            "to": "ticket-loft-step-11"
+          },
+          {
+            "from": "ticket-loft-step-11",
+            "mode": "jump",
+            "to": "ticket-counter"
+          },
+          {
+            "from": "cabinet-landing",
+            "mode": "jump",
+            "to": "roulette-bypass-step-1"
+          },
+          {
+            "from": "roulette-bypass-step-1",
+            "mode": "jump",
+            "to": "roulette-bypass-step-2"
+          },
+          {
+            "from": "roulette-bypass-step-2",
+            "mode": "jump",
+            "to": "roulette-bypass-step-3"
+          },
+          {
+            "from": "roulette-bypass-step-3",
+            "mode": "jump",
+            "to": "roulette-bypass-step-4"
+          },
+          {
+            "from": "roulette-bypass-step-4",
+            "mode": "jump",
+            "to": "roulette-bypass-step-5"
+          },
+          {
+            "from": "roulette-bypass-step-5",
+            "mode": "jump",
+            "to": "roulette-bypass-step-6"
+          },
+          {
+            "from": "roulette-bypass-step-6",
+            "mode": "jump",
+            "to": "roulette-bypass-step-7"
+          },
+          {
+            "from": "roulette-bypass-step-7",
+            "mode": "jump",
+            "to": "fox-card-room"
+          }
+        ],
+        "id": "rat-casino-v1",
+        "mainPath": [
+          "casino-foyer",
+          "token-step-one",
+          "token-step-two",
+          "token-step-three",
+          "token-descent-one",
+          "token-descent-two",
+          "token-descent-three",
+          "ticket-counter",
+          "jackrabbit-beat-lane",
+          "drum-break",
+          "token-tray",
+          "cabinet-landing",
+          "roulette-hop-one",
+          "roulette-hop-two",
+          "fox-card-room",
+          "backstage-turn",
+          "moth-projection-room",
+          "last-ticket-one",
+          "last-ticket-two",
+          "rat-pit-stage",
+          "after-hours-exit"
+        ],
+        "pieces": [
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": 0
+            },
+            "id": "casino-foyer",
+            "size": {
+              "x": 10,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1.2,
+              "y": 0,
+              "z": -6.2
+            },
+            "id": "token-step-one",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": 0.3,
+              "z": -10.4
+            },
+            "id": "token-step-two",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1.2,
+              "y": 0.6,
+              "z": -14.6
+            },
+            "id": "token-step-three",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -34.3
+            },
+            "id": "ticket-counter",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 9
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": -0.3,
+              "z": -43.3
+            },
+            "id": "jackrabbit-beat-lane",
+            "size": {
+              "x": 7,
+              "y": 0.6,
+              "z": 7
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": -0.3,
+              "z": -52.3
+            },
+            "id": "drum-break",
+            "size": {
+              "x": 10,
+              "y": 0.6,
+              "z": 9
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": -0.3,
+              "z": -59.3
+            },
+            "id": "token-tray",
+            "motion": {
+              "axis": "x",
+              "distance": 0.6,
+              "period": 9
+            },
+            "size": {
+              "x": 3.4,
+              "y": 0.6,
+              "z": 3.4
+            },
+            "type": "moving-platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": -0.3,
+              "z": -65.8
+            },
+            "id": "cabinet-landing",
+            "size": {
+              "x": 10,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -4.8,
+              "y": -0.3,
+              "z": -72.6
+            },
+            "id": "roulette-hop-one",
+            "size": {
+              "x": 5,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": -0.3,
+              "z": -77.2
+            },
+            "id": "roulette-hop-two",
+            "size": {
+              "x": 5,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -84.3
+            },
+            "id": "fox-card-room",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 3,
+              "y": -0.3,
+              "z": -93.3
+            },
+            "id": "backstage-turn",
+            "size": {
+              "x": 10,
+              "y": 0.6,
+              "z": 8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -102.8
+            },
+            "id": "moth-projection-room",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 9
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": 0,
+              "z": -109.5
+            },
+            "id": "last-ticket-one",
+            "size": {
+              "x": 4.4,
+              "y": 0.6,
+              "z": 2.8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1.2,
+              "y": 0.3,
+              "z": -113.1
+            },
+            "id": "last-ticket-two",
+            "size": {
+              "x": 4.4,
+              "y": 0.6,
+              "z": 2.8
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0.6,
+              "z": -125.3
+            },
+            "id": "rat-pit-stage",
+            "size": {
+              "x": 14,
+              "y": 0.6,
+              "z": 20
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": 0.6,
+              "z": -138.3
+            },
+            "id": "after-hours-exit",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 3,
+              "y": -0.3,
+              "z": -72.3
+            },
+            "id": "cabinet-side-bridge",
+            "size": {
+              "x": 6,
+              "y": 0.6,
+              "z": 10
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 4,
+              "y": -0.3,
+              "z": -78.8
+            },
+            "id": "golden-view-balcony",
+            "size": {
+              "x": 6,
+              "y": 0.6,
+              "z": 5
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -3,
+              "y": 0.22,
+              "z": -43.3
+            },
+            "halfLength": 1,
+            "id": "ribbon-padded-bar",
+            "motion": {
+              "axis": "x",
+              "distance": 2,
+              "period": 10
+            },
+            "radius": 0.18,
+            "type": "sweeper"
+          },
+          {
+            "center": {
+              "x": 3,
+              "y": 0.22,
+              "z": -93.3
+            },
+            "halfLength": 1.15,
+            "id": "party-turnstile",
+            "radius": 0.18,
+            "rotation": {
+              "period": 14
+            },
+            "type": "sweeper"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-start",
+            "platformId": "casino-foyer",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 1
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-picnic-safe",
+            "platformId": "ticket-counter",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -30.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ribbon-safe",
+            "platformId": "drum-break",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": -48.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-dock-safe",
+            "platformId": "cabinet-landing",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": -62.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-grove-safe",
+            "platformId": "fox-card-room",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -81.3
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-fair-safe",
+            "platformId": "moth-projection-room",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -99.3
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "besties-safe",
+            "platformId": "rat-pit-stage",
+            "position": {
+              "x": 0,
+              "y": 0.9,
+              "z": -116.3
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "party-reward-safe",
+            "platformId": "after-hours-exit",
+            "position": {
+              "x": 0,
+              "y": 0.9,
+              "z": -136.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": 0.3,
+              "z": -18.8
+            },
+            "id": "token-descent-one",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 1.2,
+              "y": 0,
+              "z": -23
+            },
+            "id": "token-descent-two",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -1.2,
+              "y": -0.2,
+              "z": -27.2
+            },
+            "id": "token-descent-three",
+            "size": {
+              "x": 5.6,
+              "y": 0.6,
+              "z": 3.6
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -16.75
+            },
+            "id": "casino-padded-floor",
+            "size": {
+              "x": 12,
+              "y": 0.6,
+              "z": 28.5
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -6.8,
+              "y": 0.125,
+              "z": 0
+            },
+            "id": "ticket-loft-step-1",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.5,
+              "y": 0.375,
+              "z": -3.43
+            },
+            "id": "ticket-loft-step-2",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.5,
+              "y": 0.625,
+              "z": -6.86
+            },
+            "id": "ticket-loft-step-3",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.5,
+              "y": 0.875,
+              "z": -10.29
+            },
+            "id": "ticket-loft-step-4",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.5,
+              "y": 1.125,
+              "z": -13.72
+            },
+            "id": "ticket-loft-step-5",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.3,
+              "y": 1.375,
+              "z": -17.15
+            },
+            "id": "ticket-loft-step-6",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.5,
+              "y": 1.125,
+              "z": -20.58
+            },
+            "id": "ticket-loft-step-7",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.5,
+              "y": 0.875,
+              "z": -24.01
+            },
+            "id": "ticket-loft-step-8",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.6,
+              "y": 0.625,
+              "z": -27.44
+            },
+            "id": "ticket-loft-step-9",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.7,
+              "y": 0.375,
+              "z": -30.87
+            },
+            "id": "ticket-loft-step-10",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.8,
+              "y": 0.125,
+              "z": -34.3
+            },
+            "id": "ticket-loft-step-11",
+            "size": {
+              "x": 2.4,
+              "y": 0.25,
+              "z": 2.83
+            },
+            "type": "platform"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-1",
+            "platformId": "ticket-loft-step-1",
+            "position": {
+              "x": -6.8,
+              "y": 0.25,
+              "z": 0
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-2",
+            "platformId": "ticket-loft-step-2",
+            "position": {
+              "x": -7.5,
+              "y": 0.5,
+              "z": -3.43
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-3",
+            "platformId": "ticket-loft-step-3",
+            "position": {
+              "x": -7.5,
+              "y": 0.75,
+              "z": -6.86
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-4",
+            "platformId": "ticket-loft-step-4",
+            "position": {
+              "x": -7.5,
+              "y": 1,
+              "z": -10.29
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-5",
+            "platformId": "ticket-loft-step-5",
+            "position": {
+              "x": -7.5,
+              "y": 1.25,
+              "z": -13.72
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-6",
+            "platformId": "ticket-loft-step-6",
+            "position": {
+              "x": -7.3,
+              "y": 1.5,
+              "z": -17.15
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-7",
+            "platformId": "ticket-loft-step-7",
+            "position": {
+              "x": -7.5,
+              "y": 1.25,
+              "z": -20.58
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-8",
+            "platformId": "ticket-loft-step-8",
+            "position": {
+              "x": -7.5,
+              "y": 1,
+              "z": -24.01
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-9",
+            "platformId": "ticket-loft-step-9",
+            "position": {
+              "x": -7.6,
+              "y": 0.75,
+              "z": -27.44
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-10",
+            "platformId": "ticket-loft-step-10",
+            "position": {
+              "x": -7.7,
+              "y": 0.5,
+              "z": -30.87
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-11",
+            "platformId": "ticket-loft-step-11",
+            "position": {
+              "x": -7.8,
+              "y": 0.25,
+              "z": -34.3
+            },
+            "type": "checkpoint"
+          },
+          {
+            "center": {
+              "x": -9.8,
+              "y": 0.15,
+              "z": -65.8
+            },
+            "id": "roulette-bypass-step-1",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 2.483333
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -10.366667,
+              "y": 0.45,
+              "z": -68.883333
+            },
+            "id": "roulette-bypass-step-2",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 2.483333
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -9.133333,
+              "y": 0.75,
+              "z": -71.966667
+            },
+            "id": "roulette-bypass-step-3",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 2.483333
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -9.7,
+              "y": 1.05,
+              "z": -75.05
+            },
+            "id": "roulette-bypass-step-4",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 2.483333
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -8.466667,
+              "y": 0.75,
+              "z": -78.133333
+            },
+            "id": "roulette-bypass-step-5",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 2.483333
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -9.033333,
+              "y": 0.45,
+              "z": -81.216667
+            },
+            "id": "roulette-bypass-step-6",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 2.483333
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.8,
+              "y": 0.15,
+              "z": -84.3
+            },
+            "id": "roulette-bypass-step-7",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 2.483333
+            },
+            "type": "platform"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "roulette-bypass-checkpoint-1",
+            "platformId": "roulette-bypass-step-1",
+            "position": {
+              "x": -9.8,
+              "y": 0.3,
+              "z": -65.8
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "roulette-bypass-checkpoint-2",
+            "platformId": "roulette-bypass-step-2",
+            "position": {
+              "x": -10.366667,
+              "y": 0.6,
+              "z": -68.883333
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "roulette-bypass-checkpoint-3",
+            "platformId": "roulette-bypass-step-3",
+            "position": {
+              "x": -9.133333,
+              "y": 0.9,
+              "z": -71.966667
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "roulette-bypass-checkpoint-4",
+            "platformId": "roulette-bypass-step-4",
+            "position": {
+              "x": -9.7,
+              "y": 1.2,
+              "z": -75.05
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "roulette-bypass-checkpoint-5",
+            "platformId": "roulette-bypass-step-5",
+            "position": {
+              "x": -8.466667,
+              "y": 0.9,
+              "z": -78.133333
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "roulette-bypass-checkpoint-6",
+            "platformId": "roulette-bypass-step-6",
+            "position": {
+              "x": -9.033333,
+              "y": 0.6,
+              "z": -81.216667
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "roulette-bypass-checkpoint-7",
+            "platformId": "roulette-bypass-step-7",
+            "position": {
+              "x": -7.8,
+              "y": 0.3,
+              "z": -84.3
+            },
+            "type": "checkpoint"
+          }
+        ],
+        "schemaVersion": "authored-level-v3",
+        "theme": "casino"
+      },
+      "name": "Haynesnightmares: Rat Casino",
+      "previewMemories": [
+        {
+          "date": "2026-02-14",
+          "label": "A paper moon token",
+          "slotId": "minor-one"
+        },
+        {
+          "date": "2026-06-20",
+          "label": "The quiet backstage door",
+          "slotId": "minor-two"
+        },
+        {
+          "date": "2026-10-31",
+          "label": "The last light on stage",
+          "slotId": "major"
+        }
+      ],
+      "recoveredAge": {
+        "fromYears": 5,
+        "toYears": 6
+      },
+      "representedDateRange": {
+        "endDate": "2026-10-31",
+        "startDate": "2025-10-31"
+      },
+      "routeId": "rat-casino-v1",
+      "sourceTemplateId": "besties-playground-v2",
+      "subtitle": "The lights are low, the reels are quiet, and the Rat Pit Boss is waiting"
+    }
+  ],
+  "enemyCandidates": [],
+  "fictionalBirthDate": "2020-01-01",
+  "name": "The Haynesnightmares Adventure",
+  "projectId": "rat-casino-adventure",
+  "revision": 1,
+  "schemaVersion": "level-editor-project-v2"
+}

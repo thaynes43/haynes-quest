@@ -4,7 +4,7 @@ Read [PROCESS.md](PROCESS.md) for the workflow and the [project brief](prds/001-
 
 | Area | Purpose | Starting point |
 | --- | --- | --- |
-| Level editor | Build and playtest complete fictional worlds visually or with agent commands | [Editor guide](level-editor.md), [complete-world requirements](prds/003-complete-world-authoring.md), [versioned project decision](adrs/004-versioned-world-projects.md) |
+| Level editor | Build and playtest complete fictional worlds visually or with agent commands | [Editor guide](level-editor.md), [Rat Casino sample design](designs/021-rat-casino-level.md), [complete-world requirements](prds/003-complete-world-authoring.md), [versioned project decision](adrs/004-versioned-world-projects.md) |
 | Product | What players should experience and why | [PRD-001: Project brief](prds/001-project-brief.md), [template](prds/000-template.md) |
 | Backlog | Deferred gameplay/content and conditional work beyond the family PoC | [BL-01–BL-05](BACKLOG.md) |
 | Engine and asset evidence | Creator reports, inspected source, and limits of the Astra examples | [Astra game workflows](reference/astra-game-workflows.md) |

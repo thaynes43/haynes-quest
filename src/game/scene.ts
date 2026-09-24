@@ -2,6 +2,7 @@ import { grassPlacements } from "./foliage";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { BestiesScene } from "./besties-scene";
+import { CasinoScene } from "./casino-scene";
 import type { BestiesFrame, BestieActorId } from "./besties";
 import { FriendlyScene } from "./friendly-scene";
 import { ObbyScene } from "./obby-scene";
@@ -90,6 +91,7 @@ export class GardenScene {
   private readonly environment: THREE.WebGLRenderTarget;
   private obbyVisual: ObbyScene | null = null;
   private friendlyVisual: FriendlyScene | null = null;
+  private casinoVisual: CasinoScene | null = null;
   private readonly resizeObserver: ResizeObserver | null;
   private readonly sun = new THREE.DirectionalLight(0xffedce, 2.1);
   private readonly target = new THREE.Vector3();
@@ -248,6 +250,8 @@ export class GardenScene {
     this.obbyVisual = null;
     this.friendlyVisual?.dispose();
     this.friendlyVisual = null;
+    this.casinoVisual?.dispose();
+    this.casinoVisual = null;
     this.scene.remove(this.world);
     disposeTree(this.world);
     this.particles = null;
@@ -478,6 +482,14 @@ export class GardenScene {
     }
     if (worldTheme.environment.state === "pending-kit") {
       this.addPendingWorldScenery(worldTheme, level);
+    } else if (worldTheme.environment.state === "prepared-kit") {
+      this.casinoVisual = new CasinoScene(
+        level,
+        this.assets,
+        valid,
+        period === "rat-casino-v1",
+      );
+      this.world.add(this.casinoVisual.root);
     } else {
       for (let i = 0; i < (level.authored ? 12 : 8); i++) {
         const hill = shapeMesh(
@@ -510,10 +522,18 @@ export class GardenScene {
     if (!level.course) this.addEraDetails(later);
     const gate = new THREE.Group();
     gate.position.set(level.finish.x, level.finish.y, level.finish.z);
-    gate.scale.setScalar(1.4);
+    gate.scale.setScalar(worldTheme.environment.state === "prepared-kit" ? 1 : 1.4);
     this.world.add(gate);
     if (environmentAssets)
       this.assets.attach(environmentAssets.gate, gate, valid);
+    else if (worldTheme.environment.state === "prepared-kit") {
+      gate.name = "casino-exit-arch";
+      this.assets.attach(
+        "/studio/assets/media/rat-casino-kit/v001/marquee-arch.glb",
+        gate,
+        valid,
+      );
+    }
     else this.addPendingEnvironmentMarker(gate, worldTheme);
     for (const placement of level.memories) {
       const memory = new THREE.Group();
@@ -880,6 +900,7 @@ export class GardenScene {
       }
     }
     this.friendlyVisual?.update(dt, elapsed, position, this.camera);
+    this.casinoVisual?.update(dt);
     for (const enemy of frame?.enemies ?? [])
       this.animateEnemy(
         enemy,
@@ -914,6 +935,7 @@ export class GardenScene {
     this.equipment?.dispose();
     this.equipment = null;
     this.friendlyVisual?.dispose();
+    this.casinoVisual?.dispose();
     this.mixer?.stopAllAction();
     if (this.avatarRoot) this.mixer?.uncacheRoot(this.avatarRoot);
     this.avatarRoot = null;
