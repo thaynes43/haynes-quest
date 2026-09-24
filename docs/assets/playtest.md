@@ -1,6 +1,6 @@
 # Fresh playtests and Rat Casino
 
-Choose **Play from the beginning** for the established age 0 → 4 → 7 route, or **Try the Besties chapter** to jump straight to its second chapter. **Enter Rat Casino** starts a separate fictional three-chapter project's new final level, at recovered age five. Its chapter-only finish shows the three memories earned there; the [level editor](../level-editor.md) can open, inspect, reshape and test the complete project. Every test starts fresh. Leaving or reloading resets the run; there is no save or resume list in this playtest.
+Open the [private playtest](https://haynes-quest-playtest.haynesops.com/) and choose **Enter Rat Casino** to start the new final level of a separate fictional three-chapter project at recovered age five. Its chapter-only finish shows the three memories earned there; the [level editor](../level-editor.md) can open, inspect, reshape and test the complete project. **Play from the beginning** retains the established age 0 → 4 → 7 route, and **Try the Besties chapter** jumps to its second chapter. Every test starts fresh. Leaving or reloading resets the run; there is no save or resume list in this playtest.
 
 The established two-chapter route uses [six fictional pictures](reviews/fixture-route-memories/v001.md); the separate Rat Casino project adds three more synthetic memories. Familiar controls, memory checkpoints and safe jumping practice for a six-year-old are the current focus. Identity and curated family photos are the next required part of the MVP; every fixture age and picture is fictional.
 

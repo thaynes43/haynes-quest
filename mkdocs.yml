@@ -74,7 +74,7 @@ nav:
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
-      - Complete world builder: project/plans/014-complete-world-builder.md
+      - Complete world builder: project/plans/completed/014-complete-world-builder.md
       - Haynesnightmares cast: project/plans/completed/015-haynesnightmares-asset-first.md
       - Vertical level authoring: project/plans/completed/013-vertical-level-authoring.md
       - Level editor MVP: project/plans/completed/012-level-editor-mvp.md
