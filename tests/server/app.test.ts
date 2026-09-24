@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -591,6 +591,45 @@ describe('fixture API', () => {
         expect(unhashed.status).toBe(200);
         expect(unhashed.headers.get('cache-control')).toBe('no-cache');
       }
+    } finally {
+      await rm(clientDir, { recursive: true, force: true });
+    }
+  });
+
+  it('serves the icons the app shell links and nothing else from the client root', async () => {
+    const icons = [
+      ['favicon.ico', 'image/x-icon'],
+      ['favicon.svg', 'image/svg+xml'],
+      ['apple-touch-icon.png', 'image/png'],
+    ];
+    const shell = await readFile(new URL('../../index.html', import.meta.url), 'utf8');
+    const linked = [...shell.matchAll(/<link rel="(?:icon|apple-touch-icon)" href="\/([^"]+)"/g)].map(
+      (match) => match[1],
+    );
+    expect(linked.sort()).toEqual(icons.map(([icon]) => icon).sort());
+
+    const clientDir = await mkdtemp(join(tmpdir(), 'quest-client-'));
+    try {
+      for (const [icon] of icons) {
+        await copyFile(new URL(`../../public/${icon}`, import.meta.url), join(clientDir, icon));
+      }
+      await writeFile(join(clientDir, 'notes.txt'), 'not an icon');
+      const app = createApp({
+        store: new InMemoryQuestStore(),
+        fixtureMode: true,
+        sessionSecret: SECRET,
+        appOrigin: ORIGIN,
+        clientDir,
+        studioDir: '/tmp/quest-studio-not-present',
+      });
+
+      for (const [icon, type] of icons) {
+        const response = await app.request(`/${icon}`);
+        expect(response.status).toBe(200);
+        expect(response.headers.get('content-type')).toContain(type);
+        expect(response.headers.get('cache-control')).toBe('no-cache');
+      }
+      expect((await app.request('/notes.txt')).status).toBe(404);
     } finally {
       await rm(clientDir, { recursive: true, force: true });
     }
