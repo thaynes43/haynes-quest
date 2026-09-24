@@ -1,0 +1,102 @@
+{
+  "version": "v009",
+  "recordedAt": "2026-09-24T22:43:21.441Z",
+  "routeId": "rat-casino-v1",
+  "browser": "Chromium 141.0.7390.37 with Mesa llvmpipe software WebGL (Xvfb)",
+  "method": "Local ephemeral playtest; ordinary keyboard movement, Space jumps and F attacks; no fixture action shortcuts",
+  "clock": "The foyer trail uses real time. The loft climb, contact and defeat step the page clock 16 ms per frame because software WebGL renders about five frames a second.",
+  "sourceRun": "tests/e2e/casino-rewards.mjs",
+  "sourceCommit": "d0c1f12112d4c485a84d92bec9c7c4ab7f91f796+worktree",
+  "sourceReportSha256": "8b4f805ab287a9fcf0dc5048249392c4eddccd8561242b5995b4b19c5e4cf33b",
+  "outcome": "passed",
+  "results": {
+    "planned": {
+      "tokens": 145,
+      "tickets": [
+        {
+          "id": "ticket-1",
+          "platformId": "golden-view-balcony"
+        },
+        {
+          "id": "ticket-2",
+          "platformId": "ticket-loft-step-11"
+        },
+        {
+          "id": "ticket-3",
+          "platformId": "roulette-bypass-step-4"
+        }
+      ]
+    },
+    "trail": {
+      "collected": 2,
+      "hud": "2 casino tokens, 0 of 3 golden tickets",
+      "visibleTokens": 143,
+      "input": "held keyboard movement"
+    },
+    "ticket": {
+      "id": "ticket-2",
+      "platformId": "ticket-loft-step-11",
+      "edges": 11,
+      "tokens": 20,
+      "hud": "20 casino tokens, 1 of 3 golden tickets",
+      "recoveries": 0,
+      "input": "held WASD and Space jumps with a lockstep page clock"
+    },
+    "contact": {
+      "encounterId": "rat-casino-v1-encounter-1",
+      "contactFrame": 7,
+      "contactMs": 112,
+      "replyHeldUntilContact": true,
+      "confirmedHp": "4/8",
+      "swingsToDefeat": 2,
+      "confettiParticles": 54
+    },
+    "narrow": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "horizontalOverflow": 0,
+      "tally": {
+        "x": 25,
+        "y": 147,
+        "width": 124,
+        "height": 23
+      },
+      "hud": {
+        "x": 12,
+        "y": 78,
+        "width": 150,
+        "height": 161
+      },
+      "browser": "Chromium mobile emulation"
+    }
+  },
+  "physicalDeviceEvidence": false,
+  "screenshots": [
+    {
+      "file": "fun-pass-token-trail.png",
+      "sha256": "962483ffefab7b999beb07afa1bc3f81b7457c63b4e4563f61e33627ebc04e92"
+    },
+    {
+      "file": "fun-pass-golden-ticket-ahead.png",
+      "sha256": "c120a668f95117fd50268a8b79bf834bbc1e1ef40faea50bdfd2d4e2795a43be"
+    },
+    {
+      "file": "fun-pass-golden-ticket-burst.png",
+      "sha256": "0f202f9680815df5c349af0f9ddac3f0f748c4879ae605bc189c7f67aa6f11ce"
+    },
+    {
+      "file": "fun-pass-contact-before-reply.png",
+      "sha256": "989fb386ef5131dbd96a6d5c9f53e8ba8a51b70a643e9e69bcf253696ce5f1f0"
+    },
+    {
+      "file": "fun-pass-defeat-confetti.png",
+      "sha256": "b3e84023c9ba4d07cd65907675ef00ff7b3152fa58f0b582b3061473f6b8cce4"
+    },
+    {
+      "file": "fun-pass-phone.png",
+      "sha256": "4d37d8776326cc71978bfd10a6b8c92491b7bed9c1921ca50b8b1cc2b9069d35"
+    }
+  ]
+}

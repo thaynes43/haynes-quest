@@ -100,6 +100,19 @@ export const gameplayFeedback = {
     cueId: "movement-landed",
     options: { gain: 0.65, playbackRate: 1 },
   },
+  // DESIGN-022 reuses the same candidates, unchanged, for casino rewards.
+  token: {
+    cueId: "ui-confirmed",
+    options: { gain: 0.8, playbackRate: 1.25 },
+  },
+  ticket: {
+    cueId: "ability-unlocked",
+    options: { gain: 0.9, playbackRate: 1.12 },
+  },
+  defeat: {
+    cueId: "memory-collected",
+    options: { gain: 0.7, playbackRate: 1.3 },
+  },
 } as const satisfies Readonly<
   Record<
     string,
@@ -458,9 +471,13 @@ export class QuestAudio {
     if (paused) this.stopAll();
   }
 
-  feedback(id: GameplayFeedbackId): Promise<boolean> {
+  /** `pitch` scales the preset rate, so a quick run of tokens can climb. */
+  feedback(id: GameplayFeedbackId, pitch = 1): Promise<boolean> {
     const feedback = gameplayFeedback[id];
-    return this.cue(feedback.cueId, feedback.options);
+    return this.cue(feedback.cueId, {
+      ...feedback.options,
+      playbackRate: feedback.options.playbackRate * pitch,
+    });
   }
 
   cue(id: string, options: CuePlaybackOptions = {}): Promise<boolean> {

@@ -66,6 +66,7 @@ nav:
       - Level editor workspace: designs/019-level-editor-workspace.md
       - Complete world builder: designs/020-complete-world-builder.md
       - Rat Casino level: designs/021-rat-casino-level.md
+      - Rat Casino fun pass: designs/022-rat-casino-fun-pass.md
       - Design template: designs/000-template.md
   - Operations:
       - Hosting context: ops/001-hosting-context.md
@@ -74,6 +75,7 @@ nav:
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
+      - Rat Casino fun pass: project/plans/017-rat-casino-fun-pass.md
       - Complete world builder: project/plans/completed/014-complete-world-builder.md
       - Haynesnightmares cast: project/plans/completed/015-haynesnightmares-asset-first.md
       - Vertical level authoring: project/plans/completed/013-vertical-level-authoring.md

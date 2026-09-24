@@ -9,6 +9,7 @@ import { createGame } from "../game/index";
 import { getJoystickVector } from "../game/input";
 import type {
   AuthoredLevelResolver,
+  CollectibleCounts,
   GameHandle,
   GameStatus,
 } from "../game/index";
@@ -182,6 +183,13 @@ function Adventure({
   );
   const [chapterNotice, setChapterNotice] = useState("");
   const [chapterMemoryId, setChapterMemoryId] = useState<string | null>(null);
+  // The casino haul of the chapter that just ended, kept past its last status.
+  const casinoTally = useRef<{ levelId: string; counts: CollectibleCounts }>(
+    undefined,
+  );
+  const [finishedTally, setFinishedTally] = useState<CollectibleCounts | null>(
+    null,
+  );
   const [photoDetail, setPhotoDetail] = useState<string | null>(null);
   const mounted = useRef(true);
   const latest = useRef(initialSave);
@@ -294,6 +302,16 @@ function Adventure({
       latest.current = next;
       setSave(next);
       setError("");
+      const finishedLevelId = before.adventure?.currentLevelId;
+      if (
+        finishedLevelId &&
+        finishedLevelId !== next.adventure?.currentLevelId
+      ) {
+        const tally = casinoTally.current;
+        setFinishedTally(
+          tally?.levelId === finishedLevelId ? tally.counts : null,
+        );
+      }
       if (next.revision > before.revision) {
         if (
           action?.type === "recover-memory" &&
@@ -318,8 +336,11 @@ function Adventure({
               (prior) => prior.id === enemy.id,
             )?.hp ?? enemy.hp),
         );
+        // A player's own hit already sounded at contact (DESIGN-022).
+        const hitPlayedAtContact =
+          action?.type === "attack" || action?.type === "secondary-attack";
         if (
-          enemyHit ||
+          (enemyHit && !hitPlayedAtContact) ||
           (next.adventure?.playerHp ?? 0) < (before.adventure?.playerHp ?? 0)
         ) {
           void sound.feedback("impact");
@@ -379,8 +400,21 @@ function Adventure({
           onAction: act,
           onRefresh: async () =>
             update(await api<SaveView>(`/saves/${initialSave.id}`)),
+          onFeedback: (event) => {
+            if (!mounted.current) return;
+            if (event.type === "hit") void sound.feedback("impact");
+            else if (event.type === "defeat") void sound.feedback("defeat");
+            else if (event.type === "ticket") void sound.feedback("ticket");
+            else if (event.type === "token")
+              void sound.feedback("token", 1 + Math.min(event.streak, 5) * 0.04);
+          },
           onStatus: (next) => {
             if (!mounted.current) return;
+            if (next.collectibles && next.activeLevelId)
+              casinoTally.current = {
+                levelId: next.activeLevelId,
+                counts: next.collectibles,
+              };
             if (
               !previouslyGrounded &&
               next.grounded &&
@@ -639,6 +673,7 @@ function Adventure({
             {view.playerHp}/{view.maxPlayerHp}
           </b>
         </div>
+        {status?.collectibles && <CasinoTally counts={status.collectibles} />}
         {routeMemories && (
           <div
             className="route-memory-count"
@@ -1116,6 +1151,7 @@ function Adventure({
             />
           )}
           <p>{chapterNotice}</p>
+          {finishedTally && <CasinoHaul counts={finishedTally} />}
           {chapterSubtitle && <p>{chapterSubtitle}</p>}
           <p>{chapterDescription}</p>
           <button className="primary" onClick={() => setChapterNotice("")}>
@@ -1198,6 +1234,7 @@ function Adventure({
               ? `${visibleRecoveredCount} fictional memories reclaimed. Your traveler reached age ${save.ageYears}.`
               : `${view.completedLevelIds.length} eras faced. ${save.recoveredIds.length} memories reclaimed. Your traveler reached age ${save.ageYears}; this journey ends where its selected memories end.`}
           </p>
+          {finishedTally && <CasinoHaul counts={finishedTally} />}
           <div className="memory-grid">
             {visibleMemories.map((memory) => (
               <MemoryCard key={memory.id} memory={memory} />
@@ -1209,6 +1246,45 @@ function Adventure({
         </Modal>
       )}
     </div>
+  );
+}
+
+/** Live casino tokens and golden-ticket slots (DESIGN-022). */
+function CasinoTally({ counts }: { counts: CollectibleCounts }) {
+  return (
+    <div
+      className="casino-tally"
+      role="group"
+      aria-label={`${counts.tokens} casino tokens, ${counts.tickets} of ${counts.ticketTotal} golden tickets`}
+    >
+      <span className="token-count" aria-hidden="true">
+        <i className="token-coin" />
+        {/* A new key restarts the bump each time the count grows. */}
+        <b key={counts.tokens}>{counts.tokens}</b>
+      </span>
+      <span className="ticket-slots" aria-hidden="true">
+        {Array.from({ length: counts.ticketTotal }, (_, index) => {
+          const collected = index < counts.tickets;
+          return (
+            <i
+              key={`${index}-${collected}`}
+              className={`ticket-slot ${collected ? "collected" : ""}`}
+            />
+          );
+        })}
+      </span>
+    </div>
+  );
+}
+
+function CasinoHaul({ counts }: { counts: CollectibleCounts }) {
+  const everyTicket = counts.ticketTotal > 0 && counts.tickets === counts.ticketTotal;
+  return (
+    <p className="casino-haul">
+      You grabbed {counts.tokens} of {counts.tokenTotal} casino tokens and{" "}
+      {counts.tickets} of {counts.ticketTotal} golden tickets.
+      {everyTicket ? " Every golden ticket found!" : ""}
+    </p>
   );
 }
 

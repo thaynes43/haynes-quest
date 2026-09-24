@@ -73,7 +73,19 @@ export interface SceneFrame {
   obby?: ObbySample;
   checkpointId?: string | null;
   recovering?: boolean;
+  /** Animation time for this frame after hit-stop; physics uses `deltaSeconds`. */
+  visualDeltaSeconds?: number;
+  /** Camera shake offset in metres; zero or absent when calm. */
+  cameraShake?: PositionSnapshot;
 }
+
+/** Immediate presentation events for sound and effects (DESIGN-022). */
+export type GameFeedbackEvent =
+  | { type: "hit"; encounterId: string; kind: "primary" | "secondary" }
+  | { type: "defeat"; encounterId: string; boss: boolean }
+  | { type: "token"; streak: number }
+  | { type: "ticket" }
+  | { type: "hurt" };
 
 export type AttackAttemptOutcome =
   | "accepted"
@@ -121,6 +133,9 @@ export interface BestiesActorVisualInspection {
 export interface SceneVisualInspection {
   memories: MemoryVisualInspection[];
   besties?: BestiesActorVisualInspection[];
+  collectibles?: import("./token-scene").TokenSceneInspection;
+  /** Live effect particles, for checking that contact and pickups burst. */
+  particles?: number;
 }
 
 export interface GameStatus {
@@ -155,6 +170,8 @@ export interface GameStatus {
   mediaLoading: number;
   mediaFailed: number;
   mediaReloadRequired?: boolean;
+  /** Casino tokens and golden tickets this run; absent on other chapters. */
+  collectibles?: import("./casino-tokens").CollectibleCounts | null;
 }
 
 export interface MemoryPlacementInspection extends PositionSnapshot {
@@ -204,6 +221,13 @@ export interface GameInspection {
     recoveryRemaining: number;
     recoveries: number;
   };
+  /** Planned casino collectibles with their collected state; null elsewhere. */
+  collectibles?: {
+    counts: import("./casino-tokens").CollectibleCounts;
+    items: Array<
+      import("./casino-tokens").CollectiblePlacement & { collected: boolean }
+    >;
+  } | null;
   disposed: boolean;
 }
 
@@ -220,6 +244,8 @@ export interface CreateGameOptions {
    * back to the published route. Omit it for ordinary play.
    */
   authoredLevelResolver?: AuthoredLevelResolver;
+  /** Fires at the moment of contact, pickup or defeat, before any server reply. */
+  onFeedback?: (event: GameFeedbackEvent) => void;
 }
 
 export interface GameHandle {

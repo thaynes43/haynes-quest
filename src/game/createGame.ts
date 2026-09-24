@@ -1,8 +1,28 @@
+import {
+  ATTACK_COOLDOWN_MS,
+  ROUTE_ATTACK_COOLDOWN_MS,
+  SECONDARY_ATTACK_COOLDOWN_MS,
+} from "../shared/adventure";
 import type {
   AdventureView,
   GameplayAction,
   SaveView,
 } from "../shared/contracts";
+import {
+  CollectibleTracker,
+  planCasinoCollectibles,
+  type CollectiblePlacement,
+  type CollectiblePlan,
+} from "./casino-tokens";
+import {
+  ATTACK_BUFFER_LEAD_MS,
+  CameraShake,
+  HIT_SHAKE_TRAUMA,
+  HitStop,
+  PREDICTED_CONTACT_MS,
+  PressBuffer,
+  prefersReducedMotion,
+} from "./juice";
 import {
   BestiesSimulation,
   BESTIES_ARENA_CENTER,
@@ -73,8 +93,18 @@ interface RuntimeScene {
   getMediaState?(): SceneMediaState;
   inspectVisuals?(): SceneVisualInspection;
   retryMedia?(): void;
+  setCollectibles?(
+    plan: CollectiblePlan | null,
+    collected?: ReadonlySet<string>,
+  ): void;
+  collectItem?(item: CollectiblePlacement): void;
+  expectHit?(encounterId: string): void;
+  anticipateHit?(encounterId: string, at: PositionSnapshot): void;
+  celebrate?(encounterId: string, boss: boolean): void;
   dispose(): void;
 }
+
+type AttackKind = "primary" | "secondary";
 
 function horizontalDistance(
   first: { x: number; z: number },
@@ -168,6 +198,33 @@ export function createGame(options: CreateGameOptions): GameHandle {
     scene.dispose();
     throw new Error("Game requires a window");
   }
+  // Game feel (DESIGN-022): motion effects honour the OS reduced-motion setting.
+  const reducedMotion = prefersReducedMotion(windowTarget);
+  const hitStop = new HitStop(!reducedMotion);
+  const shake = new CameraShake(!reducedMotion);
+  const attackBuffer = new PressBuffer<AttackKind>();
+  let predictedContact: {
+    at: number;
+    encounterId: string;
+    kind: AttackKind;
+  } | null = null;
+  let attackSentAt = Number.NEGATIVE_INFINITY;
+  let secondarySentAt = Number.NEGATIVE_INFINITY;
+  /** The server-owned action currently awaiting its reply, if any. */
+  let inFlightAction: GameplayAction["type"] | null = null;
+  // Casino tokens and golden tickets live only on the client for this run.
+  let collectiblePlan = planCasinoCollectibles(level);
+  let collectibles = collectiblePlan
+    ? new CollectibleTracker(collectiblePlan)
+    : null;
+  let tokenStreak = 0;
+  let lastTokenAt = Number.NEGATIVE_INFINITY;
+  const showCollectibles = (): void =>
+    scene.setCollectibles?.(
+      collectiblePlan,
+      collectibles?.collectedIds ?? new Set(),
+    );
+  showCollectibles();
 
   const enemies = new EnemySimulation(level, save);
   const bestiesEncounter = () =>
@@ -492,6 +549,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       mediaLoading: media.loading,
       mediaFailed: media.failed,
       mediaReloadRequired: media.reloadRequired ?? false,
+      collectibles: collectibles?.counts() ?? null,
     };
   };
 
@@ -579,6 +637,18 @@ export function createGame(options: CreateGameOptions): GameHandle {
           (previousEncounter) => previousEncounter.id === nextEncounter.id,
         )?.defeated,
     );
+    const sameLevel = previousIdentity === nextIdentity;
+    const newlyDefeated = sameLevel
+      ? (nextAdventure.activeLevel?.encounters ?? []).filter(
+          (encounter) =>
+            encounter.defeated &&
+            previousAdventure.activeLevel?.encounters.find(
+              (previous) => previous.id === encounter.id,
+            )?.defeated === false,
+        )
+      : [];
+    const hurt =
+      sameLevel && nextAdventure.playerHp < previousAdventure.playerHp;
     if (nextAdventure.activeLevel) {
       retainedActiveLevel = nextAdventure.activeLevel;
     }
@@ -648,6 +718,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
       enemies.reset(level, save);
       besties = new BestiesSimulation(bestiesOrigin());
       scene.rebuildRoute(level, save);
+      // A retry keeps this run's tokens; only a new chapter starts a new count.
+      if (identityChanged) {
+        collectiblePlan = planCasinoCollectibles(level);
+        collectibles = collectiblePlan
+          ? new CollectibleTracker(collectiblePlan)
+          : null;
+        tokenStreak = 0;
+      }
+      showCollectibles();
+      predictedContact = null;
+      attackBuffer.clear();
       scene.cameraYaw = 0;
     } else {
       enemies.sync(level, sceneSave);
@@ -673,6 +754,16 @@ export function createGame(options: CreateGameOptions): GameHandle {
     guardCooldownUntil = now + nextSave.adventure.guardCooldownRemainingMs;
     secondaryCooldownUntil =
       now + (nextSave.adventure.secondaryCooldownRemainingMs ?? 0);
+    for (const encounter of newlyDefeated) {
+      const boss = encounter.role === "boss";
+      scene.celebrate?.(encounter.id, boss);
+      shake.add(boss ? 0.7 : 0.35);
+      options.onFeedback?.({ type: "defeat", encounterId: encounter.id, boss });
+    }
+    if (hurt) {
+      shake.add(0.45);
+      options.onFeedback?.({ type: "hurt" });
+    }
     worldWasActive = false;
     emitStatus(true);
   };
@@ -684,6 +775,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     onApply: applySave,
     onState: (state) => {
       requestState = state;
+      if (state.requestState !== "acting") inFlightAction = null;
       if (state.requestState === "error" && autoInteractionKey) {
         autoInteractionRetryAt =
           windowTarget.performance.now() + autoInteractionRetryMs;
@@ -717,6 +809,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         encounterId: hit.encounterId,
       })
     ) {
+      inFlightAction = "take-hit";
       pendingHit = null;
       enemies.noteHitDispatched();
     } else {
@@ -869,6 +962,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         break;
     }
     const accepted = coordinator.perform(action);
+    if (accepted) inFlightAction = action.type;
     if (
       action.type === "attack" ||
       action.type === "secondary-attack" ||
@@ -877,6 +971,19 @@ export function createGame(options: CreateGameOptions): GameHandle {
       const acceptedKind =
         action.type === "secondary-attack" ? "secondary" : "primary";
       if (!accepted) return recordAttackFeedback("unavailable", acceptedKind);
+      if (action.type !== "attack-friendly") {
+        // Contact plays at the swing's contact moment, before the server
+        // replies; the server's HP result then confirms it without a replay.
+        const sentAt = windowTarget.performance.now();
+        if (acceptedKind === "primary") attackSentAt = sentAt;
+        else secondarySentAt = sentAt;
+        scene.expectHit?.(action.encounterId);
+        predictedContact = {
+          at: sentAt + PREDICTED_CONTACT_MS,
+          encounterId: action.encounterId,
+          kind: acceptedKind,
+        };
+      }
       if (
         action.type !== "attack-friendly" &&
         action.encounterId === bestiesEncounter()?.id
@@ -989,6 +1096,114 @@ export function createGame(options: CreateGameOptions): GameHandle {
     return accepted;
   };
 
+  const pressAttack = (kind: AttackKind, levelId: string): void => {
+    if (kind === "primary") {
+      const target = nearestEncounter(true);
+      if (target) {
+        controller.facing = target.facing;
+        performAction({ type: "attack", levelId, encounterId: target.id });
+      } else {
+        beginAttackAnimation("primary", null);
+        recordAttackFeedback("no-target");
+      }
+      return;
+    }
+    const target = nearestSecondaryEncounter(true);
+    if (target) {
+      controller.facing = target.facing;
+      performAction({
+        type: "secondary-attack",
+        levelId,
+        encounterId: target.id,
+      });
+    } else {
+      beginAttackAnimation("secondary", null);
+      recordAttackFeedback("no-target", "secondary");
+    }
+  };
+
+  /**
+   * When this kind of attack can next be sent. A just-sent attack blocks until
+   * its server cooldown ends even before the reply arrives.
+   */
+  const attackReadyAt = (kind: AttackKind): number =>
+    kind === "primary"
+      ? Math.max(
+          attackCooldownUntil,
+          attackSentAt +
+            (isRouteMemoryAdventure(save)
+              ? ROUTE_ATTACK_COOLDOWN_MS
+              : ATTACK_COOLDOWN_MS),
+        )
+      : Math.max(
+          secondaryCooldownUntil,
+          secondarySentAt + SECONDARY_ATTACK_COOLDOWN_MS,
+        );
+
+  /**
+   * Holds a press that would otherwise be dropped while a damage or
+   * interaction reply is pending, or in the last moment of cooldown. Two
+   * earlier decisions still stand: a press in the same frame as a pickup or
+   * memory contact is dropped so that moment stays clean, and a press while
+   * an attack awaits its reply is refused as busy rather than queued.
+   */
+  const shouldBufferAttack = (
+    kind: AttackKind,
+    now: number,
+    contactRequest: boolean,
+  ): boolean => {
+    if (contactRequest || requireAdventure(save).phase !== "exploring")
+      return false;
+    if (
+      requestState.requestState === "acting" &&
+      (inFlightAction === "attack" || inFlightAction === "secondary-attack")
+    )
+      return false;
+    const remaining = attackReadyAt(kind) - now;
+    if (remaining > ATTACK_BUFFER_LEAD_MS) return false;
+    return remaining > 0 || requestState.requestState === "acting";
+  };
+
+  /** Holds a press and reports the same outcome the refusal would have. */
+  const holdAttack = (kind: AttackKind, now: number): void => {
+    attackBuffer.hold(kind, now);
+    recordAttackFeedback(
+      requestState.requestState === "acting" ? "busy" : "cooldown",
+      kind,
+    );
+  };
+
+  const collectItem = (item: CollectiblePlacement, now: number): void => {
+    scene.collectItem?.(item);
+    if (item.kind === "ticket") {
+      shake.add(0.2);
+      options.onFeedback?.({ type: "ticket" });
+    } else {
+      tokenStreak = now - lastTokenAt <= 700 ? tokenStreak + 1 : 0;
+      lastTokenAt = now;
+      options.onFeedback?.({ type: "token", streak: tokenStreak });
+    }
+    emitStatus(true);
+  };
+
+  const playPredictedContact = (now: number): void => {
+    if (!predictedContact || now < predictedContact.at) return;
+    const contact = predictedContact;
+    predictedContact = null;
+    const target = attackTargetFrames().find(
+      (enemy) => enemy.id === contact.encounterId,
+    );
+    if (!target) return;
+    scene.anticipateHit?.(contact.encounterId, target.position);
+    hitStop.trigger();
+    shake.add(HIT_SHAKE_TRAUMA[contact.kind]);
+    options.onFeedback?.({
+      type: "hit",
+      encounterId: contact.encounterId,
+      kind: contact.kind,
+    });
+  };
+
   const frame = (now: number): void => {
     if (disposed) return;
     const rawDeltaSeconds = Math.max(0, (now - lastTime) / 1000);
@@ -1058,6 +1273,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
           });
           if (traversal.checkpointChanged || traversal.recovered) {
             checkpoint = { ...controller.checkpoint };
+          }
+          if (collectibles) {
+            for (const item of collectibles.collect(controller.position, {
+              radius: dimensions.colliderRadius,
+              height: dimensions.height,
+            }))
+              collectItem(item, now);
           }
           if (traversal.recovered) {
             traversalRecoveries++;
@@ -1156,37 +1378,31 @@ export function createGame(options: CreateGameOptions): GameHandle {
           });
         }
       }
-      if (actions.attack && !collectedByContact && adventure.currentLevelId) {
-        const target = nearestEncounter(true);
-        if (target) {
-          controller.facing = target.facing;
-          performAction({
-            type: "attack",
-            levelId: adventure.currentLevelId,
-            encounterId: target.id,
-          });
-        } else {
-          beginAttackAnimation("primary", null);
-          recordAttackFeedback("no-target");
+      const levelId = adventure.currentLevelId;
+      if (actions.attack && levelId) {
+        if (shouldBufferAttack("primary", now, collectedByContact))
+          holdAttack("primary", now);
+        else if (!collectedByContact) pressAttack("primary", levelId);
+      }
+      if (actions.guard && levelId) {
+        if (isRouteMemoryAdventure(save)) {
+          if (shouldBufferAttack("secondary", now, collectedByContact))
+            holdAttack("secondary", now);
+          else if (!collectedByContact) pressAttack("secondary", levelId);
+        } else if (!collectedByContact) {
+          performAction({ type: "guard", levelId });
         }
       }
-      if (actions.guard && !collectedByContact && adventure.currentLevelId) {
-        if (isRouteMemoryAdventure(save)) {
-          const target = nearestSecondaryEncounter(true);
-          if (target) {
-            controller.facing = target.facing;
-            performAction({
-              type: "secondary-attack",
-              levelId: adventure.currentLevelId,
-              encounterId: target.id,
-            });
-          } else {
-            beginAttackAnimation("secondary", null);
-            recordAttackFeedback("no-target", "secondary");
-          }
-        } else {
-          performAction({ type: "guard", levelId: adventure.currentLevelId });
-        }
+      const buffered =
+        actions.attack || actions.guard ? null : attackBuffer.peek(now);
+      if (
+        buffered &&
+        levelId &&
+        requestState.requestState !== "acting" &&
+        now >= attackReadyAt(buffered)
+      ) {
+        attackBuffer.clear();
+        pressAttack(buffered, levelId);
       }
     } else {
       enemies.step(
@@ -1194,10 +1410,15 @@ export function createGame(options: CreateGameOptions): GameHandle {
         save,
       );
     }
+    playPredictedContact(now);
+    shake.update(deltaSeconds);
+    const visualDeltaSeconds = hitStop.step(deltaSeconds);
     const frames = enemyFrames();
     const target = nearestEncounter(true);
     scene.render(controller.position, controller.facing, elapsed, {
       deltaSeconds,
+      visualDeltaSeconds,
+      cameraShake: shake.offset(elapsed),
       moving:
         worldActive &&
         Math.hypot(currentInput.moveX, currentInput.moveY) > 0.01,
@@ -1294,6 +1515,19 @@ export function createGame(options: CreateGameOptions): GameHandle {
               recoveries: traversalRecoveries,
             }
           : undefined,
+        collectibles:
+          collectiblePlan && collectibles
+            ? {
+                counts: collectibles.counts(),
+                items: [
+                  ...collectiblePlan.tokens,
+                  ...collectiblePlan.tickets,
+                ].map((item) => ({
+                  ...item,
+                  collected: collectibles!.has(item.id),
+                })),
+              }
+            : null,
         disposed,
       };
     },

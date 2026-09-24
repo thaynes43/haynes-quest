@@ -13,13 +13,33 @@ The established two-chapter route uses [six fictional pictures](reviews/fixture-
 | Look around | Drag the world | Drag with the mouse |
 | Attack | Large **Attack** button | F |
 | Secondary attack | Smaller **Bash** button, after finding a shield | Shift |
-| Collect gear or memories | Walk into them | Walk into them |
+| Collect gear, memories, tokens and tickets | Walk or jump into them | Walk or jump into them |
 
 Hold the movement stick with one thumb and press Jump with the other. Attack sits above and to the left of Jump; the smaller Bash button sits above and to the right of Attack. The stick and buttons grow on tablet screens. Dragging or tapping the scenery does not jump. Bash adds a close-range hit with a separate recharge; future gear can add other secondary attacks.
 
 Find two little memories along each route. Their keepsakes disappear on collection and their pictures fill the small indicators beside your health. Collecting a little memory also sets a checkpoint, without stopping movement or aging the player. You can revisit collected pictures in Memories. Beat the boss, then walk into the big memory beyond it: collecting all three advances your age and opens the next chapter. Missing little memories remain on the path after victory.
 
 If the big memory does not collect, check the picture indicators beside your health. After victory, they tell you how many little memories remain. Follow the path back to collect them, then return to the big memory; the defeated boss stays beaten. Once both little pictures are collected, the message tells you to walk into the big memory to finish the chapter.
+
+## Casino tokens and golden tickets
+
+Rat Casino scatters spinning gold tokens along its paths and in little arcs over its jumps. Walk or jump through one to collect it; a quick run of tokens chimes higher and higher. Each of the three side routes hides a golden ticket on its highest platform: the golden-view balcony, the top of the ticket loft and the roulette bypass. The coin counter and ticket slots sit below your health, and the chapter's closing card shows your haul. Tokens are just for fun and are never spent or wagered. Falling or retrying keeps them, and a new run starts from zero. The gentle opening chapters have no tokens.
+
+Attacks now land the moment the swing connects. The enemy flinches, sparks fly, the view gives a tiny shake and the hit sounds before the server replies. Pressing Attack again just before it recharges queues that swing instead of ignoring it. Defeated enemies burst into confetti. The shake and the brief hit pause are off when the device asks for reduced motion.
+
+![Spinning gold tokens with plum rims lead from the foyer toward the first raised steps; the health panel shows a coin count of zero and three empty ticket slots](media/playtest/v009/fun-pass-token-trail.png){ width="700" }
+
+![A golden ticket with a halo waits at the crest of the ticket loft, with more tokens on the steps below](media/playtest/v009/fun-pass-golden-ticket-ahead.png){ width="700" }
+
+![Taking the golden ticket bursts gold and plum confetti and fills the first ticket slot beside a count of twenty tokens](media/playtest/v009/fun-pass-golden-ticket-burst.png){ width="700" }
+
+![The wand strikes Chick-flia and sparks fly while the server's reply is still being held](media/playtest/v009/fun-pass-contact-before-reply.png){ width="700" }
+
+![Confetti bursts from Chick-flia as it is defeated](media/playtest/v009/fun-pass-defeat-confetti.png){ width="700" }
+
+![At 390 by 844 the coin counter and ticket slots fit inside the health panel](media/playtest/v009/fun-pass-phone.png){ width="300" }
+
+These [local Chromium captures and checksums](media/playtest/v009/captures.json) come from the fun-pass browser check, played with the ordinary keyboard controls on software WebGL. That renderer draws about five frames a second, so the check steps the page clock one 16 ms frame at a time for the loft climb and the fight. The images do not establish feel, sound or performance on a physical iPhone or iPad.
 
 ## What changed for this test
 

@@ -9,6 +9,7 @@ export type {
   AuthoredLevelRegistry,
   AuthoredLevelResolver,
 } from "./authored-layout";
+export type { CollectibleCounts } from "./casino-tokens";
 export type {
   AvatarProportions,
   AttackAttemptOutcome,
@@ -16,6 +17,7 @@ export type {
   CreateGameOptions,
   EnemyFrame,
   EnemyPhase,
+  GameFeedbackEvent,
   GameHandle,
   GameInputAction,
   GameInputSnapshot,
