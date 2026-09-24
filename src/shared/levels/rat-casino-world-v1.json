@@ -1804,7 +1804,7 @@
               "platformId": "rat-pit-stage",
               "position": {
                 "x": 0,
-                "y": 0.9,
+                "y": 3,
                 "z": -125.3
               }
             },
@@ -1836,7 +1836,7 @@
               "platformId": "drum-break",
               "position": {
                 "x": -4,
-                "y": 0,
+                "y": 0.6,
                 "z": -53.3
               }
             },
@@ -1852,7 +1852,7 @@
               "platformId": "fox-card-room",
               "position": {
                 "x": 2,
-                "y": 0,
+                "y": 1.5,
                 "z": -85.3
               }
             },
@@ -1868,7 +1868,7 @@
               "platformId": "moth-projection-room",
               "position": {
                 "x": 2,
-                "y": 0,
+                "y": 2.1,
                 "z": -103.3
               }
             }
@@ -1877,7 +1877,7 @@
             "platformId": "after-hours-exit",
             "position": {
               "x": 0,
-              "y": 0.9,
+              "y": 3,
               "z": -139.8
             }
           },
@@ -1894,7 +1894,7 @@
               "platformId": "golden-view-balcony",
               "position": {
                 "x": 4,
-                "y": 0,
+                "y": 1.2,
                 "z": -78.8
               }
             },
@@ -1902,7 +1902,7 @@
               "platformId": "moth-projection-room",
               "position": {
                 "x": -5.3,
-                "y": 0,
+                "y": 2.1,
                 "z": -98.9
               }
             }
@@ -1912,7 +1912,7 @@
               "platformId": "after-hours-exit",
               "position": {
                 "x": 0,
-                "y": 0.9,
+                "y": 3,
                 "z": -138.3
               }
             },
@@ -1928,7 +1928,7 @@
               "platformId": "fox-card-room",
               "position": {
                 "x": -1.5,
-                "y": 0,
+                "y": 1.5,
                 "z": -82.3
               }
             }
@@ -1955,7 +1955,7 @@
             "platformId": "after-hours-exit",
             "position": {
               "x": 0,
-              "y": 0.9,
+              "y": 3,
               "z": -136.8
             }
           },
@@ -1988,6 +1988,16 @@
             "ticket-loft-step-9",
             "ticket-loft-step-10",
             "ticket-loft-step-11",
+            "ticket-loft-step-12",
+            "ticket-loft-step-13",
+            "ticket-loft-step-14",
+            "ticket-loft-step-15",
+            "ticket-loft-step-16",
+            "ticket-loft-step-17",
+            "ticket-loft-step-18",
+            "ticket-loft-step-19",
+            "ticket-loft-step-20",
+            "ticket-loft-step-21",
             "ticket-counter"
           ],
           [
@@ -1998,7 +2008,6 @@
             "roulette-bypass-step-4",
             "roulette-bypass-step-5",
             "roulette-bypass-step-6",
-            "roulette-bypass-step-7",
             "fox-card-room"
           ]
         ],
@@ -2122,7 +2131,7 @@
           },
           {
             "from": "golden-view-balcony",
-            "mode": "walk",
+            "mode": "jump",
             "to": "fox-card-room"
           },
           {
@@ -2188,6 +2197,56 @@
           {
             "from": "ticket-loft-step-11",
             "mode": "jump",
+            "to": "ticket-loft-step-12"
+          },
+          {
+            "from": "ticket-loft-step-12",
+            "mode": "jump",
+            "to": "ticket-loft-step-13"
+          },
+          {
+            "from": "ticket-loft-step-13",
+            "mode": "jump",
+            "to": "ticket-loft-step-14"
+          },
+          {
+            "from": "ticket-loft-step-14",
+            "mode": "jump",
+            "to": "ticket-loft-step-15"
+          },
+          {
+            "from": "ticket-loft-step-15",
+            "mode": "jump",
+            "to": "ticket-loft-step-16"
+          },
+          {
+            "from": "ticket-loft-step-16",
+            "mode": "jump",
+            "to": "ticket-loft-step-17"
+          },
+          {
+            "from": "ticket-loft-step-17",
+            "mode": "jump",
+            "to": "ticket-loft-step-18"
+          },
+          {
+            "from": "ticket-loft-step-18",
+            "mode": "jump",
+            "to": "ticket-loft-step-19"
+          },
+          {
+            "from": "ticket-loft-step-19",
+            "mode": "jump",
+            "to": "ticket-loft-step-20"
+          },
+          {
+            "from": "ticket-loft-step-20",
+            "mode": "jump",
+            "to": "ticket-loft-step-21"
+          },
+          {
+            "from": "ticket-loft-step-21",
+            "mode": "jump",
             "to": "ticket-counter"
           },
           {
@@ -2222,11 +2281,6 @@
           },
           {
             "from": "roulette-bypass-step-6",
-            "mode": "jump",
-            "to": "roulette-bypass-step-7"
-          },
-          {
-            "from": "roulette-bypass-step-7",
             "mode": "jump",
             "to": "fox-card-room"
           }
@@ -2329,13 +2383,13 @@
           {
             "center": {
               "x": -3,
-              "y": -0.3,
+              "y": -0.55,
               "z": -43.3
             },
             "id": "jackrabbit-beat-lane",
             "size": {
               "x": 7,
-              "y": 0.6,
+              "y": 1.7,
               "z": 7
             },
             "type": "platform"
@@ -2343,13 +2397,13 @@
           {
             "center": {
               "x": -3,
-              "y": -0.3,
+              "y": -0.4,
               "z": -52.3
             },
             "id": "drum-break",
             "size": {
               "x": 10,
-              "y": 0.6,
+              "y": 2,
               "z": 9
             },
             "type": "platform"
@@ -2357,7 +2411,7 @@
           {
             "center": {
               "x": -3,
-              "y": -0.3,
+              "y": 0.6,
               "z": -59.3
             },
             "id": "token-tray",
@@ -2367,22 +2421,22 @@
               "period": 9
             },
             "size": {
-              "x": 3.4,
+              "x": 4.4,
               "y": 0.6,
-              "z": 3.4
+              "z": 4.2
             },
             "type": "moving-platform"
           },
           {
             "center": {
               "x": -3,
-              "y": -0.3,
+              "y": -0.1,
               "z": -65.8
             },
             "id": "cabinet-landing",
             "size": {
               "x": 10,
-              "y": 0.6,
+              "y": 2.6,
               "z": 8
             },
             "type": "platform"
@@ -2390,7 +2444,7 @@
           {
             "center": {
               "x": -4.8,
-              "y": -0.3,
+              "y": 1.2,
               "z": -72.6
             },
             "id": "roulette-hop-one",
@@ -2404,7 +2458,7 @@
           {
             "center": {
               "x": -1.2,
-              "y": -0.3,
+              "y": 1.5,
               "z": -77.2
             },
             "id": "roulette-hop-two",
@@ -2418,13 +2472,13 @@
           {
             "center": {
               "x": 0,
-              "y": -0.3,
+              "y": 0.05,
               "z": -84.3
             },
             "id": "fox-card-room",
             "size": {
               "x": 12,
-              "y": 0.6,
+              "y": 2.9,
               "z": 8
             },
             "type": "platform"
@@ -2432,13 +2486,13 @@
           {
             "center": {
               "x": 3,
-              "y": -0.3,
+              "y": 0.2,
               "z": -93.3
             },
             "id": "backstage-turn",
             "size": {
               "x": 10,
-              "y": 0.6,
+              "y": 3.2,
               "z": 8
             },
             "type": "platform"
@@ -2446,13 +2500,13 @@
           {
             "center": {
               "x": 0,
-              "y": -0.3,
+              "y": 0.35,
               "z": -102.8
             },
             "id": "moth-projection-room",
             "size": {
               "x": 12,
-              "y": 0.6,
+              "y": 3.5,
               "z": 9
             },
             "type": "platform"
@@ -2460,7 +2514,7 @@
           {
             "center": {
               "x": -1.2,
-              "y": 0,
+              "y": 2.1,
               "z": -109.5
             },
             "id": "last-ticket-one",
@@ -2474,7 +2528,7 @@
           {
             "center": {
               "x": 1.2,
-              "y": 0.3,
+              "y": 2.4,
               "z": -113.1
             },
             "id": "last-ticket-two",
@@ -2488,13 +2542,13 @@
           {
             "center": {
               "x": 0,
-              "y": 0.6,
+              "y": 0.8,
               "z": -125.3
             },
             "id": "rat-pit-stage",
             "size": {
               "x": 14,
-              "y": 0.6,
+              "y": 4.4,
               "z": 20
             },
             "type": "platform"
@@ -2502,13 +2556,13 @@
           {
             "center": {
               "x": 0,
-              "y": 0.6,
+              "y": 0.8,
               "z": -138.3
             },
             "id": "after-hours-exit",
             "size": {
               "x": 12,
-              "y": 0.6,
+              "y": 4.4,
               "z": 6
             },
             "type": "platform"
@@ -2516,7 +2570,7 @@
           {
             "center": {
               "x": 3,
-              "y": -0.3,
+              "y": 0.9,
               "z": -72.3
             },
             "id": "cabinet-side-bridge",
@@ -2530,7 +2584,7 @@
           {
             "center": {
               "x": 4,
-              "y": -0.3,
+              "y": 0.9,
               "z": -78.8
             },
             "id": "golden-view-balcony",
@@ -2544,7 +2598,7 @@
           {
             "center": {
               "x": -3,
-              "y": 0.22,
+              "y": 0.52,
               "z": -43.3
             },
             "halfLength": 1,
@@ -2560,7 +2614,7 @@
           {
             "center": {
               "x": 3,
-              "y": 0.22,
+              "y": 2.02,
               "z": -93.3
             },
             "halfLength": 1.15,
@@ -2605,7 +2659,7 @@
             "platformId": "drum-break",
             "position": {
               "x": -3,
-              "y": 0,
+              "y": 0.6,
               "z": -48.8
             },
             "type": "checkpoint"
@@ -2618,7 +2672,7 @@
             "platformId": "cabinet-landing",
             "position": {
               "x": -3,
-              "y": 0,
+              "y": 1.2,
               "z": -62.8
             },
             "type": "checkpoint"
@@ -2631,7 +2685,7 @@
             "platformId": "fox-card-room",
             "position": {
               "x": 0,
-              "y": 0,
+              "y": 1.5,
               "z": -81.3
             },
             "type": "checkpoint"
@@ -2644,7 +2698,7 @@
             "platformId": "moth-projection-room",
             "position": {
               "x": 0,
-              "y": 0,
+              "y": 2.1,
               "z": -99.3
             },
             "type": "checkpoint"
@@ -2657,7 +2711,7 @@
             "platformId": "rat-pit-stage",
             "position": {
               "x": 0,
-              "y": 0.9,
+              "y": 3,
               "z": -116.3
             },
             "type": "checkpoint"
@@ -2670,7 +2724,7 @@
             "platformId": "after-hours-exit",
             "position": {
               "x": 0,
-              "y": 0.9,
+              "y": 3,
               "z": -136.8
             },
             "type": "checkpoint"
@@ -2734,154 +2788,294 @@
           {
             "center": {
               "x": -6.8,
-              "y": 0.125,
+              "y": 0.15,
               "z": 0
             },
             "id": "ticket-loft-step-1",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
-              "x": -7.5,
-              "y": 0.375,
-              "z": -3.43
+              "x": -6.85,
+              "y": 0.45,
+              "z": -1.715
             },
             "id": "ticket-loft-step-2",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
               "x": -7.5,
-              "y": 0.625,
-              "z": -6.86
+              "y": 0.75,
+              "z": -3.43
             },
             "id": "ticket-loft-step-3",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
               "x": -7.5,
-              "y": 0.875,
-              "z": -10.29
+              "y": 1.05,
+              "z": -5.145
             },
             "id": "ticket-loft-step-4",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
               "x": -7.5,
-              "y": 1.125,
-              "z": -13.72
+              "y": 1.35,
+              "z": -6.86
             },
             "id": "ticket-loft-step-5",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.05,
+              "y": 1.65,
+              "z": -8.575
+            },
+            "id": "ticket-loft-step-6",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.1,
+              "y": 1.95,
+              "z": -10.29
+            },
+            "id": "ticket-loft-step-7",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.15,
+              "y": 2.25,
+              "z": -12.005
+            },
+            "id": "ticket-loft-step-8",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.2,
+              "y": 2.55,
+              "z": -13.72
+            },
+            "id": "ticket-loft-step-9",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.25,
+              "y": 2.85,
+              "z": -15.435
+            },
+            "id": "ticket-loft-step-10",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
               "x": -7.3,
-              "y": 1.375,
+              "y": 3.15,
               "z": -17.15
             },
-            "id": "ticket-loft-step-6",
+            "id": "ticket-loft-step-11",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
-              "x": -7.5,
-              "y": 1.125,
+              "x": -7.35,
+              "y": 2.85,
+              "z": -18.865
+            },
+            "id": "ticket-loft-step-12",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.4,
+              "y": 2.55,
               "z": -20.58
             },
-            "id": "ticket-loft-step-7",
+            "id": "ticket-loft-step-13",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.45,
+              "y": 2.25,
+              "z": -22.295
+            },
+            "id": "ticket-loft-step-14",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
               "x": -7.5,
-              "y": 0.875,
+              "y": 1.95,
               "z": -24.01
             },
-            "id": "ticket-loft-step-8",
+            "id": "ticket-loft-step-15",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.55,
+              "y": 1.65,
+              "z": -25.725
+            },
+            "id": "ticket-loft-step-16",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
               "x": -7.6,
-              "y": 0.625,
+              "y": 1.35,
               "z": -27.44
             },
-            "id": "ticket-loft-step-9",
+            "id": "ticket-loft-step-17",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.65,
+              "y": 1.05,
+              "z": -29.155
+            },
+            "id": "ticket-loft-step-18",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
               "x": -7.7,
-              "y": 0.375,
+              "y": 0.75,
               "z": -30.87
             },
-            "id": "ticket-loft-step-10",
+            "id": "ticket-loft-step-19",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
+            },
+            "type": "platform"
+          },
+          {
+            "center": {
+              "x": -7.75,
+              "y": 0.45,
+              "z": -32.585
+            },
+            "id": "ticket-loft-step-20",
+            "size": {
+              "x": 2.4,
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
           {
             "center": {
               "x": -7.8,
-              "y": 0.125,
+              "y": 0.15,
               "z": -34.3
             },
-            "id": "ticket-loft-step-11",
+            "id": "ticket-loft-step-21",
             "size": {
               "x": 2.4,
-              "y": 0.25,
-              "z": 2.83
+              "y": 0.3,
+              "z": 1.115
             },
             "type": "platform"
           },
@@ -2893,7 +3087,7 @@
             "platformId": "ticket-loft-step-1",
             "position": {
               "x": -6.8,
-              "y": 0.25,
+              "y": 0.3,
               "z": 0
             },
             "type": "checkpoint"
@@ -2905,9 +3099,9 @@
             "id": "ticket-loft-checkpoint-2",
             "platformId": "ticket-loft-step-2",
             "position": {
-              "x": -7.5,
-              "y": 0.5,
-              "z": -3.43
+              "x": -6.85,
+              "y": 0.6,
+              "z": -1.715
             },
             "type": "checkpoint"
           },
@@ -2919,8 +3113,8 @@
             "platformId": "ticket-loft-step-3",
             "position": {
               "x": -7.5,
-              "y": 0.75,
-              "z": -6.86
+              "y": 0.9,
+              "z": -3.43
             },
             "type": "checkpoint"
           },
@@ -2932,8 +3126,8 @@
             "platformId": "ticket-loft-step-4",
             "position": {
               "x": -7.5,
-              "y": 1,
-              "z": -10.29
+              "y": 1.2,
+              "z": -5.145
             },
             "type": "checkpoint"
           },
@@ -2945,8 +3139,8 @@
             "platformId": "ticket-loft-step-5",
             "position": {
               "x": -7.5,
-              "y": 1.25,
-              "z": -13.72
+              "y": 1.5,
+              "z": -6.86
             },
             "type": "checkpoint"
           },
@@ -2957,9 +3151,9 @@
             "id": "ticket-loft-checkpoint-6",
             "platformId": "ticket-loft-step-6",
             "position": {
-              "x": -7.3,
-              "y": 1.5,
-              "z": -17.15
+              "x": -7.05,
+              "y": 1.8,
+              "z": -8.575
             },
             "type": "checkpoint"
           },
@@ -2970,9 +3164,9 @@
             "id": "ticket-loft-checkpoint-7",
             "platformId": "ticket-loft-step-7",
             "position": {
-              "x": -7.5,
-              "y": 1.25,
-              "z": -20.58
+              "x": -7.1,
+              "y": 2.1,
+              "z": -10.29
             },
             "type": "checkpoint"
           },
@@ -2983,9 +3177,9 @@
             "id": "ticket-loft-checkpoint-8",
             "platformId": "ticket-loft-step-8",
             "position": {
-              "x": -7.5,
-              "y": 1,
-              "z": -24.01
+              "x": -7.15,
+              "y": 2.4,
+              "z": -12.005
             },
             "type": "checkpoint"
           },
@@ -2996,9 +3190,9 @@
             "id": "ticket-loft-checkpoint-9",
             "platformId": "ticket-loft-step-9",
             "position": {
-              "x": -7.6,
-              "y": 0.75,
-              "z": -27.44
+              "x": -7.2,
+              "y": 2.7,
+              "z": -13.72
             },
             "type": "checkpoint"
           },
@@ -3009,9 +3203,9 @@
             "id": "ticket-loft-checkpoint-10",
             "platformId": "ticket-loft-step-10",
             "position": {
-              "x": -7.7,
-              "y": 0.5,
-              "z": -30.87
+              "x": -7.25,
+              "y": 3,
+              "z": -15.435
             },
             "type": "checkpoint"
           },
@@ -3022,8 +3216,138 @@
             "id": "ticket-loft-checkpoint-11",
             "platformId": "ticket-loft-step-11",
             "position": {
+              "x": -7.3,
+              "y": 3.3,
+              "z": -17.15
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-12",
+            "platformId": "ticket-loft-step-12",
+            "position": {
+              "x": -7.35,
+              "y": 3,
+              "z": -18.865
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-13",
+            "platformId": "ticket-loft-step-13",
+            "position": {
+              "x": -7.4,
+              "y": 2.7,
+              "z": -20.58
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-14",
+            "platformId": "ticket-loft-step-14",
+            "position": {
+              "x": -7.45,
+              "y": 2.4,
+              "z": -22.295
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-15",
+            "platformId": "ticket-loft-step-15",
+            "position": {
+              "x": -7.5,
+              "y": 2.1,
+              "z": -24.01
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-16",
+            "platformId": "ticket-loft-step-16",
+            "position": {
+              "x": -7.55,
+              "y": 1.8,
+              "z": -25.725
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-17",
+            "platformId": "ticket-loft-step-17",
+            "position": {
+              "x": -7.6,
+              "y": 1.5,
+              "z": -27.44
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-18",
+            "platformId": "ticket-loft-step-18",
+            "position": {
+              "x": -7.65,
+              "y": 1.2,
+              "z": -29.155
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-19",
+            "platformId": "ticket-loft-step-19",
+            "position": {
+              "x": -7.7,
+              "y": 0.9,
+              "z": -30.87
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-20",
+            "platformId": "ticket-loft-step-20",
+            "position": {
+              "x": -7.75,
+              "y": 0.6,
+              "z": -32.585
+            },
+            "type": "checkpoint"
+          },
+          {
+            "activation": {
+              "type": "platform"
+            },
+            "id": "ticket-loft-checkpoint-21",
+            "platformId": "ticket-loft-step-21",
+            "position": {
               "x": -7.8,
-              "y": 0.25,
+              "y": 0.3,
               "z": -34.3
             },
             "type": "checkpoint"
@@ -3031,98 +3355,84 @@
           {
             "center": {
               "x": -9.8,
-              "y": 0.15,
+              "y": 1.35,
               "z": -65.8
             },
             "id": "roulette-bypass-step-1",
             "size": {
               "x": 2.4,
               "y": 0.3,
-              "z": 2.483333
+              "z": 3.1
             },
             "type": "platform"
           },
           {
             "center": {
-              "x": -10.366667,
-              "y": 0.45,
-              "z": -68.883333
+              "x": -10.3,
+              "y": 1.65,
+              "z": -69.5
             },
             "id": "roulette-bypass-step-2",
             "size": {
               "x": 2.4,
               "y": 0.3,
-              "z": 2.483333
+              "z": 3.1
             },
             "type": "platform"
           },
           {
             "center": {
-              "x": -9.133333,
-              "y": 0.75,
-              "z": -71.966667
+              "x": -9,
+              "y": 1.95,
+              "z": -73.2
             },
             "id": "roulette-bypass-step-3",
             "size": {
               "x": 2.4,
               "y": 0.3,
-              "z": 2.483333
+              "z": 3.1
             },
             "type": "platform"
           },
           {
             "center": {
-              "x": -9.7,
-              "y": 1.05,
-              "z": -75.05
+              "x": -9.5,
+              "y": 2.25,
+              "z": -76.9
             },
             "id": "roulette-bypass-step-4",
             "size": {
               "x": 2.4,
               "y": 0.3,
-              "z": 2.483333
+              "z": 3.1
             },
             "type": "platform"
           },
           {
             "center": {
-              "x": -8.466667,
-              "y": 0.75,
-              "z": -78.133333
+              "x": -8.2,
+              "y": 1.95,
+              "z": -80.6
             },
             "id": "roulette-bypass-step-5",
             "size": {
               "x": 2.4,
               "y": 0.3,
-              "z": 2.483333
-            },
-            "type": "platform"
-          },
-          {
-            "center": {
-              "x": -9.033333,
-              "y": 0.45,
-              "z": -81.216667
-            },
-            "id": "roulette-bypass-step-6",
-            "size": {
-              "x": 2.4,
-              "y": 0.3,
-              "z": 2.483333
+              "z": 3.1
             },
             "type": "platform"
           },
           {
             "center": {
               "x": -7.8,
-              "y": 0.15,
+              "y": 1.65,
               "z": -84.3
             },
-            "id": "roulette-bypass-step-7",
+            "id": "roulette-bypass-step-6",
             "size": {
               "x": 2.4,
               "y": 0.3,
-              "z": 2.483333
+              "z": 3.1
             },
             "type": "platform"
           },
@@ -3134,7 +3444,7 @@
             "platformId": "roulette-bypass-step-1",
             "position": {
               "x": -9.8,
-              "y": 0.3,
+              "y": 1.5,
               "z": -65.8
             },
             "type": "checkpoint"
@@ -3146,9 +3456,9 @@
             "id": "roulette-bypass-checkpoint-2",
             "platformId": "roulette-bypass-step-2",
             "position": {
-              "x": -10.366667,
-              "y": 0.6,
-              "z": -68.883333
+              "x": -10.3,
+              "y": 1.8,
+              "z": -69.5
             },
             "type": "checkpoint"
           },
@@ -3159,9 +3469,9 @@
             "id": "roulette-bypass-checkpoint-3",
             "platformId": "roulette-bypass-step-3",
             "position": {
-              "x": -9.133333,
-              "y": 0.9,
-              "z": -71.966667
+              "x": -9,
+              "y": 2.1,
+              "z": -73.2
             },
             "type": "checkpoint"
           },
@@ -3172,9 +3482,9 @@
             "id": "roulette-bypass-checkpoint-4",
             "platformId": "roulette-bypass-step-4",
             "position": {
-              "x": -9.7,
-              "y": 1.2,
-              "z": -75.05
+              "x": -9.5,
+              "y": 2.4,
+              "z": -76.9
             },
             "type": "checkpoint"
           },
@@ -3185,9 +3495,9 @@
             "id": "roulette-bypass-checkpoint-5",
             "platformId": "roulette-bypass-step-5",
             "position": {
-              "x": -8.466667,
-              "y": 0.9,
-              "z": -78.133333
+              "x": -8.2,
+              "y": 2.1,
+              "z": -80.6
             },
             "type": "checkpoint"
           },
@@ -3198,21 +3508,8 @@
             "id": "roulette-bypass-checkpoint-6",
             "platformId": "roulette-bypass-step-6",
             "position": {
-              "x": -9.033333,
-              "y": 0.6,
-              "z": -81.216667
-            },
-            "type": "checkpoint"
-          },
-          {
-            "activation": {
-              "type": "platform"
-            },
-            "id": "roulette-bypass-checkpoint-7",
-            "platformId": "roulette-bypass-step-7",
-            "position": {
               "x": -7.8,
-              "y": 0.3,
+              "y": 1.8,
               "z": -84.3
             },
             "type": "checkpoint"

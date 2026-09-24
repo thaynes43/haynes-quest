@@ -1,0 +1,39 @@
+{
+  "version": "v008",
+  "recordedAt": "2026-09-24T02:30:42.735Z",
+  "routeId": "rat-casino-v1",
+  "projectId": "rat-casino-adventure",
+  "projectSha256": "dcef1bea31e1fde71c4f49091dabb704adf9eb588332026bfec54042105efcae",
+  "browser": "headless Chromium 153.0.8010.12 with ANGLE/SwiftShader software WebGL",
+  "method": "Local ephemeral playtest; ordinary keyboard movement, jump and attack; no fixture action shortcuts",
+  "sourceRun": "tests/e2e/rat-casino.mjs, playground-source-final",
+  "sourceReportSha256": "ef239e0353991a97e64b047ad8d5ba98f6dd2ce755cbda813e1a847fc46b5d98",
+  "outcome": "passed",
+  "physicalDeviceEvidence": false,
+  "screenshots": [
+    {
+      "file": "rat-casino-foyer.png",
+      "sha256": "0d494ef86bac7ec091abc7f4c1b74c6b275cf7b438f903c34c7dfa35d222c3fe"
+    },
+    {
+      "file": "rat-casino-cabinet-climb.png",
+      "sha256": "83618704072faaf90aa3c04ee95eefd63b5659b84b2fba282a32f560d262d261"
+    },
+    {
+      "file": "rat-casino-card-room.png",
+      "sha256": "24adf028c94d26e7d887130fb611c074407cd8ea6e62ff5d05c818cdc7889a64"
+    },
+    {
+      "file": "rat-casino-stage-ascent.png",
+      "sha256": "62db8bb7f6aaab3d900a8de269d3d3ba942e8d70217cf2d245909912a10b3b6e"
+    },
+    {
+      "file": "rat-casino-boss-stage.png",
+      "sha256": "f1bc921cf150b50e9dca8aa178de994d8562304222d8655bb98116d873d1d51b"
+    },
+    {
+      "file": "rat-casino-phone.png",
+      "sha256": "0c2fba60a131e6cae0b842fe03fb43549c277f0f4a50f764c075f9475d089894"
+    }
+  ]
+}

@@ -802,6 +802,10 @@ try {
         continue;
       }
       edgeIndex += 1;
+      if (edge.to === "cabinet-landing")
+        await screenshot(page, "casino-elevated-cabinet-run");
+      if (edge.to === "moth-projection-room")
+        await screenshot(page, "casino-stage-ascent");
       await processPlatform(edge.to);
     }
 
