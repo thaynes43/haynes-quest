@@ -23,29 +23,35 @@ If the big memory does not collect, check the picture indicators beside your hea
 
 ## What changed for this test
 
-The original two chapters begin with six low steps that climb and descend over solid ground. Rat Casino retains this forgiving practice pattern and adds two optional raised routes. A missed practice hop lets you try again without losing health. Each course mixes short jumping activities with safe stopping places, four enemy encounters, two little memories and a boss. An optional side path lets you visit a friendly resident before rejoining the adventure.
+The original two chapters begin with six low steps that climb and descend over solid ground. Rat Casino retains that safe practice and now keeps climbing on its main route: broad terraced rooms rise through the cabinet hall and backstage to the Rat's stage, three metres above the entrance. Its optional ticket loft crests at 3.3 metres, and the middle token tray is wider for easier boarding. A missed practice hop lets you try again without losing health. Each course mixes short jumping activities with safe stopping places, four enemy encounters, two little memories and a boss. An optional side path lets you visit a friendly resident before rejoining the adventure.
 
 | Chapter | Places to explore |
 | --- | --- |
 | The Block Party | Practice steps, a picnic clearing, winding padded sweepers, a woodland side path, a raised memory grove and a small ferry to the dragon terrace. |
 | Besties Obby | Practice steps, a ribbon lane, a sideways ferry, a choice of stepping pads or a broad side bridge, a slow turnstile and a climb to the Besties court. |
-| Rat Casino | An amber-lit foyer, padded token steps, cabinet landing, roulette zigzag, two optional raised side routes, four worn mascots and the Rat Pit Boss's final stage. Golden waits in a noncombat stage alcove. |
+| Rat Casino | An amber-lit foyer, padded token hill, climbing cabinet rooms, roulette zigzag, a tall optional ticket loft, four worn mascots and the Rat Pit Boss's elevated final stage. Golden waits in a noncombat stage alcove. |
 
-![Rat Casino entrance with the exact marquee arch above a broad practice lane](media/playtest/v007/rat-casino-foyer.png){ width="700" }
+The revised route uses the same exact Blender models. Its venue frames, cabinet groupings, lights and carpet patterns are lightweight scenery beside the authored course. These final-source [local Chromium captures and file checksums](media/playtest/v008/captures.json) show the player-camera view; the [first layout's captures](media/playtest/v007/captures.json) remain as history. Browser images do not establish physical iPhone/iPad Safari performance.
 
-![The casino card room with the exact Fox Card Shark, cabinets, side characters and clear jumping platforms](media/playtest/v007/rat-casino-card-room.png){ width="700" }
+![Rat Casino foyer with the marquee, framed rooms, cabinets and the first raised token steps in view](media/playtest/v008/rat-casino-foyer.png){ width="700" }
 
-![Rat Pit Boss center stage with the exact roulette dais and Golden After-Hours Rat at the right as a noncombat cameo](media/playtest/v007/rat-casino-boss-stage.png){ width="700" }
+![The broad elevated cabinet landing looks ahead to the roulette jumps and character rooms](media/playtest/v008/rat-casino-cabinet-climb.png){ width="700" }
 
-These [local browser captures](media/playtest/v007/captures.json) show the checked-in fictional route and exact Blender models. They are headless Chromium images, not physical iPhone/iPad Safari performance evidence.
+![The card room has Fox Card Shark, a friendly side character, cabinet rows and another clear step toward backstage](media/playtest/v008/rat-casino-card-room.png){ width="700" }
 
-In the original courses, jump onto the ferries, ride along, then jump to the next landing. Broad platforms leave room to line up a jump. A slip returns you nearby with your gear and memories; there is no lives counter or race timer. Casino scenery stays beside the playable route and leaves clear space around fights and memories.
+![The final short pads climb to Rat's elevated stage while Moth Projectionist guards the last landing](media/playtest/v008/rat-casino-stage-ascent.png){ width="700" }
+
+![Rat Pit Boss occupies the center of the framed stage; the roulette dais sits in the left wing and Golden stays at the right](media/playtest/v008/rat-casino-boss-stage.png){ width="700" }
+
+In the original courses, jump onto the ferries, ride along, then jump to the next landing. Broad platforms leave room to line up a jump. A slip returns you nearby with your gear and memories; there is no lives counter or race timer. Rat Casino's climbing rooms and boss stage are solid terraces, with short jump rises between them. The venue scenery frames the route and leaves clear space around fights and memories.
 
 The sound repairs accepted on Tom's iPhone are retained. The new Jump button replaces world-tap jumping, and empty attacks animate and sound without showing reading prompts over the player. Jumping works from age zero, contact collects things, and recovered little keepsakes disappear. **Sound on/off** controls mute; **Help → Play a test sound** auditions the output and offers a retry if needed. The source cues and mix are unchanged. A missing model still shows a retryable warning while play continues.
 
 ## Familiar controls on phones and tablets
 
 The movement stick is larger in portrait and on tablets. Jump has its own lower-right corner; Attack and Bash sit above it. Health and small picture indicators stay at the edges of the view.
+
+![Rat Casino's raised entrance steps and dedicated controls at a 390 by 844 browser viewport](media/playtest/v008/rat-casino-phone.png){ width="300" }
 
 ![Portrait phone controls with a large left stick, Jump at the lower right, and attacks above it](media/playtest/v006/phone-portrait.png){ width="300" }
 

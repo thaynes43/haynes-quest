@@ -5,6 +5,18 @@
 - **Requirements:** [PRD-003](../prds/003-complete-world-authoring.md)
 - **Builder contract:** [ADR-004](../adrs/004-versioned-world-projects.md), [DESIGN-020](020-complete-world-builder.md)
 
+## Playground revision · September 24
+
+Tom's review of the first hosted Rat Casino images found the course barren and flat. The next private revision must make height and scenery obvious on the **required** route, including the approach to the Rat Pit Boss. A raised optional branch alone does not satisfy this requirement.
+
+Keep the course's checked-in project and shared editor commands as the source of collision. Give the required route a readable succession of broad ascending and descending decks: ticket hall, elevated cabinet run, card room, backstage climb and a final stage several metres above the entrance. Every upward connection must stay within the existing 0.35 m jump-rise limit, with broad takeoff and landing areas. Preserve the two minor memories, five encounters, tool pickups, checkpoints, side choices and synthetic date/asset rules. A fall must return to a nearby safe checkpoint without health loss on the practice area or lost progress. Box collision has no slope support, so use visibly distinct terraced hills and jumps rather than a decorative ramp that appears walkable but is not.
+
+The middle token tray should be wider than the inherited ferry, reducing the boarding gap on both sides while retaining its slow sideways drift. Its scripted recovery remains nearby if a jump is missed.
+
+The world should feel occupied from the player's camera: use the already delivered marquee arch, roulette dais and cabinets repeatedly where they remain recognizable, then add light-weight non-colliding venue scenery. Place layered brass and plum porticos, low cabinet clusters, light bulbs, rails, curtain or wall silhouettes and floor markings around the course. Give the boss arena a framed elevated stage, clear central space for Rat and unobstructed sightlines to Golden and the exit. Scenery must stay outside movement and fight lanes, avoid unbounded draw calls or lights, and never substitute for authored platforms or hazards. Review entrance, midcourse, boss and narrow-screen captures, plus an ordinary-control traversal and missed-jump recovery before publishing.
+
+The roulette dais sits in the left stage wing, clear of Rat's fight arena and the straight route to the major memory. Golden remains on the right; Rat owns the center. Overhead room trim must clear the trailing player camera at the next platform, including in portrait view.
+
 ## One new world in a portable project
 
 The first Rat Casino course is an independently identified third chapter in a checked-in `level-editor-project-v2` fictional project. Its local route is `rat-casino-v1`. The normal level editor can inspect, change, export and preview it through the same commands and validators as any other project. The private playtest offers a direct start at this chapter using the editor preview service's frozen project path. Published garden and Besties routes, their saved plans and the regular two-chapter fictional start remain unchanged.
