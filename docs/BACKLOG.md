@@ -2,7 +2,7 @@
 
 ## BL-07: Shared level authoring and publication
 
-- **Status:** The fictional editor and shared agent CLI are deployed under [PLAN012](../.agents/plans/completed/012-level-editor-mvp.md) and [PLAN014](../.agents/plans/014-complete-world-builder.md). Rat Casino is the first checked-in private candidate world. Parent admission and shared publication remain future work.
+- **Status:** The fictional editor and shared agent CLI are deployed under [PLAN012](../.agents/plans/completed/012-level-editor-mvp.md) and [completed PLAN014](../.agents/plans/completed/014-complete-world-builder.md). Rat Casino is the first checked-in and hosted private candidate world. Parent admission and shared publication remain future work.
 - **Contract:** [DESIGN016](designs/016-authored-levels.md), [DESIGN020](designs/020-complete-world-builder.md), PRD R-44–R-45.
 
 Humans and agents now use the same versioned level document to place platforms, obby sections, checkpoints, equipment, encounters, friends and fictional memories. The World panel and agent CLI can add, reorder and validate one to eight chapters, create named enemy candidates and assign them to encounter slots. A new candidate previews with neutral placeholder art until its exact asset version is approved and registered. Current drafts remain browser-local, with JSON export for backup or transfer; the private full-world preview is ephemeral. Keep the youngest child's opening forgiving; later recovered ages can support more demanding content.
