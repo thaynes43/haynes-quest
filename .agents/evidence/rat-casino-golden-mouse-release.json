@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "recordedAt": "2026-09-25T16:16:18Z",
-  "status": "image-published-ops-and-hosted-pending",
-  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged, its local and pull-request checks passed, and the merged main commit produced a signed immutable image. The haynes-ops pin, rollout evidence and hosted browser verification are pending and are not claimed by this draft.",
+  "recordedAt": "2026-09-25T16:24:49Z",
+  "status": "rollout-verified-hosted-journeys-pending",
+  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged, its checks passed, its signed immutable image is pinned through haynes-ops PR3184, and the isolated playtest rollout and unchanged Normal Quest/dev-env identities are verified. Hosted mouse, touch and bonus-editor checks passed; the full hosted Golden-fight and Golden-skip journeys are still running and are not claimed by this draft.",
   "application": {
     "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/73",
     "reviewedHead": "f84e31202e8eb0f6dca9617704e56a7e1f120f10",
@@ -118,7 +118,14 @@
       "status": "failed",
       "startedAt": "2026-09-25T15:45:38.446Z",
       "finishedAt": "2026-09-25T15:52:24.085Z",
-      "failure": "The harness stopped outside Golden's reachable arena while waiting for golden-wakes-and-attacks. The approach condition was corrected and both later full journeys passed.",
+      "failure": "The harness stopped outside Golden's reachable encounter arena while waiting for golden-wakes-and-attacks. Its captured position was within the six-unit radial activation distance, but failed the separate arena-reachability condition. The harness approach was corrected and both later full journeys passed.",
+      "capturedPlayerPosition": {
+        "x": 1.7216756840076366,
+        "y": 3,
+        "z": -116.28565135757977
+      },
+      "withinSixUnitRadialActivationDistance": true,
+      "outsideReachableEncounterArena": true,
       "productDefectEstablished": false,
       "report": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/local/golden-local-v2-final/report.json",
       "reportSha256": "96aa5772d47f949c03003a928c60b36696c59313b4e8e4dc26ff0aa0969b4c19"
@@ -156,44 +163,141 @@
     }
   },
   "gitops": {
-    "status": "pending",
-    "pullRequest": null,
-    "reviewedHead": null,
-    "mergeCommit": null,
-    "changedFile": null,
-    "renderedChange": null,
-    "requiredChecks": null,
-    "activityId": null,
-    "activityEnded": null,
-    "fluxRevision": null,
-    "kustomizationReady": null,
-    "playtestHelmReleaseGeneration": null,
-    "playtestHelmReleaseObservedGeneration": null,
-    "playtestHelmReleaseReady": null,
-    "playtestPod": null,
-    "playtestPodUid": null,
-    "playtestPodReady": null,
-    "playtestPodRestarts": null,
-    "playtestPodImageId": null,
-    "podImageIdMatchesOciIndex": null,
-    "normalQuestDeploymentUidGenerationAndImageUnchanged": null,
-    "devEnvDeploymentUidGenerationAndImageUnchanged": null
+    "status": "rollout-verified-activity-open",
+    "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/3184",
+    "reviewedHead": "05454a89b8c9d574fd539839ae6b8089d03f44f9",
+    "mergeCommit": "80d4c69dcb1c0faf569af5b90b3fb0ce058db749",
+    "mergedAt": "2026-09-25T16:18:58Z",
+    "changedFile": "kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml",
+    "renderedChange": "The Flux kustomization and HelmRelease rendered diffs changed only the frontend/haynes-quest-playtest Deployment image.",
+    "requiredChecks": [
+      "Diff Scope - Success",
+      "Flux Local - Success"
+    ],
+    "allSevenReportedChecksPassed": true,
+    "activityId": "act-161844-143794",
+    "activityScope": [
+      "frontend",
+      "haynes-quest-playtest"
+    ],
+    "activityTtlMinutes": 45,
+    "activityEnded": false,
+    "targetedReconcile": "flux reconcile kustomization haynes-quest -n frontend --with-source",
+    "fluxRevision": "main@sha1:80d4c69dcb1c0faf569af5b90b3fb0ce058db749",
+    "kustomizationReady": true,
+    "kustomizationHealthy": true,
+    "playtestHelmReleaseGeneration": 24,
+    "playtestHelmReleaseObservedGeneration": 24,
+    "playtestHelmReleaseReady": true,
+    "playtestHelmReleaseReleased": true,
+    "playtestHelmReleaseReason": "UpgradeSucceeded",
+    "playtestHelmReleaseRevision": 25,
+    "playtestHelmReleaseLastDeployed": "2026-09-25T16:19:46Z",
+    "playtestPod": "haynes-quest-playtest-7794fc777f-dnwhl",
+    "playtestPodUid": "d6b42cb9-bcf4-40bf-bf5b-29de41f5feff",
+    "playtestPodCreatedAt": "2026-09-25T16:19:47Z",
+    "playtestPodPhase": "Running",
+    "playtestPodReady": true,
+    "playtestPodRestarts": 0,
+    "playtestPodImageId": "ghcr.io/thaynes43/haynes-quest@sha256:e6599b23b702512716843a938e8f1016fca443ba6ba2bfd00b435a98e11b504d",
+    "podImageIdMatchesOciIndex": true,
+    "normalQuest": {
+      "deploymentUid": "c17ee749-129e-4059-8091-ba167639604e",
+      "generation": 3,
+      "observedGeneration": 3,
+      "image": "ghcr.io/thaynes43/haynes-quest:sha-3502ac7120f6d7741a1a209415f4c9eeb33f826b@sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37",
+      "podUid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+      "unchanged": true
+    },
+    "devEnv": {
+      "deploymentUid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+      "generation": 120,
+      "observedGeneration": 120,
+      "image": "ghcr.io/thaynes43/dev-env:0.6.4@sha256:c47b52e6dec31cba8fd09cf712960ebd6f66d6490062911626d0406f6fa4d9bf",
+      "podUid": "bd0abf86-9d6f-4a9a-a4f7-239ca591143a",
+      "unchanged": true
+    },
+    "normalQuestDeploymentUidGenerationAndImageUnchanged": true,
+    "devEnvDeploymentUidGenerationAndImageUnchanged": true
   },
   "hosted": {
-    "status": "pending",
+    "status": "partial-checks-passed-full-journeys-pending",
     "playtestUrl": "https://haynes-quest-playtest.haynesops.com/",
     "checkedAt": null,
-    "browser": null,
-    "endpoints": null,
+    "browser": {
+      "name": "Chromium",
+      "version": "153.0.8010.12",
+      "deviceEvidence": false
+    },
+    "endpoints": {
+      "/healthz": 200,
+      "/readyz": 200,
+      "/studio/assets/catalog.html": 200,
+      "/studio/assets/reviews/golden-after-hours-rat/v001.html": 200,
+      "/studio/project/plans/018-golden-encounter-and-mouse.html": 200
+    },
     "goldenFightJourney": null,
     "skipGoldenJourney": null,
-    "mouseAndTouchChecks": null,
-    "editorBonusEncounterChecks": null,
+    "mouseAndTouchChecks": {
+      "status": "passed",
+      "leftClickAttack": {
+        "sequence": 1,
+        "outcome": "no-target"
+      },
+      "rightClickSecondary": {
+        "sequence": 2,
+        "outcome": "no-target",
+        "kind": "secondary"
+      },
+      "leftDragDidNotAttack": true,
+      "rightDragDidNotAttack": true,
+      "capturedReleaseOverUiDidNotAttack": true,
+      "touchSceneryTapDidNotAttack": true,
+      "touchAttackButton": {
+        "sequence": 1,
+        "outcome": "no-target"
+      },
+      "pageErrors": 0,
+      "report": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/mouse-combat.json",
+      "reportSha256": "b61429e8be974f4446a1fd39d72045f190b5743213e05a1c94d70ef5224040b3"
+    },
+    "editorBonusEncounterChecks": {
+      "status": "passed",
+      "defaultPlatform": "cabinet-side-bridge",
+      "cleanAddRemoveReadd": true,
+      "postBossPlacementRejected": true,
+      "pageErrors": 0,
+      "report": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/bonus-editor.json",
+      "reportSha256": "6a0ce8ed8c265fffcb2f3f7c3216e14333cab72683cafdb4215cfeb3bbc4ede0"
+    },
+    "assetDelivery": {
+      "goldenModel": {
+        "path": "/studio/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb",
+        "httpStatus": 200,
+        "bytes": 1417060,
+        "sha256": "b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184",
+        "matchesReview": true
+      },
+      "goldenReview": {
+        "path": "/studio/assets/reviews/golden-after-hours-rat/v001.html",
+        "httpStatus": 200,
+        "documentsOptionalFightAndUnchangedGlb": true
+      },
+      "ratPitBossModel": {
+        "path": "/studio/assets/media/rat-pit-boss/v002/rat-pit-boss.glb",
+        "httpStatus": 200,
+        "bytes": 1363724
+      }
+    },
     "pageConsoleHttpFailedAndExternalErrors": null,
     "reportArchive": null,
     "reportSha256": null,
     "rawEvidenceManifest": null,
     "rawEvidenceManifestSha256": null
+  },
+  "cleanup": {
+    "localServerPort": 4173,
+    "localServerStopped": true
   },
   "pendingOwnerGates": [
     "Physical iPhone/iPad Safari play and feel",
