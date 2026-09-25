@@ -4,10 +4,23 @@
 // jump and combat surfaces as a player. The narrow check is Chromium mobile
 // emulation; it deliberately makes no physical Safari claim.
 //
-//   QUEST_E2E_URL            base origin of the candidate build (required)
-//   QUEST_E2E_RUN_LABEL      report folder under test-results/rat-casino
-//   QUEST_E2E_SOURCE_COMMIT  commit recorded alongside the evidence
-//   QUEST_E2E_TIMEOUT_MS     hard wall-clock ceiling (default 1200000)
+// By default the course plays in real time, as on a device. With
+// QUEST_E2E_LOCKSTEP=1 the page clock stops once Rat Casino is ready and the
+// harness renders one frame at a time, choosing keyboard input between frames
+// (lockstep-control.mjs). That makes the journey independent of renderer speed:
+// it proves route logic, layout and rules, not frame time or feel on a device.
+//
+//   QUEST_E2E_URL                 base origin of the candidate build (required)
+//   QUEST_E2E_RUN_LABEL           report folder under test-results/rat-casino
+//   QUEST_E2E_SOURCE_COMMIT       commit recorded alongside the evidence
+//   QUEST_E2E_LOCKSTEP            1 plays the course in lockstep (default 0)
+//   QUEST_E2E_LOCKSTEP_CRUISE_MS  lockstep frame for open floor and waits
+//                                 (default 48; 16 steps every frame at 60 Hz)
+//   QUEST_E2E_LOCKSTEP_SCALE      lockstep device scale factor (default 1;
+//                                 0.5 keeps the 1280x760 layout but draws a
+//                                 quarter of the pixels, for slow renderers)
+//   QUEST_E2E_TIMEOUT_MS          hard wall-clock ceiling (default 1200000,
+//                                 or 3600000 in lockstep)
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { chromium } from "playwright";
@@ -29,13 +42,25 @@ import {
   startEditorPreview,
   waitForEditorWorkspace,
 } from "./editor-driver.mjs";
+import {
+  createLockstep,
+  createLockstepControls,
+  lockstepCruiseFrameMs,
+  lockstepDeviceScale,
+  lockstepRequested,
+} from "./lockstep-control.mjs";
 
 const url = process.env.QUEST_E2E_URL;
 assert.ok(url, "QUEST_E2E_URL is required; never test a stale implicit server");
 const origin = new URL(url).origin;
 const runLabel = process.env.QUEST_E2E_RUN_LABEL ?? "candidate";
 const sourceCommit = process.env.QUEST_E2E_SOURCE_COMMIT ?? null;
-const timeoutMs = Number(process.env.QUEST_E2E_TIMEOUT_MS ?? 1_200_000);
+const lockstepMode = lockstepRequested();
+const cruiseFrameMs = lockstepCruiseFrameMs();
+const desktopScale = lockstepMode ? lockstepDeviceScale() : 1;
+const timeoutMs = Number(
+  process.env.QUEST_E2E_TIMEOUT_MS ?? (lockstepMode ? 3_600_000 : 1_200_000),
+);
 assert.ok(Number.isFinite(timeoutMs) && timeoutMs >= 300_000);
 
 const sourcePath = new URL(
@@ -98,6 +123,7 @@ const report = {
     routeId: ROUTE_ID,
   },
   browser: null,
+  clock: null,
   previewRequest: null,
   media: {},
   encounters: null,
@@ -118,6 +144,11 @@ const report = {
   limits: [
     "Desktop and 390x844 mobile coverage use headless Chromium with software WebGL.",
     "Physical iPhone/iPad Safari play remains a separate acceptance gate.",
+    ...(lockstepMode
+      ? [
+          "Lockstep: the course advanced one rendered frame at a time with the page clock paused. It proves route logic, layout and rules, not frame time or feel, so the boss-stage frame-time sample is skipped.",
+        ]
+      : []),
   ],
 };
 
@@ -127,10 +158,22 @@ const mark = (stage, details = {}) =>
 let browser;
 let desktopContext;
 let page;
+let lockstep = null;
 let latestSave = null;
 let previewPayload = null;
 let screenshotSequence = 0;
 let timedOut = false;
+
+// Waits run on the wall clock until lockstep pauses the page clock; from then
+// until the Rat Casino course ends they advance page time instead.
+const realTime = {
+  idle: delay,
+  deadline(milliseconds) {
+    const end = Date.now() + milliseconds;
+    return { expired: () => Date.now() >= end };
+  },
+};
+let pace = realTime;
 
 const screenshot = async (target, name) => {
   const safe = name.replaceAll(/[^a-z0-9-]/gi, "-").toLowerCase();
@@ -214,14 +257,25 @@ const watchPage = (target, surface) => {
 };
 
 const waitForSave = async (predicate, label, timeout = 20_000) => {
-  const deadline = Date.now() + timeout;
-  while (Date.now() < deadline) {
+  const deadline = pace.deadline(timeout);
+  while (!deadline.expired()) {
     if (latestSave && predicate(latestSave)) return latestSave;
-    await delay(50);
+    await pace.idle(50);
   }
   if (page)
     await screenshot(page, `${label}-save-timeout`).catch(() => undefined);
   throw new Error(`${label}: save unavailable: ${JSON.stringify(latestSave)}`);
+};
+
+/** Waits for a visible element; lockstep keeps rendering frames meanwhile. */
+const waitForVisible = async (locator, timeout) => {
+  if (pace === realTime) return locator.waitFor({ state: "visible", timeout });
+  const deadline = pace.deadline(timeout);
+  while (!deadline.expired()) {
+    if (await locator.isVisible().catch(() => false)) return;
+    await pace.idle(50);
+  }
+  return locator.waitFor({ state: "visible", timeout: 1_000 });
 };
 
 const navigationDocument = (document) => ({
@@ -327,10 +381,15 @@ try {
   try {
     desktopContext = await browser.newContext({
       viewport: { width: 1280, height: 760 },
-      deviceScaleFactor: 1,
+      deviceScaleFactor: desktopScale,
     });
     page = await desktopContext.newPage();
     watchPage(page, "desktop");
+    if (lockstepMode) {
+      lockstep = createLockstep(page, { cruiseFrameMs });
+      // Page time flows normally until the course is ready.
+      await lockstep.install();
+    }
     await page.goto(url, { waitUntil: "domcontentloaded" });
     await page
       .getByRole("button", { name: "Enter Rat Casino", exact: true })
@@ -466,14 +525,35 @@ try {
     );
     assert.ok(ticketBranch >= 0, "golden-view branch missing");
     const plan = buildTraversalPlan(document, { branchIndex: ticketBranch });
-    const controls = createHybridControls({ page });
-    let driver = createAuthoredRouteDriver({
-      page: navigationPage(page),
-      controls,
-      screenshot: (name) => screenshot(page, name),
-      mark,
-      maxRecoveries: 14,
-    });
+    if (lockstep) {
+      // From here the harness renders every frame itself.
+      await lockstep.pause();
+      pace = {
+        idle: (milliseconds) => lockstep.advance(milliseconds),
+        deadline: (milliseconds) => lockstep.budget(milliseconds),
+      };
+    }
+    const controls = lockstep
+      ? createLockstepControls(lockstep)
+      : createHybridControls({ page });
+    const createDriver = () =>
+      createAuthoredRouteDriver({
+        page: navigationPage(page),
+        controls,
+        screenshot: (name) => screenshot(page, name),
+        mark,
+        maxRecoveries: 14,
+        lockstep,
+      });
+    let driver = createDriver();
+    const waitFor = (options) =>
+      lockstep
+        ? driver.waitFor(options)
+        : waitForInspection({
+            page,
+            screenshot: (name) => screenshot(page, name),
+            ...options,
+          });
 
     const beforeFall = await driver.read("safety-fall-before");
     const savedProgress = progressSnapshot(latestSave);
@@ -482,9 +562,7 @@ try {
     await controls.beginToward(fallDirection.dx, fallDirection.dz);
     let recovered;
     try {
-      recovered = await waitForInspection({
-        page,
-        screenshot: (name) => screenshot(page, name),
+      recovered = await waitFor({
         label: "intentional-safety-recovery",
         timeout: 15_000,
         predicate: (inspection) => inspection.obby?.recoveries > recoveryCount,
@@ -505,9 +583,7 @@ try {
       progressPreserved: true,
       input: "held keyboard movement off the platform",
     };
-    await waitForInspection({
-      page,
-      screenshot: (name) => screenshot(page, name),
+    await waitFor({
       label: "recovery-settled",
       predicate: (inspection) =>
         inspection.status.grounded && inspection.obby?.supportId !== null,
@@ -536,9 +612,7 @@ try {
         let current = await driver.read(`${label}-route-${attempt + 1}`);
         if (done && (await done(current))) return current;
         if (current.obby.supportId === null) {
-          current = await waitForInspection({
-            page,
-            screenshot: (name) => screenshot(page, name),
+          current = await waitFor({
             label: `${label}-settled-${attempt + 1}`,
             timeout: 10_000,
             predicate: (candidate) =>
@@ -570,13 +644,7 @@ try {
           }
           if (done && (await done(current))) return current;
           if (current.obby.supportId !== anchor.platformId) {
-            driver = createAuthoredRouteDriver({
-              page: navigationPage(page),
-              controls,
-              screenshot: (name) => screenshot(page, name),
-              mark,
-              maxRecoveries: 14,
-            });
+            driver = createDriver();
             continue;
           }
         }
@@ -658,9 +726,7 @@ try {
             ),
           (candidate) => candidate.status.nearEncounterId === encounterId,
         );
-        return waitForInspection({
-          page,
-          screenshot: (name) => screenshot(page, name),
+        return waitFor({
           label: `fight-${role}-near`,
           timeout: 12_000,
           predicate: (candidate) =>
@@ -673,19 +739,28 @@ try {
         await screenshot(page, "casino-midcourse-card-room");
       if (role === "boss") {
         await screenshot(page, "casino-boss-stage");
-        report.performance = {
-          ...(await sampleFrameTiming(page)),
-          surface: "boss stage",
-          browser: "headless Chromium",
-          renderer: "ANGLE/SwiftShader software WebGL",
-          deviceEvidence: false,
-        };
+        // Frame time is real-time evidence. The installed page clock fires
+        // animation frames without waiting for the renderer, so a lockstep
+        // page cannot measure it; `clock` records its stepped-frame cost.
+        report.performance = lockstep
+          ? {
+              surface: "boss stage",
+              measured: false,
+              reason: "lockstep run; frame time needs the real-time mode",
+            }
+          : {
+              ...(await sampleFrameTiming(page)),
+              surface: "boss stage",
+              browser: "headless Chromium",
+              renderer: "ANGLE/SwiftShader software WebGL",
+              deviceEvidence: false,
+            };
       }
       let retries = 0;
       let primaryHits = 0;
       let secondaryHits = 0;
-      const deadline = Date.now() + 75_000;
-      while (Date.now() < deadline) {
+      const deadline = pace.deadline(75_000);
+      while (!deadline.expired()) {
         if (latestSave.adventure.phase === "fallen") {
           const revision = latestSave.revision;
           retries += 1;
@@ -696,9 +771,7 @@ try {
             `${role}-retry`,
             25_000,
           );
-          await waitForInspection({
-            page,
-            screenshot: (name) => screenshot(page, name),
+          await waitFor({
             label: `${role}-retry-ready`,
             predicate: (candidate) =>
               candidate.status.grounded && candidate.obby?.supportId !== null,
@@ -717,7 +790,7 @@ try {
         const secondary = inspection.status.guardReady && secondaryHits === 0;
         const primary = inspection.status.attackReady;
         if (!secondary && !primary) {
-          await delay(60);
+          await pace.idle(60);
           continue;
         }
         const control = secondary ? "Bash" : "Attack";
@@ -763,17 +836,15 @@ try {
         undefined,
         taken,
       );
-      const collected = await waitForInspection({
-        page,
-        screenshot: (name) => screenshot(page, name),
+      const collected = await waitFor({
         label: "golden-ticket-collected",
         timeout: 10_000,
         predicate: taken,
       });
-      await page
-        .locator(".casino-tally .ticket-slot.collected")
-        .first()
-        .waitFor({ state: "visible", timeout: 5_000 });
+      await waitForVisible(
+        page.locator(".casino-tally .ticket-slot.collected").first(),
+        5_000,
+      );
       report.collectibles.ticket = {
         id: ticket.id,
         platformId: ticket.platformId,
@@ -782,8 +853,10 @@ try {
       };
       mark("collectibles:ticket", report.collectibles.ticket);
       await screenshot(page, "casino-golden-ticket-collected");
-      // A corner ticket can sit beside a raised neighbour. Step back to the
-      // platform's middle row, as a player would, before rejoining the route.
+      // Lockstep plans its walk around the raised card room beside this
+      // corner. Real-time pulses cannot, so they step back to the platform's
+      // middle row first, as a player would, before rejoining the route.
+      if (lockstep) return;
       const middle = collected.obby.platforms.find(
         (entry) => entry.id === ticket.platformId,
       ).center.z;
@@ -844,13 +917,7 @@ try {
         );
         for (const [index, edge] of retry.entries())
           await driver.crossEdge(edge, `safe-catch-${index + 1}`);
-        driver = createAuthoredRouteDriver({
-          page: navigationPage(page),
-          controls,
-          screenshot: (name) => screenshot(page, name),
-          mark,
-          maxRecoveries: 14,
-        });
+        driver = createDriver();
         edgeIndex = 0;
         continue;
       }
@@ -874,13 +941,7 @@ try {
       );
       if (finishEdge && levelFinished()) break;
       if (after.obby.supportId !== edge.to) {
-        driver = createAuthoredRouteDriver({
-          page: navigationPage(page),
-          controls,
-          screenshot: (name) => screenshot(page, name),
-          mark,
-          maxRecoveries: 14,
-        });
+        driver = createDriver();
         continue;
       }
       edgeIndex += 1;
@@ -948,7 +1009,7 @@ try {
     const completionDialog = page.getByRole("dialog", {
       name: /Rat Casino complete\./,
     });
-    await completionDialog.waitFor({ state: "visible", timeout: 15_000 });
+    await waitForVisible(completionDialog, 15_000);
     const completionCopy = (await completionDialog.textContent()) ?? "";
     assert.match(completionCopy, /CHAPTER COMPLETE/);
     assert.match(completionCopy, /3 fictional memories reclaimed\./);
@@ -980,6 +1041,13 @@ try {
     );
     report.collectibles.haul = { tokens, tokenTotal, tickets, ticketTotal };
     await screenshot(page, "rat-casino-complete");
+    report.clock = {
+      ...(lockstep?.summary() ?? { mode: "real-time" }),
+      deviceScaleFactor: desktopScale,
+    };
+    mark("clock", report.clock);
+    // The editor and phone checks below use fresh contexts in real time.
+    pace = realTime;
 
     const fullAdventureContext = await browser.newContext({
       viewport: { width: 1280, height: 760 },
@@ -1071,9 +1139,10 @@ try {
     report.performance = {
       gardenBaseline: gardenPerformance,
       ratCasinoBoss: bossPerformance,
-      ratToGardenFpsRatio: Number(
-        (bossPerformance.fps / gardenPerformance.fps).toFixed(2),
-      ),
+      ratToGardenFpsRatio:
+        bossPerformance.measured === false
+          ? null
+          : Number((bossPerformance.fps / gardenPerformance.fps).toFixed(2)),
     };
 
     const ratChapter = project.chapters.find(
@@ -1185,6 +1254,10 @@ try {
         ? error.message
         : String(error),
     stack: error instanceof Error ? error.stack : null,
+  };
+  report.clock ??= {
+    ...(lockstep?.summary() ?? { mode: "real-time" }),
+    deviceScaleFactor: desktopScale,
   };
   if (page && !page.isClosed())
     await screenshot(page, "failure").catch(() => undefined);
