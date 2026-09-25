@@ -80,7 +80,7 @@ Future admission work: configure the Authentik provider and application for the 
 
 ## Family sign-in configuration
 
-Outside fixture mode the server admits Authentik users under ADR-005 (WO106). It uses Better Auth `genericOAuth` with provider id `authentik`, PKCE S256 and a verified ID token. The only callback is `${QUEST_APP_ORIGIN}/api/auth/callback/authentik`.
+Outside fixture mode the server admits Authentik users under [ADR-005](../adrs/005-family-sign-in-and-admission.md) (WO106). It uses Better Auth `genericOAuth` with provider id `authentik`, PKCE S256 and a verified ID token. The only callback is `${QUEST_APP_ORIGIN}/api/auth/callback/authentik`.
 
 | Variable | Default | Meaning |
 | --- | --- | --- |
