@@ -78,8 +78,11 @@ describe.skipIf(!testDatabaseUrl)('Postgres family store', () => {
         versions: { journey: 'family-world-plan-v1', age: 'a', progression: 'p', appearance: 'x' },
       }),
     });
-    await expect(pool.query('DELETE FROM quest_children WHERE id = $1', [child.id]))
-      .rejects.toMatchObject({ code: '23001' });
+    // Postgres 16 reports the RESTRICT refusal as 23503; some builds use 23001.
+    const refusal = await pool.query('DELETE FROM quest_children WHERE id = $1', [child.id])
+      .then(() => null, (error: { code?: string }) => error.code);
+    expect(['23503', '23001']).toContain(refusal);
+    expect(await context.store.getChild(child.id)).not.toBeNull();
   });
 
   it('Postgres reapplies migrations idempotently', async () => {
