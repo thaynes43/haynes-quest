@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "recordedAt": "2026-09-25T16:30:32Z",
-  "status": "rollout-and-golden-journey-verified-skip-pending",
-  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged, its checks passed, its signed immutable image is pinned through haynes-ops PR3184, and the isolated playtest rollout and unchanged Normal Quest/dev-env identities are verified. Hosted mouse, touch and bonus-editor checks passed, as did the full Golden-fight route on the exact deployed commit. The full hosted Golden-skip journey is still running and is not claimed by this draft.",
+  "recordedAt": "2026-09-25T16:38:09Z",
+  "status": "rollout-and-golden-journey-verified-skip-retry-running",
+  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged, its checks passed, its signed immutable image is pinned through haynes-ops PR3184, and the isolated playtest rollout and unchanged Normal Quest/dev-env identities are verified. Hosted mouse, touch and bonus-editor checks passed, as did the full Golden-fight route on the exact deployed commit. The first hosted Golden-skip attempt reached the finish trigger but the browser/test process exited 143 before writing its report, so it is retained as an operational failure with unknown cause and is not a pass. A clean detached retry is running.",
   "application": {
     "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/73",
     "reviewedHead": "f84e31202e8eb0f6dca9617704e56a7e1f120f10",
@@ -181,7 +181,9 @@
       "haynes-quest-playtest"
     ],
     "activityTtlMinutes": 45,
-    "activityEnded": false,
+    "activityEnded": true,
+    "activityEndedAtApprox": "2026-09-25T16:32:30Z",
+    "activityEndState": "Playtest pod Ready with zero restarts and the exact requested image digest.",
     "targetedReconcile": "flux reconcile kustomization haynes-quest -n frontend --with-source",
     "fluxRevision": "main@sha1:80d4c69dcb1c0faf569af5b90b3fb0ce058db749",
     "kustomizationReady": true,
@@ -221,7 +223,7 @@
     "devEnvDeploymentUidGenerationAndImageUnchanged": true
   },
   "hosted": {
-    "status": "golden-fight-passed-skip-pending",
+    "status": "golden-fight-passed-skip-retry-running",
     "playtestUrl": "https://haynes-quest-playtest.haynesops.com/",
     "checkedAt": "2026-09-25T16:29:27.555Z",
     "browser": {
@@ -291,7 +293,43 @@
       "reportSha256": "ef4f5f38b2811177c8d44ca09ea6edae4d80da68026c45ff4eea93426eec55bf",
       "limit": "Lockstep establishes hosted route logic, layout and rules; it does not establish real-time frame cost, physical Safari behavior or device feel."
     },
-    "skipGoldenJourney": null,
+    "skipGoldenJourney": {
+      "status": "retry-in-progress-after-operational-termination",
+      "passingReportRecorded": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "terminated-before-report",
+          "reachedFinishAt": "approximately 2026-09-25T16:36Z",
+          "ratPitBossDefeated": true,
+          "finishTriggered": true,
+          "processExitCode": 143,
+          "signal": "SIGTERM",
+          "reportWritten": false,
+          "cause": "unknown",
+          "rawLog": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/golden-skip.log",
+          "rawLogBytes": 17764,
+          "rawLogSha256": "4914416d568753224486fc9eb241a11b2a088ec891b26e211e9116f820d7ee96",
+          "devEnvCgroupMemoryEvents": {
+            "oom": 0,
+            "oomKill": 0
+          },
+          "playtestPodAfterTermination": {
+            "ready": true,
+            "restarts": 0,
+            "imageId": "ghcr.io/thaynes43/haynes-quest@sha256:e6599b23b702512716843a938e8f1016fca443ba6ba2bfd00b435a98e11b504d"
+          },
+          "limit": "Reaching the finish trigger does not establish the full hosted skip pass because the process terminated before writing report.json."
+        }
+      ],
+      "retry": {
+        "status": "running",
+        "detached": true,
+        "tmuxSession": "quest-golden-skip-hosted",
+        "log": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/golden-skip-retry.log",
+        "exitMarker": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/golden-skip-retry.exit"
+      }
+    },
     "mouseAndTouchChecks": {
       "status": "passed",
       "leftClickAttack": {
