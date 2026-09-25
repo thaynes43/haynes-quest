@@ -1,5 +1,25 @@
 # Current handoff
 
+## First family release in progress · September 25, 2026
+
+Tom asked for the first real release for his two children:
+
+- online behind Authentik at a Haynes Network address, with a portal tile;
+- real Immich photos as memories;
+- taller, busier obby levels with era-themed casts and props;
+- lasting moves unlocked by growing up.
+
+[PLAN-019](plans/019-first-family-release.md) tracks the lanes. [PRD-004](../docs/prds/004-family-release.md) records his rulings:
+
+- **Access:** `authentik Admins` and `family`, with only admins able to set things up.
+- **Photos:** auto-picked, and administrators can swap them.
+- **New assets:** may enter the children's levels labeled "awaiting review".
+- **Moves:** an age 2/4/8 ladder of high jump, double jump and glide.
+
+[ADR-005](../docs/adrs/005-family-sign-in-and-admission.md), [DESIGN-024](../docs/designs/024-family-journeys.md) and [DESIGN-025](../docs/designs/025-growth-moves-and-vertical-courses.md) are the contracts.
+
+**Asset gate:** the era casts in [DESIGN-026](../docs/designs/026-personal-era-casts.md) are only a proposal. Tom ruled that no concept, model or sound may be generated until he locks the age-band associations. Children's names, birthdays and photos are private database configuration and never enter this public repository.
+
 ## Golden encounter and PC mouse controls · September 25, 2026
 
 Tom's physical playtest found the Golden spare rat idle at close range and asked for left click Attack and right click Secondary on PC, while touch scenery taps stay noncombat. [DESIGN-023](../docs/designs/023-golden-optional-encounter-and-mouse.md) and [completed PLAN-018](plans/completed/018-golden-encounter-and-mouse.md) define the released private trial. The `rat-casino-v2` project gives Golden a separately placed, optional fight before Rat; it preserves the four earlier mascots, Rat's independent boss gate and the old `rat-casino-v1` project/saves. The shared editor and CLI can add or remove a bonus enemy in any complete world, including a new candidate with neutral placeholder art. New placements after the boss fail validation. Short mouse clicks on the game canvas dispatch combat; drags, UI releases and touch scenery do not.
