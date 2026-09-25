@@ -22,4 +22,18 @@ Record PRs, source/image digests, CI, exact hosted browser checks, pod readiness
 
 ## Result
 
-In progress.
+In progress. [App PR73](https://github.com/thaynes43/haynes-quest/pull/73) merged at
+`66c64d41e9f741285b49ccb6f1cd57d1ce5947fe` after its PostgreSQL application,
+container and documentation checks passed. Local typecheck, lint, 851 tests with
+12 PostgreSQL cases skipped, production build, level validation and strict
+docs/media checks passed. Trusted Chromium input checks and both full lockstep
+Rat Casino routes passed: one defeated all six encounters with Golden primary
+and secondary hits, and the other left Golden untouched while completing the
+five required fights. Both recovered three memories without browser, console or
+HTTP errors. The earlier failed run remains recorded as the harness stopping
+outside Golden's reachable arena.
+
+The [draft release record](../evidence/rat-casino-golden-mouse-release.json)
+preserves these facts. Signed-image publication, the isolated playtest pin,
+rollout/isolation evidence and hosted browser verification are still pending;
+this plan remains in progress until those results are recorded.

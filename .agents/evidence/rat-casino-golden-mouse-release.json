@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-25T16:11:15Z",
+  "status": "application-merged-release-pending",
+  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged and its local and pull-request checks passed. Signed-image publication, the haynes-ops pin, rollout evidence and hosted browser verification are pending and are not claimed by this draft.",
+  "application": {
+    "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/73",
+    "reviewedHead": "f84e31202e8eb0f6dca9617704e56a7e1f120f10",
+    "mergeCommit": "66c64d41e9f741285b49ccb6f1cd57d1ce5947fe",
+    "mergedAt": "2026-09-25T16:08:45Z",
+    "pullRequestChecks": {
+      "verify": {
+        "workflow": "Application",
+        "run": 36157818328,
+        "job": 108146613661,
+        "url": "https://github.com/thaynes43/haynes-quest/actions/runs/36157818328/job/108146613661",
+        "conclusion": "success",
+        "coverage": "Application verification with PostgreSQL"
+      },
+      "containerCheck": {
+        "workflow": "Application",
+        "run": 36157818328,
+        "job": 108147531168,
+        "url": "https://github.com/thaynes43/haynes-quest/actions/runs/36157818328/job/108147531168",
+        "conclusion": "success"
+      },
+      "documentation": {
+        "workflow": "Documentation",
+        "check": "build",
+        "run": 36157818397,
+        "job": 108146613707,
+        "url": "https://github.com/thaynes43/haynes-quest/actions/runs/36157818397/job/108146613707",
+        "conclusion": "success"
+      },
+      "image": {
+        "conclusion": "skipped",
+        "note": "The image job was skipped on the pull request. This is not publication evidence for the merged main commit."
+      }
+    }
+  },
+  "fixture": {
+    "path": "src/shared/levels/rat-casino-world-v2.json",
+    "sha256": "5b016dc2c7577a5b579a2c88d45303b20cadf6b00fc575a0478d0f96eb939799",
+    "schemaVersion": "level-editor-project-v2",
+    "projectId": "rat-casino-adventure",
+    "projectRevision": 1,
+    "chapterId": "rat-casino",
+    "routeId": "rat-casino-v2",
+    "bonusEncounter": {
+      "role": "bonus-1",
+      "catalogEntryId": "golden-after-hours-rat",
+      "catalogEntryVersion": "v001"
+    },
+    "media": "Synthetic fictional fixtures only; no family photo or GLB changed in PR73."
+  },
+  "localVerification": {
+    "checks": {
+      "typecheck": "passed",
+      "lint": "passed",
+      "tests": {
+        "status": "passed",
+        "total": 851,
+        "postgresqlSkippedLocally": 12
+      },
+      "productionBuild": "passed",
+      "authoredLevelValidation": "passed",
+      "strictDocumentationAndMediaBuild": "passed"
+    },
+    "trustedInputBrowserChecks": {
+      "status": "passed",
+      "coverage": [
+        "left mouse click dispatched Attack",
+        "right mouse click dispatched Secondary",
+        "mouse drag did not dispatch combat",
+        "release over UI did not dispatch combat",
+        "touch scenery tap did not dispatch combat",
+        "touch Attack button still dispatched combat",
+        "bonus encounter editor add and remove passed",
+        "post-boss bonus placement was rejected"
+      ],
+      "evidence": "Recorded in merged PR73's verification summary; these checks have no standalone report in the archived Golden journey directory."
+    },
+    "goldenFightJourney": {
+      "status": "passed",
+      "startedAt": "2026-09-25T15:53:32.367Z",
+      "finishedAt": "2026-09-25T16:00:42.896Z",
+      "browser": "Chromium 153.0.8010.12",
+      "clock": "lockstep",
+      "routeId": "rat-casino-v2",
+      "fights": 6,
+      "goldenActivationPhase": "windup",
+      "goldenPrimaryHits": 1,
+      "goldenSecondaryHits": 1,
+      "ratPitBossDefeated": true,
+      "memoriesRecovered": 3,
+      "completed": true,
+      "pageConsoleResponseFailedAndExternalErrors": 0,
+      "report": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/local/golden-local-v2-fight/report.json",
+      "reportSha256": "0a5f2f2f7076c14af8445928ba4234e1234330e5cebc62e4d392285c2199d3e8"
+    },
+    "skipGoldenJourney": {
+      "status": "passed",
+      "startedAt": "2026-09-25T16:01:09.319Z",
+      "finishedAt": "2026-09-25T16:08:07.807Z",
+      "browser": "Chromium 153.0.8010.12",
+      "clock": "lockstep",
+      "routeId": "rat-casino-v2",
+      "fights": 5,
+      "goldenActivated": false,
+      "ratPitBossDefeated": true,
+      "memoriesRecovered": 3,
+      "completed": true,
+      "pageConsoleResponseFailedAndExternalErrors": 0,
+      "report": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/local/golden-local-v2-skip/report.json",
+      "reportSha256": "7ed4b1481efc79d350dab4cda630ff150ab9996ec856f065b5246c114fee064b"
+    },
+    "supersededFailedJourney": {
+      "status": "failed",
+      "startedAt": "2026-09-25T15:45:38.446Z",
+      "finishedAt": "2026-09-25T15:52:24.085Z",
+      "failure": "The harness stopped outside Golden's reachable arena while waiting for golden-wakes-and-attacks. The approach condition was corrected and both later full journeys passed.",
+      "productDefectEstablished": false,
+      "report": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/local/golden-local-v2-final/report.json",
+      "reportSha256": "96aa5772d47f949c03003a928c60b36696c59313b4e8e4dc26ff0aa0969b4c19"
+    },
+    "limits": [
+      "The full journeys used a page-clock lockstep and establish route logic, layout and rules; they do not establish real-time frame cost or device feel.",
+      "Desktop and 390x844 mobile coverage used headless Chromium with software WebGL.",
+      "Physical iPhone/iPad Safari play remains a separate owner gate."
+    ]
+  },
+  "publication": {
+    "status": "pending",
+    "mainApplicationRun": null,
+    "mainDocumentationRun": null,
+    "image": null,
+    "ociIndexDigest": null,
+    "mainImageJob": null,
+    "digestMatchesBuildPushAttestationAndSignLog": null
+  },
+  "gitops": {
+    "status": "pending",
+    "pullRequest": null,
+    "reviewedHead": null,
+    "mergeCommit": null,
+    "changedFile": null,
+    "renderedChange": null,
+    "requiredChecks": null,
+    "activityId": null,
+    "activityEnded": null,
+    "fluxRevision": null,
+    "kustomizationReady": null,
+    "playtestHelmReleaseGeneration": null,
+    "playtestHelmReleaseObservedGeneration": null,
+    "playtestHelmReleaseReady": null,
+    "playtestPod": null,
+    "playtestPodUid": null,
+    "playtestPodReady": null,
+    "playtestPodRestarts": null,
+    "playtestPodImageId": null,
+    "podImageIdMatchesOciIndex": null,
+    "normalQuestDeploymentUidGenerationAndImageUnchanged": null,
+    "devEnvDeploymentUidGenerationAndImageUnchanged": null
+  },
+  "hosted": {
+    "status": "pending",
+    "playtestUrl": "https://haynes-quest-playtest.haynesops.com/",
+    "checkedAt": null,
+    "browser": null,
+    "endpoints": null,
+    "goldenFightJourney": null,
+    "skipGoldenJourney": null,
+    "mouseAndTouchChecks": null,
+    "editorBonusEncounterChecks": null,
+    "pageConsoleHttpFailedAndExternalErrors": null,
+    "reportArchive": null,
+    "reportSha256": null,
+    "rawEvidenceManifest": null,
+    "rawEvidenceManifestSha256": null
+  },
+  "pendingOwnerGates": [
+    "Physical iPhone/iPad Safari play and feel",
+    "Exact final-art review of Golden After-Hours Rat v001 and the retained Rat Casino candidates"
+  ],
+  "rawEvidenceRoot": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925"
+}
