@@ -16,11 +16,20 @@ import type { Ability, AppearanceStage, RuleVersions, SaveFormat, SubjectOption 
 import type { FriendlyState } from '../../shared/friendly.js';
 import type { FrozenMemory } from '../domain.js';
 
-export const players = pgTable('quest_players', {
-  id: uuid('id').primaryKey(),
-  label: text('label').notNull(),
-  createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull().defaultNow(),
-});
+export const players = pgTable(
+  'quest_players',
+  {
+    id: uuid('id').primaryKey(),
+    label: text('label').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull().defaultNow(),
+    // Family identity (ADR-005 D-02); null for fixture players.
+    oidcIssuer: text('oidc_issuer'),
+    oidcSubject: text('oidc_subject'),
+    isAdmin: boolean('is_admin').notNull().default(false),
+    groupsCheckedAt: timestamp('groups_checked_at', { withTimezone: true, mode: 'date' }),
+  },
+  (table) => [uniqueIndex('quest_players_oidc_identity_unique').on(table.oidcIssuer, table.oidcSubject)],
+);
 
 export const fixtureSessions = pgTable(
   'quest_fixture_sessions',

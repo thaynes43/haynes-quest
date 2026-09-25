@@ -1,6 +1,8 @@
 import { serve } from '@hono/node-server';
 import { pathToFileURL } from 'node:url';
 import { classifyError, createApp, emitSafeDiagnostic, writeSafeDiagnostic } from './app.js';
+import { FamilyAuth } from './auth/family-auth.js';
+import { PostgresFamilyPlayerStore } from './auth/player-store.js';
 import { loadConfig, type ServerConfig } from './config.js';
 import { InMemoryQuestStore } from './db/memory-store.js';
 import { PostgresQuestStore } from './db/postgres-store.js';
@@ -15,11 +17,26 @@ export function createConfiguredStore(config: ServerConfig): QuestStore {
   return PostgresQuestStore.connect(config.databaseUrl);
 }
 
+/** Family sign-in for the non-fixture release; null in fixture mode (ADR-005, C-03). */
+export function createConfiguredFamilyAuth(config: ServerConfig, store: QuestStore): FamilyAuth | null {
+  if (config.fixtureMode || !config.familyAuth) return null;
+  if (!(store instanceof PostgresQuestStore)) throw new Error('Family sign-in requires Postgres');
+  return new FamilyAuth({
+    config: config.familyAuth,
+    appOrigin: config.appOrigin,
+    secret: config.sessionSecret,
+    database: store.pool,
+    players: new PostgresFamilyPlayerStore(store.pool),
+  });
+}
+
 export async function start(): Promise<void> {
   const config = loadConfig();
   const store = createConfiguredStore(config);
   startupStore = store;
   if (store instanceof PostgresQuestStore) await store.migrate();
+  // Constructed after migrations: Better Auth validates its tables at startup.
+  const familyAuth = createConfiguredFamilyAuth(config, store);
 
   let maintenanceJob: Promise<void> | null = null;
   const runMaintenance = (phase: 'scheduled' | 'startup'): Promise<void> => {
@@ -27,6 +44,7 @@ export async function start(): Promise<void> {
     const job = (async () => {
       try {
         await store.maintainFixtureRecords(new Date());
+        await familyAuth?.deleteExpiredRecords(new Date());
       } catch (error) {
         emitSafeDiagnostic(writeSafeDiagnostic, {
           event: 'maintenance_failed',
@@ -51,6 +69,7 @@ export async function start(): Promise<void> {
     appOrigin: config.appOrigin,
     clientDir: config.clientDir,
     studioDir: config.studioDir,
+    ...(familyAuth ? { familyAuth } : {}),
   });
   const server = serve({ fetch: app.fetch, port: config.port, hostname: '0.0.0.0' });
   process.stdout.write(`Haynes Quest server listening on port ${config.port}\n`);

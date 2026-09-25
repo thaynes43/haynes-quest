@@ -4,7 +4,7 @@ import { routePath } from 'hono/route';
 import { secureHeaders } from 'hono/secure-headers';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { ROUTE_ATTACK_COOLDOWN_MS } from '../shared/adventure.js';
-import type { ApiError, GameplayAction, SessionView } from '../shared/contracts.js';
+import type { ApiError, GameplayAction, SessionView, SignOutResponse } from '../shared/contracts.js';
 import {
   canAccessSaveMemory,
   toSaveSummary,
@@ -13,6 +13,7 @@ import {
   type QuestStore,
   type SaveRecord,
 } from './domain.js';
+import { requireFamilySession, type FamilyAuth } from './auth/family-auth.js';
 import { asAppError, AppError } from './errors.js';
 import { InMemoryQuestStore } from './db/memory-store.js';
 import { fixtureSvg, type PrivateMediaProvider } from './media.js';
@@ -35,6 +36,7 @@ import {
   playtestStartSchema,
   previewRequestSchema,
   recoverSchema,
+  signOutSchema,
 } from './validation.js';
 
 export interface AppOptions {
@@ -47,6 +49,8 @@ export interface AppOptions {
   studioDir: string;
   photoSource?: JourneyPhotoSource;
   privateMedia?: PrivateMediaProvider;
+  /** Family sign-in (ADR-005). Required for a usable non-fixture app; never allowed in fixture mode. */
+  familyAuth?: FamilyAuth;
   diagnosticSink?: DiagnosticSink;
   now?: () => Date;
 }
@@ -80,6 +84,8 @@ const DIAGNOSTIC_ROUTES = new Set([
   '/healthz',
   '/readyz',
   '/api/session',
+  '/api/sign-out',
+  '/api/auth/*',
   '/api/playtest/start',
   '/api/editor/playtests',
   '/api/fixture-media/:memoryId',
@@ -105,6 +111,9 @@ export function createApp(options: AppOptions): Hono {
   if (options.fixtureMode && options.privateMedia) {
     throw new Error('Fixture app cannot use private media');
   }
+  if (options.fixtureMode && options.familyAuth) {
+    throw new Error('Fixture app cannot use family sign-in');
+  }
 
   const app = new Hono();
   const editorPlaytestStore = options.ephemeralPlaytest
@@ -113,6 +122,11 @@ export function createApp(options: AppOptions): Hono {
   const sessions = options.fixtureMode
     ? new FixtureSessions(options.store, options.sessionSecret, options.appOrigin.startsWith('https://'))
     : null;
+  const familyAuth = options.fixtureMode ? null : (options.familyAuth ?? null);
+  // Fixture and family sessions never cross: each mode reads only its own cookie.
+  const playerSessions: PlayerSessionSource | null = sessions ?? (familyAuth
+    ? { current: (context) => familyAuth.currentPlayer(context.req.raw.headers) }
+    : null);
   const photoSource = options.fixtureMode
     ? (options.photoSource ?? new FixturePhotoSource(options.ephemeralPlaytest === true))
     : options.photoSource;
@@ -187,7 +201,7 @@ export function createApp(options: AppOptions): Hono {
 
       app.post('/api/playtest/start', async (context) => {
         enforceMutationSecurity(context, options.appOrigin);
-        const player = await requirePlayer(context, sessions);
+        const player = await requirePlayer(context, playerSessions);
         limiter.take(`write:${player.id}`);
         const request = await parseJson(context, playtestStartSchema);
         const save = await startFictionalChapter(player.id, request.chapter);
@@ -198,7 +212,7 @@ export function createApp(options: AppOptions): Hono {
       // in the ephemeral store; gameplay then uses the ordinary action routes.
       app.post('/api/editor/playtests', async (context) => {
         enforceMutationSecurity(context, options.appOrigin);
-        const player = await requirePlayer(context, sessions);
+        const player = await requirePlayer(context, playerSessions);
         limiter.take(`write:${player.id}`);
         const request = await parseJson(
           context,
@@ -239,8 +253,47 @@ export function createApp(options: AppOptions): Hono {
     }
   }
 
+  if (familyAuth) {
+    app.get('/api/session', async (context) => {
+      limiter.take(`session:${context.req.header('user-agent') ?? 'unknown'}`);
+      const player = await requireFamilySession(context, familyAuth);
+      const response: SessionView = {
+        player: { id: player.id, label: player.label },
+        mode: 'family',
+        role: player.role,
+        endSessionAvailable: familyAuth.endSessionAvailable,
+        csrfHeader: 'X-Quest-Request',
+      };
+      return context.json(response);
+    });
+
+    // Local sign-out (ADR-005 D-06); the Authentik session ends only on request.
+    app.post('/api/sign-out', async (context) => {
+      enforceMutationSecurity(context, options.appOrigin);
+      limiter.take(`sign-out:${context.req.header('user-agent') ?? 'unknown'}`);
+      const request = await parseJson(context, signOutSchema);
+      const result = await familyAuth.signOut(context.req.raw.headers, request.endSession === true);
+      for (const cookie of result.setCookies) context.header('Set-Cookie', cookie, { append: true });
+      const response: SignOutResponse = { signedOut: true, endSessionUrl: result.endSessionUrl };
+      return context.json(response);
+    });
+
+    // Better Auth serves only sign-in start and the Authentik callback; its own
+    // trusted-origin check guards them.
+    app.on(['GET', 'POST'], '/api/auth/*', async (context) => {
+      // Better Auth checks Origin only when cookies are present; starting a
+      // sign-in must also come from the app's own origin.
+      if (context.req.method === 'POST' && context.req.header('origin') !== options.appOrigin) {
+        throw new AppError(403, 'ORIGIN_REJECTED', 'Origin rejected');
+      }
+      const response = await familyAuth.handle(context.req.raw);
+      if (!response) throw new AppError(404, 'NOT_FOUND', 'Not found');
+      return response;
+    });
+  }
+
   app.get('/api/saves', async (context) => {
-    const player = await requirePlayer(context, sessions);
+    const player = await requirePlayer(context, playerSessions);
     limiter.take(`read:${player.id}`);
     if (options.ephemeralPlaytest) return context.json({ saves: [] });
     const saves = (await options.store.listSaves(player.id)).map(toSaveSummary);
@@ -249,7 +302,7 @@ export function createApp(options: AppOptions): Hono {
 
   app.post('/api/setup/preview', async (context) => {
     enforceMutationSecurity(context, options.appOrigin);
-    const player = await requirePlayer(context, sessions);
+    const player = await requirePlayer(context, playerSessions);
     limiter.take(`write:${player.id}`);
     if (!photoSource) throw new AppError(503, 'PHOTO_SETUP_UNAVAILABLE', 'Photo setup unavailable');
     const request = await parseJson(context, previewRequestSchema);
@@ -258,7 +311,7 @@ export function createApp(options: AppOptions): Hono {
 
   app.post('/api/saves', async (context) => {
     enforceMutationSecurity(context, options.appOrigin);
-    const player = await requirePlayer(context, sessions);
+    const player = await requirePlayer(context, playerSessions);
     limiter.take(`write:${player.id}`);
     const command = await parseJson(context, createSaveSchema);
     if (options.ephemeralPlaytest && command.selectedIds.length !== 6) {
@@ -273,7 +326,7 @@ export function createApp(options: AppOptions): Hono {
   });
 
   app.get('/api/saves/:id', async (context) => {
-    const player = await requirePlayer(context, sessions);
+    const player = await requirePlayer(context, playerSessions);
     limiter.take(`read:${player.id}`);
     const save = await options.store.getSave(player.id, context.req.param('id'));
     if (!save) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
@@ -282,7 +335,7 @@ export function createApp(options: AppOptions): Hono {
 
   app.post('/api/saves/:id/recover', async (context) => {
     enforceMutationSecurity(context, options.appOrigin);
-    const player = await requirePlayer(context, sessions);
+    const player = await requirePlayer(context, playerSessions);
     limiter.take(`write:${player.id}`);
     await parseJson(context, recoverSchema);
     await rejectRetiredSaveMutation(options.store, player.id, context.req.param('id'));
@@ -290,7 +343,7 @@ export function createApp(options: AppOptions): Hono {
 
   app.post('/api/saves/:id/finish', async (context) => {
     enforceMutationSecurity(context, options.appOrigin);
-    const player = await requirePlayer(context, sessions);
+    const player = await requirePlayer(context, playerSessions);
     limiter.take(`write:${player.id}`);
     await parseJson(context, finishSchema);
     await rejectRetiredSaveMutation(options.store, player.id, context.req.param('id'));
@@ -298,7 +351,7 @@ export function createApp(options: AppOptions): Hono {
 
   app.post('/api/saves/:id/actions', async (context) => {
     enforceMutationSecurity(context, options.appOrigin);
-    const player = await requirePlayer(context, sessions);
+    const player = await requirePlayer(context, playerSessions);
     actionLimiter.take(`action:${player.id}`);
     const request = await parseJson(context, gameplayActionRequestSchema);
     const actionTime = now();
@@ -312,7 +365,7 @@ export function createApp(options: AppOptions): Hono {
   });
 
   app.get('/api/saves/:id/media/:memoryId', async (context) => {
-    const player = await requirePlayer(context, sessions);
+    const player = await requirePlayer(context, playerSessions);
     limiter.take(`media:${player.id}`);
     const save = await options.store.getSave(player.id, context.req.param('id'));
     const memory = save?.memories.find((candidate) => candidate.id === context.req.param('memoryId'));
@@ -435,7 +488,11 @@ function diagnosticRoute(context: Context): string {
   return context.req.path.startsWith('/api/') ? '/api/*' : '/*';
 }
 
-async function requirePlayer(context: Context, sessions: FixtureSessions | null): Promise<PlayerRecord> {
+interface PlayerSessionSource {
+  current(context: Context): Promise<PlayerRecord | null>;
+}
+
+async function requirePlayer(context: Context, sessions: PlayerSessionSource | null): Promise<PlayerRecord> {
   const player = await sessions?.current(context);
   if (!player) throw new AppError(401, 'AUTH_REQUIRED', 'Authentication required');
   return player;
