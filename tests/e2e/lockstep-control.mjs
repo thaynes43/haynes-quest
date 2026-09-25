@@ -95,7 +95,7 @@ export function travelerFor(stage) {
  * behind; a screenshot then waits for the whole backlog. Reading one pixel
  * waits until the GPU has drawn the frame (WebGL `finish()` does not).
  */
-function awaitDrawnFrame() {
+export function awaitDrawnFrame() {
   const canvas = document.querySelector("canvas[data-quest-canvas=true]");
   const gl = canvas?.getContext("webgl2");
   if (gl)

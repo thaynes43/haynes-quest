@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-25T05:34:26Z",
+  "status": "pinned-rollout-and-hosted-checks-pending",
+  "scope": "Rat Casino fun pass slice 1 (the PR67 application) on the isolated ephemeral playtest, pinned as main 91a7c65. This record holds what a cloud session without cluster or home-network access could check. The pod rollout, hosted browser checks, physical Safari and final-art acceptance remain open.",
+  "application": {
+    "funPassPullRequest": "https://github.com/thaynes43/haynes-quest/pull/67",
+    "funPassMergeCommit": "dc52e4b2c4d42c58e5c6bbf2c1e0b18d7701cf36",
+    "funPassMainApplicationRun": 36070469997,
+    "funPassMainDocumentationRun": 36070469993,
+    "pinRecordPullRequest": "https://github.com/thaynes43/haynes-quest/pull/68",
+    "pinRecordMergeCommit": "096137f79d8b5e364d41537409e39d0ef18e8639",
+    "lockstepPullRequest": "https://github.com/thaynes43/haynes-quest/pull/69",
+    "lockstepReviewedHead": "9ce255d875b36565d8b6050f98afe150525e4e54",
+    "lockstepPullRequestApplicationRun": 36083954864,
+    "lockstepPullRequestDocumentationRun": 36083954920,
+    "pinnedMainCommit": "91a7c65d32f3735c7195a766b33b3b8eb2e860f4",
+    "mainApplicationRun": 36086166864,
+    "mainDocumentationRun": 36086166904,
+    "applicationInputsSinceFunPass": "git diff dc52e4b 91a7c65 changes no application source, dependency manifest, lockfile, Dockerfile or migration. Only tests, .agents and docs changed, so the pinned image runs the PR67 application with current studio docs.",
+    "checks": "PR and main source verification, real PostgreSQL tests, container build, authored-level validation, strict documentation/media build, provenance and signing passed on main 91a7c65."
+  },
+  "publication": {
+    "image": "ghcr.io/thaynes43/haynes-quest:sha-91a7c65d32f3735c7195a766b33b3b8eb2e860f4@sha256:b20e6a478f9743d11d54eb1fe94c7cf05c0c30ffc86d2c79d739a5808ca12103",
+    "ociIndexDigest": "sha256:b20e6a478f9743d11d54eb1fe94c7cf05c0c30ffc86d2c79d739a5808ca12103",
+    "mainImageJob": "https://github.com/thaynes43/haynes-quest/actions/runs/36086166864/job/107918909677",
+    "digestMatchesBuildPushAttestationAndSignLog": true,
+    "anonymousGhcrTagResolution": {
+      "httpStatus": 200,
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "bytes": 857,
+      "bodySha256MatchesDigestHeaderAndPin": true,
+      "manifests": ["linux/amd64 image", "attestation manifest"]
+    },
+    "sigstoreReferrers": "The sha256-<digest> referrers tag lists two Sigstore bundle v0.3 artifacts whose subject is this digest: the SLSA provenance v1 attestation (DSSE) and the cosign signature.",
+    "cryptographicSignatureVerification": "Not run. This cloud environment's egress policy blocks the Sigstore TUF CDN and GHCR's blob host (pkg-containers.githubusercontent.com), so cosign could not fetch the trust root or the bundles."
+  },
+  "gitops": {
+    "previousPin": {
+      "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/3169",
+      "mergeCommit": "5a25d6f583904dab5da76f8b4f538a5714db70f3",
+      "image": "ghcr.io/thaynes43/haynes-quest:sha-dc52e4b2c4d42c58e5c6bbf2c1e0b18d7701cf36@sha256:e8a4aba00b78d92ce4d997c277b3896a54dc0c21c0eb58d0636c0fddbeb97521",
+      "fluxCommitStatuses": "kustomization/cluster, cluster-apps, onepassword-connect and flux-addons reported reconciliation succeeded at 2026-09-24T23:53:22Z to 23:53:32Z. These statuses cover the flux-system Kustomizations only, not the frontend/haynes-quest Kustomization or the playtest HelmRelease.",
+      "podRolloutVerified": false
+    },
+    "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/3170",
+    "reviewedHead": "8df57eabb9d2d6317d2319b87e3d6988d7c76ee9",
+    "mergeCommit": "3d149a5b25342dc56ffafba051cb5f23d98c0068",
+    "changedFile": "kubernetes/main/apps/frontend/haynes-quest/app/playtest-helmrelease.yaml",
+    "renderedChange": "Only the frontend/haynes-quest-playtest Deployment container image changed",
+    "requiredChecks": ["Diff Scope - Success", "Flux Local - Success"],
+    "allSevenReportedChecksPassed": true,
+    "renderedHelmReleaseDiff": "https://github.com/thaynes43/haynes-ops/pull/3170#issuecomment-5827063474",
+    "renderedKustomizationDiff": "https://github.com/thaynes43/haynes-ops/pull/3170#issuecomment-5827063000",
+    "fluxCommitStatuses": {
+      "mergeCommitStatuses": "none; Flux next fetched a later main commit",
+      "reconciledCommit": "cf1994f32170a6b5340a906467b4f9f4be0294cc",
+      "laterCommitsTouchQuest": false,
+      "statuses": "kustomization/cluster, onepassword-connect, cluster-apps and flux-addons reported reconciliation succeeded at 2026-09-25T05:24:18Z to 05:24:24Z",
+      "coverage": "flux-system Kustomizations only; the frontend/haynes-quest Kustomization, playtest HelmRelease and pod are not reported to GitHub"
+    },
+    "activityDeclared": false,
+    "activityNote": "The cloud session cannot run declare-activity or read the cluster, so no live baseline or activity record precedes this merge.",
+    "clusterRollout": {
+      "status": "pending",
+      "tracking": "https://github.com/thaynes43/haynes-quest/issues/70",
+      "toRecord": [
+        "Flux revision and Kustomization Ready",
+        "playtest HelmRelease generation, observedGeneration and Ready",
+        "playtest pod name, UID, Ready, restarts and imageID",
+        "normal Quest and dev-env Deployment UID, generation and image unchanged",
+        "whether PR3169's revision deployed, from the HelmRelease or Helm history"
+      ]
+    }
+  },
+  "localVerification": {
+    "environment": "Claude Code cloud container: headless Chromium 141 with ANGLE/SwiftShader software WebGL against the locally built ephemeral playtest server. Not device or hosted evidence.",
+    "lockstepFullJourney": {
+      "check": "QUEST_E2E_LOCKSTEP=1 node tests/e2e/rat-casino.mjs",
+      "outcome": "passed",
+      "runs": [
+        {
+          "scale": 1,
+          "wallMinutes": 28,
+          "frames": 1320
+        },
+        {
+          "scale": 0.5,
+          "wallMinutes": 16,
+          "frames": 1314
+        }
+      ],
+      "haul": "You grabbed 61 of 145 casino tokens and 1 of 3 golden tickets.",
+      "fightsWithoutRetry": 5,
+      "memories": 3,
+      "pageConsoleHttpFailedExternalErrors": 0,
+      "evidence": "PR69 and PLAN-017"
+    },
+    "realTimeFullJourney": "Cannot finish on this renderer (under one frame a second); the hosted real-time run remains the frame-time check.",
+    "casinoRewards": {
+      "check": "node tests/e2e/casino-rewards.mjs",
+      "change": "Each lockstep step now waits for its frame to be drawn (awaitDrawnFrame); before, a screenshot timed out after 30 s at casino-defeat-confetti.",
+      "outcome": "passed",
+      "startedAt": "2026-09-25T04:58:34.951Z",
+      "finishedAt": "2026-09-25T05:25:45.082Z",
+      "trail": {
+        "collected": 2,
+        "hud": "2 casino tokens, 0 of 3 golden tickets",
+        "visibleTokens": 143,
+        "input": "held keyboard movement"
+      },
+      "ticket": {
+        "id": "ticket-2",
+        "platformId": "ticket-loft-step-11",
+        "edges": 11,
+        "tokens": 20,
+        "hud": "20 casino tokens, 1 of 3 golden tickets",
+        "recoveries": 0,
+        "input": "held WASD and Space jumps with a lockstep page clock"
+      },
+      "contact": {
+        "encounterId": "rat-casino-v1-encounter-1",
+        "contactFrame": 7,
+        "contactMs": 112,
+        "replyHeldUntilContact": true,
+        "confirmedHp": "4/8",
+        "swingsToDefeat": 2,
+        "confettiParticles": 54
+      },
+      "narrow": {
+        "viewport": "390x844",
+        "horizontalOverflow": 0
+      },
+      "pageConsoleHttpFailedExternalErrors": 0,
+      "screenshots": 8,
+      "reportSha256": "7732759616895261b29734442095fbf8acf56e22aa1dff1a469392bb7e035b25"
+    },
+    "studio": {
+      "check": "node tests/e2e/studio.mjs",
+      "change": "Clip playback is polled for up to 3 s instead of sampled once at 320 ms; two earlier runs failed at different clips because software WebGL drew a newly loaded model's first frames late.",
+      "outcome": "passed",
+      "pages": 12,
+      "models": 9,
+      "distinctClips": 7,
+      "audioAuditions": 4,
+      "touchOrbits": 2,
+      "mediaFiles": 113,
+      "manifests": 7,
+      "funPassSoundPagesDecoded": [
+        "memory-collected",
+        "ability-unlocked",
+        "ui-confirmed"
+      ],
+      "pageConsoleHttpExternalErrors": 0,
+      "evidenceSha256": "d384aa7900c495f32df07d115d5f861efd48d118fc5a73805628cbe52ad74fe7"
+    }
+  },
+  "hosted": {
+    "playtestUrl": "https://haynes-quest-playtest.haynesops.com/",
+    "status": "pending",
+    "reachableFromCloudSession": false,
+    "tracking": "https://github.com/thaynes43/haynes-quest/issues/70"
+  },
+  "pendingOwnerGates": [
+    "Exact final-art review of the six mascot and three scenic versions",
+    "Physical iPhone/iPad Safari play, feel and sound",
+    "The children's reactions",
+    "DESIGN-022 decisions on double jump and boss vulnerability windows"
+  ]
+}
