@@ -1,6 +1,6 @@
 # DESIGN-023: Golden stage encounter and desktop mouse combat
 
-- **Status:** Proposed, September 25, 2026
+- **Status:** Implemented in the private playtest, September 25, 2026; final owner preference pending
 - **Source:** Tom's Rat Casino playtest: the golden character stood still at close range; desktop clicking should attack, while touch scenery taps must not.
 - **Satisfies:** [DESIGN-021](021-rat-casino-level.md), [DESIGN-018](018-familiar-touch-and-recovery.md), [DESIGN-022](022-rat-casino-fun-pass.md)
 - **Plan:** [PLAN-018](../../.agents/plans/completed/018-golden-encounter-and-mouse.md)
@@ -29,4 +29,4 @@ In the Rat Casino stage wing, Golden After-Hours Rat becomes a clearly signaled 
 
 | ID | Question | Status |
 | --- | --- | --- |
-| Q-01 | Should Golden become an optional fight or a reactive scenic secret? | Asked September 25. The lead is proceeding with the optional fight interpretation of Tom's “enemy didn't do anything” report while the reply is pending. |
+| Q-01 | Should Golden remain an optional fight or become a reactive scenic secret? | The September 25 private trial uses an optional fight in response to Tom's “enemy didn't do anything” report. Tom's playtest preference for the lasting version remains open. |
