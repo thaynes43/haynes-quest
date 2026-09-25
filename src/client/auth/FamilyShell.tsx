@@ -4,8 +4,8 @@ import { friendlyError } from "../api";
 import { signOut, startSignIn, type SignInProblem } from "./session";
 
 /**
- * Minimal family sign-in shell (WO106). All strings are placeholders: the
- * coordinator writes the final copy. Family journeys replace the signed-in body.
+ * Family sign-in shell (WO106, ADR-005). Family journeys replace the
+ * signed-in body.
  */
 export function SignedOutScreen({
   brand,
@@ -30,15 +30,16 @@ export function SignedOutScreen({
     <div className="app-shell">
       <header className="site-header">{brand}</header>
       <main className="playtest-start family-signed-out">
-        {/* COPY: signed-out heading placeholder */}
-        <h1>Signed out</h1>
+        <h1>Our family adventure</h1>
+        <p>Climb, explore and find your memories from every year.</p>
         {problem === "not-admitted" && (
-          // COPY: placeholder for a login without an admitted group
-          <p role="alert">This account is not allowed to play.</p>
+          <p role="alert">
+            This Haynes Network account can't open Haynes Quest yet. Ask a
+            family admin to add you to the Family role.
+          </p>
         )}
         {problem === "failed" && (
-          // COPY: placeholder for a failed or interrupted sign-in
-          <p role="alert">Sign-in did not finish. Try again.</p>
+          <p role="alert">Sign-in didn't finish. Please try again.</p>
         )}
         {error && <p role="alert">{error}</p>}
         <button
@@ -46,8 +47,7 @@ export function SignedOutScreen({
           disabled={busy}
           onClick={() => void signIn()}
         >
-          {/* COPY: the single sign-in button */}
-          {busy ? "Signing in…" : "Sign in"}
+          {busy ? "Opening Haynes Network…" : "Sign in with Haynes Network"}
         </button>
       </main>
     </div>
@@ -85,15 +85,14 @@ export function FamilyShell({
         {brand}
         <span className="preview-badge">
           <i />
-          {/* COPY: placeholder role label */}
-          {session.player.label} · {session.role === "admin" ? "Admin" : "Player"}
+          {session.player.label}
+          {session.role === "admin" ? " · Family admin" : ""}
         </span>
         <button
           className="text-button"
           disabled={busy}
           onClick={() => void leave(false)}
         >
-          {/* COPY: local sign-out placeholder */}
           Sign out
         </button>
         {session.endSessionAvailable && (
@@ -102,16 +101,14 @@ export function FamilyShell({
             disabled={busy}
             onClick={() => void leave(true)}
           >
-            {/* COPY: "Sign out of Haynes Network too" placeholder (ADR-005 D-06) */}
-            Sign out everywhere
+            Sign out of Haynes Network too
           </button>
         )}
       </header>
       <main className="playtest-start">
         {error && <p role="alert">{error}</p>}
         {children ?? (
-          // COPY: signed-in placeholder until family journeys land
-          <p>Signed in.</p>
+          <p>You're signed in. Family quests are being prepared.</p>
         )}
       </main>
     </div>
