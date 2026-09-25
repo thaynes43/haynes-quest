@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "recordedAt": "2026-09-25T16:24:49Z",
-  "status": "rollout-verified-hosted-journeys-pending",
-  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged, its checks passed, its signed immutable image is pinned through haynes-ops PR3184, and the isolated playtest rollout and unchanged Normal Quest/dev-env identities are verified. Hosted mouse, touch and bonus-editor checks passed; the full hosted Golden-fight and Golden-skip journeys are still running and are not claimed by this draft.",
+  "recordedAt": "2026-09-25T16:30:32Z",
+  "status": "rollout-and-golden-journey-verified-skip-pending",
+  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged, its checks passed, its signed immutable image is pinned through haynes-ops PR3184, and the isolated playtest rollout and unchanged Normal Quest/dev-env identities are verified. Hosted mouse, touch and bonus-editor checks passed, as did the full Golden-fight route on the exact deployed commit. The full hosted Golden-skip journey is still running and is not claimed by this draft.",
   "application": {
     "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/73",
     "reviewedHead": "f84e31202e8eb0f6dca9617704e56a7e1f120f10",
@@ -221,12 +221,13 @@
     "devEnvDeploymentUidGenerationAndImageUnchanged": true
   },
   "hosted": {
-    "status": "partial-checks-passed-full-journeys-pending",
+    "status": "golden-fight-passed-skip-pending",
     "playtestUrl": "https://haynes-quest-playtest.haynesops.com/",
-    "checkedAt": null,
+    "checkedAt": "2026-09-25T16:29:27.555Z",
     "browser": {
-      "name": "Chromium",
+      "name": "headless Chromium",
       "version": "153.0.8010.12",
+      "renderer": "ANGLE/SwiftShader software WebGL",
       "deviceEvidence": false
     },
     "endpoints": {
@@ -236,7 +237,60 @@
       "/studio/assets/reviews/golden-after-hours-rat/v001.html": 200,
       "/studio/project/plans/018-golden-encounter-and-mouse.html": 200
     },
-    "goldenFightJourney": null,
+    "goldenFightJourney": {
+      "status": "passed",
+      "startedAt": "2026-09-25T16:22:24.139Z",
+      "finishedAt": "2026-09-25T16:29:27.555Z",
+      "sourceCommit": "66c64d41e9f741285b49ccb6f1cd57d1ce5947fe",
+      "sourceCommitMatchesDeployedImageTag": true,
+      "routeId": "rat-casino-v2",
+      "clock": {
+        "mode": "lockstep",
+        "frames": 1332,
+        "pageSeconds": 51.82,
+        "wallSeconds": 338.4,
+        "deviceScaleFactor": 0.5
+      },
+      "fights": 6,
+      "fightsWithoutRetry": 6,
+      "goldenActivationPhase": "windup",
+      "goldenPrimaryHits": 1,
+      "goldenSecondaryHits": 1,
+      "ratPitBossDefeated": true,
+      "memoriesRecovered": [
+        "rat-casino-v2-memory-minor-one",
+        "rat-casino-v2-memory-minor-two",
+        "rat-casino-v2-memory-major"
+      ],
+      "completed": true,
+      "collectibles": {
+        "tokens": 53,
+        "tokenTotal": 145,
+        "tickets": 1,
+        "ticketTotal": 3
+      },
+      "narrowViewport": {
+        "width": 390,
+        "height": 844,
+        "homeHorizontalOverflow": 0,
+        "gameHorizontalOverflow": 0
+      },
+      "bossStageFrameSample": {
+        "measured": false,
+        "reason": "Lockstep run; frame time needs real-time mode."
+      },
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "response": 0,
+        "failedRequests": 0,
+        "externalRequests": 0
+      },
+      "screenshots": 13,
+      "report": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/golden-hosted-v2-fight/report.json",
+      "reportSha256": "ef4f5f38b2811177c8d44ca09ea6edae4d80da68026c45ff4eea93426eec55bf",
+      "limit": "Lockstep establishes hosted route logic, layout and rules; it does not establish real-time frame cost, physical Safari behavior or device feel."
+    },
     "skipGoldenJourney": null,
     "mouseAndTouchChecks": {
       "status": "passed",
