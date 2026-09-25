@@ -7,6 +7,7 @@ import {
   platformGateway,
   safeMissRetryEdge,
 } from "./authored-navigation.mjs";
+import { createLockstepMotion } from "./lockstep-control.mjs";
 
 export const delay = (milliseconds) =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -284,12 +285,19 @@ function isMovingPlatform(document, platformId) {
   );
 }
 
+/**
+ * Drives an authored route with ordinary keyboard input. By default it plays
+ * in real time with short key pulses. Pass `lockstep` (createLockstep from
+ * lockstep-control.mjs, with the page clock paused) to choose input every
+ * frame instead, so a slow software renderer cannot overshoot a takeoff.
+ */
 export function createAuthoredRouteDriver({
   page,
   controls,
   screenshot,
   mark,
   maxRecoveries = 10,
+  lockstep = null,
 }) {
   let document = null;
   let startingRecoveries = null;
@@ -336,7 +344,19 @@ export function createAuthoredRouteDriver({
     return inspection;
   };
 
-  const moveToPoint = async (
+  const motion = lockstep
+    ? createLockstepMotion({
+        lockstep,
+        read,
+        inspect: () => inspectGame(page),
+        document: () => document,
+        mark,
+        screenshot,
+        evidence: { hazardJumps, ferryEvidence },
+      })
+    : null;
+
+  const realTimeMoveToPoint = async (
     targetFor,
     {
       label,
@@ -445,8 +465,9 @@ export function createAuthoredRouteDriver({
       `${label}: target unreachable; nearest distance ${best.toFixed(2)}`,
     );
   };
+  const moveToPoint = motion ? motion.moveToPoint : realTimeMoveToPoint;
 
-  const ride = async (edge, label) => {
+  const realTimeRide = async (edge, label) => {
     await read(`${label}-start`);
     const targetIsMoving = isMovingPlatform(document, edge.to);
     const sourceIsMoving = isMovingPlatform(document, edge.from);
@@ -608,6 +629,7 @@ export function createAuthoredRouteDriver({
     }
     throw new Error(`${label}: moving platform never reached its landing`);
   };
+  const ride = motion ? motion.ride : realTimeRide;
 
   const missToSafePlatform = async (edge, label) => {
     assert.equal(
@@ -678,10 +700,13 @@ export function createAuthoredRouteDriver({
         Math.min(sourceMax, nearCatchFace - direction * 0.65),
       );
     }
-    if (planarDistance(before.status.position, missTakeoff) > 0.5) {
+    const takeoffTolerance = motion ? 0.12 : 0.5;
+    if (
+      planarDistance(before.status.position, missTakeoff) > takeoffTolerance
+    ) {
       before = await moveToPoint(() => missTakeoff, {
         label: `${label}-approach`,
-        tolerance: 0.5,
+        tolerance: takeoffTolerance,
         supportId: edge.from,
         allowHazardJump: false,
         stopOnRecovery: true,
@@ -690,27 +715,36 @@ export function createAuthoredRouteDriver({
     assert.equal(before.obby.supportId, edge.from);
     const jumpSequence = before.status.jumpSequence;
     const recoveries = before.obby.recoveries;
+    const moveX = travelAxis === "x" ? delta.x : 0;
+    const moveZ = travelAxis === "z" ? delta.z : 0;
     let caught;
-    try {
-      const moveX = travelAxis === "x" ? delta.x : 0;
-      const moveZ = travelAxis === "z" ? delta.z : 0;
-      if (typeof controls.beginJumpToward === "function") {
-        await controls.beginJumpToward(moveX, moveZ);
-      } else {
-        await controls.jumpToward(moveX, moveZ, { milliseconds: 600 });
-      }
-      caught = await waitForInspection({
-        page,
-        screenshot,
+    if (motion) {
+      caught = await motion.missJump({
+        before,
+        edge,
         label: `${label}-caught`,
-        timeout: 8_000,
-        predicate: (candidate) =>
-          (candidate.status.grounded &&
-            candidate.obby?.supportId === edge.safeMissPlatformId) ||
-          candidate.obby?.recoveries > recoveries,
+        direction: { x: moveX, z: moveZ },
       });
-    } finally {
-      await controls.release();
+    } else {
+      try {
+        if (typeof controls.beginJumpToward === "function") {
+          await controls.beginJumpToward(moveX, moveZ);
+        } else {
+          await controls.jumpToward(moveX, moveZ, { milliseconds: 600 });
+        }
+        caught = await waitForInspection({
+          page,
+          screenshot,
+          label: `${label}-caught`,
+          timeout: 8_000,
+          predicate: (candidate) =>
+            (candidate.status.grounded &&
+              candidate.obby?.supportId === edge.safeMissPlatformId) ||
+            candidate.obby?.recoveries > recoveries,
+        });
+      } finally {
+        await controls.release();
+      }
     }
     assert.equal(
       caught.obby.recoveries,
@@ -784,7 +818,8 @@ export function createAuthoredRouteDriver({
           const takeoff = gateway.from;
           const approached = await moveToPoint(() => takeoff, {
             label: `${label}-takeoff`,
-            tolerance: 0.5,
+            // Lockstep can stand on the takeoff; real time needs slack.
+            tolerance: motion ? 0.1 : 0.5,
             supportId: edge.from,
             stopOnRecovery: true,
           });
@@ -799,29 +834,33 @@ export function createAuthoredRouteDriver({
             position: current.status.position,
             jumpSequence,
           });
-          try {
-            const deltaX = landing.x - current.status.position.x;
-            const deltaZ = landing.z - current.status.position.z;
-            if (typeof controls.beginJumpToward === "function") {
-              await controls.beginJumpToward(deltaX, deltaZ);
-            } else {
-              await controls.jumpToward(deltaX, deltaZ);
+          if (motion) {
+            after = await motion.jumpEdge(edge, `${label}-jump`, current);
+          } else {
+            try {
+              const deltaX = landing.x - current.status.position.x;
+              const deltaZ = landing.z - current.status.position.z;
+              if (typeof controls.beginJumpToward === "function") {
+                await controls.beginJumpToward(deltaX, deltaZ);
+              } else {
+                await controls.jumpToward(deltaX, deltaZ);
+              }
+              after = await waitForInspection({
+                page,
+                screenshot,
+                label: `${label}-jump-land`,
+                timeout: 6_000,
+                predicate: (candidate) =>
+                  (candidate.status.grounded &&
+                    candidate.obby?.supportId !== edge.from) ||
+                  candidate.obby?.recoveries > attemptRecoveries,
+              }).catch(() => null);
+            } finally {
+              await controls.release();
             }
-            after = await waitForInspection({
-              page,
-              screenshot,
-              label: `${label}-jump-land`,
-              timeout: 6_000,
-              predicate: (candidate) =>
-                (candidate.status.grounded &&
-                  candidate.obby?.supportId !== edge.from) ||
-                candidate.obby?.recoveries > attemptRecoveries,
-            }).catch(() => null);
-          } finally {
-            await controls.release();
-          }
-          if (!after) {
-            after = await read(`${label}-jump-timeout`);
+            if (!after) {
+              after = await read(`${label}-jump-timeout`);
+            }
           }
           mark("jump:observed", {
             edge,
@@ -929,6 +968,13 @@ export function createAuthoredRouteDriver({
     moveToPoint,
     missToSafePlatform,
     crossEdge,
+    /** Waits for an inspected state: wall-clock polls, or stepped frames. */
+    waitFor: motion
+      ? motion.waitFor
+      : (options) => waitForInspection({ page, screenshot, ...options }),
+    /** Lets `milliseconds` pass: a real delay, or that much page time. */
+    idle: motion ? (milliseconds) => lockstep.advance(milliseconds) : delay,
+    lockstep,
     evidence: {
       edgeEvidence,
       ferryEvidence,

@@ -42,10 +42,29 @@ The static studio contains original fictional references, candidate media and th
 - `pnpm exec tsx tests/e2e/serve-fixture.ts` starts a synthetic browser-test harness on `127.0.0.1:4173`. Without `QUEST_TEST_DATABASE_URL` it uses memory storage, which is explicitly not durability evidence.
 - For the older persistent contracts, `node tests/e2e/journey.mjs` runs keyboard and Chromium touch-emulation journeys against that harness. It saves synthetic screenshots and evidence under ignored `test-results/`. Browser binaries must be installed for Playwright. These checks do not establish physical iPhone/iPad Safari performance.
 - `QUEST_E2E_URL=http://127.0.0.1:3000 node tests/e2e/fresh-playtest.mjs` checks the new fresh-start route against the built ephemeral server. Follow WO066 for its exact scenarios and evidence.
+- `QUEST_E2E_URL=http://127.0.0.1:3000 node tests/e2e/rat-casino.mjs` plays the whole Rat Casino chapter from the home CTA: a deliberate fall, all three memories, all five fights, the golden-view ticket and the closing haul, then the editor sample and a 390×844 view. Add `QUEST_E2E_LOCKSTEP=1` to play the course in lockstep (see below).
+- `QUEST_E2E_URL=http://127.0.0.1:3000 node tests/e2e/casino-rewards.mjs` checks the casino tokens, the loft's golden ticket, contact before the server's reply, and the HUD tally at 390×844.
 - `node tests/e2e/studio.mjs` checks every candidate page, GLB/clip, media download, decoded audio audition and portrait layout. Set `QUEST_E2E_URL` to the private app origin to check deployed delivery. This checks audio decoding, not listening quality.
 - `scripts/docs/build.sh` runs the strict documentation build and local media/link checks using the pinned Python requirements.
 
 The GitHub Application workflow runs these source/unit/database/build checks against a fresh PostgreSQL 16 service. Main builds publish an immutable `ghcr.io/thaynes43/haynes-quest:sha-<commit>` image with provenance. Deployment uses that image’s digest through haynes-ops GitOps; no application deploy changes dev-env.
+
+### Real time and lockstep
+
+Browser journeys use one of two clocks.
+
+- **Real time** is the default and matches a player's device: page time flows, and the harness holds keys for short real intervals. It is the only mode that says anything about frame time. On software WebGL a frame can take a fifth of a second or more. The game clamps each frame to 0.2 s, so at 4 m/s the traveler can move about 0.8 m between readings. Takeoffs need 0.5 m, so long real-time journeys on such renderers fail intermittently. Run them on real GPUs or the hosted playtest.
+- **Lockstep** installs the Playwright page clock before navigation and pauses it once the course is ready. The harness then renders one frame at a time, waits until the GPU has drawn it, and chooses keyboard input between frames. It uses 16 ms frames near takeoffs, targets, sweepers and on moving platforms, 32 ms frames in flight, and 48 ms frames on open floor and while waiting. Walks plan around raised neighbouring platforms and sweeper paths. Jumps steer toward a point past the far edge. Ride edges step frames until the moving platform comes within reach. The game sees the same frames however slowly the renderer draws. Lockstep proves route logic, layout, collisions, combat rules and UI state under ordinary keyboard input. It does not show frame time or how play feels on a device.
+
+| Check | Clock |
+| --- | --- |
+| `journey.mjs`, `fresh-playtest.mjs`, `studio.mjs` and the other browser checks | Real time |
+| `rat-casino.mjs` (default) | Real time |
+| `rat-casino.mjs` with `QUEST_E2E_LOCKSTEP=1` | Lockstep from the ready course through the closing haul. The boss-stage frame-time sample is skipped, because a paused page clock cannot measure it. The editor sample, the three-chapter start with its garden frame sample, and the 390×844 check open new real-time pages. |
+| `casino-rewards.mjs` | The foyer token trail and the 390×844 layout run in real time. The ticket-loft climb, the contact check and the defeat always run in lockstep with 16 ms frames. |
+| `pnpm test` (`tests/e2e/lockstep-control.test.ts`) | Runs the lockstep driver on the checked-in Rat Casino course using the game's real movement code, without a browser. |
+
+Hosted and release runs keep the real-time default. Use lockstep locally when the renderer is slow, and treat it as logic evidence only. Lockstep takes as long as the renderer needs for each frame. `QUEST_E2E_LOCKSTEP_CRUISE_MS=16` makes every lockstep frame 16 ms, which is slower but closest to 60 Hz. `QUEST_E2E_LOCKSTEP_SCALE=0.5` keeps the 1280×760 page layout but draws a quarter of the pixels. It roughly halves software-rendering time, and screenshots are then 640×380. In lockstep, `QUEST_E2E_TIMEOUT_MS` defaults to one hour. The report's `clock` field records the mode, scale, frame counts, page time and wall time.
 
 ## Hosting boundary and remaining work
 
