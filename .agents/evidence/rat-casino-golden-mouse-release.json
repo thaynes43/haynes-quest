@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "recordedAt": "2026-09-25T16:11:15Z",
-  "status": "application-merged-release-pending",
-  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged and its local and pull-request checks passed. Signed-image publication, the haynes-ops pin, rollout evidence and hosted browser verification are pending and are not claimed by this draft.",
+  "recordedAt": "2026-09-25T16:16:18Z",
+  "status": "image-published-ops-and-hosted-pending",
+  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged, its local and pull-request checks passed, and the merged main commit produced a signed immutable image. The haynes-ops pin, rollout evidence and hosted browser verification are pending and are not claimed by this draft.",
   "application": {
     "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/73",
     "reviewedHead": "f84e31202e8eb0f6dca9617704e56a7e1f120f10",
@@ -130,13 +130,30 @@
     ]
   },
   "publication": {
-    "status": "pending",
-    "mainApplicationRun": null,
-    "mainDocumentationRun": null,
-    "image": null,
-    "ociIndexDigest": null,
-    "mainImageJob": null,
-    "digestMatchesBuildPushAttestationAndSignLog": null
+    "status": "published-ops-and-hosted-pending",
+    "sourceCommit": "66c64d41e9f741285b49ccb6f1cd57d1ce5947fe",
+    "mainApplicationRun": 36158873892,
+    "mainApplicationRunUrl": "https://github.com/thaynes43/haynes-quest/actions/runs/36158873892",
+    "mainVerifyJob": "https://github.com/thaynes43/haynes-quest/actions/runs/36158873892/job/108150137835",
+    "mainVerifyConclusion": "success",
+    "mainDocumentationRun": 36158873820,
+    "mainDocumentationRunUrl": "https://github.com/thaynes43/haynes-quest/actions/runs/36158873820",
+    "mainDocumentationJob": "https://github.com/thaynes43/haynes-quest/actions/runs/36158873820/job/108150141890",
+    "mainDocumentationConclusion": "success",
+    "image": "ghcr.io/thaynes43/haynes-quest:sha-66c64d41e9f741285b49ccb6f1cd57d1ce5947fe@sha256:e6599b23b702512716843a938e8f1016fca443ba6ba2bfd00b435a98e11b504d",
+    "ociIndexDigest": "sha256:e6599b23b702512716843a938e8f1016fca443ba6ba2bfd00b435a98e11b504d",
+    "mainImageJob": "https://github.com/thaynes43/haynes-quest/actions/runs/36158873892/job/108150969470",
+    "mainImageJobConclusion": "success",
+    "digestMatchesBuildPushAttestationAndSignLog": true,
+    "cosignSignImageStep": "success",
+    "anonymousGhcrTagResolution": {
+      "httpStatus": 200,
+      "artifact": "OCI image index",
+      "bytes": 857,
+      "dockerContentDigestMatches": true,
+      "bodySha256Matches": true,
+      "pinDigestMatches": true
+    }
   },
   "gitops": {
     "status": "pending",
