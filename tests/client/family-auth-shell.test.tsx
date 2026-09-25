@@ -72,7 +72,7 @@ describe("family sign-in shell", () => {
   it("shows a single sign-in button and explains a refused account", async () => {
     await act(async () => root.render(<SignedOutScreen brand={<span>Brand</span>} problem="not-admitted" />));
     const buttons = [...container.querySelectorAll("button")];
-    expect(buttons.map((button) => button.textContent)).toEqual(["Sign in"]);
+    expect(buttons.map((button) => button.textContent)).toEqual(["Sign in with Haynes Network"]);
     expect(container.querySelector('[role="alert"]')?.textContent).toBeTruthy();
   });
 
