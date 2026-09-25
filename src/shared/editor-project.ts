@@ -3,6 +3,9 @@ import { z } from "zod";
 import gardenTemplate from "./levels/garden-playground-v2.json";
 import bestiesTemplate from "./levels/besties-playground-v2.json";
 import {
+  AUTHORED_BONUS_ENCOUNTER_SLOTS,
+  AUTHORED_ENCOUNTER_SLOTS,
+  AUTHORED_REQUIRED_ENCOUNTER_SLOTS,
   AUTHORED_LEVEL_LIMITS,
   AUTHORED_LEVEL_SCHEMA_VERSION_V2,
   AUTHORED_LEVEL_SCHEMA_VERSION_V3,
@@ -12,12 +15,14 @@ import {
   validateAuthoredLevelDocument,
   type AuthoredAnchor,
   type AuthoredArena,
+  type AuthoredBonusEncounterSlot,
   type AuthoredConnection,
   type AuthoredEncounterAnchor,
   type AuthoredEncounterSlot,
   type AuthoredLevelDocument,
   type AuthoredLevelIssue,
   type AuthoredLevelPiece,
+  type AuthoredRequiredEncounterSlot,
   type AuthoredLevelTheme,
   type AuthoredPosition,
   type ResolvedAuthoredLevel,
@@ -153,8 +158,11 @@ export type LevelEditorEncounterReference =
       readonly candidateId: string;
     };
 
+export type LevelEditorEncounterSlot = AuthoredEncounterSlot;
+
 export type LevelEditorEncounterSlots = Readonly<
-  Record<AuthoredEncounterSlot, LevelEditorEncounterReference>
+  Record<AuthoredRequiredEncounterSlot, LevelEditorEncounterReference> &
+    Partial<Record<AuthoredBonusEncounterSlot, LevelEditorEncounterReference>>
 >;
 
 export type LevelEditorEnemyBehaviorPreset = EncounterKind;
@@ -287,13 +295,7 @@ const periodIdSchema = z.enum(
 );
 const encounterKindSchema = z.enum(["ordinary-a", "ordinary-b", "boss"]);
 const encounterRoleSchema = z.enum(["ordinary", "boss"]);
-const encounterSlotSchema = z.enum([
-  "ordinary-1",
-  "ordinary-2",
-  "ordinary-3",
-  "ordinary-4",
-  "boss",
-]);
+const encounterSlotSchema = z.enum(AUTHORED_ENCOUNTER_SLOTS);
 // Reuse the published v2 schema's public Zod shape so command JSON Schema
 // describes complete payloads without creating a second structural contract.
 const authoredLevelV2Schema = authoredLevelDocumentSchema.options[1];
@@ -390,6 +392,7 @@ export const levelEditorEncounterSlotsSchema = z
     "ordinary-3": levelEditorEncounterReferenceSchema,
     "ordinary-4": levelEditorEncounterReferenceSchema,
     boss: levelEditorEncounterReferenceSchema,
+    "bonus-1": levelEditorEncounterReferenceSchema.optional(),
   })
   .strict();
 
@@ -474,6 +477,10 @@ const LEVEL_EDITOR_READY_IDENTITIES = new Set([
   "rat-pit-boss@v001:rat-pit-boss@v002",
 ]);
 
+const LEVEL_EDITOR_BONUS_READY_IDENTITIES = new Set([
+  "golden-after-hours-rat@v001:golden-after-hours-rat@v001",
+]);
+
 /**
  * Exact reviewed identities prepared for private gameplay. Paused entries and
  * reserved cameos stay catalog-addressable but cannot fill an editor combat slot.
@@ -487,6 +494,53 @@ export function levelEditorPreparedEnemies(
         `${entry.id}@${entry.version}:${entry.assetId}@${entry.assetVersion}`,
       ),
     ),
+  );
+}
+
+/** Exact catalog identities allowed only in an optional bonus encounter slot. */
+export function levelEditorBonusEnemies(
+  catalogVersion: LevelEditorCatalogVersion,
+): readonly ParodyCatalogEntry[] {
+  return Object.freeze(
+    PARODY_CATALOGS[catalogVersion].filter((entry) =>
+      LEVEL_EDITOR_BONUS_READY_IDENTITIES.has(
+        `${entry.id}@${entry.version}:${entry.assetId}@${entry.assetVersion}`,
+      ),
+    ),
+  );
+}
+
+/** Ordinary prepared entries shown for the optional slot, including bonus-only art. */
+export function levelEditorPreparedBonusEnemies(
+  catalogVersion: LevelEditorCatalogVersion,
+): readonly ParodyCatalogEntry[] {
+  return Object.freeze([
+    ...levelEditorPreparedEnemies(catalogVersion).filter(
+      (entry) => entry.role === "ordinary",
+    ),
+    ...levelEditorBonusEnemies(catalogVersion),
+  ]);
+}
+
+export interface LevelEditorEncounterCatalogOptions {
+  /** Includes the bonus-only allowlist in addition to prepared primary enemies. */
+  readonly bonus?: boolean;
+}
+
+/** Resolve one exact catalog reference under the primary or optional-slot policy. */
+export function levelEditorEncounterCatalogEntry(
+  reference: LevelEditorEncounterReference,
+  catalogVersion: LevelEditorCatalogVersion,
+  options: LevelEditorEncounterCatalogOptions = {},
+): ParodyCatalogEntry | undefined {
+  if (reference.source !== "catalog") return undefined;
+  const entries = options.bonus
+    ? levelEditorPreparedBonusEnemies(catalogVersion)
+    : levelEditorPreparedEnemies(catalogVersion);
+  return entries.find(
+    (entry) =>
+      entry.id === reference.catalogEntryId &&
+      entry.version === reference.catalogEntryVersion,
   );
 }
 
@@ -697,13 +751,12 @@ function encounterIdentity(
   reference: LevelEditorEncounterReference,
   candidates: ReadonlyMap<string, LevelEditorEnemyCandidate>,
   catalogVersion: LevelEditorCatalogVersion,
+  slot: LevelEditorEncounterSlot,
 ): EditorEncounterIdentity | undefined {
   if (reference.source === "catalog") {
-    const entry = levelEditorPreparedEnemies(catalogVersion).find(
-      (candidate) =>
-        candidate.id === reference.catalogEntryId &&
-        candidate.version === reference.catalogEntryVersion,
-    );
+    const entry = levelEditorEncounterCatalogEntry(reference, catalogVersion, {
+      bonus: slot === "bonus-1",
+    });
     return entry
       ? {
           id: entry.id,
@@ -937,19 +990,43 @@ function validateWorldProject(
         );
     }
 
+    const bonusAnchor = chapter.level.anchors.encounters["bonus-1"];
+    const bonusReference = chapter.encounterSlots["bonus-1"];
+    if (bonusAnchor !== undefined && bonusReference === undefined)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.encounterSlots["bonus-1"]`,
+          "encounter.bonus-pair",
+          "The bonus encounter anchor and assignment must be present together",
+        ),
+      );
+    if (bonusAnchor === undefined && bonusReference !== undefined)
+      issues.push(
+        issue(
+          "semantic",
+          `${prefix}.level.anchors.encounters["bonus-1"]`,
+          "encounter.bonus-pair",
+          "The bonus encounter anchor and assignment must be present together",
+        ),
+      );
+
+    const slots: readonly LevelEditorEncounterSlot[] = [
+      ...AUTHORED_REQUIRED_ENCOUNTER_SLOTS,
+      ...(bonusAnchor !== undefined && bonusReference !== undefined
+        ? AUTHORED_BONUS_ENCOUNTER_SLOTS
+        : []),
+    ];
     let periodId: ParodyPeriodId | undefined;
-    for (const slot of [
-      "ordinary-1",
-      "ordinary-2",
-      "ordinary-3",
-      "ordinary-4",
-      "boss",
-    ] as const) {
+    for (const slot of slots) {
       const reference = chapter.encounterSlots[slot];
+      const anchor = chapter.level.anchors.encounters[slot];
+      if (reference === undefined || anchor === undefined) continue;
       const identity = encounterIdentity(
         reference,
         candidates,
         project.catalogVersion,
+        slot,
       );
       const slotPath = `${prefix}.encounterSlots[${JSON.stringify(slot)}]`;
       if (!identity) {
@@ -967,7 +1044,6 @@ function validateWorldProject(
         );
         continue;
       }
-      const anchor = chapter.level.anchors.encounters[slot];
       if (identity.role !== expectedRole(anchor.kind))
         issues.push(
           issue(
@@ -1338,6 +1414,7 @@ export const LEVEL_EDITOR_ANCHOR_SLOTS = [
   "encounter.ordinary-3",
   "encounter.ordinary-4",
   "encounter.boss",
+  "encounter.bonus-1",
   "friendly.friendly-1",
   "friendly.friendly-2",
   "friendly.friendly-3",
@@ -1389,13 +1466,19 @@ export type LevelEditorCommand =
       readonly previewMemories: LevelEditorChapterV2["previewMemories"];
     } & ChapterCommand)
   | ({
+      readonly type: "encounter.bonus.add";
+      readonly anchor: AuthoredEncounterAnchor;
+      readonly encounter: LevelEditorEncounterReference;
+    } & ChapterCommand)
+  | ({ readonly type: "encounter.bonus.remove" } & ChapterCommand)
+  | ({
       readonly type: "encounter.assign";
-      readonly slot: AuthoredEncounterSlot;
+      readonly slot: LevelEditorEncounterSlot;
       readonly encounter: LevelEditorEncounterReference;
     } & ChapterCommand)
   | ({
       readonly type: "enemy.add";
-      readonly slot: AuthoredEncounterSlot;
+      readonly slot: LevelEditorEncounterSlot;
       readonly candidate: LevelEditorEnemyCandidate;
     } & ChapterCommand)
   | ({ readonly type: "piece.add"; readonly piece: AuthoredLevelPiece } & ChapterCommand)
@@ -1436,7 +1519,7 @@ export type LevelEditorCommand =
     } & ChapterCommand)
   | ({
       readonly type: "encounter.arena.set";
-      readonly slot: AuthoredEncounterSlot;
+      readonly slot: LevelEditorEncounterSlot;
       readonly arena: AuthoredArena;
     } & ChapterCommand)
   | ({
@@ -1552,6 +1635,20 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
     .strict(),
   z
     .object({
+      type: z.literal("encounter.bonus.add"),
+      ...chapterIdField,
+      anchor: encounterAnchorSchema,
+      encounter: levelEditorEncounterReferenceSchema,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("encounter.bonus.remove"),
+      ...chapterIdField,
+    })
+    .strict(),
+  z
+    .object({
       type: z.literal("encounter.assign"),
       ...chapterIdField,
       slot: encounterSlotSchema,
@@ -1628,7 +1725,7 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
     .object({
       type: z.literal("encounter.arena.set"),
       ...chapterIdField,
-      slot: z.enum(["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4", "boss"]),
+      slot: encounterSlotSchema,
       arena: arenaSchema,
     })
     .strict(),
@@ -1923,14 +2020,32 @@ function candidateMapFor(
 function assertEncounterFitsSlot(
   project: MutableWorldProject,
   chapter: MutableWorldChapter,
-  slot: AuthoredEncounterSlot,
+  slot: LevelEditorEncounterSlot,
   reference: LevelEditorEncounterReference,
+  path: string,
+): void {
+  const anchor = chapter.level.anchors.encounters[slot];
+  if (!anchor)
+    commandError(
+      "$.slot",
+      "encounter.slot-missing",
+      `Encounter slot ${slot} has no authored anchor`,
+    );
+  assertEncounterReferenceFitsAnchor(project, slot, reference, anchor, path);
+}
+
+function assertEncounterReferenceFitsAnchor(
+  project: MutableWorldProject,
+  slot: LevelEditorEncounterSlot,
+  reference: LevelEditorEncounterReference,
+  anchor: AuthoredEncounterAnchor,
   path: string,
 ): void {
   const identity = encounterIdentity(
     reference,
     candidateMapFor(project),
     project.catalogVersion,
+    slot,
   );
   if (!identity)
     commandError(
@@ -1942,7 +2057,7 @@ function assertEncounterFitsSlot(
         ? `Prepared catalog entry ${reference.catalogEntryId} is unavailable`
         : `Project candidate ${reference.candidateId} does not exist`,
     );
-  const expectedKind = chapter.level.anchors.encounters[slot].kind;
+  const expectedKind = anchor.kind;
   if (identity.kind !== expectedKind || identity.role !== expectedRole(expectedKind))
     commandError(
       path,
@@ -2069,6 +2184,16 @@ function anchorFor(level: MutableLevel, slot: LevelEditorAnchorSlot): MutableAnc
       return level.anchors.encounters["ordinary-4"];
     case "encounter.boss":
       return level.anchors.encounters.boss;
+    case "encounter.bonus-1": {
+      const anchor = level.anchors.encounters["bonus-1"];
+      if (!anchor)
+        commandError(
+          "$.slot",
+          "encounter.slot-missing",
+          "Encounter slot bonus-1 has no authored anchor",
+        );
+      return anchor;
+    }
     case "friendly.friendly-1":
       return level.anchors.friendlies["friendly-1"];
     case "friendly.friendly-2":
@@ -2123,6 +2248,15 @@ function setAnchor(
       break;
     case "encounter.boss":
       level.anchors.encounters.boss = cloned as MutableEncounterAnchor;
+      break;
+    case "encounter.bonus-1":
+      if (!level.anchors.encounters["bonus-1"])
+        commandError(
+          "$.slot",
+          "encounter.slot-missing",
+          "Encounter slot bonus-1 has no authored anchor",
+        );
+      level.anchors.encounters["bonus-1"] = cloned as MutableEncounterAnchor;
       break;
     case "friendly.friendly-1":
       level.anchors.friendlies["friendly-1"] = cloned as MutableAnchor;
@@ -2314,6 +2448,50 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
       ) as unknown as MutableWorldChapter["previewMemories"];
       return;
     }
+    case "encounter.bonus.add": {
+      const world = worldProjectForCommand(project);
+      const worldChapter = worldChapterForCommand(chapter);
+      const currentAnchor = worldChapter.level.anchors.encounters["bonus-1"];
+      const currentReference = worldChapter.encounterSlots["bonus-1"];
+      if (currentAnchor !== undefined || currentReference !== undefined)
+        commandError(
+          "$.chapterId",
+          "encounter.bonus-exists",
+          "This chapter already has a bonus encounter",
+        );
+      if (command.anchor.kind === "boss")
+        commandError(
+          "$.anchor.kind",
+          "encounter.bonus-kind",
+          "The bonus encounter must use ordinary-a or ordinary-b",
+        );
+      assertEncounterReferenceFitsAnchor(
+        world,
+        "bonus-1",
+        command.encounter,
+        command.anchor,
+        "$.encounter",
+      );
+      worldChapter.level.anchors.encounters["bonus-1"] = cloneJson(
+        command.anchor,
+      );
+      worldChapter.encounterSlots["bonus-1"] = cloneJson(command.encounter);
+      return;
+    }
+    case "encounter.bonus.remove": {
+      const worldChapter = worldChapterForCommand(chapter);
+      const currentAnchor = worldChapter.level.anchors.encounters["bonus-1"];
+      const currentReference = worldChapter.encounterSlots["bonus-1"];
+      if (currentAnchor === undefined && currentReference === undefined)
+        commandError(
+          "$.chapterId",
+          "encounter.bonus-missing",
+          "This chapter has no bonus encounter",
+        );
+      delete worldChapter.level.anchors.encounters["bonus-1"];
+      delete worldChapter.encounterSlots["bonus-1"];
+      return;
+    }
     case "encounter.assign": {
       const world = worldProjectForCommand(project);
       const worldChapter = worldChapterForCommand(chapter);
@@ -2341,7 +2519,14 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
           "candidate.duplicate-id",
           `Enemy identity ${command.candidate.id} already exists`,
         );
-      const expectedKind = worldChapter.level.anchors.encounters[command.slot].kind;
+      const anchor = worldChapter.level.anchors.encounters[command.slot];
+      if (!anchor)
+        commandError(
+          "$.slot",
+          "encounter.slot-missing",
+          `Encounter slot ${command.slot} has no authored anchor`,
+        );
+      const expectedKind = anchor.kind;
       if (
         command.candidate.kind !== expectedKind ||
         command.candidate.role !== expectedRole(expectedKind) ||
@@ -2470,9 +2655,17 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
         shiftArena(anchor.arena, delta);
       return;
     }
-    case "encounter.arena.set":
-      level.anchors.encounters[command.slot].arena = cloneJson(command.arena);
+    case "encounter.arena.set": {
+      const anchor = level.anchors.encounters[command.slot];
+      if (!anchor)
+        commandError(
+          "$.slot",
+          "encounter.slot-missing",
+          `Encounter slot ${command.slot} has no authored anchor`,
+        );
+      anchor.arena = cloneJson(command.arena);
       return;
+    }
     case "connection.add":
       level.connections.push(cloneJson(command.connection));
       return;

@@ -70,6 +70,18 @@ export const EDITOR_WORLD_RULE_VERSIONS: RuleVersions = {
   progression: 'editor-world-route-memory-v1',
 };
 
+export const EDITOR_WORLD_V2_RULE_VERSIONS: RuleVersions = {
+  ...ROUTE_MEMORY_RULE_VERSIONS,
+  journey: 'editor-world-plan-v2',
+  progression: 'editor-world-route-memory-v2',
+};
+
+export function editorWorldRuleVersions(plan: EditorWorldAdventurePlan): RuleVersions {
+  return plan.version === 'editor-world-plan-v2'
+    ? EDITOR_WORLD_V2_RULE_VERSIONS
+    : EDITOR_WORLD_RULE_VERSIONS;
+}
+
 export interface PlayerRecord {
   id: string;
   label: string;
@@ -452,6 +464,10 @@ export function validateSaveRecord(
   const friendlyState = normalized.friendlyState == null
     ? null
     : parseStoredFriendlyState(normalized.friendlyState, plan, state);
+  const editorWorldPlan = isEditorWorldPlan(plan);
+  const expectedEditorProgression = editorWorldPlan
+    ? editorWorldRuleVersions(plan).progression
+    : null;
   const plannedMemoryIds = plan.levels.flatMap(memoryIdsForLevel);
   const savedMemoryIds = normalized.memories.map((memory) => memory.id);
   if (
@@ -461,9 +477,8 @@ export function validateSaveRecord(
     (plan.version !== 'era-level-plan-v1' && normalized.versions.catalog !== plan.catalogVersion) ||
     (plan.version === 'era-level-plan-v3' &&
       normalized.versions.progression !== ROUTE_MEMORY_RULE_VERSIONS.progression) ||
-    (plan.version === 'editor-world-plan-v1' &&
-      normalized.versions.progression !== EDITOR_WORLD_RULE_VERSIONS.progression) ||
-    (plan.version !== 'editor-world-plan-v1' &&
+    (editorWorldPlan && normalized.versions.progression !== expectedEditorProgression) ||
+    (!editorWorldPlan &&
       plan.levels[0]?.startDate !== normalized.birthDate) ||
     plan.levels.some((level, index) => {
       const lastMemoryId = memoryIdsForLevel(level).at(-1);
@@ -473,9 +488,9 @@ export function validateSaveRecord(
       const priorLast = normalized.memories.find((memory) => memory.id === priorLastId);
       return !lastMemory ||
         lastMemory.ageYears !== level.targetAgeYears ||
-        (plan.version !== 'editor-world-plan-v1' &&
+        (!editorWorldPlan &&
           index > 0 && level.startDate !== priorLast?.date) ||
-        (plan.version === 'editor-world-plan-v1' && 'representedEndDate' in level && (
+        (editorWorldPlan && 'representedEndDate' in level && (
           wholeYearsAt(normalized.birthDate, level.startDate) !== level.startAgeYears ||
           memoryIdsForLevel(level).some((memoryId) => {
             const memory = normalized.memories.find((candidate) => candidate.id === memoryId);
@@ -494,6 +509,10 @@ export function validateSaveRecord(
     (normalized.revision > 0 && state.actionReceipts.at(-1)?.appliedRevision !== normalized.revision)
   ) invalidSave();
   return { ...normalized, adventurePlan: plan, adventureState: state, friendlyState };
+}
+
+function isEditorWorldPlan(plan: AdventurePlan): plan is EditorWorldAdventurePlan {
+  return plan.version === 'editor-world-plan-v1' || plan.version === 'editor-world-plan-v2';
 }
 
 function effectiveFriendlyState(

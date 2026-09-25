@@ -80,8 +80,15 @@ export function authoredLevelLayout(
   const ordinary = active.encounters.filter(
     (enemy) => enemy.role === "ordinary",
   );
+  const optionalIds = active.optionalEncounterIds ?? [];
+  const optionalSet = new Set(optionalIds);
+  const requiredOrdinary = ordinary.filter((enemy) => !optionalSet.has(enemy.id));
   if (
-    ordinary.length !== 4 ||
+    requiredOrdinary.length !== 4 ||
+    optionalIds.length > 1 ||
+    optionalSet.size !== optionalIds.length ||
+    optionalIds.some((id) => !ordinary.some((enemy) => enemy.id === id)) ||
+    Boolean(anchors.encounters["bonus-1"]) !== (optionalIds.length === 1) ||
     active.encounters.filter((enemy) => enemy.role === "boss").length !== 1
   ) {
     throw new Error("Authored encounter slots do not match the frozen roster");
@@ -91,8 +98,11 @@ export function authoredLevelLayout(
       const slot: AuthoredEncounterSlot =
         enemy.role === "boss"
           ? "boss"
-          : (`ordinary-${ordinary.indexOf(enemy) + 1}` as AuthoredEncounterSlot);
-      if (anchors.encounters[slot].kind !== enemy.kind) {
+          : optionalSet.has(enemy.id)
+            ? "bonus-1"
+            : (`ordinary-${requiredOrdinary.indexOf(enemy) + 1}` as AuthoredEncounterSlot);
+      const binding = anchors.encounters[slot];
+      if (!binding || binding.kind !== enemy.kind) {
         throw new Error(`Authored encounter slot ${slot} has a different kind`);
       }
       return [enemy.id, slot] as const;
@@ -140,6 +150,7 @@ export function authoredLevelLayout(
     })),
     encounters: active.encounters.map((enemy) => {
       const binding = anchors.encounters[encounterSlots.get(enemy.id)!];
+      if (!binding) throw new Error(`Authored encounter ${enemy.id} has no anchor`);
       return {
         id: enemy.id,
         role: enemy.role,

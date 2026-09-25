@@ -502,7 +502,10 @@ export class GardenScene {
         level,
         this.assets,
         valid,
-        period === "rat-casino-v1",
+        period === "rat-casino-v1" &&
+          !save.adventure?.activeLevel?.encounters.some(
+            (enemy) => enemy.content?.assetId === "golden-after-hours-rat",
+          ),
       );
       this.world.add(this.casinoVisual.root);
     } else {

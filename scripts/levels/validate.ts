@@ -35,39 +35,38 @@ for (const path of paths) {
 }
 
 if (requested.length === 0) {
-  const path = fileURLToPath(
-    new URL("../../src/shared/levels/rat-casino-world-v1.json", import.meta.url),
-  );
-  try {
-    const source = await readFile(path);
-    const { project, levels } = resolveLevelEditorProject(
-      JSON.parse(source.toString("utf8")),
+  for (const [fixture, commandFile] of [
+    ["rat-casino-world-v1.json", "rat-casino-world.commands.json"],
+    ["rat-casino-world-v2.json", "rat-casino-world-v2.commands.json"],
+  ] as const) {
+    const path = fileURLToPath(
+      new URL(`../../src/shared/levels/${fixture}`, import.meta.url),
     );
-    const commands = JSON.parse(
-      await readFile(
-        new URL("./rat-casino-world.commands.json", import.meta.url),
-        "utf8",
-      ),
-    );
-    const base = createWorldEditorProject({ projectId: "rat-casino-adventure" });
-    const pinned = parseLevelEditorProject({
-      ...base,
-      catalogVersion: "parody-catalog-v6",
-    });
-    const rebuilt = applyLevelEditorCommands(pinned, commands);
-    if (!rebuilt.ok) {
-      throw new Error("Rat Casino command history no longer builds");
+    try {
+      const source = await readFile(path);
+      const { project, levels } = resolveLevelEditorProject(
+        JSON.parse(source.toString("utf8")),
+      );
+      const commands = JSON.parse(
+        await readFile(new URL(`./${commandFile}`, import.meta.url), "utf8"),
+      );
+      const base = createWorldEditorProject({ projectId: "rat-casino-adventure" });
+      const pinned = parseLevelEditorProject({
+        ...base,
+        catalogVersion: "parody-catalog-v6",
+      });
+      const rebuilt = applyLevelEditorCommands(pinned, commands);
+      if (!rebuilt.ok) throw new Error("Rat Casino command history no longer builds");
+      if (serializeLevelEditorProject(rebuilt.project) !== source.toString("utf8"))
+        throw new Error("Rat Casino fixture differs from its shared editor commands");
+      console.log(
+        `${path}: valid ${project.projectId}; ${project.chapters.length} chapters, ${Object.keys(levels).length} resolved routes; command history matches`,
+      );
+    } catch (error) {
+      console.error(
+        `${path}: ${error instanceof Error ? error.message : "Validation failed"}`,
+      );
+      process.exitCode = 1;
     }
-    if (serializeLevelEditorProject(rebuilt.project) !== source.toString("utf8")) {
-      throw new Error("Rat Casino fixture differs from its shared editor commands");
-    }
-    console.log(
-      `${path}: valid ${project.projectId}; ${project.chapters.length} chapters, ${Object.keys(levels).length} resolved routes; command history matches`,
-    );
-  } catch (error) {
-    console.error(
-      `${path}: ${error instanceof Error ? error.message : "Validation failed"}`,
-    );
-    process.exitCode = 1;
   }
 }

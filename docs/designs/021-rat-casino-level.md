@@ -4,6 +4,7 @@
 - **Source:** Tom's direction to move forward with the Rat Casino level after reviewing the classic mascot cast
 - **Requirements:** [PRD-003](../prds/003-complete-world-authoring.md)
 - **Builder contract:** [ADR-004](../adrs/004-versioned-world-projects.md), [DESIGN-020](020-complete-world-builder.md)
+- **September 25 amendment:** [DESIGN-023](023-golden-optional-encounter-and-mouse.md) makes Golden an optional fight on the new `rat-casino-v2` route; this page's five-fight and idle-cameo description records the original v1 playtest.
 
 ## Playground revision · September 24
 
@@ -25,9 +26,9 @@ The new chapter follows the existing accessible objective rhythm: pick up attack
 
 ## Cast and scene
 
-Rat Pit Boss v002 is the sole boss and visually owns the final stage. Chick-flia v001, Jackrabbit Drummer v001, Fox Card Shark v001 and Moth Projectionist v001 fill the four tested ordinary encounter kinds in that order. Golden After-Hours Rat v001 appears as a noncombat spare mascot in an optional stage alcove, so the complete six-character lineup is visible without silently changing the five-slot encounter contract. The three Rat Casino v001 props provide the entrance arch, low roulette landmark and side cabinets. Their placement is scenic; authored collision, encounter anchors and progression are the authority for play.
+Rat Pit Boss v002 is the sole boss and visually owns the final stage. Chick-flia v001, Jackrabbit Drummer v001, Fox Card Shark v001 and Moth Projectionist v001 fill the four required ordinary encounter kinds in that order. On `rat-casino-v1`, Golden After-Hours Rat v001 was an idle spare mascot in an optional stage alcove. Tom approached it and reported that it did nothing, so `rat-casino-v2` uses a separate optional encounter in the right stage wing. The three Rat Casino v001 props provide the entrance arch, low roulette landmark and side cabinets. Their placement is scenic; authored collision, encounter anchors and progression are the authority for play.
 
-All five fights use existing telegraphed behavior presets and the models' authored idle, move, attack, hit and defeat clips. The golden cameo uses only an idle loop and cannot be targeted, damage the player or block progress. The exact asset IDs, versions and hashes are pinned in their [versioned reviews](../assets/catalog.md), with no remote URLs in the portable project.
+The five required fights and optional Golden fight use existing telegraphed behavior presets and the models' authored idle, move, attack, hit and defeat clips. Golden can be targeted, deal damage and be defeated before Rat falls, but it cannot block Rat or the major memory. The v1 idle cameo remains readable in the old project. The exact asset IDs, versions and hashes are pinned in their [versioned reviews](../assets/catalog.md), with no remote URLs in the portable project.
 
 ## Fictional dates and eligibility
 

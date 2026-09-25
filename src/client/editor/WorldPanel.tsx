@@ -1,6 +1,7 @@
 import { useState } from "react";
-import type { AuthoredEncounterSlot } from "../../shared/authored-level";
+import type { AuthoredEncounterAnchor, AuthoredEncounterSlot, AuthoredPlatformPiece } from "../../shared/authored-level";
 import {
+  levelEditorPreparedBonusEnemies,
   levelEditorPreparedEnemies,
   type LevelEditorChapterV2,
   type LevelEditorEncounterReference,
@@ -53,6 +54,11 @@ export interface WorldPanelProps {
     slot: AuthoredEncounterSlot,
     candidate: LevelEditorEnemyCandidate,
   ): boolean;
+  onAddBonusEncounter(
+    anchor: AuthoredEncounterAnchor,
+    reference: LevelEditorEncounterReference,
+  ): boolean;
+  onRemoveBonusEncounter(): void;
 }
 
 function visibleCatalogEntry(
@@ -74,7 +80,8 @@ function selectedReferenceValue(reference: LevelEditorEncounterReference): strin
 }
 
 function encounterLabel(slot: AuthoredEncounterSlot): string {
-  return slot === "boss" ? "Boss" : `Encounter ${slot.slice(-1)}`;
+  if (slot === "boss") return "Boss";
+  return slot === "bonus-1" ? "Optional enemy" : `Encounter ${slot.slice(-1)}`;
 }
 
 function suggestedCandidateId(name: string): string {
@@ -211,6 +218,117 @@ function CandidateForm({
   );
 }
 
+function BonusEncounterForm({
+  project,
+  chapter,
+  periodId,
+  onAdd,
+}: {
+  project: LevelEditorProjectV2;
+  chapter: LevelEditorChapterV2;
+  periodId: ParodyPeriodId;
+  onAdd(anchor: AuthoredEncounterAnchor, reference: LevelEditorEncounterReference): boolean;
+}) {
+  const mainPathIds = new Set(chapter.level.mainPath);
+  const branchIds = new Set(chapter.level.branches.flat().filter((id) => !mainPathIds.has(id)));
+  const platforms = chapter.level.pieces
+    .filter((piece): piece is AuthoredPlatformPiece =>
+      piece.type === "platform" && piece.size.x >= 3 && piece.size.z >= 3,
+    )
+    .sort((a, b) => Number(branchIds.has(b.id)) - Number(branchIds.has(a.id)));
+  const [platformId, setPlatformId] = useState(platforms[0]?.id ?? "");
+  const initialPlatform = platforms.find((piece) => piece.id === platformId) ?? platforms[0];
+  const [x, setX] = useState(initialPlatform?.center.x ?? 0);
+  const [z, setZ] = useState(initialPlatform?.center.z ?? 0);
+  const [radius, setRadius] = useState(1.1);
+  const [failed, setFailed] = useState(false);
+  const catalogChoices = levelEditorPreparedBonusEnemies(project.catalogVersion)
+    .filter((entry) =>
+      entry.periodId === periodId && visibleCatalogEntry(entry, chapter),
+    )
+    .map((entry) => ({
+      value: `catalog:${entry.id}`,
+      label: entry.title,
+      kind: entry.kind,
+      reference: {
+        source: "catalog" as const,
+        catalogEntryId: entry.id,
+        catalogEntryVersion: "v001" as const,
+      },
+    }));
+  const candidateChoices = project.enemyCandidates
+    .filter((entry) =>
+      entry.role === "ordinary" &&
+      entry.periodId === periodId &&
+      entry.eligibility.startDate <= chapter.representedDateRange.startDate &&
+      chapter.representedDateRange.startDate <= entry.eligibility.endDate,
+    )
+    .map((entry) => ({
+      value: `candidate:${entry.id}`,
+      label: `${entry.name} · draft placeholder`,
+      kind: entry.kind,
+      reference: { source: "candidate" as const, candidateId: entry.id },
+    }));
+  const choices = [...catalogChoices, ...candidateChoices];
+  const [selectedValue, setSelectedValue] = useState(
+    choices.find((choice) => choice.value === "catalog:golden-after-hours-rat")?.value ??
+      choices[0]?.value ?? "",
+  );
+  const selected = choices.find((choice) => choice.value === selectedValue) ?? choices[0];
+  const platform = platforms.find((piece) => piece.id === platformId);
+
+  return (
+    <form className="editor-world-encounter" onSubmit={(event) => {
+      event.preventDefault();
+      if (!platform || !selected) return;
+      const checkpoint = chapter.level.pieces
+        .filter((piece) => piece.type === "checkpoint")
+        .sort((a, b) =>
+          Math.hypot(a.position.x - x, a.position.z - z) -
+          Math.hypot(b.position.x - x, b.position.z - z),
+        )[0];
+      if (!checkpoint) return;
+      setFailed(!onAdd({
+        kind: selected.kind,
+        platformId: platform.id,
+        checkpointId: checkpoint.id,
+        position: { x, y: platform.center.y + platform.size.y / 2, z },
+        arena: { minX: x - radius, maxX: x + radius, minZ: z - radius, maxZ: z + radius },
+      }, selected.reference));
+    }}>
+      <h3>Add an optional enemy</h3>
+      <p>This side challenge can be skipped. It never blocks the boss or final memory.</p>
+      <label className="editor-field">
+        <span>Character</span>
+        <select value={selected?.value ?? ""} onChange={(event) => setSelectedValue(event.target.value)}>
+          {choices.map((choice) => <option key={choice.value} value={choice.value}>{choice.label}</option>)}
+        </select>
+      </label>
+      <label className="editor-field">
+        <span>Platform</span>
+        <select value={platformId} onChange={(event) => {
+          const next = platforms.find((piece) => piece.id === event.target.value);
+          if (!next) return;
+          setPlatformId(next.id);
+          setX(next.center.x);
+          setZ(next.center.z);
+          setFailed(false);
+        }}>
+          {platforms.map((piece) => <option key={piece.id} value={piece.id}>{piece.id}</option>)}
+        </select>
+      </label>
+      <div className="editor-field-grid">
+        <NumberField label="X position" value={x} onCommit={setX} step={0.1} />
+        <NumberField label="Z position" value={z} onCommit={setZ} step={0.1} />
+        <NumberField label="Arena half-width" value={radius} onCommit={setRadius} min={0.6} max={2} step={0.1} />
+      </div>
+      <p className="editor-world-choice-state">Place the arena clear of other fights and objectives. You can drag its marker after adding it.</p>
+      {failed && <p className="editor-world-choice-state" role="alert">That placement did not pass the level checks. Try another spot or platform.</p>}
+      <button type="submit" className="editor-primary" disabled={!platform || !selected}>Add optional enemy</button>
+    </form>
+  );
+}
+
 export function WorldPanel({
   project,
   chapter,
@@ -224,6 +342,8 @@ export function WorldPanel({
   onSetBirthDate,
   onAssignEncounter,
   onCreateCandidate,
+  onAddBonusEncounter,
+  onRemoveBonusEncounter,
 }: WorldPanelProps) {
   const [showMore, setShowMore] = useState(false);
   const [candidateSlot, setCandidateSlot] = useState<AuthoredEncounterSlot | null>(null);
@@ -320,12 +440,15 @@ export function WorldPanel({
         <button type="button" className="editor-world-show-more" aria-pressed={showMore} onClick={() => setShowMore((value) => !value)}>
           {showMore ? "Show date matches" : "Show more prepared characters"}
         </button>
-        {encounterSlots.map((slot) => {
+        {([...encounterSlots, ...(chapter.encounterSlots["bonus-1"] ? ["bonus-1" as const] : [])]).map((slot) => {
           const role = slot === "boss" ? "boss" : "ordinary";
-          const kind = chapter.level.anchors.encounters[slot].kind;
+          const kind = chapter.level.anchors.encounters[slot]?.kind;
           const selected = chapter.encounterSlots[slot];
+          if (!kind || !selected) return null;
           const selectedValue = selectedReferenceValue(selected);
-          const prepared = preparedEnemies.filter((entry) =>
+          const prepared = (slot === "bonus-1"
+            ? levelEditorPreparedBonusEnemies(project.catalogVersion)
+            : preparedEnemies).filter((entry) =>
             entry.role === role && entry.kind === kind &&
             (showMore || visibleCatalogEntry(entry, chapter)),
           );
@@ -369,7 +492,7 @@ export function WorldPanel({
                 <CandidateForm
                   key={`${chapter.chapterId}:${slot}`}
                   slot={slot}
-                  expectedKind={chapter.level.anchors.encounters[slot].kind}
+                  expectedKind={kind}
                   periodId={periodId}
                   dateRange={chapter.representedDateRange}
                   occupiedIds={occupiedIds}
@@ -384,6 +507,17 @@ export function WorldPanel({
             </div>
           );
         })}
+        {chapter.encounterSlots["bonus-1"] ? (
+          <button type="button" className="danger" onClick={onRemoveBonusEncounter}>Remove optional enemy</button>
+        ) : (
+          <BonusEncounterForm
+            key={chapter.chapterId}
+            project={project}
+            chapter={chapter}
+            periodId={periodId}
+            onAdd={onAddBonusEncounter}
+          />
+        )}
       </section>
     </div>
   );

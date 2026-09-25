@@ -35,7 +35,7 @@ const runLabel = process.env.QUEST_E2E_RUN_LABEL ?? "candidate";
 const outputDirectory = `test-results/casino-rewards/${runLabel}`;
 await fs.mkdir(outputDirectory, { recursive: true });
 
-const ROUTE_ID = "rat-casino-v1";
+const ROUTE_ID = "rat-casino-v2";
 const TICKET_PLATFORMS = [
   "golden-view-balcony",
   "roulette-bypass-step-4",

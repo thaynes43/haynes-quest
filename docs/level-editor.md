@@ -4,7 +4,7 @@ The private level editor starts with editable copies of **The Block Party** and 
 
 Open **Level editor** from the private playtest's start screen, or visit `/editor` on that host. A computer with a mouse is the easiest way to build. On a narrow screen, use **View**, **Objects**, **Properties**, **World** and **Checks** to switch panels.
 
-**Open Rat Casino sample** loads the checked-in fictional three-level project with a new casino course and the exact private-trial cast. The editor asks before replacing your current view, downloads your current draft first and keeps it in Undo history. You can also enter the Rat Casino level directly from the playtest start screen. The portable sample is `src/shared/levels/rat-casino-world-v1.json`; its deterministic command batch is `scripts/levels/rat-casino-world.commands.json` in the source repository.
+**Open Rat Casino sample** loads the checked-in fictional three-level project with the optional Golden fight and the exact private-trial cast. The editor asks before replacing your current view, downloads your current draft first and keeps it in Undo history. You can also enter the Rat Casino level directly from the playtest start screen. The current portable sample is `src/shared/levels/rat-casino-world-v2.json`; its deterministic command batch is `scripts/levels/rat-casino-world-v2.commands.json` in the source repository. The original v1 sample and command batch remain available there as history.
 
 ## Make your first change
 
@@ -14,7 +14,7 @@ Open **Level editor** from the private playtest's start screen, or visit `/edito
 4. Keep **Move attached objects** on when moving a platform. Its supported gameplay objects and checkpoints move with it.
 5. Use **Undo** and **Redo** to compare changes. One completed drag is one undo step.
 
-To add a course piece, use **Add** in the left panel. Platforms, moving platforms, sweepers and checkpoints are available. Memories, equipment, encounters and friends can be repositioned. Each course keeps its five encounter *slots*, while **World** lets you change which character fills each slot.
+To add a course piece, use **Add** in the left panel. Platforms, moving platforms, sweepers and checkpoints are available. Memories, equipment, encounters and friends can be repositioned. Each course keeps its five required encounter *slots*, while **World** lets you change which character fills each slot or add one optional side encounter.
 
 ## Add a world
 
@@ -25,6 +25,8 @@ Five themes are available. **Storybook garden** and **Block party** retain the c
 Set the fictional birth date and each level's **Period starts**, **Period ends**, **Age from** and **Age after boss** in World. Enter dates as `YYYY-MM-DD`. The two small preview memories must occur in order; the boss memory closes the period. A level starts on the previous level's end date and carries its recovered age forward. These are fictional test records; the editor does not search family photos or publish a real person's journey.
 
 Each encounter slot offers prepared characters that match the level's start date. **Show more prepared characters** exposes the broader catalog, but choosing an ineligible character still leaves a validation issue. **New candidate for this slot** records a stable, editable ID, name, recognizable reference, visual joke, move pattern and eligible dates. The ID travels with the exported project and later asset review. The draft uses an existing tested combat pattern and a neutral placeholder in the isolated playtest. A new enemy's short encounter pitch and concept need Tom's feedback before expensive Blender modeling; the exact model still needs review before ordinary gameplay use. Friendly creatures cannot be assigned as enemies.
+
+**Add an optional enemy** in World to give a side platform an independent fight. Choose an eligible character and platform, then set X, Z and the arena half-width clear of existing fights and objectives. After adding it, select its marker to drag it or edit its arena in Properties. The optional fight can be removed or undone; it never blocks the boss or final memory. The agent CLI uses `encounter.bonus.add` and `encounter.bonus.remove` with the same validated anchor and candidate contract. Rat Casino's current sample uses Golden After-Hours Rat in this slot.
 
 An added level may remain a **Draft** while its dates or cast need attention. Export it safely, use **Review issues** to locate each conflict, and playtest when the whole project reads **Ready to play**.
 

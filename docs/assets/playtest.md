@@ -6,16 +6,16 @@ The established two-chapter route uses [six fictional pictures](reviews/fixture-
 
 ## How to play
 
-| Action | Touch | Keyboard |
+| Action | Touch | Keyboard and mouse |
 | --- | --- | --- |
 | Move | Left stick | WASD or arrow keys |
 | Jump, at every age | Arrow button at the lower right | Space |
 | Look around | Drag the world | Drag with the mouse |
-| Attack | Large **Attack** button | F |
-| Secondary attack | Smaller **Bash** button, after finding a shield | Shift |
+| Attack | Large **Attack** button | F or short left click on the game |
+| Secondary attack | Smaller **Bash** button, after finding a shield | Shift or short right click on the game |
 | Collect gear, memories, tokens and tickets | Walk or jump into them | Walk or jump into them |
 
-Hold the movement stick with one thumb and press Jump with the other. Attack sits above and to the left of Jump; the smaller Bash button sits above and to the right of Attack. The stick and buttons grow on tablet screens. Dragging or tapping the scenery does not jump. Bash adds a close-range hit with a separate recharge; future gear can add other secondary attacks.
+Hold the movement stick with one thumb and press Jump with the other. Attack sits above and to the left of Jump; the smaller Bash button sits above and to the right of Attack. The stick and buttons grow on tablet screens. On a PC, short left and right clicks use the two attacks; drag with the mouse to look around. Touching the scenery only looks around and never attacks or jumps. Bash adds a close-range hit with a separate recharge; future gear can add other secondary attacks.
 
 Find two little memories along each route. Their keepsakes disappear on collection and their pictures fill the small indicators beside your health. Collecting a little memory also sets a checkpoint, without stopping movement or aging the player. You can revisit collected pictures in Memories. Beat the boss, then walk into the big memory beyond it: collecting all three advances your age and opens the next chapter. Missing little memories remain on the path after victory.
 
@@ -49,7 +49,9 @@ The original two chapters begin with six low steps that climb and descend over s
 | --- | --- |
 | The Block Party | Practice steps, a picnic clearing, winding padded sweepers, a woodland side path, a raised memory grove and a small ferry to the dragon terrace. |
 | Besties Obby | Practice steps, a ribbon lane, a sideways ferry, a choice of stepping pads or a broad side bridge, a slow turnstile and a climb to the Besties court. |
-| Rat Casino | An amber-lit foyer, padded token hill, climbing cabinet rooms, roulette zigzag, a tall optional ticket loft, four worn mascots and the Rat Pit Boss's elevated final stage. Golden waits in a noncombat stage alcove. |
+| Rat Casino | An amber-lit foyer, padded token hill, climbing cabinet rooms, roulette zigzag, a tall optional ticket loft, four worn mascots and the Rat Pit Boss's elevated final stage. Golden is an optional fight in the right stage wing. |
+
+Golden wakes and fights if you explore the right side of Rat's stage before beating Rat. You can attack and defeat Golden using the same tools as the other mascots. It never blocks Rat or the final memory; go straight to Rat if you want to skip that challenge. Golden's old idle cameo belongs to the preserved `rat-casino-v1` sample, while the private start screen now opens `rat-casino-v2`.
 
 The revised route uses the same exact Blender models. Its venue frames, cabinet groupings, lights and carpet patterns are lightweight scenery beside the authored course. These final-source [local Chromium captures and file checksums](media/playtest/v008/captures.json) show the player-camera view; the [first layout's captures](media/playtest/v007/captures.json) remain as history. Browser images do not establish physical iPhone/iPad Safari performance.
 
@@ -109,6 +111,6 @@ The new courses use the shared visual and agent level builder. The Rat Casino sa
 | --- | --- | --- | --- |
 | The Block Party | Two [Mister Hiss](reviews/mister-hiss/v001.md) and two [Peel Patrol](reviews/peel-patrol/v001.md) encounters | [Drama Dragon](reviews/drama-dragon/v001.md) | [Blockling](reviews/blockling/v001.md), [Signal Moth](reviews/signal-moth/v001.md), [Buffer Baron](reviews/buffer-baron/v001.md) |
 | Besties Obby | Two [Sir Flush-a-Lot](reviews/sir-flush-a-lot/v001.md) and two returning Peel Patrol encounters | [The Bickering Besties](reviews/bickering-besties/v001.md) | [Loop Dancer](reviews/loop-dancer/v001.md), [Prism Mimic](reviews/prism-mimic/v001.md), [Trendweaver](reviews/trendweaver/v001.md) |
-| Rat Casino · private project | [Chick-flia](reviews/chick-flia/v001.md), [Jackrabbit Drummer](reviews/jackrabbit-drummer/v001.md), [Fox Card Shark](reviews/fox-card-shark/v001.md), [Moth Projectionist](reviews/moth-projectionist/v001.md) | [Rat Pit Boss v002](reviews/rat-pit-boss/v002.md) | [Golden After-Hours Rat](reviews/golden-after-hours-rat/v001.md) is a noncombat cameo; the standard friendly residents remain separate. |
+| Rat Casino · private project | [Chick-flia](reviews/chick-flia/v001.md), [Jackrabbit Drummer](reviews/jackrabbit-drummer/v001.md), [Fox Card Shark](reviews/fox-card-shark/v001.md), [Moth Projectionist](reviews/moth-projectionist/v001.md) | [Rat Pit Boss v002](reviews/rat-pit-boss/v002.md) | [Golden After-Hours Rat](reviews/golden-after-hours-rat/v001.md) is an optional fight; the standard friendly residents remain separate. |
 
 [Browse the full visual catalog](catalog.md) for inspiration images, models, motion, fictional pictures and sound previews. The established chapters use the 23 GLBs and four source WAVs recorded in the [earlier artwork list](media/playtest/v002/artwork.json); Rat Casino adds the six exact classic mascot GLBs and three static scenery GLBs linked above. The earlier [phone and desktop catalog check](media/playtest/v005/catalog-check.json) remains historical evidence for the established assets. Rat Casino's private trial follows Tom's “Looks great, let’s move forward” direction; physical device and final art acceptance remain open.

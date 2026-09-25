@@ -98,6 +98,8 @@ export interface ActiveLevelView {
   minorMemoryIds?: [string, string];
   /** Present for route-memory plans and always follows the two minor memories. */
   majorMemoryId?: string;
+  /** Present only for an authored v2 plan; IDs name optional ordinary encounters. */
+  optionalEncounterIds?: string[];
   pickups: EquipmentView[];
   encounters: EncounterView[];
   /** Added after the initial combat contract; absent in older serialized fixtures. */

@@ -13,7 +13,10 @@ import {
   PARODY_CATALOGS,
   PARODY_CATALOG_VERSIONS,
 } from '../shared/parody-catalog.js';
-import { levelEditorPreparedEnemies } from '../shared/editor-project.js';
+import {
+  levelEditorPreparedBonusEnemies,
+  levelEditorPreparedEnemies,
+} from '../shared/editor-project.js';
 import {
   FRIENDLY_CATALOG_VERSIONS,
   friendlyDefinitionsForPlan,
@@ -145,7 +148,7 @@ const levelV3Schema = z.object({
   ]),
   encounters: z.array(encounterDefinitionV2Schema).min(1).max(16),
 }).strict();
-const editorWorldLevelSchema = z.object({
+const editorWorldLevelShape = {
   ...levelShape,
   minorMemoryIds: z.tuple([identifier, identifier]),
   majorMemoryId: identifier,
@@ -159,7 +162,15 @@ const editorWorldLevelSchema = z.object({
   routeId: identifier,
   representedEndDate: dateOnly,
   bossGate: z.literal('independent'),
+};
+const editorWorldLevelV1Schema = z.object({
+  ...editorWorldLevelShape,
   encounters: z.array(editorEncounterDefinitionSchema).length(5),
+}).strict();
+const editorWorldLevelV2Schema = z.object({
+  ...editorWorldLevelShape,
+  optionalEncounterIds: z.union([z.tuple([]), z.tuple([identifier])]),
+  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(6),
 }).strict();
 const planSchema = z.discriminatedUnion('version', [
   z.object({
@@ -180,7 +191,13 @@ const planSchema = z.discriminatedUnion('version', [
     version: z.literal('editor-world-plan-v1'),
     catalogVersion: z.enum(PARODY_CATALOG_VERSIONS),
     projectFingerprint: z.string().regex(/^[a-f0-9]{64}$/),
-    levels: z.array(editorWorldLevelSchema).min(1).max(8),
+    levels: z.array(editorWorldLevelV1Schema).min(1).max(8),
+  }).strict(),
+  z.object({
+    version: z.literal('editor-world-plan-v2'),
+    catalogVersion: z.enum(PARODY_CATALOG_VERSIONS),
+    projectFingerprint: z.string().regex(/^[a-f0-9]{64}$/),
+    levels: z.array(editorWorldLevelV2Schema).min(1).max(8),
   }).strict(),
 ]);
 const encounterProgressSchema = z.object({
@@ -262,7 +279,7 @@ export function parseStoredAdventure(
   if (!parsedPlan.success || !parsedState.success) invalid();
   const plan = parsedPlan.data as AdventurePlan;
   const state = parsedState.data as AdventureState;
-  if (plan.version === 'editor-world-plan-v1' && options.allowEditorPreviewPlan !== true) {
+  if (isEditorWorldPlan(plan) && options.allowEditorPreviewPlan !== true) {
     invalid();
   }
   if (!validPlan(plan) || !validState(plan, state)) invalid();
@@ -303,13 +320,18 @@ export function parseStoredFriendlyState(
   return state;
 }
 
+function isEditorWorldPlan(plan: AdventurePlan): plan is EditorWorldAdventurePlan {
+  return plan.version === 'editor-world-plan-v1' || plan.version === 'editor-world-plan-v2';
+}
+
 function validPlan(plan: AdventurePlan): boolean {
+  const editorWorldPlan = isEditorWorldPlan(plan);
   if (
     plan.version !== 'era-level-plan-v1' &&
-    plan.version !== 'editor-world-plan-v1' &&
+    !editorWorldPlan &&
     !validParodyPlan(plan)
   ) return false;
-  if (plan.version === 'editor-world-plan-v1' && !validEditorWorldPlan(plan)) return false;
+  if (editorWorldPlan && !validEditorWorldPlan(plan)) return false;
   const levelIds = new Set<string>();
   const memoryIds = new Set<string>();
   const pickupIds = new Set<string>();
@@ -321,10 +343,15 @@ function validPlan(plan: AdventurePlan): boolean {
     const levelPickupIds = level.pickups.map((equipment) => equipment.pickupId);
     const levelEquipmentIds = level.pickups.map((equipment) => equipment.id);
     const levelEncounterIds = level.encounters.map((encounter) => encounter.id);
-    const playgroundPlan = plan.version === 'editor-world-plan-v1' || (
+    const playgroundPlan = editorWorldPlan || (
       plan.version === 'era-level-plan-v3' &&
       (plan.catalogVersion === 'parody-catalog-v4' || plan.catalogVersion === 'parody-catalog-v5')
     );
+    const expectedOrdinaryCount = playgroundPlan
+      ? 4 + ('optionalEncounterIds' in level
+        ? (level as { optionalEncounterIds: string[] }).optionalEncounterIds.length
+        : 0)
+      : 2;
     if (
       level.index !== index ||
       level.startAgeYears !== priorTargetAge ||
@@ -341,7 +368,7 @@ function validPlan(plan: AdventurePlan): boolean {
       ) ||
       level.encounters.some((encounter) => encounterIds.has(encounter.id)) ||
       level.encounters.filter((encounter) => encounter.role === 'ordinary').length !==
-        (playgroundPlan ? 4 : 2) ||
+        expectedOrdinaryCount ||
       level.encounters.filter((encounter) => encounter.role === 'boss').length !== 1 ||
       level.encounters.find((encounter) => encounter.id === level.bossId)?.role !== 'boss'
     ) return false;
@@ -362,10 +389,40 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan): boolean {
     (plan.catalogVersion !== 'parody-catalog-v5' &&
       plan.catalogVersion !== 'parody-catalog-v6')
   ) return false;
-  const catalog = levelEditorPreparedEnemies(plan.catalogVersion);
+  const preparedCatalog = levelEditorPreparedEnemies(plan.catalogVersion);
+  const bonusCatalog = levelEditorPreparedBonusEnemies(plan.catalogVersion);
+  let hasOptionalEncounter = false;
   for (const level of plan.levels) {
-    const expectedKinds = ['ordinary-a', 'ordinary-b', 'ordinary-a', 'ordinary-b', 'boss'] as const;
-    const expectedRoles = ['ordinary', 'ordinary', 'ordinary', 'ordinary', 'boss'] as const;
+    const optionalEncounterIds = 'optionalEncounterIds' in level
+      ? level.optionalEncounterIds
+      : [];
+    const expectedOptionalId = `${level.id}-encounter-bonus-1`;
+    if (
+      plan.version === 'editor-world-plan-v2' &&
+      optionalEncounterIds.length === 1 &&
+      optionalEncounterIds[0] !== expectedOptionalId
+    ) return false;
+    hasOptionalEncounter ||= optionalEncounterIds.length === 1;
+    const expectedEncounters: Array<{
+      id: string;
+      role: 'ordinary' | 'boss';
+      kind: 'ordinary-a' | 'ordinary-b' | 'boss' | null;
+      optional: boolean;
+    }> = [
+      { id: `${level.id}-encounter-1`, role: 'ordinary', kind: 'ordinary-a', optional: false },
+      { id: `${level.id}-encounter-2`, role: 'ordinary', kind: 'ordinary-b', optional: false },
+      { id: `${level.id}-encounter-3`, role: 'ordinary', kind: 'ordinary-a', optional: false },
+      { id: `${level.id}-encounter-4`, role: 'ordinary', kind: 'ordinary-b', optional: false },
+      { id: `${level.id}-boss`, role: 'boss', kind: 'boss', optional: false },
+    ];
+    if (optionalEncounterIds.length === 1) {
+      expectedEncounters.push({
+        id: expectedOptionalId,
+        role: 'ordinary',
+        kind: null,
+        optional: true,
+      });
+    }
     const expectedPickups = [
       {
         id: `${level.id}-equipment-attack`,
@@ -389,20 +446,19 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan): boolean {
       level.representedEndDate < level.startDate ||
       level.bossGate !== 'independent' ||
       JSON.stringify(level.pickups) !== JSON.stringify(expectedPickups) ||
-      level.encounters.length !== expectedKinds.length
+      level.encounters.length !== expectedEncounters.length
     ) return false;
     for (const [index, encounter] of level.encounters.entries()) {
-      const expectedId = index === 4
-        ? `${level.id}-boss`
-        : `${level.id}-encounter-${index + 1}`;
-      const expectedMaxHp = index === 4
+      const expected = expectedEncounters[index];
+      if (!expected) return false;
+      const expectedMaxHp = expected.role === 'boss'
         ? 8 + level.index * 3
         : (encounter.kind === 'ordinary-b' ? 5 : 4) + level.index * 2;
-      const expectedAttackDamage = index === 4 ? 3 + level.index : 2 + level.index;
+      const expectedAttackDamage = expected.role === 'boss' ? 3 + level.index : 2 + level.index;
       if (
-        encounter.id !== expectedId ||
-        encounter.kind !== expectedKinds[index] ||
-        encounter.role !== expectedRoles[index] ||
+        encounter.id !== expected.id ||
+        (expected.kind === null ? encounter.kind === 'boss' : encounter.kind !== expected.kind) ||
+        encounter.role !== expected.role ||
         encounter.maxHp !== expectedMaxHp ||
         encounter.attackDamage !== expectedAttackDamage
       ) return false;
@@ -420,6 +476,7 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan): boolean {
         continue;
       }
       if (content.displayName !== undefined || content.placeholder !== undefined) return false;
+      const catalog = expected.optional ? bonusCatalog : preparedCatalog;
       const entry = catalog.find((candidate) =>
         candidate.id === content.catalogEntryId &&
         candidate.version === content.catalogEntryVersion,
@@ -440,7 +497,7 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan): boolean {
       ) return false;
     }
   }
-  return true;
+  return plan.version === 'editor-world-plan-v1' || hasOptionalEncounter;
 }
 
 function validParodyPlan(plan: AdventurePlanV2 | AdventurePlanV3): boolean {

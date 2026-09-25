@@ -21,6 +21,7 @@
 //                                 quarter of the pixels, for slow renderers)
 //   QUEST_E2E_TIMEOUT_MS          hard wall-clock ceiling (default 1200000,
 //                                 or 3600000 in lockstep)
+//   QUEST_E2E_SKIP_GOLDEN         1 finishes the main route without the optional fight
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { chromium } from "playwright";
@@ -54,6 +55,7 @@ const url = process.env.QUEST_E2E_URL;
 assert.ok(url, "QUEST_E2E_URL is required; never test a stale implicit server");
 const origin = new URL(url).origin;
 const runLabel = process.env.QUEST_E2E_RUN_LABEL ?? "candidate";
+const skipGolden = process.env.QUEST_E2E_SKIP_GOLDEN === "1";
 const sourceCommit = process.env.QUEST_E2E_SOURCE_COMMIT ?? null;
 const lockstepMode = lockstepRequested();
 const cruiseFrameMs = lockstepCruiseFrameMs();
@@ -64,7 +66,7 @@ const timeoutMs = Number(
 assert.ok(Number.isFinite(timeoutMs) && timeoutMs >= 300_000);
 
 const sourcePath = new URL(
-  "../../src/shared/levels/rat-casino-world-v1.json",
+  "../../src/shared/levels/rat-casino-world-v2.json",
   import.meta.url,
 );
 const project = JSON.parse(await fs.readFile(sourcePath, "utf8"));
@@ -72,7 +74,7 @@ const outputDirectory = `test-results/rat-casino/${runLabel}`;
 const reportPath = `${outputDirectory}/report.json`;
 await fs.mkdir(outputDirectory, { recursive: true });
 
-const ROUTE_ID = "rat-casino-v1";
+const ROUTE_ID = "rat-casino-v2";
 const CHAPTER_ID = "rat-casino";
 // DESIGN-022: the journey explores the golden-view side route for its ticket.
 const TICKET_PLATFORM_ID = "golden-view-balcony";
@@ -85,6 +87,8 @@ const ENCOUNTER_ART = Object.freeze({
   "moth-projectionist":
     "/studio/assets/media/moth-projectionist/v001/moth-projectionist.glb",
   "rat-pit-boss": "/studio/assets/media/rat-pit-boss/v002/rat-pit-boss.glb",
+  "golden-after-hours-rat":
+    "/studio/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb",
 });
 const SCENIC_ART = Object.freeze({
   "casino-marquee-arch":
@@ -93,8 +97,6 @@ const SCENIC_ART = Object.freeze({
     "/studio/assets/media/rat-casino-kit/v001/roulette-dais.glb",
   "casino-slot-cabinet":
     "/studio/assets/media/rat-casino-kit/v001/slot-cabinet.glb",
-  "casino-golden-cameo":
-    "/studio/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb",
 });
 const expectedMediaPaths = new Set([
   ...Object.values(ENCOUNTER_ART),
@@ -115,18 +117,20 @@ const report = {
   status: "running",
   url,
   sourceCommit,
-  sourcePath: "src/shared/levels/rat-casino-world-v1.json",
+  sourcePath: "src/shared/levels/rat-casino-world-v2.json",
   project: {
     id: project.projectId,
     revision: project.revision,
     chapterId: CHAPTER_ID,
     routeId: ROUTE_ID,
   },
+  skipGolden,
   browser: null,
   clock: null,
   previewRequest: null,
   media: {},
   encounters: null,
+  goldenActivation: null,
   recovery: null,
   performance: null,
   editorSample: null,
@@ -442,14 +446,14 @@ try {
         assetVersion: encounter.content?.assetVersion ?? null,
       }),
     );
-    assert.equal(identities.length, 5);
+    assert.equal(identities.length, 6);
     assert.deepEqual(
       identities.map((entry) => entry.assetId).sort(),
       Object.keys(ENCOUNTER_ART).sort(),
     );
     assert.equal(
       identities.filter((entry) => entry.role === "ordinary").length,
-      4,
+      5,
     );
     assert.deepEqual(
       identities
@@ -724,7 +728,12 @@ try {
             candidate.level.encounterPositions.find(
               (entry) => entry.id === encounterId,
             ),
-          (candidate) => candidate.status.nearEncounterId === encounterId,
+          (candidate) =>
+            candidate.status.nearEncounterId === encounterId &&
+            (role !== "bonus-1" ||
+              candidate.level.encounterPositions.find(
+                (entry) => entry.id === encounterId,
+              )?.localPhase !== "idle"),
         );
         return waitFor({
           label: `fight-${role}-near`,
@@ -735,6 +744,21 @@ try {
       };
 
       await approach();
+      if (role === "bonus-1") {
+        const active = await waitFor({
+          label: "golden-wakes-and-attacks",
+          timeout: 12_000,
+          predicate: (candidate) => ["windup", "strike", "cooldown"].includes(
+            candidate.level.encounterPositions.find((entry) => entry.id === encounterId)?.localPhase,
+          ),
+        });
+        report.goldenActivation = {
+          encounterId,
+          phase: active.level.encounterPositions.find((entry) => entry.id === encounterId)?.localPhase,
+          nearEncounterId: active.status.nearEncounterId,
+        };
+        await screenshot(page, "golden-optional-fight-awake");
+      }
       if (frozen.assetId === "fox-card-shark")
         await screenshot(page, "casino-midcourse-card-room");
       if (role === "boss") {
@@ -879,7 +903,9 @@ try {
         if (role !== "major" && anchor.platformId === platformId)
           await collectMemory(role, anchor);
       const encounters = Object.entries(document.anchors.encounters)
-        .filter(([, anchor]) => anchor.platformId === platformId)
+        .filter(([role, anchor]) =>
+          anchor.platformId === platformId && !(skipGolden && role === "bonus-1"),
+        )
         .sort(
           ([left], [right]) =>
             Number(left === "boss") - Number(right === "boss"),
@@ -889,8 +915,11 @@ try {
           const ordinary = latestSave.adventure.activeLevel.encounters.filter(
             (candidate) => candidate.role === "ordinary",
           );
-          assert.equal(ordinary.length, 4);
-          assert.ok(ordinary.every((candidate) => candidate.defeated));
+          assert.equal(ordinary.length, 5);
+          const bonus = ordinary.find((candidate) => candidate.id === `${ROUTE_ID}-encounter-bonus-1`);
+          assert.ok(bonus, "Golden optional encounter is missing");
+          assert.equal(bonus.defeated, !skipGolden);
+          assert.ok(ordinary.filter((candidate) => candidate !== bonus).every((candidate) => candidate.defeated));
         }
         await fight(role, anchor);
       }
@@ -965,10 +994,13 @@ try {
       memories.filter((entry) => entry.role.startsWith("minor")).length,
       2,
     );
-    assert.equal(fights.length, 5);
+    assert.equal(fights.length, skipGolden ? 5 : 6);
+    assert.equal(report.goldenActivation === null, skipGolden);
     assert.deepEqual(
       fights.map((entry) => entry.assetId).sort(),
-      Object.keys(ENCOUNTER_ART).sort(),
+      Object.keys(ENCOUNTER_ART)
+        .filter((assetId) => !skipGolden || assetId !== "golden-after-hours-rat")
+        .sort(),
     );
     assert.ok(memoryIds.major);
     for (const memoryId of Object.values(memoryIds))
@@ -1112,7 +1144,7 @@ try {
     );
     assert.equal(report.previewRequest?.project?.projectId, project.projectId);
     assert.equal(fullOpeningSave.adventure.activeLevel.totalLevels, 3);
-    assert.equal(fullOpeningSave.adventure.planVersion, "editor-world-plan-v1");
+    assert.equal(fullOpeningSave.adventure.planVersion, "editor-world-plan-v2");
     assert.deepEqual(
       project.chapters.map((chapter) => chapter.routeId),
       ["chapter-1-route", "chapter-2-route", ROUTE_ID],

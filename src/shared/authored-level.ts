@@ -33,12 +33,23 @@ export type AuthoredLevelSchemaVersion =
 export type AuthoredLevelId = (typeof AUTHORED_LEVEL_IDS)[number] | string;
 export type AuthoredLevelTheme = "garden" | "party" | "arcade" | "toybox" | "casino";
 export type AuthoredConnectionMode = "walk" | "jump" | "ride";
-export type AuthoredEncounterSlot =
-  | "ordinary-1"
-  | "ordinary-2"
-  | "ordinary-3"
-  | "ordinary-4"
-  | "boss";
+export const AUTHORED_REQUIRED_ENCOUNTER_SLOTS = [
+  "ordinary-1",
+  "ordinary-2",
+  "ordinary-3",
+  "ordinary-4",
+  "boss",
+] as const;
+export const AUTHORED_BONUS_ENCOUNTER_SLOTS = ["bonus-1"] as const;
+export const AUTHORED_ENCOUNTER_SLOTS = [
+  ...AUTHORED_REQUIRED_ENCOUNTER_SLOTS,
+  ...AUTHORED_BONUS_ENCOUNTER_SLOTS,
+] as const;
+export type AuthoredRequiredEncounterSlot =
+  (typeof AUTHORED_REQUIRED_ENCOUNTER_SLOTS)[number];
+export type AuthoredBonusEncounterSlot =
+  (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number];
+export type AuthoredEncounterSlot = (typeof AUTHORED_ENCOUNTER_SLOTS)[number];
 
 export interface AuthoredPosition {
   readonly x: number;
@@ -141,7 +152,8 @@ export interface AuthoredLevelAnchors {
     Record<"minor-one" | "minor-two" | "major", AuthoredAnchor>
   >;
   readonly encounters: Readonly<
-    Record<AuthoredEncounterSlot, AuthoredEncounterAnchor>
+    Record<AuthoredRequiredEncounterSlot, AuthoredEncounterAnchor> &
+      Partial<Record<AuthoredBonusEncounterSlot, AuthoredEncounterAnchor>>
   >;
   readonly friendlies: Readonly<
     Record<"friendly-1" | "friendly-2" | "friendly-3", AuthoredAnchor>
@@ -395,6 +407,14 @@ const authoredLevelAnchorsSchema = z
   })
   .strict();
 
+const authoredLevelV3AnchorsSchema = authoredLevelAnchorsSchema
+  .extend({
+    encounters: authoredLevelAnchorsSchema.shape.encounters
+      .extend({ "bonus-1": encounterAnchorSchema.optional() })
+      .strict(),
+  })
+  .strict();
+
 const authoredLevelDocumentFields = {
   pieces: z.array(pieceSchema).min(1).max(AUTHORED_LEVEL_LIMITS.maxPieces),
   mainPath: z
@@ -442,6 +462,7 @@ const authoredLevelV3DocumentSchema = z
     id: authoredLevelProjectRouteIdSchema,
     theme: z.enum(["garden", "party", "arcade", "toybox", "casino"]),
     ...authoredLevelDocumentFields,
+    anchors: authoredLevelV3AnchorsSchema,
     connections: z
       .array(connectionV2Schema)
       .max(AUTHORED_LEVEL_LIMITS.maxConnections),
@@ -1538,13 +1559,16 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       );
   });
 
+  const requiredEncounterEntries = AUTHORED_REQUIRED_ENCOUNTER_SLOTS.map(
+    (slot) => [slot, document.anchors.encounters[slot]] as const,
+  );
   const requiredMainAnchors: Array<readonly [string, AuthoredAnchor]> = [
     ["$.anchors.spawn", document.anchors.spawn],
     ["$.anchors.pickups[\"attack-tool\"]", document.anchors.pickups["attack-tool"]],
     ["$.anchors.pickups[\"guard-tool\"]", document.anchors.pickups["guard-tool"]],
     ["$.anchors.memories[\"minor-one\"]", document.anchors.memories["minor-one"]],
     ["$.anchors.memories[\"minor-two\"]", document.anchors.memories["minor-two"]],
-    ...encounterEntries.map(
+    ...requiredEncounterEntries.map(
       ([slot, anchor]) =>
         [`$.anchors.encounters[${JSON.stringify(slot)}]`, anchor] as const,
     ),
@@ -1586,7 +1610,60 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
   ] as const).map((slot) => document.anchors.encounters[slot]);
   const ordinaryIndexes = ordinaryAnchors.map(indexOf);
   const firstFight = Math.min(...ordinaryIndexes);
-  const bossIndex = indexOf(document.anchors.encounters.boss);
+  const boss = document.anchors.encounters.boss;
+  const bossIndex = indexOf(boss);
+  const bonus = document.anchors.encounters["bonus-1"];
+  if (bonus) {
+    const path = '$.anchors.encounters["bonus-1"]';
+    const bonusMainIndex = mainIndex.get(bonus.platformId);
+    if (bonusMainIndex !== undefined && bonusMainIndex > bossIndex)
+      issue(
+        issues,
+        `${path}.platformId`,
+        "ordering.bonus-before-boss",
+        "The bonus encounter must not follow the boss on the main path because combat ends after boss defeat",
+      );
+    else if (bonusMainIndex === bossIndex) {
+      const incomingPlatformId = document.mainPath[bossIndex - 1];
+      const incomingPlatform = incomingPlatformId === undefined
+        ? undefined
+        : platforms.get(incomingPlatformId);
+      const bossPlatform = platforms.get(boss.platformId);
+      if (incomingPlatform && bossPlatform) {
+        const incomingX = bossPlatform.center.x - incomingPlatform.center.x;
+        const incomingZ = bossPlatform.center.z - incomingPlatform.center.z;
+        const incomingLengthSquared = incomingX ** 2 + incomingZ ** 2;
+        const bonusFromBossX = bonus.position.x - boss.position.x;
+        const bonusFromBossZ = bonus.position.z - boss.position.z;
+        const projectedOffset =
+          bonusFromBossX * incomingX + bonusFromBossZ * incomingZ;
+        if (
+          incomingLengthSquared <= EPSILON ||
+          projectedOffset >= -EPSILON
+        )
+          issue(
+            issues,
+            `${path}.position`,
+            "ordering.bonus-before-boss",
+            "A bonus encounter on the boss platform must be positioned before the boss along the incoming main-path direction",
+          );
+      }
+    } else if (bonusMainIndex === undefined) {
+      const lateBranchIndex = document.branches.findIndex((branch) => {
+        if (!branch.includes(bonus.platformId)) return false;
+        const rejoin = branch.at(-1);
+        const rejoinIndex = rejoin === undefined ? undefined : mainIndex.get(rejoin);
+        return rejoinIndex !== undefined && rejoinIndex > bossIndex;
+      });
+      if (lateBranchIndex >= 0)
+        issue(
+          issues,
+          `${path}.platformId`,
+          "ordering.bonus-before-boss",
+          `The bonus encounter's branch ${lateBranchIndex} rejoins after the boss, when combat is no longer available`,
+        );
+    }
+  }
   const pickupIndexes = [
     indexOf(document.anchors.pickups["attack-tool"]),
     indexOf(document.anchors.pickups["guard-tool"]),

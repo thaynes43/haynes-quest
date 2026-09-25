@@ -126,7 +126,9 @@ interface HorizontalExtent {
 const ANCHOR_SLOT_READERS: Readonly<
   Record<
     LevelEditorAnchorSlot,
-    (anchors: AuthoredLevelAnchors) => AuthoredAnchor | AuthoredEncounterAnchor
+    (
+      anchors: AuthoredLevelAnchors,
+    ) => AuthoredAnchor | AuthoredEncounterAnchor | undefined
   >
 > = {
   spawn: (anchors) => anchors.spawn,
@@ -142,6 +144,7 @@ const ANCHOR_SLOT_READERS: Readonly<
   "encounter.ordinary-3": (anchors) => anchors.encounters["ordinary-3"],
   "encounter.ordinary-4": (anchors) => anchors.encounters["ordinary-4"],
   "encounter.boss": (anchors) => anchors.encounters.boss,
+  "encounter.bonus-1": (anchors) => anchors.encounters["bonus-1"],
   "friendly.friendly-1": (anchors) => anchors.friendlies["friendly-1"],
   "friendly.friendly-2": (anchors) => anchors.friendlies["friendly-2"],
   "friendly.friendly-3": (anchors) => anchors.friendlies["friendly-3"],
@@ -275,9 +278,10 @@ function describeChapterSpace(level: LevelEditorLevelDocument) {
       index,
       ...connection,
     })),
-    anchors: LEVEL_EDITOR_ANCHOR_SLOTS.map((slot) =>
-      describeAnchor(slot, ANCHOR_SLOT_READERS[slot](level.anchors)),
-    ),
+    anchors: LEVEL_EDITOR_ANCHOR_SLOTS.flatMap((slot) => {
+      const anchor = ANCHOR_SLOT_READERS[slot](level.anchors);
+      return anchor ? [describeAnchor(slot, anchor)] : [];
+    }),
   };
 }
 

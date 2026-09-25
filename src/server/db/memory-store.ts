@@ -3,11 +3,11 @@ import type { GameplayActionRequest } from '../../shared/contracts.js';
 import { createAdventureStateAtLevel, memoryIdsForLevel } from '../../shared/adventure.js';
 import { createInitialFriendlyState } from '../../shared/friendly.js';
 import {
-  EDITOR_WORLD_RULE_VERSIONS,
   FIXTURE_SUBJECT,
   applyGameplayActionToSave,
   appearanceForAge,
   createAdventureForSave,
+  editorWorldRuleVersions,
   isValidFrozenManifest,
   type CreateEditorPlaytestCommand,
   type CreateSaveCommand,
@@ -219,7 +219,7 @@ export class InMemoryQuestStore implements QuestStore {
         createdAt: new Date(command.startedAt),
         updatedAt: new Date(command.startedAt),
         versions: {
-          ...EDITOR_WORLD_RULE_VERSIONS,
+          ...editorWorldRuleVersions(command.plan),
           catalog: command.plan.catalogVersion,
         },
       };

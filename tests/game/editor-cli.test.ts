@@ -73,6 +73,7 @@ interface InspectedAnchor {
 
 interface InspectedChapter {
   readonly chapterId: string;
+  readonly encounterSlots?: Readonly<Record<string, unknown>>;
   readonly platforms: number;
   readonly connections: number;
   readonly branches: number;
@@ -274,6 +275,101 @@ describe("level editor CLI", () => {
     }
   }, 30_000);
 
+  it("adds, places, assigns, exports and removes an optional encounter", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "quest-editor-bonus-"));
+    try {
+      const projectPath = join(directory, "project.json");
+      const template = runEditor(
+        "world-template",
+        "bonus-cli-project",
+        "Bonus CLI project",
+      );
+      expect(template.status).toBe(0);
+      expect(template.stderr).toBe("");
+      await writeFile(projectPath, template.stdout, "utf8");
+
+      const addedPath = await applyBatch(directory, projectPath, "bonus-added", {
+        expectedRevision: 0,
+        commands: [
+          {
+            type: "encounter.bonus.add",
+            chapterId: "chapter-1",
+            anchor: {
+              platformId: "woodland-side-1",
+              position: { x: 7, y: 0, z: -60.8 },
+              kind: "ordinary-a",
+              checkpointId: "woodland-safe",
+              arena: { minX: 5.4, maxX: 8.6, minZ: -62.6, maxZ: -59 },
+            },
+            encounter: {
+              source: "catalog",
+              catalogEntryId: "mister-hiss",
+              catalogEntryVersion: "v001",
+            },
+          },
+        ],
+      });
+      const placedPath = await applyBatch(directory, addedPath, "bonus-placed", {
+        expectedRevision: 1,
+        commands: [
+          {
+            type: "encounter.assign",
+            chapterId: "chapter-1",
+            slot: "bonus-1",
+            encounter: {
+              source: "catalog",
+              catalogEntryId: "mister-hiss",
+              catalogEntryVersion: "v001",
+            },
+          },
+          {
+            type: "anchor.move",
+            chapterId: "chapter-1",
+            slot: "encounter.bonus-1",
+            position: { x: 6.9, y: 0, z: -60.8 },
+          },
+        ],
+      });
+
+      const inspected = inspectProject(placedPath);
+      expect(inspected.revision).toBe(2);
+      expect(inspected.issues).toEqual([]);
+      expect(anchorBySlot(inspected.chapters[0]!, "encounter.bonus-1"))
+        .toMatchObject({
+          platformId: "woodland-side-1",
+          kind: "ordinary-a",
+          position: { x: 6.9, y: 0, z: -60.8 },
+        });
+      expect(inspected.chapters[0]?.encounterSlots?.["bonus-1"]).toEqual({
+        source: "catalog",
+        catalogEntryId: "mister-hiss",
+        catalogEntryVersion: "v001",
+      });
+
+      const exported = runEditor("export", placedPath);
+      expect(exported.status).toBe(0);
+      expect(exported.stderr).toBe("");
+      const imported = parseLevelEditorProjectJson(exported.stdout);
+      expect(imported.chapters[0]?.level.anchors.encounters["bonus-1"])
+        .toBeDefined();
+
+      const removedPath = await applyBatch(directory, placedPath, "bonus-removed", {
+        expectedRevision: 2,
+        commands: [{ type: "encounter.bonus.remove", chapterId: "chapter-1" }],
+      });
+      const removed = inspectProject(removedPath);
+      expect(removed.issues).toEqual([]);
+      expect(
+        removed.chapters[0]?.spatial.anchors.some(
+          (anchor) => anchor.slot === "encounter.bonus-1",
+        ),
+      ).toBe(false);
+      expect(removed.chapters[0]?.encounterSlots?.["bonus-1"]).toBeUndefined();
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  }, 30_000);
+
   it("reports bounded spatial data for shifted, elevated and invalid geometry", async () => {
     const directory = await mkdtemp(join(tmpdir(), "quest-editor-space-"));
     try {
@@ -289,9 +385,11 @@ describe("level editor CLI", () => {
       expect(garden.spatial.platforms).toHaveLength(garden.platforms);
       expect(garden.spatial.connections).toHaveLength(garden.connections);
       expect(garden.spatial.routes.branches).toHaveLength(garden.branches);
-      expect(garden.spatial.anchors.map((anchor) => anchor.slot)).toEqual([
-        ...LEVEL_EDITOR_ANCHOR_SLOTS,
-      ]);
+      expect(garden.spatial.anchors.map((anchor) => anchor.slot)).toEqual(
+        LEVEL_EDITOR_ANCHOR_SLOTS.filter(
+          (slot) => slot !== "encounter.bonus-1",
+        ),
+      );
       expect(
         garden.spatial.connections.map((connection) => connection.index),
       ).toEqual(garden.spatial.connections.map((_, index) => index));
@@ -542,7 +640,7 @@ describe("level editor CLI", () => {
         elevatedGarden.spatial.platforms.length,
       );
       expect(brokenGarden.spatial.anchors).toHaveLength(
-        LEVEL_EDITOR_ANCHOR_SLOTS.length,
+        LEVEL_EDITOR_ANCHOR_SLOTS.length - 1,
       );
 
       const malformedPath = join(directory, "malformed.json");

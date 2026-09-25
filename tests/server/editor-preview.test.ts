@@ -19,6 +19,7 @@ import { createAdventureStateAtLevel } from '../../src/shared/adventure.js';
 import { parseStoredAdventure } from '../../src/server/adventure-schema.js';
 import { prepareEditorPreview } from '../../src/server/editor-preview.js';
 import { shiftAuthoredLevelX } from '../editor-project-fixtures.js';
+import ratCasinoBonusProjectSource from '../../src/shared/levels/rat-casino-world-v2.json';
 
 const ORIGIN = 'https://quest.test';
 const SECRET = 'fixture-session-secret-that-is-at-least-32-characters';
@@ -258,6 +259,12 @@ function ratCasinoCatalogProject(): LevelEditorProjectV2 {
   return parsed;
 }
 
+function ratCasinoBonusProject(): LevelEditorProjectV2 {
+  const parsed = parseLevelEditorProject(ratCasinoBonusProjectSource);
+  if (!isLevelEditorProjectV2(parsed)) throw new Error('Expected a v2 Rat Casino project');
+  return parsed;
+}
+
 function fingerprintOf(project: unknown): string {
   return createHash('sha256')
     .update(canonicalLevelEditorProjectJson(project), 'utf8')
@@ -479,6 +486,11 @@ describe('POST /api/editor/playtests', () => {
         catalogVersion: 'parody-catalog-v6',
         activeLevel: { periodId: 'rat-casino-v1' },
       });
+      expect(body.save.versions).toMatchObject({
+        journey: 'editor-world-plan-v1',
+        progression: 'editor-world-route-memory-v1',
+      });
+      expect(body.save.adventure.activeLevel.optionalEncounterIds).toBeUndefined();
       expect(
         body.save.adventure.activeLevel.encounters.map(
           (encounter: {
@@ -497,6 +509,168 @@ describe('POST /api/editor/playtests', () => {
         { role: 'ordinary', entry: 'moth-projectionist', asset: 'moth-projectionist@v001' },
         { role: 'boss', entry: 'rat-pit-boss', asset: 'rat-pit-boss@v002' },
       ]);
+    });
+
+    it('freezes Golden as an explicit optional sixth encounter in editor world plan v2', async () => {
+      const { app } = makeApp();
+      const cookie = await startSession(app);
+      const project = ratCasinoBonusProject();
+      const prepared = prepareEditorPreview(project);
+      if (!prepared.ok || !prepared.bundle.world) throw new Error('Expected Rat Casino world');
+      expect(prepared.bundle.world.plan.version).toBe('editor-world-plan-v2');
+      if (prepared.bundle.world.plan.version !== 'editor-world-plan-v2') {
+        throw new Error('Expected a v2 editor plan');
+      }
+      expect(prepared.bundle.world.plan.levels.map((level) => level.encounters.length))
+        .toEqual([5, 5, 6]);
+      expect(prepared.bundle.world.plan.levels.map((level) => level.optionalEncounterIds))
+        .toEqual([[], [], ['rat-casino-v2-encounter-bonus-1']]);
+      const response = await preview(app, cookie, {
+        project,
+        chapterId: 'rat-casino',
+        scope: 'chapter',
+      });
+
+      expect(response.status).toBe(201);
+      const body = await response.json();
+      const optionalId = 'rat-casino-v2-encounter-bonus-1';
+      expect(body.save.versions).toMatchObject({
+        journey: 'editor-world-plan-v2',
+        progression: 'editor-world-route-memory-v2',
+      });
+      expect(body.save.adventure).toMatchObject({
+        planVersion: 'editor-world-plan-v2',
+        catalogVersion: 'parody-catalog-v6',
+        activeLevel: {
+          routeId: 'rat-casino-v2',
+          optionalEncounterIds: [optionalId],
+        },
+      });
+      expect(body.save.adventure.activeLevel.encounters).toHaveLength(6);
+      expect(body.save.adventure.activeLevel.encounters.at(-1)).toMatchObject({
+        id: optionalId,
+        role: 'ordinary',
+        kind: 'ordinary-a',
+        maxHp: 8,
+        attackDamage: 4,
+        defeated: false,
+        available: true,
+        content: {
+          catalogEntryId: 'golden-after-hours-rat',
+          catalogEntryVersion: 'v001',
+          assetId: 'golden-after-hours-rat',
+          assetVersion: 'v001',
+        },
+      });
+    });
+
+    it('uses ordinary server combat authority for Golden', async () => {
+      let clockMs = Date.parse('2026-09-25T12:00:00.000Z');
+      const { app } = makeApp({ now: () => new Date(clockMs) });
+      const cookie = await startSession(app);
+      const response = await preview(app, cookie, {
+        project: ratCasinoBonusProject(),
+        chapterId: 'rat-casino',
+        scope: 'chapter',
+      });
+      expect(response.status).toBe(201);
+      let save = (await response.json()).save;
+      const perform = async (action: Record<string, unknown>) => {
+        const result = await app.request(
+          `/api/saves/${save.id}/actions`,
+          mutation(cookie, {
+            actionId: randomUUID(),
+            expectedRevision: save.revision,
+            action,
+          }),
+        );
+        expect(result.status, JSON.stringify(await result.clone().json())).toBe(200);
+        save = await result.json();
+        clockMs += 500;
+      };
+      const level = save.adventure.activeLevel;
+      const attackTool = level.pickups.find((pickup: { kind: string }) =>
+        pickup.kind === 'attack-tool'
+      );
+      const optionalId = level.optionalEncounterIds[0];
+      const initialGolden = level.encounters.find(
+        (encounter: { id: string }) => encounter.id === optionalId,
+      );
+      await perform({
+        type: 'collect-equipment',
+        levelId: level.id,
+        pickupId: attackTool.pickupId,
+      });
+      await perform({ type: 'attack', levelId: level.id, encounterId: optionalId });
+      expect(save.adventure.activeLevel.encounters.find(
+        (encounter: { id: string }) => encounter.id === optionalId,
+      ).hp).toBe(initialGolden.maxHp - attackTool.damage);
+    });
+
+    it('completes Rat Casino while Golden is entirely skipped', async () => {
+      let clockMs = Date.parse('2026-09-25T12:00:00.000Z');
+      const { app } = makeApp({ now: () => new Date(clockMs) });
+      const cookie = await startSession(app);
+      const response = await preview(app, cookie, {
+        project: ratCasinoBonusProject(),
+        chapterId: 'rat-casino',
+        scope: 'chapter',
+      });
+      expect(response.status).toBe(201);
+      let save = (await response.json()).save;
+      const perform = async (action: Record<string, unknown>) => {
+        const result = await app.request(
+          `/api/saves/${save.id}/actions`,
+          mutation(cookie, {
+            actionId: randomUUID(),
+            expectedRevision: save.revision,
+            action,
+          }),
+        );
+        expect(result.status, JSON.stringify(await result.clone().json())).toBe(200);
+        save = await result.json();
+        clockMs += 500;
+      };
+      const level = save.adventure.activeLevel;
+      const attackTool = level.pickups.find((pickup: { kind: string }) =>
+        pickup.kind === 'attack-tool'
+      );
+      const optionalId = level.optionalEncounterIds[0];
+      const initialGolden = level.encounters.find(
+        (encounter: { id: string }) => encounter.id === optionalId,
+      );
+      await perform({
+        type: 'collect-equipment',
+        levelId: level.id,
+        pickupId: attackTool.pickupId,
+      });
+
+      for (const memoryId of level.minorMemoryIds) {
+        await perform({ type: 'recover-memory', levelId: level.id, memoryId });
+      }
+      const boss = level.encounters.find((encounter: { role: string }) => encounter.role === 'boss');
+      while (!save.adventure.activeLevel.encounters.find(
+        (encounter: { id: string }) => encounter.id === boss.id,
+      ).defeated) {
+        await perform({ type: 'attack', levelId: level.id, encounterId: boss.id });
+      }
+      expect(save.adventure.phase).toBe('memory-released');
+      expect(save.adventure.activeLevel.encounters.find(
+        (encounter: { id: string }) => encounter.id === optionalId,
+      )).toMatchObject({ defeated: false, hp: initialGolden.maxHp });
+      await perform({
+        type: 'recover-memory',
+        levelId: level.id,
+        memoryId: level.majorMemoryId,
+      });
+      expect(save).toMatchObject({
+        completed: true,
+        adventure: {
+          phase: 'complete',
+          activeLevel: null,
+          completedLevelIds: expect.arrayContaining(['rat-casino-v2']),
+        },
+      });
     });
 
     it('rejects Golden as a forged combat encounter while keeping its v6 cameo identity', () => {
@@ -525,6 +699,76 @@ describe('POST /api/editor/playtests', () => {
 
       expect(() => parseStoredAdventure(forged, state, { allowEditorPreviewPlan: true }))
         .toThrow('Save unavailable');
+    });
+
+    it('keeps v1 strict against a forged sixth encounter', () => {
+      const prepared = prepareEditorPreview(ratCasinoCatalogProject());
+      if (!prepared.ok || !prepared.bundle.world) throw new Error('Expected Rat Casino world');
+      const plan = structuredClone(prepared.bundle.world.plan);
+      if (plan.version !== 'editor-world-plan-v1') throw new Error('Expected a v1 editor plan');
+      const level = plan.levels[1]!;
+      level.encounters.push({
+        id: `${level.id}-encounter-bonus-1`,
+        role: 'ordinary',
+        kind: 'ordinary-a',
+        maxHp: 6,
+        attackDamage: 3,
+        content: {
+          catalogEntryId: 'golden-after-hours-rat',
+          catalogEntryVersion: 'v001',
+          assetId: 'golden-after-hours-rat',
+          assetVersion: 'v001',
+        },
+      });
+      const state = createAdventureStateAtLevel(prepared.bundle.world.plan, 1);
+
+      expect(() => parseStoredAdventure(plan, state, { allowEditorPreviewPlan: true }))
+        .toThrow('Save unavailable');
+    });
+
+    it('rejects v2 extras and tampered optional identities, roles, kinds, stats and assets', () => {
+      const prepared = prepareEditorPreview(ratCasinoBonusProject());
+      if (!prepared.ok || !prepared.bundle.world) throw new Error('Expected Rat Casino world');
+      const plan = prepared.bundle.world.plan;
+      if (plan.version !== 'editor-world-plan-v2') throw new Error('Expected a v2 editor plan');
+      const state = createAdventureStateAtLevel(plan, 2);
+      const variants: unknown[] = [];
+
+      const wrongIdentity = structuredClone(plan);
+      wrongIdentity.levels[2]!.optionalEncounterIds = [wrongIdentity.levels[2]!.encounters[0]!.id];
+      variants.push(wrongIdentity);
+
+      const missingOptionalFlag = structuredClone(plan);
+      missingOptionalFlag.levels[2]!.optionalEncounterIds = [];
+      variants.push(missingOptionalFlag);
+
+      const wrongRole = structuredClone(plan);
+      wrongRole.levels[2]!.encounters.at(-1)!.role = 'boss';
+      variants.push(wrongRole);
+
+      const wrongKind = structuredClone(plan);
+      wrongKind.levels[2]!.encounters.at(-1)!.kind = 'ordinary-b';
+      wrongKind.levels[2]!.encounters.at(-1)!.maxHp = 9;
+      variants.push(wrongKind);
+
+      const wrongStats = structuredClone(plan);
+      wrongStats.levels[2]!.encounters.at(-1)!.maxHp += 1;
+      variants.push(wrongStats);
+
+      const wrongAsset = structuredClone(plan);
+      wrongAsset.levels[2]!.encounters.at(-1)!.content.assetId = 'chick-flia';
+      variants.push(wrongAsset);
+
+      const forgedExtra = structuredClone(plan);
+      const extraEncounter = structuredClone(forgedExtra.levels[2]!.encounters.at(-1)!);
+      extraEncounter.id = `${forgedExtra.levels[2]!.id}-encounter-forged-extra`;
+      forgedExtra.levels[2]!.encounters.push(extraEncounter);
+      variants.push(forgedExtra);
+
+      for (const variant of variants) {
+        expect(() => parseStoredAdventure(variant, state, { allowEditorPreviewPlan: true }))
+          .toThrow('Save unavailable');
+      }
     });
 
     it('starts chapter one for the full adventure and returns the frozen project', async () => {
@@ -1048,17 +1292,25 @@ describe('POST /api/editor/playtests', () => {
     });
 
     it('keeps editor plans behind the explicit fixture parser gate', () => {
-      const prepared = prepareEditorPreview(threeLevelWorldProject());
-      if (!prepared.ok || !prepared.bundle.world) throw new Error('Expected editor world');
-      const state = createAdventureStateAtLevel(prepared.bundle.world.plan, 2);
-      expect(() => parseStoredAdventure(prepared.bundle.world!.plan, state)).toThrow(
-        'Save unavailable',
-      );
-      expect(parseStoredAdventure(
-        prepared.bundle.world.plan,
-        state,
-        { allowEditorPreviewPlan: true },
-      ).plan.version).toBe('editor-world-plan-v1');
+      for (const [project, expectedVersion] of [
+        [threeLevelWorldProject(), 'editor-world-plan-v1'],
+        [ratCasinoBonusProject(), 'editor-world-plan-v2'],
+      ] as const) {
+        const prepared = prepareEditorPreview(project);
+        if (!prepared.ok || !prepared.bundle.world) throw new Error('Expected editor world');
+        const state = createAdventureStateAtLevel(
+          prepared.bundle.world.plan,
+          prepared.bundle.world.plan.levels.length - 1,
+        );
+        expect(() => parseStoredAdventure(prepared.bundle.world!.plan, state)).toThrow(
+          'Save unavailable',
+        );
+        expect(parseStoredAdventure(
+          prepared.bundle.world.plan,
+          state,
+          { allowEditorPreviewPlan: true },
+        ).plan.version).toBe(expectedVersion);
+      }
     });
   });
 });

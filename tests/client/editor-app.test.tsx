@@ -124,7 +124,7 @@ describe("level editor preview shell", () => {
         chapters: expect.arrayContaining([
           expect.objectContaining({
             chapterId: "rat-casino",
-            routeId: "rat-casino-v1",
+            routeId: "rat-casino-v2",
           }),
         ]),
       },

@@ -27,7 +27,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Parody characters {#parody-characters}
 
-The two Besties actors join four completed parody characters in the playtest library. The six technically checked Rat Casino performers now appear in a private fictional level trial: the broad Rat Pit Boss leads, Chick-flia and three other mascots fill ordinary encounters, and Golden waits beside the stage as a noncombat cameo. Final device/art acceptance remains open. Nap Captain and the first Rat Pit Boss export are paused partial models; the One-Star Diva is a paused concept. Earlier glossy studies remain in the review history.
+The two Besties actors join four completed parody characters in the playtest library. The six technically checked Rat Casino performers now appear in a private fictional level trial: the broad Rat Pit Boss leads, Chick-flia and three other mascots fill required ordinary encounters, and Golden offers an optional stage-wing fight. Final device/art acceptance remains open. Nap Captain and the first Rat Pit Boss export are paused partial models; the One-Star Diva is a paused concept. Earlier glossy studies remain in the review history.
 
 <div class="catalog-grid" markdown="1">
 
@@ -107,7 +107,7 @@ The two Besties actors join four completed parody characters in the playtest lib
 
 ### [Golden After-Hours Rat](reviews/golden-after-hours-rat/v001.md)
 
-<span class="catalog-state">3D model · v001 · Rat Casino noncombat cameo in private playtest</span>
+<span class="catalog-state">3D model · v001 · optional Golden fight in private Rat Casino playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/858e699da2011d07.webp" alt="Corrected worn golden spare-rat front, side and back inspiration" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 

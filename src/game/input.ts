@@ -196,9 +196,14 @@ interface PointerRecord {
   y: number;
   startX: number;
   startY: number;
-  touch: boolean;
+  startedAt: number;
+  pointerType: string;
+  button: number;
   dragging: boolean;
 }
+
+const pointerDragThreshold = 10;
+const mouseClickDurationMs = 500;
 
 export interface BrowserInputBindingOptions {
   target: HTMLElement;
@@ -236,13 +241,20 @@ export function bindBrowserInput({
         ? event.target
         : null;
     if (element?.closest("[data-quest-ui]")) return;
-    if (event.pointerType !== "touch" && event.button !== 0) return;
+    if (
+      event.pointerType === "mouse"
+        ? event.button !== 0 && event.button !== 2
+        : event.button !== 0
+    )
+      return;
     cameraPointers.set(event.pointerId, {
       x: event.clientX,
       y: event.clientY,
       startX: event.clientX,
       startY: event.clientY,
-      touch: event.pointerType === "touch",
+      startedAt: event.timeStamp,
+      pointerType: event.pointerType,
+      button: event.button,
       dragging: false,
     });
     try {
@@ -259,10 +271,10 @@ export function bindBrowserInput({
       Math.hypot(
         event.clientX - previous.startX,
         event.clientY - previous.startY,
-      ) > 10
+      ) > pointerDragThreshold
     )
       previous.dragging = true;
-    if (!previous.touch || previous.dragging) {
+    if (previous.pointerType !== "touch" || previous.dragging) {
       input.addPointerLook(
         event.clientX - previous.x,
         event.clientY - previous.y,
@@ -272,17 +284,63 @@ export function bindBrowserInput({
     }
     event.preventDefault();
   };
-  const stopPointer = (event: PointerEvent): void => {
+  const stopPointer = (event: PointerEvent, allowAction = true): void => {
+    const pointer = cameraPointers.get(event.pointerId);
     cameraPointers.delete(event.pointerId);
+    const elapsed = pointer ? event.timeStamp - pointer.startedAt : -1;
+    const distance = pointer
+      ? Math.hypot(
+          event.clientX - pointer.startX,
+          event.clientY - pointer.startY,
+        )
+      : Number.POSITIVE_INFINITY;
+    if (
+      allowAction &&
+      event.type === "pointerup" &&
+      pointer?.pointerType === "mouse" &&
+      event.button === pointer.button &&
+      !pointer.dragging &&
+      distance <= pointerDragThreshold &&
+      elapsed >= 0 &&
+      elapsed <= mouseClickDurationMs
+    ) {
+      const action = pointer.button === 0 ? "attack" : "guard";
+      input.set(action, true);
+      input.set(action, false);
+    }
     if (target.hasPointerCapture?.(event.pointerId))
       target.releasePointerCapture(event.pointerId);
   };
   const clearAll = (): void => {
+    for (const pointerId of cameraPointers.keys()) {
+      if (target.hasPointerCapture?.(pointerId))
+        target.releasePointerCapture(pointerId);
+    }
     cameraPointers.clear();
     input.clear();
   };
   const cancelCameraPointer = (event: PointerEvent): void => {
-    cameraPointers.delete(event.pointerId);
+    stopPointer(event, false);
+  };
+  const finishCameraPointer = (event: PointerEvent): void => {
+    // Capture listeners run before the canvas handler. Finalize here so an
+    // uncaptured release outside the canvas cannot leave a stale contact.
+    // Pointer capture retargets the event to the canvas even when the pointer
+    // is physically over UI, so use the release coordinates for this check.
+    const releaseTarget = documentTarget.elementFromPoint?.(
+      event.clientX,
+      event.clientY,
+    );
+    stopPointer(event, releaseTarget === target);
+  };
+  const onContextMenu = (event: MouseEvent): void => {
+    const element =
+      typeof windowTarget.Element === "function" &&
+      event.target instanceof windowTarget.Element
+        ? event.target
+        : null;
+    if (element?.closest("[data-quest-ui]")) return;
+    event.preventDefault();
   };
   let landscape = windowTarget.innerWidth > windowTarget.innerHeight;
   const onResize = (): void => {
@@ -303,11 +361,12 @@ export function bindBrowserInput({
   // control owns its pointer, so cancelling one must not erase a still-held
   // joystick or a separate queued action.
   windowTarget.addEventListener("pointercancel", cancelCameraPointer, true);
-  windowTarget.addEventListener("pointerup", cancelCameraPointer, true);
+  windowTarget.addEventListener("pointerup", finishCameraPointer, true);
   target.addEventListener("pointerdown", onPointerDown, { passive: false });
   target.addEventListener("pointermove", onPointerMove, { passive: false });
   target.addEventListener("pointerup", stopPointer);
   target.addEventListener("pointercancel", stopPointer);
+  target.addEventListener("contextmenu", onContextMenu);
   documentTarget.addEventListener("visibilitychange", onVisibility);
   documentTarget.addEventListener("freeze", clearAll);
 
@@ -323,11 +382,12 @@ export function bindBrowserInput({
       cancelCameraPointer,
       true,
     );
-    windowTarget.removeEventListener("pointerup", cancelCameraPointer, true);
+    windowTarget.removeEventListener("pointerup", finishCameraPointer, true);
     target.removeEventListener("pointerdown", onPointerDown);
     target.removeEventListener("pointermove", onPointerMove);
     target.removeEventListener("pointerup", stopPointer);
     target.removeEventListener("pointercancel", stopPointer);
+    target.removeEventListener("contextmenu", onContextMenu);
     documentTarget.removeEventListener("visibilitychange", onVisibility);
     documentTarget.removeEventListener("freeze", clearAll);
   };
