@@ -13,7 +13,7 @@ import type {
   AuthoredPosition,
 } from "../../shared/authored-level";
 import {
-  EDITOR_ANCHOR_SLOTS,
+  editorAnchorSlotsFor,
   anchorForSlot,
   positionForSelection,
   selectionKey,
@@ -209,7 +209,7 @@ function buildSceneEntries(
     entries.push(selectionObject(selection, root));
   }
 
-  for (const slot of EDITOR_ANCHOR_SLOTS) {
+  for (const slot of editorAnchorSlotsFor(document)) {
     const anchor = anchorForSlot(document, slot);
     const selection: EditorSelection = { type: "anchor", slot };
     const active = selectedKey === selectionKey(selection);

@@ -5,25 +5,24 @@ import {
   LEVEL_EDITOR_PROJECT_MAX_BYTES,
   LevelEditorProjectValidationError,
   isLevelEditorProjectV2,
-  levelEditorPreparedEnemies,
+  levelEditorEncounterCatalogEntry,
   resolveLevelEditorProject,
   type LevelEditorChapterV2,
   type LevelEditorChapterId,
   type LevelEditorCatalogVersion,
   type LevelEditorEnemyCandidate,
-  type LevelEditorEncounterReference,
+  type LevelEditorEncounterSlot,
   type LevelEditorIssue,
   type LevelEditorProject,
   type LevelEditorProjectV2,
 } from '../shared/editor-project.js';
-import type { AuthoredEncounterSlot } from '../shared/authored-level.js';
 import type {
   EditorWorldAdventurePlan,
-  FrozenEditorWorldLevelPlan,
+  FrozenEditorWorldLevelPlanV1,
+  FrozenEditorWorldLevelPlanV2,
   FrozenEncounterDefinitionV2,
   FrozenEquipmentDefinition,
 } from '../shared/adventure.js';
-import type { ParodyCatalogEntry } from '../shared/parody-catalog.js';
 import { wholeYearsAt, type FrozenMemory } from './domain.js';
 
 /**
@@ -135,7 +134,7 @@ const EDITOR_ENCOUNTER_SLOTS = [
   'ordinary-3',
   'ordinary-4',
   'boss',
-] as const satisfies readonly AuthoredEncounterSlot[];
+] as const satisfies readonly LevelEditorEncounterSlot[];
 
 const FIXTURE_MEDIA_KEYS = [
   'demo-memory-2020-07',
@@ -152,13 +151,7 @@ function prepareEditorWorld(
 ): EditorWorldPreview {
   const candidates = new Map(project.enemyCandidates.map((candidate) => [candidate.id, candidate]));
   const memories: FrozenMemory[] = [];
-  const levels = project.chapters.map((chapter, index) => {
-    const level = editorWorldLevel(
-      chapter,
-      index,
-      candidates,
-      project.catalogVersion,
-    );
+  for (const chapter of project.chapters) {
     for (const memory of chapter.previewMemories) {
       const id = `${chapter.routeId}-memory-${memory.slotId}`;
       const fixtureKey = FIXTURE_MEDIA_KEYS[memories.length % FIXTURE_MEDIA_KEYS.length]!;
@@ -170,17 +163,39 @@ function prepareEditorWorld(
         source: { kind: 'fixture', key: fixtureKey },
       });
     }
-    return level;
-  });
+  }
+  const hasOptionalEncounter = project.chapters.some(
+    (chapter) => chapter.encounterSlots['bonus-1'] !== undefined,
+  );
+  const plan: EditorWorldAdventurePlan = hasOptionalEncounter
+    ? {
+        version: 'editor-world-plan-v2',
+        catalogVersion: project.catalogVersion,
+        projectFingerprint: fingerprint,
+        levels: project.chapters.map((chapter, index) => editorWorldLevel(
+          chapter,
+          index,
+          candidates,
+          project.catalogVersion,
+          'editor-world-plan-v2',
+        )),
+      }
+    : {
+        version: 'editor-world-plan-v1',
+        catalogVersion: project.catalogVersion,
+        projectFingerprint: fingerprint,
+        levels: project.chapters.map((chapter, index) => editorWorldLevel(
+          chapter,
+          index,
+          candidates,
+          project.catalogVersion,
+          'editor-world-plan-v1',
+        )),
+      };
   return deepFreeze({
     birthDate: project.fictionalBirthDate,
     memories,
-    plan: {
-      version: 'editor-world-plan-v1',
-      catalogVersion: project.catalogVersion,
-      projectFingerprint: fingerprint,
-      levels,
-    },
+    plan,
   });
 }
 
@@ -189,25 +204,49 @@ function editorWorldLevel(
   index: number,
   candidates: ReadonlyMap<string, LevelEditorEnemyCandidate>,
   catalogVersion: LevelEditorCatalogVersion,
-): FrozenEditorWorldLevelPlan {
-  const resolved = EDITOR_ENCOUNTER_SLOTS.map((slot) => {
+  planVersion: 'editor-world-plan-v1',
+): FrozenEditorWorldLevelPlanV1;
+function editorWorldLevel(
+  chapter: LevelEditorChapterV2,
+  index: number,
+  candidates: ReadonlyMap<string, LevelEditorEnemyCandidate>,
+  catalogVersion: LevelEditorCatalogVersion,
+  planVersion: 'editor-world-plan-v2',
+): FrozenEditorWorldLevelPlanV2;
+function editorWorldLevel(
+  chapter: LevelEditorChapterV2,
+  index: number,
+  candidates: ReadonlyMap<string, LevelEditorEnemyCandidate>,
+  catalogVersion: LevelEditorCatalogVersion,
+  planVersion: EditorWorldAdventurePlan['version'],
+): FrozenEditorWorldLevelPlanV1 | FrozenEditorWorldLevelPlanV2 {
+  const slots: LevelEditorEncounterSlot[] = [
+    ...EDITOR_ENCOUNTER_SLOTS,
+    ...(chapter.encounterSlots['bonus-1'] === undefined ? [] : ['bonus-1' as const]),
+  ];
+  const resolved = slots.map((slot) => {
     const reference = chapter.encounterSlots[slot];
+    if (!reference) throw new Error('Validated editor encounter is unavailable');
     const candidate = reference.source === 'candidate'
       ? candidates.get(reference.candidateId)
       : undefined;
     const catalogEntry = reference.source === 'catalog'
-      ? preparedCatalogEntry(reference, catalogVersion)
+      ? levelEditorEncounterCatalogEntry(reference, catalogVersion, {
+          bonus: slot === 'bonus-1',
+        })
       : undefined;
     const periodId = candidate?.periodId ?? catalogEntry?.periodId;
     if (!periodId) throw new Error('Validated editor encounter is unavailable');
-    return { slot, reference, candidate, catalogEntry, periodId };
+    return { slot, candidate, catalogEntry, periodId };
   });
   const periodId = resolved[0]?.periodId;
   if (!periodId || resolved.some((entry) => entry.periodId !== periodId)) {
     throw new Error('Validated editor chapter has no single period');
   }
   const encounters = resolved.map(({ slot, candidate, catalogEntry }, encounterIndex) => {
-    const kind = chapter.level.anchors.encounters[slot].kind;
+    const anchor = chapter.level.anchors.encounters[slot];
+    if (!anchor) throw new Error('Validated editor encounter anchor is unavailable');
+    const kind = anchor.kind;
     const role = slot === 'boss' ? 'boss' : 'ordinary';
     const content = candidate
       ? {
@@ -227,7 +266,9 @@ function editorWorldLevel(
     return {
       id: slot === 'boss'
         ? `${chapter.routeId}-boss`
-        : `${chapter.routeId}-encounter-${encounterIndex + 1}`,
+        : slot === 'bonus-1'
+          ? `${chapter.routeId}-encounter-bonus-1`
+          : `${chapter.routeId}-encounter-${encounterIndex + 1}`,
       role,
       kind,
       content,
@@ -238,7 +279,7 @@ function editorWorldLevel(
     } satisfies FrozenEncounterDefinitionV2;
   });
   const pickups = editorEquipment(chapter.routeId, index);
-  return {
+  const level = {
     id: chapter.routeId,
     index,
     startAgeYears: chapter.recoveredAge.fromYears,
@@ -249,26 +290,25 @@ function editorWorldLevel(
     minorMemoryIds: [
       `${chapter.routeId}-memory-minor-one`,
       `${chapter.routeId}-memory-minor-two`,
-    ],
+    ] as [string, string],
     majorMemoryId: `${chapter.routeId}-memory-major`,
     periodId,
     routeId: chapter.routeId,
-    bossGate: 'independent',
+    bossGate: 'independent' as const,
     pickups,
     encounters,
     bossId: `${chapter.routeId}-boss`,
   };
-}
-
-function preparedCatalogEntry(
-  reference: Extract<LevelEditorEncounterReference, { source: 'catalog' }>,
-  catalogVersion: LevelEditorCatalogVersion,
-):
-  ParodyCatalogEntry | undefined {
-  return levelEditorPreparedEnemies(catalogVersion).find((entry) =>
-    entry.id === reference.catalogEntryId &&
-    entry.version === reference.catalogEntryVersion,
-  );
+  if (planVersion === 'editor-world-plan-v2') {
+    const optionalEncounter = encounters.find(
+      (encounter) => encounter.id === `${chapter.routeId}-encounter-bonus-1`,
+    );
+    return {
+      ...level,
+      optionalEncounterIds: optionalEncounter ? [optionalEncounter.id] : [],
+    };
+  }
+  return level;
 }
 
 function editorEquipment(prefix: string, levelIndex: number): FrozenEquipmentDefinition[] {

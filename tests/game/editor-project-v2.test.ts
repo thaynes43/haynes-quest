@@ -10,6 +10,7 @@ import {
   createLevelEditorProject,
   createWorldEditorProject,
   isLevelEditorProjectV2,
+  levelEditorPreparedBonusEnemies,
   levelEditorPreparedEnemies,
   migrateLevelEditorProjectToV2,
   parseLevelEditorProjectJson,
@@ -53,6 +54,68 @@ function ordinaryCandidate(
     kind: "ordinary-a",
     behaviorPreset: "ordinary-a",
     ...overrides,
+  };
+}
+
+const bonusAnchor = {
+  platformId: "woodland-side-1",
+  position: { x: 7, y: 0, z: -60.8 },
+  kind: "ordinary-a",
+  checkpointId: "woodland-safe",
+  arena: { minX: 5.4, maxX: 8.6, minZ: -62.6, maxZ: -59 },
+} as const;
+
+function ratCasinoProject(): LevelEditorProjectV2 {
+  const base = createWorldEditorProject({
+    projectId: "rat-casino-bonus-test",
+    catalogVersion: "parody-catalog-v6",
+  });
+  const chapter = base.chapters[0]!;
+  return {
+    ...base,
+    fictionalBirthDate: "2024-01-01",
+    chapters: [
+      {
+        ...chapter,
+        representedDateRange: {
+          startDate: "2024-01-01",
+          endDate: "2025-01-01",
+        },
+        recoveredAge: { fromYears: 0, toYears: 1 },
+        previewMemories: [
+          { slotId: "minor-one", date: "2024-03-01", label: "First" },
+          { slotId: "minor-two", date: "2024-08-01", label: "Second" },
+          { slotId: "major", date: "2025-01-01", label: "Major" },
+        ],
+        encounterSlots: {
+          "ordinary-1": {
+            source: "catalog",
+            catalogEntryId: "chick-flia",
+            catalogEntryVersion: "v001",
+          },
+          "ordinary-2": {
+            source: "catalog",
+            catalogEntryId: "jackrabbit-drummer",
+            catalogEntryVersion: "v001",
+          },
+          "ordinary-3": {
+            source: "catalog",
+            catalogEntryId: "fox-card-shark",
+            catalogEntryVersion: "v001",
+          },
+          "ordinary-4": {
+            source: "catalog",
+            catalogEntryId: "moth-projectionist",
+            catalogEntryVersion: "v001",
+          },
+          boss: {
+            source: "catalog",
+            catalogEntryId: "rat-pit-boss",
+            catalogEntryVersion: "v001",
+          },
+        },
+      },
+    ],
   };
 }
 
@@ -352,6 +415,196 @@ describe("complete-world editor project contract", () => {
       "peel-patrol-besties@v001:peel-patrol@v001",
       "bickering-besties@v001:bickering-besties@v001",
     ].sort());
+  });
+
+  it("round-trips and edits an optional Golden encounter without changing the five required slots", () => {
+    const before = ratCasinoProject();
+    expect(validateLevelEditorProject(before)).toEqual([]);
+    expect(
+      levelEditorPreparedEnemies("parody-catalog-v6").map((entry) => entry.id),
+    ).not.toContain("golden-after-hours-rat");
+    expect(
+      levelEditorPreparedBonusEnemies("parody-catalog-v6").map(
+        (entry) => entry.id,
+      ),
+    ).toEqual(
+      expect.arrayContaining([
+        "chick-flia",
+        "fox-card-shark",
+        "golden-after-hours-rat",
+      ]),
+    );
+    expect(
+      levelEditorPreparedBonusEnemies("parody-catalog-v6").some(
+        (entry) => entry.role === "boss",
+      ),
+    ).toBe(false);
+
+    const primaryGolden = applyLevelEditorCommand(before, {
+      type: "encounter.assign",
+      chapterId: "chapter-1",
+      slot: "ordinary-1",
+      encounter: {
+        source: "catalog",
+        catalogEntryId: "golden-after-hours-rat",
+        catalogEntryVersion: "v001",
+      },
+    });
+    expect(primaryGolden).toMatchObject({
+      ok: false,
+      issues: [expect.objectContaining({ code: "encounter.catalog-missing" })],
+    });
+    expect(primaryGolden.project).toEqual(before);
+
+    const addedResult = applyLevelEditorCommand(before, {
+      type: "encounter.bonus.add",
+      chapterId: "chapter-1",
+      anchor: bonusAnchor,
+      encounter: {
+        source: "catalog",
+        catalogEntryId: "golden-after-hours-rat",
+        catalogEntryVersion: "v001",
+      },
+    });
+    const added = expectApplied(addedResult);
+    expect(addedResult.issues).toEqual([]);
+    expect(added.chapters[0]?.level.anchors.encounters["bonus-1"]).toEqual(
+      bonusAnchor,
+    );
+    expect(added.chapters[0]?.encounterSlots["bonus-1"]).toEqual({
+      source: "catalog",
+      catalogEntryId: "golden-after-hours-rat",
+      catalogEntryVersion: "v001",
+    });
+    expect(Object.keys(added.chapters[0]!.encounterSlots)).toHaveLength(6);
+
+    const reassigned = expectApplied(
+      applyLevelEditorCommand(added, {
+        type: "encounter.assign",
+        chapterId: "chapter-1",
+        slot: "bonus-1",
+        encounter: {
+          source: "catalog",
+          catalogEntryId: "fox-card-shark",
+          catalogEntryVersion: "v001",
+        },
+      }),
+    );
+    const moved = expectApplied(
+      applyLevelEditorCommand(reassigned, {
+        type: "anchor.move",
+        chapterId: "chapter-1",
+        slot: "encounter.bonus-1",
+        position: { x: 6.9, y: 0, z: -60.8 },
+      }),
+    );
+    const movedBonus = moved.chapters[0]?.level.anchors.encounters["bonus-1"];
+    expect(movedBonus).toMatchObject({
+      position: { x: 6.9, y: 0, z: -60.8 },
+      arena: { maxX: 8.5, minZ: -62.6, maxZ: -59 },
+    });
+    expect(movedBonus?.arena.minX).toBeCloseTo(5.3, 10);
+
+    const serialized = serializeLevelEditorProject(moved);
+    const imported = parseLevelEditorProjectJson(serialized);
+    expect(imported).toEqual(moved);
+    expect(validateLevelEditorProject(imported)).toEqual([]);
+
+    const removed = expectApplied(
+      applyLevelEditorCommand(moved, {
+        type: "encounter.bonus.remove",
+        chapterId: "chapter-1",
+      }),
+    );
+    expect(removed.chapters[0]?.level.anchors.encounters["bonus-1"]).toBeUndefined();
+    expect(removed.chapters[0]?.encounterSlots["bonus-1"]).toBeUndefined();
+    expect(removed.chapters[0]?.encounterSlots).toEqual(
+      before.chapters[0]?.encounterSlots,
+    );
+    expect(validateLevelEditorProject(removed)).toEqual([]);
+  });
+
+  it("rejects half-authored and ineligible bonus encounters", () => {
+    const before = ratCasinoProject();
+    const chapter = before.chapters[0]!;
+    const reference = {
+      source: "catalog",
+      catalogEntryId: "golden-after-hours-rat",
+      catalogEntryVersion: "v001",
+    } as const;
+    const anchorOnly = {
+      ...before,
+      chapters: [{
+        ...chapter,
+        level: {
+          ...chapter.level,
+          anchors: {
+            ...chapter.level.anchors,
+            encounters: {
+              ...chapter.level.anchors.encounters,
+              "bonus-1": bonusAnchor,
+            },
+          },
+        },
+      }],
+    };
+    const assignmentOnly = {
+      ...before,
+      chapters: [{
+        ...chapter,
+        encounterSlots: { ...chapter.encounterSlots, "bonus-1": reference },
+      }],
+    };
+
+    for (const incomplete of [anchorOnly, assignmentOnly]) {
+      expect(validateLevelEditorProject(incomplete)).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ code: "encounter.bonus-pair" }),
+        ]),
+      );
+      expect(() => resolveLevelEditorProject(incomplete)).toThrow(
+        LevelEditorProjectValidationError,
+      );
+    }
+
+    const incompatibleCandidate: LevelEditorEnemyCandidate = {
+      ...ordinaryCandidate(),
+      id: "wrong-bonus",
+      periodId: "block-party-v1",
+      eligibility: { startDate: "2025-01-02", endDate: "2026-01-01" },
+      role: "boss",
+      kind: "boss",
+      behaviorPreset: "boss",
+    };
+    const incompatible = {
+      ...before,
+      enemyCandidates: [incompatibleCandidate],
+      chapters: [{
+        ...chapter,
+        level: {
+          ...chapter.level,
+          anchors: {
+            ...chapter.level.anchors,
+            encounters: {
+              ...chapter.level.anchors.encounters,
+              "bonus-1": bonusAnchor,
+            },
+          },
+        },
+        encounterSlots: {
+          ...chapter.encounterSlots,
+          "bonus-1": { source: "candidate", candidateId: "wrong-bonus" },
+        },
+      }],
+    } as const satisfies LevelEditorProjectV2;
+    expect(validateLevelEditorProject(incompatible)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: "encounter.role" }),
+        expect.objectContaining({ code: "encounter.kind" }),
+        expect.objectContaining({ code: "encounter.date-eligibility" }),
+        expect.objectContaining({ code: "encounter.period" }),
+      ]),
+    );
   });
 
   it("keeps v5 projects on their pinned roster and exposes Rat Casino only to v6", () => {

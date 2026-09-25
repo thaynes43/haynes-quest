@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { createLevelEditorProject } from "../../src/shared/editor-project";
+import { createLevelEditorProject, resolveLevelEditorProject } from "../../src/shared/editor-project";
+import ratCasinoV2 from "../../src/shared/levels/rat-casino-world-v2.json";
 import {
   anchorForSlot,
   objectRows,
@@ -33,6 +34,15 @@ describe("level editor object selection", () => {
     expect(
       selectionFromIssuePath(level, "$.chapters[0].level.pieces[0].size.x"),
     ).toEqual({ type: "piece", id: "welcome" });
+  });
+
+  it("shows a bonus marker only in a chapter that authors one", () => {
+    expect(objectRows(level).some((row) => row.key === "anchor:encounter.bonus-1")).toBe(false);
+    const bonusLevel = resolveLevelEditorProject(ratCasinoV2).levels["rat-casino-v2"]!.document;
+    expect(objectRows(bonusLevel).some((row) => row.key === "anchor:encounter.bonus-1")).toBe(true);
+    expect(anchorForSlot(bonusLevel, "encounter.bonus-1")).toEqual(
+      bonusLevel.anchors.encounters["bonus-1"],
+    );
   });
 
   it("creates stable unique piece IDs", () => {

@@ -373,6 +373,27 @@ describe("GardenScene world theme assets", () => {
     scene.dispose();
   });
 
+  it("uses Golden's combat model without also spawning its scenic cameo", () => {
+    const save = previewSave();
+    const active = save.adventure?.activeLevel;
+    if (!active) throw new Error("Authored fixture needs an active level");
+    active.periodId = "rat-casino-v1";
+    active.encounters[0]!.content = {
+      catalogEntryId: "golden-after-hours-rat",
+      catalogEntryVersion: "v001",
+      assetId: "golden-after-hours-rat",
+      assetVersion: "v001",
+    };
+    const resolver = authoredLevelResolverFor({ [customRouteId]: v3Route("casino") });
+    const level = createLevelLayout(save, resolver);
+    const scene = new GardenScene(document.createElement("div"), level, save);
+    expect(harness.attached).toContain(
+      "/studio/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb",
+    );
+    expect(worldOf(scene).getObjectByName("casino-golden-cameo")).toBeUndefined();
+    scene.dispose();
+  });
+
   it("allows casino scenery for another cast without importing the Golden mascot", () => {
     const { scene } = previewFor("casino");
     const world = worldOf(scene);

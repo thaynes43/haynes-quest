@@ -744,8 +744,7 @@ function Adventure({
         <div className="game-bottom" data-quest-ui>
           <Joystick game={game} />
           <div className="keyboard-hint">
-            <span>WASD</span> move <span>SPACE</span> jump <span>F</span> attack{" "}
-            <span>SHIFT</span> secondary
+            <span>WASD</span> move · <span>SPACE</span> jump · click/<span>F</span> attack · right click/<span>SHIFT</span> secondary
           </div>
           <div className="combat-actions">
             <ActionButton
@@ -990,9 +989,10 @@ function Adventure({
             help.
           </p>
           <dl>
-            <dt>Keyboard</dt>
+            <dt>Keyboard and mouse</dt>
             <dd>
               WASD or arrows move. Space jumps. F attacks; Shift uses your
+              secondary attack. Left click attacks and right click uses the
               secondary attack. Drag to look.
             </dd>
           </dl>

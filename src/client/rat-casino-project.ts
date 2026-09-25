@@ -1,4 +1,4 @@
-import ratCasinoProjectSource from "../shared/levels/rat-casino-world-v1.json";
+import ratCasinoProjectSource from "../shared/levels/rat-casino-world-v2.json";
 import {
   authoredLevelResolverFor,
   type AuthoredLevelResolver,
@@ -12,7 +12,7 @@ import {
 } from "../shared/editor-project";
 
 export const RAT_CASINO_CHAPTER_ID = "rat-casino" as const;
-export const RAT_CASINO_ROUTE_ID = "rat-casino-v1" as const;
+export const RAT_CASINO_ROUTE_ID = "rat-casino-v2" as const;
 
 export interface EditorPlaytestResponse {
   readonly save: SaveView;

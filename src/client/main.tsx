@@ -253,7 +253,7 @@ function App() {
           </div>
           <p className="small-note">
             Keyboard: WASD to move · Space to jump · F to attack · Shift for
-            your second attack
+            your second attack · Mouse: left click attacks · right click uses your second attack
           </p>
         </main>
         <footer>

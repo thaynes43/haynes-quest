@@ -867,6 +867,24 @@ export function EditorWorkspace({
                 slot,
                 candidate,
               })}
+              onAddBonusEncounter={(anchor, encounter) => {
+                const command = { type: "encounter.bonus.add", chapterId: cursor.chapterId, anchor, encounter } as const;
+                const current = latestHistory.current.present.project;
+                const preview = applyLevelEditorCommand(current, command);
+                if (!preview.ok) return false;
+                const existing = new Set(
+                  validateLevelEditorProject(current).map((issue) => `${issue.path}:${issue.code}`),
+                );
+                if (preview.issues.some((issue) => !existing.has(`${issue.path}:${issue.code}`)))
+                  return false;
+                return runCommand(command, { type: "anchor", slot: "encounter.bonus-1" });
+              }}
+              onRemoveBonusEncounter={() => {
+                runCommand(
+                  { type: "encounter.bonus.remove", chapterId: cursor.chapterId },
+                  null,
+                );
+              }}
             />
           ) : (
             <section className="editor-world-section">

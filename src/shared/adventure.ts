@@ -96,8 +96,7 @@ export interface FrozenLevelPlanV3 extends FrozenLevelPlanBase {
   encounters: FrozenEncounterDefinitionV2[];
 }
 
-/** Fixture-only authored world level. It is never accepted by production save parsing. */
-export interface FrozenEditorWorldLevelPlan extends FrozenLevelPlanBase {
+interface FrozenEditorWorldLevelPlanBase extends FrozenLevelPlanBase {
   minorMemoryIds: [string, string];
   majorMemoryId: string;
   periodId: ParodyPeriodId;
@@ -107,6 +106,22 @@ export interface FrozenEditorWorldLevelPlan extends FrozenLevelPlanBase {
   bossGate: BossGate;
   encounters: FrozenEncounterDefinitionV2[];
 }
+
+/** Fixture-only authored world level. It is never accepted by production save parsing. */
+export type FrozenEditorWorldLevelPlanV1 = FrozenEditorWorldLevelPlanBase;
+
+/**
+ * Fixture-only authored world level with an explicitly frozen optional combat
+ * identity. The IDs are a subset of `encounters` and never participate in the
+ * boss or memory completion gate.
+ */
+export interface FrozenEditorWorldLevelPlanV2 extends FrozenEditorWorldLevelPlanBase {
+  optionalEncounterIds: [] | [string];
+}
+
+export type FrozenEditorWorldLevelPlan =
+  | FrozenEditorWorldLevelPlanV1
+  | FrozenEditorWorldLevelPlanV2;
 
 export type FrozenLevelPlan =
   | FrozenLevelPlanV1
@@ -131,12 +146,23 @@ export interface AdventurePlanV3 {
   levels: FrozenLevelPlanV3[];
 }
 
-export interface EditorWorldAdventurePlan {
+export interface EditorWorldAdventurePlanV1 {
   version: 'editor-world-plan-v1';
   catalogVersion: ParodyCatalogVersion;
   projectFingerprint: string;
-  levels: FrozenEditorWorldLevelPlan[];
+  levels: FrozenEditorWorldLevelPlanV1[];
 }
+
+export interface EditorWorldAdventurePlanV2 {
+  version: 'editor-world-plan-v2';
+  catalogVersion: ParodyCatalogVersion;
+  projectFingerprint: string;
+  levels: FrozenEditorWorldLevelPlanV2[];
+}
+
+export type EditorWorldAdventurePlan =
+  | EditorWorldAdventurePlanV1
+  | EditorWorldAdventurePlanV2;
 
 export type AdventurePlan =
   | AdventurePlanV1
@@ -221,7 +247,9 @@ export function abilitiesForPlanAge(
 export function usesRouteMemoryRules(
   plan: Pick<AdventurePlan, 'version'>,
 ): boolean {
-  return plan.version === 'era-level-plan-v3' || plan.version === 'editor-world-plan-v1';
+  return plan.version === 'era-level-plan-v3' ||
+    plan.version === 'editor-world-plan-v1' ||
+    plan.version === 'editor-world-plan-v2';
 }
 
 export function appearanceForAge(ageYears: number): AppearanceStage {
@@ -382,7 +410,11 @@ export function createAdventureStateAtLevel(
   }
   const state = createInitialAdventureState(plan);
   for (const level of plan.levels.slice(0, levelIndex)) {
+    const optionalEncounterIds = 'optionalEncounterIds' in level
+      ? new Set((level as FrozenEditorWorldLevelPlanV2).optionalEncounterIds)
+      : null;
     for (const encounter of level.encounters) {
+      if (optionalEncounterIds?.has(encounter.id)) continue;
       state.encounters[encounter.id] = {
         hp: 0,
         defeated: true,
@@ -816,6 +848,9 @@ function levelView(
     eraYear: level.eraYear,
     ...('periodId' in level ? { periodId: level.periodId, routeId: level.routeId } : {}),
     ...('bossGate' in level ? { bossGate: level.bossGate } : {}),
+    ...(plan.version === 'editor-world-plan-v2' && 'optionalEncounterIds' in level
+      ? { optionalEncounterIds: [...level.optionalEncounterIds] }
+      : {}),
     memoryIds: memoryIdsForLevel(level),
     ...('minorMemoryIds' in level ? {
       minorMemoryIds: [...level.minorMemoryIds] as [string, string],

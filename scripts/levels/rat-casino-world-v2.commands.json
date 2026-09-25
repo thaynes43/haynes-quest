@@ -1,0 +1,693 @@
+{
+  "expectedRevision": 0,
+  "commands": [
+    {
+      "type": "project.rename",
+      "name": "The Haynesnightmares Adventure"
+    },
+    {
+      "type": "chapter.details.set",
+      "chapterId": "chapter-2",
+      "subtitle": "A forgiving obby with memories, rivals and a boss arena",
+      "description": "Cross the course, collect both tools and two memories, then win the boss encounter and recover the major memory.",
+      "theme": "party",
+      "representedDateRange": {
+        "startDate": "2024-01-01",
+        "endDate": "2025-10-31"
+      },
+      "recoveredAge": {
+        "fromYears": 4,
+        "toYears": 5
+      },
+      "previewMemories": [
+        {
+          "slotId": "minor-one",
+          "date": "2024-08-01",
+          "label": "A bright detour"
+        },
+        {
+          "slotId": "minor-two",
+          "date": "2025-04-01",
+          "label": "A brave crossing"
+        },
+        {
+          "slotId": "major",
+          "date": "2025-10-31",
+          "label": "The lantern gate"
+        }
+      ]
+    },
+    {
+      "type": "chapter.add",
+      "newChapterId": "rat-casino",
+      "newRouteId": "rat-casino-v2",
+      "sourceTemplateId": "besties-playground-v2",
+      "name": "Haynesnightmares: Rat Casino",
+      "subtitle": "The lights are low, the reels are quiet, and the Rat Pit Boss is waiting",
+      "description": "Follow amber tickets through padded jumps and cabinet alcoves. Find two memories, face four stage mascots, try Golden's optional side-stage challenge, then face the Rat Pit Boss."
+    },
+    {
+      "type": "chapter.details.set",
+      "chapterId": "rat-casino",
+      "subtitle": "The lights are low, the reels are quiet, and the Rat Pit Boss is waiting",
+      "description": "Follow amber tickets through padded jumps and cabinet alcoves. Find two memories, face four stage mascots, try Golden's optional side-stage challenge, then face the Rat Pit Boss.",
+      "theme": "casino",
+      "representedDateRange": {
+        "startDate": "2025-10-31",
+        "endDate": "2026-10-31"
+      },
+      "recoveredAge": {
+        "fromYears": 5,
+        "toYears": 6
+      },
+      "previewMemories": [
+        {
+          "slotId": "minor-one",
+          "date": "2026-02-14",
+          "label": "A paper moon token"
+        },
+        {
+          "slotId": "minor-two",
+          "date": "2026-06-20",
+          "label": "The quiet backstage door"
+        },
+        {
+          "slotId": "major",
+          "date": "2026-10-31",
+          "label": "The last light on stage"
+        }
+      ]
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "rat-casino",
+      "slot": "ordinary-1",
+      "encounter": {
+        "source": "catalog",
+        "catalogEntryId": "chick-flia",
+        "catalogEntryVersion": "v001"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "rat-casino",
+      "slot": "ordinary-2",
+      "encounter": {
+        "source": "catalog",
+        "catalogEntryId": "jackrabbit-drummer",
+        "catalogEntryVersion": "v001"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "rat-casino",
+      "slot": "ordinary-3",
+      "encounter": {
+        "source": "catalog",
+        "catalogEntryId": "fox-card-shark",
+        "catalogEntryVersion": "v001"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "rat-casino",
+      "slot": "ordinary-4",
+      "encounter": {
+        "source": "catalog",
+        "catalogEntryId": "moth-projectionist",
+        "catalogEntryVersion": "v001"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "rat-casino",
+      "slot": "boss",
+      "encounter": {
+        "source": "catalog",
+        "catalogEntryId": "rat-pit-boss",
+        "catalogEntryVersion": "v001"
+      }
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-welcome",
+      "newPieceId": "casino-foyer"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-terrace-1",
+      "newPieceId": "token-step-one"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-terrace-2",
+      "newPieceId": "token-step-two"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-terrace-3",
+      "newPieceId": "token-step-three"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-picnic",
+      "newPieceId": "ticket-counter"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "ribbon-lane",
+      "newPieceId": "jackrabbit-beat-lane"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "ribbon-rest",
+      "newPieceId": "drum-break"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-ferry",
+      "newPieceId": "token-tray"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-dock",
+      "newPieceId": "cabinet-landing"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "zigzag-hop-1",
+      "newPieceId": "roulette-hop-one"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "zigzag-hop-2",
+      "newPieceId": "roulette-hop-two"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-grove",
+      "newPieceId": "fox-card-room"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "turnstile-deck",
+      "newPieceId": "backstage-turn"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-fair",
+      "newPieceId": "moth-projection-room"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "final-hop-1",
+      "newPieceId": "last-ticket-one"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "final-hop-2",
+      "newPieceId": "last-ticket-two"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "besties-court",
+      "newPieceId": "rat-pit-stage"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "party-reward",
+      "newPieceId": "after-hours-exit"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "wide-side-bridge",
+      "newPieceId": "cabinet-side-bridge"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "friend-balcony",
+      "newPieceId": "golden-view-balcony"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "besties-practice-ground",
+      "newPieceId": "casino-padded-floor"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "besties-practice-down-1",
+      "newPieceId": "token-descent-one"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "besties-practice-down-2",
+      "newPieceId": "token-descent-two"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "rat-casino",
+      "pieceId": "besties-practice-down-3",
+      "newPieceId": "token-descent-three"
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "jackrabbit-beat-lane",
+      "position": {
+        "x": -3,
+        "y": 0,
+        "z": -43.3
+      }
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "rat-casino",
+      "pieceId": "jackrabbit-beat-lane",
+      "piece": {
+        "type": "platform",
+        "id": "jackrabbit-beat-lane",
+        "center": {
+          "x": -3,
+          "y": -0.55,
+          "z": -43.3
+        },
+        "size": {
+          "x": 7,
+          "y": 1.7,
+          "z": 7
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "drum-break",
+      "position": {
+        "x": -3,
+        "y": 0.3,
+        "z": -52.3
+      }
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "rat-casino",
+      "pieceId": "drum-break",
+      "piece": {
+        "type": "platform",
+        "id": "drum-break",
+        "center": {
+          "x": -3,
+          "y": -0.4,
+          "z": -52.3
+        },
+        "size": {
+          "x": 10,
+          "y": 2,
+          "z": 9
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "token-tray",
+      "position": {
+        "x": -3,
+        "y": 0.6,
+        "z": -59.3
+      }
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "rat-casino",
+      "pieceId": "token-tray",
+      "piece": {
+        "type": "moving-platform",
+        "id": "token-tray",
+        "center": {
+          "x": -3,
+          "y": 0.6,
+          "z": -59.3
+        },
+        "size": {
+          "x": 4.4,
+          "y": 0.6,
+          "z": 4.2
+        },
+        "motion": {
+          "axis": "x",
+          "distance": 0.6,
+          "period": 9
+        }
+      }
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "cabinet-landing",
+      "position": {
+        "x": -3,
+        "y": 0.9,
+        "z": -65.8
+      }
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "rat-casino",
+      "pieceId": "cabinet-landing",
+      "piece": {
+        "type": "platform",
+        "id": "cabinet-landing",
+        "center": {
+          "x": -3,
+          "y": -0.1,
+          "z": -65.8
+        },
+        "size": {
+          "x": 10,
+          "y": 2.6,
+          "z": 8
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "roulette-hop-one",
+      "position": {
+        "x": -4.8,
+        "y": 1.2,
+        "z": -72.6
+      }
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "roulette-hop-two",
+      "position": {
+        "x": -1.2,
+        "y": 1.5,
+        "z": -77.2
+      }
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "fox-card-room",
+      "position": {
+        "x": 0,
+        "y": 1.2,
+        "z": -84.3
+      }
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "rat-casino",
+      "pieceId": "fox-card-room",
+      "piece": {
+        "type": "platform",
+        "id": "fox-card-room",
+        "center": {
+          "x": 0,
+          "y": 0.05,
+          "z": -84.3
+        },
+        "size": {
+          "x": 12,
+          "y": 2.9,
+          "z": 8
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "backstage-turn",
+      "position": {
+        "x": 3,
+        "y": 1.5,
+        "z": -93.3
+      }
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "rat-casino",
+      "pieceId": "backstage-turn",
+      "piece": {
+        "type": "platform",
+        "id": "backstage-turn",
+        "center": {
+          "x": 3,
+          "y": 0.2,
+          "z": -93.3
+        },
+        "size": {
+          "x": 10,
+          "y": 3.2,
+          "z": 8
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "moth-projection-room",
+      "position": {
+        "x": 0,
+        "y": 1.8,
+        "z": -102.8
+      }
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "rat-casino",
+      "pieceId": "moth-projection-room",
+      "piece": {
+        "type": "platform",
+        "id": "moth-projection-room",
+        "center": {
+          "x": 0,
+          "y": 0.35,
+          "z": -102.8
+        },
+        "size": {
+          "x": 12,
+          "y": 3.5,
+          "z": 9
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "last-ticket-one",
+      "position": {
+        "x": -1.2,
+        "y": 2.1,
+        "z": -109.5
+      }
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "last-ticket-two",
+      "position": {
+        "x": 1.2,
+        "y": 2.4,
+        "z": -113.1
+      }
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "rat-pit-stage",
+      "position": {
+        "x": 0,
+        "y": 2.7,
+        "z": -125.3
+      }
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "rat-casino",
+      "pieceId": "rat-pit-stage",
+      "piece": {
+        "type": "platform",
+        "id": "rat-pit-stage",
+        "center": {
+          "x": 0,
+          "y": 0.8,
+          "z": -125.3
+        },
+        "size": {
+          "x": 14,
+          "y": 4.4,
+          "z": 20
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "after-hours-exit",
+      "position": {
+        "x": 0,
+        "y": 2.7,
+        "z": -138.3
+      }
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "rat-casino",
+      "pieceId": "after-hours-exit",
+      "piece": {
+        "type": "platform",
+        "id": "after-hours-exit",
+        "center": {
+          "x": 0,
+          "y": 0.8,
+          "z": -138.3
+        },
+        "size": {
+          "x": 12,
+          "y": 4.4,
+          "z": 6
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "cabinet-side-bridge",
+      "position": {
+        "x": 3,
+        "y": 0.9,
+        "z": -72.3
+      }
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "golden-view-balcony",
+      "position": {
+        "x": 4,
+        "y": 0.9,
+        "z": -78.8
+      }
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "ribbon-padded-bar",
+      "position": {
+        "x": -3,
+        "y": 0.52,
+        "z": -43.3
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.move",
+      "chapterId": "rat-casino",
+      "pieceId": "party-turnstile",
+      "position": {
+        "x": 3,
+        "y": 2.02,
+        "z": -93.3
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "connection.update",
+      "chapterId": "rat-casino",
+      "match": {
+        "from": "golden-view-balcony",
+        "to": "fox-card-room",
+        "mode": "walk"
+      },
+      "connection": {
+        "from": "golden-view-balcony",
+        "to": "fox-card-room",
+        "mode": "jump"
+      }
+    },
+    {
+      "type": "section.add",
+      "chapterId": "rat-casino",
+      "idPrefix": "ticket-loft",
+      "fromPlatformId": "casino-foyer",
+      "toPlatformId": "ticket-counter",
+      "pattern": "arch",
+      "side": "left",
+      "steps": 11,
+      "rise": 0.3
+    },
+    {
+      "type": "section.add",
+      "chapterId": "rat-casino",
+      "idPrefix": "roulette-bypass",
+      "fromPlatformId": "cabinet-landing",
+      "toPlatformId": "fox-card-room",
+      "pattern": "zigzag",
+      "side": "left",
+      "steps": 4,
+      "rise": 0.3
+    },
+    {
+      "type": "encounter.bonus.add",
+      "chapterId": "rat-casino",
+      "anchor": {
+        "kind": "ordinary-a",
+        "position": {
+          "x": 5.7,
+          "y": 3,
+          "z": -117.7
+        },
+        "platformId": "rat-pit-stage",
+        "arena": {
+          "minX": 4.7,
+          "maxX": 6.7,
+          "minZ": -118.7,
+          "maxZ": -116.6
+        },
+        "checkpointId": "besties-safe"
+      },
+      "encounter": {
+        "source": "catalog",
+        "catalogEntryId": "golden-after-hours-rat",
+        "catalogEntryVersion": "v001"
+      }
+    }
+  ]
+}

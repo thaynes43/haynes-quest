@@ -10,6 +10,7 @@ import {
 } from "../../src/shared/authored-level";
 import bestiesPlayground from "../../src/shared/levels/besties-playground-v1.json";
 import gardenPlayground from "../../src/shared/levels/garden-playground-v1.json";
+import ratCasinoWorldV2 from "../../src/shared/levels/rat-casino-world-v2.json";
 
 const ground = (
   id: string,
@@ -602,6 +603,136 @@ describe("authored level documents", () => {
     expectIssue(wrongLegacyTheme, "identity.theme", "$.theme");
     expect(issuesFor(gardenPlayground)).toEqual([]);
     expect(issuesFor(bestiesPlayground)).toEqual([]);
+  });
+
+  it("allows one branch-local bonus encounter only in project-local v3 documents", () => {
+    const base = clone();
+    const bonusPlatform = ground("bonus-stage", -27.5, {
+      center: { x: 6, y: -0.3, z: -27.5 },
+      size: { x: 4, y: 0.6, z: 4 },
+    });
+    const bonusAnchor = {
+      platformId: "bonus-stage",
+      position: { x: 6, y: 0, z: -27.5 },
+      kind: "ordinary-a" as const,
+      checkpointId: "cp0",
+      arena: { minX: 4.4, maxX: 7.6, minZ: -29.1, maxZ: -25.9 },
+    };
+    const local = {
+      ...base,
+      schemaVersion: "authored-level-v3",
+      id: "bonus-route",
+      pieces: [...base.pieces, bonusPlatform],
+      connections: [
+        ...base.connections,
+        { from: "p5", to: "bonus-stage", mode: "walk" as const },
+        { from: "bonus-stage", to: "p6", mode: "walk" as const },
+      ],
+      branches: [...base.branches, ["p5", "bonus-stage", "p6"]],
+      anchors: {
+        ...base.anchors,
+        encounters: {
+          ...base.anchors.encounters,
+          "bonus-1": bonusAnchor,
+        },
+      },
+    } as const;
+
+    expect(issuesFor(local)).toEqual([]);
+    expect(resolveAuthoredLevelDocument(local).anchors.encounters["bonus-1"])
+      .toEqual(bonusAnchor);
+
+    const lateBranch = {
+      ...local,
+      branches: [...base.branches, ["p5", "bonus-stage", "p9"]],
+    };
+    expect(issuesFor(lateBranch)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: '$.anchors.encounters["bonus-1"].platformId',
+          code: "ordering.bonus-before-boss",
+        }),
+      ]),
+    );
+
+    for (const forgedLegacy of [
+      {
+        ...local,
+        schemaVersion: "authored-level-v1",
+        id: "garden-playground-v1",
+      },
+      {
+        ...local,
+        schemaVersion: "authored-level-v2",
+        id: "garden-playground-v2",
+      },
+    ])
+      expect(issuesFor(forgedLegacy)).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            path: "$.anchors.encounters",
+            code: "schema.unrecognized_keys",
+          }),
+        ]),
+      );
+    expect(issuesFor(base)).toEqual([]);
+  });
+
+  it("keeps Golden stage-front and rejects bonus placement after or behind Rat", () => {
+    const chapter = ratCasinoWorldV2.chapters.find(
+      (entry) => entry.routeId === "rat-casino-v2",
+    );
+    if (!chapter) throw new Error("Rat Casino v2 fixture is missing");
+    const stageFront = structuredClone(chapter.level);
+    expect(issuesFor(stageFront)).toEqual([]);
+
+    const golden = stageFront.anchors.encounters["bonus-1"];
+    const afterHoursExit = {
+      ...stageFront,
+      anchors: {
+        ...stageFront.anchors,
+        encounters: {
+          ...stageFront.anchors.encounters,
+          "bonus-1": {
+            ...golden,
+            platformId: "after-hours-exit",
+            position: { x: 4.5, y: 3, z: -138.3 },
+            arena: { minX: 3.8, maxX: 5.4, minZ: -139.3, maxZ: -137.3 },
+          },
+        },
+      },
+    };
+    expect(issuesFor(afterHoursExit)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: '$.anchors.encounters["bonus-1"].platformId',
+          code: "ordering.bonus-before-boss",
+        }),
+      ]),
+    );
+
+    const behindRat = {
+      ...stageFront,
+      anchors: {
+        ...stageFront.anchors,
+        encounters: {
+          ...stageFront.anchors.encounters,
+          "bonus-1": {
+            ...golden,
+            position: { x: 5.7, y: 3, z: -132.5 },
+            arena: { minX: 4.7, maxX: 6.7, minZ: -133.5, maxZ: -131.5 },
+          },
+        },
+      },
+    };
+    expect(issuesFor(behindRat)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: '$.anchors.encounters["bonus-1"].position',
+          code: "ordering.bonus-before-boss",
+        }),
+      ]),
+    );
   });
 
   it("throws a typed error carrying the exact validation issues", () => {

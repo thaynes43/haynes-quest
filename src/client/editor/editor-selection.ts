@@ -19,6 +19,7 @@ export const EDITOR_ANCHOR_SLOTS = [
   "encounter.ordinary-2",
   "encounter.ordinary-3",
   "encounter.ordinary-4",
+  "encounter.bonus-1",
   "encounter.boss",
   "friendly.friendly-1",
   "friendly.friendly-2",
@@ -26,6 +27,17 @@ export const EDITOR_ANCHOR_SLOTS = [
 ] as const;
 
 export type EditorAnchorSlot = (typeof EDITOR_ANCHOR_SLOTS)[number];
+
+/** A bonus encounter is visible only in a chapter that actually authors one. */
+export function editorAnchorSlotsFor(
+  document: AuthoredLevelDocument,
+): readonly EditorAnchorSlot[] {
+  return EDITOR_ANCHOR_SLOTS.filter(
+    (slot) =>
+      slot !== "encounter.bonus-1" ||
+      Boolean(document.anchors.encounters["bonus-1"]),
+  );
+}
 
 export type EditorSelection =
   | { readonly type: "piece"; readonly id: string }
@@ -75,7 +87,9 @@ export function anchorForSlot(
   }
   if (slot.startsWith("encounter.")) {
     const key = slot.slice("encounter.".length) as keyof typeof document.anchors.encounters;
-    return document.anchors.encounters[key];
+    const anchor = document.anchors.encounters[key];
+    if (!anchor) throw new Error(`Encounter anchor ${key} is unavailable`);
+    return anchor;
   }
   const key = slot.slice("friendly.".length) as keyof typeof document.anchors.friendlies;
   return document.anchors.friendlies[key];
@@ -85,9 +99,12 @@ export function anchorForSelection(
   document: AuthoredLevelDocument,
   selection: EditorSelection | null,
 ): AuthoredAnchor | AuthoredEncounterAnchor | null {
-  return selection?.type === "anchor"
-    ? anchorForSlot(document, selection.slot)
-    : null;
+  if (selection?.type !== "anchor") return null;
+  if (
+    selection.slot === "encounter.bonus-1" &&
+    !document.anchors.encounters["bonus-1"]
+  ) return null;
+  return anchorForSlot(document, selection.slot);
 }
 
 export function positionForSelection(
@@ -115,6 +132,7 @@ export function labelForAnchor(slot: EditorAnchorSlot): string {
     "encounter.ordinary-2": "Enemy · Ordinary two",
     "encounter.ordinary-3": "Enemy · Ordinary three",
     "encounter.ordinary-4": "Enemy · Ordinary four",
+    "encounter.bonus-1": "Enemy · Optional bonus",
     "encounter.boss": "Boss",
     "friendly.friendly-1": "Friend one",
     "friendly.friendly-2": "Friend two",
@@ -136,7 +154,7 @@ export function objectRows(document: AuthoredLevelDocument): EditorObjectRow[] {
     searchText: `${piece.id} ${piece.type}`.toLocaleLowerCase(),
     selection: { type: "piece", id: piece.id },
   }));
-  const anchors = EDITOR_ANCHOR_SLOTS.map((slot): EditorObjectRow => ({
+  const anchors = editorAnchorSlotsFor(document).map((slot): EditorObjectRow => ({
     key: `anchor:${slot}`,
     group: "Gameplay",
     label: labelForAnchor(slot),
