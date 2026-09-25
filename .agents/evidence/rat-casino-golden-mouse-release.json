@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "recordedAt": "2026-09-25T16:38:09Z",
-  "status": "rollout-and-golden-journey-verified-skip-retry-running",
-  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged, its checks passed, its signed immutable image is pinned through haynes-ops PR3184, and the isolated playtest rollout and unchanged Normal Quest/dev-env identities are verified. Hosted mouse, touch and bonus-editor checks passed, as did the full Golden-fight route on the exact deployed commit. The first hosted Golden-skip attempt reached the finish trigger but the browser/test process exited 143 before writing its report, so it is retained as an operational failure with unknown cause and is not a pass. A clean detached retry is running.",
+  "recordedAt": "2026-09-25T16:52:08Z",
+  "status": "private-playtest-deployed-and-browser-verified",
+  "scope": "PLAN018 Golden optional encounter and desktop mouse combat on the isolated private playtest. Application PR73 is merged, its checks passed, its signed immutable image is pinned through haynes-ops PR3184, and the isolated playtest rollout and unchanged Normal Quest/dev-env identities are verified. Hosted mouse, touch and bonus-editor checks passed. Both full lockstep routes passed on the exact deployed commit: one defeated Golden and Rat, and the other left Golden inactive and defeated Rat. The earlier local harness reachability failure and first hosted skip attempt's operational SIGTERM remain retained without being counted as product failures or passing journeys. Physical Safari and exact final-art review remain separate owner gates.",
   "application": {
     "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/73",
     "reviewedHead": "f84e31202e8eb0f6dca9617704e56a7e1f120f10",
@@ -137,7 +137,7 @@
     ]
   },
   "publication": {
-    "status": "published-ops-and-hosted-pending",
+    "status": "published-and-deployed",
     "sourceCommit": "66c64d41e9f741285b49ccb6f1cd57d1ce5947fe",
     "mainApplicationRun": 36158873892,
     "mainApplicationRunUrl": "https://github.com/thaynes43/haynes-quest/actions/runs/36158873892",
@@ -163,7 +163,7 @@
     }
   },
   "gitops": {
-    "status": "rollout-verified-activity-open",
+    "status": "rollout-verified-activity-ended",
     "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/3184",
     "reviewedHead": "05454a89b8c9d574fd539839ae6b8089d03f44f9",
     "mergeCommit": "80d4c69dcb1c0faf569af5b90b3fb0ce058db749",
@@ -219,13 +219,48 @@
       "podUid": "bd0abf86-9d6f-4a9a-a4f7-239ca591143a",
       "unchanged": true
     },
+    "finalPostRetryClusterCheck": {
+      "checkedAt": "approximately 2026-09-25T16:45Z",
+      "playtestDeployment": {
+        "generation": 24,
+        "observedGeneration": 24,
+        "readyReplicas": 1,
+        "image": "ghcr.io/thaynes43/haynes-quest:sha-66c64d41e9f741285b49ccb6f1cd57d1ce5947fe@sha256:e6599b23b702512716843a938e8f1016fca443ba6ba2bfd00b435a98e11b504d"
+      },
+      "playtestPod": {
+        "uid": "d6b42cb9-bcf4-40bf-bf5b-29de41f5feff",
+        "ready": true,
+        "restarts": 0,
+        "imageIdMatchesRequestedDigest": true
+      },
+      "normalQuest": {
+        "deploymentUid": "c17ee749-129e-4059-8091-ba167639604e",
+        "generation": 3,
+        "observedGeneration": 3,
+        "imageDigest": "sha256:743bca475c2e19d2534ecd3be7f952e52d0d5adb5724599f1285218f91e87e37",
+        "podUid": "d3e0117d-9dc5-4716-9343-2a740147171b",
+        "ready": true,
+        "historicalRestarts": 6,
+        "unchanged": true
+      },
+      "devEnv": {
+        "deploymentUid": "6959868c-24ba-476a-9a6c-5ab72e6545f9",
+        "generation": 120,
+        "observedGeneration": 120,
+        "imageDigest": "sha256:c47b52e6dec31cba8fd09cf712960ebd6f66d6490062911626d0406f6fa4d9bf",
+        "podUid": "bd0abf86-9d6f-4a9a-a4f7-239ca591143a",
+        "readyContainers": "3/3",
+        "restarts": 0,
+        "unchanged": true
+      }
+    },
     "normalQuestDeploymentUidGenerationAndImageUnchanged": true,
     "devEnvDeploymentUidGenerationAndImageUnchanged": true
   },
   "hosted": {
-    "status": "golden-fight-passed-skip-retry-running",
+    "status": "checks-complete",
     "playtestUrl": "https://haynes-quest-playtest.haynesops.com/",
-    "checkedAt": "2026-09-25T16:29:27.555Z",
+    "checkedAt": "2026-09-25T16:44:30.959Z",
     "browser": {
       "name": "headless Chromium",
       "version": "153.0.8010.12",
@@ -239,6 +274,7 @@
       "/studio/assets/reviews/golden-after-hours-rat/v001.html": 200,
       "/studio/project/plans/018-golden-encounter-and-mouse.html": 200
     },
+    "planEndpointNote": "The deployed PR73 image served the active-plan path above before the repository-only closeout moved PLAN018 to completed/. The completed-plan path is checked by the strict local documentation build and is not claimed as hosted by this release record.",
     "goldenFightJourney": {
       "status": "passed",
       "startedAt": "2026-09-25T16:22:24.139Z",
@@ -294,8 +330,8 @@
       "limit": "Lockstep establishes hosted route logic, layout and rules; it does not establish real-time frame cost, physical Safari behavior or device feel."
     },
     "skipGoldenJourney": {
-      "status": "retry-in-progress-after-operational-termination",
-      "passingReportRecorded": false,
+      "status": "passed-on-detached-retry",
+      "passingReportRecorded": true,
       "attempts": [
         {
           "attempt": 1,
@@ -320,14 +356,75 @@
             "imageId": "ghcr.io/thaynes43/haynes-quest@sha256:e6599b23b702512716843a938e8f1016fca443ba6ba2bfd00b435a98e11b504d"
           },
           "limit": "Reaching the finish trigger does not establish the full hosted skip pass because the process terminated before writing report.json."
+        },
+        {
+          "attempt": 2,
+          "status": "passed",
+          "startedAt": "2026-09-25T16:37:39.106Z",
+          "finishedAt": "2026-09-25T16:44:30.959Z",
+          "sourceCommit": "66c64d41e9f741285b49ccb6f1cd57d1ce5947fe",
+          "sourceCommitMatchesDeployedImageTag": true,
+          "routeId": "rat-casino-v2",
+          "clock": {
+            "mode": "lockstep",
+            "frames": 1280,
+            "pageSeconds": 49.49,
+            "wallSeconds": 330.7,
+            "deviceScaleFactor": 0.5
+          },
+          "goldenActivation": null,
+          "goldenDefeated": false,
+          "fights": 5,
+          "fightsWithoutRetry": 5,
+          "ratPitBossDefeated": true,
+          "memoriesRecovered": [
+            "rat-casino-v2-memory-minor-one",
+            "rat-casino-v2-memory-minor-two",
+            "rat-casino-v2-memory-major"
+          ],
+          "completedLevelIds": [
+            "chapter-1-route",
+            "chapter-2-route",
+            "rat-casino-v2"
+          ],
+          "completed": true,
+          "collectibles": {
+            "tokens": 60,
+            "tokenTotal": 145,
+            "tickets": 1,
+            "ticketTotal": 3
+          },
+          "narrowViewport": {
+            "width": 390,
+            "height": 844,
+            "homeHorizontalOverflow": 0,
+            "gameHorizontalOverflow": 0
+          },
+          "bossStageFrameSample": {
+            "measured": false,
+            "reason": "Lockstep run; frame time needs real-time mode."
+          },
+          "errors": {
+            "page": 0,
+            "console": 0,
+            "response": 0,
+            "failedRequests": 0,
+            "externalRequests": 0
+          },
+          "screenshots": 12,
+          "report": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/golden-hosted-v2-skip-retry/report.json",
+          "reportSha256": "136fc5a1988a28369745cd156873b80fd2d6a5189344ebbf6693910437152108",
+          "limit": "Lockstep establishes hosted route logic, layout and rules; it does not establish real-time frame cost, physical Safari behavior or device feel."
         }
       ],
       "retry": {
-        "status": "running",
+        "status": "passed",
         "detached": true,
         "tmuxSession": "quest-golden-skip-hosted",
         "log": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/golden-skip-retry.log",
-        "exitMarker": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/golden-skip-retry.exit"
+        "exitMarker": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted/golden-skip-retry.exit",
+        "exitMarkerValue": 0,
+        "exitMarkerSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
       }
     },
     "mouseAndTouchChecks": {
@@ -381,15 +478,27 @@
         "bytes": 1363724
       }
     },
-    "pageConsoleHttpFailedAndExternalErrors": null,
-    "reportArchive": null,
-    "reportSha256": null,
-    "rawEvidenceManifest": null,
-    "rawEvidenceManifestSha256": null
+    "pageConsoleHttpFailedAndExternalErrors": 0,
+    "operationalTerminationsRetained": 1,
+    "reportArchive": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/hosted",
+    "rawEvidenceManifest": "/home/dev/artifacts/haynes-quest/golden-mouse-20260925/sha256-manifest.json",
+    "rawEvidenceManifestSha256": "ab90abfc921c8d2a92f49f07b2bdc9ea36695dbeffeba253439379ae6914883f",
+    "rawEvidenceFileCount": 73,
+    "rawEvidenceScreenshotCount": 59
   },
   "cleanup": {
     "localServerPort": 4173,
     "localServerStopped": true
+  },
+  "documentationCloseout": {
+    "status": "passed",
+    "command": "PATH=\"$PWD/.venv-docs/bin:$PATH\" scripts/docs/build.sh",
+    "preparedFiles": 1403,
+    "checkedMarkdownAndLocalMediaFiles": 245,
+    "completedPlanOutput": "site/project/plans/completed/018-golden-encounter-and-mouse.html",
+    "formerActivePlanOutputAbsent": true,
+    "hostedCompletedPlanPathChecked": false,
+    "note": "The completed-plan move is a repository-only closeout. The deployed PR73 plan-page check remains historical; no second playtest rollout is required solely for this record."
   },
   "pendingOwnerGates": [
     "Physical iPhone/iPad Safari play and feel",

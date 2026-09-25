@@ -76,7 +76,7 @@ nav:
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
-      - Golden encounter and mouse combat: project/plans/018-golden-encounter-and-mouse.md
+      - Golden encounter and mouse combat: project/plans/completed/018-golden-encounter-and-mouse.md
       - Rat Casino fun pass: project/plans/017-rat-casino-fun-pass.md
       - Complete world builder: project/plans/completed/014-complete-world-builder.md
       - Haynesnightmares cast: project/plans/completed/015-haynesnightmares-asset-first.md

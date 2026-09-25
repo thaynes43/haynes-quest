@@ -3,7 +3,7 @@
 - **Status:** Proposed, September 25, 2026
 - **Source:** Tom's Rat Casino playtest: the golden character stood still at close range; desktop clicking should attack, while touch scenery taps must not.
 - **Satisfies:** [DESIGN-021](021-rat-casino-level.md), [DESIGN-018](018-familiar-touch-and-recovery.md), [DESIGN-022](022-rat-casino-fun-pass.md)
-- **Plan:** [PLAN-018](../../.agents/plans/018-golden-encounter-and-mouse.md)
+- **Plan:** [PLAN-018](../../.agents/plans/completed/018-golden-encounter-and-mouse.md)
 
 ## Player journey
 
