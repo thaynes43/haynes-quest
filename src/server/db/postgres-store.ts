@@ -30,7 +30,8 @@ const MAINTENANCE_BATCH_SIZE = 1_000;
 export class PostgresQuestStore implements QuestStore {
   readonly db: Database;
 
-  constructor(private readonly pool: Pool) {
+  /** Shared with family sign-in so one pool serves the whole process. */
+  constructor(readonly pool: Pool) {
     this.db = drizzle(pool, { schema: questSchema });
   }
 

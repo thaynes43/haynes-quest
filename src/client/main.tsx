@@ -9,6 +9,8 @@ import type {
 import { GameScreen } from "./GameScreen";
 import { MemoryImage } from "./MemoryImage";
 import { api, friendlyError } from "./api";
+import { FamilyShell, SignedOutScreen } from "./auth/FamilyShell";
+import { readSignInProblem } from "./auth/session";
 import { EditorApp, EditorUnavailable } from "./editor/EditorApp";
 import {
   RAT_CASINO_PLAYTEST_REQUEST,
@@ -72,11 +74,16 @@ function Brand() {
 }
 const initialName = "Demo Adventurer";
 
+// A refused family sign-in returns to "/?error=…"; read it once and tidy the URL.
+const signInProblem = readSignInProblem(window.location.search);
+if (signInProblem) window.history.replaceState(null, "", window.location.pathname);
+
 function App() {
   const editorRoute =
     window.location.pathname === "/editor" ||
     window.location.pathname.startsWith("/editor/");
   const [session, setSession] = useState<SessionView>();
+  const [signedOut, setSignedOut] = useState(false);
   const [saves, setSaves] = useState<SaveSummary[]>([]);
   const [page, setPage] = useState<"home" | "setup" | "game">("home");
   const [save, setSave] = useState<SaveView>();
@@ -84,6 +91,8 @@ function App() {
     useState<ResolvedEditorPlaytest>();
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const ephemeral =
+    session?.mode === "fixture" && session.progressMode === "ephemeral";
   const refresh = useCallback(async () => {
     const list = await api<{ saves: SaveSummary[] }>("/saves");
     setSaves(list.saves);
@@ -93,11 +102,15 @@ function App() {
     void api<SessionView>("/session")
       .then(async (s) => {
         if (live) setSession(s);
-        if (s.progressMode !== "ephemeral") await refresh();
+        if (s.mode === "fixture" && s.progressMode !== "ephemeral")
+          await refresh();
       })
-      .catch(() => {
-        if (live)
-          setError("The clearing is resting. Please try again in a moment.");
+      .catch((e: unknown) => {
+        if (!live) return;
+        // Family mode answers 401 until someone signs in.
+        if (e instanceof Error && e.message === "AUTH_REQUIRED")
+          setSignedOut(true);
+        else setError("The clearing is resting. Please try again in a moment.");
       });
     return () => {
       live = false;
@@ -121,7 +134,7 @@ function App() {
     setSave(undefined);
     setEditorPlaytest(undefined);
     try {
-      if (session?.progressMode !== "ephemeral") await refresh();
+      if (!ephemeral) await refresh();
     } catch (e) {
       setError(friendlyError(e));
     }
@@ -157,6 +170,8 @@ function App() {
       setBusy(false);
     }
   }
+  if (signedOut)
+    return <SignedOutScreen brand={<Brand />} problem={signInProblem} />;
   if (!session)
     return (
       <div className="app-shell">
@@ -173,8 +188,19 @@ function App() {
         </main>
       </div>
     );
+  if (session.mode === "family" && !(page === "game" && save))
+    return (
+      <FamilyShell
+        brand={<Brand />}
+        session={session}
+        onSignedOut={() => {
+          setSession(undefined);
+          setSignedOut(true);
+        }}
+      />
+    );
   if (editorRoute)
-    return session.progressMode === "ephemeral" ? (
+    return ephemeral ? (
       <EditorApp />
     ) : (
       <EditorUnavailable />
@@ -183,7 +209,7 @@ function App() {
     return (
       <GameScreen
         initialSave={save}
-        ephemeral={session?.progressMode === "ephemeral"}
+        ephemeral={ephemeral}
         onLeave={() => void leave()}
         authoredLevelResolver={editorPlaytest?.resolver}
         chapterTitles={editorPlaytest?.chapterTitles}
@@ -192,7 +218,7 @@ function App() {
         chapterOnlyRouteId={editorPlaytest ? RAT_CASINO_ROUTE_ID : undefined}
       />
     );
-  if (session?.progressMode === "ephemeral")
+  if (ephemeral)
     return (
       <div className="app-shell fresh-playtest">
         <header className="site-header">

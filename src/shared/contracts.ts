@@ -190,11 +190,37 @@ export interface PreviewResponse {
   };
   selectedIds: string[];
 }
-export interface SessionView {
+export type PlayerRole = "admin" | "player";
+
+/** Fictional playtest / fixture sessions. Never issued by the family release. */
+export interface FixtureSessionView {
   player: { id: string; label: string };
   mode: "fixture";
   progressMode?: "ephemeral" | "persistent";
   csrfHeader: "X-Quest-Request";
+}
+
+/** An admitted Authentik household member (ADR-005). `role` is re-derived at every sign-in. */
+export interface FamilySessionView {
+  player: { id: string; label: string };
+  mode: "family";
+  role: PlayerRole;
+  /** True when the server can also end the Authentik session on sign-out. */
+  endSessionAvailable: boolean;
+  csrfHeader: "X-Quest-Request";
+}
+
+export type SessionView = FixtureSessionView | FamilySessionView;
+
+export interface SignOutRequest {
+  /** Also sign out of Authentik ("Haynes Network") on a shared device. */
+  endSession?: boolean;
+}
+
+export interface SignOutResponse {
+  signedOut: true;
+  /** Where to send the browser to end the Authentik session, when requested and configured. */
+  endSessionUrl: string | null;
 }
 export interface ApiError {
   error: { code: string; message: string };

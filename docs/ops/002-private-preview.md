@@ -76,4 +76,27 @@ The deployment deliberately sets both `NODE_ENV=development` and `QUEST_FIXTURE_
 
 The private route is live at `https://haynes-quest.haynesops.com` behind `traefik-internal`, whose LoadBalancer is LAN-only at `192.168.40.203`. The zone is managed by UniFi DNS and excluded from the public Cloudflare DNS controller. Deployment merged through haynes-ops [#2851](https://github.com/thaynes43/haynes-ops/pull/2851), with restart and ownership evidence in [#2852](https://github.com/thaynes43/haynes-ops/pull/2852). Check the [handoff](../../.agents/HANDOFF.md) for the current immutable image.
 
-Future admission work: configure the separate Authentik client and admitted-player policy, verify actual login/callback journeys, authorize real subject setup/media, settle birth-date/age-anchor and name-disambiguation previews, review exact asset versions, and play on physical iPad/iPhone Safari. Real photo-derived likeness remains private follow-on work; no private family reference has been sent to an external generator.
+Future admission work: configure the Authentik provider and application for the family release, verify the owner's actual login/callback journey, authorize real subject setup/media, settle birth-date/age-anchor and name-disambiguation previews, review exact asset versions, and play on physical iPad/iPhone Safari. Real photo-derived likeness remains private follow-on work; no private family reference has been sent to an external generator.
+
+## Family sign-in configuration
+
+Outside fixture mode the server admits Authentik users under [ADR-005](../adrs/005-family-sign-in-and-admission.md) (WO106). It uses Better Auth `genericOAuth` with provider id `authentik`, PKCE S256 and a verified ID token. The only callback is `${QUEST_APP_ORIGIN}/api/auth/callback/authentik`.
+
+| Variable | Default | Meaning |
+| --- | --- | --- |
+| `QUEST_OIDC_DISCOVERY_URL` | none; required outside fixture mode | The provider's `.well-known/openid-configuration` URL. HTTPS is required under `NODE_ENV=production`. |
+| `QUEST_OIDC_CLIENT_ID` | `haynes-quest` | The public PKCE client. |
+| `QUEST_OIDC_CLIENT_SECRET` | unset | When set, the app authenticates as a confidential client (`client_secret_post`). |
+| `QUEST_ADMITTED_GROUPS` | `family,authentik Admins` | Comma-separated `groups` claim values that admit a person. |
+| `QUEST_ADMIN_GROUPS` | `authentik Admins` | Comma-separated groups that grant the administrator role. They also admit. |
+| `QUEST_AUTH_END_SESSION` | unset | Authentik end-session URL. When set, sign-out can also end the Authentik session. |
+
+Behavior:
+
+- A login is admitted only by the verified ID token's `groups` claim, checked at every sign-in. Without an admitted group the callback returns to `/?error=not_admitted`, creates no session and ends that person's other sessions.
+- Players are keyed by `(issuer, subject)`, unique in `quest_players`. Email and display name are display-only.
+- Sessions live in Postgres (`quest_auth_sessions`) for seven days, absolute, with no rolling extension. The cookie is `__Secure-quest-family.session_token`: HttpOnly, SameSite=Lax and Secure on an HTTPS origin. Provider tokens, IP addresses and user agents are not stored.
+- `POST /api/sign-out` (behind the Origin and `X-Quest-Request` guard) deletes the session. With `{"endSession": true}` it also returns the configured end-session URL.
+- Only `POST /api/auth/sign-in/social` and the callback are exposed under `/api/auth`. Sign-in start requires the exact app Origin and ignores client-supplied providers, return paths and ID tokens.
+- Fixture mode refuses `QUEST_OIDC_DISCOVERY_URL` and `QUEST_OIDC_CLIENT_SECRET`, never constructs Better Auth, and never accepts a family cookie. Family mode never accepts a fixture cookie.
+- The family lane derives the private subject-id HMAC key with `deriveSubjectIdSecret(BETTER_AUTH_SECRET)`, which uses HKDF-SHA256 with a fixed label. No extra secret is needed.

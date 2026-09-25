@@ -57,6 +57,9 @@ export const recoverSchema = z
   .object({ memoryId: z.string().min(1).max(128) })
   .strict();
 export const finishSchema = z.object({}).strict();
+export const signOutSchema = z
+  .object({ endSession: z.boolean().optional() })
+  .strict();
 export const playtestStartSchema = z.object({
   chapter: z.union([z.literal(1), z.literal(2)]),
 }).strict();
