@@ -145,7 +145,12 @@ const FIXTURE_MEDIA_KEYS = [
   'demo-memory-2027-01',
 ] as const;
 
-function prepareEditorWorld(
+/**
+ * Freeze an already validated world project into the editor-world plan. Family
+ * journeys (DESIGN-024 D-07) reuse this exact construction for their levels, so
+ * encounters, pickups, stats and the bonus slot never diverge between the two.
+ */
+export function prepareEditorWorld(
   project: LevelEditorProjectV2,
   fingerprint: string,
 ): EditorWorldPreview {

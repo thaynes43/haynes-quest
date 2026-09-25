@@ -1,0 +1,109 @@
+/**
+ * Family world templates (DESIGN-024 overview, WO109): checked-in, name-free
+ * `level-editor-project-v2` worlds keyed by template id and version. Adding a
+ * world is one entry in {@link CHECKED_IN_FAMILY_TEMPLATES}; published journeys
+ * freeze the exact template fingerprint, so an entry is never edited in place.
+ */
+import { createHash } from 'node:crypto';
+import ratCasinoWorldV1 from '../../shared/levels/rat-casino-world-v1.json';
+import ratCasinoWorldV2 from '../../shared/levels/rat-casino-world-v2.json';
+import {
+  canonicalLevelEditorProjectJson,
+  isLevelEditorProjectV2,
+  resolveLevelEditorProject,
+  type LevelEditorProjectV2,
+} from '../../shared/editor-project.js';
+import { AppError } from '../errors.js';
+import {
+  FamilyRebaseError,
+  rebaseWorldForChild,
+  templateAgeBands,
+  type ChapterAgeBand,
+} from './rebase.js';
+
+export interface FamilyTemplateSource {
+  readonly id: string;
+  readonly version: string;
+  readonly project: unknown;
+}
+
+export interface FamilyTemplate {
+  readonly id: string;
+  readonly version: string;
+  readonly project: LevelEditorProjectV2;
+  /** SHA-256 of the canonical template project. */
+  readonly fingerprint: string;
+  readonly ageBands: readonly ChapterAgeBand[];
+  /** The last chapter's template recovered age; the youngest child it can serve. */
+  readonly finalAge: number;
+}
+
+/** The checked-in registry. World A and World B join here when they land. */
+export const CHECKED_IN_FAMILY_TEMPLATES: readonly FamilyTemplateSource[] = Object.freeze([
+  { id: 'rat-casino-world', version: 'v1', project: ratCasinoWorldV1 },
+  { id: 'rat-casino-world', version: 'v2', project: ratCasinoWorldV2 },
+]);
+
+const TEMPLATE_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;
+const TEMPLATE_VERSION = /^v[0-9]{1,4}$/;
+
+export class FamilyTemplateRegistry {
+  private readonly entries = new Map<string, FamilyTemplate>();
+
+  constructor(sources: readonly FamilyTemplateSource[] = CHECKED_IN_FAMILY_TEMPLATES) {
+    for (const source of sources) {
+      if (!TEMPLATE_ID.test(source.id) || !TEMPLATE_VERSION.test(source.version)) {
+        throw new Error('Invalid family template key');
+      }
+      const key = templateKey(source.id, source.version);
+      if (this.entries.has(key)) throw new Error('Duplicate family template key');
+      const { project } = resolveLevelEditorProject(source.project);
+      if (!isLevelEditorProjectV2(project)) throw new Error('Family templates must be world projects');
+      const ageBands = templateAgeBands(project);
+      this.entries.set(key, Object.freeze({
+        id: source.id,
+        version: source.version,
+        project,
+        fingerprint: createHash('sha256')
+          .update(canonicalLevelEditorProjectJson(project), 'utf8')
+          .digest('hex'),
+        ageBands: Object.freeze(ageBands.map((band) => Object.freeze(band))),
+        finalAge: ageBands.at(-1)!.recoveredAge,
+      }));
+    }
+  }
+
+  get(id: string, version: string): FamilyTemplate | null {
+    return this.entries.get(templateKey(id, version)) ?? null;
+  }
+
+  require(id: string, version: string): FamilyTemplate {
+    const template = this.get(id, version);
+    if (!template) throw new AppError(422, 'TEMPLATE_UNKNOWN', 'World template unavailable');
+    return template;
+  }
+
+  list(): FamilyTemplate[] {
+    return [...this.entries.values()];
+  }
+
+  /**
+   * Templates a child can play: the final chapter's age must not exceed the
+   * child's current age, and the rebased world must validate with real dates.
+   */
+  offeredFor(birthDate: string, today: string): FamilyTemplate[] {
+    return this.list().filter((template) => {
+      try {
+        rebaseWorldForChild(template.project, birthDate, today);
+        return true;
+      } catch (error) {
+        if (error instanceof FamilyRebaseError) return false;
+        throw error;
+      }
+    });
+  }
+}
+
+function templateKey(id: string, version: string): string {
+  return `${id}@${version}`;
+}
