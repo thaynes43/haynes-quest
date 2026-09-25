@@ -26,6 +26,7 @@ import {
   platformGateway,
 } from "./authored-navigation.mjs";
 import { measureLayout } from "./editor-driver.mjs";
+import { awaitDrawnFrame } from "./lockstep-control.mjs";
 
 const url = process.env.QUEST_E2E_URL;
 assert.ok(url, "QUEST_E2E_URL is required; never test a stale implicit server");
@@ -289,8 +290,10 @@ try {
 
   // Part 2 steps the page clock one 60 Hz frame at a time. Software WebGL here
   // renders about five frames a second, too coarse for the loft's 1.1 m steps;
-  // stepping keeps the physics identical to a fast device. The keyboard stays
-  // the only input, and the server still decides every action.
+  // stepping keeps the physics identical to a fast device. Each step waits
+  // until the frame is drawn, so a slow renderer never builds a backlog that a
+  // screenshot would have to wait out. The keyboard stays the only input, and
+  // the server still decides every action.
   const lockContext = await browser.newContext({
     viewport: { width: 1280, height: 760 },
     deviceScaleFactor: 1,
@@ -299,7 +302,10 @@ try {
   watchPage(lockPage, "desktop-lockstep");
   await lockPage.clock.install();
   const frameMs = 16;
-  const step = (frames = 1) => lockPage.clock.runFor(frameMs * frames);
+  const step = async (frames = 1) => {
+    await lockPage.clock.runFor(frameMs * frames);
+    await lockPage.evaluate(awaitDrawnFrame);
+  };
   const lockOpening = await enterRatCasino(lockPage);
   // Page time flows normally while Rat Casino loads, then stops; from here
   // the script advances it one frame at a time.

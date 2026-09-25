@@ -324,11 +324,18 @@ try {
           element.currentTime = 0;
           element.play();
         }, clip);
-        await page.waitForTimeout(320);
-        const running = await viewer.evaluate((element) => ({
-          paused: element.paused,
-          time: element.currentTime,
-        }));
+        // Software WebGL can take most of a second to draw the first frames
+        // of a newly loaded model, so poll for movement instead of sampling
+        // once after a fixed delay.
+        const started = Date.now();
+        let running;
+        do {
+          await page.waitForTimeout(running ? 100 : 320);
+          running = await viewer.evaluate((element) => ({
+            paused: element.paused,
+            time: element.currentTime,
+          }));
+        } while (running.time <= 0.05 && Date.now() - started < 3_000);
         assert.equal(running.paused, false);
         assert.ok(running.time > 0.05, `${id}: ${clip} advances`);
         await viewer.evaluate((element) => element.pause());
