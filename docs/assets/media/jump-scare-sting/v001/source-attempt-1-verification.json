@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/jump-scare-sting/v001/source-attempt-1.wav",
+    "sha256": "6f7a2a2a152800581d5de7821d5f65bb1982a72e0f23bf3525aa19d515ab6990",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.97695923,
+    "peak_dbfs": -0.202,
+    "rms_amplitude": 0.10530182,
+    "rms_dbfs": -19.551,
+    "dc_offset": 0.0027637,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Not selected: the shriek swells in over about half a second (about -41 dBFS at 0.1 s to -18 dBFS at 0.5 s) instead of striking at once, and its only low thump arrives near 1.5 s, after the shriek.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

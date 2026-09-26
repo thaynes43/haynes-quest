@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/casino-hum/v001/source.wav",
+    "sha256": "488f586dc39caa350fed60051f2db22cbec8914f4573f691945d76bcb96e6af8",
+    "size_bytes": 3528044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 882000,
+    "duration_seconds": 20.0,
+    "peak_amplitude": 0.52227783,
+    "peak_dbfs": -5.642,
+    "rms_amplitude": 0.11928591,
+    "rms_dbfs": -18.468,
+    "dc_offset": 0.00248217,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/casino-hum/v001/cue.wav",
+    "sha256": "bed43b1b73a27f834715e75463e9719c5df363fe13833fd03459ecb0bcefdc6d",
+    "size_bytes": 1411244,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 352800,
+    "duration_seconds": 8.0,
+    "peak_amplitude": 0.12588501,
+    "peak_dbfs": -18.001,
+    "rms_amplitude": 0.0294289,
+    "rms_dbfs": -30.625,
+    "dc_offset": 0.00067184,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true,
+    "loop_wrap_step_within_p99": true,
+    "loop_seam_level_within_3db": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script.",
+    "The seam checks compare sample steps and short-window level only; they do not prove an inaudible loop."
+  ],
+  "loop_seam": {
+    "wrap_sample_step": 126,
+    "p99_sample_step": 175,
+    "wrap_step_within_p99": true,
+    "seam_window_seconds": 0.049977,
+    "seam_window_rms_vs_clip_db": -1.505,
+    "seam_window_level_within_3db": true
+  }
+}

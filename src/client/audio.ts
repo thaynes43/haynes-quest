@@ -173,10 +173,98 @@ export const familyWorldCues = {
 
 export type FamilyWorldCueId = keyof typeof familyWorldCues;
 
-/** Every cue the game may play: the playtest four and the family world eight. */
+/**
+ * DESIGN-027 D-06's six scary-moment v001 candidates, for chapters with a
+ * scare level. They are registered here so the scare pass can play them; no
+ * gameplay event triggers them yet. Nobody has listened to them and Tom's
+ * exact-version review is pending; the review pages record the measurements.
+ *
+ * Mix at the 0.8 master: the jump-scare sting is deliberately the loudest cue
+ * (peak -6 dBFS, 3 dB under the limiter threshold) and outranks every other
+ * sound at the source cap. The creak, buzz and static peak in the one-shot
+ * range (-12.5 to -10.0 dBFS), the distant laugh sits under it near -16, and
+ * the casino hum loops under everything near -20. The hum ranks with the
+ * ability cue so ordinary one-shots cannot push the ambience out at the cap.
+ */
+export const scareCues = {
+  "jump-scare-sting": {
+    assetId: "jump-scare-sting",
+    version: "v001",
+    path: "/studio/assets/media/jump-scare-sting/v001/cue.wav",
+    sha256: "cdc0b85cee5df4f9ffe68780c6916f58ce4bfda3678f1979102a698a9a8e81af",
+    durationSeconds: 1,
+    loop: false,
+    gain: 1.25,
+    priority: 5,
+    maxInstances: 1,
+  },
+  "servo-creak": {
+    assetId: "servo-creak",
+    version: "v001",
+    path: "/studio/assets/media/servo-creak/v001/cue.wav",
+    sha256: "57b4353d22a9cb5b0579c204b653f1223b1b1a0d5b57b1d218e5927a56b5232f",
+    durationSeconds: 0.8,
+    loop: false,
+    gain: 1.2,
+    priority: 2,
+    maxInstances: 1,
+  },
+  "light-buzz": {
+    assetId: "light-buzz",
+    version: "v001",
+    path: "/studio/assets/media/light-buzz/v001/cue.wav",
+    sha256: "2661589019ecf14ccc4a005df7b2225dee7efe4704fce1661383ac6e8d6c3e68",
+    durationSeconds: 2,
+    loop: false,
+    gain: 1.4,
+    priority: 3,
+    maxInstances: 1,
+  },
+  "distant-laugh": {
+    assetId: "distant-laugh",
+    version: "v001",
+    path: "/studio/assets/media/distant-laugh/v001/cue.wav",
+    sha256: "86721f34a4e11b8706ec3aae9eabaeb0715cd0d9498ccf171f037e86f8fdc73a",
+    durationSeconds: 1.5,
+    loop: false,
+    gain: 1,
+    priority: 1,
+    maxInstances: 1,
+  },
+  "radio-static": {
+    assetId: "radio-static",
+    version: "v001",
+    path: "/studio/assets/media/radio-static/v001/cue.wav",
+    sha256: "ed441796c364cb590401ebde30793f6764ce9a43469c6ec05baf9cb03f7c61a3",
+    durationSeconds: 0.8,
+    loop: false,
+    gain: 1.1,
+    priority: 2,
+    maxInstances: 1,
+  },
+  "casino-hum": {
+    assetId: "casino-hum",
+    version: "v001",
+    path: "/studio/assets/media/casino-hum/v001/cue.wav",
+    sha256: "bed43b1b73a27f834715e75463e9719c5df363fe13833fd03459ecb0bcefdc6d",
+    durationSeconds: 8,
+    loop: true,
+    gain: 1,
+    priority: 4,
+    maxInstances: 1,
+  },
+} as const satisfies Readonly<Record<string, QuestAudioCue>>;
+
+export type ScareCueId = keyof typeof scareCues;
+
+/**
+ * Every cue the game may play: the playtest four, the family world eight and
+ * the six scary-moment cues.
+ */
 export const questCues = {
   ...playtestCues,
   ...familyWorldCues,
+  ...scareCues,
 } as const satisfies Readonly<Record<string, QuestAudioCue>>;
 
 export type QuestCueId = keyof typeof questCues;

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "service_version": "0.2.0",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "bef9d85496e9472a960c81a5a32a077e",
+  "status": "completed",
+  "prompt": "The power coming back on in a dark abandoned pizzeria: a loud clunk of a big breaker switch and the clack of relays, then a loud raspy fluorescent light buzz, a strong droning electric hum with rich buzzing harmonics that stutters once and then holds steady; isolated short sound effect, no voice, no speech, no music, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 323,
+  "created_at": "2026-09-26T19:08:33.061530Z",
+  "started_at": "2026-09-26T19:08:33.076895Z",
+  "finished_at": "2026-09-26T19:08:39.616713Z",
+  "peak_subprocess_rss_bytes": 4066373632,
+  "artifact": "jobs/bef9d85496e9472a960c81a5a32a077e/output.wav",
+  "audio": {
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_seconds": 5.0,
+    "size_bytes": 882044,
+    "sha256": "66f7ca87bc29d70fb14c5c3467beba8148773af942324718093246e1b7a85af6"
+  },
+  "error": null,
+  "elapsed_seconds": 6.54,
+  "download_url": "/artifacts/bef9d85496e9472a960c81a5a32a077e/output.wav"
+}

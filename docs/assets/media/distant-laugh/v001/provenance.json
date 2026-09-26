@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "cue_id": "distant-laugh",
+  "candidate_version": "v001",
+  "generation_kind": "synthetic text-to-sound effect",
+  "generation_date": "2026-09-26T19:09:43.993090Z",
+  "service_version": "0.2.0",
+  "job_id": "1a19fe045ecd439cabd97916383061b4",
+  "prompt": "Far away in a huge empty building, a broken animatronic mascot laughs by itself: a slow deep distorted mechanical laugh, heh heh heh, crackling through a blown speaker, pitch sagging like a dying battery, very distant and soaked in echoing reverb; isolated sound effect, no words, no speech, no music.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 314,
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "terms_record": {
+    "design_record": "docs/designs/008-audio-pipeline.md",
+    "source_code": "MIT, as recorded by DESIGN-008",
+    "model_artifacts": "Stability license, as recorded by DESIGN-008",
+    "redistributed_text_component": "Gemma terms, as recorded by DESIGN-008",
+    "stability_license": "https://stability.ai/license",
+    "gemma_terms": "https://ai.google.dev/gemma/terms"
+  },
+  "approval": "Candidate only; Tom approval pending",
+  "listening_review": "Not performed by the processing script",
+  "selected_attempt": 2,
+  "other_attempts": [
+    {
+      "attempt": 1,
+      "job_id": "d0f5f70eca6a49aabe5452b62f3203fd",
+      "generation_date": "2026-09-26T19:09:15.756731Z",
+      "service_version": "0.2.0",
+      "prompt": "A creepy distant animatronic laugh echoing through an empty dark hall: a distorted warbling mechanical robot laugh from a broken old toy voice box, ha ha ha, wobbling in pitch like a slowed warped tape, far away with long cavernous reverb; isolated sound effect, no words, no speech, no music, no footsteps.",
+      "seconds": 5.0,
+      "steps": 8,
+      "seed": 304,
+      "source": "docs/assets/media/distant-laugh/v001/source-attempt-1.wav",
+      "source_sha256": "6f7195fde522710d7a893e573fcf786e7a857a70ceb9920e3fc2858c5f67ee62",
+      "selection": "not selected",
+      "reason": "Not selected: its pulses are less distinct (the level between them stays within about 5-10 dB of the peaks) and the pitch track jumps between about 200 and 880 Hz; the second take's evenly spaced, slowing pulses fit the brief more closely."
+    }
+  ]
+}

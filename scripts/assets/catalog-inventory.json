@@ -2,12 +2,12 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 74,
+    "entries": 80,
     "reference_sheet_entries": 8,
     "model_entries": 51,
     "model_files": 51,
     "concept_only_entries": 2,
-    "audio_entries": 12,
+    "audio_entries": 18,
     "fixture_illustration_sets": 1,
     "completed_model_candidates": 49,
     "paused_partial_model_candidates": 2,
@@ -2996,6 +2996,148 @@
         "docs/assets/media/enemy-poof/v001/source.wav": "c07724e57353714822491dc93d1996d84ff35ee4bcd6350bec65e1794d769015",
         "docs/assets/media/enemy-poof/v001/source-attempt-2.wav": "01804e7491e4d956e5ec4182d4e6d8a236504b14a49b1568f738d31d54e1b935",
         "docs/assets/media/enemy-poof/v001/source-attempt-3.wav": "fd40d8f9e5fb636c1a9c0145a56b3e369f7b821500cf59e12936cc27be8eddcb"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "jump-scare-sting",
+      "title": "It found you · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/jump-scare-sting/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/jump-scare-sting/v001/cue.wav",
+        "docs/assets/media/jump-scare-sting/v001/source.wav",
+        "docs/assets/media/jump-scare-sting/v001/source-attempt-1.wav",
+        "docs/assets/media/jump-scare-sting/v001/source-attempt-2.wav"
+      ],
+      "thumbnail": "docs/assets/media/jump-scare-sting/v001/waveform.svg",
+      "version": "v001",
+      "state": "v001 candidate sting for DESIGN-027 jump scares (scare level 2); registered in the scare cue manifest (DESIGN-008), not yet triggered by gameplay; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/jump-scare-sting/v001/cue.wav": "cdc0b85cee5df4f9ffe68780c6916f58ce4bfda3678f1979102a698a9a8e81af",
+        "docs/assets/media/jump-scare-sting/v001/source.wav": "7c1c219d813aa8b506c1b5a48fe22df6115e656601256b078fdfe12186ba80b9",
+        "docs/assets/media/jump-scare-sting/v001/source-attempt-1.wav": "6f7a2a2a152800581d5de7821d5f65bb1982a72e0f23bf3525aa19d515ab6990",
+        "docs/assets/media/jump-scare-sting/v001/source-attempt-2.wav": "c32c7f75d0bf12ddf0703e89473c5982eb59b7bc4b2c027efa92678233ef5875"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "servo-creak",
+      "title": "Did it just move? · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/servo-creak/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/servo-creak/v001/cue.wav",
+        "docs/assets/media/servo-creak/v001/source.wav",
+        "docs/assets/media/servo-creak/v001/source-attempt-2.wav"
+      ],
+      "thumbnail": "docs/assets/media/servo-creak/v001/waveform.svg",
+      "version": "v001",
+      "state": "v001 candidate cue for DESIGN-027 watchers that move while unseen; registered in the scare cue manifest (DESIGN-008), not yet triggered by gameplay; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/servo-creak/v001/cue.wav": "57b4353d22a9cb5b0579c204b653f1223b1b1a0d5b57b1d218e5927a56b5232f",
+        "docs/assets/media/servo-creak/v001/source.wav": "f79377d703d1803d7257a9f43be441630cd1e1de09253620131c3cad7c3fc235",
+        "docs/assets/media/servo-creak/v001/source-attempt-2.wav": "b5174f84685a746e70787cdbb9aff0c12aa5748535d81aa219aec7beb7365719"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "light-buzz",
+      "title": "Lights back on · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/light-buzz/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/light-buzz/v001/cue.wav",
+        "docs/assets/media/light-buzz/v001/source.wav",
+        "docs/assets/media/light-buzz/v001/source-attempt-1.wav",
+        "docs/assets/media/light-buzz/v001/source-attempt-3.wav"
+      ],
+      "thumbnail": "docs/assets/media/light-buzz/v001/waveform.svg",
+      "version": "v001",
+      "state": "v001 candidate cue for the lights returning after a DESIGN-027 blackout; registered in the scare cue manifest (DESIGN-008), not yet triggered by gameplay; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/light-buzz/v001/cue.wav": "2661589019ecf14ccc4a005df7b2225dee7efe4704fce1661383ac6e8d6c3e68",
+        "docs/assets/media/light-buzz/v001/source.wav": "1f675e50082348fdee02610e4ed077bf1b04eb8669de496d7a95b836c5a6552b",
+        "docs/assets/media/light-buzz/v001/source-attempt-1.wav": "672a83355c95aa1fe4b8b3e2f303d31081799647e3d2fdb0c426028975adf261",
+        "docs/assets/media/light-buzz/v001/source-attempt-3.wav": "66f7ca87bc29d70fb14c5c3467beba8148773af942324718093246e1b7a85af6"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "distant-laugh",
+      "title": "Laughter down the hall · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/distant-laugh/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/distant-laugh/v001/cue.wav",
+        "docs/assets/media/distant-laugh/v001/source.wav",
+        "docs/assets/media/distant-laugh/v001/source-attempt-1.wav"
+      ],
+      "thumbnail": "docs/assets/media/distant-laugh/v001/waveform.svg",
+      "version": "v001",
+      "state": "v001 candidate cue for DESIGN-027 random level-2 ambience; registered in the scare cue manifest (DESIGN-008), not yet triggered by gameplay; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/distant-laugh/v001/cue.wav": "86721f34a4e11b8706ec3aae9eabaeb0715cd0d9498ccf171f037e86f8fdc73a",
+        "docs/assets/media/distant-laugh/v001/source.wav": "15e0a8eecf3ea8f3755ae49cd59e39b99562c449528fb210cb343bd730f0a465",
+        "docs/assets/media/distant-laugh/v001/source-attempt-1.wav": "6f7195fde522710d7a893e573fcf786e7a857a70ceb9920e3fc2858c5f67ee62"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "radio-static",
+      "title": "Between stations · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/radio-static/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/radio-static/v001/cue.wav",
+        "docs/assets/media/radio-static/v001/source.wav"
+      ],
+      "thumbnail": "docs/assets/media/radio-static/v001/waveform.svg",
+      "version": "v001",
+      "state": "v001 candidate cue for the DESIGN-027 radio showman attack; registered in the scare cue manifest (DESIGN-008), not yet triggered by gameplay; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/radio-static/v001/cue.wav": "ed441796c364cb590401ebde30793f6764ce9a43469c6ec05baf9cb03f7c61a3",
+        "docs/assets/media/radio-static/v001/source.wav": "e37a22a4314eb3b1d51e27600f4cb8a394f2b51415775c5cb838508d4b434e59"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "casino-hum",
+      "title": "After hours · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/casino-hum/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/casino-hum/v001/cue.wav",
+        "docs/assets/media/casino-hum/v001/source.wav",
+        "docs/assets/media/casino-hum/v001/source-attempt-1.wav",
+        "docs/assets/media/casino-hum/v001/source-attempt-2.wav"
+      ],
+      "thumbnail": "docs/assets/media/casino-hum/v001/waveform.svg",
+      "version": "v001",
+      "state": "v001 candidate seamless loop for DESIGN-027 level 1-2 ambience; registered in the scare cue manifest (DESIGN-008), not yet triggered by gameplay; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/casino-hum/v001/cue.wav": "bed43b1b73a27f834715e75463e9719c5df363fe13833fd03459ecb0bcefdc6d",
+        "docs/assets/media/casino-hum/v001/source.wav": "488f586dc39caa350fed60051f2db22cbec8914f4573f691945d76bcb96e6af8",
+        "docs/assets/media/casino-hum/v001/source-attempt-1.wav": "c61699e126c0f46d07abaea30c47b36d5cc13463c8d7840d6032d72fd276aeca",
+        "docs/assets/media/casino-hum/v001/source-attempt-2.wav": "423ed154579acf3189b5c37c22a1fa28c7a749fbb3c26f7f202ce7d89a3e0ea1"
       },
       "gameplay_use": "private-candidate"
     }

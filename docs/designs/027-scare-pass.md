@@ -65,6 +65,8 @@ Initial assignment:
 | `radio-static` | about 0.8 s | Radio showman attack |
 | `casino-hum` | about 8 s loop | Level 1–2 ambience |
 
+The v001 candidates are in the [catalog](../assets/catalog.md#sound-auditions), awaiting Tom's exact-version review. [DESIGN-008](008-audio-pipeline.md#scary-moments-cues) records their processing, manifest and mix.
+
 **D-07 Character direction.** Designs may be genuinely creepy when the era calls for it:
 - the radio showman gets a too-wide sharp grin, glowing eyes and static;
 - the Rat Casino animatronics get glowing eyes in the dark;

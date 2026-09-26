@@ -94,6 +94,13 @@
       "sha256": "1288b40fd112d078ce1c4832916f0e4f325f7bc29af34b3adc530c05994ad9bd"
     },
     {
+      "source": "docs/assets/media/casino-hum/v001/waveform.svg",
+      "source_sha256": "efc50aab798771242b5447c669195bd0be49543f336deab90c3ad113ae97ff42",
+      "path": "docs/assets/media/catalog-thumbnails/v001/1dcb40f90b9c05c5.webp",
+      "bytes": 3748,
+      "sha256": "24aeaa3d18a6f6a05794b3449992a98eeb425bbe3f8ab89356af3af7b0efdfcb"
+    },
+    {
       "source": "docs/assets/media/chick-flia/v001/beauty.png",
       "source_sha256": "8872e6f300911749c95a9649924896a0a2c0aae2a33bcd5a0ac33517602e0807",
       "path": "docs/assets/media/catalog-thumbnails/v001/b72c2f131107d0eb.webp",
@@ -176,6 +183,13 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/c2aed672abab7249.webp",
       "bytes": 2408,
       "sha256": "d1dbe95cb4f88b1e713d6a7f287dd47376944ffe5a8768018e25728ed27e8769"
+    },
+    {
+      "source": "docs/assets/media/distant-laugh/v001/waveform.svg",
+      "source_sha256": "225ee2fc8f591d399a3300dca3abcc4261f46425aac233e18029b51841cc23e1",
+      "path": "docs/assets/media/catalog-thumbnails/v001/74a50920cdb8307e.webp",
+      "bytes": 4130,
+      "sha256": "1a522dc6dced2772a690663024d8da1e95f0aeb579ccf097f43be64999b1390c"
     },
     {
       "source": "docs/assets/media/double-jump-whoosh/v001/waveform.svg",
@@ -339,11 +353,25 @@
       "sha256": "1fb62ed15de292eaa23b1881a99dfb92047a252d7020b1dc591f38afef0271a4"
     },
     {
+      "source": "docs/assets/media/jump-scare-sting/v001/waveform.svg",
+      "source_sha256": "279bd458eca0be4a53f611f3ca852447801a318ad2ef6d1f4d5102d592c2e456",
+      "path": "docs/assets/media/catalog-thumbnails/v001/a3e8a28abe42d787.webp",
+      "bytes": 6310,
+      "sha256": "e82badd5c24b5755c67b4c5a7f822d9e5ba5c6506c2c3c6ccbb6431e3e53911a"
+    },
+    {
       "source": "docs/assets/media/lift-arrival-chime/v001/waveform.svg",
       "source_sha256": "8039cf0be1a3ea1bff3955aa54bb6703c03dc502f9f18709d7b131dbe455bc46",
       "path": "docs/assets/media/catalog-thumbnails/v001/416cf29cf22a3555.webp",
       "bytes": 3872,
       "sha256": "af71f7f1129376238244ad2da827b55103633bb799bbcd3be76deff97bcc828a"
+    },
+    {
+      "source": "docs/assets/media/light-buzz/v001/waveform.svg",
+      "source_sha256": "cf6480c41cc8a96ac402e84603130b229df8ef3f1a7d8de95fb8c64b9117519b",
+      "path": "docs/assets/media/catalog-thumbnails/v001/fbc921a308aa50a5.webp",
+      "bytes": 3886,
+      "sha256": "ee2a9cb5f83b7a1e65bdbde5fb2c5c15e2a43ebfcfd4494134432ef635ae283b"
     },
     {
       "source": "docs/assets/media/loop-dancer/v001/beauty.png",
@@ -514,6 +542,13 @@
       "sha256": "2618c041dc7f4cfa99411bef15427be5cd767f3470962e09170825bf680c95a0"
     },
     {
+      "source": "docs/assets/media/radio-static/v001/waveform.svg",
+      "source_sha256": "f778b0d37547a6b4990be14a1a9a9e8d074a0b418c61f73d121c098609497644",
+      "path": "docs/assets/media/catalog-thumbnails/v001/e45c547be9d45396.webp",
+      "bytes": 4228,
+      "sha256": "1004602500ee7bd1788fc10f2086e67fe086885228d875ffc4efc02c4b67482b"
+    },
+    {
       "source": "docs/assets/media/rat-casino-ensemble/v002/concept.png",
       "source_sha256": "3f0b6894d8136cdd40b61701ac1b32378e2e182dce842ae4a191641e266897d6",
       "path": "docs/assets/media/catalog-thumbnails/v001/9198fefde16788da.webp",
@@ -624,6 +659,13 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/b557775bf2338ba1.webp",
       "bytes": 19344,
       "sha256": "141603698881a6485525d57592c85974551baf478be87d0ea23a7cfce452a73a"
+    },
+    {
+      "source": "docs/assets/media/servo-creak/v001/waveform.svg",
+      "source_sha256": "7fdd0a3790e0c59e4bd6c432ef377ba752b035c33fb6bfc4e6d25d7f0e31a555",
+      "path": "docs/assets/media/catalog-thumbnails/v001/fe79cd177e61552b.webp",
+      "bytes": 3916,
+      "sha256": "fc82d69aee88e879f33d883f17caf6a7b6359c25c70a4dcac9d300a28fc122ab"
     },
     {
       "source": "docs/assets/media/signal-moth/v001/beauty.png",

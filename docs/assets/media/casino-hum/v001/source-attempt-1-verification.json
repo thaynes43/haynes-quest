@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/casino-hum/v001/source-attempt-1.wav",
+    "sha256": "c61699e126c0f46d07abaea30c47b36d5cc13463c8d7840d6032d72fd276aeca",
+    "size_bytes": 2646044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 661500,
+    "duration_seconds": 15.0,
+    "peak_amplitude": 0.41119385,
+    "peak_dbfs": -7.719,
+    "rms_amplitude": 0.0670476,
+    "rms_dbfs": -23.472,
+    "dc_offset": -8.407e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Wrong character: essentially no energy above 1 kHz and 56-87% below 300 Hz, likely to vanish on tablet and phone speakers; the level also fades by about 10 dB after 7 seconds, leaving no steady 9-second stretch for the loop.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "cue_id": "light-buzz",
+  "candidate_version": "v001",
+  "generation_kind": "synthetic text-to-sound effect",
+  "generation_date": "2026-09-26T19:08:07.471681Z",
+  "service_version": "0.2.0",
+  "job_id": "324e3863cf8648c382dbeb0250f2d3dc",
+  "prompt": "Fluorescent tube lights stuttering back on: two or three quick flickering clicks and clacks, then a loud harsh electrical buzz that swells up and holds, an intense crackling mains hum with a high sizzling whine, close and loud; isolated short sound effect, no voice, no speech, no music, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 313,
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "terms_record": {
+    "design_record": "docs/designs/008-audio-pipeline.md",
+    "source_code": "MIT, as recorded by DESIGN-008",
+    "model_artifacts": "Stability license, as recorded by DESIGN-008",
+    "redistributed_text_component": "Gemma terms, as recorded by DESIGN-008",
+    "stability_license": "https://stability.ai/license",
+    "gemma_terms": "https://ai.google.dev/gemma/terms"
+  },
+  "approval": "Candidate only; Tom approval pending",
+  "listening_review": "Not performed by the processing script",
+  "selected_attempt": 2,
+  "other_attempts": [
+    {
+      "attempt": 1,
+      "job_id": "c2bc5fb351f94162a8737b0e603749b1",
+      "generation_date": "2026-09-26T19:07:42.821903Z",
+      "service_version": "0.2.0",
+      "prompt": "Old fluorescent ceiling lights flickering back on in a dark empty building: a sharp electrical clack and ticking starter flicker, then a loud steady humming buzz of fluorescent tubes at 60 hertz with a bright electrical sizzle; isolated short sound effect, no voice, no speech, no music, no footsteps, no background noise.",
+      "seconds": 5.0,
+      "steps": 8,
+      "seed": 303,
+      "source": "docs/assets/media/light-buzz/v001/source-attempt-1.wav",
+      "source_sha256": "672a83355c95aa1fe4b8b3e2f303d31081799647e3d2fdb0c426028975adf261",
+      "selection": "not selected",
+      "reason": "Not selected: sharp clacks about 20 dB louder than the 100 Hz hum beneath them, so after leveling the buzz would sit far under a string of isolated clicks."
+    },
+    {
+      "attempt": 3,
+      "job_id": "bef9d85496e9472a960c81a5a32a077e",
+      "generation_date": "2026-09-26T19:08:33.061530Z",
+      "service_version": "0.2.0",
+      "prompt": "The power coming back on in a dark abandoned pizzeria: a loud clunk of a big breaker switch and the clack of relays, then a loud raspy fluorescent light buzz, a strong droning electric hum with rich buzzing harmonics that stutters once and then holds steady; isolated short sound effect, no voice, no speech, no music, no background noise.",
+      "seconds": 5.0,
+      "steps": 8,
+      "seed": 323,
+      "source": "docs/assets/media/light-buzz/v001/source-attempt-3.wav",
+      "source_sha256": "66f7ca87bc29d70fb14c5c3467beba8148773af942324718093246e1b7a85af6",
+      "selection": "not selected",
+      "reason": "Wrong character: about 87% of the energy sits below 300 Hz, a low drone likely to vanish on tablet and phone speakers, with no flicker before it."
+    }
+  ]
+}

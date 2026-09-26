@@ -146,6 +146,110 @@ RECIPES = (
             ),
         ),
     ),
+    # DESIGN-027 scary moments (first pass, 2026-09-26). Genuinely creepy is
+    # welcome; there are no screams of pain and no words. Start times follow the
+    # listen-proxy review recorded on each cue's review page.
+    Recipe(
+        "jump-scare-sting",
+        0.16,
+        1.00,
+        0.005,
+        0.220,
+        -6.0,
+        selected_attempt=3,
+        other_attempts=(
+            OtherAttempt(
+                1,
+                "Not selected: the shriek swells in over about half a second (about -41 dBFS at 0.1 s "
+                "to -18 dBFS at 0.5 s) instead of striking at once, and its only low thump arrives "
+                "near 1.5 s, after the shriek.",
+            ),
+            OtherAttempt(
+                2,
+                "Not selected: an instant, heavy slam with almost no shriek; 84% of the first two "
+                "seconds' energy sits below 300 Hz and only about 7% at 1-4 kHz.",
+            ),
+        ),
+    ),
+    Recipe(
+        "servo-creak",
+        0.16,
+        0.80,
+        0.030,
+        0.050,
+        -11.0,
+        other_attempts=(
+            OtherAttempt(
+                2,
+                "Not selected: a dull take with almost no energy above 4 kHz (0.1%); its first "
+                "0.4 seconds are a low whirr with about 80% of the energy below 300 Hz, likely to "
+                "vanish on tablet and phone speakers.",
+            ),
+        ),
+    ),
+    Recipe(
+        "light-buzz",
+        0.98,
+        2.00,
+        0.005,
+        0.300,
+        -11.0,
+        selected_attempt=2,
+        other_attempts=(
+            OtherAttempt(
+                1,
+                "Not selected: sharp clacks about 20 dB louder than the 100 Hz hum beneath them, so "
+                "after leveling the buzz would sit far under a string of isolated clicks.",
+            ),
+            OtherAttempt(
+                3,
+                "Wrong character: about 87% of the energy sits below 300 Hz, a low drone likely to "
+                "vanish on tablet and phone speakers, with no flicker before it.",
+            ),
+        ),
+    ),
+    Recipe(
+        "distant-laugh",
+        0.14,
+        1.50,
+        0.020,
+        0.200,
+        -14.0,
+        selected_attempt=2,
+        other_attempts=(
+            OtherAttempt(
+                1,
+                "Not selected: its pulses are less distinct (the level between them stays within "
+                "about 5-10 dB of the peaks) and the pitch track jumps between about 200 and 880 Hz; "
+                "the second take's evenly spaced, slowing pulses fit the brief more closely.",
+            ),
+        ),
+    ),
+    Recipe("radio-static", 0.14, 0.80, 0.005, 0.120, -11.0),
+    Recipe(
+        "casino-hum",
+        4.00,
+        8.00,
+        0.0,
+        0.0,
+        -18.0,
+        loop_crossfade_seconds=1.0,
+        selected_attempt=3,
+        other_attempts=(
+            OtherAttempt(
+                1,
+                "Wrong character: essentially no energy above 1 kHz and 56-87% below 300 Hz, likely "
+                "to vanish on tablet and phone speakers; the level also fades by about 10 dB after "
+                "7 seconds, leaving no steady 9-second stretch for the loop.",
+            ),
+            OtherAttempt(
+                2,
+                "Not selected: steady, but only about a quarter of the energy sits above 300 Hz and "
+                "almost none above 700 Hz; the third take holds as steadily with about half its "
+                "energy above 300 Hz.",
+            ),
+        ),
+    ),
 )
 
 

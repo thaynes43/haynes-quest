@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "service_version": "0.2.0",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "960b727b49284442bc8dd784f1836495",
+  "status": "completed",
+  "prompt": "An old vintage tube radio being tuned between stations: a sudden crackly burst of harsh white-noise static with popping crackles and a warbling high-pitched tuning whine sweeping across the dial, eerie and glitchy; isolated short sound effect, no voice, no speech, no music, no broadcast, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 305,
+  "created_at": "2026-09-26T19:10:14.206621Z",
+  "started_at": "2026-09-26T19:10:14.221023Z",
+  "finished_at": "2026-09-26T19:10:20.806709Z",
+  "peak_subprocess_rss_bytes": 4066320384,
+  "artifact": "jobs/960b727b49284442bc8dd784f1836495/output.wav",
+  "audio": {
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_seconds": 5.0,
+    "size_bytes": 882044,
+    "sha256": "e37a22a4314eb3b1d51e27600f4cb8a394f2b51415775c5cb838508d4b434e59"
+  },
+  "error": null,
+  "elapsed_seconds": 6.586,
+  "download_url": "/artifacts/960b727b49284442bc8dd784f1836495/output.wav"
+}

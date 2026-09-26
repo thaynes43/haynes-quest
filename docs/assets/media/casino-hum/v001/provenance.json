@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "cue_id": "casino-hum",
+  "candidate_version": "v001",
+  "generation_kind": "synthetic text-to-sound effect",
+  "generation_date": "2026-09-26T19:12:13.215667Z",
+  "service_version": "0.2.0",
+  "job_id": "42a07ab2277a428a957a0cfd62543173",
+  "prompt": "Constant eerie drone inside a dark empty casino after closing time: a raspy buzzing electric hum with crackling neon tube sizzle close by, layered over a distant muffled carnival organ drone, dissonant and unsettling, the same steady level from start to end; seamless loopable room tone, no voice, no speech, no footsteps, no melody, no beat, no slot machine jingles.",
+  "seconds": 20.0,
+  "steps": 8,
+  "seed": 326,
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "terms_record": {
+    "design_record": "docs/designs/008-audio-pipeline.md",
+    "source_code": "MIT, as recorded by DESIGN-008",
+    "model_artifacts": "Stability license, as recorded by DESIGN-008",
+    "redistributed_text_component": "Gemma terms, as recorded by DESIGN-008",
+    "stability_license": "https://stability.ai/license",
+    "gemma_terms": "https://ai.google.dev/gemma/terms"
+  },
+  "approval": "Candidate only; Tom approval pending",
+  "listening_review": "Not performed by the processing script",
+  "selected_attempt": 3,
+  "other_attempts": [
+    {
+      "attempt": 1,
+      "job_id": "97ac74ff13d647fd964fb6f0eab9ed26",
+      "generation_date": "2026-09-26T19:10:51.610972Z",
+      "service_version": "0.2.0",
+      "prompt": "Eerie ambience of a huge empty abandoned casino at night: a steady low electrical hum of old wiring and neon transformers, with a faint muffled carnival organ drone far away behind the walls, dark, ominous and continuous, even level throughout with no sudden changes; seamless steady background ambience, no voice, no speech, no footsteps, no clear melody, no slot machine jingles.",
+      "seconds": 15.0,
+      "steps": 8,
+      "seed": 306,
+      "source": "docs/assets/media/casino-hum/v001/source-attempt-1.wav",
+      "source_sha256": "c61699e126c0f46d07abaea30c47b36d5cc13463c8d7840d6032d72fd276aeca",
+      "selection": "not selected",
+      "reason": "Wrong character: essentially no energy above 1 kHz and 56-87% below 300 Hz, likely to vanish on tablet and phone speakers; the level also fades by about 10 dB after 7 seconds, leaving no steady 9-second stretch for the loop."
+    },
+    {
+      "attempt": 2,
+      "job_id": "7d3ee1e9de584009a6389bbc58c5bbf9",
+      "generation_date": "2026-09-26T19:11:27.740646Z",
+      "service_version": "0.2.0",
+      "prompt": "Creepy haunted casino room tone, constant for the entire duration and never fading out: a steady buzzing electrical hum with a thin high whine of flickering neon signs, and far away a muffled warped carnival calliope drone holding one eerie chord behind the walls, unsettling and continuous; seamless steady loopable ambience, no voice, no speech, no footsteps, no melody, no rhythm, no slot machine jingles.",
+      "seconds": 20.0,
+      "steps": 8,
+      "seed": 316,
+      "source": "docs/assets/media/casino-hum/v001/source-attempt-2.wav",
+      "source_sha256": "423ed154579acf3189b5c37c22a1fa28c7a749fbb3c26f7f202ce7d89a3e0ea1",
+      "selection": "not selected",
+      "reason": "Not selected: steady, but only about a quarter of the energy sits above 300 Hz and almost none above 700 Hz; the third take holds as steadily with about half its energy above 300 Hz."
+    }
+  ]
+}

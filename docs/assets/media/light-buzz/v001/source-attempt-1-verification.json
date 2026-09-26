@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/light-buzz/v001/source-attempt-1.wav",
+    "sha256": "672a83355c95aa1fe4b8b3e2f303d31081799647e3d2fdb0c426028975adf261",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.21749878,
+    "peak_dbfs": -13.251,
+    "rms_amplitude": 0.0056409,
+    "rms_dbfs": -44.973,
+    "dc_offset": 5.672e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Not selected: sharp clacks about 20 dB louder than the 100 Hz hum beneath them, so after leveling the buzz would sit far under a string of isolated clicks.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

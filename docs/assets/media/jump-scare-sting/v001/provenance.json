@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "cue_id": "jump-scare-sting",
+  "candidate_version": "v001",
+  "generation_kind": "synthetic text-to-sound effect",
+  "generation_date": "2026-09-26T19:06:13.023694Z",
+  "service_version": "0.2.0",
+  "job_id": "810357984edf4cb0af9e9aec071fb902",
+  "prompt": "A sudden terrifying jumpscare: a loud clanging metallic slam at the very first instant, layered with a high piercing screeching shriek of rusty metal and distorted electronic feedback, harsh and bright, one burst about one second long then a short ringing tail; isolated short sound effect, no voice, no speech, no human scream, no music, no ambience, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 321,
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "terms_record": {
+    "design_record": "docs/designs/008-audio-pipeline.md",
+    "source_code": "MIT, as recorded by DESIGN-008",
+    "model_artifacts": "Stability license, as recorded by DESIGN-008",
+    "redistributed_text_component": "Gemma terms, as recorded by DESIGN-008",
+    "stability_license": "https://stability.ai/license",
+    "gemma_terms": "https://ai.google.dev/gemma/terms"
+  },
+  "approval": "Candidate only; Tom approval pending",
+  "listening_review": "Not performed by the processing script",
+  "selected_attempt": 3,
+  "other_attempts": [
+    {
+      "attempt": 1,
+      "job_id": "86bce02f5a0a45c9a46deb9fac2cf20f",
+      "generation_date": "2026-09-26T19:04:44.673795Z",
+      "service_version": "0.2.0",
+      "prompt": "A sudden loud horror jump scare stinger: an instant harsh mechanical shriek of screeching metal and grinding servo, hitting at full force on the first frame together with a heavy metallic slam, then a quick ringing decay; isolated short sound effect, a single sting, no voice, no speech, no human scream, no music, no ambience.",
+      "seconds": 5.0,
+      "steps": 8,
+      "seed": 301,
+      "source": "docs/assets/media/jump-scare-sting/v001/source-attempt-1.wav",
+      "source_sha256": "6f7a2a2a152800581d5de7821d5f65bb1982a72e0f23bf3525aa19d515ab6990",
+      "selection": "not selected",
+      "reason": "Not selected: the shriek swells in over about half a second (about -41 dBFS at 0.1 s to -18 dBFS at 0.5 s) instead of striking at once, and its only low thump arrives near 1.5 s, after the shriek."
+    },
+    {
+      "attempt": 2,
+      "job_id": "81138bcbf6384588ba35075c7646181a",
+      "generation_date": "2026-09-26T19:05:52.438719Z",
+      "service_version": "0.2.0",
+      "prompt": "A horror game jumpscare sting that starts instantly at full volume with no build-up: a heavy metal door slam and a piercing distorted mechanical screech of an animatronic, sharp and violent, one loud burst that rings out briefly; isolated short sound effect, no voice, no speech, no human scream, no music, no ambience, no background noise.",
+      "seconds": 5.0,
+      "steps": 8,
+      "seed": 311,
+      "source": "docs/assets/media/jump-scare-sting/v001/source-attempt-2.wav",
+      "source_sha256": "c32c7f75d0bf12ddf0703e89473c5982eb59b7bc4b2c027efa92678233ef5875",
+      "selection": "not selected",
+      "reason": "Not selected: an instant, heavy slam with almost no shriek; 84% of the first two seconds' energy sits below 300 Hz and only about 7% at 1-4 kHz."
+    }
+  ]
+}

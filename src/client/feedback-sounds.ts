@@ -4,12 +4,14 @@ import type {
   FamilyWorldCueId,
   GameplayFeedbackId,
   QuestAudio,
+  ScareCueId,
 } from "./audio";
 
 /**
  * DESIGN-008: what each immediate gameplay event sounds like. Events from older
  * routes keep their exact playtest variants; the family world events and flags
- * (see `GameFeedbackEvent`) add the family world cues.
+ * (see `GameFeedbackEvent`) add the family world cues. A cue or loop may also
+ * name one of DESIGN-027's scary-moment cues.
  *
  * This module holds only data and types from `./audio`, so a test that mocks
  * the audio owner can still use the real mapping.
@@ -23,12 +25,12 @@ export type FeedbackSound =
     }
   | {
       readonly kind: "cue";
-      readonly id: FamilyWorldCueId;
+      readonly id: FamilyWorldCueId | ScareCueId;
       readonly options?: CuePlaybackOptions;
     }
   | {
       readonly kind: "loop";
-      readonly id: FamilyWorldCueId;
+      readonly id: FamilyWorldCueId | ScareCueId;
       readonly active: boolean;
     };
 

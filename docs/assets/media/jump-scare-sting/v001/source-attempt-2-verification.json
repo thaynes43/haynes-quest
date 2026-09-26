@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/jump-scare-sting/v001/source-attempt-2.wav",
+    "sha256": "c32c7f75d0bf12ddf0703e89473c5982eb59b7bc4b2c027efa92678233ef5875",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.97695923,
+    "peak_dbfs": -0.202,
+    "rms_amplitude": 0.14660748,
+    "rms_dbfs": -16.677,
+    "dc_offset": -0.00025028,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Not selected: an instant, heavy slam with almost no shriek; 84% of the first two seconds' energy sits below 300 Hz and only about 7% at 1-4 kHz.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}
