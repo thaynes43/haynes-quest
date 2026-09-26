@@ -1,0 +1,53 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol-blockout.blend",
+  "sha256": "876f0e67cc23d866bfaff7dab5f87515af5fba8d70c85c87ee501b96e7525ef9",
+  "bounds_blender_zup": {
+    "min": [
+      -0.3361,
+      -0.289,
+      0.0
+    ],
+    "max": [
+      0.3221,
+      0.2233,
+      1.4009
+    ],
+    "size": [
+      0.6582,
+      0.5123,
+      1.4009
+    ],
+    "blockout_triangles": 95400
+  },
+  "feature_tops_m": {
+    "Gold candy horn": 1.3984,
+    "Horn tip": 1.4009,
+    "Fringe swoop crest": 1.3299,
+    "Midnight hair cap": 1.2947,
+    "Lavender idol head": 1.2637,
+    "Shoulder sparkle": 1.025,
+    "Gold epaulette": 0.9365,
+    "Mic silver grille": 1.0237,
+    "Pointed ear": 1.1622,
+    "Little demon tail": 0.6194,
+    "Spade tail tip": 0.6749
+  },
+  "parts": 131,
+  "materials": [
+    "DBI blush #ff8fc0",
+    "DBI eye #fbf8ff",
+    "DBI gold #f4c75b",
+    "DBI hair #2c2a5a",
+    "DBI ink #2c2a5a",
+    "DBI iris #c2479a",
+    "DBI jacket #1f7a86",
+    "DBI mouth #4a2548",
+    "DBI pink #ec4f93",
+    "DBI silver #cfd3e6",
+    "DBI skin #c9b6f0",
+    "DBI skinlo #ad97e0",
+    "DBI trouser #2a2446",
+    "DBI white #f7f3fb"
+  ],
+  "utc": "2026-09-26T17:08:41.932359+00:00"
+}

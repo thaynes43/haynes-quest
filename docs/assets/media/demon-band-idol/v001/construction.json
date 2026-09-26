@@ -1,0 +1,1008 @@
+{
+  "asset_id": "demon-band-idol",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Claude Opus 5.5 does the WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": "Blender reference sheet, no generated concept",
+  "source_sheet_sha256": "ecdefc9659051d1bc7ab5382743a08ccfe264b051f30f15059acd8a5a14178a3",
+  "source_blockout_sha256": "876f0e67cc23d866bfaff7dab5f87515af5fba8d70c85c87ee501b96e7525ef9",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.4421471953392029,
+      -0.2931431531906128,
+      0.0030000004917383194
+    ],
+    "max": [
+      0.5336737036705017,
+      0.22852182388305664,
+      1.3958640098571777
+    ]
+  },
+  "height_m": 1.3958640098571777,
+  "triangles": 12308,
+  "vertices": 6356,
+  "material_count": 2,
+  "bone_count": 36,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original painted atlas generated with numpy in Blender Python (paint.py): face and jacket-front decals at the blockout projected positions plus flat sheet-colour tiles; no external textures.",
+    "layout": {
+      "tiles": [
+        "skin",
+        "skinlo",
+        "hair",
+        "pink",
+        "blush",
+        "gold",
+        "jacket",
+        "trouser",
+        "white",
+        "silver",
+        "mouth",
+        "eye",
+        "iris",
+        "gold_d",
+        "jacket_d",
+        "pink_d"
+      ],
+      "face_src": [
+        -0.16,
+        0.16,
+        0.955,
+        1.275
+      ],
+      "jacket_src": [
+        -0.185,
+        0.185,
+        0.58,
+        0.95
+      ],
+      "supersampling": 3
+    }
+  },
+  "parts": [
+    {
+      "name": "Lavender idol head with painted wink face",
+      "triangles": 960,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Midnight idol hair cap",
+      "triangles": 1280,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Fringe swoop main with pink dip-dye",
+      "triangles": 300,
+      "bone_groups": [
+        "head",
+        "fringe_1",
+        "fringe_2"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Fringe swoop crest with pink dip-dye",
+      "triangles": 252,
+      "bone_groups": [
+        "head",
+        "fringe_1",
+        "fringe_2"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Short fringe left",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sideburn tuft right",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sideburn tuft left",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Nape point 0",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Nape point 1",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Nape point 2",
+      "triangles": 108,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Back swoop layer 0",
+      "triangles": 156,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Back swoop layer 1",
+      "triangles": 156,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Gold candy horn right",
+      "triangles": 256,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Blunt horn tip right",
+      "triangles": 80,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Gold candy horn left",
+      "triangles": 256,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Blunt horn tip left",
+      "triangles": 80,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Pointed ear right",
+      "triangles": 18,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Pink inner ear right",
+      "triangles": 14,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "atlas_tile": "4"
+    },
+    {
+      "name": "Round ear tip right",
+      "triangles": 36,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Pointed ear left",
+      "triangles": 18,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Pink inner ear left",
+      "triangles": 14,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "atlas_tile": "4"
+    },
+    {
+      "name": "Round ear tip left",
+      "triangles": 36,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Gold earring hoop",
+      "triangles": 66,
+      "bone_groups": [
+        "earring"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Gold star earring",
+      "triangles": 40,
+      "bone_groups": [
+        "earring"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Lavender neck",
+      "triangles": 44,
+      "bone_groups": [
+        "chest",
+        "head"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Gold stand-up collar",
+      "triangles": 60,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Teal idol jacket with painted shirt V, piping and buttons",
+      "triangles": 620,
+      "bone_groups": [
+        "hips",
+        "spine",
+        "chest"
+      ],
+      "atlas_tile": "6"
+    },
+    {
+      "name": "Midnight trouser seat",
+      "triangles": 224,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": "7"
+    },
+    {
+      "name": "Swallowtail flap R",
+      "triangles": 156,
+      "bone_groups": [
+        "hips",
+        "coat_R"
+      ],
+      "atlas_tile": "6"
+    },
+    {
+      "name": "Swallowtail flap L",
+      "triangles": 156,
+      "bone_groups": [
+        "hips",
+        "coat_L"
+      ],
+      "atlas_tile": "6"
+    },
+    {
+      "name": "Hot-pink idol sash",
+      "triangles": 384,
+      "bone_groups": [
+        "chest",
+        "spine",
+        "hips"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Gold star brooch",
+      "triangles": 40,
+      "bone_groups": [
+        "spine",
+        "chest"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Pink brooch star",
+      "triangles": 40,
+      "bone_groups": [
+        "spine",
+        "chest"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Sash bow knot",
+      "triangles": 100,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Sash bow loop +1",
+      "triangles": 44,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Sash bow loop -1",
+      "triangles": 44,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Sash bow tail 0",
+      "triangles": 140,
+      "bone_groups": [
+        "hips",
+        "bow_1"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Sash bow tail 1",
+      "triangles": 140,
+      "bone_groups": [
+        "hips",
+        "bow_2"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Gold epaulette R",
+      "triangles": 160,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Gold epaulette fringe R",
+      "triangles": 100,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Shoulder sparkle R big A",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_R"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Shoulder sparkle R big B",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_R"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Shoulder sparkle R pink A",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_R"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Shoulder sparkle R pink B",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_R"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Shoulder sparkle R white A",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_R"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Shoulder sparkle R white B",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_R"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Gold epaulette L",
+      "triangles": 160,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Gold epaulette fringe L",
+      "triangles": 100,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Shoulder sparkle L big A",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_L"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Shoulder sparkle L big B",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_L"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Shoulder sparkle L pink A",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_L"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Shoulder sparkle L pink B",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_L"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Shoulder sparkle L white A",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_L"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Shoulder sparkle L white B",
+      "triangles": 48,
+      "bone_groups": [
+        "sparkle_L"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Teal sleeve R",
+      "triangles": 316,
+      "bone_groups": [
+        "chest",
+        "upper_arm_R",
+        "forearm_R"
+      ],
+      "atlas_tile": "6"
+    },
+    {
+      "name": "Gold cuff R",
+      "triangles": 44,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Teal sleeve L",
+      "triangles": 316,
+      "bone_groups": [
+        "chest",
+        "upper_arm_L",
+        "forearm_L"
+      ],
+      "atlas_tile": "6"
+    },
+    {
+      "name": "Gold cuff L",
+      "triangles": 44,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Right fist around the mic",
+      "triangles": 196,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Right thumb",
+      "triangles": 64,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Left fist on the hip",
+      "triangles": 196,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Left thumb",
+      "triangles": 64,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Midnight mic handle",
+      "triangles": 44,
+      "bone_groups": [
+        "mic"
+      ],
+      "atlas_tile": "7"
+    },
+    {
+      "name": "Gold mic ring",
+      "triangles": 52,
+      "bone_groups": [
+        "mic"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Silver mic grille",
+      "triangles": 196,
+      "bone_groups": [
+        "mic"
+      ],
+      "atlas_tile": "9"
+    },
+    {
+      "name": "Pink charm cord",
+      "triangles": 66,
+      "bone_groups": [
+        "charm"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Pink star mic charm",
+      "triangles": 40,
+      "bone_groups": [
+        "charm"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Burst sparkle 0 A",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Burst sparkle 0 B",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Burst sparkle 1 A",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Burst sparkle 1 B",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Burst sparkle 2 A",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Burst sparkle 2 B",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Burst sparkle 3 A",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Burst sparkle 3 B",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Burst sparkle 4 A",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Burst sparkle 4 B",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Burst sparkle 5 A",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Burst sparkle 5 B",
+      "triangles": 48,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Burst big star",
+      "triangles": 40,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Midnight stage trouser leg R",
+      "triangles": 416,
+      "bone_groups": [
+        "hips",
+        "thigh_R",
+        "shin_R",
+        "foot_R"
+      ],
+      "atlas_tile": "7"
+    },
+    {
+      "name": "Hot-pink sneaker sole R",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "White high-top upper R",
+      "triangles": 108,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "White sneaker toe cap R",
+      "triangles": 120,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "White high-top collar R",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Hot-pink collar rim R",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Pink lace R 0",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Pink lace R 1",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Pink lace R 2",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Gold sneaker patch R",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Midnight stage trouser leg L",
+      "triangles": 416,
+      "bone_groups": [
+        "hips",
+        "thigh_L",
+        "shin_L",
+        "foot_L"
+      ],
+      "atlas_tile": "7"
+    },
+    {
+      "name": "Hot-pink sneaker sole L",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "White high-top upper L",
+      "triangles": 108,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "White sneaker toe cap L",
+      "triangles": 120,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "White high-top collar L",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "8"
+    },
+    {
+      "name": "Hot-pink collar rim L",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Pink lace L 0",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Pink lace L 1",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Pink lace L 2",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Gold sneaker patch L",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Lavender demon tail",
+      "triangles": 268,
+      "bone_groups": [
+        "hips",
+        "tail_1",
+        "tail_2",
+        "tail_3",
+        "tail_4"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Hot-pink heart spade tip",
+      "triangles": 112,
+      "bone_groups": [
+        "tail_4"
+      ],
+      "atlas_tile": "3"
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 91,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "spin_s": null,
+      "burst_open_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 31,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "spin_s": null,
+      "burst_open_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "spin_s": [
+        0.4,
+        1.04
+      ],
+      "burst_open_s": [
+        1.17,
+        1.6
+      ],
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 22,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "spin_s": null,
+      "burst_open_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 73,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "spin_s": null,
+      "burst_open_s": null,
+      "held_final_pose_from_s": 1.752
+    }
+  ],
+  "rest_reproduction_max_error": 1.8596649169921875e-05,
+  "sheet_pose_reproduction_m": {
+    "mic_fist_err_m": 2.0047462056687042e-07,
+    "grille_err_m": 2.2302015940987714e-07,
+    "ankle_R_err_m": 2.7877519926234643e-08,
+    "ankle_L_err_m": 1.9086433138623085e-08,
+    "wrist_L_err_m": 8.764457993544038e-08
+  },
+  "files": {
+    "demon-band-idol.blend": {
+      "bytes": 1446598,
+      "sha256": "b11910f9d2510b529e41d88cbbc01edc041161c53bac0d948f2f238f5cdc00c9"
+    },
+    "demon-band-idol.glb": {
+      "bytes": 1240728,
+      "sha256": "332f1bfb66d611676b1864e968b5d4657ecfe73698d623541eca4379331df54c"
+    },
+    "pigment.png": {
+      "bytes": 20506,
+      "sha256": "3af3f534881abce1386a6c0a5f6cb8cecbdc66255ca0b3515d93b5b2597b08b8"
+    }
+  }
+}
