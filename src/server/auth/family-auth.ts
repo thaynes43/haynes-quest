@@ -25,7 +25,7 @@ const OIDC_SCOPES = ['openid', 'profile', 'email'];
 /** Re-read discovery at most this often while the provider is unavailable. */
 const PROVIDER_RETRY_MS = 30_000;
 const MAX_LABEL_LENGTH = 80;
-// COPY: fallback display name when Authentik supplies neither name nor username.
+// Display name when Authentik supplies neither name nor username.
 const FALLBACK_LABEL = 'Family member';
 
 export interface AuthLogEntry {

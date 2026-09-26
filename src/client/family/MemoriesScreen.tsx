@@ -17,7 +17,7 @@ const POLL_MS = 2_000;
  * with two little and one big photo slot, each with a private thumbnail, date,
  * age and caption. **Swap** shows suggestions for that slot's dates with
  * **Show more**; **Edit caption** fixes the text; **Publish** makes the journey
- * playable. Strings are `COPY:` placeholders.
+ * playable.
  */
 export function MemoriesScreen({
   childId,
@@ -98,8 +98,7 @@ export function MemoriesScreen({
     setError("");
     try {
       const published = await familyApi.publish(childId, draft.revision, publishRequest.current.id);
-      // COPY: publish confirmation
-      setNotice(`Published version ${published.revision}. The journey is ready to play.`);
+      setNotice(`Published (version ${published.revision}). This quest is ready to play.`);
     } catch (e) {
       setError(familyErrorText(e));
     } finally {
@@ -108,8 +107,7 @@ export function MemoriesScreen({
   }
 
   async function startFresh() {
-    // COPY: start-fresh confirmation
-    if (!window.confirm("Start a new run with these photos? The current run's progress starts over.")) return;
+    if (!window.confirm("Start this quest over with these photos? Progress so far will be reset.")) return;
     setBusy(true);
     setError("");
     try {
@@ -123,21 +121,18 @@ export function MemoriesScreen({
   return (
     <section className="family-memories">
       <button className="text-button" onClick={onBack}>
-        {/* COPY: back to setup */}
-        ← Back to setup
+        ← Back to Family setup
       </button>
-      {/* COPY: memories heading */}
       <h1>{displayName ? `${displayName}'s memories` : "Memories"}</h1>
       {error && <p role="alert">{error}</p>}
       {notice && <p role="status">{notice}</p>}
       {state === null && !error && <p role="status">Loading…</p>}
-      {state?.picking && <p role="status">Picking photos… this can take a minute.{/* COPY */}</p>}
+      {state?.picking && <p role="status">Picking photos… this can take a minute or two.</p>}
       {state?.lastPickError && (
-        <p role="alert">Picking photos didn't finish: {familyErrorText(new Error(state.lastPickError))}{/* COPY */}</p>
+        <p role="alert">Photo picking stopped: {familyErrorText(new Error(state.lastPickError))}</p>
       )}
       {state && !state.picking && !draft && (
         <button className="primary" disabled={busy} onClick={() => void pickAgain()}>
-          {/* COPY: first automatic pick */}
           Pick photos
         </button>
       )}
@@ -169,19 +164,15 @@ export function MemoriesScreen({
           </div>
           <div className="family-memories-actions">
             {!draft.publishable && (
-              // COPY: publish blocked notice
               <p role="status">Every memory needs a photo before you can publish.</p>
             )}
             <button className="primary" disabled={busy || !draft.publishable} onClick={() => void publish()}>
-              {/* COPY: publish button */}
               Publish
             </button>
             <button className="secondary" disabled={busy} onClick={() => void pickAgain()}>
-              {/* COPY: re-run automatic picks */}
-              Pick again
+              Pick all again
             </button>
             <button className="secondary" disabled={busy} onClick={() => void startFresh()}>
-              {/* COPY: start a fresh run on the latest publication */}
               Start fresh with these photos
             </button>
           </div>
@@ -208,8 +199,7 @@ function ChapterCard({
     <article className="family-chapter-card">
       <header>
         <h2>{chapter.name}</h2>
-        {/* COPY: chapter age band */}
-        <span>Age {chapter.startAge} → {chapter.recoveredAge}</span>
+        <span>Ages {chapter.startAge}–{chapter.recoveredAge}</span>
       </header>
       <div className="family-slots">
         {chapter.slots.map((slot) => (
@@ -258,14 +248,11 @@ function SlotCard({
           loading="lazy"
         />
       ) : (
-        // COPY: empty slot
         <div className="family-thumbnail is-empty">Needs a photo</div>
       )}
-      {/* COPY: slot size label */}
-      <small>{big ? "Big memory" : "Little memory"}</small>
+      <small>{big ? "Big memory · after the boss" : "Little memory"}</small>
       {slot.localDate && (
-        // COPY: slot date and age
-        <span className="family-slot-date">{slot.localDate} · Age {slot.ageYears}</span>
+        <span className="family-slot-date">{slot.localDate} · age {slot.ageYears}</span>
       )}
       {editing ? (
         <form
@@ -275,12 +262,12 @@ function SlotCard({
           }}
         >
           <input
-            aria-label="Caption" // COPY: caption field label
+            aria-label="Caption"
             value={caption}
             maxLength={60}
             onChange={(event) => setCaption(event.target.value)}
           />
-          <button className="secondary" disabled={busy}>Save{/* COPY */}</button>
+          <button className="secondary" disabled={busy}>Save</button>
         </form>
       ) : (
         slot.caption && <p className="family-caption">{slot.caption}</p>
@@ -288,13 +275,11 @@ function SlotCard({
       <div className="family-slot-actions">
         {slot.status === "filled" && !editing && (
           <button className="text-button" disabled={busy} onClick={() => setEditing(true)}>
-            {/* COPY: edit caption */}
             Edit caption
           </button>
         )}
         <button className="text-button" disabled={busy} onClick={() => setSwapping((open) => !open)}>
-          {/* COPY: swap / choose a photo */}
-          {slot.status === "filled" ? "Swap" : "Choose a photo"}
+          {slot.status === "filled" ? "Swap photo" : "Choose a photo"}
         </button>
       </div>
       {swapping && (
@@ -346,19 +331,17 @@ function Suggestions({
   return (
     <div className="family-suggestions" role="group" aria-label="Suggestions">
       {error && <p role="alert">{error}</p>}
-      {!loading && items.length === 0 && !error && <p>No other photos fit these dates.{/* COPY */}</p>}
+      {!loading && items.length === 0 && !error && <p>No other photos fit these dates.</p>}
       <div className="family-suggestion-grid">
         {items.map((item) => (
           <button key={item.token} className="family-suggestion" disabled={busy} onClick={() => onChoose(item.token)}>
             <img src={familyApi.thumbnailUrl(item.token)} alt="" loading="lazy" />
-            {/* COPY: suggestion date and age */}
-            <span>{item.localDate} · Age {item.ageYears}</span>
+            <span>{item.localDate} · age {item.ageYears}</span>
           </button>
         ))}
       </div>
       {cursor !== null && (
         <button className="secondary" disabled={loading} onClick={() => void more(cursor)}>
-          {/* COPY: show more suggestions */}
           {loading ? "Loading…" : "Show more"}
         </button>
       )}

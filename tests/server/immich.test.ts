@@ -61,20 +61,16 @@ async function resolvedSubject(photoSource: ImmichPhotoSource) {
 
 describe('Immich photo source', () => {
   it('fails closed for a missing name without searching assets', async () => {
-    const caller = new QueueCaller([json({ people: [person(PERSON_A, 'Someone Else')], total: 1, hasNextPage: false })]);
+    const caller = new QueueCaller([json([person(PERSON_A, 'Demo Adventurer Two')])]);
     const result = await source(caller).resolveName('Demo Adventurer');
     expect(result).toEqual({ kind: 'missing', subjects: [] });
     expect(caller.calls).toHaveLength(1);
-    expect(caller.calls[0]!.path).toContain('/api/people?');
+    expect(caller.calls[0]!.path).toBe('/api/search/person?name=Demo%20Adventurer&withHidden=false');
   });
 
   it('returns every exact duplicate as an opaque ambiguous choice', async () => {
     const caller = new QueueCaller([
-      json({
-        people: [person('source-id-one', 'Demo Adventurer'), person('source-id-two', 'demo adventurer')],
-        total: 2,
-        hasNextPage: false,
-      }),
+      json([person('source-id-one', 'Demo Adventurer'), person('source-id-two', 'demo adventurer')]),
     ]);
     const result = await source(caller).resolveName(' Demo Adventurer ');
     expect(result.kind).toBe('ambiguous');
@@ -84,8 +80,9 @@ describe('Immich photo source', () => {
     expect(result.subjects[0]!.option.id).not.toBe(result.subjects[1]!.option.id);
   });
 
-  it('refuses to claim a complete people lookup after its page cap', async () => {
+  it('falls back to the page scan without name search and refuses an incomplete scan', async () => {
     const caller = new QueueCaller([
+      json({ message: 'Not Found' }, 404),
       json({ people: [person(PERSON_A, 'Someone Else')], total: 2, hasNextPage: true }),
     ]);
     await expect(source(caller, undefined, { peoplePages: 1, peoplePageSize: 1 }).resolveName('Demo Adventurer'))
@@ -94,7 +91,7 @@ describe('Immich photo source', () => {
 
   it('keeps the person/date/image filters on every page and rejects ineligible returned assets', async () => {
     const caller = new QueueCaller([
-      json({ people: [person(PERSON_A, 'Demo Adventurer')], total: 1, hasNextPage: false }),
+      json([person(PERSON_A, 'Demo Adventurer')]),
       json({
         assets: {
           items: [
@@ -139,7 +136,7 @@ describe('Immich photo source', () => {
       fileCreatedAt: new Date(Date.UTC(2016, 0, 1 + index * 7)).toISOString(),
     }));
     const caller = new QueueCaller([
-      json({ people: [person(PERSON_A, 'Demo Adventurer')], total: 1, hasNextPage: false }),
+      json([person(PERSON_A, 'Demo Adventurer')]),
       ...Array.from({ length: 5 }, (_, page) => json({ assets: {
         items: history.slice(page * 100, (page + 1) * 100),
         nextPage: page === 4 ? null : page + 2,
@@ -159,7 +156,7 @@ describe('Immich photo source', () => {
 
   it('rejects an upstream page larger than the requested scan budget', async () => {
     const caller = new QueueCaller([
-      json({ people: [person(PERSON_A, 'Demo Adventurer')], total: 1, hasNextPage: false }),
+      json([person(PERSON_A, 'Demo Adventurer')]),
       json({ assets: { items: [asset('one'), asset('two')], nextPage: null } }),
     ]);
     const photoSource = source(caller, undefined, { assetPageSize: 1 });
@@ -170,7 +167,7 @@ describe('Immich photo source', () => {
 
   it('marks discovery incomplete at the asset page cap and rejects malformed pagination', async () => {
     const cappedCaller = new QueueCaller([
-      json({ people: [person(PERSON_A, 'Demo Adventurer')], total: 1, hasNextPage: false }),
+      json([person(PERSON_A, 'Demo Adventurer')]),
       json({ assets: { items: [asset('first')], nextPage: 2, nextCursor: null } }),
     ]);
     const cappedSource = source(cappedCaller, undefined, { assetPages: 1, assetPageSize: 1 });
@@ -180,7 +177,7 @@ describe('Immich photo source', () => {
     expect(capped.incomplete).toBe(true);
 
     const malformedCaller = new QueueCaller([
-      json({ people: [person(PERSON_A, 'Demo Adventurer')], total: 1, hasNextPage: false }),
+      json([person(PERSON_A, 'Demo Adventurer')]),
       json({ assets: { items: [asset('first')], nextPage: '999', nextCursor: null } }),
     ]);
     const malformedSource = source(malformedCaller);

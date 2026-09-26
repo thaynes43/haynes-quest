@@ -1,6 +1,6 @@
 # Work order 107: Growth moves, vertical pieces and theme kits
 
-- **Status:** In progress
+- **Status:** Complete. [PR79](https://github.com/thaynes43/haynes-quest/pull/79) (`32cee46`) added the move ladder, `requires`, lift, bounce pad and demo, and [PR83](https://github.com/thaynes43/haynes-quest/pull/83) (`b47bfb4`) added crumble, decor, the theme-kit registry and trails on every v4 theme. The Rat Casino scene fingerprint is unchanged
 - **Model / dispatch:** Native Claude Code subagent `claude-opus-5-5` (xhigh)
 - **Context:** Fresh agent; self-contained brief
 - **Required reading:** `AGENTS.md`, [DESIGN-025](../../docs/designs/025-growth-moves-and-vertical-courses.md) (the contract), DESIGN-006/011/019/020/021/022, `src/game/obby.ts`, `src/game/createGame.ts`, `src/shared/authored-level.ts`, `src/shared/editor-project.ts`, `src/shared/editor-sections.ts`, `src/game/scene.ts`, `src/game/casino-scene.ts`, `src/game/casino-tokens.ts`, `src/game/world-themes.ts`, `src/shared/adventure.ts` (abilities), `tests/game/authored-traversal-lib.ts`, `scripts/levels/editor.ts`

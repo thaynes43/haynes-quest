@@ -18,7 +18,19 @@ Tom asked for the first real release for his two children:
 
 [ADR-005](../docs/adrs/005-family-sign-in-and-admission.md), [DESIGN-024](../docs/designs/024-family-journeys.md) and [DESIGN-025](../docs/designs/025-growth-moves-and-vertical-courses.md) are the contracts.
 
-**Era art:** Tom locked [DESIGN-026](../docs/designs/026-personal-era-casts.md), with four World A chapters and three World B chapters. [WO111](work-orders/111-era-cast-art-lead.md) is producing the original casts and themed kits in priority order, using serial lead concepts and one fresh Astra Blender author per exclusive scene lease. Each asset has a separate checked delivery PR; its status table and delivery evidence are the resume point. Exact-version review remains open under PRD-004 Q-03's family-release permission. The first [Cat v001 review](../docs/assets/reviews/clubhouse-bully-cat/v001.md), [PR85](https://github.com/thaynes43/haynes-quest/pull/85) and [delivery log](evidence/era-cast-deliveries.json) identify the checked candidate; live catalog publication is pending. Children's names, birthdays and photos remain private database configuration and never enter this public repository.
+**Live at [quest.haynesnetwork.com](https://quest.haynesnetwork.com)** behind Authentik (`authentik Admins` + `family`), with a Haynes Network portal tile. It runs main `e63f549`: sign-in, family journeys, the admin Memories screen, the operator CLI, growth moves and v4 pieces. Tom should sign in as `thaynes`; that account is in both groups, while the separate `thomashaynes620` account is in neither.
+
+**Eras locked** September 26: [DESIGN-026](../docs/designs/026-personal-era-casts.md) gives World A four chapters and World B three. The Codex Astra art lead ([WO111](work-orders/111-era-cast-art-lead.md)) is producing the casts and kits.
+
+**Next:**
+1. Foundations.
+2. Seven chapter builds.
+3. Register the World A and B templates.
+4. Deploy.
+5. The operator publishes both children's journeys.
+6. Adversarial review.
+
+Children's names, birthdays and photos are private database configuration and never enter this public repository.
 
 ## Golden encounter and PC mouse controls · September 25, 2026
 

@@ -127,7 +127,6 @@ export const THEME_KITS: Readonly<Record<AuthoredLevelTheme, ThemeKit>> =
       props: themeKitPropsFor("garden"),
       trail: trail(
         { disc: 0xffd669, discEmissive: 0x6b4d08, rim: 0x5c8a3e, rimEmissive: 0x1f3314, ticket: 0xfff1a6, ticketEmissive: 0x7a6010, stub: 0x5c8a3e, stubEmissive: 0x1f3314, glow: 0xfff5c6 },
-        // COPY: placeholder names for the garden trail collectibles.
         { token: "seed", tokens: "seeds", ticket: "golden acorn", tickets: "golden acorns" },
       ),
       exitGate: null,
@@ -140,7 +139,6 @@ export const THEME_KITS: Readonly<Record<AuthoredLevelTheme, ThemeKit>> =
       props: themeKitPropsFor("party"),
       trail: trail(
         { disc: 0xffd669, discEmissive: 0x7a3f62, rim: 0xd687a5, rimEmissive: 0x4a1f35, ticket: 0xffefb1, ticketEmissive: 0x8a5a10, stub: 0xb787b3, stubEmissive: 0x3a1f3a, glow: 0xfff5c6 },
-        // COPY: placeholder names for the party trail collectibles.
         { token: "confetti coin", tokens: "confetti coins", ticket: "party ticket", tickets: "party tickets" },
       ),
       exitGate: null,
@@ -153,7 +151,6 @@ export const THEME_KITS: Readonly<Record<AuthoredLevelTheme, ThemeKit>> =
       props: themeKitPropsFor("arcade"),
       trail: trail(
         { disc: 0xdca953, discEmissive: 0x5a3a12, rim: 0xd687a5, rimEmissive: 0x4a1f35, ticket: 0xd687a5, ticketEmissive: 0x5a1f3a, stub: 0x3e3353, stubEmissive: 0x1a1428, glow: 0xffd2e4 },
-        // COPY: placeholder names for the arcade trail collectibles.
         { token: "arcade token", tokens: "arcade tokens", ticket: "high-score ticket", tickets: "high-score tickets" },
       ),
       exitGate: null,
@@ -166,7 +163,6 @@ export const THEME_KITS: Readonly<Record<AuthoredLevelTheme, ThemeKit>> =
       props: themeKitPropsFor("toybox"),
       trail: trail(
         { disc: 0xdca953, discEmissive: 0x5a3a12, rim: 0x6d7cb0, rimEmissive: 0x232a44, ticket: 0xd9aa8e, ticketEmissive: 0x6a4020, stub: 0x6d7cb0, stubEmissive: 0x232a44, glow: 0xfff1d6 },
-        // COPY: placeholder names for the toybox trail collectibles.
         { token: "toy button", tokens: "toy buttons", ticket: "golden key", tickets: "golden keys" },
       ),
       exitGate: null,

@@ -1,6 +1,6 @@
 # Work order 110: Haynes Network portal tile
 
-- **Status:** In progress
+- **Status:** Complete. haynesnetwork [PR578](https://github.com/thaynes43/haynesnetwork/pull/578) was released in v0.99.0 and deployed by [ops PR3190](https://github.com/thaynes43/haynes-ops/pull/3190). The tile row is live and granted to Family, and admins see it too
 - **Model / dispatch:** Native Claude Code subagent `claude-opus-5-5` (xhigh)
 - **Required reading:** the haynesnetwork repo's `CLAUDE.md`/`AGENTS.md` (docs-first rules, immutable ADRs, catalog admin-curation rule), `packages/db/src/schema/app-catalog.ts`, the per-slug seed precedent `0037_books_library_ledger.sql`, `packages/db/__tests__/migrations.test.ts` (`SEED_SLUGS`), `packages/ui/src/icons/registry.ts` and `components.tsx`, `packages/domain/src/effective-apps.ts`, and that repo's deploy path to haynes-ops
 - **Worktree / branch:** `~/work/haynesnetwork-quest-link` on `agent/haynes-quest-link`

@@ -51,7 +51,7 @@ try {
   {
     const { context, page } = await open(null);
     await page.goto(url);
-    await page.getByRole("button", { name: "Sign in" }).waitFor();
+    await page.getByRole("button", { name: "Sign in with Haynes Network" }).waitFor();
     assert.equal((await page.request.get(`${origin}/api/children`)).status(), 401);
     step("signed-out visitor sees only sign-in and gets 401");
     await context.close();
@@ -61,14 +61,14 @@ try {
   {
     const { context, page, errors } = await open("admin");
     await page.goto(url);
-    await page.getByRole("button", { name: "Set up your family" }).click();
+    await page.getByRole("button", { name: "Family setup" }).click();
     await page.getByRole("button", { name: "Add a child" }).click();
-    await page.getByLabel("Name in the photo library").fill("Test Child B");
+    await page.getByLabel("Their name in Immich").fill("Test Child B");
     await page.getByRole("button", { name: "Find" }).click();
-    await page.getByLabel("Name to show").fill("Test Child B");
+    await page.getByLabel("Name in the game").fill("Test Child B");
     assert.equal(await page.getByLabel("Birthday").inputValue(), "2020-02-29");
-    await page.getByLabel("World").selectOption("rat-casino-world@v2");
-    await page.getByRole("button", { name: "Create and pick photos" }).click();
+    await page.getByLabel("Quest world").selectOption("rat-casino-world@v2");
+    await page.getByRole("button", { name: "Create quest and pick photos" }).click();
     await page.locator(".family-chapter-card").first().waitFor({ timeout: 60_000 });
     assert.equal(await page.locator(".family-chapter-card").count(), 3);
     assert.equal(await page.locator(".family-slot").count(), 9);
@@ -84,7 +84,7 @@ try {
     step("admin edited a caption");
 
     const second = page.locator(".family-slot").nth(4);
-    await second.getByRole("button", { name: "Swap" }).click();
+    await second.getByRole("button", { name: "Swap photo" }).click();
     await second.locator(".family-suggestion").first().waitFor();
     const before = await second.locator(".family-suggestion").count();
     const more = second.getByRole("button", { name: "Show more" });
@@ -100,7 +100,7 @@ try {
     step(`admin swapped a photo from ${before}+ suggestions`);
 
     await page.getByRole("button", { name: "Publish" }).click();
-    await page.getByText("Published version 1").waitFor();
+    await page.getByText("Published (version 1)").waitFor();
     await page.screenshot({ path: `${out}/admin-memories.png`, fullPage: true });
     step("admin published the journey");
     assert.deepEqual(errors, []);
@@ -113,8 +113,8 @@ try {
     await page.goto(url);
     const card = page.locator(".family-journey-card");
     await card.waitFor();
-    assert.match(await card.innerText(), /Test Child B[\s\S]*Ready to start/);
-    assert.equal(await page.getByRole("button", { name: "Set up your family" }).count(), 0);
+    assert.match(await card.innerText(), /Test Child B[\s\S]*Tap to start your quest/);
+    assert.equal(await page.getByRole("button", { name: "Family setup" }).count(), 0);
     const admin = await page.request.get(`${origin}/api/admin/children`);
     assert.equal(admin.status(), 403);
     step("member sees the journey card and no setup");
