@@ -1,0 +1,121 @@
+{
+  "work_order": "WO111",
+  "asset_id": "inator-monster",
+  "version": "v001",
+  "created_utc": "2026-09-26T18:51:14.738059+00:00",
+  "glb_sha256": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "blender": {
+    "version": "4.5.13 LTS",
+    "instance": "blender-authoring-2",
+    "units": "METRIC",
+    "unit_scale": 1,
+    "authoring_axes": "+Z up / +Y forward (character right = +X)",
+    "frames_per_second": 30,
+    "animation_mode": "NLA_TRACKS",
+    "skin": "One skin for the monster and the pilot; rigid toy parts plus smoothstep blends along the spine (hips/spine_1/2/3), the legs, the tiny arms, the tail chain, the pilot coat, sleeves and antenna, and the straps (cockpit to torso)",
+    "root": "Identity, fixed floor-centred root; no root animation; the hips translate for the waddle, stomp, rear-back and the seated defeat",
+    "bind_pose": "The approved sheet pose (head tilt, mismatched pupils, the pilot raising the remote and pointing); the controls at rest reproduce it (max matrix error 2.2e-06)",
+    "guards": "Legs are two-bone IK with world ankle targets and an analytic foot floor guard; a tail floor guard pitches the tail root up just enough that the floor-resting tail never sinks (max pitch per clip in construction.json floor_guards). Soles and the tail contact are clamped to a 6 mm contact plane so keyframe interpolation stays above the floor."
+  },
+  "export": {
+    "format": "GLB",
+    "axes": "+Y up / -Z forward",
+    "selection_only": true,
+    "materials": {
+      "0": "opaque painted atlas (doubleSided)",
+      "1": "alpha BLEND bubble glass on the same atlas (single-sided; three.js GLTFLoader sets depthWrite false so the pilot shows through)"
+    },
+    "texture": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "embedded": true,
+      "images": 1
+    },
+    "no_external_resources": true,
+    "no_required_extensions": true,
+    "compression": "None; no Draco, Meshopt or KTX2 requirement"
+  },
+  "preview": {
+    "source": "Exact delivered GLB via Three.js GLTFLoader",
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport_px": [
+      900,
+      900
+    ],
+    "orthographic_camera": {
+      "half_height_m": 1.8,
+      "px_per_m": 250,
+      "targets": {
+        "front": [
+          0,
+          1.62,
+          0
+        ],
+        "side": [
+          0,
+          1.62,
+          0.33
+        ],
+        "back": [
+          0,
+          1.62,
+          0
+        ],
+        "threequarter": [
+          0,
+          1.62,
+          0.2
+        ],
+        "beauty": [
+          0,
+          1.5,
+          0.2
+        ]
+      },
+      "views": {
+        "front": [
+          0,
+          1.6,
+          -12
+        ],
+        "side": [
+          12,
+          1.6,
+          0
+        ],
+        "back": [
+          0,
+          1.6,
+          12
+        ],
+        "threequarter": [
+          8.485,
+          1.6,
+          -8.485
+        ],
+        "beauty": [
+          6.2,
+          4.4,
+          -10.8
+        ]
+      }
+    },
+    "gameplay_camera": "Perspective 48 deg, 7.9 m out and 2.62 m high at azimuths 0/45/90/180/-90 deg, looking at 1.75 m (the game follow camera trails the player; the boss usually faces the player)",
+    "lighting": "Warm hemisphere plus three directional lights; ACES tone mapping exposure 1.0",
+    "scales": [
+      1,
+      0.35
+    ],
+    "no_physical_device_claim": true
+  },
+  "checks": {
+    "khronos_zero_errors_warnings": true,
+    "exact_three_adapter_all_checks": true,
+    "chromium_all_clips_normal_small": true,
+    "source_attachment_checks": true
+  }
+}

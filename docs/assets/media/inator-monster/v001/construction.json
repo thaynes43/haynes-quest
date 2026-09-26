@@ -1,0 +1,1390 @@
+{
+  "asset_id": "inator-monster",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Opus 5.5 does the WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "blender_instance": "blender-authoring-2",
+  "source_reference": "Blender reference sheet, no generated concept",
+  "source_sheet_sha256": "12bdf82a9f573692c05ac029d64dda3bc6d8b075c24ebabc10ddc9ea4be951b9",
+  "source_blockout_sha256": "d1fb9866c026f33d60309856ddf2f4261d600ecd720c2aa3c304446b08e3ea80",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.9651287794113159,
+      -1.915588617324829,
+      0.006000000052154064
+    ],
+    "max": [
+      0.7099999785423279,
+      1.2651280164718628,
+      3.21671199798584
+    ]
+  },
+  "height_m": 3.21671199798584,
+  "triangles": 14575,
+  "triangles_by_material": {
+    "opaque": 14200,
+    "glass": 375
+  },
+  "vertices": 7545,
+  "material_count": 2,
+  "bone_count": 41,
+  "floor_clamped_vertices": 7,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "format": "8-bit indexed PNG with a tRNS chunk (only the glass block entries are translucent)",
+    "origin": "Original deterministic painted palette atlas generated in Blender Python from the sheet colours; no external textures.",
+    "palette": [
+      "72a95c",
+      "4f7f48",
+      "f0d58c",
+      "d9b466",
+      "f08a3c",
+      "f4c542",
+      "ef7fa8",
+      "5eaee0",
+      "f3e6cf",
+      "fbf8f2",
+      "c9d3d8",
+      "2b2238",
+      "9c3a52",
+      "ef8a9a",
+      "fbf6ec",
+      "f2a08f",
+      "3a3548",
+      "c9ccd3",
+      "6b5b95",
+      "c9923e",
+      "e0524f",
+      "7cc26b",
+      "eef0ec",
+      "cfd8d4",
+      "f2cfae",
+      "e8a08c",
+      "dcd6ee",
+      "7b5ea7",
+      "a9d8ea",
+      "4b4f63",
+      "3f9d9a"
+    ],
+    "glass": "bfe6f0",
+    "palette_entries": 252,
+    "transparent_entries": 35,
+    "glass_alpha_range": [
+      0.058823529411764705,
+      0.3803921568627451
+    ],
+    "glint_alpha": [
+      0.78,
+      0.88,
+      1.0
+    ]
+  },
+  "plates": [
+    [
+      "torso",
+      0,
+      "spine_3"
+    ],
+    [
+      "torso",
+      1,
+      "spine_3"
+    ],
+    [
+      "torso",
+      2,
+      "spine_2"
+    ],
+    [
+      "torso",
+      3,
+      "spine_2"
+    ],
+    [
+      "torso",
+      4,
+      "spine_1"
+    ],
+    [
+      "torso",
+      5,
+      "spine_1"
+    ],
+    [
+      "torso",
+      6,
+      "hips"
+    ],
+    [
+      "torso",
+      7,
+      "hips"
+    ],
+    [
+      "tail",
+      8,
+      "tail_1"
+    ],
+    [
+      "tail",
+      9,
+      "tail_2"
+    ],
+    [
+      "tail",
+      10,
+      "tail_3"
+    ],
+    [
+      "tail",
+      11,
+      "tail_4"
+    ],
+    [
+      "tail",
+      12,
+      "tail_5"
+    ],
+    [
+      "tail",
+      13,
+      "tail_5"
+    ]
+  ],
+  "parts": [
+    {
+      "name": "R big round foot",
+      "triangles": 224,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R cream toe nub 0",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R cream toe nub 1",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R cream toe nub 2",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R stumpy baggy suit leg",
+      "triangles": 168,
+      "bone_groups": [
+        "foot_R",
+        "shin_R",
+        "thigh_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R baggy ankle wrinkle low",
+      "triangles": 128,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "atlas_tile": 1,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R baggy ankle wrinkle high",
+      "triangles": 128,
+      "bone_groups": [
+        "shin_R",
+        "thigh_R"
+      ],
+      "atlas_tile": 1,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L big round foot",
+      "triangles": 224,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L cream toe nub 0",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L cream toe nub 1",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L cream toe nub 2",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L stumpy baggy suit leg",
+      "triangles": 168,
+      "bone_groups": [
+        "foot_L",
+        "shin_L",
+        "thigh_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L baggy ankle wrinkle low",
+      "triangles": 128,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "atlas_tile": 1,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L baggy ankle wrinkle high",
+      "triangles": 128,
+      "bone_groups": [
+        "shin_L",
+        "thigh_L"
+      ],
+      "atlas_tile": 1,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Pear kaiju rubber-suit torso",
+      "triangles": 680,
+      "bone_groups": [
+        "hips",
+        "spine_1",
+        "spine_2",
+        "spine_3"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Butter belly patch with scute bands",
+      "triangles": 704,
+      "bone_groups": [
+        "hips",
+        "spine_1",
+        "spine_2",
+        "spine_3"
+      ],
+      "atlas_tile": 2,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit harness chest belt",
+      "triangles": 240,
+      "bone_groups": [
+        "spine_2",
+        "spine_3"
+      ],
+      "atlas_tile": 16,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Brass harness buckle",
+      "triangles": 44,
+      "bone_groups": [
+        "spine_2",
+        "spine_3"
+      ],
+      "atlas_tile": 19,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R tiny T-rex arm",
+      "triangles": 136,
+      "bone_groups": [
+        "spine_2",
+        "spine_1",
+        "arm_upper_R",
+        "arm_lower_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R suit wrist wrinkle",
+      "triangles": 96,
+      "bone_groups": [
+        "arm_lower_R"
+      ],
+      "atlas_tile": 1,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R mitten hand",
+      "triangles": 120,
+      "bone_groups": [
+        "arm_lower_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R mitten claw nub 0",
+      "triangles": 36,
+      "bone_groups": [
+        "arm_lower_R"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R mitten claw nub 1",
+      "triangles": 36,
+      "bone_groups": [
+        "arm_lower_R"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "R mitten claw nub 2",
+      "triangles": 36,
+      "bone_groups": [
+        "arm_lower_R"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L tiny T-rex arm",
+      "triangles": 136,
+      "bone_groups": [
+        "spine_1",
+        "spine_2",
+        "arm_upper_L",
+        "arm_lower_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L suit wrist wrinkle",
+      "triangles": 96,
+      "bone_groups": [
+        "arm_lower_L"
+      ],
+      "atlas_tile": 1,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L mitten hand",
+      "triangles": 120,
+      "bone_groups": [
+        "arm_lower_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L mitten claw nub 0",
+      "triangles": 36,
+      "bone_groups": [
+        "arm_lower_L"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L mitten claw nub 1",
+      "triangles": 36,
+      "bone_groups": [
+        "arm_lower_L"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "L mitten claw nub 2",
+      "triangles": 36,
+      "bone_groups": [
+        "arm_lower_L"
+      ],
+      "atlas_tile": 8,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Thick swept kaiju tail",
+      "triangles": 524,
+      "bone_groups": [
+        "hips",
+        "tail_1",
+        "tail_2",
+        "tail_3",
+        "tail_4",
+        "tail_5"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Costume zipper tape with interlocking teeth",
+      "triangles": 344,
+      "bone_groups": [
+        "hips",
+        "spine_1",
+        "spine_2",
+        "spine_3"
+      ],
+      "atlas_tile": 16,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Zipper slider",
+      "triangles": 44,
+      "bone_groups": [
+        "spine_2",
+        "spine_3"
+      ],
+      "atlas_tile": 17,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Dangling zipper pull tab",
+      "triangles": 56,
+      "bone_groups": [
+        "zipper_tab"
+      ],
+      "atlas_tile": 17,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 00",
+      "triangles": 96,
+      "bone_groups": [
+        "spine_3"
+      ],
+      "atlas_tile": 4,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 01",
+      "triangles": 96,
+      "bone_groups": [
+        "spine_3"
+      ],
+      "atlas_tile": 5,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 02",
+      "triangles": 96,
+      "bone_groups": [
+        "spine_2"
+      ],
+      "atlas_tile": 6,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 03",
+      "triangles": 96,
+      "bone_groups": [
+        "spine_2"
+      ],
+      "atlas_tile": 7,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 04",
+      "triangles": 96,
+      "bone_groups": [
+        "spine_1"
+      ],
+      "atlas_tile": 4,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 05",
+      "triangles": 96,
+      "bone_groups": [
+        "spine_1"
+      ],
+      "atlas_tile": 5,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 06",
+      "triangles": 96,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 6,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 07",
+      "triangles": 96,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 7,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 08",
+      "triangles": 96,
+      "bone_groups": [
+        "tail_1"
+      ],
+      "atlas_tile": 4,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 09",
+      "triangles": 96,
+      "bone_groups": [
+        "tail_2"
+      ],
+      "atlas_tile": 5,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 10",
+      "triangles": 96,
+      "bone_groups": [
+        "tail_3"
+      ],
+      "atlas_tile": 6,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 11",
+      "triangles": 96,
+      "bone_groups": [
+        "tail_4"
+      ],
+      "atlas_tile": 7,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 12",
+      "triangles": 92,
+      "bone_groups": [
+        "tail_5"
+      ],
+      "atlas_tile": 4,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Toy back plate 13",
+      "triangles": 92,
+      "bone_groups": [
+        "tail_5"
+      ],
+      "atlas_tile": 5,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Bean cranium",
+      "triangles": 728,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Snout with the ear-to-ear grin",
+      "triangles": 1164,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Lower jaw",
+      "triangles": 858,
+      "bone_groups": [
+        "jaw"
+      ],
+      "atlas_tile": 0,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Butter chin",
+      "triangles": 160,
+      "bone_groups": [
+        "jaw"
+      ],
+      "atlas_tile": 2,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Pink tongue",
+      "triangles": 120,
+      "bone_groups": [
+        "tongue"
+      ],
+      "atlas_tile": 13,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Buck tooth +1",
+      "triangles": 44,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 14,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Nostril +1",
+      "triangles": 48,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cheek blush +1",
+      "triangles": 80,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 15,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Buck tooth -1",
+      "triangles": 44,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 14,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Nostril -1",
+      "triangles": 48,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cheek blush -1",
+      "triangles": 80,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 15,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Googly eye white R",
+      "triangles": 280,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Googly eye plastic rim R",
+      "triangles": 160,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 10,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Googly pupil R",
+      "triangles": 96,
+      "bone_groups": [
+        "pupil_R"
+      ],
+      "atlas_tile": 11,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Googly eye white L",
+      "triangles": 280,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Googly eye plastic rim L",
+      "triangles": 160,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 10,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Googly pupil L",
+      "triangles": 96,
+      "bone_groups": [
+        "pupil_L"
+      ],
+      "atlas_tile": 11,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Violet cockpit tub",
+      "triangles": 236,
+      "bone_groups": [
+        "cockpit"
+      ],
+      "atlas_tile": 18,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Brass cockpit rim",
+      "triangles": 192,
+      "bone_groups": [
+        "cockpit"
+      ],
+      "atlas_tile": 19,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit signal light 0 +1",
+      "triangles": 48,
+      "bone_groups": [
+        "cockpit"
+      ],
+      "atlas_tile": 20,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit signal light 0 -1",
+      "triangles": 48,
+      "bone_groups": [
+        "cockpit"
+      ],
+      "atlas_tile": 20,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit signal light 1 +1",
+      "triangles": 48,
+      "bone_groups": [
+        "cockpit"
+      ],
+      "atlas_tile": 5,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit signal light 1 -1",
+      "triangles": 48,
+      "bone_groups": [
+        "cockpit"
+      ],
+      "atlas_tile": 5,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit signal light 2 +1",
+      "triangles": 48,
+      "bone_groups": [
+        "cockpit"
+      ],
+      "atlas_tile": 21,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit signal light 2 -1",
+      "triangles": 48,
+      "bone_groups": [
+        "cockpit"
+      ],
+      "atlas_tile": 21,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Clear bubble cockpit dome",
+      "triangles": 375,
+      "bone_groups": [
+        "dome"
+      ],
+      "atlas_tile": 54,
+      "material": "Clear bubble cockpit glass"
+    },
+    {
+      "name": "Brass antenna port",
+      "triangles": 96,
+      "bone_groups": [
+        "dome"
+      ],
+      "atlas_tile": 19,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scientist lab coat body",
+      "triangles": 154,
+      "bone_groups": [
+        "pilot_root",
+        "pilot_spine"
+      ],
+      "atlas_tile": 22,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Mint high collar",
+      "triangles": 44,
+      "bone_groups": [
+        "pilot_spine"
+      ],
+      "atlas_tile": 30,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Lab coat pocket with pens",
+      "triangles": 44,
+      "bone_groups": [
+        "pilot_spine"
+      ],
+      "atlas_tile": 32,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scientist round bald head",
+      "triangles": 224,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 24,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scientist ear +1",
+      "triangles": 48,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 24,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scientist ear -1",
+      "triangles": 48,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 24,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scientist round pink nose",
+      "triangles": 64,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 25,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Goggle strap",
+      "triangles": 96,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 16,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Goggle lens +1",
+      "triangles": 44,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 28,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Goggle brass rim +1",
+      "triangles": 72,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 19,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Gleeful pupil +1",
+      "triangles": 48,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 11,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scheming brow +1",
+      "triangles": 46,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Goggle lens -1",
+      "triangles": 44,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 28,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Goggle brass rim -1",
+      "triangles": 72,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 19,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Gleeful pupil -1",
+      "triangles": 48,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 11,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scheming brow -1",
+      "triangles": 46,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scientist cut-in grin",
+      "triangles": 60,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 12,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scientist top teeth",
+      "triangles": 44,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 14,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 0",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 1",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 2",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 3",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 4",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 5",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 6",
+      "triangles": 24,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 7",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 8",
+      "triangles": 24,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike 9",
+      "triangles": 24,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike back 0",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike back 1",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Wild hair spike back 2",
+      "triangles": 22,
+      "bone_groups": [
+        "pilot_head"
+      ],
+      "atlas_tile": 26,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scientist raised coat sleeve",
+      "triangles": 108,
+      "bone_groups": [
+        "pilot_spine",
+        "pilot_upper_R",
+        "pilot_lower_R"
+      ],
+      "atlas_tile": 22,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Scientist pointing coat sleeve",
+      "triangles": 108,
+      "bone_groups": [
+        "pilot_spine",
+        "pilot_upper_L",
+        "pilot_lower_L"
+      ],
+      "atlas_tile": 22,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Purple glove holding remote",
+      "triangles": 100,
+      "bone_groups": [
+        "pilot_lower_R"
+      ],
+      "atlas_tile": 27,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Purple glove pointing",
+      "triangles": 100,
+      "bone_groups": [
+        "pilot_hand_L"
+      ],
+      "atlas_tile": 27,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Pointing finger",
+      "triangles": 20,
+      "bone_groups": [
+        "pilot_hand_L"
+      ],
+      "atlas_tile": 27,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Chunky -inator remote",
+      "triangles": 44,
+      "bone_groups": [
+        "remote"
+      ],
+      "atlas_tile": 29,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Big red -inator button",
+      "triangles": 48,
+      "bone_groups": [
+        "remote"
+      ],
+      "atlas_tile": 20,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Remote dial 0",
+      "triangles": 38,
+      "bone_groups": [
+        "remote"
+      ],
+      "atlas_tile": 5,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Remote dial 1",
+      "triangles": 38,
+      "bone_groups": [
+        "remote"
+      ],
+      "atlas_tile": 30,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Zig-zag -inator antenna",
+      "triangles": 80,
+      "bone_groups": [
+        "antenna_1",
+        "antenna_2",
+        "antenna_3"
+      ],
+      "atlas_tile": 5,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Pink antenna ball",
+      "triangles": 100,
+      "bone_groups": [
+        "antenna_3"
+      ],
+      "atlas_tile": 6,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit strap 0",
+      "triangles": 36,
+      "bone_groups": [
+        "cockpit",
+        "spine_3",
+        "spine_2"
+      ],
+      "atlas_tile": 16,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit strap 1",
+      "triangles": 36,
+      "bone_groups": [
+        "cockpit",
+        "spine_3",
+        "spine_2"
+      ],
+      "atlas_tile": 16,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit strap 2",
+      "triangles": 36,
+      "bone_groups": [
+        "cockpit",
+        "spine_3",
+        "spine_2"
+      ],
+      "atlas_tile": 16,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    },
+    {
+      "name": "Cockpit strap 3",
+      "triangles": 36,
+      "bone_groups": [
+        "cockpit",
+        "spine_3",
+        "spine_2"
+      ],
+      "atlas_tile": 16,
+      "material": "Painted rubber suit, toy plastic, cloth and skin"
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 91,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.2,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 37,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 22,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 73,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": 1.8
+    }
+  ],
+  "rest_reproduction_max_error": 2.16066837310791e-06,
+  "floor_guards": {
+    "idle": {
+      "max_tail_pitch_rad": 0.0076,
+      "frames_with_tail_lift": 88
+    },
+    "move": {
+      "max_tail_pitch_rad": 0.0647,
+      "frames_with_tail_lift": 37
+    },
+    "attack": {
+      "max_tail_pitch_rad": 0.0951,
+      "frames_with_tail_lift": 35
+    },
+    "hit": {
+      "max_tail_pitch_rad": 0.0152,
+      "frames_with_tail_lift": 16
+    },
+    "defeat": {
+      "max_tail_pitch_rad": 0.453,
+      "frames_with_tail_lift": 65
+    }
+  },
+  "pupil_cross_angles_rad": {
+    "R": 2.2453385868462434,
+    "L": 0.7795713301430375
+  },
+  "files": {
+    "inator-monster.blend": {
+      "bytes": 1816665,
+      "sha256": "72542af836a6f6ba7284fab4584f339646f69145c6e39b9fa9eff1ee17f00f96"
+    },
+    "inator-monster.glb": {
+      "bytes": 1234756,
+      "sha256": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671"
+    },
+    "pigment.png": {
+      "bytes": 191543,
+      "sha256": "bdf01785882a2b052c471d59a78a0f16c14b546725a0e1faab3dffcea0235efa"
+    }
+  }
+}
