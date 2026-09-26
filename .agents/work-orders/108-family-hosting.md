@@ -1,6 +1,6 @@
 # Work order 108: Family hosting and Authentik (haynes-ops)
 
-- **Status:** In progress (draft PR; merge after WO106 and WO109 land in a signed image)
+- **Status:** Live. [Ops PR3188](https://github.com/thaynes43/haynes-ops/pull/3188) added the Authentik public provider and group bindings, the `traefik-external` route, the network policy and the Gatus check. [Ops PR3193](https://github.com/thaynes43/haynes-ops/pull/3193) and [PR3194](https://github.com/thaynes43/haynes-ops/pull/3194) pinned main `5778469` and then `e63f549`. `quest.haynesnetwork.com` returns 200 on `/healthz` and `/readyz` and 401 without a session, and its sign-in start builds the exact client, redirect and PKCE request
 - **Model / dispatch:** PLAN-019 Claude coordinator
 - **Required reading:** [ADR-005](../../docs/adrs/005-family-sign-in-and-admission.md) D-01, D-03, D-07 and D-08; haynes-ops `AGENTS.md`/`CLAUDE.md`; haynes-ops `kubernetes/main/apps/frontend/haynes-quest/**`; the `90-cigar-journal-oidc.yaml` and `60-tautulli-frontdoor.yaml` blueprints; the cigar-journal `ingressroute.yaml` and `networkpolicy.yaml`
 - **Worktree / branch:** `~/work/haynes-ops-quest-family` on `agent/haynes-quest-family-release`

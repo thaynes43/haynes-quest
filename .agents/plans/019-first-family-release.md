@@ -60,6 +60,28 @@ A Claude Code session (`claude-opus-5-5`) started by Tom drives this plan. It ke
 - Every new asset appears in the catalog with its review page and live URLs verified.
 - Owner checks that stay pending until Tom does them, never simulated: his real sign-in, the portal tile click, photo swaps, final art and audio review, and device play.
 
+## Progress (September 26, 01:45 UTC)
+
+- **Live now:**
+  - sign-in (WO106) and hosting (WO108);
+  - the portal tile (WO110);
+  - family journeys and the operator CLI (WO109);
+  - growth moves and v4 pieces (WO107);
+  - the final copy.
+
+  The family release runs main `e63f549`. Live person lookup resolves both children.
+- **Era casts (WO111):** Tom locked DESIGN-026 with World A at four chapters. The Codex Astra art lead is producing candidates in priority order; the first was Clubhouse Bully Cat v001 ([PR85](https://github.com/thaynes43/haynes-quest/pull/85)).
+- **Family worlds:**
+  1. A design workflow produced seven chapter blueprints and an adversarial critique. They are kept with the coordinator rulings at `/home/dev/artifacts/haynes-quest/family-blueprints/`.
+  2. A foundations workflow is adding the new themes, periods, catalog v7, lift dwell, the drop mode, shared props, level replace and family lints.
+  3. The chapter-build workflow follows.
+- **Remaining:**
+  1. Build, verify and register the World A and World B templates.
+  2. Deploy them.
+  3. The operator creates and publishes both children.
+  4. Integrate assets as they land.
+  5. Run the adversarial release review and record the handoff.
+
 ## Result
 
 In progress. See [HANDOFF](../HANDOFF.md).
