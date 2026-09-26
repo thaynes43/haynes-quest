@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import type {
   GameplayAction,
   GameplayActionRequest,
@@ -53,7 +53,48 @@ export interface GameScreenPreviewProps {
   chapterOnlyRouteId?: string;
 }
 
+/**
+ * DESIGN-024 D-10: a family journey shows real photos, so fixture-only copy
+ * ("Fictional illustration" and the fictional-drawing notes) never appears.
+ */
+const FamilyPhotosContext = React.createContext(false);
+
 export function GameScreen({
+  initialSave,
+  onLeave,
+  ephemeral = false,
+  familyPhotos = false,
+  authoredLevelResolver,
+  leaveLabel,
+  chapterTitles,
+  chapterSubtitles,
+  chapterDescriptions,
+  chapterOnlyRouteId,
+}: {
+  initialSave: SaveView;
+  onLeave: () => void;
+  ephemeral?: boolean;
+  /** A published family journey: real photos, captions and ages. */
+  familyPhotos?: boolean;
+} & GameScreenPreviewProps) {
+  return (
+    <FamilyPhotosContext.Provider value={familyPhotos}>
+      <GameScreenBody
+        initialSave={initialSave}
+        onLeave={onLeave}
+        ephemeral={ephemeral}
+        authoredLevelResolver={authoredLevelResolver}
+        leaveLabel={leaveLabel}
+        chapterTitles={chapterTitles}
+        chapterSubtitles={chapterSubtitles}
+        chapterDescriptions={chapterDescriptions}
+        chapterOnlyRouteId={chapterOnlyRouteId}
+      />
+    </FamilyPhotosContext.Provider>
+  );
+}
+
+function GameScreenBody({
   initialSave,
   onLeave,
   ephemeral = false,
@@ -131,13 +172,16 @@ function MemoryCard({
   memory: MemoryView;
   children?: React.ReactNode;
 }) {
+  const familyPhotos = useContext(FamilyPhotosContext);
   return (
     <figure className="victory-memory">
       <MemoryImage memory={memory} />
       <figcaption>
         <strong>{memory.label}</strong>
         <small>
-          {memory.date} · Age {memory.ageYears} · Fictional illustration
+          {familyPhotos
+            ? `${memory.date} · Age ${memory.ageYears}` // COPY: family memory detail line
+            : `${memory.date} · Age ${memory.ageYears} · Fictional illustration`}
         </small>
       </figcaption>
       {children}
@@ -160,6 +204,7 @@ function Adventure({
   onLeave: () => void;
   ephemeral?: boolean;
 } & GameScreenPreviewProps) {
+  const familyPhotos = useContext(FamilyPhotosContext);
   const container = useRef<HTMLDivElement>(null);
   const game = useRef<GameHandle | undefined>(undefined);
   const [save, setSave] = useState(initialSave);
@@ -865,7 +910,9 @@ function Adventure({
         </button>
       )}
       <div className="placeholder-label" data-quest-ui>
-        {previewChapterCount} {previewChapterCount === 1 ? "chapter" : "chapters"} · Fictional memories · {hasDraftEnemy ? "Draft enemy uses placeholder art" : "Candidate artwork"}
+        {familyPhotos
+          ? /* COPY: family-journey footer label */ `${previewChapterCount} ${previewChapterCount === 1 ? "chapter" : "chapters"} · Your memories`
+          : `${previewChapterCount} ${previewChapterCount === 1 ? "chapter" : "chapters"} · Fictional memories · ${hasDraftEnemy ? "Draft enemy uses placeholder art" : "Candidate artwork"}`}
       </div>
 
       {activeModal === "friend" && selectedFriend && level && (
@@ -1064,9 +1111,9 @@ function Adventure({
                   : "Tap to hear a memory chime."}
           </p>
           <p className="small-note">
-            This private review uses fictional drawings. It has not connected to
-            your photo library. Use the music-note button to mute the playtest
-            sounds.
+            {familyPhotos
+              ? /* COPY: family-journey help note */ "These are your family's photos. Use the music-note button to mute the sounds."
+              : "This private review uses fictional drawings. It has not connected to your photo library. Use the music-note button to mute the playtest sounds."}
           </p>
           <button className="primary" onClick={() => setShowHelp(false)}>
             Back to the adventure
@@ -1241,7 +1288,7 @@ function Adventure({
         >
           <p>
             {selectedMemoryIds
-              ? `${visibleRecoveredCount} fictional memories reclaimed. Your traveler reached age ${save.ageYears}.`
+              ? `${visibleRecoveredCount} ${familyPhotos ? "" : "fictional "}memories reclaimed. Your traveler reached age ${save.ageYears}.`
               : `${view.completedLevelIds.length} eras faced. ${save.recoveredIds.length} memories reclaimed. Your traveler reached age ${save.ageYears}; this journey ends where its selected memories end.`}
           </p>
           {finishedTally && <CasinoHaul counts={finishedTally} />}

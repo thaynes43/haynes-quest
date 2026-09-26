@@ -6,6 +6,10 @@
 import type {
   FrozenEditorWorldLevelPlanV2,
 } from "./adventure.js";
+import {
+  GROWTH_MOVE_LADDER_VERSION,
+  abilitiesForAge as growthAbilitiesForAge,
+} from "./abilities.js";
 import type { Ability } from "./contracts.js";
 import type { WorldEditorLevelDocument } from "./editor-project.js";
 import type { ParodyCatalogVersion } from "./parody-catalog.js";
@@ -106,10 +110,9 @@ export function daysBetween(from: string, to: string): number {
 // ---------------------------------------------------------------------------
 
 /**
- * The family plan consumes a ladder, never a hard-coded table. WO107 exports
- * `abilitiesForAge` from `src/shared/abilities.ts`; adapt it to this interface
- * once it lands. The plan freezes the sampled result, so a later ladder change
- * never alters a published journey.
+ * The family plan consumes a ladder, never a hard-coded table. The plan freezes
+ * the sampled result, so a later ladder change never alters a published
+ * journey.
  */
 export interface AbilityLadderSource {
   readonly version: string;
@@ -117,21 +120,15 @@ export interface AbilityLadderSource {
 }
 
 /**
- * Provisional DESIGN-025 D-01 table until WO107's `abilitiesForAge` merges:
- * jump from 0, high jump from 2, double jump from 4, glide from 8.
+ * The DESIGN-025 D-01 ladder from `src/shared/abilities.ts` (WO107): jump from
+ * 0, high jump from 2, double jump from 4, glide from 8. Family plans also
+ * freeze `move` and `interact`, which every age has.
  */
-export const PROVISIONAL_ABILITY_LADDER: AbilityLadderSource = Object.freeze({
-  version: "design-025-ladder-provisional-v1",
+export const FAMILY_ABILITY_LADDER: AbilityLadderSource = Object.freeze({
+  version: GROWTH_MOVE_LADDER_VERSION,
   abilitiesForAge(ageYears: number): readonly FamilyAbility[] {
     if (!Number.isInteger(ageYears) || ageYears < 0) throw new RangeError("Invalid age");
-    return [
-      "move",
-      "interact",
-      "jump",
-      ...(ageYears >= 2 ? (["high-jump"] as const) : []),
-      ...(ageYears >= 4 ? (["double-jump"] as const) : []),
-      ...(ageYears >= 8 ? (["glide"] as const) : []),
-    ];
+    return ["move", "interact", ...growthAbilitiesForAge(ageYears)];
   },
 });
 

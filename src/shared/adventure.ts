@@ -876,6 +876,10 @@ function levelView(
       'optionalEncounterIds' in level
       ? { optionalEncounterIds: [...level.optionalEncounterIds] }
       : {}),
+    // DESIGN-025: a family chapter plays with exactly the moves its plan froze.
+    ...(plan.version === 'family-world-plan-v1' && 'abilities' in level
+      ? { growthMoves: [...(level as { abilities: readonly string[] }).abilities] }
+      : {}),
     memoryIds: memoryIdsForLevel(level),
     ...('minorMemoryIds' in level ? {
       minorMemoryIds: [...level.minorMemoryIds] as [string, string],

@@ -10,7 +10,7 @@
 import { randomUUID } from 'node:crypto';
 import {
   FAMILY_MEMORY_SLOTS,
-  PROVISIONAL_ABILITY_LADDER,
+  FAMILY_ABILITY_LADDER,
   defaultCaption,
   familyWholeYearsAt,
   isDateOnly,
@@ -83,7 +83,7 @@ export class FamilyJourneyService {
   private readonly newSeed: () => string;
 
   constructor(private readonly options: FamilyServiceOptions) {
-    this.ladder = options.ladder ?? PROVISIONAL_ABILITY_LADDER;
+    this.ladder = options.ladder ?? FAMILY_ABILITY_LADDER;
     this.today = options.today ?? (() => new Date().toISOString().slice(0, 10));
     this.newSeed = options.newSeed ?? (() => randomUUID());
   }

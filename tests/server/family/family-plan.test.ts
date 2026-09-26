@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  PROVISIONAL_ABILITY_LADDER,
+  FAMILY_ABILITY_LADDER,
   abilitiesAtAge,
   addDays,
   daysBetween,
@@ -55,7 +55,7 @@ describe('family age rule (DESIGN-024 D-03)', () => {
 
 describe('ability ladder interface (DESIGN-025 D-01)', () => {
   it('freezes the provisional ladder into lasting grants', () => {
-    const ladder = freezeAbilityLadder(PROVISIONAL_ABILITY_LADDER, 10);
+    const ladder = freezeAbilityLadder(FAMILY_ABILITY_LADDER, 10);
     expect(ladder.grants.map((grant) => grant.fromAge)).toEqual([0, 2, 4, 8]);
     expect(abilitiesAtAge(ladder, 0)).toEqual(['move', 'interact', 'jump']);
     expect(abilitiesAtAge(ladder, 3)).toEqual(['move', 'interact', 'jump', 'high-jump']);
@@ -64,7 +64,7 @@ describe('ability ladder interface (DESIGN-025 D-01)', () => {
   });
 
   it('samples only up to the journey age', () => {
-    expect(freezeAbilityLadder(PROVISIONAL_ABILITY_LADDER, 6).grants.map((grant) => grant.fromAge))
+    expect(freezeAbilityLadder(FAMILY_ABILITY_LADDER, 6).grants.map((grant) => grant.fromAge))
       .toEqual([0, 2, 4]);
   });
 
