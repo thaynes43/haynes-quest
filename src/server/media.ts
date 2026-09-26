@@ -1,8 +1,10 @@
 import type { FrozenMemory } from "./domain.js";
 
 export interface PrivateMediaProvider {
+  /** `thumbnail` is the small admin-grid size; play uses the default preview. */
   fetchMedia(
     memory: FrozenMemory,
+    options?: { size?: "thumbnail" | "preview" },
   ): Promise<{ bytes: Uint8Array; contentType: string }>;
 }
 

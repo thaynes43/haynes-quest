@@ -4,6 +4,7 @@
  * `AuthorizedImmichCaller` boundary, so tests exercise the real request and
  * parsing code. Every person, date and photo here is fictional.
  */
+import sharp from 'sharp';
 import type { AuthorizedImmichCaller } from '../../../src/server/photos/immich.js';
 import type { PickClock } from '../../../src/server/family/pick.js';
 
@@ -107,7 +108,27 @@ export class FakeImmich implements AuthorizedImmichCaller {
       return this.search(body!, true);
     }
     if (init.method === 'GET' && url.pathname === '/api/faces') return this.faces(url.searchParams.get('id') ?? '');
+    const thumbnail = /^\/api\/assets\/([^/]+)\/thumbnail$/.exec(url.pathname);
+    if (init.method === 'GET' && thumbnail) return this.thumbnail(decodeURIComponent(thumbnail[1]!));
+    const detail = /^\/api\/assets\/([^/]+)$/.exec(url.pathname);
+    if (init.method === 'GET' && detail) return this.assetDetail(decodeURIComponent(detail[1]!));
     return json({ message: 'not found' }, 404);
+  }
+
+  thumbnailCalls(): FakeCall[] {
+    return this.calls.filter((call) => call.path.includes('/thumbnail'));
+  }
+
+  private assetDetail(assetId: string): Response {
+    const asset = this.assets.find((candidate) => candidate.id === assetId);
+    if (!asset) return json({ message: 'not found' }, 400);
+    return json({ ...this.assetDto(asset, true), people: asset.people.map((id) => ({ id, name: 'Synthetic' })) });
+  }
+
+  private async thumbnail(assetId: string): Promise<Response> {
+    if (!this.assets.some((candidate) => candidate.id === assetId)) return json({ message: 'not found' }, 400);
+    const bytes = await sharp({ create: { width: 12, height: 9, channels: 3, background: '#7aa36a' } }).png().toBuffer();
+    return new Response(new Uint8Array(bytes), { status: 200, headers: { 'content-type': 'image/png' } });
   }
 
   searchCalls(): FakeCall[] {

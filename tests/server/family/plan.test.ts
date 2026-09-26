@@ -75,8 +75,16 @@ function asEditorWorldPlan(plan: FamilyWorldAdventurePlanV1): EditorWorldAdventu
     version: 'editor-world-plan-v2',
     catalogVersion: plan.catalogVersion,
     projectFingerprint: plan.projectFingerprint,
-    levels: plan.levels.map(({ chapterId: _c, abilities: _a, memorySlots: _m, authoredLevel: _g, ...level }) =>
-      structuredClone(level)),
+    levels: plan.levels.map(({
+      chapterId: _c,
+      chapterName: _n,
+      chapterSubtitle: _s,
+      chapterDescription: _d,
+      abilities: _a,
+      memorySlots: _m,
+      authoredLevel: _g,
+      ...level
+    }) => structuredClone(level)),
   };
 }
 
@@ -117,6 +125,8 @@ describe('family-world-plan-v1 builder (DESIGN-024 D-07)', () => {
     ]);
     expect(plan.levels.map((level) => level.authoredLevel))
       .toEqual(template.project.chapters.map((chapter) => chapter.level));
+    expect(plan.levels.map((level) => [level.chapterName, level.chapterSubtitle, level.chapterDescription]))
+      .toEqual(template.project.chapters.map((chapter) => [chapter.name, chapter.subtitle, chapter.description]));
     expect(plan.levels[1]!.memorySlots[2]).toEqual({
       slot: 'major',
       memoryId: 'chapter-2-route-memory-major',

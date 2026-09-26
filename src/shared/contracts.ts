@@ -1,6 +1,17 @@
 import type { ParodyPeriodId } from './parody-catalog.js';
 
-export type Ability = "move" | "interact" | "jump";
+/**
+ * `high-jump`, `double-jump` and `glide` are DESIGN-025 growth moves. Only a
+ * family plan's frozen ladder grants them; every older plan grants at most
+ * move, interact and jump.
+ */
+export type Ability =
+  | "move"
+  | "interact"
+  | "jump"
+  | "high-jump"
+  | "double-jump"
+  | "glide";
 export type AppearanceStage = "infant" | "child";
 export type SaveFormat = "legacy-v1" | "era-combat-v2";
 export type MemoryState = "locked" | "released" | "revealed" | "consumed";

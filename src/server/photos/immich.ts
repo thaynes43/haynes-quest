@@ -396,7 +396,10 @@ export class ImmichPhotoSource implements JourneyPhotoSource, FamilyPhotoLibrary
     return { memories: sampled, scanned, incomplete };
   }
 
-  async fetchMedia(memory: FrozenMemory): Promise<{ bytes: Uint8Array; contentType: string }> {
+  async fetchMedia(
+    memory: FrozenMemory,
+    options: { size?: 'thumbnail' | 'preview' } = {},
+  ): Promise<{ bytes: Uint8Array; contentType: string }> {
     if (memory.source.kind !== 'immich') throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
     if (!this.sanitizer) throw new AppError(503, 'MEDIA_SANITIZER_REQUIRED', 'Media unavailable');
     const deadline = Date.now() + this.limits.totalTimeoutMs;
@@ -413,7 +416,7 @@ export class ImmichPhotoSource implements JourneyPhotoSource, FamilyPhotoLibrary
     }
 
     const response = await this.call(
-      `/api/assets/${encodeURIComponent(memory.source.assetId)}/thumbnail?size=preview`,
+      `/api/assets/${encodeURIComponent(memory.source.assetId)}/thumbnail?size=${options.size === 'thumbnail' ? 'thumbnail' : 'preview'}`,
       { method: 'GET' },
       deadline,
     );

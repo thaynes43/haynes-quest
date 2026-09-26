@@ -4,6 +4,7 @@ import { classifyError, createApp, emitSafeDiagnostic, writeSafeDiagnostic } fro
 import { FamilyAuth } from './auth/family-auth.js';
 import { PostgresFamilyPlayerStore } from './auth/player-store.js';
 import { loadConfig, type ServerConfig } from './config.js';
+import { createConfiguredFamily, createConfiguredImmich } from './family/wiring.js';
 import { InMemoryQuestStore } from './db/memory-store.js';
 import { PostgresQuestStore } from './db/postgres-store.js';
 import type { QuestStore } from './domain.js';
@@ -37,6 +38,8 @@ export async function start(): Promise<void> {
   if (store instanceof PostgresQuestStore) await store.migrate();
   // Constructed after migrations: Better Auth validates its tables at startup.
   const familyAuth = createConfiguredFamilyAuth(config, store);
+  const immich = familyAuth ? createConfiguredImmich(config) : null;
+  const family = familyAuth ? createConfiguredFamily(config, store, immich) : null;
 
   let maintenanceJob: Promise<void> | null = null;
   const runMaintenance = (phase: 'scheduled' | 'startup'): Promise<void> => {
@@ -70,6 +73,8 @@ export async function start(): Promise<void> {
     clientDir: config.clientDir,
     studioDir: config.studioDir,
     ...(familyAuth ? { familyAuth } : {}),
+    ...(family ? { family } : {}),
+    ...(immich ? { privateMedia: immich } : {}),
   });
   const server = serve({ fetch: app.fetch, port: config.port, hostname: '0.0.0.0' });
   process.stdout.write(`Haynes Quest server listening on port ${config.port}\n`);

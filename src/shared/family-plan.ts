@@ -6,6 +6,7 @@
 import type {
   FrozenEditorWorldLevelPlanV2,
 } from "./adventure.js";
+import type { Ability } from "./contracts.js";
 import type { WorldEditorLevelDocument } from "./editor-project.js";
 import type { ParodyCatalogVersion } from "./parody-catalog.js";
 
@@ -33,7 +34,7 @@ export const FAMILY_ABILITIES = [
   "high-jump",
   "double-jump",
   "glide",
-] as const;
+] as const satisfies readonly Ability[];
 export type FamilyAbility = (typeof FAMILY_ABILITIES)[number];
 
 /** The largest age a family ladder is sampled to. */
@@ -269,6 +270,10 @@ export interface FamilyMemorySlotPlan {
  */
 export interface FrozenFamilyWorldLevelPlanV1 extends FrozenEditorWorldLevelPlanV2 {
   readonly chapterId: string;
+  /** Public template text, frozen so the plan alone can present its chapter. */
+  readonly chapterName: string;
+  readonly chapterSubtitle: string;
+  readonly chapterDescription: string;
   /** Moves in force at the chapter start; completion grants the ladder at `targetAgeYears`. */
   readonly abilities: readonly FamilyAbility[];
   readonly memorySlots: readonly [FamilyMemorySlotPlan, FamilyMemorySlotPlan, FamilyMemorySlotPlan];

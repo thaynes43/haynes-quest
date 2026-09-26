@@ -43,6 +43,7 @@ import {
   parseStoredFriendlyState,
   parseStoredSaveJson,
 } from './adventure-schema.js';
+import { FAMILY_PROGRESSION_RULE, validateFamilyWorldPlan } from './family/plan-validate.js';
 
 export const FIXTURE_SUBJECT: SubjectOption = {
   id: 'demo-adventurer-v1',
@@ -106,8 +107,13 @@ export interface PreviewRecord extends PreviewResponse {
 
 export interface SaveRecord {
   id: string;
+  /** Who started the run. A family save is household-owned: access is by admission, not owner. */
   ownerId: string;
-  previewId: string;
+  /** The fixture setup preview; null for a family save. */
+  previewId: string | null;
+  /** Set exactly for a family save: the publication it froze and its child (DESIGN-024 D-02). */
+  publicationId?: string | null;
+  childId?: string | null;
   title: string;
   subject: SubjectOption;
   birthDate: string;
@@ -168,6 +174,14 @@ export interface FixtureMaintenanceResult {
   previewsDeleted: number;
 }
 
+export interface StartFamilySaveCommand {
+  childId: string;
+  /** Start a new run on `save`'s publication even when the child already has one. */
+  fresh: boolean;
+  /** A complete, validated new family save; stored only when a new run starts. */
+  save: SaveRecord;
+}
+
 export interface QuestStore {
   ready(): Promise<boolean>;
   getSession(sessionId: string, now: Date): Promise<PlayerRecord | null>;
@@ -183,6 +197,19 @@ export interface QuestStore {
     now: Date,
   ): Promise<SaveRecord>;
   maintainFixtureRecords(now: Date): Promise<FixtureMaintenanceResult>;
+  /**
+   * Household family saves (DESIGN-024 D-02). These are the only methods that
+   * see a family save; the owner-scoped methods above never return one.
+   */
+  startFamilySave(command: StartFamilySaveCommand): Promise<{ save: SaveRecord; created: boolean }>;
+  getHouseholdSave(saveId: string): Promise<SaveRecord | null>;
+  /** Each child's current run: its most recently started family save. */
+  currentFamilySaves(): Promise<SaveRecord[]>;
+  applyHouseholdGameplayAction(
+    saveId: string,
+    request: GameplayActionRequest,
+    now: Date,
+  ): Promise<SaveRecord>;
   close?(): Promise<void>;
 }
 
@@ -436,8 +463,12 @@ export function validateSaveRecord(
     versions: save.versions,
   });
   const normalized = { ...save, ...stored };
+  // A family plan dates memories by the family age rule; its own validator
+  // checks the manifest below.
+  const familyFormat = (normalized.adventurePlan as { version?: unknown } | null)?.version ===
+    'family-world-plan-v1';
   if (
-    !isValidFrozenManifest(normalized.birthDate, normalized.memories) ||
+    (!familyFormat && !isValidFrozenManifest(normalized.birthDate, normalized.memories)) ||
     new Set(normalized.recoveredIds).size !== normalized.recoveredIds.length ||
     normalized.recoveredIds.some(
       (id) => !normalized.memories.some((memory) => memory.id === id),
@@ -465,9 +496,19 @@ export function validateSaveRecord(
     ? null
     : parseStoredFriendlyState(normalized.friendlyState, plan, state);
   const editorWorldPlan = isEditorWorldPlan(plan);
+  const familyPlan = plan.version === 'family-world-plan-v1';
+  const authoredPlan = editorWorldPlan || familyPlan;
+  // Family plans are production-legal only through a publication.
+  if (familyPlan !== Boolean(normalized.publicationId) || familyPlan !== Boolean(normalized.childId)) {
+    invalidSave();
+  }
+  if (
+    familyPlan &&
+    validateFamilyWorldPlan(plan, { birthDate: normalized.birthDate, memories: normalized.memories }).length > 0
+  ) invalidSave();
   const expectedEditorProgression = editorWorldPlan
     ? editorWorldRuleVersions(plan).progression
-    : null;
+    : familyPlan ? FAMILY_PROGRESSION_RULE : null;
   const plannedMemoryIds = plan.levels.flatMap(memoryIdsForLevel);
   const savedMemoryIds = normalized.memories.map((memory) => memory.id);
   if (
@@ -477,8 +518,8 @@ export function validateSaveRecord(
     (plan.version !== 'era-level-plan-v1' && normalized.versions.catalog !== plan.catalogVersion) ||
     (plan.version === 'era-level-plan-v3' &&
       normalized.versions.progression !== ROUTE_MEMORY_RULE_VERSIONS.progression) ||
-    (editorWorldPlan && normalized.versions.progression !== expectedEditorProgression) ||
-    (!editorWorldPlan &&
+    (authoredPlan && normalized.versions.progression !== expectedEditorProgression) ||
+    (!authoredPlan &&
       plan.levels[0]?.startDate !== normalized.birthDate) ||
     plan.levels.some((level, index) => {
       const lastMemoryId = memoryIdsForLevel(level).at(-1);
@@ -488,7 +529,7 @@ export function validateSaveRecord(
       const priorLast = normalized.memories.find((memory) => memory.id === priorLastId);
       return !lastMemory ||
         lastMemory.ageYears !== level.targetAgeYears ||
-        (!editorWorldPlan &&
+        (!authoredPlan &&
           index > 0 && level.startDate !== priorLast?.date) ||
         (editorWorldPlan && 'representedEndDate' in level && (
           wholeYearsAt(normalized.birthDate, level.startDate) !== level.startAgeYears ||

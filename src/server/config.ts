@@ -12,6 +12,17 @@ export interface ServerConfig {
   studioDir: string;
   /** Family sign-in (ADR-005). Always null in fixture mode, always set otherwise. */
   familyAuth: FamilyAuthConfig | null;
+  /** The family photo library (DESIGN-024). Optional: without it setup routes answer 503. */
+  immich: ImmichConfig | null;
+  /** IANA time zone that defines the household's calendar date ("today"). */
+  householdTimeZone: string;
+}
+
+export interface ImmichConfig {
+  url: string;
+  apiKey: string;
+  /** Requests are pinned to the configured origin. */
+  allowedOrigins: string[];
 }
 
 /** Authentik OIDC and admission settings for the family release (ADR-005 D-01, D-03, D-06). */
@@ -76,7 +87,51 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
     clientDir: resolve(env.QUEST_CLIENT_DIR ?? 'dist/client'),
     studioDir: resolve(env.QUEST_STUDIO_DIR ?? 'site'),
     familyAuth: fixtureMode ? null : loadFamilyAuthConfig(env, nodeEnv),
+    immich: fixtureMode ? null : loadImmichConfig(env),
+    householdTimeZone: loadTimeZone(env.QUEST_HOUSEHOLD_TIME_ZONE),
   };
+}
+
+function loadImmichConfig(env: NodeJS.ProcessEnv): ImmichConfig | null {
+  const url = env.IMMICH_URL?.trim();
+  const apiKey = env.IMMICH_API_KEY?.trim();
+  if (!url && !apiKey) return null;
+  if (!url || !apiKey) throw new Error('IMMICH_URL and IMMICH_API_KEY must be set together');
+  let parsed: URL;
+  try {
+    parsed = new URL(url);
+  } catch {
+    throw new Error('IMMICH_URL must be an absolute URL');
+  }
+  if (
+    !['http:', 'https:'].includes(parsed.protocol) || parsed.username || parsed.password ||
+    (parsed.pathname !== '/' && parsed.pathname !== '') || parsed.search || parsed.hash
+  ) {
+    throw new Error('IMMICH_URL must be an HTTP(S) origin');
+  }
+  return { url: parsed.origin, apiKey, allowedOrigins: [parsed.origin] };
+}
+
+function loadTimeZone(value: string | undefined): string {
+  const zone = value?.trim() || 'UTC';
+  try {
+    new Intl.DateTimeFormat('en-CA', { timeZone: zone });
+  } catch {
+    throw new Error('QUEST_HOUSEHOLD_TIME_ZONE must be an IANA time zone');
+  }
+  return zone;
+}
+
+/** The calendar date in `timeZone`, as YYYY-MM-DD. */
+export function calendarDate(now: Date, timeZone: string): string {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(now);
+  const part = (type: string) => parts.find((entry) => entry.type === type)?.value ?? '';
+  return `${part('year')}-${part('month')}-${part('day')}`;
 }
 
 function loadFamilyAuthConfig(env: NodeJS.ProcessEnv, nodeEnv: string): FamilyAuthConfig {

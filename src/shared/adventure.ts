@@ -25,6 +25,11 @@ import {
   type SelectedParodyEncounter,
 } from './parody-selection.js';
 import { bossRequiresOrdinaryDefeats } from './encounter-availability.js';
+import {
+  abilitiesAtAge,
+  type FamilyWorldAdventurePlanV1,
+  type FrozenAbilityLadder,
+} from './family-plan.js';
 
 export const AGE_THRESHOLDS = [4, 8, 13, 18, 25, 35, 50, 65] as const;
 export const ATTACK_COOLDOWN_MS = 600;
@@ -168,7 +173,8 @@ export type AdventurePlan =
   | AdventurePlanV1
   | AdventurePlanV2
   | AdventurePlanV3
-  | EditorWorldAdventurePlan;
+  | EditorWorldAdventurePlan
+  | FamilyWorldAdventurePlanV1;
 
 export interface EncounterProgress {
   hp: number;
@@ -235,10 +241,18 @@ export function abilitiesForAge(ageYears: number): Ability[] {
   return ageYears >= 4 ? ['move', 'interact', 'jump'] : ['move', 'interact'];
 }
 
+/**
+ * A family plan grants its own frozen growth ladder (DESIGN-025 D-01); every
+ * older plan keeps its original moves.
+ */
 export function abilitiesForPlanAge(
-  plan: Pick<AdventurePlan, 'version'>,
+  plan: Pick<AdventurePlan, 'version'> & { readonly abilityLadder?: FrozenAbilityLadder },
   ageYears: number,
 ): Ability[] {
+  if (plan.version === 'family-world-plan-v1') {
+    if (!plan.abilityLadder) throw new RangeError('Family plan has no ability ladder');
+    return abilitiesAtAge(plan.abilityLadder, ageYears);
+  }
   return usesRouteMemoryRules(plan)
     ? ['move', 'interact', 'jump']
     : abilitiesForAge(ageYears);
@@ -249,7 +263,17 @@ export function usesRouteMemoryRules(
 ): boolean {
   return plan.version === 'era-level-plan-v3' ||
     plan.version === 'editor-world-plan-v1' ||
-    plan.version === 'editor-world-plan-v2';
+    plan.version === 'editor-world-plan-v2' ||
+    plan.version === 'family-world-plan-v1';
+}
+
+/** Authored-world plans: the fixture editor preview and published family journeys. */
+export function isAuthoredWorldPlan(
+  plan: AdventurePlan,
+): plan is EditorWorldAdventurePlan | FamilyWorldAdventurePlanV1 {
+  return plan.version === 'editor-world-plan-v1' ||
+    plan.version === 'editor-world-plan-v2' ||
+    plan.version === 'family-world-plan-v1';
 }
 
 export function appearanceForAge(ageYears: number): AppearanceStage {
@@ -848,7 +872,8 @@ function levelView(
     eraYear: level.eraYear,
     ...('periodId' in level ? { periodId: level.periodId, routeId: level.routeId } : {}),
     ...('bossGate' in level ? { bossGate: level.bossGate } : {}),
-    ...(plan.version === 'editor-world-plan-v2' && 'optionalEncounterIds' in level
+    ...((plan.version === 'editor-world-plan-v2' || plan.version === 'family-world-plan-v1') &&
+      'optionalEncounterIds' in level
       ? { optionalEncounterIds: [...level.optionalEncounterIds] }
       : {}),
     memoryIds: memoryIdsForLevel(level),

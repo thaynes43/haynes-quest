@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { and, desc, eq, gt } from 'drizzle-orm';
+import { and, desc, eq, gt, isNotNull, isNull, sql } from 'drizzle-orm';
 import { drizzle, type NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import type { GameplayActionRequest } from '../../shared/contracts.js';
@@ -16,6 +16,7 @@ import {
   type PreviewRecord,
   type QuestStore,
   type SaveRecord,
+  type StartFamilySaveCommand,
   validateSaveRecord,
 } from '../domain.js';
 import { AppError } from '../errors.js';
@@ -26,6 +27,7 @@ type Database = NodePgDatabase<typeof questSchema>;
 type PreviewRow = typeof setupPreviews.$inferSelect;
 type SaveRow = typeof saves.$inferSelect;
 const MAINTENANCE_BATCH_SIZE = 1_000;
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export class PostgresQuestStore implements QuestStore {
   readonly db: Database;
@@ -178,7 +180,7 @@ export class PostgresQuestStore implements QuestStore {
     const rows = await this.db
       .select()
       .from(saves)
-      .where(eq(saves.ownerId, ownerId))
+      .where(and(eq(saves.ownerId, ownerId), isNull(saves.publicationId)))
       .orderBy(desc(saves.updatedAt));
     return rows.map(mapSave);
   }
@@ -187,7 +189,7 @@ export class PostgresQuestStore implements QuestStore {
     const [row] = await this.db
       .select()
       .from(saves)
-      .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId)))
+      .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId), isNull(saves.publicationId)))
       .limit(1);
     return row ? mapSave(row) : null;
   }
@@ -202,32 +204,130 @@ export class PostgresQuestStore implements QuestStore {
       const [row] = await transaction
         .select()
         .from(saves)
-        .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId)))
+        .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId), isNull(saves.publicationId)))
         .for('update')
         .limit(1);
       if (!row) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
-      const current = mapSave(row);
-      const result = applyGameplayActionToSave(current, request, now);
-      if (result.replay) return result.save;
-      const next = result.save;
-      const [updated] = await transaction
-        .update(saves)
-        .set({
-          recoveredIds: next.recoveredIds,
-          ageYears: next.ageYears,
-          abilities: next.abilities,
-          appearanceStage: next.appearanceStage,
-          completed: next.completed,
-          adventureState: next.adventureState,
-          friendlyState: next.friendlyState,
-          revision: next.revision,
-          updatedAt: next.updatedAt,
-        })
-        .where(and(eq(saves.id, saveId), eq(saves.ownerId, ownerId), eq(saves.revision, row.revision)))
-        .returning();
-      if (!updated) throw new AppError(409, 'SAVE_CONFLICT', 'Save changed');
-      return mapSave(updated);
+      return this.writeAction(transaction, row, request, now);
     });
+  }
+
+  async startFamilySave(command: StartFamilySaveCommand): Promise<{ save: SaveRecord; created: boolean }> {
+    const candidate = validateSaveRecord(command.save);
+    if (candidate.childId !== command.childId || !candidate.publicationId) {
+      throw new AppError(422, 'INVALID_SAVE', 'Invalid save');
+    }
+    return this.db.transaction(async (transaction) => {
+      // The child row lock serialises "play" taps from several devices.
+      const locked = await transaction.execute(
+        sql`SELECT id FROM quest_children WHERE id = ${command.childId} FOR UPDATE`,
+      );
+      if (locked.rows.length === 0) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
+      if (!command.fresh) {
+        const [current] = await transaction
+          .select()
+          .from(saves)
+          .where(eq(saves.childId, command.childId))
+          .orderBy(desc(saves.createdAt), desc(saves.id))
+          .limit(1);
+        if (current) return { save: mapSave(current), created: false };
+      }
+      const [created] = await transaction
+        .insert(saves)
+        .values({
+          id: candidate.id,
+          ownerId: candidate.ownerId,
+          previewId: null,
+          publicationId: candidate.publicationId,
+          childId: candidate.childId,
+          title: candidate.title,
+          subject: candidate.subject,
+          birthDate: candidate.birthDate,
+          memories: candidate.memories,
+          recoveredIds: candidate.recoveredIds,
+          ageYears: candidate.ageYears,
+          abilities: candidate.abilities,
+          appearanceStage: candidate.appearanceStage,
+          completed: candidate.completed,
+          saveFormat: candidate.saveFormat,
+          adventurePlan: candidate.adventurePlan,
+          adventureState: candidate.adventureState,
+          friendlyState: candidate.friendlyState ?? null,
+          revision: candidate.revision,
+          versions: candidate.versions,
+          createdAt: candidate.createdAt,
+          updatedAt: candidate.updatedAt,
+        })
+        .returning();
+      if (!created) throw new AppError(503, 'STORE_WRITE_FAILED', 'Save failed');
+      return { save: mapSave(created), created: true };
+    });
+  }
+
+  async getHouseholdSave(saveId: string): Promise<SaveRecord | null> {
+    if (!UUID.test(saveId)) return null;
+    const [row] = await this.db
+      .select()
+      .from(saves)
+      .where(and(eq(saves.id, saveId), isNotNull(saves.publicationId)))
+      .limit(1);
+    return row ? mapSave(row) : null;
+  }
+
+  async currentFamilySaves(): Promise<SaveRecord[]> {
+    const rows = await this.db
+      .selectDistinctOn([saves.childId])
+      .from(saves)
+      .where(isNotNull(saves.childId))
+      .orderBy(saves.childId, desc(saves.createdAt), desc(saves.id));
+    return rows.map(mapSave);
+  }
+
+  async applyHouseholdGameplayAction(
+    saveId: string,
+    request: GameplayActionRequest,
+    now: Date,
+  ): Promise<SaveRecord> {
+    if (!UUID.test(saveId)) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
+    return this.db.transaction(async (transaction) => {
+      const [row] = await transaction
+        .select()
+        .from(saves)
+        .where(and(eq(saves.id, saveId), isNotNull(saves.publicationId)))
+        .for('update')
+        .limit(1);
+      if (!row) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
+      return this.writeAction(transaction, row, request, now);
+    });
+  }
+
+  private async writeAction(
+    transaction: Parameters<Parameters<Database['transaction']>[0]>[0],
+    row: SaveRow,
+    request: GameplayActionRequest,
+    now: Date,
+  ): Promise<SaveRecord> {
+    const current = mapSave(row);
+    const result = applyGameplayActionToSave(current, request, now);
+    if (result.replay) return result.save;
+    const next = result.save;
+    const [updated] = await transaction
+      .update(saves)
+      .set({
+        recoveredIds: next.recoveredIds,
+        ageYears: next.ageYears,
+        abilities: next.abilities,
+        appearanceStage: next.appearanceStage,
+        completed: next.completed,
+        adventureState: next.adventureState,
+        friendlyState: next.friendlyState,
+        revision: next.revision,
+        updatedAt: next.updatedAt,
+      })
+      .where(and(eq(saves.id, row.id), eq(saves.ownerId, row.ownerId), eq(saves.revision, row.revision)))
+      .returning();
+    if (!updated) throw new AppError(409, 'SAVE_CONFLICT', 'Save changed');
+    return mapSave(updated);
   }
 
   async maintainFixtureRecords(now: Date): Promise<FixtureMaintenanceResult> {
@@ -307,6 +407,8 @@ function mapSave(row: SaveRow): SaveRecord {
     id: row.id,
     ownerId: row.ownerId,
     previewId: row.previewId,
+    publicationId: row.publicationId,
+    childId: row.childId,
     title: row.title,
     subject: row.subject,
     birthDate: row.birthDate,
