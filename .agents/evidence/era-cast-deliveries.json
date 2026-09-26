@@ -82,11 +82,21 @@
       "status": "Awaiting Tom's review · used in the family release",
       "sceneReleasedAt": "2026-09-26T01:06:52.236852+00:00",
       "manifest": "docs/assets/media/clubhouse-bully-cat/v001/sha256-manifest.json",
-      "pr": null,
+      "pr": 85,
       "prMerged": null,
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned"
+      },
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/85",
+      "masterSha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496",
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "threeAdapterChecksPassed": 26,
+        "chromiumChecksPassed": 9,
+        "artifactHashesMatchedLocally": 86,
+        "physicalSafari": false
       }
     }
   ]

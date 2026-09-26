@@ -118,7 +118,7 @@ After each delivery, update this work order's status table below with the asset,
 
 | Asset | Concept | Model | PR / SHA | Notes |
 | --- | --- | --- | --- | --- |
-| `clubhouse-bully-cat/v001` | Selected; durable concept and source record saved | Completed; lead intake and exact checks pass | PR pending | 2.5 m, 14,492 triangles, 1.25 s contact. Scene released; 86 matching artifact hashes. Catalog publication pending. |
-| `honk-bus/v001` | Selected; durable concept and source record saved | Fresh Astra author owns scene | Pending | Original matte nursery bus with roof horn; cat scene release verified before takeover. |
+| `clubhouse-bully-cat/v001` | Selected; durable concept and source record saved | Completed; lead intake and exact checks pass | [PR85](https://github.com/thaynes43/haynes-quest/pull/85) · checks running | 2.5 m, 14,492 triangles, 1.25 s contact. Scene released; 86 matching artifact hashes. Catalog publication pending. |
+| `honk-bus/v001` | Selected; durable concept and source record saved | Fresh Astra author owns scene; final defeat correction | Pending | Original matte nursery bus with roof horn; five-clip preview reviewed and exact checks in progress. |
 | `gadget-helper/v001` | Selected; durable concept and source record saved | Waiting for priority 1 | Pending | Front/back fix the wrench arm on the left; model brief resolves side-view depth. |
 | `yes-yes-veggie/v001` | Selected after one background/framing correction | Waiting for priority 1 | Pending | Original and revised concepts preserved; broad crown forms, leaf mittens and stubborn expression. |
