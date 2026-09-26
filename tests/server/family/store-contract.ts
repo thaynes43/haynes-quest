@@ -234,4 +234,71 @@ export function registerFamilyStoreContract(
     const latest = await store.listLatestPublications();
     expect(latest.map((entry) => [entry.childId, entry.revision])).toEqual([[older.id, 2], [younger.id, 2]]);
   });
+
+  it(`${prefix} changes the template and replaces the draft together, or not at all`, async () => {
+    const { store, actors } = context();
+    const child = await store.createChild(profile(), actors[0]);
+    const first = await store.saveDraft(child.id, null, draftContent('before'), actors[0]);
+    await store.publish({
+      childId: child.id,
+      requestId: randomUUID(),
+      expectedDraftRevision: 0,
+      actorId: actors[0],
+      build: () => built('before'),
+    });
+    const content = { ...draftContent('after'), templateVersion: 'v3' };
+    const command = (overrides: Partial<Parameters<FamilyStore['changeTemplate']>[0]> = {}) => ({
+      childId: child.id,
+      expectedChildRevision: 0,
+      expectedDraftRevision: 0 as number | null,
+      templateId: 'rat-casino-world',
+      templateVersion: 'v3',
+      draft: content,
+      actorId: actors[1],
+      ...overrides,
+    });
+    // Either stale revision refuses both writes.
+    await expect(store.changeTemplate(command({ expectedChildRevision: 1 }))).rejects.toMatchObject({ code: 'CHILD_CONFLICT' });
+    await expect(store.changeTemplate(command({ expectedDraftRevision: 1 }))).rejects.toMatchObject({ code: 'DRAFT_CONFLICT' });
+    await expect(store.changeTemplate(command({ expectedDraftRevision: null }))).rejects.toMatchObject({ code: 'DRAFT_CONFLICT' });
+    await expect(store.changeTemplate(command({ childId: randomUUID() }))).rejects.toMatchObject({ code: 'CHILD_NOT_FOUND' });
+    expect(await store.getChild(child.id)).toEqual(child);
+    expect(await store.getDraft(child.id)).toEqual(first);
+
+    const changed = await store.changeTemplate(command());
+    expect(changed.child).toMatchObject({ templateVersion: 'v3', revision: 1, updatedBy: actors[1], createdBy: actors[0] });
+    expect(changed.draft).toMatchObject({ ...content, id: first.id, revision: 1, updatedBy: actors[1] });
+    expect(await store.getChild(child.id)).toEqual(changed.child);
+    expect(await store.getDraft(child.id)).toEqual(changed.draft);
+    // Publications are untouched.
+    expect((await store.latestPublication(child.id))!).toMatchObject({ revision: 1, draftRevision: 0 });
+    expect((await store.latestPublication(child.id))!.plan).toEqual(built('before').plan);
+
+    // A child with no draft gets its first one.
+    const other = await store.createChild(profile(TEST_CHILD_A), null);
+    const created = await store.changeTemplate({ ...command(), childId: other.id, expectedDraftRevision: null, actorId: null });
+    expect(created.child).toMatchObject({ templateVersion: 'v3', revision: 1, updatedBy: null });
+    expect(created.draft).toMatchObject({ childId: other.id, revision: 0, templateVersion: 'v3' });
+  });
+
+  it(`${prefix} lets exactly one of two racing template changes land`, async () => {
+    const { store, actors } = context();
+    const child = await store.createChild(profile(), actors[0]);
+    await store.saveDraft(child.id, null, draftContent('base'), actors[0]);
+    const change = (marker: string, actorId: string) => store.changeTemplate({
+      childId: child.id,
+      expectedChildRevision: 0,
+      expectedDraftRevision: 0,
+      templateId: 'rat-casino-world',
+      templateVersion: 'v3',
+      draft: { ...draftContent(marker), templateVersion: 'v3' },
+      actorId,
+    });
+    const results = await Promise.allSettled([change('left', actors[0]), change('right', actors[1])]);
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    const rejected = results.find((result) => result.status === 'rejected') as PromiseRejectedResult;
+    expect(['CHILD_CONFLICT', 'DRAFT_CONFLICT']).toContain((rejected.reason as { code: string }).code);
+    expect(await store.getChild(child.id)).toMatchObject({ revision: 1, templateVersion: 'v3' });
+    expect((await store.getDraft(child.id))!.revision).toBe(1);
+  });
 }

@@ -3217,9 +3217,20 @@ footer {
   object-fit: cover;
   border-radius: 8px;
 }
-.family-memories-actions {
+.family-memories-actions,
+.family-world-update {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   align-items: center;
+}
+.family-world-update {
+  margin: 16px 0;
+  padding: 14px 18px;
+  border: 1px solid var(--honey);
+  border-radius: 16px;
+  background: #fffaf1;
+}
+.family-world-update p {
+  margin: 0;
 }

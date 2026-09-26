@@ -17,6 +17,7 @@ import {
   resolveLevelEditorProject,
   type LevelEditorProjectV2,
 } from '../../shared/editor-project.js';
+import type { TemplateOffer } from '../../shared/family-api.js';
 import { AppError } from '../errors.js';
 import {
   FamilyRebaseError,
@@ -65,6 +66,11 @@ const TEMPLATE_VERSION = /^v[0-9]{1,4}$/;
 
 export class FamilyTemplateRegistry {
   private readonly entries = new Map<string, FamilyTemplate>();
+  /**
+   * Whether a template fits a birthday on a date is pure (entries never change),
+   * and the admin screens ask on every read, so the answers are remembered.
+   */
+  private readonly fitCache = new Map<string, boolean>();
 
   constructor(sources: readonly FamilyTemplateSource[] = CHECKED_IN_FAMILY_TEMPLATES) {
     for (const source of sources) {
@@ -108,16 +114,62 @@ export class FamilyTemplateRegistry {
    * child's current age, and the rebased world must validate with real dates.
    */
   offeredFor(birthDate: string, today: string): FamilyTemplate[] {
-    return this.list().filter((template) => {
-      try {
-        rebaseWorldForChild(template.project, birthDate, today);
-        return true;
-      } catch (error) {
-        if (error instanceof FamilyRebaseError) return false;
-        throw error;
-      }
-    });
+    return this.list().filter((template) => this.fitsChild(template, birthDate, today));
   }
+
+  /**
+   * DESIGN-024 D-11: the versions of template `id` newer than `version` that
+   * are offered for the birthday, oldest first. The last one is what **Update
+   * world** moves a child to.
+   */
+  newerOffered(id: string, version: string, birthDate: string, today: string): FamilyTemplate[] {
+    const current = versionNumber(version);
+    if (current === null) return [];
+    return this.list()
+      .filter((template) => template.id === id && versionNumber(template.version)! > current)
+      .sort((left, right) => versionNumber(left.version)! - versionNumber(right.version)!)
+      .filter((template) => this.fitsChild(template, birthDate, today));
+  }
+
+  /** The newest offered version newer than the child's, or null. */
+  newestUpgrade(id: string, version: string, birthDate: string, today: string): FamilyTemplate | null {
+    return this.newerOffered(id, version, birthDate, today).at(-1) ?? null;
+  }
+
+  private fitsChild(template: FamilyTemplate, birthDate: string, today: string): boolean {
+    const key = `${templateKey(template.id, template.version)}|${birthDate}|${today}`;
+    const known = this.fitCache.get(key);
+    if (known !== undefined) return known;
+    const answer = rebasesFor(template, birthDate, today);
+    if (this.fitCache.size >= 1_024) this.fitCache.clear();
+    this.fitCache.set(key, answer);
+    return answer;
+  }
+}
+
+/** The administrator-facing summary of a template; no private data. */
+export function templateOffer(template: FamilyTemplate): TemplateOffer {
+  return {
+    id: template.id,
+    version: template.version,
+    name: template.project.name,
+    chapterCount: template.project.chapters.length,
+  };
+}
+
+function rebasesFor(template: FamilyTemplate, birthDate: string, today: string): boolean {
+  try {
+    rebaseWorldForChild(template.project, birthDate, today);
+    return true;
+  } catch (error) {
+    if (error instanceof FamilyRebaseError) return false;
+    throw error;
+  }
+}
+
+/** `v12` -> 12; versions compare numerically, never as text. */
+function versionNumber(version: string): number | null {
+  return TEMPLATE_VERSION.test(version) ? Number(version.slice(1)) : null;
 }
 
 function templateKey(id: string, version: string): string {

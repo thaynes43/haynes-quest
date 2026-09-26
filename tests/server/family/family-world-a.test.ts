@@ -231,12 +231,14 @@ describe('family-world-a@v2 template (World A)', () => {
     expect(await run('set-template', '--child', childId, '--template', 'family-world-a@v2')).toBe(0);
     expect(await run('publish', '--child', childId)).toBe(0);
     expect(await run('status')).toBe(0);
-    expect(lines[0]).toBe(`child ${childId} template family-world-a@v2 draft carried`);
+    expect(lines[0]).toBe('draft r1 carried 12/12 needs-photo 0');
     expect(lines[1]).toMatch(/^publication [0-9a-f-]{36} r2 chapters 4 memories 12$/);
     expect(lines.slice(2)).toEqual(['children 1', `child ${childId} template family-world-a@v2 draft r1 filled 12/12 publication r2`]);
-    // Moving again is a no-op that keeps the carried draft.
-    expect(await run('set-template', '--child', childId, '--template', 'family-world-a@v2')).toBe(0);
-    expect(lines.at(-1)).toBe(`child ${childId} template family-world-a@v2 draft carried`);
+    // v2 is now the child's version, so there is nothing newer to move to (D-11).
+    await expect(run('set-template', '--child', childId, '--template', 'family-world-a@v2'))
+      .rejects.toMatchObject({ code: 'TEMPLATE_UPGRADE_UNAVAILABLE' });
+    await expect(run('set-template', '--child', childId, '--template', 'family-world-a@v1'))
+      .rejects.toMatchObject({ code: 'TEMPLATE_UPGRADE_UNAVAILABLE' });
 
     const first = (await harness.familyStore.getPublication(publication.publicationId))!;
     const latest = (await harness.familyStore.latestPublication(childId))!;
@@ -263,11 +265,14 @@ describe('family-world-a@v2 template (World A)', () => {
     expect(everything).not.toMatch(/\d{4}-\d{2}-\d{2}/);
   });
 
-  it('refuses a template the child cannot play and leaves the child unchanged', async () => {
+  it('refuses a template the child cannot move to and leaves the child unchanged', async () => {
     const harness = worldAHarness();
     const { childId } = await publishChildC(harness, 'v1');
-    await expect(harness.service.setTemplate(childId, 'family-world-a', 'v9', null))
-      .rejects.toMatchObject({ code: 'TEMPLATE_UNKNOWN' });
+    const expectedRevision = (await harness.familyStore.getDraft(childId))!.revision;
+    for (const [templateId, templateVersion] of [['family-world-a', 'v9'], ['family-world-b', 'v2'], ['family-world-a', 'v1']]) {
+      await expect(harness.service.upgradeTemplate(childId, { templateId: templateId!, templateVersion: templateVersion!, expectedRevision }, null))
+        .rejects.toMatchObject({ code: 'TEMPLATE_UPGRADE_UNAVAILABLE' });
+    }
     expect(await harness.familyStore.getChild(childId)).toMatchObject({ templateVersion: 'v1', revision: 0 });
   });
 });

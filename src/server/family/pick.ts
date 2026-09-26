@@ -135,12 +135,59 @@ export async function autoPickJourney(
   input: JourneyPickInput,
   environment: PickEnvironment,
 ): Promise<SlotOutcome[]> {
+  return autoPickChapters({
+    ...input,
+    pickChapterIds: new Set(input.chapters.map((chapter) => chapter.chapterId)),
+    fixed: new Map(),
+  }, environment);
+}
+
+/** A photo kept from an earlier draft. */
+export interface FixedSelection {
+  readonly assetId: string;
+  readonly localDate: string;
+}
+
+export interface PartialPickInput extends JourneyPickInput {
+  /** The chapters to pick; every other chapter keeps its {@link fixed} photos. */
+  readonly pickChapterIds: ReadonlySet<string>;
+  /**
+   * Kept photos keyed `${chapterId}:${slot}` (DESIGN-024 D-11). New picks never
+   * reuse them and stay chronological around them.
+   */
+  readonly fixed: ReadonlyMap<string, FixedSelection>;
+}
+
+export function slotKey(chapterId: string, slot: FamilyMemorySlot): string {
+  return `${chapterId}:${slot}`;
+}
+
+/**
+ * Pick only the chapters in `pickChapterIds`, around the kept photos of the
+ * others: a picked big memory stays before the next chapter's kept little
+ * memories, and picked little memories follow the previous chapter's big
+ * memory, kept or picked. With every chapter picked and nothing kept this is
+ * exactly {@link autoPickJourney}.
+ */
+export async function autoPickChapters(
+  input: PartialPickInput,
+  environment: PickEnvironment,
+): Promise<SlotOutcome[]> {
   const limits = { ...DEFAULT_PICK_LIMITS, ...environment.limits };
   const pacer: Pacer = { lastCallAt: Number.NEGATIVE_INFINITY };
-  const used = new Set<string>();
+  const used = new Set([...input.fixed.values()].map((selection) => selection.assetId));
+  const picked = (chapterId: string) => input.pickChapterIds.has(chapterId);
   const bigs = new Map<string, SlotOutcome>();
   for (const [index, chapter] of input.chapters.entries()) {
-    const windows = bigMemoryWindows(input.chapters, index, input.birthDate, input.today, limits);
+    if (!picked(chapter.chapterId)) continue;
+    let windows = bigMemoryWindows(input.chapters, index, input.birthDate, input.today, limits);
+    const next = input.chapters[index + 1];
+    const nextKept = next && !picked(next.chapterId)
+      ? (['minor-one', 'minor-two'] as const)
+          .map((slot) => input.fixed.get(slotKey(next.chapterId, slot))?.localDate)
+          .filter((date): date is string => date !== undefined)
+      : [];
+    if (nextKept.length > 0) windows = capWindows(windows, addDays(minDate(...nextKept), -1));
     const outcome = await pickSlot({
       ...input,
       chapterId: chapter.chapterId,
@@ -155,8 +202,13 @@ export async function autoPickJourney(
   }
   const outcomes: SlotOutcome[] = [];
   for (const [index, chapter] of input.chapters.entries()) {
+    if (!picked(chapter.chapterId)) continue;
     const previous = index > 0 ? input.chapters[index - 1] : undefined;
-    const previousBig = previous ? bigs.get(previous.chapterId)?.photo?.localDate ?? null : null;
+    const previousBig = previous
+      ? (picked(previous.chapterId)
+          ? bigs.get(previous.chapterId)?.photo?.localDate
+          : input.fixed.get(slotKey(previous.chapterId, 'major'))?.localDate) ?? null
+      : null;
     const minorOne = await pickSlot({
       ...input,
       chapterId: chapter.chapterId,
@@ -181,6 +233,14 @@ export async function autoPickJourney(
     outcomes.push(minorOne, minorTwo, bigs.get(chapter.chapterId)!);
   }
   return outcomes;
+}
+
+/** Both windows, ending no later than `to`. */
+function capWindows(windows: SlotWindows, to: string): SlotWindows {
+  const cap = (range: DateWindow | null) => range && window(range.from, minDate(range.to, to));
+  const preferred = cap(windows.preferred);
+  const widened = cap(windows.widened);
+  return { target: windows.target, preferred, widened: sameWindow(preferred, widened) ? null : widened };
 }
 
 /**

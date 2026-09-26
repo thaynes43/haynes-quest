@@ -70,6 +70,10 @@ export function familyHarness(options: {
   people?: FakePerson[];
   withImmich?: boolean;
   questStore?: InMemoryQuestStore;
+  /** Defaults to the checked-in registry. */
+  templates?: FamilyTemplateRegistry;
+  /** The household date; defaults to {@link HARNESS_TODAY}. */
+  today?: () => string;
 } = {}): FamilyHarness {
   const clock = new FakeClock();
   const assets = options.assets ?? syntheticLibrary();
@@ -82,13 +86,15 @@ export function familyHarness(options: {
   const questStore = options.questStore ?? new InMemoryQuestStore();
   const familyStore = new InMemoryFamilyStore(() => new Date(clock.now()));
   const tokens = new CandidateTokens(HARNESS_SECRET, { now: () => clock.now() });
+  const templates = options.templates ?? registry;
+  const today = options.today ?? (() => HARNESS_TODAY);
   const service = new FamilyJourneyService({
     store: familyStore,
     library,
-    templates: registry,
+    templates,
     tokens,
     clock,
-    today: () => HARNESS_TODAY,
+    today,
     newSeed: () => 'synthetic-seed-fixed-0001',
   });
   const jobs = new AutoPickJobs();
@@ -103,10 +109,10 @@ export function familyHarness(options: {
     familyAuth: fakeFamilyAuth({ admin: ADMIN, member: MEMBER }),
     family: {
       store: familyStore,
-      templates: registry,
+      templates,
       service: withImmich ? service : null,
       jobs,
-      today: () => HARNESS_TODAY,
+      today,
     },
     ...(withImmich ? { privateMedia: library } : {}),
     now: () => new Date(clock.now()),

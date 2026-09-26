@@ -8,6 +8,7 @@ import type {
   FamilyStore,
   PublicationRecord,
   PublishCommand,
+  TemplateChangeCommand,
 } from './store.js';
 
 /** In-process family store with the same compare-and-set and idempotency rules as Postgres. */
@@ -105,6 +106,39 @@ export class InMemoryFamilyStore implements FamilyStore {
       };
       this.drafts.set(childId, draft);
       return cloneRecord(draft);
+    });
+  }
+
+  async changeTemplate(command: TemplateChangeCommand): Promise<{ child: ChildRecord; draft: DraftRecord }> {
+    return this.exclusive(() => {
+      const child = this.children.get(command.childId);
+      if (!child) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
+      if (child.revision !== command.expectedChildRevision) throw new AppError(409, 'CHILD_CONFLICT', 'Child changed');
+      const current = this.drafts.get(command.childId);
+      if (command.expectedDraftRevision === null ? current !== undefined : current?.revision !== command.expectedDraftRevision) {
+        throw new AppError(409, 'DRAFT_CONFLICT', 'Draft changed');
+      }
+      const now = this.now();
+      const nextChild: ChildRecord = {
+        ...child,
+        templateId: command.templateId,
+        templateVersion: command.templateVersion,
+        revision: child.revision + 1,
+        updatedBy: command.actorId,
+        updatedAt: now,
+      };
+      const draft: DraftRecord = {
+        ...structuredClone(command.draft),
+        id: current?.id ?? randomUUID(),
+        childId: command.childId,
+        revision: current ? current.revision + 1 : 0,
+        updatedBy: command.actorId,
+        createdAt: current?.createdAt ?? now,
+        updatedAt: now,
+      };
+      this.children.set(command.childId, nextChild);
+      this.drafts.set(command.childId, draft);
+      return { child: cloneRecord(nextChild), draft: cloneRecord(draft) };
     });
   }
 

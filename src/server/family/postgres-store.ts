@@ -12,6 +12,7 @@ import type {
   FamilyStore,
   PublicationRecord,
   PublishCommand,
+  TemplateChangeCommand,
 } from './store.js';
 
 type Database = NodePgDatabase<typeof familySchema>;
@@ -134,6 +135,61 @@ export class PostgresFamilyStore implements FamilyStore {
     if (row) return mapDraft(row);
     if (!(await this.getChild(childId))) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
     throw new AppError(409, 'DRAFT_CONFLICT', 'Draft changed');
+  }
+
+  async changeTemplate(command: TemplateChangeCommand): Promise<{ child: ChildRecord; draft: DraftRecord }> {
+    const { draft: content } = command;
+    const values = {
+      templateId: content.templateId,
+      templateVersion: content.templateVersion,
+      seed: content.seed,
+      birthDate: content.birthDate,
+      rebasedOn: content.rebasedOn,
+      chapters: structuredClone([...content.chapters]),
+      slots: structuredClone([...content.slots]),
+      updatedBy: command.actorId,
+    };
+    return this.db.transaction(async (transaction) => {
+      // The child row update takes the row lock publish also takes, so a
+      // template change and a publish never interleave.
+      const [child] = await transaction
+        .update(children)
+        .set({
+          templateId: command.templateId,
+          templateVersion: command.templateVersion,
+          revision: command.expectedChildRevision + 1,
+          updatedBy: command.actorId,
+          updatedAt: new Date(),
+        })
+        .where(and(eq(children.id, command.childId), eq(children.revision, command.expectedChildRevision)))
+        .returning();
+      if (!child) {
+        const [exists] = await transaction
+          .select({ id: children.id })
+          .from(children)
+          .where(eq(children.id, command.childId))
+          .limit(1);
+        if (!exists) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
+        throw new AppError(409, 'CHILD_CONFLICT', 'Child changed');
+      }
+      // Throwing rolls the child update back: both writes land or neither does.
+      const [draft] = command.expectedDraftRevision === null
+        ? await transaction
+            .insert(journeyDrafts)
+            .values({ id: randomUUID(), childId: command.childId, ...values, revision: 0 })
+            .onConflictDoNothing({ target: journeyDrafts.childId })
+            .returning()
+        : await transaction
+            .update(journeyDrafts)
+            .set({ ...values, revision: command.expectedDraftRevision + 1, updatedAt: new Date() })
+            .where(and(
+              eq(journeyDrafts.childId, command.childId),
+              eq(journeyDrafts.revision, command.expectedDraftRevision),
+            ))
+            .returning();
+      if (!draft) throw new AppError(409, 'DRAFT_CONFLICT', 'Draft changed');
+      return { child: mapChild(child), draft: mapDraft(draft) };
+    });
   }
 
   async publish(command: PublishCommand): Promise<PublicationRecord> {
