@@ -1,4 +1,4 @@
-# Astra coordination and authoring team
+# Coordination and authoring team
 
 **September 20 editor MVP directive:** use Sol Ultra whenever possible for ordinary work and freely use explicitly authorized Opus 5 dev-env sessions for bounded parallel tasks. Conserve Astra usage for architecture, UX, tricky mechanics/art and final review. Deliver PLAN012 autonomously through a deployed testable MVP. This overrides the older ordinary-task effort and enemy-model-first sequencing.
 
@@ -6,26 +6,26 @@
 
 **September 25 first family release:** Tom started [PLAN-019](plans/019-first-family-release.md) in a Claude Code session, which coordinates it. The coordinator (`claude-opus-5-5`) keeps architecture, UX, user-visible copy, integration and final review. Bounded code, test and verification lanes use native Opus 5.5 subagents (`claude-opus-5-5`, xhigh), per the pod's current Claude policy.
 
-The Astra-only rules below still govern concept images and **all Blender work**. They run in a separate Codex art-lead session (`agent-run --agent codex --model gpt-6-astra --effort max`), which generates concepts serially and dispatches fresh native Astra `max` Blender subagents. Per Tom's ruling, no era-cast asset starts until he locks [DESIGN-026](../docs/designs/026-personal-era-casts.md).
+**Blender model rule, clarified by Tom on September 26:** the earlier "Blender always uses Astra" rule was a **Codex-internal choice of Astra over Sol** for Blender subagents. It was never a Claude-versus-Codex rule and is withdrawn in that form. Blender work goes to a fresh subagent on the **driving provider's top tier**:
 
-The pod's native Codex subagent default is now `gpt-6-sol` (previously `gpt-5.6-sol`); the September 12 Fable quota override below has expired.
+- **Codex driver:** a native GPT-6 Astra subagent at `max`, not Sol.
+- **Claude Code driver:** a Claude Opus 5.5 subagent (`claude-opus-5-5`, xhigh), or Fable 5.1 when Tom asks for it by name.
 
-Tom's latest project instruction governs the model exceptions below. The pod's native Sol default remains useful for ordinary work; **Blender always uses Astra**, and **separate Fable sessions are explicitly authorized** for this project. No dev-env startup change is needed to apply these project rules.
+One exclusive scene lease at a time still applies. Concept images need an image-capable driver, such as Codex Astra's built-in image tool. A Claude-authored asset without a generated concept uses a clearly labeled Blender reference render as its inspiration image.
 
-## Temporary review quota override
+Codex's September 26 usage limit (reset September 30) paused the WO111 Astra art lead, and Claude Opus 5.5 continues the art lane. Per Tom's ruling, era-cast assets started only after he locked [DESIGN-026](../docs/designs/026-personal-era-casts.md).
 
-Tom reports on September 12, 2026 that Fable usage is exhausted until Monday at 8 AM. Until that reset, any needed separate adversarial review uses **Claude Opus 5**, exact `claude-opus-5`, effort `xhigh`, through `agent-run`; do not dispatch Fable. The reported reset has no recorded timezone, so verify quota availability before returning to Fable. This changes the review lane during the quota window, not Astra's lead role, native Sol delegation or the Astra-only Blender rule. Do not start a review merely to use the available model.
+The pod's native Codex subagent default is now `gpt-6-sol` (previously `gpt-5.6-sol`). The September 12 Fable quota override has expired, and separate Fable sessions remain explicitly authorized for this project.
 
 ## Routing
 
 | Work | Model and dispatch | Ownership |
 | --- | --- | --- |
-| Lead, architecture, art direction, story, user-facing text, integration | GPT-6 Astra (`gpt-6-astra`, `max`) | Keep full lead context; coordinate bounded tasks and review every handoff. |
-| Image concepts and revisions | Driving Astra using the built-in image generation tool | One generation/edit at a time, across the project. Inspect each result and retain the common references before starting the next. Never fan image generation out to agents. |
-| **Any Blender work**, including scripts, modeling, materials, rigs, animation, optimization and renders | **Native GPT-6 Astra subagent**, `model: "gpt-6-astra"`, `reasoning_effort: "max"`, `fork_turns: "none"` | Start a fresh subagent for each bounded Blender task, including a separately dispatched revision; grant one exclusive owner of the live scene. Return editable masters, exports, renders and evidence. Do not route Blender work to Sol, Fable or Opus. |
-| Bounded coding, tests, research, non-Blender tooling, audio execution and verification | Native GPT-5.6 Sol, `model: "gpt-5.6-sol"`, `reasoning_effort: "ultra"`, `fork_turns: "none"` | Default delegation lane. Audio direction and final judgment stay with Astra. |
-| Adversarial review or bounded coding to balance plan use | Separate Claude Code **Fable 5.1**, `claude-fable-5-1`, `xhigh`, through `agent-run`; apply the temporary quota override above first | Explicitly authorized by Tom. Fresh session with a repository work order, scoped paths and concrete evidence. Fable may challenge Astra's decisions; Astra resolves findings. |
-| Subagents inside a Claude Code session | Claude Opus (`claude-opus-5`, `xhigh`) | Follow Claude's pod policy. A Fable session must return any Blender task to the Astra lead. |
+| Lead, architecture, art direction, story, user-facing text, integration | The driving session: GPT-6 Astra (`gpt-6-astra`, `max`) or Claude Code (`claude-opus-5-5`, or Fable 5.1 by name) | Keep full lead context; coordinate bounded tasks and review every handoff. |
+| Image concepts and revisions | An image-capable driver, such as Codex Astra's built-in image generation tool | One generation or edit at a time, across the project. Inspect each result and retain the common references before starting the next. Never fan image generation out to agents. |
+| **Any Blender work**: scripts, modeling, materials, rigs, animation, optimization and renders | A fresh subagent on the driving provider's top tier: **Astra `max`** (`model: "gpt-6-astra"`, `fork_turns: "none"`) from a Codex driver, or **Opus 5.5** (`claude-opus-5-5`, xhigh) from a Claude driver. Never Sol | Start a fresh subagent for each bounded Blender task, including a separately dispatched revision. Grant one exclusive owner of the live scene. Return editable masters, exports, renders and evidence. |
+| Bounded coding, tests, research, non-Blender tooling, audio execution and verification | Native Sol (`gpt-6-sol`, `xhigh`) from a Codex driver; Opus 5.5 subagents from a Claude driver | Default delegation lane. Audio direction and final judgment stay with the lead. |
+| Adversarial review or bounded coding to balance plan use | Separate Claude Code **Fable 5.1**, `claude-fable-5-1`, `xhigh`, through `agent-run`, or an Opus 5.5 reviewer | Explicitly authorized by Tom. Fresh session with a repository work order, scoped paths and concrete evidence. The reviewer may challenge the lead's decisions; the lead resolves findings. |
 
 Prefer delegation whenever an independent, bounded task can progress alongside useful coordination. Keep model choice explicit in each [work order](work-orders/000-template.md). Start development agents with fresh contexts and enough repository readings, decisions and artifact versions to succeed without this conversation. The lead handoff preserves the whole project's useful context.
 
@@ -45,7 +45,7 @@ Replace the work-order path before running; use a literal prompt with no private
 
 ## Autonomous delivery and recovery
 
-Use both authorized plans for useful work, choosing Fable coding/review tasks when that balances capacity. There is no target token burn, fixed session lifetime or promise of a quota reset. If a model reaches a real usage limit, record the observed failure and completed work. Continue independent tasks on an available authorized lane; **never silently downgrade Blender work**. Do not repeatedly launch a model that is refusing work.
+Use both authorized plans for useful work, choosing Fable coding/review tasks when that balances capacity. There is no target token burn, fixed session lifetime or promise of a quota reset. If a model reaches a real usage limit, record the observed failure and completed work. Continue independent tasks on an available authorized lane; **never silently downgrade Blender work below the driving provider's top tier**. Do not repeatedly launch a model that is refusing work.
 
 After every integrated milestone and before a context reset or usage wall, update [HANDOFF.md](HANDOFF.md), active work orders and the [asset catalog](../docs/assets/catalog.md): merged commits, remaining branches, exact run/preview commands, actual checks, current asset versions, scene owner, pending jobs and next bounded tasks. Save project artifacts to durable storage and release idle scene ownership. A replacement lead reads these records and resumes rather than regenerating completed assets.
 

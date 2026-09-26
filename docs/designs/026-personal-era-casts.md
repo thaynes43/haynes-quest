@@ -46,7 +46,7 @@ The validator checks the rebased chapter start against that window. A window may
 ## Production order after the lock
 
 1. Driving Astra records the final roster in DESIGN-005, then generates concepts one at a time: chapter 1 of both worlds, then chapter 2, and so on.
-2. Fresh native Astra `max` Blender authors build one character per exclusive scene lease: boss first, then one ordinary per chapter; a second ordinary is a stretch goal.
+2. Fresh top-tier Blender authors build one character per exclusive scene lease: Astra `max` under the Codex art lead, and Opus 5.5 after Codex's September 26 usage limit, per Tom's ruling. Bosses come first, then one ordinary per chapter; a second ordinary is a stretch goal.
 3. Themed prop kits follow each chapter's cast.
 4. Every candidate lands in the catalog in the same PR, labeled "awaiting review" (PRD-004 Q-03).
 5. Until a model lands, levels use the project's neutral placeholder enemy art, and themes use their procedural fallback.

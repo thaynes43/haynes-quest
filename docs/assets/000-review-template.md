@@ -8,7 +8,7 @@ Follow the [mandatory catalog procedure](../PROCESS.md#asset-catalog-must-stay-c
 - **Status:** In production / Paused / Needs iteration / Ready for Tom / Changes requested / Approved / Rejected / Superseded
 - **Kind / gameplay purpose:** To fill
 - **Public-safe provenance:** Original/generated/licensed; actual tool/model versions, generation date, applicable terms and attribution
-- **Authoring agent / effort:** Actual agent; Blender must be Astra
+- **Authoring agent / effort:** Actual agent and effort; Blender uses the driving provider's top tier (Astra `max` or Opus 5.5)
 - **Art brief / input concepts:** Exact versions and reference checksums; names of fictional subjects only
 - **Editable master:** Durable relative artifact ID and checksum, with authorized retrieval instructions; no private URLs or credentials
 - **Runtime files:** Exact GLB/audio/texture filenames, sizes and SHA256s; include every file in an approved kit

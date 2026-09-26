@@ -21,7 +21,7 @@ Private names, birthdays and photos never enter git, PRs, logs, docs or test art
 A Claude Code session (`claude-opus-5-5`) started by Tom drives this plan. It keeps architecture, UX and all user-visible copy, integration and final review.
 
 - **Bounded code lanes:** native Opus 5.5 subagents (`claude-opus-5-5`, xhigh), each in its own `~/work/<slug>` worktree on an `agent/<slug>` branch.
-- **Concept images and all Blender work:** a separate Codex **Astra** art-lead session, `gpt-6-astra` at `max`, via `agent-run`, per [TEAM.md](../TEAM.md). It generates concepts serially and dispatches fresh native Astra `max` Blender subagents, one per exclusive scene lease.
+- **Concept images and all Blender work:** a separate Codex **Astra** art-lead session, `gpt-6-astra` at `max`, via `agent-run`. After its September 26 usage limit, Claude Opus 5.5 Blender authors continue, one scene lease at a time, per Tom's clarified [TEAM.md](../TEAM.md) rule. It generates concepts serially and dispatches fresh native Astra `max` Blender subagents, one per exclusive scene lease.
 - **Adversarial review:** a native Opus 5.5 reviewer at the end.
 
 | Lane | Work order | Owner | Owned paths | Starts |

@@ -1,7 +1,7 @@
 # Work order: replace with bounded task name
 
 - **Status:** Draft / In progress / Ready for review / Complete
-- **Model / dispatch:** Select explicitly under [TEAM.md](../TEAM.md): native Sol `xhigh` by default; **native Astra `max` for all Blender work**; separate Fable 5.1 `xhigh` via `agent-run` for authorized coding/adversarial review
+- **Model / dispatch:** Select explicitly under [TEAM.md](../TEAM.md): native Sol `xhigh` (Codex) or Opus 5.5 (Claude Code) by default; **Blender on the driving provider's top tier: Astra `max`, never Sol, or Opus 5.5**; separate Fable 5.1 `xhigh` via `agent-run` for authorized coding/adversarial review
 - **Context:** Fresh development agent; native `fork_turns: "none"`; self-contained brief and repository inputs
 - **Required reading:** Applicable instructions, handoff and named design/plan sections
 - **Worktree / branch / base commit:** To fill; owned paths must be explicit
