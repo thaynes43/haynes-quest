@@ -83,7 +83,7 @@ Collectible trails (tokens and golden tickets) extend from the casino to every v
 - a procedural fallback;
 - its kit props, each with an id, a versioned GLB URL under `/studio/assets/media/...`, bounding box and SHA-256.
 
-The hard-wired `CasinoScene` becomes one registry entry with identical output. A theme can go live with its procedural fallback and gain placed props as candidates land. A missing or failed GLB falls back to procedural geometry, never a broken scene. New themes follow the locked era table in [DESIGN-026](026-personal-era-casts.md).
+The hard-wired `CasinoScene` becomes one registry entry with identical output. It hangs a theatre portal beam above the far edge of each wide room, high enough to clear the chase camera once the player has crossed into the next room. On a v4 course, the beam is measured from that next room when it stands higher. World A's casino finale climbs 2 m from backstage to the Projection Balcony, and a beam measured from backstage alone hung inside the camera. v1–v3 routes such as the Rat Casino render unchanged. A theme can go live with its procedural fallback and gain placed props as candidates land. A missing or failed GLB falls back to procedural geometry, never a broken scene. New themes follow the locked era table in [DESIGN-026](026-personal-era-casts.md).
 
 **Era themes.** Five themes exist only in `authored-level-v4` levels, one per new era in DESIGN-026:
 
