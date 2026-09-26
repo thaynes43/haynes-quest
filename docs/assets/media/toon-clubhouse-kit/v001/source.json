@@ -1,0 +1,36 @@
+{
+  "asset_id": "toon-clubhouse-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "kind": "generated-concept-draft",
+  "source_label": "Astra concept draft (generated), used as the construction reference",
+  "saved_utc": "2026-09-26T01:42:25Z",
+  "saved_note": "Modification time of the durable concept-draft.png copy; the image tool returned no creation timestamp or seed.",
+  "generator": "OpenAI built-in image tool",
+  "authoring_agent": "Driving GPT-6 Astra (gpt-6-astra, max), WO111 lead",
+  "seed": null,
+  "reference_files": [],
+  "art_direction": "docs/assets/art-direction.md; DESIGN-026 locked roster brief for toon-clubhouse-kit",
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "draft_status": "The lead asked for one presentation revision (revision-prompt.txt: a solid warm ivory background and more margin above the chimney, with the props unchanged). That revision was never produced, so this draft, with its dark smoky background, is the reference the Blender author used.",
+  "selected_by": "Used as the construction reference by the Claude Opus 5.5 Blender author; the PLAN-019 coordinator accepted the resulting kit at catalog intake",
+  "model_sizes_note": "The concept's size labels (tower 3.4 m, slide 1.8 m, stand 0.9 m, hedges 1.7 x 0.85 m, marker 1.4 x 0.2 m) were superseded by the theme-kit registry boxes; see the review page and delivery.json for the exact measured bounds.",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "files": {
+    "concept-draft.png": {
+      "sha256": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+      "bytes": 2034414
+    },
+    "prompt.txt": {
+      "sha256": "365aee8ad7817ec2913b1c6e31986c1af429254d9611c586cb3f40a30e1c128c",
+      "bytes": 3369
+    },
+    "revision-prompt.txt": {
+      "sha256": "3554fc72fde700e45da5168107e6d1ce979c0d8ba2392c5a4ed0323c930b0f1f",
+      "bytes": 782
+    }
+  },
+  "rights_note": "Original generated study of generic playground and clubhouse props; no mouse-ear shapes, franchise characters, logos, text or copied clubhouse layout. No franchise endorsement or exclusive-rights claim. Not automatically relicensed under the code license."
+}

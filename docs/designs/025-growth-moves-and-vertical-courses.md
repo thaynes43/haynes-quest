@@ -89,13 +89,15 @@ The hard-wired `CasinoScene` becomes one registry entry with identical output. I
 
 **Era themes.** Five themes exist only in `authored-level-v4` levels, one per new era in DESIGN-026:
 
-| Theme | Name | Trail token / golden collectible | Kit props (procedural until the WO111 kit lands) |
+| Theme | Name | Trail token / golden collectible | Kit props (procedural until each WO111 kit lands) |
 | --- | --- | --- | --- |
 | `clubhouse` | Toon Clubhouse | toon star / golden gadget | clubhouse tower facade, curly slide, gadget toolbox stand, rounded hedge, stage marker |
 | `harbor` | Rescue Harbor | rescue badge / golden bone | lookout tower facade, pier bollard, rescue buoy stand, small boat |
 | `rooftop` | Hero City Rooftops | city coin / golden gizmo | water tower, rooftop AC unit, crane hook, billboard frame |
 | `playroom` | Sing-Along Playroom | bubble / golden rattle | stacking-block tower, toy bus garage, crib-rail fence, giant plush ball |
 | `casita` | Magic House Garden | butterfly / golden candle | casita terrace wall, flower planter, patterned door, butterfly arch |
+
+The clubhouse kit has landed: its five props render the exact [toon-clubhouse-kit v001](../assets/reviews/toon-clubhouse-kit/v001.md) candidates, each registered with its measured bounding box. The candidates await Tom's exact-version review. The other four kits stay procedural.
 
 Each has a bright storybook palette and no automatic scenery: no clearing trees, meadow, hills or placeholder props. They also drop the two non-colliding side banks the older themes draw level with y=0 beside a course, which would sit beside ground-level decks as a fake floor; the course ground stays 1.4 m below. Only the level's placed decor dresses it, and the finish shows the procedural pending marker. Their fog runs from 30 m to 95 m, inside the camera's 100 m far plane, so tall landmarks read from across a chapter; the older themes keep 20–52 m. Every `authored-level-v4` course draws the era fog whatever its theme (`courseFog`), so a family chapter on an older theme also reads from afar, for example World B's party-themed Big Stage or World A's casino finale. v1–v3 routes keep their theme's fog and render unchanged. The party kit also gains concert props for the Besties stage finale: a stage speaker, a light truss and a star backdrop. Stand-ins can now be a ball, a tank on legs, stacked blocks or a panel on legs, as well as a slab, post or arch.
 

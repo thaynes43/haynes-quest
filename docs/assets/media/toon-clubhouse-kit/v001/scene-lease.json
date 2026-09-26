@@ -1,0 +1,50 @@
+{
+  "work_order": "WO111",
+  "asset_id": "toon-clubhouse-kit",
+  "version": "v001",
+  "task": "full static props kit (five GLBs) from the Codex Astra concept draft: build, export, stills, contact sheet, Khronos + three.js checks",
+  "blender_instance": "blender-authoring (instance 1); instance 2 untouched",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "status": "released",
+  "claimed_utc": "2026-09-26T19:09:03.451479+00:00",
+  "props_before_claim": {
+    "work_order": "WO111",
+    "scene_owner": "none",
+    "scene_lease": "released",
+    "asset_id": "web-slinger-helper",
+    "asset_version": "v001",
+    "authoring_model": "claude-opus-5-5",
+    "candidate_status": "WO111 web-slinger-helper v001 \u00b7 Blender reference sheet, no generated concept \u00b7 sheet-ready for coordinator review; no GLB"
+  },
+  "scene_before_claim": {
+    "file": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/live-scene-release.blend",
+    "object_count": 1120
+  },
+  "prior_files": {
+    "prior_scene_file": {
+      "path": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/live-scene-release.blend",
+      "sha256": "a9704bebbbbdaeede16c95b464990fbaa612e4ec400110dbd47ea0fbea07919d"
+    }
+  },
+  "jobs_at_claim": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "readyz_at_claim": {
+    "ready": true,
+    "busy": false
+  },
+  "note": "Claimed from the released web-slinger-helper v001 reference-sheet scene. That file is never saved over; the first save is this kit's claim-checkpoint.blend.",
+  "author_jobs_running": false,
+  "released_utc": "2026-09-26T20:04:57.937358+00:00",
+  "glb_sha256": {
+    "clubhouse-tower-facade": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
+    "curly-slide": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
+    "gadget-toolbox-stand": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
+    "rounded-hedge": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
+    "stage-marker": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec"
+  }
+}

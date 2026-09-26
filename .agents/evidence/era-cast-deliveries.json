@@ -1060,7 +1060,7 @@
       "sceneReleasedAt": "2026-09-26T19:41:42.760703+00:00",
       "manifest": "docs/assets/media/demon-band-idol/v001/sha256-manifest.json",
       "pr": 114,
-      "prMerged": null,
+      "prMerged": "22002728e2f6d8598705d233ec0cbf45676bcaf6",
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v3 (like the frozen v1 and v2) fills the four B·3 ordinary slots with the Demon Idol project candidate (demon-band-idol), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.3959}"
@@ -1088,6 +1088,310 @@
         "attachmentChecksPassed": 7,
         "chromiumChecksPassed": 9,
         "artifactHashesMatchedLocally": 174,
+        "physicalSafari": false
+      }
+    },
+    {
+      "assetId": "toon-clubhouse-kit",
+      "version": "v001",
+      "role": "props",
+      "world": "A",
+      "chapter": 1,
+      "theme": "clubhouse",
+      "glb": null,
+      "sha256": null,
+      "props": [
+        {
+          "id": "clubhouse-tower-facade",
+          "glb": "docs/assets/media/toon-clubhouse-kit/v001/clubhouse-tower-facade.glb",
+          "sha256": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
+          "bytes": 124360,
+          "triangles": 4772,
+          "materials": 3,
+          "primitives": 3,
+          "bbox": {
+            "min": [
+              -2.15259,
+              0,
+              -0.59788
+            ],
+            "max": [
+              2.13252,
+              6.36,
+              0.6
+            ]
+          },
+          "sizeM": {
+            "width_x": 4.2851,
+            "height_y": 6.36,
+            "depth_z": 1.1979
+          },
+          "planningBounds": {
+            "min": {
+              "x": -2.2,
+              "y": 0,
+              "z": -0.6
+            },
+            "max": {
+              "x": 2.2,
+              "y": 6.5,
+              "z": 0.6
+            }
+          },
+          "registeredBounds": {
+            "min": {
+              "x": -2.153,
+              "y": 0,
+              "z": -0.598
+            },
+            "max": {
+              "x": 2.133,
+              "y": 6.36,
+              "z": 0.6
+            }
+          },
+          "placementsPerWorldATemplate": 4
+        },
+        {
+          "id": "curly-slide",
+          "glb": "docs/assets/media/toon-clubhouse-kit/v001/curly-slide.glb",
+          "sha256": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
+          "bytes": 113004,
+          "triangles": 4168,
+          "materials": 2,
+          "primitives": 2,
+          "bbox": {
+            "min": [
+              -1.19371,
+              0,
+              -1.19535
+            ],
+            "max": [
+              1.17,
+              3.19,
+              1.18
+            ]
+          },
+          "sizeM": {
+            "width_x": 2.3637,
+            "height_y": 3.19,
+            "depth_z": 2.3754
+          },
+          "planningBounds": {
+            "min": {
+              "x": -1.2,
+              "y": 0,
+              "z": -1.2
+            },
+            "max": {
+              "x": 1.2,
+              "y": 3.2,
+              "z": 1.2
+            }
+          },
+          "registeredBounds": {
+            "min": {
+              "x": -1.194,
+              "y": 0,
+              "z": -1.196
+            },
+            "max": {
+              "x": 1.17,
+              "y": 3.19,
+              "z": 1.18
+            }
+          },
+          "placementsPerWorldATemplate": 1
+        },
+        {
+          "id": "gadget-toolbox-stand",
+          "glb": "docs/assets/media/toon-clubhouse-kit/v001/gadget-toolbox-stand.glb",
+          "sha256": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
+          "bytes": 53684,
+          "triangles": 2100,
+          "materials": 2,
+          "primitives": 2,
+          "bbox": {
+            "min": [
+              -0.595,
+              0,
+              -0.42
+            ],
+            "max": [
+              0.595,
+              1.016,
+              0.43914
+            ]
+          },
+          "sizeM": {
+            "width_x": 1.19,
+            "height_y": 1.016,
+            "depth_z": 0.8591
+          },
+          "planningBounds": {
+            "min": {
+              "x": -0.6,
+              "y": 0,
+              "z": -0.45
+            },
+            "max": {
+              "x": 0.6,
+              "y": 1.3,
+              "z": 0.45
+            }
+          },
+          "registeredBounds": {
+            "min": {
+              "x": -0.595,
+              "y": 0,
+              "z": -0.42
+            },
+            "max": {
+              "x": 0.595,
+              "y": 1.016,
+              "z": 0.44
+            }
+          },
+          "placementsPerWorldATemplate": 3
+        },
+        {
+          "id": "rounded-hedge",
+          "glb": "docs/assets/media/toon-clubhouse-kit/v001/rounded-hedge.glb",
+          "sha256": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
+          "bytes": 80348,
+          "triangles": 3176,
+          "materials": 2,
+          "primitives": 2,
+          "bbox": {
+            "min": [
+              -1.08,
+              0,
+              -0.50271
+            ],
+            "max": [
+              1.08,
+              1.14578,
+              0.50448
+            ]
+          },
+          "sizeM": {
+            "width_x": 2.16,
+            "height_y": 1.1458,
+            "depth_z": 1.0072
+          },
+          "planningBounds": {
+            "min": {
+              "x": -1.1,
+              "y": 0,
+              "z": -0.6
+            },
+            "max": {
+              "x": 1.1,
+              "y": 1.2,
+              "z": 0.6
+            }
+          },
+          "registeredBounds": {
+            "min": {
+              "x": -1.08,
+              "y": 0,
+              "z": -0.503
+            },
+            "max": {
+              "x": 1.08,
+              "y": 1.146,
+              "z": 0.505
+            }
+          },
+          "placementsPerWorldATemplate": 22
+        },
+        {
+          "id": "stage-marker",
+          "glb": "docs/assets/media/toon-clubhouse-kit/v001/stage-marker.glb",
+          "sha256": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec",
+          "bytes": 61668,
+          "triangles": 2446,
+          "materials": 2,
+          "primitives": 2,
+          "bbox": {
+            "min": [
+              -0.89,
+              0,
+              -0.45
+            ],
+            "max": [
+              0.89,
+              0.262,
+              0.45
+            ]
+          },
+          "sizeM": {
+            "width_x": 1.78,
+            "height_y": 0.262,
+            "depth_z": 0.9
+          },
+          "planningBounds": {
+            "min": {
+              "x": -0.9,
+              "y": 0,
+              "z": -0.9
+            },
+            "max": {
+              "x": 0.9,
+              "y": 0.35,
+              "z": 0.9
+            }
+          },
+          "registeredBounds": {
+            "min": {
+              "x": -0.89,
+              "y": 0,
+              "z": -0.45
+            },
+            "max": {
+              "x": 0.89,
+              "y": 0.262,
+              "z": 0.45
+            }
+          },
+          "placementsPerWorldATemplate": 0
+        }
+      ],
+      "heightM": 6.36,
+      "bounds": {
+        "convention": "glTF metres, +Y up, front toward +Z (theme-kit registry rotation 0), origin at the floor centre of each prop; per-prop bbox values are in props[]",
+        "note": "heightM is the tallest prop (the tower facade's chimney cap); the roof apex is 6.316 m. registeredBounds are the tight bounds rounded outward to the millimetre that src/shared/theme-kits.ts now registers; no box grew from its planning box."
+      },
+      "attackContactS": null,
+      "clips": [],
+      "review": "docs/assets/reviews/toon-clubhouse-kit/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "source": "Astra concept draft (generated; the requested ivory-background revision was never produced); Blender reference sheets of the exact export meshes; authored by Claude Opus 5.5",
+      "sceneClaimedAt": "2026-09-26T19:09:03.451479+00:00",
+      "sceneReleasedAt": "2026-09-26T20:04:57.937358+00:00",
+      "manifest": "docs/assets/media/toon-clubhouse-kit/v001/sha256-manifest.json",
+      "pr": null,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "Integrated at intake: src/shared/theme-kits.ts registers each clubhouse prop's exact GLB URL and SHA-256 with its measured bounds. family-world-a@v1, @v2 and @v3 chapter 1 place 22 hedges, 4 tower facades, 3 toolbox stands and 1 curly slide, which render the exact models once the image is published; the stage marker is registered but unplaced."
+      },
+      "masterSha256": "ded39776c06f286714a034d672ab65bd392033188bf9949babd117cc9bc2859b",
+      "triangles": 16662,
+      "bytes": 433064,
+      "integrationNotes": [
+        "Static props: no animations, skins, morph targets, textures or images; COLOR_0 vertex colour with opaque non-metallic materials (2 each, 3 on the tower).",
+        "Front faces +Z at rotation 0 per the registry convention. The WO097 Rat Casino kit is the exception (its exports face -Z; A4's faceRight/faceLeft turns account for it), now noted in the registry.",
+        "The tower is a shallow facade (1.198 m deep); its side is a thin slab and its back a plain cream wall, so placements should show its front.",
+        "The gadget toolbox stand is 1.016 m tall, 0.28 m under its 1.3 m planning height; the planning width capped it at the concept's proportions.",
+        "The intake reran the author's Three.js adapter inspection against the tightened registry: all 40 placements (rotationY 0/90/180/270 deg, scale 1 and 1.25) stay inside decorWorldBounds (docs/assets/media/toon-clubhouse-kit/v001/intake-three-inspection.json)."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "threeAdapterPlacementsInsideTightRegistry": 40,
+        "chromiumPropsRenderedWithoutErrors": 5,
+        "artifactHashesMatchedLocally": 98,
         "physicalSafari": false
       }
     }

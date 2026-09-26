@@ -512,8 +512,10 @@ function row(
  * Placed props (R12): only the clubhouse kit and the shared kit, all standing
  * on the course ground beside the decks, never inside a walkable volume,
  * connection strip or fight area (the validator's decor rule), and never
- * across a lane. The clubhouse props draw their procedural stand-ins until
- * the WO111 kit lands, at exactly these registered bounds.
+ * across a lane. The clubhouse props render the exact WO111
+ * toon-clubhouse-kit v001 models, each inside the registered bounds these
+ * placements were checked against (the procedural stand-ins remain the
+ * fallback).
  */
 function decorPlacements(): AuthoredDecor[] {
   const tree = "clearing-tree";

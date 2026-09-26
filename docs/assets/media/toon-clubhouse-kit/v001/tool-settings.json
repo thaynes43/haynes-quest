@@ -1,0 +1,113 @@
+{
+  "work_order": "WO111",
+  "asset_id": "toon-clubhouse-kit",
+  "version": "v001",
+  "created_utc": "2026-09-26T20:03:47.659444+00:00",
+  "glb_sha256": {
+    "clubhouse-tower-facade": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
+    "curly-slide": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
+    "gadget-toolbox-stand": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
+    "rounded-hedge": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
+    "stage-marker": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec"
+  },
+  "blender": {
+    "version": "4.5.13 LTS",
+    "instance": "blender-authoring (instance 1)",
+    "units": "METRIC, scale 1",
+    "axes": "Blender +Z up, front -Y; glTF +Y up, front +Z; floor-centred origin"
+  },
+  "export": {
+    "format": "GLB",
+    "operator": "bpy.ops.export_scene.gltf",
+    "use_selection": true,
+    "export_yup": true,
+    "export_apply": false,
+    "export_normals": true,
+    "export_texcoords": false,
+    "export_vertex_color": "ACTIVE (one BYTE_COLOR POINT attribute \"Col\" -> COLOR_0)",
+    "export_materials": "EXPORT",
+    "export_animations": false,
+    "export_extras": true,
+    "scene_extras": "identity keys only; the lease keys are stashed during export and restored after",
+    "custom_normals": "tower body and roof only (stylised rounder shading of the shallow elliptic facade; geometry unchanged)",
+    "compression": "none"
+  },
+  "materials": {
+    "matte": {
+      "name": "Clubhouse matte clay paint",
+      "roughness": 0.8
+    },
+    "satin": {
+      "name": "Clubhouse satin glaze",
+      "roughness": 0.5
+    },
+    "foliage": {
+      "name": "Clubhouse soft foliage",
+      "roughness": 0.93
+    }
+  },
+  "sheets": {
+    "engine": "Cycles CPU",
+    "samples": 48,
+    "denoise": true,
+    "view_transform": "Standard",
+    "freestyle": "plum ink #342c46, 1.7 px",
+    "resolution": {
+      "clubhouse-tower-facade": [
+        2048,
+        1024
+      ],
+      "curly-slide": [
+        2048,
+        1024
+      ],
+      "gadget-toolbox-stand": [
+        2048,
+        1024
+      ],
+      "rounded-hedge": [
+        2048,
+        1024
+      ],
+      "stage-marker": [
+        2048,
+        1024
+      ],
+      "kit": [
+        2560,
+        1280
+      ]
+    },
+    "render_seconds": {
+      "clubhouse-tower-facade": 40.2,
+      "curly-slide": 40.1,
+      "gadget-toolbox-stand": 37.5,
+      "rounded-hedge": 35.0,
+      "stage-marker": 31.5,
+      "kit": 53.4
+    }
+  },
+  "validation": {
+    "khronos_validator": {
+      "name": "Khronos glTF Validator",
+      "version": "2.0.0-dev.3.10"
+    },
+    "runtime": "node inside the blender-authoring pod"
+  },
+  "three": {
+    "revision": "186",
+    "loader": "three/addons/loaders/GLTFLoader.js parseAsync (exact bytes) + src/game/scene-assets.ts SceneAssets.attachInstances (DecorScene path)",
+    "envelope": "src/shared/theme-kits.ts decorWorldBounds(registry bounds, placement) at rotationY 0/90/180/270 deg, scale 1 and 1.25"
+  },
+  "browser": {
+    "chromium": "153.0.8010.12",
+    "renderer": "headless ANGLE SwiftShader (real WebGL raster)",
+    "viewport_px": [
+      900,
+      900
+    ],
+    "tone_mapping": "ACESFilmic, exposure 1.0, sRGB output",
+    "lights": "hemisphere #fff0d8/#657084 x2 + three directional lights (key casts a 2048 PCF-soft shadow)",
+    "note": "render.info triangles include the shadow-map pass"
+  }
+}

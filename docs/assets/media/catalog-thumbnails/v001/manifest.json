@@ -759,6 +759,48 @@
       "sha256": "6df471356cfaa576b251f782fefb662ea1da3582684609f78e6571370b9780c7"
     },
     {
+      "source": "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png",
+      "source_sha256": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+      "path": "docs/assets/media/catalog-thumbnails/v001/72b5e5de8a7c64a2.webp",
+      "bytes": 79206,
+      "sha256": "7ec0dc248ac1c018c420c475c4c23a1f7b13257de8264da4b5f00ee572b0f56b"
+    },
+    {
+      "source": "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-beauty.png",
+      "source_sha256": "bab9041d57a5a7913b14b9dcb3c0b3e40de88b219d8608cd9747f259343afbd7",
+      "path": "docs/assets/media/catalog-thumbnails/v001/58cdab389d7f8eed.webp",
+      "bytes": 6990,
+      "sha256": "bc2e8ebfe73952c31db45858c9571915b002dad483c7df2250a5b87926ccd78b"
+    },
+    {
+      "source": "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-beauty.png",
+      "source_sha256": "8b37f6be8cb85838bb1bb90972b4ee76944c36775412c8bfe4d75dd9d2514e1e",
+      "path": "docs/assets/media/catalog-thumbnails/v001/812e3abc10920d75.webp",
+      "bytes": 7582,
+      "sha256": "536ccd5b7d4857c454ed3236599452121f80b6ea6a299e7deb38f60a8af0b85e"
+    },
+    {
+      "source": "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-beauty.png",
+      "source_sha256": "c5d2f3f68e9348a2af7e34caca7987f72ab623afa28d4164f25a213bb5a2e2b7",
+      "path": "docs/assets/media/catalog-thumbnails/v001/20cd48ed6b8af9fa.webp",
+      "bytes": 7828,
+      "sha256": "c648f4dd7d80ff16ccd5d35c111a76fe32eb8051a264d0143d44ba61421ad9e3"
+    },
+    {
+      "source": "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-beauty.png",
+      "source_sha256": "7000c23aeead2abf60f2eb0e48908af32e6c46a94f3c2eb8634e72043413c778",
+      "path": "docs/assets/media/catalog-thumbnails/v001/16bed32a9dae862f.webp",
+      "bytes": 6362,
+      "sha256": "c60abb5a0767da8fb9e3624c4db98d0d684fd7adb82a16d644f064b8dba81687"
+    },
+    {
+      "source": "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-beauty.png",
+      "source_sha256": "25615edb94cfe066ec006007c730176f548e16371b2436b130efcc0fe5c724ee",
+      "path": "docs/assets/media/catalog-thumbnails/v001/40ba57c3f77baccb.webp",
+      "bytes": 5788,
+      "sha256": "27672dbced72b96e0f40438462e8363b75dd09e7b8fc411d8049f49aeaf459cf"
+    },
+    {
       "source": "docs/assets/media/traveler-child/v001/beauty.png",
       "source_sha256": "9307a3c05953a2f82f6794e0b5cf3f6386771681d574eac4f68b75410e0fb9ab",
       "path": "docs/assets/media/catalog-thumbnails/v001/0fe12aa71f9ecf4c.webp",

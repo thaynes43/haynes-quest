@@ -1,0 +1,897 @@
+{
+  "tool": "Chromium headless (Playwright) + three.js GLTFLoader, real WebGL raster via ANGLE SwiftShader; no physical-device claim",
+  "props": {
+    "clubhouse-tower-facade": {
+      "glb_sha256": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 7,
+          "triangles": 9546,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.5616000747680667,
+          "bounds": {
+            "min": [
+              -2.1525940895080566,
+              0,
+              -0.5978801846504211
+            ],
+            "max": [
+              2.132516860961914,
+              6.360000133514404,
+              0.6000000238418579
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 7,
+          "triangles": 9546,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.5616000747680667,
+          "bounds": {
+            "min": [
+              -2.1525940895080566,
+              0,
+              -0.5978801846504211
+            ],
+            "max": [
+              2.132516860961914,
+              6.360000133514404,
+              0.6000000238418579
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 7,
+          "triangles": 9546,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.5616000747680667,
+          "bounds": {
+            "min": [
+              -2.1525940895080566,
+              0,
+              -0.5978801846504211
+            ],
+            "max": [
+              2.132516860961914,
+              6.360000133514404,
+              0.6000000238418579
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 7,
+          "triangles": 9546,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.5616000747680667,
+          "bounds": {
+            "min": [
+              -2.1525940895080566,
+              0,
+              -0.5978801846504211
+            ],
+            "max": [
+              2.132516860961914,
+              6.360000133514404,
+              0.6000000238418579
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 7,
+          "triangles": 9546,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.5616000747680667,
+          "bounds": {
+            "min": [
+              -2.1525940895080566,
+              0,
+              -0.5978801846504211
+            ],
+            "max": [
+              2.132516860961914,
+              6.360000133514404,
+              0.6000000238418579
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": 30,
+          "elevation_deg": 14
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "curly-slide": {
+      "glb_sha256": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 8338,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.8765790198613537,
+          "bounds": {
+            "min": [
+              -1.1937111616134644,
+              0,
+              -1.19535231590271
+            ],
+            "max": [
+              1.1699999570846558,
+              3.190000057220459,
+              1.1799999475479126
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 8338,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.8765790198613537,
+          "bounds": {
+            "min": [
+              -1.1937111616134644,
+              0,
+              -1.19535231590271
+            ],
+            "max": [
+              1.1699999570846558,
+              3.190000057220459,
+              1.1799999475479126
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 8338,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.8765790198613537,
+          "bounds": {
+            "min": [
+              -1.1937111616134644,
+              0,
+              -1.19535231590271
+            ],
+            "max": [
+              1.1699999570846558,
+              3.190000057220459,
+              1.1799999475479126
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 8338,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.8765790198613537,
+          "bounds": {
+            "min": [
+              -1.1937111616134644,
+              0,
+              -1.19535231590271
+            ],
+            "max": [
+              1.1699999570846558,
+              3.190000057220459,
+              1.1799999475479126
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 8338,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.8765790198613537,
+          "bounds": {
+            "min": [
+              -1.1937111616134644,
+              0,
+              -1.19535231590271
+            ],
+            "max": [
+              1.1699999570846558,
+              3.190000057220459,
+              1.1799999475479126
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": 32,
+          "elevation_deg": 16
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "gadget-toolbox-stand": {
+      "glb_sha256": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 4202,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8219257551309224,
+          "bounds": {
+            "min": [
+              -0.5950000286102295,
+              0,
+              -0.41999998688697815
+            ],
+            "max": [
+              0.5950000286102295,
+              1.0160000324249268,
+              0.4391363561153412
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 4202,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8219257551309224,
+          "bounds": {
+            "min": [
+              -0.5950000286102295,
+              0,
+              -0.41999998688697815
+            ],
+            "max": [
+              0.5950000286102295,
+              1.0160000324249268,
+              0.4391363561153412
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 4202,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8219257551309224,
+          "bounds": {
+            "min": [
+              -0.5950000286102295,
+              0,
+              -0.41999998688697815
+            ],
+            "max": [
+              0.5950000286102295,
+              1.0160000324249268,
+              0.4391363561153412
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 4202,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8219257551309224,
+          "bounds": {
+            "min": [
+              -0.5950000286102295,
+              0,
+              -0.41999998688697815
+            ],
+            "max": [
+              0.5950000286102295,
+              1.0160000324249268,
+              0.4391363561153412
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 4202,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8219257551309224,
+          "bounds": {
+            "min": [
+              -0.5950000286102295,
+              0,
+              -0.41999998688697815
+            ],
+            "max": [
+              0.5950000286102295,
+              1.0160000324249268,
+              0.4391363561153412
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": 28,
+          "elevation_deg": 26
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "rounded-hedge": {
+      "glb_sha256": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 6354,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.3346359914752297,
+          "bounds": {
+            "min": [
+              -1.0800000429153442,
+              0,
+              -0.5027060508728027
+            ],
+            "max": [
+              1.0800000429153442,
+              1.1457793712615967,
+              0.5044763088226318
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 6354,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.3346359914752297,
+          "bounds": {
+            "min": [
+              -1.0800000429153442,
+              0,
+              -0.5027060508728027
+            ],
+            "max": [
+              1.0800000429153442,
+              1.1457793712615967,
+              0.5044763088226318
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 6354,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.3346359914752297,
+          "bounds": {
+            "min": [
+              -1.0800000429153442,
+              0,
+              -0.5027060508728027
+            ],
+            "max": [
+              1.0800000429153442,
+              1.1457793712615967,
+              0.5044763088226318
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 6354,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.3346359914752297,
+          "bounds": {
+            "min": [
+              -1.0800000429153442,
+              0,
+              -0.5027060508728027
+            ],
+            "max": [
+              1.0800000429153442,
+              1.1457793712615967,
+              0.5044763088226318
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 6354,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.3346359914752297,
+          "bounds": {
+            "min": [
+              -1.0800000429153442,
+              0,
+              -0.5027060508728027
+            ],
+            "max": [
+              1.0800000429153442,
+              1.1457793712615967,
+              0.5044763088226318
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse soft foliage",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": 14,
+          "elevation_deg": 20
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "stage-marker": {
+      "glb_sha256": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 4894,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.1169718862177467,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.44999998807907104
+            ],
+            "max": [
+              0.8899999856948853,
+              0.2619999945163727,
+              0.44999998807907104
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 4894,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.1169718862177467,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.44999998807907104
+            ],
+            "max": [
+              0.8899999856948853,
+              0.2619999945163727,
+              0.44999998807907104
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 4894,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.1169718862177467,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.44999998807907104
+            ],
+            "max": [
+              0.8899999856948853,
+              0.2619999945163727,
+              0.44999998807907104
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 4894,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.1169718862177467,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.44999998807907104
+            ],
+            "max": [
+              0.8899999856948853,
+              0.2619999945163727,
+              0.44999998807907104
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 4894,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.1169718862177467,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.44999998807907104
+            ],
+            "max": [
+              0.8899999856948853,
+              0.2619999945163727,
+              0.44999998807907104
+            ]
+          },
+          "materials": [
+            {
+              "name": "Clubhouse matte clay paint",
+              "vertexColors": true
+            },
+            {
+              "name": "Clubhouse satin glaze",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": 14,
+          "elevation_deg": 34
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    }
+  },
+  "browser": "153.0.8010.12",
+  "all_checks_pass": true
+}

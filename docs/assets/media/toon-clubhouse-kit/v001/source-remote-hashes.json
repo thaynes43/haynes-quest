@@ -1,0 +1,24 @@
+{
+ "state": {
+  "scene_lease": "released",
+  "asset_id": "toon-clubhouse-kit"
+ },
+ "hashes": {
+  "build_kit.py": "43594740067f1075c139047dd3ce19f10e9f809c2c0471eb5bdf6d7efe87ba6c",
+  "claim.py": "b7fb91228b88338ed92b1ce060ead0cd68d7f05ab91abcfcd8b4020bf3cb7149",
+  "compare.mjs": "2fd84017ecb6c345094687d1b190bb2d5ea5cb81c61dbc05a78977e8d375fb42",
+  "delivery.py": "8e4d43ce8dd608fb60471715b9113431f18413b73112225046ae3bee97a57f5f",
+  "inspect-three.mjs": "6dbe146834645acddb1d2ed24ea035c161809b0a5a207eef6eedaa61cb819aa7",
+  "kit_common.py": "9fe3541b54b7d21cec19ea44f075101e76e9681f874943eec2b6e2d8b4745c13",
+  "look.py": "f16da33fefda3822af0796f9be5ef60e7dd5fe085163439c4a16069b513a4a32",
+  "make_evidence.py": "f9317348842659eb22cf05faf83346c93a98e400701b1b7346118b1bde0c00ce",
+  "preview.mjs": "60f335087a391d2a78290d4a3de1618bcff3e40e7ed6c1aad5f7b0fb4a67cb94",
+  "release_scene.py": "63bc2080f58a9d6e3f4596d055b08b45faf5c2edf43f4c8fb158ca5ddea6e9f3",
+  "run.py": "a66c84026090024c351b4408bcd21c3d6f92f37b3c0edfcd044e80735e094aad",
+  "run_validate.py": "1c38280d2e8a7c4b3d353c057860766f4884ebd69c15067edeff95b63c9ecb59",
+  "sheet.py": "6a6a3f5f20fcddecea750eea94f12c0c8b935d002562413bd58c2ec208b44aa9",
+  "transfer.py": "67d1dac5b4ec0ec966dfa5621eb68777ec649573aea764f7ff0dead074478b64",
+  "upload_inputs.py": "5991c345965cffbd3075b80aea7f67dbe9d0c7077a6656dc3a88abfc45047e4d",
+  "validate.mjs": "8c54832d6299facfcfe3c99643106621a49ed54685d3c7435dfb5df63051972e"
+ }
+}

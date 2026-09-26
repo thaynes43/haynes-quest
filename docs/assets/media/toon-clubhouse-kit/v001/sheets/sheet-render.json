@@ -1,0 +1,385 @@
+{
+ "clubhouse-tower-facade": {
+  "image": "/workspace/haynes-quest/family-eras/toon-clubhouse-kit/v001/sheets/clubhouse-tower-facade-reference-sheet.png",
+  "sha256": "35c1a8d695676fc31b72dd1cae82503d5b7e53f934fd6855802136376f167ce2",
+  "render_seconds": 40.2,
+  "resolution": [
+   2048,
+   1024
+  ],
+  "samples": 48,
+  "ortho_width_m": 28.2667,
+  "sheet_height_m": 14.1333,
+  "px_per_m": 72.453,
+  "floor_px_y": 808.96,
+  "camera_left_m": -2.2134,
+  "height_marker_m": 6.36,
+  "views": [
+   {
+    "label": "FRONT",
+    "prop": "clubhouse-tower-facade",
+    "center_x_m": 4.2858,
+    "x_extent_m": [
+     2.1332,
+     6.4183
+    ],
+    "registry_half_width_m": 2.2,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "SIDE",
+    "prop": "clubhouse-tower-facade",
+    "center_x_m": 9.8763,
+    "x_extent_m": [
+     9.2784,
+     10.4763
+    ],
+    "registry_half_width_m": 0.6000000000000001,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "BACK",
+    "prop": "clubhouse-tower-facade",
+    "center_x_m": 15.4668,
+    "x_extent_m": [
+     13.3342,
+     17.6193
+    ],
+    "registry_half_width_m": 2.2,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "THREE-QUARTER",
+    "prop": "clubhouse-tower-facade",
+    "center_x_m": 22.3254,
+    "x_extent_m": [
+     20.6735,
+     24.0291
+    ],
+    "registry_half_width_m": 1.9798989873223332,
+    "elevation_deg": 0.0
+   }
+  ]
+ },
+ "curly-slide": {
+  "image": "/workspace/haynes-quest/family-eras/toon-clubhouse-kit/v001/sheets/curly-slide-reference-sheet.png",
+  "sha256": "cabfc93ccc568ba139414c2140c8377f656f21773565f59ef304dd011387da70",
+  "render_seconds": 40.1,
+  "resolution": [
+   2048,
+   1024
+  ],
+  "samples": 48,
+  "ortho_width_m": 14.1778,
+  "sheet_height_m": 7.0889,
+  "px_per_m": 144.451,
+  "floor_px_y": 808.96,
+  "camera_left_m": -0.8317,
+  "height_marker_m": 3.19,
+  "views": [
+   {
+    "label": "FRONT",
+    "prop": "curly-slide",
+    "center_x_m": 1.9677,
+    "x_extent_m": [
+     0.774,
+     3.1377
+    ],
+    "registry_half_width_m": 1.2,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "SIDE",
+    "prop": "curly-slide",
+    "center_x_m": 4.9225,
+    "x_extent_m": [
+     3.7272,
+     6.1025
+    ],
+    "registry_half_width_m": 1.2,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "BACK",
+    "prop": "curly-slide",
+    "center_x_m": 7.8773,
+    "x_extent_m": [
+     6.7073,
+     9.071
+    ],
+    "registry_half_width_m": 1.2000000000000002,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "THREE-QUARTER",
+    "prop": "curly-slide",
+    "center_x_m": 11.3291,
+    "x_extent_m": [
+     10.101,
+     12.7653
+    ],
+    "registry_half_width_m": 1.6970562748477138,
+    "elevation_deg": 0.0
+   }
+  ]
+ },
+ "gadget-toolbox-stand": {
+  "image": "/workspace/haynes-quest/family-eras/toon-clubhouse-kit/v001/sheets/gadget-toolbox-stand-reference-sheet.png",
+  "sha256": "3b4016794f8db436e665726e9480e0512701742030c93b7785a7f307154bc189",
+  "render_seconds": 37.5,
+  "resolution": [
+   2048,
+   1024
+  ],
+  "samples": 48,
+  "ortho_width_m": 6.2151,
+  "sheet_height_m": 3.1076,
+  "px_per_m": 329.52,
+  "floor_px_y": 808.96,
+  "camera_left_m": -0.3646,
+  "height_marker_m": 1.016,
+  "views": [
+   {
+    "label": "FRONT",
+    "prop": "gadget-toolbox-stand",
+    "center_x_m": 0.9366,
+    "x_extent_m": [
+     0.3416,
+     1.5316
+    ],
+    "registry_half_width_m": 0.6,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "SIDE",
+    "prop": "gadget-toolbox-stand",
+    "center_x_m": 2.1828,
+    "x_extent_m": [
+     1.7628,
+     2.622
+    ],
+    "registry_half_width_m": 0.45000000000000007,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "BACK",
+    "prop": "gadget-toolbox-stand",
+    "center_x_m": 3.4291,
+    "x_extent_m": [
+     2.8341,
+     4.0241
+    ],
+    "registry_half_width_m": 0.6,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "THREE-QUARTER",
+    "prop": "gadget-toolbox-stand",
+    "center_x_m": 4.9678,
+    "x_extent_m": [
+     4.3183,
+     5.6173
+    ],
+    "registry_half_width_m": 0.7424621202458749,
+    "elevation_deg": 0.0
+   }
+  ]
+ },
+ "rounded-hedge": {
+  "image": "/workspace/haynes-quest/family-eras/toon-clubhouse-kit/v001/sheets/rounded-hedge-reference-sheet.png",
+  "sha256": "b0715e53d5868344c1bc946aa19377007bb3125ca74f932296ff8d4760bb3c7b",
+  "render_seconds": 35.0,
+  "resolution": [
+   2048,
+   1024
+  ],
+  "samples": 48,
+  "ortho_width_m": 10.3962,
+  "sheet_height_m": 5.1981,
+  "px_per_m": 196.995,
+  "floor_px_y": 808.96,
+  "camera_left_m": -0.6099,
+  "height_marker_m": 1.1458,
+  "views": [
+   {
+    "label": "FRONT",
+    "prop": "rounded-hedge",
+    "center_x_m": 1.663,
+    "x_extent_m": [
+     0.583,
+     2.743
+    ],
+    "registry_half_width_m": 1.1,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "SIDE",
+    "prop": "rounded-hedge",
+    "center_x_m": 3.6912,
+    "x_extent_m": [
+     3.1885,
+     4.1956
+    ],
+    "registry_half_width_m": 0.6000000000000001,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "BACK",
+    "prop": "rounded-hedge",
+    "center_x_m": 5.7194,
+    "x_extent_m": [
+     4.6394,
+     6.7994
+    ],
+    "registry_half_width_m": 1.1,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "THREE-QUARTER",
+    "prop": "rounded-hedge",
+    "center_x_m": 8.3496,
+    "x_extent_m": [
+     7.4569,
+     9.2424
+    ],
+    "registry_half_width_m": 1.2020815280171309,
+    "elevation_deg": 0.0
+   }
+  ]
+ },
+ "stage-marker": {
+  "image": "/workspace/haynes-quest/family-eras/toon-clubhouse-kit/v001/sheets/stage-marker-reference-sheet.png",
+  "sha256": "ecd9713fb5aa7268bc6aada29b0c529190137680317d31fe5e2ebe912d398f7c",
+  "render_seconds": 31.5,
+  "resolution": [
+   2048,
+   1024
+  ],
+  "samples": 48,
+  "ortho_width_m": 10.7158,
+  "sheet_height_m": 5.3579,
+  "px_per_m": 191.119,
+  "floor_px_y": 808.96,
+  "camera_left_m": -0.6286,
+  "height_marker_m": 0.262,
+  "views": [
+   {
+    "label": "FRONT",
+    "prop": "stage-marker",
+    "center_x_m": 1.4803,
+    "x_extent_m": [
+     0.5903,
+     2.3703
+    ],
+    "registry_half_width_m": 0.9,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "SIDE",
+    "prop": "stage-marker",
+    "center_x_m": 3.5996,
+    "x_extent_m": [
+     3.1496,
+     4.0496
+    ],
+    "registry_half_width_m": 0.9,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "BACK",
+    "prop": "stage-marker",
+    "center_x_m": 5.7189,
+    "x_extent_m": [
+     4.8289,
+     6.6089
+    ],
+    "registry_half_width_m": 0.9000000000000001,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "THREE-QUARTER (35 deg above)",
+    "prop": "stage-marker",
+    "center_x_m": 8.3918,
+    "x_extent_m": [
+     7.6307,
+     9.153
+    ],
+    "registry_half_width_m": null,
+    "elevation_deg": 35.0
+   }
+  ]
+ },
+ "kit": {
+  "image": "/workspace/haynes-quest/family-eras/toon-clubhouse-kit/v001/sheets/kit-contact-sheet.png",
+  "sha256": "fa670d1e59e99dce7c5876371c6dc5dfae06a3ec1449a977a958370d8a2c7f78",
+  "render_seconds": 53.4,
+  "resolution": [
+   2560,
+   1280
+  ],
+  "samples": 48,
+  "ortho_width_m": 24.4615,
+  "sheet_height_m": 12.2308,
+  "px_per_m": 104.654,
+  "floor_px_y": 1011.2,
+  "camera_left_m": -1.435,
+  "height_marker_m": 6.36,
+  "views": [
+   {
+    "label": "TOWER FACADE",
+    "prop": "clubhouse-tower-facade",
+    "center_x_m": 3.3045,
+    "x_extent_m": [
+     1.6527,
+     5.0082
+    ],
+    "registry_half_width_m": 1.9798989873223332,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "CURLY SLIDE",
+    "prop": "curly-slide",
+    "center_x_m": 8.3128,
+    "x_extent_m": [
+     7.0846,
+     9.749
+    ],
+    "registry_half_width_m": 1.6970562748477138,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "GADGET STAND",
+    "prop": "gadget-toolbox-stand",
+    "center_x_m": 12.8578,
+    "x_extent_m": [
+     12.2083,
+     13.5073
+    ],
+    "registry_half_width_m": 0.7424621202458749,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "HEDGES",
+    "prop": "rounded-hedge",
+    "center_x_m": 16.9078,
+    "x_extent_m": [
+     16.0151,
+     17.8006
+    ],
+    "registry_half_width_m": 1.2020815280171309,
+    "elevation_deg": 0.0
+   },
+   {
+    "label": "DANCE MARKER",
+    "prop": "stage-marker",
+    "center_x_m": 20.9579,
+    "x_extent_m": [
+     20.1968,
+     21.719
+    ],
+    "registry_half_width_m": 1.2727922061357857,
+    "elevation_deg": 0.0
+   }
+  ]
+ }
+}

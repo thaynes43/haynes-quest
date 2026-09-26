@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 81,
+    "entries": 86,
     "reference_sheet_entries": 8,
-    "model_entries": 52,
-    "model_files": 52,
+    "model_entries": 57,
+    "model_files": 57,
     "concept_only_entries": 2,
     "audio_entries": 18,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 50,
+    "completed_model_candidates": 55,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -1569,6 +1569,235 @@
         "docs/assets/media/demon-band-idol/v001/source/upload_notes.py": "9e4beb4a9d48308ec59f36d4de2e98aa45e9f0895568aa3a8bdb0e44f14408e2",
         "docs/assets/media/demon-band-idol/v001/source/validate.mjs": "8c406128eaf44f0749bdc4cf55cbf4cececa7d8d50bbcbe8242914b10d4ca13f",
         "docs/assets/media/demon-band-idol/v001/sha256-manifest.json": "aff116e18d82debaae73f1934be98c89d7bf46035d56669f510b70fa9a4d901d"
+      }
+    },
+    {
+      "id": "clubhouse-tower-facade",
+      "title": "Toon Clubhouse tower facade",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/toon-clubhouse-kit/v001.md#clubhouse-tower-facade",
+      "concept_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png"
+      ],
+      "model_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-beauty.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-front.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-side.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-back.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-threequarter.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/clubhouse-tower-facade-reference-sheet.png"
+      ],
+      "models": [
+        "docs/assets/media/toon-clubhouse-kit/v001/clubhouse-tower-facade.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/toon-clubhouse-kit/v001/clubhouse-tower-facade.glb": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+        "docs/assets/media/toon-clubhouse-kit/v001/prompt.txt": "365aee8ad7817ec2913b1c6e31986c1af429254d9611c586cb3f40a30e1c128c",
+        "docs/assets/media/toon-clubhouse-kit/v001/revision-prompt.txt": "3554fc72fde700e45da5168107e6d1ce979c0d8ba2392c5a4ed0323c930b0f1f",
+        "docs/assets/media/toon-clubhouse-kit/v001/source.json": "c76f106e2acd1b3a5c5ab86f01af45085b02a4a35ea8e79e8c98e359ff861269",
+        "docs/assets/media/toon-clubhouse-kit/v001/provenance.json": "d977d9348fc73d5d850078a94df5988057270a4b14c77f4abd48fda66555e483",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-vs-export.png": "464b517c4c746efaa3d5eb356326f801420c70a06828fe0a3b38c317911da8bd",
+        "docs/assets/media/toon-clubhouse-kit/v001/kit-beauty.png": "212fab50dff2bed902ac85dfa60a005a055386b27af63a84eda4a54cd8715684",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/kit-contact-sheet.png": "fa670d1e59e99dce7c5876371c6dc5dfae06a3ec1449a977a958370d8a2c7f78",
+        "docs/assets/media/toon-clubhouse-kit/v001/toon-clubhouse-kit.blend": "ded39776c06f286714a034d672ab65bd392033188bf9949babd117cc9bc2859b",
+        "docs/assets/media/toon-clubhouse-kit/v001/delivery.json": "6ba3807e7233ab2d4de7349441ea4ab4b5e6256a6b8ce582a0b9cb5595748522",
+        "docs/assets/media/toon-clubhouse-kit/v001/sha256-manifest.json": "21ad828cbdd47559620b551f81f4936bbda8fa978b91799b64efc6d8ed7b45e8",
+        "docs/assets/media/toon-clubhouse-kit/v001/intake-three-inspection.json": "f4ec5d86c28b7c0b9cd72be2841e9b06039cbc26e656c6a365942b37d0085f86",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-beauty.png": "bab9041d57a5a7913b14b9dcb3c0b3e40de88b219d8608cd9747f259343afbd7",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-front.png": "b21140e2fe7a16cf3e371f17e91177a258ab6b10babbd4e9d8aa72b4fe2f59f0",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-side.png": "66ce2a0730989ae2eec3b69b9620dc366719ee04a53bef415ef03601fe5b2fc9",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-back.png": "848210fef57c966f4a6fd9ec0531db1184b408d7ca9bace6a53cb384826d7457",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/clubhouse-tower-facade-threequarter.png": "33748b92782b6ff691798724af63091e1aaa102f9ac78f9fb14a5351ec3d12ce",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/clubhouse-tower-facade-reference-sheet.png": "35c1a8d695676fc31b72dd1cae82503d5b7e53f934fd6855802136376f167ce2"
+      }
+    },
+    {
+      "id": "curly-slide",
+      "title": "Toon Clubhouse curly slide",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/toon-clubhouse-kit/v001.md#curly-slide",
+      "concept_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png"
+      ],
+      "model_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-beauty.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-front.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-side.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-back.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-threequarter.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/curly-slide-reference-sheet.png"
+      ],
+      "models": [
+        "docs/assets/media/toon-clubhouse-kit/v001/curly-slide.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/toon-clubhouse-kit/v001/curly-slide.glb": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+        "docs/assets/media/toon-clubhouse-kit/v001/prompt.txt": "365aee8ad7817ec2913b1c6e31986c1af429254d9611c586cb3f40a30e1c128c",
+        "docs/assets/media/toon-clubhouse-kit/v001/revision-prompt.txt": "3554fc72fde700e45da5168107e6d1ce979c0d8ba2392c5a4ed0323c930b0f1f",
+        "docs/assets/media/toon-clubhouse-kit/v001/source.json": "c76f106e2acd1b3a5c5ab86f01af45085b02a4a35ea8e79e8c98e359ff861269",
+        "docs/assets/media/toon-clubhouse-kit/v001/provenance.json": "d977d9348fc73d5d850078a94df5988057270a4b14c77f4abd48fda66555e483",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-vs-export.png": "464b517c4c746efaa3d5eb356326f801420c70a06828fe0a3b38c317911da8bd",
+        "docs/assets/media/toon-clubhouse-kit/v001/kit-beauty.png": "212fab50dff2bed902ac85dfa60a005a055386b27af63a84eda4a54cd8715684",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/kit-contact-sheet.png": "fa670d1e59e99dce7c5876371c6dc5dfae06a3ec1449a977a958370d8a2c7f78",
+        "docs/assets/media/toon-clubhouse-kit/v001/toon-clubhouse-kit.blend": "ded39776c06f286714a034d672ab65bd392033188bf9949babd117cc9bc2859b",
+        "docs/assets/media/toon-clubhouse-kit/v001/delivery.json": "6ba3807e7233ab2d4de7349441ea4ab4b5e6256a6b8ce582a0b9cb5595748522",
+        "docs/assets/media/toon-clubhouse-kit/v001/sha256-manifest.json": "21ad828cbdd47559620b551f81f4936bbda8fa978b91799b64efc6d8ed7b45e8",
+        "docs/assets/media/toon-clubhouse-kit/v001/intake-three-inspection.json": "f4ec5d86c28b7c0b9cd72be2841e9b06039cbc26e656c6a365942b37d0085f86",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-beauty.png": "8b37f6be8cb85838bb1bb90972b4ee76944c36775412c8bfe4d75dd9d2514e1e",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-front.png": "13ac38925faaa0239eaef9dd2dbb3ec4ca27628e54f68be3782b6604cd33f215",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-side.png": "9344829ac6637b45c4690b0302d8764f2773cc32e54492bcd6bb5fd1592bad6b",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-back.png": "6367807790a7b6e6e5f2a31dbcde4ea8e0693370b555c261776b44c9d8d40335",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/curly-slide-threequarter.png": "9a42febba242aaf6ad50d07d43ed4301eecb4b378c515a7aea8c6dd8ec03dcbf",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/curly-slide-reference-sheet.png": "cabfc93ccc568ba139414c2140c8377f656f21773565f59ef304dd011387da70"
+      }
+    },
+    {
+      "id": "gadget-toolbox-stand",
+      "title": "Toon Clubhouse gadget toolbox stand",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/toon-clubhouse-kit/v001.md#gadget-toolbox-stand",
+      "concept_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png"
+      ],
+      "model_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-beauty.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-front.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-side.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-back.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-threequarter.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/gadget-toolbox-stand-reference-sheet.png"
+      ],
+      "models": [
+        "docs/assets/media/toon-clubhouse-kit/v001/gadget-toolbox-stand.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/toon-clubhouse-kit/v001/gadget-toolbox-stand.glb": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+        "docs/assets/media/toon-clubhouse-kit/v001/prompt.txt": "365aee8ad7817ec2913b1c6e31986c1af429254d9611c586cb3f40a30e1c128c",
+        "docs/assets/media/toon-clubhouse-kit/v001/revision-prompt.txt": "3554fc72fde700e45da5168107e6d1ce979c0d8ba2392c5a4ed0323c930b0f1f",
+        "docs/assets/media/toon-clubhouse-kit/v001/source.json": "c76f106e2acd1b3a5c5ab86f01af45085b02a4a35ea8e79e8c98e359ff861269",
+        "docs/assets/media/toon-clubhouse-kit/v001/provenance.json": "d977d9348fc73d5d850078a94df5988057270a4b14c77f4abd48fda66555e483",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-vs-export.png": "464b517c4c746efaa3d5eb356326f801420c70a06828fe0a3b38c317911da8bd",
+        "docs/assets/media/toon-clubhouse-kit/v001/kit-beauty.png": "212fab50dff2bed902ac85dfa60a005a055386b27af63a84eda4a54cd8715684",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/kit-contact-sheet.png": "fa670d1e59e99dce7c5876371c6dc5dfae06a3ec1449a977a958370d8a2c7f78",
+        "docs/assets/media/toon-clubhouse-kit/v001/toon-clubhouse-kit.blend": "ded39776c06f286714a034d672ab65bd392033188bf9949babd117cc9bc2859b",
+        "docs/assets/media/toon-clubhouse-kit/v001/delivery.json": "6ba3807e7233ab2d4de7349441ea4ab4b5e6256a6b8ce582a0b9cb5595748522",
+        "docs/assets/media/toon-clubhouse-kit/v001/sha256-manifest.json": "21ad828cbdd47559620b551f81f4936bbda8fa978b91799b64efc6d8ed7b45e8",
+        "docs/assets/media/toon-clubhouse-kit/v001/intake-three-inspection.json": "f4ec5d86c28b7c0b9cd72be2841e9b06039cbc26e656c6a365942b37d0085f86",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-beauty.png": "c5d2f3f68e9348a2af7e34caca7987f72ab623afa28d4164f25a213bb5a2e2b7",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-front.png": "61c9dfc0818299b15df80dcee630744dc15a4550deb6d2c3521d1e1dd701ab02",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-side.png": "67eb38fe893ac1256bfbc25995235304ff5003fb96b8717e007d9f3ba7cb128e",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-back.png": "da0accd62d057364db68eba917b76ee7f5bc45139641b8f47a95ca1161e9af80",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/gadget-toolbox-stand-threequarter.png": "9309f3af34cdb9afdb36a7cf951a0b7c78ee041e9562922b909c19ca220cbeac",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/gadget-toolbox-stand-reference-sheet.png": "3b4016794f8db436e665726e9480e0512701742030c93b7785a7f307154bc189"
+      }
+    },
+    {
+      "id": "rounded-hedge",
+      "title": "Toon Clubhouse rounded hedges",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/toon-clubhouse-kit/v001.md#rounded-hedge",
+      "concept_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png"
+      ],
+      "model_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-beauty.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-front.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-side.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-back.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-threequarter.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/rounded-hedge-reference-sheet.png"
+      ],
+      "models": [
+        "docs/assets/media/toon-clubhouse-kit/v001/rounded-hedge.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/toon-clubhouse-kit/v001/rounded-hedge.glb": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+        "docs/assets/media/toon-clubhouse-kit/v001/prompt.txt": "365aee8ad7817ec2913b1c6e31986c1af429254d9611c586cb3f40a30e1c128c",
+        "docs/assets/media/toon-clubhouse-kit/v001/revision-prompt.txt": "3554fc72fde700e45da5168107e6d1ce979c0d8ba2392c5a4ed0323c930b0f1f",
+        "docs/assets/media/toon-clubhouse-kit/v001/source.json": "c76f106e2acd1b3a5c5ab86f01af45085b02a4a35ea8e79e8c98e359ff861269",
+        "docs/assets/media/toon-clubhouse-kit/v001/provenance.json": "d977d9348fc73d5d850078a94df5988057270a4b14c77f4abd48fda66555e483",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-vs-export.png": "464b517c4c746efaa3d5eb356326f801420c70a06828fe0a3b38c317911da8bd",
+        "docs/assets/media/toon-clubhouse-kit/v001/kit-beauty.png": "212fab50dff2bed902ac85dfa60a005a055386b27af63a84eda4a54cd8715684",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/kit-contact-sheet.png": "fa670d1e59e99dce7c5876371c6dc5dfae06a3ec1449a977a958370d8a2c7f78",
+        "docs/assets/media/toon-clubhouse-kit/v001/toon-clubhouse-kit.blend": "ded39776c06f286714a034d672ab65bd392033188bf9949babd117cc9bc2859b",
+        "docs/assets/media/toon-clubhouse-kit/v001/delivery.json": "6ba3807e7233ab2d4de7349441ea4ab4b5e6256a6b8ce582a0b9cb5595748522",
+        "docs/assets/media/toon-clubhouse-kit/v001/sha256-manifest.json": "21ad828cbdd47559620b551f81f4936bbda8fa978b91799b64efc6d8ed7b45e8",
+        "docs/assets/media/toon-clubhouse-kit/v001/intake-three-inspection.json": "f4ec5d86c28b7c0b9cd72be2841e9b06039cbc26e656c6a365942b37d0085f86",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-beauty.png": "7000c23aeead2abf60f2eb0e48908af32e6c46a94f3c2eb8634e72043413c778",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-front.png": "786636de45a75078cccd3d3bbe138546a71d4cf5da4bb03239ca16a1aa2af1a9",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-side.png": "ac12831de89185b04ce4a14175051729cb87a1a600baef417736f718ebfeeed7",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-back.png": "639d026b7f3d0a47f5f8b25a56344b6e505a303cf5e764a28afc6d57e3e17330",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/rounded-hedge-threequarter.png": "fb242fbc814919cabccd2fbdf7bfb12ee26615781606f1bb95839abbcf899386",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/rounded-hedge-reference-sheet.png": "b0715e53d5868344c1bc946aa19377007bb3125ca74f932296ff8d4760bb3c7b"
+      }
+    },
+    {
+      "id": "stage-marker",
+      "title": "Toon Clubhouse dance stage marker",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/toon-clubhouse-kit/v001.md#stage-marker",
+      "concept_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png"
+      ],
+      "model_images": [
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-beauty.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-front.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-side.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-back.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-threequarter.png",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/stage-marker-reference-sheet.png"
+      ],
+      "models": [
+        "docs/assets/media/toon-clubhouse-kit/v001/stage-marker.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; registered in the clubhouse theme kit; no published level places it yet",
+      "checksums": {
+        "docs/assets/media/toon-clubhouse-kit/v001/stage-marker.glb": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+        "docs/assets/media/toon-clubhouse-kit/v001/prompt.txt": "365aee8ad7817ec2913b1c6e31986c1af429254d9611c586cb3f40a30e1c128c",
+        "docs/assets/media/toon-clubhouse-kit/v001/revision-prompt.txt": "3554fc72fde700e45da5168107e6d1ce979c0d8ba2392c5a4ed0323c930b0f1f",
+        "docs/assets/media/toon-clubhouse-kit/v001/source.json": "c76f106e2acd1b3a5c5ab86f01af45085b02a4a35ea8e79e8c98e359ff861269",
+        "docs/assets/media/toon-clubhouse-kit/v001/provenance.json": "d977d9348fc73d5d850078a94df5988057270a4b14c77f4abd48fda66555e483",
+        "docs/assets/media/toon-clubhouse-kit/v001/concept-vs-export.png": "464b517c4c746efaa3d5eb356326f801420c70a06828fe0a3b38c317911da8bd",
+        "docs/assets/media/toon-clubhouse-kit/v001/kit-beauty.png": "212fab50dff2bed902ac85dfa60a005a055386b27af63a84eda4a54cd8715684",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/kit-contact-sheet.png": "fa670d1e59e99dce7c5876371c6dc5dfae06a3ec1449a977a958370d8a2c7f78",
+        "docs/assets/media/toon-clubhouse-kit/v001/toon-clubhouse-kit.blend": "ded39776c06f286714a034d672ab65bd392033188bf9949babd117cc9bc2859b",
+        "docs/assets/media/toon-clubhouse-kit/v001/delivery.json": "6ba3807e7233ab2d4de7349441ea4ab4b5e6256a6b8ce582a0b9cb5595748522",
+        "docs/assets/media/toon-clubhouse-kit/v001/sha256-manifest.json": "21ad828cbdd47559620b551f81f4936bbda8fa978b91799b64efc6d8ed7b45e8",
+        "docs/assets/media/toon-clubhouse-kit/v001/intake-three-inspection.json": "f4ec5d86c28b7c0b9cd72be2841e9b06039cbc26e656c6a365942b37d0085f86",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-beauty.png": "25615edb94cfe066ec006007c730176f548e16371b2436b130efcc0fe5c724ee",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-front.png": "9249ef878ad014dce747e48e481a0979cf6b8191fb441165d07286dbb862c895",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-side.png": "91a3060e937234bb965f9047303521db03321c6719f04b020313ac34463bec8a",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-back.png": "ed4ba58d7ae15682d5556b5c739a6bd110303b6148ac45522fec05b1b11fbe27",
+        "docs/assets/media/toon-clubhouse-kit/v001/stills/stage-marker-threequarter.png": "e6d593535e7476eb2f9c02d9a02fb75964bf59a506f3c12ca4469465490498ee",
+        "docs/assets/media/toon-clubhouse-kit/v001/sheets/stage-marker-reference-sheet.png": "ecd9713fb5aa7268bc6aada29b0c529190137680317d31fe5e2ebe912d398f7c"
       }
     },
     {

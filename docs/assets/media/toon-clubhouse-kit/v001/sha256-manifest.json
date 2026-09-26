@@ -1,0 +1,641 @@
+{
+  "work_order": "WO111",
+  "asset_id": "toon-clubhouse-kit",
+  "version": "v001",
+  "status": "delivered",
+  "created_utc": "2026-09-26T20:06:06.818022+00:00",
+  "local_root": "/home/dev/artifacts/haynes-quest/family-eras/toon-clubhouse-kit/v001",
+  "remote_root": "/workspace/haynes-quest/family-eras/toon-clubhouse-kit/v001",
+  "blender_instance": "blender-authoring (instance 1)",
+  "scene_lease": "released",
+  "released_utc": "2026-09-26T20:04:57.937358+00:00",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "glb_sha256": {
+    "clubhouse-tower-facade": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
+    "curly-slide": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
+    "gadget-toolbox-stand": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
+    "rounded-hedge": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
+    "stage-marker": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec"
+  },
+  "files": [
+    {
+      "path": "clubhouse-tower-facade.glb",
+      "bytes": 124360,
+      "sha256": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
+      "remote_local_match": true
+    },
+    {
+      "path": "curly-slide.glb",
+      "bytes": 113004,
+      "sha256": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
+      "remote_local_match": true
+    },
+    {
+      "path": "gadget-toolbox-stand.glb",
+      "bytes": 53684,
+      "sha256": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
+      "remote_local_match": true
+    },
+    {
+      "path": "rounded-hedge.glb",
+      "bytes": 80348,
+      "sha256": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
+      "remote_local_match": true
+    },
+    {
+      "path": "stage-marker.glb",
+      "bytes": 61668,
+      "sha256": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec",
+      "remote_local_match": true
+    },
+    {
+      "path": "construction.json",
+      "bytes": 35884,
+      "sha256": "503727861278b57efeee602b3b24141ddecc7768db27fba0b383764aa68fae26",
+      "remote_local_match": true
+    },
+    {
+      "path": "validation.json",
+      "bytes": 18350,
+      "sha256": "ff5bd59b92daea84e9f9bd78a483bcd2fea1f826d97eed7cea3f040674822fe9",
+      "remote_local_match": true
+    },
+    {
+      "path": "toon-clubhouse-kit.blend",
+      "bytes": 425468,
+      "sha256": "ded39776c06f286714a034d672ab65bd392033188bf9949babd117cc9bc2859b",
+      "remote_local_match": true
+    },
+    {
+      "path": "toon-clubhouse-kit-sheets.blend",
+      "bytes": 1323386,
+      "sha256": "9c4f692293fddf33d1a576f6202362818525f72dd2fd85843472543e5ffdf5fd",
+      "remote_local_match": true
+    },
+    {
+      "path": "claim-checkpoint.blend",
+      "bytes": 1297549,
+      "sha256": "6864903add21b17698cb52dbc9c474f67c0cf29a457fc09d6ddfb31d45a3d4a8",
+      "remote_local_match": true
+    },
+    {
+      "path": "sheets/sheet-render.json",
+      "bytes": 8200,
+      "sha256": "48d04bb45ec38667cb4ff8209733c7f7fac41f1b9eba326df11f211836451c36",
+      "remote_local_match": true
+    },
+    {
+      "path": "sheets/clubhouse-tower-facade-reference-sheet.png",
+      "bytes": 1999514,
+      "sha256": "35c1a8d695676fc31b72dd1cae82503d5b7e53f934fd6855802136376f167ce2",
+      "remote_local_match": true
+    },
+    {
+      "path": "sheets/curly-slide-reference-sheet.png",
+      "bytes": 2040711,
+      "sha256": "cabfc93ccc568ba139414c2140c8377f656f21773565f59ef304dd011387da70",
+      "remote_local_match": true
+    },
+    {
+      "path": "sheets/gadget-toolbox-stand-reference-sheet.png",
+      "bytes": 1883181,
+      "sha256": "3b4016794f8db436e665726e9480e0512701742030c93b7785a7f307154bc189",
+      "remote_local_match": true
+    },
+    {
+      "path": "sheets/rounded-hedge-reference-sheet.png",
+      "bytes": 1859299,
+      "sha256": "b0715e53d5868344c1bc946aa19377007bb3125ca74f932296ff8d4760bb3c7b",
+      "remote_local_match": true
+    },
+    {
+      "path": "sheets/stage-marker-reference-sheet.png",
+      "bytes": 1755239,
+      "sha256": "ecd9713fb5aa7268bc6aada29b0c529190137680317d31fe5e2ebe912d398f7c",
+      "remote_local_match": true
+    },
+    {
+      "path": "sheets/kit-contact-sheet.png",
+      "bytes": 2987048,
+      "sha256": "fa670d1e59e99dce7c5876371c6dc5dfae06a3ec1449a977a958370d8a2c7f78",
+      "remote_local_match": true
+    },
+    {
+      "path": "three-inspection.json",
+      "bytes": 44033,
+      "sha256": "e2fd581e1a1c0c4543550c9f03c4a930735d3be4a9a8ecc43344593f6a29d8c9",
+      "remote_local_match": true
+    },
+    {
+      "path": "bounds.json",
+      "bytes": 4936,
+      "sha256": "a2e00dcd29b5f5ccdd7e66fb28c01f6876a5bcb9e7e4f31b62727bb7b2c28de4",
+      "remote_local_match": true
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 2755,
+      "sha256": "d977d9348fc73d5d850078a94df5988057270a4b14c77f4abd48fda66555e483",
+      "remote_local_match": true
+    },
+    {
+      "path": "tool-settings.json",
+      "bytes": 3456,
+      "sha256": "cdc1a9d5aa19081235c3bc03d44f9d12c6dc6a6551865cbe087bd02cf90ce8ff",
+      "remote_local_match": true
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 4712,
+      "sha256": "830c03b60024b028c70ccb97aa6cebcf748027795fc15f2ba619faa4b6613ddd",
+      "remote_local_match": true
+    },
+    {
+      "path": "kit-beauty.png",
+      "bytes": 893264,
+      "sha256": "212fab50dff2bed902ac85dfa60a005a055386b27af63a84eda4a54cd8715684",
+      "remote_local_match": true
+    },
+    {
+      "path": "concept-vs-export.png",
+      "bytes": 3194697,
+      "sha256": "464b517c4c746efaa3d5eb356326f801420c70a06828fe0a3b38c317911da8bd",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/browser-inspection.json",
+      "bytes": 24548,
+      "sha256": "36c67afdc57235ad28abe81590d8c69ff84120ca9fd9240347f6ca8067142b5d",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/clubhouse-tower-facade-back.png",
+      "bytes": 135582,
+      "sha256": "848210fef57c966f4a6fd9ec0531db1184b408d7ca9bace6a53cb384826d7457",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/clubhouse-tower-facade-beauty.png",
+      "bytes": 276710,
+      "sha256": "bab9041d57a5a7913b14b9dcb3c0b3e40de88b219d8608cd9747f259343afbd7",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/clubhouse-tower-facade-front.png",
+      "bytes": 397290,
+      "sha256": "b21140e2fe7a16cf3e371f17e91177a258ab6b10babbd4e9d8aa72b4fe2f59f0",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/clubhouse-tower-facade-side.png",
+      "bytes": 109159,
+      "sha256": "66ce2a0730989ae2eec3b69b9620dc366719ee04a53bef415ef03601fe5b2fc9",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/clubhouse-tower-facade-threequarter.png",
+      "bytes": 317814,
+      "sha256": "33748b92782b6ff691798724af63091e1aaa102f9ac78f9fb14a5351ec3d12ce",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/curly-slide-back.png",
+      "bytes": 139179,
+      "sha256": "6367807790a7b6e6e5f2a31dbcde4ea8e0693370b555c261776b44c9d8d40335",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/curly-slide-beauty.png",
+      "bytes": 248069,
+      "sha256": "8b37f6be8cb85838bb1bb90972b4ee76944c36775412c8bfe4d75dd9d2514e1e",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/curly-slide-front.png",
+      "bytes": 303969,
+      "sha256": "13ac38925faaa0239eaef9dd2dbb3ec4ca27628e54f68be3782b6604cd33f215",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/curly-slide-side.png",
+      "bytes": 214564,
+      "sha256": "9344829ac6637b45c4690b0302d8764f2773cc32e54492bcd6bb5fd1592bad6b",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/curly-slide-threequarter.png",
+      "bytes": 253026,
+      "sha256": "9a42febba242aaf6ad50d07d43ed4301eecb4b378c515a7aea8c6dd8ec03dcbf",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/gadget-toolbox-stand-back.png",
+      "bytes": 91215,
+      "sha256": "da0accd62d057364db68eba917b76ee7f5bc45139641b8f47a95ca1161e9af80",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/gadget-toolbox-stand-beauty.png",
+      "bytes": 312232,
+      "sha256": "c5d2f3f68e9348a2af7e34caca7987f72ab623afa28d4164f25a213bb5a2e2b7",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/gadget-toolbox-stand-front.png",
+      "bytes": 284103,
+      "sha256": "61c9dfc0818299b15df80dcee630744dc15a4550deb6d2c3521d1e1dd701ab02",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/gadget-toolbox-stand-side.png",
+      "bytes": 227723,
+      "sha256": "67eb38fe893ac1256bfbc25995235304ff5003fb96b8717e007d9f3ba7cb128e",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/gadget-toolbox-stand-threequarter.png",
+      "bytes": 349808,
+      "sha256": "9309f3af34cdb9afdb36a7cf951a0b7c78ee041e9562922b909c19ca220cbeac",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/rounded-hedge-back.png",
+      "bytes": 132798,
+      "sha256": "639d026b7f3d0a47f5f8b25a56344b6e505a303cf5e764a28afc6d57e3e17330",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/rounded-hedge-beauty.png",
+      "bytes": 245301,
+      "sha256": "7000c23aeead2abf60f2eb0e48908af32e6c46a94f3c2eb8634e72043413c778",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/rounded-hedge-front.png",
+      "bytes": 230009,
+      "sha256": "786636de45a75078cccd3d3bbe138546a71d4cf5da4bb03239ca16a1aa2af1a9",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/rounded-hedge-side.png",
+      "bytes": 125926,
+      "sha256": "ac12831de89185b04ce4a14175051729cb87a1a600baef417736f718ebfeeed7",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/rounded-hedge-threequarter.png",
+      "bytes": 187808,
+      "sha256": "fb242fbc814919cabccd2fbdf7bfb12ee26615781606f1bb95839abbcf899386",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/stage-marker-back.png",
+      "bytes": 33102,
+      "sha256": "ed4ba58d7ae15682d5556b5c739a6bd110303b6148ac45522fec05b1b11fbe27",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/stage-marker-beauty.png",
+      "bytes": 198453,
+      "sha256": "25615edb94cfe066ec006007c730176f548e16371b2436b130efcc0fe5c724ee",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/stage-marker-front.png",
+      "bytes": 85158,
+      "sha256": "9249ef878ad014dce747e48e481a0979cf6b8191fb441165d07286dbb862c895",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/stage-marker-side.png",
+      "bytes": 48567,
+      "sha256": "91a3060e937234bb965f9047303521db03321c6719f04b020313ac34463bec8a",
+      "remote_local_match": true
+    },
+    {
+      "path": "stills/stage-marker-threequarter.png",
+      "bytes": 77100,
+      "sha256": "e6d593535e7476eb2f9c02d9a02fb75964bf59a506f3c12ca4469465490498ee",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/clubhouse-tower-facade-3q.png",
+      "bytes": 283589,
+      "sha256": "b270a5a21275b4a9b761db9a74bb52df3f2ce93333d8b9699026b0f322755935",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/clubhouse-tower-facade-3qh.png",
+      "bytes": 438234,
+      "sha256": "f5b194608009932ce762c5da4bca69f33720fc8ac3fd83ae1dd28ee20a7e1117",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/clubhouse-tower-facade-back.png",
+      "bytes": 251396,
+      "sha256": "4960be4a4e7882461f09f3b269b967ab7f59f3436901d8092c26556ad3b99a3e",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/clubhouse-tower-facade-front.png",
+      "bytes": 460072,
+      "sha256": "6da706e8209a06aae69e5dd3f41fe77f4c94fff628ac5fed59ea0fe572498370",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/clubhouse-tower-facade-side.png",
+      "bytes": 396676,
+      "sha256": "dbb994e440f1d43f986739071f6d29d56746442b479997d8a133f4d248507b81",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/curly-slide-3q.png",
+      "bytes": 286524,
+      "sha256": "924fea82e7abe750a1f0de437ec860b87d5cf3ed2b8a5b66114460180327b7c6",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/curly-slide-3qh.png",
+      "bytes": 452801,
+      "sha256": "cd452c9a1107ecf40cee476a585396d9ee107e7e80326ab662414ada5a003411",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/curly-slide-back.png",
+      "bytes": 260900,
+      "sha256": "14212363eff51f453bb2c6049d909351a7652618961576ccbfbd168a02297db2",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/curly-slide-front.png",
+      "bytes": 450570,
+      "sha256": "fc5feed53fcda6b853bf7a9d0c6c0a0e25ca78a3c698b55cd59ddf302c291588",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/curly-slide-side.png",
+      "bytes": 430737,
+      "sha256": "6bfa613aa42e47590037183fb3008ebb5229edc64f02418763ad8444f2c99596",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/gadget-toolbox-stand-3q.png",
+      "bytes": 275726,
+      "sha256": "16e924e331afdd4828f49be5a6d47003fdf841ababb515760ee87a9f4911dafd",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/gadget-toolbox-stand-3qh.png",
+      "bytes": 448172,
+      "sha256": "5c759fee5ed5ca4e4bc184f0ee4412386484787ec1ca794b829c5961a1e4c4ed",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/gadget-toolbox-stand-back.png",
+      "bytes": 260671,
+      "sha256": "0201acb910308f1bab54d7455e4bc7852586405cc8c454bb41acc4fb9c5c8108",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/gadget-toolbox-stand-front.png",
+      "bytes": 429569,
+      "sha256": "628dce3516cf41134ccc2be0c31a8907b6559c77cea910d857b43633142588f9",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/gadget-toolbox-stand-top.png",
+      "bytes": 460558,
+      "sha256": "5e90685f900ba0f2aebe7404b0dcc56605b13a12326cd9e6da74cf5dab8c1b55",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/rounded-hedge-3q.png",
+      "bytes": 271953,
+      "sha256": "c6b44ee461b5ef465edaa5907e02b265323b3021164a326c7b9ccf8d2f46341b",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/rounded-hedge-3qh.png",
+      "bytes": 431216,
+      "sha256": "7737a3d33caf57fb2b7ad1de17323d900e1163a913d4309a2fc7d70c21ffae6e",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/rounded-hedge-back.png",
+      "bytes": 251166,
+      "sha256": "5f7ae467eabcd8e7abefd29e37d6174836b3ecf4adc9a06d34e60fa7dbab484f",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/rounded-hedge-front.png",
+      "bytes": 439131,
+      "sha256": "afb08a40f5595ca001a8f86c49e86f7134e7f9557716b17a8060762ea42b75d7",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/stage-marker-3q.png",
+      "bytes": 248715,
+      "sha256": "0b9e596f19073fe620af7b952145837fda7255c0cbf12a97dea9d2d370c5ff36",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/stage-marker-3qh.png",
+      "bytes": 408979,
+      "sha256": "18ea3e2e5a2c7f8e4b90c9bb05f7958607ef66cae361a5fd6dc17f9d133e51c9",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/stage-marker-back.png",
+      "bytes": 217070,
+      "sha256": "a3ebaaeed9ba6c0cc76250aa305d4d17d0d3ba9d360aad140e808a541d47886a",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/stage-marker-front.png",
+      "bytes": 381797,
+      "sha256": "74a83e3918af17c7f4849d5141f6c149025be147e74c92be0139bacb3d3eded3",
+      "remote_local_match": true
+    },
+    {
+      "path": "preview/stage-marker-top.png",
+      "bytes": 441482,
+      "sha256": "fc9d590407ba3d413b33b9784b2cb9bcd5f840b4f07afc93bce914fd41449b20",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-lease.json",
+      "bytes": 2148,
+      "sha256": "b06a6283546feef55b8c304f9408151512dea2a083926be80802d1821402de31",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-release.json",
+      "bytes": 1997,
+      "sha256": "ade1019555b844230d4ec54ea270bf4d9cb16b31714c8a2aaa2f4dd52e93a710",
+      "remote_local_match": true
+    },
+    {
+      "path": "live-scene-release.blend",
+      "bytes": 1323385,
+      "sha256": "b26eb1d3dbe67ad1d3665d95488c7626595f310038af897cbf4839ad702a5f44",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/build_kit.py",
+      "bytes": 24559,
+      "sha256": "43594740067f1075c139047dd3ce19f10e9f809c2c0471eb5bdf6d7efe87ba6c",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/claim.py",
+      "bytes": 2761,
+      "sha256": "b7fb91228b88338ed92b1ce060ead0cd68d7f05ab91abcfcd8b4020bf3cb7149",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/compare.mjs",
+      "bytes": 3032,
+      "sha256": "2fd84017ecb6c345094687d1b190bb2d5ea5cb81c61dbc05a78977e8d375fb42",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/delivery.py",
+      "bytes": 7471,
+      "sha256": "92bfc1842ed730a63e3a950311d5df3852bdf1a2ed2e1e36e40255f1400c5d06",
+      "remote_local_match": "updated locally after the release (finish step reads source hashes from source-remote-hashes.json); remote copy is the staged version",
+      "remote_sha256": "8e4d43ce8dd608fb60471715b9113431f18413b73112225046ae3bee97a57f5f"
+    },
+    {
+      "path": "source/inspect-three.mjs",
+      "bytes": 8708,
+      "sha256": "6dbe146834645acddb1d2ed24ea035c161809b0a5a207eef6eedaa61cb819aa7",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/kit_common.py",
+      "bytes": 23206,
+      "sha256": "9fe3541b54b7d21cec19ea44f075101e76e9681f874943eec2b6e2d8b4745c13",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/look.py",
+      "bytes": 3933,
+      "sha256": "f16da33fefda3822af0796f9be5ef60e7dd5fe085163439c4a16069b513a4a32",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/make_evidence.py",
+      "bytes": 11653,
+      "sha256": "f9317348842659eb22cf05faf83346c93a98e400701b1b7346118b1bde0c00ce",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/preview.mjs",
+      "bytes": 7668,
+      "sha256": "60f335087a391d2a78290d4a3de1618bcff3e40e7ed6c1aad5f7b0fb4a67cb94",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/release_scene.py",
+      "bytes": 3763,
+      "sha256": "63bc2080f58a9d6e3f4596d055b08b45faf5c2edf43f4c8fb158ca5ddea6e9f3",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/run.py",
+      "bytes": 1050,
+      "sha256": "a66c84026090024c351b4408bcd21c3d6f92f37b3c0edfcd044e80735e094aad",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/run_validate.py",
+      "bytes": 574,
+      "sha256": "1c38280d2e8a7c4b3d353c057860766f4884ebd69c15067edeff95b63c9ecb59",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/sheet.py",
+      "bytes": 19575,
+      "sha256": "6a6a3f5f20fcddecea750eea94f12c0c8b935d002562413bd58c2ec208b44aa9",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/transfer.py",
+      "bytes": 4695,
+      "sha256": "67d1dac5b4ec0ec966dfa5621eb68777ec649573aea764f7ff0dead074478b64",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/upload_inputs.py",
+      "bytes": 454,
+      "sha256": "5991c345965cffbd3075b80aea7f67dbe9d0c7077a6656dc3a88abfc45047e4d",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source/validate.mjs",
+      "bytes": 5231,
+      "sha256": "8c54832d6299facfcfe3c99643106621a49ed54685d3c7435dfb5df63051972e",
+      "remote_local_match": true,
+      "method": "read-only MCP sha256 (source-remote-hashes.json)"
+    },
+    {
+      "path": "source-remote-hashes.json",
+      "bytes": 1472,
+      "sha256": "b1af630956a7f6c6c238a78471d8632b77c00b6c099dba03f4db227ac6bde3c3",
+      "remote_local_match": "local record of the read-only remote source hash pass"
+    },
+    {
+      "path": "concept-draft.png",
+      "bytes": 2034414,
+      "sha256": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+      "remote_local_match": true,
+      "remote_path": "inputs/concept-draft.png",
+      "method": "HTTP GET round trip",
+      "note": "Codex Astra concept draft input (unchanged)"
+    },
+    {
+      "path": "prompt.txt",
+      "bytes": 3369,
+      "sha256": "365aee8ad7817ec2913b1c6e31986c1af429254d9611c586cb3f40a30e1c128c",
+      "remote_local_match": true,
+      "remote_path": "inputs/prompt.txt",
+      "method": "sha256 asserted remotely at upload by upload_inputs.py (the artifact route does not serve .txt)",
+      "note": "Codex Astra concept draft input (unchanged)"
+    },
+    {
+      "path": "revision-prompt.txt",
+      "bytes": 782,
+      "sha256": "3554fc72fde700e45da5168107e6d1ce979c0d8ba2392c5a4ed0323c930b0f1f",
+      "remote_local_match": true,
+      "remote_path": "inputs/revision-prompt.txt",
+      "method": "sha256 asserted remotely at upload by upload_inputs.py (the artifact route does not serve .txt)",
+      "note": "Codex Astra concept draft input (unchanged)"
+    },
+    {
+      "path": "delivery.json",
+      "bytes": 8008,
+      "sha256": "6ba3807e7233ab2d4de7349441ea4ab4b5e6256a6b8ce582a0b9cb5595748522",
+      "remote_local_match": "updated locally after the release (released_utc filled in); the staged remote copy predates it"
+    }
+  ],
+  "all_mirrored_remote_local_hashes_match": true,
+  "verification_method": "HTTP GET /artifacts round trip for every mirrored media/JSON/blend file; read-only MCP sha256 for source .py/.mjs (the route does not serve them). No remote writes after the release.",
+  "excluded": [
+    "toon-clubhouse-kit.blend1 (Blender auto-backup) and preview/sheets/ (half-size sheet previews) stay remote only."
+  ],
+  "manifest_self_hash": "Excluded to avoid recursive hashing."
+}
