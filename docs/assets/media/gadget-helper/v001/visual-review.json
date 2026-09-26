@@ -1,0 +1,83 @@
+{
+  "work_order": "WO111",
+  "asset_id": "gadget-helper",
+  "version": "v001",
+  "created_utc": "2026-09-26T04:30:29.462264+00:00",
+  "glb_sha256": "ff5d601b690541aec44e682835328ca55821762521412cd1e26f5c07cb6b6317",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back and beauty stills compared with the concept front/back/three-quarter views (concept-vs-export.png); five-clip normal/small motion sheets; attack front/side windup-contact-recovery; held defeat front/side/beauty inspected.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "concept_matching": [
+    "Wrench arm on the anatomical LEFT and paddle on the RIGHT, matching the concept front and back views.",
+    "Teal rounded box, ochre lid with a deeper rolled band, ochre strap handle with a ribbed charcoal grip, big cream oval eyes glancing toward the wrench, wavy mouth, orange clasp chin, plum hover skirt, three dark nozzles with thin orange rims.",
+    "Front cream stripe rises from behind the clasp to the wrench-side corner; back stripe sits on the paddle side, as in the concept back view.",
+    "The concept middle view is a construction study; depth resolved as 0.42 m body / 0.50 m skirt per the brief."
+  ],
+  "author_corrections": [
+    "First pass was 16,892 triangles; hose, grip, eye, pupil and jaw-tip ring counts were reduced to 14,574.",
+    "Nozzles lengthened with thin orange rims so dark cans read as in the concept; hover gap set to 0.10 m.",
+    "Eyes and pupils enlarged, mouth changed to a smooth wave, grip and hose cooled toward charcoal, skirt darkened toward plum after the concept comparison.",
+    "Box and lid corners rounded (superellipse exponent 3.3) toward the concept pillowy shell.",
+    "Wrench head enlarged with cream mitten jaw ends bisected into the head plus bulbous cream caps.",
+    "Elbow rest bend deepened so the accordion can extend; windup raised 0.17 m above rest and wound 0.29 m back.",
+    "Contact wrist moved outward after the source audit found 2.5 mm hose/body-corner overlap at 1.25 s; final margin +2.9 mm."
+  ],
+  "dimensions_width_height_depth_m": [
+    1.5861066171864344,
+    1.0182450665977527,
+    0.5379999876022339
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.9389113604051441,
+      0.1000000014901158,
+      -0.2849999964237213
+    ],
+    "max": [
+      0.6471952567812903,
+      1.1182450680878686,
+      0.2529999911785126
+    ]
+  },
+  "hover_gap_m": 0.1000000014901158,
+  "animated_bounds_y_up": {
+    "min": [
+      -1.0986103433527168,
+      0.0040173217713589116,
+      -0.7882742347268755
+    ],
+    "max": [
+      0.6576468807745004,
+      1.2309718215436818,
+      0.38788265630968805
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -1.104,
+      -0.001,
+      -0.794
+    ],
+    "max": [
+      0.663,
+      1.236,
+      0.393
+    ]
+  },
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "measured_stable_warning_seconds": [
+    0.6,
+    1.05
+  ],
+  "defeat_held_from_seconds": 1.68,
+  "no_floor_penetration": true,
+  "defeat_lowest_point_m": 0.0040173217713589116,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "Attachment audit supplements the exact GLB all-vertex checks; it does not claim universal triangle collision testing.",
+    "The windup is primarily upward and backward; the concept rest pose already extends the wrench outward, so the windup keeps a similar lateral reach.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}

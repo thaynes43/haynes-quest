@@ -1,0 +1,184 @@
+{
+  "asset_id": "gadget-helper",
+  "version": "v001",
+  "glb_sha256": "ff5d601b690541aec44e682835328ca55821762521412cd1e26f5c07cb6b6317",
+  "method": "WO111 gadget-helper source-geometry clearance and attachment audit.\n\nSupplements the exact-GLB all-vertex checks. Uses the same authored part\nvertices and baked source actions as the exported GLB, sampled at 60 Hz:\n- accordion hose, wrist and wrench stay outside the toolbox shell (body, lid,\n  skirt superellipse volumes) in the body's own posed frame;\n- the stabiliser paddle fin stays outside the shell;\n- the handle strap and grip stay above the lid shell;\n- the wrench never touches the handle or its hinge bosses;\n- the hose ends stay seated in the shoulder collar and wrist drum;\n- the pupils stay inside their cream eye ovals.\nNot a universal triangle-collision proof.",
+  "tolerance_m": -0.004,
+  "clips": {
+    "idle": {
+      "samples": 145,
+      "min_arm_shell_margin_m": 0.033124568396379894,
+      "min_wrench_shell_margin_m": 0.07765682693521897,
+      "min_paddle_shell_margin_m": 0.020273580837290684,
+      "min_handle_lid_margin_m": 0.04117924427138897,
+      "min_wrench_handle_distance_m": 0.2083134381847257,
+      "max_hose_start_offset_m": 4.967053990334591e-09,
+      "max_hose_end_offset_m": 1.3902074288223302e-08,
+      "max_pupil_eye_ratio": 0.6406656868316744,
+      "worst": {
+        "arm": {
+          "frame": 25,
+          "time_s": 0.4166666666666667
+        },
+        "wrench": {
+          "frame": 110,
+          "time_s": 1.8333333333333333
+        },
+        "paddle": {
+          "frame": 28,
+          "time_s": 0.4666666666666667
+        },
+        "handle": {
+          "frame": 75,
+          "time_s": 1.25
+        },
+        "wrench_handle": {
+          "frame": 14,
+          "time_s": 0.23333333333333334
+        }
+      }
+    },
+    "move": {
+      "samples": 73,
+      "min_arm_shell_margin_m": 0.030508263036878182,
+      "min_wrench_shell_margin_m": 0.07620416746755082,
+      "min_paddle_shell_margin_m": 0.012717528308365113,
+      "min_handle_lid_margin_m": 0.043361538695028345,
+      "min_wrench_handle_distance_m": 0.1970580167721639,
+      "max_hose_start_offset_m": 4.967053879312289e-09,
+      "max_hose_end_offset_m": 1.3902073905551293e-08,
+      "max_pupil_eye_ratio": 0.4854683362187261,
+      "worst": {
+        "arm": {
+          "frame": 11,
+          "time_s": 0.18333333333333332
+        },
+        "wrench": {
+          "frame": 35,
+          "time_s": 0.5833333333333334
+        },
+        "paddle": {
+          "frame": 19,
+          "time_s": 0.31666666666666665
+        },
+        "handle": {
+          "frame": 3,
+          "time_s": 0.05
+        },
+        "wrench_handle": {
+          "frame": 10,
+          "time_s": 0.16666666666666666
+        }
+      }
+    },
+    "attack": {
+      "samples": 121,
+      "min_arm_shell_margin_m": 0.002934134084140281,
+      "min_wrench_shell_margin_m": 0.04640861077953715,
+      "min_paddle_shell_margin_m": 0.01404252239987778,
+      "min_handle_lid_margin_m": 0.04007941338099008,
+      "min_wrench_handle_distance_m": 0.15410881693953965,
+      "max_hose_start_offset_m": 4.96705393482344e-09,
+      "max_hose_end_offset_m": 1.3902075131909521e-08,
+      "max_pupil_eye_ratio": 0.7094123695229906,
+      "worst": {
+        "arm": {
+          "frame": 75,
+          "time_s": 1.25
+        },
+        "wrench": {
+          "frame": 44,
+          "time_s": 0.7333333333333333
+        },
+        "paddle": {
+          "frame": 36,
+          "time_s": 0.6
+        },
+        "handle": {
+          "frame": 76,
+          "time_s": 1.2666666666666666
+        },
+        "wrench_handle": {
+          "frame": 44,
+          "time_s": 0.7333333333333333
+        }
+      }
+    },
+    "hit": {
+      "samples": 43,
+      "min_arm_shell_margin_m": 0.011694173680823745,
+      "min_wrench_shell_margin_m": 0.08171982502368993,
+      "min_paddle_shell_margin_m": 0.01684054992342006,
+      "min_handle_lid_margin_m": 0.03245229810998829,
+      "min_wrench_handle_distance_m": 0.22390719063458578,
+      "max_hose_start_offset_m": 4.96705393482344e-09,
+      "max_hose_end_offset_m": 1.3902074058896998e-08,
+      "max_pupil_eye_ratio": 0.5151335769930674,
+      "worst": {
+        "arm": {
+          "frame": 9,
+          "time_s": 0.15
+        },
+        "wrench": {
+          "frame": 20,
+          "time_s": 0.3333333333333333
+        },
+        "paddle": {
+          "frame": 4,
+          "time_s": 0.06666666666666667
+        },
+        "handle": {
+          "frame": 13,
+          "time_s": 0.21666666666666667
+        },
+        "wrench_handle": {
+          "frame": 28,
+          "time_s": 0.4666666666666667
+        }
+      }
+    },
+    "defeat": {
+      "samples": 145,
+      "min_arm_shell_margin_m": 0.008420000415948299,
+      "min_wrench_shell_margin_m": 0.08199649411361948,
+      "min_paddle_shell_margin_m": 0.004414413148507101,
+      "min_handle_lid_margin_m": 0.008554068066008447,
+      "min_wrench_handle_distance_m": 0.18491086258708347,
+      "max_hose_start_offset_m": 4.967053879312289e-09,
+      "max_hose_end_offset_m": 1.3902076691775205e-08,
+      "max_pupil_eye_ratio": 0.5417992959486349,
+      "worst": {
+        "arm": {
+          "frame": 21,
+          "time_s": 0.35
+        },
+        "wrench": {
+          "frame": 2,
+          "time_s": 0.03333333333333333
+        },
+        "paddle": {
+          "frame": 101,
+          "time_s": 1.6833333333333333
+        },
+        "handle": {
+          "frame": 101,
+          "time_s": 1.6833333333333333
+        },
+        "wrench_handle": {
+          "frame": 15,
+          "time_s": 0.25
+        }
+      }
+    }
+  },
+  "checks": {
+    "arm_hose_clear_of_toolbox_shell": true,
+    "wrench_clear_of_toolbox_shell": true,
+    "paddle_clear_of_toolbox_shell": true,
+    "handle_above_lid": true,
+    "wrench_clear_of_handle": true,
+    "hose_seated_in_collar": true,
+    "hose_seated_in_wrist_drum": true,
+    "pupils_inside_eyes": true
+  }
+}

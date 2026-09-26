@@ -1,0 +1,65 @@
+{
+  "work_order": "WO111",
+  "asset_id": "gadget-helper",
+  "version": "v001",
+  "created_utc": "2026-09-26T04:30:29.462264+00:00",
+  "glb_sha256": "ff5d601b690541aec44e682835328ca55821762521412cd1e26f5c07cb6b6317",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Rotation-only joints are checked as fixed local pivots; the body hover, nozzle retraction and pupil glances are the intentional translations. The body hovers at rest with an explicit measured gap. No physical-device or universal triangle-collision proof.",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.9389113604051441,
+      0.1000000014901158,
+      -0.2849999964237213
+    ],
+    "max": [
+      0.6471952567812903,
+      1.1182450680878686,
+      0.2529999911785126
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    1.5861066171864344,
+    1.0182450665977527,
+    0.5379999876022339
+  ],
+  "hover_gap_m": 0.1000000014901158,
+  "footprint_y_up": {
+    "min": [
+      -0.30599999427795527,
+      0.1000000014901158,
+      -0.08017553389072479
+    ],
+    "max": [
+      0.30599999427795527,
+      0.20999999344348919,
+      0.08017553389072479
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -1.0986103433527168,
+      0.0040173217713589116,
+      -0.7882742347268755
+    ],
+    "max": [
+      0.6576468807745004,
+      1.2309718215436818,
+      0.38788265630968805
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -1.104,
+      -0.001,
+      -0.794
+    ],
+    "max": [
+      0.663,
+      1.236,
+      0.393
+    ]
+  },
+  "defeat_held_lowest_point_m": 0.0040173217713589116,
+  "note": "glTF axes: +Y up, character faces -Z; anatomical left is -X (wrench arm). Root at the floor origin under the body centre."
+}

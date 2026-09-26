@@ -111,12 +111,12 @@ describe("current playtest artwork manifest", () => {
       friendly_catalog: "friendly-catalog-v1",
     });
     expect(inventory.counts).toMatchObject({
-      entries: 59,
+      entries: 60,
       fixture_illustration_sets: 1,
       reference_sheet_entries: 8,
-      model_entries: 44,
-      model_files: 44,
-      completed_model_candidates: 42,
+      model_entries: 45,
+      model_files: 45,
+      completed_model_candidates: 43,
       paused_partial_model_candidates: 2,
       concept_only_entries: 2,
       audio_entries: 4,

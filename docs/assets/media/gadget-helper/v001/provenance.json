@@ -1,0 +1,47 @@
+{
+  "work_order": "WO111",
+  "asset_id": "gadget-helper",
+  "version": "v001",
+  "created_utc": "2026-09-26T04:30:29.462264+00:00",
+  "glb_sha256": "ff5d601b690541aec44e682835328ca55821762521412cd1e26f5c07cb6b6317",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Opus 5.5 continues WO111 Blender work after the Codex usage limit (WO111 update on origin/main)",
+  "authoring_tool": "Blender MCP execute_blender_code on the dedicated authoring service",
+  "blender_version": "4.5.13 LTS",
+  "source_concept": {
+    "file": "concept.png",
+    "sha256": "a0dc75770229b72311b0f2d4268ced8385150686653fbef8bb05385ffa53be60",
+    "source_record": "source.json",
+    "generator": "OpenAI built-in image_gen tool, driving GPT-6 Astra / max",
+    "selection": "Driving Astra selected the original generated concept before the Codex usage limit; no franchise source media. Not a Blender reference sheet."
+  },
+  "source_scripts": {
+    "animate.py": "9ea5e86625fe490d53503f8c6e1abf71621a47f42c49f02dfc807abfd4e2d01e",
+    "bounds.json": "d62c114e014a90217f3b3e16d7f62e1e70799d988811200dc2d9befbea13dbc0",
+    "build.py": "8e721e386f89c2f0de20fc1d286e6e548340d9476dc67e62a430c9bd41d17333",
+    "common.py": "7b8404113e915df0ec00aac287d626618a703d1a2a9076387bce9b7992261c11",
+    "compare.mjs": "ca1b571e0f96a9133c9220347bcc1ca9e4a34dbb6bdea0d1b960529a99145729",
+    "delivery.py": "988138ed3269b7855169139ea82fc72e3e5a2aa9dec00595f4ce993f3a42127a",
+    "grid.mjs": "65a3f632968635d9c95e2a7345b236a3902a2e102ac681528748f295879b5328",
+    "inspect-attachments.py": "9a8e07d4a64cd954436148471b9182ae6ef2d45e06a5ca9fc3f98689610f9506",
+    "inspect-three.mjs": "6ec847ac3a2484330294072fd9707d2e620f4c44a9e18f97604480abb74422d6",
+    "look.mjs": "f1ee8b122c1ccf804bb8f1f2f38a131551a377c9e01a5045e9f457e59df2a48e",
+    "make-evidence.py": "2440382e1fa9574818d68983247f8c2c560554c940d54720d125367d34940cfa",
+    "preview.mjs": "07e7d3bf6c5649543890ced497572b35095698556128961ac47fe398304cd03b",
+    "release.py": "cc321a09a818a33fb1a814e8bb20da9bb2ce09bdb802093b7b1ea3040a4477b5",
+    "transfer.py": "ef3e42fde82900dd2d957e69522928e600989ff8970e2402f7c8bd742c87f7ac",
+    "upload.py": "a0832cfa10f9da6686b53e8d751d3cf9dba82136679841ca7dd11ec7432cfbf6",
+    "validate.mjs": "a2f5b79ab22d7d416a4be55440d2f50fed383dd2531a972899c38d1a6f175388"
+  },
+  "original_work": [
+    "Original toolbox geometry, face, strap handle, hover skirt, nozzles, accordion arm, wrench, paddle and all five clips.",
+    "Original deterministic 1024 palette atlas generated in Blender Python; painted stripes are bisected mesh bands, no external texture.",
+    "Mesh, UV, transfer and validation utilities adapted from the WO099/WO111 honk-bus and Rat Casino authoring scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise models, faces, logos, costumes, recordings or textures; no mouse ears, TV face or lettering."
+  ],
+  "rights_note": "Original generated concept and authored study. Generated media is not automatically relicensed under the repository code license; no exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; owner exact-version and physical-device review remain open."
+}

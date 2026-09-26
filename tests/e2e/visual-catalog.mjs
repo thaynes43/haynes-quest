@@ -50,6 +50,7 @@ const requiredBestiesClips = [
 ];
 const mascotCandidateIds = [
   "clubhouse-bully-cat",
+  "gadget-helper",
   "honk-bus",
   "rat-pit-boss",
   "chick-flia",
@@ -61,18 +62,18 @@ const mascotCandidateIds = [
 const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 59,
+  entries: 60,
   reference_sheet_entries: 8,
-  model_entries: 44,
-  model_files: 44,
-  completed_model_candidates: 42,
+  model_entries: 45,
+  model_files: 45,
+  completed_model_candidates: 43,
   paused_partial_model_candidates: 2,
   concept_only_entries: 2,
   audio_entries: 4,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 85;
+const expectedThumbnailFiles = 87;
 const integratedAssetIds = [
   "bestie-pink",
   "bestie-black",
@@ -1946,7 +1947,7 @@ const report = {
   externalRequests: [],
   physicalSafari: "not tested",
   scope:
-    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot, Clubhouse Bully Cat and Honk Bus candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
+    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot, Clubhouse Bully Cat, Gadget Helper and Honk Bus candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
   harnessNotes: [
     "The current first inspiration image must be displayed inline; retained superseded concepts may instead remain reachable as local links.",
     "Browser-cancelled preload=metadata requests are separated only for exact video URLs declared by an inspected review in the same browser scope; HTTP errors and every other request failure remain fatal, while video playback remains covered by earlier focused audits.",
