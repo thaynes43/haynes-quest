@@ -6,8 +6,7 @@ import { familyApi, familyErrorText } from "./family-client";
 
 /**
  * The family home (DESIGN-024 player journey): one big card per published
- * journey, and "Set up your family" for administrators only. All strings are
- * placeholders marked `COPY:`; the coordinator owns the final copy and layout.
+ * journey, and Family setup for administrators only.
  */
 export function FamilyHome({
   session,
@@ -57,13 +56,11 @@ export function FamilyHome({
 
   return (
     <section className="family-home" aria-busy={journeys === null}>
-      {/* COPY: family home heading */}
-      <h1>Choose your journey</h1>
+      <h1>Who's playing?</h1>
       {error && <p role="alert">{error}</p>}
-      {journeys === null && !error && <p role="status">Loading journeys…</p>}
+      {journeys === null && !error && <p role="status">Getting your quests ready…</p>}
       {journeys?.length === 0 && (
-        // COPY: empty home placeholder (member vs admin)
-        <p>{admin ? "No journeys yet. Set up your family to begin." : "No journeys yet. Ask a family admin to set one up."}</p>
+        <p>{admin ? "No quests yet. Open Family setup to make one." : "No quests are ready yet. A family admin can set one up."}</p>
       )}
       <div className="family-journeys">
         {journeys?.map((journey) => (
@@ -77,21 +74,19 @@ export function FamilyHome({
             <span>
               {journey.run
                 ? journey.run.completed
-                  ? "Journey complete" // COPY: completed journey card line
-                  : `${journey.run.chapterName ?? "Next chapter"} · Age ${journey.run.ageYears}` // COPY: card progress line
-                : "Ready to start" /* COPY: card for a journey not yet started */}
+                  ? "Quest complete!"
+                  : `${journey.run.chapterName ?? "Next chapter"} · Age ${journey.run.ageYears}`
+                : "Tap to start your quest"}
             </span>
             {admin && journey.newerPublication && (
-              // COPY: admin hint that newer photos are published
-              <small>Newer photos are published. Start fresh from setup to use them.</small>
+              <small>New photos are published. Use Start fresh in Family setup to play with them.</small>
             )}
           </button>
         ))}
       </div>
       {admin && (
         <button className="secondary family-setup-button" disabled={busy} onClick={() => setSetup(true)}>
-          {/* COPY: admin entry to family setup */}
-          Set up your family
+          Family setup
         </button>
       )}
     </section>

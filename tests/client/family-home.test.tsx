@@ -62,8 +62,8 @@ describe("family home", () => {
     const button = container.querySelector<HTMLButtonElement>(".family-journey-card")!;
     expect(button.textContent).toContain("Test Child B");
     expect(button.textContent).toContain("Besties Obby · Age 4");
-    expect(container.textContent).not.toContain("Set up your family");
-    expect(container.textContent).not.toContain("Newer photos");
+    expect(container.textContent).not.toContain("Family setup");
+    expect(container.textContent).not.toContain("New photos are published");
     await act(async () => button.click());
     await flush();
     expect(requests.at(-1)).toMatchObject({ method: "POST", path: `/api/children/${CHILD}/play`, body: {} });
@@ -77,11 +77,11 @@ describe("family home", () => {
     });
     await act(async () => root.render(<FamilyHome session={session("admin")} onPlay={vi.fn()} />));
     await flush();
-    expect(container.textContent).toContain("Newer photos are published");
-    const setup = [...container.querySelectorAll("button")].find((entry) => entry.textContent === "Set up your family")!;
+    expect(container.textContent).toContain("New photos are published");
+    const setup = [...container.querySelectorAll("button")].find((entry) => entry.textContent === "Family setup")!;
     await act(async () => setup.click());
     await flush();
-    expect(container.querySelector("h1")?.textContent).toBe("Set up your family");
+    expect(container.querySelector("h1")?.textContent).toBe("Family setup");
     expect(container.textContent).toContain("Add a child");
   });
 
@@ -89,6 +89,6 @@ describe("family home", () => {
     routeFetch({ "GET /api/children": () => [503, { error: { code: "FAMILY_SETUP_UNAVAILABLE", message: "x" } }] });
     await act(async () => root.render(<FamilyHome session={session("player")} onPlay={vi.fn()} />));
     await flush();
-    expect(container.querySelector('[role="alert"]')?.textContent).toBe("Photo setup isn't connected right now.");
+    expect(container.querySelector('[role="alert"]')?.textContent).toBe("Immich isn't connected right now, so photos can't be changed.");
   });
 });

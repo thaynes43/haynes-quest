@@ -181,7 +181,7 @@ function MemoryCard({
         <strong>{memory.label}</strong>
         <small>
           {familyPhotos
-            ? `${memory.date} · Age ${memory.ageYears}` // COPY: family memory detail line
+            ? `${memory.date} · Age ${memory.ageYears}`
             : `${memory.date} · Age ${memory.ageYears} · Fictional illustration`}
         </small>
       </figcaption>
@@ -926,7 +926,7 @@ function Adventure({
       )}
       <div className="placeholder-label" data-quest-ui>
         {familyPhotos
-          ? /* COPY: family-journey footer label */ `${previewChapterCount} ${previewChapterCount === 1 ? "chapter" : "chapters"} · Your memories`
+          ? `${previewChapterCount} ${previewChapterCount === 1 ? "chapter" : "chapters"} · Your memories`
           : `${previewChapterCount} ${previewChapterCount === 1 ? "chapter" : "chapters"} · Fictional memories · ${hasDraftEnemy ? "Draft enemy uses placeholder art" : "Candidate artwork"}`}
       </div>
 
@@ -1127,7 +1127,7 @@ function Adventure({
           </p>
           <p className="small-note">
             {familyPhotos
-              ? /* COPY: family-journey help note */ "These are your family's photos. Use the music-note button to mute the sounds."
+              ? "These are your family's photos. Use the music-note button to turn sounds on or off."
               : "This private review uses fictional drawings. It has not connected to your photo library. Use the music-note button to mute the playtest sounds."}
           </p>
           <button className="primary" onClick={() => setShowHelp(false)}>
@@ -1381,7 +1381,6 @@ function CasinoHaul({
     <p className="casino-haul">
       You grabbed {counts.tokens} of {counts.tokenTotal} {names.tokens} and{" "}
       {counts.tickets} of {counts.ticketTotal} {names.tickets}.
-      {/* COPY: the non-casino "every ticket" line reuses the theme's ticket name. */}
       {everyTicket ? ` Every ${names.ticket} found!` : ""}
     </p>
   );

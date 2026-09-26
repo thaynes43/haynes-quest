@@ -109,7 +109,7 @@ describe("family setup screens", () => {
     });
     await flush();
     expect(container.querySelector("select")?.value).toBe("rat-casino-world@v2");
-    await act(async () => button("Create and pick photos").click());
+    await act(async () => button("Create quest and pick photos").click());
     await flush();
     await flush();
     const create = requests.find((entry) => entry.method === "POST" && entry.path === "/api/admin/children");
@@ -170,7 +170,7 @@ describe("family setup screens", () => {
     });
     expect(container.textContent).toContain("Pumpkin patch");
 
-    await act(async () => button("Swap", container.querySelectorAll(".family-slot")[1]!).click());
+    await act(async () => button("Swap photo", container.querySelectorAll(".family-slot")[1]!).click());
     await flush();
     expect(container.querySelector(".family-suggestion img")!.getAttribute("src")).toBe("/api/admin/candidates/ct1.suggested/image");
     expect(button("Show more")).toBeTruthy();
