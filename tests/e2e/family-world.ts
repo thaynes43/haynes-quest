@@ -371,7 +371,7 @@ interface ChapterReport {
   falls: number;
   hpDefeats: number;
   pickups: string[];
-  memories: Array<{ slot: string; id: string }>;
+  memories: Array<{ slot: string; id: string; byContact?: boolean }>;
   fights: Array<{ slot: string; id: string; attacks: number; secondaries: number; hpDefeats: number }>;
   screenshots: string[];
   completedLevelIds?: readonly string[];
@@ -771,7 +771,11 @@ async function playChapter(browser: Browser, chapter: ChapterSource): Promise<Ch
     for (const [kind, anchor] of Object.entries(anchors.pickups)) {
       if (anchor.platformId !== platformId) continue;
       const taken = () => activeLevel().pickups.some((pickup) => pickup.kind === kind && pickup.collected);
-      if (taken()) continue;
+      if (taken()) {
+        // Walking into a pickup collects it, so a crossing can take it first.
+        if (!report.pickups.includes(kind)) report.pickups.push(kind);
+        continue;
+      }
       if ((await collect(`pickup ${kind}`, platformId, anchor.position, taken)) === "moved") return "moved";
       report.pickups.push(kind);
       log(`collected ${kind}`);
@@ -788,7 +792,13 @@ async function playChapter(browser: Browser, chapter: ChapterSource): Promise<Ch
       assert.ok(id, `${slot}: runtime memory id missing`);
       const taken = () =>
         ["revealed", "consumed"].includes(save().memories.find((memory) => memory.id === id)?.state ?? "");
-      if (taken()) continue;
+      if (taken()) {
+        if (!report.memories.some((memory) => memory.id === id)) {
+          report.memories.push({ slot, id, byContact: true });
+          log(`recovered ${slot} by contact on the way`);
+        }
+        continue;
+      }
       if ((await collect(slot, platformId, anchor.position, taken)) === "moved") return "moved";
       report.memories.push({ slot, id });
       log(`recovered ${slot}`);
@@ -918,6 +928,10 @@ async function playChapter(browser: Browser, chapter: ChapterSource): Promise<Ch
     assert.equal(report.memories.filter((memory) => memory.slot.startsWith("minor")).length, 2);
     assert.equal(report.memories.filter((memory) => memory.slot === "major").length, 1);
     assert.equal(report.fights.length, 5);
+    for (const memory of report.memories) {
+      const state = final.memories.find((entry) => entry.id === memory.id)?.state;
+      assert.ok(state === "revealed" || state === "consumed", `${memory.slot} is ${state} in the final save`);
+    }
     report.result = "passed";
   } catch (error) {
     report.result = "failed";
