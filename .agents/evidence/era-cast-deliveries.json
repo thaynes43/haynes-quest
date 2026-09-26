@@ -611,12 +611,13 @@
       "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
       "sceneReleasedAt": "2026-09-26T15:51:36.783303+00:00",
       "manifest": "docs/assets/media/magic-house/v001/sha256-manifest.json",
-      "pr": null,
+      "pr": 99,
       "prMerged": null,
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v2 (and the frozen v1) fill the B·2 boss slot with The Dancing House project candidate (magic-house), which renders neutral placeholder art until a catalog version registers this model"
       },
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/99",
       "masterSha256": "243b36560389175f6d865d957e455d2a666bfb22f612c5b87327e2622f4e38d3",
       "triangles": 12122,
       "joints": 32,
