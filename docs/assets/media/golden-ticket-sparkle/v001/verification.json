@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/golden-ticket-sparkle/v001/source.wav",
+    "sha256": "2a9287af3523531c2c4a99a06de8904aaacf9d965de6beaf974d142e3e44d885",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.32702637,
+    "peak_dbfs": -9.708,
+    "rms_amplitude": 0.02714893,
+    "rms_dbfs": -31.325,
+    "dc_offset": 3.47e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/golden-ticket-sparkle/v001/cue.wav",
+    "sha256": "6552e29f39594831ae26c43ed957ba8e47b53074ba762d50c7e1ab2d18d1ad60",
+    "size_bytes": 176444,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 44100,
+    "duration_seconds": 1.0,
+    "peak_amplitude": 0.31622314,
+    "peak_dbfs": -10.0,
+    "rms_amplitude": 0.05084176,
+    "rms_dbfs": -25.876,
+    "dc_offset": 6.162e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/enemy-poof/v001/source-attempt-3.wav",
+    "sha256": "fd40d8f9e5fb636c1a9c0145a56b3e369f7b821500cf59e12936cc27be8eddcb",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.41299438,
+    "peak_dbfs": -7.681,
+    "rms_amplitude": 0.02102425,
+    "rms_dbfs": -33.546,
+    "dc_offset": -5.72e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Not selected: a run of short low pillow thumps that reads as repeated pops rather than one poof, starting at the first frame.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/enemy-poof/v001/source.wav",
+    "sha256": "c07724e57353714822491dc93d1996d84ff35ee4bcd6350bec65e1794d769015",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.14389038,
+    "peak_dbfs": -16.839,
+    "rms_amplitude": 0.01995897,
+    "rms_dbfs": -33.997,
+    "dc_offset": -6.263e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/enemy-poof/v001/cue.wav",
+    "sha256": "b4ae4aa1bc598ef7ebe9e42296dedbe83e799532045ed3cfc45c1cf9da339712",
+    "size_bytes": 105884,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 26460,
+    "duration_seconds": 0.6,
+    "peak_amplitude": 0.28182983,
+    "peak_dbfs": -11.0,
+    "rms_amplitude": 0.0458628,
+    "rms_dbfs": -26.771,
+    "dc_offset": -0.00040829,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "service_version": "0.2.0",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "48714f2c6b604b98ab582e47935b9e73",
+  "status": "queued",
+  "prompt": "A goofy cartoon toy school bus horn going honk-honk, two very short quick friendly honks in rapid succession, each honk brief and bouncy, soft rounded squeeze-horn tone, silly and warm, not loud; isolated short sound effect, no voice, no speech, no music, no traffic, no engine.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 217,
+  "created_at": "2026-09-26T16:18:09.963005Z",
+  "started_at": null,
+  "finished_at": null,
+  "peak_subprocess_rss_bytes": 0,
+  "artifact": null,
+  "audio": null,
+  "error": null
+}

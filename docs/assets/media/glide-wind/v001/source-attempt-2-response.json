@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "service_version": "0.2.0",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "807e9975962f41ca8b68a159f62d1675",
+  "status": "completed",
+  "prompt": "A soft airy wind whoosh, the gentle breathy hiss of air rushing smoothly past while gliding, steady and continuous at an even level with no gusts, calm and light; continuous sound effect, no rumble, no voice, no speech, no music, no birds, no rain.",
+  "seconds": 8.0,
+  "steps": 8,
+  "seed": 215,
+  "created_at": "2026-09-26T16:16:52.545469Z",
+  "started_at": "2026-09-26T16:16:52.553097Z",
+  "finished_at": "2026-09-26T16:17:00.114380Z",
+  "peak_subprocess_rss_bytes": 4119240704,
+  "artifact": "jobs/807e9975962f41ca8b68a159f62d1675/output.wav",
+  "audio": {
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_seconds": 8.0,
+    "size_bytes": 1411244,
+    "sha256": "05e11948e0be48ac08615b53cc8db13a70721651340862a5da1a74301cb62444"
+  },
+  "error": null,
+  "elapsed_seconds": 7.561,
+  "download_url": "/artifacts/807e9975962f41ca8b68a159f62d1675/output.wav"
+}

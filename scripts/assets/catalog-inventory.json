@@ -2,12 +2,12 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 62,
+    "entries": 70,
     "reference_sheet_entries": 8,
     "model_entries": 47,
     "model_files": 47,
     "concept_only_entries": 2,
-    "audio_entries": 4,
+    "audio_entries": 12,
     "fixture_illustration_sets": 1,
     "completed_model_candidates": 45,
     "paused_partial_model_candidates": 2,
@@ -2131,6 +2131,186 @@
         "docs/assets/media/ui-confirmed/v001/cue.wav": "e9a0541c87b518de9b7d989ae4b6ef99d3ee03e40bfc1e65855bfe9069597608",
         "docs/assets/media/ui-confirmed/v001/source.wav": "416cdbb0fbb82da0b701f7fdac2fb4176b1f5933c4e1a236fab246e130ac941b",
         "docs/assets/media/ui-confirmed/v001/source-attempt-1.wav": "177abf2e67e0578be44ed13609ca97b3464b7548bae57ee11e5a32bded68bfa7"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "bounce-pad-boing",
+      "title": "Up we spring · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/bounce-pad-boing/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/bounce-pad-boing/v001/cue.wav",
+        "docs/assets/media/bounce-pad-boing/v001/source.wav"
+      ],
+      "thumbnail": "docs/assets/media/bounce-pad-boing/v001/waveform.svg",
+      "version": "v001",
+      "state": "New v001 candidate cue for the family world bounce pad launch; not yet wired into the game's cue map; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/bounce-pad-boing/v001/cue.wav": "ccc7dc45d2fadc86f9ed2405588e217d0f6b399de823223e992df07559e151b4",
+        "docs/assets/media/bounce-pad-boing/v001/source.wav": "ed26d3c5d8b775384191d65ab8b8eb229bd098b6b7a595566c82d2327f7afe24"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "lift-arrival-chime",
+      "title": "The lift has arrived · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/lift-arrival-chime/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/lift-arrival-chime/v001/cue.wav",
+        "docs/assets/media/lift-arrival-chime/v001/source.wav",
+        "docs/assets/media/lift-arrival-chime/v001/source-attempt-1.wav"
+      ],
+      "thumbnail": "docs/assets/media/lift-arrival-chime/v001/waveform.svg",
+      "version": "v001",
+      "state": "New v001 candidate cue for the family world lift arrival; not yet wired into the game's cue map; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/lift-arrival-chime/v001/cue.wav": "cc3bd16ca66ac18f1d33586de4771a069e611ac28de1e8650d1d21a48d71343e",
+        "docs/assets/media/lift-arrival-chime/v001/source.wav": "8d657a259ddccb7a540bde12b45d8d9040843c452cc26bfe37979d5e7dce7981",
+        "docs/assets/media/lift-arrival-chime/v001/source-attempt-1.wav": "c0a5d51d0cfc8b53cdaea74a90c725192ea5a018d7206a468ba8f3e483041bfa"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "crumble-crack",
+      "title": "Cookie crumble · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/crumble-crack/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/crumble-crack/v001/cue.wav",
+        "docs/assets/media/crumble-crack/v001/source.wav"
+      ],
+      "thumbnail": "docs/assets/media/crumble-crack/v001/waveform.svg",
+      "version": "v001",
+      "state": "New v001 candidate cue for the family world crumbling platform; not yet wired into the game's cue map; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/crumble-crack/v001/cue.wav": "2ac76e286d5ea86d6f9945242325328146bf0728a8a9c9fd84faaf74caf6c714",
+        "docs/assets/media/crumble-crack/v001/source.wav": "8970901dd8a91ab16099fdbae2f3b5e27d48aacaa6c84fe9a03d974dc9266fd2"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "double-jump-whoosh",
+      "title": "One more hop · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/double-jump-whoosh/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/double-jump-whoosh/v001/cue.wav",
+        "docs/assets/media/double-jump-whoosh/v001/source.wav"
+      ],
+      "thumbnail": "docs/assets/media/double-jump-whoosh/v001/waveform.svg",
+      "version": "v001",
+      "state": "New v001 candidate cue for the family world double jump; not yet wired into the game's cue map; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/double-jump-whoosh/v001/cue.wav": "bfef347311b767f83405e2dde0c32461a9c1c282e56d3ce649886056ab91ac87",
+        "docs/assets/media/double-jump-whoosh/v001/source.wav": "a4eba5500c6fef4a98d5c730a58a7f2d170320778c47178893d5335bf5cbf9b6"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "glide-wind",
+      "title": "Riding the breeze · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/glide-wind/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/glide-wind/v001/cue.wav",
+        "docs/assets/media/glide-wind/v001/source.wav",
+        "docs/assets/media/glide-wind/v001/source-attempt-1.wav",
+        "docs/assets/media/glide-wind/v001/source-attempt-2.wav"
+      ],
+      "thumbnail": "docs/assets/media/glide-wind/v001/waveform.svg",
+      "version": "v001",
+      "state": "New v001 candidate cue for the family world glide (seamless loop); not yet wired into the game's cue map; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/glide-wind/v001/cue.wav": "771b0b48ed90995151f5702dbe6bfc629055a845a1fee0d58216dbdb80c3d046",
+        "docs/assets/media/glide-wind/v001/source.wav": "c29b9905283c472418e4b8b33e4ba0791a822010b2a53a2f15ec89cfe8a0bb86",
+        "docs/assets/media/glide-wind/v001/source-attempt-1.wav": "9e80d84d6d19ef55fb9c3e8e0fa5d206b7e6a1714e823a6292dd602c5bfbf842",
+        "docs/assets/media/glide-wind/v001/source-attempt-2.wav": "05e11948e0be48ac08615b53cc8db13a70721651340862a5da1a74301cb62444"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "golden-ticket-sparkle",
+      "title": "A golden ticket · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/golden-ticket-sparkle/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/golden-ticket-sparkle/v001/cue.wav",
+        "docs/assets/media/golden-ticket-sparkle/v001/source.wav"
+      ],
+      "thumbnail": "docs/assets/media/golden-ticket-sparkle/v001/waveform.svg",
+      "version": "v001",
+      "state": "New v001 candidate cue for the family world golden ticket pickup; not yet wired into the game's cue map; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/golden-ticket-sparkle/v001/cue.wav": "6552e29f39594831ae26c43ed957ba8e47b53074ba762d50c7e1ab2d18d1ad60",
+        "docs/assets/media/golden-ticket-sparkle/v001/source.wav": "2a9287af3523531c2c4a99a06de8904aaacf9d965de6beaf974d142e3e44d885"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "honk-bus-honk",
+      "title": "Honk honk · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/honk-bus-honk/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/honk-bus-honk/v001/cue.wav",
+        "docs/assets/media/honk-bus-honk/v001/source.wav",
+        "docs/assets/media/honk-bus-honk/v001/source-attempt-1.wav"
+      ],
+      "thumbnail": "docs/assets/media/honk-bus-honk/v001/waveform.svg",
+      "version": "v001",
+      "state": "New v001 candidate cue for the family world Honk Bus encounter; not yet wired into the game's cue map; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/honk-bus-honk/v001/cue.wav": "9cf5a706227fa651a3b4890f439191b1c9bd49e67de14789badca06dcb914087",
+        "docs/assets/media/honk-bus-honk/v001/source.wav": "bc02ca27820c7f365597ddaa05a0608060d87d18a64a1a9e507d2df4c0ffabe9",
+        "docs/assets/media/honk-bus-honk/v001/source-attempt-1.wav": "2505bd1eccb48e4064c9a0f0d3e574e92b8c56acd1dacc1e1815f46e1aef6ede"
+      },
+      "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "enemy-poof",
+      "title": "Poof, gone · v001",
+      "category": "sound-auditions",
+      "review": "docs/assets/reviews/enemy-poof/v001.md#audition",
+      "concept_images": [],
+      "model_images": [],
+      "models": [],
+      "audio": [
+        "docs/assets/media/enemy-poof/v001/cue.wav",
+        "docs/assets/media/enemy-poof/v001/source.wav",
+        "docs/assets/media/enemy-poof/v001/source-attempt-2.wav",
+        "docs/assets/media/enemy-poof/v001/source-attempt-3.wav"
+      ],
+      "thumbnail": "docs/assets/media/enemy-poof/v001/waveform.svg",
+      "version": "v001",
+      "state": "New v001 candidate cue for the family world enemy defeat; not yet wired into the game's cue map; listening and Tom review pending",
+      "checksums": {
+        "docs/assets/media/enemy-poof/v001/cue.wav": "b4ae4aa1bc598ef7ebe9e42296dedbe83e799532045ed3cfc45c1cf9da339712",
+        "docs/assets/media/enemy-poof/v001/source.wav": "c07724e57353714822491dc93d1996d84ff35ee4bcd6350bec65e1794d769015",
+        "docs/assets/media/enemy-poof/v001/source-attempt-2.wav": "01804e7491e4d956e5ec4182d4e6d8a236504b14a49b1568f738d31d54e1b935",
+        "docs/assets/media/enemy-poof/v001/source-attempt-3.wav": "fd40d8f9e5fb636c1a9c0145a56b3e369f7b821500cf59e12936cc27be8eddcb"
       },
       "gameplay_use": "private-candidate"
     }

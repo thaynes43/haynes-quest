@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/honk-bus-honk/v001/source-attempt-1.wav",
+    "sha256": "2505bd1eccb48e4064c9a0f0d3e574e92b8c56acd1dacc1e1815f46e1aef6ede",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.57974243,
+    "peak_dbfs": -4.735,
+    "rms_amplitude": 0.09759675,
+    "rms_dbfs": -20.211,
+    "dc_offset": -0.00023742,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Wrong character: two sustained horn blasts of about 1.1 seconds each, one second apart; no double honk fits the 0.8-second cue.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}
