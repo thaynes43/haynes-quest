@@ -1,6 +1,6 @@
 # DESIGN-026: Personal era casts for the family worlds
 
-- **Status:** Proposed. Awaiting Tom's lock ([PRD-004 Q-05](../prds/004-family-release.md#owner-decisions)); **no concept, model or sound may be generated from this table until it is locked**
+- **Status:** Accepted. Tom locked the table on September 26, 2026, with World A at four chapters ([PRD-004 Q-05](../prds/004-family-release.md#owner-decisions)). Asset production may start from this table
 - **Last updated:** 2026-09-25
 - **Satisfies:** PRD-004 R-09, R-10
 - **Builds on:** [DESIGN-005](005-era-enemy-catalog.md) (original-art provenance, date eligibility), [DESIGN-012](012-player-journey-curation.md) (child favorites, editable relevance windows), [DESIGN-025](025-growth-moves-and-vertical-courses.md) (themes and moves)
@@ -13,17 +13,18 @@ Chapters are age bands. Their calendar dates come only from the private birthday
 
 ## Proposed table
 
-Moves unlock when the chapter's big memory is recovered. They are available from the next chapter on: age 2 high jump, age 4 double jump, age 8 glide.
+Moves unlock when the chapter's big memory is recovered. They are available from the next chapter on: age 2 high jump, age 4 double jump, age 8 glide. In World A, chapter 2 has the high jump, chapter 3 the double jump and chapter 4 the glide. In World B, chapter 2 has the high jump and chapter 3 the double jump.
 
-### World A (older child, five chapters)
+### World A (older child, four chapters)
 
-| Ch | Age band | Inspiration (public air dates) | Proposed cast (original parodies) | Theme / course idea |
+| Ch | Age band | Inspiration (public air dates) | Locked cast (original parodies) | Theme / course idea |
 | --- | --- | --- | --- | --- |
 | 1 | 0 → 2 | Mickey Mouse Clubhouse (Disney Junior, May 2006 – Nov 2016) | Boss: a bullying cartoon-cat captain with a peg-leg swagger. Ordinaries: runaway gadget helpers ("Toodle"-style floating toolboxes) | Toon clubhouse on a hill, with a tall clubhouse tower and slide |
 | 2 | 2 → 5 | Paw Patrol (Nickelodeon, Aug 2013 –) | Boss: a scheming mustached rival mayor. Ordinaries: his mischievous kitten crew | Seaside rescue town climbing to a lookout tower |
-| 3 | 5 → 7 | Power Rangers Beast Morphers (2019–20) and Dino Fury (2021–22); T.O.T.S. (Disney Junior, Jun 2019 – Jun 2022) | Boss: a giant rubber-suit monster. Ordinaries: clay "putty" grunts. Friendly: delivery-bird helpers | Quarry and command-center cliffs with a giant-monster arena |
-| 4 | 7 → 9 | Spider-Man (Into the Spider-Verse Dec 2018, No Way Home Dec 2021, Across the Spider-Verse Jun 2023, Spidey and His Amazing Friends Aug 2021 –); Phineas and Ferb (2007–15, streaming; revival Jun 2025); The Thundermans (2013–18, streaming) | Boss: an evil scientist with a ridiculous "-inator" machine. Ordinaries: runaway lab robots. A web-slinging friendly helper fills a gap if needed | Rooftop city skyline with water towers, cranes and billboards |
-| 5 | 9 → 11 | Five Nights at Freddy's (Aug 2014 –; movie Oct 2023) with The Living Tombstone's songs; Hazbin Hotel (pilot Oct 2019; series Jan 2024, season 2 Oct 2025) | The existing Rat Casino cast and Rat Pit Boss. Optional bonus: a dapper radio-host showman parody (clean) | The existing Rat Casino, extended with the new mechanics |
+| 3 | 5 → 9 | One merged cast: Power Rangers (Beast Morphers 2019–20, Dino Fury 2021–22, Cosmic Fury 2023); Spider-Man (Into the Spider-Verse Dec 2018, No Way Home Dec 2021, Across the Spider-Verse Jun 2023, Spidey and His Amazing Friends Aug 2021 –); Phineas and Ferb (2007–15, streaming; revival Jun 2025) | Boss: an evil scientist with a ridiculous "-inator" machine that unleashes a giant rubber-suit monster. Ordinaries: clay "putty" grunts and runaway lab robots. A web-slinging friendly helper where a gap needs one | Rooftop city skyline with water towers, cranes and billboards, and the scientist's tower on top |
+| 4 | 9 → 11 | Five Nights at Freddy's (Aug 2014 –; movie Oct 2023) with The Living Tombstone's songs; Hazbin Hotel (pilot Oct 2019; series Jan 2024, season 2 Oct 2025) | The existing Rat Casino cast and Rat Pit Boss. Optional bonus: a dapper radio-host showman parody (clean) | The existing Rat Casino, extended with the new mechanics |
+
+The earlier five-chapter proposal split chapter 3 into Power Rangers with T.O.T.S. (ages 5–7) and Spider-Man, Phineas and Ferb and The Thundermans (ages 7–9). Tom chose the merged four-chapter version.
 
 ### World B (younger child, three chapters)
 
@@ -54,5 +55,5 @@ The validator checks the rebased chapter start against that window. A window may
 
 | ID | Question | Status |
 | --- | --- | --- |
-| Q-01 | Lock this table, or edit rows? | Asked September 25; Tom stepped away and asked to revisit in three hours. |
-| Q-02 | World A: five chapters as proposed, or merge chapters 3 and 4? | Part of Q-01. |
+| Q-01 | Lock this table, or edit rows? | **Locked** by Tom on September 26. He confirmed the lock a second time after saying he had missed the question. |
+| Q-02 | World A: five chapters as proposed, or merge chapters 3 and 4? | **Merged:** World A has four chapters, and chapter 3 covers ages 5–9 with one merged Power Rangers, Spider-Man and Phineas and Ferb cast (Tom, September 26). |

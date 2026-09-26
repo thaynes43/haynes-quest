@@ -1,6 +1,6 @@
 # PRD-004: First family release
 
-- **Status:** Accepted for the first release, September 25, 2026 (era casts pending owner lock, see Q-05)
+- **Status:** Accepted for the first release, September 25, 2026; era casts locked September 26 (Q-05)
 - **Owner:** Tom Haynes
 - **Last updated:** 2026-09-25
 - **Source:** Tom's September 25 direction to start the initial family release for his two children, and his answers to Q-01–Q-05 below
@@ -69,4 +69,4 @@ Out of scope for this release: manual photo uploads, multiple households, public
 | Q-02 | How are memory photos chosen, given almost no Immich favorites? | Automatic picks of well-framed photos from each chapter's years, each from a different day, favoring birthdays and holidays. An admin Memories screen can replace any photo (Tom, September 25). |
 | Q-03 | Where may unreviewed new assets appear? | Straight in the children's levels, labeled "awaiting review" in the studio. Rejected assets revert to a placeholder or a prior version (Tom, September 25). |
 | Q-04 | Should big memories unlock lasting moves? | Yes, as a ladder: age 2+ higher jump, 4+ double jump, 8+ glide. Required paths never need a locked move (Tom, September 25). |
-| Q-05 | Which pop-culture casts belong to which age bands for each child? | Tom supplied the older child's favorites and asked for a date-verified table. He ruled that **no asset may be generated until the age-band associations are locked**, and that levels may be themed to match the assets. The proposal is in [DESIGN-026](../designs/026-personal-era-casts.md); the lock is pending. |
+| Q-05 | Which pop-culture casts belong to which age bands for each child? | Tom supplied the older child's favorites and asked for a date-verified table. He ruled that **no asset may be generated until the age-band associations are locked**, and that levels may be themed to match the assets. On September 26 he locked [DESIGN-026](../designs/026-personal-era-casts.md) with the older child's world at four chapters (0–2, 2–5, 5–9, 9–11) and the younger child's at three (0–2, 2–4, 4–6). |

@@ -9,7 +9,7 @@
 This plan is complete when all of the following hold:
 
 - The family release runs at `https://quest.haynesnetwork.com` behind Authentik, admitting `authentik Admins` and `family`, with a Haynes Network portal tile.
-- Two private child journeys are published from Immich: the older child on World A (five chapters) and the younger on World B (three chapters). Each has auto-picked photos an administrator can swap.
+- Two private child journeys are published from Immich: the older child on World A (four chapters) and the younger on World B (three chapters). Each has auto-picked photos an administrator can swap.
 - Chapters are vertical obby courses with lifts, bounce pads, optional ability routes and themed decor. Big memories grow the avatar and unlock the move ladder.
 - The locked era casts and themed props are produced as catalogued candidates and enter the levels as they land. Placeholders cover anything not yet modeled.
 - The fictional playtest keeps working unchanged.
@@ -31,7 +31,7 @@ A Claude Code session (`claude-opus-5-5`) started by Tom drives this plan. It ke
 | C. Hosting and Authentik (haynes-ops) | [WO108](../work-orders/108-family-hosting.md) | Coordinator | haynes-ops `frontend/haynes-quest/**`, `network/authentik/app/blueprints/**` | Drafted now; merged after A and D |
 | D. Family journeys | [WO109](../work-orders/109-family-journeys.md) | Opus subagent | `src/server/family/**`, `src/server/photos/**`, family migrations, `src/client/family/**` (coordinator writes the UX copy) | Domain modules now; routes and UI after A merges |
 | E. Portal tile | [WO110](../work-orders/110-portal-tile.md) | Opus subagent | haynesnetwork catalog seed plus icon, and its deploy pin | Now |
-| F. Era casts and themed kits | WO111 (art lead) | Codex Astra via `agent-run` | `docs/assets/**`, `scripts/assets/<new ids>/**`, catalog inventory, DESIGN-005 roster | **Only after Tom locks DESIGN-026** |
+| F. Era casts and themed kits | [WO111](../work-orders/111-era-cast-art-lead.md) | Codex Astra via `agent-run` | `docs/assets/**`, `scripts/assets/<new ids>/**`, catalog inventory, DESIGN-005 roster | Started September 26 after Tom locked DESIGN-026 |
 | G. Family worlds | WO112 | Opus subagent(s) | `scripts/levels/family-*`, world fixtures, traversal tests | After B lands and the table is locked; chapters with known casts (A5, B3) may start earlier |
 
 ## Steps
@@ -56,7 +56,7 @@ A Claude Code session (`claude-opus-5-5`) started by Tom drives this plan. It ke
 - CI and local check results for each merged PR; the image digest; the Flux revision; the HelmRelease generation; pod identity and restarts.
 - A signed-out request is redirected to sign-in, and the Authentik authorize URL carries `client_id=haynes-quest`, `code_challenge_method=S256` and the exact redirect. The fake-IdP tests cover tampering, missing groups, non-admin access and logout.
 - The operator publishes both journeys, reporting slot counts and zero `needs-photo`. All chosen photos decode through the sanitizer; only counts and hashes of sanitized output are recorded, and no identifiers.
-- Autopilot traverses every required edge of all eight chapters using only the moves available at each chapter's start age. Lockstep browser completion runs for each world with synthetic photos.
+- Autopilot traverses every required edge of all seven chapters using only the moves available at each chapter's start age. Lockstep browser completion runs for each world with synthetic photos.
 - Every new asset appears in the catalog with its review page and live URLs verified.
 - Owner checks that stay pending until Tom does them, never simulated: his real sign-in, the portal tile click, photo swaps, final art and audio review, and device play.
 
