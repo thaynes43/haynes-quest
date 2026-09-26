@@ -74,7 +74,7 @@ if (requested.length === 0) {
   // Generated example worlds (DESIGN-025): every `examples/<name>.project.json`
   // with a sibling `<name>.commands.json` must replay byte-identically. The
   // replay starts from `createWorldEditorProject` with the project's own id
-  // and catalog version (a family world pins parody-catalog-v7), and the
+  // and catalog version (a family world pins parody-catalog-v8), and the
   // command file holds one batch or an array of batches applied in order, so
   // a whole world can stay under the per-batch size limit.
   const examplesDirectory = fileURLToPath(new URL("./examples/", import.meta.url));

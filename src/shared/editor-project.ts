@@ -69,6 +69,7 @@ export const LEVEL_EDITOR_CATALOG_VERSIONS = [
   "parody-catalog-v5",
   "parody-catalog-v6",
   "parody-catalog-v7",
+  "parody-catalog-v8",
 ] as const satisfies readonly ParodyCatalogVersion[];
 export type LevelEditorCatalogVersion =
   (typeof LEVEL_EDITOR_CATALOG_VERSIONS)[number];
@@ -494,6 +495,9 @@ const LEVEL_EDITOR_READY_IDENTITIES = new Set([
   "fox-card-shark@v001:fox-card-shark@v001",
   "moth-projectionist@v001:moth-projectionist@v001",
   "rat-pit-boss@v001:rat-pit-boss@v002",
+  // Family-era Blender models (parody-catalog-v8, DESIGN-026).
+  "clubhouse-bully-cat@v001:clubhouse-bully-cat@v001",
+  "honk-bus@v001:honk-bus@v001",
 ]);
 
 const LEVEL_EDITOR_BONUS_READY_IDENTITIES = new Set([
