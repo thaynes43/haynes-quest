@@ -133,10 +133,17 @@ describe("family-era enemy artifacts registered in parody-catalog-v8 and v10", (
       "mischief-kitten@v001",
       "bin-chicken@v001",
     ]);
-    // Every delivered model is registered, in delivery-log order.
-    expect(deliveries.map((delivery) => `${delivery.assetId}@${delivery.version}`)).toEqual(
+    // Every registered model has a delivery record, in delivery-log order. A WO111
+    // catalog intake appends its record before the coordinator registers the model,
+    // so a later delivery may still await registration, and it must not claim one.
+    const registered = new Set(additions.map((entry) => `${entry.assetId}@${entry.assetVersion}`));
+    const deliveryKey = (delivery: Delivery) => `${delivery.assetId}@${delivery.version}`;
+    expect(deliveries.map(deliveryKey).filter((key) => registered.has(key))).toEqual(
       additions.map((entry) => `${entry.assetId}@${entry.assetVersion}`),
     );
+    for (const pending of deliveries.filter((delivery) => !registered.has(deliveryKey(delivery)))) {
+      expect(pending.publication.runtimeIntegration, deliveryKey(pending)).not.toMatch(/parody-catalog-v\d+/);
+    }
     for (const entry of additions) {
       const delivery = deliveries.find(
         (candidate) => candidate.assetId === entry.assetId && candidate.version === entry.assetVersion,
