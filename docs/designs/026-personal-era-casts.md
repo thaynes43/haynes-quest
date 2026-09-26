@@ -9,7 +9,7 @@
 
 Each child's world follows their own age bands and favorite shows, not a generic calendar roster. Tom listed the older child's favorites and asked for correct age associations. For the younger child he kept the Besties and asked for proposals for her earlier years.
 
-Chapters are age bands. Their calendar dates come only from the private birthday at publish time (DESIGN-024 D-03), so this public table names no child and gives no birth date. Every character is an **original parody**: recognizable silhouette cues and humor, but no copied names, logos, likenesses or audio. All content stays kid-safe; a parody of a mature show keeps only its clean visual hook.
+Chapters are age bands. Their calendar dates come only from the private birthday at publish time (DESIGN-024 D-03), so this public table names no child and gives no birth date. Every character is an **original parody**: recognizable silhouette cues and humor, but no copied names, logos, likenesses or audio. Tom ruled on September 26 that content need not be "kid-safe": characters and chapters may be genuinely scary where the era calls for it, with no gore ([DESIGN-027](027-scare-pass.md)).
 
 ## Proposed table
 
