@@ -406,6 +406,9 @@ function facingToward(from: PositionSnapshot, to: PositionSnapshot): number {
 export class WatcherDirector {
   private readonly unseen = new Map<string, { seconds: number; threshold: number; changed: boolean }>();
   moves = 0;
+  /** Creaks so far, and the watchers of the latest step that had any, for inspection. */
+  creaks = 0;
+  lastCreakIds: readonly string[] = [];
 
   constructor(
     private readonly random: () => number,
@@ -452,6 +455,10 @@ export class WatcherDirector {
       }
     }
     for (const id of [...this.unseen.keys()]) if (!present.has(id)) this.unseen.delete(id);
+    if (creaks.length > 0) {
+      this.creaks += creaks.length;
+      this.lastCreakIds = Object.freeze([...creaks]);
+    }
     return { moves, creaks };
   }
 

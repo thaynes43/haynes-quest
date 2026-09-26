@@ -336,6 +336,9 @@ describe("scary moments at runtime", () => {
       expect(creaks).toHaveLength(4);
       advance();
       expect(ofType(feedback, "watcher-creak")).toHaveLength(4);
+      // Inspection counts the creaks for lockstep harnesses.
+      expect(game.inspect().scare).toMatchObject({ watcherCreaks: 4 });
+      expect([...game.inspect().scare!.lastWatcherCreakIds].sort()).toEqual(creaks);
       game.dispose();
     });
 

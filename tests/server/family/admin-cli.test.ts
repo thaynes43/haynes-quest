@@ -37,12 +37,13 @@ describe('operator CLI (DESIGN-024 D-09)', () => {
     expect(choice).toBeDefined();
     expect((await runWith({ birthDate: TEST_CHILD_B.birthDate }, 'templates')).output)
       .toEqual([
-        'templates 5',
+        'templates 6',
         'template rat-casino-world@v1 chapters 3',
         'template rat-casino-world@v2 chapters 3',
         'template family-world-b@v1 chapters 3',
         'template family-world-b@v2 chapters 3',
         'template family-world-b@v3 chapters 3',
+        'template family-world-b@v4 chapters 3',
       ]);
 
     const created = await runWith(

@@ -9,11 +9,11 @@
  * chapter inside the world still equals its generator's level and passes the
  * World B family lints. Only the fictional template birth date appears here.
  *
- * The generator builds `family-world-b@v3`. `family-world-b@v1` and v2 are
- * frozen: a published journey pins its fingerprint, so their files must keep
- * replaying byte for byte and stay registered. v2 may differ from v1 only by
- * the reviewed fixes, and v3 from v2 only by the cast that parody-catalog-v10
- * registers.
+ * The generator builds `family-world-b@v4`. `family-world-b@v1`, v2 and v3
+ * are frozen: a published journey pins its fingerprint, so their files must
+ * keep replaying byte for byte and stay registered. v2 may differ from v1 only
+ * by the reviewed fixes, v3 from v2 only by the cast that parody-catalog-v10
+ * registers, and v4 from v3 only by the DESIGN-027 scare level on B3.
  */
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -43,6 +43,8 @@ import {
   FAMILY_WORLD_B_V1_PROJECT_URL,
   FAMILY_WORLD_B_V2_COMMANDS_URL,
   FAMILY_WORLD_B_V2_PROJECT_URL,
+  FAMILY_WORLD_B_V3_COMMANDS_URL,
+  FAMILY_WORLD_B_V3_PROJECT_URL,
   familyWorldBCommands,
 } from "../../scripts/levels/build-family-world-b";
 import { familyB1Level } from "../../scripts/levels/family/b1";
@@ -55,6 +57,8 @@ const frozenV1 = readFileSync(FAMILY_WORLD_B_V1_PROJECT_URL, "utf8");
 const projectV1 = resolveLevelEditorProject(JSON.parse(frozenV1)).project as LevelEditorProjectV2;
 const frozenV2 = readFileSync(FAMILY_WORLD_B_V2_PROJECT_URL, "utf8");
 const projectV2 = resolveLevelEditorProject(JSON.parse(frozenV2)).project as LevelEditorProjectV2;
+const frozenV3 = readFileSync(FAMILY_WORLD_B_V3_PROJECT_URL, "utf8");
+const projectV3 = resolveLevelEditorProject(JSON.parse(frozenV3)).project as LevelEditorProjectV2;
 
 /** Every leaf that differs between two projects, as `path: before -> after`. */
 function leafChanges(before: unknown, after: unknown): string[] {
@@ -103,9 +107,9 @@ const WORLD_SPEC = [
 
 const ORDINARY_SLOTS = ["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4"] as const;
 
-describe("World B: Playroom to Big Stage (family-world-b@v3)", () => {
+describe("World B: Playroom to Big Stage (family-world-b@v4)", () => {
   it("replays byte-identically from the checked-in command history", () => {
-    expect(FAMILY_WORLD_B_TEMPLATE_VERSION).toBe("v3");
+    expect(FAMILY_WORLD_B_TEMPLATE_VERSION).toBe("v4");
     const commands = readFileSync(FAMILY_WORLD_B_COMMANDS_URL, "utf8");
     expect(commands).toBe(`${JSON.stringify(familyWorldBCommands(), null, 2)}\n`);
     expect(serializeLevelEditorProject(buildFamilyWorldB())).toBe(checkedIn);
@@ -227,23 +231,35 @@ describe("World B: Playroom to Big Stage (family-world-b@v3)", () => {
     expect(identity(0, "boss")).toMatchObject({ id: "honk-bus", periodId: "sing-along-playroom-v1" });
   });
 
-  it("keeps each chapter's generated level exactly and passes the World B family lints", () => {
+  it("keeps each chapter's generated level exactly, apart from its scare level, and passes the World B family lints", () => {
     const generators = [familyB1Level, buildB2Level, familyB3Level];
     project.chapters.forEach((chapter, index) => {
-      expect(chapter.level).toEqual(generators[index]!());
-      expect(chapter.level).toEqual(FAMILY_WORLD_B_CHAPTERS[index]!.level());
+      const { scare, ...level } = chapter.level;
+      expect(level).toEqual(generators[index]!());
+      expect(level).toEqual(FAMILY_WORLD_B_CHAPTERS[index]!.level());
+      expect(scare ?? 0).toBe(FAMILY_WORLD_B_CHAPTERS[index]!.scare);
       expect(lintFamilyChapter(chapter.level, { world: "b" })).toEqual([]);
     });
   });
 
-  it("is registered as family-world-b@v3 beside the frozen v1 and v2, with its admin-facing name and age bands", () => {
+  it("sets the DESIGN-027 scare levels: B3 spooky, B1 and B2 none", () => {
+    expect(FAMILY_WORLD_B_CHAPTERS.map((chapter) => chapter.scare)).toEqual([0, 0, 1]);
+    // Level 0 is the absent field, so the unscary chapters keep their bytes.
+    expect(project.chapters.map((chapter) => chapter.level.scare)).toEqual([undefined, undefined, 1]);
+    expect(project.chapters.map((chapter) => "scare" in chapter.level)).toEqual([false, false, true]);
+    expect(familyWorldBCommands().commands.filter((command) => command.type === "chapter.scare.set")).toEqual([
+      { type: "chapter.scare.set", chapterId: "family-b3", scare: 1 },
+    ]);
+  });
+
+  it("is registered as family-world-b@v4 beside the frozen v1 to v3, with its admin-facing name and age bands", () => {
     expect(
       CHECKED_IN_FAMILY_TEMPLATES.filter((entry) => entry.id === "family-world-b").map(
         (entry) => entry.version,
       ),
-    ).toEqual(["v1", "v2", "v3"]);
+    ).toEqual(["v1", "v2", "v3", "v4"]);
     const registry = new FamilyTemplateRegistry();
-    const template = registry.require("family-world-b", "v3");
+    const template = registry.require("family-world-b", "v4");
     expect(template.project).toEqual(project);
     expect(template.project.name).toBe("Playroom to Big Stage");
     expect(template.ageBands).toEqual([
@@ -255,6 +271,34 @@ describe("World B: Playroom to Big Stage (family-world-b@v3)", () => {
     expect(template.fingerprint).toMatch(/^[a-f0-9]{64}$/);
     expect(template.fingerprint).not.toBe(registry.require("family-world-b", "v1").fingerprint);
     expect(template.fingerprint).not.toBe(registry.require("family-world-b", "v2").fingerprint);
+    expect(template.fingerprint).not.toBe(registry.require("family-world-b", "v3").fingerprint);
+  });
+});
+
+describe("World B v3 stays frozen (family-world-b@v3)", () => {
+  it("replays byte-identically from its frozen command history under parody-catalog-v10", () => {
+    const history = JSON.parse(readFileSync(FAMILY_WORLD_B_V3_COMMANDS_URL, "utf8")) as Parameters<
+      typeof applyLevelEditorCommands
+    >[1];
+    const rebuilt = applyLevelEditorCommands(
+      createWorldEditorProject({ projectId: "family-world-b", catalogVersion: "parody-catalog-v10" }),
+      history,
+    );
+    expect(rebuilt.ok).toBe(true);
+    if (rebuilt.ok) expect(serializeLevelEditorProject(rebuilt.project)).toBe(frozenV3);
+    expect(validateLevelEditorProject(projectV3)).toEqual([]);
+    expect(familyWorldIssues(projectV3)).toEqual([]);
+    expect(new FamilyTemplateRegistry().require("family-world-b", "v3").project).toEqual(projectV3);
+    // Its history is v4's without the scare command.
+    const v4History = familyWorldBCommands();
+    expect(history).toEqual({
+      ...v4History,
+      commands: v4History.commands.filter((command) => command.type !== "chapter.scare.set"),
+    });
+  });
+
+  it("differs from v4 only by B3's scare level", () => {
+    expect(leafChanges(projectV3, project)).toEqual(["$.chapters.2.level.scare: undefined -> 1"]);
   });
 });
 
@@ -291,24 +335,24 @@ describe("World B v2 stays frozen (family-world-b@v2)", () => {
       enemyCandidates: null,
       chapters: value.chapters.map((chapter) => ({ ...chapter, encounterSlots: null })),
     });
-    expect(leafChanges(withoutCast(projectV2), withoutCast(project))).toEqual([]);
-    expect([projectV2.catalogVersion, project.catalogVersion]).toEqual(["parody-catalog-v9", "parody-catalog-v10"]);
+    expect(leafChanges(withoutCast(projectV2), withoutCast(projectV3))).toEqual([]);
+    expect([projectV2.catalogVersion, projectV3.catalogVersion]).toEqual(["parody-catalog-v9", "parody-catalog-v10"]);
     for (const [chapter, slot, before, after] of expected) {
       expect((projectV2.chapters[chapter]!.encounterSlots as Record<string, unknown>)[slot], `${chapter} ${slot}`).toEqual(before);
-      expect((project.chapters[chapter]!.encounterSlots as Record<string, unknown>)[slot], `${chapter} ${slot}`).toEqual(after);
+      expect((projectV3.chapters[chapter]!.encounterSlots as Record<string, unknown>)[slot], `${chapter} ${slot}`).toEqual(after);
     }
     const slotCount = (value: LevelEditorProjectV2) =>
       value.chapters.reduce((total, chapter) => total + Object.keys(chapter.encounterSlots).length, 0);
-    const unchangedSlots = project.chapters.flatMap((chapter, index) =>
+    const unchangedSlots = projectV3.chapters.flatMap((chapter, index) =>
       Object.entries(chapter.encounterSlots).filter(
         ([slot, assigned]) =>
           JSON.stringify(assigned) ===
           JSON.stringify((projectV2.chapters[index]!.encounterSlots as Record<string, unknown>)[slot]),
       ),
     );
-    expect(slotCount(project)).toBe(slotCount(projectV2));
-    expect(unchangedSlots).toHaveLength(slotCount(project) - expected.length);
-    expect(project.enemyCandidates).toEqual(projectV2.enemyCandidates.filter((entry) => entry.id === "demon-band-idol"));
+    expect(slotCount(projectV3)).toBe(slotCount(projectV2));
+    expect(unchangedSlots).toHaveLength(slotCount(projectV3) - expected.length);
+    expect(projectV3.enemyCandidates).toEqual(projectV2.enemyCandidates.filter((entry) => entry.id === "demon-band-idol"));
   });
 });
 
