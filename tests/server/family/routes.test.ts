@@ -96,6 +96,7 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
       'rat-casino-world@v1',
       'rat-casino-world@v2',
       'family-world-b@v1',
+      'family-world-b@v2',
     ]);
     expect((await json<{ templates: unknown[] }>(harness.request('/api/admin/templates?birthDate=2016-02-29'), 200)).templates)
       .toEqual([]);

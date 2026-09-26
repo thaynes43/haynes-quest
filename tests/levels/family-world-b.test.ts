@@ -1,7 +1,6 @@
 /**
- * World B, "Playroom to Big Stage" (`family-world-b@v1`, PLAN-019), as
- * assembled by `scripts/levels/build-family-world-b.ts` from the three
- * chapter generators.
+ * World B, "Playroom to Big Stage" (PLAN-019), as assembled by
+ * `scripts/levels/build-family-world-b.ts` from the three chapter generators.
  *
  * The chapter tests (`family-b1`, `family-b2`, `family-b3`) own each course's
  * traversal evidence; this file proves the assembled world: the checked-in
@@ -9,10 +8,17 @@
  * validates, the WORLD-SPEC copy, dates and casts are exact, and every
  * chapter inside the world still equals its generator's level and passes the
  * World B family lints. Only the fictional template birth date appears here.
+ *
+ * The generator builds `family-world-b@v2`. `family-world-b@v1` is frozen: a
+ * published journey pins its fingerprint, so its files must keep replaying
+ * byte for byte and stay registered, and v2 may differ from it only by the
+ * reviewed fixes.
  */
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
+  applyLevelEditorCommands,
+  createWorldEditorProject,
   levelEditorPreparedEnemies,
   resolveLevelEditorProject,
   serializeLevelEditorProject,
@@ -30,6 +36,9 @@ import {
   FAMILY_WORLD_B_CHAPTERS,
   FAMILY_WORLD_B_COMMANDS_URL,
   FAMILY_WORLD_B_PROJECT_URL,
+  FAMILY_WORLD_B_TEMPLATE_VERSION,
+  FAMILY_WORLD_B_V1_COMMANDS_URL,
+  FAMILY_WORLD_B_V1_PROJECT_URL,
   familyWorldBCommands,
 } from "../../scripts/levels/build-family-world-b";
 import { familyB1Level } from "../../scripts/levels/family/b1";
@@ -38,6 +47,8 @@ import { familyB3Level } from "../../scripts/levels/family/b3";
 
 const checkedIn = readFileSync(FAMILY_WORLD_B_PROJECT_URL, "utf8");
 const project = resolveLevelEditorProject(JSON.parse(checkedIn)).project as LevelEditorProjectV2;
+const frozenV1 = readFileSync(FAMILY_WORLD_B_V1_PROJECT_URL, "utf8");
+const projectV1 = resolveLevelEditorProject(JSON.parse(frozenV1)).project as LevelEditorProjectV2;
 
 /** WORLD-SPEC, verbatim: the final user-facing copy and the chapter data. */
 const WORLD_SPEC = [
@@ -72,8 +83,9 @@ const WORLD_SPEC = [
 
 const ORDINARY_SLOTS = ["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4"] as const;
 
-describe("World B: Playroom to Big Stage (family-world-b@v1)", () => {
+describe("World B: Playroom to Big Stage (family-world-b@v2)", () => {
   it("replays byte-identically from the checked-in command history", () => {
+    expect(FAMILY_WORLD_B_TEMPLATE_VERSION).toBe("v2");
     const commands = readFileSync(FAMILY_WORLD_B_COMMANDS_URL, "utf8");
     expect(commands).toBe(`${JSON.stringify(familyWorldBCommands(), null, 2)}\n`);
     expect(serializeLevelEditorProject(buildFamilyWorldB())).toBe(checkedIn);
@@ -91,7 +103,7 @@ describe("World B: Playroom to Big Stage (family-world-b@v1)", () => {
       projectId: "family-world-b",
       name: "Playroom to Big Stage",
       fictionalBirthDate: "2020-06-01",
-      catalogVersion: "parody-catalog-v8",
+      catalogVersion: "parody-catalog-v9",
     });
     expect(project.chapters.map((chapter) => chapter.routeId)).toEqual([
       "family-b1-playroom",
@@ -178,7 +190,9 @@ describe("World B: Playroom to Big Stage (family-world-b@v1)", () => {
       ["yes-yes-veggie", "Yes-Yes Veggie", "ordinary", "ordinary-a", "2018-01-01", "2026-12-31"],
       ["bin-chicken", "Bin Chicken", "ordinary", "ordinary-a", "2019-09-01", "2026-12-31"],
       ["magic-house", "The Dancing House", "boss", "boss", "2019-09-01", "2026-12-31"],
-      ["demon-band-idol", "Demon Idol", "ordinary", "ordinary-a", "2024-01-01", "2026-12-31"],
+      // Parent lock (WORLD-SPEC): the chapter spans the 2025 debut, and the
+      // window opens with the Besties' own lock in parody-catalog-v9.
+      ["demon-band-idol", "Demon Idol", "ordinary", "ordinary-a", "2022-07-31", "2026-12-31"],
     ]);
     // Big Honk Bus is a landed model in v8, so it is not a placeholder candidate.
     expect(identity(0, "boss")).toMatchObject({ id: "honk-bus", periodId: "sing-along-playroom-v1" });
@@ -193,13 +207,15 @@ describe("World B: Playroom to Big Stage (family-world-b@v1)", () => {
     });
   });
 
-  it("is registered as family-world-b@v1 with its admin-facing name and age bands", () => {
+  it("is registered as family-world-b@v2 beside the frozen v1, with its admin-facing name and age bands", () => {
     expect(
       CHECKED_IN_FAMILY_TEMPLATES.filter((entry) => entry.id === "family-world-b").map(
         (entry) => entry.version,
       ),
-    ).toEqual(["v1"]);
-    const template = new FamilyTemplateRegistry().require("family-world-b", "v1");
+    ).toEqual(["v1", "v2"]);
+    const registry = new FamilyTemplateRegistry();
+    const template = registry.require("family-world-b", "v2");
+    expect(template.project).toEqual(project);
     expect(template.project.name).toBe("Playroom to Big Stage");
     expect(template.ageBands).toEqual([
       { startAge: 0, recoveredAge: 2 },
@@ -208,5 +224,56 @@ describe("World B: Playroom to Big Stage (family-world-b@v1)", () => {
     ]);
     expect(template.finalAge).toBe(6);
     expect(template.fingerprint).toMatch(/^[a-f0-9]{64}$/);
+    expect(template.fingerprint).not.toBe(registry.require("family-world-b", "v1").fingerprint);
+  });
+});
+
+describe("World B v1 stays frozen (family-world-b@v1)", () => {
+  it("replays byte-identically from its frozen command history under parody-catalog-v8", () => {
+    const history = JSON.parse(readFileSync(FAMILY_WORLD_B_V1_COMMANDS_URL, "utf8")) as Parameters<
+      typeof applyLevelEditorCommands
+    >[1];
+    const rebuilt = applyLevelEditorCommands(
+      createWorldEditorProject({ projectId: "family-world-b", catalogVersion: "parody-catalog-v8" }),
+      history,
+    );
+    expect(rebuilt.ok).toBe(true);
+    if (rebuilt.ok) expect(serializeLevelEditorProject(rebuilt.project)).toBe(frozenV1);
+    expect(projectV1.catalogVersion).toBe("parody-catalog-v8");
+    expect(validateLevelEditorProject(projectV1)).toEqual([]);
+    expect(familyWorldIssues(projectV1)).toEqual([]);
+  });
+
+  it("stays registered and loadable with its own name and age bands", () => {
+    const template = new FamilyTemplateRegistry().require("family-world-b", "v1");
+    expect(template.project).toEqual(projectV1);
+    expect(template.project.name).toBe("Playroom to Big Stage");
+    expect(template.finalAge).toBe(6);
+  });
+
+  it("differs from v2 only by the catalog, the two deep lift cars and the Demon Idol window", () => {
+    const changes: string[] = [];
+    const walk = (before: unknown, after: unknown, path: string) => {
+      if (typeof before === "object" && before !== null && typeof after === "object" && after !== null) {
+        const keys = new Set([...Object.keys(before), ...Object.keys(after)]);
+        for (const key of keys)
+          walk((before as Record<string, unknown>)[key], (after as Record<string, unknown>)[key], `${path}.${key}`);
+      } else if (before !== after) changes.push(`${path}: ${JSON.stringify(before)} -> ${JSON.stringify(after)}`);
+    };
+    walk(projectV1, project, "$");
+    const liftIndex = (chapter: number, id: string) =>
+      project.chapters[chapter]!.level.pieces.findIndex((piece) => "id" in piece && piece.id === id);
+    const b1Lift = liftIndex(0, "toy-elevator");
+    const b3Lift = liftIndex(2, "stage-lift");
+    expect(changes).toEqual([
+      '$.catalogVersion: "parody-catalog-v8" -> "parody-catalog-v9"',
+      '$.enemyCandidates.3.eligibility.startDate: "2024-01-01" -> "2022-07-31"',
+      // The toy elevator's car grows from 0.4 m to 1.2 m below the same top.
+      `$.chapters.0.level.pieces.${b1Lift}.center.y: 2.5 -> 2.1`,
+      `$.chapters.0.level.pieces.${b1Lift}.size.y: 0.4 -> 1.2`,
+      // The stage lift's riser grows from 0.4 m to 3.1 m below the same top.
+      `$.chapters.2.level.pieces.${b3Lift}.center.y: 6.5 -> 5.15`,
+      `$.chapters.2.level.pieces.${b3Lift}.size.y: 0.4 -> 3.1`,
+    ]);
   });
 });

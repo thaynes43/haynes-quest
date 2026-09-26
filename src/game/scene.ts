@@ -4,6 +4,7 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
 import { BestiesScene } from "./besties-scene";
 import { DecorScene } from "./decor-scene";
 import {
+  courseFog,
   themeKitFor,
   type ThemeKit,
   type ThemeScenery,
@@ -302,7 +303,8 @@ export class GardenScene {
     this.world.userData.environmentKitState = worldTheme.environment.state;
     const sky = level.course ? worldTheme.course.sky : palette.sky;
     this.scene.background = new THREE.Color(sky);
-    this.scene.fog = new THREE.Fog(sky, kit.fog.near, kit.fog.far);
+    const fog = courseFog(kit, level.authored);
+    this.scene.fog = new THREE.Fog(sky, fog.near, fog.far);
     this.sun.color.setHex(
       level.course ? worldTheme.course.light : palette.light,
     );

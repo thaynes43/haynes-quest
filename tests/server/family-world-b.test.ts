@@ -1,16 +1,17 @@
 /**
- * World B (`family-world-b@v1`, "Playroom to Big Stage") as a family
+ * World B (`family-world-b@v2`, "Playroom to Big Stage") as a family
  * template: offered to a synthetic younger child, rebased onto that child's
  * birthday, frozen into a family-world-plan-v1 and played from its first
- * chapter start through the in-memory stores. Every child, birthday and photo
- * here is synthetic.
+ * chapter start through the in-memory stores. The frozen v1 stays registered
+ * and publishable for journeys that already pinned it. Every child, birthday
+ * and photo here is synthetic.
  */
 import { randomUUID } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import { createInitialAdventureState } from '../../src/shared/adventure.js';
 import type { GameplayAction, SaveView } from '../../src/shared/contracts.js';
 import type { AdminDraftResponse, FamilyPlayResponse, PersonChoice } from '../../src/shared/family-api.js';
-import { FAMILY_ABILITY_LADDER, FAMILY_MEMORY_SLOTS } from '../../src/shared/family-plan.js';
+import { addDays, FAMILY_ABILITY_LADDER, FAMILY_MEMORY_SLOTS } from '../../src/shared/family-plan.js';
 import { parseStoredAdventure } from '../../src/server/adventure-schema.js';
 import { InMemoryQuestStore } from '../../src/server/db/memory-store.js';
 import { toSaveView } from '../../src/server/domain.js';
@@ -40,15 +41,19 @@ const MINORS: Record<string, readonly [string, string]> = {
   'family-b3': ['2025-01-10', '2025-09-10'],
 };
 
-function publishSynthetic() {
-  const template = registry.require('family-world-b', 'v1');
-  const world = rebaseWorldForChild(template.project, SYNTHETIC_CHILD.birthDate, TODAY);
+function publishSynthetic(version = 'v2', birthDate: string = SYNTHETIC_CHILD.birthDate) {
+  const template = registry.require('family-world-b', version);
+  const world = rebaseWorldForChild(template.project, birthDate, TODAY);
   let index = 0;
   const selections = world.chapters.flatMap((chapter) =>
     FAMILY_MEMORY_SLOTS.map((slot) => {
       index += 1;
       const localDate =
-        slot === 'major' ? chapter.targetDate : MINORS[chapter.chapterId]![slot === 'minor-one' ? 0 : 1];
+        slot === 'major'
+          ? chapter.targetDate
+          : birthDate === SYNTHETIC_CHILD.birthDate
+            ? MINORS[chapter.chapterId]![slot === 'minor-one' ? 0 : 1]
+            : addDays(chapter.startDate, slot === 'minor-one' ? 60 : 300);
       return {
         chapterId: chapter.chapterId,
         slot,
@@ -65,11 +70,31 @@ function publishSynthetic() {
 
 describe('World B as a family template', () => {
   it('is offered only to a child whose age and chapter windows fit', () => {
-    expect(offeredIds(SYNTHETIC_CHILD.birthDate)).toContain('family-world-b@v1');
+    expect(offeredIds(SYNTHETIC_CHILD.birthDate)).toEqual(expect.arrayContaining(['family-world-b@v1', 'family-world-b@v2']));
     // Five years old: the 4 -> 6 chapter's big memory is still a year away.
-    expect(offeredIds('2020-10-01')).not.toContain('family-world-b@v1');
-    // Chapter three would start in 2023, before the Demon Idol and Besties windows open.
-    expect(offeredIds('2019-12-31')).not.toContain('family-world-b@v1');
+    expect(offeredIds('2020-10-01')).not.toContain('family-world-b@v2');
+    expect(offeredIds('2020-09-25')).toContain('family-world-b@v2');
+  });
+
+  it('serves every six-year-old: v2 opens the Besties chapter cast on 2022-07-31', () => {
+    // Born late in 2019, chapter three starts in late 2023. v1's Demon Idol
+    // and Besties windows opened on 2024-01-01 and dropped these birthdays;
+    // v2's parent lock (parody-catalog-v9) reaches back to 2022-07-31.
+    for (const birthDate of ['2019-09-27', '2019-10-15', '2019-12-31']) {
+      expect(offeredIds(birthDate), birthDate).toContain('family-world-b@v2');
+      expect(offeredIds(birthDate), birthDate).not.toContain('family-world-b@v1');
+      const { plan, memories } = publishSynthetic('v2', birthDate);
+      expect(validateFamilyWorldPlan(plan, { birthDate, memories }), birthDate).toEqual([]);
+    }
+    // The window's earliest birthday, and the day before it.
+    expect(offeredIds('2018-07-31')).toContain('family-world-b@v2');
+    expect(offeredIds('2018-07-30')).not.toContain('family-world-b@v2');
+  });
+
+  it('keeps the frozen v1 publishable for a child it fits', () => {
+    const { plan, memories } = publishSynthetic('v1');
+    expect(plan.catalogVersion).toBe('parody-catalog-v8');
+    expect(validateFamilyWorldPlan(plan, { birthDate: SYNTHETIC_CHILD.birthDate, memories })).toEqual([]);
   });
 
   it('rebases onto the synthetic birthday and validates with the real dates', () => {
@@ -87,7 +112,7 @@ describe('World B as a family template', () => {
 
   it('freezes a valid family-world-plan-v1 with the World B casts', () => {
     const { plan, memories } = publishSynthetic();
-    expect(plan).toMatchObject({ version: 'family-world-plan-v1', catalogVersion: 'parody-catalog-v8' });
+    expect(plan).toMatchObject({ version: 'family-world-plan-v1', catalogVersion: 'parody-catalog-v9' });
     expect(validateFamilyWorldPlan(plan, { birthDate: SYNTHETIC_CHILD.birthDate, memories })).toEqual([]);
     expect(() => parseStoredAdventure(plan, createInitialAdventureState(plan))).not.toThrow();
     expect(
@@ -165,7 +190,7 @@ async function publishWorldB(harness: FamilyHarness): Promise<string> {
       displayName: 'Test Child B',
       birthDate: people[0]!.birthDate,
       templateId: 'family-world-b',
-      templateVersion: 'v1',
+      templateVersion: 'v2',
     },
   }), 201);
   await json(harness.request(`/api/admin/children/${child.id}/draft`, {

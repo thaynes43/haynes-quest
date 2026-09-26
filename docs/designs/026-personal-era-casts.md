@@ -36,7 +36,7 @@ The earlier five-chapter proposal split chapter 3 into Power Rangers with T.O.T.
 | 2 | 2 → 4 | Bluey (Disney Junior US from Sep 2019); Encanto (Nov 2021; "We Don't Talk About Bruno" #1 in Feb 2022) | Boss: a magical dancing house with shutters and tiles. Ordinaries: bin-chicken birds | Colorful magical house and garden, with terraces up the casita |
 | 3 | 4 → 6 | Wicked (film Nov 2024); KPop Demon Hunters (Jun 2025) | The existing Bickering Besties (approved joint look). Ordinaries: a demon boy-band trio parody | The existing Besties playground with a concert stage |
 
-**World B build status.** All three chapters are built into the registered template `family-world-b@v1`, "Playroom to Big Stage" (PLAN-019; see [Family worlds](../level-editor.md#family-worlds)). The template pins `parody-catalog-v8`. Each chapter has one ordinary identity in all four ordinary slots.
+**World B build status.** All three chapters are built into the registered template `family-world-b@v2`, "Playroom to Big Stage" (PLAN-019; see [Family worlds](../level-editor.md#family-worlds)). The template pins `parody-catalog-v9`. Each chapter has one ordinary identity in all four ordinary slots. The frozen `family-world-b@v1` (on `parody-catalog-v8`) stays registered for any journey that already pinned it. v2 fixes two review findings. First, v1 opened the Besties chapter's cast on 2024-01-01, so it dropped six-year-olds born from 2019-09-27 to 2019-12-31. v2 opens that cast on 2022-07-31 under the Besties' parent lock. Second, the B1 toy elevator and the B3 stage lift get deep cars, so a child who walks at the empty shaft is not dropped into it.
 
 | Ch | Chapter and route | Theme | Cast as built | Status |
 | --- | --- | --- | --- | --- |
@@ -44,7 +44,7 @@ The earlier five-chapter proposal split chapter 3 into Power Rangers with T.O.T.
 | 2 | The Magic House, `family-b2-casita` | `casita` | Boss: The Dancing House. Ordinaries: Bin Chicken. Both are project candidates | Built; both models are pending |
 | 3 | Besties' Big Stage, `family-b3-stage` | `party` | Boss: Bickering Besties, catalog `bickering-besties@v001`. Ordinaries: Demon Idol, project candidate | Built; the idol model is pending |
 
-Project candidates use neutral placeholder art. A model that lands later joins a new catalog version and a new template version, because published journeys freeze `family-world-b@v1`.
+Project candidates use neutral placeholder art. A model that lands later joins a new catalog version and a new template version, because published journeys freeze their template version.
 
 ## Eligibility
 
@@ -53,7 +53,7 @@ The new casts go in new frozen parody catalog versions: v7 carries the windows, 
 - its **debut or source evidence** (the dates above);
 - a **parent-locked relevance window**, per DESIGN-012, covering the age band it serves.
 
-The validator checks the rebased chapter start against that window. A window may extend back before a debut only through an explicit parent lock, recorded with its reason, for example when a chapter spans the debut. The Rat Casino entries gain a parent-locked window from 2014-08-18, the franchise debut already recorded as `referenceAvailableBy`, so the older child's final chapter is eligible.
+The validator checks the rebased chapter start against that window. A window may extend back before a debut only through an explicit parent lock, recorded with its reason, for example when a chapter spans the debut. The Rat Casino entries gain a parent-locked window from 2014-08-18, the franchise debut already recorded as `referenceAvailableBy`, so the older child's final chapter is eligible. The Bickering Besties gain one from 2022-07-31, their recorded `referenceAvailableBy`, so the younger child's final chapter is eligible (`parody-catalog-v9`, below).
 
 **Implemented foundations.** Frozen `parody-catalog-v7` holds every v6 identity unchanged, except that the six Rat Casino entries' `eligibleFrom` moves from 2024-01-01 to 2014-08-18. Each widened entry records a `relevanceLock` with `lockedBy: "parent"`, its `previousEligibleFrom` and the reason. Catalogs v1–v6 stay frozen, and v7 joins the editor's catalog versions.
 
@@ -83,6 +83,8 @@ A chapter with one ordinary identity gives all four ordinary anchors that identi
 | `honk-bus@v001` | Big Honk Bus | boss | `sing-along-playroom-v1` | 2018-01-01 → 2026-12-31 | [v001](../assets/reviews/honk-bus/v001.md): 2.3 m tall, contact at 1.25 s of the 2.0 s attack |
 
 Each window starts no earlier than the show's public availability, so `referenceAvailableBy` equals `eligibleFrom` and neither entry needs a parent lock. The window is judged at the rebased chapter start. The bully cat can serve a first chapter that starts by November 6, 2016, and the bus one that starts in 2018 or later; a template outside those windows is not offered to that child. The scene loads the exact GLB and places the health bar above its measured height. The strike lands at the logged contact time.
+
+**The Besties' parent lock (parody-catalog-v9).** World B's final chapter starts on the child's fourth birthday. For a six-year-old born late in 2019, that is late 2023, before v8's Besties window opens on 2024-01-01. The chapter still spans the Besties' era and the 2025 idol debut, because it closes on the child's sixth birthday or later. Frozen `parody-catalog-v9` keeps every v8 entry unchanged except `bickering-besties@v001`. Its `eligibleFrom` moves from 2024-01-01 to 2022-07-31, its recorded `referenceAvailableBy`, with a `relevanceLock` giving `lockedBy: "parent"`, the previous start and the reason. The Demon Idol candidate in `family-world-b@v2` opens on the same date, following WORLD-SPEC's lock ("the chapter spans the 2025 debut"). World B is therefore offered to every child who is at least six and was born on or after 2018-07-31. Catalogs v1–v8 stay frozen.
 
 Every other cast member stays a project candidate until its model merges. That includes the gadget helper and the yes-yes veggie, whose concepts are selected. Each later model joins a new frozen catalog version; v8 is never edited. Tom's exact-version review of each model remains pending ([PRD-004 Q-03](../prds/004-family-release.md#owner-decisions)). A rejection returns the slot to a placeholder.
 

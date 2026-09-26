@@ -9,6 +9,7 @@ import type { LevelLayout } from "../../src/game/level";
 import type { SceneAssets } from "../../src/game/scene-assets";
 import {
   CASINO_TRAIL_LOOK,
+  courseFog,
   THEME_KITS,
   themeKitFor,
 } from "../../src/game/theme-kits";
@@ -37,6 +38,17 @@ describe("theme-kit registry (DESIGN-025 D-05)", () => {
       expect(kit.world).toBe(WORLD_THEMES[kit.id]);
       expect(kit.fog).toEqual(eraThemes.includes(kit.id) ? { near: 30, far: 95 } : { near: 20, far: 52 });
       expect(kit.props).toEqual(THEME_KIT_PROPS.filter((prop) => prop.theme === kit.id));
+    }
+  });
+
+  it("gives every v4 course the era fog whatever its theme, and earlier courses their theme's fog", () => {
+    // World B's Big Stage keeps the party theme (R13) and World A's finale the
+    // casino theme; on a v4 course their tall finales must read from afar.
+    for (const kit of Object.values(THEME_KITS)) {
+      expect(courseFog(kit, { schemaVersion: "authored-level-v4" })).toEqual({ near: 30, far: 95 });
+      for (const schemaVersion of ["authored-level-v1", "authored-level-v2", "authored-level-v3"])
+        expect(courseFog(kit, { schemaVersion })).toBe(kit.fog);
+      expect(courseFog(kit, undefined)).toBe(kit.fog);
     }
   });
 

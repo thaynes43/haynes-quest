@@ -304,29 +304,31 @@ describe("Besties' Big Stage (World B chapter 3, family-b3-stage)", () => {
       );
 
       it.each(lifts.map((connection) => [label(connection), connection] as const))(
-        "rides %s or falls into the open shaft, never stuck, whenever a child walks in",
+        "rides %s whenever a child walks in, at any moment of the lift's cycle",
         (_label, connection) => {
           const exit = document.connections.find(
             (candidate) => candidate.from === connection.to && candidate.mode === "ride",
           )!;
-          for (const stick of [1, 0.6, 0.4]) {
-            const result = liftWalkIn(level, connection.to, connection.from, exit.to, {
-              phases: 24,
-              stage,
-              stick,
-            });
-            // Dwell does not close the shaft (DESIGN-025 D-08 (f)); the
-            // boarding checkpoint below turns each fall into a short retry.
-            expect(result.other, `stick ${stick}`).toBe(0);
-            expect(result.ok + result.fell).toBe(24);
-            expect(result.ok, `stick ${stick}`).toBeGreaterThanOrEqual(8);
-          }
+          for (const stick of [1, 0.6, 0.4])
+            for (const runUp of [0.6, 1.5, 3]) {
+              const result = liftWalkIn(level, connection.to, connection.from, exit.to, {
+                phases: 24,
+                stage,
+                stick,
+                runUp,
+              });
+              // v2: the 3.1 m riser hangs 0.6 m above the dock at its top
+              // stop, lower than the infant avatar, so the open shaft is never
+              // at walking height (v1's 0.4 m car dropped over half).
+              expect(result, `stick ${stick} run-up ${runUp}`).toEqual({ ok: 24, fell: 0, other: 0 });
+            }
         },
       );
 
-      it("respawns a child who walks into the empty shaft on the lift dock's checkpoint", () => {
+      it("stops a child who walks at the empty shaft against the riser's side, on the lift dock", () => {
         const dock = surfaces.get("lift-dock")!;
         const lift = level.course.platforms.find((platform) => platform.id === "stage-lift")!;
+        expect(H.liftTop - lift.size.y - topOf("lift-dock")).toBeCloseTo(0.6, 6);
         const simulation = createGrowthSimulation(level, stage, startAbilities, {
           x: dock.center.x,
           y: topOf("lift-dock"),
@@ -341,16 +343,15 @@ describe("Besties' Big Stage (World B chapter 3, family-b3-stage)", () => {
         };
         while (liftTop() < topOf("lift-dock") + 1)
           growthStep(simulation, { move: { moveX: 0, moveY: 0 } });
-        const walkedIn = simulation.timeSeconds;
-        for (let frame = 0; frame < 300 && simulation.recoveries === 0; frame += 1)
+        const supports = new Set<string | null>();
+        for (let frame = 0; frame < 300 && simulation.recoveries === 0; frame += 1) {
           growthStep(simulation, { move: inputToward(simulation.state, lift.center) });
-        expect(simulation.recoveries).toBe(1);
-        growthStep(simulation, { move: { moveX: 0, moveY: 0 } });
-        expect(simulation.state.grounded).toBe(true);
-        expect(simulation.state.supportId).toBe("lift-dock");
+          if (simulation.state.grounded) supports.add(simulation.state.supportId);
+        }
+        expect(simulation.recoveries).toBe(0);
+        expect([...supports]).toEqual(["lift-dock"]);
+        // The boarding checkpoint stays as the lint's cheap-retry guard.
         expect(simulation.state.checkpointId).toBe("lift-dock-safe");
-        // Walk in, fall and stand back on the dock within a few seconds.
-        expect(simulation.timeSeconds - walkedIn).toBeLessThan(4);
       });
     });
   });

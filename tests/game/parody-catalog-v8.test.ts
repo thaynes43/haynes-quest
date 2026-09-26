@@ -83,7 +83,8 @@ function withBirth(spec: FamilyCatalogBossWorldSpec, birth: string): FamilyCatal
 
 describe("parody-catalog-v8", () => {
   it("is v7 unchanged plus the landed family-era bosses, and v1-v7 stay frozen", () => {
-    expect(PARODY_CATALOG_VERSIONS.at(-1)).toBe("parody-catalog-v8");
+    // v9 (the Besties parent lock) follows it; parody-catalog-v9.test.ts.
+    expect(PARODY_CATALOG_VERSIONS.indexOf("parody-catalog-v8")).toBe(PARODY_CATALOG_VERSIONS.length - 2);
     const v7 = PARODY_CATALOGS["parody-catalog-v7"];
     const v8 = PARODY_CATALOGS["parody-catalog-v8"];
     expect(Object.isFrozen(v8)).toBe(true);
@@ -100,7 +101,7 @@ describe("parody-catalog-v8", () => {
     for (const addition of V8_ADDITIONS) {
       expect(addition.relevanceLock).toBeUndefined();
       expect(addition.referenceAvailableBy).toBe(addition.eligibleFrom);
-      for (const version of PARODY_CATALOG_VERSIONS.slice(0, -1))
+      for (const version of PARODY_CATALOG_VERSIONS.slice(0, PARODY_CATALOG_VERSIONS.indexOf("parody-catalog-v8")))
         expect(PARODY_CATALOGS[version].some((entry) => entry.id === addition.id)).toBe(false);
     }
   });
@@ -138,6 +139,7 @@ describe("parody-catalog-v8", () => {
       "parody-catalog-v6",
       "parody-catalog-v7",
       "parody-catalog-v8",
+      "parody-catalog-v9",
     ]);
     const ids = (entries: readonly ParodyCatalogEntry[]) => entries.map((entry) => entry.id);
     expect(ids(levelEditorPreparedEnemies("parody-catalog-v8"))).toEqual([
