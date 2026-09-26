@@ -4,7 +4,8 @@
 - **Model / dispatch:** A separate Codex session on **GPT-6 Astra** (`gpt-6-astra`, effort `max`) started by the PLAN-019 Claude coordinator through `agent-run`. Within this lane it is the **driving Astra**:
   - it alone generates concept images, one at a time, with its built-in image tool;
   - every Blender task goes to a fresh native Astra subagent (`model: "gpt-6-astra"`, `reasoning_effort: "max"`, `fork_turns: "none"`), one exclusive scene lease at a time, per [TEAM.md](../TEAM.md);
-  - never route Blender to Sol, Fable or Opus.
+  - never route Blender to Sol.
+  - **Update, September 26:** Codex hit its usage limit (reset September 30) after delivering Clubhouse Bully Cat v001 (PR85), the Honk Bus v001 model and concepts for the gadget helper and the veggie. Tom clarified that the Astra rule only meant Astra over Sol. The remaining roster continues with Claude Opus 5.5 Blender authors under the PLAN-019 coordinator.
 - **Required reading:**
   - `AGENTS.md` and [TEAM.md](../TEAM.md);
   - [DESIGN-026](../../docs/designs/026-personal-era-casts.md), the **locked** roster;
