@@ -104,7 +104,7 @@ export class FamilyJourneyService {
     this.newSeed = options.newSeed ?? (() => randomUUID());
   }
 
-  /** D-08 `/api/admin/immich/people?name=`: exact matches as opaque choices. */
+  /** D-08 `POST /api/admin/immich/people`: exact matches as opaque choices. */
   async lookupPeople(name: string): Promise<PersonChoice[]> {
     const wanted = requireText(name, FAMILY_LIMITS.immichNameMax, 'INVALID_NAME');
     const people = await this.options.library.findPeople(wanted, { deadline: this.deadline() });

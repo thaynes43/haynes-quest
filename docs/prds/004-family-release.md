@@ -2,7 +2,7 @@
 
 - **Status:** Accepted for the first release, September 25, 2026; era casts locked September 26 (Q-05)
 - **Owner:** Tom Haynes
-- **Last updated:** 2026-09-25
+- **Last updated:** 2026-09-26
 - **Source:** Tom's September 25 direction to start the initial family release for his two children, and his answers to Q-01–Q-05 below
 
 ## Summary
@@ -54,7 +54,7 @@ Out of scope for this release: manual photo uploads, multiple households, public
 
 | ID | Observable result | Proves |
 | --- | --- | --- |
-| AC-01 | An unauthenticated request to `quest.haynesnetwork.com` only reaches the sign-in start. The Authentik application is bound to exactly the two admitted groups. | R-01, R-02 |
+| AC-01 | An unauthenticated request to `quest.haynesnetwork.com` only reaches the sign-in start: the app shell, the Better Auth routes, and the data-free `/healthz` and `/readyz` probes. Every other API route, every photo and the `/studio` site refuse it ([ADR-006](../adrs/006-release-isolation-and-public-surface.md) D-02). The Authentik application is bound to exactly the two admitted groups. | R-01, R-02 |
 | AC-02 | The portal tile opens the game URL. | R-03 |
 | AC-03 | A published family journey loads its chapters. Each memory pickup decodes the child's private sanitized photo, served `no-store` from the game's origin. | R-05, R-12 |
 | AC-04 | Recovering each big memory raises age to the birthday-derived value and unlocks the ladder's moves. Automated traversal proves every required edge with only the moves unlocked by the chapter's start age. | R-07, R-08, R-11 |

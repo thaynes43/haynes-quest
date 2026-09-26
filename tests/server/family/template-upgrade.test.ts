@@ -247,9 +247,15 @@ describe('template upgrade (DESIGN-024 D-11)', () => {
         faces: [{ personId: TEST_CHILD_B.personId, box: [300, 150, 800, 700] }],
       });
     }
-    const page = await context.service.suggestions(child.id, 'family-b2', 'minor-one');
-    const early = page.suggestions.find((entry) => entry.localDate === '2022-03-10')!;
-    draft = await context.service.swap(child.id, draft.revision, 'family-b2', 'minor-one', early.token, ACTOR);
+    // Show more reads outward from the slot's ⅓ point, so page until the early photo appears.
+    let early: { token: string; localDate: string } | undefined;
+    for (let cursor: number | null = 1; cursor !== null && !early;) {
+      const page = await context.service.suggestions(child.id, 'family-b2', 'minor-one', cursor);
+      early = page.suggestions.find((entry) => entry.localDate === '2022-03-10');
+      cursor = page.nextCursor;
+    }
+    expect(early).toBeDefined();
+    draft = await context.service.swap(child.id, draft.revision, 'family-b2', 'minor-one', early!.token, ACTOR);
     const result = await context.service.upgradeTemplate(child.id, {
       templateId: 'family-world-b',
       templateVersion: 'v5',

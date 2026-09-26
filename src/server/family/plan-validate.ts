@@ -28,6 +28,7 @@ import {
 } from '../../shared/family-plan.js';
 import type { RuleVersions } from '../../shared/contracts.js';
 import type { FrozenMemory } from '../domain.js';
+import { familyTemplateCandidates, type FamilyTemplateCandidates } from './template-candidates.js';
 
 export const FAMILY_PROGRESSION_RULE = 'family-world-route-memory-v1';
 
@@ -56,6 +57,7 @@ export interface FamilyPlanContext {
 }
 
 const HEX_64 = /^[a-f0-9]{64}$/;
+const CANDIDATE_PREFIX = 'editor-candidate-';
 const OPAQUE = /^[A-Za-z0-9_-]{8,128}$/;
 const IDENTIFIER = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/;
 
@@ -94,11 +96,15 @@ export function validateFamilyWorldPlan(
   const levelIds = new Set<string>();
   const chapterIds = new Set<string>();
   const encounterIds = new Set<string>();
+  // Neutral candidates are named by id only; their facts live in the template.
+  const candidates = HEX_64.test(plan.template?.fingerprint ?? '')
+    ? familyTemplateCandidates(plan.template.fingerprint)
+    : null;
   let priorTarget = plan.levels[0]!.startAgeYears;
   let priorMajorDate = '';
   for (const [index, level] of plan.levels.entries()) {
     try {
-      validateLevel(plan, level, index, priorTarget, priorMajorDate, context.birthDate, fail);
+      validateLevel(plan, level, index, priorTarget, priorMajorDate, context.birthDate, candidates, fail);
     } catch {
       fail('level.invalid');
     }
@@ -123,6 +129,7 @@ function validateLevel(
   priorTarget: number,
   priorMajorDate: string,
   birthDate: string,
+  candidates: FamilyTemplateCandidates | null,
   fail: (code: string) => void,
 ): void {
   if (
@@ -187,12 +194,13 @@ function validateLevel(
   ) fail('memory.minor-window');
   if (major.date < targetDate || major.ageYears !== level.targetAgeYears) fail('memory.major-window');
   if (level.representedEndDate !== major.date) fail('level.represented-end');
-  validateCast(plan.catalogVersion as LevelEditorCatalogVersion, level, fail);
+  validateCast(plan.catalogVersion as LevelEditorCatalogVersion, level, candidates, fail);
 }
 
 function validateCast(
   catalogVersion: LevelEditorCatalogVersion,
   level: FrozenFamilyWorldLevelPlanV1,
+  candidates: FamilyTemplateCandidates | null,
   fail: (code: string) => void,
 ): void {
   const optionalIds = level.optionalEncounterIds ?? [];
@@ -256,12 +264,28 @@ function validateCast(
     }
     const content = encounter.content;
     if (content.placeholder === 'neutral-candidate-v1') {
+      // The same identity, period and date rules as a catalog entry, read from
+      // the frozen template's candidate table (an unknown template fails).
+      const candidate = content.catalogEntryId.startsWith(CANDIDATE_PREFIX)
+        ? candidates?.get(content.catalogEntryId.slice(CANDIDATE_PREFIX.length))
+        : undefined;
       if (
-        !content.catalogEntryId.startsWith('editor-candidate-') ||
+        !candidate ||
         content.catalogEntryVersion !== 'draft-v1' ||
         content.assetId !== 'neutral-enemy-placeholder' ||
-        !content.displayName?.trim()
-      ) fail('level.cast');
+        content.assetVersion !== 'v001' ||
+        content.displayName !== candidate.name ||
+        candidate.periodId !== level.periodId ||
+        candidate.role !== encounter.role ||
+        candidate.kind !== encounter.kind
+      ) {
+        fail('level.cast');
+        return;
+      }
+      if (
+        level.startDate < candidate.eligibility.startDate ||
+        level.startDate > candidate.eligibility.endDate
+      ) fail('level.cast-date');
       return;
     }
     const entry = (want.optional ? bonus : prepared).find((candidate) =>

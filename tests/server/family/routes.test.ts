@@ -40,7 +40,7 @@ async function waitForPick(harness: FamilyHarness, childId: string): Promise<Adm
 /** Admin creates Test Child B, auto-picks and publishes. */
 async function publishChildB(harness: FamilyHarness) {
   const { people } = await json<{ people: PersonChoice[] }>(
-    harness.request(`/api/admin/immich/people?name=${encodeURIComponent(TEST_CHILD_B.name)}`), 200);
+    harness.request('/api/admin/immich/people', { body: { name: TEST_CHILD_B.name } }), 200);
   const child = await json<{ id: string }>(harness.request('/api/admin/children', {
     body: {
       immichName: TEST_CHILD_B.name,
@@ -72,12 +72,19 @@ function expectPrivate(assets: FakeAsset[]) {
 describe('family journey routes (DESIGN-024 D-08)', () => {
   it('requires a family session everywhere and the administrator role for setup', async () => {
     const harness = familyHarness();
-    for (const path of ['/api/children', '/api/admin/children', '/api/admin/templates?birthDate=2020-02-29']) {
+    for (const path of ['/api/children', '/api/admin/children']) {
       expect((await harness.request(path, { as: null })).status).toBe(401);
     }
+    expect((await harness.request('/api/admin/templates', { as: null, body: { birthDate: '2020-02-29' } })).status)
+      .toBe(401);
     expect((await harness.request(`/api/children/${randomUUID()}/play`, { as: null, body: {} })).status).toBe(401);
-    for (const path of ['/api/admin/children', `/api/admin/immich/people?name=x`, `/api/admin/children/${randomUUID()}/draft`]) {
-      const response = await harness.request(path, { as: 'member' });
+    for (const [path, body] of [
+      ['/api/admin/children', undefined],
+      ['/api/admin/immich/people', { name: 'x' }],
+      ['/api/admin/templates', { birthDate: '2020-02-29' }],
+      [`/api/admin/children/${randomUUID()}/draft`, undefined],
+    ] as const) {
+      const response = await harness.request(path, { as: 'member', ...(body ? { body } : {}) });
       expect(response.status).toBe(403);
       expect(await response.json()).toEqual({ error: { code: 'ADMIN_REQUIRED', message: 'Administrator required' } });
     }
@@ -91,20 +98,60 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
       .toEqual({ journeys: [] });
   });
 
+  it('serves the studio to admitted members only on the family host (PRD-004 AC-01)', async () => {
+    const harness = familyHarness();
+    for (const path of ['/studio', '/studio/', '/studio/favicon.svg', '/studio/assets/media/x/v001/x.glb']) {
+      const response = await harness.request(path, { as: null });
+      expect(response.status).toBe(401);
+      expect(response.headers.get('cache-control')).toBe('no-cache');
+    }
+    const member = await harness.request('/studio/favicon.svg', { as: 'member' });
+    expect(member.status).toBe(200);
+    expect(member.headers.get('cache-control')).toBe('no-cache');
+  });
+
+  it('keeps names and birthdays out of request URLs (DESIGN-024 D-01, D-08)', async () => {
+    const harness = familyHarness();
+    // Proxies log the request line, query included: lookups take a JSON body.
+    for (const path of [
+      `/api/admin/immich/people?name=${encodeURIComponent(TEST_CHILD_B.name)}`,
+      `/api/admin/templates?birthDate=${TEST_CHILD_B.birthDate}`,
+    ]) {
+      expect((await harness.request(path)).status).toBe(404);
+    }
+    // They are writes in shape, so they carry the Origin and X-Quest-Request guard.
+    for (const [path, body] of [
+      ['/api/admin/immich/people', { name: TEST_CHILD_B.name }],
+      ['/api/admin/templates', { birthDate: TEST_CHILD_B.birthDate }],
+    ] as const) {
+      const unguarded = await harness.app.request(path, {
+        method: 'POST',
+        headers: { cookie: 'quest_test_session=admin', 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      expect(unguarded.status).toBe(403);
+      expect((await harness.request(path, { body: { ...body, extra: true } })).status).toBe(422);
+    }
+    expect((await harness.request('/api/admin/templates', { body: { birthDate: 'soon' } })).status).toBe(422);
+    const { people } = await json<{ people: PersonChoice[] }>(
+      harness.request('/api/admin/immich/people', { body: { name: TEST_CHILD_B.name } }), 200);
+    expect(people).toHaveLength(1);
+  });
+
   it('runs setup: lookup, create, background auto-pick, caption, swap and publish', async () => {
     const harness = familyHarness();
     const { templates } = await json<{ templates: Array<{ id: string; version: string }> }>(
-      harness.request('/api/admin/templates?birthDate=2020-02-29'), 200);
+      harness.request('/api/admin/templates', { body: { birthDate: '2020-02-29' } }), 200);
     expect(templates.map((entry) => `${entry.id}@${entry.version}`)).toEqual([
       'rat-casino-world@v1',
       'rat-casino-world@v2',
       'family-world-b@v1',
       'family-world-b@v2',
     ]);
-    expect((await json<{ templates: unknown[] }>(harness.request('/api/admin/templates?birthDate=2016-02-29'), 200)).templates)
+    expect((await json<{ templates: unknown[] }>(harness.request('/api/admin/templates', { body: { birthDate: '2016-02-29' } }), 200)).templates)
       .toEqual([]);
     const { people } = await json<{ people: PersonChoice[] }>(
-      harness.request('/api/admin/immich/people?name=Test%20Child%20B'), 200);
+      harness.request('/api/admin/immich/people', { body: { name: 'Test Child B' } }), 200);
     expect(people).toEqual([{ id: expect.stringMatching(/^person-/), label: 'Test Child B', birthDate: '2020-02-29' }]);
     const child = await json<{ id: string }>(harness.request('/api/admin/children', {
       body: {
@@ -284,7 +331,7 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
   it('updates a child to a newer world version while every started run keeps its own (D-11)', async () => {
     const harness = familyHarness();
     const { people } = await json<{ people: PersonChoice[] }>(
-      harness.request(`/api/admin/immich/people?name=${encodeURIComponent(TEST_CHILD_B.name)}`), 200);
+      harness.request('/api/admin/immich/people', { body: { name: TEST_CHILD_B.name } }), 200);
     const child = await json<{ id: string }>(harness.request('/api/admin/children', {
       body: {
         immichName: TEST_CHILD_B.name,
@@ -454,7 +501,7 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
   it('keeps journeys readable but setup unavailable without Immich', async () => {
     const harness = familyHarness({ withImmich: false });
     expect(await json(harness.request('/api/admin/children'), 200)).toEqual({ children: [] });
-    const setup = await harness.request('/api/admin/immich/people?name=Test%20Child%20B');
+    const setup = await harness.request('/api/admin/immich/people', { body: { name: 'Test Child B' } });
     expect(setup.status).toBe(503);
     expect(await setup.json()).toEqual({ error: { code: 'FAMILY_SETUP_UNAVAILABLE', message: 'Photo setup unavailable' } });
     expect((await harness.request(`/api/admin/children/${randomUUID()}/publish`, {

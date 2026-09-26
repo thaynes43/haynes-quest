@@ -1,3 +1,4 @@
+import { randomBytes } from 'node:crypto';
 import { resolve } from 'node:path';
 
 export interface ServerConfig {
@@ -60,11 +61,19 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
   if (ephemeralPlaytest && (!fixtureMode || nodeEnv !== 'development')) {
     throw new Error('Ephemeral playtest requires fixture development mode');
   }
+  // ADR-005 D-07: the ephemeral playtest never uses a database, so a database
+  // URL can only be another release's credential. Refuse it rather than hold it.
+  if (ephemeralPlaytest && env.DATABASE_URL?.trim()) {
+    throw new Error('Ephemeral playtest cannot receive a database URL');
+  }
   if (fixtureMode && (env.QUEST_OIDC_DISCOVERY_URL?.trim() || env.QUEST_OIDC_CLIENT_SECRET?.trim())) {
     throw new Error('Fixture mode cannot receive OIDC configuration');
   }
 
-  const sessionSecret = (env.BETTER_AUTH_SECRET ?? env.QUEST_SESSION_SECRET)?.trim();
+  // Everything the ephemeral playtest signs lives in its memory store, which a
+  // restart discards, so it can mint its own secret and hold no shared Secret.
+  const sessionSecret = (env.BETTER_AUTH_SECRET ?? env.QUEST_SESSION_SECRET)?.trim() ||
+    (ephemeralPlaytest ? randomBytes(32).toString('base64url') : undefined);
   if (!sessionSecret) throw new Error('BETTER_AUTH_SECRET is required');
   if (sessionSecret.length < 32) throw new Error('BETTER_AUTH_SECRET must be at least 32 characters');
 

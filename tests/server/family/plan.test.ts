@@ -7,6 +7,8 @@ import {
 } from '../../../src/shared/adventure.js';
 import type { GameplayAction } from '../../../src/shared/contracts.js';
 import {
+  addDays,
+  daysBetween,
   FAMILY_MEMORY_SLOTS,
   FAMILY_ABILITY_LADDER,
   type FamilyMemorySlot,
@@ -271,5 +273,73 @@ describe('family-world-plan-v1 validator', () => {
     }
     expect(failure).toBeInstanceOf(FamilyPlanError);
     expect((failure as FamilyPlanError).issues).toContain('memory.minor-window');
+  });
+});
+
+describe('family-world-plan-v1 candidate casts (D-07)', () => {
+  // World A casts neutral candidates in its first three chapters; a synthetic 2015 child plays it.
+  const birthDate = '2015-03-10';
+  const worldA = registry.require('family-world-a', 'v2');
+  const rebased = rebaseWorldForChild(worldA.project, birthDate, TODAY);
+  const picks: FamilySlotSelection[] = rebased.chapters.flatMap((chapter, chapterIndex) => {
+    const span = daysBetween(chapter.startDate, chapter.targetDate);
+    const dates = [addDays(chapter.startDate, Math.round(span / 3)), addDays(chapter.startDate, Math.round((2 * span) / 3)), chapter.targetDate];
+    return FAMILY_MEMORY_SLOTS.map((slot, slotIndex) => {
+      const index = chapterIndex * 3 + slotIndex + 1;
+      return {
+        chapterId: chapter.chapterId,
+        slot,
+        assetId: assetId(index),
+        personId: TEST_CHILD_B.personId,
+        localDate: dates[slotIndex]!,
+        caption: slot === 'major' ? `Turning ${chapter.recoveredAge}!` : `Synthetic memory ${index}`,
+        opaque: `asset-${String(index).padStart(32, '0')}`,
+      };
+    });
+  });
+  const { plan, memories } = buildFamilyWorldPlan({ template: worldA, world: rebased, selections: picks, ladder: FAMILY_ABILITY_LADDER });
+  const context = { birthDate, memories };
+  type Draft = { levels: Array<Record<string, unknown>> } & Record<string, unknown>;
+  const ordinaries = (copy: Draft, level: number) =>
+    (copy.levels[level]!.encounters as Array<{ role: string; content: Record<string, unknown> }>)
+      .filter((encounter) => encounter.role === 'ordinary');
+  const recast = (level: number, candidateId: string, displayName: string) => (copy: Draft) => {
+    for (const encounter of ordinaries(copy, level)) {
+      encounter.content = { ...encounter.content, catalogEntryId: `editor-candidate-${candidateId}`, displayName };
+    }
+  };
+
+  it('accepts the cast the builder froze', () => {
+    expect(validateFamilyWorldPlan(plan, context)).toEqual([]);
+    const content = ordinaries(plan as unknown as Draft, 0)[0]!.content;
+    expect(content).toMatchObject({ catalogEntryId: 'editor-candidate-gadget-helper', placeholder: 'neutral-candidate-v1' });
+  });
+
+  it.each([
+    ['a candidate from another period and later window', recast(0, 'putty-grunt', 'Putty Grunt')],
+    ['a candidate the template does not have', recast(0, 'demon-band-idol', 'Demon Band Idol')],
+    ['a renamed candidate', (copy: Draft) => {
+      ordinaries(copy, 0)[0]!.content.displayName = 'Someone Else';
+    }],
+    ['a relabelled period on a candidate-only chapter', (copy: Draft) => {
+      copy.levels[2]!.periodId = 'toon-clubhouse-v1';
+    }],
+    ['an unknown template', (copy: Draft) => {
+      copy.template = { ...(copy.template as Record<string, unknown>), fingerprint: 'f'.repeat(64) };
+    }],
+  ])('rejects %s', (_name, edit) => {
+    expect(validateFamilyWorldPlan(mutated(plan, edit), context)).toContain('level.cast');
+  });
+
+  it('re-checks a candidate eligibility window at the rebased chapter start', () => {
+    // A template whose first candidate's window closes after the template's own start
+    // (2015-01-15) but before this child's first chapter (2015-03-10).
+    const project = structuredClone(worldA.project) as unknown as { enemyCandidates: Array<{ id: string; eligibility: { startDate: string; endDate: string } }> };
+    project.enemyCandidates.find((candidate) => candidate.id === 'gadget-helper')!.eligibility.endDate = '2015-02-01';
+    const variant = new FamilyTemplateRegistry([{ id: 'family-world-a', version: 'v2', project }]).require('family-world-a', 'v2');
+    const stale = mutated(plan, (copy) => {
+      copy.template = { ...(copy.template as Record<string, unknown>), fingerprint: variant.fingerprint };
+    });
+    expect(validateFamilyWorldPlan(stale, context)).toEqual(['level.cast-date']);
   });
 });

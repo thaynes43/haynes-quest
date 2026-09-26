@@ -4,6 +4,7 @@
 - **Date:** 2026-09-25
 - **Deciders:** Tom Haynes (admission, [PRD-004 Q-01](../prds/004-family-release.md#owner-decisions)); implementation choices by the coordinator under ADR-001
 - **Amends:** [ADR-001](001-authentik-sign-in.md) by resolving its open library, session, logout and admission items (C-03–C-05)
+- **Amended by:** [ADR-006](006-release-isolation-and-public-surface.md), which makes D-07's playtest isolation concrete (no family Secret, no database access), limits D-08's session secret to the family release, and sets the family host's public surface
 - **Related requirements:** PRD-004 R-01–R-03, R-12, R-13
 
 ## Context and problem statement

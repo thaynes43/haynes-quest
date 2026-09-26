@@ -82,8 +82,8 @@ describe("family setup screens", () => {
   it("adds a child from an Immich match, confirms the birthday and starts the pick", async () => {
     const { requests } = routeFetch({
       "GET /api/admin/children": () => ({ children: [] }),
-      "GET /api/admin/immich/people": () => ({ people: [{ id: "person-abc", label: "Test Child B", birthDate: "2020-02-29" }] }),
-      "GET /api/admin/templates": () => ({ templates: [{ id: "rat-casino-world", version: "v2", name: "Synthetic World", chapterCount: 3 }] }),
+      "POST /api/admin/immich/people": () => ({ people: [{ id: "person-abc", label: "Test Child B", birthDate: "2020-02-29" }] }),
+      "POST /api/admin/templates": () => ({ templates: [{ id: "rat-casino-world", version: "v2", name: "Synthetic World", chapterCount: 3 }] }),
       "POST /api/admin/children": () => [201, { id: CHILD }],
       [`PUT ${DRAFT_PATH}`]: () => [202, { draft: null, picking: true, lastPickError: null }],
       [`GET ${DRAFT_PATH}`]: () => ({ draft: null, picking: true, lastPickError: null }),
@@ -123,6 +123,12 @@ describe("family setup screens", () => {
     });
     expect(requests.find((entry) => entry.method === "PUT")?.body).toEqual({ op: "auto-pick", expectedRevision: null });
     expect(container.textContent).toContain("Picking photos");
+    // DESIGN-024 D-01: the name and birthday travel in bodies, never in a URL a proxy logs.
+    expect(requests.find((entry) => entry.path === "/api/admin/immich/people")?.body).toEqual({ name: "Test Child B" });
+    expect(requests.find((entry) => entry.path === "/api/admin/templates")?.body).toEqual({ birthDate: "2020-02-29" });
+    for (const entry of requests) {
+      expect(entry.path).not.toMatch(/Test|Child|2020-02-29|\?/);
+    }
   });
 
   it("shows chapter cards and edits, swaps and publishes with compare-and-set", async () => {

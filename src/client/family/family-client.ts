@@ -21,10 +21,9 @@ export const familyApi = {
   play: (childId: string, fresh = false) =>
     api<FamilyPlayResponse>(`/children/${encodeURIComponent(childId)}/play`, fresh ? { fresh: true } : {}),
   adminChildren: () => api<{ children: AdminChildSummary[] }>("/admin/children"),
-  people: (name: string) =>
-    api<{ people: PersonChoice[] }>(`/admin/immich/people?name=${encodeURIComponent(name)}`),
-  templates: (birthDate: string) =>
-    api<{ templates: TemplateOffer[] }>(`/admin/templates?birthDate=${encodeURIComponent(birthDate)}`),
+  // A name or birthday never goes in a URL: proxies log request lines (D-01).
+  people: (name: string) => api<{ people: PersonChoice[] }>("/admin/immich/people", { name }),
+  templates: (birthDate: string) => api<{ templates: TemplateOffer[] }>("/admin/templates", { birthDate }),
   createChild: (input: CreateChildInput) => api<ChildView>("/admin/children", input),
   draft: (childId: string) =>
     api<AdminDraftResponse>(`/admin/children/${encodeURIComponent(childId)}/draft`),

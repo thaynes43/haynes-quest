@@ -12,6 +12,7 @@ import {
   type SlotOutcome,
 } from '../../../src/server/family/pick.js';
 import { rebaseWorldForChild } from '../../../src/server/family/rebase.js';
+import { daysBetween } from '../../../src/shared/family-plan.js';
 import {
   FakeClock,
   FakeImmich,
@@ -45,6 +46,24 @@ async function pickAll(context: ReturnType<typeof setup>, seed = 'synthetic-seed
     personId: TEST_CHILD_B.personId,
     seed,
   }, { library: context.library, clock: context.clock });
+}
+
+/** Four photos of the child every day from birth: a dense, realistic library. */
+function denseLibrary(): FakeAsset[] {
+  const dense: FakeAsset[] = [];
+  const start = Date.parse(`${TEST_CHILD_B.birthDate}T00:00:00.000Z`) + 3 * 86_400_000;
+  for (let time = start; time <= Date.parse('2026-09-20T00:00:00.000Z'); time += 86_400_000) {
+    const date = new Date(time).toISOString().slice(0, 10);
+    for (let shot = 0; shot < 4; shot += 1) {
+      dense.push({
+        id: syntheticAssetId(),
+        localDateTime: `${date}T${String(9 + shot * 3).padStart(2, '0')}:00:00.000Z`,
+        people: [TEST_CHILD_B.personId],
+        faces: [{ personId: TEST_CHILD_B.personId, box: [400, 200, 760, 560] }],
+      });
+    }
+  }
+  return dense;
 }
 
 function outcome(outcomes: SlotOutcome[], chapterId: string, slot: string): SlotOutcome {
@@ -234,6 +253,24 @@ describe('automatic picks against a fake Immich (DESIGN-024 D-04)', () => {
     expect(smartCalls.length).toBe(outcomes.length);
   });
 
+  it('aims metadata picks at the ⅓ and ⅔ points in a dense library, not the window edge', async () => {
+    // Four photos a day: the first ascending page of a ±20% window holds only its first weeks.
+    const context = setup(denseLibrary());
+    // Smart search unavailable (or empty): only the metadata pass places the photo.
+    context.immich.smartSearchFails = true;
+    const outcomes = await pickAll(context);
+    for (const chapter of world.chapters) {
+      const span = daysBetween(chapter.startDate, chapter.targetDate);
+      const at = (slot: string) => daysBetween(chapter.startDate, outcome(outcomes, chapter.chapterId, slot).photo!.localDate) / span;
+      expect(Math.abs(at('minor-one') - 1 / 3)).toBeLessThan(0.05);
+      expect(Math.abs(at('minor-two') - 2 / 3)).toBeLessThan(0.05);
+    }
+    for (const call of context.immich.searchCalls().filter((entry) => entry.path === '/api/search/metadata')) {
+      expect(['asc', 'desc']).toContain(call.body!.order);
+    }
+    expect(Math.max(...outcomes.map((entry) => entry.searchedPages))).toBeLessThanOrEqual(8);
+  });
+
   it('surfaces an unavailable Immich as a retryable error', async () => {
     const context = setup();
     context.immich.unavailable = true;
@@ -273,6 +310,28 @@ describe('swap suggestions', () => {
       excludeAssetIds: new Set(),
       cursor: 99,
     }, { library: context.library, clock: context.clock })).rejects.toMatchObject({ code: 'INVALID_CURSOR' });
+  });
+
+  it('starts Show more at the slot target in a dense library, then reads outward', async () => {
+    const context = setup(denseLibrary());
+    const range = { from: '2024-03-01', to: '2025-02-27' };
+    const request = {
+      personId: TEST_CHILD_B.personId,
+      slot: 'minor-one' as const,
+      window: range,
+      target: '2024-06-29',
+      excludeAssetIds: new Set<string>(),
+    };
+    const first = await suggestForSlot({ ...request, cursor: 1 }, { library: context.library, clock: context.clock });
+    const offsets = first.assets.map((asset) => Math.abs(daysBetween(request.target, asset.localDate)));
+    expect(first.assets.length).toBeGreaterThan(0);
+    expect(Math.max(...offsets)).toBeLessThanOrEqual(3);
+    expect(offsets[0]).toBe(0);
+    const second = await suggestForSlot({ ...request, cursor: 2 }, { library: context.library, clock: context.clock });
+    const seen = new Set(first.assets.map((asset) => asset.assetId));
+    expect(second.assets.some((asset) => seen.has(asset.assetId))).toBe(false);
+    expect(second.assets.some((asset) => asset.localDate < request.target)).toBe(true);
+    expect(second.assets.some((asset) => asset.localDate > request.target)).toBe(true);
   });
 });
 

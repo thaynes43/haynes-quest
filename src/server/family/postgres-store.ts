@@ -1,7 +1,9 @@
 import { randomUUID } from 'node:crypto';
 import { and, asc, desc, eq, sql } from 'drizzle-orm';
 import { drizzle, type NodePgDatabase } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
+import type { Pool } from 'pg';
+import { createDatabasePool } from '../db/pool.js';
+import type { DiagnosticSink } from '../diagnostics.js';
 import { AppError } from '../errors.js';
 import { children, familySchema, journeyDrafts, journeyPublications } from './schema.js';
 import type {
@@ -32,9 +34,12 @@ export class PostgresFamilyStore implements FamilyStore {
     this.db = drizzle(pool, { schema: familySchema });
   }
 
-  static connect(databaseUrl: string): PostgresFamilyStore {
+  static connect(databaseUrl: string, sink?: DiagnosticSink): PostgresFamilyStore {
     return new PostgresFamilyStore(
-      new Pool({ connectionString: databaseUrl, max: 5, connectionTimeoutMillis: 5_000, idleTimeoutMillis: 30_000 }),
+      createDatabasePool(
+        { connectionString: databaseUrl, max: 5, connectionTimeoutMillis: 5_000, idleTimeoutMillis: 30_000 },
+        sink,
+      ),
       true,
     );
   }

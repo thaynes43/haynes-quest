@@ -38,6 +38,8 @@ export interface FamilySearchRequest {
   personId: string;
   /** Smart (CLIP) search when present, otherwise metadata search. */
   query?: string;
+  /** Metadata search only: date order, ascending unless `desc`. */
+  order?: 'asc' | 'desc';
   /** Inclusive local calendar dates. */
   fromDate: string;
   toDate: string;
