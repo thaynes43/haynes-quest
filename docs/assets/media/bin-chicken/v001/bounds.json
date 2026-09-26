@@ -1,0 +1,66 @@
+{
+  "work_order": "WO111",
+  "asset_id": "bin-chicken",
+  "version": "v001",
+  "created_utc": "2026-09-26T17:04:24.873235+00:00",
+  "glb_sha256": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Rotation-only joints are checked as fixed local pivots; the hips bob/lunge/flop, peel pop/slide, chip flip/drop, loot tip, loot-chips jump/spill and brow raise are the intentional translations. No physical-device or universal triangle-collision proof (the Blender attachment audit covers listed part pairs).",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.21246674133166193,
+      0.0016718261435672297,
+      -0.5913999443524148
+    ],
+    "max": [
+      0.21246674133166193,
+      1.2570000538098558,
+      0.41424650303469346
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    0.42493348266332387,
+    1.2553282276662885,
+    1.0056464473871083
+  ],
+  "height_m": 1.2570000538098558,
+  "sole_clearance_m": 0.0016718261435672297,
+  "body_footprint_y_up": {
+    "min": [
+      -0.1896529616467213,
+      0.3466943413523629,
+      -0.28827315441254625
+    ],
+    "max": [
+      0.1896529616467213,
+      0.8233651708702296,
+      0.35357828519001583
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.3427774133750009,
+      0.0013213851629093295,
+      -0.9656678850646059
+    ],
+    "max": [
+      0.3412249186426165,
+      1.3018727076083123,
+      0.5602374046857436
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -0.348,
+      -0.004,
+      -0.971
+    ],
+    "max": [
+      0.347,
+      1.307,
+      0.566
+    ]
+  },
+  "defeat_held_hips_height_m": 0.13099996745586395,
+  "note": "glTF axes: +Y up, character faces -Z; its right side is +X. Root at the floor origin between the feet, 1.8 cm in front of the egg body centre."
+}

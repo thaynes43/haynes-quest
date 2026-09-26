@@ -1,0 +1,160 @@
+{
+  "work_order": "WO111",
+  "asset_id": "bin-chicken",
+  "version": "v001",
+  "status": "sheet-ready",
+  "source": "Blender reference sheet, no generated concept",
+  "remote_dir": "/workspace/haynes-quest/family-eras/bin-chicken/v001",
+  "durable_dir": "/home/dev/artifacts/haynes-quest/family-eras/bin-chicken/v001",
+  "glb_sha256": "none",
+  "scene_released_utc": "2026-09-26T03:57:38.134063+00:00",
+  "generated_utc": "2026-09-26T03:58:20.013705+00:00",
+  "notes": [
+    "remote bin-chicken-blockout.blend1 is Blender's automatic backup of an earlier blockout save and is not copied.",
+    "claim-checkpoint.blend is a copy of the released predecessor (mischief-kitten v001) live scene taken at claim time, kept for recovery.",
+    "preview/sheet-preview.png is the last half-size iteration preview of the same final scene; reference-sheet.png is the final 2048x1024 render.",
+    "local_only files are the local MCP runner (source/run.py) and render logs captured from the run output."
+  ],
+  "files": {
+    "bin-chicken-blockout.blend": {
+      "sha256": "ce5d128d315ad3a1d9188f60f97d18fcdc3ee138b742ca409ffd92e652500114",
+      "bytes": 679236,
+      "remote_match": true
+    },
+    "bin-chicken-reference-sheet.blend": {
+      "sha256": "8cb7f5119cd43787d471ce4c6b29d5430e555ffe97b87024f73a0c69dd00be4e",
+      "bytes": 801054,
+      "remote_match": true
+    },
+    "blockout-measurements.json": {
+      "sha256": "5f5f7f40b5e220e5e70aec48c3aca3d704797231ca996d5eb5da07bada518d81",
+      "bytes": 1190,
+      "remote_match": true
+    },
+    "claim-checkpoint.blend": {
+      "sha256": "5ec9f2392c840b6a9d7372918e3ba72db5bfa412917b7ac89d246c828a8cdee9",
+      "bytes": 761106,
+      "remote_match": true
+    },
+    "live-scene-release.blend": {
+      "sha256": "042563ddff775abccc712a22c6f27795aa1e40c288bb6989547ddde35357708c",
+      "bytes": 801048,
+      "remote_match": true
+    },
+    "part-measurements.json": {
+      "sha256": "17a63d891ebd43830cebc914d779e9cebf0111e4c5dea8cc363b1fbd22edacf6",
+      "bytes": 3016,
+      "remote_match": true
+    },
+    "preview/crop-back.png": {
+      "sha256": "db8dad599fca5458d4a769202a0f7c79cca488610ee9060ec1111ce41aa99012",
+      "bytes": 912996,
+      "remote_match": true
+    },
+    "preview/crop-face-front.png": {
+      "sha256": "97bb253614770229ee13a40a35aedb10d10fdefedb3f1126e583e3c25e91b03c",
+      "bytes": 937810,
+      "remote_match": true
+    },
+    "preview/crop-face-three-quarter.png": {
+      "sha256": "aa6791644ad2d4d05d3bd5b9060e2cfa547510afd03f95138d1d4d5ca015f08e",
+      "bytes": 947426,
+      "remote_match": true
+    },
+    "preview/crop-front.png": {
+      "sha256": "b85a405a0d9b25b230aff12be271973d95397e1bb415810de45bf900a0be44e3",
+      "bytes": 916782,
+      "remote_match": true
+    },
+    "preview/crop-side.png": {
+      "sha256": "c2723dc2499db17f2c8060d93d7d8c60e77f939981bb2f8adbc7e50a6aeebb9f",
+      "bytes": 941943,
+      "remote_match": true
+    },
+    "preview/crop-three-quarter.png": {
+      "sha256": "eab00e4b4366ec91f154c05ae1d0303d32e27583ace5fc852d7c94dd3a0da061",
+      "bytes": 922466,
+      "remote_match": true
+    },
+    "preview/sheet-preview.png": {
+      "sha256": "44a17dbd71d18f2c548ef3917e8fcfb23dc4041d83c8fab8ddb1178ccc602e2d",
+      "bytes": 536133,
+      "remote_match": true
+    },
+    "reference-notes.md": {
+      "sha256": "9ec179dac05aaea8b0095bd8af7c264ded29cb10daec110aa87ae09acf4a8672",
+      "bytes": 12336,
+      "remote_match": true
+    },
+    "reference-sheet.png": {
+      "sha256": "cd9d2266f56b142709fb6526e6d8e1e0129cc84383ef0ebff4991ba721359044",
+      "bytes": 1960317,
+      "remote_match": true
+    },
+    "scene-lease.json": {
+      "sha256": "a87bdeea6f991d565796aa7d824c6466c0131421a23c1220ea7ac9d85c2230e2",
+      "bytes": 6931,
+      "remote_match": true
+    },
+    "scene-release.json": {
+      "sha256": "1a84f16899438ac8d32884d8f950a5ee8c720b13323a0869bb67ac8553fc565f",
+      "bytes": 7294,
+      "remote_match": true
+    },
+    "sheet-render.json": {
+      "sha256": "caf4da99acd1ace442249f49440ddf6469c585eee6d78caa149dbb85d2319eaa",
+      "bytes": 863,
+      "remote_match": true
+    },
+    "source/build_blockout.py": {
+      "sha256": "856d24cfa23d1baace2d753149be23b120a55ab51b44137d6901aa28fdcdbe72",
+      "bytes": 29224,
+      "remote_match": true
+    },
+    "source/crops-render.log": {
+      "sha256": "df23935c065d8064d3ed8fd5fbdb9968aefe695988aca08408e70c4364463445",
+      "bytes": 1604,
+      "local_only": true
+    },
+    "source/crops.py": {
+      "sha256": "ea6a66d3e9730e93b180d40e7e74be6fd74e918b5d463844c521f418f31f39c2",
+      "bytes": 2419,
+      "remote_match": true
+    },
+    "source/iterate_preview.py": {
+      "sha256": "f61ce794719ac225e1e7ec04cfb475d9752c607b53c417a20ba83514d529ad80",
+      "bytes": 545,
+      "remote_match": true
+    },
+    "source/measure_parts.py": {
+      "sha256": "c3f078060b13acc5b1ef3acfcdbdab29db2ab53d5ffe24bf10433fa93e89415f",
+      "bytes": 2007,
+      "remote_match": true
+    },
+    "source/release.py": {
+      "sha256": "fa62e3a54a8dbd98ff8d38b2ccaf04b3a34d0f1d3473b42f6eee202afbf210d2",
+      "bytes": 3369,
+      "remote_match": true
+    },
+    "source/run.py": {
+      "sha256": "f2c9db7894b55ac7e912a47788887e20ccbf1f1bfb6a7403897f464a6b72d6b0",
+      "bytes": 4283,
+      "local_only": true
+    },
+    "source/sheet-render.log": {
+      "sha256": "95843831be27f6214d054406ee7e90371252c25a0860817da96a5c9959469e02",
+      "bytes": 1061,
+      "local_only": true
+    },
+    "source/sheet.py": {
+      "sha256": "26c457ca376a17b5e62494b0b9adb9dfb2c731001e1f5a0c3a297454eebdb7c4",
+      "bytes": 13278,
+      "remote_match": true
+    },
+    "source/sheet_preview.py": {
+      "sha256": "9b6da30acc361ac477ad50849152066f8ff676ceb2a924e7b17d4fdfd5340c87",
+      "bytes": 328,
+      "remote_match": true
+    }
+  }
+}

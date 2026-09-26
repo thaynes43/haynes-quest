@@ -1,0 +1,124 @@
+{
+  "work_order": "WO111",
+  "asset_id": "bin-chicken",
+  "version": "v001",
+  "released_utc": "2026-09-26T03:57:38.134063+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "saved_live_scene": "/workspace/haynes-quest/family-eras/bin-chicken/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "042563ddff775abccc712a22c6f27795aa1e40c288bb6989547ddde35357708c",
+  "reference_sheet": "/workspace/haynes-quest/family-eras/bin-chicken/v001/reference-sheet.png",
+  "reference_sheet_sha256": "cd9d2266f56b142709fb6526e6d8e1e0129cc84383ef0ebff4991ba721359044",
+  "reference_notes_sha256": "9ec179dac05aaea8b0095bd8af7c264ded29cb10daec110aa87ae09acf4a8672",
+  "blockout_master": "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-blockout.blend",
+  "blockout_master_sha256": "ce5d128d315ad3a1d9188f60f97d18fcdc3ee138b742ca409ffd92e652500114",
+  "sheet_scene": "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-reference-sheet.blend",
+  "sheet_scene_sha256": "8cb7f5119cd43787d471ce4c6b29d5430e555ffe97b87024f73a0c69dd00be4e",
+  "glb_sha256": "none",
+  "author_jobs_running": false,
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "prior_files_unchanged": {
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat-construction.blend",
+      "sha256": "403b2e9ec72b7bb6394c8390839103fb3b08c57218c2c814a3578dadb6e44506"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.blend",
+      "sha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496"
+    },
+    "clubhouse-bully-cat/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/live-scene-release.blend",
+      "sha256": "4438513d36fb533061c4470f74f545a419a2f424acf0fa8ab9dd4ec8ac3ebb9d"
+    },
+    "honk-bus/v001/honk-bus-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus-construction.blend",
+      "sha256": "50d10f352671528493b632a1d46a4fe58cb264b37f159a3fa2b4a994360d3260"
+    },
+    "honk-bus/v001/honk-bus-high-density-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus-high-density-checkpoint.blend",
+      "sha256": "70a651d0bff6d777036af215fa7891befadff926654c15b71852dac28af626c9"
+    },
+    "honk-bus/v001/honk-bus.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus.blend",
+      "sha256": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00"
+    },
+    "honk-bus/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/live-scene-release.blend",
+      "sha256": "a3a94cd1a0b847a79266c8c1d43692d047be85c3a6eecacf6ede83296f8b0054"
+    },
+    "magic-house/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/live-scene-release.blend",
+      "sha256": "a9a276022502083ee29f46a155bf908789570cd5f25df5d5f07f8a4f2e008d03"
+    },
+    "magic-house/v001/magic-house-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-blockout.blend",
+      "sha256": "a4367f504e3acf306b827430550cef9f1074092c90fece7a89244484d8b32ea6"
+    },
+    "magic-house/v001/magic-house-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-reference-sheet.blend",
+      "sha256": "a5178191f44c03d1984a97c3fc7572bcaa7c903b796be06ba9f58f5f474a5fc8"
+    },
+    "mischief-kitten/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/live-scene-release.blend",
+      "sha256": "ee595224f2ff5a43d31f4187c5c1d9cc94a1fa7f0991b19e485a6be14d90254d"
+    },
+    "mischief-kitten/v001/mischief-kitten-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-blockout.blend",
+      "sha256": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95"
+    },
+    "mischief-kitten/v001/mischief-kitten-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-reference-sheet.blend",
+      "sha256": "40568acd0c47cd7993db26e042a5431f792f106ed4986bef1be57e2066a423f2"
+    },
+    "rival-mayor/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/live-scene-release.blend",
+      "sha256": "3c8a63ede90e6214134aa8f9835d35c8b27724111652f29c9a6f541377d65efd"
+    },
+    "rival-mayor/v001/pre-takeover-live-scene.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/pre-takeover-live-scene.blend",
+      "sha256": "fb44c7cb71b2dccb992741e77915b555c2daf8971bfe4b25122271eb8459a11f"
+    },
+    "rival-mayor/v001/rival-mayor-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-blockout.blend",
+      "sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f"
+    },
+    "rival-mayor/v001/rival-mayor-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-reference-sheet.blend",
+      "sha256": "78b03aea57483f5b9514f60702072f9249ee51ce10a2e758d7909a84c6293489"
+    },
+    "magic-house/v001/reference-sheet.png": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/reference-sheet.png",
+      "sha256": "378f1f5706b19f303e545854fc50df5d4e254930cf77c46d53a4dd08f41d3c20"
+    },
+    "mischief-kitten/v001/reference-sheet.png": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/reference-sheet.png",
+      "sha256": "7e2596865059d2b7c6844ed92527f89e58136a842b4f90063fca8cfca18298a3"
+    },
+    "rival-mayor/v001/reference-sheet.png": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/reference-sheet.png",
+      "sha256": "966bfd26ae6bb5f567d32b5528050d63d7f2634ef7af3e6e9b2abc5e2238f568"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat-checkpoint.glb",
+      "sha256": "96f10990c3a1f77e097ec8c4aa036919c41910533b03ade27aa2d3b8ad45d67a"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat.glb": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.glb",
+      "sha256": "e082df0e5ebe116645aa800c26896b79b8a01025167446e00d1f37cb1788b447"
+    },
+    "honk-bus/v001/honk-bus-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus-checkpoint.glb",
+      "sha256": "cc117a9abbbc47f33066aef63aafc75776041d7e0be2dc20c4977d6857a5bc7a"
+    },
+    "honk-bus/v001/honk-bus.glb": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus.glb",
+      "sha256": "0ea6f80966e4e11e7ec6251af9c371ad76f6a1a8f90aa67da27b7d5612b0a2ed"
+    }
+  },
+  "scope": "Reference sheet only: Blender reference sheet, no generated concept. Coordinator review pending before detailing; no GLB, rig or animation; Tom review open."
+}

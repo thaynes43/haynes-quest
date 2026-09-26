@@ -45,6 +45,20 @@
       "sha256": "9e830883f6fc081f81f9e83ca658845bea27174472f1cadae47cf01c55e1bf7e"
     },
     {
+      "source": "docs/assets/media/bin-chicken/v001/beauty.png",
+      "source_sha256": "a4bb1be1795e62a9b29b865bc679a0138917e105d308ffa0ff78dbbe51fc4339",
+      "path": "docs/assets/media/catalog-thumbnails/v001/5d72bbad2559dc5f.webp",
+      "bytes": 5902,
+      "sha256": "9bebd18011f1d0c43e4a96eb11daa266f453dfc18de1d1b0dfe2221b4604934e"
+    },
+    {
+      "source": "docs/assets/media/bin-chicken/v001/reference-sheet.png",
+      "source_sha256": "cd9d2266f56b142709fb6526e6d8e1e0129cc84383ef0ebff4991ba721359044",
+      "path": "docs/assets/media/catalog-thumbnails/v001/cc05a4ba74166f07.webp",
+      "bytes": 19684,
+      "sha256": "dcd185234e76dbd7e1362efff941e9e219d552dc4e4c6034b93f4eaad9fb9450"
+    },
+    {
       "source": "docs/assets/media/blockling/v001/beauty.png",
       "source_sha256": "5b98e243a42d3a5a48d7798dc336af4b9800669074f116c95a81e0ad98c03bb9",
       "path": "docs/assets/media/catalog-thumbnails/v001/3f329aa3e54bf29d.webp",
