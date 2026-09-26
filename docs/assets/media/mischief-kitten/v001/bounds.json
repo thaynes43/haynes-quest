@@ -1,0 +1,66 @@
+{
+  "work_order": "WO111",
+  "asset_id": "mischief-kitten",
+  "version": "v001",
+  "created_utc": "2026-09-26T16:27:28.580342+00:00",
+  "glb_sha256": "ab0e3d2e36115cbc654a065c73f7fb973c136b67b3fce8ba947a3a5ada40b6f6",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Rotation-only joints are checked as fixed local pivots; the hips (bob, pounce travel, seated defeat) and hat (pop/slide) are the intentional translations. No physical-device or universal triangle-collision proof (the Blender attachment audit covers listed part pairs).",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.3010843098163605,
+      0.0029999070233064575,
+      -0.4257539002152746
+    ],
+    "max": [
+      0.4250986254981705,
+      0.9186895485603485,
+      0.5026584810457962
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    0.726182935314531,
+    0.915689641537042,
+    0.9284123812610708
+  ],
+  "height_m": 0.9186895485603485,
+  "sole_clearance_m": 0.0029999070233064575,
+  "body_footprint_y_up": {
+    "min": [
+      -0.1992099331134718,
+      0.11485132728230125,
+      -0.3188606011440165
+    ],
+    "max": [
+      0.19776235065813177,
+      0.495508789368573,
+      0.3276106309578415
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.5592690971323181,
+      0.0010700226845104252,
+      -0.8004092514952023
+    ],
+    "max": [
+      0.655837628648922,
+      1.1394437067754948,
+      0.8461909755917923
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -0.565,
+      -0.004,
+      -0.806
+    ],
+    "max": [
+      0.661,
+      1.145,
+      0.852
+    ]
+  },
+  "defeat_held_hips_height_m": 0.1488262414932251,
+  "note": "glTF axes: +Y up, character faces -Z; its right (the tail side) is +X. Root at the floor origin under the body centre."
+}

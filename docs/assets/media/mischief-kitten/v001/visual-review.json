@@ -1,0 +1,123 @@
+{
+  "work_order": "WO111",
+  "asset_id": "mischief-kitten",
+  "version": "v001",
+  "created_utc": "2026-09-26T16:27:28.580342+00:00",
+  "glb_sha256": "ab0e3d2e36115cbc654a065c73f7fb973c136b67b3fce8ba947a3a5ada40b6f6",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back and three-quarter stills (idle at 0 s, the sheet tiptoe) compared with the reference sheet at the same angles and metric scale (sheet-vs-export.png); rest-pose stills; five-clip normal/small motion sheet; attack front/side windup-leap-contact-recovery and 35% gameplay-scale strip; held defeat front/side/three-quarter/beauty inspected.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "sheet_matching": [
+    "Silhouette kept from the approved blockout at its measured coordinates: oversized round head, straight right ear and cocked left ear, mini plum stovepipe hat tipped to its left (0.9187 m top, the blockout height), whiskers 0.60 m across, bean body with bunched haunches, cream bib, socks and mitten paws, question-mark tail swung up on its right with a cream tip.",
+    "Face as on the sheet: big honey eyes glancing to its right with two highlights, raised right brow, sly squint and slanted brow on the left, cream muzzle with a lopsided smirk and a tongue blep, pink nose; plum-lilac crown, cheek, back, haunch and tail-ring stripes.",
+    "Kit as on the sheet: raspberry collar with a honey bell, teal gadget pack with a raspberry button, honey dial, brass rivets, straps, a brass spring antenna, honey ball and tiny cream propeller.",
+    "Colours are the sheet hex values exactly (atlas palette); the preview renders them slightly deeper than the Cycles Standard-view sheet because of its ACES tone mapping and three-light rig.",
+    "Idle starts in the sheet tiptoe: right forepaw raised and curled with pink toe beans facing forward."
+  ],
+  "author_corrections": [
+    "First assembled pass was 15,886 triangles; the crown-stripe bisect cuts alone added about 1,000 to the head. The crown stripes became thin surface ribbons and the tail, leg, collar, strap, antenna and brim ring counts were reduced (14,142); smoother ears and tucked toe beans give the final 14,174.",
+    "The crouch and landing first pitched the chest nose-up (axis sign error), so the contact read as standing; corrected to chest down, rump up and face low over the paws.",
+    "Ear axes corrected: the hit now flattens the ears back and the defeat droops them outward.",
+    "First defeat sit sank the folded thighs 41 mm below the floor; the seat was raised until the Blender and 60 Hz checks both clear.",
+    "The blockout pack sat 3.6 cm inside the back of the head; the pack moved 4 cm back and tilts back during the crouch and hit, so the head never enters it.",
+    "The idle left-ear twitch clipped the tilted hat brim (now an outward flick), and the defeat hat slide passed through that ear (it now hops over).",
+    "The defeat hat first slid behind the head; its held placement is now computed from the head surface over the left eye.",
+    "The limp defeat tail first rose into the head, then crossed the right hind leg; its flat-on-the-floor pose came from a clearance search against the floor, the head and the hind legs.",
+    "The bottom wiggle first ran at 8.75 Hz (aliased at 30 fps) and 60 Hz sampling found inter-key paw dips up to 4.3 mm; the wiggle was slowed to about 4.8 Hz and all paws got a 3 mm sole clearance (the rival mayor uses 4 mm).",
+    "Front toe beans peeked out as a pink sliver under the planted paws; they were tucked in from the sole edge."
+  ],
+  "deviations_from_sheet_notes": [
+    "Bind pose is four paws down (the sheet notes suggestion); the sheet tiptoe is recreated at idle 0 s, and the main stills show it.",
+    "The pack sits 4 cm further back than the blockout so it clears the head.",
+    "Defeat follows the work-order brief, \"tumbles and sits dizzy, held\": knocked up into a spinning tumble, it plops down seated with a dizzy head wobble, drooped ears, the hat over its left eye and the tail limp on the floor. The sheet notes had suggested rolling onto its back.",
+    "Paws float 3 mm above the floor (sole clearance) so interpolated frames never dip below it.",
+    "Toe beans are on the front paws only (the sheet shows them on the raised forepaw); the hind paws keep the sheet toe grooves."
+  ],
+  "dimensions_width_height_depth_m": [
+    0.726182935314531,
+    0.915689641537042,
+    0.9284123812610708
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.3010843098163605,
+      0.0029999070233064575,
+      -0.4257539002152746
+    ],
+    "max": [
+      0.4250986254981705,
+      0.9186895485603485,
+      0.5026584810457962
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -0.5592690971323181,
+      0.0010700226845104252,
+      -0.8004092514952023
+    ],
+    "max": [
+      0.655837628648922,
+      1.1394437067754948,
+      0.8461909755917923
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -0.565,
+      -0.004,
+      -0.806
+    ],
+    "max": [
+      0.661,
+      1.145,
+      0.852
+    ]
+  },
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "defeat_held_from_seconds": 1.92,
+  "attack_beats": {
+    "crouch_s": [
+      0.12,
+      0.88
+    ],
+    "bottom_wiggle_s": [
+      0.5,
+      0.92
+    ],
+    "airborne_leap_s": [
+      0.92,
+      1.25
+    ],
+    "airborne_peak_s": 1.07,
+    "contact_s": 1.25,
+    "belly_flop_squash_s": [
+      1.2,
+      1.6
+    ],
+    "hop_back_s": [
+      1.56,
+      1.84
+    ],
+    "back_on_its_spot_s": 1.84
+  },
+  "defeat_held": {
+    "hat_to_left_eye_head_m": 0.09179517336705088,
+    "hat_drop_along_head_m": 0.09273153543472312,
+    "hips_height_m": 0.1488262414932251,
+    "chest_minus_hips_height_m": 0.11912292484875697,
+    "body_lowest_m": 0.0035847257934800703,
+    "head_height_m": 0.5098080944656964,
+    "tail_tip_height_m": 0.1550541708645133
+  },
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "The attachment audit tests listed part pairs every frame on the source scene; it is not a universal triangle-collision proof. Intended contacts (leg roots inside the body and haunches, the collar around the head, the pack and straps on the back, the hat on the head) are not tested.",
+    "In the game the windup phase scrubs the attack clip from 0 to the 1.25 s contact, so the crouch, wiggle and leap play at the simulation windup speed.",
+    "The pounce carries the body 0.30 m forward through the hips and brings it back by 1.84 s; the root never moves.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}

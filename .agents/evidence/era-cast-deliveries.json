@@ -612,7 +612,7 @@
       "sceneReleasedAt": "2026-09-26T15:51:36.783303+00:00",
       "manifest": "docs/assets/media/magic-house/v001/sha256-manifest.json",
       "pr": 99,
-      "prMerged": null,
+      "prMerged": "b71b630c143eec890686b7a853fad28cebf888fb",
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v2 (and the frozen v1) fill the B·2 boss slot with The Dancing House project candidate (magic-house), which renders neutral placeholder art until a catalog version registers this model"
@@ -628,6 +628,116 @@
         "threeAdapterChecksPassed": 35,
         "chromiumChecksPassed": 9,
         "artifactHashesMatchedLocally": 129,
+        "physicalSafari": false
+      }
+    },
+    {
+      "assetId": "mischief-kitten",
+      "version": "v001",
+      "role": "ordinary",
+      "world": "A",
+      "chapter": 2,
+      "glb": "docs/assets/media/mischief-kitten/v001/mischief-kitten.glb",
+      "sha256": "ab0e3d2e36115cbc654a065c73f7fb973c136b67b3fce8ba947a3a5ada40b6f6",
+      "heightM": 0.9186895485603485,
+      "soleClearanceM": 0.0029999070233064575,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root under the body centre; the kitten's right (tail side) at +X; the top is the mini stovepipe hat; the paws float 3 mm above the floor at rest",
+        "rest": {
+          "min": [
+            -0.3010843098163605,
+            0.0029999070233064575,
+            -0.4257539002152746
+          ],
+          "max": [
+            0.4250986254981705,
+            0.9186895485603485,
+            0.5026584810457962
+          ]
+        },
+        "animated": {
+          "min": [
+            -0.5592690971323181,
+            0.0010700226845104252,
+            -0.8004092514952023
+          ],
+          "max": [
+            0.655837628648922,
+            1.1394437067754948,
+            0.8461909755917923
+          ]
+        },
+        "culling": {
+          "min": [
+            -0.565,
+            -0.004,
+            -0.806
+          ],
+          "max": [
+            0.661,
+            1.145,
+            0.852
+          ]
+        },
+        "note": "Animated bounds include the pounce, which carries the hips 0.30 m forward and lands the forepaws about 0.35 m ahead at contact, and the defeat tumble. The culling envelope is stored in the skin extras."
+      },
+      "attackContactS": 1.25,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 3,
+          "channels": 96
+        },
+        {
+          "name": "move",
+          "duration_s": 0.8,
+          "channels": 96
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 96
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 96
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 96
+        }
+      ],
+      "review": "docs/assets/reviews/mischief-kitten/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+      "sceneReleasedAt": "2026-09-26T16:28:06.825536+00:00",
+      "manifest": "docs/assets/media/mischief-kitten/v001/sha256-manifest.json",
+      "pr": 105,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v2 (and the frozen v1) fill the four A·2 ordinary slots and the bonus slot with the mischief-kitten project candidate, which renders neutral placeholder art until a catalog version registers this model"
+      },
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/105",
+      "masterSha256": "b95c8d0d69d641b48724d8e79331e1f4706df435c3ed3fc6e66e56ed807baaf1",
+      "triangles": 14174,
+      "joints": 32,
+      "bytes": 1197116,
+      "integrationNotes": [
+        "Rest geometry starts 0.003 m above the floor (sole clearance); the lowest animated point is 0.0011 m, during the attack.",
+        "Only the hips (body bob, pounce travel, seated defeat) and the hat (pop and slide) translate; every other joint is a fixed pivot, and the root bone never animates.",
+        "In the held defeat (from 1.92 s) the hips sit at 0.149 m and the hat brim is 0.092 m from the left-eye centre.",
+        "Exact intake values: 1,197,116 bytes, 14,174 triangles, 12,301 exported vertices (7,311 Blender mesh vertices before UV and normal splits), one embedded 1024 x 1024 atlas, 2 materials, 2 primitives, 32 joints, at most 2 influences per vertex."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "threeAdapterChecksPassed": 30,
+        "attachmentChecksPassed": 6,
+        "chromiumChecksPassed": 9,
+        "artifactHashesMatchedLocally": 143,
         "physicalSafari": false
       }
     }

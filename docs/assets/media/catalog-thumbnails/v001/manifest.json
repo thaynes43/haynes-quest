@@ -395,6 +395,20 @@
       "sha256": "aae984930e0e081fece9a868c6e484769a2c1ab3b2fb40efc1dd5d2ae4868a5b"
     },
     {
+      "source": "docs/assets/media/mischief-kitten/v001/beauty.png",
+      "source_sha256": "523ce23de015beb1e5fea234d350e8fab5c6b2201c85a2f70f9834e32b796417",
+      "path": "docs/assets/media/catalog-thumbnails/v001/9847869f2fd89ea1.webp",
+      "bytes": 8524,
+      "sha256": "0008de062fbf0abed0c545a8706d9dfdd166a926a33f69dcce945ecfe7c7e16c"
+    },
+    {
+      "source": "docs/assets/media/mischief-kitten/v001/reference-sheet.png",
+      "source_sha256": "7e2596865059d2b7c6844ed92527f89e58136a842b4f90063fca8cfca18298a3",
+      "path": "docs/assets/media/catalog-thumbnails/v001/636bef6db1456f8f.webp",
+      "bytes": 24264,
+      "sha256": "e66ce43dae4f108157fce52413a441b9710fa26b52ebc0f021f840ce84024484"
+    },
+    {
       "source": "docs/assets/media/mister-hiss/v001/beauty.png",
       "source_sha256": "b7bb218ec5436a8288a51f8f64da960d0b1d79ddb62d3c505a011ec38e1f007a",
       "path": "docs/assets/media/catalog-thumbnails/v001/c165726c58d4ded7.webp",

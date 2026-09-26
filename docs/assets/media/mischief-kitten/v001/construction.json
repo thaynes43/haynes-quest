@@ -1,0 +1,996 @@
+{
+  "asset_id": "mischief-kitten",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Claude Opus 5.5 does the WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": "Blender reference sheet, no generated concept",
+  "source_sheet_sha256": "7e2596865059d2b7c6844ed92527f89e58136a842b4f90063fca8cfca18298a3",
+  "source_blockout_sha256": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.3010843098163605,
+      -0.5026585459709167,
+      0.00299999862909317
+    ],
+    "max": [
+      0.425098717212677,
+      0.4257538616657257,
+      0.9186896085739136
+    ]
+  },
+  "height_m": 0.9186896085739136,
+  "triangles": 14174,
+  "vertices": 7311,
+  "material_count": 2,
+  "bone_count": 32,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic soft painted palette atlas generated in Blender Python from the sheet colours; no external textures.",
+    "palette": [
+      "9a8cae",
+      "6b5a84",
+      "f3e6cf",
+      "dca953",
+      "e39a88",
+      "d9677a",
+      "b54a5a",
+      "3f7f7a",
+      "2f2740",
+      "342c46",
+      "c9923e",
+      "fbf6ec",
+      "cdb89a",
+      "2f625e",
+      "8f3848",
+      "c77f70"
+    ]
+  },
+  "parts": [
+    {
+      "name": "Lilac tabby bean body",
+      "triangles": 1344,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Cream chest bib",
+      "triangles": 256,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "R front leg with cream sock",
+      "triangles": 316,
+      "bone_groups": [
+        "chest",
+        "front_upper_R",
+        "front_lower_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R cream front mitten paw",
+      "triangles": 224,
+      "bone_groups": [
+        "front_paw_R"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "R front toe groove 0",
+      "triangles": 28,
+      "bone_groups": [
+        "front_paw_R"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "R front toe groove 1",
+      "triangles": 28,
+      "bone_groups": [
+        "front_paw_R"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "R pink toe bean 0",
+      "triangles": 60,
+      "bone_groups": [
+        "front_paw_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R pink toe bean 1",
+      "triangles": 60,
+      "bone_groups": [
+        "front_paw_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R pink toe bean 2",
+      "triangles": 60,
+      "bone_groups": [
+        "front_paw_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R pink toe bean 3",
+      "triangles": 60,
+      "bone_groups": [
+        "front_paw_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R pink toe bean 4",
+      "triangles": 96,
+      "bone_groups": [
+        "front_paw_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R hind leg",
+      "triangles": 316,
+      "bone_groups": [
+        "hips",
+        "hind_thigh_R",
+        "hind_shin_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R bunched haunch",
+      "triangles": 256,
+      "bone_groups": [
+        "hind_thigh_R",
+        "hips"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R haunch tabby stripe 0",
+      "triangles": 56,
+      "bone_groups": [
+        "hind_thigh_R",
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "R haunch tabby stripe 1",
+      "triangles": 56,
+      "bone_groups": [
+        "hind_thigh_R",
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "R cream hind sock paw",
+      "triangles": 224,
+      "bone_groups": [
+        "hind_paw_R"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "R hind toe groove 0",
+      "triangles": 28,
+      "bone_groups": [
+        "hind_paw_R"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "R hind toe groove 1",
+      "triangles": 28,
+      "bone_groups": [
+        "hind_paw_R"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "L front leg with cream sock",
+      "triangles": 316,
+      "bone_groups": [
+        "chest",
+        "front_upper_L",
+        "front_lower_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L cream front mitten paw",
+      "triangles": 224,
+      "bone_groups": [
+        "front_paw_L"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "L front toe groove 0",
+      "triangles": 28,
+      "bone_groups": [
+        "front_paw_L"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "L front toe groove 1",
+      "triangles": 28,
+      "bone_groups": [
+        "front_paw_L"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "L pink toe bean 0",
+      "triangles": 60,
+      "bone_groups": [
+        "front_paw_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L pink toe bean 1",
+      "triangles": 60,
+      "bone_groups": [
+        "front_paw_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L pink toe bean 2",
+      "triangles": 60,
+      "bone_groups": [
+        "front_paw_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L pink toe bean 3",
+      "triangles": 60,
+      "bone_groups": [
+        "front_paw_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L pink toe bean 4",
+      "triangles": 96,
+      "bone_groups": [
+        "front_paw_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L hind leg",
+      "triangles": 316,
+      "bone_groups": [
+        "hips",
+        "hind_thigh_L",
+        "hind_shin_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L bunched haunch",
+      "triangles": 256,
+      "bone_groups": [
+        "hind_thigh_L",
+        "hips"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L haunch tabby stripe 0",
+      "triangles": 56,
+      "bone_groups": [
+        "hind_thigh_L",
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "L haunch tabby stripe 1",
+      "triangles": 56,
+      "bone_groups": [
+        "hind_thigh_L",
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "L cream hind sock paw",
+      "triangles": 224,
+      "bone_groups": [
+        "hind_paw_L"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "L hind toe groove 0",
+      "triangles": 28,
+      "bone_groups": [
+        "hind_paw_L"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "L hind toe groove 1",
+      "triangles": 28,
+      "bone_groups": [
+        "hind_paw_L"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Question-mark tail",
+      "triangles": 676,
+      "bone_groups": [
+        "hips",
+        "tail_1",
+        "tail_2",
+        "tail_3",
+        "tail_4",
+        "tail_5",
+        "tail_6"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Fluffy cream tail tip",
+      "triangles": 196,
+      "bone_groups": [
+        "tail_6"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Raspberry collar",
+      "triangles": 364,
+      "bone_groups": [
+        "neck"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Honey collar bell",
+      "triangles": 196,
+      "bone_groups": [
+        "bell"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Brass bell equator band",
+      "triangles": 160,
+      "bone_groups": [
+        "bell"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Bell bottom slot",
+      "triangles": 44,
+      "bone_groups": [
+        "bell"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Brass bell loop",
+      "triangles": 36,
+      "bone_groups": [
+        "bell"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Teal gadget pack",
+      "triangles": 108,
+      "bone_groups": [
+        "pack"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Big raspberry mischief button",
+      "triangles": 82,
+      "bone_groups": [
+        "pack"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Honey pack dial",
+      "triangles": 70,
+      "bone_groups": [
+        "pack"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Dial pointer",
+      "triangles": 6,
+      "bone_groups": [
+        "pack"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Brass pack rivet +1",
+      "triangles": 38,
+      "bone_groups": [
+        "pack"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Brass pack rivet -1",
+      "triangles": 38,
+      "bone_groups": [
+        "pack"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Brass spring antenna",
+      "triangles": 324,
+      "bone_groups": [
+        "antenna_1",
+        "antenna_2"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Honey antenna ball",
+      "triangles": 144,
+      "bone_groups": [
+        "antenna_2"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Propeller spindle",
+      "triangles": 20,
+      "bone_groups": [
+        "propeller"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Tiny cream propeller blade A",
+      "triangles": 60,
+      "bone_groups": [
+        "propeller"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Tiny cream propeller blade B",
+      "triangles": 60,
+      "bone_groups": [
+        "propeller"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Teal pack strap 0",
+      "triangles": 192,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Teal pack strap 1",
+      "triangles": 192,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Big round kitten head",
+      "triangles": 1222,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Crown tabby stripe 0",
+      "triangles": 116,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Crown tabby stripe 1",
+      "triangles": 116,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Crown tabby stripe 2",
+      "triangles": 116,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Big ear R",
+      "triangles": 126,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Pink inner ear R",
+      "triangles": 58,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Cream ear tuft R 0",
+      "triangles": 8,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Cream ear tuft R 1",
+      "triangles": 8,
+      "bone_groups": [
+        "ear_R"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Big ear L",
+      "triangles": 126,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Pink inner ear L",
+      "triangles": 58,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Cream ear tuft L 0",
+      "triangles": 8,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Cream ear tuft L 1",
+      "triangles": 8,
+      "bone_groups": [
+        "ear_L"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Cheek tabby stripe +1 0",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Cheek tabby stripe +1 1",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Cheek fluff tuft +1 0",
+      "triangles": 10,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Cheek fluff tuft +1 1",
+      "triangles": 10,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Cheek fluff tuft +1 2",
+      "triangles": 10,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Cheek tabby stripe -1 0",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Cheek tabby stripe -1 1",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Cheek fluff tuft -1 0",
+      "triangles": 10,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Cheek fluff tuft -1 1",
+      "triangles": 10,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Cheek fluff tuft -1 2",
+      "triangles": 10,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Eye white +1",
+      "triangles": 256,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Honey iris +1",
+      "triangles": 168,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Big plum pupil +1",
+      "triangles": 120,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Eye highlight big +1",
+      "triangles": 48,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Eye highlight small +1",
+      "triangles": 36,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Eye white -1",
+      "triangles": 256,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Honey iris -1",
+      "triangles": 168,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Big plum pupil -1",
+      "triangles": 120,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Eye highlight big -1",
+      "triangles": 48,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Eye highlight small -1",
+      "triangles": 36,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Sly squint lid left",
+      "triangles": 168,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Raised mischief brow right",
+      "triangles": 80,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Scheming slanted brow left",
+      "triangles": 80,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Cream muzzle patch",
+      "triangles": 224,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Cream whisker pad +1",
+      "triangles": 168,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Cream whisker pad -1",
+      "triangles": 168,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Little cream chin",
+      "triangles": 120,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Pink kitten nose",
+      "triangles": 120,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Philtrum",
+      "triangles": 26,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Lopsided smirk",
+      "triangles": 166,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Tongue blep",
+      "triangles": 100,
+      "bone_groups": [
+        "tongue"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Whisker +1 0",
+      "triangles": 36,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Whisker +1 1",
+      "triangles": 36,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Whisker +1 2",
+      "triangles": 36,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Whisker -1 0",
+      "triangles": 36,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Whisker -1 1",
+      "triangles": 36,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Whisker -1 2",
+      "triangles": 36,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Mini hat brim",
+      "triangles": 288,
+      "bone_groups": [
+        "hat"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Mini stovepipe crown",
+      "triangles": 238,
+      "bone_groups": [
+        "hat"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Mini honey hat band",
+      "triangles": 144,
+      "bone_groups": [
+        "hat"
+      ],
+      "atlas_tile": 3
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 91,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 0.8,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 25,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 22,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 73,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": 1.92
+    }
+  ],
+  "rest_reproduction_max_error": 1.3668759493157268e-06,
+  "files": {
+    "mischief-kitten.blend": {
+      "bytes": 1531233,
+      "sha256": "b95c8d0d69d641b48724d8e79331e1f4706df435c3ed3fc6e66e56ed807baaf1"
+    },
+    "mischief-kitten.glb": {
+      "bytes": 1197116,
+      "sha256": "ab0e3d2e36115cbc654a065c73f7fb973c136b67b3fce8ba947a3a5ada40b6f6"
+    },
+    "pigment.png": {
+      "bytes": 234785,
+      "sha256": "7a2a5e46102511c554b383c39b2c9b21b9bdb439fcfc82f2c0f71418bd3d8e38"
+    }
+  }
+}

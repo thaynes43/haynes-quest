@@ -1,0 +1,56 @@
+{
+  "work_order": "WO111",
+  "asset_id": "mischief-kitten",
+  "version": "v001",
+  "created_utc": "2026-09-26T16:27:28.580342+00:00",
+  "glb_sha256": "ab0e3d2e36115cbc654a065c73f7fb973c136b67b3fce8ba947a3a5ada40b6f6",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Claude Opus 5.5 does the WO111 Blender work",
+  "authoring_tool": "Blender MCP execute_blender_code on the second isolated authoring service (blender-authoring-2), driven by a small streamable-HTTP JSON-RPC client (source/transfer.py)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": {
+    "kind": "Blender reference sheet, no generated concept",
+    "file": "reference-sheet.png",
+    "sha256": "7e2596865059d2b7c6844ed92527f89e58136a842b4f90063fca8cfca18298a3",
+    "notes": "reference-notes.md",
+    "notes_sha256": "6d78a468ffbd5cc428a6235078c1f0cb310ada891ebb8fce229973f4a6e30fed",
+    "blockout_master": "mischief-kitten-blockout.blend",
+    "blockout_sha256": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95",
+    "coordinator_review": "Approved Sept 26 (SHEET-REVIEWS.md): keep the mini stovepipe hat, gadget pack, bell collar and question-mark tail; pounce attack.",
+    "generator": "None. The sheet is a Cycles render of a procedural Blender blockout; no image-generation model was used for this asset."
+  },
+  "source_scripts": {
+    "animate.py": "50a21c2386bd13c7acf7cfec858d53cd4365593bb60ede8fc9c786b822b849d5",
+    "author_run.py": "b8cf7edbc8747a840bc060a2388dfa8f101fea607d09ea94ec2bfdf19203c324",
+    "bounds.json": "02617fb4edbd72042d14e8a7e17957fc518ae278fe54e76b7f96e7a9bb64a059",
+    "build.py": "7669539e9c436dfc6ce19536bd2523b3907abb43b3095427dd3929cb3aeaa149",
+    "claim.py": "0d5f48c355e93a1bae0f3a738c6ef6ba9aceb213118dbb1c824aa1ee18d95518",
+    "common.py": "5946145620c500f530084ba7c181b929015947e96a61704a8f45cab0f2312830",
+    "compare.mjs": "7fa76541c34157fe75b929726a02232feabd8f697749c551fa7a86c2f591d6d2",
+    "delivery.py": "28e5f01139d121dfcb73e8127b04f3c0779019c407dfbec64234e8121d600a38",
+    "diag.py": "a25e9dffecd794a0b16d03b3d02f9fd3113894f63a88b75781db254ea216882c",
+    "grid.mjs": "232de005933ae02fc2f8c59dc6da699fc2de7c2761d0e391c1c3c05e53fa8769",
+    "inspect-attachments.py": "07160573667adeeae28af3b2ce1eba278f17a3fb5de4efa8629079d4e4f7ccda",
+    "inspect-three.mjs": "0aa90b85b416591aa66484edd36f6ea2455460032ebca30a471379fd55038b6d",
+    "look.mjs": "b2c1a03916b0537335cf994a6ff1dd0ef8c3fa5f66c948dcf63346733dac8206",
+    "make-evidence.py": "0ab1aa9d965f987a31c3a45547869553c594e6f26bc97e205f27e6af5d16d867",
+    "preview.mjs": "435f0eb367a2c03e4130c9bbd6e7ac7e4fa55c7669ed6e155facdfdd86f6b2fe",
+    "release_model.py": "32f6c4c957d3836ee098cda511098f89bb3c3d752ce627365534e4914dbafce1",
+    "run_validate.py": "306d0e6e8ad721ecfb9edba3f9ba401b2fd782653a304a2e6088b25748c9cbad",
+    "tailsearch.py": "62a4d67d0876346e4265179a5bfef6666d2692bb7f2acd4c7f91716101b9725a",
+    "transfer.py": "be7bb0520827ec662b9863d74282a4b6ed308bc9b96228372413cb5d8434c98b",
+    "upload_inputs.py": "96aadf2d630e260fbdeedcdda67653fa249ee190721d75f8a331792063ce9b28",
+    "validate.mjs": "375dd6e67d055f5b77e6e7e6956c2a0dbe6dc741885f9312d30d439521039272"
+  },
+  "original_work": [
+    "Final topology, UVs, weights, the 32-bone quadruped rig and all five clips are new; the blockout supplied measured proportions, colours and parody hooks only.",
+    "Original deterministic 1024 palette atlas generated in Blender Python from the sheet colours; tabby back stripes and the cream belly are bisected face bands, the crown stripes thin painted ribbons, no external texture.",
+    "Mesh, UV, IK, transfer and validation utilities adapted from the WO111 rival-mayor, gadget-helper and honk-bus authoring scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise names, models, faces, logos, badges, costumes, lettering, recordings or textures; the collar carries a plain bell and the pack no emblem."
+  ],
+  "rights_note": "Original authored study. No exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; the owner exact-version and physical-device review remain open."
+}
