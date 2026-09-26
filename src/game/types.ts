@@ -77,6 +77,11 @@ export interface SceneFrame {
   visualDeltaSeconds?: number;
   /** Camera shake offset in metres; zero or absent when calm. */
   cameraShake?: PositionSnapshot;
+  /**
+   * DESIGN-025 D-02 visual growth scale. Present only on levels that use growth
+   * moves; absent keeps the exact published avatar and camera presentation.
+   */
+  growthScale?: number;
 }
 
 /** Immediate presentation events for sound and effects (DESIGN-022). */
@@ -85,6 +90,8 @@ export type GameFeedbackEvent =
   | { type: "defeat"; encounterId: string; boss: boolean }
   | { type: "token"; streak: number }
   | { type: "ticket" }
+  /** A bounce pad launched the player (DESIGN-025 D-04). */
+  | { type: "bounce" }
   | { type: "hurt" };
 
 export type AttackAttemptOutcome =
@@ -153,6 +160,8 @@ export interface GameStatus {
   ageYears: number;
   appearanceStage: AppearanceStage;
   abilities: Ability[];
+  /** DESIGN-025 growth moves in force on this level; absent means jump-only. */
+  growthMoves?: string[];
   grounded: boolean;
   playerHp: number;
   maxPlayerHp: number;

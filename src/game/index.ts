@@ -5,6 +5,7 @@ export { getAvatarProportions } from "./controller";
 export { getJoystickVector, GameInputState } from "./input";
 export { checkpointForSave, createLevelLayout } from "./level";
 export { authoredLevelResolverFor, authoredRoute } from "./authored-layout";
+export { growthMoveCardsForAdvance, levelGrowth } from "./growth";
 export type {
   AuthoredLevelRegistry,
   AuthoredLevelResolver,

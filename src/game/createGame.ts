@@ -41,6 +41,7 @@ import {
 import { getAvatarProportions, stepController } from "./controller";
 import { foregroundSimulationSteps } from "./frame-step";
 import { createObbyState, sampleObby, stepObby } from "./obby";
+import { growthScaleFor, levelGrowth, type LevelGrowth } from "./growth";
 import { bindBrowserInput, GameInputState } from "./input";
 import {
   checkpointForSave,
@@ -98,6 +99,7 @@ interface RuntimeScene {
     collected?: ReadonlySet<string>,
   ): void;
   collectItem?(item: CollectiblePlacement): void;
+  bouncePad?(platformId: string): void;
   expectHit?(encounterId: string): void;
   anticipateHit?(encounterId: string, at: PositionSnapshot): void;
   celebrate?(encounterId: string, boss: boolean): void;
@@ -190,6 +192,21 @@ export function createGame(options: CreateGameOptions): GameHandle {
   controller.grounded = true;
   let courseTime = 0;
   let traversalRecoveries = 0;
+  // DESIGN-025 growth moves, resolved once per active level. `null` keeps the
+  // unchanged jump-only physics of every published route and older plan.
+  let growthKey: unknown = null;
+  let growthIdentity = "";
+  let growth: LevelGrowth | null = null;
+  const currentGrowth = (): LevelGrowth | null => {
+    const active = save.adventure?.activeLevel ?? null;
+    const key = `${active?.id ?? ""}:${active?.startAgeYears ?? ""}:${(active?.growthMoves ?? []).join(",")}`;
+    if (growthKey !== level || growthIdentity !== key) {
+      growthKey = level;
+      growthIdentity = key;
+      growth = levelGrowth(save, level);
+    }
+    return growth;
+  };
   const input = new GameInputState();
   const scene = new GardenScene(options.container, level, save) as RuntimeScene;
   const stopBrowserInput = bindBrowserInput({ target: scene.canvas, input });
@@ -519,6 +536,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
       ageYears: save.ageYears,
       appearanceStage: save.appearance.stage,
       abilities: [...save.abilities],
+      ...(level.course && currentGrowth()
+        ? { growthMoves: [...currentGrowth()!.abilities] }
+        : {}),
       grounded: controller.grounded,
       playerHp: adventure.playerHp,
       maxPlayerHp: adventure.maxPlayerHp,
@@ -1259,6 +1279,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
             adventure.phase === "memory-released"
               ? { ...level.course, checkpoints: [] }
               : level.course;
+          const moves = currentGrowth();
           const traversal = stepObby(controller, currentInput, course, {
             deltaSeconds: stepSeconds,
             timeSeconds: courseTime,
@@ -1270,7 +1291,15 @@ export function createGame(options: CreateGameOptions): GameHandle {
             ...(isRouteMemoryAdventure(save)
               ? { tuning: { moveSpeed: 4 } }
               : {}),
+            ...(moves
+              ? { abilities: moves.tuning, jumpHeld: currentInput.jump }
+              : {}),
           });
+          if (traversal.bouncePadId) {
+            shake.add(0.25);
+            scene.bouncePad?.(traversal.bouncePadId);
+            options.onFeedback?.({ type: "bounce" });
+          }
           if (traversal.checkpointChanged || traversal.recovered) {
             checkpoint = { ...controller.checkpoint };
           }
@@ -1438,6 +1467,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
       obby: level.course ? sampleObby(level.course, courseTime) : undefined,
       checkpointId: controller.checkpointId,
       recovering: controller.recoveryRemaining > 0,
+      ...(level.course && currentGrowth()
+        ? { growthScale: growthScaleFor(save, currentGrowth())! }
+        : {}),
     });
     emitStatus();
     animationFrame = windowTarget.requestAnimationFrame(frame);

@@ -15,9 +15,13 @@ import type { GameInputSnapshot, PositionSnapshot } from "./types";
 // Course definition
 // ---------------------------------------------------------------------------
 
-/** Sinusoidal translation along one horizontal axis: offset = distance * sin(2π t / period + phase). */
+/**
+ * Sinusoidal translation along one axis: offset = distance * sin(2π t / period + phase).
+ * Published courses only use the horizontal axes; `y` drives v4 lifts
+ * (DESIGN-025 D-04), whose riders are carried vertically by the same delta rule.
+ */
 export interface ObbyMotion {
-  axis: "x" | "z";
+  axis: "x" | "y" | "z";
   /** Amplitude in metres. */
   distance: number;
   /** Seconds per full cycle. Non-positive or non-finite disables the motion. */
@@ -34,12 +38,20 @@ export interface ObbyRotation {
   phase?: number;
 }
 
+/** A bounce pad launch (DESIGN-025 D-04): landing on the top sends the player straight up. */
+export interface ObbyBounce {
+  /** Upward launch speed in m/s. Non-positive or non-finite disables the pad. */
+  velocity: number;
+}
+
 /** A finite solid axis-aligned box. `center` is the box centre, `size` the full extents. */
 export interface ObbyPlatform {
   id: string;
   center: PositionSnapshot;
   size: PositionSnapshot;
   motion?: ObbyMotion;
+  /** Present only on v4 bounce pads. */
+  bounce?: ObbyBounce;
 }
 
 /**
@@ -184,12 +196,31 @@ export interface ObbyState {
   /** Whether `jumpPressed` was true on the previous step; enforces one jump per press. */
   jumpHeld: boolean;
   /**
+   * Whether the single mid-air launch of this airtime has been spent. Only
+   * written when the step's abilities include a double jump, so a jump-only
+   * state never gains the field.
+   */
+  airJumpUsed?: boolean;
+  /**
    * Whether the player has stood on a platform since the last recovery. A
    * fall recovers immediately when true; when false (the spawn found no
    * support) a fall waits for the recovery cooldown so a hopeless spawn
    * cannot re-fire every frame.
    */
   settled: boolean;
+}
+
+/**
+ * Lasting growth moves for one step (DESIGN-025 D-01). Absent means jump-only
+ * with `tuning.jumpVelocity`, which is exactly the pre-ladder physics.
+ */
+export interface ObbyAbilities {
+  /** Ground and coyote jump launch in m/s; replaces `tuning.jumpVelocity` when finite and positive. */
+  jumpVelocity?: number;
+  /** One mid-air launch per airtime in m/s, reset on landing. Absent disables the double jump. */
+  airJumpVelocity?: number;
+  /** Fall speed cap in m/s while Jump is held and falling. Absent disables gliding. */
+  glideFallSpeed?: number;
 }
 
 export interface ObbyStepOptions {
@@ -205,6 +236,10 @@ export interface ObbyStepOptions {
   canJump: boolean;
   /** Press edge for this frame. A held value is tolerated and still yields one jump per press. */
   jumpPressed: boolean;
+  /** Whether the Jump control is currently held down (glide input). Ignored without a glide ability. */
+  jumpHeld?: boolean;
+  /** Growth moves; omit for jump-only. */
+  abilities?: ObbyAbilities;
   /** Player collider radius in metres. */
   radius: number;
   /** Player collider height in metres (feet to head). */
@@ -215,6 +250,8 @@ export interface ObbyStepOptions {
 export interface ObbyStepResult {
   recovered: boolean;
   checkpointChanged: boolean;
+  /** Present only when a bounce pad launched the player this step: that pad's id. */
+  bouncePadId?: string;
 }
 
 export type ObbyMoveInput = Pick<GameInputSnapshot, "moveX" | "moveY">;
@@ -263,13 +300,17 @@ function cycleAngle(period: unknown, phase: unknown, time: number): number {
   return offset + TAU * (wrapTime(time, seconds) / seconds);
 }
 
-function motionOffset(motion: ObbyMotion | undefined, time: number): { x: number; z: number } {
-  if (!motion) return { x: 0, z: 0 };
+function motionOffset(
+  motion: ObbyMotion | undefined,
+  time: number,
+): { x: number; y: number; z: number } {
+  if (!motion) return { x: 0, y: 0, z: 0 };
   const distance = finiteOr(motion.distance, 0);
   const period = finiteOr(motion.period, 0);
-  if (distance === 0 || period <= 0) return { x: 0, z: 0 };
+  if (distance === 0 || period <= 0) return { x: 0, y: 0, z: 0 };
   const offset = distance * Math.sin(cycleAngle(period, motion.phase, time));
-  return motion.axis === "z" ? { x: 0, z: offset } : { x: offset, z: 0 };
+  if (motion.axis === "y") return { x: 0, y: offset, z: 0 };
+  return motion.axis === "z" ? { x: 0, y: 0, z: offset } : { x: offset, y: 0, z: 0 };
 }
 
 function motionSpeed(motion: ObbyMotion | undefined): number {
@@ -297,9 +338,16 @@ interface Box {
   maxZ: number;
   bottom: number;
   top: number;
+  /**
+   * Top at the previous substep. Equal to `top` for every box without vertical
+   * motion, so the swept landing test is unchanged for published courses.
+   */
+  prevTop: number;
   isStatic: boolean;
   /** Upper bound on the platform's speed in m/s, from its motion definition. */
   speed: number;
+  /** Bounce pad launch speed in m/s; 0 for an ordinary surface. */
+  bounce: number;
 }
 
 interface Capsule {
@@ -311,13 +359,24 @@ interface Capsule {
   angle: number;
 }
 
-function sampleBox(platform: ObbyPlatform, time: number): Box {
+function sampleBox(platform: ObbyPlatform, time: number, previousTime?: number): Box {
   const center = sanitizePoint(platform.center);
   const raw = sanitizePoint(platform.size);
   const size = { x: Math.abs(raw.x), y: Math.abs(raw.y), z: Math.abs(raw.z) };
+  const baseY = center.y;
   const offset = motionOffset(platform.motion, time);
   center.x += offset.x;
   center.z += offset.z;
+  const vertical = platform.motion?.axis === "y";
+  // Only a vertical mover changes Y, so horizontal and static boxes keep their
+  // exact authored centre (including the sign of a zero).
+  if (vertical) center.y += offset.y;
+  const top = center.y + size.y / 2;
+  const prevTop =
+    vertical && previousTime !== undefined
+      ? baseY + motionOffset(platform.motion, previousTime).y + size.y / 2
+      : top;
+  const bounce = positiveOr(platform.bounce?.velocity, 0);
   return {
     id: String(platform.id),
     center,
@@ -327,9 +386,11 @@ function sampleBox(platform: ObbyPlatform, time: number): Box {
     minZ: center.z - size.z / 2,
     maxZ: center.z + size.z / 2,
     bottom: center.y - size.y / 2,
-    top: center.y + size.y / 2,
+    top,
+    prevTop,
     isStatic: isStaticMotion(platform.motion),
     speed: motionSpeed(platform.motion),
+    bounce,
   };
 }
 
@@ -749,12 +810,21 @@ export function stepObby(
   if (!canJump) state.jumpBufferRemaining = 0;
   else if (pressEdge) state.jumpBufferRemaining = tuning.jumpBufferSeconds;
 
+  // Growth moves (DESIGN-025 D-01). Without abilities every value below falls
+  // back to the jump-only path, which is the unchanged pre-ladder physics.
+  const abilities = options.abilities;
+  const jumpVelocity = positiveOr(abilities?.jumpVelocity, tuning.jumpVelocity);
+  const airJumpVelocity = positiveOr(abilities?.airJumpVelocity, 0);
+  const glideFallSpeed = positiveOr(abilities?.glideFallSpeed, 0);
+  const gliding = glideFallSpeed > 0 && options.jumpHeld === true;
+
   const substeps = chooseSubsteps(dt, course, state, radius, tuning);
   const h = dt / substeps;
 
   for (let index = 1; index <= substeps; index += 1) {
     const time = timeStart + dt * (index / substeps);
-    const boxes = platforms.map((platform) => sampleBox(platform, time));
+    const previousTime = timeStart + dt * ((index - 1) / substeps);
+    const boxes = platforms.map((platform) => sampleBox(platform, time, previousTime));
     const position = state.position;
 
     state.recoveryRemaining = Math.max(0, state.recoveryRemaining - h);
@@ -765,12 +835,18 @@ export function stepObby(
       const support = state.supportAnchor ? nearestBox(boxes, state.supportId, state.supportAnchor) : null;
       if (support && state.supportAnchor) {
         const carryX = support.center.x - state.supportAnchor.x;
+        const carryY = support.center.y - state.supportAnchor.y;
         const carryZ = support.center.z - state.supportAnchor.z;
+        // Only a lift moves vertically; every other surface keeps the exact
+        // two-axis carry the published courses were tuned on.
+        const carry =
+          carryY === 0 ? Math.hypot(carryX, carryZ) : Math.hypot(carryX, carryY, carryZ);
         // A delta the platform could not have produced in one substep means a
         // clock discontinuity or an id collision: re-anchor without moving.
-        if (Math.hypot(carryX, carryZ) <= support.speed * h + 1e-6) {
+        if (carry <= support.speed * h + 1e-6) {
           position.x += carryX;
           position.z += carryZ;
+          if (carryY !== 0) position.y += carryY;
         }
         state.supportAnchor = { ...support.center };
       } else {
@@ -786,11 +862,23 @@ export function stepObby(
       state.jumpBufferRemaining > 0 &&
       (state.grounded || state.coyoteRemaining > 0)
     ) {
-      state.velocityY = tuning.jumpVelocity;
+      state.velocityY = jumpVelocity;
       state.grounded = false;
       state.supportId = null;
       state.supportAnchor = null;
       state.coyoteRemaining = 0;
+      state.jumpBufferRemaining = 0;
+    } else if (
+      airJumpVelocity > 0 &&
+      canJump &&
+      state.jumpBufferRemaining > 0 &&
+      !state.grounded &&
+      state.airJumpUsed !== true
+    ) {
+      // The double jump: one launch per airtime once the coyote window has
+      // closed, so walking off an edge still gets its ordinary jump first.
+      state.velocityY = airJumpVelocity;
+      state.airJumpUsed = true;
       state.jumpBufferRemaining = 0;
     }
     state.jumpBufferRemaining = Math.max(0, state.jumpBufferRemaining - h);
@@ -815,6 +903,7 @@ export function stepObby(
     // Vertical: a grounded player keeps or loses support; an airborne player
     // integrates gravity with swept top/bottom tests so thin surfaces hold.
     const prevFeet = position.y;
+    let standingOn: Box | null = null;
     if (state.grounded) {
       const support = findSupport(
         boxes,
@@ -831,6 +920,7 @@ export function stepObby(
         position.y = support.top;
         state.velocityY = 0;
         state.settled = true;
+        standingOn = support;
       } else {
         state.grounded = false;
         state.supportId = null;
@@ -840,8 +930,17 @@ export function stepObby(
     if (!state.grounded) {
       // Exact ballistic update for constant gravity: the same trajectory at
       // any substep size, so 30 Hz and 60 Hz jumps reach the same apex.
-      const rise = state.velocityY * h + 0.5 * tuning.gravity * h * h;
-      state.velocityY += tuning.gravity * h;
+      let rise: number;
+      if (gliding && state.velocityY <= -glideFallSpeed) {
+        // Holding Jump while falling caps the descent; horizontal control
+        // keeps its full speed.
+        rise = -glideFallSpeed * h;
+        state.velocityY = -glideFallSpeed;
+      } else {
+        rise = state.velocityY * h + 0.5 * tuning.gravity * h * h;
+        state.velocityY += tuning.gravity * h;
+        if (gliding && state.velocityY < -glideFallSpeed) state.velocityY = -glideFallSpeed;
+      }
       position.y += rise;
       if (rise > 0) {
         const prevHead = prevFeet + height;
@@ -859,7 +958,9 @@ export function stepObby(
       } else {
         let landing: Box | null = null;
         for (const box of boxes) {
-          if (prevFeet < box.top - tuning.stepTolerance || position.y > box.top) continue;
+          // `prevTop` equals `top` unless the surface moves vertically, so a
+          // rising lift cannot overtake falling feet between two substeps.
+          if (prevFeet < box.prevTop - tuning.stepTolerance || position.y > box.top) continue;
           if (!supports(box, position.x, position.z, reach)) continue;
           if (landing === null || box.top > landing.top) landing = box;
         }
@@ -870,9 +971,24 @@ export function stepObby(
           state.supportId = landing.id;
           state.supportAnchor = { ...landing.center };
           state.settled = true;
+          standingOn = landing;
         }
       }
     }
+    if (state.grounded && standingOn !== null && standingOn.bounce > 0) {
+      // A bounce pad launches straight up on contact. The launch is a fresh
+      // airtime: no coyote or buffered jump may replace it, and a double jump
+      // stays available.
+      state.velocityY = standingOn.bounce;
+      state.grounded = false;
+      state.supportId = null;
+      state.supportAnchor = null;
+      state.coyoteRemaining = 0;
+      state.jumpBufferRemaining = 0;
+      if (airJumpVelocity > 0) state.airJumpUsed = false;
+      result.bouncePadId = standingOn.id;
+    }
+    if (airJumpVelocity > 0 && state.grounded) state.airJumpUsed = false;
     state.coyoteRemaining = state.grounded
       ? tuning.coyoteSeconds
       : Math.max(0, state.coyoteRemaining - h);

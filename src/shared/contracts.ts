@@ -1,4 +1,5 @@
 import type { ParodyPeriodId } from './parody-catalog.js';
+import type { GrowthMoveId } from './abilities.js';
 
 export type Ability = "move" | "interact" | "jump";
 export type AppearanceStage = "infant" | "child";
@@ -100,6 +101,14 @@ export interface ActiveLevelView {
   majorMemoryId?: string;
   /** Present only for an authored v2 plan; IDs name optional ordinary encounters. */
   optionalEncounterIds?: string[];
+  /**
+   * DESIGN-025 growth moves frozen by the plan for this level, normally
+   * `abilitiesForAge(startAgeYears)`. The runtime keeps only growth move names
+   * (a family plan's `move`/`interact` entries are ignored) and always grants
+   * jump. Absent means jump-only, except that the fixture editor playtest
+   * derives the set from `startAgeYears` for authored-level-v4 routes.
+   */
+  growthMoves?: readonly (GrowthMoveId | string)[];
   pickups: EquipmentView[];
   encounters: EncounterView[];
   /** Added after the initial combat contract; absent in older serialized fixtures. */

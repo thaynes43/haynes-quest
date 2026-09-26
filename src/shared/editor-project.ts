@@ -9,8 +9,11 @@ import {
   AUTHORED_LEVEL_LIMITS,
   AUTHORED_LEVEL_SCHEMA_VERSION_V2,
   AUTHORED_LEVEL_SCHEMA_VERSION_V3,
+  AUTHORED_LEVEL_SCHEMA_VERSION_V4,
   AUTHORED_LEVEL_IDS,
   authoredLevelDocumentSchema,
+  authoredLevelV4ConnectionSchema,
+  authoredLevelV4PieceSchema,
   resolveAuthoredLevelDocument,
   validateAuthoredLevelDocument,
   type AuthoredAnchor,
@@ -27,6 +30,7 @@ import {
   type AuthoredPosition,
   type ResolvedAuthoredLevel,
 } from "./authored-level";
+import { validateGrowthRequirements } from "./authored-level-growth";
 import type { EncounterKind, EncounterRole } from "./contracts";
 import { validateEditorGameplayGuards } from "./editor-gameplay-guards";
 import {
@@ -98,7 +102,10 @@ export type WorldEditorLevelDocument = Omit<
   AuthoredLevelDocument,
   "schemaVersion" | "id"
 > & {
-  readonly schemaVersion: typeof AUTHORED_LEVEL_SCHEMA_VERSION_V3;
+  /** V4 is opt-in per chapter through `chapter.level.upgrade` (DESIGN-025). */
+  readonly schemaVersion:
+    | typeof AUTHORED_LEVEL_SCHEMA_VERSION_V3
+    | typeof AUTHORED_LEVEL_SCHEMA_VERSION_V4;
   readonly id: string;
 };
 export type LevelEditorLevelDocument =
@@ -300,19 +307,27 @@ const encounterSlotSchema = z.enum(AUTHORED_ENCOUNTER_SLOTS);
 // describes complete payloads without creating a second structural contract.
 const authoredLevelV2Schema = authoredLevelDocumentSchema.options[1];
 const authoredLevelV3Schema = authoredLevelDocumentSchema.options[2];
-const pieceSchema = authoredLevelV2Schema.shape.pieces.element;
+const authoredLevelV4Schema = authoredLevelDocumentSchema.options[3];
+const worldLevelSchema = z.discriminatedUnion("schemaVersion", [
+  authoredLevelV3Schema,
+  authoredLevelV4Schema,
+]);
+// Commands accept the v4 superset. The project is re-parsed after every
+// command, so a v4-only piece or connection still fails structurally in any
+// v1–v3 level and the whole batch rolls back.
+const pieceSchema = authoredLevelV4PieceSchema;
 const anchorSchema = authoredLevelV2Schema.shape.anchors.shape.spawn;
 const encounterAnchorSchema =
   authoredLevelV2Schema.shape.anchors.shape.encounters.shape.boss;
 const positionSchema = anchorSchema.shape.position;
 const arenaSchema = encounterAnchorSchema.shape.arena;
-const connectionSchema = authoredLevelV2Schema.shape.connections.element;
+const connectionSchema = authoredLevelV4ConnectionSchema;
 const connectionMatchSchema = z
   .object({
     index: z.number().int().nonnegative().optional(),
     from: identifierSchema,
     to: identifierSchema,
-    mode: z.enum(["walk", "jump", "ride"]),
+    mode: z.enum(["walk", "jump", "ride", "bounce"]),
   })
   .strict();
 
@@ -425,7 +440,7 @@ export const levelEditorChapterV2Schema = z
     subtitle: portableProseSchema(100),
     description: portableProseSchema(240),
     sourceTemplateId: z.enum(LEVEL_EDITOR_TEMPLATE_ROUTE_IDS),
-    level: authoredLevelV3Schema,
+    level: worldLevelSchema,
     representedDateRange: levelEditorRepresentedDateRangeSchema,
     recoveredAge: levelEditorRecoveredAgeSchema,
     previewMemories: z.tuple([
@@ -1090,6 +1105,20 @@ function validateWorldProject(
           ),
         );
     }
+    for (const entry of validateGrowthRequirements(chapter.level, {
+      startAgeYears: chapter.recoveredAge.fromYears,
+      ...(previousChapter
+        ? { previousStartAgeYears: previousChapter.recoveredAge.fromYears }
+        : {}),
+    }))
+      issues.push(
+        issue(
+          "semantic",
+          prefixedAuthoredPath(`${prefix}.level`, entry.path),
+          entry.code,
+          entry.message,
+        ),
+      );
     if (periodId === "rat-casino-v1" && startDate < "2014-08-18")
       issues.push(
         issue(
@@ -1454,6 +1483,10 @@ export type LevelEditorCommand =
       readonly index?: number;
     } & ChapterCommand)
   | ({ readonly type: "chapter.remove" } & ChapterCommand)
+  | ({
+      readonly type: "chapter.level.upgrade";
+      readonly schemaVersion: typeof AUTHORED_LEVEL_SCHEMA_VERSION_V4;
+    } & ChapterCommand)
   | ({ readonly type: "chapter.reorder"; readonly index: number } & ChapterCommand)
   | ({ readonly type: "chapter.rename"; readonly name: string } & ChapterCommand)
   | ({
@@ -1602,6 +1635,13 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
     .strict(),
   z
     .object({ type: z.literal("chapter.remove"), ...chapterIdField })
+    .strict(),
+  z
+    .object({
+      type: z.literal("chapter.level.upgrade"),
+      ...chapterIdField,
+      schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION_V4),
+    })
     .strict(),
   z
     .object({
@@ -2398,6 +2438,20 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
       },
       command.index ?? sourceIndex + 1,
     );
+    return;
+  }
+  if (command.type === "chapter.level.upgrade") {
+    worldProjectForCommand(project);
+    const worldChapter = worldChapterForCommand(chapter);
+    if (worldChapter.level.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V4)
+      commandError(
+        "$.chapterId",
+        "level.version",
+        `Chapter ${command.chapterId} already uses ${AUTHORED_LEVEL_SCHEMA_VERSION_V4}`,
+      );
+    // Every v3 document is a valid v4 document with the same content; the
+    // upgrade only unlocks the v4 pieces, connections and decor.
+    worldChapter.level.schemaVersion = command.schemaVersion;
     return;
   }
   if (command.type === "chapter.remove") {

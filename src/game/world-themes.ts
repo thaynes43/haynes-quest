@@ -1,5 +1,6 @@
 import {
   AUTHORED_LEVEL_SCHEMA_VERSION_V3,
+  AUTHORED_LEVEL_SCHEMA_VERSION_V4,
   type AuthoredLevelDocument,
   type AuthoredLevelTheme,
 } from "../shared/authored-level";
@@ -304,14 +305,15 @@ export const WORLD_THEMES: Readonly<
 > = Object.freeze({ garden, party, arcade, toybox, casino });
 
 /**
- * V3 preview routes choose their own world. Published v1/v2 and legacy saves
+ * V3/V4 world routes choose their own world. Published v1/v2 and legacy saves
  * retain the exact era-driven split that predates authored theme selection.
  */
 export function resolveRuntimeWorldTheme(
   authored: Pick<AuthoredLevelDocument, "schemaVersion" | "theme"> | undefined,
   laterEra: boolean,
 ): RuntimeWorldTheme {
-  return authored?.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V3
+  return authored?.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V3 ||
+    authored?.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V4
     ? WORLD_THEMES[authored.theme]
     : laterEra
       ? WORLD_THEMES.party

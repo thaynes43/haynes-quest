@@ -1,0 +1,421 @@
+{
+  "expectedRevision": 0,
+  "commands": [
+    {
+      "type": "project.rename",
+      "name": "Vertical Growth Demo"
+    },
+    {
+      "type": "chapter.level.upgrade",
+      "chapterId": "chapter-2",
+      "schemaVersion": "authored-level-v4"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "chapter-2",
+      "pieceId": "besties-practice-ground",
+      "newPieceId": "catch-floor"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "chapter-2",
+      "pieceId": "party-terrace-1",
+      "newPieceId": "hj-ledge"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "chapter-2",
+      "pieceId": "party-terrace-2",
+      "newPieceId": "dj-ledge"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "chapter-2",
+      "pieceId": "besties-practice-down-1",
+      "newPieceId": "sky-balcony"
+    },
+    {
+      "type": "piece.rename",
+      "chapterId": "chapter-2",
+      "pieceId": "besties-practice-down-3",
+      "newPieceId": "lift-dock"
+    },
+    {
+      "type": "connection.remove",
+      "chapterId": "chapter-2",
+      "match": {
+        "from": "dj-ledge",
+        "to": "party-terrace-3",
+        "mode": "jump"
+      }
+    },
+    {
+      "type": "connection.remove",
+      "chapterId": "chapter-2",
+      "match": {
+        "from": "party-terrace-3",
+        "to": "sky-balcony",
+        "mode": "jump"
+      }
+    },
+    {
+      "type": "connection.remove",
+      "chapterId": "chapter-2",
+      "match": {
+        "from": "sky-balcony",
+        "to": "besties-practice-down-2",
+        "mode": "jump"
+      }
+    },
+    {
+      "type": "connection.remove",
+      "chapterId": "chapter-2",
+      "match": {
+        "from": "besties-practice-down-2",
+        "to": "lift-dock",
+        "mode": "jump"
+      }
+    },
+    {
+      "type": "piece.remove",
+      "chapterId": "chapter-2",
+      "pieceId": "party-terrace-3"
+    },
+    {
+      "type": "piece.remove",
+      "chapterId": "chapter-2",
+      "pieceId": "besties-practice-down-2"
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "chapter-2",
+      "pieceId": "catch-floor",
+      "piece": {
+        "type": "platform",
+        "id": "catch-floor",
+        "center": {
+          "x": 0,
+          "y": -0.3,
+          "z": -8
+        },
+        "size": {
+          "x": 12,
+          "y": 0.6,
+          "z": 11
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "chapter-2",
+      "pieceId": "hj-ledge",
+      "piece": {
+        "type": "platform",
+        "id": "hj-ledge",
+        "center": {
+          "x": 0,
+          "y": 0.3,
+          "z": -6.4
+        },
+        "size": {
+          "x": 5,
+          "y": 0.6,
+          "z": 3.6
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "chapter-2",
+      "pieceId": "dj-ledge",
+      "piece": {
+        "type": "platform",
+        "id": "dj-ledge",
+        "center": {
+          "x": 0,
+          "y": 1.5,
+          "z": -10.8
+        },
+        "size": {
+          "x": 5,
+          "y": 0.6,
+          "z": 3.6
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "chapter-2",
+      "pieceId": "sky-balcony",
+      "piece": {
+        "type": "platform",
+        "id": "sky-balcony",
+        "center": {
+          "x": 1.5,
+          "y": 3.7,
+          "z": -17
+        },
+        "size": {
+          "x": 9,
+          "y": 0.6,
+          "z": 4.8
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.update",
+      "chapterId": "chapter-2",
+      "pieceId": "lift-dock",
+      "piece": {
+        "type": "platform",
+        "id": "lift-dock",
+        "center": {
+          "x": 0,
+          "y": -0.3,
+          "z": -26.15
+        },
+        "size": {
+          "x": 6,
+          "y": 0.6,
+          "z": 7.3
+        }
+      },
+      "carryAttached": false
+    },
+    {
+      "type": "piece.add",
+      "chapterId": "chapter-2",
+      "piece": {
+        "type": "bounce-pad",
+        "id": "spring-pad",
+        "center": {
+          "x": 0,
+          "y": 1.5,
+          "z": -13.4
+        },
+        "size": {
+          "x": 1.8,
+          "y": 0.6,
+          "z": 1.6
+        },
+        "strength": "big"
+      }
+    },
+    {
+      "type": "piece.add",
+      "chapterId": "chapter-2",
+      "piece": {
+        "type": "lift",
+        "id": "sky-lift",
+        "center": {
+          "x": 0,
+          "y": -0.2,
+          "z": -21
+        },
+        "size": {
+          "x": 3,
+          "y": 0.4,
+          "z": 2.8
+        },
+        "travel": {
+          "distance": 4,
+          "period": 8
+        }
+      }
+    },
+    {
+      "type": "piece.add",
+      "chapterId": "chapter-2",
+      "piece": {
+        "type": "platform",
+        "id": "golden-perch",
+        "center": {
+          "x": 4.5,
+          "y": 2.7,
+          "z": -12.4
+        },
+        "size": {
+          "x": 3,
+          "y": 0.6,
+          "z": 3
+        }
+      }
+    },
+    {
+      "type": "piece.add",
+      "chapterId": "chapter-2",
+      "piece": {
+        "type": "checkpoint",
+        "id": "dj-ledge-safe",
+        "platformId": "dj-ledge",
+        "position": {
+          "x": 0,
+          "y": 1.8,
+          "z": -10.8
+        },
+        "activation": {
+          "type": "platform"
+        }
+      }
+    },
+    {
+      "type": "piece.add",
+      "chapterId": "chapter-2",
+      "piece": {
+        "type": "checkpoint",
+        "id": "balcony-safe",
+        "platformId": "sky-balcony",
+        "position": {
+          "x": 0,
+          "y": 4,
+          "z": -16.2
+        },
+        "activation": {
+          "type": "platform"
+        }
+      }
+    },
+    {
+      "type": "connection.update",
+      "chapterId": "chapter-2",
+      "match": {
+        "from": "party-welcome",
+        "to": "hj-ledge",
+        "mode": "jump"
+      },
+      "connection": {
+        "from": "party-welcome",
+        "to": "hj-ledge",
+        "mode": "jump",
+        "safeMissPlatformId": "catch-floor",
+        "requires": "high-jump"
+      }
+    },
+    {
+      "type": "connection.update",
+      "chapterId": "chapter-2",
+      "match": {
+        "from": "hj-ledge",
+        "to": "dj-ledge",
+        "mode": "jump"
+      },
+      "connection": {
+        "from": "hj-ledge",
+        "to": "dj-ledge",
+        "mode": "jump",
+        "safeMissPlatformId": "catch-floor",
+        "requires": "double-jump"
+      }
+    },
+    {
+      "type": "connection.add",
+      "chapterId": "chapter-2",
+      "connection": {
+        "from": "dj-ledge",
+        "to": "spring-pad",
+        "mode": "walk"
+      }
+    },
+    {
+      "type": "connection.add",
+      "chapterId": "chapter-2",
+      "connection": {
+        "from": "spring-pad",
+        "to": "sky-balcony",
+        "mode": "bounce"
+      }
+    },
+    {
+      "type": "connection.add",
+      "chapterId": "chapter-2",
+      "connection": {
+        "from": "sky-balcony",
+        "to": "sky-lift",
+        "mode": "ride"
+      }
+    },
+    {
+      "type": "connection.add",
+      "chapterId": "chapter-2",
+      "connection": {
+        "from": "sky-lift",
+        "to": "lift-dock",
+        "mode": "ride"
+      }
+    },
+    {
+      "type": "connection.update",
+      "chapterId": "chapter-2",
+      "match": {
+        "from": "lift-dock",
+        "to": "party-picnic",
+        "mode": "jump"
+      },
+      "connection": {
+        "from": "lift-dock",
+        "to": "party-picnic",
+        "mode": "walk"
+      }
+    },
+    {
+      "type": "connection.add",
+      "chapterId": "chapter-2",
+      "connection": {
+        "from": "dj-ledge",
+        "to": "golden-perch",
+        "mode": "jump",
+        "requires": "double-jump"
+      }
+    },
+    {
+      "type": "connection.add",
+      "chapterId": "chapter-2",
+      "connection": {
+        "from": "golden-perch",
+        "to": "sky-balcony",
+        "mode": "jump",
+        "requires": "double-jump"
+      }
+    },
+    {
+      "type": "main-path.set",
+      "chapterId": "chapter-2",
+      "platformIds": [
+        "party-welcome",
+        "hj-ledge",
+        "dj-ledge",
+        "spring-pad",
+        "sky-balcony",
+        "sky-lift",
+        "lift-dock",
+        "party-picnic",
+        "ribbon-lane",
+        "ribbon-rest",
+        "party-ferry",
+        "party-dock",
+        "zigzag-hop-1",
+        "zigzag-hop-2",
+        "party-grove",
+        "turnstile-deck",
+        "party-fair",
+        "final-hop-1",
+        "final-hop-2",
+        "besties-court",
+        "party-reward"
+      ]
+    },
+    {
+      "type": "branch.add",
+      "chapterId": "chapter-2",
+      "platformIds": [
+        "dj-ledge",
+        "golden-perch",
+        "sky-balcony"
+      ]
+    }
+  ]
+}

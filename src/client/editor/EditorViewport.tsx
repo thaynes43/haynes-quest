@@ -180,6 +180,31 @@ function buildSceneEntries(
         root.add(rotationGuide);
       }
       root.add(visual);
+    } else if (piece.type === "lift" || piece.type === "bounce-pad") {
+      // V4 growth pieces (DESIGN-025): a lift is drawn at its bottom stop with
+      // a dashed guide to its top stop; a bounce pad is a bright slab.
+      root.position.copy(piece.center);
+      const mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(piece.size.x, piece.size.y, piece.size.z),
+        basicMaterial(
+          selectedColor(active, piece.type === "lift" ? 0x739ba0 : 0xe7a86b),
+          0.9,
+        ),
+      );
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      root.add(mesh);
+      if (piece.type === "lift") {
+        const guide = new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(0, 0, 0),
+            new THREE.Vector3(0, piece.travel.distance, 0),
+          ]),
+          new THREE.LineDashedMaterial({ color: INK, dashSize: 0.25, gapSize: 0.15 }),
+        );
+        guide.computeLineDistances();
+        root.add(guide);
+      }
     } else {
       root.position.copy(piece.position);
       if (piece.activation.type === "box") {
@@ -249,7 +274,10 @@ function buildSceneEntries(
 
   const platformCenters = new Map(
     document.pieces.flatMap((piece) =>
-      piece.type === "platform" || piece.type === "moving-platform"
+      piece.type === "platform" ||
+      piece.type === "moving-platform" ||
+      piece.type === "lift" ||
+      piece.type === "bounce-pad"
         ? [[piece.id, piece.center] as const]
         : [],
     ),

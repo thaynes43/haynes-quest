@@ -27,7 +27,9 @@ import {
   type AuthoredEncounterAnchor,
   type AuthoredLevelDocument,
   type AuthoredLevelIssue,
+  type AuthoredBouncePadPiece,
   type AuthoredLevelPiece,
+  type AuthoredLiftPiece,
   type AuthoredMovingPlatformPiece,
   type AuthoredPlatformPiece,
   type AuthoredPosition,
@@ -140,7 +142,11 @@ export type LevelEditorSectionResult =
   | { readonly ok: false; readonly issues: readonly AuthoredLevelIssue[] };
 
 type HorizontalAxis = "x" | "z";
-type PlatformPiece = AuthoredPlatformPiece | AuthoredMovingPlatformPiece;
+type PlatformPiece =
+  | AuthoredPlatformPiece
+  | AuthoredMovingPlatformPiece
+  | AuthoredLiftPiece
+  | AuthoredBouncePadPiece;
 
 interface HorizontalBounds {
   readonly minX: number;
@@ -161,8 +167,13 @@ function metres(value: number): string {
   return `${round(value)}m`;
 }
 
+/** A lift reports its top stop, so sections keep clear of its whole travel. */
 function platformTop(platform: PlatformPiece): number {
-  return platform.center.y + platform.size.y / 2;
+  return (
+    platform.center.y +
+    platform.size.y / 2 +
+    (platform.type === "lift" ? platform.travel.distance : 0)
+  );
 }
 
 function platformBottom(platform: PlatformPiece): number {
@@ -253,7 +264,12 @@ function size(
 }
 
 function isPlatform(piece: AuthoredLevelPiece): piece is PlatformPiece {
-  return piece.type === "platform" || piece.type === "moving-platform";
+  return (
+    piece.type === "platform" ||
+    piece.type === "moving-platform" ||
+    piece.type === "lift" ||
+    piece.type === "bounce-pad"
+  );
 }
 
 /**
@@ -724,7 +740,7 @@ export function planLevelEditorSection(
   // Leave room for six-decimal coordinate rounding below.
   const lateralLimit = maxLateral - 0.001;
   const blockers = level.pieces.filter(isPlatform);
-  let blocked: AuthoredPlatformPiece | AuthoredMovingPlatformPiece | undefined;
+  let blocked: PlatformPiece | undefined;
   const clearanceFor = (
     index: number,
     platform: PlatformPiece,

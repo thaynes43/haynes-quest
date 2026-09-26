@@ -113,6 +113,11 @@ export const gameplayFeedback = {
     cueId: "memory-collected",
     options: { gain: 0.7, playbackRate: 1.3 },
   },
+  // DESIGN-025 bounce pads reuse the landing cue, pitched up into a spring.
+  bounce: {
+    cueId: "movement-landed",
+    options: { gain: 0.9, playbackRate: 1.6 },
+  },
 } as const satisfies Readonly<
   Record<
     string,

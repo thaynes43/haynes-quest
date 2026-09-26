@@ -5,7 +5,7 @@ import type {
   MemoryView,
   SaveView,
 } from "../shared/contracts";
-import { createGame } from "../game/index";
+import { createGame, growthMoveCardsForAdvance } from "../game/index";
 import { getJoystickVector } from "../game/input";
 import type {
   AuthoredLevelResolver,
@@ -371,10 +371,19 @@ function Adventure({
         setPhotoDetail(null);
         if (action?.type === "recover-memory")
           setChapterMemoryId(action.memoryId);
-        if (!next.completed)
+        if (!next.completed) {
+          // DESIGN-025: a growth level adds a short card per newly unlocked move.
+          const moveCards = growthMoveCardsForAdvance(
+            before,
+            next,
+            authoredLevelResolver,
+          )
+            .map((card) => `${card.title}: ${card.body}`)
+            .join(" ");
           setChapterNotice(
-            `Three memories brought you to age ${next.ageYears}. Your next chapter begins in ${next.adventure?.activeLevel?.eraYear}. Bring your gear and keep exploring!`,
+            `Three memories brought you to age ${next.ageYears}. Your next chapter begins in ${next.adventure?.activeLevel?.eraYear}. Bring your gear and keep exploring!${moveCards ? ` ${moveCards}` : ""}`,
           );
+        }
       }
       return next;
     };
@@ -405,6 +414,7 @@ function Adventure({
             if (event.type === "hit") void sound.feedback("impact");
             else if (event.type === "defeat") void sound.feedback("defeat");
             else if (event.type === "ticket") void sound.feedback("ticket");
+            else if (event.type === "bounce") void sound.feedback("bounce");
             else if (event.type === "token")
               void sound.feedback("token", 1 + Math.min(event.streak, 5) * 0.04);
           },

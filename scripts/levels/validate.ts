@@ -69,4 +69,35 @@ if (requested.length === 0) {
       process.exitCode = 1;
     }
   }
+
+  // DESIGN-025 example world: generated commands must replay byte-identically
+  // into the checked-in authored-level-v4 project.
+  const demoPath = fileURLToPath(
+    new URL("./examples/vertical-v4-demo.project.json", import.meta.url),
+  );
+  try {
+    const source = await readFile(demoPath, "utf8");
+    const { project, levels } = resolveLevelEditorProject(JSON.parse(source));
+    const commands = JSON.parse(
+      await readFile(
+        new URL("./examples/vertical-v4-demo.commands.json", import.meta.url),
+        "utf8",
+      ),
+    );
+    const rebuilt = applyLevelEditorCommands(
+      createWorldEditorProject({ projectId: "vertical-v4-demo" }),
+      commands,
+    );
+    if (!rebuilt.ok) throw new Error("Vertical demo command history no longer builds");
+    if (serializeLevelEditorProject(rebuilt.project) !== source)
+      throw new Error("Vertical demo fixture differs from its shared editor commands");
+    console.log(
+      `${demoPath}: valid ${project.projectId}; ${project.chapters.length} chapters, ${Object.keys(levels).length} resolved routes; command history matches`,
+    );
+  } catch (error) {
+    console.error(
+      `${demoPath}: ${error instanceof Error ? error.message : "Validation failed"}`,
+    );
+    process.exitCode = 1;
+  }
 }
