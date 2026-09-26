@@ -42,6 +42,7 @@ nav:
       - Shared editor documents: adrs/003-shared-level-editor-documents.md
       - Versioned world projects: adrs/004-versioned-world-projects.md
       - Family sign-in and admission: adrs/005-family-sign-in-and-admission.md
+      - Playtest isolation and public surface: adrs/006-release-isolation-and-public-surface.md
       - ADR template: adrs/000-template.md
   - Domain language:
       - Ubiquitous language: domain-driven-design/001-ubiquitous-language.md

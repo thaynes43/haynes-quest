@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { and, desc, eq, gt, isNotNull, isNull, sql } from 'drizzle-orm';
 import { drizzle, type NodePgDatabase } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
+import type { Pool } from 'pg';
 import type { GameplayActionRequest } from '../../shared/contracts.js';
 import { createInitialFriendlyState } from '../../shared/friendly.js';
 import {
@@ -19,9 +19,11 @@ import {
   type StartFamilySaveCommand,
   validateSaveRecord,
 } from '../domain.js';
+import type { DiagnosticSink } from '../diagnostics.js';
 import { AppError } from '../errors.js';
 import { fixtureSessions, players, questSchema, saves, setupPreviews } from './schema.js';
 import { migrateQuestDatabase } from './migrate.js';
+import { createDatabasePool } from './pool.js';
 
 type Database = NodePgDatabase<typeof questSchema>;
 type PreviewRow = typeof setupPreviews.$inferSelect;
@@ -37,14 +39,14 @@ export class PostgresQuestStore implements QuestStore {
     this.db = drizzle(pool, { schema: questSchema });
   }
 
-  static connect(databaseUrl: string): PostgresQuestStore {
+  static connect(databaseUrl: string, sink?: DiagnosticSink): PostgresQuestStore {
     return new PostgresQuestStore(
-      new Pool({
+      createDatabasePool({
         connectionString: databaseUrl,
         max: 10,
         connectionTimeoutMillis: 5_000,
         idleTimeoutMillis: 30_000,
-      }),
+      }, sink),
     );
   }
 

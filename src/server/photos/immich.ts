@@ -65,8 +65,9 @@ const searchResponseSchema = z
 
 /**
  * Family search results (DESIGN-024 D-04). Fields beyond identity are optional
- * so one endpoint omitting them (smart search has no `people`) cannot fail the
- * whole page; eligibility still fails closed on what is present.
+ * so one endpoint omitting them cannot fail the whole page; eligibility still
+ * fails closed on what is present. Smart search sends `people: []` because it
+ * never loads people; familyAsset reads that as unknown.
  */
 const familyAssetSchema = z
   .object({
@@ -228,7 +229,8 @@ export class ImmichPhotoSource implements JourneyPhotoSource, FamilyPhotoLibrary
       !isDateOnly(request.fromDate) || !isDateOnly(request.toDate) || request.fromDate > request.toDate ||
       !Number.isSafeInteger(request.page) || request.page < 1 || request.page > FAMILY_MAX_PAGE ||
       !Number.isSafeInteger(request.size) || request.size < 1 || request.size > FAMILY_MAX_PAGE_SIZE ||
-      (request.query !== undefined && (request.query.trim().length === 0 || request.query.length > 120))
+      (request.query !== undefined && (request.query.trim().length === 0 || request.query.length > 120)) ||
+      (request.order !== undefined && (request.query !== undefined || !['asc', 'desc'].includes(request.order)))
     ) throw new RangeError('Invalid family search');
     // Immich filters on the UTC instant; a local date can sit up to a day
     // either side of it, so over-fetch by a day and filter on localDateTime.
@@ -248,7 +250,7 @@ export class ImmichPhotoSource implements JourneyPhotoSource, FamilyPhotoLibrary
       {
         method: 'POST',
         body: JSON.stringify(request.query === undefined
-          ? { ...common, withPeople: true, order: 'asc' }
+          ? { ...common, withPeople: true, order: request.order ?? 'asc' }
           : { ...common, query: request.query }),
       },
       familySearchResponseSchema,
@@ -545,7 +547,10 @@ function familyAsset(
   const localDate = /^(\d{4}-\d{2}-\d{2})T\d{2}:\d{2}/.exec(asset.localDateTime ?? '')?.[1];
   if (!localDate || !isDateOnly(localDate)) return null;
   if (localDate < request.fromDate || localDate > request.toDate) return null;
-  const personIds = asset.people ? asset.people.map((person) => person.id) : null;
+  // Only metadata search asks `withPeople`. Smart search still sends `people`,
+  // always empty, so there it means unknown: choose() then confirms the child
+  // through /api/faces, and the request's personIds filter already applied.
+  const personIds = request.query === undefined && asset.people ? asset.people.map((person) => person.id) : null;
   if (personIds && !personIds.includes(request.personId)) return null;
   const exif = asset.exifInfo ?? null;
   const rotated = ['5', '6', '7', '8'].includes(String(exif?.orientation ?? ''));

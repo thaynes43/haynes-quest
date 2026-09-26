@@ -19,6 +19,7 @@ import { registerFamilyRoutes } from './family/routes.js';
 import type { FamilyJourneyService } from './family/service.js';
 import type { FamilyStore } from './family/store.js';
 import type { FamilyTemplateRegistry } from './family/templates.js';
+import { classifyError, emitSafeDiagnostic, writeSafeDiagnostic, type DiagnosticSink } from './diagnostics.js';
 import { asAppError, AppError } from './errors.js';
 import { InMemoryQuestStore } from './db/memory-store.js';
 import { fixtureSvg, type PrivateMediaProvider } from './media.js';
@@ -71,36 +72,14 @@ export interface FamilyOptions {
   today?: () => string;
 }
 
-export type SafeErrorClass =
-  | 'app-error'
-  | 'aggregate-error'
-  | 'eval-error'
-  | 'range-error'
-  | 'reference-error'
-  | 'syntax-error'
-  | 'type-error'
-  | 'uri-error'
-  | 'error'
-  | 'non-error';
-
-export interface SafeDiagnostic {
-  event:
-    | 'api_request_failed'
-    | 'auto_pick_failed'
-    | 'maintenance_failed'
-    | 'shutdown_failed'
-    | 'startup_failed'
-    | 'template_upgrade_failed';
-  errorClass: SafeErrorClass;
-  method?: string;
-  route?: string;
-  phase?: 'scheduled' | 'startup';
-  /** Fixed application error code (never request-derived), for server-side AppError failures. */
-  code?: string;
-  status?: number;
-}
-
-export type DiagnosticSink = (diagnostic: SafeDiagnostic) => void;
+export {
+  classifyError,
+  emitSafeDiagnostic,
+  writeSafeDiagnostic,
+  type DiagnosticSink,
+  type SafeDiagnostic,
+  type SafeErrorClass,
+} from './diagnostics.js';
 
 const DIAGNOSTIC_ROUTES = new Set([
   '/healthz',
@@ -460,8 +439,18 @@ export function createApp(options: AppOptions): Hono {
       context.header('Content-Type', 'audio/wav');
     }
   };
+  // PRD-004 AC-01 (ADR-006 D-02): on the family host the studio (project docs,
+  // the asset catalog and the game's model and audio files) needs a family
+  // session like everything else; only the sign-in start is public. The
+  // fixture playtest keeps it open. `no-cache` keeps the edge from storing it.
+  const studioAccess = async (context: Context, next: () => Promise<void>): Promise<void> => {
+    if (familyAuth) await requireFamilySession(context, familyAuth);
+    await next();
+  };
   app.use('/studio', studioHeaders);
   app.use('/studio/*', studioHeaders);
+  app.use('/studio', studioAccess);
+  app.use('/studio/*', studioAccess);
   app.get('/studio', (context) => context.redirect('/studio/', 308));
   app.get('/studio/', serveStatic({ root: options.studioDir, path: 'index.html' }));
   app.use('/studio/*', serveStatic({
@@ -521,31 +510,6 @@ export function createApp(options: AppOptions): Hono {
     return errorResponse(context, failure.status, failure.code, failure.message);
   });
   return app;
-}
-
-export function classifyError(error: unknown): SafeErrorClass {
-  if (error instanceof AppError) return 'app-error';
-  if (error instanceof AggregateError) return 'aggregate-error';
-  if (error instanceof EvalError) return 'eval-error';
-  if (error instanceof RangeError) return 'range-error';
-  if (error instanceof ReferenceError) return 'reference-error';
-  if (error instanceof SyntaxError) return 'syntax-error';
-  if (error instanceof TypeError) return 'type-error';
-  if (error instanceof URIError) return 'uri-error';
-  if (error instanceof Error) return 'error';
-  return 'non-error';
-}
-
-export function writeSafeDiagnostic(diagnostic: SafeDiagnostic): void {
-  process.stderr.write(`${JSON.stringify(diagnostic)}\n`);
-}
-
-export function emitSafeDiagnostic(sink: DiagnosticSink, diagnostic: SafeDiagnostic): void {
-  try {
-    sink(diagnostic);
-  } catch {
-    // Diagnostics must not change the response or expose the original failure.
-  }
 }
 
 function diagnosticRoute(context: Context): string {

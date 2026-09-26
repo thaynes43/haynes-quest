@@ -4,7 +4,7 @@ The private playtest uses **fictional illustrations**. PLAN007 adds fresh sessio
 
 ## Private cluster preview
 
-The existing [Haynes Quest demo](https://haynes-quest.haynesops.com) remains available from the home network. The [asset catalog](https://haynes-quest.haynesops.com/studio/assets/catalog.html) lives beside the game. This route uses internal Traefik and LAN DNS; it is not a public internet deployment.
+The old LAN host `haynes-quest.haynesops.com` now redirects to the family release at `quest.haynesnetwork.com`, keeping the path, and the family host serves its studio only after sign-in ([ADR-006](../adrs/006-release-isolation-and-public-surface.md) D-02). Without a family account, read the [asset catalog](https://haynes-quest-playtest.haynesops.com/studio/assets/catalog.html) on the LAN playtest host. It serves the same studio from the same image. That host uses internal Traefik and LAN DNS; it is not a public internet deployment.
 
 The earlier deployed MVP passed complete keyboard and Chromium touch-emulation journeys on September 11, 2026. A separate live test retained the same signed session and complete save state across replacement of the application pod. See the [verification record](004-overnight-verification.md) for exact versions, checks and limitations.
 
@@ -12,7 +12,7 @@ The separate private review runs at [Haynes Quest Playtest](https://haynes-quest
 
 ## Local development
 
-Use Node 24 and the repository's pinned pnpm version. Install with `pnpm install --frozen-lockfile`. For the current fresh playtest, provide `QUEST_EPHEMERAL_PLAYTEST=true`, `QUEST_FIXTURE_MODE=true`, `NODE_ENV=development`, a randomly generated `BETTER_AUTH_SECRET` (at least 32 characters), and `QUEST_APP_ORIGIN=http://127.0.0.1:3000` in your shell or an untracked local environment file. No database URL is needed. Never provide real photo credentials to this process.
+Use Node 24 and the repository's pinned pnpm version. Install with `pnpm install --frozen-lockfile`. For the current fresh playtest, provide `QUEST_EPHEMERAL_PLAYTEST=true`, `QUEST_FIXTURE_MODE=true`, `NODE_ENV=development`, and `QUEST_APP_ORIGIN=http://127.0.0.1:3000` in your shell or an untracked local environment file. A `BETTER_AUTH_SECRET` is optional: without one the process mints a random per-process secret, which loses nothing because its memory store does not survive a restart. Do not set `DATABASE_URL`: the ephemeral playtest refuses to start with one, so it can never hold another release's database credential ([ADR-006](../adrs/006-release-isolation-and-public-surface.md) D-01). Never provide real photo credentials to this process.
 
 Build the asset studio with its documented Python environment and `pnpm docs:build`; the game models are served from `site/`. Run `pnpm build`, then `pnpm start` from the task worktree. Open `http://127.0.0.1:3000`. The explicit ephemeral mode uses bounded memory storage, skips database connections and migrations, and omits save discovery. A signed, HttpOnly cookie identifies the synthetic player; leaving or reloading the page starts a new run. An expired session loses its orphaned test records during maintenance. This temporary identity is not a production login method.
 
@@ -32,7 +32,7 @@ The four existing sound candidates play in the isolated review with a revised mi
 
 Build the documentation using [the documented commands](../README.md#build-and-preview-the-site). The app serves the generated `site/` directory at `/studio/`; its catalog is `/studio/assets/catalog.html`. The standalone MkDocs preview is also available through `scripts/docs/serve.sh` at loopback port 8000.
 
-The static studio contains original fictional references, candidate media and the repository’s public-safe project documentation. It is isolated from application records and has no database or Immich access. Tom’s exact-version approval is required before candidate models, animation, materials or sounds are promoted into the normal demo. DESIGN007 permits the isolated, labeled candidate review used for this playtest. Pending approval does not prevent browsing or downloading the candidate package. WAV downloads and byte-range responses use `audio/wav` with `nosniff` retained. The 3D viewers use a 4:3 desktop frame and a square phone frame, with still images and direct downloads alongside them.
+The static studio contains original fictional references, candidate media and the repository’s public-safe project documentation. It is isolated from application records and has no database or Immich access. The fixture playtest serves it to anyone on the LAN. The family release serves it only to signed-in family members, like the rest of that host ([ADR-006](../adrs/006-release-isolation-and-public-surface.md) D-02). Tom’s exact-version approval is required before candidate models, animation, materials or sounds are promoted into the normal demo. DESIGN007 permits the isolated, labeled candidate review used for this playtest. Pending approval does not prevent browsing or downloading the candidate package. WAV downloads and byte-range responses use `audio/wav` with `nosniff` retained. The 3D viewers use a 4:3 desktop frame and a square phone frame, with still images and direct downloads alongside them.
 
 ## Verification commands
 
@@ -74,7 +74,7 @@ Hosted and release runs keep the real-time default. Use lockstep locally when th
 
 ## Hosting boundary and remaining work
 
-Database preparation merged in haynes-ops [#2849](https://github.com/thaynes43/haynes-ops/pull/2849), with a pod-local DNS fix in [#2850](https://github.com/thaynes43/haynes-ops/pull/2850). The dedicated `haynes_quest` role owns its database and has no superuser/create-role/create-database privileges. Provisioning alone receives the administrator Secret. The fixture runtime receives only the prepared application Secret; it never receives the separate Immich Secret.
+Database preparation merged in haynes-ops [#2849](https://github.com/thaynes43/haynes-ops/pull/2849), with a pod-local DNS fix in [#2850](https://github.com/thaynes43/haynes-ops/pull/2850). The dedicated `haynes_quest` role owns its database and has no superuser/create-role/create-database privileges. Provisioning alone receives the administrator Secret. That database now holds the family release's children and journeys. The ephemeral fixture playtest therefore receives no Secret from it: no `DATABASE_URL`, not the family `BETTER_AUTH_SECRET`, and no database egress in its network policy. It never receives the Immich Secret either ([ADR-006](../adrs/006-release-isolation-and-public-surface.md) D-01).
 
 The deployment deliberately sets both `NODE_ENV=development` and `QUEST_FIXTURE_MODE=true`, with the exact HTTPS application origin. The default image refuses fixture mode under production. This is a private synthetic development workload; its ingress and Secret mounts enforce the additional separation from real photos.
 
@@ -115,23 +115,32 @@ Family mode also serves the [DESIGN-024](../designs/024-family-journeys.md) jour
 | `IMMICH_API_KEY` | unset | Set together with `IMMICH_URL`. Without both, the server still starts: journeys keep playing, `/api/admin/*` setup answers `503 FAMILY_SETUP_UNAVAILABLE` and photos show their placeholder. |
 | `QUEST_HOUSEHOLD_TIME_ZONE` | `UTC` | IANA zone that defines "today" for current ages and the final chapter's birthday. |
 
-Opaque photo references derive from `BETTER_AUTH_SECRET` (HKDF) and the fixed connection id `family-immich-v1`; changing either orphans published references. Candidate thumbnail tokens use their own HKDF label and last 15 minutes.
+Opaque photo references derive from `BETTER_AUTH_SECRET` (HKDF) and the fixed connection id `family-immich-v1`. Changing either gives later publications different references. Published journeys keep their frozen references and keep serving their photos, because media resolves through the server-side manifest. Candidate thumbnail tokens use their own HKDF label and last 15 minutes.
 
 Routes (all need a family session; `/api/admin/*` also needs `authentik Admins`):
 
 - `GET /api/children` lists published journeys and each child's current run. `POST /api/children/:id/play` resumes that run or starts one on the latest publication. `{"fresh": true}` (administrators only) starts a new run on the latest photos. A family save is household-owned, so every save route serves it to any admitted member. `GET /api/saves/:id/world` returns its frozen geometry.
-- `GET|POST /api/admin/children`, `GET /api/admin/templates?birthDate=`, `GET /api/admin/immich/people?name=`.
+- `GET|POST /api/admin/children`, `POST /api/admin/templates {"birthDate"}` and `POST /api/admin/immich/people {"name"}`. The name and birthday travel in the body: edge and ingress access logs record request URLs.
 - `GET|PUT /api/admin/children/:id/draft`. `PUT {"op":"auto-pick"}` starts a background pick and answers `202`. Poll `GET` until `picking` is false. `caption` and `swap` edits take `expectedRevision`.
 - `GET /api/admin/children/:id/draft/slots/:chapter/:slot/suggestions?cursor=`, `GET /api/admin/candidates/:token/image` and `POST /api/admin/children/:id/publish {expectedRevision, requestId}`.
 - `POST /api/admin/children/:id/template {templateId, templateVersion, expectedRevision}` is **Update world** ([DESIGN-024 D-11](../designs/024-family-journeys.md)). It moves the child to a newer offered version of the same template, answers `202` and rebuilds the draft in the background; poll the draft as for a pick. `expectedRevision` is the draft revision, or `null` before the first pick. The admin child list and the draft read report `newerTemplate` when such a version exists. Publishing the rebuilt draft is a separate step, and started runs keep their version until **Start fresh**.
 
-Inside the family pod, `node dist/server/admin.js` performs the same service calls. It prints only opaque ids and counts, and errors print a fixed code only:
+Inside the family pod, `node dist/server/admin.js` performs the same service calls. It prints only opaque ids and counts, and errors print a fixed code only.
+
+Names and birthdays never go on the command line. `kubectl exec` sends every argument in the exec URL, and the kube-apiserver audit log keeps it on the control-plane nodes. Put them in one JSON object in a private file outside git (keys `name`, `displayName`, `birthDate`), and pass it on stdin with `kubectl exec -i`. The CLI refuses `--name`, `--display-name` and `--birth-date` with `PRIVATE_OPTION_REFUSED`. Delete the file afterwards.
 
 ```bash
-node dist/server/admin.js people --name "<Immich name>"          # matches N; choice <id> birth-date on-file|missing
-node dist/server/admin.js templates --birth-date YYYY-MM-DD
-node dist/server/admin.js create-child --name "<Immich name>" --choice <choice id> \
-  --display-name "<name>" --immich-birth-date --template rat-casino-world@v2
+# people.json: {"name": "…"}   birthday.json: {"birthDate": "YYYY-MM-DD"}   child.json: {"name": "…", "displayName": "…"}
+kubectl -n frontend exec -i deploy/haynes-quest -c app -- node dist/server/admin.js people < people.json
+#   matches N; choice <id> birth-date on-file|missing
+kubectl -n frontend exec -i deploy/haynes-quest -c app -- node dist/server/admin.js templates < birthday.json
+kubectl -n frontend exec -i deploy/haynes-quest -c app -- node dist/server/admin.js create-child \
+  --choice <choice id> --immich-birth-date --template rat-casino-world@v2 < child.json
+```
+
+Commands that take only opaque ids need no stdin:
+
+```bash
 node dist/server/admin.js auto-pick --child <child id>           # draft rN filled F/T needs-photo N
 node dist/server/admin.js publish --child <child id>             # publication <id> rN chapters C memories M
 node dist/server/admin.js verify-media --child <child id>        # decoded D/M failed F

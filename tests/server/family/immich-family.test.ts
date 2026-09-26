@@ -106,6 +106,21 @@ describe('Immich family search adapter', () => {
     expect(byId.get('with-child')!.personIds).toEqual([PERSON, 'other-person']);
   });
 
+  it('treats people on smart results as unknown, since smart search never loads them', async () => {
+    // Real Immich (3.x) sends `people: []` on every smart result: the request has no withPeople.
+    const items = [asset('cake', { people: [] }), asset('party', { people: [] })];
+    const caller = new CannedCaller([
+      { assets: { items, nextPage: null } },
+      { assets: { items, nextPage: null } },
+    ]);
+    const library = new ImmichPhotoSource(caller, SECRET, 'test-connection');
+    const smart = await library.search({ ...request, query: 'birthday cake' }, { deadline: deadline() });
+    expect(smart.assets.map((entry) => [entry.assetId, entry.personIds])).toEqual([['cake', null], ['party', null]]);
+    // Metadata search asks withPeople, so an empty list there really means the child is absent.
+    const metadata = await library.search(request, { deadline: deadline() });
+    expect(metadata.assets).toEqual([]);
+  });
+
   it('fails closed on cursors, oversized pages and invalid requests', async () => {
     const cursor = new ImmichPhotoSource(new CannedCaller([{ assets: { items: [], nextPage: null, nextCursor: 'abc' } }]), SECRET, 'test-connection');
     await expect(cursor.search(request, { deadline: deadline() })).rejects.toMatchObject({ code: 'IMMICH_RESPONSE_INVALID' });

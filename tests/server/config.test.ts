@@ -39,6 +39,24 @@ describe('server configuration', () => {
     expect(createConfiguredStore(config)).toBeInstanceOf(InMemoryQuestStore);
   });
 
+  it('refuses any database URL in the ephemeral playtest (ADR-005 D-07)', () => {
+    const playtest = { ...base, NODE_ENV: 'development', QUEST_FIXTURE_MODE: 'true', QUEST_EPHEMERAL_PLAYTEST: 'true' };
+    expect(() => loadConfig(playtest)).toThrow('Ephemeral playtest cannot receive a database URL');
+    expect(() => loadConfig({ ...playtest, DATABASE_URL: '  ' })).not.toThrow();
+  });
+
+  it('lets the ephemeral playtest mint its own session secret, and only it (ADR-005 D-07)', () => {
+    const { DATABASE_URL: _databaseUrl, BETTER_AUTH_SECRET: _secret, ...bare } = base;
+    const playtest = { ...bare, NODE_ENV: 'development', QUEST_FIXTURE_MODE: 'true', QUEST_EPHEMERAL_PLAYTEST: 'true' };
+    const first = loadConfig(playtest).sessionSecret;
+    expect(first).toMatch(/^[A-Za-z0-9_-]{43}$/);
+    expect(loadConfig(playtest).sessionSecret).not.toBe(first);
+    expect(loadConfig({ ...playtest, BETTER_AUTH_SECRET: 'b'.repeat(40) }).sessionSecret).toBe('b'.repeat(40));
+    expect(() => loadConfig({ ...bare, DATABASE_URL: base.DATABASE_URL })).toThrow('BETTER_AUTH_SECRET is required');
+    expect(() => loadConfig({ ...bare, NODE_ENV: 'development', QUEST_FIXTURE_MODE: 'true', DATABASE_URL: base.DATABASE_URL }))
+      .toThrow('BETTER_AUTH_SECRET is required');
+  });
+
   it('rejects ephemeral progress outside the isolated fixture deployment', () => {
     expect(() => loadConfig({ ...base, QUEST_EPHEMERAL_PLAYTEST: 'true' })).toThrow(
       'Ephemeral playtest requires fixture development mode',

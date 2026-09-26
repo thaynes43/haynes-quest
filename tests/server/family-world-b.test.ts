@@ -182,7 +182,7 @@ async function json<T>(response: Response | Promise<Response>, status: number): 
 /** An administrator sets Test Child B up on World B, auto-picks and publishes. */
 async function publishWorldB(harness: FamilyHarness): Promise<string> {
   const { people } = await json<{ people: PersonChoice[] }>(
-    harness.request(`/api/admin/immich/people?name=${encodeURIComponent(TEST_CHILD_B.name)}`), 200);
+    harness.request('/api/admin/immich/people', { body: { name: TEST_CHILD_B.name } }), 200);
   const child = await json<{ id: string }>(harness.request('/api/admin/children', {
     body: {
       immichName: TEST_CHILD_B.name,

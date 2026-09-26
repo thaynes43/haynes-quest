@@ -194,9 +194,10 @@ export class FakeImmich implements AuthorizedImmichCaller {
         Number((right.tags ?? []).includes(query)) - Number((left.tags ?? []).includes(query)) ||
         left.id.localeCompare(right.id));
     } else {
-      matches = [...matches].sort((left, right) =>
+      const direction = body.order === 'desc' ? -1 : 1;
+      matches = [...matches].sort((left, right) => direction * (
         (left.fileCreatedAt ?? left.localDateTime).localeCompare(right.fileCreatedAt ?? right.localDateTime) ||
-        left.id.localeCompare(right.id));
+        left.id.localeCompare(right.id)));
     }
     const page = Number(body.page);
     const size = Number(body.size);
@@ -231,7 +232,8 @@ export class FakeImmich implements AuthorizedImmichCaller {
         orientation: '1',
         make: asset.make === undefined ? 'Synthetic Camera' : asset.make,
       },
-      ...(withPeople ? { people: asset.people.map((id) => ({ id, name: 'Synthetic', faces: [] })) } : {}),
+      // Like Immich 3.x: smart search (no withPeople) still sends `people`, always empty.
+      people: withPeople ? asset.people.map((id) => ({ id, name: 'Synthetic', faces: [] })) : [],
     };
   }
 

@@ -71,6 +71,9 @@ const draftEditSchema = z.discriminatedUnion('op', [
   }).strict(),
 ]);
 
+const templateLookupSchema = z.object({ birthDate: z.string().max(32) }).strict();
+const peopleLookupSchema = z.object({ name: z.string().max(200) }).strict();
+
 const publishSchema = z.object({ expectedRevision: revision, requestId: uuid }).strict();
 const templateUpgradeSchema = z.object({
   templateId: z.string().min(1).max(64),
@@ -207,10 +210,13 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
     return context.json(await setup().createChild(request, player.id), 201);
   });
 
-  app.get('/api/admin/templates', async (context) => {
+  // The two setup lookups carry a real name or birthday, so they take a JSON
+  // body: a query string would be recorded by every proxy access log (D-01).
+  app.post('/api/admin/templates', async (context) => {
+    enforceMutationSecurity(context, deps.appOrigin);
     const player = await requireAdmin(context, deps.familyAuth);
     reads.take(`admin:${player.id}`);
-    const birthDate = context.req.query('birthDate') ?? '';
+    const { birthDate } = await parseJson(context, templateLookupSchema, 1_024);
     const today = deps.today();
     if (!isDateOnly(birthDate) || birthDate > today) {
       throw new AppError(422, 'INVALID_BIRTH_DATE', 'Invalid birthday');
@@ -218,10 +224,12 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
     return context.json({ templates: deps.templates.offeredFor(birthDate, today).map(templateOffer) });
   });
 
-  app.get('/api/admin/immich/people', async (context) => {
+  app.post('/api/admin/immich/people', async (context) => {
+    enforceMutationSecurity(context, deps.appOrigin);
     const player = await requireAdmin(context, deps.familyAuth);
     writes.take(`people:${player.id}`);
-    return context.json({ people: await setup().lookupPeople(context.req.query('name') ?? '') });
+    const { name } = await parseJson(context, peopleLookupSchema, 1_024);
+    return context.json({ people: await setup().lookupPeople(name) });
   });
 
   app.get('/api/admin/children/:id/draft', async (context) => {

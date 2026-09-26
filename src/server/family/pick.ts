@@ -15,7 +15,7 @@ import {
   type FamilyMemorySlot,
 } from '../../shared/family-plan.js';
 import { AppError } from '../errors.js';
-import type { FamilyAsset, FamilyFace, FamilyPhotoLibrary } from '../photos/source.js';
+import type { FamilyAsset, FamilyFace, FamilyPhotoLibrary, FamilySearchPage } from '../photos/source.js';
 import type { RebasedChapter } from './rebase.js';
 
 export const BIG_MEMORY_QUERIES = Object.freeze([
@@ -308,9 +308,29 @@ interface SlotRequest extends JourneyPickInput {
 }
 
 interface Candidate {
-  readonly asset: FamilyAsset;
+  asset: FamilyAsset;
   relevance: number;
   query: string | null;
+}
+
+interface MetadataHalf {
+  readonly window: DateWindow;
+  readonly order: 'asc' | 'desc';
+}
+
+/**
+ * A window split at its target so metadata pages read outward from it: later
+ * photos in ascending order, earlier ones in descending order. Reading one
+ * ascending run from the window start would, in a dense library, never get
+ * past the first weeks of the window.
+ */
+function outwardHalves(range: DateWindow, target: string): MetadataHalf[] {
+  const halves: MetadataHalf[] = [];
+  const after = window(maxDate(range.from, target), range.to);
+  if (after) halves.push({ window: after, order: 'asc' });
+  const before = window(range.from, minDate(range.to, addDays(target, -1)));
+  if (before) halves.push({ window: before, order: 'desc' });
+  return halves;
 }
 
 class SlotTimeout extends Error {}
@@ -408,7 +428,11 @@ async function collect(
     const existing = candidates.get(asset.assetId);
     if (!existing) {
       candidates.set(asset.assetId, { asset, relevance, query });
-    } else if (relevance > existing.relevance) {
+      return;
+    }
+    // Smart results carry no people; a metadata copy of the same photo does.
+    if (existing.asset.personIds === null && asset.personIds !== null) existing.asset = asset;
+    if (relevance > existing.relevance) {
       existing.relevance = relevance;
       existing.query = query;
     }
@@ -439,20 +463,28 @@ async function collect(
       page.assets.forEach((asset, rank) => accept(asset, 1 - rank / limits.smartPageSize, query));
     }
   }
-  let nextPage: number | null = 1;
-  while (nextPage !== null && pagesLeft > 0 && candidates.size < limits.enoughCandidates) {
-    const pageNumber: number = nextPage;
-    const page = await search.paced(() => library.search({
-      personId: request.personId,
-      fromDate: range.from,
-      toDate: range.to,
-      page: pageNumber,
-      size: limits.metadataPageSize,
-    }, { deadline: search.deadline }));
-    search.pages += 1;
-    pagesLeft -= 1;
-    page.assets.forEach((asset) => accept(asset, 0, null));
-    nextPage = page.nextPage;
+  // Metadata pages read outward from the target, one page of each side per
+  // round, so the candidates surround the date D-04 aims at.
+  const halves = outwardHalves(range, request.windows.target).map((half) => ({ ...half, nextPage: 1 as number | null }));
+  while (pagesLeft > 0 && candidates.size < limits.enoughCandidates) {
+    const open = halves.filter((half) => half.nextPage !== null);
+    if (open.length === 0) break;
+    for (const half of open) {
+      if (pagesLeft <= 0) break;
+      const pageNumber = half.nextPage!;
+      const page = await search.paced(() => library.search({
+        personId: request.personId,
+        fromDate: half.window.from,
+        toDate: half.window.to,
+        page: pageNumber,
+        size: limits.metadataPageSize,
+        order: half.order,
+      }, { deadline: search.deadline }));
+      search.pages += 1;
+      pagesLeft -= 1;
+      page.assets.forEach((asset) => accept(asset, 0, null));
+      half.nextPage = page.nextPage;
+    }
   }
   return [...candidates.values()];
 }
@@ -656,6 +688,8 @@ export function slotTargetDate(chapter: RebasedChapter, slot: FamilyMemorySlot):
   return addDays(chapter.startDate, Math.round(length * (slot === 'minor-one' ? 1 / 3 : 2 / 3)));
 }
 
+const SUGGESTION_PAGE_SIZE = 24;
+
 export interface SuggestionRequest {
   readonly personId: string;
   readonly slot: FamilyMemorySlot;
@@ -684,13 +718,22 @@ export async function suggestForSlot(
   if (!Number.isSafeInteger(request.cursor) || request.cursor < 1 || request.cursor > limits.pagesPerSlot) {
     throw new AppError(422, 'INVALID_CURSOR', 'Invalid cursor');
   }
-  const page = await environment.library.search({
-    personId: request.personId,
-    fromDate: request.window.from,
-    toDate: request.window.to,
-    page: request.cursor,
-    size: 24,
-  }, { deadline: clock.now() + limits.slotDeadlineMs });
+  // Each page holds the next photos on both sides of the target, so the
+  // first page starts where the slot aims rather than at the window's start.
+  const halves = outwardHalves(request.window, request.target);
+  const deadline = clock.now() + limits.slotDeadlineMs;
+  const pages: FamilySearchPage[] = [];
+  for (const half of halves) {
+    pages.push(await environment.library.search({
+      personId: request.personId,
+      fromDate: half.window.from,
+      toDate: half.window.to,
+      page: request.cursor,
+      size: SUGGESTION_PAGE_SIZE / halves.length,
+      order: half.order,
+    }, { deadline }));
+  }
+  const nextPage = pages.some((page) => page.nextPage !== null) ? request.cursor + 1 : null;
   const ranking: SlotRequest = {
     chapters: [],
     birthDate: request.window.from,
@@ -704,7 +747,7 @@ export async function suggestForSlot(
     excludeDates: new Set(),
     avoidMonth: null,
   };
-  const assets = page.assets
+  const assets = pages.flatMap((page) => page.assets)
     .filter((asset) =>
       !request.excludeAssetIds.has(asset.assetId) &&
       asset.personIds?.includes(request.personId) === true,
@@ -715,6 +758,6 @@ export async function suggestForSlot(
     .map((entry) => entry.asset);
   return {
     assets,
-    nextCursor: page.nextPage !== null && page.nextPage <= limits.pagesPerSlot ? page.nextPage : null,
+    nextCursor: nextPage !== null && nextPage <= limits.pagesPerSlot ? nextPage : null,
   };
 }

@@ -30,6 +30,19 @@ Tom asked for the first real release for his two children:
 
 v1 stays registered for the journey already published on it. To move that child to v2, use **Update world** on the Memories screen, or the operator's `set-template` (DESIGN-024 D-11, [runbook](../docs/ops/002-private-preview.md)). Then publish, and have an administrator press **Start fresh with these photos**. Since #102, the casino finale's portal beams also stay out of the camera; this is render only and needs no new version. The review's rejected findings and their reasons are in the World A fixes PR.
 
+**Release review fixes** (September 26, [ADR-006](../docs/adrs/006-release-isolation-and-public-surface.md)):
+
+- **Playtest isolation.** The ephemeral playtest refuses a `DATABASE_URL` and mints its own session secret. The haynes-ops change that drops its Secret and database egress must deploy before, or with, this image, or the playtest will not start.
+- **Studio behind sign-in.** The family host serves `/studio` only to signed-in members; the LAN playtest host serves it openly.
+- **Names and birthdays kept out of logs.** Setup lookups are `POST` with a JSON body, and the operator CLI reads names and birthdays from stdin.
+- **Database pools.** A lost connection logs a fixed diagnostic instead of crashing.
+- **Picks.** Smart-search results count again, and metadata picks and **Show more** read outward from each slot's target.
+- **Plan load checks.** Loading a plan re-checks neutral candidate casts against the frozen template.
+- **Owner actions (ADR-006 C-04):**
+  - rotate the family `BETTER_AUTH_SECRET`;
+  - give the family release a dedicated read-only Immich key;
+  - turn on Cloudflare edge HSTS.
+
 **Next:**
 1. Foundations.
 2. Seven chapter builds.

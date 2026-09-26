@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { ADMIN_USAGE, runAdminCommand } from '../../../src/server/admin.js';
+import { Readable } from 'node:stream';
+import { ADMIN_USAGE, readPrivateStream, runAdminCommand } from '../../../src/server/admin.js';
 import { familyHarness } from './harness.js';
 import { TEST_CHILD_B } from './fake-immich.js';
 import { upgradeRegistry } from './template-variants.js';
@@ -7,27 +8,34 @@ import { upgradeRegistry } from './template-variants.js';
 async function cli(options: Parameters<typeof familyHarness>[0] = {}) {
   const harness = familyHarness(options);
   const lines: string[] = [];
-  const run = async (...argv: string[]) => {
+  let stdinReads = 0;
+  /** Runs one command; `stdin` is the private JSON object, when the command takes one. */
+  const runWith = async (stdin: unknown, ...argv: string[]) => {
     const start = lines.length;
     const code = await runAdminCommand(argv, {
       service: harness.service,
       store: harness.familyStore,
       media: harness.library,
+      readInput: async () => {
+        stdinReads += 1;
+        return typeof stdin === 'string' ? stdin : JSON.stringify(stdin);
+      },
     }, (line) => lines.push(line));
     return { code, output: lines.slice(start) };
   };
-  return { harness, lines, run };
+  const run = (...argv: string[]) => runWith('', ...argv);
+  return { harness, lines, run, runWith, stdinReads: () => stdinReads };
 }
 
 describe('operator CLI (DESIGN-024 D-09)', () => {
   it('sets up and publishes a journey printing only opaque ids and counts', async () => {
-    const { harness, lines, run } = await cli();
-    const people = await run('people', '--name', TEST_CHILD_B.name);
+    const { harness, lines, run, runWith } = await cli();
+    const people = await runWith({ name: TEST_CHILD_B.name }, 'people');
     expect(people.code).toBe(0);
     expect(people.output[0]).toBe('matches 1');
     const choice = /^choice (person-[a-f0-9]{32}) birth-date on-file$/.exec(people.output[1]!)?.[1];
     expect(choice).toBeDefined();
-    expect((await run('templates', '--birth-date', TEST_CHILD_B.birthDate)).output)
+    expect((await runWith({ birthDate: TEST_CHILD_B.birthDate }, 'templates')).output)
       .toEqual([
         'templates 4',
         'template rat-casino-world@v1 chapters 3',
@@ -36,9 +44,9 @@ describe('operator CLI (DESIGN-024 D-09)', () => {
         'template family-world-b@v2 chapters 3',
       ]);
 
-    const created = await run(
-      'create-child', '--name', TEST_CHILD_B.name, '--choice', choice!, '--display-name', 'Test Child B',
-      '--immich-birth-date', '--template', 'rat-casino-world@v2',
+    const created = await runWith(
+      { name: TEST_CHILD_B.name, displayName: 'Test Child B' },
+      'create-child', '--choice', choice!, '--immich-birth-date', '--template', 'rat-casino-world@v2',
     );
     const childId = /^child ([0-9a-f-]{36})$/.exec(created.output[0]!)?.[1];
     expect(childId).toBeDefined();
@@ -62,12 +70,12 @@ describe('operator CLI (DESIGN-024 D-09)', () => {
   });
 
   it('moves a child published on World B v1 onto v2 with set-template, carrying the draft', async () => {
-    const { lines, run } = await cli();
-    const people = await run('people', '--name', TEST_CHILD_B.name);
+    const { lines, run, runWith } = await cli();
+    const people = await runWith({ name: TEST_CHILD_B.name }, 'people');
     const choice = /^choice (person-[a-f0-9]{32}) /.exec(people.output[1]!)![1]!;
-    const created = await run(
-      'create-child', '--name', TEST_CHILD_B.name, '--choice', choice, '--display-name', 'Test Child B',
-      '--immich-birth-date', '--template', 'family-world-b@v1',
+    const created = await runWith(
+      { name: TEST_CHILD_B.name, displayName: 'Test Child B' },
+      'create-child', '--choice', choice, '--immich-birth-date', '--template', 'family-world-b@v1',
     );
     const childId = /^child ([0-9a-f-]{36})$/.exec(created.output[0]!)![1]!;
     await run('auto-pick', '--child', childId);
@@ -85,22 +93,29 @@ describe('operator CLI (DESIGN-024 D-09)', () => {
   });
 
   it('reports needs-photo chapters by number and refuses incomplete input', async () => {
-    const { run } = await cli();
+    const { run, runWith } = await cli();
     expect((await run('help')).output).toEqual([ADMIN_USAGE]);
-    await expect(run('people')).rejects.toMatchObject({ code: 'MISSING_OPTION' });
-    await expect(run('create-child', '--name', TEST_CHILD_B.name, '--choice', 'person-x', '--display-name', 'X',
-      '--template', 'rat-casino-world@v2')).rejects.toMatchObject({ code: 'MISSING_OPTION' });
+    await expect(run('people')).rejects.toMatchObject({ code: 'MISSING_INPUT' });
+    await expect(runWith({ name: TEST_CHILD_B.name, displayName: 'X' }, 'create-child', '--choice', 'person-x',
+      '--template', 'rat-casino-world@v2')).rejects.toMatchObject({ code: 'MISSING_INPUT' });
+    await expect(runWith({ name: TEST_CHILD_B.name, displayName: 'X', birthDate: TEST_CHILD_B.birthDate },
+      'create-child', '--choice', 'person-x', '--immich-birth-date', '--template', 'rat-casino-world@v2'))
+      .rejects.toMatchObject({ code: 'CONFLICTING_OPTIONS' });
+    await expect(runWith('not json', 'people')).rejects.toMatchObject({ code: 'INVALID_INPUT' });
+    await expect(runWith({ name: TEST_CHILD_B.name, extra: 1 }, 'people')).rejects.toMatchObject({ code: 'INVALID_INPUT' });
+    await expect(runWith(JSON.stringify({ name: 'x'.repeat(5_000) }), 'people'))
+      .rejects.toMatchObject({ code: 'INPUT_TOO_LARGE' });
     await expect(run('verify-media', '--child', '00000000-0000-4000-8000-000000000000'))
       .rejects.toMatchObject({ code: 'JOURNEY_NOT_PUBLISHED' });
   });
 
   it('moves a child to a newer world version printing only draft counts (D-11)', async () => {
-    const { harness, lines, run } = await cli({ templates: upgradeRegistry() });
-    const people = await run('people', '--name', TEST_CHILD_B.name);
+    const { harness, lines, run, runWith } = await cli({ templates: upgradeRegistry() });
+    const people = await runWith({ name: TEST_CHILD_B.name }, 'people');
     const choice = /^choice (\S+) /.exec(people.output[1]!)![1]!;
-    const create = async (template: string) => /^child (\S+)$/.exec((await run(
-      'create-child', '--name', TEST_CHILD_B.name, '--choice', choice, '--display-name', 'Test Child B',
-      '--immich-birth-date', '--template', template,
+    const create = async (template: string) => /^child (\S+)$/.exec((await runWith(
+      { name: TEST_CHILD_B.name, displayName: 'Test Child B' },
+      'create-child', '--choice', choice, '--immich-birth-date', '--template', template,
     )).output[0]!)![1]!;
     const childId = await create('family-world-b@v1');
     expect((await run('auto-pick', '--child', childId)).output).toEqual(['draft r0 filled 9/9 needs-photo 0']);
@@ -142,5 +157,27 @@ describe('operator CLI (DESIGN-024 D-09)', () => {
     expect(everything).not.toContain('Test Child');
     expect(everything).not.toContain(TEST_CHILD_B.personId);
     for (const asset of harness.assets) expect(everything).not.toContain(asset.id);
+  });
+
+  it('refuses private values on the command line, where the audit log records them', async () => {
+    // kubectl exec sends every argument in the exec URL; the apiserver audit log keeps it.
+    const { run, stdinReads } = await cli();
+    for (const argv of [
+      ['people', '--name', TEST_CHILD_B.name],
+      ['templates', '--birth-date', TEST_CHILD_B.birthDate],
+      ['create-child', '--choice', 'person-x', '--display-name', 'X', '--template', 'rat-casino-world@v2'],
+    ]) {
+      await expect(run(...argv)).rejects.toMatchObject({ code: 'PRIVATE_OPTION_REFUSED' });
+    }
+    // Commands without private input never wait on stdin.
+    expect((await run('status')).output).toEqual(['children 0']);
+    expect(stdinReads()).toBe(0);
+  });
+
+  it('reads the private JSON from stdin to its end and caps its size', async () => {
+    expect(await readPrivateStream(Readable.from([Buffer.from('{"na'), Buffer.from('me":"x"}')]))).toBe('{"name":"x"}');
+    expect(await readPrivateStream(Object.assign(Readable.from([]), { isTTY: true }))).toBe('');
+    await expect(readPrivateStream(Readable.from([Buffer.alloc(5_000, 32)])))
+      .rejects.toMatchObject({ code: 'INPUT_TOO_LARGE' });
   });
 });

@@ -57,7 +57,7 @@ function worldAHarness(): FamilyHarness {
 /** Admin creates Test Child C on World A, auto-picks and publishes. */
 async function publishChildC(harness: FamilyHarness, templateVersion: string) {
   const { people } = await json<{ people: PersonChoice[] }>(
-    harness.request(`/api/admin/immich/people?name=${encodeURIComponent(TEST_CHILD_C.name)}`), 200);
+    harness.request('/api/admin/immich/people', { body: { name: TEST_CHILD_C.name } }), 200);
   expect(people).toEqual([expect.objectContaining({ label: TEST_CHILD_C.name, birthDate: TEST_CHILD_C.birthDate })]);
   const child = await json<{ id: string }>(harness.request('/api/admin/children', {
     body: {
@@ -139,7 +139,7 @@ describe('family-world-a@v2 template (World A)', () => {
   it.each(['v1', 'v2'])('%s publishes a valid family-world-plan-v1 and plays the first chapter in the memory stores', async (version) => {
     const harness = worldAHarness();
     const { templates } = await json<{ templates: Array<{ id: string; version: string; name: string; chapterCount: number }> }>(
-      harness.request(`/api/admin/templates?birthDate=${TEST_CHILD_C.birthDate}`), 200);
+      harness.request('/api/admin/templates', { body: { birthDate: TEST_CHILD_C.birthDate } }), 200);
     expect(templates).toContainEqual({ id: 'family-world-a', version, name: 'Clubhouse to Casino', chapterCount: 4 });
 
     const { childId, publication } = await publishChildC(harness, version);
@@ -227,6 +227,7 @@ describe('family-world-a@v2 template (World A)', () => {
       service: harness.service,
       store: harness.familyStore,
       media: harness.library,
+      readInput: async () => '',
     }, (line) => lines.push(line));
     expect(await run('set-template', '--child', childId, '--template', 'family-world-a@v2')).toBe(0);
     expect(await run('publish', '--child', childId)).toBe(0);

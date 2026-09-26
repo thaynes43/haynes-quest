@@ -3,7 +3,7 @@
 - **Status:** Accepted for the first family release, September 25, 2026
 - **Last updated:** 2026-09-26
 - **Satisfies:** [PRD-004](../prds/004-family-release.md) R-02, R-04–R-08, R-12, R-13
-- **Governed by:** [ADR-001](../adrs/001-authentik-sign-in.md), [ADR-005](../adrs/005-family-sign-in-and-admission.md), [ADR-004](../adrs/004-versioned-world-projects.md)
+- **Governed by:** [ADR-001](../adrs/001-authentik-sign-in.md), [ADR-005](../adrs/005-family-sign-in-and-admission.md) as amended by [ADR-006](../adrs/006-release-isolation-and-public-surface.md), [ADR-004](../adrs/004-versioned-world-projects.md)
 - **Builds on:** DESIGN-003, 004, 006, 009, 012, 016, 020; supersedes [PLAN-010](../../.agents/plans/010-parent-prepared-memories.md)'s unratified identity proposals where they differ
 
 ## Overview
@@ -38,6 +38,12 @@ When a newer version of the child's world is registered, the Memories screen sho
 ## Detailed design
 
 **D-01 Private data.** Real names, birthdays, Immich person/asset ids, captions and photo bytes live only in Postgres and the private media path. Server logs record opaque ids and error codes only. Client payloads never carry upstream ids: photos are addressed by opaque slot or candidate tokens. Tests, fixtures, screenshots and docs use synthetic children only. Commit messages and PRs never name the children.
+
+Private values also stay out of every record kept outside the app:
+
+- **URLs.** The Cloudflare edge and the `traefik-external` access log (shipped to Loki) record each request line, query string included. A name or birthday therefore travels only in a JSON body: the setup lookups are `POST` (D-08).
+- **Command lines.** `kubectl exec` puts every argument in the exec URL, and the kube-apiserver audit log keeps it on the control-plane nodes. The operator CLI therefore reads names and birthdays from stdin (D-09).
+- **Crash output.** Every database pool listens for connection errors, and each connection keeps its own listener while it is checked out. A connection that Postgres ends, as in a CNPG switchover, is reported as `{"event":"database_connection_lost","errorClass":…}`. It no longer crashes the process with an unfiltered dump of the database client.
 
 **D-02 Tables.** New migrations add:
 
@@ -78,6 +84,11 @@ Scoring prefers:
 - landscape or square framing;
 - not a screenshot (Immich type/filename heuristics).
 
+Search details:
+
+- **Smart search people.** Immich's smart search does not load people. It sends an empty `people` list on every result, so the adapter treats a smart result's people as unknown. The request's person filter still applies, and a smart candidate counts only once the child's face box confirms it, or once a metadata result for the same photo lists the child. Metadata search requests people, so there an empty list does mean that the child is absent.
+- **Reading outward from the target.** A metadata pass splits its window at the slot's target date. It reads later photos in ascending date order and earlier photos in descending order, one page from each side per round. A dense library, with thousands of photos in a ±20% window, therefore still gives candidates around the ⅓ and ⅔ points and the birthday, not only from the window's first weeks. **Show more** pages the same way: each page holds the next photos on both sides of the slot's target.
+
 Picks are deterministic for a given draft seed. The pick reason is stored. If a window has no eligible photo, widen it once within the chapter bounds; if it is still empty, mark the slot `needs-photo`. Publishing is blocked until every slot is filled; an administrator can pick manually through **Show more**.
 
 **D-05 Captions.** Default captions:
@@ -101,7 +112,10 @@ The display name is never in a default caption. Administrators edit captions: 1�
 - the ability ladder in force (DESIGN-025);
 - per-slot memory sources `{kind: 'immich', opaque}` with captions and dates.
 
-It reuses the frozen editor-world runtime (anchors, encounters, bonus slot, route ordering) so the game code path is shared. It is accepted in production mode only through a publication; ephemeral editor playtests keep their fixture-only plan types. `validateSaveRecord` re-derives its invariants on load. Minor memories release on contact, and the major releases after the boss. Recovering the major runs the existing atomic level completion, which sets age to the chapter's `recoveredAge` and grants the ladder's moves.
+It reuses the frozen editor-world runtime (anchors, encounters, bonus slot, route ordering) so the game code path is shared. It is accepted in production mode only through a publication; ephemeral editor playtests keep their fixture-only plan types. `validateSaveRecord` re-derives its invariants on load, including the cast rules the builder applied:
+
+- a catalog encounter is checked against the prepared catalog;
+- a neutral candidate is checked against the candidate table of the template named by the plan's frozen fingerprint. Its name, period, role and kind must match, and the rebased chapter start must fall inside its eligibility window. A plan whose template is unknown fails. Minor memories release on contact, and the major releases after the boss. Recovering the major runs the existing atomic level completion, which sets age to the chapter's `recoveredAge` and grants the ladder's moves.
 
 **D-08 Routes.**
 
@@ -111,8 +125,8 @@ It reuses the frozen editor-world runtime (anchors, encounters, bonus slot, rout
 | `/api/session` | GET | Session view, extended to `mode: 'family'` with role | Admitted |
 | `/api/children` | GET | Published journeys and their saves | Admitted |
 | `/api/admin/children` | GET, POST | Child profiles | Admin |
-| `/api/admin/immich/people?name=` | GET | Person lookup, through Immich's name search (`/api/search/person`) with an exact, case-insensitive filter | Admin |
-| `/api/admin/templates?birthDate=` | GET | World templates that fit a birthday | Admin |
+| `/api/admin/immich/people` | POST `{name}` | Person lookup, through Immich's name search (`/api/search/person`) with an exact, case-insensitive filter. The name travels in the body, never the URL (D-01). | Admin |
+| `/api/admin/templates` | POST `{birthDate}` | World templates that fit a birthday. The birthday travels in the body, never the URL (D-01). | Admin |
 | `/api/admin/children/:id/draft` | GET, PUT | Draft read and edit | Admin |
 | `/api/admin/children/:id/draft/slots/:chapter/:slot/suggestions?cursor=` | GET | Swap suggestions | Admin |
 | `/api/admin/candidates/:token/image` | GET | Candidate thumbnail | Admin |
@@ -120,13 +134,15 @@ It reuses the frozen editor-world runtime (anchors, encounters, bonus slot, rout
 | `/api/admin/children/:id/template` | POST | **Update world** to a newer version of the same template (D-11) | Admin |
 | `/api/children/:id/play` | POST | Resume or create the household save for the latest publication | Admitted |
 
-Save routes are unchanged in shape.
+Save routes are unchanged in shape. The two `POST` lookups change nothing, but they carry the same exact-Origin and `X-Quest-Request` guard as every other `POST`. On the family host, `/studio/*` also needs a family session. Only the sign-in start, `/api/auth/*`, `/healthz` and `/readyz` answer without one ([ADR-006](../adrs/006-release-isolation-and-public-surface.md) D-02).
 
 **D-08a Background picking.** Automatic picking runs as a background job, and its request returns 202, because a full pick can take longer than Cloudflare's 100 s request limit. The admin screen shows progress.
 
 **D-08b Time zone.** `QUEST_HOUSEHOLD_TIME_ZONE` (America/New_York in production) defines "today" for the final chapter's end and for pick windows.
 
-**D-09 Operator CLI.** For the first overnight setup, an operator runs `node dist/server/admin.js` inside the family pod. It performs the same service calls as the admin screen (create child from Immich name, confirm birthday, choose template, auto-pick, update world, publish). It prints only opaque ids and counts, never names, dates or photo ids. This does not bypass validation. A template fix ships as a new version, and published journeys keep their frozen one; `set-template` moves a child onto a newer version of the same world under D-11's rules, and a started run keeps its publication until an administrator starts a fresh run.
+**D-09 Operator CLI.** For the first overnight setup, an operator runs `node dist/server/admin.js` inside the family pod. It performs the same service calls as the admin screen (create child from Immich name, confirm birthday, choose template, auto-pick, update world, publish). It prints only opaque ids and counts, never names, dates or photo ids. This does not bypass validation.
+
+The Immich name, the display name and the birthday arrive as one JSON object on stdin (`kubectl exec -i … < private.json`), never as arguments. `--name`, `--display-name` and `--birth-date` are refused with `PRIVATE_OPTION_REFUSED`. Only opaque ids, template keys and fixed flags go on the command line. A template fix ships as a new version, and published journeys keep their frozen one; `set-template` moves a child onto a newer version of the same world under D-11's rules, and a started run keeps its publication until an administrator starts a fresh run.
 
 **D-10 Copy.** Fixture-only strings ("Fictional illustration", fictional help text) stay in fixture mode only. Family mode shows the caption and the child's age. All user-visible copy is authored by the coordinator.
 
@@ -161,7 +177,11 @@ Save routes are unchanged in shape.
   - caption bounds;
   - token expiry and tamper rejection;
   - **Update world** (D-11): carry-over of unchanged chapters with captions, `needs-photo` when a kept date no longer fits, auto-picks for new and changed chapters around kept photos, refusal of another template or an older, equal, unknown or unoffered version, and a revision race;
-  - the operator CLI's output shape.
+  - the operator CLI's output shape, its stdin-only private input and its refusal of private arguments;
+  - lookups that keep names and birthdays out of URLs;
+  - smart results with an empty `people` list, and metadata picks and **Show more** pages centred on the target in a dense library;
+  - a frozen plan whose candidate cast breaks its template's period, name or eligibility window;
+  - a database connection lost while idle or checked out.
 - **PostgreSQL:**
   - draft compare-and-set races;
   - idempotent publish;
