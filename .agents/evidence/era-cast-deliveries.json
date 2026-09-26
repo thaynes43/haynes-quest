@@ -387,13 +387,13 @@
       "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
       "sceneReleasedAt": "2026-09-26T15:00:25.390761+00:00",
       "manifest": "docs/assets/media/rival-mayor/v001/sha256-manifest.json",
-      "pr": null,
+      "pr": 96,
       "prMerged": null,
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v1 uses a neutral placeholder for this boss slot"
       },
-      "prUrl": null,
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/96",
       "masterSha256": "53dbb763aacb5f6c4272f165d543168c2129fbd592453fd6b53cdb466175799a",
       "validation": {
         "khronosErrors": 0,
