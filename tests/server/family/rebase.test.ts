@@ -116,7 +116,11 @@ describe('family template registry', () => {
   });
 
   it('offers only templates that fit the child', () => {
-    expect(registry.offeredFor(TEST_CHILD_B.birthDate, TODAY).map((entry) => entry.version)).toEqual(['v1', 'v2']);
+    expect(registry.offeredFor(TEST_CHILD_B.birthDate, TODAY).map((entry) => `${entry.id}@${entry.version}`)).toEqual([
+      'rat-casino-world@v1',
+      'rat-casino-world@v2',
+      'family-world-b@v1',
+    ]);
     expect(registry.offeredFor(TEST_CHILD_A.birthDate, TODAY)).toEqual([]);
     expect(registry.offeredFor('2021-06-01', TODAY)).toEqual([]);
   });

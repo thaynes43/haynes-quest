@@ -36,6 +36,16 @@ The earlier five-chapter proposal split chapter 3 into Power Rangers with T.O.T.
 | 2 | 2 → 4 | Bluey (Disney Junior US from Sep 2019); Encanto (Nov 2021; "We Don't Talk About Bruno" #1 in Feb 2022) | Boss: a magical dancing house with shutters and tiles. Ordinaries: bin-chicken birds | Colorful magical house and garden, with terraces up the casita |
 | 3 | 4 → 6 | Wicked (film Nov 2024); KPop Demon Hunters (Jun 2025) | The existing Bickering Besties (approved joint look). Ordinaries: a demon boy-band trio parody | The existing Besties playground with a concert stage |
 
+**World B build status.** All three chapters are built into the registered template `family-world-b@v1`, "Playroom to Big Stage" (PLAN-019; see [Family worlds](../level-editor.md#family-worlds)). The template pins `parody-catalog-v8`. Each chapter has one ordinary identity in all four ordinary slots.
+
+| Ch | Chapter and route | Theme | Cast as built | Status |
+| --- | --- | --- | --- | --- |
+| 1 | The Sing-Along Playroom, `family-b1-playroom` | `playroom` | Boss: Big Honk Bus, catalog `honk-bus@v001` (landed model). Ordinaries: Yes-Yes Veggie, project candidate | Built; the veggie model is pending |
+| 2 | The Magic House, `family-b2-casita` | `casita` | Boss: The Dancing House. Ordinaries: Bin Chicken. Both are project candidates | Built; both models are pending |
+| 3 | Besties' Big Stage, `family-b3-stage` | `party` | Boss: Bickering Besties, catalog `bickering-besties@v001`. Ordinaries: Demon Idol, project candidate | Built; the idol model is pending |
+
+Project candidates use neutral placeholder art. A model that lands later joins a new catalog version and a new template version, because published journeys freeze `family-world-b@v1`.
+
 ## Eligibility
 
 The new casts go in new frozen parody catalog versions: v7 carries the windows, and v8 onward registers each model as it lands. Each entry records:

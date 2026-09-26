@@ -1549,6 +1549,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
               supportId: controller.supportId,
               recoveryRemaining: controller.recoveryRemaining,
               recoveries: traversalRecoveries,
+              timeSeconds: courseTime,
+              state: structuredClone(controller),
             }
           : undefined,
         collectibles:

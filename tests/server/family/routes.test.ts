@@ -92,7 +92,11 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
     const harness = familyHarness();
     const { templates } = await json<{ templates: Array<{ id: string; version: string }> }>(
       harness.request('/api/admin/templates?birthDate=2020-02-29'), 200);
-    expect(templates.map((entry) => entry.version)).toEqual(['v1', 'v2']);
+    expect(templates.map((entry) => `${entry.id}@${entry.version}`)).toEqual([
+      'rat-casino-world@v1',
+      'rat-casino-world@v2',
+      'family-world-b@v1',
+    ]);
     expect((await json<{ templates: unknown[] }>(harness.request('/api/admin/templates?birthDate=2016-02-29'), 200)).templates)
       .toEqual([]);
     const { people } = await json<{ people: PersonChoice[] }>(

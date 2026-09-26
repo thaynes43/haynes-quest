@@ -27,7 +27,12 @@ describe('operator CLI (DESIGN-024 D-09)', () => {
     const choice = /^choice (person-[a-f0-9]{32}) birth-date on-file$/.exec(people.output[1]!)?.[1];
     expect(choice).toBeDefined();
     expect((await run('templates', '--birth-date', TEST_CHILD_B.birthDate)).output)
-      .toEqual(['templates 2', 'template rat-casino-world@v1 chapters 3', 'template rat-casino-world@v2 chapters 3']);
+      .toEqual([
+        'templates 3',
+        'template rat-casino-world@v1 chapters 3',
+        'template rat-casino-world@v2 chapters 3',
+        'template family-world-b@v1 chapters 3',
+      ]);
 
     const created = await run(
       'create-child', '--name', TEST_CHILD_B.name, '--choice', choice!, '--display-name', 'Test Child B',

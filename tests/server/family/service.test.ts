@@ -85,7 +85,11 @@ describe('family journey service', () => {
   });
 
   it('offers only templates that fit the birthday', () => {
-    expect(context.service.offeredTemplates(TEST_CHILD_B.birthDate).map((offer) => offer.version)).toEqual(['v1', 'v2']);
+    expect(context.service.offeredTemplates(TEST_CHILD_B.birthDate).map((offer) => `${offer.id}@${offer.version}`)).toEqual([
+      'rat-casino-world@v1',
+      'rat-casino-world@v2',
+      'family-world-b@v1',
+    ]);
     expect(context.service.offeredTemplates(TEST_CHILD_A.birthDate)).toEqual([]);
   });
 

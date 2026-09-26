@@ -1,0 +1,6061 @@
+{
+  "expectedRevision": 0,
+  "commands": [
+    {
+      "type": "project.rename",
+      "name": "Playroom to Big Stage"
+    },
+    {
+      "type": "project.birthdate.set",
+      "fictionalBirthDate": "2020-06-01"
+    },
+    {
+      "type": "chapter.add",
+      "newChapterId": "family-b1",
+      "newRouteId": "family-b1-playroom",
+      "sourceTemplateId": "garden-playground-v2",
+      "name": "The Sing-Along Playroom",
+      "subtitle": "Block towers and bouncy beds",
+      "description": "Climb the playroom towers, bounce on the beds and cheer up the grumpy bus."
+    },
+    {
+      "type": "chapter.remove",
+      "chapterId": "chapter-1"
+    },
+    {
+      "type": "chapter.remove",
+      "chapterId": "chapter-2"
+    },
+    {
+      "type": "chapter.add",
+      "newChapterId": "family-b2",
+      "newRouteId": "family-b2-casita",
+      "sourceTemplateId": "garden-playground-v2",
+      "name": "The Magic House",
+      "subtitle": "Garden terraces and dancing tiles",
+      "description": "Climb the garden terraces and calm the dancing house at the top."
+    },
+    {
+      "type": "chapter.add",
+      "newChapterId": "family-b3",
+      "newRouteId": "family-b3-stage",
+      "sourceTemplateId": "garden-playground-v2",
+      "name": "Besties' Big Stage",
+      "subtitle": "Sparkles, stages and a missed high-five",
+      "description": "Dance past the demon idols and help the Besties finally land their high-five."
+    },
+    {
+      "type": "chapter.level.upgrade",
+      "chapterId": "family-b1",
+      "schemaVersion": "authored-level-v4"
+    },
+    {
+      "type": "chapter.details.set",
+      "chapterId": "family-b1",
+      "subtitle": "Block towers and bouncy beds",
+      "description": "Climb the playroom towers, bounce on the beds and cheer up the grumpy bus.",
+      "theme": "playroom",
+      "representedDateRange": {
+        "startDate": "2020-06-01",
+        "endDate": "2022-06-01"
+      },
+      "recoveredAge": {
+        "fromYears": 0,
+        "toYears": 2
+      },
+      "previewMemories": [
+        {
+          "slotId": "minor-one",
+          "date": "2021-01-15",
+          "label": "Bath-time bubbles"
+        },
+        {
+          "slotId": "minor-two",
+          "date": "2021-08-01",
+          "label": "Summer picnic"
+        },
+        {
+          "slotId": "major",
+          "date": "2022-06-01",
+          "label": "Turning 2!"
+        }
+      ]
+    },
+    {
+      "type": "chapter.level.upgrade",
+      "chapterId": "family-b2",
+      "schemaVersion": "authored-level-v4"
+    },
+    {
+      "type": "chapter.details.set",
+      "chapterId": "family-b2",
+      "subtitle": "Garden terraces and dancing tiles",
+      "description": "Climb the garden terraces and calm the dancing house at the top.",
+      "theme": "casita",
+      "representedDateRange": {
+        "startDate": "2022-06-01",
+        "endDate": "2024-06-01"
+      },
+      "recoveredAge": {
+        "fromYears": 2,
+        "toYears": 4
+      },
+      "previewMemories": [
+        {
+          "slotId": "minor-one",
+          "date": "2022-11-12",
+          "label": "Garden tea party"
+        },
+        {
+          "slotId": "minor-two",
+          "date": "2023-08-19",
+          "label": "Splash day"
+        },
+        {
+          "slotId": "major",
+          "date": "2024-06-01",
+          "label": "Turning 4!"
+        }
+      ]
+    },
+    {
+      "type": "chapter.level.upgrade",
+      "chapterId": "family-b3",
+      "schemaVersion": "authored-level-v4"
+    },
+    {
+      "type": "chapter.details.set",
+      "chapterId": "family-b3",
+      "subtitle": "Sparkles, stages and a missed high-five",
+      "description": "Dance past the demon idols and help the Besties finally land their high-five.",
+      "theme": "party",
+      "representedDateRange": {
+        "startDate": "2024-06-01",
+        "endDate": "2026-06-01"
+      },
+      "recoveredAge": {
+        "fromYears": 4,
+        "toYears": 6
+      },
+      "previewMemories": [
+        {
+          "slotId": "minor-one",
+          "date": "2024-12-14",
+          "label": "Front-row seats"
+        },
+        {
+          "slotId": "minor-two",
+          "date": "2025-08-16",
+          "label": "Dance party"
+        },
+        {
+          "slotId": "major",
+          "date": "2026-06-01",
+          "label": "Turning 6!"
+        }
+      ]
+    },
+    {
+      "type": "chapter.level.replace",
+      "chapterId": "family-b1",
+      "level": {
+        "schemaVersion": "authored-level-v4",
+        "id": "family-b1-playroom",
+        "theme": "playroom",
+        "pieces": [
+          {
+            "type": "platform",
+            "id": "rug-start",
+            "center": {
+              "x": 0,
+              "y": -0.7,
+              "z": 1
+            },
+            "size": {
+              "x": 12,
+              "y": 1.4,
+              "z": 12
+            }
+          },
+          {
+            "type": "platform",
+            "id": "rug-runner",
+            "center": {
+              "x": 0,
+              "y": -0.7,
+              "z": -14
+            },
+            "size": {
+              "x": 5,
+              "y": 1.4,
+              "z": 18
+            }
+          },
+          {
+            "type": "platform",
+            "id": "practice-mat",
+            "center": {
+              "x": 0.75,
+              "y": -0.85,
+              "z": -33.45
+            },
+            "size": {
+              "x": 11.5,
+              "y": 1.1,
+              "z": 21.9
+            }
+          },
+          {
+            "type": "platform",
+            "id": "toy-step-1",
+            "center": {
+              "x": 1.2,
+              "y": 0,
+              "z": -25.8
+            },
+            "size": {
+              "x": 4.8,
+              "y": 0.6,
+              "z": 3.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "toy-step-2",
+            "center": {
+              "x": -1.2,
+              "y": 0.15,
+              "z": -30.4
+            },
+            "size": {
+              "x": 4.8,
+              "y": 0.9,
+              "z": 3.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "toy-step-3",
+            "center": {
+              "x": 1.2,
+              "y": 0.3,
+              "z": -35
+            },
+            "size": {
+              "x": 4.8,
+              "y": 1.2,
+              "z": 3.6
+            }
+          },
+          {
+            "type": "bounce-pad",
+            "id": "bed-pad",
+            "center": {
+              "x": 1.5,
+              "y": 0.3,
+              "z": -38
+            },
+            "size": {
+              "x": 3,
+              "y": 1.2,
+              "z": 2.4
+            },
+            "strength": "small"
+          },
+          {
+            "type": "platform",
+            "id": "bounce-block",
+            "center": {
+              "x": 1.5,
+              "y": 0.75,
+              "z": -41.74
+            },
+            "size": {
+              "x": 4,
+              "y": 2.1,
+              "z": 4.4
+            }
+          },
+          {
+            "type": "platform",
+            "id": "play-mat",
+            "center": {
+              "x": 0,
+              "y": 0.2,
+              "z": -51.44
+            },
+            "size": {
+              "x": 16,
+              "y": 3.2,
+              "z": 13
+            }
+          },
+          {
+            "type": "platform",
+            "id": "snack-table",
+            "center": {
+              "x": -16.5,
+              "y": 0.35,
+              "z": -51.5
+            },
+            "size": {
+              "x": 15,
+              "y": 3.5,
+              "z": 13
+            }
+          },
+          {
+            "type": "platform",
+            "id": "crib-rail",
+            "center": {
+              "x": -16.5,
+              "y": 0.5,
+              "z": -64
+            },
+            "size": {
+              "x": 11,
+              "y": 3.8,
+              "z": 10
+            }
+          },
+          {
+            "type": "platform",
+            "id": "block-bridge-1",
+            "center": {
+              "x": -15.3,
+              "y": 0.5,
+              "z": -71.8
+            },
+            "size": {
+              "x": 4.8,
+              "y": 3.8,
+              "z": 3.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "block-bridge-2",
+            "center": {
+              "x": -17.7,
+              "y": 0.65,
+              "z": -76.4
+            },
+            "size": {
+              "x": 4.8,
+              "y": 4.1,
+              "z": 3.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "block-bridge-3",
+            "center": {
+              "x": -15.3,
+              "y": 0.65,
+              "z": -81
+            },
+            "size": {
+              "x": 4.8,
+              "y": 4.1,
+              "z": 3.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "book-shelf",
+            "center": {
+              "x": -20.5,
+              "y": 0.65,
+              "z": -89.3
+            },
+            "size": {
+              "x": 19,
+              "y": 4.1,
+              "z": 11
+            }
+          },
+          {
+            "type": "moving-platform",
+            "id": "toy-train",
+            "center": {
+              "x": -8.2,
+              "y": 2.45,
+              "z": -89.3
+            },
+            "size": {
+              "x": 3.6,
+              "y": 0.5,
+              "z": 4.4
+            },
+            "motion": {
+              "axis": "z",
+              "distance": 1.2,
+              "period": 10
+            }
+          },
+          {
+            "type": "platform",
+            "id": "train-station",
+            "center": {
+              "x": 0.6,
+              "y": 0.65,
+              "z": -89.3
+            },
+            "size": {
+              "x": 12,
+              "y": 4.1,
+              "z": 13
+            }
+          },
+          {
+            "type": "lift",
+            "id": "toy-elevator",
+            "center": {
+              "x": 0.6,
+              "y": 2.5,
+              "z": -97.4
+            },
+            "size": {
+              "x": 3,
+              "y": 0.4,
+              "z": 3
+            },
+            "travel": {
+              "distance": 1.8,
+              "period": 8,
+              "dwell": 2.5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "dresser",
+            "center": {
+              "x": 0.6,
+              "y": 1.55,
+              "z": -104
+            },
+            "size": {
+              "x": 12,
+              "y": 5.9,
+              "z": 10
+            }
+          },
+          {
+            "type": "platform",
+            "id": "music-box",
+            "center": {
+              "x": 14.6,
+              "y": 1.55,
+              "z": -104
+            },
+            "size": {
+              "x": 14,
+              "y": 5.9,
+              "z": 12
+            }
+          },
+          {
+            "type": "platform",
+            "id": "xylophone-key-1",
+            "center": {
+              "x": 24.4,
+              "y": 1.7,
+              "z": -104
+            },
+            "size": {
+              "x": 3.6,
+              "y": 6.2,
+              "z": 4.4
+            }
+          },
+          {
+            "type": "platform",
+            "id": "xylophone-key-2",
+            "center": {
+              "x": 29,
+              "y": 1.85,
+              "z": -105
+            },
+            "size": {
+              "x": 3.6,
+              "y": 6.5,
+              "z": 4.4
+            }
+          },
+          {
+            "type": "platform",
+            "id": "xylophone-key-3",
+            "center": {
+              "x": 33.6,
+              "y": 1.7,
+              "z": -106
+            },
+            "size": {
+              "x": 3.6,
+              "y": 6.2,
+              "z": 4.4
+            }
+          },
+          {
+            "type": "platform",
+            "id": "toy-piano",
+            "center": {
+              "x": 43.4,
+              "y": 1.55,
+              "z": -106.5
+            },
+            "size": {
+              "x": 14,
+              "y": 5.9,
+              "z": 13
+            }
+          },
+          {
+            "type": "bounce-pad",
+            "id": "pillow-pad-1",
+            "center": {
+              "x": 43.4,
+              "y": 4.3,
+              "z": -114.2
+            },
+            "size": {
+              "x": 3,
+              "y": 0.4,
+              "z": 2.4
+            },
+            "strength": "small"
+          },
+          {
+            "type": "platform",
+            "id": "pillow-pile",
+            "center": {
+              "x": 43.4,
+              "y": 2.15,
+              "z": -119.74
+            },
+            "size": {
+              "x": 10,
+              "y": 7.1,
+              "z": 8
+            }
+          },
+          {
+            "type": "bounce-pad",
+            "id": "pillow-pad-2",
+            "center": {
+              "x": 43.4,
+              "y": 5.5,
+              "z": -124.94
+            },
+            "size": {
+              "x": 3,
+              "y": 0.4,
+              "z": 2.4
+            },
+            "strength": "small"
+          },
+          {
+            "type": "platform",
+            "id": "top-shelf",
+            "center": {
+              "x": 43.4,
+              "y": 2.75,
+              "z": -131.48
+            },
+            "size": {
+              "x": 14,
+              "y": 8.3,
+              "z": 10
+            }
+          },
+          {
+            "type": "platform",
+            "id": "boss-rug",
+            "center": {
+              "x": 26.9,
+              "y": 2.75,
+              "z": -132
+            },
+            "size": {
+              "x": 17,
+              "y": 8.3,
+              "z": 16
+            }
+          },
+          {
+            "type": "platform",
+            "id": "toy-chest",
+            "center": {
+              "x": 26.9,
+              "y": 2.75,
+              "z": -142.5
+            },
+            "size": {
+              "x": 10,
+              "y": 8.3,
+              "z": 5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "tower-block-1",
+            "center": {
+              "x": -4.6,
+              "y": 0.35,
+              "z": -60.94
+            },
+            "size": {
+              "x": 4,
+              "y": 3.5,
+              "z": 4
+            }
+          },
+          {
+            "type": "platform",
+            "id": "tower-block-2",
+            "center": {
+              "x": -4.6,
+              "y": 0.5,
+              "z": -65.94
+            },
+            "size": {
+              "x": 4,
+              "y": 3.8,
+              "z": 4
+            }
+          },
+          {
+            "type": "platform",
+            "id": "tower-block-3",
+            "center": {
+              "x": -9.1,
+              "y": 0.65,
+              "z": -66
+            },
+            "size": {
+              "x": 3,
+              "y": 4.1,
+              "z": 4
+            }
+          },
+          {
+            "type": "bounce-pad",
+            "id": "fort-pad",
+            "center": {
+              "x": -21.1,
+              "y": 2.2,
+              "z": -70.2
+            },
+            "size": {
+              "x": 3,
+              "y": 0.4,
+              "z": 2.4
+            },
+            "strength": "small"
+          },
+          {
+            "type": "platform",
+            "id": "pillow-fort",
+            "center": {
+              "x": -25.3,
+              "y": 1.1,
+              "z": -77.37
+            },
+            "size": {
+              "x": 9.4,
+              "y": 5,
+              "z": 11.26
+            }
+          },
+          {
+            "type": "sweeper",
+            "id": "crib-mobile",
+            "center": {
+              "x": -16.5,
+              "y": 2.62,
+              "z": -64
+            },
+            "halfLength": 1.3,
+            "radius": 0.18,
+            "rotation": {
+              "period": 13
+            }
+          },
+          {
+            "type": "sweeper",
+            "id": "book-slider",
+            "center": {
+              "x": -15,
+              "y": 2.92,
+              "z": -89.3
+            },
+            "halfLength": 1.5,
+            "radius": 0.18,
+            "motion": {
+              "axis": "z",
+              "distance": 2.5,
+              "period": 10
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-start",
+            "platformId": "rug-start",
+            "position": {
+              "x": 3,
+              "y": 0,
+              "z": 4.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-block",
+            "platformId": "bounce-block",
+            "position": {
+              "x": 0.4,
+              "y": 1.8,
+              "z": -40.4
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-play",
+            "platformId": "play-mat",
+            "position": {
+              "x": -6.5,
+              "y": 1.8,
+              "z": -46.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-snack",
+            "platformId": "snack-table",
+            "position": {
+              "x": -11,
+              "y": 2.1,
+              "z": -46.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-crib",
+            "platformId": "crib-rail",
+            "position": {
+              "x": -12.5,
+              "y": 2.4,
+              "z": -60.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-shelf",
+            "platformId": "book-shelf",
+            "position": {
+              "x": -20.5,
+              "y": 2.7,
+              "z": -85.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-station",
+            "platformId": "train-station",
+            "position": {
+              "x": -3.5,
+              "y": 2.7,
+              "z": -85
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-dresser",
+            "platformId": "dresser",
+            "position": {
+              "x": -3.5,
+              "y": 4.5,
+              "z": -101
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-music",
+            "platformId": "music-box",
+            "position": {
+              "x": 8.3,
+              "y": 4.5,
+              "z": -99.3
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-piano",
+            "platformId": "toy-piano",
+            "position": {
+              "x": 37.3,
+              "y": 4.5,
+              "z": -101
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-pillow",
+            "platformId": "pillow-pile",
+            "position": {
+              "x": 39.8,
+              "y": 5.7,
+              "z": -117.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-top",
+            "platformId": "top-shelf",
+            "position": {
+              "x": 48.4,
+              "y": 6.9,
+              "z": -128.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-boss-gate",
+            "platformId": "boss-rug",
+            "position": {
+              "x": 34.7,
+              "y": 6.9,
+              "z": -125
+            },
+            "activation": {
+              "type": "platform"
+            }
+          }
+        ],
+        "connections": [
+          {
+            "from": "rug-start",
+            "to": "rug-runner",
+            "mode": "walk"
+          },
+          {
+            "from": "rug-runner",
+            "to": "toy-step-1",
+            "mode": "jump",
+            "safeMissPlatformId": "practice-mat"
+          },
+          {
+            "from": "toy-step-1",
+            "to": "toy-step-2",
+            "mode": "jump",
+            "safeMissPlatformId": "practice-mat"
+          },
+          {
+            "from": "toy-step-2",
+            "to": "toy-step-3",
+            "mode": "jump",
+            "safeMissPlatformId": "practice-mat"
+          },
+          {
+            "from": "toy-step-3",
+            "to": "bed-pad",
+            "mode": "walk"
+          },
+          {
+            "from": "bed-pad",
+            "to": "bounce-block",
+            "mode": "bounce",
+            "safeMissPlatformId": "practice-mat"
+          },
+          {
+            "from": "practice-mat",
+            "to": "rug-runner",
+            "mode": "jump"
+          },
+          {
+            "from": "bounce-block",
+            "to": "play-mat",
+            "mode": "jump"
+          },
+          {
+            "from": "play-mat",
+            "to": "snack-table",
+            "mode": "jump"
+          },
+          {
+            "from": "snack-table",
+            "to": "crib-rail",
+            "mode": "jump"
+          },
+          {
+            "from": "crib-rail",
+            "to": "block-bridge-1",
+            "mode": "jump"
+          },
+          {
+            "from": "block-bridge-1",
+            "to": "block-bridge-2",
+            "mode": "jump"
+          },
+          {
+            "from": "block-bridge-2",
+            "to": "block-bridge-3",
+            "mode": "jump"
+          },
+          {
+            "from": "block-bridge-3",
+            "to": "book-shelf",
+            "mode": "jump"
+          },
+          {
+            "from": "book-shelf",
+            "to": "toy-train",
+            "mode": "ride"
+          },
+          {
+            "from": "toy-train",
+            "to": "train-station",
+            "mode": "ride"
+          },
+          {
+            "from": "train-station",
+            "to": "toy-elevator",
+            "mode": "ride"
+          },
+          {
+            "from": "toy-elevator",
+            "to": "dresser",
+            "mode": "ride"
+          },
+          {
+            "from": "dresser",
+            "to": "music-box",
+            "mode": "jump"
+          },
+          {
+            "from": "music-box",
+            "to": "xylophone-key-1",
+            "mode": "jump"
+          },
+          {
+            "from": "xylophone-key-1",
+            "to": "xylophone-key-2",
+            "mode": "jump"
+          },
+          {
+            "from": "xylophone-key-2",
+            "to": "xylophone-key-3",
+            "mode": "jump"
+          },
+          {
+            "from": "xylophone-key-3",
+            "to": "toy-piano",
+            "mode": "jump"
+          },
+          {
+            "from": "toy-piano",
+            "to": "pillow-pad-1",
+            "mode": "walk"
+          },
+          {
+            "from": "pillow-pad-1",
+            "to": "pillow-pile",
+            "mode": "bounce"
+          },
+          {
+            "from": "pillow-pile",
+            "to": "pillow-pad-2",
+            "mode": "walk"
+          },
+          {
+            "from": "pillow-pad-2",
+            "to": "top-shelf",
+            "mode": "bounce"
+          },
+          {
+            "from": "top-shelf",
+            "to": "boss-rug",
+            "mode": "jump"
+          },
+          {
+            "from": "boss-rug",
+            "to": "toy-chest",
+            "mode": "walk"
+          },
+          {
+            "from": "play-mat",
+            "to": "tower-block-1",
+            "mode": "jump"
+          },
+          {
+            "from": "tower-block-1",
+            "to": "tower-block-2",
+            "mode": "jump"
+          },
+          {
+            "from": "tower-block-2",
+            "to": "tower-block-3",
+            "mode": "jump"
+          },
+          {
+            "from": "tower-block-3",
+            "to": "crib-rail",
+            "mode": "jump"
+          },
+          {
+            "from": "crib-rail",
+            "to": "fort-pad",
+            "mode": "walk"
+          },
+          {
+            "from": "fort-pad",
+            "to": "pillow-fort",
+            "mode": "bounce"
+          },
+          {
+            "from": "pillow-fort",
+            "to": "book-shelf",
+            "mode": "drop"
+          }
+        ],
+        "mainPath": [
+          "rug-start",
+          "rug-runner",
+          "toy-step-1",
+          "toy-step-2",
+          "toy-step-3",
+          "bed-pad",
+          "bounce-block",
+          "play-mat",
+          "snack-table",
+          "crib-rail",
+          "block-bridge-1",
+          "block-bridge-2",
+          "block-bridge-3",
+          "book-shelf",
+          "toy-train",
+          "train-station",
+          "toy-elevator",
+          "dresser",
+          "music-box",
+          "xylophone-key-1",
+          "xylophone-key-2",
+          "xylophone-key-3",
+          "toy-piano",
+          "pillow-pad-1",
+          "pillow-pile",
+          "pillow-pad-2",
+          "top-shelf",
+          "boss-rug",
+          "toy-chest"
+        ],
+        "branches": [
+          [
+            "play-mat",
+            "tower-block-1",
+            "tower-block-2",
+            "tower-block-3",
+            "crib-rail"
+          ],
+          [
+            "crib-rail",
+            "fort-pad",
+            "pillow-fort",
+            "book-shelf"
+          ]
+        ],
+        "anchors": {
+          "spawn": {
+            "platformId": "rug-start",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 4
+            }
+          },
+          "finish": {
+            "platformId": "toy-chest",
+            "position": {
+              "x": 26.9,
+              "y": 6.9,
+              "z": -144.2
+            }
+          },
+          "rewardRespawn": {
+            "platformId": "toy-chest",
+            "position": {
+              "x": 30.4,
+              "y": 6.9,
+              "z": -141
+            }
+          },
+          "pickups": {
+            "attack-tool": {
+              "platformId": "rug-start",
+              "position": {
+                "x": -2.5,
+                "y": 0,
+                "z": 0.5
+              }
+            },
+            "guard-tool": {
+              "platformId": "bounce-block",
+              "position": {
+                "x": 2.4,
+                "y": 1.8,
+                "z": -42.6
+              }
+            }
+          },
+          "memories": {
+            "minor-one": {
+              "platformId": "dresser",
+              "position": {
+                "x": -3,
+                "y": 4.5,
+                "z": -106
+              }
+            },
+            "minor-two": {
+              "platformId": "top-shelf",
+              "position": {
+                "x": 39.5,
+                "y": 6.9,
+                "z": -133
+              }
+            },
+            "major": {
+              "platformId": "toy-chest",
+              "position": {
+                "x": 26.9,
+                "y": 6.9,
+                "z": -142.5
+              }
+            }
+          },
+          "encounters": {
+            "ordinary-1": {
+              "platformId": "play-mat",
+              "position": {
+                "x": 0,
+                "y": 1.8,
+                "z": -52.5
+              },
+              "kind": "ordinary-a",
+              "arena": {
+                "minX": -3.5,
+                "maxX": 3.5,
+                "minZ": -55.2,
+                "maxZ": -49.8
+              },
+              "checkpointId": "cp-block"
+            },
+            "ordinary-2": {
+              "platformId": "snack-table",
+              "position": {
+                "x": -17,
+                "y": 2.1,
+                "z": -51.5
+              },
+              "kind": "ordinary-a",
+              "arena": {
+                "minX": -20.5,
+                "maxX": -13.5,
+                "minZ": -54.5,
+                "maxZ": -48.5
+              },
+              "checkpointId": "cp-play"
+            },
+            "ordinary-3": {
+              "platformId": "music-box",
+              "position": {
+                "x": 14.6,
+                "y": 4.5,
+                "z": -104
+              },
+              "kind": "ordinary-a",
+              "arena": {
+                "minX": 10.6,
+                "maxX": 18.6,
+                "minZ": -106.5,
+                "maxZ": -101.5
+              },
+              "checkpointId": "cp-dresser"
+            },
+            "ordinary-4": {
+              "platformId": "toy-piano",
+              "position": {
+                "x": 43.5,
+                "y": 4.5,
+                "z": -106.5
+              },
+              "kind": "ordinary-a",
+              "arena": {
+                "minX": 40,
+                "maxX": 47.5,
+                "minZ": -110,
+                "maxZ": -103.5
+              },
+              "checkpointId": "cp-music"
+            },
+            "boss": {
+              "platformId": "boss-rug",
+              "position": {
+                "x": 26.5,
+                "y": 6.9,
+                "z": -132
+              },
+              "kind": "boss",
+              "arena": {
+                "minX": 22,
+                "maxX": 31,
+                "minZ": -136,
+                "maxZ": -128
+              },
+              "checkpointId": "cp-boss-gate"
+            }
+          },
+          "friendlies": {
+            "friendly-1": {
+              "platformId": "rug-start",
+              "position": {
+                "x": -4,
+                "y": 0,
+                "z": 4
+              }
+            },
+            "friendly-2": {
+              "platformId": "dresser",
+              "position": {
+                "x": 3.5,
+                "y": 4.5,
+                "z": -107
+              }
+            },
+            "friendly-3": {
+              "platformId": "top-shelf",
+              "position": {
+                "x": 47.5,
+                "y": 6.9,
+                "z": -134
+              }
+            }
+          }
+        },
+        "decor": [
+          {
+            "id": "bus-garage",
+            "kitPropId": "toy-bus-garage",
+            "position": {
+              "x": 11,
+              "y": -1.4,
+              "z": 2
+            },
+            "rotationY": -1.571,
+            "scale": 1.9
+          },
+          {
+            "id": "ball-rug-east",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": 12.5,
+              "y": -1.4,
+              "z": -12
+            },
+            "rotationY": 0,
+            "scale": 3
+          },
+          {
+            "id": "ball-rug-west",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": -12,
+              "y": -1.4,
+              "z": -9
+            },
+            "rotationY": 0,
+            "scale": 2.6
+          },
+          {
+            "id": "ball-steps-east",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": 14.5,
+              "y": -1.4,
+              "z": -30
+            },
+            "rotationY": 0,
+            "scale": 2.2
+          },
+          {
+            "id": "ball-steps-west",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": -13,
+              "y": -1.4,
+              "z": -30
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "ball-mat-east",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": 13,
+              "y": -1.4,
+              "z": -48
+            },
+            "rotationY": 0,
+            "scale": 1.6
+          },
+          {
+            "id": "ball-snack-west",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": -31,
+              "y": -1.4,
+              "z": -52
+            },
+            "rotationY": 0,
+            "scale": 2.8
+          },
+          {
+            "id": "ball-bridge-east",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": -6,
+              "y": -1.4,
+              "z": -76
+            },
+            "rotationY": 0,
+            "scale": 2.2
+          },
+          {
+            "id": "ball-station-east",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": 14,
+              "y": -1.4,
+              "z": -84
+            },
+            "rotationY": 0,
+            "scale": 2.6
+          },
+          {
+            "id": "ball-keys-south",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": 30,
+              "y": -1.4,
+              "z": -93
+            },
+            "rotationY": 0,
+            "scale": 2.2
+          },
+          {
+            "id": "ball-piano-east",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": 56,
+              "y": -1.4,
+              "z": -106
+            },
+            "rotationY": 0,
+            "scale": 3
+          },
+          {
+            "id": "crib-fence-west-1",
+            "kitPropId": "crib-rail-fence",
+            "position": {
+              "x": -22.2,
+              "y": 1.45,
+              "z": -60.9
+            },
+            "rotationY": 1.571,
+            "scale": 1
+          },
+          {
+            "id": "crib-fence-west-2",
+            "kitPropId": "crib-rail-fence",
+            "position": {
+              "x": -22.2,
+              "y": 1.45,
+              "z": -64.1
+            },
+            "rotationY": 1.571,
+            "scale": 1
+          },
+          {
+            "id": "crib-fence-west-3",
+            "kitPropId": "crib-rail-fence",
+            "position": {
+              "x": -22.2,
+              "y": 1.45,
+              "z": -67.3
+            },
+            "rotationY": 1.571,
+            "scale": 1
+          },
+          {
+            "id": "crib-fence-east",
+            "kitPropId": "crib-rail-fence",
+            "position": {
+              "x": -10.8,
+              "y": 1.45,
+              "z": -61.5
+            },
+            "rotationY": 1.571,
+            "scale": 1
+          },
+          {
+            "id": "crib-mobile-hub",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": -16.5,
+              "y": 6.4,
+              "z": -64
+            },
+            "rotationY": 0,
+            "scale": 0.8
+          },
+          {
+            "id": "crib-mobile-toy-1",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": -15.2,
+              "y": 6.1,
+              "z": -64
+            },
+            "rotationY": 0,
+            "scale": 0.45
+          },
+          {
+            "id": "crib-mobile-toy-2",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": -16.5,
+              "y": 6.1,
+              "z": -62.7
+            },
+            "rotationY": -1.571,
+            "scale": 0.45
+          },
+          {
+            "id": "crib-mobile-toy-3",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": -17.8,
+              "y": 6.1,
+              "z": -64
+            },
+            "rotationY": -3.142,
+            "scale": 0.45
+          },
+          {
+            "id": "crib-mobile-toy-4",
+            "kitPropId": "giant-plush-ball",
+            "position": {
+              "x": -16.5,
+              "y": 6.1,
+              "z": -65.3
+            },
+            "rotationY": -4.712,
+            "scale": 0.45
+          },
+          {
+            "id": "elevator-post-west-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -2.4,
+              "y": -1.4,
+              "z": -97.4
+            },
+            "rotationY": 0,
+            "scale": 1
+          },
+          {
+            "id": "elevator-post-west-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -2.4,
+              "y": 1,
+              "z": -97.4
+            },
+            "rotationY": 0,
+            "scale": 1
+          },
+          {
+            "id": "elevator-post-west-3",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -2.4,
+              "y": 3.4,
+              "z": -97.4
+            },
+            "rotationY": 0,
+            "scale": 1
+          },
+          {
+            "id": "elevator-post-east-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 3.6,
+              "y": -1.4,
+              "z": -97.4
+            },
+            "rotationY": 0,
+            "scale": 1
+          },
+          {
+            "id": "elevator-post-east-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 3.6,
+              "y": 1,
+              "z": -97.4
+            },
+            "rotationY": 0,
+            "scale": 1
+          },
+          {
+            "id": "elevator-post-east-3",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 3.6,
+              "y": 3.4,
+              "z": -97.4
+            },
+            "rotationY": 0,
+            "scale": 1
+          },
+          {
+            "id": "pad-1-stack-1-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 43.4,
+              "y": -1.4,
+              "z": -114.2
+            },
+            "rotationY": 0,
+            "scale": 1.083
+          },
+          {
+            "id": "pad-1-stack-1-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 43.4,
+              "y": 1.199,
+              "z": -114.2
+            },
+            "rotationY": 0,
+            "scale": 1.083
+          },
+          {
+            "id": "pad-2-stack-1-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 43.4,
+              "y": -1.4,
+              "z": -124.94
+            },
+            "rotationY": 0,
+            "scale": 0.889
+          },
+          {
+            "id": "pad-2-stack-1-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 43.4,
+              "y": 0.734,
+              "z": -124.94
+            },
+            "rotationY": 0,
+            "scale": 0.889
+          },
+          {
+            "id": "pad-2-stack-1-3",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 43.4,
+              "y": 2.867,
+              "z": -124.94
+            },
+            "rotationY": 0,
+            "scale": 0.889
+          },
+          {
+            "id": "fort-pad-stack-1-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -21.1,
+              "y": -1.4,
+              "z": -70.2
+            },
+            "rotationY": 0,
+            "scale": 0.646
+          },
+          {
+            "id": "fort-pad-stack-1-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -21.1,
+              "y": 0.15,
+              "z": -70.2
+            },
+            "rotationY": 0,
+            "scale": 0.646
+          },
+          {
+            "id": "rug-post-west-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -9.5,
+              "y": -1.4,
+              "z": 5.5
+            },
+            "rotationY": 0,
+            "scale": 1.6
+          },
+          {
+            "id": "rug-post-west-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -9.5,
+              "y": 2.44,
+              "z": 5.5
+            },
+            "rotationY": 0,
+            "scale": 1.6
+          },
+          {
+            "id": "chain-tower-west-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 35.5,
+              "y": -1.4,
+              "z": -117
+            },
+            "rotationY": 0,
+            "scale": 1.5
+          },
+          {
+            "id": "chain-tower-west-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 35.5,
+              "y": 2.2,
+              "z": -117
+            },
+            "rotationY": 0,
+            "scale": 1.5
+          },
+          {
+            "id": "chain-tower-west-3",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 35.5,
+              "y": 5.8,
+              "z": -117
+            },
+            "rotationY": 0,
+            "scale": 1.5
+          },
+          {
+            "id": "chain-tower-east-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 53,
+              "y": -1.4,
+              "z": -119.7
+            },
+            "rotationY": 0,
+            "scale": 2.5
+          },
+          {
+            "id": "chain-tower-east-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 53,
+              "y": 4.6,
+              "z": -119.7
+            },
+            "rotationY": 0,
+            "scale": 2.5
+          },
+          {
+            "id": "landmark-west-near-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -40,
+              "y": -1.4,
+              "z": -24
+            },
+            "rotationY": 0,
+            "scale": 3.5
+          },
+          {
+            "id": "landmark-west-near-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -40,
+              "y": 7,
+              "z": -24
+            },
+            "rotationY": 0,
+            "scale": 3.5
+          },
+          {
+            "id": "landmark-east-near-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 26,
+              "y": -1.4,
+              "z": -40
+            },
+            "rotationY": 0,
+            "scale": 3
+          },
+          {
+            "id": "landmark-east-near-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 26,
+              "y": 5.8,
+              "z": -40
+            },
+            "rotationY": 0,
+            "scale": 3
+          },
+          {
+            "id": "landmark-west-far-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -42,
+              "y": -1.4,
+              "z": -100
+            },
+            "rotationY": 0,
+            "scale": 4
+          },
+          {
+            "id": "landmark-west-far-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": -42,
+              "y": 8.2,
+              "z": -100
+            },
+            "rotationY": 0,
+            "scale": 4
+          },
+          {
+            "id": "landmark-east-far-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 62,
+              "y": -1.4,
+              "z": -70
+            },
+            "rotationY": 0,
+            "scale": 4
+          },
+          {
+            "id": "landmark-east-far-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 62,
+              "y": 8.2,
+              "z": -70
+            },
+            "rotationY": 0,
+            "scale": 4
+          },
+          {
+            "id": "landmark-north-1",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 12,
+              "y": -1.4,
+              "z": -156
+            },
+            "rotationY": 0,
+            "scale": 4
+          },
+          {
+            "id": "landmark-north-2",
+            "kitPropId": "stacking-block-tower",
+            "position": {
+              "x": 12,
+              "y": 8.2,
+              "z": -156
+            },
+            "rotationY": 0,
+            "scale": 4
+          }
+        ]
+      }
+    },
+    {
+      "type": "enemy.add",
+      "chapterId": "family-b1",
+      "slot": "ordinary-1",
+      "candidate": {
+        "id": "yes-yes-veggie",
+        "name": "Yes-Yes Veggie",
+        "periodId": "sing-along-playroom-v1",
+        "recognizableReference": "the veggies from the \"yes yes\" eating song",
+        "visualJoke": "stubbornly says no",
+        "obstacleOrAttack": "bouncy head-butt",
+        "eligibility": {
+          "startDate": "2018-01-01",
+          "endDate": "2026-12-31"
+        },
+        "role": "ordinary",
+        "kind": "ordinary-a",
+        "behaviorPreset": "ordinary-a"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b1",
+      "slot": "ordinary-2",
+      "encounter": {
+        "source": "candidate",
+        "candidateId": "yes-yes-veggie"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b1",
+      "slot": "ordinary-3",
+      "encounter": {
+        "source": "candidate",
+        "candidateId": "yes-yes-veggie"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b1",
+      "slot": "ordinary-4",
+      "encounter": {
+        "source": "candidate",
+        "candidateId": "yes-yes-veggie"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b1",
+      "slot": "boss",
+      "encounter": {
+        "source": "catalog",
+        "catalogEntryId": "honk-bus",
+        "catalogEntryVersion": "v001"
+      }
+    },
+    {
+      "type": "chapter.level.replace",
+      "chapterId": "family-b2",
+      "level": {
+        "schemaVersion": "authored-level-v4",
+        "id": "family-b2-casita",
+        "theme": "casita",
+        "pieces": [
+          {
+            "type": "platform",
+            "id": "garden-gate",
+            "center": {
+              "x": -14,
+              "y": -0.7,
+              "z": 12
+            },
+            "size": {
+              "x": 8,
+              "y": 1.4,
+              "z": 8
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-gate",
+            "platformId": "garden-gate",
+            "position": {
+              "x": -12.5,
+              "y": 0,
+              "z": 13.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "garden-path",
+            "center": {
+              "x": -14,
+              "y": -0.7,
+              "z": 3
+            },
+            "size": {
+              "x": 3.2,
+              "y": 1.4,
+              "z": 10
+            }
+          },
+          {
+            "type": "platform",
+            "id": "path-corner-west",
+            "center": {
+              "x": -14,
+              "y": -0.7,
+              "z": -3.6
+            },
+            "size": {
+              "x": 3.2,
+              "y": 1.4,
+              "z": 3.2
+            }
+          },
+          {
+            "type": "platform",
+            "id": "flagstone-bend",
+            "center": {
+              "x": -7,
+              "y": -0.7,
+              "z": -3.6
+            },
+            "size": {
+              "x": 10.8,
+              "y": 1.4,
+              "z": 3.2
+            }
+          },
+          {
+            "type": "platform",
+            "id": "path-corner-east",
+            "center": {
+              "x": 0,
+              "y": -0.7,
+              "z": -3.6
+            },
+            "size": {
+              "x": 3.2,
+              "y": 1.4,
+              "z": 3.2
+            }
+          },
+          {
+            "type": "platform",
+            "id": "rose-walk",
+            "center": {
+              "x": 0,
+              "y": -0.7,
+              "z": -9.1
+            },
+            "size": {
+              "x": 3.2,
+              "y": 1.4,
+              "z": 7.8
+            }
+          },
+          {
+            "type": "platform",
+            "id": "clover-lawn",
+            "center": {
+              "x": 0,
+              "y": -0.7,
+              "z": -18.8
+            },
+            "size": {
+              "x": 12,
+              "y": 1.4,
+              "z": 11.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "pot-1",
+            "center": {
+              "x": 1.2,
+              "y": 0.15,
+              "z": -15.2
+            },
+            "size": {
+              "x": 4,
+              "y": 0.3,
+              "z": 3
+            }
+          },
+          {
+            "type": "platform",
+            "id": "pot-2",
+            "center": {
+              "x": -1,
+              "y": 0.45,
+              "z": -19.2
+            },
+            "size": {
+              "x": 4.4,
+              "y": 0.9,
+              "z": 3.2
+            }
+          },
+          {
+            "type": "platform",
+            "id": "pot-3",
+            "center": {
+              "x": 1.2,
+              "y": 0.75,
+              "z": -23
+            },
+            "size": {
+              "x": 4.4,
+              "y": 1.5,
+              "z": 3.2
+            }
+          },
+          {
+            "type": "platform",
+            "id": "flower-terrace",
+            "center": {
+              "x": 0,
+              "y": 0.05,
+              "z": -30
+            },
+            "size": {
+              "x": 14,
+              "y": 2.9,
+              "z": 10.8
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-terrace",
+            "platformId": "flower-terrace",
+            "position": {
+              "x": 4.6,
+              "y": 1.5,
+              "z": -26.4
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "sprinkler-alley",
+            "center": {
+              "x": 14,
+              "y": 0.05,
+              "z": -30
+            },
+            "size": {
+              "x": 14,
+              "y": 2.9,
+              "z": 7
+            }
+          },
+          {
+            "type": "sweeper",
+            "id": "sprinkler",
+            "center": {
+              "x": 13.5,
+              "y": 1.72,
+              "z": -30
+            },
+            "halfLength": 1.3,
+            "radius": 0.2,
+            "rotation": {
+              "period": 10
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-alley",
+            "platformId": "sprinkler-alley",
+            "position": {
+              "x": 19.2,
+              "y": 1.5,
+              "z": -30
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "bounce-pad",
+            "id": "petal-pad",
+            "center": {
+              "x": 21.9,
+              "y": 1.3,
+              "z": -30
+            },
+            "size": {
+              "x": 1.8,
+              "y": 0.4,
+              "z": 2
+            },
+            "strength": "small"
+          },
+          {
+            "type": "platform",
+            "id": "veranda-south",
+            "center": {
+              "x": 29.15,
+              "y": 0.65,
+              "z": -30.5
+            },
+            "size": {
+              "x": 12,
+              "y": 4.1,
+              "z": 15
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-veranda",
+            "platformId": "veranda-south",
+            "position": {
+              "x": 25.2,
+              "y": 2.7,
+              "z": -35.2
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "planter-hop-1",
+            "center": {
+              "x": 26.15,
+              "y": 0.8,
+              "z": -39.9
+            },
+            "size": {
+              "x": 4,
+              "y": 4.4,
+              "z": 2.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "planter-hop-2",
+            "center": {
+              "x": 28.15,
+              "y": 0.8,
+              "z": -43.1
+            },
+            "size": {
+              "x": 4,
+              "y": 4.4,
+              "z": 2.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "veranda-north",
+            "center": {
+              "x": 31.15,
+              "y": 0.65,
+              "z": -48.5
+            },
+            "size": {
+              "x": 16,
+              "y": 4.1,
+              "z": 7
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-veranda-north",
+            "platformId": "veranda-north",
+            "position": {
+              "x": 25.6,
+              "y": 2.7,
+              "z": -48.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "lift",
+            "id": "garden-lift",
+            "center": {
+              "x": 21.5,
+              "y": 2.25,
+              "z": -48.5
+            },
+            "size": {
+              "x": 3.2,
+              "y": 0.9,
+              "z": 3.2
+            },
+            "travel": {
+              "distance": 1.5,
+              "period": 6,
+              "dwell": 2.5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "eave-balcony",
+            "center": {
+              "x": 16.35,
+              "y": 1.4,
+              "z": -48
+            },
+            "size": {
+              "x": 7,
+              "y": 5.6,
+              "z": 7
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-balcony",
+            "platformId": "eave-balcony",
+            "position": {
+              "x": 18.3,
+              "y": 4.2,
+              "z": -46
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "bounce-pad",
+            "id": "bloom-pad",
+            "center": {
+              "x": 16.35,
+              "y": 4,
+              "z": -52.3
+            },
+            "size": {
+              "x": 1.8,
+              "y": 0.4,
+              "z": 1.6
+            },
+            "strength": "big"
+          },
+          {
+            "type": "platform",
+            "id": "arch-step-1",
+            "center": {
+              "x": 10.3,
+              "y": 1.7,
+              "z": -47.2
+            },
+            "size": {
+              "x": 3.2,
+              "y": 6.2,
+              "z": 3.2
+            }
+          },
+          {
+            "type": "platform",
+            "id": "arch-step-2",
+            "center": {
+              "x": 6.3,
+              "y": 2,
+              "z": -49
+            },
+            "size": {
+              "x": 3.2,
+              "y": 6.8,
+              "z": 3.2
+            }
+          },
+          {
+            "type": "platform",
+            "id": "golden-perch",
+            "center": {
+              "x": 6.3,
+              "y": 2.3,
+              "z": -53.8
+            },
+            "size": {
+              "x": 3.2,
+              "y": 7.4,
+              "z": 3.2
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-perch",
+            "platformId": "golden-perch",
+            "position": {
+              "x": 6.3,
+              "y": 6,
+              "z": -53.8
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "roof-west",
+            "center": {
+              "x": 15.35,
+              "y": 2.55,
+              "z": -58.45
+            },
+            "size": {
+              "x": 14,
+              "y": 7.9,
+              "z": 10
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-roof",
+            "platformId": "roof-west",
+            "position": {
+              "x": 20.3,
+              "y": 6.5,
+              "z": -55.6
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "roof-walk",
+            "center": {
+              "x": 28.35,
+              "y": 2.55,
+              "z": -57.45
+            },
+            "size": {
+              "x": 12,
+              "y": 7.9,
+              "z": 8
+            }
+          },
+          {
+            "type": "sweeper",
+            "id": "weathervane",
+            "center": {
+              "x": 28.35,
+              "y": 6.72,
+              "z": -57.45
+            },
+            "halfLength": 1.2,
+            "radius": 0.2,
+            "rotation": {
+              "period": 12
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-roof-walk",
+            "platformId": "roof-walk",
+            "position": {
+              "x": 33,
+              "y": 6.5,
+              "z": -60
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "chimney-garden",
+            "center": {
+              "x": 40.95,
+              "y": 2.7,
+              "z": -59
+            },
+            "size": {
+              "x": 12,
+              "y": 8.2,
+              "z": 12
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-chimney",
+            "platformId": "chimney-garden",
+            "position": {
+              "x": 36.2,
+              "y": 6.8,
+              "z": -55
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "moving-platform",
+            "id": "dance-tile-1",
+            "center": {
+              "x": 41,
+              "y": 6.9,
+              "z": -67
+            },
+            "size": {
+              "x": 3.6,
+              "y": 0.4,
+              "z": 2.8
+            },
+            "motion": {
+              "axis": "x",
+              "distance": 0.8,
+              "period": 8
+            }
+          },
+          {
+            "type": "moving-platform",
+            "id": "dance-tile-2",
+            "center": {
+              "x": 41,
+              "y": 7.2,
+              "z": -70.4
+            },
+            "size": {
+              "x": 3.6,
+              "y": 0.4,
+              "z": 2.8
+            },
+            "motion": {
+              "axis": "x",
+              "distance": 0.8,
+              "period": 8,
+              "phase": 3.142
+            }
+          },
+          {
+            "type": "moving-platform",
+            "id": "dance-tile-3",
+            "center": {
+              "x": 41,
+              "y": 7.5,
+              "z": -73.8
+            },
+            "size": {
+              "x": 3.6,
+              "y": 0.4,
+              "z": 2.8
+            },
+            "motion": {
+              "axis": "x",
+              "distance": 0.8,
+              "period": 8
+            }
+          },
+          {
+            "type": "platform",
+            "id": "tile-rest",
+            "center": {
+              "x": 41,
+              "y": 3.3,
+              "z": -78.3
+            },
+            "size": {
+              "x": 6,
+              "y": 9.4,
+              "z": 5
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-rest",
+            "platformId": "tile-rest",
+            "position": {
+              "x": 42.8,
+              "y": 8,
+              "z": -78.3
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "moving-platform",
+            "id": "dance-tile-4",
+            "center": {
+              "x": 41,
+              "y": 8.1,
+              "z": -82.8
+            },
+            "size": {
+              "x": 3.6,
+              "y": 0.4,
+              "z": 2.8
+            },
+            "motion": {
+              "axis": "x",
+              "distance": 0.8,
+              "period": 8
+            }
+          },
+          {
+            "type": "moving-platform",
+            "id": "dance-tile-5",
+            "center": {
+              "x": 41,
+              "y": 8.4,
+              "z": -86.2
+            },
+            "size": {
+              "x": 3.6,
+              "y": 0.4,
+              "z": 2.8
+            },
+            "motion": {
+              "axis": "x",
+              "distance": 0.8,
+              "period": 8,
+              "phase": 3.142
+            }
+          },
+          {
+            "type": "platform",
+            "id": "sky-courtyard",
+            "center": {
+              "x": 41,
+              "y": 3.75,
+              "z": -97.2
+            },
+            "size": {
+              "x": 16,
+              "y": 10.3,
+              "z": 18
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cp-court",
+            "platformId": "sky-courtyard",
+            "position": {
+              "x": 41,
+              "y": 8.9,
+              "z": -89.8
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "sunset-overlook",
+            "center": {
+              "x": 41,
+              "y": 3.75,
+              "z": -109.7
+            },
+            "size": {
+              "x": 12,
+              "y": 10.3,
+              "z": 7
+            }
+          }
+        ],
+        "connections": [
+          {
+            "from": "garden-gate",
+            "to": "garden-path",
+            "mode": "walk"
+          },
+          {
+            "from": "garden-path",
+            "to": "path-corner-west",
+            "mode": "walk"
+          },
+          {
+            "from": "path-corner-west",
+            "to": "flagstone-bend",
+            "mode": "walk"
+          },
+          {
+            "from": "flagstone-bend",
+            "to": "path-corner-east",
+            "mode": "walk"
+          },
+          {
+            "from": "path-corner-east",
+            "to": "rose-walk",
+            "mode": "walk"
+          },
+          {
+            "from": "rose-walk",
+            "to": "pot-1",
+            "mode": "jump"
+          },
+          {
+            "from": "pot-1",
+            "to": "pot-2",
+            "mode": "jump",
+            "safeMissPlatformId": "clover-lawn",
+            "requires": "high-jump"
+          },
+          {
+            "from": "pot-2",
+            "to": "pot-3",
+            "mode": "jump",
+            "safeMissPlatformId": "clover-lawn",
+            "requires": "high-jump"
+          },
+          {
+            "from": "pot-3",
+            "to": "flower-terrace",
+            "mode": "walk"
+          },
+          {
+            "from": "clover-lawn",
+            "to": "pot-1",
+            "mode": "jump"
+          },
+          {
+            "from": "flower-terrace",
+            "to": "sprinkler-alley",
+            "mode": "walk"
+          },
+          {
+            "from": "sprinkler-alley",
+            "to": "petal-pad",
+            "mode": "walk"
+          },
+          {
+            "from": "petal-pad",
+            "to": "veranda-south",
+            "mode": "bounce"
+          },
+          {
+            "from": "veranda-south",
+            "to": "planter-hop-1",
+            "mode": "jump"
+          },
+          {
+            "from": "planter-hop-1",
+            "to": "planter-hop-2",
+            "mode": "jump"
+          },
+          {
+            "from": "planter-hop-2",
+            "to": "veranda-north",
+            "mode": "jump"
+          },
+          {
+            "from": "veranda-north",
+            "to": "garden-lift",
+            "mode": "ride"
+          },
+          {
+            "from": "garden-lift",
+            "to": "eave-balcony",
+            "mode": "ride"
+          },
+          {
+            "from": "eave-balcony",
+            "to": "bloom-pad",
+            "mode": "walk"
+          },
+          {
+            "from": "bloom-pad",
+            "to": "roof-west",
+            "mode": "bounce"
+          },
+          {
+            "from": "roof-west",
+            "to": "roof-walk",
+            "mode": "walk"
+          },
+          {
+            "from": "roof-walk",
+            "to": "chimney-garden",
+            "mode": "jump"
+          },
+          {
+            "from": "chimney-garden",
+            "to": "dance-tile-1",
+            "mode": "ride"
+          },
+          {
+            "from": "dance-tile-1",
+            "to": "dance-tile-2",
+            "mode": "ride"
+          },
+          {
+            "from": "dance-tile-2",
+            "to": "dance-tile-3",
+            "mode": "ride"
+          },
+          {
+            "from": "dance-tile-3",
+            "to": "tile-rest",
+            "mode": "ride"
+          },
+          {
+            "from": "tile-rest",
+            "to": "dance-tile-4",
+            "mode": "ride"
+          },
+          {
+            "from": "dance-tile-4",
+            "to": "dance-tile-5",
+            "mode": "ride"
+          },
+          {
+            "from": "dance-tile-5",
+            "to": "sky-courtyard",
+            "mode": "ride"
+          },
+          {
+            "from": "sky-courtyard",
+            "to": "sunset-overlook",
+            "mode": "walk"
+          },
+          {
+            "from": "eave-balcony",
+            "to": "arch-step-1",
+            "mode": "jump",
+            "requires": "high-jump"
+          },
+          {
+            "from": "arch-step-1",
+            "to": "arch-step-2",
+            "mode": "jump",
+            "requires": "high-jump"
+          },
+          {
+            "from": "arch-step-2",
+            "to": "golden-perch",
+            "mode": "jump",
+            "requires": "high-jump"
+          },
+          {
+            "from": "golden-perch",
+            "to": "roof-west",
+            "mode": "jump",
+            "requires": "high-jump"
+          }
+        ],
+        "mainPath": [
+          "garden-gate",
+          "garden-path",
+          "path-corner-west",
+          "flagstone-bend",
+          "path-corner-east",
+          "rose-walk",
+          "pot-1",
+          "pot-2",
+          "pot-3",
+          "flower-terrace",
+          "sprinkler-alley",
+          "petal-pad",
+          "veranda-south",
+          "planter-hop-1",
+          "planter-hop-2",
+          "veranda-north",
+          "garden-lift",
+          "eave-balcony",
+          "bloom-pad",
+          "roof-west",
+          "roof-walk",
+          "chimney-garden",
+          "dance-tile-1",
+          "dance-tile-2",
+          "dance-tile-3",
+          "tile-rest",
+          "dance-tile-4",
+          "dance-tile-5",
+          "sky-courtyard",
+          "sunset-overlook"
+        ],
+        "branches": [
+          [
+            "eave-balcony",
+            "arch-step-1",
+            "arch-step-2",
+            "golden-perch",
+            "roof-west"
+          ]
+        ],
+        "anchors": {
+          "spawn": {
+            "platformId": "garden-gate",
+            "position": {
+              "x": -14,
+              "y": 0,
+              "z": 14.2
+            }
+          },
+          "finish": {
+            "platformId": "sunset-overlook",
+            "position": {
+              "x": 41,
+              "y": 8.9,
+              "z": -111.8
+            }
+          },
+          "rewardRespawn": {
+            "platformId": "sunset-overlook",
+            "position": {
+              "x": 41,
+              "y": 8.9,
+              "z": -107.4
+            }
+          },
+          "pickups": {
+            "attack-tool": {
+              "platformId": "garden-gate",
+              "position": {
+                "x": -15.8,
+                "y": 0,
+                "z": 11.2
+              }
+            },
+            "guard-tool": {
+              "platformId": "flower-terrace",
+              "position": {
+                "x": 2.8,
+                "y": 1.5,
+                "z": -27
+              }
+            }
+          },
+          "memories": {
+            "minor-one": {
+              "platformId": "eave-balcony",
+              "position": {
+                "x": 18.3,
+                "y": 4.2,
+                "z": -49.8
+              }
+            },
+            "minor-two": {
+              "platformId": "tile-rest",
+              "position": {
+                "x": 39.2,
+                "y": 8,
+                "z": -78.3
+              }
+            },
+            "major": {
+              "platformId": "sunset-overlook",
+              "position": {
+                "x": 41,
+                "y": 8.9,
+                "z": -109.6
+              }
+            }
+          },
+          "encounters": {
+            "ordinary-1": {
+              "platformId": "flower-terrace",
+              "position": {
+                "x": -2.55,
+                "y": 1.5,
+                "z": -30.95
+              },
+              "kind": "ordinary-a",
+              "arena": {
+                "minX": -4.55,
+                "maxX": -0.55,
+                "minZ": -32.95,
+                "maxZ": -28.95
+              },
+              "checkpointId": "cp-terrace"
+            },
+            "ordinary-2": {
+              "platformId": "veranda-south",
+              "position": {
+                "x": 30.55,
+                "y": 2.7,
+                "z": -27.45
+              },
+              "kind": "ordinary-a",
+              "arena": {
+                "minX": 28.55,
+                "maxX": 32.55,
+                "minZ": -29.45,
+                "maxZ": -25.45
+              },
+              "checkpointId": "cp-veranda"
+            },
+            "ordinary-3": {
+              "platformId": "roof-west",
+              "position": {
+                "x": 14.35,
+                "y": 6.5,
+                "z": -58.95
+              },
+              "kind": "ordinary-a",
+              "arena": {
+                "minX": 12.35,
+                "maxX": 16.35,
+                "minZ": -60.95,
+                "maxZ": -56.95
+              },
+              "checkpointId": "cp-roof"
+            },
+            "ordinary-4": {
+              "platformId": "chimney-garden",
+              "position": {
+                "x": 41.85,
+                "y": 6.8,
+                "z": -57.65
+              },
+              "kind": "ordinary-a",
+              "arena": {
+                "minX": 39.85,
+                "maxX": 43.85,
+                "minZ": -59.65,
+                "maxZ": -55.65
+              },
+              "checkpointId": "cp-chimney"
+            },
+            "boss": {
+              "platformId": "sky-courtyard",
+              "position": {
+                "x": 41,
+                "y": 8.9,
+                "z": -96.75
+              },
+              "kind": "boss",
+              "arena": {
+                "minX": 37,
+                "maxX": 45,
+                "minZ": -99.25,
+                "maxZ": -94.25
+              },
+              "checkpointId": "cp-court"
+            }
+          },
+          "friendlies": {
+            "friendly-1": {
+              "platformId": "garden-gate",
+              "position": {
+                "x": -16.6,
+                "y": 0,
+                "z": 14.2
+              }
+            },
+            "friendly-2": {
+              "platformId": "veranda-north",
+              "position": {
+                "x": 36.6,
+                "y": 2.7,
+                "z": -48.5
+              }
+            },
+            "friendly-3": {
+              "platformId": "chimney-garden",
+              "position": {
+                "x": 36.6,
+                "y": 6.8,
+                "z": -63.4
+              }
+            }
+          }
+        },
+        "decor": [
+          {
+            "id": "gate-arch",
+            "kitPropId": "butterfly-arch",
+            "position": {
+              "x": -6.6,
+              "y": -1.4,
+              "z": 10
+            },
+            "rotationY": 0,
+            "scale": 1.4
+          },
+          {
+            "id": "gate-tree-west",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": -21.2,
+              "y": -1.4,
+              "z": 12.5
+            },
+            "rotationY": 0,
+            "scale": 1.8
+          },
+          {
+            "id": "gate-tree-south-west",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": -21.2,
+              "y": -1.4,
+              "z": 4.5
+            },
+            "rotationY": 0.6,
+            "scale": 1.6
+          },
+          {
+            "id": "gate-tree-east",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": -5.4,
+              "y": -1.4,
+              "z": 15.2
+            },
+            "rotationY": 1.1,
+            "scale": 1.6
+          },
+          {
+            "id": "path-bed-west-1",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -17.15,
+              "y": -1.4,
+              "z": 5.5
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "path-bed-west-2",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -17.15,
+              "y": -1.4,
+              "z": 2.3
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "path-bed-west-3",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -17.15,
+              "y": -1.4,
+              "z": -0.9
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "path-bed-west-4",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -17.15,
+              "y": -1.4,
+              "z": -4.1
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "path-bed-east-1",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -10.85,
+              "y": -1.4,
+              "z": 5.5
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "path-bed-east-2",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -10.85,
+              "y": -1.4,
+              "z": 2.3
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "bend-bed-south-1",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -7.6,
+              "y": -1.4,
+              "z": -0.45
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "bend-bed-south-2",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -4.4,
+              "y": -1.4,
+              "z": -0.45
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "bend-bed-south-3",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": 0,
+              "y": -1.4,
+              "z": -0.45
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "bend-bed-north-1",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -10.4,
+              "y": -1.4,
+              "z": -6.75
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "bend-bed-north-2",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -7.2,
+              "y": -1.4,
+              "z": -6.75
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "corner-bed-east",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": 3.15,
+              "y": -1.4,
+              "z": -3.6
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "rose-bed-west-1",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -3.15,
+              "y": -1.4,
+              "z": -8.6
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "rose-bed-west-2",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": -3.15,
+              "y": -1.4,
+              "z": -11.6
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "rose-bed-east-1",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": 3.15,
+              "y": -1.4,
+              "z": -7.4
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "rose-bed-east-2",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": 3.15,
+              "y": -1.4,
+              "z": -11.4
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "lawn-tree-west-1",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": -9,
+              "y": -1.4,
+              "z": -16
+            },
+            "rotationY": 0.3,
+            "scale": 1.8
+          },
+          {
+            "id": "lawn-tree-west-2",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": -9.6,
+              "y": -1.4,
+              "z": -22.2
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "lawn-tree-east-1",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 9.2,
+              "y": -1.4,
+              "z": -15.6
+            },
+            "rotationY": 0.9,
+            "scale": 1.6
+          },
+          {
+            "id": "lawn-tree-east-2",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 10.2,
+              "y": -1.4,
+              "z": -21.4
+            },
+            "rotationY": 0.2,
+            "scale": 1.8
+          },
+          {
+            "id": "lawn-stone-west",
+            "kitPropId": "clearing-stone",
+            "position": {
+              "x": -7.6,
+              "y": -1.4,
+              "z": -12.2
+            },
+            "rotationY": 0.5,
+            "scale": 1.4
+          },
+          {
+            "id": "lawn-stone-east",
+            "kitPropId": "clearing-stone",
+            "position": {
+              "x": 7.4,
+              "y": -1.4,
+              "z": -11.6
+            },
+            "rotationY": 1.9,
+            "scale": 1.2
+          },
+          {
+            "id": "terrace-tree-west-1",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": -11.6,
+              "y": -1.4,
+              "z": -28.4
+            },
+            "rotationY": 0.4,
+            "scale": 2.2
+          },
+          {
+            "id": "terrace-tree-west-2",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": -11.2,
+              "y": -1.4,
+              "z": -34.4
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "terrace-wall-west-1",
+            "kitPropId": "casita-terrace-wall",
+            "position": {
+              "x": -7.415,
+              "y": -1.4,
+              "z": -27.3
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.1
+          },
+          {
+            "id": "terrace-wall-west-2",
+            "kitPropId": "casita-terrace-wall",
+            "position": {
+              "x": -7.415,
+              "y": -1.4,
+              "z": -32.7
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.1
+          },
+          {
+            "id": "alley-tree-south-1",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 15.8,
+              "y": -1.4,
+              "z": -22.6
+            },
+            "rotationY": 0.7,
+            "scale": 1.8
+          },
+          {
+            "id": "alley-tree-south-2",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 20.2,
+              "y": -1.4,
+              "z": -21.6
+            },
+            "rotationY": 1.4,
+            "scale": 1.5
+          },
+          {
+            "id": "garden-tree-1",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 10.2,
+              "y": -1.4,
+              "z": -38.2
+            },
+            "rotationY": 0.2,
+            "scale": 2
+          },
+          {
+            "id": "garden-tree-2",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 17,
+              "y": -1.4,
+              "z": -39.2
+            },
+            "rotationY": 1,
+            "scale": 2.2
+          },
+          {
+            "id": "veranda-wall-1",
+            "kitPropId": "casita-terrace-wall",
+            "position": {
+              "x": 25.8,
+              "y": -1.4,
+              "z": -22.55
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "veranda-wall-2",
+            "kitPropId": "casita-terrace-wall",
+            "position": {
+              "x": 32.5,
+              "y": -1.4,
+              "z": -22.55
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "veranda-door",
+            "kitPropId": "patterned-door",
+            "position": {
+              "x": 29.15,
+              "y": -1.4,
+              "z": -21.9
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "veranda-bed-1",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": 23.6,
+              "y": -1.4,
+              "z": -20.8
+            },
+            "rotationY": 0,
+            "scale": 1.5
+          },
+          {
+            "id": "veranda-bed-2",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": 34.7,
+              "y": -1.4,
+              "z": -20.8
+            },
+            "rotationY": 0,
+            "scale": 1.5
+          },
+          {
+            "id": "veranda-tree-east-1",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 38.6,
+              "y": -1.4,
+              "z": -27.2
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "veranda-tree-east-2",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 38.6,
+              "y": -1.4,
+              "z": -34
+            },
+            "rotationY": 0.8,
+            "scale": 2.2
+          },
+          {
+            "id": "veranda-north-wall-east",
+            "kitPropId": "casita-terrace-wall",
+            "position": {
+              "x": 39.6,
+              "y": -1.4,
+              "z": -48.5
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "balcony-door",
+            "kitPropId": "patterned-door",
+            "position": {
+              "x": 16.35,
+              "y": -1.4,
+              "z": -44.19
+            },
+            "rotationY": 0,
+            "scale": 1.3
+          },
+          {
+            "id": "balcony-bed-west",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": 13.9,
+              "y": -1.4,
+              "z": -43.55
+            },
+            "rotationY": 0,
+            "scale": 1.5
+          },
+          {
+            "id": "balcony-bed-east",
+            "kitPropId": "flower-planter",
+            "position": {
+              "x": 18.8,
+              "y": -1.4,
+              "z": -43.55
+            },
+            "rotationY": 0,
+            "scale": 1.5
+          },
+          {
+            "id": "golden-arch",
+            "kitPropId": "butterfly-arch",
+            "position": {
+              "x": 2.6,
+              "y": -1.4,
+              "z": -47.2
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.8
+          },
+          {
+            "id": "perch-tree",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 0.6,
+              "y": -1.4,
+              "z": -57.6
+            },
+            "rotationY": 0,
+            "scale": 2.4
+          },
+          {
+            "id": "roof-tree-west",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 3.2,
+              "y": -1.4,
+              "z": -63.4
+            },
+            "rotationY": 1.2,
+            "scale": 2.6
+          },
+          {
+            "id": "roof-candle-1",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 11,
+              "y": 7.8,
+              "z": -64.1
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "roof-candle-2",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 15,
+              "y": 7.8,
+              "z": -64.1
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "roof-candle-3",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 19,
+              "y": 7.8,
+              "z": -64.1
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "roof-walk-candle-1",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 26,
+              "y": 7.8,
+              "z": -62.1
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "roof-walk-candle-2",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 31,
+              "y": 7.8,
+              "z": -62.1
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "chimney-door",
+            "kitPropId": "patterned-door",
+            "position": {
+              "x": 43,
+              "y": -1.4,
+              "z": -52.67
+            },
+            "rotationY": 0,
+            "scale": 1.4
+          },
+          {
+            "id": "chimney-wall-east-1",
+            "kitPropId": "casita-terrace-wall",
+            "position": {
+              "x": 47.4,
+              "y": -1.4,
+              "z": -56.1
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "chimney-wall-east-2",
+            "kitPropId": "casita-terrace-wall",
+            "position": {
+              "x": 47.4,
+              "y": -1.4,
+              "z": -61.9
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "chimney-candle-1",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 47.7,
+              "y": 8.1,
+              "z": -55.6
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "chimney-candle-2",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 47.7,
+              "y": 8.1,
+              "z": -62.4
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-west-1",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 37.3,
+              "y": 8.1,
+              "z": -67
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-east-1",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 44.7,
+              "y": 8.1,
+              "z": -67
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-west-2",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 37.3,
+              "y": 8.4,
+              "z": -70.4
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-east-2",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 44.7,
+              "y": 8.4,
+              "z": -70.4
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-west-3",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 37.3,
+              "y": 8.7,
+              "z": -73.8
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-east-3",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 44.7,
+              "y": 8.7,
+              "z": -73.8
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "rest-candle-west",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 37.2,
+              "y": 9.2,
+              "z": -78.3
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "rest-candle-east",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 44.8,
+              "y": 9.2,
+              "z": -78.3
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "rest-door",
+            "kitPropId": "patterned-door",
+            "position": {
+              "x": 41,
+              "y": -1.4,
+              "z": -75.51
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-west-4",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 37.3,
+              "y": 9.3,
+              "z": -82.8
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-east-4",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 44.7,
+              "y": 9.3,
+              "z": -82.8
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-west-5",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 37.3,
+              "y": 9.6,
+              "z": -86.2
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-candle-east-5",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 44.7,
+              "y": 9.6,
+              "z": -86.2
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "stair-tree-east",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 51,
+              "y": -1.4,
+              "z": -72
+            },
+            "rotationY": 0.4,
+            "scale": 3
+          },
+          {
+            "id": "stair-tree-west",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 30.6,
+              "y": -1.4,
+              "z": -78
+            },
+            "rotationY": 1.3,
+            "scale": 2.8
+          },
+          {
+            "id": "court-wall-west",
+            "kitPropId": "casita-terrace-wall",
+            "position": {
+              "x": 36.9,
+              "y": -1.4,
+              "z": -87.61
+            },
+            "rotationY": 0,
+            "scale": 1.6
+          },
+          {
+            "id": "court-wall-east",
+            "kitPropId": "casita-terrace-wall",
+            "position": {
+              "x": 45.1,
+              "y": -1.4,
+              "z": -87.61
+            },
+            "rotationY": 0,
+            "scale": 1.6
+          },
+          {
+            "id": "court-candle-west-1",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 32.4,
+              "y": 10.2,
+              "z": -91
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "court-candle-west-2",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 32.4,
+              "y": 10.2,
+              "z": -96
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "court-candle-west-3",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 32.4,
+              "y": 10.2,
+              "z": -101
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "court-candle-west-4",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 32.4,
+              "y": 10.2,
+              "z": -105
+            },
+            "rotationY": -1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "court-candle-east-1",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 49.6,
+              "y": 10.2,
+              "z": -91
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "court-candle-east-2",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 49.6,
+              "y": 10.2,
+              "z": -96
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "court-candle-east-3",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 49.6,
+              "y": 10.2,
+              "z": -101
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "court-candle-east-4",
+            "kitPropId": "toybox-windup-lantern",
+            "position": {
+              "x": 49.6,
+              "y": 10.2,
+              "z": -105
+            },
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2
+          },
+          {
+            "id": "court-tree-west-1",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 28.4,
+              "y": -1.4,
+              "z": -93
+            },
+            "rotationY": 0,
+            "scale": 2.6
+          },
+          {
+            "id": "court-tree-west-2",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 28.4,
+              "y": -1.4,
+              "z": -102.6
+            },
+            "rotationY": 0.7,
+            "scale": 2.8
+          },
+          {
+            "id": "court-tree-east-1",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 53.6,
+              "y": -1.4,
+              "z": -95
+            },
+            "rotationY": 1.1,
+            "scale": 3
+          },
+          {
+            "id": "court-tree-east-2",
+            "kitPropId": "clearing-tree",
+            "position": {
+              "x": 53.6,
+              "y": -1.4,
+              "z": -104.6
+            },
+            "rotationY": 0.2,
+            "scale": 3.2
+          },
+          {
+            "id": "finish-arch",
+            "kitPropId": "butterfly-arch",
+            "position": {
+              "x": 41,
+              "y": -1.4,
+              "z": -114.3
+            },
+            "rotationY": 0,
+            "scale": 3.4
+          }
+        ]
+      }
+    },
+    {
+      "type": "enemy.add",
+      "chapterId": "family-b2",
+      "slot": "ordinary-1",
+      "candidate": {
+        "id": "bin-chicken",
+        "name": "Bin Chicken",
+        "periodId": "magic-house-v1",
+        "recognizableReference": "the cheeky bin-raiding ibis from a backyard cartoon dog family",
+        "visualJoke": "snatches snacks",
+        "obstacleOrAttack": "beak peck",
+        "eligibility": {
+          "startDate": "2019-09-01",
+          "endDate": "2026-12-31"
+        },
+        "role": "ordinary",
+        "kind": "ordinary-a",
+        "behaviorPreset": "ordinary-a"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b2",
+      "slot": "ordinary-2",
+      "encounter": {
+        "source": "candidate",
+        "candidateId": "bin-chicken"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b2",
+      "slot": "ordinary-3",
+      "encounter": {
+        "source": "candidate",
+        "candidateId": "bin-chicken"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b2",
+      "slot": "ordinary-4",
+      "encounter": {
+        "source": "candidate",
+        "candidateId": "bin-chicken"
+      }
+    },
+    {
+      "type": "enemy.add",
+      "chapterId": "family-b2",
+      "slot": "boss",
+      "candidate": {
+        "id": "magic-house",
+        "name": "The Dancing House",
+        "periodId": "magic-house-v1",
+        "recognizableReference": "a magical family house that dances",
+        "visualJoke": "shutters blink, tiles wiggle",
+        "obstacleOrAttack": "tile shimmy shockwave",
+        "eligibility": {
+          "startDate": "2019-09-01",
+          "endDate": "2026-12-31"
+        },
+        "role": "boss",
+        "kind": "boss",
+        "behaviorPreset": "boss"
+      }
+    },
+    {
+      "type": "chapter.level.replace",
+      "chapterId": "family-b3",
+      "level": {
+        "schemaVersion": "authored-level-v4",
+        "id": "family-b3-stage",
+        "theme": "party",
+        "pieces": [
+          {
+            "type": "platform",
+            "id": "stage-door-plaza",
+            "center": {
+              "x": 0,
+              "y": -0.55,
+              "z": 0
+            },
+            "size": {
+              "x": 10,
+              "y": 1.7,
+              "z": 8
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "party-start",
+            "platformId": "stage-door-plaza",
+            "position": {
+              "x": 0,
+              "y": 0.3,
+              "z": 1
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "fan-walk",
+            "center": {
+              "x": 0,
+              "y": -0.55,
+              "z": -16
+            },
+            "size": {
+              "x": 5,
+              "y": 1.7,
+              "z": 24
+            }
+          },
+          {
+            "type": "platform",
+            "id": "soft-practice-floor",
+            "center": {
+              "x": 0,
+              "y": -0.3,
+              "z": -32.85
+            },
+            "size": {
+              "x": 16,
+              "y": 0.6,
+              "z": 10.3
+            }
+          },
+          {
+            "type": "platform",
+            "id": "confetti-crate",
+            "center": {
+              "x": -2.6,
+              "y": 0.45,
+              "z": -29.6
+            },
+            "size": {
+              "x": 2.4,
+              "y": 2.1,
+              "z": 2.4
+            }
+          },
+          {
+            "type": "platform",
+            "id": "spotlight-riser",
+            "center": {
+              "x": 2.4,
+              "y": 0.45,
+              "z": -30.4
+            },
+            "size": {
+              "x": 5.6,
+              "y": 2.1,
+              "z": 3.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "rehearsal-loft",
+            "center": {
+              "x": -1.2,
+              "y": 1.05,
+              "z": -35.2
+            },
+            "size": {
+              "x": 7,
+              "y": 3.3,
+              "z": 5
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "rehearsal-loft-safe",
+            "platformId": "rehearsal-loft",
+            "position": {
+              "x": -1.2,
+              "y": 2.7,
+              "z": -33.4
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "fan-picnic",
+            "center": {
+              "x": 0,
+              "y": 0.8,
+              "z": -44
+            },
+            "size": {
+              "x": 14,
+              "y": 4.4,
+              "z": 11
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "party-picnic-safe",
+            "platformId": "fan-picnic",
+            "position": {
+              "x": -3,
+              "y": 3,
+              "z": -39.4
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "ribbon-runway",
+            "center": {
+              "x": -3,
+              "y": 0.8,
+              "z": -53.8
+            },
+            "size": {
+              "x": 7,
+              "y": 4.4,
+              "z": 7
+            }
+          },
+          {
+            "type": "sweeper",
+            "id": "ribbon-padded-bar",
+            "center": {
+              "x": -3,
+              "y": 3.22,
+              "z": -53.8
+            },
+            "halfLength": 1,
+            "radius": 0.18,
+            "motion": {
+              "axis": "x",
+              "distance": 2,
+              "period": 10
+            }
+          },
+          {
+            "type": "platform",
+            "id": "ribbon-bandstand",
+            "center": {
+              "x": -3,
+              "y": 0.95,
+              "z": -63.1
+            },
+            "size": {
+              "x": 12,
+              "y": 4.7,
+              "z": 10
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "ribbon-safe",
+            "platformId": "ribbon-bandstand",
+            "position": {
+              "x": 1.6,
+              "y": 3.3,
+              "z": -59
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "relay-hop-1",
+            "center": {
+              "x": -4.2,
+              "y": 0.95,
+              "z": -70.3
+            },
+            "size": {
+              "x": 4.4,
+              "y": 4.7,
+              "z": 2.8
+            }
+          },
+          {
+            "type": "platform",
+            "id": "relay-hop-2",
+            "center": {
+              "x": -1.8,
+              "y": 0.95,
+              "z": -73.9
+            },
+            "size": {
+              "x": 4.4,
+              "y": 4.7,
+              "z": 2.8
+            }
+          },
+          {
+            "type": "platform",
+            "id": "bounce-deck",
+            "center": {
+              "x": -3,
+              "y": 0.95,
+              "z": -77.9
+            },
+            "size": {
+              "x": 4,
+              "y": 4.7,
+              "z": 3.6
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "bounce-deck-safe",
+            "platformId": "bounce-deck",
+            "position": {
+              "x": -3,
+              "y": 3.3,
+              "z": -76.8
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "bounce-pad",
+            "id": "encore-trampoline",
+            "center": {
+              "x": -3,
+              "y": 0.95,
+              "z": -80.9
+            },
+            "size": {
+              "x": 4,
+              "y": 4.7,
+              "z": 2.4
+            },
+            "strength": "big"
+          },
+          {
+            "type": "platform",
+            "id": "fan-balcony",
+            "center": {
+              "x": -3,
+              "y": 1.95,
+              "z": -84.95
+            },
+            "size": {
+              "x": 8,
+              "y": 6.7,
+              "z": 5
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "fan-balcony-safe",
+            "platformId": "fan-balcony",
+            "position": {
+              "x": -5.4,
+              "y": 5.3,
+              "z": -84.95
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "moving-platform",
+            "id": "speaker-raft",
+            "center": {
+              "x": 3.3,
+              "y": 5,
+              "z": -84.95
+            },
+            "size": {
+              "x": 3.6,
+              "y": 0.6,
+              "z": 4
+            },
+            "motion": {
+              "axis": "z",
+              "distance": 1,
+              "period": 10
+            }
+          },
+          {
+            "type": "platform",
+            "id": "raft-dock",
+            "center": {
+              "x": 9.6,
+              "y": 1.95,
+              "z": -84.95
+            },
+            "size": {
+              "x": 8,
+              "y": 6.7,
+              "z": 8
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "party-dock-safe",
+            "platformId": "raft-dock",
+            "position": {
+              "x": 7,
+              "y": 5.3,
+              "z": -82.2
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "amp-hop-1",
+            "center": {
+              "x": 16.4,
+              "y": 2.1,
+              "z": -88.7
+            },
+            "size": {
+              "x": 3.6,
+              "y": 7,
+              "z": 5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "amp-hop-2",
+            "center": {
+              "x": 21,
+              "y": 2.1,
+              "z": -90.7
+            },
+            "size": {
+              "x": 3.6,
+              "y": 7,
+              "z": 5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "wide-side-bridge",
+            "center": {
+              "x": 16.6,
+              "y": 1.95,
+              "z": -82.7
+            },
+            "size": {
+              "x": 6,
+              "y": 6.7,
+              "z": 5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "friend-balcony",
+            "center": {
+              "x": 21.7,
+              "y": 1.95,
+              "z": -82.7
+            },
+            "size": {
+              "x": 4.2,
+              "y": 6.7,
+              "z": 5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "glitter-grove",
+            "center": {
+              "x": 29.8,
+              "y": 2.1,
+              "z": -88.7
+            },
+            "size": {
+              "x": 12,
+              "y": 7,
+              "z": 13
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "party-grove-safe",
+            "platformId": "glitter-grove",
+            "position": {
+              "x": 25.2,
+              "y": 5.6,
+              "z": -83.4
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "turnstile-deck",
+            "center": {
+              "x": 41.8,
+              "y": 2.1,
+              "z": -89.2
+            },
+            "size": {
+              "x": 10,
+              "y": 7,
+              "z": 8
+            }
+          },
+          {
+            "type": "sweeper",
+            "id": "party-turnstile",
+            "center": {
+              "x": 41.8,
+              "y": 5.82,
+              "z": -89.2
+            },
+            "halfLength": 1.15,
+            "radius": 0.18,
+            "rotation": {
+              "period": 14
+            }
+          },
+          {
+            "type": "platform",
+            "id": "merch-fair",
+            "center": {
+              "x": 53.6,
+              "y": 2.1,
+              "z": -90.45
+            },
+            "size": {
+              "x": 12,
+              "y": 7,
+              "z": 11
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "party-fair-safe",
+            "platformId": "merch-fair",
+            "position": {
+              "x": 48.8,
+              "y": 5.6,
+              "z": -94.75
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "cannon-deck",
+            "center": {
+              "x": 62.4,
+              "y": 2.1,
+              "z": -89.2
+            },
+            "size": {
+              "x": 4,
+              "y": 7,
+              "z": 4
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "cannon-deck-safe",
+            "platformId": "cannon-deck",
+            "position": {
+              "x": 61.4,
+              "y": 5.6,
+              "z": -89.2
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "bounce-pad",
+            "id": "confetti-cannon",
+            "center": {
+              "x": 65.6,
+              "y": 2.1,
+              "z": -89.2
+            },
+            "size": {
+              "x": 2.4,
+              "y": 7,
+              "z": 4
+            },
+            "strength": "small"
+          },
+          {
+            "type": "platform",
+            "id": "sky-bleachers",
+            "center": {
+              "x": 71.15,
+              "y": 2.7,
+              "z": -89.2
+            },
+            "size": {
+              "x": 8,
+              "y": 8.2,
+              "z": 6
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "sky-bleachers-safe",
+            "platformId": "sky-bleachers",
+            "position": {
+              "x": 69,
+              "y": 6.8,
+              "z": -89.2
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "sky-catwalk",
+            "center": {
+              "x": 83.15,
+              "y": 2.7,
+              "z": -89.2
+            },
+            "size": {
+              "x": 16,
+              "y": 8.2,
+              "z": 4
+            }
+          },
+          {
+            "type": "platform",
+            "id": "glow-hop-1",
+            "center": {
+              "x": 93.75,
+              "y": 2.7,
+              "z": -90.2
+            },
+            "size": {
+              "x": 3.6,
+              "y": 8.2,
+              "z": 5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "glow-hop-2",
+            "center": {
+              "x": 98.15,
+              "y": 2.7,
+              "z": -91.7
+            },
+            "size": {
+              "x": 3.6,
+              "y": 8.2,
+              "z": 5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "glow-hop-3",
+            "center": {
+              "x": 102.55,
+              "y": 2.7,
+              "z": -93.2
+            },
+            "size": {
+              "x": 3.6,
+              "y": 8.2,
+              "z": 5
+            }
+          },
+          {
+            "type": "platform",
+            "id": "crowd-bridge",
+            "center": {
+              "x": 102.55,
+              "y": 2.7,
+              "z": -103.5
+            },
+            "size": {
+              "x": 5,
+              "y": 8.2,
+              "z": 14
+            }
+          },
+          {
+            "type": "platform",
+            "id": "lift-dock",
+            "center": {
+              "x": 102.55,
+              "y": 2.7,
+              "z": -112.7
+            },
+            "size": {
+              "x": 8,
+              "y": 8.2,
+              "z": 4.4
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "lift-dock-safe",
+            "platformId": "lift-dock",
+            "position": {
+              "x": 102.55,
+              "y": 6.8,
+              "z": -111.3
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "lift",
+            "id": "stage-lift",
+            "center": {
+              "x": 102.55,
+              "y": 6.5,
+              "z": -116.65
+            },
+            "size": {
+              "x": 3.2,
+              "y": 0.4,
+              "z": 3.2
+            },
+            "travel": {
+              "distance": 3.8,
+              "period": 8,
+              "dwell": 2
+            }
+          },
+          {
+            "type": "platform",
+            "id": "rig-truss-1",
+            "center": {
+              "x": 96.25,
+              "y": 3.3,
+              "z": -113.3
+            },
+            "size": {
+              "x": 2.6,
+              "y": 9.4,
+              "z": 2.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "rig-truss-2",
+            "center": {
+              "x": 96.25,
+              "y": 3.9,
+              "z": -117.1
+            },
+            "size": {
+              "x": 2.6,
+              "y": 10.6,
+              "z": 2.6
+            }
+          },
+          {
+            "type": "platform",
+            "id": "golden-perch",
+            "center": {
+              "x": 96.25,
+              "y": 4.35,
+              "z": -121.1
+            },
+            "size": {
+              "x": 3,
+              "y": 11.5,
+              "z": 3
+            }
+          },
+          {
+            "type": "platform",
+            "id": "stage-wing",
+            "center": {
+              "x": 102.55,
+              "y": 4.5,
+              "z": -120.6
+            },
+            "size": {
+              "x": 8,
+              "y": 11.8,
+              "z": 4.4
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "stage-wing-safe",
+            "platformId": "stage-wing",
+            "position": {
+              "x": 99.95,
+              "y": 10.4,
+              "z": -119.2
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "stage-stair-1",
+            "center": {
+              "x": 101.35,
+              "y": 4.65,
+              "z": -125.2
+            },
+            "size": {
+              "x": 4.4,
+              "y": 12.1,
+              "z": 2.8
+            }
+          },
+          {
+            "type": "platform",
+            "id": "stage-stair-2",
+            "center": {
+              "x": 103.75,
+              "y": 4.8,
+              "z": -128.8
+            },
+            "size": {
+              "x": 4.4,
+              "y": 12.4,
+              "z": 2.8
+            }
+          },
+          {
+            "type": "platform",
+            "id": "main-stage",
+            "center": {
+              "x": 102.55,
+              "y": 4.95,
+              "z": -141
+            },
+            "size": {
+              "x": 16,
+              "y": 12.7,
+              "z": 20
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "besties-safe",
+            "platformId": "main-stage",
+            "position": {
+              "x": 102.55,
+              "y": 11.3,
+              "z": -132.1
+            },
+            "activation": {
+              "type": "platform"
+            }
+          },
+          {
+            "type": "platform",
+            "id": "encore-riser",
+            "center": {
+              "x": 102.55,
+              "y": 4.95,
+              "z": -154
+            },
+            "size": {
+              "x": 12,
+              "y": 12.7,
+              "z": 6
+            }
+          },
+          {
+            "type": "checkpoint",
+            "id": "party-reward-safe",
+            "platformId": "encore-riser",
+            "position": {
+              "x": 102.55,
+              "y": 11.3,
+              "z": -152.5
+            },
+            "activation": {
+              "type": "platform"
+            }
+          }
+        ],
+        "connections": [
+          {
+            "from": "stage-door-plaza",
+            "to": "fan-walk",
+            "mode": "walk"
+          },
+          {
+            "from": "fan-walk",
+            "to": "spotlight-riser",
+            "mode": "jump",
+            "safeMissPlatformId": "soft-practice-floor",
+            "requires": "double-jump"
+          },
+          {
+            "from": "spotlight-riser",
+            "to": "rehearsal-loft",
+            "mode": "jump",
+            "safeMissPlatformId": "soft-practice-floor",
+            "requires": "double-jump"
+          },
+          {
+            "from": "soft-practice-floor",
+            "to": "fan-walk",
+            "mode": "jump"
+          },
+          {
+            "from": "fan-walk",
+            "to": "confetti-crate",
+            "mode": "jump",
+            "requires": "double-jump"
+          },
+          {
+            "from": "confetti-crate",
+            "to": "rehearsal-loft",
+            "mode": "jump",
+            "requires": "double-jump"
+          },
+          {
+            "from": "confetti-crate",
+            "to": "soft-practice-floor",
+            "mode": "drop"
+          },
+          {
+            "from": "rehearsal-loft",
+            "to": "fan-picnic",
+            "mode": "jump"
+          },
+          {
+            "from": "fan-picnic",
+            "to": "ribbon-runway",
+            "mode": "jump"
+          },
+          {
+            "from": "ribbon-runway",
+            "to": "ribbon-bandstand",
+            "mode": "jump"
+          },
+          {
+            "from": "ribbon-bandstand",
+            "to": "relay-hop-1",
+            "mode": "jump"
+          },
+          {
+            "from": "relay-hop-1",
+            "to": "relay-hop-2",
+            "mode": "jump"
+          },
+          {
+            "from": "relay-hop-2",
+            "to": "bounce-deck",
+            "mode": "jump"
+          },
+          {
+            "from": "bounce-deck",
+            "to": "encore-trampoline",
+            "mode": "walk"
+          },
+          {
+            "from": "encore-trampoline",
+            "to": "fan-balcony",
+            "mode": "bounce"
+          },
+          {
+            "from": "fan-balcony",
+            "to": "speaker-raft",
+            "mode": "ride"
+          },
+          {
+            "from": "speaker-raft",
+            "to": "raft-dock",
+            "mode": "ride"
+          },
+          {
+            "from": "raft-dock",
+            "to": "amp-hop-1",
+            "mode": "jump"
+          },
+          {
+            "from": "amp-hop-1",
+            "to": "amp-hop-2",
+            "mode": "jump"
+          },
+          {
+            "from": "amp-hop-2",
+            "to": "glitter-grove",
+            "mode": "jump"
+          },
+          {
+            "from": "raft-dock",
+            "to": "wide-side-bridge",
+            "mode": "walk"
+          },
+          {
+            "from": "wide-side-bridge",
+            "to": "friend-balcony",
+            "mode": "walk"
+          },
+          {
+            "from": "friend-balcony",
+            "to": "glitter-grove",
+            "mode": "jump"
+          },
+          {
+            "from": "glitter-grove",
+            "to": "turnstile-deck",
+            "mode": "jump"
+          },
+          {
+            "from": "turnstile-deck",
+            "to": "merch-fair",
+            "mode": "jump"
+          },
+          {
+            "from": "merch-fair",
+            "to": "cannon-deck",
+            "mode": "jump"
+          },
+          {
+            "from": "cannon-deck",
+            "to": "confetti-cannon",
+            "mode": "walk"
+          },
+          {
+            "from": "confetti-cannon",
+            "to": "sky-bleachers",
+            "mode": "bounce"
+          },
+          {
+            "from": "sky-bleachers",
+            "to": "sky-catwalk",
+            "mode": "walk"
+          },
+          {
+            "from": "sky-catwalk",
+            "to": "glow-hop-1",
+            "mode": "jump"
+          },
+          {
+            "from": "glow-hop-1",
+            "to": "glow-hop-2",
+            "mode": "jump"
+          },
+          {
+            "from": "glow-hop-2",
+            "to": "glow-hop-3",
+            "mode": "jump"
+          },
+          {
+            "from": "glow-hop-3",
+            "to": "crowd-bridge",
+            "mode": "jump"
+          },
+          {
+            "from": "crowd-bridge",
+            "to": "lift-dock",
+            "mode": "walk"
+          },
+          {
+            "from": "lift-dock",
+            "to": "stage-lift",
+            "mode": "ride"
+          },
+          {
+            "from": "stage-lift",
+            "to": "stage-wing",
+            "mode": "ride"
+          },
+          {
+            "from": "lift-dock",
+            "to": "rig-truss-1",
+            "mode": "jump",
+            "requires": "double-jump"
+          },
+          {
+            "from": "rig-truss-1",
+            "to": "rig-truss-2",
+            "mode": "jump",
+            "requires": "double-jump"
+          },
+          {
+            "from": "rig-truss-2",
+            "to": "golden-perch",
+            "mode": "jump",
+            "requires": "double-jump"
+          },
+          {
+            "from": "golden-perch",
+            "to": "stage-wing",
+            "mode": "jump"
+          },
+          {
+            "from": "stage-wing",
+            "to": "stage-stair-1",
+            "mode": "jump"
+          },
+          {
+            "from": "stage-stair-1",
+            "to": "stage-stair-2",
+            "mode": "jump"
+          },
+          {
+            "from": "stage-stair-2",
+            "to": "main-stage",
+            "mode": "jump"
+          },
+          {
+            "from": "main-stage",
+            "to": "encore-riser",
+            "mode": "walk"
+          }
+        ],
+        "mainPath": [
+          "stage-door-plaza",
+          "fan-walk",
+          "spotlight-riser",
+          "rehearsal-loft",
+          "fan-picnic",
+          "ribbon-runway",
+          "ribbon-bandstand",
+          "relay-hop-1",
+          "relay-hop-2",
+          "bounce-deck",
+          "encore-trampoline",
+          "fan-balcony",
+          "speaker-raft",
+          "raft-dock",
+          "amp-hop-1",
+          "amp-hop-2",
+          "glitter-grove",
+          "turnstile-deck",
+          "merch-fair",
+          "cannon-deck",
+          "confetti-cannon",
+          "sky-bleachers",
+          "sky-catwalk",
+          "glow-hop-1",
+          "glow-hop-2",
+          "glow-hop-3",
+          "crowd-bridge",
+          "lift-dock",
+          "stage-lift",
+          "stage-wing",
+          "stage-stair-1",
+          "stage-stair-2",
+          "main-stage",
+          "encore-riser"
+        ],
+        "branches": [
+          [
+            "lift-dock",
+            "rig-truss-1",
+            "rig-truss-2",
+            "golden-perch",
+            "stage-wing"
+          ],
+          [
+            "raft-dock",
+            "wide-side-bridge",
+            "friend-balcony",
+            "glitter-grove"
+          ],
+          [
+            "fan-walk",
+            "confetti-crate",
+            "rehearsal-loft"
+          ]
+        ],
+        "anchors": {
+          "spawn": {
+            "platformId": "stage-door-plaza",
+            "position": {
+              "x": 0,
+              "y": 0.3,
+              "z": 1
+            }
+          },
+          "pickups": {
+            "attack-tool": {
+              "platformId": "stage-door-plaza",
+              "position": {
+                "x": -0.7,
+                "y": 0.3,
+                "z": -0.5
+              }
+            },
+            "guard-tool": {
+              "platformId": "fan-picnic",
+              "position": {
+                "x": -1,
+                "y": 3,
+                "z": -41
+              }
+            }
+          },
+          "memories": {
+            "minor-one": {
+              "platformId": "glitter-grove",
+              "position": {
+                "x": 24.9,
+                "y": 5.6,
+                "z": -89.95
+              }
+            },
+            "minor-two": {
+              "platformId": "stage-wing",
+              "position": {
+                "x": 104.35,
+                "y": 10.4,
+                "z": -120.6
+              }
+            },
+            "major": {
+              "platformId": "encore-riser",
+              "position": {
+                "x": 102.55,
+                "y": 11.3,
+                "z": -154
+              }
+            }
+          },
+          "encounters": {
+            "ordinary-1": {
+              "platformId": "fan-picnic",
+              "position": {
+                "x": 3.25,
+                "y": 3,
+                "z": -44
+              },
+              "kind": "ordinary-a",
+              "checkpointId": "party-picnic-safe",
+              "arena": {
+                "minX": 1.85,
+                "maxX": 4.65,
+                "minZ": -46.15,
+                "maxZ": -41.85
+              }
+            },
+            "ordinary-2": {
+              "platformId": "ribbon-bandstand",
+              "position": {
+                "x": -4.25,
+                "y": 3.3,
+                "z": -63.1
+              },
+              "kind": "ordinary-a",
+              "checkpointId": "ribbon-safe",
+              "arena": {
+                "minX": -6.5,
+                "maxX": -2,
+                "minZ": -65.6,
+                "maxZ": -60.6
+              }
+            },
+            "ordinary-3": {
+              "platformId": "glitter-grove",
+              "position": {
+                "x": 30,
+                "y": 5.6,
+                "z": -89.7
+              },
+              "kind": "ordinary-a",
+              "checkpointId": "party-grove-safe",
+              "arena": {
+                "minX": 27.5,
+                "maxX": 32.5,
+                "minZ": -92.2,
+                "maxZ": -87.2
+              }
+            },
+            "ordinary-4": {
+              "platformId": "merch-fair",
+              "position": {
+                "x": 53.5,
+                "y": 5.6,
+                "z": -91.45
+              },
+              "kind": "ordinary-a",
+              "checkpointId": "party-fair-safe",
+              "arena": {
+                "minX": 51.5,
+                "maxX": 55.5,
+                "minZ": -93.55,
+                "maxZ": -89.35000000000001
+              }
+            },
+            "boss": {
+              "platformId": "main-stage",
+              "position": {
+                "x": 102.55,
+                "y": 11.3,
+                "z": -141
+              },
+              "kind": "boss",
+              "checkpointId": "besties-safe",
+              "arena": {
+                "minX": 98.75,
+                "maxX": 106.35,
+                "minZ": -143,
+                "maxZ": -139
+              }
+            }
+          },
+          "friendlies": {
+            "friendly-1": {
+              "platformId": "stage-door-plaza",
+              "position": {
+                "x": -3,
+                "y": 0.3,
+                "z": 1
+              }
+            },
+            "friendly-2": {
+              "platformId": "friend-balcony",
+              "position": {
+                "x": 21.7,
+                "y": 5.3,
+                "z": -82.7
+              }
+            },
+            "friendly-3": {
+              "platformId": "merch-fair",
+              "position": {
+                "x": 49.5,
+                "y": 5.6,
+                "z": -86.15
+              }
+            }
+          },
+          "rewardRespawn": {
+            "platformId": "encore-riser",
+            "position": {
+              "x": 102.55,
+              "y": 11.3,
+              "z": -152.5
+            }
+          },
+          "finish": {
+            "platformId": "encore-riser",
+            "position": {
+              "x": 102.55,
+              "y": 11.3,
+              "z": -155.5
+            }
+          }
+        },
+        "decor": [
+          {
+            "id": "door-speaker-left",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": -6.4,
+              "y": -1.4,
+              "z": -1.5
+            },
+            "rotationY": 0,
+            "scale": 1.78
+          },
+          {
+            "id": "door-speaker-right",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 6.4,
+              "y": -1.4,
+              "z": -1.5
+            },
+            "rotationY": 0,
+            "scale": 1.78
+          },
+          {
+            "id": "door-balloons-left",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -5.9,
+              "y": -1.4,
+              "z": -3.3
+            },
+            "rotationY": 0,
+            "scale": 1.62
+          },
+          {
+            "id": "door-balloons-right",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 5.9,
+              "y": -1.4,
+              "z": -3.3
+            },
+            "rotationY": 0,
+            "scale": 1.62
+          },
+          {
+            "id": "door-gifts",
+            "kitPropId": "party-gift-stack",
+            "position": {
+              "x": -7.2,
+              "y": -1.4,
+              "z": 0.9
+            },
+            "rotationY": 0,
+            "scale": 2
+          },
+          {
+            "id": "fan-speaker-1-left",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": -3.7,
+              "y": -1.4,
+              "z": -7
+            },
+            "rotationY": 1.571,
+            "scale": 1.72
+          },
+          {
+            "id": "fan-speaker-1-right",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 3.7,
+              "y": -1.4,
+              "z": -7
+            },
+            "rotationY": -1.571,
+            "scale": 1.72
+          },
+          {
+            "id": "fan-balloons-2-left",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -3.4,
+              "y": -1.4,
+              "z": -11
+            },
+            "rotationY": 0,
+            "scale": 1.69
+          },
+          {
+            "id": "fan-balloons-2-right",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 3.4,
+              "y": -1.4,
+              "z": -11
+            },
+            "rotationY": 0,
+            "scale": 1.69
+          },
+          {
+            "id": "fan-speaker-3-left",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": -3.7,
+              "y": -1.4,
+              "z": -15
+            },
+            "rotationY": 1.571,
+            "scale": 1.72
+          },
+          {
+            "id": "fan-speaker-3-right",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 3.7,
+              "y": -1.4,
+              "z": -15
+            },
+            "rotationY": -1.571,
+            "scale": 1.72
+          },
+          {
+            "id": "fan-balloons-4-left",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -3.4,
+              "y": -1.4,
+              "z": -19
+            },
+            "rotationY": 0,
+            "scale": 1.69
+          },
+          {
+            "id": "fan-balloons-4-right",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 3.4,
+              "y": -1.4,
+              "z": -19
+            },
+            "rotationY": 0,
+            "scale": 1.69
+          },
+          {
+            "id": "fan-speaker-5-left",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": -3.7,
+              "y": -1.4,
+              "z": -23
+            },
+            "rotationY": 1.571,
+            "scale": 1.72
+          },
+          {
+            "id": "fan-speaker-5-right",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 3.7,
+              "y": -1.4,
+              "z": -23
+            },
+            "rotationY": -1.571,
+            "scale": 1.72
+          },
+          {
+            "id": "practice-rig-left",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": -9.6,
+              "y": -1.4,
+              "z": -33
+            },
+            "rotationY": 1.571,
+            "scale": 1.19
+          },
+          {
+            "id": "practice-rig-right",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": 9.6,
+              "y": -1.4,
+              "z": -33
+            },
+            "rotationY": -1.571,
+            "scale": 1.19
+          },
+          {
+            "id": "practice-balloons-left",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -9,
+              "y": -1.4,
+              "z": -28.6
+            },
+            "rotationY": 0,
+            "scale": 1.69
+          },
+          {
+            "id": "practice-balloons-right",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 9,
+              "y": -1.4,
+              "z": -28.6
+            },
+            "rotationY": 0,
+            "scale": 1.69
+          },
+          {
+            "id": "picnic-balloons-a-left",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -8,
+              "y": -1.4,
+              "z": -40.2
+            },
+            "rotationY": 0,
+            "scale": 2.08
+          },
+          {
+            "id": "picnic-balloons-a-right",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 8,
+              "y": -1.4,
+              "z": -40.2
+            },
+            "rotationY": 0,
+            "scale": 2.08
+          },
+          {
+            "id": "picnic-balloons-b-left",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -8,
+              "y": -1.4,
+              "z": -47.8
+            },
+            "rotationY": 0,
+            "scale": 2.08
+          },
+          {
+            "id": "picnic-balloons-b-right",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 8,
+              "y": -1.4,
+              "z": -47.8
+            },
+            "rotationY": 0,
+            "scale": 2.08
+          },
+          {
+            "id": "picnic-gifts",
+            "kitPropId": "party-gift-stack",
+            "position": {
+              "x": 9.4,
+              "y": -1.4,
+              "z": -44
+            },
+            "rotationY": 0,
+            "scale": 2.92
+          },
+          {
+            "id": "runway-speaker-left",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": -8.3,
+              "y": -1.4,
+              "z": -53.8
+            },
+            "rotationY": 1.571,
+            "scale": 2.56
+          },
+          {
+            "id": "runway-speaker-right",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 2.3,
+              "y": -1.4,
+              "z": -53.8
+            },
+            "rotationY": -1.571,
+            "scale": 2.56
+          },
+          {
+            "id": "bandstand-rig",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": 4.8,
+              "y": -1.4,
+              "z": -63
+            },
+            "rotationY": 1.571,
+            "scale": 1.55
+          },
+          {
+            "id": "bandstand-balloons-a",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -10.2,
+              "y": -1.4,
+              "z": -60
+            },
+            "rotationY": 0,
+            "scale": 2.15
+          },
+          {
+            "id": "bandstand-balloons-b",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -10.2,
+              "y": -1.4,
+              "z": -66.2
+            },
+            "rotationY": 0,
+            "scale": 2.15
+          },
+          {
+            "id": "relay-gifts-a",
+            "kitPropId": "party-gift-stack",
+            "position": {
+              "x": 2.6,
+              "y": -1.4,
+              "z": -72.2
+            },
+            "rotationY": 0,
+            "scale": 3
+          },
+          {
+            "id": "relay-gifts-b",
+            "kitPropId": "party-gift-stack",
+            "position": {
+              "x": -8.8,
+              "y": -1.4,
+              "z": -73
+            },
+            "rotationY": 0,
+            "scale": 3
+          },
+          {
+            "id": "trampoline-balloons-left",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -6.6,
+              "y": -1.4,
+              "z": -78.4
+            },
+            "rotationY": 0,
+            "scale": 2.31
+          },
+          {
+            "id": "trampoline-balloons-right",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 0.7,
+              "y": -1.4,
+              "z": -78.4
+            },
+            "rotationY": 0,
+            "scale": 2.31
+          },
+          {
+            "id": "balcony-rig",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": -3,
+              "y": -1.4,
+              "z": -89.6
+            },
+            "rotationY": 0,
+            "scale": 1.9
+          },
+          {
+            "id": "balcony-speaker",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": -9.6,
+              "y": -1.4,
+              "z": -84.95
+            },
+            "rotationY": 1.571,
+            "scale": 3.61
+          },
+          {
+            "id": "wall-stars-1",
+            "kitPropId": "star-backdrop",
+            "position": {
+              "x": 10,
+              "y": -1.4,
+              "z": -100.5
+            },
+            "rotationY": 0,
+            "scale": 2.2
+          },
+          {
+            "id": "wall-rig-1",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": 24,
+              "y": -1.4,
+              "z": -100.5
+            },
+            "rotationY": 0,
+            "scale": 2.38
+          },
+          {
+            "id": "wall-stars-2",
+            "kitPropId": "star-backdrop",
+            "position": {
+              "x": 38,
+              "y": -1.4,
+              "z": -100.5
+            },
+            "rotationY": 0,
+            "scale": 2.2
+          },
+          {
+            "id": "wall-rig-2",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": 52,
+              "y": -1.4,
+              "z": -100.5
+            },
+            "rotationY": 0,
+            "scale": 2.38
+          },
+          {
+            "id": "wall-stars-3",
+            "kitPropId": "star-backdrop",
+            "position": {
+              "x": 66,
+              "y": -1.4,
+              "z": -100.5
+            },
+            "rotationY": 0,
+            "scale": 2.2
+          },
+          {
+            "id": "wall-rig-3",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": 80,
+              "y": -1.4,
+              "z": -100.5
+            },
+            "rotationY": 0,
+            "scale": 2.38
+          },
+          {
+            "id": "dock-gifts",
+            "kitPropId": "party-gift-stack",
+            "position": {
+              "x": 9.6,
+              "y": -1.4,
+              "z": -78.95
+            },
+            "rotationY": 0,
+            "scale": 2.67
+          },
+          {
+            "id": "grove-gifts",
+            "kitPropId": "party-gift-stack",
+            "position": {
+              "x": 30,
+              "y": -1.4,
+              "z": -80.15
+            },
+            "rotationY": 0,
+            "scale": 2.67
+          },
+          {
+            "id": "grove-balloons",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 34.6,
+              "y": -1.4,
+              "z": -80.55
+            },
+            "rotationY": 0,
+            "scale": 2.31
+          },
+          {
+            "id": "fair-gifts",
+            "kitPropId": "party-gift-stack",
+            "position": {
+              "x": 53.6,
+              "y": -1.4,
+              "z": -82.55
+            },
+            "rotationY": 0,
+            "scale": 2.83
+          },
+          {
+            "id": "bleacher-gifts",
+            "kitPropId": "party-gift-stack",
+            "position": {
+              "x": 71.2,
+              "y": -1.4,
+              "z": -83.35
+            },
+            "rotationY": 0,
+            "scale": 2.83
+          },
+          {
+            "id": "catwalk-balloons-a",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 80,
+              "y": -1.4,
+              "z": -93.15
+            },
+            "rotationY": 0,
+            "scale": 2.85
+          },
+          {
+            "id": "catwalk-balloons-b",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 88,
+              "y": -1.4,
+              "z": -93.15
+            },
+            "rotationY": 0,
+            "scale": 2.85
+          },
+          {
+            "id": "crowd-1-left",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 97.95,
+              "y": -1.4,
+              "z": -99.3
+            },
+            "rotationY": 1.571,
+            "scale": 2.44
+          },
+          {
+            "id": "crowd-1-right",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 107.15,
+              "y": -1.4,
+              "z": -99.3
+            },
+            "rotationY": -1.571,
+            "scale": 2.44
+          },
+          {
+            "id": "crowd-2-left",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 97.95,
+              "y": -1.4,
+              "z": -103.3
+            },
+            "rotationY": 0,
+            "scale": 2.15
+          },
+          {
+            "id": "crowd-2-right",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 107.15,
+              "y": -1.4,
+              "z": -103.3
+            },
+            "rotationY": 0,
+            "scale": 2.15
+          },
+          {
+            "id": "crowd-3-left",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 97.95,
+              "y": -1.4,
+              "z": -107.3
+            },
+            "rotationY": 1.571,
+            "scale": 2.44
+          },
+          {
+            "id": "crowd-3-right",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 107.15,
+              "y": -1.4,
+              "z": -107.3
+            },
+            "rotationY": -1.571,
+            "scale": 2.44
+          },
+          {
+            "id": "lift-tower",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": 107.85,
+              "y": -1.4,
+              "z": -116.7
+            },
+            "rotationY": 1.571,
+            "scale": 2.86
+          },
+          {
+            "id": "stage-rig-left",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": 92.85,
+              "y": -1.4,
+              "z": -141
+            },
+            "rotationY": 1.571,
+            "scale": 3.45
+          },
+          {
+            "id": "stage-rig-right",
+            "kitPropId": "light-truss",
+            "position": {
+              "x": 112.25,
+              "y": -1.4,
+              "z": -141
+            },
+            "rotationY": -1.571,
+            "scale": 3.45
+          },
+          {
+            "id": "stage-speaker-front-left",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 89.75,
+              "y": -1.4,
+              "z": -134.2
+            },
+            "rotationY": 1.571,
+            "scale": 4
+          },
+          {
+            "id": "stage-speaker-front-right",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 115.35,
+              "y": -1.4,
+              "z": -134.2
+            },
+            "rotationY": -1.571,
+            "scale": 4
+          },
+          {
+            "id": "stage-speaker-back-left",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 89.75,
+              "y": -1.4,
+              "z": -147.7
+            },
+            "rotationY": 1.571,
+            "scale": 4
+          },
+          {
+            "id": "stage-speaker-back-right",
+            "kitPropId": "stage-speaker",
+            "position": {
+              "x": 115.35,
+              "y": -1.4,
+              "z": -147.7
+            },
+            "rotationY": -1.571,
+            "scale": 4
+          },
+          {
+            "id": "encore-stars",
+            "kitPropId": "star-backdrop",
+            "position": {
+              "x": 102.55,
+              "y": -1.4,
+              "z": -159.1
+            },
+            "rotationY": 0,
+            "scale": 3.4
+          }
+        ]
+      }
+    },
+    {
+      "type": "enemy.add",
+      "chapterId": "family-b3",
+      "slot": "ordinary-1",
+      "candidate": {
+        "id": "demon-band-idol",
+        "name": "Demon Idol",
+        "periodId": "besties-obby-v1",
+        "recognizableReference": "a sparkly demon boy-band idol (clean)",
+        "visualJoke": "strikes a pose mid-fight",
+        "obstacleOrAttack": "microphone spin",
+        "eligibility": {
+          "startDate": "2024-01-01",
+          "endDate": "2026-12-31"
+        },
+        "role": "ordinary",
+        "kind": "ordinary-a",
+        "behaviorPreset": "ordinary-a"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b3",
+      "slot": "ordinary-2",
+      "encounter": {
+        "source": "candidate",
+        "candidateId": "demon-band-idol"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b3",
+      "slot": "ordinary-3",
+      "encounter": {
+        "source": "candidate",
+        "candidateId": "demon-band-idol"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b3",
+      "slot": "ordinary-4",
+      "encounter": {
+        "source": "candidate",
+        "candidateId": "demon-band-idol"
+      }
+    },
+    {
+      "type": "encounter.assign",
+      "chapterId": "family-b3",
+      "slot": "boss",
+      "encounter": {
+        "source": "catalog",
+        "catalogEntryId": "bickering-besties",
+        "catalogEntryVersion": "v001"
+      }
+    }
+  ]
+}

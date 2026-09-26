@@ -401,6 +401,7 @@ function fork(simulation: GrowthSimulation): GrowthSimulation {
     ...simulation,
     state: structuredClone(simulation.state),
     bounces: [...simulation.bounces],
+    ...(simulation.trace ? { trace: [...simulation.trace] } : {}),
   };
 }
 
@@ -429,9 +430,11 @@ export interface PatientLegPlan {
  * `maxWaitSeconds`, at each sideways offset. It returns the first plan that
  * crosses without a recovery, preferring the shortest wait, or null.
  *
- * The browser lockstep pilot (`tests/e2e/family-world-lockstep.ts`) calls this from
- * the live game state before each leg, so the scripted kid and the browser
- * run share one planner.
+ * The browser lockstep pilots (`tests/e2e/family-world-lockstep.ts` and
+ * `tests/e2e/family-world.ts`) call this from the live game state before each
+ * leg, so the scripted kid and the browser run share one planner. A
+ * simulation with `frameSeconds` plans in that frame length, and one with a
+ * `trace` records every planned frame in `result.trace`.
  */
 export function planPatientLeg(
   level: ResolvedAuthoredLevel,
@@ -445,8 +448,9 @@ export function planPatientLeg(
   const maxWait = options.maxWaitSeconds ?? Math.max(4, longestCycle + 1);
   const step = options.waitStepSeconds ?? 0.25;
   const laterals = options.laterals ?? [0, -0.6, 0.6, -1.2, 1.2];
-  const stepFrames = Math.max(1, Math.round(step / FRAME_SECONDS));
-  const maxFrames = Math.round(maxWait / FRAME_SECONDS);
+  const frameSeconds = simulation.frameSeconds ?? FRAME_SECONDS;
+  const stepFrames = Math.max(1, Math.round(step / frameSeconds));
+  const maxFrames = Math.round(maxWait / frameSeconds);
   const from = platformOf(course, connection.from);
   const staticSource = !from.motion && !from.bounce && !from.crumble;
   const top = from.center.y + from.size.y / 2;
