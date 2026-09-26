@@ -179,13 +179,13 @@
       "status": "Awaiting Tom's review · used in the family release",
       "sceneReleasedAt": "2026-09-26T01:35:39.119027+00:00",
       "manifest": "docs/assets/media/honk-bus/v001/sha256-manifest.json",
-      "pr": null,
+      "pr": 89,
       "prMerged": null,
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned"
       },
-      "prUrl": null,
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/89",
       "masterSha256": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00",
       "validation": {
         "khronosErrors": 0,
