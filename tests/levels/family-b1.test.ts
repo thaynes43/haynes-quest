@@ -34,6 +34,7 @@ import { planCasinoCollectibles } from "../../src/game/casino-tokens";
 import { chapterCommands, worldShellCommands } from "../../scripts/levels/lib/growth-kit";
 import {
   FAMILY_B1_BRANCHES,
+  FAMILY_B1_BOSS,
   FAMILY_B1_CAST,
   FAMILY_B1_HEIGHTS,
   FAMILY_B1_MAIN_PATH,
@@ -100,7 +101,7 @@ function buildB1World(): { project: LevelEditorProjectV2; issues: readonly unkno
   const chapter = chapterCommands(FAMILY_B1_SHELL_CHAPTER.chapterId);
   const veggie = { source: "candidate" as const, candidateId: FAMILY_B1_CAST.ordinary.id };
   const result = applyLevelEditorCommands(
-    createWorldEditorProject({ projectId: "family-b1-check", catalogVersion: "parody-catalog-v7" }),
+    createWorldEditorProject({ projectId: "family-b1-check", catalogVersion: "parody-catalog-v8" }),
     {
       expectedRevision: 0,
       commands: [
@@ -114,7 +115,7 @@ function buildB1World(): { project: LevelEditorProjectV2; issues: readonly unkno
         chapter.assign("ordinary-2", veggie),
         chapter.assign("ordinary-3", veggie),
         chapter.assign("ordinary-4", veggie),
-        chapter.addCandidate("boss", FAMILY_B1_CAST.boss),
+        chapter.assign("boss", FAMILY_B1_BOSS),
       ],
     },
   );
@@ -163,7 +164,11 @@ describe("family B1 generator (a, b)", () => {
     expect(chapter.recoveredAge).toEqual({ fromYears: 0, toYears: 2 });
     expect(chapter.representedDateRange).toEqual({ startDate: "2020-06-01", endDate: "2022-06-01" });
     expect(chapter.level).toEqual(level);
-    expect(chapter.encounterSlots.boss).toEqual({ source: "candidate", candidateId: "honk-bus" });
+    expect(chapter.encounterSlots.boss).toEqual({
+      source: "catalog",
+      catalogEntryId: "honk-bus",
+      catalogEntryVersion: "v001",
+    });
     for (const slot of ["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4"] as const)
       expect(chapter.encounterSlots[slot], slot).toEqual({ source: "candidate", candidateId: "yes-yes-veggie" });
   });
