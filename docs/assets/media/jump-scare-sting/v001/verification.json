@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/jump-scare-sting/v001/source.wav",
+    "sha256": "7c1c219d813aa8b506c1b5a48fe22df6115e656601256b078fdfe12186ba80b9",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.97695923,
+    "peak_dbfs": -0.202,
+    "rms_amplitude": 0.09784484,
+    "rms_dbfs": -20.189,
+    "dc_offset": -0.00011764,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/jump-scare-sting/v001/cue.wav",
+    "sha256": "cdc0b85cee5df4f9ffe68780c6916f58ce4bfda3678f1979102a698a9a8e81af",
+    "size_bytes": 176444,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 44100,
+    "duration_seconds": 1.0,
+    "peak_amplitude": 0.50119019,
+    "peak_dbfs": -6.0,
+    "rms_amplitude": 0.10149098,
+    "rms_dbfs": -19.871,
+    "dc_offset": -0.00020777,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}

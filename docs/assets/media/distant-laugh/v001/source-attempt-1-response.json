@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "service_version": "0.2.0",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "d0f5f70eca6a49aabe5452b62f3203fd",
+  "status": "completed",
+  "prompt": "A creepy distant animatronic laugh echoing through an empty dark hall: a distorted warbling mechanical robot laugh from a broken old toy voice box, ha ha ha, wobbling in pitch like a slowed warped tape, far away with long cavernous reverb; isolated sound effect, no words, no speech, no music, no footsteps.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 304,
+  "created_at": "2026-09-26T19:09:15.756731Z",
+  "started_at": "2026-09-26T19:09:15.764363Z",
+  "finished_at": "2026-09-26T19:09:22.331148Z",
+  "peak_subprocess_rss_bytes": 4066385920,
+  "artifact": "jobs/d0f5f70eca6a49aabe5452b62f3203fd/output.wav",
+  "audio": {
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_seconds": 5.0,
+    "size_bytes": 882044,
+    "sha256": "6f7195fde522710d7a893e573fcf786e7a857a70ceb9920e3fc2858c5f67ee62"
+  },
+  "error": null,
+  "elapsed_seconds": 6.567,
+  "download_url": "/artifacts/d0f5f70eca6a49aabe5452b62f3203fd/output.wav"
+}

@@ -707,3 +707,44 @@ describe("QuestAudio family world loops (DESIGN-008)", () => {
     audio.dispose();
   });
 });
+
+describe("QuestAudio scary-moment cues (DESIGN-027)", () => {
+  it("plays the sting from its pinned file and loops only the casino hum", async () => {
+    const { audio, context, fetcher } = audioFixture();
+    await audio.start();
+
+    await expect(audio.cue("jump-scare-sting")).resolves.toBe(true);
+    expect(fetcher).toHaveBeenCalledWith(
+      questCues["jump-scare-sting"].path,
+      expect.anything(),
+    );
+    expect(context.sources.at(-1)?.loop).toBe(false);
+
+    await expect(audio.cue("casino-hum")).resolves.toBe(false);
+    await expect(audio.loop("servo-creak", true)).resolves.toBe(false);
+    const before = context.sources.length;
+    await expect(audio.loop("casino-hum", true)).resolves.toBe(true);
+    await expect(audio.loop("casino-hum", true)).resolves.toBe(true);
+    expect(context.sources).toHaveLength(before + 1);
+    expect(context.sources.at(-1)?.loop).toBe(true);
+    await expect(audio.loop("casino-hum", false)).resolves.toBe(false);
+    expect(context.sources.at(-1)?.stop).toHaveBeenCalledOnce();
+    audio.dispose();
+  });
+
+  it("keeps the hum through ordinary one-shots at the cap and lets the sting through", async () => {
+    const { audio, context } = audioFixture({ maxSources: 2 });
+    await audio.start();
+    await expect(audio.loop("casino-hum", true)).resolves.toBe(true);
+    const hum = context.sources[0]!;
+    await expect(audio.cue("servo-creak")).resolves.toBe(true);
+    // The cap is full: the buzz outranks and replaces the creak, never the hum.
+    await expect(audio.cue("light-buzz")).resolves.toBe(true);
+    expect(hum.stop).not.toHaveBeenCalled();
+    await expect(audio.cue("jump-scare-sting")).resolves.toBe(true);
+    expect(hum.stop).not.toHaveBeenCalled();
+    // With the sting and the hum both playing, nothing lower can take a slot.
+    await expect(audio.cue("radio-static")).resolves.toBe(false);
+    audio.dispose();
+  });
+});

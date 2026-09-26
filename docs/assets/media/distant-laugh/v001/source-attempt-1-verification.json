@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/distant-laugh/v001/source-attempt-1.wav",
+    "sha256": "6f7195fde522710d7a893e573fcf786e7a857a70ceb9920e3fc2858c5f67ee62",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.8416748,
+    "peak_dbfs": -1.497,
+    "rms_amplitude": 0.07194619,
+    "rms_dbfs": -22.86,
+    "dc_offset": -2.663e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Not selected: its pulses are less distinct (the level between them stays within about 5-10 dB of the peaks) and the pitch track jumps between about 200 and 880 Hz; the second take's evenly spaced, slowing pulses fit the brief more closely.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

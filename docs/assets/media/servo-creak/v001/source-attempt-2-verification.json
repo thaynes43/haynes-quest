@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/servo-creak/v001/source-attempt-2.wav",
+    "sha256": "b5174f84685a746e70787cdbb9aff0c12aa5748535d81aa219aec7beb7365719",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.63735962,
+    "peak_dbfs": -3.912,
+    "rms_amplitude": 0.04303,
+    "rms_dbfs": -27.325,
+    "dc_offset": 0.00030217,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Not selected: a dull take with almost no energy above 4 kHz (0.1%); its first 0.4 seconds are a low whirr with about 80% of the energy below 300 Hz, likely to vanish on tablet and phone speakers.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

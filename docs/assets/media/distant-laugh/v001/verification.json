@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/distant-laugh/v001/source.wav",
+    "sha256": "15e0a8eecf3ea8f3755ae49cd59e39b99562c449528fb210cb343bd730f0a465",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.48901367,
+    "peak_dbfs": -6.214,
+    "rms_amplitude": 0.061448,
+    "rms_dbfs": -24.23,
+    "dc_offset": -0.00024518,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/distant-laugh/v001/cue.wav",
+    "sha256": "86721f34a4e11b8706ec3aae9eabaeb0715cd0d9498ccf171f037e86f8fdc73a",
+    "size_bytes": 264644,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 66150,
+    "duration_seconds": 1.5,
+    "peak_amplitude": 0.19952393,
+    "peak_dbfs": -14.0,
+    "rms_amplitude": 0.03655034,
+    "rms_dbfs": -28.742,
+    "dc_offset": -0.00021667,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}

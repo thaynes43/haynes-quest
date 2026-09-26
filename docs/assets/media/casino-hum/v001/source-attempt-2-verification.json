@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/casino-hum/v001/source-attempt-2.wav",
+    "sha256": "423ed154579acf3189b5c37c22a1fa28c7a749fbb3c26f7f202ce7d89a3e0ea1",
+    "size_bytes": 3528044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 882000,
+    "duration_seconds": 20.0,
+    "peak_amplitude": 0.6489563,
+    "peak_dbfs": -3.756,
+    "rms_amplitude": 0.13445503,
+    "rms_dbfs": -17.428,
+    "dc_offset": -8.712e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Not selected: steady, but only about a quarter of the energy sits above 300 Hz and almost none above 700 Hz; the third take holds as steadily with about half its energy above 300 Hz.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

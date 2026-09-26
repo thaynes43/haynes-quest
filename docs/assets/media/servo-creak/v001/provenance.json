@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "cue_id": "servo-creak",
+  "candidate_version": "v001",
+  "generation_kind": "synthetic text-to-sound effect",
+  "generation_date": "2026-09-26T19:06:43.418441Z",
+  "service_version": "0.2.0",
+  "job_id": "3a3b9ec8850d40b382d077bd4105173c",
+  "prompt": "An old broken animatronic robot head slowly turning: a strained whining electric servo motor with a rising mechanical whine and a dry creaking squeak of rusty metal joints, eerie and unsettling in a quiet room; isolated short sound effect, a single movement, no voice, no speech, no music, no ambience, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 302,
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "terms_record": {
+    "design_record": "docs/designs/008-audio-pipeline.md",
+    "source_code": "MIT, as recorded by DESIGN-008",
+    "model_artifacts": "Stability license, as recorded by DESIGN-008",
+    "redistributed_text_component": "Gemma terms, as recorded by DESIGN-008",
+    "stability_license": "https://stability.ai/license",
+    "gemma_terms": "https://ai.google.dev/gemma/terms"
+  },
+  "approval": "Candidate only; Tom approval pending",
+  "listening_review": "Not performed by the processing script",
+  "selected_attempt": 1,
+  "other_attempts": [
+    {
+      "attempt": 2,
+      "job_id": "d996c0df3e164549969db77488c19f0f",
+      "generation_date": "2026-09-26T19:07:10.607491Z",
+      "service_version": "0.2.0",
+      "prompt": "A creepy animatronic moving by itself in the dark: a short high-pitched electric servo whirr that strains and slows, ending in a long dry wooden-and-metal creak, old and worn out; isolated short sound effect, one movement under one second, no voice, no speech, no music, no ambience, no background noise.",
+      "seconds": 5.0,
+      "steps": 8,
+      "seed": 312,
+      "source": "docs/assets/media/servo-creak/v001/source-attempt-2.wav",
+      "source_sha256": "b5174f84685a746e70787cdbb9aff0c12aa5748535d81aa219aec7beb7365719",
+      "selection": "not selected",
+      "reason": "Not selected: a dull take with almost no energy above 4 kHz (0.1%); its first 0.4 seconds are a low whirr with about 80% of the energy below 300 Hz, likely to vanish on tablet and phone speakers."
+    }
+  ]
+}

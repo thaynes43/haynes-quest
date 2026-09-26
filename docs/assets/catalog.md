@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**49 completed models · 2 partial models · 2 concepts awaiting models · 12 sound auditions · 6 fictional memory pictures**
+**49 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -829,7 +829,7 @@ Original inspiration and construction images. These are illustrations; related m
 
 ## Sound auditions {#sound-auditions}
 
-Twelve sound candidates, with waveform thumbnails and playable reviews. Final listening review remains open for all of them.
+Eighteen sound candidates, with waveform thumbnails and playable reviews. Final listening review remains open for all of them.
 
 ### In the playtest
 
@@ -962,6 +962,74 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 ### [Poof, gone · v001](reviews/enemy-poof/v001.md#audition)
 
 <span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
+
+</div>
+
+</div>
+
+### Scary moments
+
+Six creepy cues for the [scary chapters](../designs/027-scare-pass.md): the jump-scare sting, a watcher's servo creak, the lights buzzing back after a blackout, a distant animatronic laugh, the Radio Showman's static and an after-hours casino hum. They are genuinely unsettling on purpose, with no screams of pain and no words. The game knows these files but does not play them yet. The casino hum is a seamless loop.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="jump-scare-sting" markdown="1">
+
+[![Sound waveform: It found you · v001](media/catalog-thumbnails/v001/a3e8a28abe42d787.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/jump-scare-sting/v001.md#audition)
+
+### [It found you · v001](reviews/jump-scare-sting/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="servo-creak" markdown="1">
+
+[![Sound waveform: Did it just move? · v001](media/catalog-thumbnails/v001/fe79cd177e61552b.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/servo-creak/v001.md#audition)
+
+### [Did it just move? · v001](reviews/servo-creak/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="light-buzz" markdown="1">
+
+[![Sound waveform: Lights back on · v001](media/catalog-thumbnails/v001/fbc921a308aa50a5.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/light-buzz/v001.md#audition)
+
+### [Lights back on · v001](reviews/light-buzz/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="distant-laugh" markdown="1">
+
+[![Sound waveform: Laughter down the hall · v001](media/catalog-thumbnails/v001/74a50920cdb8307e.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/distant-laugh/v001.md#audition)
+
+### [Laughter down the hall · v001](reviews/distant-laugh/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="radio-static" markdown="1">
+
+[![Sound waveform: Between stations · v001](media/catalog-thumbnails/v001/e45c547be9d45396.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/radio-static/v001.md#audition)
+
+### [Between stations · v001](reviews/radio-static/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="casino-hum" markdown="1">
+
+[![Sound waveform: After hours · v001](media/catalog-thumbnails/v001/1dcb40f90b9c05c5.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/casino-hum/v001.md#audition)
+
+### [After hours · v001](reviews/casino-hum/v001.md#audition)
+
+<span class="catalog-state">Sound loop · v001 · Awaiting Tom's review · not yet played in the game</span>
 
 </div>
 

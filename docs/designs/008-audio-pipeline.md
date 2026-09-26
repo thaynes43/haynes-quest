@@ -1,10 +1,10 @@
 # DESIGN-008: Audio authoring and browser playback
 
-- **Status:** Self-hosted CPU authoring verified; native registration staged; browser contract proposed; family world cues wired into gameplay
+- **Status:** Self-hosted CPU authoring verified; native registration staged; browser contract proposed; family world cues wired into gameplay; scary-moment cues registered, not yet played
 - **Last updated:** 2026-09-26
 - **Source:** Tom's request for audio tooling and an Astra asset-development workflow
 - **Satisfies:** [PRD-001 R-08, R-09, R-16, R-35–R-39](../prds/001-project-brief.md)
-- **Related:** [PoC development loop](007-poc-development-loop.md), [visual assets](002-asset-pipeline.md), [asset review template](../assets/000-review-template.md)
+- **Related:** [PoC development loop](007-poc-development-loop.md), [visual assets](002-asset-pipeline.md), [asset review template](../assets/000-review-template.md), [scary moments](027-scare-pass.md)
 
 ## Catalog and autonomous first pass
 
@@ -143,3 +143,29 @@ The eight cues play only on **family world levels**: an `authored-level-v4` rout
 `familyWorldCues` in `src/client/audio.ts` pins each cue's asset ID, version, path, SHA-256, duration and loop flag, as D-06 requires; a test checks them against the files, the inventory and the measurements. The gains follow the playtest rule: at the 0.8 master, each one-shot peaks between −12.5 and −10.0 dBFS. The wind loop sits underneath, near −16 dBFS. Each cue allows one or two instances. The four-source cap and its priorities (D-05) are unchanged; the reward sparkle ranks with the memory cues, and the warnings and the wind rank above the movement blips.
 
 A loop plays only through `QuestAudio.loop`, one instance per cue. Mute, pause, backgrounding and disposal stop it like any other sound. It restarts only at the next glide, and a stop that arrives while the file is still loading prevents the start. Nobody has listened to these cues in the game; listening, mix and physical Safari checks remain open, as does Tom's exact-version review.
+
+## Scary moments cues
+
+[DESIGN-027](027-scare-pass.md) D-06 asks for six creepy cues for chapters with a scare level. The owner's ruling is that genuinely scary is welcome, so these directions are unsettling on purpose, unlike the kid-friendly family world set. There are still no screams of pain and no words.
+
+| Cue ID | DESIGN-027 use | Direction | Target |
+| --- | --- | --- | --- |
+| jump-scare-sting | Jump scares (level 2) | Sudden loud mechanical shriek-stinger with a metallic slam | 1.0 s |
+| servo-creak | Watchers (level 1 and up) | Old animatronic servo whine and creak | 0.8 s |
+| light-buzz | Blackout return (level 2) | Fluorescent tube buzz with a flicker-clack as the lights come back | 2.0 s |
+| distant-laugh | Random ambience (level 2) | Distorted mechanical animatronic laugh far away, reverberant, no words | 1.5 s |
+| radio-static | Radio Showman attack | Crackly vintage radio static burst with a tuning whine | 0.8 s |
+| casino-hum | Level 1–2 ambience | Low eerie electrical hum and distant muffled carnival drone | 8 s seamless loop |
+
+They follow the family world procedure: one bounded job at a time on the audio service, a verified download, up to three takes per cue with a recorded reason for each unselected take, and processing by `scripts/assets/audio/process_cues.py`. The casino hum uses the loop recipe with a one-second crossfade. Nobody has listened to them; the review pages record the measurements that stood in for listening, and they await Tom's exact-version review in the [catalog](../assets/catalog.md#sound-auditions).
+
+`scareCues` in `src/client/audio.ts` pins each cue's asset ID, version, path, SHA-256, duration and loop flag under D-06, and `questCues` includes them, so the audio owner can play them. A feedback sound may name them too. **No gameplay event triggers them yet**; the scare pass adds those triggers. A test checks the manifest against the files, the inventory and the measurements.
+
+The mix at the 0.8 master, under D-05's four-source cap:
+
+- **Sting:** the loudest cue on purpose. It peaks at −6 dBFS, about 4 dB above any other one-shot and 3 dB under the limiter threshold. It has the highest priority (5), so it can replace any sound at the cap.
+- **Creak, buzz and static:** peak in the one-shot range, −12.5 to −10.0 dBFS. The lights' buzz sits about 20 dB under the click that sets its peak.
+- **Distant laugh:** sits under the one-shots near −16 dBFS, so it sounds far away, with a low priority (1).
+- **Casino hum:** loops under everything near −20 dBFS, about 4 dB below the glide wind. It ranks with the ability cue (priority 4), so ordinary one-shots cannot push it out at the cap. The ability cue or the sting can, and like any loop it then stays stopped until the game calls `QuestAudio.loop` again.
+
+Each cue allows one instance. Listening, mix and physical Safari checks remain open, as for the family world cues.

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "service_version": "0.2.0",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "81138bcbf6384588ba35075c7646181a",
+  "status": "completed",
+  "prompt": "A horror game jumpscare sting that starts instantly at full volume with no build-up: a heavy metal door slam and a piercing distorted mechanical screech of an animatronic, sharp and violent, one loud burst that rings out briefly; isolated short sound effect, no voice, no speech, no human scream, no music, no ambience, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 311,
+  "created_at": "2026-09-26T19:05:52.438719Z",
+  "started_at": "2026-09-26T19:05:52.450539Z",
+  "finished_at": "2026-09-26T19:05:59.033161Z",
+  "peak_subprocess_rss_bytes": 4066246656,
+  "artifact": "jobs/81138bcbf6384588ba35075c7646181a/output.wav",
+  "audio": {
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_seconds": 5.0,
+    "size_bytes": 882044,
+    "sha256": "c32c7f75d0bf12ddf0703e89473c5982eb59b7bc4b2c027efa92678233ef5875"
+  },
+  "error": null,
+  "elapsed_seconds": 6.583,
+  "download_url": "/artifacts/81138bcbf6384588ba35075c7646181a/output.wav"
+}

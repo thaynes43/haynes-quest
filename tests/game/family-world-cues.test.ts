@@ -11,6 +11,7 @@ import {
   gameplayFeedback,
   playtestCues,
   questCues,
+  scareCues,
   type QuestAudioCue,
 } from "../../src/client/audio";
 import {
@@ -62,10 +63,13 @@ function readJson(path: string): Record<string, unknown> {
 describe("family world cue manifest", () => {
   it("registers exactly the eight family world cues beside the unchanged playtest four", () => {
     expect(Object.keys(familyWorldCues).sort()).toEqual([...FAMILY_CUE_IDS].sort());
+    // DESIGN-027's scary-moment cues are the only other entries (scare-cues.test.ts).
     expect(Object.keys(questCues).sort()).toEqual(
-      [...Object.keys(playtestCues), ...FAMILY_CUE_IDS].sort(),
+      [...Object.keys(playtestCues), ...FAMILY_CUE_IDS, ...Object.keys(scareCues)].sort(),
     );
     for (const [id, cue] of Object.entries(playtestCues))
+      expect(questCues[id as keyof typeof questCues]).toBe(cue);
+    for (const [id, cue] of Object.entries(familyWorldCues))
       expect(questCues[id as keyof typeof questCues]).toBe(cue);
   });
 
