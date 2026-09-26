@@ -11,6 +11,7 @@ import type {
   ChildRecord,
   DraftContent,
   DraftRecord,
+  DraftSaveOptions,
   FamilyStore,
   PublicationRecord,
   PublishCommand,
@@ -21,6 +22,8 @@ type Database = NodePgDatabase<typeof familySchema>;
 type ChildRow = typeof children.$inferSelect;
 type DraftRow = typeof journeyDrafts.$inferSelect;
 type PublicationRow = typeof journeyPublications.$inferSelect;
+/** The pool or an open transaction: draft writes run on either. */
+type DraftWriter = Pick<Database, 'insert' | 'update'>;
 
 /**
  * Postgres family store. It shares the quest database and its migrations
@@ -105,20 +108,45 @@ export class PostgresFamilyStore implements FamilyStore {
     expectedRevision: number | null,
     content: DraftContent,
     actorId: string | null,
+    options: DraftSaveOptions = {},
   ): Promise<DraftRecord> {
-    const values = {
-      templateId: content.templateId,
-      templateVersion: content.templateVersion,
-      seed: content.seed,
-      birthDate: content.birthDate,
-      rebasedOn: content.rebasedOn,
-      chapters: structuredClone([...content.chapters]),
-      slots: structuredClone([...content.slots]),
-      updatedBy: actorId,
-    };
+    const values = draftValues(content, actorId);
+    const { expectedChildRevision } = options;
+    if (expectedChildRevision === undefined) return this.writeDraft(this.db, childId, expectedRevision, values);
+    return this.db.transaction(async (transaction) => {
+      // The share lock makes a template change or a publish, which update or
+      // lock the child row, wait for this write, and this write wait for them.
+      const [child] = await transaction
+        .select({ revision: children.revision })
+        .from(children)
+        .where(eq(children.id, childId))
+        .for('share')
+        .limit(1);
+      if (!child) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
+      const [current] = await transaction
+        .select({ revision: journeyDrafts.revision })
+        .from(journeyDrafts)
+        .where(eq(journeyDrafts.childId, childId))
+        .for('update')
+        .limit(1);
+      if (expectedRevision === null ? current !== undefined : current?.revision !== expectedRevision) {
+        throw new AppError(409, 'DRAFT_CONFLICT', 'Draft changed');
+      }
+      if (child.revision !== expectedChildRevision) throw new AppError(409, 'CHILD_CONFLICT', 'Child changed');
+      return this.writeDraft(transaction, childId, expectedRevision, values);
+    });
+  }
+
+  /** Insert the first draft, or compare-and-set the current one. */
+  private async writeDraft(
+    writer: DraftWriter,
+    childId: string,
+    expectedRevision: number | null,
+    values: ReturnType<typeof draftValues>,
+  ): Promise<DraftRecord> {
     if (expectedRevision === null) {
       try {
-        const [row] = await this.db
+        const [row] = await writer
           .insert(journeyDrafts)
           .values({ id: randomUUID(), childId, ...values, revision: 0 })
           .returning();
@@ -132,7 +160,7 @@ export class PostgresFamilyStore implements FamilyStore {
         throw error;
       }
     }
-    const [row] = await this.db
+    const [row] = await writer
       .update(journeyDrafts)
       .set({ ...values, revision: expectedRevision + 1, updatedAt: new Date() })
       .where(and(eq(journeyDrafts.childId, childId), eq(journeyDrafts.revision, expectedRevision)))
@@ -143,17 +171,7 @@ export class PostgresFamilyStore implements FamilyStore {
   }
 
   async changeTemplate(command: TemplateChangeCommand): Promise<{ child: ChildRecord; draft: DraftRecord }> {
-    const { draft: content } = command;
-    const values = {
-      templateId: content.templateId,
-      templateVersion: content.templateVersion,
-      seed: content.seed,
-      birthDate: content.birthDate,
-      rebasedOn: content.rebasedOn,
-      chapters: structuredClone([...content.chapters]),
-      slots: structuredClone([...content.slots]),
-      updatedBy: command.actorId,
-    };
+    const values = draftValues(command.draft, command.actorId);
     return this.db.transaction(async (transaction) => {
       // The child row update takes the row lock publish also takes, so a
       // template change and a publish never interleave.
@@ -295,6 +313,19 @@ export class PostgresFamilyStore implements FamilyStore {
   async close(): Promise<void> {
     if (this.ownsPool) await this.pool.end();
   }
+}
+
+function draftValues(content: DraftContent, actorId: string | null) {
+  return {
+    templateId: content.templateId,
+    templateVersion: content.templateVersion,
+    seed: content.seed,
+    birthDate: content.birthDate,
+    rebasedOn: content.rebasedOn,
+    chapters: structuredClone([...content.chapters]),
+    slots: structuredClone([...content.slots]),
+    updatedBy: actorId,
+  };
 }
 
 function mapChild(row: ChildRow): ChildRecord {

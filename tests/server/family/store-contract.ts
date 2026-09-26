@@ -119,6 +119,75 @@ export function registerFamilyStoreContract(
     expect(await store.getDraft(child.id)).toEqual(second);
   });
 
+  it(`${prefix} saves a draft built from the child only while the child is unchanged`, async () => {
+    const { store, actors } = context();
+    const child = await store.createChild(profile(), actors[0]);
+    const unchanged = { expectedChildRevision: 0 };
+    // First draft: a stale child refuses the insert.
+    await expect(store.saveDraft(child.id, null, draftContent('stale'), actors[0], { expectedChildRevision: 1 }))
+      .rejects.toMatchObject({ code: 'CHILD_CONFLICT' });
+    expect(await store.getDraft(child.id)).toBeNull();
+    const first = await store.saveDraft(child.id, null, draftContent('first'), actors[0], unchanged);
+    expect(first).toMatchObject({ ...draftContent('first'), revision: 0 });
+    const second = await store.saveDraft(child.id, 0, draftContent('second'), actors[1], unchanged);
+    expect(second).toMatchObject({ id: first.id, revision: 1 });
+
+    // A template change commits: the child and the draft both move on.
+    const changed = await store.changeTemplate({
+      childId: child.id,
+      expectedChildRevision: 0,
+      expectedDraftRevision: 1,
+      templateId: 'rat-casino-world',
+      templateVersion: 'v3',
+      draft: { ...draftContent('changed'), templateVersion: 'v3' },
+      actorId: actors[1],
+    });
+    // Built from the old child, on the current draft revision: refused, and nothing changes.
+    await expect(store.saveDraft(child.id, 2, draftContent('old-child'), actors[0], unchanged))
+      .rejects.toMatchObject({ code: 'CHILD_CONFLICT' });
+    // A stale draft revision is reported first.
+    await expect(store.saveDraft(child.id, 1, draftContent('both'), actors[0], unchanged))
+      .rejects.toMatchObject({ code: 'DRAFT_CONFLICT' });
+    await expect(store.saveDraft(child.id, null, draftContent('both'), actors[0], unchanged))
+      .rejects.toMatchObject({ code: 'DRAFT_CONFLICT' });
+    await expect(store.saveDraft(randomUUID(), null, draftContent(), null, unchanged))
+      .rejects.toMatchObject({ code: 'CHILD_NOT_FOUND' });
+    expect(await store.getChild(child.id)).toEqual(changed.child);
+    expect(await store.getDraft(child.id)).toEqual(changed.draft);
+
+    const current = await store.saveDraft(child.id, 2, { ...draftContent('current'), templateVersion: 'v3' }, actors[0], {
+      expectedChildRevision: 1,
+    });
+    expect(current).toMatchObject({ revision: 3, templateVersion: 'v3', seed: 'synthetic-seed-current' });
+    // Edits that keep the draft's own content still need only the draft revision.
+    expect(await store.saveDraft(child.id, 3, { ...current }, actors[1])).toMatchObject({ revision: 4 });
+  });
+
+  it(`${prefix} lets a template change and a draft save built from the child never both land`, async () => {
+    const { store, actors } = context();
+    const child = await store.createChild(profile(), actors[0]);
+    await store.saveDraft(child.id, null, draftContent('base'), actors[0]);
+    const results = await Promise.allSettled([
+      store.saveDraft(child.id, 0, draftContent('picked'), actors[0], { expectedChildRevision: 0 }),
+      store.changeTemplate({
+        childId: child.id,
+        expectedChildRevision: 0,
+        expectedDraftRevision: 0,
+        templateId: 'rat-casino-world',
+        templateVersion: 'v3',
+        draft: { ...draftContent('changed'), templateVersion: 'v3' },
+        actorId: actors[1],
+      }),
+    ]);
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    const rejected = results.find((result) => result.status === 'rejected') as PromiseRejectedResult;
+    expect(['CHILD_CONFLICT', 'DRAFT_CONFLICT']).toContain((rejected.reason as { code: string }).code);
+    // Whichever landed, the draft is built on the child's template.
+    const [storedChild, storedDraft] = [await store.getChild(child.id), await store.getDraft(child.id)];
+    expect(storedDraft!.revision).toBe(1);
+    expect(storedDraft!.templateVersion).toBe(storedChild!.templateVersion);
+  });
+
   it(`${prefix} lets exactly one of two racing draft edits win`, async () => {
     const { store, actors } = context();
     const child = await store.createChild(profile(), actors[0]);

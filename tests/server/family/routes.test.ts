@@ -164,11 +164,11 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
       },
     }), 201);
     expect(await json<AdminDraftResponse>(harness.request(`/api/admin/children/${child.id}/draft`), 200))
-      .toEqual({ draft: null, picking: false, lastPickError: null, newerTemplate: null });
+      .toEqual({ draft: null, picking: false, lastPickError: null, newerTemplate: null, publishedDraftRevision: null });
     expect(await json<AdminDraftResponse>(harness.request(`/api/admin/children/${child.id}/draft`, {
       method: 'PUT',
       body: { op: 'auto-pick', expectedRevision: null },
-    }), 202)).toEqual({ draft: null, picking: true, lastPickError: null, newerTemplate: null });
+    }), 202)).toEqual({ draft: null, picking: true, lastPickError: null, newerTemplate: null, publishedDraftRevision: null });
     const picked = await waitForPick(harness, child.id);
     expect(picked).toMatchObject({ picking: false, lastPickError: null, draft: { revision: 0, publishable: true } });
     const draft = picked.draft!;
@@ -220,6 +220,12 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
     expect(await json(harness.request(`/api/admin/children/${child.id}/publish`, {
       body: { expectedRevision: swapped.draft!.revision, requestId },
     }), 201)).toEqual(published);
+    // Start fresh plays the latest publication: the screen offers it only while
+    // that publication froze the draft revision on screen.
+    expect(swapped.publishedDraftRevision).toBeNull();
+    const live = await json<AdminDraftResponse>(harness.request(`/api/admin/children/${child.id}/draft`), 200);
+    expect(live.publishedDraftRevision).toBe(swapped.draft!.revision);
+    expect(live.draft!.revision).toBe(swapped.draft!.revision);
     const { children } = await json<{ children: AdminChildSummary[] }>(harness.request('/api/admin/children'), 200);
     expect(children).toEqual([expect.objectContaining({
       draft: { revision: 2, publishable: true, filled: 9, needsPhoto: 0 },
@@ -382,13 +388,15 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
     expect(harness.jobs.status(child.id).picking).toBe(false);
 
     expect(await json<AdminDraftResponse>(harness.request(path, { body: request }), 202))
-      .toEqual({ draft: null, picking: true, lastPickError: null, newerTemplate: null });
+      .toEqual({ draft: null, picking: true, lastPickError: null, newerTemplate: null, publishedDraftRevision: null });
     const updated = await waitForPick(harness, child.id);
+    // The rebuilt draft is not the published one, so Start fresh waits for Publish.
     expect(updated).toMatchObject({
       picking: false,
       lastPickError: null,
       newerTemplate: null,
       draft: { revision: draft.revision + 1, templateVersion: 'v2', publishable: true },
+      publishedDraftRevision: draft.revision,
     });
     expect(updated.draft!.chapters[0]!.slots[2]).toMatchObject({ caption: 'Two candles', captionEdited: true });
     expect(await harness.familyStore.getChild(child.id)).toMatchObject({ templateVersion: 'v2', updatedBy: ADMIN.id });
@@ -424,9 +432,18 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
     jobs.start('other', async () => {
       throw new Error('private detail');
     });
+    // An unexpected failure keeps its own kind's code, never the pick's.
+    jobs.start('third', async () => {
+      throw new TypeError('private detail');
+    }, 'template-upgrade');
     await jobs.settled();
-    expect(failures).toEqual([['DRAFT_CONFLICT', 'template-upgrade'], ['AUTO_PICK_FAILED', 'auto-pick']]);
+    expect(failures).toEqual([
+      ['DRAFT_CONFLICT', 'template-upgrade'],
+      ['AUTO_PICK_FAILED', 'auto-pick'],
+      ['TEMPLATE_UPGRADE_FAILED', 'template-upgrade'],
+    ]);
     expect(jobs.status('child')).toEqual({ picking: false, lastError: 'DRAFT_CONFLICT' });
+    expect(jobs.status('third')).toEqual({ picking: false, lastError: 'TEMPLATE_UPGRADE_FAILED' });
 
     const diagnostics: unknown[] = [];
     const templates = upgradeRegistry();
@@ -495,6 +512,82 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
     }
     expect(view).toMatchObject({ picking: false, lastPickError: 'DRAFT_CONFLICT', newerTemplate: { version: 'v5' } });
     expect(diagnostics).toEqual([{ event: 'template_upgrade_failed', errorClass: 'app-error', code: 'DRAFT_CONFLICT' }]);
+    expect(await harness.familyStore.getChild(child.id)).toMatchObject({ templateVersion: 'v1', revision: 0 });
+  });
+
+  it('labels an unexpected background failure with its own error class and kind code', async () => {
+    const diagnostics: unknown[] = [];
+    const templates = upgradeRegistry();
+    const harness = familyHarness({ templates });
+    const app = createApp({
+      store: new InMemoryQuestStore(),
+      fixtureMode: false,
+      sessionSecret: 'synthetic-session-secret-with-32-plus-chars',
+      appOrigin: 'https://quest.test',
+      clientDir: 'public',
+      studioDir: 'public',
+      familyAuth: fakeFamilyAuth({ admin: ADMIN }),
+      family: { store: harness.familyStore, templates, service: harness.service, today: () => '2026-09-25' },
+      diagnosticSink: (diagnostic) => diagnostics.push(diagnostic),
+    });
+    const [person] = await harness.service.lookupPeople(TEST_CHILD_B.name);
+    const child = await harness.service.createChild({
+      immichName: TEST_CHILD_B.name,
+      personChoiceId: person!.id,
+      displayName: 'Test Child B',
+      birthDate: TEST_CHILD_B.birthDate,
+      templateId: 'family-world-b',
+      templateVersion: 'v1',
+    }, ADMIN.id);
+    const draft = await harness.service.autoPick(child.id, ADMIN.id);
+    const headers = {
+      cookie: 'quest_test_session=admin',
+      origin: 'https://quest.test',
+      'x-quest-request': '1',
+      'content-type': 'application/json',
+    };
+    const read = async () => (await app.request(`/api/admin/children/${child.id}/draft`, {
+      headers: { cookie: 'quest_test_session=admin' },
+    })).json() as Promise<AdminDraftResponse>;
+    const settle = async () => {
+      let view = await read();
+      for (let attempt = 0; view.picking && attempt < 200; attempt += 1) {
+        await new Promise((resolve) => setTimeout(resolve, 10));
+        view = await read();
+      }
+      return view;
+    };
+    // A driver-style failure inside the atomic write: not an AppError.
+    const changeTemplate = harness.familyStore.changeTemplate.bind(harness.familyStore);
+    harness.familyStore.changeTemplate = async () => {
+      throw new TypeError('connection terminated unexpectedly');
+    };
+    expect((await app.request(`/api/admin/children/${child.id}/template`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ templateId: 'family-world-b', templateVersion: 'v2', expectedRevision: draft.revision }),
+    })).status).toBe(202);
+    expect(await settle()).toMatchObject({ picking: false, lastPickError: 'TEMPLATE_UPGRADE_FAILED' });
+    harness.familyStore.changeTemplate = changeTemplate;
+
+    const saveDraft = harness.familyStore.saveDraft.bind(harness.familyStore);
+    harness.familyStore.saveDraft = async () => {
+      throw new RangeError('private detail');
+    };
+    expect((await app.request(`/api/admin/children/${child.id}/draft`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({ op: 'auto-pick', expectedRevision: draft.revision }),
+    })).status).toBe(202);
+    expect(await settle()).toMatchObject({ picking: false, lastPickError: 'AUTO_PICK_FAILED' });
+    harness.familyStore.saveDraft = saveDraft;
+
+    // Only the class and a fixed code: no message, ids or dates.
+    expect(diagnostics).toEqual([
+      { event: 'template_upgrade_failed', errorClass: 'type-error', code: 'TEMPLATE_UPGRADE_FAILED' },
+      { event: 'auto_pick_failed', errorClass: 'range-error', code: 'AUTO_PICK_FAILED' },
+    ]);
+    expect(JSON.stringify(diagnostics)).not.toContain('private');
     expect(await harness.familyStore.getChild(child.id)).toMatchObject({ templateVersion: 'v1', revision: 0 });
   });
 

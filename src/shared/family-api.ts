@@ -116,6 +116,12 @@ export interface AdminDraftResponse {
   readonly lastPickError: string | null;
   /** DESIGN-024 D-11: a newer offered version of the child's world, if one exists. */
   readonly newerTemplate: TemplateOffer | null;
+  /**
+   * The draft revision the child's latest publication froze, or null before
+   * the first publish. **Start fresh** plays the latest publication, so the
+   * Memories screen offers it only while this equals the draft's revision.
+   */
+  readonly publishedDraftRevision: number | null;
 }
 
 /** DESIGN-024 D-11 **Update world**: move the child to a newer version of the same world. */

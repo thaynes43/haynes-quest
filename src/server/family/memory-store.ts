@@ -5,6 +5,7 @@ import type {
   ChildRecord,
   DraftContent,
   DraftRecord,
+  DraftSaveOptions,
   FamilyStore,
   PublicationRecord,
   PublishCommand,
@@ -87,12 +88,17 @@ export class InMemoryFamilyStore implements FamilyStore {
     expectedRevision: number | null,
     content: DraftContent,
     actorId: string | null,
+    options: DraftSaveOptions = {},
   ): Promise<DraftRecord> {
     return this.exclusive(() => {
-      if (!this.children.has(childId)) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
+      const child = this.children.get(childId);
+      if (!child) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
       const current = this.drafts.get(childId);
       if (expectedRevision === null ? current !== undefined : current?.revision !== expectedRevision) {
         throw new AppError(409, 'DRAFT_CONFLICT', 'Draft changed');
+      }
+      if (options.expectedChildRevision !== undefined && child.revision !== options.expectedChildRevision) {
+        throw new AppError(409, 'CHILD_CONFLICT', 'Child changed');
       }
       const now = this.now();
       const draft: DraftRecord = {

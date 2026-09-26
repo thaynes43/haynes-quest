@@ -327,6 +327,56 @@ describe('template upgrade (DESIGN-024 D-11)', () => {
     expect((await context.store.getDraft(child.id))!.revision).toBe(edited.revision + 1);
   });
 
+  it('refuses an operator auto-pick that read the child before a world update committed', async () => {
+    const child = await childOnV1(context);
+    const first = await context.service.autoPick(child.id, ACTOR);
+    // The update commits after the pick read the child and before it read the draft,
+    // so the draft revision the pick saves on is already the updated one.
+    const getDraft = context.store.getDraft.bind(context.store);
+    let armed = true;
+    context.store.getDraft = async (childId: string) => {
+      if (armed) {
+        armed = false;
+        await context.service.upgradeTemplate(childId, {
+          templateId: 'family-world-b', templateVersion: 'v2', expectedRevision: first.revision,
+        }, OTHER);
+      }
+      return getDraft(childId);
+    };
+    // `admin.js auto-pick --child <id>` passes no expected revision.
+    await expect(context.service.autoPick(child.id, null)).rejects.toMatchObject({ code: 'CHILD_CONFLICT', status: 409 });
+    expect(armed).toBe(false);
+    context.store.getDraft = getDraft;
+    // The update stands whole: the child and its draft are both on v2 and publishable.
+    expect(await context.store.getChild(child.id)).toMatchObject({ templateVersion: 'v2', revision: 1 });
+    const stored = (await context.store.getDraft(child.id))!;
+    expect(stored).toMatchObject({ templateVersion: 'v2', revision: first.revision + 1, updatedBy: OTHER });
+    await expect(context.service.publish(child.id, stored.revision, randomUUID(), ACTOR))
+      .resolves.toMatchObject({ revision: 1 });
+    // Running the pick again works on the new version.
+    expect(await context.service.autoPick(child.id, null)).toMatchObject({ templateVersion: 'v2', revision: stored.revision + 1 });
+  });
+
+  it('refuses an operator auto-pick when a world update commits while it picks', async () => {
+    const child = await childOnV1(context);
+    const first = await context.service.autoPick(child.id, ACTOR);
+    const original = context.immich.request.bind(context.immich);
+    let updated = false;
+    context.immich.request = async (path, init) => {
+      if (!updated && path.startsWith('/api/search/')) {
+        updated = true;
+        await context.service.upgradeTemplate(child.id, {
+          templateId: 'family-world-b', templateVersion: 'v2', expectedRevision: first.revision,
+        }, OTHER);
+      }
+      return original(path, init);
+    };
+    await expect(context.service.autoPick(child.id, null)).rejects.toMatchObject({ status: 409 });
+    expect(updated).toBe(true);
+    expect(await context.store.getChild(child.id)).toMatchObject({ templateVersion: 'v2', revision: 1 });
+    expect(await context.store.getDraft(child.id)).toMatchObject({ templateVersion: 'v2', revision: first.revision + 1 });
+  });
+
   it('keeps the child and draft unchanged when an edit lands while chapters are being picked', async () => {
     const child = await childOnV1(context);
     const draft = await context.service.autoPick(child.id, ACTOR);
