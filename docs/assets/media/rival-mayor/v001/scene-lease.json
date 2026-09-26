@@ -1,0 +1,33 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "task": "full model from the approved Blender reference sheet (refine, UV, rig, five clips, export, evidence)",
+  "blender_instance": "blender-authoring-2 (isolated second instance; own scene and /workspace)",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "status": "released",
+  "claimed_utc": "2026-09-26T14:22:57.044783+00:00",
+  "props_before_claim": {},
+  "scene_before_claim": {
+    "file": "unsaved default startup scene",
+    "objects": [
+      "Camera",
+      "Cube",
+      "Light"
+    ]
+  },
+  "jobs_at_claim": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "readyz_at_claim": {
+    "ready": true,
+    "busy": false
+  },
+  "author_jobs_running": false,
+  "released_utc": "2026-09-26T15:00:25.390761+00:00",
+  "glb_sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e"
+}

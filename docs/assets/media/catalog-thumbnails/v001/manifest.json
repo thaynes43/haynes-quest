@@ -500,6 +500,20 @@
       "sha256": "0eb888a81c41b62f0ceaebbf7a628802fc98913d789278f6ee6c49927b8520af"
     },
     {
+      "source": "docs/assets/media/rival-mayor/v001/beauty.png",
+      "source_sha256": "38db9634548997a3edcdc3954ca561b518a264f6e4e18df96219f23791f56772",
+      "path": "docs/assets/media/catalog-thumbnails/v001/1788dc8e9403d322.webp",
+      "bytes": 7910,
+      "sha256": "4d1c594e8919cc4a4cbc5e0d65bb51ef567b8e4563aad7219a494a333f250beb"
+    },
+    {
+      "source": "docs/assets/media/rival-mayor/v001/reference-sheet.png",
+      "source_sha256": "966bfd26ae6bb5f567d32b5528050d63d7f2634ef7af3e6e9b2abc5e2238f568",
+      "path": "docs/assets/media/catalog-thumbnails/v001/b557775bf2338ba1.webp",
+      "bytes": 19344,
+      "sha256": "141603698881a6485525d57592c85974551baf478be87d0ea23a7cfce452a73a"
+    },
+    {
       "source": "docs/assets/media/signal-moth/v001/beauty.png",
       "source_sha256": "47fd5059603291c0036fa709add8a16668399f5d758b08968d0fd830c61b0359",
       "path": "docs/assets/media/catalog-thumbnails/v001/b50a0119ee089f01.webp",

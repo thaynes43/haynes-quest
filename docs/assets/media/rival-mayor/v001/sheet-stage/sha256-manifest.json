@@ -1,0 +1,98 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "status": "sheet-ready",
+  "source": "Blender reference sheet, no generated concept",
+  "remote_dir": "/workspace/haynes-quest/family-eras/rival-mayor/v001",
+  "durable_dir": "/home/dev/artifacts/haynes-quest/family-eras/rival-mayor/v001",
+  "glb_sha256": "none",
+  "generated_utc": "2026-09-26T02:28:43.837461+00:00",
+  "files": {
+    "blockout-measurements.json": {
+      "sha256": "7f1a9677da6d1961b3e86cbe79ebe7aad7eaf6e33363003c7538da7f1b48a209",
+      "bytes": 828,
+      "remote_match": true
+    },
+    "live-scene-release.blend": {
+      "sha256": "3c8a63ede90e6214134aa8f9835d35c8b27724111652f29c9a6f541377d65efd",
+      "bytes": 433945,
+      "remote_match": true
+    },
+    "pre-takeover-live-scene.blend": {
+      "sha256": "fb44c7cb71b2dccb992741e77915b555c2daf8971bfe4b25122271eb8459a11f",
+      "bytes": 1072458,
+      "remote_match": true
+    },
+    "preview/crop-face-front.png": {
+      "sha256": "07edacf005a561f31e251b55e9e3a64bf78a47d88e6ec07fb77a3edb82ba4dd6",
+      "bytes": 69321,
+      "remote_match": true
+    },
+    "preview/crop-three-quarter.png": {
+      "sha256": "492a988d9135a226f71774ef5e155acb548555e796aafdba073073ec651316fb",
+      "bytes": 141138,
+      "remote_match": true
+    },
+    "preview/sheet-preview.png": {
+      "sha256": "cebe6b1a623b403491e250c9ef2578d149589b091fdb23e8a36ba3b2b949d1ca",
+      "bytes": 561727,
+      "remote_match": true
+    },
+    "reference-notes.md": {
+      "sha256": "804c7825e11837bd2f964b376d61d2d8f0713307be50a3c59825d74b804f8f89",
+      "bytes": 8471,
+      "remote_match": true
+    },
+    "reference-sheet.png": {
+      "sha256": "966bfd26ae6bb5f567d32b5528050d63d7f2634ef7af3e6e9b2abc5e2238f568",
+      "bytes": 2010137,
+      "remote_match": true
+    },
+    "rival-mayor-blockout.blend": {
+      "sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f",
+      "bytes": 309353,
+      "remote_match": true
+    },
+    "rival-mayor-reference-sheet.blend": {
+      "sha256": "78b03aea57483f5b9514f60702072f9249ee51ce10a2e758d7909a84c6293489",
+      "bytes": 433948,
+      "remote_match": true
+    },
+    "scene-lease.json": {
+      "sha256": "bfb511adbb2e04d6fc9c5962612a960174626c828542a14f5202c9b33457075b",
+      "bytes": 4091,
+      "remote_match": true
+    },
+    "scene-release.json": {
+      "sha256": "aab3c8ee378354b3f7f573509bd66e46fe173f4931cefcbd7f61f9550fdf2780",
+      "bytes": 3356,
+      "remote_match": true
+    },
+    "source/build_blockout.py": {
+      "sha256": "8315d7bb1d6fcf450fa050933e49124011996da8dd2e18f9334678974f904b8f",
+      "bytes": 23130,
+      "remote_match": true
+    },
+    "source/release.py": {
+      "sha256": "866357a21736c61690e2a18fdfae271af4a84fe5e6a23d39509cbe420eb6e6e6",
+      "bytes": 2985,
+      "remote_match": true
+    },
+    "source/run.py": {
+      "sha256": "684feed7367628dcbac07fa4b09f3a72586fbcf5bdf347a05b8205f62f75be5a",
+      "bytes": 3519,
+      "remote_match": "local-only"
+    },
+    "source/sheet.py": {
+      "sha256": "bc5d22d3ded255635d7359ccb3273e2644cf1eff3a115f6136a24180853de927",
+      "bytes": 10902,
+      "remote_match": true
+    },
+    "source/sheet_preview.py": {
+      "sha256": "0ae92267ee59af5572a226e44149f7b53e58f26530703983de9c3f69e56abc74",
+      "bytes": 367,
+      "remote_match": true
+    }
+  }
+}

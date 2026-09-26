@@ -1,0 +1,39 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-blockout.blend",
+  "sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f",
+  "bounds_blender_zup": {
+    "min": [
+      -0.5604,
+      -0.3521,
+      0.0
+    ],
+    "max": [
+      0.7583,
+      0.3935,
+      2.4744
+    ],
+    "size": [
+      1.3188,
+      0.7456,
+      2.4744
+    ],
+    "blockout_triangles": 44854
+  },
+  "parts": 83,
+  "materials": [
+    "RM brass #c9923e",
+    "RM coat #5b3b6a",
+    "RM cream #f3e6cf",
+    "RM hat #2f2740",
+    "RM ink #342c46",
+    "RM nose #e39a88",
+    "RM pinstripe trousers #3a2e4d/#8a7c96",
+    "RM sash #b54a5a",
+    "RM skin #efc9a4",
+    "RM stache #2b2238",
+    "RM teal #3f7f7a",
+    "RM vest #dca953",
+    "RM white #fbf6ec"
+  ],
+  "utc": "2026-09-26T02:25:30.155076+00:00"
+}

@@ -1,0 +1,199 @@
+{
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "glb_sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+  "blend_sha256": "53dbb763aacb5f6c4272f165d543168c2129fbd592453fd6b53cdb466175799a",
+  "method": "WO111 rival-mayor source-side attachment audit on the live scene that exported the exact GLB.\n\nPer clip and frame (30 fps): triangle-overlap between listed part groups on the evaluated skin (BVH),\nIK joint connectivity (limb heads stay on their parents' tails), the lowest evaluated vertex, and the\nrest reproduction error. Intended contacts are not tested: the fist resting on the hip, sleeve roots\ninside the shoulder pads, the hat around the head once it slides down, legs inside the coat when seated.\nSupplements the exact-GLB checks in three-inspection.json; not a universal collision proof.",
+  "pairs": [
+    "tails~legs",
+    "tails~shoes",
+    "remote~body",
+    "remote~head",
+    "remote~hat",
+    "remote~legs",
+    "fistL~head",
+    "fistL~hat",
+    "armL~head",
+    "armR~head",
+    "armR~body",
+    "legR~legL"
+  ],
+  "groups": {
+    "tails": [
+      "tail_L",
+      "tail_R"
+    ],
+    "legs": [
+      "shin_L",
+      "shin_R",
+      "thigh_L",
+      "thigh_R"
+    ],
+    "shoes": [
+      "foot_L",
+      "foot_R"
+    ],
+    "remote": [
+      "antenna_1",
+      "antenna_2",
+      "button",
+      "hand_R",
+      "propeller",
+      "remote",
+      "thumb_R"
+    ],
+    "body": [
+      "chest",
+      "hips"
+    ],
+    "head": [
+      "head",
+      "mustache_L",
+      "mustache_R",
+      "neck"
+    ],
+    "hat": [
+      "hat"
+    ],
+    "fistL": [
+      "hand_L"
+    ],
+    "armL": [
+      "forearm_L"
+    ],
+    "armR": [
+      "forearm_R"
+    ],
+    "legR": [
+      "foot_R",
+      "shin_R",
+      "thigh_R"
+    ],
+    "legL": [
+      "foot_L",
+      "shin_L",
+      "thigh_L"
+    ]
+  },
+  "group_face_counts": {
+    "tails": 166,
+    "legs": 578,
+    "shoes": 438,
+    "remote": 837,
+    "body": 2214,
+    "head": 2099,
+    "hat": 612,
+    "fistL": 172,
+    "armL": 105,
+    "armR": 105,
+    "legR": 562,
+    "legL": 562
+  },
+  "max_influences": 2,
+  "rest_reproduction_max_error": 7.295608520507812e-05,
+  "clips": {
+    "idle": {
+      "frames": 91,
+      "overlaps": {
+        "tails~legs": 0,
+        "tails~shoes": 0,
+        "remote~body": 0,
+        "remote~head": 0,
+        "remote~hat": 0,
+        "remote~legs": 0,
+        "fistL~head": 0,
+        "fistL~hat": 0,
+        "armL~head": 0,
+        "armR~head": 0,
+        "armR~body": 0,
+        "legR~legL": 0
+      },
+      "max_joint_gap_m": 4.302186141868125e-07,
+      "lowest_m": 0.004
+    },
+    "move": {
+      "frames": 37,
+      "overlaps": {
+        "tails~legs": 0,
+        "tails~shoes": 0,
+        "remote~body": 0,
+        "remote~head": 0,
+        "remote~hat": 0,
+        "remote~legs": 0,
+        "fistL~head": 0,
+        "fistL~hat": 0,
+        "armL~head": 0,
+        "armR~head": 0,
+        "armR~body": 0,
+        "legR~legL": 0
+      },
+      "max_joint_gap_m": 3.8744810067559886e-07,
+      "lowest_m": 0.004
+    },
+    "attack": {
+      "frames": 61,
+      "overlaps": {
+        "tails~legs": 0,
+        "tails~shoes": 0,
+        "remote~body": 0,
+        "remote~head": 0,
+        "remote~hat": 0,
+        "remote~legs": 0,
+        "fistL~head": 0,
+        "fistL~hat": 0,
+        "armL~head": 0,
+        "armR~head": 0,
+        "armR~body": 0,
+        "legR~legL": 0
+      },
+      "max_joint_gap_m": 4.308471767545033e-07,
+      "lowest_m": 0.004
+    },
+    "hit": {
+      "frames": 22,
+      "overlaps": {
+        "tails~legs": 0,
+        "tails~shoes": 0,
+        "remote~body": 0,
+        "remote~head": 0,
+        "remote~hat": 0,
+        "remote~legs": 0,
+        "fistL~head": 0,
+        "fistL~hat": 0,
+        "armL~head": 0,
+        "armR~head": 0,
+        "armR~body": 0,
+        "legR~legL": 0
+      },
+      "max_joint_gap_m": 3.9990952313898927e-07,
+      "lowest_m": 0.004
+    },
+    "defeat": {
+      "frames": 73,
+      "overlaps": {
+        "tails~legs": 0,
+        "tails~shoes": 0,
+        "remote~body": 0,
+        "remote~head": 0,
+        "remote~hat": 0,
+        "remote~legs": 0,
+        "fistL~head": 0,
+        "fistL~hat": 0,
+        "armL~head": 0,
+        "armR~head": 0,
+        "armR~body": 0,
+        "legR~legL": 0
+      },
+      "max_joint_gap_m": 3.2124554407160306e-07,
+      "lowest_m": 0.004
+    }
+  },
+  "checks": {
+    "no_listed_part_overlaps_any_frame": true,
+    "limb_joints_stay_connected": true,
+    "no_floor_penetration": true,
+    "rest_controls_reproduce_bind_pose": true,
+    "at_most_four_influences": true,
+    "five_clips": true
+  }
+}

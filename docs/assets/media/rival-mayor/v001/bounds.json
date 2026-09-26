@@ -1,0 +1,66 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "created_utc": "2026-09-26T14:59:47.724522+00:00",
+  "glb_sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Rotation-only joints are checked as fixed local pivots; the hips bob/sit, hat pop/slide and button press are the intentional translations. No physical-device or universal triangle-collision proof (the Blender attachment audit covers listed part pairs).",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5776881860779173,
+      0.004000043911690977,
+      -0.39239683747291565
+    ],
+    "max": [
+      0.758329266995479,
+      2.4745280958543274,
+      0.3497866146234663
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    1.3360174530733961,
+    2.4705280519426362,
+    0.7421834520963819
+  ],
+  "height_m": 2.4745280958543274,
+  "sole_clearance_m": 0.004000043911690977,
+  "body_footprint_y_up": {
+    "min": [
+      -0.3720000060498714,
+      0.6200000047683716,
+      -0.36567848920822144
+    ],
+    "max": [
+      0.3720000060498714,
+      1.0116590562957235,
+      0.3497866146234663
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.6483797782024413,
+      0.0034572909819860923,
+      -1.1085238848679886
+    ],
+    "max": [
+      0.9389451863970993,
+      2.5903412115315954,
+      0.8295943046015839
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -0.654,
+      -0.002,
+      -1.114
+    ],
+    "max": [
+      0.944,
+      2.596,
+      0.835
+    ]
+  },
+  "defeat_held_hips_height_m": 0.24500000476837158,
+  "note": "glTF axes: +Y up, character faces -Z; his right hand (remote) is +X. Root at the floor origin under the body centre."
+}

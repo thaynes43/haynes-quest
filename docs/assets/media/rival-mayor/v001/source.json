@@ -1,0 +1,39 @@
+{
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "work_order": "WO111",
+  "created_utc": "2026-09-26T02:28:43.837461+00:00",
+  "kind": "blender-reference-sheet",
+  "source_label": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+  "generator": "None. A Cycles render of a procedural Blender blockout (Blender 4.5.13 LTS); no image-generation model was used.",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator",
+  "seed": null,
+  "reference_files": [],
+  "art_direction": "docs/assets/art-direction.md; DESIGN-026 locked roster brief for rival-mayor",
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "selected_by": "PLAN-019 coordinator (sheet approved September 26, PRD-004 Q-07)",
+  "coordinator_sheet_notes": "Keep the tall stovepipe hat, curly mustache, red sash with rosette, spring-antenna remote in the right hand and pinstripe legs. The mustache can be 10-15% larger for read at play distance.",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "ruling": "Tom, September 26: Claude Opus 5.5 does the remaining WO111 Blender work; assets without an Astra concept follow a painted Blender reference sheet that the coordinator reviewed (PRD-004 Q-07).",
+  "files": {
+    "reference-sheet.png": {
+      "sha256": "966bfd26ae6bb5f567d32b5528050d63d7f2634ef7af3e6e9b2abc5e2238f568",
+      "bytes": 2010137
+    },
+    "reference-notes.md": {
+      "sha256": "804c7825e11837bd2f964b376d61d2d8f0713307be50a3c59825d74b804f8f89",
+      "bytes": 8471
+    },
+    "rival-mayor-blockout.blend": {
+      "sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f",
+      "bytes": 309353
+    },
+    "rival-mayor-reference-sheet.blend": {
+      "sha256": "78b03aea57483f5b9514f60702072f9249ee51ce10a2e758d7909a84c6293489",
+      "bytes": 433948
+    }
+  },
+  "rights_note": "Original authored study. No claim of exclusive rights or franchise endorsement."
+}

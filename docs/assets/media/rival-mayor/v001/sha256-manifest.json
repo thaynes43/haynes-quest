@@ -1,0 +1,772 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "status": "model-delivered",
+  "source": "Blender reference sheet, no generated concept",
+  "created_utc": "2026-09-26T15:00:32.778857+00:00",
+  "local_root": "/home/dev/artifacts/haynes-quest/family-eras/rival-mayor/v001",
+  "remote_root": "/workspace/haynes-quest/family-eras/rival-mayor/v001",
+  "blender_instance": "blender-authoring-2",
+  "scene_lease": "released",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "glb_sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+  "files": [
+    {
+      "path": "rival-mayor.blend",
+      "bytes": 1454665,
+      "sha256": "53dbb763aacb5f6c4272f165d543168c2129fbd592453fd6b53cdb466175799a",
+      "remote_local_match": true
+    },
+    {
+      "path": "rival-mayor.glb",
+      "bytes": 1161872,
+      "sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+      "remote_local_match": true
+    },
+    {
+      "path": "pigment.png",
+      "bytes": 235103,
+      "sha256": "098c94b3d8db18c4c6b3ca8c28414f921a944e3708ebd4ffededd5474c47f5a5",
+      "remote_local_match": true
+    },
+    {
+      "path": "construction.json",
+      "bytes": 15723,
+      "sha256": "6ab10896d2ef6f93da1a8e7ed161c9819e9111598e2dadf02fe6d72945852da2",
+      "remote_local_match": true
+    },
+    {
+      "path": "validation.json",
+      "bytes": 3680,
+      "sha256": "37ccdd741a84de3825caff21b18bacd38c7814767573abd231d5f7bbec0c80ad",
+      "remote_local_match": true
+    },
+    {
+      "path": "attachment-inspection.json",
+      "bytes": 4637,
+      "sha256": "06c309aa6dd6fd7294b07ebb5ad079b2e46fcc83b8594f9826d5d7c523dba2b8",
+      "remote_local_match": true
+    },
+    {
+      "path": "rival-mayor-construction.blend",
+      "bytes": 865137,
+      "sha256": "8db593111101eb1ec231b2e713f46c5c3c50ebd1cdeb5d90dd41fbc2592cba19",
+      "remote_local_match": true
+    },
+    {
+      "path": "rival-mayor-checkpoint.glb",
+      "bytes": 988320,
+      "sha256": "7def211e74004519efe2b9fd95984b78f2e26d318f67e7487986bc083647c892",
+      "remote_local_match": true
+    },
+    {
+      "path": "front.png",
+      "bytes": 158663,
+      "sha256": "4e6ff0b740777f932ff7ccfc31110fa3f40c45dcf7b8254b6a580dd5ac07852e",
+      "remote_local_match": true
+    },
+    {
+      "path": "side.png",
+      "bytes": 124893,
+      "sha256": "503e3c348a790a151377b1047ca3df448929c08a7116e36ff7f86258cd892c2b",
+      "remote_local_match": true
+    },
+    {
+      "path": "back.png",
+      "bytes": 147589,
+      "sha256": "528ded77749bebe746399aaceddb59a59328703c0d9972986617ee8bffbb7cae",
+      "remote_local_match": true
+    },
+    {
+      "path": "threequarter.png",
+      "bytes": 144251,
+      "sha256": "30921ca3bc734cd3a95f5c93541dd54ac9e1fa474c2aaf0d54ae94356d44bdcf",
+      "remote_local_match": true
+    },
+    {
+      "path": "beauty.png",
+      "bytes": 145049,
+      "sha256": "38db9634548997a3edcdc3954ca561b518a264f6e4e18df96219f23791f56772",
+      "remote_local_match": true
+    },
+    {
+      "path": "motion-contact-sheet.png",
+      "bytes": 1100495,
+      "sha256": "14a552496016c1f8d5b38fac333c011424c33b4330bdf85dc84b69bcd23e0e5f",
+      "remote_local_match": true
+    },
+    {
+      "path": "attack-strip.png",
+      "bytes": 236390,
+      "sha256": "a15c97bfd02e2ae6bd41f11c2a8700918643110ff70020e010decb90ae59636c",
+      "remote_local_match": true
+    },
+    {
+      "path": "attack-gameplay-scale.png",
+      "bytes": 171828,
+      "sha256": "fa26dc729f23f67660e7c9512aafa1f560b146fe263aa23727648d41890390fa",
+      "remote_local_match": true
+    },
+    {
+      "path": "browser-inspection.json",
+      "bytes": 120695,
+      "sha256": "4b486436a6a024da0d807159c81e7fdd38de161a3c47675e4a9a04e1be2eb9a4",
+      "remote_local_match": true
+    },
+    {
+      "path": "three-inspection.json",
+      "bytes": 84830,
+      "sha256": "3d4311f9c4c99b9dcc81d2f59ca928009b3de28c8404fcedb5e8ffff08bddaa3",
+      "remote_local_match": true
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 4952,
+      "sha256": "23bd770eeafaf717230004fa2add25c2b7851cbbef5d66d5737dfbe6d9c85b5b",
+      "remote_local_match": true
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 4291,
+      "sha256": "b5b1bf372bd40e26527cc3e42cf9e0fe5619354afe2a019ac8d7ae7aef209508",
+      "remote_local_match": true
+    },
+    {
+      "path": "tool-settings.json",
+      "bytes": 2582,
+      "sha256": "d4a0ea70261ee791b4e128ca96f939ebfd91f2e2bb0814d241128a79d1e9b9a4",
+      "remote_local_match": true
+    },
+    {
+      "path": "bounds.json",
+      "bytes": 1898,
+      "sha256": "8c3a1d0e6e41704196c317ded909ef3636e0c099ac8ef57e3f252ab69dcd2eeb",
+      "remote_local_match": true
+    },
+    {
+      "path": "sheet-vs-export.png",
+      "bytes": 1941667,
+      "sha256": "f6573f117973392f6756f434f42e6a7e2a7ffa9a100ae2fccabed5d3f44a3d0a",
+      "remote_local_match": true
+    },
+    {
+      "path": "reference-sheet.png",
+      "bytes": 2010137,
+      "sha256": "966bfd26ae6bb5f567d32b5528050d63d7f2634ef7af3e6e9b2abc5e2238f568",
+      "remote_local_match": true
+    },
+    {
+      "path": "reference-notes.md",
+      "bytes": 8471,
+      "sha256": "804c7825e11837bd2f964b376d61d2d8f0713307be50a3c59825d74b804f8f89",
+      "remote_local_match": true
+    },
+    {
+      "path": "rival-mayor-blockout.blend",
+      "bytes": 309353,
+      "sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f",
+      "remote_local_match": true
+    },
+    {
+      "path": "rival-mayor-reference-sheet.blend",
+      "bytes": 433948,
+      "sha256": "78b03aea57483f5b9514f60702072f9249ee51ce10a2e758d7909a84c6293489",
+      "remote_local_match": true
+    },
+    {
+      "path": "blockout-measurements.json",
+      "bytes": 828,
+      "sha256": "7f1a9677da6d1961b3e86cbe79ebe7aad7eaf6e33363003c7538da7f1b48a209",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-lease.json",
+      "bytes": 952,
+      "sha256": "c4f7a5dd7d573234783a3a146571bfc2387ddd91108126dbbcbf6746df0a4135",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-release.json",
+      "bytes": 1182,
+      "sha256": "a7fa707d62d1c17557aba70ec3ababc58a5000cfab2a3da9e00749db9891cc80",
+      "remote_local_match": true
+    },
+    {
+      "path": "live-scene-release.blend",
+      "bytes": 1456856,
+      "sha256": "a7ffd077cef3c4fdf8453b451450c79a2600afbe5f68659c93e4e5b1ae9071a7",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/rig-rest.json",
+      "bytes": 6134,
+      "sha256": "4b54e1d234381e089115f606bcf9a67bcc8c3b26aefc8cdc594633602323a847",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/animate.py",
+      "bytes": 18742,
+      "sha256": "0a2114c917ee8b3d9231279b2651b911f1e5cc24a81db09d01267b67e2745140",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/author_run.py",
+      "bytes": 1110,
+      "sha256": "99fc51bd38912c37cddc202d22f3c64a8c41f97ac3a84bed8b7124992d145d7f",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/bounds.json",
+      "bytes": 273,
+      "sha256": "35639c64a7263787172466fedbb89f9950fcc5dd94c779f329e5e74019fc69c5",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/build.py",
+      "bytes": 24093,
+      "sha256": "a74657ca4071a74368721865bddea2a5b26dc780d21323b0068417fd3552cd23",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/claim.py",
+      "bytes": 1839,
+      "sha256": "641f5b0c66878bf13438bf4f5bdd38e2ac785bed525f25f3a08ae9abd6be8131",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/common.py",
+      "bytes": 12439,
+      "sha256": "16082102d214e65f47f33b0aa86592e68b5a7917d15a3617209c6a56177fd4ab",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/compare.mjs",
+      "bytes": 1564,
+      "sha256": "30fd5783bf276415a7f0871e179781daa92fcc57fe7d4a871d71c798136fd2d6",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/delivery.py",
+      "bytes": 7155,
+      "sha256": "ae2d4f8a77316f8c5b374feb79774040a83457e0d4f7a87d39c475b937e812ea",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/diag.py",
+      "bytes": 1304,
+      "sha256": "d48c95164da82f0b5949126f1c1ffd71d9e06b28af8db6a2c035f040056181f9",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/grid.mjs",
+      "bytes": 544,
+      "sha256": "232de005933ae02fc2f8c59dc6da699fc2de7c2761d0e391c1c3c05e53fa8769",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/inspect-attachments.py",
+      "bytes": 4467,
+      "sha256": "9cc3c10c649e45ccde604e19389b3986718ae7d94757e53f42ac68f49e949a52",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/inspect-three.mjs",
+      "bytes": 14190,
+      "sha256": "5bb429df80310e23f0f717a0cd34314566896dbd99967a56de37a4ca11875162",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/look.mjs",
+      "bytes": 3530,
+      "sha256": "73bd2317ea793e75927b65482c148687c564bf10e9d5489d174d72284a51e408",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/make-evidence.py",
+      "bytes": 10024,
+      "sha256": "29c9013f07bbb6e13889ea73e0ced8c4fe7ac8df1e639addf5ecc486cd6d8a77",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/preview.mjs",
+      "bytes": 10861,
+      "sha256": "aaf3aef0cc2771a01f441c4224891683e9e9d9bad7c3b9e9632e62e22460acd1",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/release_model.py",
+      "bytes": 2721,
+      "sha256": "539fdc884f97cdf7858ff86d93d781723d285a808832542a09d81e37cd2ed8a5",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/run_validate.py",
+      "bytes": 682,
+      "sha256": "ef2b1d16ed56147b2c226ee9b6d7d21f2c1e0cee17c02d48beb365aa0d513689",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/transfer.py",
+      "bytes": 3613,
+      "sha256": "bfc1b90a238d13e0c2ec90017d1b9fc7769d8ef3f15fa98290929cc8c71ca4a2",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/upload_inputs.py",
+      "bytes": 746,
+      "sha256": "78836c0f0ad2ffb2f5044d83301841bcbbfa7335e6b7e318ae7445742c4cdbe7",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/validate.mjs",
+      "bytes": 3273,
+      "sha256": "5fe9c26b4004f8cf8daa2321f4eb0725cd1022135c86074b1fe87bf87d471664",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p2.png",
+      "bytes": 148043,
+      "sha256": "39350d8dfc70fe1a4e7477c7ccca2ee765ed809445b29ee2410d332013627775",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p47.png",
+      "bytes": 151048,
+      "sha256": "35dbe4dad471ffb399ba7c3e68c3ced3e74566662d7b174a517d3a322d6ae4ec",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p625.png",
+      "bytes": 143081,
+      "sha256": "237ec858954f78f24ea61deaa1d1f1e7d7c2f333cfa655c2a4de76ab94616979",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p8.png",
+      "bytes": 143636,
+      "sha256": "396607f1185dfddae8a3918385ae8f25cb58a30dbd1e765947a96073907a3833",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-contact.png",
+      "bytes": 160079,
+      "sha256": "dae692b12ca8eeb5cba4e088b5c54ac7dafb799dd3f5ad959b3d949c4dc7ccb3",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-recovery.png",
+      "bytes": 158173,
+      "sha256": "c3f3c8325860c6cd3a21328ac460747acd610019e56688041877cfee6d52a564",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-windup.png",
+      "bytes": 163255,
+      "sha256": "eed8d1f9923154cc956ee653ae34e798d1c8fa2365335b74697a99bfc7cb7bda",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-gameplay-scale.png",
+      "bytes": 171828,
+      "sha256": "fa26dc729f23f67660e7c9512aafa1f560b146fe263aa23727648d41890390fa",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-contact.png",
+      "bytes": 143814,
+      "sha256": "0cc0a031a6f5d2b189cf8fb67f5fb99eca0bd16e09bc4e462ff1d4035be00701",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-recovery.png",
+      "bytes": 124523,
+      "sha256": "0fc322b8f9ab42546ac6cea0170afdad645d408e1d1a0039ae6fbfe2fbd0b27b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-windup.png",
+      "bytes": 131029,
+      "sha256": "415f0a8eb00140a56721b4b5ba175bf0c0fc6ae2a48085cb4cd358365b6a6f67",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0p2.png",
+      "bytes": 35278,
+      "sha256": "a7adf0d6b7ae0366ec78ed2eeeeec80df86c2a74f7b08eae84009cabb151551e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0p47.png",
+      "bytes": 35992,
+      "sha256": "274b0e9f029dc3a97cbe7039007c42006ec749536bc1f4d35c4e378219e2ed7e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0p625.png",
+      "bytes": 33712,
+      "sha256": "7c5a31d69a1d9ef6535e89725f08a0cac546e98a33cc7164fa2081c7a69c863d",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0p8.png",
+      "bytes": 34287,
+      "sha256": "61b900f4a88f9cfed918acd763fb03f6da8bb838ceb9d7ebc357b51361897620",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-strip.png",
+      "bytes": 236390,
+      "sha256": "a15c97bfd02e2ae6bd41f11c2a8700918643110ff70020e010decb90ae59636c",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/back.png",
+      "bytes": 147589,
+      "sha256": "528ded77749bebe746399aaceddb59a59328703c0d9972986617ee8bffbb7cae",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/beauty.png",
+      "bytes": 145049,
+      "sha256": "38db9634548997a3edcdc3954ca561b518a264f6e4e18df96219f23791f56772",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/browser-inspection.json",
+      "bytes": 120695,
+      "sha256": "4b486436a6a024da0d807159c81e7fdd38de161a3c47675e4a9a04e1be2eb9a4",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0p07.png",
+      "bytes": 148159,
+      "sha256": "21a0c4bd8c693f273981553c8d4b5b37879ea095cbcd1126894375bbf2ea2999",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0p3.png",
+      "bytes": 132602,
+      "sha256": "61608d7b02fac69e6d8c14c191ff61f2c3fbdb91eeec753e22b01f73a79fb7aa",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0p62.png",
+      "bytes": 128460,
+      "sha256": "285b700e2d9b1ec994491699a951b797b3256fbdb7d3a3793a2c6a23b985bc05",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-1.png",
+      "bytes": 128784,
+      "sha256": "4b845eb0f153289984b4b7173921b92c9db94ec01e42a7b68016b7bc30bf099f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-beauty-held.png",
+      "bytes": 128784,
+      "sha256": "4b845eb0f153289984b4b7173921b92c9db94ec01e42a7b68016b7bc30bf099f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-front-held.png",
+      "bytes": 144571,
+      "sha256": "ce2e6a42454e14ea266485ddf5526be5a4eebd89ca0d3adf85e727219ac8dfa7",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-side-held.png",
+      "bytes": 133402,
+      "sha256": "e735e1d1d3074709523cd72bc45a7628a3b4bea7600236abe28689c3ea66d52c",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-0p07.png",
+      "bytes": 35378,
+      "sha256": "3466d6437d403a08fa083c6ff74c06c3b48694360ef2214cf146b828a7ac2828",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-0p3.png",
+      "bytes": 31867,
+      "sha256": "afc6d465d507f9b186450d807a30c6b963661dcad4fc22449f6162986c756b4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-0p62.png",
+      "bytes": 30883,
+      "sha256": "7266ec66c40e9305e9fb0ba3983c314ba40e753f8c45ff11aa33c68950fba223",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-1.png",
+      "bytes": 31015,
+      "sha256": "d248c681ffa2374ebc5f0d479f65872ae12df1256cc031fd97bb5c0c5b410cbe",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-threequarter-held.png",
+      "bytes": 135688,
+      "sha256": "4bea5afa44f10cffecc93bb5b12d6da758929e0b5b5f1ef5536908b83b67c667",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/front.png",
+      "bytes": 158663,
+      "sha256": "4e6ff0b740777f932ff7ccfc31110fa3f40c45dcf7b8254b6a580dd5ac07852e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0.png",
+      "bytes": 145062,
+      "sha256": "f8cfded615cc657335b8e78fb6d47f786d1a0dd6b659c39691b5db2a95833c64",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0p3.png",
+      "bytes": 157250,
+      "sha256": "221be7da5b7d250d5ff545611d9fcc3a4ceed23f18427c609992e45a87c90ca3",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0p5.png",
+      "bytes": 148135,
+      "sha256": "eae140d508a708371f2d2631ddf99bc0343e6505fa36b590e4287a5d6b3a8cb5",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-1.png",
+      "bytes": 145062,
+      "sha256": "f8cfded615cc657335b8e78fb6d47f786d1a0dd6b659c39691b5db2a95833c64",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-0.png",
+      "bytes": 34397,
+      "sha256": "b876667a4fe6fcc046bd1e8d6268fe023174a04b3f172a457cd83c7e559f4425",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-0p3.png",
+      "bytes": 37637,
+      "sha256": "31995ae155569c5972d2349ed463ff75a285ccedaab1d674141322066b562aa6",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-0p5.png",
+      "bytes": 35082,
+      "sha256": "c582b6ae8dded35cae91c7a9b7f85873a4e91decaa2da71e06a7821be12e4ecb",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-1.png",
+      "bytes": 34397,
+      "sha256": "b876667a4fe6fcc046bd1e8d6268fe023174a04b3f172a457cd83c7e559f4425",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0.png",
+      "bytes": 145068,
+      "sha256": "dbc28021951af262b933cb58fd56fec058efd30d9186d300099b131d9805c77f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0p3.png",
+      "bytes": 146936,
+      "sha256": "3ab88b6df08b9919ecb3f37bd05560bd7103d8d843624a250637ee0abf254c73",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0p55.png",
+      "bytes": 146151,
+      "sha256": "b885ecde9991f61a3eaf8b728af7d25f486a7e6827e996a4a7dae1320af1ab74",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0p86.png",
+      "bytes": 146341,
+      "sha256": "61b3855ca1f6ae047cc535de8f911edb643d6a840ad30415e57ff719b0a1ab0a",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0.png",
+      "bytes": 34339,
+      "sha256": "a2069b5721998fca07a7f3b4a525cfbfebebb6282e3158bb970c8a215b91f330",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0p3.png",
+      "bytes": 34837,
+      "sha256": "370f86126d21c8b39a37be6bf7cac8c484f191d99304491440ae627378517839",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0p55.png",
+      "bytes": 34763,
+      "sha256": "243c19cfae7fe1c435619fabdcb764b5c787aa4472ed7f22d3c46d3d5768d54a",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0p86.png",
+      "bytes": 34783,
+      "sha256": "070a5ae9208ae144b39bdc9d0251bb085c3615fbd3d1150c6c381d05e7f2d6c6",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/motion-contact-sheet.png",
+      "bytes": 1100495,
+      "sha256": "14a552496016c1f8d5b38fac333c011424c33b4330bdf85dc84b69bcd23e0e5f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0.png",
+      "bytes": 148893,
+      "sha256": "26777590d7ec1a8caa475a53ff262cf8e6919be9008dd3e68f5d8d1d301c57ef",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0p25.png",
+      "bytes": 152826,
+      "sha256": "211756b9fe251a7ced77786d7e113e7654e62562e649f54591d9e24587a86a6c",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0p5.png",
+      "bytes": 148074,
+      "sha256": "662d02f75c3fa5fb3686a1563d5368e5d3290d9e6b95ce4d4ac8ac6939b931da",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0p75.png",
+      "bytes": 149829,
+      "sha256": "f09dc39000debf886e379bd72a636edc84c29c7a10d44cf9eb16290d66b0a646",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0.png",
+      "bytes": 35113,
+      "sha256": "d3a7b805ab7e3382c81513497395cdf43587c1a4bad465f8930b58b58c68ce7f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0p25.png",
+      "bytes": 36204,
+      "sha256": "55ce03744ba41639b8f1796869796a893bd392c105810acd07a6ebd3cb2a3c6c",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0p5.png",
+      "bytes": 34960,
+      "sha256": "2bc5e3c91a61391abc92996f75e6a335dd8c59b96d72210725c77540d03c63be",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0p75.png",
+      "bytes": 35407,
+      "sha256": "72aaee5d913809426137cbfca25a2cc0d2f7ec9fc403dd9d2a489731c4ca6cbc",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/side.png",
+      "bytes": 124893,
+      "sha256": "503e3c348a790a151377b1047ca3df448929c08a7116e36ff7f86258cd892c2b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/threequarter.png",
+      "bytes": 144251,
+      "sha256": "30921ca3bc734cd3a95f5c93541dd54ac9e1fa474c2aaf0d54ae94356d44bdcf",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/build_blockout.py",
+      "bytes": 23130,
+      "sha256": "8315d7bb1d6fcf450fa050933e49124011996da8dd2e18f9334678974f904b8f",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/sheet.py",
+      "bytes": 10902,
+      "sha256": "bc5d22d3ded255635d7359ccb3273e2644cf1eff3a115f6136a24180853de927",
+      "remote_local_match": true
+    },
+    {
+      "path": "sheet-stage/README.md",
+      "bytes": 326,
+      "sha256": "6ef56147b121edf0fa87a54bb422800161e5f8063c305290c02abe3c50ba2d0e",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "sheet-stage/live-scene-release.blend",
+      "bytes": 433945,
+      "sha256": "3c8a63ede90e6214134aa8f9835d35c8b27724111652f29c9a6f541377d65efd",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "sheet-stage/scene-lease.json",
+      "bytes": 4091,
+      "sha256": "bfb511adbb2e04d6fc9c5962612a960174626c828542a14f5202c9b33457075b",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "sheet-stage/scene-release.json",
+      "bytes": 3356,
+      "sha256": "aab3c8ee378354b3f7f573509bd66e46fe173f4931cefcbd7f61f9550fdf2780",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "sheet-stage/sha256-manifest.json",
+      "bytes": 3357,
+      "sha256": "599abb211f961b215fa7116b9756cb0cebaec2bc1f048c62727c59cb1643bcf0",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "preview/crop-face-front.png",
+      "bytes": 69321,
+      "sha256": "07edacf005a561f31e251b55e9e3a64bf78a47d88e6ec07fb77a3edb82ba4dd6",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "preview/crop-three-quarter.png",
+      "bytes": 141138,
+      "sha256": "492a988d9135a226f71774ef5e155acb548555e796aafdba073073ec651316fb",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "preview/sheet-preview.png",
+      "bytes": 561727,
+      "sha256": "cebe6b1a623b403491e250c9ef2578d149589b091fdb23e8a36ba3b2b949d1ca",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "pre-takeover-live-scene.blend",
+      "bytes": 1072458,
+      "sha256": "fb44c7cb71b2dccb992741e77915b555c2daf8971bfe4b25122271eb8459a11f",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "source/release.py",
+      "bytes": 2985,
+      "sha256": "866357a21736c61690e2a18fdfae271af4a84fe5e6a23d39509cbe420eb6e6e6",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "source/run.py",
+      "bytes": 3519,
+      "sha256": "684feed7367628dcbac07fa4b09f3a72586fbcf5bdf347a05b8205f62f75be5a",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    },
+    {
+      "path": "source/sheet_preview.py",
+      "bytes": 367,
+      "sha256": "0ae92267ee59af5572a226e44149f7b53e58f26530703983de9c3f69e56abc74",
+      "remote_local_match": "not mirrored: reference-sheet stage record from instance 1, kept unchanged"
+    }
+  ],
+  "all_mirrored_remote_local_hashes_match": true,
+  "verification_method": "MCP SHA-256 for source/text extensions; HTTP byte round trip for media, JSON and masters.",
+  "excluded": [
+    "sheet-stage/ holds the reference-sheet stage lease, release and manifest (instance 1); they are listed but not mirrored on instance 2."
+  ],
+  "manifest_self_hash": "Excluded to avoid recursive hashing."
+}

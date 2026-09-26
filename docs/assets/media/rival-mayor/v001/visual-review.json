@@ -1,0 +1,96 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "created_utc": "2026-09-26T14:59:47.724522+00:00",
+  "glb_sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back, three-quarter and beauty stills compared with the reference sheet at the same angles and metric scale (sheet-vs-export.png); five-clip normal/small motion sheet; attack front/side windup-contact-recovery and 35% gameplay-scale strip; held defeat front/side/three-quarter/beauty inspected.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "sheet_matching": [
+    "Silhouette kept from the approved blockout at its measured coordinates: tilted stovepipe hat (2.475 m top), egg head, long nose with a rosy tip, pear tailcoat, skinny pinstripe legs, cream spats, long upturned shoes, left fist on the hip, remote held out on the right.",
+    "Mustache enlarged 12% about its centre per the coordinator note (about 0.80 m tip to tip).",
+    "Colours are the sheet hex values exactly (atlas palette); the preview renders them darker and more saturated than the Cycles Standard-view sheet because of its ACES tone mapping and three-light rig.",
+    "Swallow tails hang from the back hem forward-down toward the calves, matching the sheet side view.",
+    "Pupils glance toward his remote hand and the eyelids are heavy, as on the sheet; kitten badges on the hat band and the rosette tie him to the mischief-kitten crew."
+  ],
+  "author_corrections": [
+    "First assembled pass was 17,214 triangles; ring counts on the coat, legs, sleeves, brim, mustache, antenna coil and small ellipsoids were reduced to 14,548 with no silhouette change.",
+    "Swallow tails first hung vertically and read as sticks in the side view; tilted 0.30 rad toward the calves after the sheet comparison.",
+    "First defeat bake put the coat tails 0.176 m and the heels 0.027 m below the floor; the tail sweep and a heel-safe ankle arc/height fixed it (lowest point now the 4 mm sole clearance).",
+    "Idle twirl first overlapped the mustache curl (14 triangle pairs); the glove target moved outward to pinch the tip.",
+    "Defeat arm first passed through the belly while flopping into the lap; the wrist now arcs outward and follows the seat bounce (0 overlaps).",
+    "Attack thrust lowered and moved outward so the face stays visible at contact; stronger anticipation pull-in; the remote tilts forward less so the antenna silhouette reads at 35% scale."
+  ],
+  "deviations_from_sheet_notes": [
+    "Bind pose is the sheet pose rather than an A-pose: the sheet silhouette (fist on hip, remote out) is what the approved views show and what the rest stills must match; blended joint weights and IK let every clip leave it.",
+    "Four-sided kitten ears on the badges and a 7-turn coil keep the tiny details inside the triangle budget."
+  ],
+  "dimensions_width_height_depth_m": [
+    1.3360174530733961,
+    2.4705280519426362,
+    0.7421834520963819
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5776881860779173,
+      0.004000043911690977,
+      -0.39239683747291565
+    ],
+    "max": [
+      0.758329266995479,
+      2.4745280958543274,
+      0.3497866146234663
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -0.6483797782024413,
+      0.0034572909819860923,
+      -1.1085238848679886
+    ],
+    "max": [
+      0.9389451863970993,
+      2.5903412115315954,
+      0.8295943046015839
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -0.654,
+      -0.002,
+      -1.114
+    ],
+    "max": [
+      0.944,
+      2.596,
+      0.835
+    ]
+  },
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "raised_warning_hold_seconds": [
+    0.84,
+    1.1
+  ],
+  "defeat_held_from_seconds": 1.728,
+  "button_press_depth_at_contact_m": 0.01038326882035303,
+  "defeat_held": {
+    "hat_brim_centre_minus_eye_centre_head_m": 0.009999914169311563,
+    "hat_drop_along_head_m": 0.1150001287460326,
+    "hat_scale": [
+      1.2200006246566772,
+      0.9500001072883606,
+      1.220000147819519
+    ],
+    "hips_height_m": 0.24500000476837158
+  },
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "The attachment audit tests listed part pairs every frame on the source scene; it is not a universal triangle-collision proof. Intended contacts (fist on hip, sleeve roots in the pads, hat around the head once slid down, legs inside the coat when seated) are not tested.",
+    "In the game the windup phase scrubs the attack clip from 0 to the 1.25 s contact, so the raise-hold-thrust plays at the simulation windup speed.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}

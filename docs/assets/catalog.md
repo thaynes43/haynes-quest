@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**43 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**44 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -28,7 +28,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Family eras {#family-eras}
 
-Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open.
+Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open.
 
 ### World A · Chapter 1
 
@@ -55,6 +55,24 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/7b5a8ec9be1d3e59.webp" alt="Selected original floating toolbox construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+</div>
+
+### World A · Chapter 2
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="rival-mayor" markdown="1">
+
+[![Exact Rival Mayor model with a tall plum stovepipe hat, huge curly mustache, aubergine tailcoat, raspberry sash with a rosette and a teal spring-antenna remote](media/catalog-thumbnails/v001/1788dc8e9403d322.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rival-mayor/v001.md)
+
+### [Rival Mayor](reviews/rival-mayor/v001.md)
+
+<span class="catalog-state">3D boss · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/b557775bf2338ba1.webp" alt="Blender reference sheet of the rival mayor in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
 </div>
 
