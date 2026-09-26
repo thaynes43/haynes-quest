@@ -47,6 +47,16 @@ export interface GrowthSimulation {
   bounces: string[];
   recoveries: number;
   maxFeetY: number;
+  /**
+   * Seconds per stepped frame; `FRAME_SECONDS` (60 Hz) when absent. A
+   * lockstep browser plan uses the page's 16 ms animation frame.
+   */
+  readonly frameSeconds?: number;
+  /**
+   * When present, every frame `growthStep` takes is appended here, so a
+   * lockstep browser harness can replay the exact controls a plan used.
+   */
+  readonly trace?: GrowthTraceFrame[];
 }
 
 export interface GrowthControl {
@@ -55,14 +65,22 @@ export interface GrowthControl {
   readonly jumpHeld?: boolean;
 }
 
+/** One planned frame: the control applied and where it left the feet. */
+export interface GrowthTraceFrame {
+  readonly control: GrowthControl;
+  readonly timeSeconds: number;
+  readonly position: Readonly<{ x: number; y: number; z: number }>;
+}
+
 export function growthStep(
   simulation: GrowthSimulation,
   control: GrowthControl,
 ): ObbyStepResult {
-  simulation.timeSeconds += FRAME_SECONDS;
+  const frameSeconds = simulation.frameSeconds ?? FRAME_SECONDS;
+  simulation.timeSeconds += frameSeconds;
   const proportions = getAvatarProportions(simulation.stage);
   const result = stepObby(simulation.state, control.move, simulation.course, {
-    deltaSeconds: FRAME_SECONDS,
+    deltaSeconds: frameSeconds,
     timeSeconds: simulation.timeSeconds,
     cameraYaw: 0,
     canJump: true,
@@ -76,6 +94,11 @@ export function growthStep(
   if (result.bouncePadId) simulation.bounces.push(result.bouncePadId);
   if (result.recovered) simulation.recoveries += 1;
   simulation.maxFeetY = Math.max(simulation.maxFeetY, simulation.state.position.y);
+  simulation.trace?.push({
+    control,
+    timeSeconds: simulation.timeSeconds,
+    position: { ...simulation.state.position },
+  });
   return result;
 }
 

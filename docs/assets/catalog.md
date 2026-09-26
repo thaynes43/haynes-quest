@@ -486,7 +486,7 @@ Browse each clearing piece and the arcade, toybox and Rat Casino scenery separat
 
 ### [Skyline toybox wind-up lantern](reviews/skyline-toybox-kit/v001.md#windup-lantern)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Ready for Tom · Scenery in private family World B</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/14a4da7f33f28300.webp" alt="Inspiration for Skyline toybox wind-up lantern" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 

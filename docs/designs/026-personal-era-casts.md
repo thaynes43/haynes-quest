@@ -1,7 +1,7 @@
 # DESIGN-026: Personal era casts for the family worlds
 
 - **Status:** Accepted. Tom locked the table on September 26, 2026, with World A at four chapters ([PRD-004 Q-05](../prds/004-family-release.md#owner-decisions)). Asset production may start from this table
-- **Last updated:** 2026-09-25
+- **Last updated:** 2026-09-26
 - **Satisfies:** PRD-004 R-09, R-10
 - **Builds on:** [DESIGN-005](005-era-enemy-catalog.md) (original-art provenance, date eligibility), [DESIGN-012](012-player-journey-curation.md) (child favorites, editable relevance windows), [DESIGN-025](025-growth-moves-and-vertical-courses.md) (themes and moves)
 
@@ -33,6 +33,16 @@ The earlier five-chapter proposal split chapter 3 into Power Rangers with T.O.T.
 | 1 | 0 → 2 | Cocomelon (YouTube; Netflix from Jun 2020) | Boss: a honking big school-bus. Ordinaries: bouncing "yes-yes" vegetables | Toddler playroom and nursery, with block towers (the existing toybox kit fits) |
 | 2 | 2 → 4 | Bluey (Disney Junior US from Sep 2019); Encanto (Nov 2021; "We Don't Talk About Bruno" #1 in Feb 2022) | Boss: a magical dancing house with shutters and tiles. Ordinaries: bin-chicken birds | Colorful magical house and garden, with terraces up the casita |
 | 3 | 4 → 6 | Wicked (film Nov 2024); KPop Demon Hunters (Jun 2025) | The existing Bickering Besties (approved joint look). Ordinaries: a demon boy-band trio parody | The existing Besties playground with a concert stage |
+
+**World B build status.** All three chapters are built into the registered template `family-world-b@v1`, "Playroom to Big Stage" (PLAN-019; see [Family worlds](../level-editor.md#family-worlds)). The template pins `parody-catalog-v8`. Each chapter has one ordinary identity in all four ordinary slots.
+
+| Ch | Chapter and route | Theme | Cast as built | Status |
+| --- | --- | --- | --- | --- |
+| 1 | The Sing-Along Playroom, `family-b1-playroom` | `playroom` | Boss: Big Honk Bus, catalog `honk-bus@v001` (landed model). Ordinaries: Yes-Yes Veggie, project candidate | Built; the veggie model is pending |
+| 2 | The Magic House, `family-b2-casita` | `casita` | Boss: The Dancing House. Ordinaries: Bin Chicken. Both are project candidates | Built; both models are pending |
+| 3 | Besties' Big Stage, `family-b3-stage` | `party` | Boss: Bickering Besties, catalog `bickering-besties@v001`. Ordinaries: Demon Idol, project candidate | Built; the idol model is pending |
+
+Project candidates use neutral placeholder art. A model that lands later joins a new catalog version and a new template version, because published journeys freeze `family-world-b@v1`.
 
 ## Eligibility
 

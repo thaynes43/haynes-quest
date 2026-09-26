@@ -234,6 +234,13 @@ export interface GameInspection {
     supportId: string | null;
     recoveryRemaining: number;
     recoveries: number;
+    /** The course clock the sampled geometry is at (seconds since the route started). */
+    timeSeconds: number;
+    /**
+     * A copy of the traversal state, for lockstep harnesses that plan the
+     * next frames with the same `stepObby`. Read-only: changing it has no effect.
+     */
+    state: import("./obby").ObbyState;
   };
   /** Planned casino collectibles with their collected state; null elsewhere. */
   collectibles?: {
