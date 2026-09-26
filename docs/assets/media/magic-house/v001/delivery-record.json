@@ -1,0 +1,63 @@
+{
+  "assetId": "magic-house",
+  "version": "v001",
+  "role": "boss",
+  "world": "B",
+  "chapter": 2,
+  "glb": "docs/assets/media/magic-house/v001/magic-house.glb (not yet published; durable copy at /home/dev/artifacts/haynes-quest/family-eras/magic-house/v001/magic-house.glb)",
+  "sha256": "13c83db22907a6e3996c26abf46f92dab9038392e69e2ec854299614b287c2dc",
+  "heightM": 2.898,
+  "bounds": {
+    "rest": {
+      "min": [
+        -1.232,
+        0,
+        -1.115
+      ],
+      "max": [
+        1.278,
+        2.898,
+        0.866
+      ]
+    },
+    "animated": {
+      "min": [
+        -1.378,
+        0,
+        -2.099
+      ],
+      "max": [
+        1.438,
+        3.797,
+        1.18
+      ]
+    },
+    "safeCulling": {
+      "min": [
+        -1.383,
+        -0.005,
+        -2.104
+      ],
+      "max": [
+        1.443,
+        3.803,
+        1.186
+      ]
+    }
+  },
+  "attackContactS": 1.25,
+  "clips": [
+    "idle",
+    "move",
+    "attack",
+    "hit",
+    "defeat"
+  ],
+  "prMerged": null,
+  "triangles": 12122,
+  "bytes": 1149808,
+  "materials": 2,
+  "joints": 32,
+  "source": "Blender reference sheet, no generated concept",
+  "status": "Awaiting Tom's review · used in the family release"
+}

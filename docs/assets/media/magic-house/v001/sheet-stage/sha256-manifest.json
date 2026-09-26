@@ -1,0 +1,115 @@
+{
+  "work_order": "WO111",
+  "asset_id": "magic-house",
+  "version": "v001",
+  "status": "sheet-ready",
+  "source": "Blender reference sheet, no generated concept",
+  "remote_dir": "/workspace/haynes-quest/family-eras/magic-house/v001",
+  "durable_dir": "/home/dev/artifacts/haynes-quest/family-eras/magic-house/v001",
+  "glb_sha256": "none",
+  "scene_released_utc": "2026-09-26T02:57:51.351559+00:00",
+  "remote_only_not_copied": {
+    "magic-house-blockout.blend1": {
+      "sha256": "672d4d6630d5fac12bd1359944230bd24973b4a8ee7fde5a519c2da2adedf0c6",
+      "note": "Blender's automatic backup of the first blockout iteration; superseded"
+    }
+  },
+  "generated_utc": "2026-09-26T02:58:22.860309+00:00",
+  "files": {
+    "blockout-measurements.json": {
+      "sha256": "70fce7cc338b7a18126df8ad903855022f0e5392e656c1478784194c64a85566",
+      "bytes": 1443,
+      "remote_match": true
+    },
+    "live-scene-release.blend": {
+      "sha256": "a9a276022502083ee29f46a155bf908789570cd5f25df5d5f07f8a4f2e008d03",
+      "bytes": 658098,
+      "remote_match": true
+    },
+    "magic-house-blockout.blend": {
+      "sha256": "a4367f504e3acf306b827430550cef9f1074092c90fece7a89244484d8b32ea6",
+      "bytes": 398206,
+      "remote_match": true
+    },
+    "magic-house-reference-sheet.blend": {
+      "sha256": "a5178191f44c03d1984a97c3fc7572bcaa7c903b796be06ba9f58f5f474a5fc8",
+      "bytes": 658094,
+      "remote_match": true
+    },
+    "preview/crop-face-front.png": {
+      "sha256": "8f933dc4952ab815084212aa72b9eccdc79eb73b41b87061b84ba32f5360d43f",
+      "bytes": 1109315,
+      "remote_match": true
+    },
+    "preview/crop-front.png": {
+      "sha256": "f393b3fa4031454557c325d2602fd80a75575c30b3fed8272d9bc852e1828972",
+      "bytes": 1142527,
+      "remote_match": true
+    },
+    "preview/crop-side.png": {
+      "sha256": "42826e05d498d9818fb9d811171bb9c7acbe3d4755665340af8c5569414a217e",
+      "bytes": 1074998,
+      "remote_match": true
+    },
+    "preview/crop-three-quarter.png": {
+      "sha256": "7edacc64ced7a4c112e657ced94501de49d5c7e3f83f15f018aaa29652460705",
+      "bytes": 1197975,
+      "remote_match": true
+    },
+    "preview/sheet-preview.png": {
+      "sha256": "fac2defbaf175a15616fcceb97f9a6f1f975f48560f7f65baa0742b983ffb7c9",
+      "bytes": 603415,
+      "remote_match": true
+    },
+    "reference-notes.md": {
+      "sha256": "62d74c940a6b55dbb93ba3dd73824d6e8fde18c6b1c5ec05c69443ed6c015e3f",
+      "bytes": 12858,
+      "remote_match": true
+    },
+    "reference-sheet.png": {
+      "sha256": "378f1f5706b19f303e545854fc50df5d4e254930cf77c46d53a4dd08f41d3c20",
+      "bytes": 2145778,
+      "remote_match": true
+    },
+    "scene-lease.json": {
+      "sha256": "ea9c67a303221de24f5692b6f6b77c4908b46a68ac35950fbf263076b55a5d30",
+      "bytes": 2983,
+      "remote_match": true
+    },
+    "scene-release.json": {
+      "sha256": "8b239f3f4205b42ed7132e1bcc973e20f770bd786393ee8af05546bbdc9a22a2",
+      "bytes": 3358,
+      "remote_match": true
+    },
+    "source/build_blockout.py": {
+      "sha256": "acefb5bc9d8f7ad0994b4aa7e2408c3c14c747e92593a0322a94010946f2b28c",
+      "bytes": 36089,
+      "remote_match": true
+    },
+    "source/crops.py": {
+      "sha256": "6db0c29e27482bd174906417b62c2a7aa1d5773533256ca0a9fff1babbf53665",
+      "bytes": 2180,
+      "remote_match": true
+    },
+    "source/release.py": {
+      "sha256": "0f93f8259ae77cb82f24e418bbed4819dfbc203f81c069cd598a2202407eb63c",
+      "bytes": 3245,
+      "remote_match": true
+    },
+    "source/run.py": {
+      "sha256": "b2b6f61cbf1d8e9bab3c529d2e105eabf13e7a59e9d6a0eb2d6c0ad5e6379228",
+      "bytes": 4283,
+      "remote_match": "local-only"
+    },
+    "source/sheet.py": {
+      "sha256": "925a51411f2fe2accbd2afd19da45987c8476978fb6df8a68f797268a58c7321",
+      "bytes": 11229,
+      "remote_match": true
+    },
+    "source/sheet_preview.py": {
+      "sha256": "44b5f78393fca97d75f6b1e54634f124bdb536bffac5b401e0ed39adb12bd348",
+      "bytes": 367,
+      "remote_match": true
+    }
+  }
+}

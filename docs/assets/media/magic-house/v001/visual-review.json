@@ -1,0 +1,120 @@
+{
+  "work_order": "WO111",
+  "asset_id": "magic-house",
+  "version": "v001",
+  "created_utc": "2026-09-26T15:51:01.310133+00:00",
+  "glb_sha256": "13c83db22907a6e3996c26abf46f92dab9038392e69e2ec854299614b287c2dc",
+  "candidate_status": "Awaiting Tom's review · used in the family release",
+  "author_review": "Exact-export front, side, back, three-quarter and beauty stills compared with the reference sheet at the same angles and metric scale (sheet-vs-export.png); five-clip normal/small motion sheet; attack front/side/wide windup-contact-recovery and the 35% gameplay-scale strip; held defeat front/side/three-quarter/beauty; close-ups of the face, candle niche, roof, feet and tongue.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "sheet_matching": [
+    "Every part keeps the blockout's measured coordinates: 2.898 m to the top of the hopping ridge tile, 2.80 m solid, the same eaves, balcony, tongue and legs; silhouettes overlay the sheet views at matching scale.",
+    "The roof is two corrugated sheets (13 columns x 7 rows) with the tile rows, crest light, channel shadow and row-end lines painted; the five popped tiles leave flattened timber slots exactly where the sheet shows them, plus the chimney pass-through.",
+    "Sly/cheeky expression kept: the house's left lid lowered with its inner edge down, its right lid raised with its inner edge up, pupils glancing to its right.",
+    "Colours are the sheet hex values (atlas level 4 is the exact hex); the preview renders them lighter and less saturated than the Cycles Standard-view sheet because of its ACES tone mapping and three-light rig, and the sheet also carries Freestyle ink outlines.",
+    "Parody hooks intact: living casita, shutter eyes, grinning door mouth with a striped doormat tongue, dancing roof tiles, candle niche, butterflies, balcony, bougainvillea and stump legs."
+  ],
+  "acting": {
+    "idle": "Tiles bob in a ripple, the lids blink out of step, the house sways on its stumps, the candle flickers, butterflies flutter.",
+    "move": "Waddle-hop: feet lift 0.10 m in turn and swing, the body bobs and rolls toward the planted foot, the doors flap, the tongue swings, tiles bounce with lag.",
+    "attack": "Shimmy (0.08-0.58 s), crouch and lean back with the six tiles raised 0.40-0.46 m and spun, lids flung up, doors and shutters wide; held warning 0.60-1.05 s. Hop (feet 0.10 m off the floor at 1.15 s) and throw: the tiles arc over the eaves and land flat in a fan 1.05-1.90 m in front at contact 1.25 s while the house lands and the doormat tongue slaps 1.29 m forward; the tiles hop and slide, then fly back over the roof to their slots by 1.90 s.",
+    "hit": "Shutters slam shut and spring open, the doors slam, the roof pops 0.06 m like a pot lid, tiles jump, jelly wobble.",
+    "defeat": "Surprise pop, then the magic drains: the tiles drop into their empty slots with one rebound, the candle shrinks to a 28% ember, the lids close to a sheepish squint and the side shutters swing half shut, the doors pout, the house slumps 0.075 m and leans on splayed stumps, the roof tips forward like a floppy hat, the tongue flops out and the butterflies settle; exactly static from 1.80 s."
+  },
+  "author_corrections": [
+    "The 44,958-triangle blockout became 12,122 triangles: tile rows, louvres, door flowers and doormat stripes moved into the atlas; flowers became low-poly clumps.",
+    "The sky tile touched the chimney hat in the blockout; it now hovers 0.22 m clear, so its bob, jump and spin never pass through the chimney. Its empty slot is unchanged.",
+    "The doormat curl radius grew from 0.07 to 0.08 m so the mat clears the bevelled step edge by 1 cm (the audit found rest contact).",
+    "The blockout candle flame lathe had its (z, r) pairs swapped into a flat 0.25 m disc; the model uses the intended 0.125 m teardrop flame. The glow halo moved 4 mm forward out of the niche back.",
+    "Emissive strength lowered to 0.25 after the first preview showed the flame and halo washing out to white under ACES.",
+    "The first straight tile-throw arcs clipped the eaves and ridge caps; the throw and recall now follow quadratic Bezier paths over the roof, two landing spots were swapped and the recall is staggered so no two tiles meet.",
+    "Closing lids keep their slant and stretch until the lowest corner rests at 1.265 m, with the pupils lifting 6 cm behind them; an untilt rotation swung the lid corners into the side shutters and was dropped. Side-shutter closing is limited to 1.0 rad (hit) and 1.15 rad (defeat) to clear the lids.",
+    "The defeat roof tips about a pivot just behind the front gable: the gable rises at most 2.4 cm into the 7 cm deck (the first droop reached 6.2 cm).",
+    "Keys moved from 30 to 60 fps after the held-warning end and the 1.25 s contact fell between 30 fps keys.",
+    "Roof painting darkened one level with dark row-end lines after the sheet comparison."
+  ],
+  "deviations_from_sheet_notes": [
+    "The attack is the coordinator's shimmy/hop tile throw; the notes' tongue sweep survives as a secondary tongue slap at contact.",
+    "Defeat follows the coordinator (sheepish slump with the shutters closing). Of the notes' ideas the tiles drop into their slots, the candle becomes an ember and the tongue flops out; the roof tips forward like a floppy hat instead of tiles sliding over the eyes.",
+    "No jaw bone: the honey doors act as the lips (they slam in hit and pout in defeat), which avoided the lower lip passing through the floor slab.",
+    "Both butterflies are kept (four wing bones), well inside the budget."
+  ],
+  "dimensions_width_height_depth_m": [
+    2.509636163711548,
+    2.8979423344135284,
+    1.9812366484988373
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -1.2316361665725708,
+      0,
+      -1.1147866367686432
+    ],
+    "max": [
+      1.277999997138977,
+      2.8979423344135284,
+      0.8664500117301941
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -1.3778807309545826,
+      0,
+      -2.0985480421724247
+    ],
+    "max": [
+      1.437739391987954,
+      3.797199735958051,
+      1.18015048689922
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -1.383,
+      -0.005,
+      -2.104
+    ],
+    "max": [
+      1.443,
+      3.803,
+      1.186
+    ]
+  },
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "held_warning_seconds": [
+    0.6,
+    1.05
+  ],
+  "defeat_held_from_seconds": 1.8,
+  "defeat_held": {
+    "tile_centre_drop_m": {
+      "tile_1": 0.35299236983667237,
+      "tile_2": 0.3268547707873388,
+      "tile_3": 0.2717690265646058,
+      "tile_4": 0.3283572775639474,
+      "tile_5": 0.24718863785371825,
+      "ridge_tile": 0.3634731740257635
+    },
+    "lowest_lid_vertex_y_m": 1.097816798781288,
+    "candle_scale": [
+      0.28000006079673767,
+      0.2800000309944153,
+      0.2800000011920929
+    ],
+    "body_drop_m": 0.07500001788139343,
+    "tongue_lowest_y_m": 0.1969350656335258
+  },
+  "hit_slam": {
+    "lowest_lid_vertex_y_m": 1.2849740296360173,
+    "roof_lift_m": 0.0579371417707355
+  },
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "The attachment audit tests listed part pairs every frame on the source scene; it is not a universal triangle-collision proof. Intended contacts (hinges inside their frames, the tongue root inside the mouth, stump tops inside the slab, the chimney through the roof, dropped tiles resting in their slots) are not tested.",
+    "In the game the windup phase scrubs the attack clip from 0 to the 1.25 s contact, so the shimmy, raise, hold and throw play at the simulation windup speed. The thrown tiles are skinned geometry that returns to the roof; any damage area in front of the house is the coordinator's gameplay decision.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}
