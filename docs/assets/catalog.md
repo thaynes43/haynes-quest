@@ -851,7 +851,7 @@ The playtest uses these four cues for actions, landings, memories and growth.
 
 ### Family world mechanics
 
-Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gliding, golden tickets, the Honk Bus and enemy defeats. The game does not play them yet. The glide wind is a seamless loop.
+Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gliding, golden tickets, the Honk Bus and enemy defeats. Family world levels play them, and older routes sound as before. The glide wind is a seamless loop.
 
 <div class="catalog-grid" markdown="1">
 
@@ -861,7 +861,7 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 
 ### [Up we spring · v001](reviews/bounce-pad-boing/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -871,7 +871,7 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 
 ### [The lift has arrived · v001](reviews/lift-arrival-chime/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -881,7 +881,7 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 
 ### [Cookie crumble · v001](reviews/crumble-crack/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -891,7 +891,7 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 
 ### [One more hop · v001](reviews/double-jump-whoosh/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -901,7 +901,7 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 
 ### [Riding the breeze · v001](reviews/glide-wind/v001.md#audition)
 
-<span class="catalog-state">Sound loop · v001 · Family world candidate · Not yet in the game · Review open</span>
+<span class="catalog-state">Sound loop · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -911,7 +911,7 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 
 ### [A golden ticket · v001](reviews/golden-ticket-sparkle/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -921,7 +921,7 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 
 ### [Honk honk · v001](reviews/honk-bus-honk/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -931,7 +931,7 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 
 ### [Poof, gone · v001](reviews/enemy-poof/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 

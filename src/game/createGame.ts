@@ -53,9 +53,11 @@ import {
   type MemoryCheckpoint,
 } from "./level";
 import { GardenScene } from "./scene";
+import { parodyArtwork } from "./scene-catalog";
 import type {
   CreateGameOptions,
   EnemyFrame,
+  EnemyPhase,
   GameHandle,
   GameStatus,
   PositionSnapshot,
@@ -67,6 +69,11 @@ import type {
 const interactionRadius = 1.4;
 const interactionFeetHeightTolerance = 0.12;
 const statusIntervalSeconds = 0.1;
+/**
+ * An enemy that steps in and out of reach can re-enter its wind-up within one
+ * frame. Its attack sound waits this long between reports (DESIGN-008).
+ */
+const windupFeedbackIntervalMs = 1_500;
 const primaryAttackAnimationSeconds = 0.38;
 const secondaryAttackAnimationSeconds = 0.4;
 const interactionAnimationSeconds = 0.45;
@@ -290,6 +297,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let interactionAnimationUntil = 0;
   let interactionSequence = 0;
   let jumpSequence = 0;
+  // DESIGN-008 family world cues (levels with growth moves only).
+  let launchJumpSequence = 0;
+  let gliding = false;
+  const enemyPhases = new Map<string, EnemyPhase>();
+  const windupFeedbackAt = new Map<string, number>();
   let attackFeedback: GameStatus["attackFeedback"] = null;
   let attackFeedbackSequence = 0;
   let attackCooldownUntil =
@@ -538,7 +550,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
       appearanceStage: save.appearance.stage,
       abilities: [...save.abilities],
       ...(level.course && currentGrowth()
-        ? { growthMoves: [...currentGrowth()!.abilities] }
+        ? {
+            growthMoves: [...currentGrowth()!.abilities],
+            launchJumpSequence,
+          }
         : {}),
       grounded: controller.grounded,
       playerHp: adventure.playerHp,
@@ -617,10 +632,45 @@ export function createGame(options: CreateGameOptions): GameHandle {
     interactionSequence += 1;
   };
 
+  /** DESIGN-008: family world levels are the ones with growth moves. */
+  const familyWorld = (): boolean => currentGrowth() !== null;
+
+  const setGliding = (active: boolean): void => {
+    if (gliding === active) return;
+    gliding = active;
+    options.onFeedback?.({ type: "glide", active });
+  };
+
+  /** The catalog model an encounter renders, or null for fallback art. */
+  const encounterModelId = (encounterId: string): string | null => {
+    const content = save.adventure?.activeLevel?.encounters.find(
+      (encounter) => encounter.id === encounterId,
+    )?.content;
+    if (!content || content.placeholder) return null;
+    return parodyArtwork(content)?.id ?? null;
+  };
+
+  /** Reports each family world enemy that has just begun a wind-up. */
+  const reportWindups = (now: number): void => {
+    if (!options.onFeedback || !familyWorld()) return;
+    for (const enemy of enemies.frames()) {
+      const before = enemyPhases.get(enemy.id);
+      enemyPhases.set(enemy.id, enemy.phase);
+      if (enemy.phase !== "windup" || before === "windup") continue;
+      const last = windupFeedbackAt.get(enemy.id) ?? Number.NEGATIVE_INFINITY;
+      if (now - last < windupFeedbackIntervalMs) continue;
+      const assetId = encounterModelId(enemy.id);
+      if (!assetId) continue;
+      windupFeedbackAt.set(enemy.id, now);
+      options.onFeedback({ type: "windup", encounterId: enemy.id, assetId });
+    }
+  };
+
   const resetController = (
     nextCheckpoint: PositionSnapshot,
     checkpointId: string | null = null,
   ): void => {
+    setGliding(false);
     controller = createObbyState(nextCheckpoint);
     controller.checkpointId = checkpointId;
     controller.grounded = true;
@@ -782,7 +832,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
       const boss = encounter.role === "boss";
       scene.celebrate?.(encounter.id, boss);
       shake.add(boss ? 0.7 : 0.35);
-      options.onFeedback?.({ type: "defeat", encounterId: encounter.id, boss });
+      options.onFeedback?.({
+        type: "defeat",
+        encounterId: encounter.id,
+        boss,
+        ...(familyWorld() ? { familyWorld: true as const } : {}),
+      });
     }
     if (hurt) {
       shake.add(0.45);
@@ -1201,7 +1256,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
     scene.collectItem?.(item);
     if (item.kind === "ticket") {
       shake.add(0.2);
-      options.onFeedback?.({ type: "ticket" });
+      options.onFeedback?.({
+        type: "ticket",
+        ...(familyWorld() && level.authored
+          ? { theme: level.authored.theme }
+          : {}),
+      });
     } else {
       tokenStreak = now - lastTokenAt <= 700 ? tokenStreak + 1 : 0;
       lastTokenAt = now;
@@ -1274,8 +1334,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
         pointerLook.y,
       );
       const duo = bestiesEncounter();
+      let glidingAfterStep = false;
       for (const [stepIndex, stepSeconds] of simulationSteps.entries()) {
         const velocityBeforeStep = controller.velocityY;
+        let launchedWithSound = false;
         if (level.course) {
           courseTime += stepSeconds;
           const dimensions = getAvatarProportions(save.appearance.stage);
@@ -1304,6 +1366,21 @@ export function createGame(options: CreateGameOptions): GameHandle {
             scene.bouncePad?.(traversal.bouncePadId);
             options.onFeedback?.({ type: "bounce" });
           }
+          if (traversal.airJumped) options.onFeedback?.({ type: "double-jump" });
+          if (traversal.crumbleId)
+            options.onFeedback?.({
+              type: "crumble",
+              platformId: traversal.crumbleId,
+            });
+          if (traversal.liftStopId)
+            options.onFeedback?.({
+              type: "lift-stop",
+              platformId: traversal.liftStopId,
+            });
+          launchedWithSound = Boolean(
+            traversal.bouncePadId || traversal.airJumped,
+          );
+          glidingAfterStep = traversal.gliding === true;
           if (traversal.checkpointChanged || traversal.recovered) {
             checkpoint = { ...controller.checkpoint };
           }
@@ -1335,6 +1412,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         }
         if (velocityBeforeStep <= 0 && controller.velocityY > 0) {
           jumpSequence += 1;
+          if (launchedWithSound) launchJumpSequence += 1;
         }
         if (controller.recoveryRemaining <= 0) {
           enemies.resolvePlayerCollision(controller.position, level);
@@ -1375,7 +1453,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
           { player: controller.position, deltaSeconds: 0, active: false },
           save,
         );
-      }
+      } else if (level.course) setGliding(glidingAfterStep);
+      reportWindups(now);
       if (controller.recoveryRemaining <= 0) flushPendingHit();
       const collectedByContact = performAutoInteraction(now);
       if (actions.interact && !isRouteMemoryAdventure(save)) {
@@ -1438,6 +1517,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         pressAttack(buffered, levelId);
       }
     } else {
+      setGliding(false);
       enemies.step(
         { player: controller.position, deltaSeconds: 0, active: false },
         save,

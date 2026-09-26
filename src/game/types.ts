@@ -84,15 +84,42 @@ export interface SceneFrame {
   growthScale?: number;
 }
 
-/** Immediate presentation events for sound and effects (DESIGN-022). */
+/**
+ * Immediate presentation events for sound and effects (DESIGN-022).
+ *
+ * DESIGN-008's family world cues add the `familyWorld` and `theme` fields and
+ * the events after `hurt`. They appear only on family world levels (an
+ * `authored-level-v4` route or a family plan, the levels with growth moves),
+ * so every older route reports exactly the events it did before.
+ */
 export type GameFeedbackEvent =
   | { type: "hit"; encounterId: string; kind: "primary" | "secondary" }
-  | { type: "defeat"; encounterId: string; boss: boolean }
+  | {
+      type: "defeat";
+      encounterId: string;
+      boss: boolean;
+      /** Present on family world levels, which layer a poof under the defeat. */
+      familyWorld?: true;
+    }
   | { type: "token"; streak: number }
-  | { type: "ticket" }
+  | {
+      type: "ticket";
+      /** The authored level's theme, present on family world levels. */
+      theme?: string;
+    }
   /** A bounce pad launched the player (DESIGN-025 D-04). */
   | { type: "bounce" }
-  | { type: "hurt" };
+  | { type: "hurt" }
+  /** The second jump of an airtime (DESIGN-025 D-01). */
+  | { type: "double-jump" }
+  /** A crumbling platform started to shake under the player (DESIGN-025 D-04). */
+  | { type: "crumble"; platformId: string }
+  /** The lift the player rides reached its top or bottom stop (DESIGN-025 D-04). */
+  | { type: "lift-stop"; platformId: string }
+  /** The glide started holding the player's fall, or stopped (DESIGN-025 D-01). */
+  | { type: "glide"; active: boolean }
+  /** An enemy began winding up an attack; `assetId` is its rendered catalog model. */
+  | { type: "windup"; encounterId: string; assetId: string };
 
 export type AttackAttemptOutcome =
   | "accepted"
@@ -147,6 +174,12 @@ export interface SceneVisualInspection {
 
 export interface GameStatus {
   jumpSequence?: number;
+  /**
+   * How many `jumpSequence` increments were a bounce pad launch or a double
+   * jump, which sound through `onFeedback` instead of the jump cue. Present
+   * only on levels with growth moves (DESIGN-025).
+   */
+  launchJumpSequence?: number;
   interactionSequence?: number;
   nearFriendlyId?: string | null;
   bestiesPhase?: import("./besties").BestiesPhase;

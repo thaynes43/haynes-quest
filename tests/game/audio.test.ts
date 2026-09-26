@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   playtestCues,
   QuestAudio,
+  questCues,
   type QuestAudioOptions,
 } from "../../src/client/audio";
 
@@ -597,6 +598,112 @@ describe("QuestAudio", () => {
     await expect(audio.audition()).resolves.toBe(false);
     audio.setPreferences(false, 0.8);
     await expect(audio.audition()).resolves.toBe(true);
+    audio.dispose();
+  });
+});
+
+describe("QuestAudio family world loops (DESIGN-008)", () => {
+  it("starts one glide wind loop, refuses it as a one-shot, and stops it", async () => {
+    const { audio, context } = audioFixture();
+    await audio.start();
+
+    await expect(audio.cue("glide-wind")).resolves.toBe(false);
+    expect(context.sources).toHaveLength(0);
+
+    await expect(audio.loop("glide-wind", true)).resolves.toBe(true);
+    await expect(audio.loop("glide-wind", true)).resolves.toBe(true);
+    expect(context.sources).toHaveLength(1);
+    expect(context.sources[0]?.loop).toBe(true);
+    expect(context.sources[0]?.start).toHaveBeenCalledOnce();
+    // Without gain automation the level lands directly on the cue gain.
+    expect(context.gains[1]?.gain.value).toBe(questCues["glide-wind"].gain);
+
+    await expect(audio.loop("glide-wind", false)).resolves.toBe(false);
+    expect(context.sources[0]?.stop).toHaveBeenCalledOnce();
+    expect(context.sources[0]?.disconnect).toHaveBeenCalledOnce();
+
+    await expect(audio.loop("glide-wind", true)).resolves.toBe(true);
+    expect(context.sources).toHaveLength(2);
+    // One-shot cues are not loops.
+    await expect(audio.loop("bounce-pad-boing", true)).resolves.toBe(false);
+    expect(context.sources).toHaveLength(2);
+    audio.dispose();
+  });
+
+  it("never starts a loop that stopped while its file was still loading", async () => {
+    let deliver!: (response: Response) => void;
+    const fetcher = vi.fn(
+      () =>
+        new Promise<Response>((resolve) => {
+          deliver = resolve;
+        }),
+    );
+    const { audio, context } = audioFixture({ fetcher });
+    await audio.start();
+
+    const starting = audio.loop("glide-wind", true);
+    await vi.waitFor(() => expect(fetcher).toHaveBeenCalledOnce());
+    await expect(audio.loop("glide-wind", false)).resolves.toBe(false);
+    deliver(new Response(new Uint8Array([1, 2, 3, 4]), { status: 200 }));
+
+    await expect(starting).resolves.toBe(false);
+    expect(context.sources).toHaveLength(0);
+    audio.dispose();
+  });
+
+  it("stops the loop on mute and pause like every other sound", async () => {
+    const { audio, context } = audioFixture();
+    await audio.start();
+    await audio.loop("glide-wind", true);
+    audio.setPreferences(true);
+    expect(context.sources[0]?.stop).toHaveBeenCalledOnce();
+    await expect(audio.loop("glide-wind", true)).resolves.toBe(false);
+
+    audio.setPreferences(false);
+    await audio.start();
+    await expect(audio.loop("glide-wind", true)).resolves.toBe(true);
+    const resumed = context.sources.at(-1)!;
+    audio.setPaused(true);
+    expect(resumed.stop).toHaveBeenCalledOnce();
+    audio.dispose();
+  });
+
+  it("fades the loop in and out where the browser automates gain", async () => {
+    class AutomatedGain {
+      readonly gain = {
+        value: 1,
+        cancelScheduledValues: vi.fn(),
+        setValueAtTime: vi.fn(),
+        linearRampToValueAtTime: vi.fn(),
+      };
+      readonly connect = vi.fn();
+      readonly disconnect = vi.fn();
+    }
+    class AutomatedContext extends FakeAudioContext {
+      readonly currentTime = 2;
+      override createGain(): GainNode {
+        const gain = new AutomatedGain();
+        this.gains.push(gain as unknown as FakeGain);
+        return gain as unknown as GainNode;
+      }
+    }
+    const context = new AutomatedContext();
+    const { audio } = audioFixture({
+      contextFactory: () => context as unknown as AudioContext,
+    });
+    await audio.start();
+    await audio.loop("glide-wind", true);
+    const wind = context.gains[1] as unknown as AutomatedGain;
+    const level = questCues["glide-wind"].gain;
+    expect(wind.gain.setValueAtTime).toHaveBeenCalledWith(0, 2);
+    expect(wind.gain.linearRampToValueAtTime).toHaveBeenCalledWith(level, 2.06);
+
+    await audio.loop("glide-wind", false);
+    expect(wind.gain.linearRampToValueAtTime).toHaveBeenLastCalledWith(0, 2.06);
+    expect(context.sources[0]?.stop).toHaveBeenCalledWith(2.06);
+    // The fading tail no longer counts: a new glide starts its own loop.
+    await expect(audio.loop("glide-wind", true)).resolves.toBe(true);
+    expect(context.sources).toHaveLength(2);
     audio.dispose();
   });
 });

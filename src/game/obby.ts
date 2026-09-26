@@ -282,6 +282,22 @@ export interface ObbyStepResult {
   checkpointChanged: boolean;
   /** Present only when a bounce pad launched the player this step: that pad's id. */
   bouncePadId?: string;
+  /*
+   * The fields below only report what the step already did, for sound and
+   * effects (DESIGN-008). Each is present only when it happened, so a step on a
+   * published course returns exactly the two booleans above.
+   */
+  /** The single mid-air launch of this airtime fired this step. */
+  airJumped?: true;
+  /** The first touch of this crumbling platform started its shake this step. */
+  crumbleId?: string;
+  /**
+   * The vertical lift carrying the player reached a stop this step: it began
+   * its dwell, or, without a dwell, turned around at the top or bottom.
+   */
+  liftStopId?: string;
+  /** The step ended airborne with the glide holding the fall speed at its cap. */
+  gliding?: true;
 }
 
 export type ObbyMoveInput = Pick<GameInputSnapshot, "moveX" | "moveY">;
@@ -371,6 +387,28 @@ function motionOffset(
   );
   if (motion.axis === "y") return { x: 0, y: offset, z: 0 };
   return motion.axis === "z" ? { x: 0, y: 0, z: offset } : { x: offset, y: 0, z: 0 };
+}
+
+/**
+ * Which way a motion is travelling at `time`: +1 or −1 along its axis, or 0
+ * while it rests in a dwell. A stop is where this changes from ±1 to 0 (a
+ * dwell begins) or to the opposite sign (an undwelled turn at an extreme).
+ */
+function motionHeading(motion: ObbyMotion, time: number): number {
+  const distance = finiteOr(motion.distance, 0);
+  const period = finiteOr(motion.period, 0);
+  if (distance === 0 || period <= 0) return 0;
+  const dwell = finiteOr(motion.dwell, 0);
+  let angle: number;
+  if (dwell > 0) {
+    angle = dwellAngle(period, dwell, motion.phase, time);
+    // dwellAngle returns these exact constants only while resting.
+    if (angle === Math.PI / 2 || angle === (3 * Math.PI) / 2) return 0;
+  } else angle = cycleAngle(period, motion.phase, time);
+  // Exactly at an extreme the direction is undefined: count it as resting, so
+  // a clock that starts there does not report a stop it never travelled to.
+  const heading = Math.cos(angle);
+  return Math.abs(heading) < 1e-9 ? 0 : Math.sign(heading * distance);
 }
 
 function motionSpeed(motion: ObbyMotion | undefined): number {
@@ -1019,6 +1057,7 @@ export function stepObby(
       state.velocityY = airJumpVelocity;
       state.airJumpUsed = true;
       state.jumpBufferRemaining = 0;
+      result.airJumped = true;
     }
     state.jumpBufferRemaining = Math.max(0, state.jumpBufferRemaining - h);
 
@@ -1136,7 +1175,10 @@ export function stepObby(
     ) {
       // The first touch starts the shake; standing on it longer changes nothing.
       state.crumbles ??= {};
-      if (state.crumbles[standingOn.id] === undefined) state.crumbles[standingOn.id] = time;
+      if (state.crumbles[standingOn.id] === undefined) {
+        state.crumbles[standingOn.id] = time;
+        result.crumbleId = standingOn.id;
+      }
     }
     state.coyoteRemaining = state.grounded
       ? tuning.coyoteSeconds
@@ -1195,6 +1237,21 @@ export function stepObby(
         assign(state.checkpoint, target.x, target.y, target.z);
         result.checkpointChanged = true;
         break;
+      }
+    }
+  }
+
+  // Presentation reports (DESIGN-008). Neither changes the state above.
+  if (!result.recovered) {
+    if (!state.grounded && gliding && state.velocityY === -glideFallSpeed) result.gliding = true;
+    if (state.grounded && state.supportId !== null) {
+      const lift = platforms.find(
+        (platform) => platform.motion?.axis === "y" && String(platform.id) === state.supportId,
+      );
+      if (lift?.motion) {
+        const before = motionHeading(lift.motion, timeStart);
+        const after = motionHeading(lift.motion, timeEnd);
+        if (before !== 0 && after !== before) result.liftStopId = state.supportId;
       }
     }
   }

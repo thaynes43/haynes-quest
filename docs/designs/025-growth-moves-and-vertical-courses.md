@@ -1,7 +1,7 @@
 # DESIGN-025: Growth moves and vertical courses
 
 - **Status:** Accepted for the first family release, September 25, 2026
-- **Last updated:** 2026-09-25
+- **Last updated:** 2026-09-26
 - **Satisfies:** [PRD-004](../prds/004-family-release.md) R-07–R-09, R-11
 - **Builds on:** DESIGN-006 (age and abilities), DESIGN-011 (forgiving obby), DESIGN-019/020 (editor and world builder), DESIGN-021/022 (Rat Casino and fun pass); resolves DESIGN-022's ★ double-jump decision through PRD-004 Q-04
 
@@ -76,6 +76,8 @@ Rules:
 **Lift dwell.** With `travel.dwell` of `d` seconds, a lift waits `d` at its bottom stop, rises for `period / 2` with the same eased speed profile, waits `d` at its top stop and descends for `period / 2`. A cycle lasts `period + 2d`, and phase 0 still starts at the bottom stop, at the start of its pause. A zero or absent dwell produces exactly the original course and motion. The dwell turns a moving target into a platform a child can walk on and off.
 
 Collectible trails (tokens and golden tickets) extend from the casino to every v4 theme, each with a themed look. Counts stay client-only for the run.
+
+**Sound.** Family world levels give the new pieces and moves their own cues: a boing for a bounce pad launch, a chime when a ridden lift reaches a stop, a crack when a crumble starts to shake, a whoosh for the double jump, and a wind loop while the glide holds the fall. An era theme's golden collectible sparkles, the Honk Bus honks as it winds up, and every defeat adds a poof. Older routes sound exactly as before. [DESIGN-008](008-audio-pipeline.md#family-world-gameplay-wiring) defines the triggers, mix and caps.
 
 **D-05 Theme kits.** A data-driven registry maps a theme id to:
 
