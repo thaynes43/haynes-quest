@@ -101,7 +101,7 @@ function oneChapterWorld(): LevelEditorProjectV2 {
   const candidate = (candidateId: string) => ({ source: "candidate" as const, candidateId });
   const base = createWorldEditorProject({
     projectId: "family-a1-check",
-    catalogVersion: "parody-catalog-v7",
+    catalogVersion: "parody-catalog-v8",
   });
   const result = applyLevelEditorCommands(base, {
     expectedRevision: 0,
@@ -117,7 +117,8 @@ function oneChapterWorld(): LevelEditorProjectV2 {
       chapter.assign("ordinary-2", candidate(FAMILY_A1_CAST.ordinary.id)),
       chapter.assign("ordinary-3", candidate(FAMILY_A1_CAST.ordinary.id)),
       chapter.assign("ordinary-4", candidate(FAMILY_A1_CAST.ordinary.id)),
-      chapter.addCandidate("boss", FAMILY_A1_CAST.boss),
+      // The bully cat's model is registered in parody-catalog-v8.
+      chapter.assign("boss", FAMILY_A1_CAST.boss),
     ],
   });
   if (!result.ok)

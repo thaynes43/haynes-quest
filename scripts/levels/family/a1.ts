@@ -37,6 +37,7 @@ import type {
   AuthoredLevelPiece,
 } from "../../../src/shared/authored-level.js";
 import type {
+  LevelEditorEncounterReference,
   LevelEditorEnemyCandidate,
   WorldEditorLevelDocument,
 } from "../../../src/shared/editor-project.js";
@@ -628,12 +629,14 @@ export function familyA1ShellChapter(chapterId: string): WorldShellChapter {
 }
 
 /**
- * A1's cast as project candidates (catalog v7 has no toon-clubhouse entries
- * yet): one ordinary identity for all four ordinary slots (R11) and the boss.
+ * A1's cast (WORLD-SPEC): one ordinary identity for all four ordinary slots
+ * (R11), a project candidate until its model lands, and the boss, whose
+ * Blender model is registered in parody-catalog-v8 (DESIGN-026), assigned by
+ * its exact catalog reference.
  */
 export const FAMILY_A1_CAST: Readonly<{
   ordinary: LevelEditorEnemyCandidate;
-  boss: LevelEditorEnemyCandidate;
+  boss: LevelEditorEncounterReference;
 }> = Object.freeze({
   ordinary: {
     id: "gadget-helper",
@@ -648,15 +651,8 @@ export const FAMILY_A1_CAST: Readonly<{
     behaviorPreset: "ordinary-a",
   },
   boss: {
-    id: "clubhouse-bully-cat",
-    name: "Captain Bully Cat",
-    periodId: "toon-clubhouse-v1",
-    recognizableReference: "classic toon-clubhouse bully cat captain",
-    visualJoke: "peg-leg swagger and a big belly bounce",
-    obstacleOrAttack: "stomps and belly-bumps",
-    eligibility: { startDate: "2006-05-05", endDate: "2016-11-06" },
-    role: "boss",
-    kind: "boss",
-    behaviorPreset: "boss",
+    source: "catalog",
+    catalogEntryId: "clubhouse-bully-cat",
+    catalogEntryVersion: "v001",
   },
 });

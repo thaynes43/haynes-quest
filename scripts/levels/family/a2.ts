@@ -46,7 +46,10 @@ import {
   type AuthoredPosition,
   type AuthoredSweeperPiece,
 } from "../../../src/shared/authored-level.js";
-import type { WorldEditorLevelDocument } from "../../../src/shared/editor-project.js";
+import type {
+  LevelEditorEnemyCandidate,
+  WorldEditorLevelDocument,
+} from "../../../src/shared/editor-project.js";
 import { FAMILY_WORLD_LINT_PRESETS } from "../../../src/shared/family-world-lint.js";
 import {
   bounce,
@@ -750,3 +753,41 @@ export function familyA2Level(): WorldEditorLevelDocument {
     decor: decorEntries(),
   };
 }
+
+const HARBOR_WINDOW = Object.freeze({ startDate: "2013-08-12", endDate: "2026-12-31" });
+
+/**
+ * A2's cast (WORLD-SPEC, verbatim), as project candidates in the
+ * rescue-harbor-v1 period until their models land. The mischief kitten is the
+ * one ordinary identity: it fills all four ordinary slots and bonus-1 with
+ * kind ordinary-a (R11). The rival mayor is the boss.
+ */
+export const FAMILY_A2_CAST: Readonly<{
+  ordinary: LevelEditorEnemyCandidate;
+  boss: LevelEditorEnemyCandidate;
+}> = Object.freeze({
+  ordinary: Object.freeze<LevelEditorEnemyCandidate>({
+    id: "mischief-kitten",
+    name: "Mischief Kitten",
+    periodId: "rescue-harbor-v1",
+    recognizableReference: "the mayor's naughty kitten crew",
+    visualJoke: "pounces then gets distracted",
+    obstacleOrAttack: "pounce",
+    eligibility: HARBOR_WINDOW,
+    role: "ordinary",
+    kind: "ordinary-a",
+    behaviorPreset: "ordinary-a",
+  }),
+  boss: Object.freeze<LevelEditorEnemyCandidate>({
+    id: "rival-mayor",
+    name: "Mayor Humdrum",
+    periodId: "rescue-harbor-v1",
+    recognizableReference: "scheming rival-town mayor from rescue-pup cartoons",
+    visualJoke: "a remote that never does what he wants",
+    obstacleOrAttack: "zaps with his remote contraption",
+    eligibility: HARBOR_WINDOW,
+    role: "boss",
+    kind: "boss",
+    behaviorPreset: "boss",
+  }),
+});

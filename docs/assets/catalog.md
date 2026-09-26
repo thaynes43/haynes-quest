@@ -5,7 +5,7 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. Arcade and toybox kits remain studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
+Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
 **42 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
@@ -438,7 +438,7 @@ Browse each clearing piece and the arcade, toybox and Rat Casino scenery separat
 
 ### [Midnight arcade cabinet](reviews/midnight-arcade-kit/v001.md#arcade-cabinet)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Ready for Tom · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/38c349cd1fdf003b.webp" alt="Inspiration for Midnight arcade cabinet" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -450,7 +450,7 @@ Browse each clearing piece and the arcade, toybox and Rat Casino scenery separat
 
 ### [Midnight joystick bollard](reviews/midnight-arcade-kit/v001.md#joystick-bollard)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Ready for Tom · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/38c349cd1fdf003b.webp" alt="Inspiration for Midnight joystick bollard" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -462,7 +462,7 @@ Browse each clearing piece and the arcade, toybox and Rat Casino scenery separat
 
 ### [Skyline toybox block tower](reviews/skyline-toybox-kit/v001.md#block-tower)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Ready for Tom · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/14a4da7f33f28300.webp" alt="Inspiration for Skyline toybox block tower" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -474,7 +474,7 @@ Browse each clearing piece and the arcade, toybox and Rat Casino scenery separat
 
 ### [Skyline toybox safety rail](reviews/skyline-toybox-kit/v001.md#safety-rail)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Ready for Tom · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/14a4da7f33f28300.webp" alt="Inspiration for Skyline toybox safety rail" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
@@ -486,7 +486,7 @@ Browse each clearing piece and the arcade, toybox and Rat Casino scenery separat
 
 ### [Skyline toybox wind-up lantern](reviews/skyline-toybox-kit/v001.md#windup-lantern)
 
-<span class="catalog-state">3D model · v001 · Ready for Tom · Studio only</span>
+<span class="catalog-state">3D model · v001 · Ready for Tom · In playtest</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/14a4da7f33f28300.webp" alt="Inspiration for Skyline toybox wind-up lantern" loading="lazy" decoding="async" width="68" height="50"><span>Inspiration included</span></div>
 
