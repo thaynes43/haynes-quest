@@ -725,7 +725,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate; ready for Tom review; studio only",
+      "state": "completed static model candidate; ready for Tom review; exact v001 placed as scenery in the private family world template Clubhouse to Casino (family world A)",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/skyline-toybox-kit/v001/concept.png": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa",
         "docs/assets/media/skyline-toybox-kit/v001/block-tower-beauty.png": "21db526ce28bb6332899d6486a85a8bb3d5783bad6ae821bc45022400768a38e",
@@ -749,7 +750,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate; ready for Tom review; studio only",
+      "state": "completed static model candidate; ready for Tom review; exact v001 placed as scenery in the private family world template Clubhouse to Casino (family world A)",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/skyline-toybox-kit/v001/concept.png": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa",
         "docs/assets/media/skyline-toybox-kit/v001/safety-rail-beauty.png": "7a12ebc0746b33219d679bc8cecd96139188cd5a02d2ec6874fcd0babc736c09",
@@ -773,13 +775,13 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate; ready for Tom review; scenery in the private family World B (The Magic House)",
+      "state": "completed static model candidate; ready for Tom review; exact v001 placed as scenery in the private family world templates Clubhouse to Casino (family world A) and Playroom to Big Stage (family world B)",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/skyline-toybox-kit/v001/concept.png": "384cd2a3ccae6d1debacd90377b538d7319290ce250ba84462473ef8746485fa",
         "docs/assets/media/skyline-toybox-kit/v001/windup-lantern-beauty.png": "7ab5237cbdd6659b355fc8f336f34a7043d6e30edb98afaf24587806d15bd3e4",
         "docs/assets/media/skyline-toybox-kit/v001/windup-lantern.glb": "fc6bdef3e83df930abc7cdaf4d898a8e4bed0c1476f7496fb3ff3aa54ac33948"
-      },
-      "gameplay_use": "private-candidate"
+      }
     },
     {
       "id": "midnight-ticket-arch",
@@ -822,7 +824,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate; ready for Tom review; studio only",
+      "state": "completed static model candidate; ready for Tom review; exact v001 placed as scenery in the private family world template Clubhouse to Casino (family world A)",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/midnight-arcade-kit/v001/concept.png": "77806c6609dcbe2833b389cb334f7ea1b0fbbd79ac80551ef79d86ddad3ec45b",
         "docs/assets/media/midnight-arcade-kit/v001/arcade-cabinet-beauty.png": "22d60dd4c6a47fc8f7531797fae8e89ebf7855dff6815fee834dce9f1bc678e8",
@@ -846,7 +849,8 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate; ready for Tom review; studio only",
+      "state": "completed static model candidate; ready for Tom review; exact v001 placed as scenery in the private family world template Clubhouse to Casino (family world A)",
+      "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/midnight-arcade-kit/v001/concept.png": "77806c6609dcbe2833b389cb334f7ea1b0fbbd79ac80551ef79d86ddad3ec45b",
         "docs/assets/media/midnight-arcade-kit/v001/joystick-bollard-beauty.png": "b073c250e4dfa2d85709dea9fd021a734e8b9d1eb878ca0c1e75b0ca7237a77d",
@@ -1176,7 +1180,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay; exact v001 also placed as scenery in the private family world template Clubhouse to Casino (family world A)",
       "checksums": {
         "docs/assets/media/clearing-tree/v001/clearing-tree.glb": "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9"
       },
@@ -1199,7 +1203,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay; exact v001 also placed as scenery in the private family world template Clubhouse to Casino (family world A)",
       "checksums": {
         "docs/assets/media/clearing-stone/v001/clearing-stone.glb": "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7"
       },
@@ -1222,7 +1226,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed candidate; ready for Tom review; not approved for normal gameplay",
+      "state": "completed candidate; ready for Tom review; not approved for normal gameplay; exact v001 also placed as scenery in the private family world template Clubhouse to Casino (family world A)",
       "checksums": {
         "docs/assets/media/arrival-landmark/v001/arrival-landmark.glb": "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63"
       },

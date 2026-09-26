@@ -411,30 +411,37 @@ interface Candidate {
   readonly detoured: boolean;
 }
 
-/** A committed crossing: the simulation after it, and how it waited. */
-export interface PatientLeg {
-  readonly simulation: GrowthSimulation;
-  /** Frames stood still for a sweeper window before or at the takeoff. */
+/** One leg's committed plan from `planPatientLeg`. */
+export interface PatientLegPlan {
+  readonly plan: RouteLegPlan;
+  /** Frames spent standing for a sweeper window before or at the takeoff. */
   readonly waitFrames: number;
-  /** Whether the approach walked around a sweeper zone. */
+  /** Whether the approach walks around a sweeper zone on the current deck. */
   readonly detoured: boolean;
+  /** The simulation after the leg, when the plan crosses without a recovery. */
+  readonly result: GrowthSimulation;
 }
 
 /**
- * One patient crossing of `connection` from the simulation's current state.
- * It looks ahead on copies of the simulation: first the plain approach, then
- * a walk around the sweeper zones on the current deck, then waits (before
- * walking or at the takeoff) in `waitStepSeconds` steps up to
- * `maxWaitSeconds`, at each sideways offset. It returns the first copy that
- * crosses without a recovery, preferring the shortest wait, or null. The
- * given simulation is never advanced.
+ * The patient kid's choice for one leg, from the simulation's current state
+ * (which it never mutates). It looks ahead on copies: first the plain
+ * approach, then a walk around the sweeper zones on the current deck, then
+ * waits (before walking or at the takeoff) in `waitStepSeconds` steps up to
+ * `maxWaitSeconds`, at each sideways offset. It returns the first plan that
+ * crosses without a recovery, preferring the shortest wait, or null.
+ *
+ * The browser lockstep pilots (`tests/e2e/family-world-lockstep.ts` and
+ * `tests/e2e/family-world.ts`) call this from the live game state before each
+ * leg, so the scripted kid and the browser run share one planner. A
+ * simulation with `frameSeconds` plans in that frame length, and one with a
+ * `trace` records every planned frame in `result.trace`.
  */
 export function planPatientLeg(
   level: ResolvedAuthoredLevel,
   simulation: GrowthSimulation,
   connection: AuthoredConnection,
   options: PatientRouteOptions = {},
-): PatientLeg | null {
+): PatientLegPlan | null {
   const course = level.course;
   const proportions = getAvatarProportions(simulation.stage);
   const longestCycle = Math.max(0, ...(course.hazards ?? []).map(hazardCycleSeconds));
@@ -488,7 +495,7 @@ export function planPatientLeg(
   for (const candidate of candidates()) {
     const trial = fork(simulation);
     if (runRouteLeg(trial, connection, candidate.plan) && trial.recoveries === simulation.recoveries)
-      return { simulation: trial, waitFrames: candidate.waitFrames, detoured: candidate.detoured };
+      return { ...candidate, result: trial };
   }
   return null;
 }
@@ -496,10 +503,9 @@ export function planPatientLeg(
 /**
  * The patient scripted kid, for R10 pacing evidence. Like `runGrowthRoute`
  * it walks to each takeoff point, waits for lifts and ferries, and crosses,
- * one state and one clock through `stepObby`. Each crossing is a
- * `planPatientLeg`: it commits the first look-ahead plan that crosses without
- * a recovery, preferring the shortest wait, so the run's `seconds` include
- * the time a careful child spends waiting for a sweeper to pass.
+ * one state and one clock through `stepObby`. Before each crossing it commits
+ * the plan `planPatientLeg` chooses, so the run's `seconds` include the time
+ * a careful child spends waiting for a sweeper to pass.
  */
 export function runGrowthRouteWithWaits(
   level: ResolvedAuthoredLevel,
@@ -521,15 +527,15 @@ export function runGrowthRouteWithWaits(
     );
     const label = `${fromId}->${toId}`;
     if (!connection) return finish(label);
-    const leg = planPatientLeg(level, simulation, connection, options);
-    if (!leg) {
+    const adopted = planPatientLeg(level, simulation, connection, options);
+    if (!adopted) {
       // Report a real attempt: the plain approach, on the committed state.
       runRouteLeg(simulation, connection, options.dropStyle === undefined ? {} : { dropStyle: options.dropStyle });
       return finish(label);
     }
-    simulation = leg.simulation;
-    hazardWaitFrames += leg.waitFrames;
-    if (leg.detoured) detours.push(label);
+    simulation = adopted.result;
+    hazardWaitFrames += adopted.waitFrames;
+    if (adopted.detoured) detours.push(label);
     completed.push(label);
   }
   return finish(null);

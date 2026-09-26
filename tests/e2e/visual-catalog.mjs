@@ -95,6 +95,15 @@ const integratedAssetIds = [
   "rat-casino-marquee-arch",
   "rat-casino-roulette-dais",
   "rat-casino-slot-cabinet",
+  // Shared-kit scenery placed by the family world template (PLAN-019).
+  "clearing-tree",
+  "clearing-stone",
+  "arrival-landmark",
+  "toybox-block-tower",
+  "toybox-safety-rail",
+  "toybox-windup-lantern",
+  "midnight-arcade-cabinet",
+  "midnight-joystick-bollard",
 ];
 
 function sha256(bytes) {

@@ -630,7 +630,7 @@ async function playChapter(browser: Browser, chapter: ChapterSource): Promise<Ch
         await idle(15);
         continue;
       }
-      const trace = leg.simulation.trace ?? [];
+      const trace = leg.result.trace ?? [];
       if (await replay(trace, label, inspection.recoveries)) {
         report.legs.push({ edge: label, frames: trace.length, plans: attempt + 1 });
         log(`crossed ${label} (${trace.length} frames, plan ${attempt + 1})`);
