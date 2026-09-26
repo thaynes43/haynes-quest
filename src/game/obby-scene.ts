@@ -62,6 +62,19 @@ export class ObbyScene {
             ),
           );
       }
+      if (platform.crumble) {
+        // DESIGN-025 crumbling platforms: a zig-zag of crack lines on the top.
+        for (const [index, x] of [-0.3, 0, 0.3].entries()) {
+          const crack = shapeMesh(
+            new THREE.BoxGeometry(0.05, 0.01, Math.max(0.2, length * 0.7)),
+            material(palette.platformEdge),
+            [x * width, depth / 2 + 0.006, 0],
+          );
+          crack.rotation.y = (index - 1) * 0.5;
+          crack.name = `crumble-crack-${platform.id}-${index}`;
+          root.add(crack);
+        }
+      }
       if (platform.bounce) {
         // DESIGN-025 bounce pads: a bright spring disc on top of the slab.
         const spring = new THREE.Group();

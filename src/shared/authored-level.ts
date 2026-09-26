@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import type { ObbyCourse } from "../game/obby";
+import { decorWorldBounds, themeKitProp } from "./theme-kits";
 import {
   BOUNCE_PAD_VELOCITY,
   REQUIRABLE_GROWTH_MOVES,
@@ -152,20 +153,45 @@ export interface AuthoredBouncePadPiece {
   readonly strength: BouncePadStrength;
 }
 
+/**
+ * A v4 crumbling platform: it shakes for 0.8 s after the first touch, drops
+ * away, and returns 3 s later. Branch routes only.
+ */
+export interface AuthoredCrumblePiece {
+  readonly type: "crumble";
+  readonly id: string;
+  readonly center: AuthoredPosition;
+  readonly size: AuthoredPosition;
+}
+
 export type AuthoredLevelPiece =
   | AuthoredPlatformPiece
   | AuthoredMovingPlatformPiece
   | AuthoredSweeperPiece
   | AuthoredCheckpointPiece
   | AuthoredLiftPiece
-  | AuthoredBouncePadPiece;
+  | AuthoredBouncePadPiece
+  | AuthoredCrumblePiece;
 
 /** Every piece that is a solid, standable box. */
 export type AuthoredSurfacePiece =
   | AuthoredPlatformPiece
   | AuthoredMovingPlatformPiece
   | AuthoredLiftPiece
-  | AuthoredBouncePadPiece;
+  | AuthoredBouncePadPiece
+  | AuthoredCrumblePiece;
+
+/**
+ * A v4 non-colliding prop instance from the theme-kit registry
+ * (DESIGN-025 D-04/D-05). `position` is the prop's floor centre.
+ */
+export interface AuthoredDecor {
+  readonly id: string;
+  readonly kitPropId: string;
+  readonly position: AuthoredPosition;
+  readonly rotationY: number;
+  readonly scale: number;
+}
 
 export interface AuthoredConnection {
   readonly from: string;
@@ -222,6 +248,8 @@ export interface AuthoredLevelDocument {
   readonly mainPath: readonly string[];
   readonly branches: readonly (readonly string[])[];
   readonly anchors: AuthoredLevelAnchors;
+  /** V4 only; absent means no placed props. */
+  readonly decor?: readonly AuthoredDecor[];
 }
 
 export interface AuthoredLevelGraph {
@@ -298,6 +326,14 @@ export const AUTHORED_LEVEL_V4_LIMITS = Object.freeze({
   maxLiftDistance: 8,
   minLiftPeriod: 4,
   maxLiftPeriod: 20,
+  crumbleShakeSeconds: 0.8,
+  crumbleDownSeconds: 3,
+  maxDecor: 200,
+  minDecorScale: 0.25,
+  maxDecorScale: 4,
+  /** Walkable volume above a standing top, and the overhead-trim clearance. */
+  walkableHeight: 2.4,
+  overheadClearance: 3,
 } as const);
 
 const ID_PATTERN = /^[a-z][a-z0-9-]{0,79}$/;
@@ -465,6 +501,14 @@ const bouncePadPieceSchema = z
     strength: z.enum(["small", "big"]),
   })
   .strict();
+const crumblePieceSchema = z
+  .object({
+    type: z.literal("crumble"),
+    id: identifierSchema,
+    center: positionSchema,
+    size: positiveSizeSchema,
+  })
+  .strict();
 /** V4 accepts every published piece plus the growth-course pieces. */
 export const authoredLevelV4PieceSchema = z.discriminatedUnion("type", [
   platformPieceSchema,
@@ -473,7 +517,20 @@ export const authoredLevelV4PieceSchema = z.discriminatedUnion("type", [
   checkpointPieceSchema,
   liftPieceSchema,
   bouncePadPieceSchema,
+  crumblePieceSchema,
 ]);
+export const authoredDecorSchema = z
+  .object({
+    id: identifierSchema,
+    kitPropId: identifierSchema,
+    position: positionSchema,
+    rotationY: z.number().min(-Math.PI * 2).max(Math.PI * 2),
+    scale: z
+      .number()
+      .min(AUTHORED_LEVEL_V4_LIMITS.minDecorScale)
+      .max(AUTHORED_LEVEL_V4_LIMITS.maxDecorScale),
+  })
+  .strict();
 const connectionV1Schema = z
   .object({
     from: identifierSchema,
@@ -624,6 +681,10 @@ const authoredLevelV4DocumentSchema = z
     connections: z
       .array(authoredLevelV4ConnectionSchema)
       .max(AUTHORED_LEVEL_LIMITS.maxConnections),
+    decor: z
+      .array(authoredDecorSchema)
+      .max(AUTHORED_LEVEL_V4_LIMITS.maxDecor)
+      .optional(),
   })
   .strict();
 
@@ -646,7 +707,8 @@ export function isAuthoredSurfacePiece(
     piece.type === "platform" ||
     piece.type === "moving-platform" ||
     piece.type === "lift" ||
-    piece.type === "bounce-pad"
+    piece.type === "bounce-pad" ||
+    piece.type === "crumble"
   );
 }
 
@@ -2045,8 +2107,10 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       );
   }
 
-  if (document.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V4)
+  if (document.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V4) {
     validateGrowthPieces(document, platforms, hazards, issues);
+    validateDecor(document, platforms, staticPlatforms, issues);
+  }
 
   return sortedIssues(issues);
 }
@@ -2150,6 +2214,48 @@ function validateGrowthPieces(
           "lift.top-landing",
           "The lift's top stop needs a ride connection to a landing within jump height",
         );
+    } else if (piece.type === "crumble") {
+      if (document.mainPath.includes(piece.id))
+        issue(
+          issues,
+          `${path}.id`,
+          "crumble.main-path",
+          "A crumbling platform may only be used on an optional branch route",
+        );
+      const footprint = staticPlatformBounds({ ...piece, type: "platform" });
+      const anchorEnvelopes: Array<readonly [string, HorizontalBounds]> = [
+        ["spawn", pointEnvelope(document.anchors.spawn.position)],
+        ["finish", pointEnvelope(document.anchors.finish.position)],
+        ["reward respawn", pointEnvelope(document.anchors.rewardRespawn.position)],
+        ...Object.entries(document.anchors.pickups).map(
+          ([slot, anchor]) => [`pickup ${slot}`, pointEnvelope(anchor.position)] as const,
+        ),
+        ...Object.entries(document.anchors.memories).map(
+          ([slot, anchor]) => [`memory ${slot}`, pointEnvelope(anchor.position)] as const,
+        ),
+        ...Object.entries(document.anchors.friendlies).map(
+          ([slot, anchor]) => [`friendly ${slot}`, pointEnvelope(anchor.position)] as const,
+        ),
+        ...Object.entries(document.anchors.encounters).map(
+          ([slot, anchor]) => [`encounter ${slot}`, encounterStrikeEnvelope(anchor)] as const,
+        ),
+        ...document.pieces.flatMap((candidate) => {
+          if (candidate.type !== "checkpoint") return [];
+          const support = platforms.get(candidate.platformId);
+          return support?.type === "platform"
+            ? [[`checkpoint ${candidate.id}`, checkpointEnvelope(candidate, support)] as const]
+            : [];
+        }),
+      ];
+      for (const [label, envelope] of anchorEnvelopes) {
+        if (rectanglesHaveInteriorOverlap(footprint, envelope))
+          issue(
+            issues,
+            path,
+            "crumble.objective",
+            `A crumbling platform must not lie under or over the ${label}`,
+          );
+      }
     } else if (piece.type === "bounce-pad") {
       const footprint = staticPlatformBounds({ ...piece, type: "platform" });
       const top = platformTop(piece);
@@ -2188,6 +2294,155 @@ function validateGrowthPieces(
           );
       }
     }
+  });
+}
+
+/** The whole common lane between two surfaces' closest edges, avatar-expanded. */
+function connectionCorridor(
+  from: PlatformPiece,
+  to: PlatformPiece,
+): HorizontalBounds | null {
+  const deltaX = to.center.x - from.center.x;
+  const deltaZ = to.center.z - from.center.z;
+  const travelAxis: HorizontalAxis = Math.abs(deltaX) >= Math.abs(deltaZ) ? "x" : "z";
+  const crossAxis: HorizontalAxis = travelAxis === "x" ? "z" : "x";
+  const direction = (travelAxis === "x" ? deltaX : deltaZ) < 0 ? -1 : 1;
+  const radius = AUTHORED_LEVEL_LIMITS.supportEdgeClearance;
+  const fromCross = platformCenterInterval(from, crossAxis);
+  const toCross = platformCenterInterval(to, crossAxis);
+  const cross: NumericInterval = {
+    min: Math.max(fromCross.min, toCross.min) - radius,
+    max: Math.min(fromCross.max, toCross.max) + radius,
+  };
+  if (cross.max - cross.min <= EPSILON) return null;
+  const fromEdge = from.center[travelAxis] + direction * from.size[travelAxis] / 2;
+  const toEdge = to.center[travelAxis] - direction * to.size[travelAxis] / 2;
+  const travel: NumericInterval = {
+    min: Math.min(fromEdge, toEdge) - radius,
+    max: Math.max(fromEdge, toEdge) + radius,
+  };
+  return travelAxis === "x"
+    ? { minX: travel.min, maxX: travel.max, minZ: cross.min, maxZ: cross.max }
+    : { minX: cross.min, maxX: cross.max, minZ: travel.min, maxZ: travel.max };
+}
+
+interface ProtectedVolume {
+  readonly label: string;
+  readonly bounds: HorizontalBounds;
+  /** The lowest standing height inside the volume. */
+  readonly floor: number;
+  /** The highest standing (or launch apex) height inside the volume. */
+  readonly highest: number;
+}
+
+/**
+ * DESIGN-025 D-04 decor rules: known props from the level's theme kit, and
+ * none inside a walkable volume, connection strip or fight area unless the
+ * whole prop sits at least 3 m above the highest standing height there (the
+ * trailing camera needs that much). Props below a surface are fine.
+ */
+function validateDecor(
+  document: AuthoredLevelDocument,
+  platforms: ReadonlyMap<string, PlatformPiece>,
+  staticPlatforms: ReadonlyMap<string, AuthoredPlatformPiece>,
+  issues: AuthoredLevelIssue[],
+): void {
+  const decor = document.decor ?? [];
+  if (decor.length === 0) return;
+  const volumes: ProtectedVolume[] = [];
+  for (const platform of platforms.values()) {
+    const range = authoredSurfaceTopRange(platform);
+    volumes.push({
+      label: `the walkable space above ${JSON.stringify(platform.id)}`,
+      bounds: platformBounds(platform),
+      floor: range.min,
+      highest:
+        platform.type === "bounce-pad"
+          ? range.max + bounceApex(platform.strength)
+          : range.max,
+    });
+  }
+  document.connections.forEach((connection, index) => {
+    const from = platforms.get(connection.from);
+    const to = platforms.get(connection.to);
+    if (!from || !to) return;
+    const corridor = connectionCorridor(from, to);
+    if (!corridor) return;
+    const fromRange = authoredSurfaceTopRange(from);
+    const toRange = authoredSurfaceTopRange(to);
+    volumes.push({
+      label: `connection ${index} (${connection.from} to ${connection.to})`,
+      bounds: corridor,
+      floor: Math.min(fromRange.min, toRange.min),
+      highest: Math.max(
+        fromRange.max,
+        toRange.max,
+        from.type === "bounce-pad" ? fromRange.max + bounceApex(from.strength) : 0,
+      ),
+    });
+  });
+  for (const [slot, encounter] of Object.entries(document.anchors.encounters)) {
+    if (!encounter) continue;
+    const support = staticPlatforms.get(encounter.platformId);
+    if (!support) continue;
+    volumes.push({
+      label: `the ${slot} fight area`,
+      bounds: encounterStrikeEnvelope(encounter),
+      floor: platformTop(support),
+      highest: platformTop(support),
+    });
+  }
+
+  const seen = new Map<string, number>();
+  decor.forEach((entry, index) => {
+    const path = `$.decor[${index}]`;
+    const prior = seen.get(entry.id);
+    if (prior !== undefined)
+      issue(
+        issues,
+        `${path}.id`,
+        "decor.duplicate-id",
+        `Decor id ${JSON.stringify(entry.id)} duplicates $.decor[${prior}].id`,
+      );
+    else seen.set(entry.id, index);
+    const prop = themeKitProp(entry.kitPropId);
+    if (!prop) {
+      issue(
+        issues,
+        `${path}.kitPropId`,
+        "decor.kit-prop",
+        `Theme-kit prop ${JSON.stringify(entry.kitPropId)} is not registered`,
+      );
+      return;
+    }
+    if (prop.theme !== document.theme)
+      issue(
+        issues,
+        `${path}.kitPropId`,
+        "decor.theme",
+        `Prop ${JSON.stringify(prop.id)} belongs to the ${prop.theme} kit, not ${document.theme}`,
+      );
+    const world = decorWorldBounds(prop.bounds, entry);
+    const footprint: HorizontalBounds = {
+      minX: world.min.x,
+      maxX: world.max.x,
+      minZ: world.min.z,
+      maxZ: world.max.z,
+    };
+    const blocked = volumes.find(
+      (volume) =>
+        rectanglesHaveInteriorOverlap(footprint, volume.bounds) &&
+        world.max.y > volume.floor + EPSILON &&
+        world.min.y <
+          volume.highest + AUTHORED_LEVEL_V4_LIMITS.overheadClearance - EPSILON,
+    );
+    if (blocked)
+      issue(
+        issues,
+        `${path}.position`,
+        "decor.clearance",
+        `Prop ${JSON.stringify(entry.id)} intersects ${blocked.label}; place it beside the route, below it, or at least ${AUTHORED_LEVEL_V4_LIMITS.overheadClearance}m overhead`,
+      );
   });
 }
 
@@ -2257,6 +2512,19 @@ function courseFor(document: AuthoredLevelDocument): ObbyCourse {
             center: { ...piece.center },
             size: { ...piece.size },
             bounce: { velocity: BOUNCE_PAD_VELOCITY[piece.strength] },
+          },
+        ];
+      }
+      if (piece.type === "crumble") {
+        return [
+          {
+            id: piece.id,
+            center: { ...piece.center },
+            size: { ...piece.size },
+            crumble: {
+              shakeSeconds: AUTHORED_LEVEL_V4_LIMITS.crumbleShakeSeconds,
+              downSeconds: AUTHORED_LEVEL_V4_LIMITS.crumbleDownSeconds,
+            },
           },
         ];
       }

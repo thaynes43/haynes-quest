@@ -180,15 +180,27 @@ function buildSceneEntries(
         root.add(rotationGuide);
       }
       root.add(visual);
-    } else if (piece.type === "lift" || piece.type === "bounce-pad") {
+    } else if (
+      piece.type === "lift" ||
+      piece.type === "bounce-pad" ||
+      piece.type === "crumble"
+    ) {
       // V4 growth pieces (DESIGN-025): a lift is drawn at its bottom stop with
-      // a dashed guide to its top stop; a bounce pad is a bright slab.
+      // a dashed guide to its top stop; a bounce pad is a bright slab; a
+      // crumbling platform is a pale, see-through slab.
       root.position.copy(piece.center);
       const mesh = new THREE.Mesh(
         new THREE.BoxGeometry(piece.size.x, piece.size.y, piece.size.z),
         basicMaterial(
-          selectedColor(active, piece.type === "lift" ? 0x739ba0 : 0xe7a86b),
-          0.9,
+          selectedColor(
+            active,
+            piece.type === "lift"
+              ? 0x739ba0
+              : piece.type === "crumble"
+                ? 0xc9b89a
+                : 0xe7a86b,
+          ),
+          piece.type === "crumble" ? 0.7 : 0.9,
         ),
       );
       mesh.castShadow = true;
@@ -277,7 +289,8 @@ function buildSceneEntries(
       piece.type === "platform" ||
       piece.type === "moving-platform" ||
       piece.type === "lift" ||
-      piece.type === "bounce-pad"
+      piece.type === "bounce-pad" ||
+      piece.type === "crumble"
         ? [[piece.id, piece.center] as const]
         : [],
     ),

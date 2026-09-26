@@ -14,6 +14,11 @@ import {
   type AuthoredSurfacePiece,
 } from "../../src/shared/authored-level.js";
 import {
+  decorWorldBounds,
+  themeKitProp,
+  themeKitPropsFor,
+} from "../../src/shared/theme-kits.js";
+import {
   abilitiesForAge,
   GROWTH_MOVE_PHYSICS,
   GROWTH_MOVE_UNLOCK_AGES,
@@ -309,6 +314,24 @@ function describeChapterSpace(level: LevelEditorLevelDocument) {
       const anchor = ANCHOR_SLOT_READERS[slot](level.anchors);
       return anchor ? [describeAnchor(slot, anchor)] : [];
     }),
+    // V4 only (DESIGN-025 D-05): placed props with their world boxes, and the
+    // props this level's theme kit offers.
+    ...(level.schemaVersion === "authored-level-v4"
+      ? {
+          decor: (level.decor ?? []).map((entry) => {
+            const prop = themeKitProp(entry.kitPropId);
+            return {
+              ...entry,
+              worldBounds: prop ? decorWorldBounds(prop.bounds, entry) : null,
+            };
+          }),
+          themeKitProps: themeKitPropsFor(level.theme).map((prop) => ({
+            id: prop.id,
+            bounds: prop.bounds,
+            model: prop.glb?.url ?? null,
+          })),
+        }
+      : {}),
   };
 }
 

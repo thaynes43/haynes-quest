@@ -28,6 +28,7 @@ import {
   type AuthoredLevelDocument,
   type AuthoredLevelIssue,
   type AuthoredBouncePadPiece,
+  type AuthoredCrumblePiece,
   type AuthoredLevelPiece,
   type AuthoredLiftPiece,
   type AuthoredMovingPlatformPiece,
@@ -146,7 +147,8 @@ type PlatformPiece =
   | AuthoredPlatformPiece
   | AuthoredMovingPlatformPiece
   | AuthoredLiftPiece
-  | AuthoredBouncePadPiece;
+  | AuthoredBouncePadPiece
+  | AuthoredCrumblePiece;
 
 interface HorizontalBounds {
   readonly minX: number;
@@ -268,7 +270,8 @@ function isPlatform(piece: AuthoredLevelPiece): piece is PlatformPiece {
     piece.type === "platform" ||
     piece.type === "moving-platform" ||
     piece.type === "lift" ||
-    piece.type === "bounce-pad"
+    piece.type === "bounce-pad" ||
+    piece.type === "crumble"
   );
 }
 

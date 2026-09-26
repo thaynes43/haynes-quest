@@ -1099,6 +1099,12 @@
             "dj-ledge",
             "golden-perch",
             "sky-balcony"
+          ],
+          [
+            "lift-dock",
+            "crumble-a",
+            "crumble-b",
+            "party-picnic"
           ]
         ],
         "connections": [
@@ -1237,6 +1243,67 @@
             "mode": "jump",
             "requires": "double-jump",
             "to": "sky-balcony"
+          },
+          {
+            "from": "lift-dock",
+            "mode": "jump",
+            "to": "crumble-a"
+          },
+          {
+            "from": "crumble-a",
+            "mode": "jump",
+            "to": "crumble-b"
+          },
+          {
+            "from": "crumble-b",
+            "mode": "jump",
+            "to": "party-picnic"
+          }
+        ],
+        "decor": [
+          {
+            "id": "welcome-arch",
+            "kitPropId": "party-arch",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 4.7
+            },
+            "rotationY": 0,
+            "scale": 1.2
+          },
+          {
+            "id": "welcome-balloons-left",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": -5.6,
+              "y": 0,
+              "z": 1.5
+            },
+            "rotationY": 0,
+            "scale": 1
+          },
+          {
+            "id": "welcome-balloons-right",
+            "kitPropId": "party-balloon-post",
+            "position": {
+              "x": 5.6,
+              "y": 0,
+              "z": 1.5
+            },
+            "rotationY": 0,
+            "scale": 1
+          },
+          {
+            "id": "floor-gifts",
+            "kitPropId": "party-gift-stack",
+            "position": {
+              "x": -6.9,
+              "y": 0,
+              "z": -8
+            },
+            "rotationY": 0.4,
+            "scale": 1
           }
         ],
         "id": "chapter-2-route",
@@ -1783,6 +1850,34 @@
               "z": -16.2
             },
             "type": "checkpoint"
+          },
+          {
+            "center": {
+              "x": 4.8,
+              "y": 0,
+              "z": -24
+            },
+            "id": "crumble-a",
+            "size": {
+              "x": 2.4,
+              "y": 0.6,
+              "z": 2.4
+            },
+            "type": "crumble"
+          },
+          {
+            "center": {
+              "x": 4.8,
+              "y": 0,
+              "z": -27.4
+            },
+            "id": "crumble-b",
+            "size": {
+              "x": 2.4,
+              "y": 0.6,
+              "z": 2.4
+            },
+            "type": "crumble"
           }
         ],
         "schemaVersion": "authored-level-v4",

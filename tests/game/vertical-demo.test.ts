@@ -69,7 +69,7 @@ describe("vertical-v4 demo world (DESIGN-025, WO107)", () => {
     expect(serializeLevelEditorProject(rebuilt.project)).toBe(projectSource);
   });
 
-  it("opts only the growth chapter into authored-level-v4 and uses every PR-1 piece", () => {
+  it("opts only the growth chapter into authored-level-v4 and uses every new piece", () => {
     expect(resolved.project.chapters.map((entry) => entry.level.schemaVersion)).toEqual([
       "authored-level-v3",
       "authored-level-v4",
@@ -77,6 +77,11 @@ describe("vertical-v4 demo world (DESIGN-025, WO107)", () => {
     const types = new Set(level.document.pieces.map((piece) => piece.type));
     expect(types.has("lift")).toBe(true);
     expect(types.has("bounce-pad")).toBe(true);
+    expect(types.has("crumble")).toBe(true);
+    expect(level.document.decor?.length).toBeGreaterThanOrEqual(4);
+    // Crumbling platforms stay on optional branches.
+    for (const piece of level.document.pieces)
+      if (piece.type === "crumble") expect(mainPath).not.toContain(piece.id);
     const required = new Set(mainEdges.map((edge) => edge.requires ?? edge.mode));
     expect(required).toEqual(
       new Set(["high-jump", "double-jump", "walk", "bounce", "ride", "jump"]),

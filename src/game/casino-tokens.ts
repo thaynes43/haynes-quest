@@ -1,4 +1,7 @@
-import type { AuthoredLevelDocument } from "../shared/authored-level";
+import {
+  AUTHORED_LEVEL_SCHEMA_VERSION_V4,
+  type AuthoredLevelDocument,
+} from "../shared/authored-level";
 import type { ObbyCourse, ObbyPlatform } from "./obby";
 import type { PositionSnapshot } from "./types";
 
@@ -173,7 +176,8 @@ function anchorPositions(document: AuthoredLevelDocument): PositionSnapshot[] {
 }
 
 /**
- * Plans casino tokens and golden tickets for a `casino` themed authored level.
+ * Plans casino tokens and golden tickets for a `casino` themed authored level,
+ * and themed trails for every authored-level-v4 level (DESIGN-025 D-04).
  * Returns `null` for every other level so the gentle courses stay unchanged.
  */
 export function planCasinoCollectibles(
@@ -181,7 +185,13 @@ export function planCasinoCollectibles(
 ): CollectiblePlan | null {
   const document = level.authored;
   const course = level.course;
-  if (!document || !course || document.theme !== "casino") return null;
+  if (
+    !document ||
+    !course ||
+    (document.theme !== "casino" &&
+      document.schemaVersion !== AUTHORED_LEVEL_SCHEMA_VERSION_V4)
+  )
+    return null;
   const platforms = new Map(course.platforms.map((entry) => [entry.id, entry]));
   const anchors = anchorPositions(document);
   const hazards = course.hazards.map((hazard) => ({
@@ -281,7 +291,8 @@ export function planCasinoCollectibles(
     entry: { x: number; z: number },
     exit: { x: number; z: number },
   ): void => {
-    if (platform.motion) return;
+    // Moving, crumbling and bouncing surfaces carry no trail of their own.
+    if (platform.motion || platform.crumble || platform.bounce) return;
     const rect = rectOf(platform);
     const y = topOf(platform) + trailHeight;
     const start = clampInside(rect, entry);
@@ -380,7 +391,9 @@ export function planCasinoCollectibles(
         (entry): entry is { platform: ObbyPlatform; index: number } =>
           Boolean(entry.platform) &&
           !mainRoute.has(entry.platform!.id) &&
-          !entry.platform!.motion,
+          !entry.platform!.motion &&
+          !entry.platform!.crumble &&
+          !entry.platform!.bounce,
       );
     if (!candidates.length) continue;
     // Highest first; on a tie, the platform furthest along the detour.

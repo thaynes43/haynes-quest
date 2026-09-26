@@ -11,7 +11,9 @@
  *   --bounce--> sky balcony --ride--> lift (down) --ride--> dock --> picnic
  *
  * Both first uses of a new move sit over a catch floor (practice stretches).
- * An optional branch climbs past the pad with two double jumps.
+ * An optional branch climbs past the pad with two double jumps to a perch
+ * that holds the golden collectible; a second hops across two crumbling
+ * platforms beside the dock. Party-kit props frame the spawn deck.
  *
  * Without `--write` it prints the command batch. With it, it rewrites the
  * checked-in commands and project fixture that `pnpm levels:validate` replays.
@@ -29,6 +31,8 @@ import {
   bounce,
   bouncePad,
   chapterCommands,
+  crumble,
+  decor,
   jump,
   lift,
   platform,
@@ -145,6 +149,22 @@ export function verticalDemoCommands(): LevelEditorCommandBatch {
       "party-reward",
     ]),
     chapter.branch(["dj-ledge", "golden-perch", "sky-balcony"]),
+
+    // A crumbling detour beside the dock: keep moving or drop.
+    chapter.add(crumble("crumble-a", { x: 4.8, z: -24, sizeX: 2.4, sizeZ: 2.4, top: 0.3 })),
+    chapter.add(crumble("crumble-b", { x: 4.8, z: -27.4, sizeX: 2.4, sizeZ: 2.4, top: 0.3 })),
+    chapter.connect(jump("lift-dock", "crumble-a")),
+    chapter.connect(jump("crumble-a", "crumble-b")),
+    chapter.connect(jump("crumble-b", "party-picnic")),
+    chapter.branch(["lift-dock", "crumble-a", "crumble-b", "party-picnic"]),
+
+    // Party-kit props beside the route (never on a walkable surface).
+    chapter.addDecor(decor("welcome-arch", "party-arch", { x: 0, y: 0, z: 4.7 }, { scale: 1.2 })),
+    chapter.addDecor(decor("welcome-balloons-left", "party-balloon-post", { x: -5.6, y: 0, z: 1.5 })),
+    chapter.addDecor(decor("welcome-balloons-right", "party-balloon-post", { x: 5.6, y: 0, z: 1.5 })),
+    chapter.addDecor(
+      decor("floor-gifts", "party-gift-stack", { x: -6.9, y: 0, z: -8 }, { rotationY: 0.4 }),
+    ),
   ];
   return { expectedRevision: 0, commands };
 }

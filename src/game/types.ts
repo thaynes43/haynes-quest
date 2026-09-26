@@ -181,6 +181,11 @@ export interface GameStatus {
   mediaReloadRequired?: boolean;
   /** Casino tokens and golden tickets this run; absent on other chapters. */
   collectibles?: import("./casino-tokens").CollectibleCounts | null;
+  /**
+   * Themed names for a v4 trail (DESIGN-025 D-05); absent means the casino's
+   * tokens and golden tickets.
+   */
+  collectibleNames?: import("./theme-kits").TrailNames;
 }
 
 export interface MemoryPlacementInspection extends PositionSnapshot {

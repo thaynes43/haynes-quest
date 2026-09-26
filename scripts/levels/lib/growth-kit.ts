@@ -15,6 +15,8 @@ import type {
   AuthoredBouncePadPiece,
   AuthoredCheckpointPiece,
   AuthoredConnection,
+  AuthoredCrumblePiece,
+  AuthoredDecor,
   AuthoredLevelPiece,
   AuthoredLiftPiece,
   AuthoredPlatformPiece,
@@ -95,6 +97,27 @@ export function bouncePad(id: string, spec: BouncePadSpec): AuthoredBouncePadPie
   return { type: "bounce-pad", id, ...boxOf(spec), strength: spec.strength };
 }
 
+/** A crumbling platform (branch routes only). */
+export function crumble(id: string, spec: SurfaceSpec): AuthoredCrumblePiece {
+  return { type: "crumble", id, ...boxOf(spec) };
+}
+
+/** A placed theme-kit prop; `position` is the prop's floor centre. */
+export function decor(
+  id: string,
+  kitPropId: string,
+  position: { readonly x: number; readonly y: number; readonly z: number },
+  options: { readonly rotationY?: number; readonly scale?: number } = {},
+): AuthoredDecor {
+  return {
+    id,
+    kitPropId,
+    position: { x: mm(position.x), y: mm(position.y), z: mm(position.z) },
+    rotationY: options.rotationY ?? 0,
+    scale: options.scale ?? 1,
+  };
+}
+
 /** A checkpoint armed anywhere on its (static) platform. */
 export function platformCheckpoint(
   id: string,
@@ -161,6 +184,8 @@ export interface ChapterCommands {
   ) => LevelEditorCommand;
   readonly mainPath: (platformIds: readonly string[]) => LevelEditorCommand;
   readonly branch: (platformIds: readonly string[]) => LevelEditorCommand;
+  readonly addDecor: (entry: AuthoredDecor) => LevelEditorCommand;
+  readonly removeDecor: (decorId: string) => LevelEditorCommand;
 }
 
 export function chapterCommands(chapterId: string): ChapterCommands {
@@ -208,5 +233,7 @@ export function chapterCommands(chapterId: string): ChapterCommands {
       chapterId,
       platformIds: [...platformIds],
     }),
+    addDecor: (entry) => ({ type: "decor.add", chapterId, decor: entry }),
+    removeDecor: (decorId) => ({ type: "decor.remove", chapterId, decorId }),
   };
 }
