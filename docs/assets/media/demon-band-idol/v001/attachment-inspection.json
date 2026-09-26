@@ -1,0 +1,272 @@
+{
+  "asset_id": "demon-band-idol",
+  "version": "v001",
+  "glb_sha256": "332f1bfb66d611676b1864e968b5d4657ecfe73698d623541eca4379331df54c",
+  "blend_sha256": "b11910f9d2510b529e41d88cbbc01edc041161c53bac0d948f2f238f5cdc00c9",
+  "method": "WO111 demon-band-idol source-side attachment audit on the live scene that exported the exact GLB.\n\nPer clip and frame (30 fps): triangle-overlap between listed part groups on the evaluated skin (BVH),\nIK joint connectivity (limb heads stay on their parents' tails), the lowest evaluated vertex, and the\nrest reproduction error. Intended contacts are not tested: the right fist round the mic handle, the left\nfist on the hip, sleeve roots inside the jacket and epaulettes, trouser tops inside the seat, strands on\nthe hair cap, the tail root in the seat. Supplements the exact-GLB checks in three-inspection.json; not a\nuniversal collision proof. Adapted from the rival-mayor v001 audit.",
+  "pairs": [
+    "mic~head",
+    "mic~body",
+    "mic~legs",
+    "burst~head",
+    "burst~body",
+    "burst~armL",
+    "charm~body",
+    "armR~head",
+    "armL~head",
+    "armL~legL",
+    "sparkles~head",
+    "tail~legs",
+    "tail~body",
+    "legR~legL",
+    "bow~shins",
+    "fringe~face_skin",
+    "sparkles~face_skin"
+  ],
+  "groups": {
+    "mic": [
+      "mic"
+    ],
+    "burst": [
+      "burst"
+    ],
+    "charm": [
+      "charm"
+    ],
+    "head": [
+      "ear_L",
+      "ear_R",
+      "earring",
+      "fringe_1",
+      "fringe_2",
+      "head"
+    ],
+    "body": [
+      "chest",
+      "hips",
+      "spine"
+    ],
+    "armR": [
+      "forearm_R",
+      "hand_R"
+    ],
+    "armL": [
+      "forearm_L",
+      "hand_L"
+    ],
+    "upperR": [
+      "upper_arm_R"
+    ],
+    "upperL": [
+      "upper_arm_L"
+    ],
+    "legR": [
+      "foot_R",
+      "shin_R",
+      "thigh_R"
+    ],
+    "legL": [
+      "foot_L",
+      "shin_L",
+      "thigh_L"
+    ],
+    "legs": [
+      "foot_L",
+      "foot_R",
+      "shin_L",
+      "shin_R",
+      "thigh_L",
+      "thigh_R"
+    ],
+    "shins": [
+      "foot_L",
+      "foot_R",
+      "shin_L",
+      "shin_R"
+    ],
+    "tail": [
+      "tail_2",
+      "tail_3",
+      "tail_4"
+    ],
+    "sparkles": [
+      "sparkle_L",
+      "sparkle_R"
+    ],
+    "bow": [
+      "bow_1",
+      "bow_2"
+    ],
+    "face_skin": [
+      "part: Lavender idol head with painted wink face"
+    ],
+    "fringe": [
+      "fringe_1/fringe_2-dominant faces of the two fringe swoop strands"
+    ]
+  },
+  "group_face_counts": {
+    "mic": 142,
+    "burst": 462,
+    "charm": 62,
+    "head": 2403,
+    "body": 1194,
+    "armR": 217,
+    "armL": 217,
+    "upperR": 50,
+    "upperL": 50,
+    "legR": 413,
+    "legL": 413,
+    "legs": 826,
+    "shins": 630,
+    "tail": 181,
+    "sparkles": 432,
+    "bow": 98,
+    "face_skin": 512,
+    "fringe": 194
+  },
+  "max_influences": 2,
+  "rest_reproduction_max_error": 1.8596649169921875e-05,
+  "sheet_pose_reproduction_m": {
+    "mic_fist_err_m": 2.0047462056687042e-07,
+    "grille_err_m": 2.2302015940987714e-07,
+    "ankle_R_err_m": 2.7877519926234643e-08,
+    "ankle_L_err_m": 1.9086433138623085e-08,
+    "wrist_L_err_m": 8.764457993544038e-08
+  },
+  "clips": {
+    "idle": {
+      "frames": 91,
+      "overlaps": {
+        "mic~head": 0,
+        "mic~body": 0,
+        "mic~legs": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armL": 0,
+        "charm~body": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "sparkles~head": 0,
+        "tail~legs": 0,
+        "tail~body": 0,
+        "legR~legL": 0,
+        "bow~shins": 0,
+        "fringe~face_skin": 0,
+        "sparkles~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.737759081973225e-07,
+      "lowest_m": 0.003
+    },
+    "move": {
+      "frames": 31,
+      "overlaps": {
+        "mic~head": 0,
+        "mic~body": 0,
+        "mic~legs": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armL": 0,
+        "charm~body": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "sparkles~head": 0,
+        "tail~legs": 0,
+        "tail~body": 0,
+        "legR~legL": 0,
+        "bow~shins": 0,
+        "fringe~face_skin": 0,
+        "sparkles~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.727446474822101e-07,
+      "lowest_m": 0.003
+    },
+    "attack": {
+      "frames": 61,
+      "overlaps": {
+        "mic~head": 0,
+        "mic~body": 0,
+        "mic~legs": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armL": 0,
+        "charm~body": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "sparkles~head": 0,
+        "tail~legs": 0,
+        "tail~body": 0,
+        "legR~legL": 0,
+        "bow~shins": 0,
+        "fringe~face_skin": 0,
+        "sparkles~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.8223486555568887e-07,
+      "lowest_m": 0.003
+    },
+    "hit": {
+      "frames": 22,
+      "overlaps": {
+        "mic~head": 0,
+        "mic~body": 0,
+        "mic~legs": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armL": 0,
+        "charm~body": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "sparkles~head": 0,
+        "tail~legs": 0,
+        "tail~body": 0,
+        "legR~legL": 0,
+        "bow~shins": 0,
+        "fringe~face_skin": 0,
+        "sparkles~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.892304467867506e-07,
+      "lowest_m": 0.003
+    },
+    "defeat": {
+      "frames": 73,
+      "overlaps": {
+        "mic~head": 0,
+        "mic~body": 0,
+        "mic~legs": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armL": 0,
+        "charm~body": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "sparkles~head": 0,
+        "tail~legs": 0,
+        "tail~body": 0,
+        "legR~legL": 0,
+        "bow~shins": 0,
+        "fringe~face_skin": 0,
+        "sparkles~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.959941750461743e-07,
+      "lowest_m": 0.003
+    }
+  },
+  "checks": {
+    "no_listed_part_overlaps_any_frame": true,
+    "limb_joints_stay_connected": true,
+    "no_floor_penetration": true,
+    "rest_controls_reproduce_bind_pose": true,
+    "idle_0_reproduces_sheet_pose": true,
+    "at_most_four_influences": true,
+    "five_clips": true
+  }
+}

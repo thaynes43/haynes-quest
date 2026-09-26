@@ -1,0 +1,60 @@
+{
+  "work_order": "WO111",
+  "asset_id": "demon-band-idol",
+  "version": "v001",
+  "created_utc": "2026-09-26T19:42:32.563353+00:00",
+  "glb_sha256": "332f1bfb66d611676b1864e968b5d4657ecfe73698d623541eca4379331df54c",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Claude Opus 5.5 does the WO111 Blender work",
+  "authoring_tool": "Blender MCP execute_blender_code on the second isolated authoring service (blender-authoring-2), driven by a small streamable-HTTP JSON-RPC client (source/transfer.py)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": {
+    "kind": "Blender reference sheet, no generated concept",
+    "file": "reference-sheet.png",
+    "sha256": "ecdefc9659051d1bc7ab5382743a08ccfe264b051f30f15059acd8a5a14178a3",
+    "notes": "reference-notes.md",
+    "notes_sha256": "ec325da49f97c3c559a2c1a82879a8656e46b8e19ddb32c6925f8efb7000c8d8",
+    "blockout_master": "demon-band-idol-blockout.blend",
+    "blockout_sha256": "876f0e67cc23d866bfaff7dab5f87515af5fba8d70c85c87ee501b96e7525ef9",
+    "coordinator_review": "Approved Sept 26 (SHEET-REVIEWS.md): cute and kid-safe lavender imp with swoopy horned idol hair, a pink sash, sparkle epaulettes, a stage mic, star blush and a wink; the heart-tipped tail must stay readable. Attack: mic spin with a sparkle burst; defeat: a dramatic dizzy bow, held.",
+    "generator": "None. The sheet is a Cycles render of a procedural Blender blockout; no image-generation model was used for this asset."
+  },
+  "source_scripts": {
+    "animate.py": "5ccfb0368483f8a28cc99b7bdfe9e40d87729ee4b9ca0ba5025210697c6efd68",
+    "author_run.py": "ab040875fcf2c09165cff253c528ef91de6657f2595a18ecb90a6ed3ee2d010b",
+    "bounds.json": "51ae074dd50331c1bd0c966972bd4b1a2e5275402e409dc2b224e86509155b33",
+    "build.py": "9935bc513d9ec607be8e54942cfed33d1c6219f876d70b7b9e5fef19677dbb95",
+    "claim_model.py": "bbe72379e51df2aba5b52bcae0ad967c561906ddce1c86e84c95e4f4d4c37acf",
+    "common.py": "4b4305c1058ca017638bb0e4f6eef9c10519fced61d31f2bb38de49273f6a932",
+    "compare.mjs": "5af870df6dc3669b242b4bdfabda58e8d326bf93d56201bbd8dc3ce776885d37",
+    "cycle.sh": "e702284c4ea6131eff924da7acd14514176614e329dd08e66cffe5a3d5d83cfe",
+    "delivery.py": "48cea26cd8d8b2a9d6865f0a78a0fdab4178c3b51b1612ec26b3394a33c12aa8",
+    "diag.py": "cd8e47a4b51f3f352282572355452bf4450341e04e3e87eaaa0c34f44f3d86ed",
+    "grid.mjs": "232de005933ae02fc2f8c59dc6da699fc2de7c2761d0e391c1c3c05e53fa8769",
+    "inspect-attachments.py": "9079bf30d9838fa761648abc809fc2278a8fddaabf000ae2c164727bdee02b97",
+    "inspect-three.mjs": "1d620cffaf19859f8bb5af3ae204c7a92aeca15158e8e5e9c1cecb606b4f76c2",
+    "look.mjs": "01236eb48e5e8ab6c2f71ca9c04be8ac91c01368082969cb6f338997e0c7e573",
+    "make-evidence.py": "3ced3696c7c7e028d32329f1c535f3533d437e0c01d28fb0021d9ef9601d15bf",
+    "paint.py": "2aea6765783cc33d0fd95ffa5d803fb245eb1cdf0ef3a7886c37fbe0afc23417",
+    "paint_test.py": "db2b01d4c517b627cfb56c90b3d12673b25a2d2a4a0e160b2b8e8eaf23f9122a",
+    "preview.mjs": "7b7b031d72d9aa5dd7ff57ebfbe17ef372d0dbc1077ab23de3d12b588c90365f",
+    "probe_hold.py": "c294de4ff89698173420a7ff80f052bc859aa4dcfdf71cd58135198384410cb0",
+    "release_model.py": "519ba2127eefa4e889134cd0744d362af0fb4c837fcc64f72140c938ac93e9f7",
+    "rig.py": "43aedfe110dc790773ed5598716cb17232aa2c577e9be3d38019fdae0b6b51a7",
+    "run_validate.py": "e1700817a09623ca37e78ff704efa7f56033a01eaa67df202b8b0ec55b277916",
+    "transfer.py": "fcaeeba00862041552b942861323d962f3d6d68ad37b016f28a5e990fd7084da",
+    "upload_inputs.py": "7a5059033b1031b0df1f18688a1b94f7856fc6016d6cdfe213078d661a6bf7a1",
+    "validate.mjs": "8c406128eaf44f0749bdc4cf55cbf4cececa7d8d50bbcbe8242914b10d4ca13f"
+  },
+  "original_work": [
+    "Final topology, UVs, weights, 36-joint rig and all five clips are new; the approved blockout supplied measured proportions, colours, parody hooks and (for the sash, bow knot and brooch) sampled positions only.",
+    "Original 1024 painted atlas generated with numpy in Blender Python (paint.py): the wink face, star blush, grin, shirt V, lapel piping and buttons are painted at the blockout decals' projected positions; flat sheet-colour tiles for everything else. No external texture.",
+    "Mesh, UV, transfer, validation and evidence utilities adapted from the WO111 rival-mayor / gadget-helper / honk-bus scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise names, models, faces, logos, costumes, lettering, recordings or textures."
+  ],
+  "rights_note": "Original authored study. No exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; the owner exact-version and physical-device review remain open."
+}

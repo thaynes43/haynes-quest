@@ -185,6 +185,20 @@
       "sha256": "d1dbe95cb4f88b1e713d6a7f287dd47376944ffe5a8768018e25728ed27e8769"
     },
     {
+      "source": "docs/assets/media/demon-band-idol/v001/beauty.png",
+      "source_sha256": "c4b03d54980d488c11e33b0ffc253f392beb44cc4ed89423a4ea7d65c5b6e753",
+      "path": "docs/assets/media/catalog-thumbnails/v001/7ad8d8a34d988a9a.webp",
+      "bytes": 8826,
+      "sha256": "e433855011909bb5f0a496cd7418212247cc57775c90cee62d347fa22d6686c6"
+    },
+    {
+      "source": "docs/assets/media/demon-band-idol/v001/reference-sheet.png",
+      "source_sha256": "ecdefc9659051d1bc7ab5382743a08ccfe264b051f30f15059acd8a5a14178a3",
+      "path": "docs/assets/media/catalog-thumbnails/v001/b6b3096ac1fc1e7a.webp",
+      "bytes": 20666,
+      "sha256": "242a6b810ffd686e7f2df43f205cfd1b5cc3c1dd71090ea424680931beeb6fdc"
+    },
+    {
       "source": "docs/assets/media/distant-laugh/v001/waveform.svg",
       "source_sha256": "225ee2fc8f591d399a3300dca3abcc4261f46425aac233e18029b51841cc23e1",
       "path": "docs/assets/media/catalog-thumbnails/v001/74a50920cdb8307e.webp",

@@ -944,7 +944,7 @@
       "sceneReleasedAt": "2026-09-26T18:52:00.346687+00:00",
       "manifest": "docs/assets/media/inator-monster/v001/sha256-manifest.json",
       "pr": 112,
-      "prMerged": null,
+      "prMerged": "9666be518e2be4353e4586f6c54e04b3a00d3732",
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v3 (like the frozen v1 and v2) fills the A·3 boss slot with The Monster-inator project candidate (inator-monster), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 3.2167}, or 2.49 for the monster mass alone"
@@ -971,6 +971,123 @@
         "attachmentChecksPassed": 8,
         "chromiumChecksPassed": 10,
         "artifactHashesMatchedLocally": 157,
+        "physicalSafari": false
+      }
+    },
+    {
+      "assetId": "demon-band-idol",
+      "version": "v001",
+      "role": "ordinary",
+      "world": "B",
+      "chapter": 3,
+      "glb": "docs/assets/media/demon-band-idol/v001/demon-band-idol.glb",
+      "sha256": "332f1bfb66d611676b1864e968b5d4657ecfe73698d623541eca4379331df54c",
+      "heightM": 1.3958640411922474,
+      "sheetPoseHeightM": 1.4009436069862031,
+      "soleClearanceM": 0.00299989512331224,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root under the body centre; his right hand (the mic) at +X; the top is the horn tips; the soles sit 3 mm above the floor at rest",
+        "rest": {
+          "min": [
+            -0.44214714809775546,
+            0.00299989512331224,
+            -0.22852186536130947
+          ],
+          "max": [
+            0.5336736118042164,
+            1.3958640411922474,
+            0.29314320615035966
+          ]
+        },
+        "animated": {
+          "min": [
+            -0.4512640920205515,
+            0.0011936567778096261,
+            -0.7694933423753074
+          ],
+          "max": [
+            0.6774474778231211,
+            1.4104140381749497,
+            0.4840528582270424
+          ]
+        },
+        "culling": {
+          "min": [
+            -0.457,
+            -0.004,
+            -0.775
+          ],
+          "max": [
+            0.683,
+            1.416,
+            0.49
+          ]
+        },
+        "note": "Rest bounds are the neutral bind pose, whose A-pose arms make it 0.976 m wide; the sheet pose at idle 0 s is about 0.66 m wide and 1.401 m tall to the horn tips. Animated bounds include the attack lunge and sparkle burst, which opens round the mic grille 0.43 m ahead of its sheet-pose position, and the over-deep defeat bow. The culling envelope is stored in the skinned mesh node's extras (model_space_bounds_y_up); the runtime does not yet apply it (issue #103)."
+      },
+      "attackContactS": 1.25,
+      "attackContactFraction": 0.625,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 3,
+          "channels": 108
+        },
+        {
+          "name": "move",
+          "duration_s": 1,
+          "channels": 108
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 108
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 108
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 108
+        }
+      ],
+      "review": "docs/assets/reviews/demon-band-idol/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+      "sceneReleasedAt": "2026-09-26T19:41:42.760703+00:00",
+      "manifest": "docs/assets/media/demon-band-idol/v001/sha256-manifest.json",
+      "pr": null,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v3 (like the frozen v1 and v2) fills the four B·3 ordinary slots with the Demon Idol project candidate (demon-band-idol), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.3959}"
+      },
+      "prUrl": null,
+      "masterSha256": "b11910f9d2510b529e41d88cbbc01edc041161c53bac0d948f2f238f5cdc00c9",
+      "triangles": 12308,
+      "joints": 36,
+      "bytes": 1240728,
+      "integrationNotes": [
+        "Two opaque materials (matte painted skin, hair and cloth; satin gold, sparkles and mic), one draw primitive each, both sampling the one embedded 1024 x 1024 painted atlas. KHR_materials_specular is used but not required.",
+        "Rest geometry starts 0.003 m above the floor (sole clearance); the lowest animated point is 0.0012 m.",
+        "Only the hips translate (bounce, lunge, spin and bow). The burst bone scales from 1 to 28.75 at the peak of its overshoot (1.40 s; 23.7 at the 1.25 s contact) to open the sparkle ring round the mic grille, and the two shoulder-sparkle bones pulse to 1.34 around contact; the burst stays folded inside the grille in every other clip. Every other joint is a fixed pivot, and the root bone never animates.",
+        "The attack spins a full turn in place from 0.40 to 1.04 s; at the 1.25 s contact the mic grille is 0.61 m in front of the root at 0.83 m high. The game's wind-up scrubs 0 to 1.25 s, so the lean-back, spin and lunge play at the wind-up speed.",
+        "In the held defeat (from 1.752 s) the chest is pitched 65.9 deg forward, the hips sit at 0.51 m and the head at 0.74 m.",
+        "Runtime culling (issue #103), measured at intake against the idle-0 bounding spheres: the satin primitive leaves its sphere by up to 0.077 m when the burst peaks at 1.40 s of the attack, and the matte primitive by up to 0.011 m during the spin; apply the exported culling envelope or disable frustum culling for this skinned mesh.",
+        "The painted face has no morph targets, so the wink and grin hold in every clip. DESIGN-026's demon boy-band trio could later come from palette swaps of this one model (the sheet notes suggest jacket and sash colours); that is a coordinator decision.",
+        "Exact intake values: 1,240,728 bytes, 12,308 triangles, 11,760 exported vertices (6,356 Blender mesh vertices before UV and normal splits), one embedded 1024 x 1024 atlas, 2 materials, 2 primitives, 36 joints, at most 2 influences per vertex."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "contractChecksPassed": 19,
+        "threeAdapterChecksPassed": 30,
+        "attachmentChecksPassed": 7,
+        "chromiumChecksPassed": 9,
+        "artifactHashesMatchedLocally": 174,
         "physicalSafari": false
       }
     }

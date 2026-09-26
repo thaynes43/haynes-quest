@@ -1,0 +1,67 @@
+{
+  "work_order": "WO111",
+  "asset_id": "demon-band-idol",
+  "version": "v001",
+  "created_utc": "2026-09-26T19:42:32.563353+00:00",
+  "glb_sha256": "332f1bfb66d611676b1864e968b5d4657ecfe73698d623541eca4379331df54c",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Rotation/scale-only joints are checked as fixed local pivots; the hips bounce/lunge/spin/bow are the intentional translations. No physical-device or universal triangle-collision proof (the Blender attachment audit covers listed part pairs).",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.44214714809775546,
+      0.00299989512331224,
+      -0.22852186536130947
+    ],
+    "max": [
+      0.5336736118042164,
+      1.3958640411922474,
+      0.29314320615035966
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    0.9758207599019718,
+    1.392864146068935,
+    0.5216650715116691
+  ],
+  "height_m": 1.3958640411922474,
+  "sheet_pose_height_m": 1.4009436069862031,
+  "sole_clearance_m": 0.00299989512331224,
+  "body_footprint_y_up": {
+    "min": [
+      -0.22049999237060547,
+      0.48100000619888306,
+      -0.12295786291360855
+    ],
+    "max": [
+      0.22049999237060547,
+      0.9449999928474426,
+      0.11709081686897463
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.4512640920205515,
+      0.0011936567778096261,
+      -0.7694933423753074
+    ],
+    "max": [
+      0.6774474778231211,
+      1.4104140381749497,
+      0.4840528582270424
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -0.457,
+      -0.004,
+      -0.775
+    ],
+    "max": [
+      0.683,
+      1.416,
+      0.49
+    ]
+  },
+  "defeat_held_hips_height_m": 0.5099999904632568,
+  "note": "glTF axes: +Y up, character faces -Z; his right hand (mic) is +X. Root at the floor origin under the body centre. The bind pose holds the arms out in an A-pose (hence the 0.98 m rest width); the sheet pose is about 0.66 m wide (the blockout measured 0.658 m)."
+}

@@ -1,0 +1,219 @@
+{
+  "work_order": "WO111",
+  "asset_id": "demon-band-idol",
+  "version": "v001",
+  "status": "sheet-ready",
+  "source": "Blender reference sheet, no generated concept",
+  "blender_instance": "blender-authoring (instance 1, primary)",
+  "remote_dir": "/workspace/haynes-quest/family-eras/demon-band-idol/v001",
+  "durable_dir": "/home/dev/artifacts/haynes-quest/family-eras/demon-band-idol/v001",
+  "glb_sha256": "none",
+  "scene_released_utc": "2026-09-26T17:16:47.280343+00:00",
+  "generated_utc": "2026-09-26T17:17:52.276987+00:00",
+  "notes": [
+    "remote *.blend1 files are Blender automatic backups of earlier blockout saves and are not copied: demon-band-idol-blockout.blend1",
+    "claim-checkpoint.blend is a copy of the released predecessor (inator-monster v001) live scene taken at claim time, kept for recovery.",
+    "demon-band-idol-reference-sheet-checkpoint.blend is the sheet scene saved right after the final render, before the release stamp.",
+    "preview/sheet-preview.png is the last half-size iteration preview of the same final scene; reference-sheet.png is the final 2048x1024 render.",
+    "local_only files are the local MCP runner and helpers (source/run.py, source/mcpclient.py, source/upload_notes.py, source/collect.py), never executed inside Blender.",
+    "source/sheet_preview.py is the standalone half-size preview entry point (same scene code as sheet.py at 50%); it was not uploaded or run, because source/iterate_preview.py rendered every iteration preview.",
+    "The artifact route serves neither .py nor .md, so source/*.py and reference-notes.md were uploaded from these local bytes with a sha256 check; the manifest confirms each against the remote listing."
+  ],
+  "files": {
+    "blockout-measurements.json": {
+      "sha256": "ee0ad48d2a85d385e4e960bf5f8c4110c1b7bcb166100cab5ea0544f40997901",
+      "bytes": 1224,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "claim-checkpoint.blend": {
+      "sha256": "ed8565e8b03ebe037e7a9a67f6a10aa6115e89e8bc348545cf1ff69bbc0ce701",
+      "bytes": 830190,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "demon-band-idol-blockout.blend": {
+      "sha256": "876f0e67cc23d866bfaff7dab5f87515af5fba8d70c85c87ee501b96e7525ef9",
+      "bytes": 910085,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "demon-band-idol-reference-sheet-checkpoint.blend": {
+      "sha256": "9110ebe3a08767a2263c9a41021e86391acb10d8b03edf618aa3d24d2971668e",
+      "bytes": 1067225,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "demon-band-idol-reference-sheet.blend": {
+      "sha256": "e1e6b29521376328d8d9ebbacb170b3d69dede0627c5913ecee774b61b6d55ec",
+      "bytes": 1071290,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "live-scene-release.blend": {
+      "sha256": "989d3c3188e54a0b27fabfcbfdf8f57f29d4c8b72f53ba905ed0a86ef4fc265f",
+      "bytes": 1071290,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "part-measurements.json": {
+      "sha256": "940cc655641597d81e40d95b5b2d167095cdd226e5848a673c488d5b186f584d",
+      "bytes": 4742,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-back.png": {
+      "sha256": "113f460e2476eb6df3d7149a9ae37fe43487321f2fe0453c90fd4d0892143c3d",
+      "bytes": 950829,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-face-front.png": {
+      "sha256": "a28234942dbec1daeaf0c5975da222f2222b211dc3c2bd294daaeffb8854a5d5",
+      "bytes": 1083746,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-face-three-quarter.png": {
+      "sha256": "622b6531d44aa49994881e5ef06eb3002ee3e0d626a0358c9224542f882bd905",
+      "bytes": 1057851,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-front.png": {
+      "sha256": "14926d646a084f92ed523e9066f1af67093ddc08d2996f064fe9a70975597e96",
+      "bytes": 991941,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-side.png": {
+      "sha256": "dcf7cf60674f308ea275a148a94f345199e1b9effb00ef3f673e4f59a6246c0b",
+      "bytes": 927391,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-three-quarter.png": {
+      "sha256": "03beb304a511a2dd4b2b3c50e1d5bbadcb8784241de27c0ce5df2b69dbfd7a72",
+      "bytes": 955458,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/sheet-preview.png": {
+      "sha256": "d05f4bc16c3f6d852a0f121f87354741be8ddf6026e0a9c4f75c15734787df7c",
+      "bytes": 550760,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "reference-notes.md": {
+      "sha256": "ec325da49f97c3c559a2c1a82879a8656e46b8e19ddb32c6925f8efb7000c8d8",
+      "bytes": 16539,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "reference-sheet.png": {
+      "sha256": "ecdefc9659051d1bc7ab5382743a08ccfe264b051f30f15059acd8a5a14178a3",
+      "bytes": 2002149,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "scene-lease.json": {
+      "sha256": "2e204bf00cd251053299854756860584087e36d9f4299d51899f967f8188e6d8",
+      "bytes": 11772,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "scene-release.json": {
+      "sha256": "6696ef11112ead731d9fdca08beb217610cb78265eecb82f1ce39088c9b6cd0d",
+      "bytes": 11924,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "sheet-render.json": {
+      "sha256": "32be0032dde86a326a863b6939ecd67b04cb70db44491a13793a1d4f5d40df76",
+      "bytes": 927,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "source/build_blockout.py": {
+      "sha256": "0525fecf9a364652dfd31d36de5038b8b55a6cea8e7a3303d7ae286a5c595add",
+      "bytes": 38114,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/claim.py": {
+      "sha256": "915c5a6c275428c5ac232c9c7aa8a7b8d799b516c78817c9df1396a7a2a34d05",
+      "bytes": 3320,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/crops.py": {
+      "sha256": "4be46832a98d4781c8fe068965697acec2593801954eb1563c41a948ea0e56ea",
+      "bytes": 2431,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/crops_all_quick.py": {
+      "sha256": "1713aa66d69cfa90914e07732274e41bd1446387b32d79702548315ebb71a1ba",
+      "bytes": 160,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/final_render.py": {
+      "sha256": "ac278a18f1af5a1aad542d4ce55dc833f7340d62ac4cd25d55b04aaf695752f9",
+      "bytes": 701,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/iterate_preview.py": {
+      "sha256": "89b4a64efbf51d07c163a058131372a9e4b28a51f5de5a2cf63b691c37d77041",
+      "bytes": 613,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/measure_parts.py": {
+      "sha256": "6a609e497293cb693234e65e94f4e875fdf280bf7a174a0d70d900c5334cdd2a",
+      "bytes": 2414,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/release.py": {
+      "sha256": "ad3f856cd8af49c3f244b93a4c9779ec3ee8e3fd581ac52d591116e2241a13e3",
+      "bytes": 3994,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/sheet.py": {
+      "sha256": "325a4ba6d2f59df60cd47061ee19831dddb4dccd504774a03f73056ca6319518",
+      "bytes": 13420,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    }
+  },
+  "local_only": {
+    "source/collect.py": {
+      "sha256": "8f4df0a598bf9327a652fdf285c922ef15475660d686b8cd0ad5c7f98064b866",
+      "bytes": 4530,
+      "remote_match": false
+    },
+    "source/mcpclient.py": {
+      "sha256": "a35b119b58bd6d6077a657e403e0c26c6659d683c64d6255e55aed60160b6288",
+      "bytes": 1993,
+      "remote_match": false
+    },
+    "source/run.py": {
+      "sha256": "bdf088d0c3e2c65ad1f511f32d06f15c51ead5a56a60ad21b6843c613048c94e",
+      "bytes": 1999,
+      "remote_match": false
+    },
+    "source/sheet_preview.py": {
+      "sha256": "fd669832c097d73a3f5f72e29ea3eeb8265fa92d872191241c1150276f90e7b3",
+      "bytes": 332,
+      "remote_match": false
+    },
+    "source/upload_notes.py": {
+      "sha256": "9e4beb4a9d48308ec59f36d4de2e98aa45e9f0895568aa3a8bdb0e44f14408e2",
+      "bytes": 1025,
+      "remote_match": false
+    }
+  }
+}

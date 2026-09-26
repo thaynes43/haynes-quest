@@ -1,0 +1,115 @@
+{
+  "work_order": "WO111",
+  "asset_id": "demon-band-idol",
+  "version": "v001",
+  "created_utc": "2026-09-26T19:42:32.563353+00:00",
+  "glb_sha256": "332f1bfb66d611676b1864e968b5d4657ecfe73698d623541eca4379331df54c",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back and three-quarter stills (idle at 0 s = the sheet pose) compared with the reference sheet at the same angles and metric scale (sheet-vs-export.png); rest-pose stills; five-clip normal/small motion sheet; attack front/side windup-spin-contact-recovery and the 35% gameplay-scale strip; held defeat front/side/three-quarter/beauty; close-ups of the face, mic arm, fringe during the hit, sneakers and trouser hems.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "sheet_matching": [
+    "Silhouette kept from the approved blockout at its measured coordinates: gold candy horns (1.401 m in the sheet pose, 1.396 m in the bind pose), swoopy midnight hair with the hot-pink dip-dyed fringe at his right temple, big lavender head tilted 6 deg into the mic and turned 5 deg, pointy ears with pink insides and the gold star earring on his left, gold epaulettes with fringe and three sparkle stars each, teal jacket with the gold collar and hem, hot-pink sash with the gold star brooch and the bow at his left hip, swallowtail flaps with gold tips, slim midnight trousers with gold side stripes, chunky white high-tops with pink soles and rims, and the lavender tail curling up on his right to the heart spade.",
+    "Face painted from the blockout decals: big open left eye with a magenta iris, diamond sparkle highlight and lash flick; happy wink arc with two lashes; confident brows; open grin with teeth and tongue; pink star blush projected like the sheet's; button nose.",
+    "Idle at 0 s reproduces the sheet pose exactly: mic by the chin in his right fist with the star charm, left fist on the hip, head tilt, weight on the right leg, left foot turned out 22 deg (grille within 3e-7 m of the blockout).",
+    "Colours are the sheet hex values exactly (atlas); the preview renders them slightly deeper than the Cycles Standard-view sheet because of its ACES tone mapping and three-light rig.",
+    "Parody hooks kept and kid-safe: a demon who is also a pop idol, horns in swoopy idol hair, the military-style idol jacket, sash, sparkles and stage mic, the wink and star blush; no fangs, claws, weapons or angry face, blunt horn tips, heart-tipped tail."
+  ],
+  "author_corrections": [
+    "Epaulette fringe first hung with a visible gap under the pad rim (as in the blockout); it now hangs from just under the rim.",
+    "At 35% scale the first sparkle burst read as a few specks: ring radius 0.12 -> 0.20 m, sparkles about 1.65x larger, a 1.15 overshoot and a 0.9 rad spin as it opens. The first thrust also pointed the mic down; the thrust target was raised so the arm reaches out level even as he leans in, and the fist now turns the mic along the arm.",
+    "The first held bow flung the mic arm up behind the back and read like a dab; the arm now flings out wide at hip height.",
+    "The first hit and idle fringe motion swung the swoop down in the head frame and buried the pink tips in the cheek; fringe motion now only lifts off the head (up/forward, out from the temple) and the attachment audit tests the fringe against the face skin.",
+    "The held defeat first still differed by 0.46 mm at 60 Hz because the last settle key sat one frame inside the declared hold; every defeat motion now ends at 1.68 s (hold declared from 1.752 s) and keys are exported without optimisation.",
+    "The attack spin first swung the tail into the seat (frames 20-23); it now flings out to his right and up.",
+    "The dizzy loll first rolled the head into the shoulder sparkles; the roll was cut to nod-and-turn and the sparkles tilt outward while he wobbles.",
+    "The blockout trouser flare poked through the high-top collars once the shins bent; the hem now tucks 8 mm inside the collar and rides the foot below 0.16 m.",
+    "Rest knees bend 3.5 cm forward so the sheet's splayed left foot is reachable without shifting the hips, which keeps idle 0 s an exact sheet match."
+  ],
+  "deviations_from_sheet_notes": [
+    "Bind pose is neutral as the notes suggest; the sheet pose is recreated at idle 0 s, so the matched stills show idle 0 s and rest-*.png show the bind pose.",
+    "Rig (36 joints): root, hips, spine, chest, neck, head, two fringe bones, both ears, the earring, three-bone arms, mic (child of the right hand) with charm and burst bones, two shoulder-sparkle bones, thigh/shin/foot legs, four tail bones, two bow-tail bones and two swallowtail bones. The chunky sneakers stay rigid on the foot (no toe bone); the torso has hips + two spine bones.",
+    "Attack follows the coordinator's \"mic spin with a sparkle burst\": he pulls the mic in and leans back, spins a full turn in place (0.40-1.04 s) while twirling the mic twice, then lunges into a high-note thrust at 1.25 s as a ring of six crossed sparkles and a big gold star pops open round the grille (the burst is model geometry bound collapsed inside the grille and opened by its bone's scale; it is closed in every other clip). His free hand flings up in a raised fist; mitten fists cannot make the notes' heart gesture.",
+    "Hit: the fringe flings out off his head instead of flopping over both eyes (a rotation that covers the eyes passes through the face); the painted face has no \"ow\" mouth.",
+    "Defeat follows the coordinator's \"dramatic dizzy bow, held\" rather than the notes' seated swoon: a dizzy wobble with the mic drooping and the fist falling off the hip, then an over-deep curtain-call bow (chest 66 deg forward) with the mic flung wide, the other hand on his belly, the right foot slid back, drooping tail and ears and one tilted sparkle; held from 1.752 s.",
+    "The idle omits the notes' blink back into the wink (the face is painted, no morph targets).",
+    "Tail 20% thicker, ears 13% fuller and the earring, charm and cord slightly thicker than the blockout, per the notes' thin-parts advice."
+  ],
+  "dimensions_width_height_depth_m": [
+    0.9758207599019718,
+    1.392864146068935,
+    0.5216650715116691
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.44214714809775546,
+      0.00299989512331224,
+      -0.22852186536130947
+    ],
+    "max": [
+      0.5336736118042164,
+      1.3958640411922474,
+      0.29314320615035966
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -0.4512640920205515,
+      0.0011936567778096261,
+      -0.7694933423753074
+    ],
+    "max": [
+      0.6774474778231211,
+      1.4104140381749497,
+      0.4840528582270424
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -0.457,
+      -0.004,
+      -0.775
+    ],
+    "max": [
+      0.683,
+      1.416,
+      0.49
+    ]
+  },
+  "sheet_pose_height_m": 1.4009436069862031,
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "spin_seconds": [
+    0.4,
+    1.04
+  ],
+  "burst_open_seconds": [
+    1.17,
+    1.6
+  ],
+  "defeat_held_from_seconds": 1.752,
+  "defeat_held": {
+    "chest_pitch_forward_deg": 65.89015751445218,
+    "chest_up_axis": [
+      0,
+      0.4084872644606867,
+      -0.9127640192149474
+    ],
+    "hips_height_m": 0.5099999904632568,
+    "head_height_m": 0.7433110152907249,
+    "grille": [
+      0.6392571327752803,
+      0.6407048496591349,
+      -0.19788096316509723
+    ]
+  },
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "The attachment audit tests listed part pairs every frame on the source scene; it is not a universal triangle-collision proof. Intended contacts (the right fist round the mic, the left fist on the hip, sleeve roots in the jacket and epaulettes, trouser tops in the seat, strands on the hair cap, the tail root) are not tested.",
+    "In the game the windup phase scrubs the attack clip from 0 to the 1.25 s contact, so the lean-back, spin and lunge play at the simulation windup speed; the burst opens from 1.17 s and closes by 1.60 s.",
+    "Runtime culling: the open burst spans up to 0.86 m (bounding-box diagonal) round the grille and the bow and lunge move the head forward; three.js computes a skinned bounding sphere once, so the coordinator should apply the stored safe envelope (skin extras model_space_bounds_y_up), as filed in haynes-quest issue #103.",
+    "The painted face cannot change expression; the wink and grin hold in every clip.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}
