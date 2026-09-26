@@ -10,6 +10,8 @@ import { GameScreen } from "./GameScreen";
 import { MemoryImage } from "./MemoryImage";
 import { api, friendlyError } from "./api";
 import { FamilyShell, SignedOutScreen } from "./auth/FamilyShell";
+import { FamilyHome } from "./family/FamilyHome";
+import { resolveFamilyWorld, type ResolvedFamilyWorld } from "./family/family-world";
 import { readSignInProblem } from "./auth/session";
 import { EditorApp, EditorUnavailable } from "./editor/EditorApp";
 import {
@@ -89,6 +91,7 @@ function App() {
   const [save, setSave] = useState<SaveView>();
   const [editorPlaytest, setEditorPlaytest] =
     useState<ResolvedEditorPlaytest>();
+  const [familyWorld, setFamilyWorld] = useState<ResolvedFamilyWorld>();
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const ephemeral =
@@ -133,8 +136,9 @@ function App() {
     setPage("home");
     setSave(undefined);
     setEditorPlaytest(undefined);
+    setFamilyWorld(undefined);
     try {
-      if (!ephemeral) await refresh();
+      if (!ephemeral && session?.mode !== "family") await refresh();
     } catch (e) {
       setError(friendlyError(e));
     }
@@ -197,7 +201,17 @@ function App() {
           setSession(undefined);
           setSignedOut(true);
         }}
-      />
+      >
+        <FamilyHome
+          session={session}
+          onPlay={(response) => {
+            setFamilyWorld(resolveFamilyWorld(response.world));
+            setEditorPlaytest(undefined);
+            setSave(response.save);
+            setPage("game");
+          }}
+        />
+      </FamilyShell>
     );
   if (editorRoute)
     return ephemeral ? (
@@ -211,10 +225,11 @@ function App() {
         initialSave={save}
         ephemeral={ephemeral}
         onLeave={() => void leave()}
-        authoredLevelResolver={editorPlaytest?.resolver}
-        chapterTitles={editorPlaytest?.chapterTitles}
-        chapterSubtitles={editorPlaytest?.chapterSubtitles}
-        chapterDescriptions={editorPlaytest?.chapterDescriptions}
+        familyPhotos={session.mode === "family"}
+        authoredLevelResolver={familyWorld?.resolver ?? editorPlaytest?.resolver}
+        chapterTitles={familyWorld?.chapterTitles ?? editorPlaytest?.chapterTitles}
+        chapterSubtitles={familyWorld?.chapterSubtitles ?? editorPlaytest?.chapterSubtitles}
+        chapterDescriptions={familyWorld?.chapterDescriptions ?? editorPlaytest?.chapterDescriptions}
         chapterOnlyRouteId={editorPlaytest ? RAT_CASINO_ROUTE_ID : undefined}
       />
     );

@@ -3058,3 +3058,168 @@ footer {
     max-width: 180px;
   }
 }
+
+/* Family journeys (DESIGN-024). Functional placeholders; the coordinator owns the final look. */
+.family-home h1,
+.family-admin h1,
+.family-add-child h1,
+.family-memories h1 {
+  font-size: clamp(34px, 7vw, 56px);
+}
+.family-journeys {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
+.family-journey-card {
+  display: grid;
+  gap: 8px;
+  min-height: 150px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fffaf1;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+.family-journey-card strong {
+  font:
+    32px Georgia,
+    serif;
+}
+.family-journey-card small,
+.family-slot small,
+.family-slot-date {
+  color: #685f70;
+}
+.family-setup-button {
+  margin-top: 12px;
+}
+.family-admin,
+.family-add-child,
+.family-memories {
+  text-align: left;
+}
+.family-children {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.family-child-row {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fffaf1;
+  text-align: left;
+  color: var(--ink);
+}
+.family-add-child form,
+.family-child-form {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+}
+.family-add-child label {
+  display: grid;
+  gap: 6px;
+}
+.family-add-child input,
+.family-add-child select,
+.family-slot input {
+  min-height: 44px;
+  font-size: 16px;
+  padding: 8px 10px;
+}
+.family-person-choices label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+}
+.family-chapters {
+  display: grid;
+  gap: 18px;
+  margin: 20px 0;
+}
+.family-chapter-card {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #fffaf1;
+}
+.family-chapter-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.family-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+}
+.family-slot {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+.family-thumbnail {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #efe3cf;
+}
+.family-thumbnail.is-empty {
+  display: grid;
+  place-items: center;
+  color: #685f70;
+}
+.family-slot.is-big .family-thumbnail {
+  outline: 3px solid var(--honey);
+}
+.family-slot-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.family-slot-actions .text-button {
+  min-height: 44px;
+}
+.family-suggestions {
+  display: grid;
+  gap: 10px;
+}
+.family-suggestion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 8px;
+}
+.family-suggestion {
+  display: grid;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  color: var(--ink);
+}
+.family-suggestion img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.family-memories-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}

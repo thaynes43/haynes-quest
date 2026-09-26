@@ -8,7 +8,7 @@ import {
 import type { GameplayAction } from '../../../src/shared/contracts.js';
 import {
   FAMILY_MEMORY_SLOTS,
-  PROVISIONAL_ABILITY_LADDER,
+  FAMILY_ABILITY_LADDER,
   type FamilyMemorySlot,
   type FamilyWorldAdventurePlanV1,
 } from '../../../src/shared/family-plan.js';
@@ -58,7 +58,7 @@ function selections(dates = DATES): FamilySlotSelection[] {
 }
 
 function build(input: FamilySlotSelection[] = selections()) {
-  return buildFamilyWorldPlan({ template, world, selections: input, ladder: PROVISIONAL_ABILITY_LADDER });
+  return buildFamilyWorldPlan({ template, world, selections: input, ladder: FAMILY_ABILITY_LADDER });
 }
 
 function mutated(
@@ -165,7 +165,7 @@ describe('family-world-plan-v1 builder (DESIGN-024 D-07)', () => {
     const built = buildFamilyWorldPlan({
       template,
       world: other,
-      ladder: PROVISIONAL_ABILITY_LADDER,
+      ladder: FAMILY_ABILITY_LADDER,
       selections: selections(dates).map((selection) => ({ ...selection })),
     });
     const core = asEditorWorldPlan(built.plan).levels

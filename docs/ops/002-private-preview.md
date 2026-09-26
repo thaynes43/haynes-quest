@@ -132,3 +132,12 @@ node dist/server/admin.js publish --child <child id>             # publication <
 node dist/server/admin.js verify-media --child <child id>        # decoded D/M failed F
 node dist/server/admin.js status
 ```
+
+The family screens live in `src/client/family/`: the household home with its journey cards, administrator setup, **Add a child** and the Memories screen. Their strings are `// COPY:` placeholders. The synthetic browser journey runs the real client and family routes against a fake session cookie and an in-process fake Immich, and exercises no real sign-in or photos. Start a fresh harness for each run:
+
+```bash
+pnpm build && QUEST_E2E_PORT=4180 npx tsx tests/e2e/serve-family.ts   # terminal 1
+QUEST_E2E_URL=http://127.0.0.1:4180 node tests/e2e/family-journey.mjs  # terminal 2
+```
+
+`tests/game/game-screen-family.test.tsx` covers the big memory's age advance and new-move card on a real published save.

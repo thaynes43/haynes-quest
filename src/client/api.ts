@@ -9,6 +9,14 @@ function requestTimeoutError(): Error & { code: string } {
 }
 
 export async function api<T>(path: string, body?: unknown): Promise<T> {
+  return apiRequest<T>(path, body === undefined ? undefined : { method: "POST", body });
+}
+
+/** Same deadline and error contract as {@link api}, for any write method. */
+export async function apiRequest<T>(
+  path: string,
+  send?: { method: "POST" | "PUT"; body: unknown },
+): Promise<T> {
   const controller = new AbortController();
   let timedOut = false;
   let timeoutId: ReturnType<typeof setTimeout>;
@@ -24,15 +32,15 @@ export async function api<T>(path: string, body?: unknown): Promise<T> {
     const response = await fetch(`/api${path}`, {
       credentials: "same-origin",
       signal: controller.signal,
-      ...(body === undefined
+      ...(send === undefined
         ? {}
         : {
-            method: "POST",
+            method: send.method,
             headers: {
               "Content-Type": "application/json",
               "X-Quest-Request": "1",
             },
-            body: JSON.stringify(body),
+            body: JSON.stringify(send.body),
           }),
     });
     if (!response.ok) {
