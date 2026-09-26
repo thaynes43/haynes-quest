@@ -368,7 +368,7 @@ async function run(args: readonly string[]): Promise<void> {
 
     case "world-template": {
       // `--catalog <version>` pins the parody catalog, for example
-      // parody-catalog-v8 for the family worlds; the default is current.
+      // parody-catalog-v8 or v9 for the family worlds; the default is current.
       const flag = values.indexOf("--catalog");
       const catalogVersion = flag >= 0 ? values[flag + 1] : undefined;
       if (flag >= 0 && catalogVersion === undefined) throw new Error(usage);

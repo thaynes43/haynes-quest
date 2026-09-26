@@ -35,7 +35,8 @@
 // makes no physical Safari claim.
 //
 //   QUEST_E2E_URL             base origin of the candidate build (required)
-//   QUEST_FAMILY_WORLD        world key (default b: family-world-b-v1.json)
+//   QUEST_FAMILY_WORLD        world key (default b: family-world-b-<newest>.json)
+//   QUEST_FAMILY_WORLD_VERSION template version (default: the newest checked in)
 //   QUEST_E2E_CHAPTERS        comma-separated chapter ids (default: every chapter)
 //   QUEST_E2E_OUTPUT_DIR      screenshots and report.json (default test-results/family-world/<key>)
 //   QUEST_E2E_LOCKSTEP_SCALE  device scale factor (default 0.5)
@@ -99,8 +100,16 @@ interface WorldSource {
   readonly chapters: readonly ChapterSource[];
 }
 
+const levelsDirectory = new URL("../../src/shared/levels/", import.meta.url);
+const worldVersion =
+  process.env.QUEST_FAMILY_WORLD_VERSION ??
+  (await fs.readdir(levelsDirectory))
+    .map((file) => new RegExp(`^family-world-${worldKey}-(v[0-9]+)\\.json$`).exec(file)?.[1])
+    .filter((version): version is string => version !== undefined)
+    .sort((left, right) => Number(right.slice(1)) - Number(left.slice(1)))[0];
+assert.ok(worldVersion, `no family-world-${worldKey} template is checked in`);
 const project = JSON.parse(
-  await fs.readFile(new URL(`../../src/shared/levels/family-world-${worldKey}-v1.json`, import.meta.url), "utf8"),
+  await fs.readFile(new URL(`family-world-${worldKey}-${worldVersion}.json`, levelsDirectory), "utf8"),
 ) as WorldSource;
 assert.equal(project.schemaVersion, "level-editor-project-v2");
 const requested = process.env.QUEST_E2E_CHAPTERS?.split(",").filter(Boolean);
@@ -981,7 +990,7 @@ try {
   await browser.close();
   await fs.writeFile(
     `${outputDir}/report.json`,
-    `${JSON.stringify({ world: project.projectId, url, chapters: reports }, null, 2)}\n`,
+    `${JSON.stringify({ world: project.projectId, version: worldVersion, url, chapters: reports }, null, 2)}\n`,
   );
 }
 if (reports.some((report) => report.result !== "passed")) process.exitCode = 1;

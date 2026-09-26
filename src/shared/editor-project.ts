@@ -70,6 +70,7 @@ export const LEVEL_EDITOR_CATALOG_VERSIONS = [
   "parody-catalog-v6",
   "parody-catalog-v7",
   "parody-catalog-v8",
+  "parody-catalog-v9",
 ] as const satisfies readonly ParodyCatalogVersion[];
 export type LevelEditorCatalogVersion =
   (typeof LEVEL_EDITOR_CATALOG_VERSIONS)[number];

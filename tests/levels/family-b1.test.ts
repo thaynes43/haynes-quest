@@ -230,20 +230,29 @@ describe("family B1 kid model (c, d, e)", () => {
     }
   }, 60_000);
 
-  it("gives the one required lift walk-in rides at every phase, and every shaft fall a boarding-checkpoint retry (R6)", () => {
+  it("carries a toddler who walks at the toy elevator at any moment of its cycle (R6)", () => {
     expect(REQUIRED_LIFTS).toEqual(["toy-elevator"]);
-    const phases = 24;
-    for (const stage of STAGES) {
-      const result = liftWalkIn(resolved, "toy-elevator", "train-station", "dresser", { phases, stage });
-      // Every arrival either rides through or falls into the open shaft; none
-      // gets stuck. Dwell cannot close the shaft (DESIGN-025 D-08 f), so a
-      // fall must be a cheap retry: it lands back on the boarding station.
-      expect(result.ok + result.fell + result.other).toBe(phases);
-      expect(result.other, stage).toBe(0);
-      expect(result.ok, stage).toBeGreaterThanOrEqual(phases / 3);
-      expect(shaftFallRespawn(stage)).toEqual({ fell: true, checkpointId: "cp-station", supportId: "train-station" });
-    }
-  });
+    // v2: the 1.2 m car hangs 0.6 m above the station at its top stop, lower
+    // than the infant avatar, so the open shaft is never at walking height
+    // (v1's 0.4 m car dropped about half of all walk-ins into the shaft).
+    const lift = surface("toy-elevator");
+    expect(FAMILY_B1_HEIGHTS.liftTop - lift.size.y - top("train-station")).toBeCloseTo(0.6, 6);
+    for (const stage of STAGES)
+      for (const stick of [0.4, 0.7, 1])
+        for (const runUp of [0.6, 1.5, 3]) {
+          const result = liftWalkIn(resolved, "toy-elevator", "train-station", "dresser", {
+            phases: 24,
+            stage,
+            stick,
+            runUp,
+          });
+          expect(result, `${stage} stick ${stick} run-up ${runUp}`).toEqual({ ok: 24, fell: 0, other: 0 });
+        }
+    // Walking straight at the car while it waits at its top stop meets its
+    // side; the boarding checkpoint stays as the lint's cheap-retry guard.
+    for (const stage of STAGES)
+      expect(shaftWalkAtTopStop(stage)).toEqual({ fell: false, checkpointId: "cp-station" });
+  }, 60_000);
 
   it("crosses every branch edge with its declared move", () => {
     for (const connection of BRANCH_EDGES) {
@@ -282,26 +291,22 @@ describe("family B1 kid model (c, d, e)", () => {
  * A child walks at the toy elevator while it waits at its top stop, falls
  * into the shaft, and recovers: where does the recovery put them?
  */
-function shaftFallRespawn(stage: AppearanceStage) {
+function shaftWalkAtTopStop(stage: AppearanceStage) {
   const course = resolved.course;
   const atTop = liftTimeAtTop(course, "toy-elevator", FAMILY_B1_HEIGHTS.liftTop, 0);
   const start = edgeEntry(course, edge("train-station", "toy-elevator"), atTop, 1.5, 0);
   const simulation = createGrowthSimulation(resolved, stage, START_MOVES, start, atTop);
   const lift = course.platforms.find((entry) => entry.id === "toy-elevator")!;
   let fell = false;
-  for (let frame = 0; frame < 60 * 6 && !fell; frame += 1) {
+  // Push toward the car for the whole top-stop dwell.
+  for (let frame = 0; frame < 60 * 2.5 && !fell; frame += 1) {
     const deltaX = lift.center.x - simulation.state.position.x;
     const deltaZ = lift.center.z - simulation.state.position.z;
     const distance = Math.hypot(deltaX, deltaZ) || 1;
     growthStep(simulation, { move: { moveX: deltaX / distance, moveY: -deltaZ / distance } });
     fell = simulation.recoveries > 0;
   }
-  for (let frame = 0; frame < 60; frame += 1) growthStep(simulation, { move: { moveX: 0, moveY: 0 } });
-  return {
-    fell,
-    checkpointId: simulation.state.checkpointId,
-    supportId: simulation.state.grounded ? simulation.state.supportId : null,
-  };
+  return { fell, checkpointId: simulation.state.checkpointId };
 }
 
 describe("family B1 shape (f)", () => {

@@ -1,6 +1,9 @@
 import * as THREE from "three";
 
-import type { AuthoredLevelTheme } from "../shared/authored-level";
+import {
+  AUTHORED_LEVEL_SCHEMA_VERSION_V4,
+  type AuthoredLevelTheme,
+} from "../shared/authored-level";
 import type { SaveView } from "../shared/contracts";
 import {
   themeKitPropsFor,
@@ -250,4 +253,19 @@ export const THEME_KITS: Readonly<Record<AuthoredLevelTheme, ThemeKit>> =
 
 export function themeKitFor(theme: AuthoredLevelTheme): ThemeKit {
   return THEME_KITS[theme];
+}
+
+/**
+ * The fog a level draws. Every v4 course (the family worlds' vertical courses,
+ * DESIGN-025) uses the era fog whatever theme it wears, so a tall finale reads
+ * from across the chapter: World B's Big Stage keeps the older party theme
+ * (R13) and World A's finale the casino theme, and their standard 20-52 m fog
+ * hid an 11 m stage from most of a 160 m course. Earlier schema versions keep
+ * their theme's own fog, so published v1-v3 routes render unchanged.
+ */
+export function courseFog(
+  kit: ThemeKit,
+  authored: { readonly schemaVersion: string } | undefined,
+): { readonly near: number; readonly far: number } {
+  return authored?.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V4 ? eraFog : kit.fog;
 }

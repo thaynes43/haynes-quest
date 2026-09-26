@@ -1,5 +1,5 @@
 /**
- * Generates World B, "Playroom to Big Stage" (`family-world-b@v1`, PLAN-019).
+ * Generates World B, "Playroom to Big Stage" (`family-world-b@v2`, PLAN-019).
  *
  * Usage: tsx scripts/levels/build-family-world-b.ts [--write]
  *
@@ -25,10 +25,19 @@
  * (DESIGN-024 D-03) and replaces the preview memories with real photos.
  *
  * Without `--write` it prints the command batch. With it, it rewrites the
- * checked-in command history (`scripts/levels/family-world-b.commands.json`)
- * and the template project (`src/shared/levels/family-world-b-v1.json`) that
+ * checked-in command history (`scripts/levels/family-world-b-v2.commands.json`)
+ * and the template project (`src/shared/levels/family-world-b-v2.json`) that
  * `pnpm levels:validate` replays byte-identically and the family template
  * registry serves.
+ *
+ * Versions. A published journey freezes its template's exact fingerprint, so a
+ * content change is a new template version and the older one stays registered
+ * and loadable, byte for byte. `family-world-b@v1` (`family-world-b.commands.json`
+ * and `family-world-b-v1.json`) is frozen as it merged in PR #92. v2 is the
+ * adversarial-review fix: the Besties chapter's cast opens on 2022-07-31 under
+ * parody-catalog-v9's parent lock, so every six-year-old validates (v1 dropped
+ * birthdays from 2019-09-27 to 2019-12-31), and the toy elevator (B1) and the
+ * stage lift (B3) have deep cars that close the shaft at walking height.
  */
 import { writeFile } from "node:fs/promises";
 import {
@@ -67,16 +76,16 @@ import {
 } from "./family/b3.js";
 
 export const FAMILY_WORLD_B_TEMPLATE_ID = "family-world-b";
-export const FAMILY_WORLD_B_TEMPLATE_VERSION = "v1";
+export const FAMILY_WORLD_B_TEMPLATE_VERSION = "v2";
 /** The name administrators see when they choose a template (WORLD-SPEC). */
 export const FAMILY_WORLD_B_NAME = "Playroom to Big Stage";
 export const FAMILY_WORLD_B_BIRTH_DATE = FAMILY_WORLD_B_FICTIONAL_BIRTH_DATE;
 /**
- * The newest parody catalog when v1 was generated. It is pinned, not derived:
- * a published template is frozen by fingerprint, so a later catalog version
- * belongs in a new template version.
+ * The parody catalog v2 pins: v9 carries the Besties' parent lock. It is
+ * pinned, not derived: a published template is frozen by fingerprint, so a
+ * later catalog version belongs in a new template version (v1 pins v8).
  */
-export const FAMILY_WORLD_B_CATALOG_VERSION: LevelEditorCatalogVersion = "parody-catalog-v8";
+export const FAMILY_WORLD_B_CATALOG_VERSION: LevelEditorCatalogVersion = "parody-catalog-v9";
 
 /** One chapter of the world: its shell entry, level and cast. */
 interface WorldBChapter {
@@ -199,10 +208,19 @@ export function buildFamilyWorldB(): LevelEditorProjectV2 {
 }
 
 export const FAMILY_WORLD_B_COMMANDS_URL = new URL(
-  "./family-world-b.commands.json",
+  "./family-world-b-v2.commands.json",
   import.meta.url,
 );
 export const FAMILY_WORLD_B_PROJECT_URL = new URL(
+  "../../src/shared/levels/family-world-b-v2.json",
+  import.meta.url,
+);
+/** The frozen v1 files; nothing regenerates them. */
+export const FAMILY_WORLD_B_V1_COMMANDS_URL = new URL(
+  "./family-world-b.commands.json",
+  import.meta.url,
+);
+export const FAMILY_WORLD_B_V1_PROJECT_URL = new URL(
   "../../src/shared/levels/family-world-b-v1.json",
   import.meta.url,
 );

@@ -62,6 +62,7 @@ import type {
   LevelEditorEncounterReference,
   WorldEditorLevelDocument,
 } from "../../../src/shared/editor-project.js";
+import { BESTIES_PARENT_LOCK_FROM } from "../../../src/shared/parody-catalog.js";
 import {
   bounce,
   bouncePad,
@@ -106,6 +107,17 @@ export const FAMILY_B3_COPY = Object.freeze({
 });
 
 /**
+ * The Demon Idol's parent-locked window start (WORLD-SPEC: "the chapter spans
+ * the 2025 debut"). The chapter starts on the child's fourth birthday, which
+ * precedes 2024 for every six-year-old born before 2020, but it always closes
+ * on a birthday after the debut. The lock reaches back to the Besties' own
+ * parent lock in parody-catalog-v9, so the chapter's whole cast opens on one
+ * date and World B serves every child born on or after 2018-07-31 (v1 opened
+ * on 2024-01-01 and dropped late-2019 birthdays).
+ */
+export const FAMILY_B3_CAST_WINDOW_FROM = BESTIES_PARENT_LOCK_FROM;
+
+/**
  * The chapter's one ordinary identity (WORLD-SPEC cast table): a project
  * candidate with neutral placeholder art until its catalog model lands. All
  * four ordinary anchors use its kind (R11).
@@ -117,7 +129,7 @@ export const FAMILY_B3_ORDINARY: LevelEditorEnemyCandidate = Object.freeze({
   recognizableReference: "a sparkly demon boy-band idol (clean)",
   visualJoke: "strikes a pose mid-fight",
   obstacleOrAttack: "microphone spin",
-  eligibility: Object.freeze({ startDate: "2024-01-01", endDate: "2026-12-31" }),
+  eligibility: Object.freeze({ startDate: FAMILY_B3_CAST_WINDOW_FROM, endDate: "2026-12-31" }),
   role: "ordinary",
   kind: "ordinary-a",
   behaviorPreset: "ordinary-a",
@@ -204,11 +216,16 @@ function bar(
 // Stage lift: flush landings (0.15 m gaps), the dock 0.1 m above the bottom
 // stop and the wing 0.1 m below the top stop, so a walking child steps down
 // onto the lift and down off it (R6). Dwell 2 s at each stop, 8 s of travel.
+// The riser is 3.1 m deep (v2), like B2's garden lift: at its top stop its
+// underside hangs 0.6 m above the dock, lower than the infant avatar (0.88 m),
+// so a child who walks at the empty shaft meets the riser's side instead of
+// falling in.
 const LIFT = Object.freeze({
   x: r3(-1.6, 1.6),
   z: s3(-22.55, -19.35),
   period: 8,
   dwell: 2,
+  thickness: 3.1,
 });
 
 function pieces(): AuthoredLevelPiece[] {
@@ -221,7 +238,7 @@ function pieces(): AuthoredLevelPiece[] {
     distance: H.liftTop - H.liftBottom,
     period: LIFT.period,
     dwell: LIFT.dwell,
-    thickness: 0.4,
+    thickness: LIFT.thickness,
   });
   const raft: AuthoredMovingPlatformPiece = {
     type: "moving-platform",

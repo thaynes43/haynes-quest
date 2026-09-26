@@ -11,6 +11,14 @@ The next stage needs an owner-scoped promotion path for validated exported world
 
 The current equipment, enemies and bosses are required by [PLAN-005](../.agents/plans/completed/005-era-combat-loop.md), following Tom’s September 11 correction. The broader items below do not replace that work. BL-01 defers automatic generation while authored age/likeness evolution remains product direction; the later gameplay/content items can return within the family project after the core loop is evaluated.
 
+## BL-08: Family world dressing
+
+- **Status:** Open. The September 26 adversarial review of `family-world-b@v1` raised it; `family-world-b@v2` fixed the review's blocking findings, and these visual items stay open.
+- **Revisit after:** Tom's first playtest of World B, together with the WO111 prop kits for each family era ([DESIGN-026 production order](designs/026-personal-era-casts.md#production-order-after-the-lock), step 3).
+
+1. **Sparse era kits.** The `playroom` and `casita` kits have four props each. The Sing-Along Playroom's 50 placements repeat four shapes. The Magic House places more shared props (52) than casita props (36), and its mid-climb deck looks empty. More era props need new kit art and Tom's review. Once they land, re-dress B1 and B2 in a new template version, since published journeys freeze theirs.
+2. **Automatic planting on older themes.** A v4 course on an older theme still gets that theme's automatic meadow: grass strands along every static platform and a tree at the near corners of each large deck (`src/game/scene.ts`, `grassPlacements` and the "large landing areas" planting). On Besties' Big Stage (`party`), that puts grass on the main stage around the boss court, and a bush fills about a third of the mid-climb view. The v4-only era themes already skip automatic scenery. Decide with Tom whether v4 courses on older themes should skip it too. The casino's prepared `CasinoScene` must stay, and any change needs screenshots of World A's casino finale and B3.
+
 ## BL-01: Automatic playable-character generation
 
 - **Status:** Automatic generation remains deferred; Tom has now reintroduced age/likeness evolution as product direction for the family game.

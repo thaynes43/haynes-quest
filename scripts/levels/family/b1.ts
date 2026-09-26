@@ -180,10 +180,14 @@ function surfaces(): AuthoredLevelPiece[] {
     ),
     slab("train-station", { x0: -5.4, x1: 6.6, z0: -95.8, z1: -82.8, top: 2.7, thick: "floor" }),
 
-    // S5 The toy elevator (the one required lift) up to the dresser.
+    // S5 The toy elevator (the one required lift) up to the dresser. The car
+    // is 1.2 m deep (v2), like B2's garden lift: at its top stop its underside
+    // hangs 0.6 m above the station, lower than the infant avatar (0.88 m), so
+    // a toddler who walks at the empty shaft meets the car's side instead of
+    // falling in.
     liftAt(
       "toy-elevator",
-      { x0: -0.9, x1: 2.1, z0: -98.9, z1: -95.9, top: 2.7, thick: 0.4 },
+      { x0: -0.9, x1: 2.1, z0: -98.9, z1: -95.9, top: 2.7, thick: 1.2 },
       { distance: 1.8, period: 8, dwell: 2.5 },
     ),
     slab("dresser", { x0: -5.4, x1: 6.6, z0: -109, z1: -99, top: 4.5, thick: "floor" }),

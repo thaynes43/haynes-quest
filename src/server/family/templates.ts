@@ -9,6 +9,7 @@ import ratCasinoWorldV1 from '../../shared/levels/rat-casino-world-v1.json';
 import ratCasinoWorldV2 from '../../shared/levels/rat-casino-world-v2.json';
 import familyWorldAV1 from '../../shared/levels/family-world-a-v1.json';
 import familyWorldBV1 from '../../shared/levels/family-world-b-v1.json';
+import familyWorldBV2 from '../../shared/levels/family-world-b-v2.json';
 import {
   canonicalLevelEditorProjectJson,
   isLevelEditorProjectV2,
@@ -51,6 +52,7 @@ export const CHECKED_IN_FAMILY_TEMPLATES: readonly FamilyTemplateSource[] = Obje
   { id: 'rat-casino-world', version: 'v2', project: ratCasinoWorldV2 },
   { id: 'family-world-a', version: 'v1', project: familyWorldAV1 },
   { id: 'family-world-b', version: 'v1', project: familyWorldBV1 },
+  { id: 'family-world-b', version: 'v2', project: familyWorldBV2 },
 ]);
 
 const TEMPLATE_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;

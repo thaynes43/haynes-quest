@@ -10,6 +10,7 @@ export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v6",
   "parody-catalog-v7",
   "parody-catalog-v8",
+  "parody-catalog-v9",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
 export const PARODY_CATALOG_VERSION = "parody-catalog-v5" as const;
@@ -473,6 +474,32 @@ const PARODY_CANDIDATES_V8: readonly ParodyCatalogEntry[] = Object.freeze([
   }),
 ]);
 
+/**
+ * V9 keeps every v8 identity and widens only the Bickering Besties' window back
+ * to the reference date already recorded as `referenceAvailableBy`
+ * (2022-07-31). That is DESIGN-026's second parent lock: World B's final
+ * chapter (ages 4 -> 6) starts on the child's fourth birthday, which falls
+ * before 2024 for every six-year-old born before 2020, yet the chapter always
+ * spans the Besties' era. Every other field is unchanged, and v1-v8 stay frozen.
+ */
+export const BESTIES_PARENT_LOCK_FROM = "2022-07-31";
+const PARODY_CANDIDATES_V9: readonly ParodyCatalogEntry[] = Object.freeze(
+  PARODY_CANDIDATES_V8.map((entry) =>
+    entry.id === "bickering-besties"
+      ? Object.freeze({
+          ...freezeV3Entry(entry),
+          eligibleFrom: BESTIES_PARENT_LOCK_FROM,
+          relevanceLock: Object.freeze({
+            lockedBy: "parent" as const,
+            previousEligibleFrom: entry.eligibleFrom,
+            reason:
+              "DESIGN-026: World B's final Besties chapter starts on the child's fourth birthday, which may fall before 2024; the window reaches back to the Besties' reference date",
+          }),
+        })
+      : freezeV3Entry(entry),
+  ),
+);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
@@ -484,6 +511,7 @@ export const PARODY_CATALOGS: Readonly<
   "parody-catalog-v6": PARODY_CANDIDATES_V6,
   "parody-catalog-v7": PARODY_CANDIDATES_V7,
   "parody-catalog-v8": PARODY_CANDIDATES_V8,
+  "parody-catalog-v9": PARODY_CANDIDATES_V9,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();
