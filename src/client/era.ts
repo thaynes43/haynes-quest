@@ -22,11 +22,8 @@ export function draftEncounterLabel(
 
 export function eraStory(year = 2020, level?: ActiveLevelView | null) {
   const period =
-    level?.periodId === "block-party-v1" ||
-    level?.periodId === "remix-runway-v1" ||
-    level?.periodId === "remix-runway-v2" ||
-    level?.periodId === "besties-obby-v1" ||
-    level?.periodId === "rat-casino-v1"
+    level?.periodId !== undefined &&
+    Object.prototype.hasOwnProperty.call(PARODY_PERIODS, level.periodId)
       ? PARODY_PERIODS[level.periodId]
       : null;
   if (period && level) {

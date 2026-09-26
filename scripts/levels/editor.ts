@@ -15,8 +15,8 @@ import {
 } from "../../src/shared/authored-level.js";
 import {
   decorWorldBounds,
+  placeableThemeKitProps,
   themeKitProp,
-  themeKitPropsFor,
 } from "../../src/shared/theme-kits.js";
 import {
   abilitiesForAge,
@@ -26,6 +26,8 @@ import {
 } from "../../src/shared/abilities.js";
 import {
   LEVEL_EDITOR_ANCHOR_SLOTS,
+  LEVEL_EDITOR_CATALOG_VERSIONS,
+  type LevelEditorCatalogVersion,
   LEVEL_EDITOR_COMMAND_BATCH_MAX_BYTES,
   LEVEL_EDITOR_PROJECT_MAX_BYTES,
   type LevelEditorAnchorSlot,
@@ -42,8 +44,9 @@ import {
 
 const usage = `Usage:
   tsx scripts/levels/editor.ts template <project-id> [name]
-  tsx scripts/levels/editor.ts world-template <project-id> [name]
+  tsx scripts/levels/editor.ts world-template <project-id> [name] [--catalog <version>]
   tsx scripts/levels/editor.ts inspect <project.json>
+  tsx scripts/levels/editor.ts level <project.json> <chapter-id>
   tsx scripts/levels/editor.ts validate <project.json>
   tsx scripts/levels/editor.ts apply <project.json> <commands.json>
   tsx scripts/levels/editor.ts export <project.json>
@@ -293,6 +296,12 @@ function describeChapterSpace(level: LevelEditorLevelDocument) {
                 bottom: derivedMetres(authoredSurfaceTopRange(platform).min),
                 top: derivedMetres(authoredSurfaceTopRange(platform).max),
               },
+              // A dwell pauses the lift at each stop: one full cycle lasts
+              // the travel period plus both pauses.
+              dwellSeconds: platform.travel.dwell ?? 0,
+              cycleSeconds: derivedMetres(
+                platform.travel.period + 2 * (platform.travel.dwell ?? 0),
+              ),
             }
           : {}),
         ...(platform.type === "bounce-pad"
@@ -325,8 +334,10 @@ function describeChapterSpace(level: LevelEditorLevelDocument) {
               worldBounds: prop ? decorWorldBounds(prop.bounds, entry) : null,
             };
           }),
-          themeKitProps: themeKitPropsFor(level.theme).map((prop) => ({
+          // The theme's own kit, then the shared kit every v4 theme may use.
+          themeKitProps: placeableThemeKitProps(level.theme).map((prop) => ({
             id: prop.id,
+            kit: prop.theme,
             bounds: prop.bounds,
             model: prop.glb?.url ?? null,
           })),
@@ -356,14 +367,30 @@ async function run(args: readonly string[]): Promise<void> {
     }
 
     case "world-template": {
-      requireArgumentCount(values, 1, 2);
-      const [projectId, name] = values;
+      // `--catalog <version>` pins the parody catalog, for example
+      // parody-catalog-v7 for the family worlds; the default is current.
+      const flag = values.indexOf("--catalog");
+      const catalogVersion = flag >= 0 ? values[flag + 1] : undefined;
+      if (flag >= 0 && catalogVersion === undefined) throw new Error(usage);
+      const positional = flag >= 0 ? values.filter((_, index) => index !== flag && index !== flag + 1) : values;
+      requireArgumentCount(positional, 1, 2);
+      const [projectId, name] = positional;
       requireArgument(projectId, "project id");
+      if (
+        catalogVersion !== undefined &&
+        !(LEVEL_EDITOR_CATALOG_VERSIONS as readonly string[]).includes(catalogVersion)
+      )
+        throw new Error(
+          `Unknown catalog ${JSON.stringify(catalogVersion)}; use one of ${LEVEL_EDITOR_CATALOG_VERSIONS.join(", ")}\n${usage}`,
+        );
       process.stdout.write(
         serializeLevelEditorProject(
           createWorldEditorProject({
             projectId,
             ...(name === undefined ? {} : { name }),
+            ...(catalogVersion === undefined
+              ? {}
+              : { catalogVersion: catalogVersion as LevelEditorCatalogVersion }),
           }),
         ),
       );
@@ -422,6 +449,27 @@ async function run(args: readonly string[]): Promise<void> {
         })),
         issues: validateLevelEditorProject(project),
       });
+      return;
+    }
+
+    case "level": {
+      // One chapter's level document, ready to edit and send back with
+      // chapter.level.replace.
+      requireArgumentCount(values, 2);
+      const [path, chapterId] = values;
+      requireArgument(path, "project path");
+      requireArgument(chapterId, "chapter id");
+      const project = await readProject(path);
+      const chapter = project.chapters.find(
+        (entry) => entry.chapterId === chapterId,
+      );
+      if (!chapter)
+        throw new CliInputError(`Chapter ${chapterId} does not exist`, {
+          path: "$.chapterId",
+          code: "chapter.missing",
+          message: `Chapter ${chapterId} does not exist`,
+        });
+      writeJson(chapter.level);
       return;
     }
 

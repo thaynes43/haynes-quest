@@ -41,7 +41,27 @@ The new casts go in a new frozen parody catalog version (v7). Each entry records
 - its **debut or source evidence** (the dates above);
 - a **parent-locked relevance window**, per DESIGN-012, covering the age band it serves.
 
-The validator checks the rebased chapter start against that window. A window may extend back before a debut only through an explicit parent lock, recorded with its reason, for example when a chapter spans the debut. The Rat Casino entries gain a parent-locked window from 2014-08-18, the franchise debut already recorded as `referenceAvailableBy`, so the older child's fifth chapter is eligible.
+The validator checks the rebased chapter start against that window. A window may extend back before a debut only through an explicit parent lock, recorded with its reason, for example when a chapter spans the debut. The Rat Casino entries gain a parent-locked window from 2014-08-18, the franchise debut already recorded as `referenceAvailableBy`, so the older child's final chapter is eligible.
+
+**Implemented foundations.** Frozen `parody-catalog-v7` holds every v6 identity unchanged, except that the six Rat Casino entries' `eligibleFrom` moves from 2024-01-01 to 2014-08-18. Each widened entry records a `relevanceLock` with `lockedBy: "parent"`, its `previousEligibleFrom` and the reason. Catalogs v1–v6 stay frozen, and v7 joins the editor's catalog versions.
+
+Five era periods carry each new chapter's title and story:
+
+| Period | Title | Subtitle |
+| --- | --- | --- |
+| `toon-clubhouse-v1` | Clubhouse Capers | Runaway gadgets and a very grumpy cat captain |
+| `rescue-harbor-v1` | Harbor Rescue | Mischief kittens and a mayor with a plan |
+| `hero-city-v1` | Hero City | Putty grunts, runaway robots and a monster-inator |
+| `sing-along-playroom-v1` | Sing-Along Playroom | Stubborn veggies and a honking bus |
+| `magic-house-v1` | The Magic House | Cheeky bin chickens and a house that won't stop dancing |
+
+Until the WO111 models land, these casts are project enemy candidates with neutral placeholder art. Each candidate carries its relevance window as data (`eligibility`), and every slot in a chapter shares one period. Candidates can fill:
+
+- the ordinary slots of the new eras;
+- the Rat Casino chapter's optional bonus slot, for the radio-host showman;
+- the Besties chapter's ordinary slots beside the catalog Besties boss, for the demon boy-band trio.
+
+A chapter with one ordinary identity gives all four ordinary anchors that identity's kind. Editor-world and family plans accept either ordinary kind in each ordinary slot, and the frozen stats follow the actual kind.
 
 ## Production order after the lock
 

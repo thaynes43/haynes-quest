@@ -151,15 +151,41 @@ New world chapters can opt into `authored-level-v4` (DESIGN-025, growth moves an
 
 Add pieces with `piece.add`:
 
-- `{"type": "lift", "id": "sky-lift", "center": {...}, "size": {...}, "travel": {"distance": 4, "period": 8}}` is a platform that moves straight up and down. `center` is the bottom stop; the top stop is `distance` metres higher (0.5–8 m, period 4–20 s). Connections touching it use `ride`, and both stops need a `ride` connection to a landing within jump height.
+- `{"type": "lift", "id": "sky-lift", "center": {...}, "size": {...}, "travel": {"distance": 4, "period": 8, "dwell": 2}}` is a platform that moves straight up and down. `center` is the bottom stop; the top stop is `distance` metres higher (0.5–8 m, period 4–20 s). The optional `dwell` (0–3 s) makes it wait at each stop, so one cycle takes `period + 2 × dwell`; without it the lift never pauses. Connections touching it use `ride`, and both stops need a `ride` connection to a landing within jump height.
 - `{"type": "bounce-pad", "id": "spring-pad", "center": {...}, "size": {...}, "strength": "small" | "big"}` launches the player straight up on contact (apex about 1.9 m or 2.7 m). It is at least 1.2 × 1.2 m, needs a clear launch column, and every connection leaving it uses `"mode": "bounce"`: rise at most 1.3 m (`small`) or 2.6 m (`big`), gap at most 2.2 m.
 
 - `{"type": "crumble", "id": "crumble-a", "center": {...}, "size": {...}}` shakes for 0.8 s after the first touch, drops away and returns 3 s later. Use it only on optional branches, never on the main route and never under or over an objective, fight area or checkpoint.
 
-Place scenery with `decor.add` and `decor.remove` (`"decorId"`). A prop is `{"id": "welcome-arch", "kitPropId": "party-arch", "position": {"x": 0, "y": 0, "z": 4.7}, "rotationY": 0, "scale": 1.2}`, where `position` is the prop's floor centre, `rotationY` is in radians and `scale` runs from 0.25 to 4. A level holds at most 200 props, each from its own theme's kit (`inspect` lists them under `themeKitProps`). Props never collide, so the validator keeps them out of the space the player moves through. A prop can't overlap any surface's walkable space, a connection's lane or a fight area, unless it sits entirely at least 3 m above the highest standing height there. Props beside or below the route are fine. `inspect` reports each placed prop's `worldBounds`.
+A `"mode": "drop"` connection steps or hops down to a lower surface that does not move, at any age: it descends 0.36–3 m across a gap of at most 1.4 m, with the same take-off and landing strips as a jump. The lower surface may reach back under the upper one, but at least 1.05 m of it must lie beyond the take-off edge, so the landing is never hidden under the deck; a `glide` follows the same rule. Use a drop for a descent instead of spending a growth move. A `bounce` may also declare a `safeMissPlatformId` catch floor for a practice bounce; its retry connection may lead to the deck that leads onto the pad.
+
+Place scenery with `decor.add` and `decor.remove` (`"decorId"`). A prop is `{"id": "welcome-arch", "kitPropId": "party-arch", "position": {"x": 0, "y": 0, "z": 4.7}, "rotationY": 0, "scale": 1.2}`, where `position` is the prop's floor centre, `rotationY` is in radians and `scale` runs from 0.25 to 4. A level holds at most 200 props, each from its own theme's kit or the shared kit of existing exact models (`inspect` lists both under `themeKitProps`, with each prop's `kit`). Props never collide, so the validator keeps them out of the space the player moves through. A prop can't overlap any surface's walkable space, a connection's lane or a fight area, unless it sits entirely at least 3 m above the highest standing height there. Props beside or below the route are fine. `inspect` reports each placed prop's `worldBounds`.
 
 A `jump` connection may declare `"requires": "high-jump" | "double-jump" | "glide"`. High jump allows 0.70 m rise and 1.7 m gap; double jump 1.30 m and 2.4 m; glide must descend at least 0.8 m and allows a 4 m gap. Every `requires` must be unlocked at the chapter's recovered start age (`inspect` reports `growthMoves` per chapter), and the first main-route use of a move that is new in that chapter needs a `safeMissPlatformId` catch floor as its practice stretch.
 
 Theme kits are registered in `src/game/theme-kits.ts` (palette, fog, trail look and any prepared scenery) with their props in `src/shared/theme-kits.ts` (bounding box, procedural fallback and, once reviewed, the exact GLB and its SHA-256). A prop without a model, or one whose model fails to load, draws its procedural stand-in. On v4 levels every theme shows a collectible trail with its own look and names, and places the rare collectible on the highest optional-route platform.
 
-`inspect` also reports a top-level `growth` block with these limits, unlock ages and launch speeds, lift `stopTops` and pad `launchApex`. `scripts/levels/build-vertical-v4-demo.ts` is a worked generator: it uses the helpers in `scripts/levels/lib/growth-kit.ts` to emit `scripts/levels/examples/vertical-v4-demo.commands.json`, which `pnpm levels:validate` replays into the checked-in example project.
+`inspect` also reports a top-level `growth` block with these limits, unlock ages and launch speeds, lift `stopTops`, `dwellSeconds` and `cycleSeconds`, and pad `launchApex`. `scripts/levels/build-vertical-v4-demo.ts` is a worked generator: it uses the helpers in `scripts/levels/lib/growth-kit.ts` to emit `scripts/levels/examples/vertical-v4-demo.commands.json`, which `pnpm levels:validate` replays into the checked-in example project.
+
+V4 levels may also use the family-world era themes `clubhouse`, `harbor`, `rooftop`, `playroom` and `casita` through `chapter.details.set`; a v3 level rejects them.
+
+### Generate a whole world
+
+A generator can own a world's chapter list. Start the project on the catalog the world's casts use; the family worlds use `parody-catalog-v7`:
+
+```bash
+pnpm --silent levels:editor world-template family-world "Family world" --catalog parody-catalog-v7 > project.json
+```
+
+A TypeScript generator passes the same choice as `createWorldEditorProject({ projectId, catalogVersion: "parody-catalog-v7" })`. `worldShellCommands` in `growth-kit.ts` turns the project's two seeded chapters into the chapters it lists, in order: it adds each chapter, removes the seeds, upgrades each to v4 and sets its theme, dates, ages and preview memories. Chapter and route ids must be unique, and a chapter may reuse a seeded route id (`chapter-1-route` or `chapter-2-route`) in any position. The generator then replaces each chapter's level whole with `chapter.level.replace` and assigns the cast:
+
+```json
+{ "type": "chapter.level.replace", "chapterId": "a1-clubhouse", "level": { "schemaVersion": "authored-level-v4", "id": "a1-clubhouse-route", "...": "..." } }
+```
+
+The chapter must already be v4, and the level's `id` must equal the chapter's route id. The replacement is validated like any other edit, and the chapter keeps its encounter assignments. `pnpm --silent levels:editor level project.json <chapter-id>` prints one chapter's level for editing.
+
+Check a generated world in three ways:
+
+- Check it in as `scripts/levels/examples/<name>.project.json` beside `<name>.commands.json`. `pnpm levels:validate` replays every such pair byte-identically from a fresh world project with the project's own id and catalog. The command file may hold one batch or an array of batches applied in order, which keeps a whole world under the per-batch size limit.
+- Run `lintFamilyChapter` from `src/shared/family-world-lint.ts` over each chapter in the generator's tests (DESIGN-025 D-08).
+- Use the kid-model helpers in `tests/game/family-kid-lib.ts`. `bounceWalkOn` walks onto each required pad at stick 0.4–1.0 (`R2_STICKS`). `liftWalkIn` counts how often a child walking toward a lift falls into its open shaft. `runGrowthRouteWithWaits` runs the required route while waiting for sweepers and walking around them, and its `seconds` are the pacing measurement.

@@ -238,6 +238,59 @@ export function edgeEntry(
 }
 
 /**
+ * How the auto-pilot takes a v4 `drop`: `hop` presses Jump at the edge, which
+ * covers the validator's whole drop envelope (up to a 1.4 m gap); `step`
+ * walks off the edge without jumping, as a cautious child would on a short
+ * gap.
+ */
+export type DropStyle = "hop" | "step";
+
+export interface TraverseEdgeOptions {
+  readonly dropStyle?: DropStyle;
+}
+
+/** Whether the auto-pilot presses Jump to cross this connection. */
+export function jumpsAcross(
+  connection: Pick<AuthoredConnection, "mode">,
+  options: TraverseEdgeOptions = {},
+): boolean {
+  if (connection.mode === "walk") return false;
+  if (connection.mode === "drop") return (options.dropStyle ?? "hop") === "hop";
+  return true;
+}
+
+/**
+ * Where the auto-pilot steers while crossing `connection`: the destination's
+ * centre, except for a descent (`drop`, or a jump requiring `glide`) whose
+ * landing reaches back under the takeoff deck. There the centre can lie under
+ * the deck, so the pilot steers for the middle of the landing's part beyond
+ * the takeoff edge, along the travel axis, as a child walks toward the lower
+ * deck it can see. Every other connection, and every descent whose centre is
+ * already beyond that middle, keeps the exact centre.
+ */
+export function connectionAim(
+  course: ObbyCourse,
+  connection: Pick<AuthoredConnection, "from" | "to" | "mode" | "requires">,
+  timeSeconds: number,
+): Readonly<{ x: number; z: number }> {
+  const target = sampledPlatform(course, connection.to, timeSeconds);
+  if (connection.mode !== "drop" && connection.requires !== "glide")
+    return target.center;
+  const from = sampledPlatform(course, connection.from, timeSeconds);
+  const deltaX = target.center.x - from.center.x;
+  const deltaZ = target.center.z - from.center.z;
+  const axis = Math.abs(deltaX) >= Math.abs(deltaZ) ? "x" : "z";
+  const direction = (axis === "x" ? deltaX : deltaZ) < 0 ? -1 : 1;
+  const takeoffEdge = from.center[axis] + (direction * from.size[axis]) / 2;
+  const farEdge = target.center[axis] + (direction * target.size[axis]) / 2;
+  const middle = (takeoffEdge + farEdge) / 2;
+  if (direction * (target.center[axis] - middle) >= 0) return target.center;
+  return axis === "x"
+    ? { x: middle, z: target.center.z }
+    : { x: target.center.x, z: middle };
+}
+
+/**
  * Exercises one edge from one valid entry. This is deliberately an isolated
  * edge check: after initial placement it advances only through `stepObby` and
  * does not claim that an automated player completed the uninterrupted route.
@@ -247,6 +300,7 @@ export function traverseEdge(
   connection: AuthoredConnection,
   stage: AppearanceStage,
   lateral = 0,
+  options: TraverseEdgeOptions = {},
 ): EdgeResult {
   if (
     connection.mode === "walk" &&
@@ -278,16 +332,17 @@ export function traverseEdge(
   let recovered = false;
   // Ride gaps are crossed with the normal jump input; the separate carry
   // checks below then prove the landing stays attached to the moving surface.
-  const jump = connection.mode !== "walk";
+  // A drop hops by default and steps off the edge when asked.
+  const jump = jumpsAcross(connection, options);
 
   for (let frame = 0; startedOnSource && frame < 180; frame += 1) {
-    const target = sampledPlatform(
+    const target = connectionAim(
       level.course,
-      connection.to,
+      connection,
       simulation.timeSeconds + FRAME_SECONDS,
     );
-    const deltaX = target.center.x - state.position.x;
-    const deltaZ = target.center.z - state.position.z;
+    const deltaX = target.x - state.position.x;
+    const deltaZ = target.z - state.position.z;
     const distance = Math.hypot(deltaX, deltaZ) || 1;
     const result = runtimeStep(
       simulation,

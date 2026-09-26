@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   AUTHORED_LEVEL_V4_LIMITS,
@@ -294,6 +295,14 @@ describe("decor commands", () => {
   });
 });
 
+const inventoryChecksums = new Map<string, string>(
+  (
+    JSON.parse(
+      readFileSync(new URL("../../scripts/assets/catalog-inventory.json", import.meta.url), "utf8"),
+    ) as { assets: Array<{ checksums?: Record<string, string> }> }
+  ).assets.flatMap((asset) => Object.entries(asset.checksums ?? {})),
+);
+
 describe("theme-kit prop catalog", () => {
   it("has unique ids, sane bounds and checksums that match the published models", () => {
     const ids = THEME_KIT_PROPS.map((entry) => entry.id);
@@ -305,9 +314,18 @@ describe("theme-kit prop catalog", () => {
       if (!entry.glb) continue;
       expect(entry.glb.url).toMatch(/^\/studio\/assets\/media\/[a-z0-9-]+\/v\d{3}\/[a-z0-9-]+\.glb$/);
       const file = new URL(`../../docs${entry.glb.url.replace("/studio", "")}`, import.meta.url);
-      const checksums = readFileSync(new URL("checksums.sha256", file), "utf8");
+      // The exact published bytes hash to the registered SHA-256.
+      expect(createHash("sha256").update(readFileSync(file)).digest("hex")).toBe(entry.glb.sha256);
+      // Kits that ship a checksum manifest list it there; older single-model
+      // assets (the shared clearing props) record it in the catalog inventory.
+      const manifest = new URL("checksums.sha256", file);
       const name = entry.glb.url.split("/").at(-1)!;
-      expect(checksums).toContain(`${entry.glb.sha256}  ${name}`);
+      if (existsSync(manifest))
+        expect(readFileSync(manifest, "utf8")).toContain(`${entry.glb.sha256}  ${name}`);
+      else
+        expect(inventoryChecksums.get(`docs${entry.glb.url.replace("/studio", "")}`)).toBe(
+          entry.glb.sha256,
+        );
     }
   });
 

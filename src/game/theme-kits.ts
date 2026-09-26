@@ -18,7 +18,8 @@ import { WORLD_THEMES, type RuntimeWorldTheme } from "./world-themes";
  * - `world`: palette, sky, ground, course colours and environment state
  *   (the existing `WORLD_THEMES` entry, unchanged);
  * - `fog`: fog distances (fog is drawn in the course sky colour);
- * - `props`: placeable decor from the shared prop catalog;
+ * - `props`: the theme's own placeable decor from the prop catalog (v4
+ *   levels may also place every `shared` prop);
  * - `trail`: the look and names of collectible trails on v4 levels;
  * - `scenery`: an optional prepared-kit builder. The Rat Casino's former
  *   hard-wired `CasinoScene` is now simply the casino entry's builder, with
@@ -76,6 +77,12 @@ export interface ThemeKit {
 }
 
 const standardFog = Object.freeze({ near: 20, far: 52 });
+/**
+ * The family-world era themes climb higher, so their fog starts later and
+ * ends inside the 100 m camera far plane: tall landmarks stay readable from
+ * across a chapter (DESIGN-025 D-05).
+ */
+const eraFog = Object.freeze({ near: 30, far: 95 });
 
 /** The casino trail keeps DESIGN-022's exact honey-gold look. */
 export const CASINO_TRAIL_LOOK: TrailLook = Object.freeze({
@@ -176,6 +183,68 @@ export const THEME_KITS: Readonly<Record<AuthoredLevelTheme, ThemeKit>> =
       trail: CASINO_TRAIL_LOOK,
       exitGate: { name: "casino-exit-arch", url: `${casinoKitBase}/marquee-arch.glb` },
       scenery: casinoScenery,
+    },
+    // Family-world era themes (v4 only). No prepared scenery: placed decor,
+    // from the theme's kit or the shared kit, dresses each level.
+    clubhouse: {
+      id: "clubhouse",
+      world: WORLD_THEMES.clubhouse,
+      fog: eraFog,
+      props: themeKitPropsFor("clubhouse"),
+      trail: trail(
+        { disc: 0xffd23f, discEmissive: 0x6b4d08, rim: 0xe8483f, rimEmissive: 0x4a1510, ticket: 0xfff1a6, ticketEmissive: 0x7a6010, stub: 0x3f8fe8, stubEmissive: 0x14305a, glow: 0xfff5c6 },
+        { token: "toon star", tokens: "toon stars", ticket: "golden gadget", tickets: "golden gadgets" },
+      ),
+      exitGate: null,
+      scenery: null,
+    },
+    harbor: {
+      id: "harbor",
+      world: WORLD_THEMES.harbor,
+      fog: eraFog,
+      props: themeKitPropsFor("harbor"),
+      trail: trail(
+        { disc: 0xf7c948, discEmissive: 0x6b4d08, rim: 0xd64533, rimEmissive: 0x4a1510, ticket: 0xffe39a, ticketEmissive: 0x8a5a10, stub: 0x2e4a62, stubEmissive: 0x101c28, glow: 0xfff1c6 },
+        { token: "rescue badge", tokens: "rescue badges", ticket: "golden bone", tickets: "golden bones" },
+      ),
+      exitGate: null,
+      scenery: null,
+    },
+    rooftop: {
+      id: "rooftop",
+      world: WORLD_THEMES.rooftop,
+      fog: eraFog,
+      props: themeKitPropsFor("rooftop"),
+      trail: trail(
+        { disc: 0xf2b134, discEmissive: 0x6b4308, rim: 0x4fe3ff, rimEmissive: 0x0f4a5a, ticket: 0xffd36b, ticketEmissive: 0x8a5a10, stub: 0xff4fa3, stubEmissive: 0x5a1238, glow: 0xc8f6ff },
+        { token: "city coin", tokens: "city coins", ticket: "golden gizmo", tickets: "golden gizmos" },
+      ),
+      exitGate: null,
+      scenery: null,
+    },
+    playroom: {
+      id: "playroom",
+      world: WORLD_THEMES.playroom,
+      fog: eraFog,
+      props: themeKitPropsFor("playroom"),
+      trail: trail(
+        { disc: 0xa7d8f4, discEmissive: 0x2a5a78, rim: 0xf4a7b9, rimEmissive: 0x5a2a38, ticket: 0xffe39a, ticketEmissive: 0x8a5a10, stub: 0xb9a7f4, stubEmissive: 0x3a2a5a, glow: 0xf0f8ff },
+        { token: "bubble", tokens: "bubbles", ticket: "golden rattle", tickets: "golden rattles" },
+      ),
+      exitGate: null,
+      scenery: null,
+    },
+    casita: {
+      id: "casita",
+      world: WORLD_THEMES.casita,
+      fog: eraFog,
+      props: themeKitPropsFor("casita"),
+      trail: trail(
+        { disc: 0xf2a93b, discEmissive: 0x6b3f08, rim: 0xe8487a, rimEmissive: 0x5a1228, ticket: 0xffd36b, ticketEmissive: 0x8a5a10, stub: 0x2e8b73, stubEmissive: 0x0f3a2e, glow: 0xfff0c6 },
+        { token: "butterfly", tokens: "butterflies", ticket: "golden candle", tickets: "golden candles" },
+      ),
+      exitGate: null,
+      scenery: null,
     },
   });
 

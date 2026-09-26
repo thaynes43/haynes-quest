@@ -77,6 +77,13 @@ export interface RuntimeWorldTheme {
   readonly environment: EnvironmentKit;
   readonly environmentScale: number;
   readonly usesPathTiles: boolean;
+  /**
+   * False drops the two non-colliding side banks drawn level with y=0 beside
+   * a course. The family era themes set it: their ground-level decks would
+   * otherwise sit beside a fake floor a child falls straight through.
+   * Absent means the banks are drawn, as every earlier theme does.
+   */
+  readonly sideBanks?: false;
 }
 
 const clearingAssets: EnvironmentAssetPaths = Object.freeze({
@@ -300,9 +307,189 @@ const casino: RuntimeWorldTheme = {
   usesPathTiles: false,
 };
 
+/**
+ * Family-world era themes (DESIGN-026), available only to authored-level-v4
+ * levels. Each is a bright storybook palette for its era. They use the
+ * pending-kit state without automatic scenery: no clearing trees, meadow or
+ * hills, no side banks and no placeholder props of their own, so a level's
+ * placed decor frames it. The finish shows the procedural pending marker
+ * until an exact kit is reviewed.
+ */
+function eraTheme(
+  id: AuthoredLevelTheme,
+  theme: Omit<
+    RuntimeWorldTheme,
+    "id" | "environment" | "environmentScale" | "usesPathTiles" | "sideBanks"
+  >,
+): RuntimeWorldTheme {
+  return {
+    id,
+    ...theme,
+    environment: {
+      state: "pending-kit",
+      assets: null,
+      fallbackName: `${id}-pending-kit-fallback`,
+    },
+    environmentScale: 1,
+    usesPathTiles: false,
+    sideBanks: false,
+  };
+}
+
+/** Sunny toon greens, reds and yellows around a hilltop clubhouse. */
+const clubhouse = eraTheme("clubhouse", {
+  palette: {
+    sky: 0xaee3ff,
+    grass: 0x6cc24a,
+    leaf: 0x3f9b3a,
+    light: 0xfff2c4,
+    accent: 0xffd23f,
+    mist: 0xd8f1ff,
+  },
+  course: { sky: 0xaee3ff, ground: 0x7fcf5a, light: 0xfff4dc, exposure: 0.9 },
+  obby: {
+    platformSide: 0xe8483f,
+    platformTop: 0x9edc6e,
+    platformEdge: 0xffd23f,
+    platformCenter: null,
+    platformRails: 0xfff6d6,
+    ferrySide: 0x3f8fe8,
+    ferryTop: 0xffd23f,
+    ferryEdge: 0xfff6d6,
+    ferryDetail: 0xe8483f,
+    hazard: 0xff7a3d,
+    hazardBand: 0xfff176,
+    ...sharedCheckpointColors,
+  },
+  meadow: { grass: 0x6cc24a, flower: 0xffd23f, particles: 0xfff176 },
+});
+
+/** Sea blues, rescue red and yellow, and weathered wooden piers. */
+const harbor = eraTheme("harbor", {
+  palette: {
+    sky: 0x9fd4f0,
+    grass: 0x2f7fb8,
+    leaf: 0x1f5f8a,
+    light: 0xfff1d0,
+    accent: 0xd64533,
+    mist: 0xcfe8f5,
+  },
+  course: { sky: 0x9fd4f0, ground: 0x2f86c0, light: 0xfff4e0, exposure: 0.9 },
+  obby: {
+    platformSide: 0xa8835b,
+    platformTop: 0xd9c3a0,
+    platformEdge: 0xf7c948,
+    platformCenter: null,
+    platformRails: 0xd64533,
+    ferrySide: 0xd64533,
+    ferryTop: 0xf2efe6,
+    ferryEdge: 0xf7c948,
+    ferryDetail: 0x2e4a62,
+    hazard: 0xd64533,
+    hazardBand: 0xf7c948,
+    ...sharedCheckpointColors,
+  },
+  meadow: { grass: 0x2f7fb8, flower: 0xf7c948, particles: 0xffffff },
+});
+
+/** Dusk city blues, brick rooftops and neon billboard accents. */
+const rooftop = eraTheme("rooftop", {
+  palette: {
+    sky: 0x5b6fa8,
+    grass: 0x2b3350,
+    leaf: 0x3c4a78,
+    light: 0xffc98a,
+    accent: 0xff4fa3,
+    mist: 0x8a93c4,
+  },
+  course: { sky: 0x5b6fa8, ground: 0x2b3350, light: 0xffd9a8, exposure: 0.95 },
+  obby: {
+    platformSide: 0x9c4a36,
+    platformTop: 0x8f96a8,
+    platformEdge: 0x4fe3ff,
+    platformCenter: null,
+    platformRails: 0xff4fa3,
+    ferrySide: 0x33394a,
+    ferryTop: 0xf2b134,
+    ferryEdge: 0x4fe3ff,
+    ferryDetail: 0xff4fa3,
+    hazard: 0xff4fa3,
+    hazardBand: 0x4fe3ff,
+    ...sharedCheckpointColors,
+  },
+  meadow: { grass: 0x2b3350, flower: 0xff4fa3, particles: 0x4fe3ff },
+});
+
+/** A soft pastel nursery: carpet, cream shelves and baby-blue blocks. */
+const playroom = eraTheme("playroom", {
+  palette: {
+    sky: 0xfde8f0,
+    grass: 0xf6dcc8,
+    leaf: 0xa7d8f4,
+    light: 0xfff7ea,
+    accent: 0xf4a7b9,
+    mist: 0xe8e0f7,
+  },
+  course: { sky: 0xfde8f0, ground: 0xf3d9c6, light: 0xfff8ee, exposure: 0.85 },
+  obby: {
+    platformSide: 0xa7d8f4,
+    platformTop: 0xfff3d6,
+    platformEdge: 0xf4a7b9,
+    platformCenter: 0xfbe3a1,
+    platformRails: null,
+    ferrySide: 0xb9a7f4,
+    ferryTop: 0xfbe3a1,
+    ferryEdge: 0xfff3d6,
+    ferryDetail: 0xa7e0c8,
+    hazard: 0xf4a7b9,
+    hazardBand: 0xfff3d6,
+    ...sharedCheckpointColors,
+  },
+  meadow: { grass: 0xf6dcc8, flower: 0xf4a7b9, particles: 0xb9a7f4 },
+});
+
+/** Warm terracotta terraces, bright flowers and jungle greens. */
+const casita = eraTheme("casita", {
+  palette: {
+    sky: 0xffe3b8,
+    grass: 0x3f9b4f,
+    leaf: 0x2c7a3f,
+    light: 0xffe7b0,
+    accent: 0xe8487a,
+    mist: 0xf5d7a8,
+  },
+  course: { sky: 0xffe3b8, ground: 0x4fa65a, light: 0xfff0cc, exposure: 0.9 },
+  obby: {
+    platformSide: 0xd9825b,
+    platformTop: 0xf5e6c8,
+    platformEdge: 0xf2a93b,
+    platformCenter: null,
+    platformRails: 0x2e8b73,
+    ferrySide: 0x2e8b73,
+    ferryTop: 0xf2c14e,
+    ferryEdge: 0xf5e6c8,
+    ferryDetail: 0xe8487a,
+    hazard: 0xe8487a,
+    hazardBand: 0xf2c14e,
+    ...sharedCheckpointColors,
+  },
+  meadow: { grass: 0x3f9b4f, flower: 0xe8487a, particles: 0xf2c14e },
+});
+
 export const WORLD_THEMES: Readonly<
   Record<AuthoredLevelTheme, RuntimeWorldTheme>
-> = Object.freeze({ garden, party, arcade, toybox, casino });
+> = Object.freeze({
+  garden,
+  party,
+  arcade,
+  toybox,
+  casino,
+  clubhouse,
+  harbor,
+  rooftop,
+  playroom,
+  casita,
+});
 
 /**
  * V3/V4 world routes choose their own world. Published v1/v2 and legacy saves

@@ -8,6 +8,7 @@ export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v4",
   "parody-catalog-v5",
   "parody-catalog-v6",
+  "parody-catalog-v7",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
 export const PARODY_CATALOG_VERSION = "parody-catalog-v5" as const;
@@ -16,7 +17,24 @@ export type ParodyPeriodId =
   | "remix-runway-v1"
   | "remix-runway-v2"
   | "besties-obby-v1"
-  | "rat-casino-v1";
+  | "rat-casino-v1"
+  | "toon-clubhouse-v1"
+  | "rescue-harbor-v1"
+  | "hero-city-v1"
+  | "sing-along-playroom-v1"
+  | "magic-house-v1";
+/**
+ * Family-world era periods (DESIGN-026). Their casts are project enemy
+ * candidates with neutral placeholder art until the WO111 models land; no
+ * frozen catalog version lists an entry in them yet.
+ */
+export const FAMILY_ERA_PERIOD_IDS = [
+  "toon-clubhouse-v1",
+  "rescue-harbor-v1",
+  "hero-city-v1",
+  "sing-along-playroom-v1",
+  "magic-house-v1",
+] as const satisfies readonly ParodyPeriodId[];
 export type ObbyRouteId =
   | "gentle-intro-v1"
   | "gentle-jump-v1"
@@ -38,6 +56,19 @@ export interface ParodyCatalogEntry {
   readonly requiredAbilities: readonly Ability[];
   readonly assetId: string;
   readonly assetVersion: "v001" | "v002";
+  /**
+   * A parent-locked relevance window (DESIGN-012, DESIGN-026 "Eligibility"):
+   * the frozen reason `eligibleFrom` differs from the entry's earlier catalog
+   * window. Present only on entries a later catalog widened.
+   */
+  readonly relevanceLock?: ParodyRelevanceLock;
+}
+
+export interface ParodyRelevanceLock {
+  readonly lockedBy: "parent";
+  /** The window start in the catalog version this entry was copied from. */
+  readonly previousEligibleFrom: string;
+  readonly reason: string;
 }
 
 export const PARODY_PERIODS = {
@@ -70,6 +101,36 @@ export const PARODY_PERIODS = {
     subtitle: "Worn mascots, old tokens and an after-hours pit boss",
     description:
       "Cross the quiet casino floor, outlast its supporting cast and face the Rat Pit Boss.",
+  },
+  "toon-clubhouse-v1": {
+    title: "Clubhouse Capers",
+    subtitle: "Runaway gadgets and a very grumpy cat captain",
+    description:
+      "Climb the toon clubhouse, round up the runaway gadgets and stand up to the bully on the tower deck.",
+  },
+  "rescue-harbor-v1": {
+    title: "Harbor Rescue",
+    subtitle: "Mischief kittens and a mayor with a plan",
+    description:
+      "Ride the boats, hop the rooftops and climb the lookout to stop the rival mayor.",
+  },
+  "hero-city-v1": {
+    title: "Hero City",
+    subtitle: "Putty grunts, runaway robots and a monster-inator",
+    description:
+      "Leap across the rooftops, bounce off the vents and take down the scientist's giant monster.",
+  },
+  "sing-along-playroom-v1": {
+    title: "Sing-Along Playroom",
+    subtitle: "Stubborn veggies and a honking bus",
+    description:
+      "Climb the block towers of the playroom and cheer up the grumpy bus on the toy shelf.",
+  },
+  "magic-house-v1": {
+    title: "The Magic House",
+    subtitle: "Cheeky bin chickens and a house that won't stop dancing",
+    description:
+      "Climb the garden terraces and calm the dancing house at the top.",
   },
 } as const;
 
@@ -343,6 +404,31 @@ const PARODY_CANDIDATES_V6: readonly ParodyCatalogEntry[] = Object.freeze([
   }),
 ]);
 
+/**
+ * V7 keeps every v6 identity and widens only the Rat Casino entries' window
+ * back to the franchise debut already recorded as `referenceAvailableBy`
+ * (2014-08-18). That is DESIGN-026's recorded parent lock: the older child's
+ * final family chapter spans the debut. Every other field is unchanged, and
+ * v1–v6 stay frozen.
+ */
+const RAT_CASINO_PARENT_LOCK_FROM = "2014-08-18";
+const PARODY_CANDIDATES_V7: readonly ParodyCatalogEntry[] = Object.freeze(
+  PARODY_CANDIDATES_V6.map((entry) =>
+    entry.periodId === "rat-casino-v1"
+      ? Object.freeze({
+          ...freezeV3Entry(entry),
+          eligibleFrom: RAT_CASINO_PARENT_LOCK_FROM,
+          relevanceLock: Object.freeze({
+            lockedBy: "parent" as const,
+            previousEligibleFrom: entry.eligibleFrom,
+            reason:
+              "DESIGN-026: the family release's final Rat Casino chapter may start before 2024; the window reaches back to the franchise debut",
+          }),
+        })
+      : freezeV3Entry(entry),
+  ),
+);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
@@ -352,6 +438,7 @@ export const PARODY_CATALOGS: Readonly<
   "parody-catalog-v4": PARODY_CANDIDATES_V4,
   "parody-catalog-v5": PARODY_CANDIDATES_V5,
   "parody-catalog-v6": PARODY_CANDIDATES_V6,
+  "parody-catalog-v7": PARODY_CANDIDATES_V7,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();

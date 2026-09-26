@@ -12,9 +12,10 @@
  * versioned GLB under `/studio/assets/media/...` with its SHA-256; until one
  * lands, or if it fails to load, the procedural fallback draws instead.
  *
- * Adding a prop: append an entry with a fresh id, the theme, a bounding box
- * that encloses the whole model, a fallback, and (optionally) the reviewed
- * GLB's URL and checksum. Keep the asset catalog pages in step with any GLB.
+ * Adding a prop: append an entry with a fresh id, the theme (or `shared` for
+ * a prop every v4 theme may place), a bounding box that encloses the whole
+ * model, a fallback, and (optionally) the reviewed GLB's URL and checksum.
+ * Keep the asset catalog pages in step with any GLB.
  */
 import type { AuthoredLevelTheme } from "./authored-level";
 
@@ -23,11 +24,32 @@ export interface ThemeKitBounds {
   readonly max: Readonly<{ x: number; y: number; z: number }>;
 }
 
-export type ThemeKitFallbackShape = "box" | "cylinder" | "arch";
+/**
+ * Procedural stand-ins, each filling the prop's bounds: a slab (`box`), a post
+ * (`cylinder`), two posts and a lintel (`arch`), a ball (`sphere`), a tank on
+ * four legs (`tank`), three stacked blocks (`stack`) or a panel on two legs
+ * (`board`).
+ */
+export type ThemeKitFallbackShape =
+  | "box"
+  | "cylinder"
+  | "arch"
+  | "sphere"
+  | "tank"
+  | "stack"
+  | "board";
+
+/**
+ * The shared prop namespace: props any authored-level-v4 theme may place, on
+ * top of its own kit (DESIGN-025 D-05).
+ */
+export const SHARED_THEME_KIT = "shared" as const;
+
+export type ThemeKitPropTheme = AuthoredLevelTheme | typeof SHARED_THEME_KIT;
 
 export interface ThemeKitPropDefinition {
   readonly id: string;
-  readonly theme: AuthoredLevelTheme;
+  readonly theme: ThemeKitPropTheme;
   readonly bounds: ThemeKitBounds;
   /** Procedural stand-in drawn whenever the exact model is absent or fails. */
   readonly fallback: {
@@ -54,6 +76,7 @@ function box(
 }
 
 const casinoKit = "/studio/assets/media/rat-casino-kit/v001";
+const media = "/studio/assets/media";
 
 export const THEME_KIT_PROPS: readonly ThemeKitPropDefinition[] = Object.freeze([
   // Rat Casino kit v001 (WO097). Bounds are the exported floor-centred model
@@ -159,6 +182,274 @@ export const THEME_KIT_PROPS: readonly ThemeKitPropDefinition[] = Object.freeze(
     fallback: { shape: "cylinder", color: 0x6d7cb0, trim: 0xdca953 },
     glb: null,
   },
+  // Family-world era kits (DESIGN-026). The art lead's WO111 kits
+  // (toon-clubhouse-kit, rescue-harbor-kit, rooftop-city-kit, playroom-kit,
+  // casita-kit) add exact GLBs later; until then each prop draws its
+  // procedural stand-in at these bounds.
+  {
+    id: "clubhouse-tower-facade",
+    theme: "clubhouse",
+    bounds: box(2.2, 6.5, 0.6),
+    fallback: { shape: "box", color: 0xe8483f, trim: 0xffd23f },
+    glb: null,
+  },
+  {
+    id: "curly-slide",
+    theme: "clubhouse",
+    bounds: box(1.2, 3.2, 1.2),
+    fallback: { shape: "cylinder", color: 0xffd23f, trim: 0xe8483f },
+    glb: null,
+  },
+  {
+    id: "gadget-toolbox-stand",
+    theme: "clubhouse",
+    bounds: box(0.6, 1.3, 0.45),
+    fallback: { shape: "stack", color: 0x3f8fe8, trim: 0xffd23f },
+    glb: null,
+  },
+  {
+    id: "rounded-hedge",
+    theme: "clubhouse",
+    bounds: box(1.1, 1.2, 0.6),
+    fallback: { shape: "sphere", color: 0x4fb548, trim: 0x2f8a3a },
+    glb: null,
+  },
+  {
+    id: "stage-marker",
+    theme: "clubhouse",
+    bounds: box(0.9, 0.35, 0.9),
+    fallback: { shape: "cylinder", color: 0xffd23f, trim: 0xe8483f },
+    glb: null,
+  },
+  {
+    id: "lookout-tower-facade",
+    theme: "harbor",
+    bounds: box(1.8, 7, 1.8),
+    fallback: { shape: "tank", color: 0xd64533, trim: 0xf7c948 },
+    glb: null,
+  },
+  {
+    id: "pier-bollard",
+    theme: "harbor",
+    bounds: box(0.3, 0.8, 0.3),
+    fallback: { shape: "cylinder", color: 0x2e4a62, trim: 0xf7c948 },
+    glb: null,
+  },
+  {
+    id: "rescue-buoy-stand",
+    theme: "harbor",
+    bounds: box(0.6, 1.8, 0.25),
+    fallback: { shape: "board", color: 0xa8835b, trim: 0xd64533 },
+    glb: null,
+  },
+  {
+    id: "small-boat",
+    theme: "harbor",
+    bounds: box(1.2, 1.1, 2.6),
+    fallback: { shape: "box", color: 0x2f7fb8, trim: 0xf2efe6 },
+    glb: null,
+  },
+  {
+    id: "water-tower",
+    theme: "rooftop",
+    bounds: box(1.4, 5, 1.4),
+    fallback: { shape: "tank", color: 0x8a5a44, trim: 0x5a6d8c },
+    glb: null,
+  },
+  {
+    id: "rooftop-ac-unit",
+    theme: "rooftop",
+    bounds: box(0.9, 1.1, 0.7),
+    fallback: { shape: "box", color: 0x9aa4b2, trim: 0x5a6d8c },
+    glb: null,
+  },
+  {
+    id: "crane-hook",
+    theme: "rooftop",
+    bounds: box(0.5, 1.6, 0.5),
+    fallback: { shape: "cylinder", color: 0xf2b134, trim: 0x33394a },
+    glb: null,
+  },
+  {
+    id: "billboard-frame",
+    theme: "rooftop",
+    bounds: box(2.5, 4, 0.25),
+    fallback: { shape: "board", color: 0x2b3350, trim: 0xff4fa3 },
+    glb: null,
+  },
+  {
+    id: "stacking-block-tower",
+    theme: "playroom",
+    bounds: box(0.7, 2.4, 0.7),
+    fallback: { shape: "stack", color: 0xf4a7b9, trim: 0xa7d8f4 },
+    glb: null,
+  },
+  {
+    id: "toy-bus-garage",
+    theme: "playroom",
+    bounds: box(2, 2.2, 1.6),
+    fallback: { shape: "box", color: 0xfbe3a1, trim: 0xb9a7f4 },
+    glb: null,
+  },
+  {
+    id: "crib-rail-fence",
+    theme: "playroom",
+    bounds: box(1.6, 0.9, 0.12),
+    fallback: { shape: "box", color: 0xfdf6ec, trim: 0xa7e0c8 },
+    glb: null,
+  },
+  {
+    id: "giant-plush-ball",
+    theme: "playroom",
+    bounds: box(0.9, 1.8, 0.9),
+    fallback: { shape: "sphere", color: 0xa7d8f4, trim: 0xf4a7b9 },
+    glb: null,
+  },
+  {
+    id: "casita-terrace-wall",
+    theme: "casita",
+    bounds: box(2.4, 2, 0.35),
+    fallback: { shape: "box", color: 0xd9825b, trim: 0xf5e6c8 },
+    glb: null,
+  },
+  {
+    id: "flower-planter",
+    theme: "casita",
+    bounds: box(0.6, 0.9, 0.6),
+    fallback: { shape: "cylinder", color: 0xc4643f, trim: 0xe8487a },
+    glb: null,
+  },
+  {
+    id: "patterned-door",
+    theme: "casita",
+    bounds: box(0.8, 2.4, 0.2),
+    fallback: { shape: "box", color: 0x2e8b73, trim: 0xf2c14e },
+    glb: null,
+  },
+  {
+    id: "butterfly-arch",
+    theme: "casita",
+    bounds: box(1.8, 3.2, 0.3),
+    fallback: { shape: "arch", color: 0x3f9b4f, trim: 0xf2a93b },
+    glb: null,
+  },
+  // Concert-stage props for the Besties party finale.
+  {
+    id: "stage-speaker",
+    theme: "party",
+    bounds: box(0.6, 1.8, 0.5),
+    fallback: { shape: "stack", color: 0x2b2233, trim: 0xd687a5 },
+    glb: null,
+  },
+  {
+    id: "light-truss",
+    theme: "party",
+    bounds: box(2.5, 4.2, 0.3),
+    fallback: { shape: "arch", color: 0x9aa4b2, trim: 0xffefb1 },
+    glb: null,
+  },
+  {
+    id: "star-backdrop",
+    theme: "party",
+    bounds: box(3, 4.5, 0.25),
+    fallback: { shape: "board", color: 0x5b3a86, trim: 0xffd669 },
+    glb: null,
+  },
+  // Shared props: the existing exact GLB kits, placeable in every v4 theme.
+  // Ids are the catalog-inventory ids; bounds are the floor-centred model
+  // bounds measured from each GLB (accessor extents through the node
+  // transforms, rounded outward to the millimetre), and each SHA-256 is the
+  // inventory checksum of the exact file.
+  {
+    id: "clearing-tree",
+    theme: SHARED_THEME_KIT,
+    bounds: box(1.25, 3, 0.774),
+    fallback: { shape: "cylinder", color: 0x467359, trim: 0x668061 },
+    glb: {
+      url: `${media}/clearing-tree/v001/clearing-tree.glb`,
+      sha256: "501873525cbacf5449274a5f1c4ddf8294c2c8057b79b995e4070af375006ff9",
+    },
+  },
+  {
+    id: "clearing-stone",
+    theme: SHARED_THEME_KIT,
+    bounds: box(0.525, 0.8, 0.375),
+    fallback: { shape: "sphere", color: 0xc8cbb1, trim: 0x9a9c86 },
+    glb: {
+      url: `${media}/clearing-stone/v001/clearing-stone.glb`,
+      sha256: "475de5a60175e1899f5688ed7a5738a036a3d60b7b06c455eea0bb4472e11aa7",
+    },
+  },
+  {
+    id: "arrival-landmark",
+    theme: SHARED_THEME_KIT,
+    bounds: box(1.2, 2.8, 0.275),
+    fallback: { shape: "arch", color: 0xb98b55, trim: 0xffdc9b },
+    glb: {
+      url: `${media}/arrival-landmark/v001/arrival-landmark.glb`,
+      sha256: "9c151754f84a5df8f03fde12c9047e870a87eef94933e7e5491e066e16cb8c63",
+    },
+  },
+  {
+    id: "toybox-block-tower",
+    theme: SHARED_THEME_KIT,
+    bounds: box(0.85, 2.377, 0.456),
+    fallback: { shape: "stack", color: 0xd9aa8e, trim: 0x6d7cb0 },
+    glb: {
+      url: `${media}/skyline-toybox-kit/v001/block-tower.glb`,
+      sha256: "f7d9109a3f39a52db248423b680344393d94471b3420838c5bf717de243531e4",
+    },
+  },
+  {
+    id: "toybox-safety-rail",
+    theme: SHARED_THEME_KIT,
+    bounds: box(1.2, 0.756, 0.19),
+    fallback: { shape: "box", color: 0x6d7cb0, trim: 0xdca953 },
+    glb: {
+      url: `${media}/skyline-toybox-kit/v001/safety-rail.glb`,
+      sha256: "fd5b45ac33852017c51a46877e85b7bbb2c25edff6f362b8e8451a32ab5d4f7d",
+    },
+  },
+  {
+    id: "toybox-windup-lantern",
+    theme: SHARED_THEME_KIT,
+    bounds: box(0.33, 0.814, 0.214),
+    fallback: { shape: "cylinder", color: 0xdca953, trim: 0xfff1d6 },
+    glb: {
+      url: `${media}/skyline-toybox-kit/v001/windup-lantern.glb`,
+      sha256: "fc6bdef3e83df930abc7cdaf4d898a8e4bed0c1476f7496fb3ff3aa54ac33948",
+    },
+  },
+  {
+    id: "midnight-ticket-arch",
+    theme: SHARED_THEME_KIT,
+    bounds: { min: { x: -3.041, y: 0, z: -0.31 }, max: { x: 3.041, y: 3.385, z: 0.428 } },
+    fallback: { shape: "arch", color: 0x3e3353, trim: 0xd687a5 },
+    glb: {
+      url: `${media}/midnight-arcade-kit/v001/ticket-arch.glb`,
+      sha256: "bd06ceeacde3401dc1d484711c2d579bf5e72fca5dcc12f6885fada62b49a265",
+    },
+  },
+  {
+    id: "midnight-arcade-cabinet",
+    theme: SHARED_THEME_KIT,
+    bounds: { min: { x: -0.473, y: 0, z: -0.5 }, max: { x: 0.473, y: 1.79, z: 0.52 } },
+    fallback: { shape: "box", color: 0x6e547d, trim: 0xdca953 },
+    glb: {
+      url: `${media}/midnight-arcade-kit/v001/arcade-cabinet.glb`,
+      sha256: "63a54542acd25a1aededf63b563b2926002ff87b14069fa470fe2919c0f20142",
+    },
+  },
+  {
+    id: "midnight-joystick-bollard",
+    theme: SHARED_THEME_KIT,
+    bounds: box(0.425, 1.05, 0.425),
+    fallback: { shape: "cylinder", color: 0x3e3353, trim: 0xd687a5 },
+    glb: {
+      url: `${media}/midnight-arcade-kit/v001/joystick-bollard.glb`,
+      sha256: "11719fe4ef27242a409e7cb81137a1429903545593f1dcb61e69ae80d9d4754d",
+    },
+  },
 ] satisfies ThemeKitPropDefinition[]);
 
 const byId = new Map(THEME_KIT_PROPS.map((prop) => [prop.id, prop]));
@@ -167,10 +458,23 @@ export function themeKitProp(id: string): ThemeKitPropDefinition | undefined {
   return byId.get(id);
 }
 
+/** The props registered to one theme's own kit (the shared kit excluded). */
 export function themeKitPropsFor(
   theme: AuthoredLevelTheme,
 ): readonly ThemeKitPropDefinition[] {
   return THEME_KIT_PROPS.filter((prop) => prop.theme === theme);
+}
+
+/** The shared props every v4 theme may place. */
+export function sharedThemeKitProps(): readonly ThemeKitPropDefinition[] {
+  return THEME_KIT_PROPS.filter((prop) => prop.theme === SHARED_THEME_KIT);
+}
+
+/** Everything a v4 level of this theme may place: its own kit, then the shared kit. */
+export function placeableThemeKitProps(
+  theme: AuthoredLevelTheme,
+): readonly ThemeKitPropDefinition[] {
+  return [...themeKitPropsFor(theme), ...sharedThemeKitProps()];
 }
 
 export interface DecorPlacement {

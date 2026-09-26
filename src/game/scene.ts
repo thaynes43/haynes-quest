@@ -329,7 +329,7 @@ export class GardenScene {
     if (level.course) {
       this.obbyVisual = new ObbyScene(level.course, worldTheme.obby);
       this.world.add(this.obbyVisual.root);
-      for (const side of [-1, 1])
+      for (const side of worldTheme.sideBanks === false ? [] : [-1, 1])
         this.world.add(
           shapeMesh(
             new THREE.BoxGeometry(

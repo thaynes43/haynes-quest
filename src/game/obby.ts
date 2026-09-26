@@ -24,10 +24,17 @@ export interface ObbyMotion {
   axis: "x" | "y" | "z";
   /** Amplitude in metres. */
   distance: number;
-  /** Seconds per full cycle. Non-positive or non-finite disables the motion. */
+  /** Seconds of travel per full cycle. Non-positive or non-finite disables the motion. */
   period: number;
   /** Radians. */
   phase?: number;
+  /**
+   * Seconds the motion pauses at each extreme (sin = ±1), so one full cycle
+   * lasts `period + 2 × dwell`. The travel between extremes keeps the exact
+   * sine speed profile. Absent, zero, negative or non-finite means no pause,
+   * which is the original motion. Only v4 lifts use it (DESIGN-025).
+   */
+  dwell?: number;
 }
 
 /** Constant rotation around the vertical axis: angle = phase + 2π t / period. */
@@ -323,6 +330,31 @@ function cycleAngle(period: unknown, phase: unknown, time: number): number {
   return offset + TAU * (wrapTime(time, seconds) / seconds);
 }
 
+/**
+ * The sine angle of a motion that pauses for `dwell` seconds at each extreme.
+ * The authored phase fixes the angle at t=0; time then advances the angle at
+ * the undelayed rate except while it rests at π/2 (sin = 1) or 3π/2
+ * (sin = −1). A phase that lands exactly on an extreme starts that pause.
+ */
+function dwellAngle(period: number, dwell: number, phase: unknown, time: number): number {
+  const rate = TAU / period;
+  const quarter = period / 4;
+  const initial = wrapTime(finiteOr(phase, 0), TAU);
+  // Cycle position (seconds) of the initial angle on the dwell-extended clock.
+  // Angles within EPSILON of an extreme count as the start of its pause, so a
+  // lift's authored phase 0 always begins with its full bottom dwell.
+  const start =
+    initial / rate +
+    (initial > Math.PI / 2 + EPSILON ? dwell : 0) +
+    (initial > (3 * Math.PI) / 2 + EPSILON ? dwell : 0);
+  const position = wrapTime(start + time, period + 2 * dwell);
+  if (position < quarter) return position * rate;
+  if (position < quarter + dwell) return Math.PI / 2;
+  if (position < 3 * quarter + dwell) return (position - dwell) * rate;
+  if (position < 3 * quarter + 2 * dwell) return (3 * Math.PI) / 2;
+  return (position - 2 * dwell) * rate;
+}
+
 function motionOffset(
   motion: ObbyMotion | undefined,
   time: number,
@@ -331,7 +363,12 @@ function motionOffset(
   const distance = finiteOr(motion.distance, 0);
   const period = finiteOr(motion.period, 0);
   if (distance === 0 || period <= 0) return { x: 0, y: 0, z: 0 };
-  const offset = distance * Math.sin(cycleAngle(period, motion.phase, time));
+  const dwell = finiteOr(motion.dwell, 0);
+  const offset = distance * Math.sin(
+    dwell > 0
+      ? dwellAngle(period, dwell, motion.phase, time)
+      : cycleAngle(period, motion.phase, time),
+  );
   if (motion.axis === "y") return { x: 0, y: offset, z: 0 };
   return motion.axis === "z" ? { x: 0, y: 0, z: offset } : { x: offset, y: 0, z: 0 };
 }
