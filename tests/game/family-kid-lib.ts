@@ -13,7 +13,7 @@
 import type { AbilitySet } from "../../src/shared/abilities";
 import { abilitiesForAge } from "../../src/shared/abilities";
 import { AUTHORED_LEVEL_LIMITS } from "../../src/shared/authored-level";
-import type { ResolvedAuthoredLevel } from "../../src/shared/authored-level";
+import type { AuthoredConnection, ResolvedAuthoredLevel } from "../../src/shared/authored-level";
 import { getAvatarProportions } from "../../src/game/controller";
 import type { ObbyCourse, ObbyHazard, ObbyPlatform } from "../../src/game/obby";
 import {
@@ -410,16 +410,98 @@ interface Candidate {
   readonly detoured: boolean;
 }
 
+/** One leg's committed plan from `planPatientLeg`. */
+export interface PatientLegPlan {
+  readonly plan: RouteLegPlan;
+  /** Frames spent standing for a sweeper window before or at the takeoff. */
+  readonly waitFrames: number;
+  /** Whether the approach walks around a sweeper zone on the current deck. */
+  readonly detoured: boolean;
+  /** The simulation after the leg, when the plan crosses without a recovery. */
+  readonly result: GrowthSimulation;
+}
+
+/**
+ * The patient kid's choice for one leg, from the simulation's current state
+ * (which it never mutates). It looks ahead on copies: first the plain
+ * approach, then a walk around the sweeper zones on the current deck, then
+ * waits (before walking or at the takeoff) in `waitStepSeconds` steps up to
+ * `maxWaitSeconds`, at each sideways offset. It returns the first plan that
+ * crosses without a recovery, preferring the shortest wait, or null.
+ *
+ * The browser lockstep pilot (`tests/e2e/family-world-lockstep.ts`) calls this from
+ * the live game state before each leg, so the scripted kid and the browser
+ * run share one planner.
+ */
+export function planPatientLeg(
+  level: ResolvedAuthoredLevel,
+  simulation: GrowthSimulation,
+  connection: AuthoredConnection,
+  options: PatientRouteOptions = {},
+): PatientLegPlan | null {
+  const course = level.course;
+  const proportions = getAvatarProportions(simulation.stage);
+  const longestCycle = Math.max(0, ...(course.hazards ?? []).map(hazardCycleSeconds));
+  const maxWait = options.maxWaitSeconds ?? Math.max(4, longestCycle + 1);
+  const step = options.waitStepSeconds ?? 0.25;
+  const laterals = options.laterals ?? [0, -0.6, 0.6, -1.2, 1.2];
+  const stepFrames = Math.max(1, Math.round(step / FRAME_SECONDS));
+  const maxFrames = Math.round(maxWait / FRAME_SECONDS);
+  const from = platformOf(course, connection.from);
+  const staticSource = !from.motion && !from.bounce && !from.crumble;
+  const top = from.center.y + from.size.y / 2;
+  const zones = staticSource
+    ? hazardZones(course, top, proportions.colliderRadius, AUTHORED_LEVEL_LIMITS.actorHeight)
+    : [];
+  const inset = connection.mode === "walk" ? 1.2 : 0.75;
+  const routesFor = (lateral: number): Array<{ waypoints: Point[]; detoured: boolean }> => {
+    const routes: Array<{ waypoints: Point[]; detoured: boolean }> = [
+      { waypoints: [], detoured: false },
+    ];
+    if (zones.length === 0) return routes;
+    const goal = edgeEntry(course, connection, simulation.timeSeconds, inset, lateral);
+    const around = detourAround(from, zones, simulation.state.position, goal, proportions.colliderRadius);
+    if (around && around.length > 0) routes.push({ waypoints: around, detoured: true });
+    return routes;
+  };
+  const routeCache = new Map<number, Array<{ waypoints: Point[]; detoured: boolean }>>();
+  const candidates = function* (): Generator<Candidate> {
+    for (let wait = 0; wait <= maxFrames; wait += stepFrames)
+      for (const lateral of laterals) {
+        let routes = routeCache.get(lateral);
+        if (!routes) {
+          routes = routesFor(lateral);
+          routeCache.set(lateral, routes);
+        }
+        for (const route of routes) {
+          const base = {
+            waypoints: route.waypoints,
+            lateral,
+            ...(options.dropStyle === undefined ? {} : { dropStyle: options.dropStyle }),
+          };
+          if (wait === 0) {
+            yield { plan: base, waitFrames: 0, detoured: route.detoured };
+            continue;
+          }
+          yield { plan: { ...base, waitBeforeFrames: wait }, waitFrames: wait, detoured: route.detoured };
+          yield { plan: { ...base, waitAtTakeoffFrames: wait }, waitFrames: wait, detoured: route.detoured };
+        }
+      }
+  };
+  for (const candidate of candidates()) {
+    const trial = fork(simulation);
+    if (runRouteLeg(trial, connection, candidate.plan) && trial.recoveries === simulation.recoveries)
+      return { ...candidate, result: trial };
+  }
+  return null;
+}
+
 /**
  * The patient scripted kid, for R10 pacing evidence. Like `runGrowthRoute`
  * it walks to each takeoff point, waits for lifts and ferries, and crosses,
- * one state and one clock through `stepObby`. Before each crossing it looks
- * ahead on a copy of the simulation: first the plain approach, then a walk
- * around the sweeper zones on the current deck, then waits (before walking
- * or at the takeoff) in `waitStepSeconds` steps up to `maxWaitSeconds`, at
- * each sideways offset. It commits the first plan that crosses without a
- * recovery, preferring the shortest wait, so the run's `seconds` include the
- * time a careful child spends waiting for a sweeper to pass.
+ * one state and one clock through `stepObby`. Before each crossing it commits
+ * the plan `planPatientLeg` chooses, so the run's `seconds` include the time
+ * a careful child spends waiting for a sweeper to pass.
  */
 export function runGrowthRouteWithWaits(
   level: ResolvedAuthoredLevel,
@@ -428,14 +510,6 @@ export function runGrowthRouteWithWaits(
   abilities: AbilitySet,
   options: PatientRouteOptions = {},
 ): PatientRouteRun {
-  const course = level.course;
-  const proportions = getAvatarProportions(stage);
-  const longestCycle = Math.max(0, ...(course.hazards ?? []).map(hazardCycleSeconds));
-  const maxWait = options.maxWaitSeconds ?? Math.max(4, longestCycle + 1);
-  const step = options.waitStepSeconds ?? 0.25;
-  const laterals = options.laterals ?? [0, -0.6, 0.6, -1.2, 1.2];
-  const stepFrames = Math.max(1, Math.round(step / FRAME_SECONDS));
-  const maxFrames = Math.round(maxWait / FRAME_SECONDS);
   let simulation = startRouteSimulation(level, path, stage, abilities);
   const completed: string[] = [];
   const detours: string[] = [];
@@ -449,63 +523,15 @@ export function runGrowthRouteWithWaits(
     );
     const label = `${fromId}->${toId}`;
     if (!connection) return finish(label);
-    const from = platformOf(course, fromId);
-    const staticSource = !from.motion && !from.bounce && !from.crumble;
-    const top = from.center.y + from.size.y / 2;
-    const zones = staticSource
-      ? hazardZones(course, top, proportions.colliderRadius, AUTHORED_LEVEL_LIMITS.actorHeight)
-      : [];
-    const inset = connection.mode === "walk" ? 1.2 : 0.75;
-    const routesFor = (lateral: number): Array<{ waypoints: Point[]; detoured: boolean }> => {
-      const routes: Array<{ waypoints: Point[]; detoured: boolean }> = [
-        { waypoints: [], detoured: false },
-      ];
-      if (zones.length === 0) return routes;
-      const goal = edgeEntry(course, connection, simulation.timeSeconds, inset, lateral);
-      const around = detourAround(from, zones, simulation.state.position, goal, proportions.colliderRadius);
-      if (around && around.length > 0) routes.push({ waypoints: around, detoured: true });
-      return routes;
-    };
-    const routeCache = new Map<number, Array<{ waypoints: Point[]; detoured: boolean }>>();
-    const candidates = function* (): Generator<Candidate> {
-      for (let wait = 0; wait <= maxFrames; wait += stepFrames)
-        for (const lateral of laterals) {
-          let routes = routeCache.get(lateral);
-          if (!routes) {
-            routes = routesFor(lateral);
-            routeCache.set(lateral, routes);
-          }
-          for (const route of routes) {
-            const base = {
-              waypoints: route.waypoints,
-              lateral,
-              ...(options.dropStyle === undefined ? {} : { dropStyle: options.dropStyle }),
-            };
-            if (wait === 0) {
-              yield { plan: base, waitFrames: 0, detoured: route.detoured };
-              continue;
-            }
-            yield { plan: { ...base, waitBeforeFrames: wait }, waitFrames: wait, detoured: route.detoured };
-            yield { plan: { ...base, waitAtTakeoffFrames: wait }, waitFrames: wait, detoured: route.detoured };
-          }
-        }
-    };
-    let adopted: GrowthSimulation | null = null;
-    for (const candidate of candidates()) {
-      const trial = fork(simulation);
-      if (runRouteLeg(trial, connection, candidate.plan) && trial.recoveries === simulation.recoveries) {
-        adopted = trial;
-        hazardWaitFrames += candidate.waitFrames;
-        if (candidate.detoured) detours.push(label);
-        break;
-      }
-    }
+    const adopted = planPatientLeg(level, simulation, connection, options);
     if (!adopted) {
       // Report a real attempt: the plain approach, on the committed state.
       runRouteLeg(simulation, connection, options.dropStyle === undefined ? {} : { dropStyle: options.dropStyle });
       return finish(label);
     }
-    simulation = adopted;
+    simulation = adopted.result;
+    hazardWaitFrames += adopted.waitFrames;
+    if (adopted.detoured) detours.push(label);
     completed.push(label);
   }
   return finish(null);
