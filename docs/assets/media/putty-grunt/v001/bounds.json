@@ -1,0 +1,104 @@
+{
+  "work_order": "WO111",
+  "asset_id": "putty-grunt",
+  "version": "v001",
+  "created_utc": "2026-09-26T21:23:25.601110+00:00",
+  "glb_sha256": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; Blender-evaluated skin compared vertex by vertex with three.js skinning at 5 frames per clip (every 9th vertex, matched by rest position); SkeletonUtils clone; actual src/game/enemy-animation.ts. No physical-device or universal triangle-collision proof.",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5890214748852431,
+      0.0029999282295683732,
+      -0.2179024475917186
+    ],
+    "max": [
+      0.5912067582724898,
+      1.4005481542008216,
+      0.20675671100616455
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    1.180228233157733,
+    1.3975482259712533,
+    0.42465915859788317
+  ],
+  "height_m": 1.4005481542008216,
+  "guard_bounds_y_up": {
+    "min": [
+      -0.4069916425200531,
+      0.003000101343585548,
+      -0.3366660493764351
+    ],
+    "max": [
+      0.38910844783211235,
+      1.3786590571287527,
+      0.20675671100616455
+    ]
+  },
+  "guard_dimensions_width_height_depth_m": [
+    0.7961000903521654,
+    1.375658955785167,
+    0.5434227603825996
+  ],
+  "feature_heights_m": {
+    "antenna_ball_top_bind": 1.4005,
+    "antenna_ball_top_guard": 1.3787,
+    "head_crown_blockout": 1.292
+  },
+  "sole_clearance_m": 0.0029999282295683732,
+  "body_footprint_y_up": {
+    "min": [
+      -0.2144326467927033,
+      0.3965140932940034,
+      -0.19221633290771792
+    ],
+    "max": [
+      0.18164164533387492,
+      0.9392481886046751,
+      0.19334697595637004
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.8681495536179753,
+      0.0015469328455756668,
+      -0.7294404252714406
+    ],
+    "max": [
+      0.8609524329139046,
+      1.4637744972679345,
+      0.6228323961595076
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -0.874,
+      -0.004,
+      -0.735
+    ],
+    "max": [
+      0.866,
+      1.469,
+      0.628
+    ]
+  },
+  "defeat_held": {
+    "height_all_m": 0.40909732966993717,
+    "body_top_m": 0.2669282791556006,
+    "head_top_m": 0.2950346354400313,
+    "eye_top_m": 0.2917717821353758,
+    "antenna_top_m": 0.40909732966993717,
+    "belt_top_m": 0.14706305678282772,
+    "footprint_m": [
+      1.401895744168653,
+      0.3964404081982776,
+      1.0119877355601967
+    ],
+    "eye_axis_ratio": {
+      "R": 1.0799999114990158,
+      "L": 1.0799999114990158
+    }
+  },
+  "note": "glTF axes: +Y up, character faces -Z; its right hand is +X. Root at the floor origin under the body. The bind pose is an A-pose (arms out to 0.59 m); the guard every clip starts from is 0.80 m wide. The held defeat puddle is 1.40 m wide x 1.01 m deep and at most 0.409 m tall (antenna)."
+}

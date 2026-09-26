@@ -1,0 +1,125 @@
+{
+  "work_order": "WO111",
+  "asset_id": "putty-grunt",
+  "version": "v001",
+  "created_utc": "2026-09-26T21:23:25.601110+00:00",
+  "glb_sha256": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "blender": {
+    "version": "4.5.13 LTS",
+    "instance": "blender-authoring-2",
+    "units": "METRIC",
+    "unit_scale": 1,
+    "authoring_axes": "+Z up / +Y forward (character right = +X)",
+    "frames_per_second": 30,
+    "animation_mode": "NLA_TRACKS",
+    "clay": "One metaball clay family (the blockout recipe) voxel-remeshed at 0.0077 m, thumbprint dimples pressed, a low-frequency CLOUDS Displace applied (soles kept flat); low-poly skin = uniform voxel start shrink-wrapped back onto the clay, then a protected collapse (fists, toes, face) to 10600 triangles, high-resolution shading normals transferred",
+    "skin": "Bone-heat (automatic) weights on the continuous clay body for the 18 body bones (0 fallback vertices), a soft pot-belly squash region (96 vertices), rigid weights on the eyes, brows, tongue, antenna, belt and buckle; limited to 4 influences and normalised",
+    "rig": "root, hips, spine, belly, chest, head, antenna_root, antenna_1, antenna_2, eye_R, eye_L, tongue, belt, shoulder/upper_arm/forearm/fist x2, thigh/shin/foot x2 (27 joints). The legs hang from the root.",
+    "root": "Identity, fixed floor-centred root; no root animation; the hips translate for the bounce, waddle, lunge, recoil and the melt",
+    "bind_pose": "Rig-friendly A-pose rest (head straight, arms relaxed, the sheet bow-legged stance) as the sheet notes suggest; the sheet guard is recreated at idle 0 s and every clip except move starts from it",
+    "squash_and_stretch": "Bone scale, exported as glTF scale channels. Every basis is exactly T x R x S (max matrix error 7.7e-06). Counter-scaled sockets keep the eyes, the antenna and the fists (under the stretching arms) in shape; the belt keeps its coil thickness in the puddle. Blender-evaluated skin matches three.js skinning to 1.1e-06 m at 5 frames per clip.",
+    "guards": "Legs are two-bone world IK with an analytic toe or heel pivot; a numeric floor guard skins the exact mesh every frame (linear blend skinning, as three.js does) and lifts the whole pose above a 2.5 mm contact plane when needed (lifts per clip in construction.json floor_guard, all at most 1.6 mm)."
+  },
+  "export": {
+    "format": "GLB",
+    "axes": "+Y up / -Z forward",
+    "selection_only": true,
+    "materials": {
+      "0": "Matte hand-worked clay (opaque, baked atlas region)",
+      "1": "Satin blank eyes, tongue and warm-gold buckle (opaque, flat atlas tiles)"
+    },
+    "texture": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "embedded": true,
+      "images": 1,
+      "bytes": 341402
+    },
+    "no_external_resources": true,
+    "no_required_extensions": true,
+    "compression": "None; no Draco, Meshopt or KTX2 requirement"
+  },
+  "preview": {
+    "source": "Exact delivered GLB via Three.js GLTFLoader",
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport_px": [
+      900,
+      900
+    ],
+    "orthographic_camera": {
+      "half_height_m": 0.85,
+      "px_per_m": 529.4,
+      "targets": {
+        "front": [
+          0,
+          0.75,
+          0
+        ],
+        "side": [
+          0,
+          0.75,
+          0
+        ],
+        "back": [
+          0,
+          0.75,
+          0
+        ],
+        "threequarter": [
+          0,
+          0.75,
+          0
+        ],
+        "beauty": [
+          0,
+          0.65,
+          0
+        ]
+      },
+      "views": {
+        "front": [
+          0,
+          0.75,
+          -8
+        ],
+        "side": [
+          8,
+          0.75,
+          0
+        ],
+        "back": [
+          0,
+          0.75,
+          8
+        ],
+        "threequarter": [
+          5.657,
+          0.75,
+          -5.657
+        ],
+        "beauty": [
+          4.2,
+          2.9,
+          -7.2
+        ]
+      }
+    },
+    "gameplay_camera": "Perspective 48 deg, 7.9 m out and 2.62 m high at azimuths 0/45/90/180/-90 deg, looking at 0.9 m",
+    "lighting": "Warm hemisphere plus three directional lights; ACES tone mapping exposure 1.0",
+    "scales": [
+      1,
+      0.35
+    ],
+    "no_physical_device_claim": true
+  },
+  "checks": {
+    "khronos_zero_errors_warnings": true,
+    "exact_three_adapter_all_checks": true,
+    "chromium_all_clips_normal_small": true,
+    "source_attachment_checks": true
+  }
+}

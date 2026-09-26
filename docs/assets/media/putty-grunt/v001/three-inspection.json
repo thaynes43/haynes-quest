@@ -1,0 +1,3744 @@
+{
+  "asset_id": "putty-grunt",
+  "version": "v001",
+  "glb_sha256": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522",
+  "three_revision": "186",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; Blender-evaluated skin compared vertex by vertex with three.js skinning at 5 frames per clip (every 9th vertex, matched by rest position); SkeletonUtils clone; actual src/game/enemy-animation.ts. No physical-device or universal triangle-collision proof.",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5890214748852431,
+      0.0029999282295683732,
+      -0.2179024475917186
+    ],
+    "max": [
+      0.5912067582724898,
+      1.4005481542008216,
+      0.20675671100616455
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.8681495536179753,
+      0.0015469328455756668,
+      -0.7294404252714406
+    ],
+    "max": [
+      0.8609524329139046,
+      1.4637744972679345,
+      0.6228323961595076
+    ]
+  },
+  "dimensions_m": [
+    1.180228233157733,
+    1.3975482259712533,
+    0.42465915859788317
+  ],
+  "height_m": 1.4005481542008216,
+  "sole_clearance_m": 0.0029999282295683732,
+  "body_footprint_y_up": {
+    "min": [
+      -0.2144326467927033,
+      0.3965140932940034,
+      -0.19221633290771792
+    ],
+    "max": [
+      0.18164164533387492,
+      0.9392481886046751,
+      0.19334697595637004
+    ]
+  },
+  "exported_safe_bounds_y_up": {
+    "min": [
+      -0.874,
+      -0.004,
+      -0.735
+    ],
+    "max": [
+      0.866,
+      1.469,
+      0.628
+    ]
+  },
+  "animations": {
+    "idle": {
+      "duration_s": 2,
+      "samples": 121,
+      "all_vertices_per_sample": 9917,
+      "max_temporal_vertex_displacement_m": 0.1734711884285824,
+      "bounds_y_up": {
+        "min": [
+          -0.44281342567863125,
+          0.0024847638723571683,
+          -0.473666902037904
+        ],
+        "max": [
+          0.41867356582406223,
+          1.3944087983368794,
+          0.21399318899013053
+        ]
+      },
+      "loop_seam_max_m": 1.047512453464035e-7,
+      "floor_minimum": {
+        "y": 0.0024847638723571683,
+        "bone": "foot_R",
+        "vertex": 5167,
+        "mesh": "Putty_grunt_skin",
+        "position": [
+          0.15211908240773664,
+          0.0024847638723571683,
+          -0.07419124728348342
+        ],
+        "time_s": 0.25
+      },
+      "held_defeat_difference_m": null
+    },
+    "move": {
+      "duration_s": 0.800000011920929,
+      "samples": 50,
+      "all_vertices_per_sample": 9917,
+      "max_temporal_vertex_displacement_m": 0.4669113906549701,
+      "bounds_y_up": {
+        "min": [
+          -0.4645563738306858,
+          0.0021964063988526,
+          -0.35639718672858384
+        ],
+        "max": [
+          0.46228500037277337,
+          1.3692252742863031,
+          0.24407762559245474
+        ]
+      },
+      "loop_seam_max_m": 9.527207189697433e-8,
+      "floor_minimum": {
+        "y": 0.0021964063988526,
+        "bone": "foot_L",
+        "vertex": 2151,
+        "mesh": "Putty_grunt_skin",
+        "position": [
+          -0.1390850095811439,
+          0.0021964063988526,
+          -0.05808588813706916
+        ],
+        "time_s": 0.6204081725101082
+      },
+      "held_defeat_difference_m": null
+    },
+    "attack": {
+      "duration_s": 2,
+      "samples": 121,
+      "all_vertices_per_sample": 9917,
+      "max_temporal_vertex_displacement_m": 1.0722383086978098,
+      "bounds_y_up": {
+        "min": [
+          -0.6054578244203543,
+          0.0023306132582354344,
+          -0.7294404252714406
+        ],
+        "max": [
+          0.7153188134787128,
+          1.4637744972679345,
+          0.6228323961595076
+        ]
+      },
+      "loop_seam_max_m": 1.0436850930898332e-7,
+      "floor_minimum": {
+        "y": 0.0023306132582354344,
+        "bone": "foot_L",
+        "vertex": 2151,
+        "mesh": "Putty_grunt_skin",
+        "position": [
+          -0.1396054628928609,
+          0.0023306132582354344,
+          -0.074888164042317
+        ],
+        "time_s": 1.1833333333333333
+      },
+      "held_defeat_difference_m": null
+    },
+    "hit": {
+      "duration_s": 0.699999988079071,
+      "samples": 43,
+      "all_vertices_per_sample": 9917,
+      "max_temporal_vertex_displacement_m": 0.6955751221180001,
+      "bounds_y_up": {
+        "min": [
+          -0.8681495536179753,
+          0.0015469328455756668,
+          -0.33637621289452274
+        ],
+        "max": [
+          0.8609524329139046,
+          1.3917683257018627,
+          0.3015766203848853
+        ]
+      },
+      "loop_seam_max_m": 1.7352150428613742e-9,
+      "floor_minimum": {
+        "y": 0.0015469328455756668,
+        "bone": "foot_R",
+        "vertex": 5167,
+        "mesh": "Putty_grunt_skin",
+        "position": [
+          0.1522762679258774,
+          0.0015469328455756668,
+          -0.07481149155285377
+        ],
+        "time_s": 0.016666666382835024
+      },
+      "held_defeat_difference_m": null
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "samples": 146,
+      "all_vertices_per_sample": 9917,
+      "max_temporal_vertex_displacement_m": 1.0863159262632116,
+      "bounds_y_up": {
+        "min": [
+          -0.7308996476527677,
+          0.0023813741766323298,
+          -0.5687708338191637
+        ],
+        "max": [
+          0.7059464819090704,
+          1.391641973971054,
+          0.568100897007122
+        ]
+      },
+      "loop_seam_max_m": 1.0365526395804732,
+      "floor_minimum": {
+        "y": 0.0023813741766323298,
+        "bone": "foot_L",
+        "vertex": 2151,
+        "mesh": "Putty_grunt_skin",
+        "position": [
+          -0.1394862511878448,
+          0.0023813741766323298,
+          -0.07142651889118778
+        ],
+        "time_s": 0.28137932152583683
+      },
+      "held_defeat_difference_m": 1.6196407160776964e-7
+    }
+  },
+  "images": [
+    {
+      "width": 1024,
+      "height": 1024,
+      "encoded_bytes": 341402,
+      "decoded_bytes": 4194304
+    }
+  ],
+  "root_bone_tracks": [
+    {
+      "clip": "idle",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "name": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "name": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "name": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "name": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "name": "root.scale",
+      "constant": true
+    }
+  ],
+  "tracks": [
+    {
+      "clip": "idle",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "hips.position",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "hips.quaternion",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "hips.scale",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "spine.position",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "spine.quaternion",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "spine.scale",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "belly.position",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "belly.quaternion",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "belly.scale",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "chest.position",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "chest.quaternion",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "chest.scale",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "head.position",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "head.quaternion",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "head.scale",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "antenna_root.position",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "antenna_root.quaternion",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "antenna_root.scale",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "antenna_1.position",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "antenna_1.quaternion",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "antenna_1.scale",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "antenna_2.position",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "antenna_2.quaternion",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "antenna_2.scale",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "eye_R.position",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "eye_R.quaternion",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "eye_R.scale",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "eye_L.position",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "eye_L.quaternion",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "eye_L.scale",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue.position",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue.quaternion",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue.scale",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shoulder_R.position",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shoulder_R.quaternion",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shoulder_R.scale",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "upper_arm_R.position",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "upper_arm_R.quaternion",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "upper_arm_R.scale",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "forearm_R.position",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "forearm_R.quaternion",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "forearm_R.scale",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "fist_R.position",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "fist_R.quaternion",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "fist_R.scale",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shoulder_L.position",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shoulder_L.quaternion",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shoulder_L.scale",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "upper_arm_L.position",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "upper_arm_L.quaternion",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "upper_arm_L.scale",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "forearm_L.position",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "forearm_L.quaternion",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "forearm_L.scale",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "fist_L.position",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "fist_L.quaternion",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "fist_L.scale",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "belt.position",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "belt.quaternion",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "belt.scale",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "thigh_R.position",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "thigh_R.quaternion",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "thigh_R.scale",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shin_R.position",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shin_R.quaternion",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shin_R.scale",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "foot_R.position",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "foot_R.quaternion",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "foot_R.scale",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "thigh_L.position",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "thigh_L.quaternion",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "thigh_L.scale",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shin_L.position",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shin_L.quaternion",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shin_L.scale",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "foot_L.position",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "foot_L.quaternion",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "foot_L.scale",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "hips.position",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "hips.quaternion",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "hips.scale",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "spine.position",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "spine.quaternion",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "spine.scale",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "belly.position",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "belly.quaternion",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "belly.scale",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "chest.position",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "chest.quaternion",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "chest.scale",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "head.position",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "head.quaternion",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "head.scale",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "antenna_root.position",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "antenna_root.quaternion",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "antenna_root.scale",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "antenna_1.position",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "antenna_1.quaternion",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "antenna_1.scale",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "antenna_2.position",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "antenna_2.quaternion",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "antenna_2.scale",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "eye_R.position",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "eye_R.quaternion",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "eye_R.scale",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "eye_L.position",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "eye_L.quaternion",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "eye_L.scale",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue.position",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue.quaternion",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue.scale",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shoulder_R.position",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shoulder_R.quaternion",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shoulder_R.scale",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "upper_arm_R.position",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "upper_arm_R.quaternion",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "upper_arm_R.scale",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "forearm_R.position",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "forearm_R.quaternion",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "forearm_R.scale",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "fist_R.position",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "fist_R.quaternion",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "fist_R.scale",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shoulder_L.position",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shoulder_L.quaternion",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shoulder_L.scale",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "upper_arm_L.position",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "upper_arm_L.quaternion",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "upper_arm_L.scale",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "forearm_L.position",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "forearm_L.quaternion",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "forearm_L.scale",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "fist_L.position",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "fist_L.quaternion",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "fist_L.scale",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "belt.position",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "belt.quaternion",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "belt.scale",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "thigh_R.position",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "thigh_R.quaternion",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "thigh_R.scale",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shin_R.position",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shin_R.quaternion",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shin_R.scale",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "foot_R.position",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "foot_R.quaternion",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "foot_R.scale",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "thigh_L.position",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "thigh_L.quaternion",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "thigh_L.scale",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shin_L.position",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shin_L.quaternion",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shin_L.scale",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "foot_L.position",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "foot_L.quaternion",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "foot_L.scale",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "hips.position",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "hips.quaternion",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "hips.scale",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "spine.position",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "spine.quaternion",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "spine.scale",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "belly.position",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "belly.quaternion",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "belly.scale",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "chest.position",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "chest.quaternion",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "chest.scale",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "head.position",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "head.quaternion",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "head.scale",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "antenna_root.position",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "antenna_root.quaternion",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "antenna_root.scale",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "antenna_1.position",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "antenna_1.quaternion",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "antenna_1.scale",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "antenna_2.position",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "antenna_2.quaternion",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "antenna_2.scale",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "eye_R.position",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "eye_R.quaternion",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "eye_R.scale",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "eye_L.position",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "eye_L.quaternion",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "eye_L.scale",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue.position",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue.quaternion",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue.scale",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shoulder_R.position",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shoulder_R.quaternion",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shoulder_R.scale",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "upper_arm_R.position",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "upper_arm_R.quaternion",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "upper_arm_R.scale",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "forearm_R.position",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "forearm_R.quaternion",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "forearm_R.scale",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "fist_R.position",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "fist_R.quaternion",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "fist_R.scale",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shoulder_L.position",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shoulder_L.quaternion",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shoulder_L.scale",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "upper_arm_L.position",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "upper_arm_L.quaternion",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "upper_arm_L.scale",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "forearm_L.position",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "forearm_L.quaternion",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "forearm_L.scale",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "fist_L.position",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "fist_L.quaternion",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "fist_L.scale",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "belt.position",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "belt.quaternion",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "belt.scale",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "thigh_R.position",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "thigh_R.quaternion",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "thigh_R.scale",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shin_R.position",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shin_R.quaternion",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shin_R.scale",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "foot_R.position",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "foot_R.quaternion",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "foot_R.scale",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "thigh_L.position",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "thigh_L.quaternion",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "thigh_L.scale",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shin_L.position",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shin_L.quaternion",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shin_L.scale",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "foot_L.position",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "foot_L.quaternion",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "foot_L.scale",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "hips.position",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "hips.quaternion",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "hips.scale",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "spine.position",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "spine.quaternion",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "spine.scale",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "belly.position",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "belly.quaternion",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "belly.scale",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "chest.position",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "chest.quaternion",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "chest.scale",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "head.position",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "head.quaternion",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "head.scale",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "antenna_root.position",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "antenna_root.quaternion",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "antenna_root.scale",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "antenna_1.position",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "antenna_1.quaternion",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "antenna_1.scale",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "antenna_2.position",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "antenna_2.quaternion",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "antenna_2.scale",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "eye_R.position",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "eye_R.quaternion",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "eye_R.scale",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "eye_L.position",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "eye_L.quaternion",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "eye_L.scale",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue.position",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue.quaternion",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue.scale",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shoulder_R.position",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shoulder_R.quaternion",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shoulder_R.scale",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "upper_arm_R.position",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "upper_arm_R.quaternion",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "upper_arm_R.scale",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "forearm_R.position",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "forearm_R.quaternion",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "forearm_R.scale",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "fist_R.position",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "fist_R.quaternion",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "fist_R.scale",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shoulder_L.position",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shoulder_L.quaternion",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shoulder_L.scale",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "upper_arm_L.position",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "upper_arm_L.quaternion",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "upper_arm_L.scale",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "forearm_L.position",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "forearm_L.quaternion",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "forearm_L.scale",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "fist_L.position",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "fist_L.quaternion",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "fist_L.scale",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "belt.position",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "belt.quaternion",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "belt.scale",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "thigh_R.position",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "thigh_R.quaternion",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "thigh_R.scale",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shin_R.position",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shin_R.quaternion",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shin_R.scale",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "foot_R.position",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "foot_R.quaternion",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "foot_R.scale",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "thigh_L.position",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "thigh_L.quaternion",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "thigh_L.scale",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shin_L.position",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shin_L.quaternion",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shin_L.scale",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "foot_L.position",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "foot_L.quaternion",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "foot_L.scale",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "hips.position",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "hips.quaternion",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "hips.scale",
+      "node": "hips",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "spine.position",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "spine.quaternion",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "spine.scale",
+      "node": "spine",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "belly.position",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "belly.quaternion",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "belly.scale",
+      "node": "belly",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "chest.position",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "chest.quaternion",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "chest.scale",
+      "node": "chest",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "head.position",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "head.quaternion",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "head.scale",
+      "node": "head",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "antenna_root.position",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "antenna_root.quaternion",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "antenna_root.scale",
+      "node": "antenna_root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "antenna_1.position",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "antenna_1.quaternion",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "antenna_1.scale",
+      "node": "antenna_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "antenna_2.position",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "antenna_2.quaternion",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "antenna_2.scale",
+      "node": "antenna_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "eye_R.position",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "eye_R.quaternion",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "eye_R.scale",
+      "node": "eye_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "eye_L.position",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "eye_L.quaternion",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "eye_L.scale",
+      "node": "eye_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue.position",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue.quaternion",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue.scale",
+      "node": "tongue",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shoulder_R.position",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shoulder_R.quaternion",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shoulder_R.scale",
+      "node": "shoulder_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "upper_arm_R.position",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "upper_arm_R.quaternion",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "upper_arm_R.scale",
+      "node": "upper_arm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "forearm_R.position",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "forearm_R.quaternion",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "forearm_R.scale",
+      "node": "forearm_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "fist_R.position",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "fist_R.quaternion",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "fist_R.scale",
+      "node": "fist_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shoulder_L.position",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shoulder_L.quaternion",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shoulder_L.scale",
+      "node": "shoulder_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "upper_arm_L.position",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "upper_arm_L.quaternion",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "upper_arm_L.scale",
+      "node": "upper_arm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "forearm_L.position",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "forearm_L.quaternion",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "forearm_L.scale",
+      "node": "forearm_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "fist_L.position",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "fist_L.quaternion",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "fist_L.scale",
+      "node": "fist_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "belt.position",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "belt.quaternion",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "belt.scale",
+      "node": "belt",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "thigh_R.position",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "thigh_R.quaternion",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "thigh_R.scale",
+      "node": "thigh_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shin_R.position",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shin_R.quaternion",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shin_R.scale",
+      "node": "shin_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "foot_R.position",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "foot_R.quaternion",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "foot_R.scale",
+      "node": "foot_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "thigh_L.position",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "thigh_L.quaternion",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "thigh_L.scale",
+      "node": "thigh_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shin_L.position",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shin_L.quaternion",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shin_L.scale",
+      "node": "shin_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "foot_L.position",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "foot_L.quaternion",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "foot_L.scale",
+      "node": "foot_L",
+      "resolves": true,
+      "targets_scene_root": false
+    }
+  ],
+  "max_skin_influences": 4,
+  "max_weight_sum_error": 4.470348358154297e-8,
+  "skinning_fidelity": {
+    "by_clip": {
+      "idle": {
+        "frames": [
+          0,
+          20,
+          30,
+          40,
+          60
+        ],
+        "max_error_m": 9.077120673007224e-7
+      },
+      "move": {
+        "frames": [
+          0,
+          8,
+          12,
+          16,
+          24
+        ],
+        "max_error_m": 0.000001052460178912406
+      },
+      "attack": {
+        "frames": [
+          0,
+          20,
+          30,
+          40,
+          60
+        ],
+        "max_error_m": 0.0000010150544318196223
+      },
+      "hit": {
+        "frames": [
+          0,
+          7,
+          10,
+          14,
+          21
+        ],
+        "max_error_m": 9.262338081972496e-7
+      },
+      "defeat": {
+        "frames": [
+          0,
+          24,
+          36,
+          48,
+          72
+        ],
+        "max_error_m": 0.000001013300227118988
+      }
+    },
+    "max_error_m": 0.000001052460178912406,
+    "vertices_compared": 20300,
+    "unmatched": 0
+  },
+  "guard": {
+    "bounds_y_up": {
+      "min": [
+        -0.4069916425200531,
+        0.003000101343585548,
+        -0.3366660493764351
+      ],
+      "max": [
+        0.38910844783211235,
+        1.3786590571287527,
+        0.20675671100616455
+      ]
+    },
+    "dimensions_m": [
+      0.7961000903521654,
+      1.375658955785167,
+      0.5434227603825996
+    ],
+    "fist_R": [
+      0.3010889472118055,
+      0.7993518124255935,
+      -0.21113549027161127
+    ],
+    "fist_L": [
+      -0.3363484035842825,
+      0.5229080732465273,
+      -0.10911334748199177
+    ],
+    "head_up": [
+      0.14629085483269666,
+      0.9892416215426436,
+      0
+    ],
+    "head_tilt_deg": 8.412036880597547
+  },
+  "rest_reach_m": {
+    "R": 0.4371038425386213,
+    "L": 0.4371038425386213
+  },
+  "attack_beats": [
+    {
+      "time_s": 0,
+      "fist_R": [
+        0.30094194479697894,
+        0.8037869936552199,
+        -0.21113537311395394
+      ],
+      "fist_L": [
+        -0.33449074176541993,
+        0.5308573151198359,
+        -0.10911337798569051
+      ],
+      "reach_R": 0.24499907126602882,
+      "reach_L": 0.36442422772870736,
+      "fist_R_squash": 1.0000003184307558,
+      "hips": [
+        0,
+        0.5,
+        0
+      ],
+      "head": [
+        0.01600000075995922,
+        0.9300000071525574,
+        0
+      ]
+    },
+    {
+      "time_s": 0.3,
+      "fist_R": [
+        0.38077718109283576,
+        1.0768837327525878,
+        -0.13047475486895888
+      ],
+      "fist_L": [
+        -0.4210670420863577,
+        0.9240194577086985,
+        -0.2546621712621474
+      ],
+      "reach_R": 0.3415031868361689,
+      "reach_L": 0.39042065280890875,
+      "fist_R_squash": 0.995510857354026,
+      "hips": [
+        0,
+        0.49999999935499057,
+        0.028399697599093502
+      ],
+      "head": [
+        0.015799835973914555,
+        0.9372174252951717,
+        0.06420043173049854
+      ]
+    },
+    {
+      "time_s": 0.55,
+      "fist_R": [
+        0.271245966299679,
+        1.260129671087946,
+        0.2443369910364927
+      ],
+      "fist_L": [
+        -0.27097537268758026,
+        1.260625501205852,
+        0.24356388996078548
+      ],
+      "reach_R": 0.442697603688353,
+      "reach_L": 0.44281392812761444,
+      "fist_R_squash": 1.0000230065060662,
+      "hips": [
+        0,
+        0.48526754969851277,
+        0.03440094592686741
+      ],
+      "head": [
+        0.0155832492199692,
+        0.9289852167541377,
+        0.10928879416959358
+      ]
+    },
+    {
+      "time_s": 0.9,
+      "fist_R": [
+        0.2285104744457248,
+        1.3249000790174081,
+        0.10394144263962318
+      ],
+      "fist_L": [
+        -0.311906000604093,
+        1.2915693707904015,
+        0.10092773131818344
+      ],
+      "reach_R": 0.4453451198584491,
+      "reach_L": 0.4446595388314421,
+      "fist_R_squash": 1.0000002698110946,
+      "hips": [
+        0,
+        0.5085014686060715,
+        -0.008192416194347865
+      ],
+      "head": [
+        -0.006037247337804596,
+        0.9564683822209789,
+        0.045191594274259846
+      ]
+    },
+    {
+      "time_s": 1.14,
+      "fist_R": [
+        0.18325792479036507,
+        1.1370870374991495,
+        -0.41418002744447513
+      ],
+      "fist_L": [
+        -0.18290882735397582,
+        1.1371967621864025,
+        -0.4141863840211956
+      ],
+      "reach_R": 0.4716404962279849,
+      "reach_L": 0.47164007981467015,
+      "fist_R_squash": 0.9893726854816689,
+      "hips": [
+        0,
+        0.4804519403526417,
+        -0.03199547525673595
+      ],
+      "head": [
+        0.015864483007321413,
+        0.9194025194419366,
+        -0.06913940787219669
+      ]
+    },
+    {
+      "time_s": 1.2,
+      "fist_R": [
+        0.10018142594260224,
+        0.5541216314106001,
+        -0.5913094937092651
+      ],
+      "fist_L": [
+        -0.10018152811757564,
+        0.5541215872278293,
+        -0.5913095279080743
+      ],
+      "reach_R": 0.5351205606820436,
+      "reach_L": 0.5351205868598571,
+      "fist_R_squash": 0.7589291223029258,
+      "hips": [
+        0,
+        0.45400081975865464,
+        -0.05999998433219592
+      ],
+      "head": [
+        0.016559999321905296,
+        0.8501401735401225,
+        -0.16281962371067443
+      ]
+    },
+    {
+      "time_s": 1.25,
+      "fist_R": [
+        0.1035691873573875,
+        0.5421211076734684,
+        -0.6079084334866822
+      ],
+      "fist_L": [
+        -0.10356929298760438,
+        0.5421210652344846,
+        -0.6079084691930385
+      ],
+      "reach_R": 0.5485493193278791,
+      "reach_L": 0.5485493445118549,
+      "fist_R_squash": 0.5645162419956098,
+      "hips": [
+        0,
+        0.4512324035167694,
+        -0.05999999865889549
+      ],
+      "head": [
+        0.017120001652389805,
+        0.8281861927249169,
+        -0.1627640890964815
+      ]
+    },
+    {
+      "time_s": 1.3,
+      "fist_R": [
+        0.10356923328625961,
+        0.5421211268704496,
+        -0.6079083869109843
+      ],
+      "fist_L": [
+        -0.1035693389164691,
+        0.5421210844314599,
+        -0.6079084226173216
+      ],
+      "reach_R": 0.5485492711889491,
+      "reach_L": 0.5485492963729248,
+      "fist_R_squash": 0.5645167230374972,
+      "hips": [
+        0,
+        0.4512324041529735,
+        -0.059999997827003125
+      ],
+      "head": [
+        0.017120000335051056,
+        0.8281862390276129,
+        -0.16276408698852124
+      ]
+    },
+    {
+      "time_s": 1.4,
+      "fist_R": [
+        0.4739742252069215,
+        0.6656501827277751,
+        -0.2650634443229024
+      ],
+      "fist_L": [
+        -0.47397420079450403,
+        0.6656501004035329,
+        -0.2650633999578527
+      ],
+      "reach_R": 0.34918770477317573,
+      "reach_L": 0.3491876940312582,
+      "fist_R_squash": 1.000000485211624,
+      "hips": [
+        0,
+        0.4621500431320824,
+        -0.04327277681541228
+      ],
+      "head": [
+        0.01644800071562288,
+        0.8728111661254593,
+        -0.0966492368065971
+      ]
+    },
+    {
+      "time_s": 1.6,
+      "fist_R": [
+        0.5764435722712624,
+        0.9496271995714429,
+        0.08897856079834918
+      ],
+      "fist_L": [
+        -0.4075269897294753,
+        1.018872834092844,
+        -0.2708183275147646
+      ],
+      "reach_R": 0.38365401109627173,
+      "reach_L": 0.42955588853818744,
+      "fist_R_squash": 0.999999791419971,
+      "hips": [
+        0,
+        0.48582738897821076,
+        0.009074068584401108
+      ],
+      "head": [
+        0.01601043590472637,
+        0.9109155062496432,
+        0.06678742128614504
+      ]
+    },
+    {
+      "time_s": 1.75,
+      "fist_R": [
+        0.5321620856792505,
+        1.0473381825677623,
+        0.06935798012781205
+      ],
+      "fist_L": [
+        -0.4094226291655237,
+        0.46185207121842997,
+        -0.06354565135638267
+      ],
+      "reach_R": 0.3942000333728479,
+      "reach_L": 0.4336200894580914,
+      "fist_R_squash": 0.9999998021990493,
+      "hips": [
+        0,
+        0.47120991349220276,
+        0.032191358506679535
+      ],
+      "head": [
+        0.01600000075995922,
+        0.8967758252035574,
+        0.0891558736417096
+      ]
+    },
+    {
+      "time_s": 2,
+      "fist_R": [
+        0.30094194505402583,
+        0.803786994250997,
+        -0.2111353728685153
+      ],
+      "fist_L": [
+        -0.33449074110539845,
+        0.5308573152400341,
+        -0.10911337883303976
+      ],
+      "reach_R": 0.24499907101856677,
+      "reach_L": 0.36442422768254706,
+      "fist_R_squash": 1.0000003211150668,
+      "hips": [
+        0,
+        0.5,
+        0
+      ],
+      "head": [
+        0.01600000075995922,
+        0.9300000071525574,
+        0
+      ]
+    }
+  ],
+  "hit": {
+    "min_belly_depth_ratio": 0.14871868200872795,
+    "min_eye_height_ratio": 0.17842171287821043,
+    "max_width_m": 1.7245639951648395,
+    "guard_width_m": 0.7961000903521654
+  },
+  "move": {
+    "max_foot_lift_m": {
+      "R": 0.11776366116373141,
+      "L": 0.11770466896787074
+    }
+  },
+  "defeat_held": {
+    "height_all_m": 0.40909732966993717,
+    "body_top_m": 0.2669282791556006,
+    "head_top_m": 0.2950346354400313,
+    "eye_top_m": 0.2917717821353758,
+    "antenna_top_m": 0.40909732966993717,
+    "belt_top_m": 0.14706305678282772,
+    "footprint_m": [
+      1.401895744168653,
+      0.3964404081982776,
+      1.0119877355601967
+    ],
+    "eye_axis_ratio": {
+      "R": 1.0799999114990158,
+      "L": 1.0799999114990158
+    }
+  },
+  "rest_eye_axis_ratio": {
+    "R": 1,
+    "L": 1
+  },
+  "adapter": {
+    "phases": [
+      {
+        "phase": "idle",
+        "visible": true,
+        "hips": [
+          -6.886025178952743e-18,
+          0.5,
+          0
+        ],
+        "fist_R": [
+          0.2908966093738841,
+          0.826289788541679,
+          -0.282415438323018
+        ]
+      },
+      {
+        "phase": "chasing",
+        "visible": true,
+        "hips": [
+          0.026000000140400253,
+          0.46537241032447946,
+          0
+        ],
+        "fist_R": [
+          0.33457587110960163,
+          0.5771043931811831,
+          -0.09485698835015954
+        ]
+      },
+      {
+        "phase": "windup",
+        "visible": true,
+        "hips": [
+          0,
+          0.4512324035167694,
+          -0.05999999865889549
+        ],
+        "fist_R": [
+          0.1035691873573875,
+          0.5421211076734684,
+          -0.6079084334866822
+        ]
+      },
+      {
+        "phase": "strike",
+        "visible": true,
+        "hips": [
+          0,
+          0.5,
+          0
+        ],
+        "fist_R": [
+          0.30094194505402583,
+          0.803786994250997,
+          -0.2111353728685153
+        ]
+      },
+      {
+        "phase": "cooldown",
+        "visible": true,
+        "hips": [
+          0,
+          0.5,
+          0
+        ],
+        "fist_R": [
+          0.30094194505402583,
+          0.803786994250997,
+          -0.2111353728685153
+        ]
+      }
+    ],
+    "direct_contact_fist_R": [
+      0.1035691873573875,
+      0.5421211076734684,
+      -0.6079084334866822
+    ],
+    "hit_belly_scale": 0.25634141023718626,
+    "defeat_states": [
+      {
+        "time_s": 0.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 1.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 2.0500000000000003,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 2.4000000000000004,
+        "visible": true,
+        "vanish": 6.013708050052932e-16
+      },
+      {
+        "time_s": 2.7,
+        "visible": true,
+        "vanish": 0.9999996821085602
+      },
+      {
+        "time_s": 3,
+        "visible": false,
+        "vanish": 1
+      }
+    ]
+  },
+  "checks": {
+    "exported_bounds_cover_all_poses": true,
+    "all_five_clips": true,
+    "all_tracks_resolve_below_scene_root": true,
+    "all_clips_move_actual_vertices": true,
+    "idle_move_seams": true,
+    "held_defeat": true,
+    "no_floor_penetration": true,
+    "at_most_four_influences": true,
+    "normalized_weights": true,
+    "identity_root_no_motion": true,
+    "no_root_bone_motion": true,
+    "blender_three_skinning_match": true,
+    "ordinary_height_1_3_to_1_45_m": true,
+    "standing_on_floor": true,
+    "floor_centred_body": true,
+    "one_1024_embedded_atlas": true,
+    "two_opaque_draw_primitives": true,
+    "actual_adapter_constructed": true,
+    "actual_adapter_defeat_vanish": true,
+    "adapter_root_identity": true,
+    "independent_skeleton_clone": true,
+    "attack_contact_1_25": true,
+    "actual_adapter_contact_pose": true,
+    "guard_right_fist_raised_in_front": true,
+    "guard_left_fist_low_and_out": true,
+    "guard_head_tilt_to_its_right_about_8_deg": true,
+    "fists_overhead_in_windup": true,
+    "fists_together_in_front_at_contact": true,
+    "clay_arms_stretched_at_contact": true,
+    "fists_squash_at_contact": true,
+    "hit_belly_dent": true,
+    "hit_eyes_squeeze": true,
+    "hit_body_squashes_wider": true,
+    "move_feet_lift": true,
+    "defeat_flat_puddle": true,
+    "defeat_eyes_stick_up": true,
+    "defeat_eyes_stay_round": true,
+    "defeat_antenna_above_puddle": true,
+    "defeat_belt_ring_visible": true
+  }
+}

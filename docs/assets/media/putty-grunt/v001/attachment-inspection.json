@@ -1,0 +1,202 @@
+{
+  "asset_id": "putty-grunt",
+  "version": "v001",
+  "glb_sha256": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522",
+  "blend_sha256": "2cbe214c654a8c05e57ef25f6c72f5eb6a5a032c7f85c3d8992a330a7a80e273",
+  "method": "WO111 putty-grunt source-side attachment audit on the live scene that exported the exact GLB.\n\nPer clip and frame (30 fps): triangle overlap between listed part groups on the evaluated skin (BVH; a face belongs\nto a group when most of its vertices are dominated by the group's bones), joint connectivity (the IK legs and the\nFK arms and antenna keep each head on its parent's tail, including the stretching forearms), the lowest evaluated\nvertex, the eye and antenna socket counter-scale (the eyes and antenna must not squash with the head or the\nmelting body except for the intended blink and squeeze) and the basis TRS error. The clay body is one continuous\nskin, so neighbouring regions of it are never tested against each other; the fists touching each other at the\nattack contact are the intended double-fist hit and are not tested. In the defeat the melt (from 0.55 s) presses\nthe clay into one puddle by design, so part overlaps are only tested before it; floor contact and connectivity are\ntested on every frame. Supplements the exact-GLB checks; not a universal collision proof. Adapted from the\ninator-monster and mischief-kitten audits.",
+  "pairs": [
+    "legR~legL",
+    "fistR~head",
+    "fistL~head",
+    "fistR~eyes",
+    "fistL~eyes",
+    "armR~antenna",
+    "armL~antenna",
+    "fistR~legR",
+    "fistR~legL",
+    "fistL~legR",
+    "fistL~legL"
+  ],
+  "groups": {
+    "legR": [
+      "foot_R",
+      "shin_R",
+      "thigh_R"
+    ],
+    "legL": [
+      "foot_L",
+      "shin_L",
+      "thigh_L"
+    ],
+    "fistR": [
+      "fist_R"
+    ],
+    "fistL": [
+      "fist_L"
+    ],
+    "armR": [
+      "fist_R",
+      "forearm_R",
+      "upper_arm_R"
+    ],
+    "armL": [
+      "fist_L",
+      "forearm_L",
+      "upper_arm_L"
+    ],
+    "head": [
+      "head",
+      "tongue"
+    ],
+    "eyes": [
+      "eye_L",
+      "eye_R"
+    ],
+    "antenna": [
+      "antenna_1",
+      "antenna_2"
+    ]
+  },
+  "group_face_counts": {
+    "legR": 1670,
+    "legL": 1648,
+    "fistR": 958,
+    "fistL": 958,
+    "armR": 1712,
+    "armL": 1778,
+    "head": 2902,
+    "eyes": 484,
+    "antenna": 356
+  },
+  "defeat_overlap_tests_until_s": 0.55,
+  "max_influences": 4,
+  "basis_trs_max_error": 7.670372724533081e-06,
+  "clips": {
+    "idle": {
+      "frames": 61,
+      "overlaps": {
+        "legR~legL": 0,
+        "fistR~head": 0,
+        "fistL~head": 0,
+        "fistR~eyes": 0,
+        "fistL~eyes": 0,
+        "armR~antenna": 0,
+        "armL~antenna": 0,
+        "fistR~legR": 0,
+        "fistR~legL": 0,
+        "fistL~legR": 0,
+        "fistL~legL": 0
+      },
+      "overlap_frames": {},
+      "overlap_tested_frames": 61,
+      "max_joint_gap_m": 7.598131170262075e-08,
+      "lowest_m": 0.0025,
+      "max_antenna_socket_axis_ratio": 1.0000002261358385,
+      "max_eye_axis_ratio": 6.87240038326206,
+      "last_frame_eye_axis_ratio": 1.0000000828877194
+    },
+    "move": {
+      "frames": 25,
+      "overlaps": {
+        "legR~legL": 0,
+        "fistR~head": 0,
+        "fistL~head": 0,
+        "fistR~eyes": 0,
+        "fistL~eyes": 0,
+        "armR~antenna": 0,
+        "armL~antenna": 0,
+        "fistR~legR": 0,
+        "fistR~legL": 0,
+        "fistL~legR": 0,
+        "fistL~legL": 0
+      },
+      "overlap_frames": {},
+      "overlap_tested_frames": 25,
+      "max_joint_gap_m": 6.664001874625056e-08,
+      "lowest_m": 0.0025,
+      "max_antenna_socket_axis_ratio": 1.0000002869059514,
+      "max_eye_axis_ratio": 1.0000002869059514,
+      "last_frame_eye_axis_ratio": 1.0000001593275867
+    },
+    "attack": {
+      "frames": 61,
+      "overlaps": {
+        "legR~legL": 0,
+        "fistR~head": 0,
+        "fistL~head": 0,
+        "fistR~eyes": 0,
+        "fistL~eyes": 0,
+        "armR~antenna": 0,
+        "armL~antenna": 0,
+        "fistR~legR": 0,
+        "fistR~legL": 0,
+        "fistL~legR": 0,
+        "fistL~legL": 0
+      },
+      "overlap_frames": {},
+      "overlap_tested_frames": 61,
+      "max_joint_gap_m": 1.2737006692050962e-07,
+      "lowest_m": 0.0025,
+      "max_antenna_socket_axis_ratio": 1.0000003506103663,
+      "max_eye_axis_ratio": 2.444444811027203,
+      "last_frame_eye_axis_ratio": 1.0000000838190424
+    },
+    "hit": {
+      "frames": 22,
+      "overlaps": {
+        "legR~legL": 0,
+        "fistR~head": 0,
+        "fistL~head": 0,
+        "fistR~eyes": 0,
+        "fistL~eyes": 0,
+        "armR~antenna": 0,
+        "armL~antenna": 0,
+        "fistR~legR": 0,
+        "fistR~legL": 0,
+        "fistL~legR": 0,
+        "fistL~legL": 0
+      },
+      "overlap_frames": {},
+      "overlap_tested_frames": 22,
+      "max_joint_gap_m": 9.424321830774485e-08,
+      "lowest_m": 0.0025,
+      "max_antenna_socket_axis_ratio": 1.0000002324959754,
+      "max_eye_axis_ratio": 5.600000753479536,
+      "last_frame_eye_axis_ratio": 1.0000000838190424
+    },
+    "defeat": {
+      "frames": 73,
+      "overlaps": {
+        "legR~legL": 0,
+        "fistR~head": 0,
+        "fistL~head": 0,
+        "fistR~eyes": 0,
+        "fistL~eyes": 0,
+        "armR~antenna": 0,
+        "armL~antenna": 0,
+        "fistR~legR": 0,
+        "fistR~legL": 0,
+        "fistL~legR": 0,
+        "fistL~legL": 0
+      },
+      "overlap_frames": {},
+      "overlap_tested_frames": 17,
+      "max_joint_gap_m": 9.453726962543667e-08,
+      "lowest_m": 0.0025,
+      "max_antenna_socket_axis_ratio": 1.0000002729939774,
+      "max_eye_axis_ratio": 2.71149622139817,
+      "last_frame_eye_axis_ratio": 1.0799999243241742
+    }
+  },
+  "checks": {
+    "no_listed_part_overlaps_any_tested_frame": true,
+    "limb_and_antenna_joints_stay_connected": true,
+    "no_floor_penetration": true,
+    "antenna_socket_keeps_shape": true,
+    "eyes_keep_shape_while_moving": true,
+    "eyes_round_and_popped_in_the_held_puddle": true,
+    "basis_matrices_are_exact_trs": true,
+    "at_most_four_influences": true,
+    "five_clips": true
+  }
+}
