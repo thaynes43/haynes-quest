@@ -1,0 +1,52 @@
+{
+  "work_order": "WO111",
+  "asset_id": "magic-house",
+  "version": "v001",
+  "created_utc": "2026-09-26T15:51:01.310133+00:00",
+  "glb_sha256": "13c83db22907a6e3996c26abf46f92dab9038392e69e2ec854299614b287c2dc",
+  "candidate_status": "Awaiting Tom's review · used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Claude Opus 5.5 does the WO111 Blender work",
+  "authoring_tool": "Blender MCP execute_blender_code on the second isolated authoring service (blender-authoring-2), driven by a small streamable-HTTP JSON-RPC client (source/transfer.py). Its MCP Host allowlist only names instance 1, so the client sends Host: localhost:8000 to instance 2's own service address (thaynes43/haynes-ops#3209).",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": {
+    "kind": "Blender reference sheet, no generated concept",
+    "file": "reference-sheet.png",
+    "sha256": "378f1f5706b19f303e545854fc50df5d4e254930cf77c46d53a4dd08f41d3c20",
+    "notes": "reference-notes.md",
+    "notes_sha256": "62d74c940a6b55dbb93ba3dd73824d6e8fde18c6b1c5ec05c69443ed6c015e3f",
+    "blockout_master": "magic-house-blockout.blend",
+    "blockout_sha256": "a4367f504e3acf306b827430550cef9f1074092c90fece7a89244484d8b32ea6",
+    "coordinator_review": "Approved Sept 26 (SHEET-REVIEWS.md): keep the shutter eyes, the door mouth with doormat tongue, the hopping ridge tiles and the legs; the attack is a shimmy/hop that throws tiles; defeat is a sheepish slump with the shutters closing.",
+    "generator": "None. The sheet is a Cycles render of a procedural Blender blockout; no image-generation model was used for this asset."
+  },
+  "source_scripts": {
+    "animate.py": "633050c030c94eefb2efa892fe76390f5fdf424763175ec0b2454c150789a3b2",
+    "bounds.json": "a91676d9db4c59f6747cd90a2fdff3de52129f2e7687c2760ed38eaefd0b9756",
+    "build.py": "3d05b9ab1b592360e762e1d8eb6ffbbcfc4f102f89d8ba90e62d59b257700b1d",
+    "claim.py": "845c1481e03dd02cea0de4a97052157c38da8b51fdfb694b3187832fd6d10bc4",
+    "common.py": "ef8b014fc4c965f611aba747060301dec96f5da310890d0dff098bb26b361609",
+    "compare.mjs": "c56842ff4f0b5738c81ec04510a6e27b67211011cff23aac42389938ff9bc66f",
+    "cycle.sh": "9568b47de8eeaff1747a77e21e23f3ae7d30325d32386a853d9613950175cc44",
+    "delivery.py": "889edcfba9f87a228ba1bb14241a748c681203d7aa72d8c48b31ff5f8b2346a0",
+    "grid.mjs": "074d2aa6ae2a20a4d865f4ee9a2b84746f663cc377e64bc8dfdb73823b6b6eba",
+    "inspect-attachments.py": "d583e5b444b7dee061b9932166f20510676265efb9f525175534c6130b58ca1d",
+    "inspect-three.mjs": "0860a5aa8799bff19435a09dce0d1ddba10edb383b143cfb985a92fe60a19571",
+    "look.mjs": "7066fc7033dc97fbb508501153ed4a938893efed5f47e08c9768d7e298916ed9",
+    "make-evidence.py": "c96e6a9d5f311c42e0cd121231637a440083b1adc2aa89cbedb707e68e88a898",
+    "preview.mjs": "43156f40226e4449d97e82861d7da35b1fe9c8be6c51ab5f22988fff3e170e78",
+    "release_model.py": "5e534aa9e79341df65ac5cdf273e5ad9785af1711b6832e26c30ce7cb680cee7",
+    "transfer.py": "6f5f31cffcebdb76afafa49c39bd2f3623509252b4c22fddc615d5f4b1ff1ea2",
+    "validate.mjs": "a0268d22d660bce562e6e35b8a55e595b8b8728edc5debcc561d4763e18e1bc8"
+  },
+  "original_work": [
+    "Final topology, UVs, weights, the 32-bone rig and all five clips are new; the blockout supplied measured coordinates, colours and parody hooks only.",
+    "Original deterministic 1024 palette atlas generated in Blender Python from the sheet colours: 32 flat swatches plus painted barrel-tile rows with empty timber slots, shutter louvres, door planks with a coral flower and panel line, and doormat stripes.",
+    "Mesh, UV, transfer and validation utilities adapted from the WO111 rival-mayor / gadget-helper / honk-bus and Rat Casino authoring scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise names, models, faces, logos, architecture, symbols, lettering, recordings or textures."
+  ],
+  "rights_note": "Original authored study. No exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; the owner exact-version and physical-device review remain open."
+}

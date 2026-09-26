@@ -1,0 +1,4706 @@
+{
+  "asset_id": "magic-house",
+  "version": "v001",
+  "glb_sha256": "13c83db22907a6e3996c26abf46f92dab9038392e69e2ec854299614b287c2dc",
+  "three_revision": "186",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Rotation/scale-only joints are checked as fixed local pivots; the body, roof, legs, dancing tiles, pupils and butterflies translate by design. No physical-device or universal triangle-collision proof (the Blender attachment audit covers listed part pairs).",
+  "rest_bounds_y_up": {
+    "min": [
+      -1.2316361665725708,
+      0,
+      -1.1147866367686432
+    ],
+    "max": [
+      1.277999997138977,
+      2.8979423344135284,
+      0.8664500117301941
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -1.3778807309545826,
+      0,
+      -2.0985480421724247
+    ],
+    "max": [
+      1.437739391987954,
+      3.797199735958051,
+      1.18015048689922
+    ]
+  },
+  "dimensions_m": [
+    2.509636163711548,
+    2.8979423344135284,
+    1.9812366484988373
+  ],
+  "height_m": 2.8979423344135284,
+  "sole_clearance_m": 0,
+  "legs_footprint_y_up": {
+    "min": [
+      -0.6754870414733887,
+      0,
+      -0.356630802154541
+    ],
+    "max": [
+      0.6754870414733887,
+      0.2099999918788672,
+      0.15663081407546997
+    ]
+  },
+  "wall_band_y_up": {
+    "min": [
+      -1.0175268650054932,
+      0.5560959577560425,
+      -0.7593237161636353
+    ],
+    "max": [
+      0.9520000219345093,
+      0.74439936876297,
+      0.7170000076293945
+    ]
+  },
+  "exported_safe_bounds_y_up": {
+    "min": [
+      -1.383,
+      -0.005,
+      -2.104
+    ],
+    "max": [
+      1.443,
+      3.803,
+      1.186
+    ]
+  },
+  "animations": {
+    "idle": {
+      "duration_s": 2.4000000953674316,
+      "samples": 146,
+      "all_vertices_per_sample": 12233,
+      "max_temporal_vertex_displacement_m": 0.25380443707643346,
+      "bounds_y_up": {
+        "min": [
+          -1.2639319203426977,
+          0,
+          -1.1464123819911534
+        ],
+        "max": [
+          1.3032173941719254,
+          2.9709654648580774,
+          0.883932078497911
+        ]
+      },
+      "loop_seam_max_m": 9.955196276401618e-9,
+      "floor_minimum": {
+        "y": 0,
+        "bone": "leg_R",
+        "vertex": 138,
+        "mesh": "Magic_House_Skin_Mesh",
+        "position": [
+          0.5,
+          0,
+          -0.10000000149011612
+        ],
+        "time_s": 0
+      },
+      "lowest_lid_vertex_y_m": 1.2783136167277633,
+      "lowest_vertex_by_bone_y_m": {
+        "body": 0.30626512338015577,
+        "roof": 1.591806668033023,
+        "tile_1": 2.4206570014372977,
+        "tile_2": 2.2633040466644805,
+        "tile_3": 2.086896811268147,
+        "tile_4": 2.639023182287893,
+        "tile_5": 2.605602913226062,
+        "ridge_tile": 2.7434728093509957,
+        "chimney": 1.915979452272269,
+        "candle": 2.0232364581414797,
+        "pupil_R": 1.240801134201616,
+        "lid_R": 1.2959769342112304,
+        "shutter_R_out": 1.1750347682974138,
+        "shutter_R_in": 1.1854341124060797,
+        "pupil_L": 1.2424498481520865,
+        "lid_L": 1.2783136167277633,
+        "shutter_L_out": 1.1750390581177774,
+        "shutter_L_in": 1.1854304551698684,
+        "door_R": 0.5160599337770766,
+        "door_L": 0.5160853227719185,
+        "tongue_1": 0.5202214130688205,
+        "tongue_2": 0.3689208903349017,
+        "tongue_3": 0.16638023966306092,
+        "butterfly_1": 1.9648110963327445,
+        "wing_1_R": 1.9543335707958505,
+        "wing_1_L": 1.9553146022711703,
+        "butterfly_2": 2.212179209777397,
+        "wing_2_R": 2.204063572857486,
+        "wing_2_L": 2.216218156262657,
+        "leg_R": 0,
+        "leg_L": 0
+      },
+      "held_defeat_difference_m": null
+    },
+    "move": {
+      "duration_s": 1,
+      "samples": 61,
+      "all_vertices_per_sample": 12233,
+      "max_temporal_vertex_displacement_m": 0.21684875566295708,
+      "bounds_y_up": {
+        "min": [
+          -1.3432551131907846,
+          0,
+          -1.1734902323406653
+        ],
+        "max": [
+          1.3524164686838196,
+          3.0023975677904335,
+          0.863232158637005
+        ]
+      },
+      "loop_seam_max_m": 1.830971659373362e-8,
+      "floor_minimum": {
+        "y": 0,
+        "bone": "leg_R",
+        "vertex": 138,
+        "mesh": "Magic_House_Skin_Mesh",
+        "position": [
+          0.5,
+          0,
+          -0.030000001192092896
+        ],
+        "time_s": 0
+      },
+      "lowest_lid_vertex_y_m": 1.4286437730690373,
+      "lowest_vertex_by_bone_y_m": {
+        "body": 0.30644995921296525,
+        "roof": 1.5634184190122415,
+        "tile_1": 2.4548861724555247,
+        "tile_2": 2.2959226963722092,
+        "tile_3": 2.165690572566991,
+        "tile_4": 2.7250269930493913,
+        "tile_5": 2.6896340247598283,
+        "ridge_tile": 2.823703512773278,
+        "chimney": 1.9254841261945368,
+        "candle": 2.015780459660462,
+        "pupil_R": 1.2298919877395258,
+        "lid_R": 1.5122695534422819,
+        "shutter_R_out": 1.1461598095684684,
+        "shutter_R_in": 1.178031322442565,
+        "pupil_L": 1.2322905491633032,
+        "lid_L": 1.4286437730690373,
+        "shutter_L_out": 1.1461598095684684,
+        "shutter_L_in": 1.178031322442565,
+        "door_R": 0.4932252222213214,
+        "door_L": 0.4932252222213214,
+        "tongue_1": 0.5126399754192232,
+        "tongue_2": 0.36452198736735675,
+        "tongue_3": 0.15373334222097443,
+        "butterfly_1": 1.9372060562627962,
+        "wing_1_R": 1.9289499744055738,
+        "wing_1_L": 1.9335674792919053,
+        "butterfly_2": 2.17732273305251,
+        "wing_2_R": 2.17115314106318,
+        "wing_2_L": 2.181234187152098,
+        "leg_R": 0,
+        "leg_L": 0
+      },
+      "held_defeat_difference_m": null
+    },
+    "attack": {
+      "duration_s": 2,
+      "samples": 121,
+      "all_vertices_per_sample": 12233,
+      "max_temporal_vertex_displacement_m": 3.486021281971576,
+      "bounds_y_up": {
+        "min": [
+          -1.3778807309545826,
+          0,
+          -2.0985480421724247
+        ],
+        "max": [
+          1.437739391987954,
+          3.797199735958051,
+          1.0847148364913295
+        ]
+      },
+      "loop_seam_max_m": 0.03176030897878993,
+      "floor_minimum": {
+        "y": 0,
+        "bone": "leg_R",
+        "vertex": 138,
+        "mesh": "Magic_House_Skin_Mesh",
+        "position": [
+          0.5,
+          0,
+          -0.10000000149011612
+        ],
+        "time_s": 0
+      },
+      "lowest_lid_vertex_y_m": 1.4407252277535378,
+      "lowest_vertex_by_bone_y_m": {
+        "body": 0.23420983622888697,
+        "roof": 1.4669022095023996,
+        "tile_1": 0.0019994521399828713,
+        "tile_2": 0.0019994970549407354,
+        "tile_3": 0.0019993673629572495,
+        "tile_4": 0.00199993029349943,
+        "tile_5": 0.0019991627836037917,
+        "ridge_tile": 0.0019994990857177264,
+        "chimney": 1.8278088562150325,
+        "candle": 1.9173246595120783,
+        "pupil_R": 1.1337661522533438,
+        "lid_R": 1.5361135748674701,
+        "shutter_R_out": 1.0824588643463975,
+        "shutter_R_in": 1.082458863594058,
+        "pupil_L": 1.1337661522533438,
+        "lid_L": 1.4407252277535378,
+        "shutter_L_out": 1.0824588643463975,
+        "shutter_L_in": 1.082458863594058,
+        "door_R": 0.40397089157485067,
+        "door_L": 0.40397089157485067,
+        "tongue_1": 0.43784864264357326,
+        "tongue_2": 0.33999783325440575,
+        "tongue_3": 0.16531040359887494,
+        "butterfly_1": 1.9097309660460862,
+        "wing_1_R": 1.900963936784485,
+        "wing_1_L": 1.9019479944844866,
+        "butterfly_2": 2.0848551844953054,
+        "wing_2_R": 2.0738224762036466,
+        "wing_2_L": 2.088006032053553,
+        "leg_R": 0,
+        "leg_L": 0
+      },
+      "held_defeat_difference_m": null
+    },
+    "hit": {
+      "duration_s": 0.699999988079071,
+      "samples": 43,
+      "all_vertices_per_sample": 12233,
+      "max_temporal_vertex_displacement_m": 0.5314093552295925,
+      "bounds_y_up": {
+        "min": [
+          -1.2708394458233465,
+          0,
+          -1.1957889606900185
+        ],
+        "max": [
+          1.3227133370997808,
+          3.154279168231318,
+          1.18015048689922
+        ]
+      },
+      "loop_seam_max_m": 0.005513180356904206,
+      "floor_minimum": {
+        "y": 0,
+        "bone": "leg_R",
+        "vertex": 138,
+        "mesh": "Magic_House_Skin_Mesh",
+        "position": [
+          0.5,
+          0,
+          -0.10000000149011612
+        ],
+        "time_s": 0
+      },
+      "lowest_lid_vertex_y_m": 1.2803137856101419,
+      "lowest_vertex_by_bone_y_m": {
+        "body": 0.24480665747146052,
+        "roof": 1.5312480817479417,
+        "tile_1": 2.4639133470798864,
+        "tile_2": 2.3003834849408187,
+        "tile_3": 2.1274312930406465,
+        "tile_4": 2.6590949595055196,
+        "tile_5": 2.5972778212004917,
+        "ridge_tile": 2.798623703824184,
+        "chimney": 1.8850763334891787,
+        "candle": 2.025922112827132,
+        "pupil_R": 1.257164536860996,
+        "lid_R": 1.2847773642282048,
+        "shutter_R_out": 1.1877266695448994,
+        "shutter_R_in": 1.1891101762200693,
+        "pupil_L": 1.2549111855177475,
+        "lid_L": 1.2803137856101419,
+        "shutter_L_out": 1.1823938972781165,
+        "shutter_L_in": 1.1873927421131483,
+        "door_R": 0.5276168308865752,
+        "door_L": 0.5227988574099601,
+        "tongue_1": 0.5234188171871929,
+        "tongue_2": 0.37302118521490335,
+        "tongue_3": 0.1755395057483457,
+        "butterfly_1": 1.97469366916614,
+        "wing_1_R": 1.964293613032989,
+        "wing_1_L": 1.9642137732582197,
+        "butterfly_2": 2.206866609265487,
+        "wing_2_R": 2.1940399460594318,
+        "wing_2_L": 2.2103618332517057,
+        "leg_R": 0,
+        "leg_L": 0
+      },
+      "held_defeat_difference_m": null
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "samples": 146,
+      "all_vertices_per_sample": 12233,
+      "max_temporal_vertex_displacement_m": 0.5907144631406256,
+      "bounds_y_up": {
+        "min": [
+          -1.2316361665725708,
+          0,
+          -1.2869902054363105
+        ],
+        "max": [
+          1.3737051952527102,
+          3.1523646539660817,
+          0.8664500117301941
+        ]
+      },
+      "loop_seam_max_m": 0.561242673484524,
+      "floor_minimum": {
+        "y": 0,
+        "bone": "leg_R",
+        "vertex": 138,
+        "mesh": "Magic_House_Skin_Mesh",
+        "position": [
+          0.5,
+          0,
+          -0.10000000149011612
+        ],
+        "time_s": 0
+      },
+      "lowest_lid_vertex_y_m": 1.0634726821182465,
+      "lowest_vertex_by_bone_y_m": {
+        "body": 0.17817401926490495,
+        "roof": 1.3154822392428287,
+        "tile_1": 2.060859708634741,
+        "tile_2": 2.000542762196562,
+        "tile_3": 1.8600053742070315,
+        "tile_4": 2.3355250788681587,
+        "tile_5": 2.3251253239298517,
+        "ridge_tile": 2.4143668656088018,
+        "chimney": 1.9111739954948537,
+        "candle": 1.8956171711738112,
+        "pupil_R": 1.1352334464253193,
+        "lid_R": 1.0634726821182465,
+        "shutter_R_out": 0.9784521293146212,
+        "shutter_R_in": 1.0188871923493878,
+        "pupil_L": 1.2083827289623472,
+        "lid_L": 1.134596586068341,
+        "shutter_L_out": 1.0920138546017426,
+        "shutter_L_in": 1.0516014699896898,
+        "door_R": 0.33193765416563775,
+        "door_L": 0.38884842938121833,
+        "tongue_1": 0.35604002365574017,
+        "tongue_2": 0.21571973227048313,
+        "tongue_3": 0.1712805027342022,
+        "butterfly_1": 1.823331823472958,
+        "wing_1_R": 1.8111782826350633,
+        "wing_1_L": 1.8162638095245096,
+        "butterfly_2": 2.1545413206726804,
+        "wing_2_R": 2.1572723248246435,
+        "wing_2_L": 2.159323370836713,
+        "leg_R": 0,
+        "leg_L": 0
+      },
+      "held_defeat_difference_m": 6.450992237203569e-7
+    }
+  },
+  "images": [
+    {
+      "width": 1024,
+      "height": 1024,
+      "encoded_bytes": 34773,
+      "decoded_bytes": 4194304
+    }
+  ],
+  "root_bone_tracks": [
+    {
+      "clip": "idle",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "name": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "name": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "name": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "name": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "name": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "name": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "name": "root.scale",
+      "constant": true
+    }
+  ],
+  "tracks": [
+    {
+      "clip": "idle",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "body.position",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "body.quaternion",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "body.scale",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "roof.position",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "roof.quaternion",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "roof.scale",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_1.position",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_1.quaternion",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_1.scale",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_2.position",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_2.quaternion",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_2.scale",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_3.position",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_3.quaternion",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_3.scale",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_4.position",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_4.quaternion",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_4.scale",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_5.position",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_5.quaternion",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tile_5.scale",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "ridge_tile.position",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "ridge_tile.quaternion",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "ridge_tile.scale",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "chimney.position",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "chimney.quaternion",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "chimney.scale",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "candle.position",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "candle.quaternion",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "candle.scale",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "pupil_R.position",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "pupil_R.quaternion",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "pupil_R.scale",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "lid_R.position",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "lid_R.quaternion",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "lid_R.scale",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_R_out.position",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_R_out.quaternion",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_R_out.scale",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_R_in.position",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_R_in.quaternion",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_R_in.scale",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "pupil_L.position",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "pupil_L.quaternion",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "pupil_L.scale",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "lid_L.position",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "lid_L.quaternion",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "lid_L.scale",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_L_out.position",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_L_out.quaternion",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_L_out.scale",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_L_in.position",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_L_in.quaternion",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "shutter_L_in.scale",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "door_R.position",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "door_R.quaternion",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "door_R.scale",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "door_L.position",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "door_L.quaternion",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "door_L.scale",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue_1.position",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue_1.quaternion",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue_1.scale",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue_2.position",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue_2.quaternion",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue_2.scale",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue_3.position",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue_3.quaternion",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "tongue_3.scale",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "butterfly_1.position",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "butterfly_1.quaternion",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "butterfly_1.scale",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_1_R.position",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_1_R.quaternion",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_1_R.scale",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_1_L.position",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_1_L.quaternion",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_1_L.scale",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "butterfly_2.position",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "butterfly_2.quaternion",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "butterfly_2.scale",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_2_R.position",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_2_R.quaternion",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_2_R.scale",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_2_L.position",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_2_L.quaternion",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "wing_2_L.scale",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "leg_R.position",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "leg_R.quaternion",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "leg_R.scale",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "leg_L.position",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "leg_L.quaternion",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "idle",
+      "track": "leg_L.scale",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "body.position",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "body.quaternion",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "body.scale",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "roof.position",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "roof.quaternion",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "roof.scale",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_1.position",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_1.quaternion",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_1.scale",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_2.position",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_2.quaternion",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_2.scale",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_3.position",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_3.quaternion",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_3.scale",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_4.position",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_4.quaternion",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_4.scale",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_5.position",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_5.quaternion",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tile_5.scale",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "ridge_tile.position",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "ridge_tile.quaternion",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "ridge_tile.scale",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "chimney.position",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "chimney.quaternion",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "chimney.scale",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "candle.position",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "candle.quaternion",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "candle.scale",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "pupil_R.position",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "pupil_R.quaternion",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "pupil_R.scale",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "lid_R.position",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "lid_R.quaternion",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "lid_R.scale",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_R_out.position",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_R_out.quaternion",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_R_out.scale",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_R_in.position",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_R_in.quaternion",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_R_in.scale",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "pupil_L.position",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "pupil_L.quaternion",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "pupil_L.scale",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "lid_L.position",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "lid_L.quaternion",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "lid_L.scale",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_L_out.position",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_L_out.quaternion",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_L_out.scale",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_L_in.position",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_L_in.quaternion",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "shutter_L_in.scale",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "door_R.position",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "door_R.quaternion",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "door_R.scale",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "door_L.position",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "door_L.quaternion",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "door_L.scale",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue_1.position",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue_1.quaternion",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue_1.scale",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue_2.position",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue_2.quaternion",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue_2.scale",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue_3.position",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue_3.quaternion",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "tongue_3.scale",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "butterfly_1.position",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "butterfly_1.quaternion",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "butterfly_1.scale",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_1_R.position",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_1_R.quaternion",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_1_R.scale",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_1_L.position",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_1_L.quaternion",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_1_L.scale",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "butterfly_2.position",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "butterfly_2.quaternion",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "butterfly_2.scale",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_2_R.position",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_2_R.quaternion",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_2_R.scale",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_2_L.position",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_2_L.quaternion",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "wing_2_L.scale",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "leg_R.position",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "leg_R.quaternion",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "leg_R.scale",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "leg_L.position",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "leg_L.quaternion",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "move",
+      "track": "leg_L.scale",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "body.position",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "body.quaternion",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "body.scale",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "roof.position",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "roof.quaternion",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "roof.scale",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_1.position",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_1.quaternion",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_1.scale",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_2.position",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_2.quaternion",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_2.scale",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_3.position",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_3.quaternion",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_3.scale",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_4.position",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_4.quaternion",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_4.scale",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_5.position",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_5.quaternion",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tile_5.scale",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "ridge_tile.position",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "ridge_tile.quaternion",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "ridge_tile.scale",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "chimney.position",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "chimney.quaternion",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "chimney.scale",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "candle.position",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "candle.quaternion",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "candle.scale",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "pupil_R.position",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "pupil_R.quaternion",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "pupil_R.scale",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "lid_R.position",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "lid_R.quaternion",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "lid_R.scale",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_R_out.position",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_R_out.quaternion",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_R_out.scale",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_R_in.position",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_R_in.quaternion",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_R_in.scale",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "pupil_L.position",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "pupil_L.quaternion",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "pupil_L.scale",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "lid_L.position",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "lid_L.quaternion",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "lid_L.scale",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_L_out.position",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_L_out.quaternion",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_L_out.scale",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_L_in.position",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_L_in.quaternion",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "shutter_L_in.scale",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "door_R.position",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "door_R.quaternion",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "door_R.scale",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "door_L.position",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "door_L.quaternion",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "door_L.scale",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue_1.position",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue_1.quaternion",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue_1.scale",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue_2.position",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue_2.quaternion",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue_2.scale",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue_3.position",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue_3.quaternion",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "tongue_3.scale",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "butterfly_1.position",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "butterfly_1.quaternion",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "butterfly_1.scale",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_1_R.position",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_1_R.quaternion",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_1_R.scale",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_1_L.position",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_1_L.quaternion",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_1_L.scale",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "butterfly_2.position",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "butterfly_2.quaternion",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "butterfly_2.scale",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_2_R.position",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_2_R.quaternion",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_2_R.scale",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_2_L.position",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_2_L.quaternion",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "wing_2_L.scale",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "leg_R.position",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "leg_R.quaternion",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "leg_R.scale",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "leg_L.position",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "leg_L.quaternion",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "attack",
+      "track": "leg_L.scale",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "body.position",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "body.quaternion",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "body.scale",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "roof.position",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "roof.quaternion",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "roof.scale",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_1.position",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_1.quaternion",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_1.scale",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_2.position",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_2.quaternion",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_2.scale",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_3.position",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_3.quaternion",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_3.scale",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_4.position",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_4.quaternion",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_4.scale",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_5.position",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_5.quaternion",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tile_5.scale",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "ridge_tile.position",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "ridge_tile.quaternion",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "ridge_tile.scale",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "chimney.position",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "chimney.quaternion",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "chimney.scale",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "candle.position",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "candle.quaternion",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "candle.scale",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "pupil_R.position",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "pupil_R.quaternion",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "pupil_R.scale",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "lid_R.position",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "lid_R.quaternion",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "lid_R.scale",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_R_out.position",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_R_out.quaternion",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_R_out.scale",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_R_in.position",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_R_in.quaternion",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_R_in.scale",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "pupil_L.position",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "pupil_L.quaternion",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "pupil_L.scale",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "lid_L.position",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "lid_L.quaternion",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "lid_L.scale",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_L_out.position",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_L_out.quaternion",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_L_out.scale",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_L_in.position",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_L_in.quaternion",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "shutter_L_in.scale",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "door_R.position",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "door_R.quaternion",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "door_R.scale",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "door_L.position",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "door_L.quaternion",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "door_L.scale",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue_1.position",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue_1.quaternion",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue_1.scale",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue_2.position",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue_2.quaternion",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue_2.scale",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue_3.position",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue_3.quaternion",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "tongue_3.scale",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "butterfly_1.position",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "butterfly_1.quaternion",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "butterfly_1.scale",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_1_R.position",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_1_R.quaternion",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_1_R.scale",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_1_L.position",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_1_L.quaternion",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_1_L.scale",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "butterfly_2.position",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "butterfly_2.quaternion",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "butterfly_2.scale",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_2_R.position",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_2_R.quaternion",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_2_R.scale",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_2_L.position",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_2_L.quaternion",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "wing_2_L.scale",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "leg_R.position",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "leg_R.quaternion",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "leg_R.scale",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "leg_L.position",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "leg_L.quaternion",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "hit",
+      "track": "leg_L.scale",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "root.position",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "root.quaternion",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "root.scale",
+      "node": "root",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "body.position",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "body.quaternion",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "body.scale",
+      "node": "body",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "roof.position",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "roof.quaternion",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "roof.scale",
+      "node": "roof",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_1.position",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_1.quaternion",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_1.scale",
+      "node": "tile_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_2.position",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_2.quaternion",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_2.scale",
+      "node": "tile_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_3.position",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_3.quaternion",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_3.scale",
+      "node": "tile_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_4.position",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_4.quaternion",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_4.scale",
+      "node": "tile_4",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_5.position",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_5.quaternion",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tile_5.scale",
+      "node": "tile_5",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "ridge_tile.position",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "ridge_tile.quaternion",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "ridge_tile.scale",
+      "node": "ridge_tile",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "chimney.position",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "chimney.quaternion",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "chimney.scale",
+      "node": "chimney",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "candle.position",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "candle.quaternion",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "candle.scale",
+      "node": "candle",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "pupil_R.position",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "pupil_R.quaternion",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "pupil_R.scale",
+      "node": "pupil_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "lid_R.position",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "lid_R.quaternion",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "lid_R.scale",
+      "node": "lid_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_R_out.position",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_R_out.quaternion",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_R_out.scale",
+      "node": "shutter_R_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_R_in.position",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_R_in.quaternion",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_R_in.scale",
+      "node": "shutter_R_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "pupil_L.position",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "pupil_L.quaternion",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "pupil_L.scale",
+      "node": "pupil_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "lid_L.position",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "lid_L.quaternion",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "lid_L.scale",
+      "node": "lid_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_L_out.position",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_L_out.quaternion",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_L_out.scale",
+      "node": "shutter_L_out",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_L_in.position",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_L_in.quaternion",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "shutter_L_in.scale",
+      "node": "shutter_L_in",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "door_R.position",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "door_R.quaternion",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "door_R.scale",
+      "node": "door_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "door_L.position",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "door_L.quaternion",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "door_L.scale",
+      "node": "door_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue_1.position",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue_1.quaternion",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue_1.scale",
+      "node": "tongue_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue_2.position",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue_2.quaternion",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue_2.scale",
+      "node": "tongue_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue_3.position",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue_3.quaternion",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "tongue_3.scale",
+      "node": "tongue_3",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "butterfly_1.position",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "butterfly_1.quaternion",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "butterfly_1.scale",
+      "node": "butterfly_1",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_1_R.position",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_1_R.quaternion",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_1_R.scale",
+      "node": "wing_1_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_1_L.position",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_1_L.quaternion",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_1_L.scale",
+      "node": "wing_1_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "butterfly_2.position",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "butterfly_2.quaternion",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "butterfly_2.scale",
+      "node": "butterfly_2",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_2_R.position",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_2_R.quaternion",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_2_R.scale",
+      "node": "wing_2_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_2_L.position",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_2_L.quaternion",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "wing_2_L.scale",
+      "node": "wing_2_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "leg_R.position",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "leg_R.quaternion",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "leg_R.scale",
+      "node": "leg_R",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "leg_L.position",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "leg_L.quaternion",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    },
+    {
+      "clip": "defeat",
+      "track": "leg_L.scale",
+      "node": "leg_L",
+      "resolves": true,
+      "targets_scene_root": false
+    }
+  ],
+  "attachment_pivot_max_drift_m": {
+    "chimney": 4.951133646320149e-7,
+    "candle": 2.4575635647876363e-7,
+    "lid_R": 1.7120130796843852e-7,
+    "shutter_R_out": 1.884864366154897e-7,
+    "shutter_R_in": 1.341104507446289e-7,
+    "lid_L": 1.812804499357408e-7,
+    "shutter_L_out": 1.7881393432617188e-7,
+    "shutter_L_in": 1.884864366154897e-7,
+    "door_R": 1.3075715880680267e-7,
+    "door_L": 1.3657139822709083e-7,
+    "tongue_1": 1.8128047096199073e-7,
+    "tongue_2": 1.6360833389874238e-7,
+    "tongue_3": 2.1370322102662058e-7,
+    "wing_1_R": 3.11591113192533e-7,
+    "wing_1_L": 3.11591113192533e-7,
+    "wing_2_R": 6.453790205283549e-7,
+    "wing_2_L": 6.453790205283549e-7
+  },
+  "max_skin_influences": 2,
+  "max_weight_sum_error": 2.9802322387695312e-8,
+  "attack_beats": [
+    {
+      "time_s": 0,
+      "tile_centres": {
+        "tile_1": [
+          0.5171668095371376,
+          2.540092512768412,
+          -0.5394832592264116
+        ],
+        "tile_2": [
+          -0.6935589521022321,
+          2.4394810502054165,
+          -0.6728176512240449
+        ],
+        "tile_3": [
+          0.8045107333673425,
+          2.2671647754154725,
+          0.13201764970406082
+        ],
+        "tile_4": [
+          -0.23810625547972059,
+          2.77005800000026,
+          0.12922377175183272
+        ],
+        "tile_5": [
+          0.37784627944081983,
+          2.6914422922602714,
+          0.5365395716514307
+        ],
+        "ridge_tile": [
+          0.0530978794723002,
+          2.8500373661518097,
+          -0.40019419625048847
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 2.466543013913659,
+        "tile_2": 2.305576134267274,
+        "tile_3": 2.135654893435507,
+        "tile_4": 2.6745247645932495,
+        "tile_5": 2.6398075117791207,
+        "ridge_tile": 2.802132397890091
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.4000000059604645,
+        0
+      ],
+      "tile_1_bone": [
+        0.5130308270454407,
+        2.5449877083301544,
+        -0.5329999923706055
+      ],
+      "tongue_tip_forward_m": 1.1147867370374716
+    },
+    {
+      "time_s": 0.3,
+      "tile_centres": {
+        "tile_1": [
+          0.6668029584365692,
+          2.7151956527568815,
+          -0.5722996892007507
+        ],
+        "tile_2": [
+          -0.5169057285174674,
+          2.6747473418240837,
+          -0.6511260497679108
+        ],
+        "tile_3": [
+          0.9812042205198006,
+          2.4013058908484175,
+          0.10316024546138483
+        ],
+        "tile_4": [
+          -0.0729220478352467,
+          2.9319660530975726,
+          0.14932236544190072
+        ],
+        "tile_5": [
+          0.525632829823169,
+          2.831924132154021,
+          0.5208595765712641
+        ],
+        "ridge_tile": [
+          0.19783016024349115,
+          3.008916158321264,
+          -0.4203361446440332
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 2.6245171339974185,
+        "tile_2": 2.5481919847810186,
+        "tile_3": 2.2720066194823065,
+        "tile_4": 2.831042631879443,
+        "tile_5": 2.7743150101602994,
+        "ridge_tile": 2.9467109747036977
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.4109892832806576,
+        0
+      ],
+      "tile_1_bone": [
+        0.6618033093721829,
+        2.72169719892381,
+        -0.5689288189908518
+      ],
+      "tongue_tip_forward_m": 1.1153093960845786
+    },
+    {
+      "time_s": 0.6,
+      "tile_centres": {
+        "tile_1": [
+          0.5090465045906896,
+          2.9935053611461546,
+          -0.326304567607411
+        ],
+        "tile_2": [
+          -0.5898612437953674,
+          2.9037212529252656,
+          -0.4310767418670556
+        ],
+        "tile_3": [
+          0.8749639117391055,
+          2.6510326294554014,
+          0.4041406997782707
+        ],
+        "tile_4": [
+          -0.24665719929027108,
+          3.152858483287843,
+          0.4676348779443611
+        ],
+        "tile_5": [
+          0.275041498242556,
+          3.0366461245112992,
+          0.8210440728084203
+        ],
+        "ridge_tile": [
+          -0.012720332998981454,
+          3.2264991194078734,
+          -0.1431861222009453
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 2.890394640806759,
+        "tile_2": 2.785574937750299,
+        "tile_3": 2.5244306878597977,
+        "tile_4": 3.0441992937636906,
+        "tile_5": 2.9374672297137394,
+        "ridge_tile": 3.162375677019198
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.31999999509920346,
+        0
+      ],
+      "tile_1_bone": [
+        0.5130309462545597,
+        3.0000269818555108,
+        -0.3170275738226448
+      ],
+      "tongue_tip_forward_m": 1.1032972136520227
+    },
+    {
+      "time_s": 0.84,
+      "tile_centres": {
+        "tile_1": [
+          0.5090465046679518,
+          2.9935053628793833,
+          -0.32630455541875947
+        ],
+        "tile_2": [
+          -0.5898612437740497,
+          2.9037212552413862,
+          -0.43107672984676904
+        ],
+        "tile_3": [
+          0.8749639121484772,
+          2.6510326279768663,
+          0.4041407108585713
+        ],
+        "tile_4": [
+          -0.24665719942352543,
+          3.152858481410278,
+          0.4676348912239894
+        ],
+        "tile_5": [
+          0.2750414977918274,
+          3.036646120924003,
+          0.8210440857350528
+        ],
+        "ridge_tile": [
+          -0.012720333475573886,
+          3.226499120064423,
+          -0.14318610870731008
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 2.8903946396769706,
+        "tile_2": 2.785574942172091,
+        "tile_3": 2.5244306873174116,
+        "tile_4": 3.044199293666714,
+        "tile_5": 2.9374672256606504,
+        "ridge_tile": 3.162375677850975
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.3199999928474426,
+        0
+      ],
+      "tile_1_bone": [
+        0.5130309462547302,
+        3.0000269836200726,
+        -0.3170275614023231
+      ],
+      "tongue_tip_forward_m": 1.1032972130137095
+    },
+    {
+      "time_s": 1.05,
+      "tile_centres": {
+        "tile_1": [
+          0.5090464865082756,
+          2.993505781199494,
+          -0.32630503931983956
+        ],
+        "tile_2": [
+          -0.5898613019805493,
+          2.903721763512223,
+          -0.4310771461400972
+        ],
+        "tile_3": [
+          0.8749639196603977,
+          2.651033299348255,
+          0.40413999549777385
+        ],
+        "tile_4": [
+          -0.24665722297861672,
+          3.152859008715687,
+          0.46763410318248255
+        ],
+        "tile_5": [
+          0.27504167775912236,
+          3.036646740831155,
+          0.8210432124851528
+        ],
+        "ridge_tile": [
+          -0.012720330356547072,
+          3.226499736350688,
+          -0.14318662249948932
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 2.890395136480748,
+        "tile_2": 2.785575373357528,
+        "tile_3": 2.5244313808820213,
+        "tile_4": 3.0441997511817993,
+        "tile_5": 2.9374677372370592,
+        "ridge_tile": 3.1623764194146347
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.3200000415904859,
+        -4.238526238791732e-9
+      ],
+      "tile_1_bone": [
+        0.513030927199627,
+        3.0000274034824024,
+        -0.3170280659339888
+      ],
+      "tongue_tip_forward_m": 1.1032972354551864
+    },
+    {
+      "time_s": 1.15,
+      "tile_centres": {
+        "tile_1": [
+          0.4562211851426285,
+          3.000261599475378,
+          -1.35107853681986
+        ],
+        "tile_2": [
+          -0.7607668801329108,
+          3.049315047201463,
+          -1.237293498141886
+        ],
+        "tile_3": [
+          0.9202091867090986,
+          3.0454308742050555,
+          -0.9999389529272739
+        ],
+        "tile_4": [
+          -0.3350454015272264,
+          3.2674937803864372,
+          -1.107073283838479
+        ],
+        "tile_5": [
+          0.7304128999429482,
+          3.3023780381552856,
+          -0.7886429455893551
+        ],
+        "ridge_tile": [
+          -0.011186629606638493,
+          3.4309463563568006,
+          -1.172699071940755
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 2.898348924540583,
+        "tile_2": 2.9791507884987487,
+        "tile_3": 2.9282920079495924,
+        "tile_4": 3.1363653789665076,
+        "tile_5": 3.2110671990960427,
+        "ridge_tile": 3.3532175779545903
+      },
+      "feet_lowest_y": 0.09999998559553003,
+      "body": [
+        0,
+        0.549999992645961,
+        -0.019999997433687727
+      ],
+      "tile_1_bone": [
+        0.4631124595226917,
+        2.9967901547096067,
+        -1.3549050551354653
+      ],
+      "tongue_tip_forward_m": 1.2920658037581454
+    },
+    {
+      "time_s": 1.25,
+      "tile_centres": {
+        "tile_1": [
+          0.395268222839246,
+          0.026799431636478688,
+          -1.901616567943482
+        ],
+        "tile_2": [
+          -0.9464129238668577,
+          0.02679954875125995,
+          -1.4465164410670106
+        ],
+        "tile_3": [
+          0.9528232203491498,
+          0.02679935746095896,
+          -1.5041267057797927
+        ],
+        "tile_4": [
+          -0.4225774498746353,
+          0.02680021697318602,
+          -1.8542845363366214
+        ],
+        "tile_5": [
+          1.301477649600211,
+          0.02679998244795101,
+          -1.0452236393801688
+        ],
+        "ridge_tile": [
+          0.00009554118731452954,
+          0.03479962748476595,
+          -1.55000397665754
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 0.0019994521399828713,
+        "tile_2": 0.0019994970549407354,
+        "tile_3": 0.0019993673629572495,
+        "tile_4": 0.002000227396211196,
+        "tile_5": 0.0019999442610345586,
+        "ridge_tile": 0.0019996129411299357
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.3583333492279053,
+        0
+      ],
+      "tile_1_bone": [
+        0.3999997675418854,
+        0.011999451349466561,
+        -1.9000001646476061
+      ],
+      "tongue_tip_forward_m": 1.2929229502588409
+    },
+    {
+      "time_s": 1.35,
+      "tile_centres": {
+        "tile_1": [
+          0.39550641015056875,
+          0.0658915548332607,
+          -1.932193472546357
+        ],
+        "tile_2": [
+          -0.9468754616047763,
+          0.06589161484954237,
+          -1.476095907744012
+        ],
+        "tile_3": [
+          0.9533155010894893,
+          0.06589157549638192,
+          -1.5337422958604432
+        ],
+        "tile_4": [
+          -0.42202307227468383,
+          0.06589232366111519,
+          -1.8845713910178774
+        ],
+        "tile_5": [
+          1.30087046181762,
+          0.06589181113688891,
+          -1.0750761320218556
+        ],
+        "ridge_tile": [
+          -0.004961593483856164,
+          0.07389172920566422,
+          -1.5806198188813545
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 0.04109155853374147,
+        "tile_2": 0.04109157974535649,
+        "tile_3": 0.04109156846630024,
+        "tile_4": 0.04109233951291369,
+        "tile_5": 0.041091795458298996,
+        "ridge_tile": 0.04109168706264876
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.3883333376022072,
+        0
+      ],
+      "tile_1_bone": [
+        0.39999949932132495,
+        0.05109156578909513,
+        -1.929999779095891
+      ],
+      "tongue_tip_forward_m": 1.2913402567097776
+    },
+    {
+      "time_s": 1.45,
+      "tile_centres": {
+        "tile_1": [
+          0.3958152698278694,
+          0.026799899401842353,
+          -1.9627363292008315
+        ],
+        "tile_2": [
+          -0.947386519061856,
+          0.02679959704983409,
+          -1.5057372616036533
+        ],
+        "tile_3": [
+          0.9537564582920792,
+          0.026799784280250094,
+          -1.5632996995344635
+        ],
+        "tile_4": [
+          -0.4214370658869094,
+          0.026800177508002676,
+          -1.9147884146381897
+        ],
+        "tile_5": [
+          1.3002495706281068,
+          0.02680015290537363,
+          -1.1050064886086437
+        ],
+        "ridge_tile": [
+          -0.00484565043010754,
+          0.034799945867294735,
+          -1.6112330938903439
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 0.0019998679710098166,
+        "tile_2": 0.0019995493739985992,
+        "tile_3": 0.0019997551757842125,
+        "tile_4": 0.0020001916651513074,
+        "tile_5": 0.0020001325808860493,
+        "ridge_tile": 0.0019999083942465745
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.4000000059604645,
+        0
+      ],
+      "tile_1_bone": [
+        0.3999997973450604,
+        0.011999903530305112,
+        -1.9599995813169144
+      ],
+      "tongue_tip_forward_m": 1.2511412262031834
+    },
+    {
+      "time_s": 1.7,
+      "tile_centres": {
+        "tile_1": [
+          0.470926853284795,
+          2.7489503727189826,
+          -1.2518592896762115
+        ],
+        "tile_2": [
+          -0.8184664654934632,
+          2.7567870532601333,
+          -1.2718824321487738
+        ],
+        "tile_3": [
+          0.8935657344975819,
+          2.6639871638649297,
+          -1.2066340860573468
+        ],
+        "tile_4": [
+          -0.3512043866628818,
+          2.4888113412310995,
+          -1.4785506314423316
+        ],
+        "tile_5": [
+          1.089563219897455,
+          1.9508206492998519,
+          -1.1635687221508142
+        ],
+        "ridge_tile": [
+          0.0032871107214444972,
+          1.04750679357561,
+          -1.5774320867407985
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 2.705654372609146,
+        "tile_2": 2.64129381388021,
+        "tile_3": 2.5596815450417996,
+        "tile_4": 2.3827726133869103,
+        "tile_5": 1.818768050195133,
+        "ridge_tile": 0.9607140112449482
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.4000000059604645,
+        0
+      ],
+      "tile_1_bone": [
+        0.4658958733305637,
+        2.7633499417084395,
+        -1.2513309536198456
+      ],
+      "tongue_tip_forward_m": 1.1167276950558624
+    },
+    {
+      "time_s": 1.9,
+      "tile_centres": {
+        "tile_1": [
+          0.5171668095371377,
+          2.540092512768412,
+          -0.5394832592264116
+        ],
+        "tile_2": [
+          -0.69734431728504,
+          2.4394810501992,
+          -0.6728365683959153
+        ],
+        "tile_3": [
+          0.8130654667867407,
+          2.2671647755146633,
+          0.13169937411631705
+        ],
+        "tile_4": [
+          -0.23878454796244164,
+          2.7700579999272756,
+          0.12939178240005378
+        ],
+        "tile_5": [
+          0.3772857833251183,
+          2.6914422929920008,
+          0.5372466300624523
+        ],
+        "ridge_tile": [
+          0.053294287994503975,
+          2.8500373661518097,
+          -0.400653213262558
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 2.466543013913659,
+        "tile_2": 2.305576136849461,
+        "tile_3": 2.1356548979555114,
+        "tile_4": 2.674524772580354,
+        "tile_5": 2.6398075101706673,
+        "ridge_tile": 2.802132397890091
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.4000000059604645,
+        0
+      ],
+      "tile_1_bone": [
+        0.5130308270454408,
+        2.5449877083301544,
+        -0.5329999923706055
+      ],
+      "tongue_tip_forward_m": 1.1147867370374716
+    },
+    {
+      "time_s": 2,
+      "tile_centres": {
+        "tile_1": [
+          0.5171668095371376,
+          2.540092512768412,
+          -0.5394832592264116
+        ],
+        "tile_2": [
+          -0.69734431728504,
+          2.4394810501992,
+          -0.6728365683959153
+        ],
+        "tile_3": [
+          0.8130654667867407,
+          2.2671647755146633,
+          0.13169937411631705
+        ],
+        "tile_4": [
+          -0.23878454791237233,
+          2.7700580002059896,
+          0.12939178232844747
+        ],
+        "tile_5": [
+          0.37728578398505913,
+          2.691442305447673,
+          0.5372466304271449
+        ],
+        "ridge_tile": [
+          0.053294287994503975,
+          2.8500373661518097,
+          -0.400653213262558
+        ]
+      },
+      "tile_lowest_y": {
+        "tile_1": 2.466543013913659,
+        "tile_2": 2.305576136849461,
+        "tile_3": 2.1356548979555114,
+        "tile_4": 2.674524770085017,
+        "tile_5": 2.6398075260210874,
+        "ridge_tile": 2.802132397890091
+      },
+      "feet_lowest_y": 0,
+      "body": [
+        0,
+        0.4000000059604645,
+        0
+      ],
+      "tile_1_bone": [
+        0.5130308270454407,
+        2.5449877083301544,
+        -0.5329999923706055
+      ],
+      "tongue_tip_forward_m": 1.1147867370374716
+    }
+  ],
+  "defeat_held": {
+    "tile_centre_drop_m": {
+      "tile_1": 0.35299236983667237,
+      "tile_2": 0.3268547707873388,
+      "tile_3": 0.2717690265646058,
+      "tile_4": 0.3283572775639474,
+      "tile_5": 0.24718863785371825,
+      "ridge_tile": 0.3634731740257635
+    },
+    "lowest_lid_vertex_y_m": 1.097816798781288,
+    "candle_scale": [
+      0.28000006079673767,
+      0.2800000309944153,
+      0.2800000011920929
+    ],
+    "body_drop_m": 0.07500001788139343,
+    "tongue_lowest_y_m": 0.1969350656335258
+  },
+  "hit_slam": {
+    "lowest_lid_vertex_y_m": 1.2849740296360173,
+    "roof_lift_m": 0.0579371417707355
+  },
+  "adapter": {
+    "phases": [
+      {
+        "phase": "idle",
+        "visible": true,
+        "body": [
+          0,
+          0.4025000035762787,
+          0
+        ],
+        "tile_1": [
+          0.5316778266520648,
+          2.5098402992591295,
+          -0.5461917222605628
+        ]
+      },
+      {
+        "phase": "chasing",
+        "visible": true,
+        "body": [
+          0,
+          0.4000000059604645,
+          0
+        ],
+        "tile_1": [
+          0.49784448422690275,
+          2.592545477103577,
+          -0.5659503761788363
+        ]
+      },
+      {
+        "phase": "windup",
+        "visible": true,
+        "body": [
+          0,
+          0.3583333492279053,
+          0
+        ],
+        "tile_1": [
+          0.3999997675418854,
+          0.011999451349466561,
+          -1.9000001646476061
+        ]
+      },
+      {
+        "phase": "strike",
+        "visible": true,
+        "body": [
+          0,
+          0.4000000059604645,
+          0
+        ],
+        "tile_1": [
+          0.5130308270454407,
+          2.5449877083301544,
+          -0.5329999923706055
+        ]
+      },
+      {
+        "phase": "cooldown",
+        "visible": true,
+        "body": [
+          0,
+          0.4000000059604645,
+          0
+        ],
+        "tile_1": [
+          0.5130308270454407,
+          2.5449877083301544,
+          -0.5329999923706055
+        ]
+      }
+    ],
+    "direct_contact_tile_1": [
+      0.3999997675418854,
+      0.011999451349466561,
+      -1.9000001646476061
+    ],
+    "hit_roof": [
+      0.05004286748129796,
+      1.843073666130221,
+      0.21466139067386397
+    ],
+    "defeat_states": [
+      {
+        "time_s": 0.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 1.8,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 2.4000000000000004,
+        "visible": true,
+        "vanish": 6.013708050052932e-16
+      },
+      {
+        "time_s": 2.7,
+        "visible": true,
+        "vanish": 0.9999996821085602
+      },
+      {
+        "time_s": 3,
+        "visible": false,
+        "vanish": 1
+      }
+    ]
+  },
+  "checks": {
+    "exported_bounds_cover_all_poses": true,
+    "all_five_clips": true,
+    "all_tracks_resolve_below_scene_root": true,
+    "all_clips_move_actual_vertices": true,
+    "idle_move_seams": true,
+    "held_defeat": true,
+    "no_floor_penetration": true,
+    "attached_joint_pivots": true,
+    "at_most_four_influences": true,
+    "normalized_weights": true,
+    "identity_root_no_motion": true,
+    "no_root_bone_motion": true,
+    "boss_height_2_to_3_m": true,
+    "standing_on_floor": true,
+    "legs_symmetric_about_root": true,
+    "wall_band_floor_centred": true,
+    "one_1024_embedded_atlas": true,
+    "two_draw_primitives": true,
+    "actual_adapter_constructed": true,
+    "actual_adapter_defeat_vanish": true,
+    "adapter_root_identity": true,
+    "independent_skeleton_clone": true,
+    "attack_contact_1_25": true,
+    "actual_adapter_contact_pose": true,
+    "tiles_raised_high_and_held_0_60_to_1_05": true,
+    "house_hops_before_contact": true,
+    "house_lands_at_contact": true,
+    "tiles_thrown_to_floor_ahead_at_contact": true,
+    "tiles_back_in_place_by_2_0": true,
+    "hit_shutters_slam": true,
+    "hit_roof_pops": true,
+    "defeat_tiles_dropped": true,
+    "defeat_lids_closed": true,
+    "defeat_candle_ember": true,
+    "defeat_slumped": true
+  }
+}

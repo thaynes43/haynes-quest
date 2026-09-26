@@ -1,0 +1,104 @@
+{
+  "work_order": "WO111",
+  "asset_id": "magic-house",
+  "version": "v001",
+  "created_utc": "2026-09-26T15:51:01.310133+00:00",
+  "glb_sha256": "13c83db22907a6e3996c26abf46f92dab9038392e69e2ec854299614b287c2dc",
+  "candidate_status": "Awaiting Tom's review · used in the family release",
+  "blender": {
+    "version": "4.5.13 LTS",
+    "instance": "blender-authoring-2",
+    "units": "METRIC",
+    "unit_scale": 1,
+    "authoring_axes": "+Z up / +Y forward (the house faces +Y; its right = +X)",
+    "frames_per_second": 60,
+    "animation_mode": "NLA_TRACKS",
+    "interpolation": "LINEAR keys on every frame",
+    "skin": "One skin; rigid parts plus two-weight smoothstep blends on the stumps (leg to body) and along the three-bone doormat tongue",
+    "root": "Identity, fixed floor-centred root; no root animation; the body, roof, legs, dancing tiles, pupils and butterflies translate",
+    "bind_pose": "The approved sheet pose (tiles hovering, doors open 140 degrees, sly/cheeky lids)"
+  },
+  "export": {
+    "format": "GLB",
+    "axes": "+Y up / -Z forward",
+    "selection_only": true,
+    "materials": 2,
+    "material_notes": "Matte (roughness 0.86) plus a warm candle material whose emissive texture is the same atlas at factor 0.25; KHR_materials_specular is used, not required",
+    "texture": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "embedded": true,
+      "bytes": 34773
+    },
+    "no_external_resources": true,
+    "no_required_extensions": true,
+    "compression": "None; no Draco, Meshopt or KTX2 requirement"
+  },
+  "preview": {
+    "source": "Exact delivered GLB via Three.js GLTFLoader",
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport_px": [
+      800,
+      900
+    ],
+    "orthographic_camera": {
+      "left": -1.6,
+      "right": 1.6,
+      "top": 1.8,
+      "bottom": -1.8,
+      "target": [
+        0,
+        1.55,
+        0
+      ],
+      "pixels_per_metre": 250,
+      "views": {
+        "front": [
+          0,
+          1.55,
+          -10
+        ],
+        "side": [
+          10,
+          1.55,
+          0
+        ],
+        "back": [
+          0,
+          1.55,
+          10
+        ],
+        "threequarter": [
+          7.071,
+          1.55,
+          -7.071
+        ],
+        "beauty": [
+          5.2,
+          4.6,
+          -8.6
+        ],
+        "wide": [
+          7.5,
+          3.2,
+          -5.5
+        ]
+      }
+    },
+    "lighting": "Warm hemisphere plus three directional lights; ACES tone mapping exposure 1.0",
+    "scales": [
+      1,
+      0.35
+    ],
+    "no_physical_device_claim": true
+  },
+  "checks": {
+    "khronos_zero_errors_warnings": true,
+    "exact_three_adapter_all_checks": true,
+    "chromium_all_clips_normal_small": true,
+    "source_attachment_checks": true
+  }
+}

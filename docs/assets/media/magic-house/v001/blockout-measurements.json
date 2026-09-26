@@ -1,0 +1,70 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-blockout.blend",
+  "sha256": "a4367f504e3acf306b827430550cef9f1074092c90fece7a89244484d8b32ea6",
+  "bounds_blender_zup": {
+    "min": [
+      -1.2626,
+      -0.862,
+      0.0
+    ],
+    "max": [
+      1.2959,
+      1.0962,
+      2.8975
+    ],
+    "size": [
+      2.5585,
+      1.9582,
+      2.8975
+    ],
+    "blockout_triangles": 44958
+  },
+  "solid_bounds_blender_zup_excluding_dancing_tiles_and_butterflies": {
+    "min": [
+      -1.2626,
+      -0.862,
+      0.0
+    ],
+    "max": [
+      1.2959,
+      1.0962,
+      2.8007
+    ],
+    "size": [
+      2.5585,
+      1.9582,
+      2.8007
+    ],
+    "blockout_triangles": 42462
+  },
+  "parts": 298,
+  "materials": [
+    "MH coral #e07a5f",
+    "MH cream #f3e6cf",
+    "MH door #e3a33f",
+    "MH doormat stripes #c9506a/#dca953",
+    "MH flame #ffcf6b",
+    "MH floor #9a4a32",
+    "MH glow #f6c768",
+    "MH honey #dca953",
+    "MH ink #342c46",
+    "MH leaf #557363",
+    "MH leaf_light #6f9a5e",
+    "MH magenta #d24f86",
+    "MH mouth #3a2842",
+    "MH pink #ee8fb0",
+    "MH ridge #963f2b",
+    "MH sky #4e8ab8",
+    "MH sky_dark #3d6f99",
+    "MH stucco #f1c28c",
+    "MH tile_a #c2583a",
+    "MH tile_b #a8472f",
+    "MH tile_c #cf6c45",
+    "MH trim #c4643f",
+    "MH white #fbf6ec",
+    "MH wood #7a4a2e",
+    "MH yellow #f2cf5b",
+    "MH zocalo #3f7f7a"
+  ],
+  "utc": "2026-09-26T02:49:33.393863+00:00"
+}

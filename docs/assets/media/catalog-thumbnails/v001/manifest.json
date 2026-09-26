@@ -276,6 +276,20 @@
       "sha256": "a94b42fb0ad583907f5693f5f29b77851e8e36c784be175bd440eb961ac0e83a"
     },
     {
+      "source": "docs/assets/media/magic-house/v001/beauty.png",
+      "source_sha256": "69d536d492bf11e1df96cb5c0d02205dc8b430bcb685a4c8e66881cb5a9f6b02",
+      "path": "docs/assets/media/catalog-thumbnails/v001/973c9ffa567edd0b.webp",
+      "bytes": 15720,
+      "sha256": "cba7d5b23572f4b2820225a800f0c99b4502ed821b14495ff44bf38898ebce67"
+    },
+    {
+      "source": "docs/assets/media/magic-house/v001/reference-sheet.png",
+      "source_sha256": "378f1f5706b19f303e545854fc50df5d4e254930cf77c46d53a4dd08f41d3c20",
+      "path": "docs/assets/media/catalog-thumbnails/v001/bee8ab2d185fd48e.webp",
+      "bytes": 23762,
+      "sha256": "fb545569564b3161b518d316607425d09219bb5465e473676381047a8999904b"
+    },
+    {
       "source": "docs/assets/media/memory-collected/v001/waveform.svg",
       "source_sha256": "414e14fdf0320c2b710902616ec18a695cb95d8a9bd726561c41a9f5750a554f",
       "path": "docs/assets/media/catalog-thumbnails/v001/0021a7a547506c07.webp",

@@ -54,6 +54,7 @@ const mascotCandidateIds = [
   "honk-bus",
   "yes-yes-veggie",
   "rival-mayor",
+  "magic-house",
   "rat-pit-boss",
   "chick-flia",
   "jackrabbit-drummer",
@@ -64,18 +65,18 @@ const mascotCandidateIds = [
 const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 62,
+  entries: 63,
   reference_sheet_entries: 8,
-  model_entries: 47,
-  model_files: 47,
-  completed_model_candidates: 45,
+  model_entries: 48,
+  model_files: 48,
+  completed_model_candidates: 46,
   paused_partial_model_candidates: 2,
   concept_only_entries: 2,
   audio_entries: 4,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 91;
+const expectedThumbnailFiles = 93;
 const integratedAssetIds = [
   "bestie-pink",
   "bestie-black",
@@ -1949,7 +1950,7 @@ const report = {
   externalRequests: [],
   physicalSafari: "not tested",
   scope:
-    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot, Clubhouse Bully Cat, Gadget Helper, Honk Bus, Yes-Yes Veggie and Rival Mayor candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
+    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot, Clubhouse Bully Cat, Gadget Helper, Honk Bus, Yes-Yes Veggie, Rival Mayor and Magic House candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
   harnessNotes: [
     "The current first inspiration image must be displayed inline; retained superseded concepts may instead remain reachable as local links.",
     "Browser-cancelled preload=metadata requests are separated only for exact video URLs declared by an inspected review in the same browser scope; HTTP errors and every other request failure remain fatal, while video playback remains covered by earlier focused audits.",

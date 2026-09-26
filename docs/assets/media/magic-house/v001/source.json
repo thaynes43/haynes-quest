@@ -1,0 +1,39 @@
+{
+  "asset_id": "magic-house",
+  "version": "v001",
+  "work_order": "WO111",
+  "created_utc": "2026-09-26T02:58:22.860309+00:00",
+  "kind": "blender-reference-sheet",
+  "source_label": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+  "generator": "None. A Cycles render of a procedural Blender blockout (Blender 4.5.13 LTS) with Freestyle ink outlines; no image-generation model was used.",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator",
+  "seed": null,
+  "reference_files": [],
+  "art_direction": "docs/assets/art-direction.md; DESIGN-026 locked roster brief for magic-house",
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "selected_by": "PLAN-019 coordinator (sheet approved September 26, PRD-004 Q-07)",
+  "coordinator_sheet_notes": "Keep shutter eyes, the door mouth with doormat tongue, hopping ridge tiles and legs. The attack should be a shimmy/hop that throws tiles; defeat a sheepish slump with shutters closing.",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "ruling": "Tom, September 26: Claude Opus 5.5 does the remaining WO111 Blender work; assets without an Astra concept follow a painted Blender reference sheet that the coordinator reviewed (PRD-004 Q-07).",
+  "files": {
+    "reference-sheet.png": {
+      "sha256": "378f1f5706b19f303e545854fc50df5d4e254930cf77c46d53a4dd08f41d3c20",
+      "bytes": 2145778
+    },
+    "reference-notes.md": {
+      "sha256": "62d74c940a6b55dbb93ba3dd73824d6e8fde18c6b1c5ec05c69443ed6c015e3f",
+      "bytes": 12858
+    },
+    "magic-house-blockout.blend": {
+      "sha256": "a4367f504e3acf306b827430550cef9f1074092c90fece7a89244484d8b32ea6",
+      "bytes": 398206
+    },
+    "magic-house-reference-sheet.blend": {
+      "sha256": "a5178191f44c03d1984a97c3fc7572bcaa7c903b796be06ba9f58f5f474a5fc8",
+      "bytes": 658094
+    }
+  },
+  "rights_note": "Original authored study. No claim of exclusive rights or franchise endorsement."
+}

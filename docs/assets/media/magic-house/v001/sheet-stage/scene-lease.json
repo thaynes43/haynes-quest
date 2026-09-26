@@ -1,0 +1,66 @@
+{
+  "work_order": "WO111",
+  "asset_id": "magic-house",
+  "version": "v001",
+  "task": "reference sheet only (no final topology, no rig, no GLB)",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "claimed_utc": "2026-09-26T02:30:02.441224+00:00",
+  "predecessor": {
+    "scene_file": "/workspace/haynes-quest/family-eras/rival-mayor/v001/live-scene-release.blend",
+    "scene_file_sha256": "3c8a63ede90e6214134aa8f9835d35c8b27724111652f29c9a6f541377d65efd",
+    "dirty": false,
+    "props_before": {
+      "work_order": "WO111",
+      "asset_id": "rival-mayor",
+      "asset_version": "v001",
+      "scene_owner": "none",
+      "scene_lease": "released",
+      "authoring_model": "claude-opus-5-5 xhigh"
+    }
+  },
+  "predecessor_release": "/workspace/haynes-quest/family-eras/rival-mayor/v001/scene-release.json",
+  "jobs_at_claim": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "prior_files": {
+    "rival-mayor/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/live-scene-release.blend",
+      "sha256": "3c8a63ede90e6214134aa8f9835d35c8b27724111652f29c9a6f541377d65efd"
+    },
+    "rival-mayor/v001/rival-mayor-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-blockout.blend",
+      "sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f"
+    },
+    "rival-mayor/v001/rival-mayor-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-reference-sheet.blend",
+      "sha256": "78b03aea57483f5b9514f60702072f9249ee51ce10a2e758d7909a84c6293489"
+    },
+    "rival-mayor/v001/reference-sheet.png": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/reference-sheet.png",
+      "sha256": "966bfd26ae6bb5f567d32b5528050d63d7f2634ef7af3e6e9b2abc5e2238f568"
+    },
+    "honk-bus/v001/honk-bus.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus.blend",
+      "sha256": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00"
+    },
+    "honk-bus/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/live-scene-release.blend",
+      "sha256": "a3a94cd1a0b847a79266c8c1d43692d047be85c3a6eecacf6ede83296f8b0054"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.blend",
+      "sha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496"
+    },
+    "clubhouse-bully-cat/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/live-scene-release.blend",
+      "sha256": "4438513d36fb533061c4470f74f545a419a2f424acf0fa8ab9dd4ec8ac3ebb9d"
+    }
+  },
+  "status": "released",
+  "released_utc": "2026-09-26T02:57:51.351559+00:00",
+  "author_jobs_running": false
+}
