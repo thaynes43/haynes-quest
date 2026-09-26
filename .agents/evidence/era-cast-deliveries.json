@@ -824,13 +824,13 @@
       "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
       "sceneReleasedAt": "2026-09-26T17:04:51.022420+00:00",
       "manifest": "docs/assets/media/bin-chicken/v001/sha256-manifest.json",
-      "pr": null,
+      "pr": 108,
       "prMerged": null,
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v2 (and the frozen v1) fill the four B·2 ordinary slots with the bin-chicken project candidate, which renders neutral placeholder art until a catalog version registers this model"
       },
-      "prUrl": null,
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/108",
       "masterSha256": "1a8b30358de09ac35e6cabbc9f0172942cd9067f4c0451089ffbc9c4c073a8bf",
       "triangles": 11196,
       "joints": 29,
