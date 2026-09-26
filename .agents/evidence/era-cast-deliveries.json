@@ -714,13 +714,13 @@
       "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
       "sceneReleasedAt": "2026-09-26T16:28:06.825536+00:00",
       "manifest": "docs/assets/media/mischief-kitten/v001/sha256-manifest.json",
-      "pr": null,
+      "pr": 105,
       "prMerged": null,
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v2 (and the frozen v1) fill the four A·2 ordinary slots and the bonus slot with the mischief-kitten project candidate, which renders neutral placeholder art until a catalog version registers this model"
       },
-      "prUrl": null,
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/105",
       "masterSha256": "b95c8d0d69d641b48724d8e79331e1f4706df435c3ed3fc6e66e56ed807baaf1",
       "triangles": 14174,
       "joints": 32,
