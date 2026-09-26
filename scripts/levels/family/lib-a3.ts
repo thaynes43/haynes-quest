@@ -38,6 +38,7 @@ import {
 import {
   bouncePad,
   decor,
+  deepCarThickness,
   lift,
   mm,
   platform,
@@ -98,7 +99,8 @@ export function liftCar(
   period: number,
   dwell: number,
 ): AuthoredLiftPiece {
-  return lift(id, { ...footprint(area), bottomTop, distance, period, dwell, thickness: 0.4 });
+  // v2: a deep car closes the shaft while the lift is away.
+  return lift(id, { ...footprint(area), bottomTop, distance, period, dwell, thickness: deepCarThickness(distance) });
 }
 
 /** A bounce pad whose box rests on the street, so nothing hangs under it. */

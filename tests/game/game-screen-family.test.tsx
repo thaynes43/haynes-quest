@@ -157,6 +157,9 @@ describe("family journey in GameScreen", () => {
     expect(dialog.textContent).toContain("2024-02-29 · Age 4");
     expect(dialog.textContent).toContain("New move: High Jump");
     expect(dialog.textContent).toContain("New move: Double Jump");
+    // Card titles end in "!", so no colon follows them.
+    expect(dialog.textContent).toContain("New move: High Jump! You're bigger now, so every jump goes higher.");
+    expect(dialog.textContent).not.toMatch(/!:/);
     expect(dialog.textContent).toContain("AGE 4 · BESTIES OBBY");
     expect(container.textContent).not.toMatch(/fictional/i);
   });

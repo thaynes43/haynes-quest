@@ -1,9 +1,10 @@
 /**
- * World A, "Clubhouse to Casino" (family-world-a@v1), as a family template:
- * the registry offers it to a synthetic eleven-year-old, the rebase validates,
- * and a published family-world-plan-v1 starts and plays its first chapter as
- * a household save in the in-memory stores. Every child, date and photo here
- * is synthetic.
+ * World A, "Clubhouse to Casino" (family-world-a@v2, and v1 kept for the
+ * journeys already published on it), as a family template: the registry
+ * offers both to a synthetic eleven-year-old, the rebase validates, and a
+ * published family-world-plan-v1 starts and plays its first chapter as a
+ * household save in the in-memory stores. Every child, date and photo here is
+ * synthetic.
  */
 import { randomUUID } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
@@ -13,6 +14,7 @@ import type {
   FamilyPlayResponse,
   PersonChoice,
 } from '../../../src/shared/family-api.js';
+import { runAdminCommand } from '../../../src/server/admin.js';
 import { validateFamilyWorldPlan } from '../../../src/server/family/plan.js';
 import { rebaseWorldForChild } from '../../../src/server/family/rebase.js';
 import { FamilyTemplateRegistry } from '../../../src/server/family/templates.js';
@@ -53,7 +55,7 @@ function worldAHarness(): FamilyHarness {
 }
 
 /** Admin creates Test Child C on World A, auto-picks and publishes. */
-async function publishChildC(harness: FamilyHarness) {
+async function publishChildC(harness: FamilyHarness, templateVersion: string) {
   const { people } = await json<{ people: PersonChoice[] }>(
     harness.request(`/api/admin/immich/people?name=${encodeURIComponent(TEST_CHILD_C.name)}`), 200);
   expect(people).toEqual([expect.objectContaining({ label: TEST_CHILD_C.name, birthDate: TEST_CHILD_C.birthDate })]);
@@ -64,7 +66,7 @@ async function publishChildC(harness: FamilyHarness) {
       displayName: 'Test Child C',
       birthDate: TEST_CHILD_C.birthDate,
       templateId: 'family-world-a',
-      templateVersion: 'v1',
+      templateVersion,
     },
   }), 201);
   await json(harness.request(`/api/admin/children/${child.id}/draft`, {
@@ -81,9 +83,31 @@ async function publishChildC(harness: FamilyHarness) {
   return { childId: child.id, publication };
 }
 
-describe('family-world-a@v1 template (World A)', () => {
-  it('is registered under its WORLD-SPEC name with four age bands ending at 11', () => {
-    const template = registry.require('family-world-a', 'v1');
+/**
+ * v1's fingerprint when it was published (PR #94). A journey published on v1
+ * froze this value, so v1 must never change.
+ */
+const V1_FINGERPRINT = 'b0bf1dc783d077b69765604cc6e933b779404c84686d076504cb52b844d53008';
+
+describe('family-world-a@v2 template (World A)', () => {
+  it('keeps v1 registered and byte-for-byte unchanged beside v2', () => {
+    const v1 = registry.require('family-world-a', 'v1');
+    const v2 = registry.require('family-world-a', 'v2');
+    expect(v1.fingerprint).toBe(V1_FINGERPRINT);
+    expect(v2.fingerprint).not.toBe(v1.fingerprint);
+    expect(v2.project.name).toBe(v1.project.name);
+    expect(v2.ageBands).toEqual(v1.ageBands);
+    // v2 keeps every chapter's shell, cast, route and decor; only pieces change
+    // (the full diff is pinned in tests/levels/family-world-a.test.ts).
+    expect(v2.project.chapters.map((chapter) => ({ ...chapter, level: { ...chapter.level, pieces: [] } })))
+      .toEqual(v1.project.chapters.map((chapter) => ({ ...chapter, level: { ...chapter.level, pieces: [] } })));
+    const ids = (chapter: (typeof v1.project.chapters)[number]) => chapter.level.pieces.map((piece) => piece.id);
+    expect(v1.project.chapters.map(ids).map((list, index) => list.filter((id) => !ids(v2.project.chapters[index]!).includes(id))))
+      .toEqual([['mop-sweeper'], [], [], []]);
+  });
+
+  it.each(['v1', 'v2'])('%s is registered under its WORLD-SPEC name with four age bands ending at 11', (version) => {
+    const template = registry.require('family-world-a', version);
     expect(template.project.name).toBe('Clubhouse to Casino');
     expect(template.project.catalogVersion).toBe('parody-catalog-v8');
     expect(template.project.fictionalBirthDate).toBe('2015-01-15');
@@ -98,11 +122,12 @@ describe('family-world-a@v1 template (World A)', () => {
   it('is offered to a synthetic eleven-year-old and rebases onto that birthday', () => {
     const offered = registry.offeredFor(TEST_CHILD_C.birthDate, HARNESS_TODAY).map((entry) => `${entry.id}@${entry.version}`);
     expect(offered).toContain('family-world-a@v1');
+    expect(offered).toContain('family-world-a@v2');
     // Younger children cannot recover age 11 yet.
     for (const younger of [TEST_CHILD_A, TEST_CHILD_B])
       expect(registry.offeredFor(younger.birthDate, HARNESS_TODAY).map((entry) => entry.id)).not.toContain('family-world-a');
 
-    const world = rebaseWorldForChild(registry.require('family-world-a', 'v1').project, TEST_CHILD_C.birthDate, HARNESS_TODAY);
+    const world = rebaseWorldForChild(registry.require('family-world-a', 'v2').project, TEST_CHILD_C.birthDate, HARNESS_TODAY);
     expect(world.chapters.map((chapter) => [chapter.chapterId, chapter.startDate, chapter.targetDate, chapter.recoveredAge])).toEqual([
       ['family-a1', '2015-03-10', '2017-03-10', 2],
       ['family-a2', '2017-03-10', '2020-03-10', 5],
@@ -111,19 +136,19 @@ describe('family-world-a@v1 template (World A)', () => {
     ]);
   });
 
-  it('publishes a valid family-world-plan-v1 and plays the first chapter in the memory stores', async () => {
+  it.each(['v1', 'v2'])('%s publishes a valid family-world-plan-v1 and plays the first chapter in the memory stores', async (version) => {
     const harness = worldAHarness();
     const { templates } = await json<{ templates: Array<{ id: string; version: string; name: string; chapterCount: number }> }>(
       harness.request(`/api/admin/templates?birthDate=${TEST_CHILD_C.birthDate}`), 200);
-    expect(templates).toContainEqual({ id: 'family-world-a', version: 'v1', name: 'Clubhouse to Casino', chapterCount: 4 });
+    expect(templates).toContainEqual({ id: 'family-world-a', version, name: 'Clubhouse to Casino', chapterCount: 4 });
 
-    const { childId, publication } = await publishChildC(harness);
+    const { childId, publication } = await publishChildC(harness, version);
     expect(publication).toMatchObject({ revision: 1, chapterCount: 4, memoryCount: 12 });
     const stored = (await harness.familyStore.getPublication(publication.publicationId))!;
     expect(validateFamilyWorldPlan(stored.plan, { birthDate: stored.birthDate, memories: stored.memories })).toEqual([]);
     expect(stored.plan).toMatchObject({
       catalogVersion: 'parody-catalog-v8',
-      template: { id: 'family-world-a', version: 'v1' },
+      template: { id: 'family-world-a', version },
     });
     const levels = stored.plan.levels;
     expect(levels.map((level) => level.routeId)).toEqual(ROUTE_IDS);
@@ -158,7 +183,7 @@ describe('family-world-a@v1 template (World A)', () => {
       versions: { journey: 'family-world-plan-v1' },
       adventure: { planVersion: 'family-world-plan-v1', activeLevelIndex: 0 },
     });
-    expect(started.world).toMatchObject({ templateId: 'family-world-a', templateVersion: 'v1' });
+    expect(started.world).toMatchObject({ templateId: 'family-world-a', templateVersion: version });
     expect(started.world.chapters.map((chapter) => chapter.name)).toEqual(CHAPTER_NAMES);
     expect(started.world.chapters.map((chapter) => chapter.level.theme)).toEqual(['clubhouse', 'harbor', 'rooftop', 'casino']);
 
@@ -190,5 +215,59 @@ describe('family-world-a@v1 template (World A)', () => {
     const serialized = JSON.stringify([stored.plan, save, started.world]);
     expect(serialized).not.toContain(TEST_CHILD_C.personId);
     for (const asset of harness.assets) expect(serialized).not.toContain(asset.id);
+  });
+  it('moves a child published on v1 onto v2: the draft carries over, the started run keeps v1 and a fresh run plays v2', async () => {
+    const harness = worldAHarness();
+    const { childId, publication } = await publishChildC(harness, 'v1');
+    const started = await json<FamilyPlayResponse>(harness.request(`/api/children/${childId}/play`, { as: 'member', body: {} }), 201);
+    expect(started.world).toMatchObject({ templateId: 'family-world-a', templateVersion: 'v1' });
+
+    const lines: string[] = [];
+    const run = (...argv: string[]) => runAdminCommand(argv, {
+      service: harness.service,
+      store: harness.familyStore,
+      media: harness.library,
+    }, (line) => lines.push(line));
+    expect(await run('set-template', '--child', childId, '--template', 'family-world-a@v2')).toBe(0);
+    expect(await run('publish', '--child', childId)).toBe(0);
+    expect(await run('status')).toBe(0);
+    expect(lines[0]).toBe(`child ${childId} template family-world-a@v2 draft carried`);
+    expect(lines[1]).toMatch(/^publication [0-9a-f-]{36} r2 chapters 4 memories 12$/);
+    expect(lines.slice(2)).toEqual(['children 1', `child ${childId} template family-world-a@v2 draft r1 filled 12/12 publication r2`]);
+    // Moving again is a no-op that keeps the carried draft.
+    expect(await run('set-template', '--child', childId, '--template', 'family-world-a@v2')).toBe(0);
+    expect(lines.at(-1)).toBe(`child ${childId} template family-world-a@v2 draft carried`);
+
+    const first = (await harness.familyStore.getPublication(publication.publicationId))!;
+    const latest = (await harness.familyStore.latestPublication(childId))!;
+    expect(latest.plan.template).toEqual({
+      id: 'family-world-a',
+      version: 'v2',
+      fingerprint: registry.require('family-world-a', 'v2').fingerprint,
+    });
+    expect(validateFamilyWorldPlan(latest.plan, { birthDate: latest.birthDate, memories: latest.memories })).toEqual([]);
+    // The same photos and captions carry over to v2.
+    expect(latest.memories).toEqual(first.memories);
+
+    // The started run keeps its frozen v1 publication until an administrator
+    // starts a fresh run on the newer one.
+    const resumed = await json<FamilyPlayResponse>(harness.request(`/api/children/${childId}/play`, { as: 'member', body: {} }), 200);
+    expect(resumed.world).toMatchObject({ templateVersion: 'v1' });
+    const fresh = await json<FamilyPlayResponse>(
+      harness.request(`/api/children/${childId}/play`, { as: 'admin', body: { fresh: true } }), 201);
+    expect(fresh.world).toMatchObject({ templateId: 'family-world-a', templateVersion: 'v2' });
+    expect(fresh.save).toMatchObject({ ageYears: 0, adventure: { activeLevelIndex: 0 } });
+    // The operator output never names the child or an upstream id.
+    const everything = lines.join('\n');
+    expect(everything).not.toContain(TEST_CHILD_C.personId);
+    expect(everything).not.toMatch(/\d{4}-\d{2}-\d{2}/);
+  });
+
+  it('refuses a template the child cannot play and leaves the child unchanged', async () => {
+    const harness = worldAHarness();
+    const { childId } = await publishChildC(harness, 'v1');
+    await expect(harness.service.setTemplate(childId, 'family-world-a', 'v9', null))
+      .rejects.toMatchObject({ code: 'TEMPLATE_UNKNOWN' });
+    expect(await harness.familyStore.getChild(childId)).toMatchObject({ templateVersion: 'v1', revision: 0 });
   });
 });

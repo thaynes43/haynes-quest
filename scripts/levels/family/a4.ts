@@ -1,5 +1,5 @@
 /**
- * World A, chapter 4: "Rat Casino After Hours" (PLAN-019, family-world-a@v1).
+ * World A, chapter 4: "Rat Casino After Hours" (PLAN-019, family-world-a@v1, v2).
  *
  * A pure, deterministic generator for the chapter's authored-level-v4
  * document. It upgrades the Rat Casino v2 level (`rat-casino-v2`): the foyer,
@@ -42,7 +42,7 @@ import type {
   LevelEditorEnemyCandidate,
   WorldEditorLevelDocument,
 } from "../../../src/shared/editor-project.js";
-import { bounce, decor, drop, jump, lift, ride, walk } from "../lib/growth-kit.js";
+import { bounce, decor, deepCarThickness, drop, jump, lift, ride, walk } from "../lib/growth-kit.js";
 import {
   a4Anchor,
   a4Block,
@@ -159,7 +159,8 @@ function surfaces() {
       distance: h.cardClub - h.cabinet,
       period: 12,
       dwell: 3,
-      thickness: 0.4,
+      // v2: a deep car closes the shaft while the lift is away.
+      thickness: deepCarThickness(h.cardClub - h.cabinet),
       phase: SERVICE_LIFT_PHASE,
     }),
     cardClub: a4Block("fox-card-room", a4Rect(-9, 3, -85, -76), h.cardClub),
@@ -180,7 +181,10 @@ function surfaces() {
     backstage: a4Block("backstage-turn", a4Rect(-37, -25, -84.5, -76.5), h.backstage),
     // S7 Balcony pad up to the Projection Balcony; the On-Air pad beside it.
     balconyPad: a4Pad("balcony-pad", a4Rect(-35.2, -32.8, -86.9, -84.5), h.backstage, "big"),
-    onAirPad: a4Pad("on-air-pad", a4Rect(-27.6, -25.2, -86.9, -84.5), h.backstage, "big"),
+    // v2 widens the On-Air pad 0.8 m west: in v1 (x -27.6..-25.2) a child
+    // walking at it from the deck's middle, 0.6-0.8 m to one side, stepped
+    // off backstage's edge just west of the pad.
+    onAirPad: a4Pad("on-air-pad", a4Rect(-28.4, -25.2, -86.9, -84.5), h.backstage, "big"),
     projection: a4Block("moth-projection-room", a4Rect(-40, -28, -98.2, -87.25), h.projection),
     onAir: a4Block("on-air-stage", a4Rect(-27.8, -19.8, -98.2, -87.25), 9.3),
     // S8 Last ticket, the spotlight catwalk, and the reel row: two sliding
@@ -211,7 +215,7 @@ function surfaces() {
       distance: h.hoistTop - h.hoistBottom,
       period: 10,
       dwell: 3,
-      thickness: 0.4,
+      thickness: deepCarThickness(h.hoistTop - h.hoistBottom),
       phase: HOIST_PHASE,
     }),
     rigFour: a4Block("rigging-deck-four", a4Rect(0.55, 4.55, -119, -115), h.hoistTop),

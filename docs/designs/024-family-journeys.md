@@ -123,7 +123,7 @@ Save routes are unchanged in shape.
 
 **D-08b Time zone.** `QUEST_HOUSEHOLD_TIME_ZONE` (America/New_York in production) defines "today" for the final chapter's end and for pick windows.
 
-**D-09 Operator CLI.** For the first overnight setup, an operator runs `node dist/server/admin.js` inside the family pod. It performs the same service calls as the admin screen (create child from Immich name, confirm birthday, choose template, auto-pick, publish). It prints only opaque ids and counts, never names, dates or photo ids. This does not bypass validation.
+**D-09 Operator CLI.** For the first overnight setup, an operator runs `node dist/server/admin.js` inside the family pod. It performs the same service calls as the admin screen (create child from Immich name, confirm birthday, choose template, auto-pick, publish). It prints only opaque ids and counts, never names, dates or photo ids. This does not bypass validation. `set-template` moves a child onto another registered template version the child can play. A template fix ships as a new version, and published journeys keep their frozen one. When the new version rebases to the same chapters, the draft's photos and captions carry over to the next publish. A started run keeps its publication until an administrator starts a fresh run.
 
 **D-10 Copy.** Fixture-only strings ("Fictional illustration", fictional help text) stay in fixture mode only. Family mode shows the caption and the child's age. All user-visible copy is authored by the coordinator.
 

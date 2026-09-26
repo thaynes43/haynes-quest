@@ -60,6 +60,29 @@ describe('operator CLI (DESIGN-024 D-09)', () => {
     for (const asset of harness.assets) expect(everything).not.toContain(asset.id);
   });
 
+  it('moves a child published on World B v1 onto v2 with set-template, carrying the draft', async () => {
+    const { lines, run } = await cli();
+    const people = await run('people', '--name', TEST_CHILD_B.name);
+    const choice = /^choice (person-[a-f0-9]{32}) /.exec(people.output[1]!)![1]!;
+    const created = await run(
+      'create-child', '--name', TEST_CHILD_B.name, '--choice', choice, '--display-name', 'Test Child B',
+      '--immich-birth-date', '--template', 'family-world-b@v1',
+    );
+    const childId = /^child ([0-9a-f-]{36})$/.exec(created.output[0]!)![1]!;
+    await run('auto-pick', '--child', childId);
+    expect((await run('publish', '--child', childId)).output[0]).toMatch(/ r1 chapters 3 memories 9$/);
+    expect((await run('set-template', '--child', childId, '--template', 'family-world-b@v2')).output)
+      .toEqual([`child ${childId} template family-world-b@v2 draft carried`]);
+    expect((await run('publish', '--child', childId)).output[0]).toMatch(/ r2 chapters 3 memories 9$/);
+    expect((await run('status')).output).toEqual([
+      'children 1',
+      `child ${childId} template family-world-b@v2 draft r1 filled 9/9 publication r2`,
+    ]);
+    await expect(run('set-template', '--child', childId, '--template', 'family-world-b'))
+      .rejects.toMatchObject({ code: 'MISSING_OPTION' });
+    expect(lines.join('\n')).not.toMatch(/\d{4}-\d{2}-\d{2}/);
+  });
+
   it('reports needs-photo chapters by number and refuses incomplete input', async () => {
     const { run } = await cli();
     expect((await run('help')).output).toEqual([ADMIN_USAGE]);
