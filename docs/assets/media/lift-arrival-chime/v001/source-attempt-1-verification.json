@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/lift-arrival-chime/v001/source-attempt-1.wav",
+    "sha256": "c0a5d51d0cfc8b53cdaea74a90c725192ea5a018d7206a468ba8f3e483041bfa",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.3807373,
+    "peak_dbfs": -8.387,
+    "rms_amplitude": 0.01514949,
+    "rms_dbfs": -36.392,
+    "dc_offset": 3.94e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Wrong character: one sustained bell note (about 612 Hz) with no second note.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

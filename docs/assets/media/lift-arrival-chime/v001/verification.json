@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/lift-arrival-chime/v001/source.wav",
+    "sha256": "8d657a259ddccb7a540bde12b45d8d9040843c452cc26bfe37979d5e7dce7981",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.29876709,
+    "peak_dbfs": -10.493,
+    "rms_amplitude": 0.03461308,
+    "rms_dbfs": -29.215,
+    "dc_offset": -9.482e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/lift-arrival-chime/v001/cue.wav",
+    "sha256": "cc3bd16ca66ac18f1d33586de4771a069e611ac28de1e8650d1d21a48d71343e",
+    "size_bytes": 141164,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 35280,
+    "duration_seconds": 0.8,
+    "peak_amplitude": 0.28182983,
+    "peak_dbfs": -11.0,
+    "rms_amplitude": 0.067795,
+    "rms_dbfs": -23.376,
+    "dc_offset": -0.00029337,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}

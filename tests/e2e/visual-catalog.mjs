@@ -65,18 +65,18 @@ const mascotCandidateIds = [
 const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 63,
+  entries: 71,
   reference_sheet_entries: 8,
   model_entries: 48,
   model_files: 48,
   completed_model_candidates: 46,
   paused_partial_model_candidates: 2,
   concept_only_entries: 2,
-  audio_entries: 4,
+  audio_entries: 12,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 93;
+const expectedThumbnailFiles = 101;
 const integratedAssetIds = [
   "bestie-pink",
   "bestie-black",

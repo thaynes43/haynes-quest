@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/double-jump-whoosh/v001/source.wav",
+    "sha256": "a4eba5500c6fef4a98d5c730a58a7f2d170320778c47178893d5335bf5cbf9b6",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.64239502,
+    "peak_dbfs": -3.844,
+    "rms_amplitude": 0.04080505,
+    "rms_dbfs": -27.786,
+    "dc_offset": 6.3e-07,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/double-jump-whoosh/v001/cue.wav",
+    "sha256": "bfef347311b767f83405e2dde0c32461a9c1c282e56d3ce649886056ab91ac87",
+    "size_bytes": 79424,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 19845,
+    "duration_seconds": 0.45,
+    "peak_amplitude": 0.25119019,
+    "peak_dbfs": -12.0,
+    "rms_amplitude": 0.03758647,
+    "rms_dbfs": -28.499,
+    "dc_offset": 9.28e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}

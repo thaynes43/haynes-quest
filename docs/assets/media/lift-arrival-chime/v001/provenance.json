@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "cue_id": "lift-arrival-chime",
+  "candidate_version": "v001",
+  "generation_kind": "synthetic text-to-sound effect",
+  "generation_date": "2026-09-26T16:15:17.039583Z",
+  "service_version": "0.2.0",
+  "job_id": "ff590ee06d9646deb4cf4766924c0034",
+  "prompt": "Two soft warm bell chimes in quick succession, ding then dong, a higher note followed by a lower note a quarter second later, gentle toy elevator arrival chime, rounded and friendly; isolated short sound effect, no voice, no speech, no ambience, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 212,
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "terms_record": {
+    "design_record": "docs/designs/008-audio-pipeline.md",
+    "source_code": "MIT, as recorded by DESIGN-008",
+    "model_artifacts": "Stability license, as recorded by DESIGN-008",
+    "redistributed_text_component": "Gemma terms, as recorded by DESIGN-008",
+    "stability_license": "https://stability.ai/license",
+    "gemma_terms": "https://ai.google.dev/gemma/terms"
+  },
+  "approval": "Candidate only; Tom approval pending",
+  "listening_review": "Not performed by the processing script",
+  "selected_attempt": 2,
+  "other_attempts": [
+    {
+      "attempt": 1,
+      "job_id": "27808c2300cc441fb5f1628ff9e7016c",
+      "generation_date": "2026-09-26T16:14:57.264085Z",
+      "service_version": "0.2.0",
+      "prompt": "A soft warm two-note toy elevator ding, gentle rounded bell tones, the second note lower than the first, cozy and friendly; isolated short sound effect, no voice, no speech, no ambience, no background noise.",
+      "seconds": 5.0,
+      "steps": 8,
+      "seed": 202,
+      "source": "docs/assets/media/lift-arrival-chime/v001/source-attempt-1.wav",
+      "source_sha256": "c0a5d51d0cfc8b53cdaea74a90c725192ea5a018d7206a468ba8f3e483041bfa",
+      "selection": "not selected",
+      "reason": "Wrong character: one sustained bell note (about 612 Hz) with no second note."
+    }
+  ]
+}
