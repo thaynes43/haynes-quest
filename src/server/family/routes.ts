@@ -98,7 +98,14 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
       deps.familyStore.listLatestPublications(),
       deps.questStore.currentFamilySaves(),
     ]);
-    const response: FamilyJourneysResponse = { journeys: familyJourneyCards({ children, publications, saves }) };
+    const latest = new Set(publications.map((publication) => publication.id));
+    const older = [...new Set(saves.flatMap((save) =>
+      save.publicationId && !latest.has(save.publicationId) ? [save.publicationId] : []))];
+    const runRevisions = new Map((await Promise.all(older.map((id) => deps.familyStore.getPublication(id))))
+      .flatMap((publication) => publication ? [[publication.id, publication.revision] as const] : []));
+    const response: FamilyJourneysResponse = {
+      journeys: familyJourneyCards({ children, publications, saves, runRevisions }),
+    };
     return context.json(response);
   });
 

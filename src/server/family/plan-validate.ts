@@ -228,7 +228,7 @@ function validateCast(
       guardReduction: 2 + level.index,
     },
   ];
-  if (JSON.stringify(level.pickups) !== JSON.stringify(expectedPickups)) fail('level.pickups');
+  if (canonicalJson(level.pickups) !== canonicalJson(expectedPickups)) fail('level.pickups');
   if (level.bossId !== `${level.id}-boss` || level.encounters?.length !== expected.length) {
     fail('level.encounters');
     return;

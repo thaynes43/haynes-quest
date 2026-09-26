@@ -503,8 +503,10 @@ export function validateSaveRecord(
     invalidSave();
   }
   if (
-    familyPlan &&
-    validateFamilyWorldPlan(plan, { birthDate: normalized.birthDate, memories: normalized.memories }).length > 0
+    familyPlan && (
+      normalized.versions.age !== plan.ageRule ||
+      validateFamilyWorldPlan(plan, { birthDate: normalized.birthDate, memories: normalized.memories }).length > 0
+    )
   ) invalidSave();
   const expectedEditorProgression = editorWorldPlan
     ? editorWorldRuleVersions(plan).progression

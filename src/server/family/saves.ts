@@ -77,11 +77,17 @@ export function familyWorldView(save: SaveRecord): FamilyWorldView {
 
 export function familyJourneyCards(input: {
   children: readonly ChildRecord[];
+  /** Each child's latest publication. */
   publications: readonly PublicationRecord[];
   saves: readonly SaveRecord[];
+  /** Revisions of the (possibly older) publications the runs froze. */
+  runRevisions?: ReadonlyMap<string, number>;
 }): FamilyJourneyCard[] {
   const children = new Map(input.children.map((child) => [child.id, child]));
-  const revisions = new Map(input.publications.map((publication) => [publication.id, publication.revision]));
+  const revisions = new Map([
+    ...(input.runRevisions ?? new Map<string, number>()),
+    ...input.publications.map((publication) => [publication.id, publication.revision] as const),
+  ]);
   return input.publications.flatMap((publication) => {
     const child = children.get(publication.childId);
     if (!child) return [];

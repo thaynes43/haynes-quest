@@ -29,7 +29,7 @@ import {
   type PickLimits,
 } from './pick.js';
 import { buildFamilyWorldPlan, FamilyPlanError } from './plan.js';
-import { FamilyRebaseError, rebaseWorldForChild, type RebasedWorld } from './rebase.js';
+import { FamilyRebaseError, rebaseWorldForChild, type RebasedChapter, type RebasedWorld } from './rebase.js';
 import {
   FAMILY_LIMITS,
   type ChildRecord,
@@ -328,7 +328,7 @@ export class FamilyJourneyService {
     ) throw new AppError(409, 'DRAFT_STALE', 'Pick the photos again');
     const template = this.options.templates.require(draft.templateId, draft.templateVersion);
     const world = this.rebase(template, draft.birthDate, draft.rebasedOn);
-    if (JSON.stringify(world.chapters) !== JSON.stringify(draft.chapters)) {
+    if (!sameChapters(world.chapters, draft.chapters)) {
       throw new AppError(409, 'DRAFT_STALE', 'Pick the photos again');
     }
     const missing = [...new Set(draft.slots
@@ -447,6 +447,20 @@ export class FamilyJourneyService {
     if (!draft) throw new AppError(404, 'DRAFT_NOT_FOUND', 'Draft not found');
     return draft;
   }
+}
+
+/** Field by field: Postgres `jsonb` does not keep object key order. */
+function sameChapters(left: readonly RebasedChapter[], right: readonly RebasedChapter[]): boolean {
+  const key = (chapter: RebasedChapter) => [
+    chapter.index,
+    chapter.chapterId,
+    chapter.routeId,
+    chapter.startAge,
+    chapter.recoveredAge,
+    chapter.startDate,
+    chapter.targetDate,
+  ].join('|');
+  return left.length === right.length && left.every((chapter, index) => key(chapter) === key(right[index]!));
 }
 
 function slotIndex(draft: DraftRecord, chapterId: string, slot: FamilyMemorySlot): number {
