@@ -9,6 +9,8 @@ export class ObbyScene {
   private platforms = new Map<string, THREE.Group>();
   private hazards = new Map<string, THREE.Group>();
   private checkpoints = new Map<string, THREE.Mesh>();
+  /** V4 bounce pads and the visual time of their latest launch. */
+  private pads = new Map<string, { spring: THREE.Object3D; at: number }>();
 
   constructor(
     course: ObbyCourse,
@@ -59,6 +61,27 @@ export class ObbyScene {
               [x, depth / 2 + 0.006, 0],
             ),
           );
+      }
+      if (platform.bounce) {
+        // DESIGN-025 bounce pads: a bright spring disc on top of the slab.
+        const spring = new THREE.Group();
+        spring.name = `bounce-pad-spring-${platform.id}`;
+        spring.position.y = depth / 2;
+        const radius = Math.max(0.3, Math.min(width, length) / 2 - 0.12);
+        spring.add(
+          shapeMesh(
+            new THREE.CylinderGeometry(radius, radius, 0.08, 24),
+            material(palette.hazardBand),
+            [0, 0.04, 0],
+          ),
+          shapeMesh(
+            new THREE.CylinderGeometry(radius * 0.55, radius * 0.55, 0.1, 24),
+            material(palette.ferryEdge),
+            [0, 0.09, 0],
+          ),
+        );
+        root.add(spring);
+        this.pads.set(platform.id, { spring, at: Number.NEGATIVE_INFINITY });
       }
       if (ferry) {
         for (const z of [-0.45, 0, 0.45])
@@ -134,7 +157,22 @@ export class ObbyScene {
     this.update(sampleObby(course, 0), null);
   }
 
-  update(sample: ObbySample, checkpointId: string | null): void {
+  /** Starts a pad's squash animation. */
+  squash(platformId: string, time: number): void {
+    const pad = this.pads.get(platformId);
+    if (pad) pad.at = time;
+  }
+
+  update(sample: ObbySample, checkpointId: string | null, time = 0): void {
+    for (const pad of this.pads.values()) {
+      const age = time - pad.at;
+      // A quick squash and overshoot, settled within 0.35 s.
+      const squash =
+        age >= 0 && age < 0.35
+          ? 1 - 0.45 * Math.sin((age / 0.35) * Math.PI) * (1 - age / 0.35)
+          : 1;
+      pad.spring.scale.set(1, squash, 1);
+    }
     for (const platform of sample.platforms) {
       this.platforms
         .get(platform.id)

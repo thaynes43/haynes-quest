@@ -1,14 +1,26 @@
 import { z } from "zod";
 
 import type { ObbyCourse } from "../game/obby";
+import {
+  BOUNCE_PAD_VELOCITY,
+  REQUIRABLE_GROWTH_MOVES,
+  type BouncePadStrength,
+  type RequirableGrowthMove,
+} from "./abilities";
 
 export const AUTHORED_LEVEL_SCHEMA_VERSION = "authored-level-v1" as const;
 export const AUTHORED_LEVEL_SCHEMA_VERSION_V2 = "authored-level-v2" as const;
 export const AUTHORED_LEVEL_SCHEMA_VERSION_V3 = "authored-level-v3" as const;
+/**
+ * World-project-only documents with growth-move connections and vertical
+ * pieces (DESIGN-025 D-03/D-04). Published routes never use it.
+ */
+export const AUTHORED_LEVEL_SCHEMA_VERSION_V4 = "authored-level-v4" as const;
 export const AUTHORED_LEVEL_SCHEMA_VERSIONS = [
   AUTHORED_LEVEL_SCHEMA_VERSION,
   AUTHORED_LEVEL_SCHEMA_VERSION_V2,
   AUTHORED_LEVEL_SCHEMA_VERSION_V3,
+  AUTHORED_LEVEL_SCHEMA_VERSION_V4,
 ] as const;
 export const AUTHORED_LEVEL_V1_IDS = [
   "garden-playground-v1",
@@ -32,7 +44,8 @@ export type AuthoredLevelSchemaVersion =
  */
 export type AuthoredLevelId = (typeof AUTHORED_LEVEL_IDS)[number] | string;
 export type AuthoredLevelTheme = "garden" | "party" | "arcade" | "toybox" | "casino";
-export type AuthoredConnectionMode = "walk" | "jump" | "ride";
+/** `bounce` exists only in authored-level-v4 documents. */
+export type AuthoredConnectionMode = "walk" | "jump" | "ride" | "bounce";
 export const AUTHORED_REQUIRED_ENCOUNTER_SLOTS = [
   "ordinary-1",
   "ordinary-2",
@@ -110,17 +123,57 @@ export interface AuthoredCheckpointPiece {
   readonly activation: AuthoredCheckpointActivation;
 }
 
+/**
+ * A v4 lift: a platform that moves straight up and down with sine motion.
+ * `center` is the bottom stop; the top stop is `distance` metres higher. The
+ * lift starts at the bottom stop at t=0 when `phase` is 0 and needs
+ * `period` seconds for a full up-and-down cycle.
+ */
+export interface AuthoredLiftTravel {
+  readonly distance: number;
+  readonly period: number;
+  readonly phase?: number;
+}
+
+export interface AuthoredLiftPiece {
+  readonly type: "lift";
+  readonly id: string;
+  readonly center: AuthoredPosition;
+  readonly size: AuthoredPosition;
+  readonly travel: AuthoredLiftTravel;
+}
+
+/** A v4 bounce pad: landing on it launches the player straight up. */
+export interface AuthoredBouncePadPiece {
+  readonly type: "bounce-pad";
+  readonly id: string;
+  readonly center: AuthoredPosition;
+  readonly size: AuthoredPosition;
+  readonly strength: BouncePadStrength;
+}
+
 export type AuthoredLevelPiece =
   | AuthoredPlatformPiece
   | AuthoredMovingPlatformPiece
   | AuthoredSweeperPiece
-  | AuthoredCheckpointPiece;
+  | AuthoredCheckpointPiece
+  | AuthoredLiftPiece
+  | AuthoredBouncePadPiece;
+
+/** Every piece that is a solid, standable box. */
+export type AuthoredSurfacePiece =
+  | AuthoredPlatformPiece
+  | AuthoredMovingPlatformPiece
+  | AuthoredLiftPiece
+  | AuthoredBouncePadPiece;
 
 export interface AuthoredConnection {
   readonly from: string;
   readonly to: string;
   readonly mode: AuthoredConnectionMode;
   readonly safeMissPlatformId?: string;
+  /** V4 only: the growth move this jump needs (DESIGN-025 D-03). */
+  readonly requires?: RequirableGrowthMove;
 }
 
 export interface AuthoredAnchor {
@@ -218,6 +271,33 @@ export const AUTHORED_LEVEL_LIMITS = Object.freeze({
   ordinaryAttackReach: 1.35,
   bossAttackReach: 2.25,
   fallThresholdY: -2,
+} as const);
+
+/**
+ * DESIGN-025 limits for authored-level-v4. Kept apart from
+ * `AUTHORED_LEVEL_LIMITS` so published documents, their validation results
+ * and the editor CLI's reported limits stay exactly as they were.
+ *
+ * Each growth move's rise/gap is roughly 60–75% of its physical reach.
+ * `glide` has no rise allowance: it must descend by at least `minDescent`.
+ * Bounce limits are per pad strength; `big` is the design table's 2.6 m, and
+ * `small` keeps the same forgiveness against its lower apex.
+ */
+export const AUTHORED_LEVEL_V4_LIMITS = Object.freeze({
+  requires: Object.freeze({
+    "high-jump": Object.freeze({ maxRise: 0.7, maxGap: 1.7 }),
+    "double-jump": Object.freeze({ maxRise: 1.3, maxGap: 2.4 }),
+    glide: Object.freeze({ maxRise: 0, minDescent: 0.8, maxGap: 4 }),
+  }),
+  bounce: Object.freeze({
+    small: Object.freeze({ maxRise: 1.3, maxGap: 2.2 }),
+    big: Object.freeze({ maxRise: 2.6, maxGap: 2.2 }),
+  }),
+  minBouncePadSize: 1.2,
+  minLiftDistance: 0.5,
+  maxLiftDistance: 8,
+  minLiftPeriod: 4,
+  maxLiftPeriod: 20,
 } as const);
 
 const ID_PATTERN = /^[a-z][a-z0-9-]{0,79}$/;
@@ -343,6 +423,57 @@ const pieceSchema = z.discriminatedUnion("type", [
   sweeperPieceSchema,
   checkpointPieceSchema,
 ]);
+const liftPieceSchema = z
+  .object({
+    type: z.literal("lift"),
+    id: identifierSchema,
+    center: positionSchema,
+    size: positiveSizeSchema,
+    travel: z
+      .object({
+        distance: z
+          .number()
+          .min(AUTHORED_LEVEL_V4_LIMITS.minLiftDistance)
+          .max(AUTHORED_LEVEL_V4_LIMITS.maxLiftDistance),
+        period: z
+          .number()
+          .min(AUTHORED_LEVEL_V4_LIMITS.minLiftPeriod)
+          .max(AUTHORED_LEVEL_V4_LIMITS.maxLiftPeriod),
+        phase: z.number().min(-Math.PI * 2).max(Math.PI * 2).optional(),
+      })
+      .strict(),
+  })
+  .strict();
+const bouncePadPieceSchema = z
+  .object({
+    type: z.literal("bounce-pad"),
+    id: identifierSchema,
+    center: positionSchema,
+    size: z
+      .object({
+        x: z
+          .number()
+          .min(AUTHORED_LEVEL_V4_LIMITS.minBouncePadSize)
+          .max(AUTHORED_LEVEL_LIMITS.maxPlatformSize),
+        y: z.number().positive().max(AUTHORED_LEVEL_LIMITS.maxPlatformSize),
+        z: z
+          .number()
+          .min(AUTHORED_LEVEL_V4_LIMITS.minBouncePadSize)
+          .max(AUTHORED_LEVEL_LIMITS.maxPlatformSize),
+      })
+      .strict(),
+    strength: z.enum(["small", "big"]),
+  })
+  .strict();
+/** V4 accepts every published piece plus the growth-course pieces. */
+export const authoredLevelV4PieceSchema = z.discriminatedUnion("type", [
+  platformPieceSchema,
+  movingPlatformPieceSchema,
+  sweeperPieceSchema,
+  checkpointPieceSchema,
+  liftPieceSchema,
+  bouncePadPieceSchema,
+]);
 const connectionV1Schema = z
   .object({
     from: identifierSchema,
@@ -352,6 +483,16 @@ const connectionV1Schema = z
   .strict();
 const connectionV2Schema = connectionV1Schema
   .extend({ safeMissPlatformId: identifierSchema.optional() })
+  .strict();
+/** V4 adds bounce connections and ability-aware `requires`. */
+export const authoredLevelV4ConnectionSchema = z
+  .object({
+    from: identifierSchema,
+    to: identifierSchema,
+    mode: z.enum(["walk", "jump", "ride", "bounce"]),
+    safeMissPlatformId: identifierSchema.optional(),
+    requires: z.enum(REQUIRABLE_GROWTH_MOVES).optional(),
+  })
   .strict();
 const anchorSchema = z
   .object({ position: positionSchema, platformId: identifierSchema })
@@ -469,16 +610,89 @@ const authoredLevelV3DocumentSchema = z
   })
   .strict();
 
+const authoredLevelV4DocumentSchema = z
+  .object({
+    schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION_V4),
+    id: authoredLevelProjectRouteIdSchema,
+    theme: z.enum(["garden", "party", "arcade", "toybox", "casino"]),
+    ...authoredLevelDocumentFields,
+    pieces: z
+      .array(authoredLevelV4PieceSchema)
+      .min(1)
+      .max(AUTHORED_LEVEL_LIMITS.maxPieces),
+    anchors: authoredLevelV3AnchorsSchema,
+    connections: z
+      .array(authoredLevelV4ConnectionSchema)
+      .max(AUTHORED_LEVEL_LIMITS.maxConnections),
+  })
+  .strict();
+
 export const authoredLevelDocumentSchema = z.discriminatedUnion(
   "schemaVersion",
   [
     authoredLevelV1DocumentSchema,
     authoredLevelV2DocumentSchema,
     authoredLevelV3DocumentSchema,
+    authoredLevelV4DocumentSchema,
   ],
 );
 
-type PlatformPiece = AuthoredPlatformPiece | AuthoredMovingPlatformPiece;
+type PlatformPiece = AuthoredSurfacePiece;
+
+export function isAuthoredSurfacePiece(
+  piece: AuthoredLevelPiece,
+): piece is AuthoredSurfacePiece {
+  return (
+    piece.type === "platform" ||
+    piece.type === "moving-platform" ||
+    piece.type === "lift" ||
+    piece.type === "bounce-pad"
+  );
+}
+
+/** Surfaces a rider must `ride`: horizontal movers and lifts. */
+function isMovingSurface(platform: PlatformPiece): boolean {
+  return platform.type === "moving-platform" || platform.type === "lift";
+}
+
+/** The standing-top range a surface occupies: a lift spans both stops. */
+export function authoredSurfaceTopRange(platform: AuthoredSurfacePiece): {
+  readonly min: number;
+  readonly max: number;
+} {
+  const top = platform.center.y + platform.size.y / 2;
+  return platform.type === "lift"
+    ? { min: top, max: top + platform.travel.distance }
+    : { min: top, max: top };
+}
+
+/** Full vertical extent of a surface's solid box across its motion. */
+function platformVerticalExtent(platform: PlatformPiece): NumericInterval {
+  const bottom = platform.center.y - platform.size.y / 2;
+  const top = platformTop(platform);
+  return platform.type === "lift"
+    ? { min: bottom, max: top + platform.travel.distance }
+    : { min: bottom, max: top };
+}
+
+/**
+ * The height a connection must climb or drop between two surfaces. A lift
+ * offers every top between its stops, so only the nearer stop counts.
+ */
+function connectionRise(from: PlatformPiece, to: PlatformPiece): number {
+  const source = authoredSurfaceTopRange(from);
+  const destination = authoredSurfaceTopRange(to);
+  if (from.type !== "lift" && to.type !== "lift")
+    return Math.abs(platformTop(from) - platformTop(to));
+  if (destination.min > source.max) return destination.min - source.max;
+  if (source.min > destination.max) return source.min - destination.max;
+  return 0;
+}
+
+function bounceApex(strength: BouncePadStrength): number {
+  const velocity = BOUNCE_PAD_VELOCITY[strength];
+  return (velocity * velocity) / (2 * 15);
+}
 
 interface HorizontalBounds {
   minX: number;
@@ -914,8 +1128,7 @@ function verticalCapsuleClear(
   const head = position.y + AUTHORED_LEVEL_LIMITS.actorHeight;
   return platforms.every((platform) => {
     if (platform.id === supportId) return true;
-    const bottom = platform.center.y - platform.size.y / 2;
-    const top = platformTop(platform);
+    const { min: bottom, max: top } = platformVerticalExtent(platform);
     if (bottom >= head - EPSILON || top <= position.y + EPSILON) return true;
     const bounds = platformBounds(platform);
     return !rectanglesOverlap(pointEnvelope(position, radius), bounds);
@@ -940,7 +1153,7 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
         `Piece id ${JSON.stringify(piece.id)} duplicates $.pieces[${prior}].id`,
       );
     } else ids.set(piece.id, index);
-    if (piece.type === "platform" || piece.type === "moving-platform") {
+    if (isAuthoredSurfacePiece(piece)) {
       platforms.set(piece.id, piece);
       if (piece.type === "platform") staticPlatforms.set(piece.id, piece);
     } else if (piece.type === "checkpoint") checkpoints.set(piece.id, piece);
@@ -969,7 +1182,10 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       `At most ${AUTHORED_LEVEL_LIMITS.maxCheckpoints} checkpoints are supported`,
     );
 
-  if (document.schemaVersion !== AUTHORED_LEVEL_SCHEMA_VERSION_V3) {
+  if (
+    document.schemaVersion !== AUTHORED_LEVEL_SCHEMA_VERSION_V3 &&
+    document.schemaVersion !== AUTHORED_LEVEL_SCHEMA_VERSION_V4
+  ) {
     const expectedTheme = document.id.startsWith("garden-") ? "garden" : "party";
     if (document.theme !== expectedTheme)
       issue(
@@ -1194,8 +1410,23 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       }
     }
     if (!from || !to) return;
-    const moving = from.type === "moving-platform" || to.type === "moving-platform";
-    if ((connection.mode === "ride") !== moving)
+    const moving = isMovingSurface(from) || isMovingSurface(to);
+    if (connection.mode === "bounce") {
+      if (from.type !== "bounce-pad")
+        issue(
+          issues,
+          `$.connections[${index}].mode`,
+          "bounce.source",
+          "A bounce connection must start on a bounce pad",
+        );
+      if (isMovingSurface(to))
+        issue(
+          issues,
+          `$.connections[${index}].mode`,
+          "bounce.destination",
+          "A bounce connection must land on a surface that does not move",
+        );
+    } else if ((connection.mode === "ride") !== moving)
       issue(
         issues,
         `$.connections[${index}].mode`,
@@ -1204,29 +1435,86 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
           ? "A connection involving a moving platform must use ride"
           : "A ride connection must involve a moving platform",
       );
+    if (from.type === "bounce-pad" && connection.mode !== "bounce")
+      issue(
+        issues,
+        `$.connections[${index}].mode`,
+        "bounce.source-mode",
+        "A bounce pad launches on contact, so every connection leaving it must use bounce",
+      );
+    if (connection.requires !== undefined && connection.mode !== "jump")
+      issue(
+        issues,
+        `$.connections[${index}].requires`,
+        "requires.mode",
+        "Only a jump connection may require a growth move",
+      );
     const gap = horizontalGap(from, to);
-    const rise = Math.abs(platformTop(from) - platformTop(to));
-    const gapLimit = connection.mode === "walk"
-      ? AUTHORED_LEVEL_LIMITS.maxWalkGap
-      : AUTHORED_LEVEL_LIMITS.maxConnectionGap;
-    const riseLimit = connection.mode === "walk"
-      ? AUTHORED_LEVEL_LIMITS.maxWalkRise
-      : AUTHORED_LEVEL_LIMITS.maxConnectionRise;
-    if (gap > gapLimit + EPSILON)
+    const rise = connectionRise(from, to);
+    const requiredMove =
+      connection.mode === "jump" ? connection.requires : undefined;
+    const growthLimit = requiredMove
+      ? AUTHORED_LEVEL_V4_LIMITS.requires[requiredMove]
+      : connection.mode === "bounce" && from.type === "bounce-pad"
+        ? AUTHORED_LEVEL_V4_LIMITS.bounce[from.strength]
+        : undefined;
+    const gapLimit = growthLimit
+      ? growthLimit.maxGap
+      : connection.mode === "walk"
+        ? AUTHORED_LEVEL_LIMITS.maxWalkGap
+        : AUTHORED_LEVEL_LIMITS.maxConnectionGap;
+    const riseLimit = requiredMove === "glide"
+      ? Number.POSITIVE_INFINITY
+      : growthLimit
+        ? growthLimit.maxRise
+        : connection.mode === "walk"
+          ? AUTHORED_LEVEL_LIMITS.maxWalkRise
+          : AUTHORED_LEVEL_LIMITS.maxConnectionRise;
+    const modeLabel = requiredMove ?? connection.mode;
+    if (requiredMove === "glide") {
+      const descent = platformTop(from) - platformTop(to);
+      const minDescent = AUTHORED_LEVEL_V4_LIMITS.requires.glide.minDescent;
+      if (descent < minDescent - EPSILON)
+        issue(
+          issues,
+          `$.connections[${index}]`,
+          "connection.rise",
+          `glide must descend at least ${minDescent}m; this one descends ${descent.toFixed(3)}m`,
+        );
+    }
+    if (growthLimit && gap > gapLimit + EPSILON)
+      issue(
+        issues,
+        `$.connections[${index}]`,
+        "connection.gap",
+        `${modeLabel} gap ${gap.toFixed(3)}m exceeds ${gapLimit}m across the motion envelope`,
+      );
+    if (growthLimit && rise > riseLimit + EPSILON)
+      issue(
+        issues,
+        `$.connections[${index}]`,
+        "connection.rise",
+        `${modeLabel} height difference ${rise.toFixed(3)}m exceeds ${riseLimit}m`,
+      );
+    if (!growthLimit && gap > gapLimit + EPSILON)
       issue(
         issues,
         `$.connections[${index}]`,
         "connection.gap",
         `${connection.mode} gap ${gap.toFixed(3)}m exceeds ${gapLimit}m across the motion envelope`,
       );
-    if (rise > riseLimit + EPSILON)
+    if (!growthLimit && rise > riseLimit + EPSILON)
       issue(
         issues,
         `$.connections[${index}]`,
         "connection.rise",
         `${connection.mode} height difference ${rise.toFixed(3)}m exceeds ${riseLimit}m`,
       );
-    if (connection.mode === "jump" || connection.mode === "ride") {
+    if (
+      connection.mode === "jump" ||
+      connection.mode === "ride" ||
+      connection.mode === "bounce"
+    ) {
       const clearanceFailure = gatewayClearanceFailure(from, to, hazards);
       if (clearanceFailure)
         issue(
@@ -1757,7 +2045,150 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       );
   }
 
+  if (document.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V4)
+    validateGrowthPieces(document, platforms, hazards, issues);
+
   return sortedIssues(issues);
+}
+
+function boxesHaveInteriorOverlap(
+  firstBounds: HorizontalBounds,
+  firstVertical: NumericInterval,
+  secondBounds: HorizontalBounds,
+  secondVertical: NumericInterval,
+): boolean {
+  return (
+    rectanglesHaveInteriorOverlap(firstBounds, secondBounds) &&
+    intervalsHaveInteriorOverlap(firstVertical, secondVertical)
+  );
+}
+
+/**
+ * DESIGN-025 D-04 checks for lifts and bounce pads. Only authored-level-v4
+ * documents can hold these pieces, so published validation is untouched.
+ */
+function validateGrowthPieces(
+  document: AuthoredLevelDocument,
+  platforms: ReadonlyMap<string, PlatformPiece>,
+  hazards: readonly AuthoredSweeperPiece[],
+  issues: AuthoredLevelIssue[],
+): void {
+  document.pieces.forEach((piece, index) => {
+    const path = `$.pieces[${index}]`;
+    if (piece.type === "lift") {
+      const footprint = staticPlatformBounds({ ...piece, type: "platform" });
+      const swept = platformVerticalExtent(piece);
+      const topStop = authoredSurfaceTopRange(piece).max;
+      if (topStop > AUTHORED_LEVEL_LIMITS.verticalCoordinateMagnitude + EPSILON)
+        issue(
+          issues,
+          `${path}.travel.distance`,
+          "lift.height",
+          `The lift's top stop must stay at or below y=${AUTHORED_LEVEL_LIMITS.verticalCoordinateMagnitude}`,
+        );
+      for (const other of platforms.values()) {
+        if (other.id === piece.id) continue;
+        if (
+          boxesHaveInteriorOverlap(
+            footprint,
+            { min: swept.min, max: swept.max + AUTHORED_LEVEL_LIMITS.actorHeight },
+            platformBounds(other),
+            platformVerticalExtent(other),
+          )
+        )
+          issue(
+            issues,
+            path,
+            "lift.swept-volume",
+            `The lift's travel and rider headroom overlap ${JSON.stringify(other.id)}`,
+          );
+      }
+      for (const hazard of hazards) {
+        if (
+          boxesHaveInteriorOverlap(
+            footprint,
+            { min: swept.min, max: swept.max + AUTHORED_LEVEL_LIMITS.actorHeight },
+            hazardEnvelope(hazard),
+            { min: hazard.center.y - hazard.radius, max: hazard.center.y + hazard.radius },
+          )
+        )
+          issue(
+            issues,
+            path,
+            "lift.hazard",
+            `The lift's travel crosses sweeper ${JSON.stringify(hazard.id)}`,
+          );
+      }
+      const stops = authoredSurfaceTopRange(piece);
+      const touching = document.connections.filter(
+        (connection) =>
+          connection.mode === "ride" &&
+          (connection.from === piece.id || connection.to === piece.id),
+      );
+      const reaches = (stopTop: number) =>
+        touching.some((connection) => {
+          const otherId = connection.from === piece.id ? connection.to : connection.from;
+          const other = platforms.get(otherId);
+          if (!other || other.type === "lift") return false;
+          const otherRange = authoredSurfaceTopRange(other);
+          return (
+            Math.abs(otherRange.min - stopTop) <=
+            AUTHORED_LEVEL_LIMITS.maxConnectionRise + EPSILON
+          );
+        });
+      if (!reaches(stops.min))
+        issue(
+          issues,
+          path,
+          "lift.bottom-landing",
+          "The lift's bottom stop needs a ride connection to a landing within jump height",
+        );
+      if (!reaches(stops.max))
+        issue(
+          issues,
+          path,
+          "lift.top-landing",
+          "The lift's top stop needs a ride connection to a landing within jump height",
+        );
+    } else if (piece.type === "bounce-pad") {
+      const footprint = staticPlatformBounds({ ...piece, type: "platform" });
+      const top = platformTop(piece);
+      const clearance: NumericInterval = {
+        min: top,
+        max: top + bounceApex(piece.strength) + AUTHORED_LEVEL_LIMITS.actorHeight,
+      };
+      for (const other of platforms.values()) {
+        if (other.id === piece.id) continue;
+        const otherBounds = platformBounds(other);
+        const otherVertical = platformVerticalExtent(other);
+        if (
+          boxesHaveInteriorOverlap(
+            expandedBounds(footprint, AUTHORED_LEVEL_LIMITS.supportEdgeClearance),
+            clearance,
+            otherBounds,
+            otherVertical,
+          )
+        )
+          issue(
+            issues,
+            path,
+            "bounce-pad.headroom",
+            `${JSON.stringify(other.id)} blocks the pad's launch column`,
+          );
+        else if (
+          rectanglesHaveInteriorOverlap(footprint, otherBounds) &&
+          Math.abs(authoredSurfaceTopRange(other).max - top) <=
+            AUTHORED_LEVEL_LIMITS.maxConnectionRise + EPSILON
+        )
+          issue(
+            issues,
+            path,
+            "bounce-pad.overlap",
+            `The pad overlaps ${JSON.stringify(other.id)} near its own height, so landings could miss the pad`,
+          );
+      }
+    }
+  });
 }
 
 function validateParsed(input: unknown): ParsedValidation {
@@ -1798,6 +2229,34 @@ function courseFor(document: AuthoredLevelDocument): ObbyCourse {
             center: { ...piece.center },
             size: { ...piece.size },
             motion: { ...piece.motion },
+          },
+        ];
+      }
+      if (piece.type === "lift") {
+        // The course motion is centred on the midpoint of the travel and starts
+        // a quarter-cycle early, so t=0 (phase 0) is the authored bottom stop.
+        const half = piece.travel.distance / 2;
+        return [
+          {
+            id: piece.id,
+            center: { ...piece.center, y: piece.center.y + half },
+            size: { ...piece.size },
+            motion: {
+              axis: "y" as const,
+              distance: half,
+              period: piece.travel.period,
+              phase: (piece.travel.phase ?? 0) - Math.PI / 2,
+            },
+          },
+        ];
+      }
+      if (piece.type === "bounce-pad") {
+        return [
+          {
+            id: piece.id,
+            center: { ...piece.center },
+            size: { ...piece.size },
+            bounce: { velocity: BOUNCE_PAD_VELOCITY[piece.strength] },
           },
         ];
       }

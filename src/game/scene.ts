@@ -31,6 +31,7 @@ import { equipmentArtwork, parodyArtwork } from "./scene-catalog";
 import { EnemyAnimation } from "./enemy-animation";
 import { enemyAttackRange } from "./combat";
 import { bossRequiresOrdinaryDefeats } from "../shared/encounter-availability";
+import { growthCameraScale } from "../shared/abilities";
 import { TravelerEquipment } from "./traveler-equipment";
 import {
   resolveRuntimeWorldTheme,
@@ -762,6 +763,11 @@ export class GardenScene {
     if (at) this.effects.emit(item.kind === "ticket" ? "ticket" : "token", at);
   }
 
+  /** Squashes a v4 bounce pad that just launched the player (DESIGN-025). */
+  bouncePad(platformId: string): void {
+    this.obbyVisual?.squash(platformId, this.visualTime);
+  }
+
   /**
    * Marks a swing the client has accepted. The server's confirming HP drop
    * for this enemy then doesn't replay the flinch that contact already played.
@@ -836,7 +842,11 @@ export class GardenScene {
     const realDt = frame?.deltaSeconds ?? dt;
     const elapsed = (this.visualTime += dt);
     if (frame?.obby)
-      this.obbyVisual?.update(frame.obby, frame.checkpointId ?? null);
+      this.obbyVisual?.update(
+        frame.obby,
+        frame.checkpointId ?? null,
+        this.visualTime,
+      );
     (this.guardRing.material as THREE.MeshBasicMaterial).opacity =
       frame?.recovering ? 0.6 : 0.8;
     this.traveler.position.set(position.x, position.y, position.z);
@@ -871,6 +881,10 @@ export class GardenScene {
       airborneStretch,
       1 / Math.sqrt(airborneStretch),
     );
+    // DESIGN-025 D-02: growth levels scale the visual only; the collider and
+    // every older level's presentation are unchanged.
+    if (frame?.growthScale !== undefined)
+      this.avatarVisual.scale.multiplyScalar(frame.growthScale);
     const ranged =
       (this.save.adventure?.inventory.find(
         (item) => item.id === this.save.adventure?.equippedId,
@@ -954,7 +968,12 @@ export class GardenScene {
       position.z - 0.5,
     );
     const duoInView = frame?.besties && frame.besties.phase !== "inactive";
-    const distance = this.camera.aspect < 0.85 ? (duoInView ? 8.6 : 6.2) : 4.9;
+    const baseDistance =
+      this.camera.aspect < 0.85 ? (duoInView ? 8.6 : 6.2) : 4.9;
+    const distance =
+      frame?.growthScale !== undefined
+        ? baseDistance * growthCameraScale(frame.growthScale)
+        : baseDistance;
     const flat = Math.cos(this.cameraPitch) * distance;
     this.desiredCamera.set(
       position.x + Math.sin(this.cameraYaw) * flat,

@@ -140,3 +140,20 @@ Give a building agent the project, the command schema, and a concrete change suc
 ```
 
 Use `zigzag` for a ridge with alternating lateral steps. Choose a fresh `idPrefix` for each section. The command adds a branch between ordered static main-route platforms, preserves existing anchors and geometry, and rejects unsafe placements or exceeded scene limits atomically. It uses the game's existing platforms and collision rules, so the result needs no custom script, asset or rebuild. Validate and playtest the exported project before treating it as a finished level.
+
+### Growth moves and vertical pieces
+
+New world chapters can opt into `authored-level-v4` (DESIGN-025, growth moves and vertical courses). The upgrade keeps the level's content and validation, and unlocks the growth pieces and ability-aware jumps. Published routes and v1–v3 levels never accept them.
+
+```json
+{ "type": "chapter.level.upgrade", "chapterId": "chapter-2", "schemaVersion": "authored-level-v4" }
+```
+
+Add pieces with `piece.add`:
+
+- `{"type": "lift", "id": "sky-lift", "center": {...}, "size": {...}, "travel": {"distance": 4, "period": 8}}` is a platform that moves straight up and down. `center` is the bottom stop; the top stop is `distance` metres higher (0.5–8 m, period 4–20 s). Connections touching it use `ride`, and both stops need a `ride` connection to a landing within jump height.
+- `{"type": "bounce-pad", "id": "spring-pad", "center": {...}, "size": {...}, "strength": "small" | "big"}` launches the player straight up on contact (apex about 1.9 m or 2.7 m). It is at least 1.2 × 1.2 m, needs a clear launch column, and every connection leaving it uses `"mode": "bounce"`: rise at most 1.3 m (`small`) or 2.6 m (`big`), gap at most 2.2 m.
+
+A `jump` connection may declare `"requires": "high-jump" | "double-jump" | "glide"`. High jump allows 0.70 m rise and 1.7 m gap; double jump 1.30 m and 2.4 m; glide must descend at least 0.8 m and allows a 4 m gap. Every `requires` must be unlocked at the chapter's recovered start age (`inspect` reports `growthMoves` per chapter), and the first main-route use of a move that is new in that chapter needs a `safeMissPlatformId` catch floor as its practice stretch.
+
+`inspect` also reports a top-level `growth` block with these limits, unlock ages and launch speeds, lift `stopTops` and pad `launchApex`. `scripts/levels/build-vertical-v4-demo.ts` is a worked generator: it uses the helpers in `scripts/levels/lib/growth-kit.ts` to emit `scripts/levels/examples/vertical-v4-demo.commands.json`, which `pnpm levels:validate` replays into the checked-in example project.

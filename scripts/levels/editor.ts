@@ -4,13 +4,21 @@ import { LEVEL_EDITOR_SECTION_LIMITS } from "../../src/shared/editor-sections.js
 
 import {
   AUTHORED_LEVEL_LIMITS,
+  AUTHORED_LEVEL_V4_LIMITS,
+  authoredSurfaceTopRange,
+  isAuthoredSurfacePiece,
   type AuthoredAnchor,
   type AuthoredEncounterAnchor,
   type AuthoredLevelAnchors,
   type AuthoredLevelPiece,
-  type AuthoredMovingPlatformPiece,
-  type AuthoredPlatformPiece,
+  type AuthoredSurfacePiece,
 } from "../../src/shared/authored-level.js";
+import {
+  abilitiesForAge,
+  GROWTH_MOVE_PHYSICS,
+  GROWTH_MOVE_UNLOCK_AGES,
+  BOUNCE_PAD_VELOCITY,
+} from "../../src/shared/abilities.js";
 import {
   LEVEL_EDITOR_ANCHOR_SLOTS,
   LEVEL_EDITOR_COMMAND_BATCH_MAX_BYTES,
@@ -114,7 +122,7 @@ function requireArgumentCount(
 // physics or rule evaluation is repeated here, so `validate` stays the single
 // authority on whether geometry is playable.
 
-type EditorPlatformPiece = AuthoredPlatformPiece | AuthoredMovingPlatformPiece;
+type EditorPlatformPiece = AuthoredSurfacePiece;
 
 interface HorizontalExtent {
   readonly minX: number;
@@ -158,7 +166,7 @@ function derivedMetres(value: number): number {
 function isPlatformPiece(
   piece: AuthoredLevelPiece,
 ): piece is EditorPlatformPiece {
-  return piece.type === "platform" || piece.type === "moving-platform";
+  return isAuthoredSurfacePiece(piece);
 }
 
 function platformTopY(platform: EditorPlatformPiece): number {
@@ -271,6 +279,25 @@ function describeChapterSpace(level: LevelEditorLevelDocument) {
         ...(platform.type === "moving-platform"
           ? { motion: platform.motion }
           : {}),
+        // V4 growth pieces (DESIGN-025): a lift reports both stop tops and
+        // its travel; a pad reports its launch strength and apex.
+        ...(platform.type === "lift"
+          ? {
+              travel: platform.travel,
+              stopTops: {
+                bottom: derivedMetres(authoredSurfaceTopRange(platform).min),
+                top: derivedMetres(authoredSurfaceTopRange(platform).max),
+              },
+            }
+          : {}),
+        ...(platform.type === "bounce-pad"
+          ? {
+              strength: platform.strength,
+              launchApex: derivedMetres(
+                BOUNCE_PAD_VELOCITY[platform.strength] ** 2 / 30,
+              ),
+            }
+          : {}),
       };
     }),
     routes: { mainPath: level.mainPath, branches: level.branches },
@@ -331,6 +358,12 @@ async function run(args: readonly string[]): Promise<void> {
         revision: project.revision,
         limits: AUTHORED_LEVEL_LIMITS,
         sectionLimits: LEVEL_EDITOR_SECTION_LIMITS,
+        growth: {
+          limits: AUTHORED_LEVEL_V4_LIMITS,
+          unlockAges: GROWTH_MOVE_UNLOCK_AGES,
+          physics: GROWTH_MOVE_PHYSICS,
+          bouncePadVelocity: BOUNCE_PAD_VELOCITY,
+        },
         chapters: project.chapters.map((chapter) => ({
           chapterId: chapter.chapterId,
           name: chapter.name,
@@ -339,8 +372,11 @@ async function run(args: readonly string[]): Promise<void> {
             ? {
                 routeId: chapter.routeId,
                 sourceTemplateId: chapter.sourceTemplateId,
+                levelSchemaVersion: chapter.level.schemaVersion,
                 representedDateRange: chapter.representedDateRange,
                 recoveredAge: chapter.recoveredAge,
+                // The moves a required route may use in this chapter.
+                growthMoves: abilitiesForAge(chapter.recoveredAge.fromYears),
                 previewMemories: chapter.previewMemories,
                 encounterSlots: chapter.encounterSlots,
               }
@@ -350,10 +386,7 @@ async function run(args: readonly string[]): Promise<void> {
                   : undefined,
               }),
           pieces: chapter.level.pieces.length,
-          platforms: chapter.level.pieces.filter(
-            (piece) =>
-              piece.type === "platform" || piece.type === "moving-platform",
-          ).length,
+          platforms: chapter.level.pieces.filter(isPlatformPiece).length,
           hazards: chapter.level.pieces.filter(
             (piece) => piece.type === "sweeper",
           ).length,
