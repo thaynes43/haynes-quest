@@ -190,7 +190,6 @@ export const CAPTION_MAX_LENGTH = 60;
 const CAPTION_MAX_UTF16 = 160;
 
 function season(month: number): string {
-  // COPY: season names in default captions (coordinator may restyle).
   if (month === 12 || month <= 2) return "Winter";
   if (month <= 5) return "Spring";
   if (month <= 8) return "Summer";
@@ -201,7 +200,7 @@ function season(month: number): string {
 export function defaultCaption(slot: FamilyMemorySlot, date: string, ageYears: number): string {
   const [year, month] = dateParts(date);
   if (!Number.isInteger(ageYears) || ageYears < 0) throw new RangeError("Invalid age");
-  // COPY: default caption formats from DESIGN-024 D-05.
+  // Default caption formats (DESIGN-024 D-05).
   return slot === "major"
     ? `Turning ${ageYears}!`
     : `${season(month)} ${year} · age ${ageYears}`;

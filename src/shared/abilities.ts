@@ -180,31 +180,25 @@ export interface GrowthMoveCard {
 
 /**
  * Short "new move" cards shown after a boss when the next chapter unlocks a
- * move. The coordinator owns the final wording.
+ * move.
  */
 export const GROWTH_MOVE_CARDS: Readonly<
   Record<RequirableGrowthMove, GrowthMoveCard>
 > = Object.freeze({
   "high-jump": {
     move: "high-jump",
-    // COPY: placeholder title for the high-jump move card.
-    title: "New move: High Jump",
-    // COPY: placeholder body for the high-jump move card.
-    body: "Your jumps go higher now.",
+    title: "New move: High Jump!",
+    body: "You're bigger now, so every jump goes higher.",
   },
   "double-jump": {
     move: "double-jump",
-    // COPY: placeholder title for the double-jump move card.
-    title: "New move: Double Jump",
-    // COPY: placeholder body for the double-jump move card.
-    body: "Press Jump again in the air.",
+    title: "New move: Double Jump!",
+    body: "Jump, then press Jump again in the air to go even higher.",
   },
   glide: {
     move: "glide",
-    // COPY: placeholder title for the glide move card.
-    title: "New move: Glide",
-    // COPY: placeholder body for the glide move card.
-    body: "Hold Jump while falling to float.",
+    title: "New move: Glide!",
+    body: "Hold Jump while you fall to float across big gaps.",
   },
 });
 

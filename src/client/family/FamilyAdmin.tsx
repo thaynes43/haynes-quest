@@ -10,7 +10,7 @@ import { familyApi, familyErrorText } from "./family-client";
 
 /**
  * Administrator setup (DESIGN-024 first run): the household's children, "Add
- * a child", and each child's Memories screen. Strings are `COPY:` placeholders.
+ * a child", and each child's Memories screen.
  */
 export function FamilyAdmin({
   onBack,
@@ -61,11 +61,9 @@ export function FamilyAdmin({
   return (
     <section className="family-admin">
       <button className="text-button" onClick={onBack}>
-        {/* COPY: back from setup */}
-        ← Back to journeys
+        ← Back to quests
       </button>
-      {/* COPY: setup heading */}
-      <h1>Set up your family</h1>
+      <h1>Family setup</h1>
       {error && <p role="alert">{error}</p>}
       {children === null && !error && <p role="status">Loading…</p>}
       <ul className="family-children">
@@ -74,20 +72,18 @@ export function FamilyAdmin({
             <button className="family-child-row" onClick={() => setSelected(entry.child.id)}>
               <strong>{entry.child.displayName}</strong>
               <span>
-                {/* COPY: child status line */}
                 {entry.picking
                   ? "Picking photos…"
                   : entry.draft
                     ? `${entry.draft.filled} of ${entry.draft.filled + entry.draft.needsPhoto} photos chosen`
                     : "No photos yet"}
-                {entry.publication ? ` · Published (version ${entry.publication.revision})` : " · Not published"}
+                {entry.publication ? ` · Live (version ${entry.publication.revision})` : " · Not published yet"}
               </span>
             </button>
           </li>
         ))}
       </ul>
       <button className="primary" onClick={() => setAdding(true)}>
-        {/* COPY: add a child button */}
         Add a child
       </button>
     </section>
@@ -178,27 +174,22 @@ function AddChild({
   return (
     <section className="family-add-child">
       <button className="text-button" onClick={onCancel}>
-        {/* COPY: cancel adding a child */}
         ← Back
       </button>
-      {/* COPY: add-child heading */}
       <h1>Add a child</h1>
       <form onSubmit={(event) => void lookup(event)}>
         <label>
-          {/* COPY: Immich name field label */}
-          Name in the photo library
+          Their name in Immich
           <input value={immichName} onChange={(event) => setImmichName(event.target.value)} maxLength={120} required />
         </label>
         <button className="secondary" disabled={busy || !immichName.trim()}>
-          {/* COPY: person lookup button */}
           Find
         </button>
       </form>
-      {people?.length === 0 && <p role="status">No one by that name was found.{/* COPY: no match */}</p>}
+      {people?.length === 0 && <p role="status">No one in Immich has exactly that name.</p>}
       {people && people.length > 1 && (
         <fieldset className="family-person-choices">
-          {/* COPY: ambiguous match prompt */}
-          <legend>More than one person matches. Choose one.</legend>
+          <legend>More than one person has that name. Choose the right one.</legend>
           {people.map((person, index) => (
             <label key={person.id}>
               <input
@@ -207,9 +198,8 @@ function AddChild({
                 checked={choice?.id === person.id}
                 onChange={() => choose(person)}
               />
-              {/* COPY: ambiguous match option */}
               {person.label} · match {index + 1}
-              {person.birthDate ? ` · born ${person.birthDate}` : ""}
+              {person.birthDate ? ` · born ${person.birthDate}` : " · no birthday saved"}
             </label>
           ))}
         </fieldset>
@@ -217,21 +207,18 @@ function AddChild({
       {choice && (
         <form className="family-child-form" onSubmit={(event) => void create(event)}>
           <label>
-            {/* COPY: display name field label */}
-            Name to show
+            Name in the game
             <input value={displayName} onChange={(event) => setDisplayName(event.target.value)} maxLength={40} required />
           </label>
           <label>
-            {/* COPY: birthday field label */}
             Birthday
             <input type="date" value={birthDate} onChange={(event) => setBirthDate(event.target.value)} required />
           </label>
-          {!choice.birthDate && <p className="small-note">No birthday is saved in the photo library. Enter it here.{/* COPY */}</p>}
-          {templates?.length === 0 && <p role="status">No world fits this birthday yet.{/* COPY: no template */}</p>}
+          {!choice.birthDate && <p className="small-note">Immich has no birthday for this person. Enter it here.</p>}
+          {templates?.length === 0 && <p role="status">No quest world fits this birthday yet.</p>}
           {templates && templates.length > 0 && (
             <label>
-              {/* COPY: world template field label */}
-              World
+              Quest world
               <select value={template} onChange={(event) => setTemplate(event.target.value)} required>
                 <option value="">Choose a world</option>
                 {templates.map((offer) => (
@@ -243,8 +230,7 @@ function AddChild({
             </label>
           )}
           <button className="primary" disabled={busy || !template || !displayName.trim()}>
-            {/* COPY: create child and pick photos */}
-            {busy ? "Setting up…" : "Create and pick photos"}
+            {busy ? "Setting up…" : "Create quest and pick photos"}
           </button>
         </form>
       )}

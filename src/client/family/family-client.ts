@@ -44,14 +44,13 @@ export const familyApi = {
   thumbnailUrl: (token: string) => `/api/admin/candidates/${encodeURIComponent(token)}/image`,
 };
 
-/** Placeholder wording for family errors; the coordinator writes the final copy. */
+/** Friendly wording for family setup and journey errors. */
 export function familyErrorText(error: unknown): string {
   const code = error instanceof Error ? error.message : "";
   const text: Record<string, string> = {
-    // COPY: family setup and journey error placeholders.
-    FAMILY_SETUP_UNAVAILABLE: "Photo setup isn't connected right now.",
-    IMMICH_UNAVAILABLE: "The photo library didn't answer. Try again in a moment.",
-    IMMICH_RESPONSE_INVALID: "The photo library sent something unexpected. Try again in a moment.",
+    FAMILY_SETUP_UNAVAILABLE: "Immich isn't connected right now, so photos can't be changed.",
+    IMMICH_UNAVAILABLE: "Immich didn't answer. Try again in a moment.",
+    IMMICH_RESPONSE_INVALID: "Immich sent something unexpected. Try again in a moment.",
     DRAFT_CONFLICT: "Someone else changed these memories. The latest version is loaded.",
     DRAFT_STALE: "The birthday or world changed. Pick the photos again.",
     AUTO_PICK_RUNNING: "Photos are still being picked.",
@@ -64,10 +63,10 @@ export function familyErrorText(error: unknown): string {
     CAPTION_INVALID: "Use plain text for captions.",
     TEMPLATE_NOT_OFFERED: "That world doesn't fit this birthday.",
     SUBJECT_UNRESOLVED: "Choose the person again.",
-    CHILD_EXISTS: "This person already has a journey.",
-    INVALID_DISPLAY_NAME: "Enter a name to show.",
+    CHILD_EXISTS: "This person already has a quest.",
+    INVALID_DISPLAY_NAME: "Enter the name the game should use.",
     INVALID_BIRTH_DATE: "Enter a birthday that has already happened.",
-    JOURNEY_NOT_PUBLISHED: "This journey isn't ready yet.",
+    JOURNEY_NOT_PUBLISHED: "This quest isn't ready yet.",
     ADMIN_REQUIRED: "Only a family admin can do that.",
   };
   return text[code] ?? friendlyError(error);
