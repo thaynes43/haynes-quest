@@ -1,0 +1,601 @@
+{
+  "work_order": "WO111",
+  "asset_id": "honk-bus",
+  "version": "v001",
+  "created_utc": "2026-09-26T01:35:40.340967+00:00",
+  "local_root": "/home/dev/artifacts/haynes-quest/family-eras/honk-bus/v001",
+  "remote_root": "/workspace/haynes-quest/family-eras/honk-bus/v001",
+  "scene_lease": "released",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "files": [
+    {
+      "path": "honk-bus.blend",
+      "bytes": 1072402,
+      "sha256": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00",
+      "remote_local_match": true
+    },
+    {
+      "path": "honk-bus.glb",
+      "bytes": 1105872,
+      "sha256": "0ea6f80966e4e11e7ec6251af9c371ad76f6a1a8f90aa67da27b7d5612b0a2ed",
+      "remote_local_match": true
+    },
+    {
+      "path": "pigment.png",
+      "bytes": 229570,
+      "sha256": "b32c22fbf648cc1c67ec675658b95feef1b34c211d3eebba866c4678cfda6332",
+      "remote_local_match": true
+    },
+    {
+      "path": "concept.png",
+      "bytes": 2006583,
+      "sha256": "2749960b3acc132f8ee04828c2eb052194c9ef8af2f2053ade1b2b992ead5948",
+      "remote_local_match": true
+    },
+    {
+      "path": "prompt.txt",
+      "bytes": 2318,
+      "sha256": "491400d6847113550d66b8281879aa4b6a06afe03baa3d0bcaab27bc2314b4f0",
+      "remote_local_match": true
+    },
+    {
+      "path": "source.json",
+      "bytes": 1332,
+      "sha256": "46602edcd509f2e2a93072f5e64281af41f1669f79e908ef8253409f7b5c6f9c",
+      "remote_local_match": true
+    },
+    {
+      "path": "construction.json",
+      "bytes": 28115,
+      "sha256": "e4fed7187eb60b35756ef228a2f3844f62c40b6015c0320984187f7c66ee979b",
+      "remote_local_match": true
+    },
+    {
+      "path": "validation.json",
+      "bytes": 3269,
+      "sha256": "e01304565a8e8e27f481090447d2cd73eab920de3387e352d9e8632aeb292971",
+      "remote_local_match": true
+    },
+    {
+      "path": "three-inspection.json",
+      "bytes": 45714,
+      "sha256": "af948311977a00f182853c16faa9e0c0740d5e8f85c816fa80180d70198c292b",
+      "remote_local_match": true
+    },
+    {
+      "path": "browser-inspection.json",
+      "bytes": 107313,
+      "sha256": "b8f2faebdb04009e6e1b5b431076a8219e67dcba76304bde8d617bb9858682e8",
+      "remote_local_match": true
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 2614,
+      "sha256": "abd30ec20012d9367893a9c4d3a03b3773e62571a7bd7d738c37ed8e3db74657",
+      "remote_local_match": true
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 2675,
+      "sha256": "abc948d99ccffb1040036354f487cb98894f62283cad9c3e67facb1777304b7b",
+      "remote_local_match": true
+    },
+    {
+      "path": "tool-settings.json",
+      "bytes": 1933,
+      "sha256": "e555c2a981472f034137b6a2e20fc8ba2d83b9890c14de0e3e58ccdd688201c9",
+      "remote_local_match": true
+    },
+    {
+      "path": "attachment-inspection.json",
+      "bytes": 3311,
+      "sha256": "a93a0f811497b710abbd48c82c10e448909b4afeb935ea75128a0b926cfb57fc",
+      "remote_local_match": true
+    },
+    {
+      "path": "honk-bus-high-density-checkpoint.blend",
+      "bytes": 1067283,
+      "sha256": "70a651d0bff6d777036af215fa7891befadff926654c15b71852dac28af626c9",
+      "remote_local_match": true
+    },
+    {
+      "path": "honk-bus-construction.blend",
+      "bytes": 799566,
+      "sha256": "50d10f352671528493b632a1d46a4fe58cb264b37f159a3fa2b4a994360d3260",
+      "remote_local_match": true
+    },
+    {
+      "path": "honk-bus-checkpoint.glb",
+      "bytes": 1011976,
+      "sha256": "cc117a9abbbc47f33066aef63aafc75776041d7e0be2dc20c4977d6857a5bc7a",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-lease.json",
+      "bytes": 5091,
+      "sha256": "71e564b41ec3ebde316c3a2108804c20b1f94db6e2a11750d4f11958bf07b762",
+      "remote_local_match": true
+    },
+    {
+      "path": "scene-release.json",
+      "bytes": 5301,
+      "sha256": "42f620d0d4bc3258f73ee0f288433c916c8f5e09b07b319958b464615e2dd115",
+      "remote_local_match": true
+    },
+    {
+      "path": "live-scene-release.blend",
+      "bytes": 1072546,
+      "sha256": "a3a94cd1a0b847a79266c8c1d43692d047be85c3a6eecacf6ede83296f8b0054",
+      "remote_local_match": true
+    },
+    {
+      "path": "front.png",
+      "bytes": 155886,
+      "sha256": "2a97524b83e2b78bf888ef74df89ad1b1c03294edcea8f83c5cd7defc1da0455",
+      "remote_local_match": true
+    },
+    {
+      "path": "side.png",
+      "bytes": 177473,
+      "sha256": "7b569f757a08ec105e816257b77a5aa979ab3cec25db9e98e27071e326fe2d37",
+      "remote_local_match": true
+    },
+    {
+      "path": "back.png",
+      "bytes": 125270,
+      "sha256": "3bfceee699bdc9fd32bad85c0af6991d943a9c6fb129c48d13b7f413cd2a2304",
+      "remote_local_match": true
+    },
+    {
+      "path": "beauty.png",
+      "bytes": 238528,
+      "sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "motion-contact-sheet.png",
+      "bytes": 1598065,
+      "sha256": "8f2d2f5ba41781e17c14bc8f29e7357afc92a7d51a4163a8977a5439533f2731",
+      "remote_local_match": true
+    },
+    {
+      "path": "attack-strip.png",
+      "bytes": 328488,
+      "sha256": "d0b7476fa77104935fb6a98f292044ccde5df9ccecf25018951279c8979a28f6",
+      "remote_local_match": true
+    },
+    {
+      "path": "attack-gameplay-scale.png",
+      "bytes": 234177,
+      "sha256": "b75b99d6a626035ae23d35c4ddeb6c81163c191dcbe8ac6ed62a71fb30b07976",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/animate.py",
+      "bytes": 7157,
+      "sha256": "43718ae17765a7505257fab17772d393133b76a7f85cb21fbf5d0c3faf22abbc",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/bounds.json",
+      "bytes": 271,
+      "sha256": "761f2f0d54f6a4d7b9d8fb4f997dd930e45554bab34487b32f16667a9192570a",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/build.py",
+      "bytes": 16016,
+      "sha256": "40348f1b5aa8efdeabd0083f9efa8a09a11fddef185cc82762cd5446703957e4",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/common.py",
+      "bytes": 8655,
+      "sha256": "b260b50d8c43fe8d986fb4f937773b5899d5ba5a937c0dacbb18b6ca37fcba3b",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/delivery.py",
+      "bytes": 5182,
+      "sha256": "38010c349a02aa14eeca2360ac3feece58dfb2d34dab833dc596eaa5c7b900b7",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/inspect-attachments.py",
+      "bytes": 4036,
+      "sha256": "00c18469375e4de72652959f278d81be721a8a0d751185f6f6b6c396a7c707e7",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/inspect-three.mjs",
+      "bytes": 12676,
+      "sha256": "0a79866c5ccaa6fa12a2e909cebb5c6d519d3db6a6acc6347ef5a468ce54ff99",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/make-evidence.py",
+      "bytes": 5949,
+      "sha256": "d5427fe131d695101188c6cd251e7cc5f3bc79023242d2be41fed4f83efc8566",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/preview.mjs",
+      "bytes": 10282,
+      "sha256": "15f148e9ba26702354f852420bfd558b2b2f13e0f6326f14d47f9c58d8eb8b88",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/release.py",
+      "bytes": 2275,
+      "sha256": "e76191b13bb3897155cdf9310888581d1412d40e77b751201b2dcdce9d283787",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/rig-rest.json",
+      "bytes": 1818,
+      "sha256": "7d0959f9597c588c08af46ffd0bafe340b55476ffab05a7597e31a01d3e07a86",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/transfer.py",
+      "bytes": 2383,
+      "sha256": "444d2744251458f91ec55d1632d73be60de2060fc1868c3a83f55d8ea961115c",
+      "remote_local_match": true
+    },
+    {
+      "path": "source/validate.mjs",
+      "bytes": 2883,
+      "sha256": "993a33518a9f74ee69a46d538f4b3112c25422bf5b05c4860643374e52ae12df",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0.png",
+      "bytes": 238528,
+      "sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p3.png",
+      "bytes": 245839,
+      "sha256": "b33e56c5f7a7d68001d057b93566e2c6ef1e1b88b65ae07c3e19a2ce6edbf44b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-0p625.png",
+      "bytes": 246338,
+      "sha256": "f692377231d22d3515416eb1d37f2210debe7e5b1459956134f414c5c06fbba0",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-1.png",
+      "bytes": 238528,
+      "sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-contact.png",
+      "bytes": 161300,
+      "sha256": "a44d69c6d0f929948213bbeef16ddbc7d0e2b01a8a9ed89789c91b34e01b332c",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-recovery.png",
+      "bytes": 155886,
+      "sha256": "2a97524b83e2b78bf888ef74df89ad1b1c03294edcea8f83c5cd7defc1da0455",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-front-windup.png",
+      "bytes": 165131,
+      "sha256": "8f10e6a37440012b89cfb715ac5a222e1af2df5014cbd087aff5ec42b645840f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-gameplay-scale.png",
+      "bytes": 234177,
+      "sha256": "b75b99d6a626035ae23d35c4ddeb6c81163c191dcbe8ac6ed62a71fb30b07976",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-contact.png",
+      "bytes": 196132,
+      "sha256": "3796f5e038bf5d8dc93186055213a8865a5c4db4cdd991624568ebc9e2c236b9",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-recovery.png",
+      "bytes": 177473,
+      "sha256": "7b569f757a08ec105e816257b77a5aa979ab3cec25db9e98e27071e326fe2d37",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-side-windup.png",
+      "bytes": 205666,
+      "sha256": "7a4923336b1f82762c85108ab41557b3f578a2d04897bc0f86dfdb7405b410fd",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0.png",
+      "bytes": 54689,
+      "sha256": "658cf13442a0c88f7714bc662d53e5497c15bce9037aa1d80697ea714d0d50a8",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0p3.png",
+      "bytes": 57021,
+      "sha256": "8e0d1853947a6a5c6549cce4b62030948af51e7a7f391373164a585f18bed547",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-0p625.png",
+      "bytes": 56093,
+      "sha256": "9d88d7da709e3579e970b33cc2fa2e30daa6c3bf3274efab710fb20f82fbb173",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-small-1.png",
+      "bytes": 54689,
+      "sha256": "658cf13442a0c88f7714bc662d53e5497c15bce9037aa1d80697ea714d0d50a8",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/attack-strip.png",
+      "bytes": 328488,
+      "sha256": "d0b7476fa77104935fb6a98f292044ccde5df9ccecf25018951279c8979a28f6",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/back.png",
+      "bytes": 125270,
+      "sha256": "3bfceee699bdc9fd32bad85c0af6991d943a9c6fb129c48d13b7f413cd2a2304",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/beauty.png",
+      "bytes": 238528,
+      "sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0.png",
+      "bytes": 239308,
+      "sha256": "940a7ee8ca14d2c465023d0b90540e36e0a388c7ed2e4dce952d381d986769ba",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0p3.png",
+      "bytes": 239273,
+      "sha256": "22093169b5a27b8b3c573df6c29721ca10222167a30640fd2f6476482ac2cbfb",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-0p625.png",
+      "bytes": 237515,
+      "sha256": "737e1e506b47ac75c21331a57e0b888fd7ec3952c3c6e96aaea85e3dd2fe4a4f",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-1.png",
+      "bytes": 237407,
+      "sha256": "c7e8e770cde63d2c018b322e8a4d8b63d645e854dbc6927f54a2263f58309764",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-beauty-held.png",
+      "bytes": 237407,
+      "sha256": "c7e8e770cde63d2c018b322e8a4d8b63d645e854dbc6927f54a2263f58309764",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-front-held.png",
+      "bytes": 166691,
+      "sha256": "aa3e3862f6c2b38c5183a83f73dc2dcff5a2fbc1d80294112244dd0342f1a9d8",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-side-held.png",
+      "bytes": 193926,
+      "sha256": "3ea899a941866d2a4cf2a636ce79944d487f4d8d93f509c5d7176a47e9c90ef3",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-0.png",
+      "bytes": 54861,
+      "sha256": "40872fcf55da24ad40ea1ac8c40b8ac55f65597e65ca5133021b46f464f7a467",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-0p3.png",
+      "bytes": 54600,
+      "sha256": "eef41c643acf364b007734807369cf037000af4526117a2099b17d97af943859",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-0p625.png",
+      "bytes": 54579,
+      "sha256": "5cf0c19d6f401bb3ebe2dab77d9051a327cff1261eb3646666782c435864db96",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/defeat-small-1.png",
+      "bytes": 54536,
+      "sha256": "a2c2f91923a80edf3ebfac07f8e3b0687ba7973731c834345571256061fafe97",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/front.png",
+      "bytes": 155886,
+      "sha256": "2a97524b83e2b78bf888ef74df89ad1b1c03294edcea8f83c5cd7defc1da0455",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0.png",
+      "bytes": 238650,
+      "sha256": "22edeb02248aab9e86f202fe5637345146fd89e6ed31f5cf3ed22bac29e45d37",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0p3.png",
+      "bytes": 237587,
+      "sha256": "762d6c78bdefbcf4e2702def15f47887b4d6a978954f429c3b5fc58335363569",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-0p625.png",
+      "bytes": 242472,
+      "sha256": "205ab190fe0dcf219dffb10699268e0a3e8f4ead76b5138c121201d490b859d5",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-1.png",
+      "bytes": 238528,
+      "sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-0.png",
+      "bytes": 54690,
+      "sha256": "deb65306cf9a1737b55af0f068bad4e41d433651ccceaa704af8a35ed3c13351",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-0p3.png",
+      "bytes": 54610,
+      "sha256": "a67ff1d776a929b70e2a66685eb804be0905df5d6ad047f09f42f2945959e314",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-0p625.png",
+      "bytes": 55766,
+      "sha256": "18276980dd77d2e7faa9123e9b7eb94f7b18446f069a452ea82dbe647a4eb6cc",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/hit-small-1.png",
+      "bytes": 54689,
+      "sha256": "658cf13442a0c88f7714bc662d53e5497c15bce9037aa1d80697ea714d0d50a8",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0.png",
+      "bytes": 238528,
+      "sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0p3.png",
+      "bytes": 241821,
+      "sha256": "9b0db7613be8ad6c1084903e03efaa45734d36af104abdb19b6a7671473c5b48",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-0p625.png",
+      "bytes": 241054,
+      "sha256": "c5560a7b29aadbbe3ec54a874ca336b94e7d57526a7c1fae5dc9919f73adf9dc",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-1.png",
+      "bytes": 238528,
+      "sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0.png",
+      "bytes": 54689,
+      "sha256": "658cf13442a0c88f7714bc662d53e5497c15bce9037aa1d80697ea714d0d50a8",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0p3.png",
+      "bytes": 55467,
+      "sha256": "4d18db7a845fd4d6a87623c4a082679c8158814530c7d7307b98501f9dbdb04b",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-0p625.png",
+      "bytes": 55240,
+      "sha256": "bf38295e79ba8af59131df223c4ace719c22a6b780495ddc45635ce915ce44df",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/idle-small-1.png",
+      "bytes": 54689,
+      "sha256": "658cf13442a0c88f7714bc662d53e5497c15bce9037aa1d80697ea714d0d50a8",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/motion-contact-sheet.png",
+      "bytes": 1598065,
+      "sha256": "8f2d2f5ba41781e17c14bc8f29e7357afc92a7d51a4163a8977a5439533f2731",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0.png",
+      "bytes": 238528,
+      "sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0p3.png",
+      "bytes": 243651,
+      "sha256": "431da07d4651145778a226c9ea50e3aad34eec88c19b8c5b30d31a7e2740a672",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-0p625.png",
+      "bytes": 239777,
+      "sha256": "eedd84adb39a19600983919b031f52fd9da01618bbcdf6063956dcf478537ba4",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-1.png",
+      "bytes": 238528,
+      "sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0.png",
+      "bytes": 54689,
+      "sha256": "658cf13442a0c88f7714bc662d53e5497c15bce9037aa1d80697ea714d0d50a8",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0p3.png",
+      "bytes": 55890,
+      "sha256": "56c5f8a9152740e8a39aa9865cc3e036593aa512b03e0cc07e6243a784c3f355",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-0p625.png",
+      "bytes": 54817,
+      "sha256": "50db7f69f4eb8747a56c3843fffa205d4b37001a57259fb36a3ac0d19c3e10e6",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/move-small-1.png",
+      "bytes": 54689,
+      "sha256": "658cf13442a0c88f7714bc662d53e5497c15bce9037aa1d80697ea714d0d50a8",
+      "remote_local_match": true
+    },
+    {
+      "path": "final-preview/side.png",
+      "bytes": 177473,
+      "sha256": "7b569f757a08ec105e816257b77a5aa979ab3cec25db9e98e27071e326fe2d37",
+      "remote_local_match": true
+    }
+  ],
+  "all_remote_local_hashes_match": true,
+  "verification_method": "MCP SHA-256 for source/text extensions; HTTP byte roundtrip for media, JSON and masters.",
+  "excluded_checkpoints": [
+    "early-preview/",
+    "motion-preview/",
+    "defeat-preview/",
+    "pre-clearance-preview/",
+    "final-intake/",
+    "pre-final-bounds-run.json",
+    "bounds-run.json",
+    "final-bounds-run.json"
+  ],
+  "manifest_self_hash": "Excluded to avoid recursive hashing."
+}

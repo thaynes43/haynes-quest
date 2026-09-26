@@ -1,0 +1,42 @@
+{
+  "work_order": "WO111",
+  "asset_id": "honk-bus",
+  "version": "v001",
+  "created_utc": "2026-09-26T01:34:41.017520+00:00",
+  "glb_sha256": "0ea6f80966e4e11e7ec6251af9c371ad76f6a1a8f90aa67da27b7d5612b0a2ed",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Fresh native GPT-6 Astra subagent at max",
+  "authoring_tool": "Blender MCP execute_blender_code on the dedicated authoring service",
+  "blender_version": "4.5.13 LTS",
+  "source_concept": {
+    "file": "concept.png",
+    "sha256": "2749960b3acc132f8ee04828c2eb052194c9ef8af2f2053ade1b2b992ead5948",
+    "source_record": "source.json",
+    "selection": "Driving Astra selected original generated concept; no franchise source media."
+  },
+  "source_scripts": {
+    "animate.py": "43718ae17765a7505257fab17772d393133b76a7f85cb21fbf5d0c3faf22abbc",
+    "bounds.json": "761f2f0d54f6a4d7b9d8fb4f997dd930e45554bab34487b32f16667a9192570a",
+    "build.py": "40348f1b5aa8efdeabd0083f9efa8a09a11fddef185cc82762cd5446703957e4",
+    "common.py": "b260b50d8c43fe8d986fb4f937773b5899d5ba5a937c0dacbb18b6ca37fcba3b",
+    "delivery.py": "38010c349a02aa14eeca2360ac3feece58dfb2d34dab833dc596eaa5c7b900b7",
+    "inspect-attachments.py": "00c18469375e4de72652959f278d81be721a8a0d751185f6f6b6c396a7c707e7",
+    "inspect-three.mjs": "0a79866c5ccaa6fa12a2e909cebb5c6d519d3db6a6acc6347ef5a468ce54ff99",
+    "make-evidence.py": "d5427fe131d695101188c6cd251e7cc5f3bc79023242d2be41fed4f83efc8566",
+    "preview.mjs": "15f148e9ba26702354f852420bfd558b2b2f13e0f6326f14d47f9c58d8eb8b88",
+    "release.py": "e76191b13bb3897155cdf9310888581d1412d40e77b751201b2dcdce9d283787",
+    "transfer.py": "444d2744251458f91ec55d1632d73be60de2060fc1868c3a83f55d8ea961115c",
+    "validate.mjs": "993a33518a9f74ee69a46d538f4b3112c25422bf5b05c4860643374e52ae12df"
+  },
+  "original_work": [
+    "Original bus geometry, roof trumpet, face, suspension and all five clips.",
+    "Original deterministic 1024 palette atlas generated in Blender Python; no external texture.",
+    "Only tested mesh, UV, transfer and validation utilities adapted from prior authored characters."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise models, faces, logos, costumes, recordings or textures."
+  ],
+  "rights_note": "Original generated concept and authored study. Generated media is not automatically relicensed under the repository code license; no exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. Lead owns catalog publication and runtime integration; owner exact-version and physical-device review remain open."
+}

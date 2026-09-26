@@ -1,0 +1,1367 @@
+{
+  "asset_id": "honk-bus",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "gpt-6-astra max",
+  "blender_version": "4.5.13 LTS",
+  "source_concept_sha256": "2749960b3acc132f8ee04828c2eb052194c9ef8af2f2053ade1b2b992ead5948",
+  "height_m": 2.3,
+  "construction_scale_factor": 0.9079102439625687,
+  "construction_ground_shift": -0.012000000104308128,
+  "construction_forward_center": 0.10849994421005249,
+  "triangles": 14642,
+  "vertices": 7713,
+  "material_count": 2,
+  "bone_count": 11,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic soft painted pigment; no external textures."
+  },
+  "parts": [
+    {
+      "name": "Continuous honey yellow rounded bus body",
+      "triangles": 188,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Teal lower wrap stripe",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Warm ochre underbody sill",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Plum chassis below the body",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Opaque teal side window -1 0",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Opaque teal side window -1 1",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Opaque teal side window -1 2",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Opaque teal side window -1 3",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Teal toy step -1",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Lower access panel -1",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Molded side door seam -1",
+      "triangles": 26,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Opaque teal side window 1 0",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Opaque teal side window 1 1",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Opaque teal side window 1 2",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Opaque teal side window 1 3",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Teal toy step 1",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Lower access panel 1",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Molded side door seam 1",
+      "triangles": 26,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Teal windshield surround -1",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Huge cream windshield eye -1",
+      "triangles": 316,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Dark friendly pupil -1",
+      "triangles": 156,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Warm eye catchlight -1",
+      "triangles": 92,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Broad painted grumpy upper eyelid -1",
+      "triangles": 108,
+      "bone_groups": [
+        "lid_-1"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Short rounded mirror arm -1",
+      "triangles": 56,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Chunky yellow side mirror -1",
+      "triangles": 156,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Teal windshield surround 1",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Huge cream windshield eye 1",
+      "triangles": 316,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Dark friendly pupil 1",
+      "triangles": 156,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Warm eye catchlight 1",
+      "triangles": 92,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Broad painted grumpy upper eyelid 1",
+      "triangles": 108,
+      "bone_groups": [
+        "lid_1"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Short rounded mirror arm 1",
+      "triangles": 56,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Chunky yellow side mirror 1",
+      "triangles": 156,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Rounded honey hood",
+      "triangles": 436,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Ochre headlamp rim -1",
+      "triangles": 212,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Amber cheek headlight -1",
+      "triangles": 212,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 14
+    },
+    {
+      "name": "Headlight warm glint -1",
+      "triangles": 76,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Ochre headlamp rim 1",
+      "triangles": 212,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Amber cheek headlight 1",
+      "triangles": 212,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 14
+    },
+    {
+      "name": "Headlight warm glint 1",
+      "triangles": 76,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Inset warm smile shadow",
+      "triangles": 260,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "One huge creamy toothy grin",
+      "triangles": 260,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Soft ochre tooth division -0.42",
+      "triangles": 46,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Soft ochre tooth division -0.22",
+      "triangles": 46,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Soft ochre tooth division 0",
+      "triangles": 46,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Soft ochre tooth division 0.22",
+      "triangles": 46,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Soft ochre tooth division 0.42",
+      "triangles": 46,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Oversized cream smile bumper",
+      "triangles": 460,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Lower teal chin behind bumper",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Broad teal sun visor",
+      "triangles": 108,
+      "bone_groups": [
+        "visor"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Visor plum fastener -1",
+      "triangles": 76,
+      "bone_groups": [
+        "visor"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Visor plum fastener 1",
+      "triangles": 76,
+      "bone_groups": [
+        "visor"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Opaque rear teal window",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Rear honey door",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Rear center molded door seam",
+      "triangles": 26,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft teal rear bumper",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Rear lamp ochre surround -1",
+      "triangles": 92,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Muted red rear lamp -1",
+      "triangles": 92,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Rear lamp ochre surround 1",
+      "triangles": 92,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Muted red rear lamp 1",
+      "triangles": 92,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Plum rubber tire wheel_front_L",
+      "triangles": 444,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 0",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 1",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 2",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 3",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 4",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 5",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 6",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 7",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 8",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 9",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 10",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_L 11",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "hub surround wheel_front_L",
+      "triangles": 164,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "ochre hub wheel_front_L",
+      "triangles": 164,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Soft hub dimple wheel_front_L 0",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_front_L 1",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_front_L 2",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_front_L 3",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_front_L"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Stout axle attachment wheel_front_L",
+      "triangles": 28,
+      "bone_groups": [
+        "root"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Continuous suspension strut wheel_front_L",
+      "triangles": 16,
+      "bone_groups": [
+        "root",
+        "body"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Teal rounded wheel arch wheel_front_L",
+      "triangles": 196,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Plum rubber tire wheel_rear_L",
+      "triangles": 444,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 0",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 1",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 2",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 3",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 4",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 5",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 6",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 7",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 8",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 9",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 10",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_L 11",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "hub surround wheel_rear_L",
+      "triangles": 164,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "ochre hub wheel_rear_L",
+      "triangles": 164,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Soft hub dimple wheel_rear_L 0",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_rear_L 1",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_rear_L 2",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_rear_L 3",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_rear_L"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Stout axle attachment wheel_rear_L",
+      "triangles": 28,
+      "bone_groups": [
+        "root"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Continuous suspension strut wheel_rear_L",
+      "triangles": 16,
+      "bone_groups": [
+        "root",
+        "body"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Teal rounded wheel arch wheel_rear_L",
+      "triangles": 196,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Plum rubber tire wheel_front_R",
+      "triangles": 444,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 0",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 1",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 2",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 3",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 4",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 5",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 6",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 7",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 8",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 9",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 10",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_front_R 11",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "hub surround wheel_front_R",
+      "triangles": 164,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "ochre hub wheel_front_R",
+      "triangles": 164,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Soft hub dimple wheel_front_R 0",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_front_R 1",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_front_R 2",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_front_R 3",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_front_R"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Stout axle attachment wheel_front_R",
+      "triangles": 28,
+      "bone_groups": [
+        "root"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Continuous suspension strut wheel_front_R",
+      "triangles": 16,
+      "bone_groups": [
+        "root",
+        "body"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Teal rounded wheel arch wheel_front_R",
+      "triangles": 196,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Plum rubber tire wheel_rear_R",
+      "triangles": 444,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 0",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 1",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 2",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 3",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 4",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 5",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 6",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 7",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 8",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 9",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 10",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Rounded tire tread wheel_rear_R 11",
+      "triangles": 20,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "hub surround wheel_rear_R",
+      "triangles": 164,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "ochre hub wheel_rear_R",
+      "triangles": 164,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Soft hub dimple wheel_rear_R 0",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_rear_R 1",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_rear_R 2",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Soft hub dimple wheel_rear_R 3",
+      "triangles": 12,
+      "bone_groups": [
+        "wheel_rear_R"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Stout axle attachment wheel_rear_R",
+      "triangles": 28,
+      "bone_groups": [
+        "root"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Continuous suspension strut wheel_rear_R",
+      "triangles": 16,
+      "bone_groups": [
+        "root",
+        "body"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Teal rounded wheel arch wheel_rear_R",
+      "triangles": 196,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Horn pedestal fixed roof shoe",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Horn spherical hinge",
+      "triangles": 136,
+      "bone_groups": [
+        "horn"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Continuous extending trumpet support",
+      "triangles": 50,
+      "bone_groups": [
+        "body",
+        "horn_lift"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Pivoted trumpet upper neck",
+      "triangles": 32,
+      "bone_groups": [
+        "horn"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Single plum squeeze bulb",
+      "triangles": 316,
+      "bone_groups": [
+        "horn"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Continuous flared honey trumpet",
+      "triangles": 336,
+      "bone_groups": [
+        "horn"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Warm hollow trumpet interior",
+      "triangles": 336,
+      "bone_groups": [
+        "horn"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Trumpet bell rolled broad rim",
+      "triangles": 224,
+      "bone_groups": [
+        "horn"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Shadow at deep horn throat",
+      "triangles": 108,
+      "bone_groups": [
+        "horn"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Ochre bulb attachment collar",
+      "triangles": 220,
+      "bone_groups": [
+        "horn"
+      ],
+      "atlas_tile": 7
+    }
+  ],
+  "notes": [
+    "Original chunky nursery bus; no franchise face, logo, lettering, passengers or borrowed media.",
+    "Opaque painted windows and eyes. One hollow roof trumpet with plum bulb and credible hinge mount.",
+    "Four wheels fixed at the floor; body suspension and horn carry the in-place acting.",
+    "Actual extrema normalized to 2.3m; X and forward bounds centered at identity floor root."
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.2,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_warning_s": [
+        0.6,
+        1.05
+      ],
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": 1.656
+    }
+  ],
+  "files": {
+    "honk-bus.blend": {
+      "bytes": 1072402,
+      "sha256": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00"
+    },
+    "honk-bus.glb": {
+      "bytes": 1105872,
+      "sha256": "0ea6f80966e4e11e7ec6251af9c371ad76f6a1a8f90aa67da27b7d5612b0a2ed"
+    },
+    "pigment.png": {
+      "bytes": 229570,
+      "sha256": "b32c22fbf648cc1c67ec675658b95feef1b34c211d3eebba866c4678cfda6332"
+    }
+  },
+  "lead_corrections": [
+    "Removed thin roof-side rods whose ends projected at visor/corners.",
+    "Teal fenders have thick body-seated sections and terminate within the body side / lower stripe.",
+    "Wheel treads follow constant-radius arcs to keep rotating tires above the floor.",
+    "The continuous horn support extends only for defeat, allowing a 0.50 rad sheepish downward bell tilt without roof penetration.",
+    "Defeat eyelids lower 0.07 construction metres and rotate 0.36 rad into a sheepish expression; other clip acting is unchanged."
+  ]
+}

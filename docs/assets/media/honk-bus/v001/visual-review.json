@@ -1,0 +1,63 @@
+{
+  "work_order": "WO111",
+  "asset_id": "honk-bus",
+  "version": "v001",
+  "created_utc": "2026-09-26T01:34:41.017520+00:00",
+  "glb_sha256": "0ea6f80966e4e11e7ec6251af9c371ad76f6a1a8f90aa67da27b7d5612b0a2ed",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Front, side, back, beauty; five-clip normal/small motion sheets; attack front/side warning-contact-recovery; held defeat front/side/beauty inspected.",
+  "coordinator_review": "Lead accepted the final exact candidate after viewing rest beauty and held-defeat front, side and three-quarter, following accepted fender/trim and attack corrections. This is coordinator intake, not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "construction_choices": [
+    "Preserved the chosen short chunky bus proportions rather than the prompt nominal 3.5m length.",
+    "Opaque windshield eyes and side/back windows, broad cream grin, amber headlights, plum tires and squeeze bulb.",
+    "Rounded seated fenders and no thin projecting roof-seam rods.",
+    "Fixed grounded axles and continuously connected suspension struts keep wheels attached through the body bounce.",
+    "Defeat lowers and rotates the brows; the continuous roof support extends as the trumpet tilts down 0.50 rad.",
+    "The first stronger-defeat audit found 7.16mm conservative fender/tire overlap; reducing only the stall sink removed it, with 7.95mm final clearance."
+  ],
+  "dimensions_width_height_depth_m": [
+    2.0972727408510314,
+    2.2999998991805435,
+    2.4649763107299805
+  ],
+  "animated_bounds_y_up": {
+    "min": [
+      -1.0506650228300283,
+      -8.975260128803089e-09,
+      -1.2943265019265668
+    ],
+    "max": [
+      1.05066502373566,
+      2.541126003159017,
+      1.260467453923704
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -1.056,
+      -0.006,
+      -1.3
+    ],
+    "max": [
+      1.056,
+      2.547,
+      1.266
+    ]
+  },
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "measured_stable_warning_seconds": [
+    0.6,
+    1.05
+  ],
+  "defeat_held_from_seconds": 1.666667,
+  "minimum_horn_roof_clearance_m": 0.03161387776150981,
+  "minimum_fender_tire_clearance_m": 0.007953026077342273,
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "Attachment audit supplements the exact GLB all-vertex checks; it does not claim universal triangle collision testing.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}

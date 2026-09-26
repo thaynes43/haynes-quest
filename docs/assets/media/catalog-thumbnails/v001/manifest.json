@@ -227,6 +227,20 @@
       "sha256": "21b996d271a2d565cf89896760a3a1b3eea21765b58e1f4136d4c94872936c00"
     },
     {
+      "source": "docs/assets/media/honk-bus/v001/beauty.png",
+      "source_sha256": "88dd97b8ee5267b788ae4238c5ff3b00f31e4f072ab210a90f7e0e77a947ef4e",
+      "path": "docs/assets/media/catalog-thumbnails/v001/0bd6956a65fbea8c.webp",
+      "bytes": 11528,
+      "sha256": "e59c4af97bac69fb14f51d86dc7fca2412b6fae3f87e91f9b19a0987b72479b3"
+    },
+    {
+      "source": "docs/assets/media/honk-bus/v001/concept.png",
+      "source_sha256": "2749960b3acc132f8ee04828c2eb052194c9ef8af2f2053ade1b2b992ead5948",
+      "path": "docs/assets/media/catalog-thumbnails/v001/c7dd7b10f7951bca.webp",
+      "bytes": 19166,
+      "sha256": "466c17e4b666486cb7057c56f69dd31d2b9f7aa4fa5fab32929faefa907acaba"
+    },
+    {
       "source": "docs/assets/media/jackrabbit-drummer/v001/beauty.png",
       "source_sha256": "886f370ce3c8b27406435f8e354834c8aae82eb35144051137c2e7c8890aee02",
       "path": "docs/assets/media/catalog-thumbnails/v001/7b9d7f82100c5daa.webp",
