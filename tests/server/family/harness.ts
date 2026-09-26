@@ -21,6 +21,7 @@ import {
   TEST_CHILD_B,
   syntheticLibrary,
   type FakeAsset,
+  type FakePerson,
 } from './fake-immich.js';
 
 export const HARNESS_SECRET = 'synthetic-subject-id-key-with-at-least-32-bytes';
@@ -65,6 +66,8 @@ export interface FamilyHarness {
 
 export function familyHarness(options: {
   assets?: FakeAsset[];
+  /** Synthetic people added after the two standard test children. */
+  people?: FakePerson[];
   withImmich?: boolean;
   questStore?: InMemoryQuestStore;
 } = {}): FamilyHarness {
@@ -73,6 +76,7 @@ export function familyHarness(options: {
   const immich = new FakeImmich([
     { id: TEST_CHILD_B.personId, name: TEST_CHILD_B.name, birthDate: TEST_CHILD_B.birthDate },
     { id: TEST_CHILD_A.personId, name: TEST_CHILD_A.name, birthDate: TEST_CHILD_A.birthDate },
+    ...(options.people ?? []),
   ], assets, clock);
   const library = new ImmichPhotoSource(immich, HARNESS_SECRET, 'test-connection', {}, new SharpImageSanitizer());
   const questStore = options.questStore ?? new InMemoryQuestStore();

@@ -71,6 +71,54 @@ if (requested.length === 0) {
     }
   }
 
+  // Family world templates (PLAN-019): every checked-in
+  // `src/shared/levels/family-world-<key>-v<N>.json` must replay
+  // byte-identically from its generator's command history,
+  // `scripts/levels/family-world-<key>.commands.json` for v1 and
+  // `family-world-<key>-v<N>.commands.json` after that. The replay starts from
+  // `createWorldEditorProject` with the template's own id and catalog version.
+  const levelsDirectory = fileURLToPath(new URL("../../src/shared/levels/", import.meta.url));
+  const familyWorlds = (await readdir(levelsDirectory))
+    .filter((file) => /^family-world-[a-z0-9-]+-v[0-9]+\.json$/.test(file))
+    .sort();
+  for (const file of familyWorlds) {
+    const projectPath = join(levelsDirectory, file);
+    const [, key, version] = /^(family-world-[a-z0-9-]+)-(v[0-9]+)\.json$/.exec(file)!;
+    const commandFile = version === "v1" ? `${key}.commands.json` : `${key}-${version}.commands.json`;
+    try {
+      const source = await readFile(projectPath, "utf8");
+      const { project, levels } = resolveLevelEditorProject(JSON.parse(source));
+      const history = JSON.parse(
+        await readFile(new URL(`./${commandFile}`, import.meta.url), "utf8"),
+      ) as unknown;
+      const batches = (Array.isArray(history) ? history : [history]) as Parameters<
+        typeof applyLevelEditorCommands
+      >[1][];
+      let rebuilt = createWorldEditorProject({
+        projectId: project.projectId,
+        catalogVersion: project.catalogVersion,
+      });
+      for (const [index, batch] of batches.entries()) {
+        const result = applyLevelEditorCommands(rebuilt, batch);
+        if (!result.ok)
+          throw new Error(
+            `Command batch ${index} no longer builds: ${result.issues.map((entry) => entry.code).join(", ")}`,
+          );
+        rebuilt = result.project as typeof rebuilt;
+      }
+      if (serializeLevelEditorProject(rebuilt) !== source)
+        throw new Error(`${file} differs from its shared editor commands (${commandFile})`);
+      console.log(
+        `${projectPath}: valid ${project.projectId}; ${project.chapters.length} chapters, ${Object.keys(levels).length} resolved routes; command history matches`,
+      );
+    } catch (error) {
+      console.error(
+        `${projectPath}: ${error instanceof Error ? error.message : "Validation failed"}`,
+      );
+      process.exitCode = 1;
+    }
+  }
+
   // Generated example worlds (DESIGN-025): every `examples/<name>.project.json`
   // with a sibling `<name>.commands.json` must replay byte-identically. The
   // replay starts from `createWorldEditorProject` with the project's own id

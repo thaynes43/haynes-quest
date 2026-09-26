@@ -20,6 +20,13 @@ export const TEST_CHILD_A = {
   birthDate: '2016-02-29',
 } as const;
 
+/** An older synthetic child: eleven on the test day, so World A (ages 0 -> 11) fits. */
+export const TEST_CHILD_C = {
+  personId: '00000000-0000-4000-8000-00000000000c',
+  name: 'Test Child C',
+  birthDate: '2015-03-10',
+} as const;
+
 export const TEST_ADULT = '00000000-0000-4000-8000-0000000000ad';
 
 export interface FakePerson {
