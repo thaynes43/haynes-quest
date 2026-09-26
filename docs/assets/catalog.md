@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. Arcade and toybox kits remain studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**41 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**42 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -43,6 +43,24 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D boss · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/5aac31e47d209b4d.webp" alt="Selected original cat captain construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+</div>
+
+### World B · Chapter 1
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="honk-bus" markdown="1">
+
+[![Exact Honk Bus model with a honey-yellow body, teal visor, wide cream grin, plum tires and a roof trumpet](media/catalog-thumbnails/v001/0bd6956a65fbea8c.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/honk-bus/v001.md)
+
+### [Honk Bus](reviews/honk-bus/v001.md)
+
+<span class="catalog-state">3D boss · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/c7dd7b10f7951bca.webp" alt="Selected original nursery bus construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
 </div>
 

@@ -1,0 +1,93 @@
+{
+  "asset_id": "honk-bus",
+  "version": "v001",
+  "glb_sha256": "0ea6f80966e4e11e7ec6251af9c371ad76f6a1a8f90aa67da27b7d5612b0a2ed",
+  "method": "Same authored mesh vertices and baked source actions as exact GLB; 60 Hz. Fender vertices are tested against a conservative full tire cylinder. All four continuous suspension-strut ends and both extending horn-support ends are tested against their actual rig attachments. This supplements exact exported all-vertex floor and horn/roof checks, and is not a universal triangle collision proof.",
+  "clips": {
+    "idle": {
+      "samples": 145,
+      "minimum_fender_wheel_cylinder_clearance_m": 0.07382007449418115,
+      "minimum_location": {
+        "part": "Teal rounded wheel arch wheel_front_R",
+        "frame": 24,
+        "time_s": 0.4,
+        "point": [
+          0.7520613074302673,
+          0.1832730919122696,
+          0.4710630178451538
+        ]
+      },
+      "maximum_suspension_endpoint_gap_m": 1.97686242482388e-07,
+      "maximum_extending_horn_support_endpoint_gap_m": 2.4027493702202326e-07
+    },
+    "move": {
+      "samples": 73,
+      "minimum_fender_wheel_cylinder_clearance_m": 0.07137114008887613,
+      "minimum_location": {
+        "part": "Teal rounded wheel arch wheel_rear_R",
+        "frame": 5,
+        "time_s": 0.08333333333333333,
+        "point": [
+          0.7616677284240723,
+          -1.0413511991500854,
+          0.6757250428199768
+        ]
+      },
+      "maximum_suspension_endpoint_gap_m": 1.7881393432617188e-07,
+      "maximum_extending_horn_support_endpoint_gap_m": 2.4027400458748785e-07
+    },
+    "attack": {
+      "samples": 121,
+      "minimum_fender_wheel_cylinder_clearance_m": 0.018879761703457898,
+      "minimum_location": {
+        "part": "Teal rounded wheel arch wheel_front_L",
+        "frame": 75,
+        "time_s": 1.25,
+        "point": [
+          -0.7544733881950378,
+          0.2817520797252655,
+          0.5509989857673645
+        ]
+      },
+      "maximum_suspension_endpoint_gap_m": 1.3328003749250113e-07,
+      "maximum_extending_horn_support_endpoint_gap_m": 3.577054704474748e-07
+    },
+    "hit": {
+      "samples": 43,
+      "minimum_fender_wheel_cylinder_clearance_m": 0.02663823530699655,
+      "minimum_location": {
+        "part": "Teal rounded wheel arch wheel_rear_L",
+        "frame": 15,
+        "time_s": 0.25,
+        "point": [
+          -0.768473207950592,
+          -0.8967466354370117,
+          0.7025611400604248
+        ]
+      },
+      "maximum_suspension_endpoint_gap_m": 1.7881393432617188e-07,
+      "maximum_extending_horn_support_endpoint_gap_m": 3.5763271925785813e-07
+    },
+    "defeat": {
+      "samples": 145,
+      "minimum_fender_wheel_cylinder_clearance_m": 0.007953026077342273,
+      "minimum_location": {
+        "part": "Teal rounded wheel arch wheel_front_R",
+        "frame": 100,
+        "time_s": 1.6666666666666667,
+        "point": [
+          0.7851707935333252,
+          0.764997124671936,
+          0.6526312828063965
+        ]
+      },
+      "maximum_suspension_endpoint_gap_m": 2.2302015940987714e-07,
+      "maximum_extending_horn_support_endpoint_gap_m": 3.5793822487809974e-07
+    }
+  },
+  "checks": {
+    "fender_tire_clearance": true,
+    "all_suspension_ends_attached": true,
+    "extending_horn_support_attached": true
+  }
+}

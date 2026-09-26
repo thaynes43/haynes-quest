@@ -1,0 +1,29 @@
+{
+  "asset_id": "honk-bus",
+  "version": "v001",
+  "work_order": "WO111",
+  "created_utc": "2026-09-26T00:42:48.822457+00:00",
+  "kind": "original-generated-concept",
+  "generator": "OpenAI built-in image_gen tool",
+  "authoring_agent": "Driving GPT-6 Astra / max",
+  "seed": null,
+  "reference_files": [],
+  "art_direction": "docs/assets/art-direction.md; storybook-v001 material and warmth references inspected by lead",
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "selected_by": "Driving Astra",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "selection_notes": "Selected shape, face, palette and horn. The side view is a shorter stylized proportion than the prose dimensions; preserve its chunky shape and report actual exported bounds. Opaque windshield, no occupants or audio.",
+  "files": {
+    "concept.png": {
+      "sha256": "2749960b3acc132f8ee04828c2eb052194c9ef8af2f2053ade1b2b992ead5948",
+      "bytes": 2006583
+    },
+    "prompt.txt": {
+      "sha256": "491400d6847113550d66b8281879aa4b6a06afe03baa3d0bcaab27bc2314b4f0",
+      "bytes": 2318
+    }
+  },
+  "rights_note": "Original generated study. No claim of exclusive rights or franchise endorsement; generated media is not automatically relicensed under the repository code license."
+}

@@ -1,0 +1,71 @@
+{
+  "work_order": "WO111",
+  "asset_id": "honk-bus",
+  "version": "v001",
+  "created_utc": "2026-09-26T01:34:41.017520+00:00",
+  "glb_sha256": "0ea6f80966e4e11e7ec6251af9c371ad76f6a1a8f90aa67da27b7d5612b0a2ed",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "blender": {
+    "version": "4.5.13 LTS",
+    "units": "METRIC",
+    "unit_scale": 1,
+    "authoring_axes": "+Z up / +Y forward",
+    "frames_per_second": 60,
+    "animation_mode": "NLA_TRACKS",
+    "skin": "One skin, attached rigid parts plus two-weight continuous horn support",
+    "root": "Identity, fixed floor-centered root; no root animation"
+  },
+  "export": {
+    "format": "GLB",
+    "axes": "+Y up / -Z forward",
+    "selection_only": true,
+    "materials": 2,
+    "texture": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "embedded": true
+    },
+    "no_external_resources": true,
+    "no_required_extensions": true,
+    "compression": "None; no Draco, Meshopt or KTX2 requirement"
+  },
+  "preview": {
+    "source": "Exact delivered GLB via Three.js GLTFLoader",
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport_px": [
+      800,
+      900
+    ],
+    "orthographic_camera": {
+      "left": -1.6,
+      "right": 1.6,
+      "top": 1.8,
+      "bottom": -1.8,
+      "target": [
+        0,
+        1.17,
+        0
+      ],
+      "beauty_position": [
+        3.1,
+        2.01,
+        -6
+      ]
+    },
+    "lighting": "Warm hemisphere plus three directional lights; ACES tone mapping exposure 1.0",
+    "scales": [
+      1,
+      0.35
+    ],
+    "no_physical_device_claim": true
+  },
+  "checks": {
+    "khronos_zero_errors_warnings": true,
+    "exact_three_adapter_all_checks": true,
+    "chromium_all_clips_normal_small": true,
+    "source_attachment_checks": true
+  }
+}
