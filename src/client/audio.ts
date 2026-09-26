@@ -68,6 +68,119 @@ export const playtestCues = {
 
 export type PlaytestCueId = keyof typeof playtestCues;
 
+/**
+ * DESIGN-008's eight family world v001 candidates, played only on family world
+ * levels (an `authored-level-v4` route or a family plan). Nobody has listened
+ * to them yet and Tom's exact-version review is pending; the review pages
+ * record the measurements the trims came from.
+ *
+ * Gains follow the playtest rule above: at the 0.8 master, each one-shot peaks
+ * between -12.5 and -10.0 dBFS. The glide wind loops under everything else, so
+ * it peaks near -16 dBFS instead. Priorities keep the reward sparkle with the
+ * memory cues, warnings (crack, chime, honk, poof) and the wind above the
+ * movement blips, and the whoosh and boing with the jump sounds.
+ */
+export const familyWorldCues = {
+  "bounce-pad-boing": {
+    assetId: "bounce-pad-boing",
+    version: "v001",
+    path: "/studio/assets/media/bounce-pad-boing/v001/cue.wav",
+    sha256: "ccc7dc45d2fadc86f9ed2405588e217d0f6b399de823223e992df07559e151b4",
+    durationSeconds: 0.6,
+    loop: false,
+    gain: 1.1,
+    priority: 1,
+    maxInstances: 1,
+  },
+  "lift-arrival-chime": {
+    assetId: "lift-arrival-chime",
+    version: "v001",
+    path: "/studio/assets/media/lift-arrival-chime/v001/cue.wav",
+    sha256: "cc3bd16ca66ac18f1d33586de4771a069e611ac28de1e8650d1d21a48d71343e",
+    durationSeconds: 0.8,
+    loop: false,
+    gain: 1.1,
+    priority: 2,
+    maxInstances: 1,
+  },
+  "crumble-crack": {
+    assetId: "crumble-crack",
+    version: "v001",
+    path: "/studio/assets/media/crumble-crack/v001/cue.wav",
+    sha256: "2ac76e286d5ea86d6f9945242325328146bf0728a8a9c9fd84faaf74caf6c714",
+    durationSeconds: 0.7,
+    loop: false,
+    gain: 1.4,
+    priority: 2,
+    maxInstances: 2,
+  },
+  "double-jump-whoosh": {
+    assetId: "double-jump-whoosh",
+    version: "v001",
+    path: "/studio/assets/media/double-jump-whoosh/v001/cue.wav",
+    sha256: "bfef347311b767f83405e2dde0c32461a9c1c282e56d3ce649886056ab91ac87",
+    durationSeconds: 0.45,
+    loop: false,
+    gain: 1.3,
+    priority: 1,
+    maxInstances: 1,
+  },
+  "glide-wind": {
+    assetId: "glide-wind",
+    version: "v001",
+    path: "/studio/assets/media/glide-wind/v001/cue.wav",
+    sha256: "771b0b48ed90995151f5702dbe6bfc629055a845a1fee0d58216dbdb80c3d046",
+    durationSeconds: 1.6,
+    loop: true,
+    gain: 1.6,
+    priority: 2,
+    maxInstances: 1,
+  },
+  "golden-ticket-sparkle": {
+    assetId: "golden-ticket-sparkle",
+    version: "v001",
+    path: "/studio/assets/media/golden-ticket-sparkle/v001/cue.wav",
+    sha256: "6552e29f39594831ae26c43ed957ba8e47b53074ba762d50c7e1ab2d18d1ad60",
+    durationSeconds: 1,
+    loop: false,
+    gain: 1.1,
+    priority: 3,
+    maxInstances: 1,
+  },
+  "honk-bus-honk": {
+    assetId: "honk-bus-honk",
+    version: "v001",
+    path: "/studio/assets/media/honk-bus-honk/v001/cue.wav",
+    sha256: "9cf5a706227fa651a3b4890f439191b1c9bd49e67de14789badca06dcb914087",
+    durationSeconds: 0.8,
+    loop: false,
+    gain: 1.3,
+    priority: 2,
+    maxInstances: 1,
+  },
+  "enemy-poof": {
+    assetId: "enemy-poof",
+    version: "v001",
+    path: "/studio/assets/media/enemy-poof/v001/cue.wav",
+    sha256: "b4ae4aa1bc598ef7ebe9e42296dedbe83e799532045ed3cfc45c1cf9da339712",
+    durationSeconds: 0.6,
+    loop: false,
+    gain: 1.1,
+    priority: 2,
+    maxInstances: 2,
+  },
+} as const satisfies Readonly<Record<string, QuestAudioCue>>;
+
+export type FamilyWorldCueId = keyof typeof familyWorldCues;
+
+/** Every cue the game may play: the playtest four and the family world eight. */
+export const questCues = {
+  ...playtestCues,
+  ...familyWorldCues,
+} as const satisfies Readonly<Record<string, QuestAudioCue>>;
+
+export type QuestCueId = keyof typeof questCues;
+
 export interface CuePlaybackOptions {
   /** Multiplies the cue's own gain; clamped to 0..2. */
   readonly gain?: number;
@@ -112,11 +225,6 @@ export const gameplayFeedback = {
   defeat: {
     cueId: "memory-collected",
     options: { gain: 0.7, playbackRate: 1.3 },
-  },
-  // DESIGN-025 bounce pads reuse the landing cue, pitched up into a spring.
-  bounce: {
-    cueId: "movement-landed",
-    options: { gain: 0.9, playbackRate: 1.6 },
   },
 } as const satisfies Readonly<
   Record<
@@ -185,11 +293,31 @@ const DEFAULT_VOLUME = 0.8;
 const DEFAULT_MAX_SOURCES = 4;
 const DEFAULT_RESUME_TIMEOUT_MS = 1_500;
 const DEFAULT_LOAD_TIMEOUT_MS = 5_000;
+/** A loop fades in and out over this long, so starting or stopping never clicks. */
+const LOOP_FADE_SECONDS = 0.06;
 
 function clamp(value: number, minimum: number, maximum: number): number {
   return Number.isFinite(value)
     ? Math.max(minimum, Math.min(maximum, value))
     : minimum;
+}
+
+/** Ramps a gain node; browsers without automation just jump to the target. */
+function rampGain(
+  context: AudioContext,
+  node: GainNode,
+  from: number,
+  to: number,
+  seconds: number,
+): void {
+  try {
+    const now = context.currentTime;
+    node.gain.cancelScheduledValues(now);
+    node.gain.setValueAtTime(from, now);
+    node.gain.linearRampToValueAtTime(to, now + seconds);
+  } catch {
+    node.gain.value = to;
+  }
 }
 
 function defaultStorage(): Pick<Storage, "getItem" | "setItem"> | undefined {
@@ -253,6 +381,9 @@ export class QuestAudio {
   private readonly loads = new Map<string, Promise<AudioBuffer | undefined>>();
   private readonly loadCancels = new Map<string, () => void>();
   private readonly sources = new Set<ActiveSource>();
+  /** The latest start request per looping cue; a newer request or a stop replaces it. */
+  private readonly loopRequests = new Map<string, number>();
+  private loopRequestSequence = 0;
   private readonly visibilityListener: () => void;
   private context: AudioContext | undefined;
   private masterGain: GainNode | undefined;
@@ -274,7 +405,7 @@ export class QuestAudio {
   private suspendSequence = 0;
 
   constructor(options: QuestAudioOptions = {}) {
-    this.cues = options.cues ?? playtestCues;
+    this.cues = options.cues ?? questCues;
     this.storage =
       options.storage === null
         ? undefined
@@ -375,6 +506,7 @@ export class QuestAudio {
 
   /** Plays a repeatable explicit sound check, including while gameplay is paused. */
   async audition(id: PlaytestCueId = "memory-collected"): Promise<boolean> {
+    if (this.cues[id]?.loop) return false;
     if (!(await this.startContext(true))) return false;
     return this.playCue(id, {}, true);
   }
@@ -485,8 +617,47 @@ export class QuestAudio {
     });
   }
 
+  /** Plays a one-shot cue; looping cues only start through `loop`. */
   cue(id: string, options: CuePlaybackOptions = {}): Promise<boolean> {
+    if (this.cues[id]?.loop) return Promise.resolve(false);
     return this.playCue(id, options, false);
+  }
+
+  /**
+   * Starts or stops a looping cue, such as the glide wind. One instance per
+   * cue plays at a time, and it fades in and out briefly. Pause, mute,
+   * backgrounding and disposal stop a loop like any other sound; it does not
+   * restart by itself afterwards, only on the next `loop(id, true)`.
+   * Resolves whether the loop is playing when the call settles.
+   */
+  async loop(id: string, active: boolean): Promise<boolean> {
+    const cue = this.cues[id];
+    if (!cue?.loop) return false;
+    if (!active) {
+      this.loopRequests.delete(id);
+      for (const source of [...this.sources])
+        if (source.cueId === id) this.fadeOutSource(source);
+      return false;
+    }
+    if ([...this.sources].some((source) => source.cueId === id)) return true;
+    const request = ++this.loopRequestSequence;
+    this.loopRequests.set(id, request);
+    const started = await this.startSource(
+      id,
+      {},
+      false,
+      () => this.loopRequests.get(id) === request,
+    );
+    if (!started) {
+      if (this.loopRequests.get(id) === request) this.loopRequests.delete(id);
+      return false;
+    }
+    if (this.loopRequests.get(id) !== request) {
+      // A stop, or a newer start that already has its own source, won the race.
+      this.stopSource(started);
+      return false;
+    }
+    return true;
   }
 
   private async playCue(
@@ -494,6 +665,16 @@ export class QuestAudio {
     options: CuePlaybackOptions,
     allowWhilePaused: boolean,
   ): Promise<boolean> {
+    return (await this.startSource(id, options, allowWhilePaused)) !== undefined;
+  }
+
+  /** `stillWanted` lets a loop stop request cancel a start still loading. */
+  private async startSource(
+    id: string,
+    options: CuePlaybackOptions,
+    allowWhilePaused: boolean,
+    stillWanted: () => boolean = () => true,
+  ): Promise<ActiveSource | undefined> {
     const cue = this.cues[id];
     const context = this.context;
     const masterGain = this.masterGain;
@@ -509,11 +690,12 @@ export class QuestAudio {
       !masterGain ||
       context.state !== "running"
     )
-      return false;
+      return undefined;
 
     const buffer = await this.load(id, cue, context);
     if (
       !buffer ||
+      !stillWanted() ||
       this.disposed ||
       !this.unlocked ||
       this.muted ||
@@ -523,7 +705,7 @@ export class QuestAudio {
       this.context !== context ||
       context.state !== "running"
     )
-      return false;
+      return undefined;
 
     const sameCue = [...this.sources]
       .filter((active) => active.cueId === id)
@@ -535,7 +717,7 @@ export class QuestAudio {
         (left, right) =>
           left.priority - right.priority || left.sequence - right.sequence,
       )[0]!;
-      if (victim.priority > cue.priority) return false;
+      if (victim.priority > cue.priority) return undefined;
       this.stopSource(victim);
     }
 
@@ -548,7 +730,9 @@ export class QuestAudio {
       source.buffer = buffer;
       source.loop = cue.loop;
       source.playbackRate.value = clamp(options.playbackRate ?? 1, 0.75, 1.5);
-      sourceGain.gain.value = cue.gain * clamp(options.gain ?? 1, 0, 2);
+      const level = cue.gain * clamp(options.gain ?? 1, 0, 2);
+      sourceGain.gain.value = level;
+      if (cue.loop) rampGain(context, sourceGain, 0, level, LOOP_FADE_SECONDS);
       source.connect(sourceGain);
       sourceGain.connect(masterGain);
       active = {
@@ -562,11 +746,11 @@ export class QuestAudio {
       source.onended = () => this.removeSource(activeSource);
       this.sources.add(active);
       source.start();
-      return true;
+      return active;
     } catch {
       if (active) {
         this.removeSource(active);
-        return false;
+        return undefined;
       }
       try {
         source?.disconnect();
@@ -574,7 +758,7 @@ export class QuestAudio {
       } catch {
         /* Partially created nodes are already silent. */
       }
-      return false;
+      return undefined;
     }
   }
 
@@ -792,6 +976,26 @@ export class QuestAudio {
       /* A source may already have ended. */
     }
     this.disconnectSource(active);
+  }
+
+  /** Removes a loop from the cap at once and lets it fade out before it stops. */
+  private fadeOutSource(active: ActiveSource): void {
+    const context = this.context;
+    if (!context) {
+      this.stopSource(active);
+      return;
+    }
+    this.sources.delete(active);
+    try {
+      const now = context.currentTime;
+      active.gain.gain.cancelScheduledValues(now);
+      active.gain.gain.setValueAtTime(active.gain.gain.value, now);
+      active.gain.gain.linearRampToValueAtTime(0, now + LOOP_FADE_SECONDS);
+      active.source.onended = () => this.disconnectSource(active);
+      active.source.stop(now + LOOP_FADE_SECONDS);
+    } catch {
+      this.stopSource(active);
+    }
   }
 
   private removeSource(active: ActiveSource): void {

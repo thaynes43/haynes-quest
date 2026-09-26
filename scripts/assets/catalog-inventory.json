@@ -2392,7 +2392,7 @@
       ],
       "thumbnail": "docs/assets/media/memory-collected/v001/waveform.svg",
       "version": "v001",
-      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; DESIGN-022 casino reward and defeat reuse; physical listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; DESIGN-022 casino reward and defeat reuse; family world defeats layer enemy-poof under the defeat variant; physical listening review pending",
       "checksums": {
         "docs/assets/media/memory-collected/v001/cue.wav": "86ed72b341775dbb6f60414994912ec0d0292140e6408c20de54e5eb7ba0d358",
         "docs/assets/media/memory-collected/v001/source.wav": "90dfbc573fbf5923508c025b4e7c33438a166449fbd4c2e3cfb988c164ac526b"
@@ -2413,7 +2413,7 @@
       ],
       "thumbnail": "docs/assets/media/ability-unlocked/v001/waveform.svg",
       "version": "v001",
-      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; DESIGN-022 casino reward and defeat reuse; physical listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; DESIGN-022 casino reward and defeat reuse; casino-themed golden tickets keep this cue, era-theme golden collectibles use golden-ticket-sparkle; physical listening review pending",
       "checksums": {
         "docs/assets/media/ability-unlocked/v001/cue.wav": "46318afe6c77579a6b063fa704e887cd6112601b4cc4144351fa9085845115c0",
         "docs/assets/media/ability-unlocked/v001/source.wav": "c6d084ce680ab407b20c351cb49509ade12290efb291453fdfc350ce3ef7a904"
@@ -2434,7 +2434,7 @@
       ],
       "thumbnail": "docs/assets/media/movement-landed/v001/waveform.svg",
       "version": "v001",
-      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; physical listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; family world bounce pads now use bounce-pad-boing instead of a pitched variant; physical listening review pending",
       "checksums": {
         "docs/assets/media/movement-landed/v001/cue.wav": "2c869c641b29e5df0ede83ad5dfab63f26a4d41c9b7258b56d3acb4dd71bf127",
         "docs/assets/media/movement-landed/v001/source.wav": "59661a9bf7f48019d114ce39ba344b5ecf7d69bc4bceb09493ef056cf8aee995"
@@ -2456,7 +2456,7 @@
       ],
       "thumbnail": "docs/assets/media/ui-confirmed/v001/waveform.svg",
       "version": "v001",
-      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; DESIGN-022 casino reward and defeat reuse; physical listening review pending",
+      "state": "Unchanged v001 cue in private playtest; PLAN008 bounded startup and interruption recovery; DESIGN-022 casino reward and defeat reuse; family world bounce and double-jump launches no longer add the jump variant; physical listening review pending",
       "checksums": {
         "docs/assets/media/ui-confirmed/v001/cue.wav": "e9a0541c87b518de9b7d989ae4b6ef99d3ee03e40bfc1e65855bfe9069597608",
         "docs/assets/media/ui-confirmed/v001/source.wav": "416cdbb0fbb82da0b701f7fdac2fb4176b1f5933c4e1a236fab246e130ac941b",
@@ -2478,7 +2478,7 @@
       ],
       "thumbnail": "docs/assets/media/bounce-pad-boing/v001/waveform.svg",
       "version": "v001",
-      "state": "New v001 candidate cue for the family world bounce pad launch; not yet wired into the game's cue map; listening and Tom review pending",
+      "state": "v001 candidate cue for the family world bounce pad launch; wired into family world gameplay (DESIGN-008); listening and Tom review pending",
       "checksums": {
         "docs/assets/media/bounce-pad-boing/v001/cue.wav": "ccc7dc45d2fadc86f9ed2405588e217d0f6b399de823223e992df07559e151b4",
         "docs/assets/media/bounce-pad-boing/v001/source.wav": "ed26d3c5d8b775384191d65ab8b8eb229bd098b6b7a595566c82d2327f7afe24"
@@ -2500,7 +2500,7 @@
       ],
       "thumbnail": "docs/assets/media/lift-arrival-chime/v001/waveform.svg",
       "version": "v001",
-      "state": "New v001 candidate cue for the family world lift arrival; not yet wired into the game's cue map; listening and Tom review pending",
+      "state": "v001 candidate cue for a ridden family world lift reaching a stop; wired into family world gameplay (DESIGN-008); listening and Tom review pending",
       "checksums": {
         "docs/assets/media/lift-arrival-chime/v001/cue.wav": "cc3bd16ca66ac18f1d33586de4771a069e611ac28de1e8650d1d21a48d71343e",
         "docs/assets/media/lift-arrival-chime/v001/source.wav": "8d657a259ddccb7a540bde12b45d8d9040843c452cc26bfe37979d5e7dce7981",
@@ -2522,7 +2522,7 @@
       ],
       "thumbnail": "docs/assets/media/crumble-crack/v001/waveform.svg",
       "version": "v001",
-      "state": "New v001 candidate cue for the family world crumbling platform; not yet wired into the game's cue map; listening and Tom review pending",
+      "state": "v001 candidate cue for a family world crumbling platform starting to shake; wired into family world gameplay (DESIGN-008); listening and Tom review pending",
       "checksums": {
         "docs/assets/media/crumble-crack/v001/cue.wav": "2ac76e286d5ea86d6f9945242325328146bf0728a8a9c9fd84faaf74caf6c714",
         "docs/assets/media/crumble-crack/v001/source.wav": "8970901dd8a91ab16099fdbae2f3b5e27d48aacaa6c84fe9a03d974dc9266fd2"
@@ -2543,7 +2543,7 @@
       ],
       "thumbnail": "docs/assets/media/double-jump-whoosh/v001/waveform.svg",
       "version": "v001",
-      "state": "New v001 candidate cue for the family world double jump; not yet wired into the game's cue map; listening and Tom review pending",
+      "state": "v001 candidate cue for the family world double jump; wired into family world gameplay (DESIGN-008); listening and Tom review pending",
       "checksums": {
         "docs/assets/media/double-jump-whoosh/v001/cue.wav": "bfef347311b767f83405e2dde0c32461a9c1c282e56d3ce649886056ab91ac87",
         "docs/assets/media/double-jump-whoosh/v001/source.wav": "a4eba5500c6fef4a98d5c730a58a7f2d170320778c47178893d5335bf5cbf9b6"
@@ -2566,7 +2566,7 @@
       ],
       "thumbnail": "docs/assets/media/glide-wind/v001/waveform.svg",
       "version": "v001",
-      "state": "New v001 candidate cue for the family world glide (seamless loop); not yet wired into the game's cue map; listening and Tom review pending",
+      "state": "v001 candidate seamless loop for the family world glide; wired into family world gameplay (DESIGN-008); listening and Tom review pending",
       "checksums": {
         "docs/assets/media/glide-wind/v001/cue.wav": "771b0b48ed90995151f5702dbe6bfc629055a845a1fee0d58216dbdb80c3d046",
         "docs/assets/media/glide-wind/v001/source.wav": "c29b9905283c472418e4b8b33e4ba0791a822010b2a53a2f15ec89cfe8a0bb86",
@@ -2589,7 +2589,7 @@
       ],
       "thumbnail": "docs/assets/media/golden-ticket-sparkle/v001/waveform.svg",
       "version": "v001",
-      "state": "New v001 candidate cue for the family world golden ticket pickup; not yet wired into the game's cue map; listening and Tom review pending",
+      "state": "v001 candidate cue for an era theme's golden collectible; wired into family world gameplay (DESIGN-008); listening and Tom review pending",
       "checksums": {
         "docs/assets/media/golden-ticket-sparkle/v001/cue.wav": "6552e29f39594831ae26c43ed957ba8e47b53074ba762d50c7e1ab2d18d1ad60",
         "docs/assets/media/golden-ticket-sparkle/v001/source.wav": "2a9287af3523531c2c4a99a06de8904aaacf9d965de6beaf974d142e3e44d885"
@@ -2611,7 +2611,7 @@
       ],
       "thumbnail": "docs/assets/media/honk-bus-honk/v001/waveform.svg",
       "version": "v001",
-      "state": "New v001 candidate cue for the family world Honk Bus encounter; not yet wired into the game's cue map; listening and Tom review pending",
+      "state": "v001 candidate cue for the Honk Bus attack wind-up; wired into family world gameplay (DESIGN-008); listening and Tom review pending",
       "checksums": {
         "docs/assets/media/honk-bus-honk/v001/cue.wav": "9cf5a706227fa651a3b4890f439191b1c9bd49e67de14789badca06dcb914087",
         "docs/assets/media/honk-bus-honk/v001/source.wav": "bc02ca27820c7f365597ddaa05a0608060d87d18a64a1a9e507d2df4c0ffabe9",
@@ -2635,7 +2635,7 @@
       ],
       "thumbnail": "docs/assets/media/enemy-poof/v001/waveform.svg",
       "version": "v001",
-      "state": "New v001 candidate cue for the family world enemy defeat; not yet wired into the game's cue map; listening and Tom review pending",
+      "state": "v001 candidate cue layered under every family world enemy defeat; wired into family world gameplay (DESIGN-008); listening and Tom review pending",
       "checksums": {
         "docs/assets/media/enemy-poof/v001/cue.wav": "b4ae4aa1bc598ef7ebe9e42296dedbe83e799532045ed3cfc45c1cf9da339712",
         "docs/assets/media/enemy-poof/v001/source.wav": "c07724e57353714822491dc93d1996d84ff35ee4bcd6350bec65e1794d769015",

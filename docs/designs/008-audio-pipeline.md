@@ -1,6 +1,6 @@
 # DESIGN-008: Audio authoring and browser playback
 
-- **Status:** Self-hosted CPU authoring verified; native registration staged; browser contract proposed
+- **Status:** Self-hosted CPU authoring verified; native registration staged; browser contract proposed; family world cues wired into gameplay
 - **Last updated:** 2026-09-26
 - **Source:** Tom's request for audio tooling and an Astra asset-development workflow
 - **Satisfies:** [PRD-001 R-08, R-09, R-16, R-35–R-39](../prds/001-project-brief.md)
@@ -104,7 +104,7 @@ Gesture handling attempts audio start synchronously on key presses, pointer pres
 
 ## Family world mechanics cues
 
-The family worlds add movement pieces, pickups and an era bus that need their own feedback. This first pass generates one candidate per cue; runtime wiring, mix levels and caps come later under D-05 and D-06. Every direction is kid-friendly, without harsh transients, voices or copyrighted melodies.
+The family worlds add movement pieces, pickups and an era bus that need their own feedback. This first pass generates one candidate per cue; [the gameplay wiring](#family-world-gameplay-wiring) below sets their mix levels and caps under D-05 and D-06. Every direction is kid-friendly, without harsh transients, voices or copyrighted melodies.
 
 | Cue ID | Trigger | Direction | Target |
 | --- | --- | --- | --- |
@@ -121,4 +121,25 @@ Each cue follows the existing workflow: one bounded job at a time on the audio s
 
 The processing script now supports candidate versions and loops. For a loop recipe, the audio that follows the selected segment in the source is crossfaded over its start with an equal-power curve. The last frame therefore runs into the first as the original take continued, with no fade. The loop's verification compares the wrap step with the clip's 99th-percentile sample step, and the level of the 50 ms around the seam with the whole clip.
 
-Nobody has listened to these candidates. The authoring agent could not hear audio, so its listen-proxy consisted of level, pitch, zero-crossing and band-energy measurements, as recorded on each review page. The candidates appear in the [catalog](../assets/catalog.md#sound-auditions) and await Tom's exact-version review. The inventory records them as private candidates for the family worlds; the game's cue map does not reference them yet.
+Nobody has listened to these candidates. The authoring agent could not hear audio, so its listen-proxy consisted of level, pitch, zero-crossing and band-energy measurements, as recorded on each review page. The candidates appear in the [catalog](../assets/catalog.md#sound-auditions) and await Tom's exact-version review. The inventory records them as private candidates in the family worlds, which play them as below.
+
+### Family world gameplay wiring
+
+The eight cues play only on **family world levels**: an `authored-level-v4` route or a chapter of a family plan, which are the levels with [growth moves](025-growth-moves-and-vertical-courses.md). Every older route keeps its exact playtest sounds. Bounce pads, lifts, crumbling platforms, the double jump and the glide exist only on those levels anyway.
+
+| Moment | Cue | Notes |
+| --- | --- | --- |
+| A bounce pad launches the player | `bounce-pad-boing` | Replaces the pitched-up landing cue that bounce pads borrowed before. |
+| The lift the player rides reaches its top or bottom stop | `lift-arrival-chime` | A stop is the start of a dwell, or the turn of a lift without one. A lift seen from beside it stays quiet. |
+| The first touch of a crumbling platform starts its shake | `crumble-crack` | Once per touch; the platform can crack again after it returns. |
+| The second jump of an airtime | `double-jump-whoosh` | |
+| The glide holds the fall at its cap | `glide-wind` (loop) | Starts when the cap engages and fades out over 60 ms when Jump is released, on landing or on a fall recovery. Pausing or muting stops it at once, like every other sound. |
+| A golden collectible of an era theme | `golden-ticket-sparkle` | A casino-themed chapter keeps Rat Casino's own golden-ticket sound. |
+| An enemy begins its attack wind-up | per model: `honk-bus` → `honk-bus-honk` | `enemyAttackSounds` maps a rendered catalog model to its attack sound. Other models wind up silently. The same enemy honks at most once in 1.5 s. |
+| Any enemy defeat, boss included | `enemy-poof` | Layered 0.75× under the existing defeat chime, so its peak sits just below that chime's. |
+
+`src/client/feedback-sounds.ts` holds this mapping as data, and `createGame` reports each moment through `onFeedback`. A bounce or double jump no longer also plays the jump blip. For this, the status counts launch jumps separately (`launchJumpSequence`), on family world levels only.
+
+`familyWorldCues` in `src/client/audio.ts` pins each cue's asset ID, version, path, SHA-256, duration and loop flag, as D-06 requires; a test checks them against the files, the inventory and the measurements. The gains follow the playtest rule: at the 0.8 master, each one-shot peaks between −12.5 and −10.0 dBFS. The wind loop sits underneath, near −16 dBFS. Each cue allows one or two instances. The four-source cap and its priorities (D-05) are unchanged; the reward sparkle ranks with the memory cues, and the warnings and the wind rank above the movement blips.
+
+A loop plays only through `QuestAudio.loop`, one instance per cue. Mute, pause, backgrounding and disposal stop it like any other sound. It restarts only at the next glide, and a stop that arrives while the file is still loading prevents the start. Nobody has listened to these cues in the game; listening, mix and physical Safari checks remain open, as does Tom's exact-version review.

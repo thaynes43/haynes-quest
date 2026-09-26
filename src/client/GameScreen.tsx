@@ -18,6 +18,10 @@ import type { TrailNames } from "../game/theme-kits";
 import { api, friendlyError } from "./api";
 
 import { QuestAudio } from "./audio";
+import {
+  plainJumpSinceLastStatus,
+  playFeedbackSounds,
+} from "./feedback-sounds";
 import { MemoryImage } from "./MemoryImage";
 import { draftEncounterLabel, equipmentName, eraStory } from "./era";
 
@@ -327,6 +331,7 @@ function Adventure({
     let previousAttackSequence = -1;
     let previouslyGrounded = true;
     let previousJumpSequence = 0;
+    let previousLaunchJumpSequence = 0;
     const sound = new QuestAudio();
     soundRef.current = sound;
     setMuted(sound.preferences().muted);
@@ -464,12 +469,7 @@ function Adventure({
             update(await api<SaveView>(`/saves/${initialSave.id}`)),
           onFeedback: (event) => {
             if (!mounted.current) return;
-            if (event.type === "hit") void sound.feedback("impact");
-            else if (event.type === "defeat") void sound.feedback("defeat");
-            else if (event.type === "ticket") void sound.feedback("ticket");
-            else if (event.type === "bounce") void sound.feedback("bounce");
-            else if (event.type === "token")
-              void sound.feedback("token", 1 + Math.min(event.streak, 5) * 0.04);
+            playFeedbackSounds(sound, event);
           },
           onStatus: (next) => {
             if (!mounted.current) return;
@@ -487,9 +487,16 @@ function Adventure({
               ["exploring", "memory-released"].includes(next.phase)
             )
               void sound.feedback("landed");
-            if ((next.jumpSequence ?? 0) > previousJumpSequence)
+            // A bounce or double jump already sounded through onFeedback.
+            if (
+              plainJumpSinceLastStatus(
+                (next.jumpSequence ?? 0) - previousJumpSequence,
+                (next.launchJumpSequence ?? 0) - previousLaunchJumpSequence,
+              )
+            )
               void sound.feedback("jump");
             previousJumpSequence = next.jumpSequence ?? 0;
+            previousLaunchJumpSequence = next.launchJumpSequence ?? 0;
             previouslyGrounded = next.grounded;
             if (
               next.attackFeedback &&
