@@ -1,0 +1,51 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-blockout.blend",
+  "sha256": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95",
+  "bounds_blender_zup": {
+    "min": [
+      -0.3008,
+      -0.5046,
+      0.0
+    ],
+    "max": [
+      0.4261,
+      0.4258,
+      0.9187
+    ],
+    "size": [
+      0.7268,
+      0.9304,
+      0.9187
+    ],
+    "blockout_triangles": 66296
+  },
+  "feature_tops_m": {
+    "Big ear right": 0.9158,
+    "Big ear left": 0.8862,
+    "Mini stovepipe crown": 0.9187,
+    "Fluffy cream tail tip": 0.835,
+    "Question-mark tail": 0.8773,
+    "Big round kitten head": 0.8,
+    "Honey antenna ball": 0.7442,
+    "Tiny cream propeller": 0.7756
+  },
+  "parts": 97,
+  "materials": [
+    "MK brass #c9923e",
+    "MK collar #b54a5a",
+    "MK cream #f3e6cf",
+    "MK crease #cdb89a",
+    "MK fur #9a8cae",
+    "MK hat #2f2740",
+    "MK honey #dca953",
+    "MK ink #342c46",
+    "MK pink #e39a88",
+    "MK stripe #6b5a84",
+    "MK tabby body #9a8cae/#6b5a84/#f3e6cf",
+    "MK tabby head #9a8cae/#6b5a84",
+    "MK teal #3f7f7a",
+    "MK tongue #d9677a",
+    "MK white #fbf6ec"
+  ],
+  "utc": "2026-09-26T03:19:28.248092+00:00"
+}

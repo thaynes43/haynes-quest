@@ -1,0 +1,96 @@
+{
+  "work_order": "WO111",
+  "asset_id": "mischief-kitten",
+  "version": "v001",
+  "created_utc": "2026-09-26T16:27:28.580342+00:00",
+  "glb_sha256": "ab0e3d2e36115cbc654a065c73f7fb973c136b67b3fce8ba947a3a5ada40b6f6",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "blender": {
+    "version": "4.5.13 LTS",
+    "instance": "blender-authoring-2",
+    "units": "METRIC",
+    "unit_scale": 1,
+    "authoring_axes": "+Z up / +Y forward (character right = +X)",
+    "frames_per_second": 30,
+    "animation_mode": "NLA_TRACKS",
+    "skin": "One skin; rigid props plus two-weight smoothstep blends at the shoulders, elbows, hips, knees, the body midline, the haunches, the tail chain and the antenna",
+    "root": "Identity, fixed floor-centred root; no root animation; the hips translate for the bob, the pounce travel (returns by the end) and the seated defeat",
+    "bind_pose": "Four paws down with the sheet tail curl, as the sheet notes suggest; IK controls at rest reproduce it (max matrix error 1.4e-06). The sheet tiptoe is idle at 0 s."
+  },
+  "export": {
+    "format": "GLB",
+    "axes": "+Y up / -Z forward",
+    "selection_only": true,
+    "materials": 2,
+    "texture": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "embedded": true
+    },
+    "no_external_resources": true,
+    "no_required_extensions": true,
+    "compression": "None; no Draco, Meshopt or KTX2 requirement"
+  },
+  "preview": {
+    "source": "Exact delivered GLB via Three.js GLTFLoader",
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport_px": [
+      800,
+      900
+    ],
+    "orthographic_camera": {
+      "left": -0.62,
+      "right": 0.62,
+      "top": 0.6975,
+      "bottom": -0.6975,
+      "target": [
+        0,
+        0.44,
+        0
+      ],
+      "views": {
+        "front": [
+          0,
+          0.44,
+          -8
+        ],
+        "side": [
+          8,
+          0.44,
+          0
+        ],
+        "back": [
+          0,
+          0.44,
+          8
+        ],
+        "threequarter": [
+          5.657,
+          0.44,
+          -5.657
+        ],
+        "beauty": [
+          4.1,
+          3.0,
+          -7.4
+        ]
+      }
+    },
+    "main_stills": "idle clip at 0 s (the sheet tiptoe); rest-*.png are the bind pose",
+    "lighting": "Warm hemisphere plus three directional lights; ACES tone mapping exposure 1.0",
+    "scales": [
+      1,
+      0.35
+    ],
+    "no_physical_device_claim": true
+  },
+  "checks": {
+    "khronos_zero_errors_warnings": true,
+    "exact_three_adapter_all_checks": true,
+    "chromium_all_clips_normal_small": true,
+    "source_attachment_checks": true
+  }
+}

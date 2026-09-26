@@ -1,0 +1,237 @@
+{
+  "asset_id": "mischief-kitten",
+  "version": "v001",
+  "glb_sha256": "ab0e3d2e36115cbc654a065c73f7fb973c136b67b3fce8ba947a3a5ada40b6f6",
+  "blend_sha256": "b95c8d0d69d641b48724d8e79331e1f4706df435c3ed3fc6e66e56ed807baaf1",
+  "method": "WO111 mischief-kitten source-side attachment audit on the live scene that exported the exact GLB.\n\nPer clip and frame (30 fps): triangle-overlap between listed part groups on the evaluated skin (BVH),\nIK joint connectivity (limb heads stay on their parents' tails), the lowest evaluated vertex, and the\nrest reproduction error. Intended contacts are not tested: leg roots inside the body and haunches, paws\non the floor, the collar around the head, the pack and straps on the back, the hat on the head.\nSupplements the exact-GLB checks in three-inspection.json; not a universal collision proof.",
+  "pairs": [
+    "tail_tip~head",
+    "tail_tip~hat",
+    "tail_tip~pack",
+    "tail~hindR",
+    "tail~hindL",
+    "pack~head",
+    "pack~hat",
+    "hat~head_ears",
+    "frontR~frontL",
+    "hindR~hindL",
+    "frontR~hindR",
+    "frontL~hindL",
+    "pawsF~head",
+    "frontR~bell",
+    "frontL~bell",
+    "bell~head"
+  ],
+  "groups": {
+    "tail": [
+      "tail_1",
+      "tail_2",
+      "tail_3",
+      "tail_4",
+      "tail_5",
+      "tail_6"
+    ],
+    "tail_tip": [
+      "tail_4",
+      "tail_5",
+      "tail_6"
+    ],
+    "head": [
+      "ear_L",
+      "ear_R",
+      "head",
+      "tongue"
+    ],
+    "hat": [
+      "hat"
+    ],
+    "pack": [
+      "antenna_1",
+      "antenna_2",
+      "pack",
+      "propeller"
+    ],
+    "bell": [
+      "bell"
+    ],
+    "frontR": [
+      "front_lower_R",
+      "front_paw_R",
+      "front_upper_R"
+    ],
+    "frontL": [
+      "front_lower_L",
+      "front_paw_L",
+      "front_upper_L"
+    ],
+    "hindR": [
+      "hind_paw_R",
+      "hind_shin_R",
+      "hind_thigh_R"
+    ],
+    "hindL": [
+      "hind_paw_L",
+      "hind_shin_L",
+      "hind_thigh_L"
+    ],
+    "pawsF": [
+      "front_paw_L",
+      "front_paw_R"
+    ],
+    "body": [
+      "chest",
+      "hips"
+    ],
+    "head_ears": [
+      "ear_L",
+      "ear_R"
+    ]
+  },
+  "group_face_counts": {
+    "tail": 433,
+    "tail_tip": 283,
+    "head": 2777,
+    "hat": 337,
+    "pack": 515,
+    "bell": 230,
+    "frontR": 497,
+    "frontL": 497,
+    "hindR": 385,
+    "hindL": 385,
+    "pawsF": 752,
+    "body": 1217,
+    "head_ears": 216
+  },
+  "max_influences": 2,
+  "rest_reproduction_max_error": 1.3668759493157268e-06,
+  "clips": {
+    "idle": {
+      "frames": 91,
+      "overlaps": {
+        "tail_tip~head": 0,
+        "tail_tip~hat": 0,
+        "tail_tip~pack": 0,
+        "tail~hindR": 0,
+        "tail~hindL": 0,
+        "pack~head": 0,
+        "pack~hat": 0,
+        "hat~head_ears": 0,
+        "frontR~frontL": 0,
+        "hindR~hindL": 0,
+        "frontR~hindR": 0,
+        "frontL~hindL": 0,
+        "pawsF~head": 0,
+        "frontR~bell": 0,
+        "frontL~bell": 0,
+        "bell~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.4901161193847656e-07,
+      "lowest_m": 0.003
+    },
+    "move": {
+      "frames": 25,
+      "overlaps": {
+        "tail_tip~head": 0,
+        "tail_tip~hat": 0,
+        "tail_tip~pack": 0,
+        "tail~hindR": 0,
+        "tail~hindL": 0,
+        "pack~head": 0,
+        "pack~hat": 0,
+        "hat~head_ears": 0,
+        "frontR~frontL": 0,
+        "hindR~hindL": 0,
+        "frontR~hindR": 0,
+        "frontL~hindL": 0,
+        "pawsF~head": 0,
+        "frontR~bell": 0,
+        "frontL~bell": 0,
+        "bell~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.3657139822709083e-07,
+      "lowest_m": 0.003
+    },
+    "attack": {
+      "frames": 61,
+      "overlaps": {
+        "tail_tip~head": 0,
+        "tail_tip~hat": 0,
+        "tail_tip~pack": 0,
+        "tail~hindR": 0,
+        "tail~hindL": 0,
+        "pack~head": 0,
+        "pack~hat": 0,
+        "hat~head_ears": 0,
+        "frontR~frontL": 0,
+        "hindR~hindL": 0,
+        "frontR~hindR": 0,
+        "frontL~hindL": 0,
+        "pawsF~head": 0,
+        "frontR~bell": 0,
+        "frontL~bell": 0,
+        "bell~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.3978528260658472e-07,
+      "lowest_m": 0.003
+    },
+    "hit": {
+      "frames": 22,
+      "overlaps": {
+        "tail_tip~head": 0,
+        "tail_tip~hat": 0,
+        "tail_tip~pack": 0,
+        "tail~hindR": 0,
+        "tail~hindL": 0,
+        "pack~head": 0,
+        "pack~hat": 0,
+        "hat~head_ears": 0,
+        "frontR~frontL": 0,
+        "hindR~hindL": 0,
+        "frontR~hindR": 0,
+        "frontL~hindL": 0,
+        "pawsF~head": 0,
+        "frontR~bell": 0,
+        "frontL~bell": 0,
+        "bell~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.3657139822709083e-07,
+      "lowest_m": 0.003
+    },
+    "defeat": {
+      "frames": 73,
+      "overlaps": {
+        "tail_tip~head": 0,
+        "tail_tip~hat": 0,
+        "tail_tip~pack": 0,
+        "tail~hindR": 0,
+        "tail~hindL": 0,
+        "pack~head": 0,
+        "pack~hat": 0,
+        "hat~head_ears": 0,
+        "frontR~frontL": 0,
+        "hindR~hindL": 0,
+        "frontR~hindR": 0,
+        "frontL~hindL": 0,
+        "pawsF~head": 0,
+        "frontR~bell": 0,
+        "frontL~bell": 0,
+        "bell~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.4901161193847656e-07,
+      "lowest_m": 0.003
+    }
+  },
+  "checks": {
+    "no_listed_part_overlaps_any_frame": true,
+    "limb_and_tail_joints_stay_connected": true,
+    "no_floor_penetration": true,
+    "rest_controls_reproduce_bind_pose": true,
+    "at_most_four_influences": true,
+    "five_clips": true
+  }
+}

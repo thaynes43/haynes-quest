@@ -1,0 +1,39 @@
+{
+  "asset_id": "mischief-kitten",
+  "version": "v001",
+  "work_order": "WO111",
+  "created_utc": "2026-09-26T03:24:40.430873+00:00",
+  "kind": "blender-reference-sheet",
+  "source_label": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+  "generator": "None. A Cycles render of a procedural Blender blockout (Blender 4.5.13 LTS) with Freestyle ink outlines; no image-generation model was used.",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator",
+  "seed": null,
+  "reference_files": [],
+  "art_direction": "docs/assets/art-direction.md; DESIGN-026 locked roster brief for mischief-kitten",
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "selected_by": "PLAN-019 coordinator (sheet approved September 26, PRD-004 Q-07)",
+  "coordinator_sheet_notes": "Keep the mini stovepipe hat, gadget pack, bell collar and question-mark tail. Pounce attack.",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "ruling": "Tom, September 26: Claude Opus 5.5 does the remaining WO111 Blender work; assets without an Astra concept follow a painted Blender reference sheet that the coordinator reviewed (PRD-004 Q-07).",
+  "files": {
+    "reference-sheet.png": {
+      "sha256": "7e2596865059d2b7c6844ed92527f89e58136a842b4f90063fca8cfca18298a3",
+      "bytes": 2090156
+    },
+    "reference-notes.md": {
+      "sha256": "6d78a468ffbd5cc428a6235078c1f0cb310ada891ebb8fce229973f4a6e30fed",
+      "bytes": 10633
+    },
+    "mischief-kitten-blockout.blend": {
+      "sha256": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95",
+      "bytes": 627641
+    },
+    "mischief-kitten-reference-sheet.blend": {
+      "sha256": "40568acd0c47cd7993db26e042a5431f792f106ed4986bef1be57e2066a423f2",
+      "bytes": 761709
+    }
+  },
+  "rights_note": "Original authored study. No claim of exclusive rights or franchise endorsement."
+}

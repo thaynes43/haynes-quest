@@ -1,0 +1,129 @@
+{
+  "work_order": "WO111",
+  "asset_id": "mischief-kitten",
+  "version": "v001",
+  "status": "sheet-ready",
+  "source": "Blender reference sheet, no generated concept",
+  "remote_dir": "/workspace/haynes-quest/family-eras/mischief-kitten/v001",
+  "durable_dir": "/home/dev/artifacts/haynes-quest/family-eras/mischief-kitten/v001",
+  "glb_sha256": "none",
+  "scene_released_utc": "2026-09-26T03:24:40.430873+00:00",
+  "generated_utc": "2026-09-26T03:25:23.961790+00:00",
+  "notes": [
+    "preview/sheet-preview.png is the half-size preview rendered before the final 0.09 m upward layout nudge; reference-sheet.png is the final render.",
+    "remote mischief-kitten-blockout.blend1 is Blender's automatic backup of an earlier blockout save and is not copied.",
+    "local_only files are the local MCP runner (source/run.py) and render/crop logs captured from the run output."
+  ],
+  "files": {
+    "blockout-measurements.json": {
+      "sha256": "66799e99b9550cf3f95ea5f03e93b741e16783d529570fe815f29d6c7f2d8ba1",
+      "bytes": 1195,
+      "remote_match": true
+    },
+    "live-scene-release.blend": {
+      "sha256": "ee595224f2ff5a43d31f4187c5c1d9cc94a1fa7f0991b19e485a6be14d90254d",
+      "bytes": 761714,
+      "remote_match": true
+    },
+    "mischief-kitten-blockout.blend": {
+      "sha256": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95",
+      "bytes": 627641,
+      "remote_match": true
+    },
+    "mischief-kitten-reference-sheet.blend": {
+      "sha256": "40568acd0c47cd7993db26e042a5431f792f106ed4986bef1be57e2066a423f2",
+      "bytes": 761709,
+      "remote_match": true
+    },
+    "preview/crop-back.png": {
+      "sha256": "83d922626a61738bb942ddf013a439d32f93d5f26e657134615e761245b2407d",
+      "bytes": 983420,
+      "remote_match": true
+    },
+    "preview/crop-face-front.png": {
+      "sha256": "da0f7b2f1a2eb6810841815d9509cf8e67d7ff549e333ece728e61101366a3ca",
+      "bytes": 1029236,
+      "remote_match": true
+    },
+    "preview/crop-front.png": {
+      "sha256": "4faa07b674a3745667b1f08685a53010145ef2390e3485b7851fcea43c3e70fb",
+      "bytes": 1040382,
+      "remote_match": true
+    },
+    "preview/crop-side.png": {
+      "sha256": "a988b3d33dc2b18924d9d856a694b76d08c3b322174ea73fb811caec9bf47304",
+      "bytes": 1035433,
+      "remote_match": true
+    },
+    "preview/crop-three-quarter.png": {
+      "sha256": "7078f1a7209f9eb98893fee28ec1bc94eda96f4311b75bc808a66ca749ad77e4",
+      "bytes": 1053269,
+      "remote_match": true
+    },
+    "preview/crops.json": {
+      "sha256": "6998508d775d8b3f7c063619847172c069321b5d4722ea6b49fb20d9dcfc3676",
+      "bytes": 1173,
+      "local_only": true
+    },
+    "preview/sheet-preview.png": {
+      "sha256": "e1981b87daea14cb88295c366dbb69ee9634bdf28020e7d6041ec5c0ba25cf58",
+      "bytes": 580333,
+      "remote_match": true
+    },
+    "reference-notes.md": {
+      "sha256": "6d78a468ffbd5cc428a6235078c1f0cb310ada891ebb8fce229973f4a6e30fed",
+      "bytes": 10633,
+      "remote_match": true
+    },
+    "reference-sheet.png": {
+      "sha256": "7e2596865059d2b7c6844ed92527f89e58136a842b4f90063fca8cfca18298a3",
+      "bytes": 2090156,
+      "remote_match": true
+    },
+    "scene-lease.json": {
+      "sha256": "2e2e440d8253eb21aa5af3bae1699f660aca179b0ee4fb819ed1d49e5f49255a",
+      "bytes": 3689,
+      "remote_match": true
+    },
+    "scene-release.json": {
+      "sha256": "ee13a9632201c46bcf87e3961166af0f3b360a0462e83d7aa2fba389917e8e05",
+      "bytes": 4088,
+      "remote_match": true
+    },
+    "sheet-render.json": {
+      "sha256": "133e6745b515ac66b35d6069b8558f8cc8901700da8bab136b756379ea37c554",
+      "bytes": 841,
+      "local_only": true
+    },
+    "source/build_blockout.py": {
+      "sha256": "7b6201512f6bb43e0761e8b768a701ecb32bc594e32beb70862b1bfdda50cf34",
+      "bytes": 31587,
+      "remote_match": true
+    },
+    "source/crops.py": {
+      "sha256": "8fc8f1cb754604e01f22f2741a4826409d283ed373972a4f927650bc01a82b61",
+      "bytes": 2226,
+      "remote_match": true
+    },
+    "source/release.py": {
+      "sha256": "11242f87314abbc845b3c1ef4d82e3053cfba9e45a749ec9a40e8743f765ef5a",
+      "bytes": 3293,
+      "remote_match": true
+    },
+    "source/run.py": {
+      "sha256": "5efb3a5ed56f32e7f80a2dddc622fce7914a00c5e288c69c1842a491f7a9d682",
+      "bytes": 4303,
+      "local_only": true
+    },
+    "source/sheet.py": {
+      "sha256": "e0d2b0d16f51c679af66bcb606fd112583d1bb2e4e9e551d86ae713a53c3ca63",
+      "bytes": 11763,
+      "remote_match": true
+    },
+    "source/sheet_preview.py": {
+      "sha256": "680fc53ea52d045897d841bc5c6a01371a015067ae67d7e2580bd63b2be3f5ac",
+      "bytes": 332,
+      "remote_match": true
+    }
+  }
+}
