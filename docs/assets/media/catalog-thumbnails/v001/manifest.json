@@ -59,6 +59,13 @@
       "sha256": "8822ea9d5c3bbce02ae8517b3979e45923ee3584a38b91c87f9fb216d5359aea"
     },
     {
+      "source": "docs/assets/media/bounce-pad-boing/v001/waveform.svg",
+      "source_sha256": "000934034da3e564f99723dc9c927215b8e7504e8644aa5adaf58537041ae9f6",
+      "path": "docs/assets/media/catalog-thumbnails/v001/0bf2b4fd385513d9.webp",
+      "bytes": 5814,
+      "sha256": "5e53412b47c2a4982a2f022e37a19c4eab6eda402c5bf5bcbf3d234ac194aeec"
+    },
+    {
       "source": "docs/assets/media/buffer-baron/v001/beauty.png",
       "source_sha256": "5be862cace7d88045899e7423bda32b0638d09f669b742ed69e754d7d57d0d66",
       "path": "docs/assets/media/catalog-thumbnails/v001/de0597a895152a79.webp",
@@ -150,6 +157,20 @@
       "sha256": "fbd6b53e2c44e2478eed534a8b385b4ca208fe8529cbdea3d59090c0d03c7af5"
     },
     {
+      "source": "docs/assets/media/crumble-crack/v001/waveform.svg",
+      "source_sha256": "85d7e22fd136c94b761a42335a878dd7cc0066bead8bbc31cfef14dc40bce9a0",
+      "path": "docs/assets/media/catalog-thumbnails/v001/c2aed672abab7249.webp",
+      "bytes": 2408,
+      "sha256": "d1dbe95cb4f88b1e713d6a7f287dd47376944ffe5a8768018e25728ed27e8769"
+    },
+    {
+      "source": "docs/assets/media/double-jump-whoosh/v001/waveform.svg",
+      "source_sha256": "e270cba9a9d89ec6bcd0f541e45e90ad2f6564540fea52b3b7132c264a1a1aff",
+      "path": "docs/assets/media/catalog-thumbnails/v001/4b41a091d24a1b6e.webp",
+      "bytes": 3626,
+      "sha256": "f439947cc8842ffddac76c517c78f08ff6168f79ac26ad8d820ebb366c279f33"
+    },
+    {
       "source": "docs/assets/media/drama-dragon/v001/beauty.png",
       "source_sha256": "a4c8ca350df9156b1a06af4d94f30a4e9abfda66cfde53cb1feb4b90a4a0ae0e",
       "path": "docs/assets/media/catalog-thumbnails/v001/62fa384f6bfe5cde.webp",
@@ -162,6 +183,13 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/2cd76be82656194c.webp",
       "bytes": 39070,
       "sha256": "dc11e75999aac8dcde8ad14061ae7d244158c299fea8ed05d5feb0969206fb94"
+    },
+    {
+      "source": "docs/assets/media/enemy-poof/v001/waveform.svg",
+      "source_sha256": "3e45ca8a1c70679472acb3a44a18b1dc282dcd68fcee40fe2bd3eaab6176d4ca",
+      "path": "docs/assets/media/catalog-thumbnails/v001/cfceaeba9a69017a.webp",
+      "bytes": 2632,
+      "sha256": "9ccb10745066a6e8bf9d14cb2fdbf688870ba9d8be6c9b45100fc26ae12a2d8b"
     },
     {
       "source": "docs/assets/media/era-equipment/v001/acorn-shield/beauty.png",
@@ -234,11 +262,32 @@
       "sha256": "1945cb194977b473c678038fcdaad4cbdf13d08c32faa5d705601f2941b63993"
     },
     {
+      "source": "docs/assets/media/glide-wind/v001/waveform.svg",
+      "source_sha256": "f156757996984d87756b9cb31209e499bbe2b2f588e38e19d5001a4379cc605d",
+      "path": "docs/assets/media/catalog-thumbnails/v001/185fbb245ede890d.webp",
+      "bytes": 3806,
+      "sha256": "0b51b5e51de856b4e25ca345cb47b8d7b99de736524eaa89ee58b06aa267f22c"
+    },
+    {
       "source": "docs/assets/media/golden-after-hours-rat/v001/beauty.png",
       "source_sha256": "7523ea63bb66c61d5d5508f9624197ce5c38a7b428d6a443a785b33b66123f72",
       "path": "docs/assets/media/catalog-thumbnails/v001/65a4d2e6b9d0e070.webp",
       "bytes": 8906,
       "sha256": "21b996d271a2d565cf89896760a3a1b3eea21765b58e1f4136d4c94872936c00"
+    },
+    {
+      "source": "docs/assets/media/golden-ticket-sparkle/v001/waveform.svg",
+      "source_sha256": "cb2f44a0b2afcf60b18b7781b12795c10bc3e51ac7e804c2a7e46b02ec9bfc4c",
+      "path": "docs/assets/media/catalog-thumbnails/v001/7bc01c3adfb106ac.webp",
+      "bytes": 4196,
+      "sha256": "bac1d38cca75c6ea01aac1d030f9dfb8bac33c0c64fb36b76508d33062715e96"
+    },
+    {
+      "source": "docs/assets/media/honk-bus-honk/v001/waveform.svg",
+      "source_sha256": "01d5f42466852ec96366e56944ecff7919fc1ec1f7af9ca8421ac6fb43cb52de",
+      "path": "docs/assets/media/catalog-thumbnails/v001/b94247cea2cf39e8.webp",
+      "bytes": 2190,
+      "sha256": "eca82ccd321ba4e532a02809b6c160c5f353d12b2687c2606c9327301fafa1e4"
     },
     {
       "source": "docs/assets/media/honk-bus/v001/beauty.png",
@@ -260,6 +309,13 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/7b9d7f82100c5daa.webp",
       "bytes": 7570,
       "sha256": "1fb62ed15de292eaa23b1881a99dfb92047a252d7020b1dc591f38afef0271a4"
+    },
+    {
+      "source": "docs/assets/media/lift-arrival-chime/v001/waveform.svg",
+      "source_sha256": "8039cf0be1a3ea1bff3955aa54bb6703c03dc502f9f18709d7b131dbe455bc46",
+      "path": "docs/assets/media/catalog-thumbnails/v001/416cf29cf22a3555.webp",
+      "bytes": 3872,
+      "sha256": "af71f7f1129376238244ad2da827b55103633bb799bbcd3be76deff97bcc828a"
     },
     {
       "source": "docs/assets/media/loop-dancer/v001/beauty.png",

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/glide-wind/v001/source-attempt-1.wav",
+    "sha256": "9e80d84d6d19ef55fb9c3e8e0fa5d206b7e6a1714e823a6292dd602c5bfbf842",
+    "size_bytes": 1411244,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 352800,
+    "duration_seconds": 8.0,
+    "peak_amplitude": 0.13110352,
+    "peak_dbfs": -17.648,
+    "rms_amplitude": 0.02380115,
+    "rms_dbfs": -32.468,
+    "dc_offset": -5.24e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Wrong character: about two thirds of the energy sits below 300 Hz, a low rumble rather than an airy whoosh, likely to vanish on tablet and phone speakers.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "service_version": "0.2.0",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "1bb7f88ae6974f6ba11e617ddb581ef0",
+  "status": "completed",
+  "prompt": "A short magical glockenspiel sparkle flourish, a quick run of bright twinkling ascending bell notes ending in a soft shimmer, joyful and gentle; isolated short sound effect, no voice, no speech, no ambience, no background noise.",
+  "seconds": 5.0,
+  "steps": 8,
+  "seed": 206,
+  "created_at": "2026-09-26T16:17:30.864708Z",
+  "started_at": "2026-09-26T16:17:30.882816Z",
+  "finished_at": "2026-09-26T16:17:38.048113Z",
+  "peak_subprocess_rss_bytes": 4066095104,
+  "artifact": "jobs/1bb7f88ae6974f6ba11e617ddb581ef0/output.wav",
+  "audio": {
+    "codec": "pcm_s16le",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_seconds": 5.0,
+    "size_bytes": 882044,
+    "sha256": "2a9287af3523531c2c4a99a06de8904aaacf9d965de6beaf974d142e3e44d885"
+  },
+  "error": null,
+  "elapsed_seconds": 7.165,
+  "download_url": "/artifacts/1bb7f88ae6974f6ba11e617ddb581ef0/output.wav"
+}
