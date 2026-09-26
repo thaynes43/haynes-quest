@@ -11,13 +11,19 @@ import type { FamilyMemorySlot } from "../../shared/family-plan";
 import { familyApi, familyErrorText } from "./family-client";
 
 const POLL_MS = 2_000;
+// DESIGN-024 D-11 **Update world** copy (final, coordinator-authored).
+const UPDATE_READY = "A new version of this world is ready.";
+const UPDATE_CONFIRM =
+  "Update to the new version of this world? Photos and captions stay where the chapters match. A run already in progress keeps its version until you choose Start fresh.";
+const UPDATE_DONE = "World updated. Publish to make it playable.";
 
 /**
  * The administrator's Memories screen (DESIGN-024 step 5): a card per chapter
  * with two little and one big photo slot, each with a private thumbnail, date,
  * age and caption. **Swap** shows suggestions for that slot's dates with
  * **Show more**; **Edit caption** fixes the text; **Publish** makes the journey
- * playable.
+ * playable. When a newer version of the child's world is offered, **Update
+ * world** rebuilds the draft on it (D-11); publishing stays a separate step.
  */
 export function MemoriesScreen({
   childId,
@@ -35,10 +41,17 @@ export function MemoriesScreen({
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const publishRequest = useRef<{ revision: number; id: string } | null>(null);
+  // A world update runs in the background; its success shows once polling ends.
+  const updating = useRef(false);
 
   const load = useCallback(async () => {
     try {
-      setState(await familyApi.draft(childId));
+      const next = await familyApi.draft(childId);
+      setState(next);
+      if (updating.current && !next.picking) {
+        updating.current = false;
+        if (!next.lastPickError) setNotice(UPDATE_DONE);
+      }
     } catch (e) {
       setError(familyErrorText(e));
     }
@@ -88,6 +101,29 @@ export function MemoriesScreen({
     }
   }
 
+  async function updateWorld() {
+    const offer = state?.newerTemplate;
+    if (!offer || !window.confirm(UPDATE_CONFIRM)) return;
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      const next = await familyApi.updateTemplate(childId, {
+        templateId: offer.id,
+        templateVersion: offer.version,
+        expectedRevision: draft?.revision ?? null,
+      });
+      updating.current = true;
+      setState(next);
+    } catch (e) {
+      setError(familyErrorText(e));
+      const code = e instanceof Error ? e.message : "";
+      if (["DRAFT_CONFLICT", "CHILD_CONFLICT", "TEMPLATE_UPGRADE_UNAVAILABLE"].includes(code)) await load();
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function publish() {
     if (!draft) return;
     // One request id per draft revision, so a retried tap never publishes twice.
@@ -130,6 +166,14 @@ export function MemoriesScreen({
       {state?.picking && <p role="status">Picking photos… this can take a minute or two.</p>}
       {state?.lastPickError && (
         <p role="alert">Photo picking stopped: {familyErrorText(new Error(state.lastPickError))}</p>
+      )}
+      {state && !state.picking && state.newerTemplate && (
+        <div className="family-world-update">
+          <p role="status">{UPDATE_READY}</p>
+          <button className="secondary" disabled={busy} onClick={() => void updateWorld()}>
+            Update world
+          </button>
+        </div>
       )}
       {state && !state.picking && !draft && (
         <button className="primary" disabled={busy} onClick={() => void pickAgain()}>

@@ -29,6 +29,8 @@ Publishing freezes these three parts into a `family-world-plan-v1` snapshot. The
 
 Later edits create a new revision; a run already in progress keeps its photos unless the administrator chooses **Start fresh with these photos**.
 
+When a newer version of the child's world is registered, the Memories screen shows "A new version of this world is ready." with **Update world**. Updating keeps the photos and captions of chapters that did not change and picks photos for the rest (D-11); **Publish** then makes the new version playable.
+
 **Child.** The home screen shows one big card per published journey (display name, current chapter, age). Tap it to play. Memory pickups show the real photo with the caption and age. After the boss, the big memory shows "Turning N!", the avatar grows, and a new-move card teaches any unlocked move.
 
 **Family member (non-admin).** Sees and plays the published journeys; no setup or swap controls.
@@ -115,6 +117,7 @@ It reuses the frozen editor-world runtime (anchors, encounters, bonus slot, rout
 | `/api/admin/children/:id/draft/slots/:chapter/:slot/suggestions?cursor=` | GET | Swap suggestions | Admin |
 | `/api/admin/candidates/:token/image` | GET | Candidate thumbnail | Admin |
 | `/api/admin/children/:id/publish` | POST | Publish the draft | Admin |
+| `/api/admin/children/:id/template` | POST | **Update world** to a newer version of the same template (D-11) | Admin |
 | `/api/children/:id/play` | POST | Resume or create the household save for the latest publication | Admitted |
 
 Save routes are unchanged in shape.
@@ -123,9 +126,22 @@ Save routes are unchanged in shape.
 
 **D-08b Time zone.** `QUEST_HOUSEHOLD_TIME_ZONE` (America/New_York in production) defines "today" for the final chapter's end and for pick windows.
 
-**D-09 Operator CLI.** For the first overnight setup, an operator runs `node dist/server/admin.js` inside the family pod. It performs the same service calls as the admin screen (create child from Immich name, confirm birthday, choose template, auto-pick, publish). It prints only opaque ids and counts, never names, dates or photo ids. This does not bypass validation. `set-template` moves a child onto another registered template version the child can play. A template fix ships as a new version, and published journeys keep their frozen one. When the new version rebases to the same chapters, the draft's photos and captions carry over to the next publish. A started run keeps its publication until an administrator starts a fresh run.
+**D-09 Operator CLI.** For the first overnight setup, an operator runs `node dist/server/admin.js` inside the family pod. It performs the same service calls as the admin screen (create child from Immich name, confirm birthday, choose template, auto-pick, update world, publish). It prints only opaque ids and counts, never names, dates or photo ids. This does not bypass validation. A template fix ships as a new version, and published journeys keep their frozen one; `set-template` moves a child onto a newer version of the same world under D-11's rules, and a started run keeps its publication until an administrator starts a fresh run.
 
 **D-10 Copy.** Fixture-only strings ("Fictional illustration", fictional help text) stay in fixture mode only. Family mode shows the caption and the child's age. All user-visible copy is authored by the coordinator.
+
+**D-11 Update world (template upgrades).** Registered templates are immutable, so an improved world arrives as a newer version of the same template id (for example `family-world-b@v1` → `@v2`). An administrator moves an existing child onto it without losing the photo choices.
+
+- **Eligibility.** The target must be a newer version of the child's own template id (versions compare as numbers, so `v12` is newer than `v9`) and must be offered for the child's birthday under D-03. Anything else is refused with `422 TEMPLATE_UPGRADE_UNAVAILABLE`: another template, the same or an older version, an unknown version, or one whose ages do not fit. `GET /api/admin/children` and `GET /api/admin/children/:id/draft` report `newerTemplate`: the newest such version, or `null`.
+- **Compare-and-set.** The request carries the draft revision the administrator saw (`null` when the child has no draft yet). A stale revision is `409 DRAFT_CONFLICT`. The child row (template id and version) and the rebuilt draft are written in one transaction, compare-and-set on both the child and draft revisions; a conflict on either leaves both unchanged.
+- **Rebuild.** The draft is rebased on the new template with the child's birthday and today's date, keeping its seed. A chapter is *unchanged* when its chapter id and its template age band (the template's own `startAge` and `recoveredAge`, D-03) are the same in the draft's template and the target. The draft must also carry the child's birthday; otherwise every chapter counts as changed.
+  - **Unchanged chapters** keep each slot's current photo, caption and pick reason when the photo's date still fits that slot under the new template. "Fits" is the same rule a swap must meet: the slot's widened window, after the photos kept before it in journey order. Slots are checked in journey order, so every kept photo also fits once its later neighbours are kept. A slot that no longer fits, or that already needed a photo, becomes `needs-photo`. For example, a final chapter now rebased to a later birthday keeps its little memories, but its old big-memory photo is dropped.
+  - **New or changed chapters** are auto-picked (D-04) for their slots only, around the kept photos. New picks never reuse a kept photo. A picked big memory ends before the next chapter's kept little memories, and picked little memories follow the previous chapter's big memory, whether kept or picked.
+- **Background job.** Picking can outlast a request (D-08a), so the route validates eligibility and the revision, answers `202` and runs the rebuild as the child's one background job. Auto-pick, edits and publishing wait for it (`409 AUTO_PICK_RUNNING`). A failure, such as losing a race to an edit, is kept as `lastPickError` with a fixed code.
+- **Publishing and saves.** The update changes only the child profile and the draft. Existing publications are immutable, and every started save stays pinned to its publication: a run in progress keeps its version until an administrator chooses **Start fresh**. Publishing the rebuilt draft is a separate, explicit step.
+- **Audit and privacy.** The child and draft rows record the acting player id in `updated_by` (`null` for the operator CLI), as other admin actions do. A failed background update emits only the diagnostic `{event: "template_upgrade_failed", errorClass, code}`. Responses and logs never carry names, dates or upstream ids.
+- **Operator CLI.** `set-template --child <id> --template <id>@<version>` runs the same service call from the current draft revision. It prints only `draft r<N> carried <kept>/<total> needs-photo <k>`, where `kept` counts slots whose photo and caption were kept, `total` counts every slot of the rebuilt draft, and `k` counts slots that now need a photo.
+- **Copy (final).** The Memories screen shows "A new version of this world is ready." with **Update world**. It confirms with "Update to the new version of this world? Photos and captions stay where the chapters match. A run already in progress keeps its version until you choose Start fresh." After the background update it shows "World updated. Publish to make it playable." `TEMPLATE_UPGRADE_UNAVAILABLE` reads "There's no newer version of this world yet."
 
 ## Limits and failure behavior
 
@@ -143,16 +159,20 @@ Save routes are unchanged in shape.
   - deterministic picks;
   - `needs-photo`;
   - caption bounds;
-  - token expiry and tamper rejection.
+  - token expiry and tamper rejection;
+  - **Update world** (D-11): carry-over of unchanged chapters with captions, `needs-photo` when a kept date no longer fits, auto-picks for new and changed chapters around kept photos, refusal of another template or an older, equal, unknown or unoffered version, and a revision race;
+  - the operator CLI's output shape.
 - **PostgreSQL:**
   - draft compare-and-set races;
   - idempotent publish;
   - a new revision does not alter a started save;
+  - **Update world** writes the child and draft atomically, lets one of two racing updates land, and leaves a started save pinned until **Start fresh**;
   - household access;
   - admin-only routes;
   - fixture sessions see nothing.
 - **Browser (synthetic child, fake Immich):**
   - admin creates, swaps, recaptions and publishes;
+  - admin confirms **Update world**, waits for the background update and is asked to publish (jsdom);
   - child plays through a chapter;
   - the big memory advances age and shows the move card;
   - the non-admin sees no setup;

@@ -2,9 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { ADMIN_USAGE, runAdminCommand } from '../../../src/server/admin.js';
 import { familyHarness } from './harness.js';
 import { TEST_CHILD_B } from './fake-immich.js';
+import { upgradeRegistry } from './template-variants.js';
 
-async function cli() {
-  const harness = familyHarness();
+async function cli(options: Parameters<typeof familyHarness>[0] = {}) {
+  const harness = familyHarness(options);
   const lines: string[] = [];
   const run = async (...argv: string[]) => {
     const start = lines.length;
@@ -72,7 +73,7 @@ describe('operator CLI (DESIGN-024 D-09)', () => {
     await run('auto-pick', '--child', childId);
     expect((await run('publish', '--child', childId)).output[0]).toMatch(/ r1 chapters 3 memories 9$/);
     expect((await run('set-template', '--child', childId, '--template', 'family-world-b@v2')).output)
-      .toEqual([`child ${childId} template family-world-b@v2 draft carried`]);
+      .toEqual(['draft r1 carried 9/9 needs-photo 0']);
     expect((await run('publish', '--child', childId)).output[0]).toMatch(/ r2 chapters 3 memories 9$/);
     expect((await run('status')).output).toEqual([
       'children 1',
@@ -91,5 +92,55 @@ describe('operator CLI (DESIGN-024 D-09)', () => {
       '--template', 'rat-casino-world@v2')).rejects.toMatchObject({ code: 'MISSING_OPTION' });
     await expect(run('verify-media', '--child', '00000000-0000-4000-8000-000000000000'))
       .rejects.toMatchObject({ code: 'JOURNEY_NOT_PUBLISHED' });
+  });
+
+  it('moves a child to a newer world version printing only draft counts (D-11)', async () => {
+    const { harness, lines, run } = await cli({ templates: upgradeRegistry() });
+    const people = await run('people', '--name', TEST_CHILD_B.name);
+    const choice = /^choice (\S+) /.exec(people.output[1]!)![1]!;
+    const create = async (template: string) => /^child (\S+)$/.exec((await run(
+      'create-child', '--name', TEST_CHILD_B.name, '--choice', choice, '--display-name', 'Test Child B',
+      '--immich-birth-date', '--template', template,
+    )).output[0]!)![1]!;
+    const childId = await create('family-world-b@v1');
+    expect((await run('auto-pick', '--child', childId)).output).toEqual(['draft r0 filled 9/9 needs-photo 0']);
+    await run('publish', '--child', childId);
+
+    expect(await run('set-template', '--child', childId, '--template', 'family-world-b@v2'))
+      .toEqual({ code: 0, output: ['draft r1 carried 9/9 needs-photo 0'] });
+    expect(await run('set-template', '--child', childId, '--template', 'family-world-b@v3'))
+      .toEqual({ code: 0, output: ['draft r2 carried 3/9 needs-photo 0'] });
+    expect((await run('status')).output[1]).toBe(
+      `child ${childId} template family-world-b@v3 draft r2 filled 9/9 publication r1`);
+    expect(await harness.familyStore.getChild(childId)).toMatchObject({ templateVersion: 'v3', updatedBy: null });
+
+    await expect(run('set-template', '--child', childId, '--template', 'family-world-b@v2'))
+      .rejects.toMatchObject({ code: 'TEMPLATE_UPGRADE_UNAVAILABLE' });
+    await expect(run('set-template', '--child', childId, '--template', 'rat-casino-world@v2'))
+      .rejects.toMatchObject({ code: 'TEMPLATE_UPGRADE_UNAVAILABLE' });
+    await expect(run('set-template', '--child', childId, '--template', 'family-world-b@v12'))
+      .rejects.toMatchObject({ code: 'TEMPLATE_UPGRADE_UNAVAILABLE' });
+    await expect(run('set-template', '--child', childId, '--template', 'family-world-b'))
+      .rejects.toMatchObject({ code: 'MISSING_OPTION' });
+    await expect(run('set-template', '--child', childId, '--template', 'family-world-b@v4@v5'))
+      .rejects.toMatchObject({ code: 'MISSING_OPTION' });
+    await expect(run('set-template', '--template', 'family-world-b@v4')).rejects.toMatchObject({ code: 'MISSING_OPTION' });
+    await expect(run('set-template', '--child', 'not-a-child', '--template', 'family-world-b@v4'))
+      .rejects.toMatchObject({ code: 'CHILD_NOT_FOUND' });
+
+    // A child with no draft yet: every chapter is picked on the new version.
+    await harness.familyStore.createChild({
+      displayName: 'Test Child C', immichName: 'Test Child C', immichPersonId: 'synthetic-person-c',
+      birthDate: TEST_CHILD_B.birthDate, templateId: 'family-world-b', templateVersion: 'v4',
+    }, null);
+    const other = (await harness.familyStore.listChildren()).at(-1)!.id;
+    expect((await run('set-template', '--child', other, '--template', 'family-world-b@v5')).output)
+      .toEqual([expect.stringMatching(/^draft r0 carried 0\/9 needs-photo \d$/)]);
+
+    const everything = lines.join('\n');
+    expect(everything).not.toMatch(/\d{4}-\d{2}-\d{2}/);
+    expect(everything).not.toContain('Test Child');
+    expect(everything).not.toContain(TEST_CHILD_B.personId);
+    for (const asset of harness.assets) expect(everything).not.toContain(asset.id);
   });
 });

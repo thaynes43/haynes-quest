@@ -108,16 +108,6 @@ export async function runAdminCommand(
       out(`child ${child.id}`);
       return 0;
     }
-    case 'set-template': {
-      // A template fix ships as a new version; this moves a child onto it.
-      // The draft carries over when the chapters rebase identically, so the
-      // next publish uses the new version.
-      const [templateId, templateVersion] = text('template').split('@');
-      if (!templateId || !templateVersion) throw new AppError(422, 'MISSING_OPTION', '--template is <id>@<version>');
-      const { child, draftCarried } = await context.service.setTemplate(text('child'), templateId, templateVersion, null);
-      out(`child ${child.id} template ${child.templateId}@${child.templateVersion} draft ${draftCarried ? 'carried' : 'needs auto-pick'}`);
-      return 0;
-    }
     case 'auto-pick': {
       const draft = await context.service.autoPick(text('child'), null, { reseed: options.reseed === true });
       const slots = draft.chapters.flatMap((chapter) => chapter.slots);
@@ -127,6 +117,27 @@ export async function runAdminCommand(
         const missing = chapter.slots.filter((slot) => slot.status !== 'filled').length;
         if (missing > 0) out(`needs-photo chapter ${index + 1} slots ${missing}`);
       });
+      return 0;
+    }
+    case 'set-template': {
+      // DESIGN-024 D-11 "Update world": a template fix ships as a newer
+      // version of the same template; this moves a child onto it from the
+      // current draft revision. Publishing stays a separate step.
+      const childId = text('child');
+      const [templateId, templateVersion, extra] = text('template').split('@');
+      if (!templateId || !templateVersion || extra !== undefined) {
+        throw new AppError(422, 'MISSING_OPTION', '--template is <id>@<version>');
+      }
+      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(childId)) {
+        throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
+      }
+      const current = await context.store.getDraft(childId);
+      const result = await context.service.upgradeTemplate(childId, {
+        templateId,
+        templateVersion,
+        expectedRevision: current?.revision ?? null,
+      }, null);
+      out(`draft r${result.draft.revision} carried ${result.carried}/${result.total} needs-photo ${result.needsPhoto}`);
       return 0;
     }
     case 'publish': {

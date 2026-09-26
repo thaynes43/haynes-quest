@@ -84,7 +84,13 @@ export type SafeErrorClass =
   | 'non-error';
 
 export interface SafeDiagnostic {
-  event: 'api_request_failed' | 'auto_pick_failed' | 'maintenance_failed' | 'shutdown_failed' | 'startup_failed';
+  event:
+    | 'api_request_failed'
+    | 'auto_pick_failed'
+    | 'maintenance_failed'
+    | 'shutdown_failed'
+    | 'startup_failed'
+    | 'template_upgrade_failed';
   errorClass: SafeErrorClass;
   method?: string;
   route?: string;
@@ -122,6 +128,7 @@ const DIAGNOSTIC_ROUTES = new Set([
   '/api/admin/children/:id/draft/slots/:chapter/:slot/suggestions',
   '/api/admin/candidates/:token/image',
   '/api/admin/children/:id/publish',
+  '/api/admin/children/:id/template',
 ]);
 
 export function createApp(options: AppOptions): Hono {
@@ -335,8 +342,8 @@ export function createApp(options: AppOptions): Hono {
         templates: family.templates,
         service: family.service,
         privateMedia: options.privateMedia ?? null,
-        jobs: family.jobs ?? new AutoPickJobs((code) => emitSafeDiagnostic(diagnosticSink, {
-          event: 'auto_pick_failed',
+        jobs: family.jobs ?? new AutoPickJobs((code, kind) => emitSafeDiagnostic(diagnosticSink, {
+          event: kind === 'template-upgrade' ? 'template_upgrade_failed' : 'auto_pick_failed',
           errorClass: 'app-error',
           code,
         })),

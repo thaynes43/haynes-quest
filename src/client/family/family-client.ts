@@ -11,6 +11,7 @@ import type {
   PublicationSummary,
   SuggestionPageView,
   TemplateOffer,
+  TemplateUpgradeRequest,
 } from "../../shared/family-api";
 import type { FamilyMemorySlot } from "../../shared/family-plan";
 
@@ -36,6 +37,9 @@ export const familyApi = {
     api<SuggestionPageView>(
       `/admin/children/${encodeURIComponent(childId)}/draft/slots/${encodeURIComponent(chapterId)}/${slot}/suggestions?cursor=${cursor}`,
     ),
+  /** DESIGN-024 D-11 **Update world**; answers 202 and the update runs in the background. */
+  updateTemplate: (childId: string, request: TemplateUpgradeRequest) =>
+    api<AdminDraftResponse>(`/admin/children/${encodeURIComponent(childId)}/template`, request),
   publish: (childId: string, expectedRevision: number, requestId: string) =>
     api<PublicationSummary>(`/admin/children/${encodeURIComponent(childId)}/publish`, {
       expectedRevision,
@@ -62,6 +66,7 @@ export function familyErrorText(error: unknown): string {
     CAPTION_TOO_LONG: "Keep captions to 60 characters.",
     CAPTION_INVALID: "Use plain text for captions.",
     TEMPLATE_NOT_OFFERED: "That world doesn't fit this birthday.",
+    TEMPLATE_UPGRADE_UNAVAILABLE: "There's no newer version of this world yet.",
     SUBJECT_UNRESOLVED: "Choose the person again.",
     CHILD_EXISTS: "This person already has a quest.",
     INVALID_DISPLAY_NAME: "Enter the name the game should use.",
