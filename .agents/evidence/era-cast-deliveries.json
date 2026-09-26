@@ -294,7 +294,7 @@
       "integrationNotes": [
         "Rest geometry starts 0.100 m above the floor (hover gap); the lowest animated point is 0.004 m in the held defeat pose. A registration contract that expects the rest minimum at y=0 needs a hover allowance.",
         "The GLB scene extras say the body hovers 0.12 m; the measured rest gap is 0.100 m.",
-        "Exact intake values: 1,031,204 bytes, buffer 997,324 bytes, 14,574 triangles, 2 textures, 2 materials, 2 primitives, 10 joints."
+        "Exact intake values: 1,031,204 bytes, buffer 997,324 bytes, 14,574 triangles, 2 texture references to 1 embedded image, 2 materials, 2 primitives, 10 joints."
       ],
       "validation": {
         "khronosErrors": 0,
