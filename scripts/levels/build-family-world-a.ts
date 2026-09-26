@@ -1,5 +1,5 @@
 /**
- * Generates World A, "Clubhouse to Casino" (`family-world-a@v2`, PLAN-019).
+ * Generates World A, "Clubhouse to Casino" (`family-world-a@v3`, PLAN-019).
  *
  * Usage: tsx scripts/levels/build-family-world-a.ts [--write]
  *
@@ -14,12 +14,14 @@
  *   3. Hero City                `family-a3-rooftop`    rooftop    ages 5 -> 9
  *   4. Rat Casino After Hours   `family-a4-casino`     casino     ages 9 -> 11
  *
- * Casts (WORLD-SPEC): a catalog reference where the newest parody catalog has
- * the landed model (the Captain Bully Cat boss and the whole Rat Casino
- * cast), otherwise a project enemy candidate with neutral placeholder art. A
- * chapter with one ordinary identity puts it in all four ordinary slots with
- * one kind (R11); Hero City has two (putty grunt and lab robot). The Radio
- * Showman takes the casino's optional bonus slot, so Golden is scenic only.
+ * Casts (WORLD-SPEC): a catalog reference where the pinned parody catalog has
+ * the landed model (the Runaway Gadget, Captain Bully Cat, the Mischief
+ * Kitten, Mayor Humdrum and the whole Rat Casino cast), otherwise a project
+ * enemy candidate with neutral placeholder art (Hero City's cast and the Radio
+ * Showman). A chapter with one ordinary identity puts it in all four ordinary
+ * slots with one kind (R11); Hero City has two (putty grunt and lab robot).
+ * The Radio Showman takes the casino's optional bonus slot, so Golden is
+ * scenic only.
  * The friendly characters need no command: each level's three friendly
  * anchors take the chapter's friendly creatures from the frozen friendly
  * catalog.
@@ -29,8 +31,8 @@
  * (DESIGN-024 D-03) and replaces the preview memories with real photos.
  *
  * Without `--write` it prints the command batch. With it, it rewrites the
- * checked-in command history (`scripts/levels/family-world-a-v2.commands.json`)
- * and the template project (`src/shared/levels/family-world-a-v2.json`) that
+ * checked-in command history (`scripts/levels/family-world-a-v3.commands.json`)
+ * and the template project (`src/shared/levels/family-world-a-v3.json`) that
  * `pnpm levels:validate` replays byte-identically and the family template
  * registry serves.
  *
@@ -39,11 +41,17 @@
  * registered and loadable. v1 (`family-world-a-v1.json` and
  * `family-world-a.commands.json`) is frozen history: `levels:validate` still
  * replays it from its own checked-in commands, and no generator rewrites it.
- * v2 carries the post-verification fixes:
+ * v2 (`family-world-a-v2.json` and `family-world-a-v2.commands.json`) is
+ * frozen too; it carries the post-verification fixes:
  * - A1's mop sweeper is gone from the boss pad's run-up;
  * - A4's optional On-Air pad is wider;
  * - every lift has a deep car that closes its shaft while it is away.
- * Everything else is unchanged.
+ * v3 is v2's levels exactly, with the cast switched to parody-catalog-v10:
+ * the Runaway Gadget (A1 ordinaries), the Mischief Kitten (A2 ordinaries and
+ * bonus) and Mayor Humdrum (A2 boss) are catalog entries with their Blender
+ * models instead of placeholder candidates. Chapter ids, routes, dates and
+ * age bands are unchanged, so **Update world** carries every photo over
+ * (DESIGN-024 D-11).
  */
 import { writeFile } from "node:fs/promises";
 import {
@@ -54,7 +62,6 @@ import {
   type LevelEditorCatalogVersion,
   type LevelEditorCommand,
   type LevelEditorCommandBatch,
-  type LevelEditorEncounterReference,
   type LevelEditorProjectV2,
   type WorldEditorLevelDocument,
 } from "../../src/shared/editor-project.js";
@@ -91,16 +98,16 @@ import {
 } from "./family/a4.js";
 
 export const FAMILY_WORLD_A_TEMPLATE_ID = "family-world-a";
-export const FAMILY_WORLD_A_TEMPLATE_VERSION = "v2";
+export const FAMILY_WORLD_A_TEMPLATE_VERSION = "v3";
 /** The name administrators see when they choose a template (WORLD-SPEC). */
 export const FAMILY_WORLD_A_NAME = "Clubhouse to Casino";
 export const FAMILY_WORLD_A_BIRTH_DATE = FAMILY_WORLD_A_FICTIONAL_BIRTH_DATE;
 /**
- * The newest parody catalog when v1 was generated (v2 keeps it). It is pinned, not derived:
- * a published template is frozen by fingerprint, so a later catalog version
- * belongs in a new template version.
+ * The parody catalog v3 pins: v10 registers the A1 and A2 models (v1 and v2
+ * pin v8). It is pinned, not derived: a published template is frozen by
+ * fingerprint, so a later catalog version belongs in a new template version.
  */
-export const FAMILY_WORLD_A_CATALOG_VERSION: LevelEditorCatalogVersion = "parody-catalog-v8";
+export const FAMILY_WORLD_A_CATALOG_VERSION: LevelEditorCatalogVersion = "parody-catalog-v10";
 
 /** One chapter of the world: its shell entry, level and cast commands. */
 export interface WorldAChapter {
@@ -110,11 +117,6 @@ export interface WorldAChapter {
   /** Cast commands, run after the level is in place. */
   readonly cast: (chapterId: string) => LevelEditorCommand[];
 }
-
-const candidate = (candidateId: string): LevelEditorEncounterReference => ({
-  source: "candidate",
-  candidateId,
-});
 
 /**
  * The four chapters in play order. Each represented range runs from the
@@ -128,12 +130,11 @@ export const FAMILY_WORLD_A_CHAPTERS: readonly WorldAChapter[] = Object.freeze([
     level: familyA1Level,
     cast: (chapterId) => {
       const chapter = chapterCommands(chapterId);
-      const ordinary = candidate(FAMILY_A1_CAST.ordinary.id);
       return [
-        chapter.addCandidate("ordinary-1", FAMILY_A1_CAST.ordinary),
-        chapter.assign("ordinary-2", ordinary),
-        chapter.assign("ordinary-3", ordinary),
-        chapter.assign("ordinary-4", ordinary),
+        // The Runaway Gadget (parody-catalog-v10) in every ordinary slot.
+        ...(["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4"] as const).map((slot) =>
+          chapter.assign(slot, FAMILY_A1_CAST.ordinary),
+        ),
         // Captain Bully Cat's model is registered in parody-catalog-v8.
         chapter.assign("boss", FAMILY_A1_CAST.boss),
       ];
@@ -160,15 +161,13 @@ export const FAMILY_WORLD_A_CHAPTERS: readonly WorldAChapter[] = Object.freeze([
     level: familyA2Level,
     cast: (chapterId) => {
       const chapter = chapterCommands(chapterId);
-      const kitten = candidate(FAMILY_A2_CAST.ordinary.id);
+      // The Mischief Kitten and Mayor Humdrum (parody-catalog-v10); the
+      // laundry-annex branch holds the chapter's optional kitten fight.
       return [
-        chapter.addCandidate("ordinary-1", FAMILY_A2_CAST.ordinary),
-        chapter.assign("ordinary-2", kitten),
-        chapter.assign("ordinary-3", kitten),
-        chapter.assign("ordinary-4", kitten),
-        // The laundry-annex branch holds the chapter's optional fight.
-        chapter.assign("bonus-1", kitten),
-        chapter.addCandidate("boss", FAMILY_A2_CAST.boss),
+        ...(["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4", "bonus-1"] as const).map((slot) =>
+          chapter.assign(slot, FAMILY_A2_CAST.ordinary),
+        ),
+        chapter.assign("boss", FAMILY_A2_CAST.boss),
       ];
     },
   },
@@ -273,6 +272,15 @@ export const FAMILY_WORLD_A_COMMANDS_URL = new URL(
 );
 export const FAMILY_WORLD_A_PROJECT_URL = new URL(
   `../../src/shared/levels/family-world-a-${FAMILY_WORLD_A_TEMPLATE_VERSION}.json`,
+  import.meta.url,
+);
+/** The frozen v2 files; nothing regenerates them. */
+export const FAMILY_WORLD_A_V2_COMMANDS_URL = new URL(
+  "./family-world-a-v2.commands.json",
+  import.meta.url,
+);
+export const FAMILY_WORLD_A_V2_PROJECT_URL = new URL(
+  "../../src/shared/levels/family-world-a-v2.json",
   import.meta.url,
 );
 

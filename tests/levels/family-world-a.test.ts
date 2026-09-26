@@ -1,10 +1,11 @@
 /**
- * World A, "Clubhouse to Casino" (family-world-a@v2), assembled from its four
+ * World A, "Clubhouse to Casino" (family-world-a@v3), assembled from its four
  * chapter generators by `scripts/levels/build-family-world-a.ts`. These checks
- * run against the checked-in v2 template project: the whole-world validator, the
+ * run against the checked-in v3 template project: the whole-world validator, the
  * WORLD-SPEC shell (copy, themes, dates and ages), every chapter's cast, the
  * family lints and the kid-model route on the assembled levels, and the World
- * A difficulty curve (R8). The world is fictional template data.
+ * A difficulty curve (R8). v1 and v2 are frozen history, checked here against
+ * v3. The world is fictional template data.
  */
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -22,6 +23,7 @@ import {
   type LevelEditorProjectV2,
 } from "../../src/shared/editor-project";
 import { lintFamilyChapter } from "../../src/shared/family-world-lint";
+import { PARODY_CATALOGS } from "../../src/shared/parody-catalog";
 import { placeableThemeKitProps, themeKitProp } from "../../src/shared/theme-kits";
 import {
   buildFamilyWorldA,
@@ -36,11 +38,16 @@ import { familyA4Level } from "../../scripts/levels/family/a4";
 import { runGrowthRouteWithWaits } from "../game/family-kid-lib";
 
 const PROJECT_SOURCE = readFileSync(
-  new URL("../../src/shared/levels/family-world-a-v2.json", import.meta.url),
+  new URL("../../src/shared/levels/family-world-a-v3.json", import.meta.url),
   "utf8",
 );
 const COMMANDS_SOURCE = readFileSync(
-  new URL("../../scripts/levels/family-world-a-v2.commands.json", import.meta.url),
+  new URL("../../scripts/levels/family-world-a-v3.commands.json", import.meta.url),
+  "utf8",
+);
+/** v2 is frozen history too; v3 changes only its cast. */
+const V2_PROJECT_SOURCE = readFileSync(
+  new URL("../../src/shared/levels/family-world-a-v2.json", import.meta.url),
   "utf8",
 );
 /** v1 is frozen history for journeys published on it; no generator rewrites it. */
@@ -51,6 +58,8 @@ const V1_PROJECT_SOURCE = readFileSync(
 const { project: resolvedProject, levels } = resolveLevelEditorProject(JSON.parse(PROJECT_SOURCE));
 const project = resolvedProject as LevelEditorProjectV2;
 const chapters = project.chapters as readonly LevelEditorChapterV2[];
+const v2Project = resolveLevelEditorProject(JSON.parse(V2_PROJECT_SOURCE)).project as LevelEditorProjectV2;
+const v2Chapters = v2Project.chapters as readonly LevelEditorChapterV2[];
 
 /** WORLD-SPEC, verbatim: the final user-facing chapter copy. */
 const WORLD_SPEC = [
@@ -94,14 +103,80 @@ function surfaceTop(chapter: LevelEditorChapterV2, id: string): number {
   return piece.center.y + piece.size.y / 2;
 }
 
-describe("World A template (family-world-a@v2)", () => {
+describe("World A template (family-world-a@v3)", () => {
   it("is the byte-identical output of its generator", () => {
-    expect(FAMILY_WORLD_A_TEMPLATE_VERSION).toBe("v2");
+    expect(FAMILY_WORLD_A_TEMPLATE_VERSION).toBe("v3");
     expect(COMMANDS_SOURCE).toBe(`${JSON.stringify(familyWorldACommands(), null, 2)}\n`);
     expect(PROJECT_SOURCE).toBe(serializeLevelEditorProject(buildFamilyWorldA()));
   });
 
-  it("keeps v1 valid and differs from it only in the verified fixes", () => {
+  it("keeps v2 valid and differs from it only in the cast: the landed A1 and A2 models from parody-catalog-v10", () => {
+    expect(validateLevelEditorProject(v2Project)).toEqual([]);
+    expect(v2Project.catalogVersion).toBe("parody-catalog-v8");
+    expect(project.catalogVersion).toBe("parody-catalog-v10");
+    // Same levels, chapter ids, routes, dates, ages and copy: Update world
+    // carries every photo from v2 to v3 (DESIGN-024 D-11).
+    for (const [index, chapter] of chapters.entries()) {
+      const before = v2Chapters[index]!;
+      expect({ ...chapter, encounterSlots: null }).toEqual({ ...before, encounterSlots: null });
+    }
+    const catalog = (catalogEntryId: string) => ({ source: "catalog", catalogEntryId, catalogEntryVersion: "v001" });
+    const changed = chapters.map((chapter, index) =>
+      Object.fromEntries(
+        Object.entries(chapter.encounterSlots).filter(
+          ([slot, assigned]) =>
+            JSON.stringify(assigned) !==
+            JSON.stringify((v2Chapters[index]!.encounterSlots as Record<string, unknown>)[slot]),
+        ),
+      ),
+    );
+    expect(changed).toEqual([
+      {
+        "ordinary-1": catalog("gadget-helper"),
+        "ordinary-2": catalog("gadget-helper"),
+        "ordinary-3": catalog("gadget-helper"),
+        "ordinary-4": catalog("gadget-helper"),
+      },
+      {
+        "ordinary-1": catalog("mischief-kitten"),
+        "ordinary-2": catalog("mischief-kitten"),
+        "ordinary-3": catalog("mischief-kitten"),
+        "ordinary-4": catalog("mischief-kitten"),
+        boss: catalog("rival-mayor"),
+        "bonus-1": catalog("mischief-kitten"),
+      },
+      {},
+      {},
+    ]);
+    // Each switched slot held the same-named v2 candidate, with the same
+    // name, period, window and kind as the catalog entry that replaces it.
+    const v10 = PARODY_CATALOGS["parody-catalog-v10"];
+    for (const [index, slots] of changed.entries())
+      for (const [slot, assigned] of Object.entries(slots)) {
+        const was = (v2Chapters[index]!.encounterSlots as Record<string, { candidateId?: string }>)[slot]!;
+        const candidate = v2Project.enemyCandidates.find((entry) => entry.id === was.candidateId)!;
+        const entry = v10.find((item) => item.id === (assigned as { catalogEntryId: string }).catalogEntryId)!;
+        expect(candidate.id).toBe(entry.id);
+        expect([entry.title, entry.periodId, entry.kind, entry.eligibleFrom, entry.eligibleThrough]).toEqual([
+          candidate.name,
+          candidate.periodId,
+          candidate.kind,
+          candidate.eligibility.startDate,
+          candidate.eligibility.endDate,
+        ]);
+      }
+    expect(project.enemyCandidates).toEqual(
+      v2Project.enemyCandidates.filter((entry) => !["gadget-helper", "mischief-kitten", "rival-mayor"].includes(entry.id)),
+    );
+    expect({ ...v2Project, catalogVersion: null, enemyCandidates: [], chapters: [] }).toEqual({
+      ...project,
+      catalogVersion: null,
+      enemyCandidates: [],
+      chapters: [],
+    });
+  });
+
+  it("keeps v1 valid and differs from v2 only in the verified fixes", () => {
     const { project: v1 } = resolveLevelEditorProject(JSON.parse(V1_PROJECT_SOURCE));
     expect(validateLevelEditorProject(v1)).toEqual([]);
     const v1Chapters = (v1 as LevelEditorProjectV2).chapters as readonly LevelEditorChapterV2[];
@@ -134,7 +209,7 @@ describe("World A template (family-world-a@v2)", () => {
       return out;
     };
     const deepCar = ["center.y", "size.y"];
-    expect(v1Chapters.map((chapter, index) => changes(chapter, chapters[index]!))).toEqual([
+    expect(v1Chapters.map((chapter, index) => changes(chapter, v2Chapters[index]!))).toEqual([
       // A1: the mop sweeper across the boss pad's run-up is gone; deep cars.
       { "cliff-lift": deepCar, "tower-lift": deepCar, "mop-sweeper": "removed" },
       { "cargo-lift": deepCar },
@@ -144,7 +219,7 @@ describe("World A template (family-world-a@v2)", () => {
     ]);
     // Every deep car keeps its standing top and travel, and hangs 0.6 m above
     // its boarding landing at the top stop.
-    for (const [index, chapter] of chapters.entries())
+    for (const [index, chapter] of v2Chapters.entries())
       for (const piece of chapter.level.pieces) {
         if (piece.type !== "lift") continue;
         const before = v1Chapters[index]!.level.pieces.find((entry) => entry.id === piece.id) as typeof piece;
@@ -157,8 +232,8 @@ describe("World A template (family-world-a@v2)", () => {
       return [piece.center.x - piece.size.x / 2, piece.center.x + piece.size.x / 2].map((x) => Math.round(x * 10) / 10);
     };
     expect(pad(v1Chapters[3]!)).toEqual([-27.6, -25.2]);
-    expect(pad(chapters[3]!)).toEqual([-28.4, -25.2]);
-    expect({ ...v1, chapters: [] }).toEqual({ ...project, chapters: [] });
+    expect(pad(v2Chapters[3]!)).toEqual([-28.4, -25.2]);
+    expect({ ...v1, chapters: [] }).toEqual({ ...v2Project, chapters: [] });
   });
 
   it("validates as a whole world with zero issues", () => {
@@ -170,7 +245,7 @@ describe("World A template (family-world-a@v2)", () => {
     expect(project).toMatchObject({
       projectId: "family-world-a",
       name: "Clubhouse to Casino",
-      catalogVersion: "parody-catalog-v8",
+      catalogVersion: "parody-catalog-v10",
       fictionalBirthDate: "2015-01-15",
     });
     expect(chapters.map((chapter) => chapter.chapterId)).toEqual([
@@ -224,19 +299,19 @@ describe("World A template (family-world-a@v2)", () => {
           .map((slot) => [slot, reference(chapter, slot)]),
       );
     expect(slots(a1)).toEqual({
-      "ordinary-1": candidate("gadget-helper"),
-      "ordinary-2": candidate("gadget-helper"),
-      "ordinary-3": candidate("gadget-helper"),
-      "ordinary-4": candidate("gadget-helper"),
+      "ordinary-1": catalog("gadget-helper"),
+      "ordinary-2": catalog("gadget-helper"),
+      "ordinary-3": catalog("gadget-helper"),
+      "ordinary-4": catalog("gadget-helper"),
       boss: catalog("clubhouse-bully-cat"),
     });
     expect(slots(a2)).toEqual({
-      "ordinary-1": candidate("mischief-kitten"),
-      "ordinary-2": candidate("mischief-kitten"),
-      "ordinary-3": candidate("mischief-kitten"),
-      "ordinary-4": candidate("mischief-kitten"),
-      boss: candidate("rival-mayor"),
-      "bonus-1": candidate("mischief-kitten"),
+      "ordinary-1": catalog("mischief-kitten"),
+      "ordinary-2": catalog("mischief-kitten"),
+      "ordinary-3": catalog("mischief-kitten"),
+      "ordinary-4": catalog("mischief-kitten"),
+      boss: catalog("rival-mayor"),
+      "bonus-1": catalog("mischief-kitten"),
     });
     expect(slots(a3)).toEqual({
       "ordinary-1": candidate("putty-grunt"),
@@ -255,23 +330,16 @@ describe("World A template (family-world-a@v2)", () => {
       boss: catalog("rat-pit-boss"),
       "bonus-1": candidate("radio-host-showman"),
     });
-    // Every project candidate is a WORLD-SPEC identity in its chapter's period,
-    // and each anchor's kind is its identity's kind (R11).
+    // Every cast identity, catalog entry or project candidate, is in its
+    // chapter's period, and each anchor's kind is its identity's kind (R11).
     const candidates = new Map(project.enemyCandidates.map((entry) => [entry.id, entry]));
-    expect([...candidates.keys()]).toEqual([
-      "gadget-helper",
-      "mischief-kitten",
-      "rival-mayor",
-      "putty-grunt",
-      "lab-robot",
-      "inator-monster",
-      "radio-host-showman",
-    ]);
+    expect([...candidates.keys()]).toEqual(["putty-grunt", "lab-robot", "inator-monster", "radio-host-showman"]);
+    const catalogEntries = new Map(PARODY_CATALOGS["parody-catalog-v10"].map((entry) => [entry.id, entry]));
     for (const [index, chapter] of chapters.entries()) {
       for (const [slot, assigned] of Object.entries(slots(chapter))) {
-        const id = (assigned as { candidateId?: string }).candidateId;
-        if (!id) continue;
-        const entry = candidates.get(id)!;
+        const { candidateId, catalogEntryId } = assigned as { candidateId?: string; catalogEntryId?: string };
+        const entry = candidateId ? candidates.get(candidateId)! : catalogEntries.get(catalogEntryId!)!;
+        const id = candidateId ?? catalogEntryId;
         expect(entry.periodId, `${chapter.chapterId} ${id}`).toBe(WORLD_SPEC[index]!.period);
         expect(
           chapter.level.anchors.encounters[slot as keyof typeof chapter.level.anchors.encounters]!.kind,

@@ -48,9 +48,9 @@ import {
   type LevelEditorSectionSide,
 } from "./editor-sections";
 import {
-  ALL_PARODY_CANDIDATES,
   PARODY_CATALOGS,
   PARODY_CATALOG_VERSION,
+  PARODY_CATALOG_VERSIONS,
   PARODY_PERIODS,
   type ParodyCatalogEntry,
   type ParodyCatalogVersion,
@@ -71,6 +71,7 @@ export const LEVEL_EDITOR_CATALOG_VERSIONS = [
   "parody-catalog-v7",
   "parody-catalog-v8",
   "parody-catalog-v9",
+  "parody-catalog-v10",
 ] as const satisfies readonly ParodyCatalogVersion[];
 export type LevelEditorCatalogVersion =
   (typeof LEVEL_EDITOR_CATALOG_VERSIONS)[number];
@@ -499,6 +500,13 @@ const LEVEL_EDITOR_READY_IDENTITIES = new Set([
   // Family-era Blender models (parody-catalog-v8, DESIGN-026).
   "clubhouse-bully-cat@v001:clubhouse-bully-cat@v001",
   "honk-bus@v001:honk-bus@v001",
+  // Family-era Blender models (parody-catalog-v10, DESIGN-026).
+  "gadget-helper@v001:gadget-helper@v001",
+  "rival-mayor@v001:rival-mayor@v001",
+  "yes-yes-veggie@v001:yes-yes-veggie@v001",
+  "magic-house@v001:magic-house@v001",
+  "mischief-kitten@v001:mischief-kitten@v001",
+  "bin-chicken@v001:bin-chicken@v001",
 ]);
 
 const LEVEL_EDITOR_BONUS_READY_IDENTITIES = new Set([
@@ -807,14 +815,39 @@ function encounterIdentity(
     : undefined;
 }
 
+const reservedCatalogIdCache = new Map<LevelEditorCatalogVersion, ReadonlySet<string>>();
+
+/**
+ * Catalog entry ids a world project's candidates may not reuse: every id in
+ * the catalog the project pins or in any earlier catalog, so retired and
+ * paused entries stay reserved. An id first registered by a later catalog is
+ * not reserved for a project pinned before it. A candidate and a catalog
+ * entry never share a frozen identity (candidates freeze as
+ * `editor-candidate-<id>@draft-v1` with placeholder art), and a family template
+ * frozen on an older catalog keeps its candidates when a later catalog
+ * registers the landed model under the same id (DESIGN-026:
+ * `family-world-a@v2` on v8 casts the `gadget-helper` candidate, and
+ * parody-catalog-v10 registers the `gadget-helper` entry that v3 assigns).
+ */
+function reservedCatalogIds(catalogVersion: LevelEditorCatalogVersion): ReadonlySet<string> {
+  const known = reservedCatalogIdCache.get(catalogVersion);
+  if (known) return known;
+  const through = PARODY_CATALOG_VERSIONS.indexOf(catalogVersion);
+  const ids = new Set(
+    PARODY_CATALOG_VERSIONS.slice(0, through + 1).flatMap((version) =>
+      PARODY_CATALOGS[version].map((entry) => entry.id),
+    ),
+  );
+  reservedCatalogIdCache.set(catalogVersion, ids);
+  return ids;
+}
+
 function validateWorldProject(
   project: LevelEditorProjectV2,
   issues: LevelEditorIssue[],
 ): void {
   const candidateIds = new Map<string, number>();
-  const preparedIds = new Set(
-    ALL_PARODY_CANDIDATES.map((entry) => entry.id),
-  );
+  const preparedIds = reservedCatalogIds(project.catalogVersion);
   project.enemyCandidates.forEach((candidate, index) => {
     const prefix = `$.enemyCandidates[${index}]`;
     const previous = candidateIds.get(candidate.id);
@@ -2653,9 +2686,7 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
       const worldChapter = worldChapterForCommand(chapter);
       if (
         world.enemyCandidates.some((entry) => entry.id === command.candidate.id) ||
-        ALL_PARODY_CANDIDATES.some(
-          (entry) => entry.id === command.candidate.id,
-        )
+        reservedCatalogIds(world.catalogVersion).has(command.candidate.id)
       )
         commandError(
           "$.candidate.id",

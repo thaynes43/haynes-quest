@@ -83,8 +83,13 @@ function withBirth(spec: FamilyCatalogBossWorldSpec, birth: string): FamilyCatal
 
 describe("parody-catalog-v8", () => {
   it("is v7 unchanged plus the landed family-era bosses, and v1-v7 stay frozen", () => {
-    // v9 (the Besties parent lock) follows it; parody-catalog-v9.test.ts.
-    expect(PARODY_CATALOG_VERSIONS.indexOf("parody-catalog-v8")).toBe(PARODY_CATALOG_VERSIONS.length - 2);
+    // v9 (the Besties parent lock) and v10 (six more family-era models)
+    // follow it; parody-catalog-v9.test.ts and parody-catalog-v10.test.ts.
+    expect(PARODY_CATALOG_VERSIONS.slice(PARODY_CATALOG_VERSIONS.indexOf("parody-catalog-v8"))).toEqual([
+      "parody-catalog-v8",
+      "parody-catalog-v9",
+      "parody-catalog-v10",
+    ]);
     const v7 = PARODY_CATALOGS["parody-catalog-v7"];
     const v8 = PARODY_CATALOGS["parody-catalog-v8"];
     expect(Object.isFrozen(v8)).toBe(true);
@@ -140,6 +145,7 @@ describe("parody-catalog-v8", () => {
       "parody-catalog-v7",
       "parody-catalog-v8",
       "parody-catalog-v9",
+      "parody-catalog-v10",
     ]);
     const ids = (entries: readonly ParodyCatalogEntry[]) => entries.map((entry) => entry.id);
     expect(ids(levelEditorPreparedEnemies("parody-catalog-v8"))).toEqual([

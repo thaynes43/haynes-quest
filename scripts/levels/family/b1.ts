@@ -44,7 +44,6 @@ import type {
 } from "../../../src/shared/authored-level.js";
 import type {
   LevelEditorEncounterReference,
-  LevelEditorEnemyCandidate,
   WorldEditorLevelDocument,
 } from "../../../src/shared/editor-project.js";
 import {
@@ -111,24 +110,23 @@ export const FAMILY_B1_BOSS: LevelEditorEncounterReference = Object.freeze({
 });
 
 /**
- * The WORLD-SPEC ordinary as a project candidate (no catalog model yet):
- * Yes-Yes Veggie in all four ordinary slots, in the boss's period.
+ * The WORLD-SPEC ordinary as its exact parody-catalog-v10 reference: Yes-Yes
+ * Veggie in all four ordinary slots (kind ordinary-a), in the boss's period
+ * and window. `family-world-b@v1` and v2 froze it as a project candidate;
+ * their command histories keep it.
  */
-export const FAMILY_B1_CAST: Readonly<Record<"ordinary", LevelEditorEnemyCandidate>> =
-  Object.freeze({
-    ordinary: Object.freeze({
-      id: "yes-yes-veggie",
-      name: "Yes-Yes Veggie",
-      periodId: "sing-along-playroom-v1",
-      recognizableReference: 'the veggies from the "yes yes" eating song',
-      visualJoke: "stubbornly says no",
-      obstacleOrAttack: "bouncy head-butt",
-      eligibility: { startDate: "2018-01-01", endDate: "2026-12-31" },
-      role: "ordinary",
-      kind: "ordinary-a",
-      behaviorPreset: "ordinary-a",
-    }),
-  });
+export const FAMILY_B1_CAST: Readonly<{
+  ordinary: LevelEditorEncounterReference;
+  /** The kind every B1 ordinary anchor uses; the catalog entry's kind. */
+  ordinaryKind: "ordinary-a";
+}> = Object.freeze({
+  ordinary: Object.freeze({
+    source: "catalog",
+    catalogEntryId: "yes-yes-veggie",
+    catalogEntryVersion: "v001",
+  }),
+  ordinaryKind: "ordinary-a",
+});
 
 /** Heights the chapter is built around (metres). */
 export const FAMILY_B1_HEIGHTS = Object.freeze({

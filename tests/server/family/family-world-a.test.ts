@@ -1,7 +1,7 @@
 /**
  * World A, "Clubhouse to Casino" (family-world-a@v2, and v1 kept for the
- * journeys already published on it), as a family template: the registry
- * offers both to a synthetic eleven-year-old, the rebase validates, and a
+ * journeys already published on it; v3 is covered in family-worlds-v3.test.ts),
+ * as a family template: the registry offers both to a synthetic eleven-year-old, the rebase validates, and a
  * published family-world-plan-v1 starts and plays its first chapter as a
  * household save in the in-memory stores. Every child, date and photo here is
  * synthetic.
@@ -235,7 +235,8 @@ describe('family-world-a@v2 template (World A)', () => {
     expect(lines[0]).toBe('draft r1 carried 12/12 needs-photo 0');
     expect(lines[1]).toMatch(/^publication [0-9a-f-]{36} r2 chapters 4 memories 12$/);
     expect(lines.slice(2)).toEqual(['children 1', `child ${childId} template family-world-a@v2 draft r1 filled 12/12 publication r2`]);
-    // v2 is now the child's version, so there is nothing newer to move to (D-11).
+    // v2 is now the child's version: neither it nor v1 is newer (D-11). The
+    // v2 -> v3 move is covered in family-worlds-v3.test.ts.
     await expect(run('set-template', '--child', childId, '--template', 'family-world-a@v2'))
       .rejects.toMatchObject({ code: 'TEMPLATE_UPGRADE_UNAVAILABLE' });
     await expect(run('set-template', '--child', childId, '--template', 'family-world-a@v1'))

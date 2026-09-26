@@ -1,5 +1,5 @@
 /**
- * Generates World B, "Playroom to Big Stage" (`family-world-b@v2`, PLAN-019).
+ * Generates World B, "Playroom to Big Stage" (`family-world-b@v3`, PLAN-019).
  *
  * Usage: tsx scripts/levels/build-family-world-b.ts [--write]
  *
@@ -13,9 +13,9 @@
  *   2. The Magic House          `family-b2-casita`    casita    ages 2 -> 4
  *   3. Besties' Big Stage       `family-b3-stage`     party     ages 4 -> 6
  *
- * Casts (WORLD-SPEC): a catalog reference where the newest parody catalog has
- * the landed model, otherwise a project enemy candidate with neutral
- * placeholder art. Each chapter has one ordinary identity, so all four
+ * Casts (WORLD-SPEC): a catalog reference where the pinned parody catalog has
+ * the landed model (every B1 and B2 identity and the Besties boss), otherwise
+ * a project enemy candidate with neutral placeholder art (the Demon Idol). Each chapter has one ordinary identity, so all four
  * ordinary slots share it and its kind (R11). The friendly characters need no
  * command: the three friendly anchors in each level take the chapter's
  * friendly creatures from the frozen friendly catalog.
@@ -25,8 +25,8 @@
  * (DESIGN-024 D-03) and replaces the preview memories with real photos.
  *
  * Without `--write` it prints the command batch. With it, it rewrites the
- * checked-in command history (`scripts/levels/family-world-b-v2.commands.json`)
- * and the template project (`src/shared/levels/family-world-b-v2.json`) that
+ * checked-in command history (`scripts/levels/family-world-b-v3.commands.json`)
+ * and the template project (`src/shared/levels/family-world-b-v3.json`) that
  * `pnpm levels:validate` replays byte-identically and the family template
  * registry serves.
  *
@@ -38,6 +38,13 @@
  * parody-catalog-v9's parent lock, so every six-year-old validates (v1 dropped
  * birthdays from 2019-09-27 to 2019-12-31), and the toy elevator (B1) and the
  * stage lift (B3) have deep cars that close the shaft at walking height.
+ * v2 (`family-world-b-v2.commands.json` and `family-world-b-v2.json`) is
+ * frozen too. v3 is v2's levels exactly, with the cast switched to
+ * parody-catalog-v10: Yes-Yes Veggie (B1 ordinaries), the Bin Chicken (B2
+ * ordinaries) and The Dancing House (B2 boss) are catalog entries with their
+ * Blender models instead of placeholder candidates. Chapter ids, routes,
+ * dates and age bands are unchanged, so **Update world** carries every photo
+ * over (DESIGN-024 D-11).
  */
 import { writeFile } from "node:fs/promises";
 import {
@@ -76,23 +83,27 @@ import {
 } from "./family/b3.js";
 
 export const FAMILY_WORLD_B_TEMPLATE_ID = "family-world-b";
-export const FAMILY_WORLD_B_TEMPLATE_VERSION = "v2";
+export const FAMILY_WORLD_B_TEMPLATE_VERSION = "v3";
 /** The name administrators see when they choose a template (WORLD-SPEC). */
 export const FAMILY_WORLD_B_NAME = "Playroom to Big Stage";
 export const FAMILY_WORLD_B_BIRTH_DATE = FAMILY_WORLD_B_FICTIONAL_BIRTH_DATE;
 /**
- * The parody catalog v2 pins: v9 carries the Besties' parent lock. It is
- * pinned, not derived: a published template is frozen by fingerprint, so a
- * later catalog version belongs in a new template version (v1 pins v8).
+ * The parody catalog v3 pins: v10 is v9 (with the Besties' parent lock) plus
+ * the B1 and B2 models. It is pinned, not derived: a published template is
+ * frozen by fingerprint, so a later catalog version belongs in a new template
+ * version (v1 pins v8, v2 pins v9).
  */
-export const FAMILY_WORLD_B_CATALOG_VERSION: LevelEditorCatalogVersion = "parody-catalog-v9";
+export const FAMILY_WORLD_B_CATALOG_VERSION: LevelEditorCatalogVersion = "parody-catalog-v10";
 
 /** One chapter of the world: its shell entry, level and cast. */
 interface WorldBChapter {
   readonly shell: WorldShellChapter;
   readonly level: () => WorldEditorLevelDocument;
-  /** The chapter's one ordinary identity, in all four ordinary slots (R11). */
-  readonly ordinary: LevelEditorEnemyCandidate;
+  /**
+   * The chapter's one ordinary identity, in all four ordinary slots (R11): a
+   * catalog reference, or a project candidate the chapter adds.
+   */
+  readonly ordinary: LevelEditorEncounterReference | LevelEditorEnemyCandidate;
   /** A catalog reference, or a project candidate the chapter adds. */
   readonly boss: LevelEditorEncounterReference | LevelEditorEnemyCandidate;
 }
@@ -146,21 +157,23 @@ export const FAMILY_WORLD_B_CHAPTERS: readonly WorldBChapter[] = Object.freeze([
 ]);
 
 function isCandidate(
-  boss: LevelEditorEncounterReference | LevelEditorEnemyCandidate,
-): boss is LevelEditorEnemyCandidate {
-  return !("source" in boss);
+  identity: LevelEditorEncounterReference | LevelEditorEnemyCandidate,
+): identity is LevelEditorEnemyCandidate {
+  return !("source" in identity);
 }
 
 /** One chapter's level and cast. */
 function chapterCastCommands(chapter: WorldBChapter): LevelEditorCommand[] {
   const commands = chapterCommands(chapter.shell.chapterId);
-  const ordinary: LevelEditorEncounterReference = {
-    source: "candidate",
-    candidateId: chapter.ordinary.id,
-  };
+  // A candidate is added once, in ordinary-1, then referenced by id.
+  const ordinary: LevelEditorEncounterReference = isCandidate(chapter.ordinary)
+    ? { source: "candidate", candidateId: chapter.ordinary.id }
+    : chapter.ordinary;
   return [
     commands.replaceLevel(chapter.level()),
-    commands.addCandidate("ordinary-1", chapter.ordinary),
+    isCandidate(chapter.ordinary)
+      ? commands.addCandidate("ordinary-1", chapter.ordinary)
+      : commands.assign("ordinary-1", ordinary),
     commands.assign("ordinary-2", ordinary),
     commands.assign("ordinary-3", ordinary),
     commands.assign("ordinary-4", ordinary),
@@ -208,10 +221,19 @@ export function buildFamilyWorldB(): LevelEditorProjectV2 {
 }
 
 export const FAMILY_WORLD_B_COMMANDS_URL = new URL(
-  "./family-world-b-v2.commands.json",
+  "./family-world-b-v3.commands.json",
   import.meta.url,
 );
 export const FAMILY_WORLD_B_PROJECT_URL = new URL(
+  "../../src/shared/levels/family-world-b-v3.json",
+  import.meta.url,
+);
+/** The frozen v2 files; nothing regenerates them. */
+export const FAMILY_WORLD_B_V2_COMMANDS_URL = new URL(
+  "./family-world-b-v2.commands.json",
+  import.meta.url,
+);
+export const FAMILY_WORLD_B_V2_PROJECT_URL = new URL(
   "../../src/shared/levels/family-world-b-v2.json",
   import.meta.url,
 );

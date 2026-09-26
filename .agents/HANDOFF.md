@@ -7,6 +7,7 @@
 - The older child plays `family-world-a@v2` ("Clubhouse to Casino", four chapters, ages 0→2→5→9→11).
 - The younger child plays `family-world-b@v2` ("Playroom to Big Stage", three chapters, ages 0→2→4→6).
 - Both are at publication r2. Photos were auto-picked from Immich (12 and 9) and decode server-side (12/12, 9/9). Tom can swap them in **Family setup → Memories**.
+- `family-world-a@v3` and `family-world-b@v3` keep the v2 levels and cast the six newer Blender models from `parody-catalog-v10` ([DESIGN-026](../docs/designs/026-personal-era-casts.md#eligibility)). Once deployed, move each child with `set-template ... @v3`; every photo carries over. Then `publish` and **Start fresh** so the children play v3.
 - Tom signs in as `thaynes`. The separate `thomashaynes620` account is in neither group.
 - Children's names, birthdays and photo identifiers live only in the family database. The CLI takes private inputs on stdin, and the setup lookups are POST requests.
 

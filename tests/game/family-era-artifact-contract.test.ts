@@ -1,6 +1,6 @@
 /**
  * Runtime artifact contract for the family-era enemies registered in
- * parody-catalog-v8 (DESIGN-026, WO111). Each exact GLB must match its
+ * parody-catalog-v8 and v10 (DESIGN-026, WO111). Each exact GLB must match its
  * delivery log, checksum manifest and catalog inventory, stay inside the
  * enemy budget and give the enemy animation adapter what it needs: five named
  * clips, a stationary floor-centred root, the measured height the scene puts
@@ -28,6 +28,13 @@ const EXACT: Record<
 > = {
   "clubhouse-bully-cat": { bytes: 1_073_732, bufferBytes: 1_001_204, triangles: 14_492, textures: 2 },
   "honk-bus": { bytes: 1_105_872, bufferBytes: 1_073_432, triangles: 14_642, textures: 2 },
+  // parody-catalog-v10
+  "gadget-helper": { bytes: 1_031_204, bufferBytes: 997_324, triangles: 14_574, textures: 2 },
+  "rival-mayor": { bytes: 1_161_872, bufferBytes: 1_077_836, triangles: 14_548, textures: 2 },
+  "yes-yes-veggie": { bytes: 936_716, bufferBytes: 887_292, triangles: 14_354, textures: 2 },
+  "magic-house": { bytes: 1_149_808, bufferBytes: 1_048_068, triangles: 12_122, textures: 3 },
+  "mischief-kitten": { bytes: 1_197_116, bufferBytes: 1_096_208, triangles: 14_174, textures: 2 },
+  "bin-chicken": { bytes: 1_033_964, bufferBytes: 942_192, triangles: 11_196, textures: 2 },
 };
 
 interface Delivery {
@@ -41,6 +48,8 @@ interface Delivery {
   clips: { name: string; duration_s: number }[];
   manifest: string;
   bounds: { rest: { min: number[]; max: number[] } };
+  prMerged: string | null;
+  publication: { runtimeIntegration: string };
 }
 
 interface GlbDocument {
@@ -67,9 +76,10 @@ const inventory = JSON.parse(
   readFileSync(new URL("../../scripts/assets/catalog-inventory.json", import.meta.url), "utf8"),
 ) as { assets: { id: string; version: string; models: string[]; gameplay_use?: string; checksums: Record<string, string> }[] };
 
-/** The v8 additions: every entry v7 does not list. */
+/** The family-era models: every v10 entry v7 does not list (v8's two and v10's six). */
 const v7Ids = new Set(PARODY_CATALOGS["parody-catalog-v7"].map((entry) => entry.id));
-const additions = PARODY_CATALOGS["parody-catalog-v8"].filter((entry) => !v7Ids.has(entry.id));
+const additions = PARODY_CATALOGS["parody-catalog-v10"].filter((entry) => !v7Ids.has(entry.id));
+const v8Ids = new Set(PARODY_CATALOGS["parody-catalog-v8"].map((entry) => entry.id));
 
 function repoFile(path: string): Buffer {
   return readFileSync(new URL(`../../${path}`, import.meta.url));
@@ -111,14 +121,31 @@ function floats(document: GlbDocument, binary: Buffer, index: number): number[][
   );
 }
 
-describe("family-era enemy artifacts registered in parody-catalog-v8", () => {
-  it("adds exactly the delivered family-era models", () => {
+describe("family-era enemy artifacts registered in parody-catalog-v8 and v10", () => {
+  it("adds exactly the delivered family-era models, each merged and recorded as registered", () => {
     expect(additions.map((entry) => `${entry.assetId}@${entry.assetVersion}`)).toEqual([
       "clubhouse-bully-cat@v001",
       "honk-bus@v001",
+      "gadget-helper@v001",
+      "rival-mayor@v001",
+      "yes-yes-veggie@v001",
+      "magic-house@v001",
+      "mischief-kitten@v001",
+      "bin-chicken@v001",
     ]);
-    for (const entry of additions)
-      expect(deliveries.some((delivery) => delivery.assetId === entry.assetId && delivery.version === entry.assetVersion)).toBe(true);
+    // Every delivered model is registered, in delivery-log order.
+    expect(deliveries.map((delivery) => `${delivery.assetId}@${delivery.version}`)).toEqual(
+      additions.map((entry) => `${entry.assetId}@${entry.assetVersion}`),
+    );
+    for (const entry of additions) {
+      const delivery = deliveries.find(
+        (candidate) => candidate.assetId === entry.assetId && candidate.version === entry.assetVersion,
+      )!;
+      expect(delivery.prMerged, entry.id).toMatch(/^[0-9a-f]{40}$/);
+      expect(delivery.publication.runtimeIntegration, entry.id).toContain(
+        v8Ids.has(entry.id) ? "parody-catalog-v8" : "parody-catalog-v10",
+      );
+    }
   });
 
   for (const entry of additions) {
@@ -209,7 +236,9 @@ describe("family-era enemy artifacts registered in parody-catalog-v8", () => {
       expect(contactFraction).toBeGreaterThan(0);
       expect(contactFraction).toBeLessThan(1);
 
-      // A floor-centred identity root whose rest geometry spans the logged height.
+      // A floor-centred identity root whose rest geometry spans the logged
+      // bounds. Nothing sits below the floor; the gadget helper hovers 0.1 m
+      // above it and a few models keep a millimetre of sole clearance.
       for (const node of document.nodes.filter((candidate) => candidate.mesh !== undefined)) {
         expect(node.matrix).toBeUndefined();
         expect(node.translation ?? [0, 0, 0]).toEqual([0, 0, 0]);
@@ -219,9 +248,12 @@ describe("family-era enemy artifacts registered in parody-catalog-v8", () => {
       const heights = [...new Set(primitives.map((primitive) => primitive.attributes.POSITION))].flatMap((index) =>
         floats(document, binary, index).map((position) => position[1]!),
       );
-      expect(Math.min(...heights)).toBeCloseTo(0, 5);
-      expect(Math.max(...heights)).toBeCloseTo(delivery.heightM, 5);
+      expect(Math.min(...heights)).toBeCloseTo(delivery.bounds.rest.min[1]!, 5);
+      expect(Math.min(...heights)).toBeGreaterThan(-1e-5);
+      expect(Math.min(...heights)).toBeLessThanOrEqual(0.1 + 1e-5);
       expect(Math.max(...heights)).toBeCloseTo(delivery.bounds.rest.max[1]!, 5);
+      // The logged height, which the scene uses, is the measured top to 0.1 mm.
+      expect(Math.abs(Math.max(...heights) - delivery.heightM)).toBeLessThan(1e-4);
     });
   }
 });

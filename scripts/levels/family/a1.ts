@@ -38,7 +38,6 @@ import type {
 } from "../../../src/shared/authored-level.js";
 import type {
   LevelEditorEncounterReference,
-  LevelEditorEnemyCandidate,
   WorldEditorLevelDocument,
 } from "../../../src/shared/editor-project.js";
 import {
@@ -628,30 +627,27 @@ export function familyA1ShellChapter(chapterId: string): WorldShellChapter {
 }
 
 /**
- * A1's cast (WORLD-SPEC): one ordinary identity for all four ordinary slots
- * (R11), a project candidate until its model lands, and the boss, whose
- * Blender model is registered in parody-catalog-v8 (DESIGN-026), assigned by
- * its exact catalog reference.
+ * A1's cast (WORLD-SPEC) as exact catalog references: the Runaway Gadget, the
+ * one ordinary identity for all four ordinary slots (R11, kind ordinary-a),
+ * registered in parody-catalog-v10, and Captain Bully Cat, the boss,
+ * registered in parody-catalog-v8 (DESIGN-026). `family-world-a@v1` and v2
+ * froze the gadget as a project candidate; their command histories keep it.
  */
 export const FAMILY_A1_CAST: Readonly<{
-  ordinary: LevelEditorEnemyCandidate;
+  ordinary: LevelEditorEncounterReference;
+  /** The kind every A1 ordinary anchor uses; the catalog entry's kind. */
+  ordinaryKind: "ordinary-a";
   boss: LevelEditorEncounterReference;
 }> = Object.freeze({
-  ordinary: {
-    id: "gadget-helper",
-    name: "Runaway Gadget",
-    periodId: "toon-clubhouse-v1",
-    recognizableReference: "clubhouse toolbox helper gone haywire",
-    visualJoke: "its silly arm grabs the wrong tool",
-    obstacleOrAttack: "swings a wrench arm",
-    eligibility: { startDate: "2006-05-05", endDate: "2016-11-06" },
-    role: "ordinary",
-    kind: "ordinary-a",
-    behaviorPreset: "ordinary-a",
-  },
-  boss: {
+  ordinary: Object.freeze({
+    source: "catalog",
+    catalogEntryId: "gadget-helper",
+    catalogEntryVersion: "v001",
+  }),
+  ordinaryKind: "ordinary-a",
+  boss: Object.freeze({
     source: "catalog",
     catalogEntryId: "clubhouse-bully-cat",
     catalogEntryVersion: "v001",
-  },
+  }),
 });

@@ -21,6 +21,14 @@ const parodyMotion: Record<
   // Family-era models (WO111 delivery log): contact 1.25 s of a 2.0 s attack.
   "clubhouse-bully-cat": { contactFraction: 0.625, height: 2.5 },
   "honk-bus": { contactFraction: 0.625, height: 2.3 },
+  // parody-catalog-v10: contact 1.25 s of a 2.0 s attack; heights are the
+  // logged `heightM` values.
+  "gadget-helper": { contactFraction: 0.625, height: 1.118245 },
+  "rival-mayor": { contactFraction: 0.625, height: 2.4745 },
+  "yes-yes-veggie": { contactFraction: 0.625, height: 0.997798 },
+  "magic-house": { contactFraction: 0.625, height: 2.898 },
+  "mischief-kitten": { contactFraction: 0.625, height: 0.9186895485603485 },
+  "bin-chicken": { contactFraction: 0.625, height: 1.2570000538098558 },
 };
 
 interface ParodyArtworkBase {
