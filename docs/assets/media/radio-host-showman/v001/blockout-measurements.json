@@ -1,0 +1,54 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/radio-host-showman/v001/radio-host-showman-blockout.blend",
+  "sha256": "987e297482975a913571a575e6e58a5bf02bb4a10eb8bce42588feaaa7ae6a0e",
+  "bounds_blender_zup": {
+    "min": [
+      -0.6273,
+      -0.1633,
+      0.0
+    ],
+    "max": [
+      0.553,
+      0.222,
+      1.9941
+    ],
+    "size": [
+      1.1803,
+      0.3852,
+      1.9941
+    ],
+    "blockout_triangles": 87036
+  },
+  "feature_tops_m": {
+    "Hair tuft": 1.9941,
+    "Slicked hair cap": 1.93,
+    "Showman head": 1.9102,
+    "Red on-air bulb": 1.7044,
+    "Silver mic capsule": 1.6672,
+    "White glove waving palm": 1.5249,
+    "Waving glove finger": 1.5908,
+    "Candy-stripe jacket body": 1.49,
+    "Black bow tie wing": 1.4875,
+    "Black mic cane shaft": 1.401
+  },
+  "parts": 108,
+  "materials": [
+    "RHS brass #dca953",
+    "RHS bulb #d9463d",
+    "RHS cheek #e89a8f",
+    "RHS cream #f3e6cf",
+    "RHS grille #7d8196",
+    "RHS hair #6f2f32",
+    "RHS hairtip #3a2230",
+    "RHS ink #2a2230",
+    "RHS mouth #4a2537",
+    "RHS pupil #342c46",
+    "RHS red #c0463e",
+    "RHS silver #c9ccd6",
+    "RHS skin #efc9a4",
+    "RHS skinlo #e0a98a",
+    "RHS tongue #e8909f",
+    "RHS white #fbf6ec"
+  ],
+  "utc": "2026-09-26T18:04:17.554514+00:00"
+}

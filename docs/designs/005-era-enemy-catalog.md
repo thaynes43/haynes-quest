@@ -101,7 +101,7 @@ Tom locked [DESIGN-026](026-personal-era-casts.md) for the first family release.
 | B / 2 · ages 2–4 | `magic-house`: living colorful house with shutter eyes and dancing tiles | `bin-chicken`: cheeky long-beaked ibis | `casita-kit` |
 | A / 3 · ages 5–9 | `inator-monster`: one rubber-suit monster with a scientist riding its cockpit | `putty-grunt` and `lab-robot` | `rooftop-city-kit`; `web-slinger-helper` is friendly under DESIGN-013 |
 | B / 3 · ages 4–6 | Existing Bickering Besties | `demon-band-idol`: clean sparkly horn-haired singer | Existing Besties and remix scenery |
-| A / 4 · ages 9–11 | Existing Rat Pit Boss | Existing Rat Casino cast | `radio-host-showman`: clean dapper optional encounter |
+| A / 4 · ages 9–11 | Existing Rat Pit Boss | Existing Rat Casino cast | `radio-host-showman`: dapper optional encounter, made creepy under [DESIGN-027](027-scare-pass.md) D-07 (too-wide sharp grin, glowing eyes, static) |
 
 For the opening boss concepts, the cat's attack reads as a broad arm wind-up and comic forward swat; defeat leaves him seated and affronted. The bus rocks back and raises its horn before an exaggerated forward honk/bounce, then settles into a sheepish stalled pose on defeat. These are animation briefs for the existing telegraphed encounter adapter, not new damage rules. Both target a 2.0-second attack with contact at 1.25 seconds, a stationary model root and a held defeat. Final measured bounds and timing belong in the exact delivery record.
 

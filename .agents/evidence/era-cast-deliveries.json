@@ -1494,7 +1494,7 @@
       "sceneReleasedAt": "2026-09-26T21:23:53.210834+00:00",
       "manifest": "docs/assets/media/putty-grunt/v001/sha256-manifest.json",
       "pr": 117,
-      "prMerged": null,
+      "prMerged": "010f374e6cb7bdefb27dc0d2e2ab172a066b052d",
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v3 (like the frozen v1 and v2) fills two of the four A·3 ordinary slots (ordinary-1 and ordinary-3) with the Putty Grunt project candidate (putty-grunt), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.4005}, or 1.3787 for the guard pose every clip except move starts from"
@@ -1522,6 +1522,135 @@
         "attachmentChecksPassed": 9,
         "chromiumChecksPassed": 10,
         "artifactHashesMatchedLocally": 157,
+        "physicalSafari": false
+      }
+    },
+    {
+      "assetId": "radio-host-showman",
+      "version": "v001",
+      "role": "ordinary",
+      "slot": "bonus",
+      "world": "A",
+      "chapter": 4,
+      "glb": "docs/assets/media/radio-host-showman/v001/radio-host-showman.glb",
+      "sha256": "f4eb039b0d97ba97f093e6b69f2d3f4720d984cae4327ccc9f65861c363564a4",
+      "heightM": 2.0030001423669983,
+      "sheetPoseHeightM": 2.001122679732073,
+      "soleClearanceM": 0.0019021487697150046,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root under the body; his right hand (the mic cane) at +X; the top is the hair tufts and the static halo; the soles and the cane tip sit 1.9 mm above the floor at rest",
+        "rest": {
+          "min": [
+            -0.5550618138323109,
+            0.0019021487697150046,
+            -0.29377244190839025
+          ],
+          "max": [
+            0.5533831491328989,
+            2.0030001423669983,
+            0.22490003977883433
+          ]
+        },
+        "sheetPose": {
+          "min": [
+            -0.6273,
+            0.0019,
+            -0.2224
+          ],
+          "max": [
+            0.5534,
+            2.0011,
+            0.2249
+          ]
+        },
+        "animated": {
+          "min": [
+            -0.7400962403291906,
+            0.0018420627848623682,
+            -1.082570290976463
+          ],
+          "max": [
+            0.584500532721627,
+            2.233668838624009,
+            0.6514742180413359
+          ]
+        },
+        "culling": {
+          "min": [
+            -0.746,
+            -0.004,
+            -1.088
+          ],
+          "max": [
+            0.59,
+            2.239,
+            0.657
+          ]
+        },
+        "note": "Rest bounds are the bind pose (the right arm on the planted cane as in the sheet, the left arm lowered as its mirror), 1.108 m wide x 2.003 m tall x 0.519 m deep. The sheet pose with the waving glove is recreated at idle 0 s (1.181 m wide x 2.001 m tall x 0.447 m deep; values to 0.1 mm, measured at intake). Animated bounds include the wind-up mic at 2.234 m, the attack lunge with the static burst open in front (to z -1.083) and the held bow. The culling envelope is stored in the skinned mesh node's extras (model_space_bounds_y_up); the runtime does not yet apply it (issue #103)."
+      },
+      "attackContactS": 1.25,
+      "attackContactFraction": 0.625,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 3,
+          "channels": 84
+        },
+        {
+          "name": "move",
+          "duration_s": 1,
+          "channels": 84
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 84
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 84
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 84
+        }
+      ],
+      "review": "docs/assets/reviews/radio-host-showman/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+      "sceneReleasedAt": "2026-09-26T22:43:30.044547+00:00",
+      "manifest": "docs/assets/media/radio-host-showman/v001/sha256-manifest.json",
+      "pr": 121,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v4 (like the frozen v1 to v3) fills the A·4 optional bonus slot (bonus-1) with the Radio Showman project candidate (radio-host-showman, role ordinary, behavior preset ordinary-a), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 2.0030001423669983}. At 2.0 m he follows his own brief, above the WO111 0.8-1.4 m ordinary band; scale uniformly at integration if the slot needs ordinary sizing. src/game/scare.ts already keys the D-06 radio-static cue on this id, including the frozen editor-candidate id, and v4 sets A·4 to scare level 2."
+      },
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/121",
+      "masterSha256": "42a329e9fbcf3801048c79c96bfce337ab0d6b2953bb2b5f37ba77ed1a06ff55",
+      "triangles": 10900,
+      "joints": 28,
+      "bytes": 1034532,
+      "integrationNotes": [
+        "Two opaque materials, one draw primitive each: matte painted skin, hair and cloth (9,884 triangles) and a glow material (1,016 triangles: both irises, the on-air bulb, ten static-halo arcs and the eight bolts and six sparks of the attack burst). Both sample the one embedded 1024 x 1024 atlas; the glow material uses the same image as its emissiveTexture with emissiveFactor [1,1,1] and no KHR_materials_emissive_strength. KHR_materials_specular is used but not required.",
+        "The glow parts read bright red in lit rooms too and always glow. src/game/scare-scene.ts dims only the scenery roots' practicals during DESIGN-027 flickers and blackouts, and emissive colour ignores scene light, so his eyes, bulb and halo stay lit in a blackout, like the animatronics' eyes.",
+        "Rest geometry is the bind pose; idle 0 s recreates the approved sheet pose (cane tip, grip, mic centre, waving wrist and ankles within 1e-6 m of the blockout). The root bone never animates; the hips carry the bounce, lunge and bow. There are no morph targets: the eye pop is eye-bone scale on the glowing iris shells, and the burst opens by bone scale from inside the mic capsule.",
+        "At the 1.25 s contact the mic is 0.86 m in front of the root at 1.32 m high (chest height, on his right, so the grin stays visible) and the static starburst is 0.90 m across, reaching 0.33 m from the capsule centre (0.41 m at most, just after contact). It opens from 1.18 s and is closed by 1.60 s. The game's wind-up scrubs 0 to 1.25 s, so the twirl (to 0.28 s), the wind-up with the mic raised to 2.01 m (0.28-0.94 s) and the overhead sweep play at the wind-up speed.",
+        "The hit jolts him back a step with the eyes popped to 1.45x; the held defeat (from 1.752 s) is a stepped bow with the chest pitched 60.7 degrees forward and the face 31.8 degrees below level, the hips at 0.85 m and the head at 1.24 m, 1.738 m tall overall, leaning on the planted cane.",
+        "Runtime culling (issue #103), measured at intake with three.js r186 against the idle-0 bounding spheres, all vertices at 60 Hz: the glow primitive (a 0.437 m sphere round the head and mic at rest) leaves its sphere by 0.864 m at the 1.25 s contact and by up to 0.954 m at attack 1.367 s, by 0.47 m during the defeat and 0.326 m in the held bow; the matte primitive by up to 0.160 m at attack 1.10 s. Apply the exported culling envelope or disable frustum culling for this skinned mesh.",
+        "Exact intake values: 1,034,532 bytes (binary buffer 931,800 bytes), 10,900 triangles, 9,803 exported vertices (5,723 Blender mesh vertices before UV and normal splits), 3 textures sampling one embedded 1024 x 1024 atlas (47,504 bytes), 2 materials, 2 primitives, 28 joints, at most 2 influences per vertex."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "contractChecksPassed": 21,
+        "threeAdapterChecksPassed": 32,
+        "attachmentChecksPassed": 7,
+        "chromiumChecksPassed": 9,
+        "artifactHashesMatchedLocally": 180,
         "physicalSafari": false
       }
     }

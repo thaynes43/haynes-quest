@@ -1,0 +1,184 @@
+{
+  "asset_id": "radio-host-showman",
+  "version": "v001",
+  "file": "radio-host-showman.glb",
+  "sha256": "f4eb039b0d97ba97f093e6b69f2d3f4720d984cae4327ccc9f65861c363564a4",
+  "bytes": 1034532,
+  "triangles": 10900,
+  "draw_primitives": 2,
+  "materials": [
+    {
+      "name": "Matte painted skin, hair and cloth",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.7799999713897705
+      },
+      "emissiveFactor": null,
+      "emissiveTexture": null
+    },
+    {
+      "name": "Glowing eyes, on-air bulb and radio static",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.44999998807907104
+      },
+      "emissiveFactor": [
+        1,
+        1,
+        1
+      ],
+      "emissiveTexture": {
+        "index": 1
+      }
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/png",
+      "bufferView": 6
+    }
+  ],
+  "joints": [
+    "root",
+    "hips",
+    "spine",
+    "chest",
+    "neck",
+    "head",
+    "halo",
+    "eye_R",
+    "tuft_R_1",
+    "tuft_R_2",
+    "eye_L",
+    "tuft_L_1",
+    "tuft_L_2",
+    "bowtie",
+    "upper_arm_R",
+    "forearm_R",
+    "hand_R",
+    "cane",
+    "burst",
+    "upper_arm_L",
+    "forearm_L",
+    "hand_L",
+    "thigh_R",
+    "shin_R",
+    "foot_R",
+    "thigh_L",
+    "shin_L",
+    "foot_L"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3,
+      "channels": 84
+    },
+    {
+      "name": "move",
+      "duration_s": 1,
+      "channels": 84
+    },
+    {
+      "name": "attack",
+      "duration_s": 2,
+      "channels": 84
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "channels": 84
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "channels": 84
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "correct_scene_identity": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "attack_about_2_s": true,
+    "triangle_budget_15000": true,
+    "material_budget_2": true,
+    "primitive_budget_2": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_atlas": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "no_compression_extensions": true,
+    "all_have_uvs": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true,
+    "one_glow_material_from_the_atlas": true,
+    "no_emissive_strength_extension": true
+  },
+  "validator": {
+    "uri": "radio-host-showman.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-26T22:39:37.645Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 931800
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 2,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 2,
+      "totalVertexCount": 9803,
+      "totalTriangleCount": 10900,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

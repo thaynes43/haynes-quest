@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**56 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**57 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -175,6 +175,24 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/bc326ff39ab6e825.webp" alt="Blender reference sheet of the putty grunt in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+</div>
+
+### World A · Chapter 4
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="radio-host-showman" markdown="1">
+
+[![Exact Radio Host Showman model: a lanky vintage radio host in a red-and-cream candy-stripe jacket and black bow tie, with a too-wide sharp-toothed grin, glowing red eyes and a zigzag static halo, planting a silver broadcast microphone on a tall black cane and waving](media/catalog-thumbnails/v001/869cbc12d54cc88d.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/radio-host-showman/v001.md)
+
+### [Radio Host Showman](reviews/radio-host-showman/v001.md)
+
+<span class="catalog-state">3D bonus enemy · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/652b728fcf8d6965.webp" alt="Blender reference sheet of the radio host showman in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
 </div>
 

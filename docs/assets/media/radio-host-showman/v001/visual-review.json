@@ -1,0 +1,126 @@
+{
+  "work_order": "WO111",
+  "asset_id": "radio-host-showman",
+  "version": "v001",
+  "created_utc": "2026-09-26T22:43:01.556800+00:00",
+  "glb_sha256": "f4eb039b0d97ba97f093e6b69f2d3f4720d984cae4327ccc9f65861c363564a4",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back and three-quarter stills (idle at 0 s = the sheet pose) compared with the reference sheet at the same angles and metric scale (sheet-vs-export.png); rest-pose stills; dark-room glow stills; five-clip normal/small motion sheet; attack front/side windup-sweep-contact-recovery and the 35% gameplay-scale strip; held defeat front/side/three-quarter/beauty; close-ups of the face, lapels, collar, both wrists through the swing, the tufts and the bow.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "sheet_matching": [
+    "Silhouette kept from the approved blockout at its measured coordinates: two asymmetric wispy hair tufts (the right one fuller) on a slicked auburn cap with sideburn tabs, a big round head tilted 4 deg toward the mic in the sheet pose, the big black bow tie, the red/cream candy-stripe jacket (the blockout's 24 stripes by lathe angle) with the black shawl collar, two brass buttons, the honey pocket square, the lapel pin and the rounded cutaway, striped sleeves with black cuffs and white gloves, long black trousers with the red side stripe, cream-and-black spectator shoes toed out 12 deg, the back half-belt with brass buttons and the vent, and the tall black cane topped by the silver broadcast mic in its brass yoke with the on-air bulb, planted in his right fist while the left glove waves.",
+    "Idle at 0 s reproduces the sheet pose exactly: cane tip, grip and mic centre within 1e-6 m of the blockout, the waving wrist and both ankles likewise.",
+    "Colours are the sheet hex values (atlas); the brass lapel piping, rim and button highlights answer the sheet review's request for brass highlights that read in dim light. The preview renders colours slightly deeper than the Cycles Standard-view sheet because of its ACES tone mapping.",
+    "Pushed creepier per the revised notes: the grin is 17% wider than the sheet (half-width 0.138 vs 0.118 m head-local) with a row of sharp upper and lower teeth; hollow shadowed sockets, heavy lids and pale eye whites; red irises with pinprick pupils on separate shells of the glow material, so they glow in the dark; the on-air bulb glows; a faint broken zigzag static halo (dim red with three pale arcs) floats behind the head; a radio-static starburst pops open round the mic at the attack contact. No blood, gore, horns, dial pupils or sigils."
+  ],
+  "author_corrections": [
+    "The idle head tick first rolled the head into the mic capsule; it now snaps away from the mic and turns to the audience.",
+    "At the first contact pose the mic head covered his face in the player's view; contact now brings the mic in at chest height on his right so the grin stays visible.",
+    "The static burst first radiated in a plane containing the cane axis, which points at the player at contact, so it was edge-on and invisible from the front; it now radiates across the cane axis as a starburst facing the player, with bolder bolts (0.90 m across when open).",
+    "The opening cane twirl was invisible at play distance; the cane now lifts 18 cm and tips out as it twirls, with a heel click.",
+    "The blockout shirt collar (rim at 1.523 m, with a capping disc) sat inside the jaw in every frame; it is now an open ring with its rim at 1.485 m, the black shawl collar band sits 1.1 cm lower, and the neck carries a painted white collar band under the chin so the sheet's white collar still reads.",
+    "A full propeller spin of the bow tie swept the wings into the chin; the bow tie now wobbles up to 0.42 rad (clearance measured at 0.5).",
+    "On the downswing the cane shaft clipped the right upper arm; the elbow now rises out to the side for the sweep.",
+    "In the bow the left hand first hit the left thigh; it now settles in front of the belly, carried by the spine.",
+    "When the head snaps up in the held bow the halo dropped into the shoulders; it now counter-tilts 0.38 rad (a probe found -0.30 to -0.45 clear), and the left tuft flops forward instead of back into the halo.",
+    "The held bow first pitched the face 29 deg down; the head snap was raised, then limited to a net 0.5 rad neck+head extension because more pushed the jaw into the collar (probe_defeat.py). The bow eased to 61 deg chest pitch so the face still comes up (32 deg below level).",
+    "The defeat shudder could dip the planted cane tip 1.8 mm below the floor; its jolts now only lift.",
+    "The raised lapel shells' side walls sampled the jacket paint across the shirt edge and looked like a zipper; they now use flat ink with a brass outer rim.",
+    "Sharper brows were first raised under the hairline; they are back at the blockout heights with a sharper outer flick."
+  ],
+  "deviations_from_sheet_notes": [
+    "The sheet notes describe a friendly, never-scary showman; the revised model notes after Tom's Sept 26 ruling (DESIGN-027) supersede that: the model is genuinely creepy (grin, teeth, glowing eyes, static halo and burst) with no gore.",
+    "Attack follows the revised note \"a mic-cane swing with a radio-static burst\" with a showy lean: twirl and heel click (0-0.28 s), wind-up leaning back with the mic raised back over his right shoulder and the free hand flared (0.28-0.94 s), an overhead sweep and lunge that brings the mic in at chest height at the 1.25 s contact while the static starburst pops open, a vibrato hold, a quick bow and back to the planted cane by 2.0 s. The sweep is overhead because the fist grips the 1.7 m cane 1.03 m up its shaft: a flat horizontal sweep drives the long lower end through his body.",
+    "Defeat follows the revised note \"a jerky, glitchy bow, frozen mid-grin, held\" instead of the sheet notes' sit-down: a stepped-jolt shudder (jolts change every two frames), a bow that lands in seven stutter steps while he leans on the planted cane, the free arm across the waist, then the head snaps up and cocks toward the player with the eyes stuck wide and the halo askew; held from 1.752 s.",
+    "Bind pose: the notes ask for an A-pose; the sheet's right arm already hangs in that A-pose with the fist on the planted cane, so the right arm binds in the sheet pose (the cane stays planted in the bind pose); the left arm binds as its mirror and the wave is recreated in idle.",
+    "Eye acting: a scale bone per eye (as the notes suggest) scales the glowing iris shells; the painted eye whites and the permanent grin do not change.",
+    "Rig (28 joints): root, hips, spine, chest, neck, head, two eye bones, two two-bone tuft chains, the halo, the bow tie, three-bone arms, the cane (child of the right hand) with its burst bone, thigh/shin/foot legs.",
+    "Height: 2.003 m in the bind pose (tufts and halo top), 2.001 m in the sheet pose; the brief asks about 2.0 m, above the WO111 ordinary band of 0.8-1.4 m, as the sheet notes flagged for the coordinator."
+  ],
+  "dimensions_width_height_depth_m": [
+    1.1084449629652098,
+    2.0010979935972832,
+    0.5186724816872246
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5550618138323109,
+      0.0019021487697150046,
+      -0.29377244190839025
+    ],
+    "max": [
+      0.5533831491328989,
+      2.0030001423669983,
+      0.22490003977883433
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -0.7400962403291906,
+      0.0018420627848623682,
+      -1.082570290976463
+    ],
+    "max": [
+      0.584500532721627,
+      2.233668838624009,
+      0.6514742180413359
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -0.746,
+      -0.004,
+      -1.088
+    ],
+    "max": [
+      0.59,
+      2.239,
+      0.657
+    ]
+  },
+  "sheet_pose_height_m": 2.001122679732073,
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "windup_seconds": [
+    0.28,
+    0.94
+  ],
+  "burst_open_seconds": [
+    1.18,
+    1.6
+  ],
+  "defeat_held_from_seconds": 1.752,
+  "defeat_held": {
+    "chest_pitch_forward_deg": 60.73353324141129,
+    "head_vs_chest_up_deg": 34.170748801316364,
+    "head_forward_pitch_deg": -31.848054776229517,
+    "hips_height_m": 0.8500000238418579,
+    "head_height_m": 1.2367358008243292,
+    "mic": [
+      0.4464677955494281,
+      1.5589247875352186,
+      -0.12317429308229222
+    ],
+    "cane_tip_y_m": 0.00190188028754035,
+    "eye_scale": [
+      1.2200000286102295,
+      1.159999966621399
+    ]
+  },
+  "defeat_bow_stutter": {
+    "jumps_over_1_2_deg_per_sample": 8,
+    "median_step_deg": 0.6515353297373281,
+    "max_step_deg": 6.535472938352505
+  },
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "The attachment audit tests listed part pairs every frame on the source scene; it is not a universal triangle-collision proof. Intended contacts (the fist round the cane, glove cuffs in the sleeve ends, sleeve roots in the jacket, trouser tops in the jacket and seat, the tuft roots in the hair cap, the iris shells on the face, the neck inside the collar) are not tested.",
+    "In the game the windup phase scrubs the attack clip from 0 to the 1.25 s contact, so the twirl, wind-up and sweep play at the simulation windup speed; the burst opens from 1.18 s and closes by 1.60 s.",
+    "Runtime culling: the wind-up raises the mic to 2.23 m and the open burst reaches 0.41 m from the capsule centre; three.js computes a skinned bounding sphere once, so the coordinator should apply the stored safe envelope (skin extras model_space_bounds_y_up), as filed in haynes-quest issue #103.",
+    "The glow material uses the atlas as emission at factor 1, so the glowing parts read as bright red in lit rooms too; the eyes, bulb, halo and burst always glow (the scare-scene blackouts dim scenery practicals, not characters).",
+    "The painted face cannot change expression; the grin holds in every clip by design.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}

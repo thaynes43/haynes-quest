@@ -1,0 +1,1237 @@
+{
+  "asset_id": "radio-host-showman",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Claude Opus 5.5 does the WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": "Blender reference sheet, no generated concept",
+  "source_sheet_sha256": "07b06d16b5db373f2b5d7a2fa4c79b2c05503ca3d867546dbda2df700ca5e3ac",
+  "source_blockout_sha256": "987e297482975a913571a575e6e58a5bf02bb4a10eb8bce42588feaaa7ae6a0e",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.5550615787506104,
+      -0.2249000072479248,
+      0.0019025539513677359
+    ],
+    "max": [
+      0.553382933139801,
+      0.2937723398208618,
+      2.003000020980835
+    ]
+  },
+  "height_m": 2.003000020980835,
+  "triangles": 10900,
+  "vertices": 5723,
+  "material_count": 2,
+  "materials": [
+    "Matte painted skin, hair and cloth",
+    "Glowing eyes, on-air bulb and radio static"
+  ],
+  "faces_per_material": {
+    "0": 5182,
+    "1": 532
+  },
+  "bone_count": 28,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original painted atlas generated with numpy in Blender Python (paint.py): face, jacket, iris and mic-band regions plus flat sheet-colour and glow tiles; no external textures. The glow material uses the same atlas as its emission texture.",
+    "layout": {
+      "tiles": [
+        "skin",
+        "skinlo",
+        "hair",
+        "hairtip",
+        "ink",
+        "red",
+        "cream",
+        "white",
+        "silver",
+        "grille",
+        "brass",
+        "brass_hi",
+        "mouth",
+        "tongue",
+        "cheek",
+        "ink_hi",
+        "glow_red",
+        "halo_red",
+        "static_pale",
+        "burst_red",
+        "bulb",
+        "halo_pale",
+        "shirt",
+        "sole"
+      ],
+      "glow_tiles": [
+        "bulb",
+        "burst_red",
+        "glow_red",
+        "halo_pale",
+        "halo_red",
+        "static_pale"
+      ],
+      "face_src": [
+        -0.19,
+        0.19,
+        1.495,
+        1.875
+      ],
+      "jacket_z": [
+        0.8,
+        1.49
+      ],
+      "jacket_pad": 0.015625,
+      "iris_q": 1.25,
+      "mic_bands": [
+        [
+          0.316,
+          0.362
+        ],
+        [
+          0.408,
+          0.454
+        ],
+        [
+          0.5,
+          0.546
+        ],
+        [
+          0.592,
+          0.638
+        ],
+        [
+          0.684,
+          0.73
+        ]
+      ],
+      "grin": {
+        "half_width_m": 0.138,
+        "mid_z": 1.6,
+        "sheet_half_width_m": 0.118
+      },
+      "supersampling": 3
+    }
+  },
+  "glow_parts": [
+    "Glowing red iris R",
+    "Glowing red iris L",
+    "Static halo arc 0",
+    "Static halo arc 1",
+    "Static halo arc 2",
+    "Static halo arc 3",
+    "Static halo arc 4",
+    "Static halo arc 5",
+    "Static halo arc 6",
+    "Static halo arc 7",
+    "Static halo arc 8",
+    "Static halo arc 9",
+    "Glowing red on-air bulb",
+    "Static burst bolt 0",
+    "Static burst bolt 1",
+    "Static burst bolt 2",
+    "Static burst bolt 3",
+    "Static burst bolt 4",
+    "Static burst bolt 5",
+    "Static burst bolt 6",
+    "Static burst bolt 7",
+    "Static burst spark 0 0",
+    "Static burst spark 0 1",
+    "Static burst spark 1 0",
+    "Static burst spark 1 1",
+    "Static burst spark 2 0",
+    "Static burst spark 2 1"
+  ],
+  "parts": [
+    {
+      "name": "Showman head with painted grin, teeth and eyes",
+      "triangles": 1280,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "0",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Button nose",
+      "triangles": 100,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "1",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Ear R",
+      "triangles": 120,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "0",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Ear L",
+      "triangles": 120,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "0",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Glowing red iris R",
+      "triangles": 98,
+      "bone_groups": [
+        "eye_R"
+      ],
+      "atlas_tile": "16",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Glowing red iris L",
+      "triangles": 98,
+      "bone_groups": [
+        "eye_L"
+      ],
+      "atlas_tile": "16",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Slicked auburn hair cap",
+      "triangles": 816,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft R main wisp",
+      "triangles": 80,
+      "bone_groups": [
+        "head",
+        "tuft_R_1",
+        "tuft_R_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft R main tip",
+      "triangles": 24,
+      "bone_groups": [
+        "tuft_R_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft R back wisp",
+      "triangles": 80,
+      "bone_groups": [
+        "head",
+        "tuft_R_1",
+        "tuft_R_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft R back tip",
+      "triangles": 24,
+      "bone_groups": [
+        "tuft_R_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft R flick wisp",
+      "triangles": 80,
+      "bone_groups": [
+        "tuft_R_1",
+        "head",
+        "tuft_R_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft R flick tip",
+      "triangles": 24,
+      "bone_groups": [
+        "tuft_R_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft L main wisp",
+      "triangles": 80,
+      "bone_groups": [
+        "head",
+        "tuft_L_1",
+        "tuft_L_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft L main tip",
+      "triangles": 24,
+      "bone_groups": [
+        "tuft_L_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft L back wisp",
+      "triangles": 80,
+      "bone_groups": [
+        "head",
+        "tuft_L_1",
+        "tuft_L_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft L back tip",
+      "triangles": 24,
+      "bone_groups": [
+        "tuft_L_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft L flick wisp",
+      "triangles": 80,
+      "bone_groups": [
+        "tuft_L_1",
+        "head",
+        "tuft_L_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Hair tuft L flick tip",
+      "triangles": 24,
+      "bone_groups": [
+        "tuft_L_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Static halo arc 0",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "17",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static halo arc 1",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "21",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static halo arc 2",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "17",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static halo arc 3",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "17",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static halo arc 4",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "17",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static halo arc 5",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "21",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static halo arc 6",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "17",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static halo arc 7",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "17",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static halo arc 8",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "21",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static halo arc 9",
+      "triangles": 36,
+      "bone_groups": [
+        "halo"
+      ],
+      "atlas_tile": "17",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Neck with white shirt-collar band",
+      "triangles": 140,
+      "bone_groups": [
+        "neck",
+        "chest",
+        "head"
+      ],
+      "atlas_tile": "0",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "White shirt collar",
+      "triangles": 32,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Shirt collar point +1",
+      "triangles": 12,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Shirt collar point -1",
+      "triangles": 12,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Black shawl collar band",
+      "triangles": 344,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Black bow tie wing +1",
+      "triangles": 80,
+      "bone_groups": [
+        "bowtie"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Black bow tie wing -1",
+      "triangles": 80,
+      "bone_groups": [
+        "bowtie"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Black bow tie knot",
+      "triangles": 44,
+      "bone_groups": [
+        "bowtie"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Candy-stripe jacket with painted lapels, shirt and cutaway",
+      "triangles": 1436,
+      "bone_groups": [
+        "hips",
+        "spine",
+        "chest"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Black shawl lapel shell +1",
+      "triangles": 148,
+      "bone_groups": [
+        "chest",
+        "spine"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Black shawl lapel shell -1",
+      "triangles": 148,
+      "bone_groups": [
+        "chest",
+        "spine"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Black trouser seat",
+      "triangles": 224,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Brass jacket button 0",
+      "triangles": 80,
+      "bone_groups": [
+        "spine",
+        "hips"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Brass jacket button 1",
+      "triangles": 80,
+      "bone_groups": [
+        "hips",
+        "spine"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Brass half-belt button +1",
+      "triangles": 80,
+      "bone_groups": [
+        "hips",
+        "spine"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Brass half-belt button -1",
+      "triangles": 80,
+      "bone_groups": [
+        "hips",
+        "spine"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Honey pocket square",
+      "triangles": 32,
+      "bone_groups": [
+        "chest",
+        "spine"
+      ],
+      "atlas_tile": "10",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Candy-stripe sleeve R",
+      "triangles": 240,
+      "bone_groups": [
+        "chest",
+        "upper_arm_R",
+        "forearm_R"
+      ],
+      "atlas_tile": "5",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "White glove cuff R",
+      "triangles": 44,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Candy-stripe sleeve L",
+      "triangles": 240,
+      "bone_groups": [
+        "chest",
+        "upper_arm_L",
+        "forearm_L"
+      ],
+      "atlas_tile": "5",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "White glove cuff L",
+      "triangles": 44,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "White glove fist round the cane",
+      "triangles": 196,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "White glove thumb (cane grip)",
+      "triangles": 64,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "White glove waving palm",
+      "triangles": 144,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove finger 0",
+      "triangles": 56,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove fingertip 0",
+      "triangles": 36,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove finger 1",
+      "triangles": 56,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove fingertip 1",
+      "triangles": 36,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove finger 2",
+      "triangles": 56,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove fingertip 2",
+      "triangles": 36,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove finger 3",
+      "triangles": 56,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove fingertip 3",
+      "triangles": 36,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove thumb",
+      "triangles": 56,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Waving glove thumb tip",
+      "triangles": 36,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Glove back stitch 0",
+      "triangles": 12,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Glove back stitch 1",
+      "triangles": 12,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Glove back stitch 2",
+      "triangles": 12,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Black mic cane shaft",
+      "triangles": 28,
+      "bone_groups": [
+        "cane"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Brass cane ferrule",
+      "triangles": 28,
+      "bone_groups": [
+        "cane"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Brass cane collar",
+      "triangles": 36,
+      "bone_groups": [
+        "cane"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Silver broadcast mic capsule with grille bands",
+      "triangles": 284,
+      "bone_groups": [
+        "cane"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Brass mic yoke",
+      "triangles": 152,
+      "bone_groups": [
+        "cane"
+      ],
+      "atlas_tile": "10",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Brass yoke knob +1",
+      "triangles": 48,
+      "bone_groups": [
+        "cane"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Brass yoke knob -1",
+      "triangles": 48,
+      "bone_groups": [
+        "cane"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Glowing red on-air bulb",
+      "triangles": 100,
+      "bone_groups": [
+        "cane"
+      ],
+      "atlas_tile": "20",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst bolt 0",
+      "triangles": 36,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "19",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst bolt 1",
+      "triangles": 36,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst bolt 2",
+      "triangles": 36,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "19",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst bolt 3",
+      "triangles": 36,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst bolt 4",
+      "triangles": 36,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "19",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst bolt 5",
+      "triangles": 36,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst bolt 6",
+      "triangles": 36,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "19",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst bolt 7",
+      "triangles": 36,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst spark 0 0",
+      "triangles": 12,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst spark 0 1",
+      "triangles": 12,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst spark 1 0",
+      "triangles": 12,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst spark 1 1",
+      "triangles": 12,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst spark 2 0",
+      "triangles": 12,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Static burst spark 2 1",
+      "triangles": 12,
+      "bone_groups": [
+        "burst"
+      ],
+      "atlas_tile": "18",
+      "material": "Glowing eyes, on-air bulb and radio static"
+    },
+    {
+      "name": "Black trouser leg R",
+      "triangles": 380,
+      "bone_groups": [
+        "hips",
+        "thigh_R",
+        "shin_R",
+        "foot_R"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Red trouser side stripe R",
+      "triangles": 108,
+      "bone_groups": [
+        "hips",
+        "thigh_R",
+        "shin_R",
+        "foot_R"
+      ],
+      "atlas_tile": "5",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe sole R",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe cream upper R",
+      "triangles": 108,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe black toe cap R",
+      "triangles": 120,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe black heel R",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe lace R 0",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe lace R 1",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe lace R 2",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Black trouser leg L",
+      "triangles": 380,
+      "bone_groups": [
+        "hips",
+        "thigh_L",
+        "shin_L",
+        "foot_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Red trouser side stripe L",
+      "triangles": 108,
+      "bone_groups": [
+        "hips",
+        "thigh_L",
+        "shin_L",
+        "foot_L"
+      ],
+      "atlas_tile": "5",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe sole L",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe cream upper L",
+      "triangles": 108,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe black toe cap L",
+      "triangles": 120,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe black heel L",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe lace L 0",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe lace L 1",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    },
+    {
+      "name": "Spectator shoe lace L 2",
+      "triangles": 12,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted skin, hair and cloth"
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 91,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "windup_s": null,
+      "burst_open_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 31,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "windup_s": null,
+      "burst_open_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "windup_s": [
+        0.28,
+        0.94
+      ],
+      "burst_open_s": [
+        1.18,
+        1.6
+      ],
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 22,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "windup_s": null,
+      "burst_open_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 73,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "windup_s": null,
+      "burst_open_s": null,
+      "held_final_pose_from_s": 1.752
+    }
+  ],
+  "rest_reproduction_max_error": 8.58306884765625e-06,
+  "sheet_pose_reproduction_m": {
+    "cane_tip_err_m": 6.152149175479259e-07,
+    "mic_centre_err_m": 4.3213367462158203e-07,
+    "grip_err_m": 2.669762502188819e-07,
+    "wave_wrist_err_m": 2.4586915969848633e-07,
+    "ankle_R_err_m": 1.64757254626572e-07,
+    "ankle_L_err_m": 1.64757254626572e-07
+  },
+  "files": {
+    "radio-host-showman.blend": {
+      "bytes": 1209452,
+      "sha256": "42a329e9fbcf3801048c79c96bfce337ab0d6b2953bb2b5f37ba77ed1a06ff55"
+    },
+    "radio-host-showman.glb": {
+      "bytes": 1034532,
+      "sha256": "f4eb039b0d97ba97f093e6b69f2d3f4720d984cae4327ccc9f65861c363564a4"
+    },
+    "pigment.png": {
+      "bytes": 47504,
+      "sha256": "49b0b035100b81f47045c333fa244f490949fc11b929f29b7a58d58951cb58ec"
+    }
+  }
+}

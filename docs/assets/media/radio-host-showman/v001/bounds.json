@@ -1,0 +1,67 @@
+{
+  "work_order": "WO111",
+  "asset_id": "radio-host-showman",
+  "version": "v001",
+  "created_utc": "2026-09-26T22:43:01.556800+00:00",
+  "glb_sha256": "f4eb039b0d97ba97f093e6b69f2d3f4720d984cae4327ccc9f65861c363564a4",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Rotation/scale-only joints are checked as fixed local pivots; the hips bounce/lean/lunge/bow are the intentional translations. No physical-device or universal triangle-collision proof (the Blender attachment audit covers listed part pairs).",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5550618138323109,
+      0.0019021487697150046,
+      -0.29377244190839025
+    ],
+    "max": [
+      0.5533831491328989,
+      2.0030001423669983,
+      0.22490003977883433
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    1.1084449629652098,
+    2.0010979935972832,
+    0.5186724816872246
+  ],
+  "height_m": 2.0030001423669983,
+  "sheet_pose_height_m": 2.001122679732073,
+  "sole_clearance_m": 0.0019021487697150046,
+  "body_footprint_y_up": {
+    "min": [
+      -0.1989613304834449,
+      0.7859999537467957,
+      -0.13634316623210907
+    ],
+    "max": [
+      0.1989613304834449,
+      1.4900000095367432,
+      0.13230000436306
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.7400962403291906,
+      0.0018420627848623682,
+      -1.082570290976463
+    ],
+    "max": [
+      0.584500532721627,
+      2.233668838624009,
+      0.6514742180413359
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -0.746,
+      -0.004,
+      -1.088
+    ],
+    "max": [
+      0.59,
+      2.239,
+      0.657
+    ]
+  },
+  "defeat_held_hips_height_m": 0.8500000238418579,
+  "note": "glTF axes: +Y up, character faces -Z; his right hand (the cane) is +X. Root at the floor origin under the body centre. The rest width is set by the planted cane (+X) and the lowered open left glove (-X); the sheet pose spans the cane to the waving glove."
+}
