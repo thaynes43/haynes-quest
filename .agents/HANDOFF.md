@@ -28,7 +28,7 @@ Tom asked for the first real release for his two children:
 - The optional On-Air pad in Rat Casino After Hours is wider.
 - Every lift has a deep car, so walk-ins no longer fall into the shaft.
 
-v1 stays registered for the journey already published on it. To move that child to v2, run the operator's `set-template` and then `publish` ([runbook](../docs/ops/002-private-preview.md)). An administrator then presses **Start fresh with these photos**. The review's rejected findings and their reasons are in the World A fixes PR.
+v1 stays registered for the journey already published on it. To move that child to v2, use **Update world** on the Memories screen, or the operator's `set-template` (DESIGN-024 D-11, [runbook](../docs/ops/002-private-preview.md)). Then publish, and have an administrator press **Start fresh with these photos**. Since #102, the casino finale's portal beams also stay out of the camera; this is render only and needs no new version. The review's rejected findings and their reasons are in the World A fixes PR.
 
 **Next:**
 1. Foundations.
