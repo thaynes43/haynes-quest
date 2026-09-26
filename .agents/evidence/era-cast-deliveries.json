@@ -1059,13 +1059,13 @@
       "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
       "sceneReleasedAt": "2026-09-26T19:41:42.760703+00:00",
       "manifest": "docs/assets/media/demon-band-idol/v001/sha256-manifest.json",
-      "pr": null,
+      "pr": 114,
       "prMerged": null,
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v3 (like the frozen v1 and v2) fills the four B·3 ordinary slots with the Demon Idol project candidate (demon-band-idol), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.3959}"
       },
-      "prUrl": null,
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/114",
       "masterSha256": "b11910f9d2510b529e41d88cbbc01edc041161c53bac0d948f2f238f5cdc00c9",
       "triangles": 12308,
       "joints": 36,
