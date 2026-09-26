@@ -1194,7 +1194,7 @@ async function inspectMascotCandidates(browser, inventory, report) {
         );
         if (viewport.hasTouch) await play.tap();
         else await play.click();
-        await viewer.evaluate(
+        const playing = await viewer.evaluate(
           (element) =>
             new Promise((resolve, reject) => {
               const deadline = performance.now() + 3_000;
@@ -1204,7 +1204,14 @@ async function inspectMascotCandidates(browser, inventory, report) {
                   !element.paused &&
                   element.currentTime > 0.03
                 ) {
-                  resolve();
+                  resolve({
+                    animationName: element.animationName,
+                    currentTime: element.currentTime,
+                    paused: element.paused,
+                    controlLabel:
+                      element.nextElementSibling?.querySelector("button")
+                        ?.textContent,
+                  });
                   return;
                 }
                 if (performance.now() >= deadline) {
@@ -1216,15 +1223,61 @@ async function inspectMascotCandidates(browser, inventory, report) {
               inspect();
             }),
         );
-        const playing = await viewer.evaluate((element) => ({
+        assert.equal(
+          playing.controlLabel,
+          "Pause",
+          `${scope}: ${entry.id} play control reflects playback`,
+        );
+        // Attack is a short one-shot. Verify pause/resume on looping idle so
+        // completion cannot turn the next click into a fresh play request.
+        await selector.selectOption("idle");
+        const idleSelected = await viewer.evaluate((element) => ({
           animationName: element.animationName,
           currentTime: element.currentTime,
           paused: element.paused,
         }));
         assert.equal(
+          idleSelected.animationName,
+          "idle",
+          `${scope}: ${entry.id} selects the looping idle clip`,
+        );
+        assert.ok(
+          idleSelected.currentTime <= 0.01,
+          `${scope}: ${entry.id} idle selection resets playback time`,
+        );
+        assert.equal(
+          idleSelected.paused,
+          true,
+          `${scope}: ${entry.id} idle selection remains paused`,
+        );
+        if (viewport.hasTouch) await play.tap();
+        else await play.click();
+        await viewer.evaluate(
+          (element) =>
+            new Promise((resolve, reject) => {
+              const deadline = performance.now() + 3_000;
+              const inspect = () => {
+                if (
+                  element.animationName === "idle" &&
+                  !element.paused &&
+                  element.currentTime > 0.03
+                ) {
+                  resolve();
+                  return;
+                }
+                if (performance.now() >= deadline) {
+                  reject(new Error("mascot idle did not begin playback"));
+                  return;
+                }
+                requestAnimationFrame(inspect);
+              };
+              inspect();
+            }),
+        );
+        assert.equal(
           await play.textContent(),
           "Pause",
-          `${scope}: ${entry.id} play control reflects playback`,
+          `${scope}: ${entry.id} idle control reflects playback`,
         );
         if (viewport.hasTouch) await play.tap();
         else await play.click();
@@ -1237,6 +1290,25 @@ async function inspectMascotCandidates(browser, inventory, report) {
           await play.textContent(),
           "Play",
           `${scope}: ${entry.id} pause restores the control label`,
+        );
+        if (viewport.hasTouch) await play.tap();
+        else await play.click();
+        assert.equal(
+          await viewer.evaluate((element) => element.paused),
+          false,
+          `${scope}: ${entry.id} playback resumes`,
+        );
+        assert.equal(
+          await play.textContent(),
+          "Pause",
+          `${scope}: ${entry.id} resume restores the control label`,
+        );
+        if (viewport.hasTouch) await play.tap();
+        else await play.click();
+        assert.equal(
+          await viewer.evaluate((element) => element.paused),
+          true,
+          `${scope}: ${entry.id} resumed playback pauses again`,
         );
         assert.deepEqual(
           [...new Set(modelRequests)],
