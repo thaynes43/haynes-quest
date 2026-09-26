@@ -1,0 +1,402 @@
+{
+  "asset_id": "putty-grunt",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Claude Opus 5.5 does the WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "blender_instance": "blender-authoring-2",
+  "source_reference": "Blender reference sheet, no generated concept",
+  "source_sheet_sha256": "b6443f0e81b98362ab4e559ab8f44b6a4b3d0cba33f3308c723ee6e577159c28",
+  "source_blockout_sha256": "fd12ee300007076081a4ae41886f797ce71ae5f6f7e96e47cde701a958c054eb",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.5890213847160339,
+      -0.20675671100616455,
+      0.003000000026077032
+    ],
+    "max": [
+      0.5912066698074341,
+      0.21790237724781036,
+      1.4005482196807861
+    ]
+  },
+  "height_m": 1.4005482196807861,
+  "triangles": 14528,
+  "vertices": 7306,
+  "material_count": 2,
+  "bone_count": 27,
+  "max_influences": 4,
+  "high_resolution_bake_source_triangles": 99476,
+  "body_triangles": 10600,
+  "metaball_resolution_m": 0.0085,
+  "bone_heat_groups": [
+    "chest",
+    "fist_L",
+    "fist_R",
+    "foot_L",
+    "foot_R",
+    "forearm_L",
+    "forearm_R",
+    "head",
+    "hips",
+    "shin_L",
+    "shin_R",
+    "shoulder_L",
+    "shoulder_R",
+    "spine",
+    "thigh_L",
+    "thigh_R",
+    "upper_arm_L",
+    "upper_arm_R"
+  ],
+  "bone_heat_fallback_vertices": 0,
+  "belly_weighted_vertices": 96,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 341402,
+    "origin": "Original atlas baked in Blender (Cycles CPU) from this procedural clay: EMIT colour from the high-resolution clay and painted decals at 2048 px, box-filtered to 1024, times soft occlusion baked from the low-poly character (strength 0.45, distance 0.13 m); flat painted tiles for the parts. No external textures, photos or generated images.",
+    "palette": {
+      "clay": "a39db6",
+      "dent": "9690ab",
+      "ridge": "6d6687",
+      "coil": "5e5775",
+      "honey": "e9a23a",
+      "honeydk": "b97a22",
+      "eye": "fbf6ea",
+      "mouth": "3b3049",
+      "tongue": "e8909f",
+      "sheet_honey": "dca953",
+      "sheet_honeydk": "b98a35"
+    },
+    "layout": {
+      "body_square_px": 960,
+      "tile_px": 64,
+      "tiles": {
+        "clay": [
+          960,
+          960
+        ],
+        "coil": [
+          960,
+          896
+        ],
+        "honey": [
+          960,
+          832
+        ],
+        "honeydk": [
+          960,
+          768
+        ],
+        "eye": [
+          960,
+          704
+        ],
+        "tongue": [
+          960,
+          640
+        ],
+        "mouth": [
+          960,
+          576
+        ]
+      }
+    }
+  },
+  "summary": {
+    "high_tris": 99476,
+    "uniform_start_tris": 27448,
+    "body_tris": 10600,
+    "parts_tris": 3928,
+    "total_tris": 14528,
+    "bake_seconds": {
+      "emit": 42.1,
+      "ao": 9.6
+    },
+    "uv_islands": 136,
+    "face_island_faces": 1699,
+    "biased_islands": 38,
+    "body_atlas_coverage": 0.682,
+    "pigment_bytes": 341402,
+    "build_seconds": 56.3
+  },
+  "parts": [
+    {
+      "name": "Low-poly clay body",
+      "triangles": 10600,
+      "atlas_tile": "baked clay body",
+      "bone_groups": [
+        "belly",
+        "chest",
+        "fist_L",
+        "fist_R",
+        "foot_L",
+        "foot_R",
+        "forearm_L",
+        "forearm_R",
+        "head",
+        "hips",
+        "shin_L",
+        "shin_R",
+        "shoulder_L",
+        "shoulder_R",
+        "spine",
+        "thigh_L",
+        "thigh_R",
+        "upper_arm_L",
+        "upper_arm_R"
+      ]
+    },
+    {
+      "name": "Blank round eye R",
+      "triangles": 440,
+      "atlas_tile": "eye",
+      "bone_groups": [
+        "eye_R"
+      ]
+    },
+    {
+      "name": "Blank round eye L",
+      "triangles": 440,
+      "atlas_tile": "eye",
+      "bone_groups": [
+        "eye_L"
+      ]
+    },
+    {
+      "name": "Clay worm brow L",
+      "triangles": 240,
+      "atlas_tile": "clay",
+      "bone_groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Clay worm brow L rounded end",
+      "triangles": 64,
+      "atlas_tile": "clay",
+      "bone_groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Clay worm brow L rounded end.001",
+      "triangles": 64,
+      "atlas_tile": "clay",
+      "bone_groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Clay worm brow R",
+      "triangles": 240,
+      "atlas_tile": "clay",
+      "bone_groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Clay worm brow R rounded end",
+      "triangles": 64,
+      "atlas_tile": "clay",
+      "bone_groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Clay worm brow R rounded end.001",
+      "triangles": 64,
+      "atlas_tile": "clay",
+      "bone_groups": [
+        "head"
+      ]
+    },
+    {
+      "name": "Poking-out pink tongue",
+      "triangles": 224,
+      "atlas_tile": "tongue",
+      "bone_groups": [
+        "tongue"
+      ]
+    },
+    {
+      "name": "Pinched antenna stalk",
+      "triangles": 316,
+      "atlas_tile": "clay",
+      "bone_groups": [
+        "antenna_1",
+        "antenna_2"
+      ]
+    },
+    {
+      "name": "Antenna clay ball",
+      "triangles": 256,
+      "atlas_tile": "clay",
+      "bone_groups": [
+        "antenna_2"
+      ]
+    },
+    {
+      "name": "Antenna ball pinch",
+      "triangles": 100,
+      "atlas_tile": "clay",
+      "bone_groups": [
+        "antenna_2"
+      ]
+    },
+    {
+      "name": "Rolled clay-coil belt",
+      "triangles": 960,
+      "atlas_tile": "coil",
+      "bone_groups": [
+        "belt"
+      ]
+    },
+    {
+      "name": "Round warm-gold buckle",
+      "triangles": 336,
+      "atlas_tile": "honey",
+      "bone_groups": [
+        "belt"
+      ]
+    },
+    {
+      "name": "Buckle pressed centre",
+      "triangles": 120,
+      "atlas_tile": "honeydk",
+      "bone_groups": [
+        "belt"
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 0.8,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 25,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 22,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 73,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": 2.0
+    }
+  ],
+  "floor_guard": {
+    "idle": {
+      "frames_lifted": 30,
+      "max_lift_m": 0.00037,
+      "lowest_keyed_vertex_m": 0.0025,
+      "lift_causes": [
+        "foot_L",
+        "foot_R"
+      ],
+      "worst_lift_frame": 15,
+      "worst_lift_bone": "foot_R"
+    },
+    "move": {
+      "frames_lifted": 25,
+      "max_lift_m": 0.00152,
+      "lowest_keyed_vertex_m": 0.0025,
+      "lift_causes": [
+        "foot_L",
+        "foot_R"
+      ],
+      "worst_lift_frame": 0,
+      "worst_lift_bone": "foot_L"
+    },
+    "attack": {
+      "frames_lifted": 14,
+      "max_lift_m": 0.00129,
+      "lowest_keyed_vertex_m": 0.0025,
+      "lift_causes": [
+        "foot_L",
+        "foot_R"
+      ],
+      "worst_lift_frame": 40,
+      "worst_lift_bone": "foot_L"
+    },
+    "hit": {
+      "frames_lifted": 4,
+      "max_lift_m": 0.00039,
+      "lowest_keyed_vertex_m": 0.0025,
+      "lift_causes": [
+        "foot_L"
+      ],
+      "worst_lift_frame": 2,
+      "worst_lift_bone": "foot_L"
+    },
+    "defeat": {
+      "frames_lifted": 10,
+      "max_lift_m": 0.00101,
+      "lowest_keyed_vertex_m": 0.0025,
+      "lift_causes": [
+        "foot_L",
+        "foot_R"
+      ],
+      "worst_lift_frame": 15,
+      "worst_lift_bone": "foot_R"
+    }
+  },
+  "basis_trs_max_error": 7.670372724533081e-06,
+  "files": {
+    "putty-grunt.blend": {
+      "bytes": 3401416,
+      "sha256": "2cbe214c654a8c05e57ef25f6c72f5eb6a5a032c7f85c3d8992a330a7a80e273"
+    },
+    "putty-grunt.glb": {
+      "bytes": 1148172,
+      "sha256": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522"
+    },
+    "pigment.png": {
+      "bytes": 341402,
+      "sha256": "a503f647f375a1a506a5a431dc2f6d28e68ed51e1063090a34bc43b022f3f471"
+    }
+  }
+}

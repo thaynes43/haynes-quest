@@ -1371,7 +1371,7 @@
       "sceneReleasedAt": "2026-09-26T20:04:57.937358+00:00",
       "manifest": "docs/assets/media/toon-clubhouse-kit/v001/sha256-manifest.json",
       "pr": 116,
-      "prMerged": null,
+      "prMerged": "92d425ec7c0ae2d33b671a45328633632c61cc27",
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "Integrated at intake: src/shared/theme-kits.ts registers each clubhouse prop's exact GLB URL and SHA-256 with its measured bounds. family-world-a@v1, @v2 and @v3 chapter 1 place 22 hedges, 4 tower facades, 3 toolbox stands and 1 curly slide, which render the exact models once the image is published; the stage marker is registered but unplaced."
@@ -1395,6 +1395,135 @@
         "physicalSafari": false
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/116"
+    },
+    {
+      "assetId": "putty-grunt",
+      "version": "v001",
+      "role": "ordinary",
+      "world": "A",
+      "chapter": 3,
+      "glb": "docs/assets/media/putty-grunt/v001/putty-grunt.glb",
+      "sha256": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522",
+      "heightM": 1.4005481542008216,
+      "guardPoseHeightM": 1.3786590571287527,
+      "soleClearanceM": 0.0029999282295683732,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root under the body; his right hand (the guard fist) at +X; the top is the antenna ball; the soles sit 3 mm above the floor at rest",
+        "rest": {
+          "min": [
+            -0.5890214748852431,
+            0.0029999282295683732,
+            -0.2179024475917186
+          ],
+          "max": [
+            0.5912067582724898,
+            1.4005481542008216,
+            0.20675671100616455
+          ]
+        },
+        "guard": {
+          "min": [
+            -0.4069916425200531,
+            0.003000101343585548,
+            -0.3366660493764351
+          ],
+          "max": [
+            0.38910844783211235,
+            1.3786590571287527,
+            0.20675671100616455
+          ]
+        },
+        "animated": {
+          "min": [
+            -0.8681495536179753,
+            0.0015469328455756668,
+            -0.7294404252714406
+          ],
+          "max": [
+            0.8609524329139046,
+            1.4637744972679345,
+            0.6228323961595076
+          ]
+        },
+        "culling": {
+          "min": [
+            -0.874,
+            -0.004,
+            -0.735
+          ],
+          "max": [
+            0.866,
+            1.469,
+            0.628
+          ]
+        },
+        "note": "Rest bounds are the A-pose bind pose, 1.181 m wide and 1.4005 m tall to the antenna ball. The sheet guard is recreated at idle 0 s (0.796 m wide, 1.379 m tall, 0.543 m deep) and every clip except move starts from it. Animated bounds include the overhead heave, the 1.72 m-wide sideways hit squash and the 1.40 m x 1.01 m defeat puddle. The culling envelope is stored in the skinned mesh node's extras (model_space_bounds_y_up); the runtime does not yet apply it (issue #103)."
+      },
+      "attackContactS": 1.25,
+      "attackContactFraction": 0.625,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 2,
+          "channels": 81
+        },
+        {
+          "name": "move",
+          "duration_s": 0.8,
+          "channels": 81
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 81
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 81
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 81
+        }
+      ],
+      "review": "docs/assets/reviews/putty-grunt/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+      "sceneReleasedAt": "2026-09-26T21:23:53.210834+00:00",
+      "manifest": "docs/assets/media/putty-grunt/v001/sha256-manifest.json",
+      "pr": 117,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v3 (like the frozen v1 and v2) fills two of the four A·3 ordinary slots (ordinary-1 and ordinary-3) with the Putty Grunt project candidate (putty-grunt), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.4005}, or 1.3787 for the guard pose every clip except move starts from"
+      },
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/117",
+      "masterSha256": "2cbe214c654a8c05e57ef25f6c72f5eb6a5a032c7f85c3d8992a330a7a80e273",
+      "triangles": 14528,
+      "joints": 27,
+      "bytes": 1148172,
+      "integrationNotes": [
+        "Two opaque materials (matte hand-worked clay; satin eyes, tongue and warm-gold buckle), one draw primitive each, both sampling the one embedded 1024 x 1024 RGB baked atlas. KHR_materials_specular is used but not required.",
+        "Rest geometry is the A-pose bind pose; the coordinator-requested guard is recreated at idle 0 s. Rest geometry starts 0.003 m above the floor (sole clearance); the lowest animated point is 0.0015 m.",
+        "Squash, stretch and the melt use non-uniform bone scale, exported as glTF scale channels; three.js honours them (Blender-vs-three.js skinning agrees to 1.05e-6 m over 20,300 vertex samples), but a runtime that ignored node scale would lose them. There are no morph targets: the blink and the hit eye-squeeze are eye-bone scale. The root bone never animates.",
+        "At the 1.25 s contact both fists meet 0.61 m in front of the root at 0.54 m high, with the clay arms stretched about 25% and the mitten fists squashed. The game's wind-up scrubs 0 to 1.25 s, so the overhead heave (0.55 s), toe teeter and double-fist swing play at the wind-up speed.",
+        "The hit squashes the body sideways to 1.72 m wide and dents the belly to 15% of its depth, then wobbles back into the guard by 0.7 s.",
+        "In the held defeat (from 2.0 s) the model is a clay puddle 1.40 m wide x 1.01 m deep: body top 0.267 m, eyes 0.292 m, antenna 0.409 m.",
+        "Runtime culling (issue #103), measured at intake with three.js r186 against the idle-0 bounding spheres: the satin primitive (eyes, tongue, buckle) leaves its sphere by up to 0.401 m at defeat 1.00 s and by about 0.400 m for the whole held puddle, and the matte clay by up to 0.252 m at hit 0.10 s; apply the exported culling envelope or disable frustum culling for this skinned mesh.",
+        "Exact intake values: 1,148,172 bytes (binary buffer 1,061,604 bytes), 14,528 triangles (10,600 of them the clay body), 9,917 exported vertices (7,306 Blender mesh vertices before UV and normal splits), 2 textures sampling one embedded 1024 x 1024 atlas, 2 materials, 2 primitives, 27 joints, at most 4 influences per vertex."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "contractChecksPassed": 22,
+        "threeAdapterChecksPassed": 39,
+        "attachmentChecksPassed": 9,
+        "chromiumChecksPassed": 10,
+        "artifactHashesMatchedLocally": 157,
+        "physicalSafari": false
+      }
     }
   ]
 }

@@ -1,0 +1,119 @@
+{
+  "work_order": "WO111",
+  "asset_id": "putty-grunt",
+  "version": "v001",
+  "created_utc": "2026-09-26T21:23:25.601110+00:00",
+  "glb_sha256": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back, three-quarter and beauty stills of the sheet guard (idle 0 s) compared with the reference sheet at the same angles and metric scale (sheet-vs-export.png); bind-pose stills; five-clip normal/small motion sheet; attack front/side overhead-teeter-contact-recovery and 35% gameplay-scale strip; held defeat front/side/three-quarter/beauty/gameplay; gameplay-camera views at five azimuths.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "sheet_matching": [
+    "Silhouette kept from the approved blockout at its measured coordinates: the big neckless lumpy-bean head, pot belly, noodly arms with oversized mitten fists, stumpy bow-legged legs on pancake feet with three toe bumps, and the guard (right fist raised in front of the chest, left fist low and out, head tilted 8 deg to its right, antenna leaning with it). Guard bounds 0.796 m wide x 1.376 m tall x 0.543 m deep (sheet 0.80 x 1.40 x 0.52).",
+    "Coordinator notes applied: the blank eyes are 12% larger than the sheet (right 0.116 x 0.123 m, left 0.099 x 0.105 m, the right still 17% bigger); the buckle is a warmer gold (#e9a23a rim, #b97a22 pressed centre, replacing the sheet #dca953 / #b98a35).",
+    "Colours are the sheet hex values (atlas); the preview renders them slightly bluer in shadow than the flat Cycles sheet because of its ACES tone mapping and three-light rig. The antenna ball sits at 1.379 m in the guard (the stalk is 10% shorter than the blockout so the bind-pose ball stays inside 1.40 m).",
+    "Parody hooks kept: the villain's clay foot-soldier premise, the thumbprint where a chest emblem would go, thumbprint dents with whorl ridges all over, the rolled clay-coil belt, blank mismatched eyes under a raised \"huh?\" brow, the tongue-out dopey grin, the pinched antenna and the clumsy mitten fists. No lettering or emblem."
+  ],
+  "acting": {
+    "idle": "Wobbly double bounce in the guard with a clay squash on each dip, two quick \"hi-yah\" feints of the right fist, the antenna a beat behind, one slow blink (2.0 s loop).",
+    "move": "Bouncy bow-legged waddle-jog: pancake feet squash on each landing, arms pump, the body rocks, the antenna flops (0.8 s loop); feet lift 0.118 / 0.118 m.",
+    "attack": "Clumsy double-fist swing (2.0 s): heaves both fists over its head leaning back on its heels (0.55 s), teeters onto its toes, swings both fists down in front; contact 1.25 s with the fists together 0.61 m in front at 0.54 m height, the clay arms 25% longer and the mitten fists squashed; elastic snap back, windmills its left arm, nearly falls, settles into the guard.",
+    "hit": "Poked-clay squash (0.7 s): the body widens and thins, a big belly dent (belly depth down to 15%), eyes squeezed shut, antenna springs, then it wobbles back into the guard.",
+    "defeat": "Jolts, teeters back with its arms flying up, then melts into a flopped clay puddle (2.4 s, held from 2.0 s): body top 0.267 m, head blob 0.295 m, the round blank eyes up to 0.292 m, the belt ring on the rim and the antenna sticking up to 0.409 m after wiggling."
+  },
+  "author_corrections": [
+    "First session (geometry): an adaptive collapse straight from the 99k-triangle clay spent the budget on the hand-worked lumps and left the head and belly with 6 cm silhouette facets; replaced by a uniform voxel start shrink-wrapped back onto the clay and a protected collapse. The face became one front-planar UV island so the painted grin never straddles a seam; the mitten fists were enlarged 7% and small thumbprints got fewer, wider whorl turns so they survive the atlas at play distance.",
+    "Legs moved under the root so the hips squash never rescales them and the leg IK stays exact in world space.",
+    "The first buckle (an open ring with a recessed plug) read as a donut with a slot in exact-GLB close-ups; rebuilt as a solid warm-gold disc with a raised rim and a darker pressed centre.",
+    "Contact first landed the fists about 0.2 m above the floor at the knees; the swing now ends nearly level in front of the lean, at about hip height.",
+    "The first puddle spread the arms beyond 1.6 m; flopping them lower then pushed the fists through the floor and the floor guard lifted the whole puddle 10.7 cm. The arms now lie level and closer, and every clip lifts at most 1.6 mm.",
+    "The jog fists clipped the thighs (13 right and 11 left of 25 move frames, then 3); the swing now arcs wider on the back stroke (0 overlapping frames).",
+    "Arm stretch at contact first measured 53% (the forearm inherits the upper-arm scale); reduced to about 25% to match the notes' \"about 30% longer\" clumsy bonk.",
+    "Eyes never rotate under a flattened parent (a counter-scaled rotated eye shears); the puddle eyes stay round and pop 8% wider instead. The antenna droop was reduced so it still sticks up out of the puddle."
+  ],
+  "deviations_from_sheet_notes": [
+    "The notes suggested a single overhead right-fist bonk; the coordinator review and brief ask for a clumsy double-fist swing, which the attack performs (with the notes' elastic snap-back, near fall and windmilling left arm).",
+    "In the defeat the model melts forward-down into a puddle rather than tipping fully onto its back, so the eyes face the player's follow camera (the grunt usually faces the player); the brows, grin and tongue stay readable on the head blob."
+  ],
+  "dimensions_width_height_depth_m": [
+    1.180228233157733,
+    1.3975482259712533,
+    0.42465915859788317
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5890214748852431,
+      0.0029999282295683732,
+      -0.2179024475917186
+    ],
+    "max": [
+      0.5912067582724898,
+      1.4005481542008216,
+      0.20675671100616455
+    ]
+  },
+  "guard_bounds_y_up": {
+    "min": [
+      -0.4069916425200531,
+      0.003000101343585548,
+      -0.3366660493764351
+    ],
+    "max": [
+      0.38910844783211235,
+      1.3786590571287527,
+      0.20675671100616455
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -0.8681495536179753,
+      0.0015469328455756668,
+      -0.7294404252714406
+    ],
+    "max": [
+      0.8609524329139046,
+      1.4637744972679345,
+      0.6228323961595076
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -0.874,
+      -0.004,
+      -0.735
+    ],
+    "max": [
+      0.866,
+      1.469,
+      0.628
+    ]
+  },
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "defeat_held_from_seconds": 2.0,
+  "defeat_held": {
+    "height_all_m": 0.40909732966993717,
+    "body_top_m": 0.2669282791556006,
+    "head_top_m": 0.2950346354400313,
+    "eye_top_m": 0.2917717821353758,
+    "antenna_top_m": 0.40909732966993717,
+    "belt_top_m": 0.14706305678282772,
+    "footprint_m": [
+      1.401895744168653,
+      0.3964404081982776,
+      1.0119877355601967
+    ],
+    "eye_axis_ratio": {
+      "R": 1.0799999114990158,
+      "L": 1.0799999114990158
+    }
+  },
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "The attachment audit tests listed part pairs on the source scene; it is not a universal triangle-collision proof. The continuous clay body is never tested against itself; the fists touching at the attack contact are intended; the melt merges the clay by design, so defeat overlaps are tested only before it.",
+    "In the game the windup phase scrubs the attack clip from 0 to the 1.25 s contact, so the raise, teeter and swing play at the simulation windup speed.",
+    "Non-uniform bone scale is exported as glTF scale channels; any runtime that ignores node scale would lose the squash, stretch and melt.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}

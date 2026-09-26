@@ -556,6 +556,20 @@
       "sha256": "2618c041dc7f4cfa99411bef15427be5cd767f3470962e09170825bf680c95a0"
     },
     {
+      "source": "docs/assets/media/putty-grunt/v001/beauty.png",
+      "source_sha256": "197dcf35b983f96a73c12ef2d6e4e7f75c2041cd7fdb4bf1f74cb8da6554809a",
+      "path": "docs/assets/media/catalog-thumbnails/v001/1ff18e451d7dc341.webp",
+      "bytes": 5406,
+      "sha256": "55b4c4f4e786493fcfe9049b06439b1bffd973909b72df7588fb7221303d9304"
+    },
+    {
+      "source": "docs/assets/media/putty-grunt/v001/reference-sheet.png",
+      "source_sha256": "b6443f0e81b98362ab4e559ab8f44b6a4b3d0cba33f3308c723ee6e577159c28",
+      "path": "docs/assets/media/catalog-thumbnails/v001/bc326ff39ab6e825.webp",
+      "bytes": 17334,
+      "sha256": "8d1a4012eeb5fc3d4c6b5beba708fc7fd762779e792b2c829bd373e0055a896c"
+    },
+    {
       "source": "docs/assets/media/radio-static/v001/waveform.svg",
       "source_sha256": "f778b0d37547a6b4990be14a1a9a9e8d074a0b418c61f73d121c098609497644",
       "path": "docs/assets/media/catalog-thumbnails/v001/e45c547be9d45396.webp",
