@@ -60,27 +60,26 @@ A Claude Code session (`claude-opus-5-5`) started by Tom drives this plan. It ke
 - Every new asset appears in the catalog with its review page and live URLs verified.
 - Owner checks that stay pending until Tom does them, never simulated: his real sign-in, the portal tile click, photo swaps, final art and audio review, and device play.
 
-## Progress (September 26, 01:45 UTC)
+## Progress (September 26, 16:30 UTC)
 
-- **Live now:**
-  - sign-in (WO106) and hosting (WO108);
-  - the portal tile (WO110);
-  - family journeys and the operator CLI (WO109);
-  - growth moves and v4 pieces (WO107);
-  - the final copy.
-
-  The family release runs main `e63f549`. Live person lookup resolves both children.
-- **Era casts (WO111):** Tom locked DESIGN-026 with World A at four chapters. The Codex Astra art lead is producing candidates in priority order; the first was Clubhouse Bully Cat v001 ([PR85](https://github.com/thaynes43/haynes-quest/pull/85)).
-- **Family worlds:**
-  1. A design workflow produced seven chapter blueprints and an adversarial critique. They are kept with the coordinator rulings at `/home/dev/artifacts/haynes-quest/family-blueprints/`.
-  2. A foundations workflow is adding the new themes, periods, catalog v7, lift dwell, the drop mode, shared props, level replace and family lints.
-  3. The chapter-build workflow follows.
+- **Live:**
+  - sign-in, hosting and the portal tile;
+  - family journeys, Update world, growth moves and v4 pieces;
+  - the family worlds A and B, both v2 and published for both children;
+  - eight sound cues, wired in main `278e3e8` and deployed with the next pin.
+- **Release review:** confirmed 13 findings. 11 were fixed in PR104 and haynes-ops #3211/#3213. Three are owner actions (#3214): the family secret rotation, the read-only Immich key and edge HSTS.
+- **Era models in the catalog:**
+  - Clubhouse Bully Cat, Honk Bus, Gadget Helper, Yes-Yes Veggie, Rival Mayor, Magic House, Mischief Kitten and Bin Chicken;
+  - the first two are gameplay-registered in catalog v8; the rest are going into v10 with world v3.
+- **In progress:**
+  - the Monster-inator, Demon Idol and Putty Grunt models (Blender 2);
+  - radio showman, lab robot and web-slinger sheets plus the toon-clubhouse kit (Blender 1);
+  - the catalog v10 / world v3 integration.
 - **Remaining:**
-  1. Build, verify and register the World A and World B templates.
-  2. Deploy them.
-  3. The operator creates and publishes both children.
-  4. Integrate assets as they land.
-  5. Run the adversarial release review and record the handoff.
+  - models for the radio showman, lab robot, web-slinger helper and the playroom, harbor, casita and rooftop kits;
+  - world v4 with those models;
+  - Tom's device playtest feedback;
+  - the handoff at close.
 
 ## Result
 

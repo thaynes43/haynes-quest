@@ -1,57 +1,38 @@
 # Current handoff
 
-## First family release in progress · September 25, 2026
+## First family release live · September 26, 2026
 
-Tom asked for the first real release for his two children:
+**Both children's journeys are live** at [quest.haynesnetwork.com](https://quest.haynesnetwork.com), behind Authentik (`authentik Admins` + `family`), with a Haynes Network portal tile.
 
-- online behind Authentik at a Haynes Network address, with a portal tile;
-- real Immich photos as memories;
-- taller, busier obby levels with era-themed casts and props;
-- lasting moves unlocked by growing up.
+- The older child plays `family-world-a@v2` ("Clubhouse to Casino", four chapters, ages 0→2→5→9→11).
+- The younger child plays `family-world-b@v2` ("Playroom to Big Stage", three chapters, ages 0→2→4→6).
+- Both are at publication r2. Photos were auto-picked from Immich (12 and 9) and decode server-side (12/12, 9/9). Tom can swap them in **Family setup → Memories**.
+- Tom signs in as `thaynes`. The separate `thomashaynes620` account is in neither group.
+- Children's names, birthdays and photo identifiers live only in the family database. The CLI takes private inputs on stdin, and the setup lookups are POST requests.
 
-[PLAN-019](plans/019-first-family-release.md) tracks the lanes. [PRD-004](../docs/prds/004-family-release.md) records his rulings:
+[PLAN-019](plans/019-first-family-release.md) has the lanes and evidence. The contracts are [PRD-004](../docs/prds/004-family-release.md), [ADR-005](../docs/adrs/005-family-sign-in-and-admission.md), [ADR-006](../docs/adrs/006-release-isolation-and-public-surface.md), [DESIGN-024](../docs/designs/024-family-journeys.md), [DESIGN-025](../docs/designs/025-growth-moves-and-vertical-courses.md) and [DESIGN-026](../docs/designs/026-personal-era-casts.md). Tom locked the era casts on September 26 and ruled on four points:
 
-- **Access:** `authentik Admins` and `family`, with only admins able to set things up.
-- **Photos:** auto-picked, and administrators can swap them.
-- **New assets:** may enter the children's levels labeled "awaiting review".
-- **Moves:** an age 2/4/8 ladder of high jump, double jump and glide.
+- Claude continues the Blender work after Codex's usage limit.
+- The Astra rule meant Astra over Sol.
+- Assets without an Astra concept use coordinator-reviewed Blender reference sheets.
+- Unreviewed candidates may appear in the children's levels, labeled "awaiting review".
 
-[ADR-005](../docs/adrs/005-family-sign-in-and-admission.md), [DESIGN-024](../docs/designs/024-family-journeys.md) and [DESIGN-025](../docs/designs/025-growth-moves-and-vertical-courses.md) are the contracts.
+**Operations:**
+- Deploy with `/home/dev/artifacts/haynes-quest/tools/pin-quest.sh <main-sha> "<desc>"`. It pins the signed image to the family release and to the fixture playtest.
+- Move a child to a new template with `set-template --child <id> --template <id>@<v>` (Update world carries photos over), then `publish` and `verify-media` inside the family pod.
+- A second, isolated Blender instance (`blender-authoring-2`, haynes-ops #3207) lets two authors model in parallel.
+- The playtest now runs with no family secret or database access (ADR-006).
 
-**Live at [quest.haynesnetwork.com](https://quest.haynesnetwork.com)** behind Authentik (`authentik Admins` + `family`), with a Haynes Network portal tile. It runs main `e63f549`: sign-in, family journeys, the admin Memories screen, the operator CLI, growth moves and v4 pieces. Tom should sign in as `thaynes`; that account is in both groups, while the separate `thomashaynes620` account is in neither.
+**Owner actions** ([haynes-ops#3214](https://github.com/thaynes43/haynes-ops/issues/3214)):
+- rotate the family `BETTER_AUTH_SECRET`;
+- give the family release a dedicated read-only Immich key;
+- enable HSTS at the Cloudflare edge.
 
-**Eras locked** September 26: [DESIGN-026](../docs/designs/026-personal-era-casts.md) gives World A four chapters and World B three. The Codex Astra art lead ([WO111](work-orders/111-era-cast-art-lead.md)) is producing the casts and kits.
+Also pending with Tom: review of every "awaiting review" asset, physical-device play with the children, and listening to the sound cues. Git history holds the children's first names in two September 10 bootstrap commits, written before characters became configurable. Rewriting public history is Tom's decision.
 
-**World A v2** (September 26): verification of `family-world-a@v1` found two bounce-pad defects and open lift shafts. v2 fixes them:
-
-- The Toon Clubhouse's mop sweeper is removed from the boss pad's run-up.
-- The optional On-Air pad in Rat Casino After Hours is wider.
-- Every lift has a deep car, so walk-ins no longer fall into the shaft.
-
-v1 stays registered for the journey already published on it. To move that child to v2, use **Update world** on the Memories screen, or the operator's `set-template` (DESIGN-024 D-11, [runbook](../docs/ops/002-private-preview.md)). Then publish, and have an administrator press **Start fresh with these photos**. Since #102, the casino finale's portal beams also stay out of the camera; this is render only and needs no new version. The review's rejected findings and their reasons are in the World A fixes PR.
-
-**Release review fixes** (September 26, [ADR-006](../docs/adrs/006-release-isolation-and-public-surface.md)):
-
-- **Playtest isolation.** The ephemeral playtest refuses a `DATABASE_URL` and mints its own session secret. The haynes-ops change that drops its Secret and database egress must deploy before, or with, this image, or the playtest will not start.
-- **Studio behind sign-in.** The family host serves `/studio` only to signed-in members; the LAN playtest host serves it openly.
-- **Names and birthdays kept out of logs.** Setup lookups are `POST` with a JSON body, and the operator CLI reads names and birthdays from stdin.
-- **Database pools.** A lost connection logs a fixed diagnostic instead of crashing.
-- **Picks.** Smart-search results count again, and metadata picks and **Show more** read outward from each slot's target.
-- **Plan load checks.** Loading a plan re-checks neutral candidate casts against the frozen template.
-- **Owner actions (ADR-006 C-04):**
-  - rotate the family `BETTER_AUTH_SECRET`;
-  - give the family release a dedicated read-only Immich key;
-  - turn on Cloudflare edge HSTS.
-
-**Next:**
-1. Foundations.
-2. Seven chapter builds.
-3. Register the World A and B templates.
-4. Deploy.
-5. The operator publishes both children's journeys.
-6. Adversarial review.
-
-Children's names, birthdays and photos are private database configuration and never enter this public repository.
+**Lessons:**
+- A transient "session limit" API error stopped every agent and the coordinator from about 05:00 to 14:00 UTC on September 26. Nothing resumes by itself after such an error, so the later workflows wrap every agent in automatic retries.
+- Workflow builders inherit the coordinator's worktree unless told to create their own.
 
 ## Golden encounter and PC mouse controls · September 25, 2026
 
