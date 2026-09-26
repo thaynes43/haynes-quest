@@ -100,3 +100,35 @@ Behavior:
 - Only `POST /api/auth/sign-in/social` and the callback are exposed under `/api/auth`. Sign-in start requires the exact app Origin and ignores client-supplied providers, return paths and ID tokens.
 - Fixture mode refuses `QUEST_OIDC_DISCOVERY_URL` and `QUEST_OIDC_CLIENT_SECRET`, never constructs Better Auth, and never accepts a family cookie. Family mode never accepts a fixture cookie.
 - The family lane derives the private subject-id HMAC key with `deriveSubjectIdSecret(BETTER_AUTH_SECRET)`, which uses HKDF-SHA256 with a fixed label. No extra secret is needed.
+
+## Family journeys configuration and operator CLI
+
+Family mode also serves the [DESIGN-024](../designs/024-family-journeys.md) journeys (WO109).
+
+| Variable | Default | Meaning |
+| --- | --- | --- |
+| `IMMICH_URL` | unset | The Immich origin, for example the in-cluster service. Requests are pinned to this origin. Fixture mode refuses it. |
+| `IMMICH_API_KEY` | unset | Set together with `IMMICH_URL`. Without both, the server still starts: journeys keep playing, `/api/admin/*` setup answers `503 FAMILY_SETUP_UNAVAILABLE` and photos show their placeholder. |
+| `QUEST_HOUSEHOLD_TIME_ZONE` | `UTC` | IANA zone that defines "today" for current ages and the final chapter's birthday. |
+
+Opaque photo references derive from `BETTER_AUTH_SECRET` (HKDF) and the fixed connection id `family-immich-v1`; changing either orphans published references. Candidate thumbnail tokens use their own HKDF label and last 15 minutes.
+
+Routes (all need a family session; `/api/admin/*` also needs `authentik Admins`):
+
+- `GET /api/children` lists published journeys and each child's current run. `POST /api/children/:id/play` resumes that run or starts one on the latest publication. `{"fresh": true}` (administrators only) starts a new run on the latest photos. A family save is household-owned, so every save route serves it to any admitted member. `GET /api/saves/:id/world` returns its frozen geometry.
+- `GET|POST /api/admin/children`, `GET /api/admin/templates?birthDate=`, `GET /api/admin/immich/people?name=`.
+- `GET|PUT /api/admin/children/:id/draft`. `PUT {"op":"auto-pick"}` starts a background pick and answers `202`. Poll `GET` until `picking` is false. `caption` and `swap` edits take `expectedRevision`.
+- `GET /api/admin/children/:id/draft/slots/:chapter/:slot/suggestions?cursor=`, `GET /api/admin/candidates/:token/image` and `POST /api/admin/children/:id/publish {expectedRevision, requestId}`.
+
+Inside the family pod, `node dist/server/admin.js` performs the same service calls. It prints only opaque ids and counts, and errors print a fixed code only:
+
+```bash
+node dist/server/admin.js people --name "<Immich name>"          # matches N; choice <id> birth-date on-file|missing
+node dist/server/admin.js templates --birth-date YYYY-MM-DD
+node dist/server/admin.js create-child --name "<Immich name>" --choice <choice id> \
+  --display-name "<name>" --immich-birth-date --template rat-casino-world@v2
+node dist/server/admin.js auto-pick --child <child id>           # draft rN filled F/T needs-photo N
+node dist/server/admin.js publish --child <child id>             # publication <id> rN chapters C memories M
+node dist/server/admin.js verify-media --child <child id>        # decoded D/M failed F
+node dist/server/admin.js status
+```

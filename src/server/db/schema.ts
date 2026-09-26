@@ -72,9 +72,10 @@ export const saves = pgTable(
     ownerId: uuid('owner_id')
       .notNull()
       .references(() => players.id, { onDelete: 'cascade' }),
-    previewId: uuid('preview_id')
-      .notNull()
-      .references(() => setupPreviews.id, { onDelete: 'restrict' }),
+    // Null for a family save, which freezes a publication instead (0006).
+    previewId: uuid('preview_id').references(() => setupPreviews.id, { onDelete: 'restrict' }),
+    publicationId: uuid('publication_id'),
+    childId: uuid('child_id'),
     title: text('title').notNull(),
     subject: jsonb('subject').$type<SubjectOption>().notNull(),
     birthDate: date('birth_date', { mode: 'string' }).notNull(),

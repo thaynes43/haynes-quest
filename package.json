@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "dev:server": "tsx watch src/server/index.ts",
-    "build": "vite build && tsup src/server/index.ts --format esm --platform node --target node24 --out-dir dist/server --sourcemap",
+    "build": "vite build && tsup src/server/index.ts src/server/admin.ts --format esm --no-splitting --platform node --target node24 --out-dir dist/server --sourcemap",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src tests --max-warnings 0",
     "test": "vitest run",

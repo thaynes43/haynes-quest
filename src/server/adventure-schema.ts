@@ -2,6 +2,7 @@ import { z } from 'zod';
 import {
   abilitiesForPlanAge,
   appearanceForAge,
+  isAuthoredWorldPlan,
   memoryIdsForLevel,
   type AdventurePlan,
   type AdventurePlanV2,
@@ -9,10 +10,12 @@ import {
   type AdventureState,
   type EditorWorldAdventurePlan,
 } from '../shared/adventure.js';
+import type { FamilyWorldAdventurePlanV1 } from '../shared/family-plan.js';
 import {
   PARODY_CATALOGS,
   PARODY_CATALOG_VERSIONS,
 } from '../shared/parody-catalog.js';
+import { FAMILY_ABILITIES, FAMILY_AGE_RULE, FAMILY_MEMORY_SLOTS } from '../shared/family-plan.js';
 import {
   levelEditorPreparedBonusEnemies,
   levelEditorPreparedEnemies,
@@ -45,7 +48,7 @@ const frozenMemorySchema = z.object({
   mediaUrl: z.string().min(1).max(2_048).optional(),
   source: memorySourceSchema,
 }).strict();
-const abilitySchema = z.enum(['move', 'interact', 'jump']);
+const abilitySchema = z.enum(FAMILY_ABILITIES);
 const ruleVersionsSchema = z.object({
   journey: identifier,
   age: identifier,
@@ -172,7 +175,51 @@ const editorWorldLevelV2Schema = z.object({
   optionalEncounterIds: z.union([z.tuple([]), z.tuple([identifier])]),
   encounters: z.array(editorEncounterDefinitionSchema).min(5).max(6),
 }).strict();
+const familyMemorySlotSchema = z.object({
+  slot: z.enum(FAMILY_MEMORY_SLOTS),
+  memoryId: identifier,
+  date: dateOnly,
+  ageYears: z.number().int().min(0).max(150),
+  caption: z.string().min(1).max(160),
+  source: z.object({
+    kind: z.literal('immich'),
+    opaque: z.string().regex(/^[A-Za-z0-9_-]{8,128}$/),
+  }).strict(),
+}).strict();
+const familyWorldLevelSchema = z.object({
+  ...editorWorldLevelShape,
+  optionalEncounterIds: z.union([z.tuple([]), z.tuple([identifier])]),
+  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(6),
+  chapterId: identifier,
+  chapterName: z.string().min(1).max(120),
+  chapterSubtitle: z.string().max(240),
+  chapterDescription: z.string().max(600),
+  abilities: z.array(abilitySchema).min(1).max(FAMILY_ABILITIES.length),
+  memorySlots: z.tuple([familyMemorySlotSchema, familyMemorySlotSchema, familyMemorySlotSchema]),
+  // Geometry is verified against the plan's fingerprint by the family validator.
+  authoredLevel: z.record(z.string(), z.unknown()),
+}).strict();
+const familyWorldPlanSchema = z.object({
+  version: z.literal('family-world-plan-v1'),
+  catalogVersion: z.enum(PARODY_CATALOG_VERSIONS),
+  projectFingerprint: z.string().regex(/^[a-f0-9]{64}$/),
+  template: z.object({
+    id: z.string().regex(/^[a-z0-9][a-z0-9-]{0,63}$/),
+    version: z.string().regex(/^v[0-9]{1,4}$/),
+    fingerprint: z.string().regex(/^[a-f0-9]{64}$/),
+  }).strict(),
+  ageRule: z.literal(FAMILY_AGE_RULE),
+  abilityLadder: z.object({
+    version: z.string().min(1).max(80),
+    grants: z.array(z.object({
+      fromAge: z.number().int().min(0).max(30),
+      abilities: z.array(abilitySchema).min(1).max(FAMILY_ABILITIES.length),
+    }).strict()).min(1).max(FAMILY_ABILITIES.length),
+  }).strict(),
+  levels: z.array(familyWorldLevelSchema).min(1).max(8),
+}).strict();
 const planSchema = z.discriminatedUnion('version', [
+  familyWorldPlanSchema,
   z.object({
     version: z.literal('era-level-plan-v1'),
     levels: z.array(levelV1Schema).min(1).max(24),
@@ -224,7 +271,7 @@ const stateSchema = z.object({
   consumedMemoryIds: z.array(identifier).max(24),
   completedLevelIds: z.array(identifier).max(24),
   ageYears: z.number().int().min(0).max(150),
-  abilities: z.array(z.enum(['move', 'interact', 'jump'])).min(2).max(3),
+  abilities: z.array(abilitySchema).min(2).max(FAMILY_ABILITIES.length),
   appearanceStage: z.enum(['infant', 'child']),
   attackReadyAtMs: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
   guardActiveUntilMs: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
@@ -247,7 +294,7 @@ const storedSaveJsonSchema = z.object({
   subject: subjectSchema,
   memories: z.array(frozenMemorySchema).min(1).max(240),
   recoveredIds: z.array(z.string().min(1).max(128)).max(240),
-  abilities: z.array(abilitySchema).min(1).max(3),
+  abilities: z.array(abilitySchema).min(1).max(FAMILY_ABILITIES.length),
   versions: ruleVersionsSchema,
 }).strict();
 
@@ -325,7 +372,9 @@ function isEditorWorldPlan(plan: AdventurePlan): plan is EditorWorldAdventurePla
 }
 
 function validPlan(plan: AdventurePlan): boolean {
-  const editorWorldPlan = isEditorWorldPlan(plan);
+  // Family plans share the authored-world construction; their birthday-derived
+  // invariants are re-checked by save validation, which knows the birthday.
+  const editorWorldPlan = isAuthoredWorldPlan(plan);
   if (
     plan.version !== 'era-level-plan-v1' &&
     !editorWorldPlan &&
@@ -384,7 +433,7 @@ function validPlan(plan: AdventurePlan): boolean {
   return true;
 }
 
-function validEditorWorldPlan(plan: EditorWorldAdventurePlan): boolean {
+function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdventurePlanV1): boolean {
   if (
     (plan.catalogVersion !== 'parody-catalog-v5' &&
       plan.catalogVersion !== 'parody-catalog-v6')
@@ -398,7 +447,7 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan): boolean {
       : [];
     const expectedOptionalId = `${level.id}-encounter-bonus-1`;
     if (
-      plan.version === 'editor-world-plan-v2' &&
+      plan.version !== 'editor-world-plan-v1' &&
       optionalEncounterIds.length === 1 &&
       optionalEncounterIds[0] !== expectedOptionalId
     ) return false;
@@ -497,7 +546,9 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan): boolean {
       ) return false;
     }
   }
-  return plan.version === 'editor-world-plan-v1' || hasOptionalEncounter;
+  // An editor v2 plan exists only to carry an optional encounter; a family
+  // plan freezes whatever its template has.
+  return plan.version !== 'editor-world-plan-v2' || hasOptionalEncounter;
 }
 
 function validParodyPlan(plan: AdventurePlanV2 | AdventurePlanV3): boolean {

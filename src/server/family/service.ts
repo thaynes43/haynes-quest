@@ -29,7 +29,7 @@ import {
   type PickLimits,
 } from './pick.js';
 import { buildFamilyWorldPlan, FamilyPlanError } from './plan.js';
-import { FamilyRebaseError, rebaseWorldForChild, type RebasedWorld } from './rebase.js';
+import { FamilyRebaseError, rebaseWorldForChild, type RebasedChapter, type RebasedWorld } from './rebase.js';
 import {
   FAMILY_LIMITS,
   type ChildRecord,
@@ -40,6 +40,28 @@ import {
 } from './store.js';
 import type { FamilyTemplate, FamilyTemplateRegistry } from './templates.js';
 import type { CandidateTokens } from './tokens.js';
+import type {
+  ChildView,
+  CreateChildInput,
+  DraftView,
+  PersonChoice,
+  PublicationSummary,
+  SuggestionPageView,
+  TemplateOffer,
+} from '../../shared/family-api.js';
+
+export type {
+  ChildView,
+  CreateChildInput,
+  DraftChapterView,
+  DraftSlotView,
+  DraftView,
+  PersonChoice,
+  PublicationSummary,
+  SuggestionPageView,
+  SuggestionView,
+  TemplateOffer,
+} from '../../shared/family-api.js';
 
 export interface FamilyServiceOptions {
   readonly store: FamilyStore;
@@ -53,91 +75,6 @@ export interface FamilyServiceOptions {
   /** The household's calendar date (YYYY-MM-DD). */
   readonly today?: () => string;
   readonly newSeed?: () => string;
-}
-
-export interface PersonChoice {
-  /** Opaque, HMAC-derived choice id. */
-  readonly id: string;
-  readonly label: string;
-  readonly birthDate: string | null;
-}
-
-export interface TemplateOffer {
-  readonly id: string;
-  readonly version: string;
-  readonly name: string;
-  readonly chapterCount: number;
-}
-
-export interface CreateChildInput {
-  readonly immichName: string;
-  /** A {@link PersonChoice.id} from the same name lookup. */
-  readonly personChoiceId: string;
-  readonly displayName: string;
-  readonly birthDate: string;
-  readonly templateId: string;
-  readonly templateVersion: string;
-}
-
-export interface ChildView {
-  readonly id: string;
-  readonly displayName: string;
-  readonly birthDate: string;
-  readonly templateId: string;
-  readonly templateVersion: string;
-  readonly revision: number;
-}
-
-export interface DraftSlotView {
-  readonly slot: FamilyMemorySlot;
-  readonly status: 'filled' | 'needs-photo';
-  readonly localDate: string | null;
-  readonly ageYears: number | null;
-  readonly caption: string | null;
-  readonly captionEdited: boolean;
-  /** Short-lived candidate token for the private thumbnail; never an upstream id. */
-  readonly thumbnailToken: string | null;
-  readonly source: 'auto' | 'admin' | null;
-}
-
-export interface DraftChapterView {
-  readonly chapterId: string;
-  readonly name: string;
-  readonly subtitle: string;
-  readonly startAge: number;
-  readonly recoveredAge: number;
-  readonly startDate: string;
-  readonly targetDate: string;
-  readonly slots: readonly DraftSlotView[];
-}
-
-export interface DraftView {
-  readonly childId: string;
-  readonly draftId: string;
-  readonly revision: number;
-  readonly templateId: string;
-  readonly templateVersion: string;
-  readonly publishable: boolean;
-  readonly chapters: readonly DraftChapterView[];
-}
-
-export interface SuggestionView {
-  readonly token: string;
-  readonly localDate: string;
-  readonly ageYears: number;
-}
-
-export interface SuggestionPageView {
-  readonly suggestions: readonly SuggestionView[];
-  readonly nextCursor: number | null;
-}
-
-export interface PublicationSummary {
-  readonly publicationId: string;
-  readonly childId: string;
-  readonly revision: number;
-  readonly chapterCount: number;
-  readonly memoryCount: number;
 }
 
 export class FamilyJourneyService {
@@ -391,7 +328,7 @@ export class FamilyJourneyService {
     ) throw new AppError(409, 'DRAFT_STALE', 'Pick the photos again');
     const template = this.options.templates.require(draft.templateId, draft.templateVersion);
     const world = this.rebase(template, draft.birthDate, draft.rebasedOn);
-    if (JSON.stringify(world.chapters) !== JSON.stringify(draft.chapters)) {
+    if (!sameChapters(world.chapters, draft.chapters)) {
       throw new AppError(409, 'DRAFT_STALE', 'Pick the photos again');
     }
     const missing = [...new Set(draft.slots
@@ -510,6 +447,20 @@ export class FamilyJourneyService {
     if (!draft) throw new AppError(404, 'DRAFT_NOT_FOUND', 'Draft not found');
     return draft;
   }
+}
+
+/** Field by field: Postgres `jsonb` does not keep object key order. */
+function sameChapters(left: readonly RebasedChapter[], right: readonly RebasedChapter[]): boolean {
+  const key = (chapter: RebasedChapter) => [
+    chapter.index,
+    chapter.chapterId,
+    chapter.routeId,
+    chapter.startAge,
+    chapter.recoveredAge,
+    chapter.startDate,
+    chapter.targetDate,
+  ].join('|');
+  return left.length === right.length && left.every((chapter, index) => key(chapter) === key(right[index]!));
 }
 
 function slotIndex(draft: DraftRecord, chapterId: string, slot: FamilyMemorySlot): number {

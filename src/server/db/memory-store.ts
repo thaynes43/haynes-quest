@@ -17,6 +17,7 @@ import {
   type PreviewRecord,
   type QuestStore,
   type SaveRecord,
+  type StartFamilySaveCommand,
   validateSaveRecord,
 } from '../domain.js';
 import { AppError } from '../errors.js';
@@ -233,14 +234,14 @@ export class InMemoryQuestStore implements QuestStore {
 
   async listSaves(ownerId: string): Promise<SaveRecord[]> {
     return [...this.saves.values()]
-      .filter((save) => save.ownerId === ownerId)
+      .filter((save) => save.ownerId === ownerId && !save.publicationId)
       .sort((left, right) => right.updatedAt.valueOf() - left.updatedAt.valueOf())
       .map((save) => cloneSave(save, this.ephemeralLimits !== null));
   }
 
   async getSave(ownerId: string, saveId: string): Promise<SaveRecord | null> {
     const save = this.saves.get(saveId);
-    if (!save || save.ownerId !== ownerId) return null;
+    if (!save || save.ownerId !== ownerId || save.publicationId) return null;
     if (this.ephemeralLimits) this.touchSave(saveId);
     return cloneSave(save, this.ephemeralLimits !== null);
   }
@@ -253,7 +254,9 @@ export class InMemoryQuestStore implements QuestStore {
   ): Promise<SaveRecord> {
     return this.exclusive(() => {
       const save = this.saves.get(saveId);
-      if (!save || save.ownerId !== ownerId) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
+      if (!save || save.ownerId !== ownerId || save.publicationId) {
+        throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
+      }
       if (this.ephemeralLimits) this.touchSave(saveId);
       const allowEditorPreviewPlan = this.ephemeralLimits !== null;
       const result = applyGameplayActionToSave(
@@ -265,6 +268,58 @@ export class InMemoryQuestStore implements QuestStore {
       if (!result.replay) this.saves.set(saveId, result.save);
       return cloneSave(result.save, allowEditorPreviewPlan);
     });
+  }
+
+  async startFamilySave(command: StartFamilySaveCommand): Promise<{ save: SaveRecord; created: boolean }> {
+    if (this.ephemeralLimits) throw new AppError(404, 'NOT_FOUND', 'Not found');
+    const candidate = validateSaveRecord(command.save);
+    if (candidate.childId !== command.childId || !candidate.publicationId) {
+      throw new AppError(422, 'INVALID_SAVE', 'Invalid save');
+    }
+    return this.exclusive(() => {
+      if (!command.fresh) {
+        const current = this.latestFamilySave(command.childId);
+        if (current) return { save: cloneSave(current), created: false };
+      }
+      this.saves.set(candidate.id, cloneSave(candidate));
+      return { save: cloneSave(candidate), created: true };
+    });
+  }
+
+  async getHouseholdSave(saveId: string): Promise<SaveRecord | null> {
+    const save = this.saves.get(saveId);
+    return save?.publicationId && !this.ephemeralLimits ? cloneSave(save) : null;
+  }
+
+  async currentFamilySaves(): Promise<SaveRecord[]> {
+    if (this.ephemeralLimits) return [];
+    const childIds = new Set([...this.saves.values()].flatMap((save) => save.childId ? [save.childId] : []));
+    return [...childIds].map((childId) => cloneSave(this.latestFamilySave(childId)!));
+  }
+
+  async applyHouseholdGameplayAction(
+    saveId: string,
+    request: GameplayActionRequest,
+    now: Date,
+  ): Promise<SaveRecord> {
+    return this.exclusive(() => {
+      const save = this.saves.get(saveId);
+      if (!save?.publicationId || this.ephemeralLimits) {
+        throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
+      }
+      const result = applyGameplayActionToSave(validateSaveRecord(save), request, now);
+      if (!result.replay) this.saves.set(saveId, result.save);
+      return cloneSave(result.save);
+    });
+  }
+
+  private latestFamilySave(childId: string): SaveRecord | null {
+    let latest: SaveRecord | null = null;
+    for (const save of this.saves.values()) {
+      if (save.childId !== childId) continue;
+      if (!latest || save.createdAt.valueOf() >= latest.createdAt.valueOf()) latest = save;
+    }
+    return latest;
   }
 
   async maintainFixtureRecords(now: Date): Promise<FixtureMaintenanceResult> {
@@ -362,7 +417,10 @@ export class InMemoryQuestStore implements QuestStore {
     if (!save) return;
     this.saves.delete(saveId);
     this.saveRecency.delete(saveId);
-    if (![...this.saves.values()].some((candidate) => candidate.previewId === save.previewId)) {
+    if (
+      save.previewId !== null &&
+      ![...this.saves.values()].some((candidate) => candidate.previewId === save.previewId)
+    ) {
       this.previews.delete(save.previewId);
     }
   }

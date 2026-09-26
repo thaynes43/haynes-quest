@@ -14,6 +14,11 @@ import {
   type SaveRecord,
 } from './domain.js';
 import { requireFamilySession, type FamilyAuth } from './auth/family-auth.js';
+import { AutoPickJobs } from './family/jobs.js';
+import { registerFamilyRoutes } from './family/routes.js';
+import type { FamilyJourneyService } from './family/service.js';
+import type { FamilyStore } from './family/store.js';
+import type { FamilyTemplateRegistry } from './family/templates.js';
 import { asAppError, AppError } from './errors.js';
 import { InMemoryQuestStore } from './db/memory-store.js';
 import { fixtureSvg, type PrivateMediaProvider } from './media.js';
@@ -51,8 +56,19 @@ export interface AppOptions {
   privateMedia?: PrivateMediaProvider;
   /** Family sign-in (ADR-005). Required for a usable non-fixture app; never allowed in fixture mode. */
   familyAuth?: FamilyAuth;
+  /** Family journeys (DESIGN-024). Family mode only; `service` is null without Immich. */
+  family?: FamilyOptions;
   diagnosticSink?: DiagnosticSink;
   now?: () => Date;
+}
+
+export interface FamilyOptions {
+  store: FamilyStore;
+  templates: FamilyTemplateRegistry;
+  service: FamilyJourneyService | null;
+  jobs?: AutoPickJobs;
+  /** The household's calendar date (YYYY-MM-DD). */
+  today?: () => string;
 }
 
 export type SafeErrorClass =
@@ -68,7 +84,7 @@ export type SafeErrorClass =
   | 'non-error';
 
 export interface SafeDiagnostic {
-  event: 'api_request_failed' | 'maintenance_failed' | 'shutdown_failed' | 'startup_failed';
+  event: 'api_request_failed' | 'auto_pick_failed' | 'maintenance_failed' | 'shutdown_failed' | 'startup_failed';
   errorClass: SafeErrorClass;
   method?: string;
   route?: string;
@@ -96,6 +112,16 @@ const DIAGNOSTIC_ROUTES = new Set([
   '/api/saves/:id/finish',
   '/api/saves/:id/actions',
   '/api/saves/:id/media/:memoryId',
+  '/api/saves/:id/world',
+  '/api/children',
+  '/api/children/:id/play',
+  '/api/admin/children',
+  '/api/admin/templates',
+  '/api/admin/immich/people',
+  '/api/admin/children/:id/draft',
+  '/api/admin/children/:id/draft/slots/:chapter/:slot/suggestions',
+  '/api/admin/candidates/:token/image',
+  '/api/admin/children/:id/publish',
 ]);
 
 export function createApp(options: AppOptions): Hono {
@@ -114,6 +140,9 @@ export function createApp(options: AppOptions): Hono {
   if (options.fixtureMode && options.familyAuth) {
     throw new Error('Fixture app cannot use family sign-in');
   }
+  if (options.family && !options.familyAuth) {
+    throw new Error('Family journeys require family sign-in');
+  }
 
   const app = new Hono();
   const editorPlaytestStore = options.ephemeralPlaytest
@@ -123,6 +152,9 @@ export function createApp(options: AppOptions): Hono {
     ? new FixtureSessions(options.store, options.sessionSecret, options.appOrigin.startsWith('https://'))
     : null;
   const familyAuth = options.fixtureMode ? null : (options.familyAuth ?? null);
+  // Family saves are household-owned (DESIGN-024 D-02): in family mode every
+  // save route goes through the household store methods, which see only them.
+  const familyMode = familyAuth !== null;
   // Fixture and family sessions never cross: each mode reads only its own cookie.
   const playerSessions: PlayerSessionSource | null = sessions ?? (familyAuth
     ? { current: (context) => familyAuth.currentPlayer(context.req.raw.headers) }
@@ -135,6 +167,9 @@ export function createApp(options: AppOptions): Hono {
   const diagnosticSink = options.diagnosticSink ?? writeSafeDiagnostic;
   // One application clock for action authority and every save view it renders.
   const now = (): Date => options.now?.() ?? new Date();
+  const loadSave = (playerId: string, saveId: string): Promise<SaveRecord | null> => familyMode
+    ? options.store.getHouseholdSave(saveId)
+    : options.store.getSave(playerId, saveId);
 
   app.use('*', secureHeaders({
     crossOriginResourcePolicy: 'same-origin',
@@ -290,13 +325,35 @@ export function createApp(options: AppOptions): Hono {
       if (!response) throw new AppError(404, 'NOT_FOUND', 'Not found');
       return response;
     });
+
+    if (options.family) {
+      const family = options.family;
+      registerFamilyRoutes(app, {
+        familyAuth,
+        questStore: options.store,
+        familyStore: family.store,
+        templates: family.templates,
+        service: family.service,
+        privateMedia: options.privateMedia ?? null,
+        jobs: family.jobs ?? new AutoPickJobs((code) => emitSafeDiagnostic(diagnosticSink, {
+          event: 'auto_pick_failed',
+          errorClass: 'app-error',
+          code,
+        })),
+        appOrigin: options.appOrigin,
+        now,
+        today: family.today ?? (() => now().toISOString().slice(0, 10)),
+      });
+    }
   }
 
   app.get('/api/saves', async (context) => {
     const player = await requirePlayer(context, playerSessions);
     limiter.take(`read:${player.id}`);
     if (options.ephemeralPlaytest) return context.json({ saves: [] });
-    const saves = (await options.store.listSaves(player.id)).map(toSaveSummary);
+    const saves = (familyMode
+      ? await options.store.currentFamilySaves()
+      : await options.store.listSaves(player.id)).map(toSaveSummary);
     return context.json({ saves });
   });
 
@@ -328,7 +385,7 @@ export function createApp(options: AppOptions): Hono {
   app.get('/api/saves/:id', async (context) => {
     const player = await requirePlayer(context, playerSessions);
     limiter.take(`read:${player.id}`);
-    const save = await options.store.getSave(player.id, context.req.param('id'));
+    const save = await loadSave(player.id, context.req.param('id'));
     if (!save) throw new AppError(404, 'SAVE_NOT_FOUND', 'Save not found');
     return context.json(toSaveView(save, now()));
   });
@@ -355,19 +412,21 @@ export function createApp(options: AppOptions): Hono {
     actionLimiter.take(`action:${player.id}`);
     const request = await parseJson(context, gameplayActionRequestSchema);
     const actionTime = now();
-    const save = await options.store.applyGameplayAction(
-      player.id,
-      context.req.param('id'),
-      request,
-      actionTime,
-    );
+    const save = familyMode
+      ? await options.store.applyHouseholdGameplayAction(context.req.param('id'), request, actionTime)
+      : await options.store.applyGameplayAction(
+          player.id,
+          context.req.param('id'),
+          request,
+          actionTime,
+        );
     return context.json(toSaveView(save, actionTime));
   });
 
   app.get('/api/saves/:id/media/:memoryId', async (context) => {
     const player = await requirePlayer(context, playerSessions);
     limiter.take(`media:${player.id}`);
-    const save = await options.store.getSave(player.id, context.req.param('id'));
+    const save = await loadSave(player.id, context.req.param('id'));
     const memory = save?.memories.find((candidate) => candidate.id === context.req.param('memoryId'));
     if (!save || !memory) throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
     if (!canAccessSaveMemory(save, memory.id)) {
