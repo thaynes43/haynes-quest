@@ -1,0 +1,29 @@
+{
+  "asset_id": "clubhouse-bully-cat",
+  "version": "v001",
+  "work_order": "WO111",
+  "created_utc": "2026-09-26T00:42:48.819085+00:00",
+  "kind": "original-generated-concept",
+  "generator": "OpenAI built-in image_gen tool",
+  "authoring_agent": "Driving GPT-6 Astra / max",
+  "seed": null,
+  "reference_files": [],
+  "art_direction": "docs/assets/art-direction.md; storybook-v001 material and warmth references inspected by lead",
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "selected_by": "Driving Astra",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "selection_notes": "The selected sheet places the wooden peg on the anatomical LEFT and plum boot on the RIGHT, opposite the requested side but consistent within the sheet. Model the selected sheet. Simplify hair into matte sculpted masses; keep the cream muzzle, huge belly, curled tail, teal jacket, ochre cap and cuffs.",
+  "files": {
+    "concept.png": {
+      "sha256": "948adc37bd8418ea2b812d7a9c599d5dce8ae3fa54213896b367f3fb4fb93e75",
+      "bytes": 2145506
+    },
+    "prompt.txt": {
+      "sha256": "93591797cdc9b63a9c13e939d12664e296eec40aa636e3763de7b664492a8199",
+      "bytes": 2343
+    }
+  },
+  "rights_note": "Original generated study. No claim of exclusive rights or franchise endorsement; generated media is not automatically relicensed under the repository code license."
+}

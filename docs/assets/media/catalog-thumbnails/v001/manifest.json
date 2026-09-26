@@ -136,6 +136,20 @@
       "sha256": "75c0c1a6f0b184bfde9526c263a04e3ef89b9c7ca27ce4cfc5e1650ec7ea4599"
     },
     {
+      "source": "docs/assets/media/clubhouse-bully-cat/v001/beauty.png",
+      "source_sha256": "cd36ebe74567425c2e059dbe0cb61ec30ac27e7416465808804e79cc94d6ba87",
+      "path": "docs/assets/media/catalog-thumbnails/v001/8ac6e5d485f5cf57.webp",
+      "bytes": 9290,
+      "sha256": "25cf58f9b24b558e444b0a581367c0d577b64b04d8b738ef5ac098c9c5387770"
+    },
+    {
+      "source": "docs/assets/media/clubhouse-bully-cat/v001/concept.png",
+      "source_sha256": "948adc37bd8418ea2b812d7a9c599d5dce8ae3fa54213896b367f3fb4fb93e75",
+      "path": "docs/assets/media/catalog-thumbnails/v001/5aac31e47d209b4d.webp",
+      "bytes": 20758,
+      "sha256": "fbd6b53e2c44e2478eed534a8b385b4ca208fe8529cbdea3d59090c0d03c7af5"
+    },
+    {
       "source": "docs/assets/media/drama-dragon/v001/beauty.png",
       "source_sha256": "a4c8ca350df9156b1a06af4d94f30a4e9abfda66cfde53cb1feb4b90a4a0ae0e",
       "path": "docs/assets/media/catalog-thumbnails/v001/62fa384f6bfe5cde.webp",

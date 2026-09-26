@@ -18,7 +18,7 @@ Tom asked for the first real release for his two children:
 
 [ADR-005](../docs/adrs/005-family-sign-in-and-admission.md), [DESIGN-024](../docs/designs/024-family-journeys.md) and [DESIGN-025](../docs/designs/025-growth-moves-and-vertical-courses.md) are the contracts.
 
-**Asset gate:** the era casts in [DESIGN-026](../docs/designs/026-personal-era-casts.md) are only a proposal. Tom ruled that no concept, model or sound may be generated until he locks the age-band associations. Children's names, birthdays and photos are private database configuration and never enter this public repository.
+**Era art:** Tom locked [DESIGN-026](../docs/designs/026-personal-era-casts.md), with four World A chapters and three World B chapters. [WO111](work-orders/111-era-cast-art-lead.md) is producing the original casts and themed kits in priority order, using serial lead concepts and one fresh Astra Blender author per exclusive scene lease. Each asset has a separate checked delivery PR; its status table and delivery evidence are the resume point. Exact-version review remains open under PRD-004 Q-03's family-release permission. Children's names, birthdays and photos remain private database configuration and never enter this public repository.
 
 ## Golden encounter and PC mouse controls · September 25, 2026
 

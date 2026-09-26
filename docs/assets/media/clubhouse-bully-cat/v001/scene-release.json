@@ -1,0 +1,101 @@
+{
+  "work_order": "WO111",
+  "asset_id": "clubhouse-bully-cat",
+  "version": "v001",
+  "released_utc": "2026-09-26T01:06:52.236852+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "saved_live_scene": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "4438513d36fb533061c4470f74f545a419a2f424acf0fa8ab9dd4ec8ac3ebb9d",
+  "editable_master": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.blend",
+  "editable_master_sha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496",
+  "glb_sha256": "e082df0e5ebe116645aa800c26896b79b8a01025167446e00d1f37cb1788b447",
+  "author_jobs_running": false,
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "prior_masters_unchanged": {
+    "rat_v002": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v002/rat-pit-boss.blend",
+      "exists": true,
+      "sha256": "498afc3120eb223164baa7d7da05e29846d2f99f89389cfb7364fa62a4aa1761"
+    },
+    "rat_v001": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v001/rat-pit-boss.blend",
+      "exists": true,
+      "sha256": "1796a6e96ea435eba6eee870394a75895fc025984e704f4b8669d5cad3dcd3ef"
+    },
+    "rat_casino": {
+      "path": "/workspace/haynes-quest/rat-casino-kit/v001/rat-casino-kit.blend",
+      "exists": true,
+      "sha256": "99791504d602bf3f3abd06182f4c00e3b68dd954a14b5a05843c8208752c609e"
+    },
+    "chick_flia_v001": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/chick-flia/v001/chick-flia.blend",
+      "exists": true,
+      "sha256": "fec0fae84e0d5a50a0b6706f21decd4baeb48e8b7be6d0b616cf68932a9d3aed"
+    },
+    "chick_flia_release": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/chick-flia/v001/live-scene-release.blend",
+      "exists": true,
+      "sha256": "2512360ce88baaca745045be75f5920427b183e50920dfcb1047f21534e0bd9d"
+    },
+    "jackrabbit_master": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/jackrabbit-drummer/v001/jackrabbit-drummer.blend",
+      "exists": true,
+      "sha256": "9c2a45b5e91db402ffebc4d9171e0d7bed128312a20996f30652f7ba0ab57a0e"
+    },
+    "jackrabbit_release": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/jackrabbit-drummer/v001/live-scene-release.blend",
+      "exists": true,
+      "sha256": "74dbf6ffeebe084c79f6531c6ede6f24a609a1b0b15247500a3d1f665352a249"
+    },
+    "fox_v001": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/fox-card-shark/v001/fox-card-shark.blend",
+      "exists": true,
+      "sha256": "d8868821affad96e55a3b63d0908e0bed88f7bf24626b7f22d77a73969554c6c"
+    },
+    "golden_master": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/golden-after-hours-rat.blend",
+      "exists": true,
+      "sha256": "f08904c3ebe10813065e62f2d0d2d1f0072f39f889e696218f767960e72a46ae"
+    },
+    "golden_release": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/live-scene-release.blend",
+      "exists": true,
+      "sha256": "0c6f20cb314b9a6cd2f7b5c108462a502a659513ea4ed70f765fc050e818b4e8"
+    },
+    "golden_glb": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/golden-after-hours-rat.glb",
+      "exists": true,
+      "sha256": "b0ac1fd11f4df8039e69a9b303b1eb3e8342654b795b08db8fd8f68559b22184"
+    },
+    "moth_original_master": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/pre-WO105-metadata-correction/moth-projectionist.blend",
+      "exists": true,
+      "sha256": "2ea9c6c06a8d1ad3c755460db1038ba5ddc3d8a963a451c80de5f71027624064"
+    },
+    "moth_original_glb": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/pre-WO105-metadata-correction/moth-projectionist.glb",
+      "exists": true,
+      "sha256": "90792e085c7a93c481101d4136a20220de7749831098079c8f4809cefcbcebe9"
+    },
+    "moth_original_release": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/pre-WO105-metadata-correction/live-scene-release.blend",
+      "exists": true,
+      "sha256": "da5efade6fef5207b4b68f953fba6a16b8d878d6f7ba0e6f379d7b1509a617a5"
+    },
+    "moth_master": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/moth-projectionist.blend",
+      "sha256": "ba4eb25f1c4f14745b1132bc8a63cddde0c5a4de44ecc6f40b2cc189d26923fc"
+    },
+    "wo105_release": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/live-scene-release.blend",
+      "sha256": "106464b9d3eb81890499a0d3850dc16a360fa1ad76d69537b95be231e9f0daf5"
+    }
+  },
+  "scope": "Awaiting Tom's review \u00b7 used in the family release. Candidate technical delivery only; lead owns publication and runtime integration. No physical-device acceptance."
+}

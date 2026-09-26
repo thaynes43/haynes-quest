@@ -26,6 +26,12 @@ The source comparison is the [original 2014 game's official listing](https://sto
 
 Keep the Rat Pit Boss larger and more commanding than the other performers through scale and placement, while giving him a clearly rat-shaped muzzle and tail rather than a borrowed bear face. Make the golden after-hours rat a dim, distinct optional mascot shell rather than a second ornate headliner. The [three-prop Rat Casino sheet](media/rat-casino-kit/v001/concept.png) supplies set pieces, but its lighting and finish may need dulling for the new cast. Preserve older concepts and construction studies as superseded records. The [v003 cast concept and Rat Pit Boss turnaround](reviews/rat-casino-ensemble/v003.md) establish the corrected look before further Blender work. Concept images do not constitute finished 3D assets; review each exact model separately before gameplay use.
 
+## Family-era working references · WO111
+
+[The locked roster](../designs/026-personal-era-casts.md) gives each chapter its own cast and material language. The first chapter's original cat captain and floating toolbox use broad rubber-hose shapes, sea-teal paint, ochre accents and deep plum shadows. The nursery bus carries honey-yellow paint, teal panels and plum rubber; its broccoli companion keeps a pale lime stalk and dark green crown. Large expressions, clear silhouettes and warm matte shading connect these chapters to the storybook references. The Rat Casino cast retains its separate worn, after-hours treatment.
+
+The captain's peg and boot, the bus's roof horn, the toolbox's articulated wrench and the broccoli's leaf mittens must remain readable in a small gameplay view. Model the selected construction sheets consistently and record any resolved side-view or handedness ambiguity before rigging. Use rounded forms and comic body language; an ordinary encounter or boss role does not call for threatening detail. Keep wind-up, contact and recovery visibly distinct, with a held funny defeat. [WO111](../../.agents/work-orders/111-era-cast-art-lead.md) records exact versions and delivery progress. These are lead-selected working references under the family-release permission in PRD-004 Q-03; Tom's exact-version review remains pending.
+
 ## Establish the reference set first
 
 The driving Astra generates and inspects these images **in sequence**:

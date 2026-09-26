@@ -89,6 +89,24 @@ The current combat implementation and unfinished required assets belong to PLAN-
 
 ## Ratified replacement slice and frozen selection
 
+### Locked family-era production · WO111
+
+Tom locked [DESIGN-026](026-personal-era-casts.md) for the first family release. [WO111](../../.agents/work-orders/111-era-cast-art-lead.md) orders the original concepts, Blender characters and matching prop kits below. Calendar eligibility remains the coordinator's versioned catalog responsibility; these public age bands contain no private birthday or subject identity. [PRD-004 Q-03](../prds/004-family-release.md#owner-decisions) permits these candidates in the family release while exact-version owner review remains open.
+
+| World / chapter | Boss | Ordinary cast | Theme kit / additional character |
+| --- | --- | --- | --- |
+| A / 1 · ages 0–2 | `clubhouse-bully-cat`: blustering rubber-hose cat captain with a comic peg-leg swagger | `gadget-helper`: runaway floating toolbox with a silly arm | `toon-clubhouse-kit` |
+| B / 1 · ages 0–2 | `honk-bus`: cheerful-grumpy nursery bus with a huge grin and horn | `yes-yes-veggie`: stubborn bouncing vegetable | `playroom-kit` |
+| A / 2 · ages 2–5 | `rival-mayor`: mustached schemer with tall hat, sash and remote | `mischief-kitten`: small pouncing kitten | `rescue-harbor-kit` |
+| B / 2 · ages 2–4 | `magic-house`: living colorful house with shutter eyes and dancing tiles | `bin-chicken`: cheeky long-beaked ibis | `casita-kit` |
+| A / 3 · ages 5–9 | `inator-monster`: one rubber-suit monster with a scientist riding its cockpit | `putty-grunt` and `lab-robot` | `rooftop-city-kit`; `web-slinger-helper` is friendly under DESIGN-013 |
+| B / 3 · ages 4–6 | Existing Bickering Besties | `demon-band-idol`: clean sparkly horn-haired singer | Existing Besties and remix scenery |
+| A / 4 · ages 9–11 | Existing Rat Pit Boss | Existing Rat Casino cast | `radio-host-showman`: clean dapper optional encounter |
+
+For the opening boss concepts, the cat's attack reads as a broad arm wind-up and comic forward swat; defeat leaves him seated and affronted. The bus rocks back and raises its horn before an exaggerated forward honk/bounce, then settles into a sheepish stalled pose on defeat. These are animation briefs for the existing telegraphed encounter adapter, not new damage rules. Both target a 2.0-second attack with contact at 1.25 seconds, a stationary model root and a held defeat. Final measured bounds and timing belong in the exact delivery record.
+
+Each delivered asset keeps its own version, concept, model evidence and catalog entry labeled **Awaiting Tom's review · used in the family release**. The delivery log records actual artifacts and integration readiness; this art lane does not change runtime selection, published levels or save histories.
+
 ### Haynesnightmares studio cast and gameplay gate · September 23, 2026
 
 Tom selected a full original FNAF-esque animatronic parody cast with Rat Casino and Halloween Haynesnightmares themes, with Blender models before new levels. The [v003 six-character concept](../assets/reviews/rat-casino-ensemble/v003.md) carries his central-rat/side-Chick-flia hierarchy and classic original-era mood after he rejected the [v002 glam-rock treatment](../assets/reviews/rat-casino-ensemble/v002.md). [Completed PLAN015](../../.agents/plans/completed/015-haynesnightmares-asset-first.md) and its [release record](../../.agents/evidence/classic-cast-release.json) document six separate Blender candidates. After seeing the exact classic cast, Tom said “Looks great, let’s move forward to the rat casino level.” [DESIGN021](021-rat-casino-level.md) records the resulting private fictional level trial. The retro casino setting is an art choice, not evidence that the parody belongs in a 1990s photo period. The [original game's publisher listing](https://store.steampowered.com/app/319510/Five_Nights_at_Freddys/) dates the first Five Nights at Freddy's release to August 18, 2014. That is the earliest possible source date for the broad reference; any later-specific character influence needs its own source and curated window. An eventual local period override must retain its explicit reason and all asset/progression gates. Real saved journeys require the separate parent, media and publication gates.
