@@ -1,0 +1,63 @@
+{
+  "work_order": "WO111",
+  "asset_id": "yes-yes-veggie",
+  "version": "v001",
+  "created_utc": "2026-09-26T14:46:39.494588+00:00",
+  "glb_sha256": "b513172d40b1e5ba581bc99a134bd9a26a1b7cdc7775c0c1f87056e0a18bf81f",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Rotation-only joints are checked as fixed local pivots; the hips bob and lunge, the feet lift about a sole pivot, and the pupils and brows move by design. Feet rest on the floor. No physical-device or universal triangle-collision proof.",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.37110376358032227,
+      9.440844987020468e-08,
+      -0.16775489180212916
+    ],
+    "max": [
+      0.37547194957733154,
+      0.9977977556790077,
+      0.37396788151427585
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    0.7465757131576538,
+    0.9977976612705579,
+    0.541722773316405
+  ],
+  "footprint_y_up": {
+    "min": [
+      -0.21004166696722631,
+      9.440844987020468e-08,
+      -0.11788132806071983
+    ],
+    "max": [
+      0.20992587953962577,
+      0.019729018464266706,
+      0.0819157465049235
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.4217202614426762,
+      7.925323126909892e-08,
+      -0.36271027054305993
+    ],
+    "max": [
+      0.4215869094321191,
+      1.0342620889750378,
+      0.556946450644928
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -0.427,
+      -0.005,
+      -0.368
+    ],
+    "max": [
+      0.427,
+      1.04,
+      0.562
+    ]
+  },
+  "note": "glTF axes: +Y up, character faces -Z; anatomical left is -X. Root at the floor origin under the stalk centre; feet rest on the floor."
+}

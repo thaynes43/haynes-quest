@@ -1,0 +1,662 @@
+{
+  "asset_id": "yes-yes-veggie",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Opus 5.5 continues WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "source_concept_sha256": "57f267ed5ccef19ca44f756f6aaed02516ec2ded7d17c2ca2df2655057e34b34",
+  "build_revision": "rebuild 2 (checkpoint 1 preserved as build-checkpoint1.py, yes-yes-veggie-checkpoint1.glb and yes-yes-veggie-construction-checkpoint1.blend)",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.37110376358032227,
+      -0.3739679157733917,
+      0.0
+    ],
+    "max": [
+      0.37547194957733154,
+      0.1677549034357071,
+      0.9977978467941284
+    ]
+  },
+  "height_m": 0.9977978467941284,
+  "triangles": 14354,
+  "vertices": 7255,
+  "material_count": 2,
+  "bone_count": 15,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic indexed-palette atlas generated in Blender Python (stalk streak gradient, lit round curd bumps in crevice-edged clusters, leaf veins, radial cheek blush); no external textures."
+  },
+  "vertex_color": {
+    "name": "Baked soft occlusion",
+    "use": "COLOR_0 multiplier; soft occlusion ray-traced in Blender at rest (48 cosine rays, 0.24 m) against stalk, crown, eyes and floor. Pupils, catchlights, brows and mouth stay white.",
+    "dark_srgb": [
+      0.22,
+      0.29,
+      0.2
+    ]
+  },
+  "parts": [
+    {
+      "name": "Pale lime broccoli stalk, feet and branches",
+      "triangles": 4300,
+      "bone_groups": [
+        "leg_L",
+        "body",
+        "crown",
+        "hips",
+        "leg_R"
+      ],
+      "atlas_tile": 0,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.456
+      }
+    },
+    {
+      "name": "Soft toe crease leg_L 0",
+      "triangles": 46,
+      "bone_groups": [
+        "leg_L"
+      ],
+      "atlas_tile": 11,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.365
+      }
+    },
+    {
+      "name": "Soft toe crease leg_L 1",
+      "triangles": 46,
+      "bone_groups": [
+        "leg_L"
+      ],
+      "atlas_tile": 11,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.369
+      }
+    },
+    {
+      "name": "Soft toe crease leg_R 0",
+      "triangles": 46,
+      "bone_groups": [
+        "leg_R"
+      ],
+      "atlas_tile": 11,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.378
+      }
+    },
+    {
+      "name": "Soft toe crease leg_R 1",
+      "triangles": 46,
+      "bone_groups": [
+        "leg_R"
+      ],
+      "atlas_tile": 11,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.385
+      }
+    },
+    {
+      "name": "Top centre floret",
+      "triangles": 724,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 1,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.478
+      }
+    },
+    {
+      "name": "Front left floret",
+      "triangles": 724,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 2,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.683
+      }
+    },
+    {
+      "name": "Front right floret",
+      "triangles": 724,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 1,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.679
+      }
+    },
+    {
+      "name": "Low left floret",
+      "triangles": 476,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 1,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.569
+      }
+    },
+    {
+      "name": "Low right floret",
+      "triangles": 476,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 2,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.568
+      }
+    },
+    {
+      "name": "Back left floret",
+      "triangles": 620,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 1,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.508
+      }
+    },
+    {
+      "name": "Back right floret",
+      "triangles": 620,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 2,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.502
+      }
+    },
+    {
+      "name": "Top back floret",
+      "triangles": 476,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 2,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.515
+      }
+    },
+    {
+      "name": "Top left filler floret",
+      "triangles": 316,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 2,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.558
+      }
+    },
+    {
+      "name": "Top right filler floret",
+      "triangles": 316,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 1,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.553
+      }
+    },
+    {
+      "name": "Low back left floret",
+      "triangles": 392,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 2,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.602
+      }
+    },
+    {
+      "name": "Low back right floret",
+      "triangles": 392,
+      "bone_groups": [
+        "crown"
+      ],
+      "atlas_tile": 1,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.601
+      }
+    },
+    {
+      "name": "Cream oval eye -1",
+      "triangles": 396,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5,
+      "occlusion": {
+        "strength": 0.45,
+        "min_light": 0.648,
+        "mean_light": 0.849
+      }
+    },
+    {
+      "name": "Ink pupil -1",
+      "triangles": 220,
+      "bone_groups": [
+        "pupils"
+      ],
+      "atlas_tile": 6,
+      "occlusion": {
+        "strength": 0.0,
+        "min_light": 1.0,
+        "mean_light": 1.0
+      }
+    },
+    {
+      "name": "Pupil catchlight -1",
+      "triangles": 116,
+      "bone_groups": [
+        "pupils"
+      ],
+      "atlas_tile": 7,
+      "occlusion": {
+        "strength": 0.0,
+        "min_light": 1.0,
+        "mean_light": 1.0
+      }
+    },
+    {
+      "name": "Cream oval eye 1",
+      "triangles": 396,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5,
+      "occlusion": {
+        "strength": 0.45,
+        "min_light": 0.649,
+        "mean_light": 0.853
+      }
+    },
+    {
+      "name": "Ink pupil 1",
+      "triangles": 220,
+      "bone_groups": [
+        "pupils"
+      ],
+      "atlas_tile": 6,
+      "occlusion": {
+        "strength": 0.0,
+        "min_light": 1.0,
+        "mean_light": 1.0
+      }
+    },
+    {
+      "name": "Pupil catchlight 1",
+      "triangles": 116,
+      "bone_groups": [
+        "pupils"
+      ],
+      "atlas_tile": 7,
+      "occlusion": {
+        "strength": 0.0,
+        "min_light": 1.0,
+        "mean_light": 1.0
+      }
+    },
+    {
+      "name": "Thick brow brow_L",
+      "triangles": 196,
+      "bone_groups": [
+        "brow_L"
+      ],
+      "atlas_tile": 8,
+      "occlusion": {
+        "strength": 0.0,
+        "min_light": 1.0,
+        "mean_light": 1.0
+      }
+    },
+    {
+      "name": "Thick brow brow_R",
+      "triangles": 196,
+      "bone_groups": [
+        "brow_R"
+      ],
+      "atlas_tile": 8,
+      "occlusion": {
+        "strength": 0.0,
+        "min_light": 1.0,
+        "mean_light": 1.0
+      }
+    },
+    {
+      "name": "Tiny pursed frown",
+      "triangles": 122,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 9,
+      "occlusion": {
+        "strength": 0.0,
+        "min_light": 1.0,
+        "mean_light": 1.0
+      }
+    },
+    {
+      "name": "Warm blush cheek -1",
+      "triangles": 162,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 10,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.935
+      }
+    },
+    {
+      "name": "Warm blush cheek 1",
+      "triangles": 162,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 10,
+      "occlusion": {
+        "strength": 1.0,
+        "min_light": 0.1,
+        "mean_light": 0.941
+      }
+    },
+    {
+      "name": "Thin stalk arm arm_L",
+      "triangles": 300,
+      "bone_groups": [
+        "body",
+        "arm_L",
+        "fore_L",
+        "hand_L"
+      ],
+      "atlas_tile": 4,
+      "occlusion": {
+        "strength": 0.55,
+        "min_light": 0.517,
+        "mean_light": 0.816
+      }
+    },
+    {
+      "name": "Cupped leaf mitten hand_L",
+      "triangles": 356,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 3,
+      "occlusion": {
+        "strength": 0.45,
+        "min_light": 0.637,
+        "mean_light": 0.881
+      }
+    },
+    {
+      "name": "Thin stalk arm arm_R",
+      "triangles": 300,
+      "bone_groups": [
+        "body",
+        "arm_R",
+        "fore_R",
+        "hand_R"
+      ],
+      "atlas_tile": 4,
+      "occlusion": {
+        "strength": 0.55,
+        "min_light": 0.527,
+        "mean_light": 0.818
+      }
+    },
+    {
+      "name": "Cupped leaf mitten hand_R",
+      "triangles": 356,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": 3,
+      "occlusion": {
+        "strength": 0.45,
+        "min_light": 0.645,
+        "mean_light": 0.88
+      }
+    }
+  ],
+  "face": {
+    "eyes": {
+      "-1": {
+        "centre": [
+          -0.07463856786489487,
+          0.12247031927108765,
+          0.4951237440109253
+        ],
+        "normal": [
+          -0.34035828709602356,
+          0.9397867918014526,
+          -0.030936697497963905
+        ],
+        "pupil": [
+          -0.06868681311607361,
+          0.14133986830711365,
+          0.49857398867607117
+        ]
+      },
+      "1": {
+        "centre": [
+          0.07468032091856003,
+          0.1224273294210434,
+          0.49513936042785645
+        ],
+        "normal": [
+          0.3299199938774109,
+          0.9433656930923462,
+          -0.03484180569648743
+        ],
+        "pupil": [
+          0.06852313876152039,
+          0.1412430703639984,
+          0.4985223114490509
+        ]
+      }
+    },
+    "brows": {
+      "brow_L": {
+        "inner": [
+          -0.028186365962028503,
+          0.1385474056005478,
+          0.5374587774276733
+        ],
+        "outer": [
+          -0.11661024391651154,
+          0.11341134458780289,
+          0.568438708782196
+        ]
+      },
+      "brow_R": {
+        "inner": [
+          0.02817421779036522,
+          0.13863447308540344,
+          0.5374332070350647
+        ],
+        "outer": [
+          0.11678355932235718,
+          0.11370077729225159,
+          0.5685201287269592
+        ]
+      }
+    }
+  },
+  "leaves": {
+    "hand_L": {
+      "wrist": [
+        -0.2160000056028366,
+        0.019999999552965164,
+        0.3070000112056732
+      ],
+      "w_axis": [
+        -0.09945941716432571,
+        0.029837824404239655,
+        -0.994594156742096
+      ],
+      "u_axis": [
+        -0.8317391872406006,
+        -0.5511524677276611,
+        0.06663934141397476
+      ],
+      "n_axis": [
+        -0.5461847186088562,
+        0.8338709473609924,
+        0.07963459938764572
+      ]
+    },
+    "hand_R": {
+      "wrist": [
+        0.2160000056028366,
+        0.019999999552965164,
+        0.3070000112056732
+      ],
+      "w_axis": [
+        0.09945941716432571,
+        0.029837824404239655,
+        -0.994594156742096
+      ],
+      "u_axis": [
+        0.8317391872406006,
+        -0.5511524677276611,
+        0.06663934141397476
+      ],
+      "n_axis": [
+        0.5461847186088562,
+        0.8338709473609924,
+        0.07963459938764572
+      ]
+    }
+  },
+  "concept_resolution": [
+    "Front, side and back construction views are attachment authority: two feet split by a narrow notch, arms leave the stalk sides just below the cheeks, leaf mittens hang at hip height, crown about 0.72 m wide.",
+    "Measured from the concept back view: trunk half-width about 0.13-0.15 m below the flare, flare from about 0.55 m, crown from about 0.52 m to 1.0 m.",
+    "The stalk rises and splits into nine thick branches whose tips end inside their florets; the trunk closes in a low dome hidden under the crown, so slits between branches read dark (baked occlusion) instead of a cut shelf.",
+    "Side view: crown centred about 0.1 m behind the face and about 0.58 m deep; its front edge sits slightly ahead of the face.",
+    "Crown modelled as eleven lumpy floret domes; fine curd bumps are painted in the atlas, not modelled.",
+    "Leaf mittens are broad rounded spinach-like leaves cupped along the midrib, broad face turned outward-forward so they read in front, side and back views.",
+    "Pupils glare inward toward the nose as in the concept front view; brows tilt down to the middle."
+  ],
+  "notes": [
+    "Original vegetable character; no franchise face, lettering, costume or borrowed media.",
+    "No teeth, spikes or scary features; comic stubborn expression only.",
+    "Every part is skinned to one rig."
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_warning_s": [
+        0.6,
+        1.05
+      ],
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": 1.68
+    }
+  ],
+  "files": {
+    "yes-yes-veggie.blend": {
+      "bytes": 1371758,
+      "sha256": "332d263434c22cdb607f02ba087a20b42c19c6814237a4d40913ab19fcc34672"
+    },
+    "yes-yes-veggie.glb": {
+      "bytes": 936716,
+      "sha256": "b513172d40b1e5ba581bc99a134bd9a26a1b7cdc7775c0c1f87056e0a18bf81f"
+    },
+    "pigment.png": {
+      "bytes": 141928,
+      "sha256": "3da11c19f6498df9d59d8489d8004746dd3a4f391446fbb27e4355d8dbbed94f"
+    }
+  }
+}

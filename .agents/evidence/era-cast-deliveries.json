@@ -388,7 +388,7 @@
       "sceneReleasedAt": "2026-09-26T15:00:25.390761+00:00",
       "manifest": "docs/assets/media/rival-mayor/v001/sha256-manifest.json",
       "pr": 96,
-      "prMerged": null,
+      "prMerged": "f5b27b92e385dc84cfd4cbe97fb7b2245bcfac9c",
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v1 uses a neutral placeholder for this boss slot"
@@ -401,6 +401,130 @@
         "threeAdapterChecksPassed": 29,
         "chromiumChecksPassed": 9,
         "artifactHashesMatchedLocally": 125,
+        "physicalSafari": false
+      }
+    },
+    {
+      "assetId": "yes-yes-veggie",
+      "version": "v001",
+      "role": "ordinary",
+      "world": "B",
+      "chapter": 1,
+      "glb": "docs/assets/media/yes-yes-veggie/v001/yes-yes-veggie.glb",
+      "sha256": "b513172d40b1e5ba581bc99a134bd9a26a1b7cdc7775c0c1f87056e0a18bf81f",
+      "heightM": 0.997798,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root; the feet rest on the floor",
+        "rest": {
+          "min": [
+            -0.37110376358032227,
+            9.440844987020468e-08,
+            -0.16775489180212916
+          ],
+          "max": [
+            0.37547194957733154,
+            0.9977977556790077,
+            0.37396788151427585
+          ]
+        },
+        "animated": {
+          "min": [
+            -0.4217202614426762,
+            7.925323126909892e-08,
+            -0.36271027054305993
+          ],
+          "max": [
+            0.4215869094321191,
+            1.0342620889750378,
+            0.556946450644928
+          ]
+        },
+        "culling": {
+          "min": [
+            -0.427,
+            -0.005,
+            -0.368
+          ],
+          "max": [
+            0.427,
+            1.04,
+            0.562
+          ]
+        },
+        "footprint": {
+          "min": [
+            -0.21004166696722631,
+            9.440844987020468e-08,
+            -0.11788132806071983
+          ],
+          "max": [
+            0.20992587953962577,
+            0.019729018464266706,
+            0.0819157465049235
+          ]
+        }
+      },
+      "attackContactS": 1.25,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 2.4,
+          "channels": 45
+        },
+        {
+          "name": "move",
+          "duration_s": 1,
+          "channels": 45
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 45
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 45
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 45
+        }
+      ],
+      "review": "docs/assets/reviews/yes-yes-veggie/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "sceneReleasedAt": "2026-09-26T14:47:26.336971+00:00",
+      "manifest": "docs/assets/media/yes-yes-veggie/v001/sha256-manifest.json",
+      "pr": null,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v1 fills the four B·1 ordinary slots with the yes-yes-veggie project candidate, which renders neutral placeholder art until a catalog version registers this model"
+      },
+      "prUrl": null,
+      "masterSha256": "332d263434c22cdb607f02ba087a20b42c19c6814237a4d40913ab19fcc34672",
+      "concept": {
+        "source": "generated",
+        "generator": "OpenAI built-in image_gen tool, driving GPT-6 Astra / max",
+        "sha256": "57f267ed5ccef19ca44f756f6aaed02516ec2ded7d17c2ca2df2655057e34b34"
+      },
+      "authoringAgent": "claude-opus-5-5 (xhigh)",
+      "integrationNotes": [
+        "Baked soft occlusion ships as COLOR_0 vertex colours on both primitives; the earlier family-era characters export none. GLTFLoader enables vertexColors on those materials and the runtime's material clones keep it, so no loader change is needed, but a material override that drops vertexColors would lose the occlusion.",
+        "The crown sits behind the face: rest z runs -0.168 (front) to 0.374 (back) with the root under the stalk centre. The feet footprint is x ±0.210, z -0.118 to 0.082.",
+        "Attack contact lands the leaf tips about 0.35 m in front of the root at 1.25 s (contact fraction 0.625); the warning pose is held from 0.60 to 1.05 s.",
+        "The defeat is a planted squash-down sulk held from 1.68 s (hips drop 8.5 cm, feet splay); it does not sit flat.",
+        "Authored on the primary blender-authoring service; an earlier Opus 5.5 run's static checkpoint and lease takeover are recorded in scene-lease.json.",
+        "Exact intake values: 936,716 bytes, buffer 887,292 bytes, 14,354 triangles, 2 texture references to 1 embedded image, 2 materials, 2 primitives, 15 joints, at most 3 non-zero influences per vertex."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "threeAdapterChecksPassed": 30,
+        "attachmentChecksPassed": 9,
+        "chromiumChecksPassed": 9,
+        "artifactHashesMatchedLocally": 118,
         "physicalSafari": false
       }
     }
