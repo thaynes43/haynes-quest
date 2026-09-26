@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/honk-bus-honk/v001/source.wav",
+    "sha256": "bc02ca27820c7f365597ddaa05a0608060d87d18a64a1a9e507d2df4c0ffabe9",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.30279541,
+    "peak_dbfs": -10.377,
+    "rms_amplitude": 0.03299456,
+    "rms_dbfs": -29.631,
+    "dc_offset": 5.441e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/honk-bus-honk/v001/cue.wav",
+    "sha256": "9cf5a706227fa651a3b4890f439191b1c9bd49e67de14789badca06dcb914087",
+    "size_bytes": 141164,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 35280,
+    "duration_seconds": 0.8,
+    "peak_amplitude": 0.25119019,
+    "peak_dbfs": -12.0,
+    "rms_amplitude": 0.03958076,
+    "rms_dbfs": -28.05,
+    "dc_offset": 0.00013117,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}

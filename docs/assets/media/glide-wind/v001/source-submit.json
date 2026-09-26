@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "service_version": "0.2.0",
+  "model": {
+    "name": "Stable Audio 3 Small SFX",
+    "source_repository": "Stability-AI/stable-audio-3",
+    "source_revision": "779434a908193105335fd8d833418603625b2859",
+    "weights_repository": "stabilityai/stable-audio-3-optimized",
+    "weights_revision": "da6edc54ddba10bfd79a077102ded687f80e882b",
+    "device": "cpu",
+    "runtime": "LiteRT/XNNPACK",
+    "dit": "sm-sfx",
+    "decoder": "same-s",
+    "dit_precision": "fp32",
+    "decoder_precision": "w8a8",
+    "threads": 4
+  },
+  "id": "9c68337f8c0e40ef8f7197848a30a0f7",
+  "status": "queued",
+  "prompt": "A soft continuous shhh of bright airy wind, breathy high whooshing air streaming smoothly past a paper glider, even and steady with no gusts, gentle and light; seamless steady sound effect, no low rumble, no voice, no speech, no music, no birds.",
+  "seconds": 8.0,
+  "steps": 8,
+  "seed": 225,
+  "created_at": "2026-09-26T16:17:09.396186Z",
+  "started_at": null,
+  "finished_at": null,
+  "peak_subprocess_rss_bytes": 0,
+  "artifact": null,
+  "audio": null,
+  "error": null
+}

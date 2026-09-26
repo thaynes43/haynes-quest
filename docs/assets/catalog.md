@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**45 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**45 completed models · 2 partial models · 2 concepts awaiting models · 12 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -769,7 +769,11 @@ Original inspiration and construction images. These are illustrations; related m
 
 ## Sound auditions {#sound-auditions}
 
-Four existing sound candidates, with waveform thumbnails and playable reviews. The playtest uses these cues for actions, landings, memories and growth. Final listening review remains open.
+Twelve sound candidates, with waveform thumbnails and playable reviews. Final listening review remains open for all of them.
+
+### In the playtest
+
+The playtest uses these four cues for actions, landings, memories and growth.
 
 <div class="catalog-grid" markdown="1">
 
@@ -810,6 +814,94 @@ Four existing sound candidates, with waveform thumbnails and playable reviews. T
 ### [A quiet yes · v001](reviews/ui-confirmed/v001.md#audition)
 
 <span class="catalog-state">Sound cue · v001 · In playtest · Review open</span>
+
+</div>
+
+</div>
+
+### Family world mechanics
+
+Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gliding, golden tickets, the Honk Bus and enemy defeats. The game does not play them yet. The glide wind is a seamless loop.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="bounce-pad-boing" markdown="1">
+
+[![Sound waveform: Up we spring · v001](media/catalog-thumbnails/v001/0bf2b4fd385513d9.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/bounce-pad-boing/v001.md#audition)
+
+### [Up we spring · v001](reviews/bounce-pad-boing/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="lift-arrival-chime" markdown="1">
+
+[![Sound waveform: The lift has arrived · v001](media/catalog-thumbnails/v001/416cf29cf22a3555.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/lift-arrival-chime/v001.md#audition)
+
+### [The lift has arrived · v001](reviews/lift-arrival-chime/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="crumble-crack" markdown="1">
+
+[![Sound waveform: Cookie crumble · v001](media/catalog-thumbnails/v001/c2aed672abab7249.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/crumble-crack/v001.md#audition)
+
+### [Cookie crumble · v001](reviews/crumble-crack/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="double-jump-whoosh" markdown="1">
+
+[![Sound waveform: One more hop · v001](media/catalog-thumbnails/v001/4b41a091d24a1b6e.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/double-jump-whoosh/v001.md#audition)
+
+### [One more hop · v001](reviews/double-jump-whoosh/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="glide-wind" markdown="1">
+
+[![Sound waveform: Riding the breeze · v001](media/catalog-thumbnails/v001/185fbb245ede890d.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/glide-wind/v001.md#audition)
+
+### [Riding the breeze · v001](reviews/glide-wind/v001.md#audition)
+
+<span class="catalog-state">Sound loop · v001 · Family world candidate · Not yet in the game · Review open</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="golden-ticket-sparkle" markdown="1">
+
+[![Sound waveform: A golden ticket · v001](media/catalog-thumbnails/v001/7bc01c3adfb106ac.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/golden-ticket-sparkle/v001.md#audition)
+
+### [A golden ticket · v001](reviews/golden-ticket-sparkle/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="honk-bus-honk" markdown="1">
+
+[![Sound waveform: Honk honk · v001](media/catalog-thumbnails/v001/b94247cea2cf39e8.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/honk-bus-honk/v001.md#audition)
+
+### [Honk honk · v001](reviews/honk-bus-honk/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
+
+</div>
+
+<div class="catalog-card" data-asset-id="enemy-poof" markdown="1">
+
+[![Sound waveform: Poof, gone · v001](media/catalog-thumbnails/v001/cfceaeba9a69017a.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/enemy-poof/v001.md#audition)
+
+### [Poof, gone · v001](reviews/enemy-poof/v001.md#audition)
+
+<span class="catalog-state">Sound cue · v001 · Family world candidate · Not yet in the game · Review open</span>
 
 </div>
 

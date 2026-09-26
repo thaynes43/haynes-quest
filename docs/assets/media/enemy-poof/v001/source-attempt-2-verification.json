@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/enemy-poof/v001/source-attempt-2.wav",
+    "sha256": "01804e7491e4d956e5ec4182d4e6d8a236504b14a49b1568f738d31d54e1b935",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.49639893,
+    "peak_dbfs": -6.083,
+    "rms_amplitude": 0.03455764,
+    "rms_dbfs": -29.229,
+    "dc_offset": -4.006e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "selection": "rejected before processing",
+  "reason": "Not selected: a slow hiss swell ending in an abrupt thump, followed by warbling noise; no clean 0.6-second poof.",
+  "limits": "This numerical rejection does not constitute a listening review."
+}

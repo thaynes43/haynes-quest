@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/bounce-pad-boing/v001/source.wav",
+    "sha256": "ed26d3c5d8b775384191d65ab8b8eb229bd098b6b7a595566c82d2327f7afe24",
+    "size_bytes": 882044,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 220500,
+    "duration_seconds": 5.0,
+    "peak_amplitude": 0.50695801,
+    "peak_dbfs": -5.901,
+    "rms_amplitude": 0.04480748,
+    "rms_dbfs": -26.973,
+    "dc_offset": -6.49e-06,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/bounce-pad-boing/v001/cue.wav",
+    "sha256": "ccc7dc45d2fadc86f9ed2405588e217d0f6b399de823223e992df07559e151b4",
+    "size_bytes": 105884,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 26460,
+    "duration_seconds": 0.6,
+    "peak_amplitude": 0.31622314,
+    "peak_dbfs": -10.0,
+    "rms_amplitude": 0.07383552,
+    "rms_dbfs": -22.635,
+    "dc_offset": -0.00010842,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script."
+  ]
+}

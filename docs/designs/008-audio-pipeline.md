@@ -1,7 +1,7 @@
 # DESIGN-008: Audio authoring and browser playback
 
 - **Status:** Self-hosted CPU authoring verified; native registration staged; browser contract proposed
-- **Last updated:** 2026-09-11
+- **Last updated:** 2026-09-26
 - **Source:** Tom's request for audio tooling and an Astra asset-development workflow
 - **Satisfies:** [PRD-001 R-08, R-09, R-16, R-35–R-39](../prds/001-project-brief.md)
 - **Related:** [PoC development loop](007-poc-development-loop.md), [visual assets](002-asset-pipeline.md), [asset review template](../assets/000-review-template.md)
@@ -101,3 +101,24 @@ Validate first interaction, mute, missing files, repeated scene entry, effect sp
 The candidate uses the existing v001 `ui-confirmed`, `movement-landed`, `memory-collected` and `ability-unlocked` WAVs. One Web Audio owner limits simultaneous sources to four and prioritizes memory/growth feedback. Default volume is 35%, with saved mute and volume preferences. Attack, impact, landing, friendly healing and memory actions have corresponding visible feedback.
 
 Gesture handling attempts audio start synchronously on key presses, pointer presses and releases, touch end and clicks. Release events provide an additional unlock opportunity for touch browsers. Modal/background handling stops transient sounds; disposal removes all listeners and closes the context. Native browser tests verify decoded sources, output connections, mute, volume and pause, while physical Safari and listening review remain open.
+
+## Family world mechanics cues
+
+The family worlds add movement pieces, pickups and an era bus that need their own feedback. This first pass generates one candidate per cue; runtime wiring, mix levels and caps come later under D-05 and D-06. Every direction is kid-friendly, without harsh transients, voices or copyrighted melodies.
+
+| Cue ID | Trigger | Direction | Target |
+| --- | --- | --- | --- |
+| bounce-pad-boing | A bounce pad launches the player | Bright cartoon spring boing, rising pitch, soft start | 0.6 s |
+| lift-arrival-chime | A lift reaches its stop | Soft two-note toy elevator ding, warm and gentle | 0.8 s |
+| crumble-crack | A crumbling platform starts to give way | Crumbly cookie crack, then a small pebble rattle; not startling | 0.7 s |
+| double-jump-whoosh | The second jump in mid-air | Quick airy whoosh with a tiny sparkle | 0.45 s |
+| glide-wind | While gliding | Soft steady wind whoosh | 1.6 s seamless loop |
+| golden-ticket-sparkle | A golden ticket is collected | Short magical glockenspiel sparkle flourish | 1.0 s |
+| honk-bus-honk | The Honk Bus encounter | Goofy, friendly cartoon school-bus double honk | 0.8 s |
+| enemy-poof | An enemy is defeated | Cartoon defeat poof with a little squeak | 0.6 s |
+
+Each cue follows the existing workflow: one bounded job at a time on the audio service, a verified download of the source, and processing by `scripts/assets/audio/process_cues.py`. A take may be regenerated up to three times when it is silent, clipped or plainly the wrong character. Unselected takes stay beside the source with their measurements and a recorded reason.
+
+The processing script now supports candidate versions and loops. For a loop recipe, the audio that follows the selected segment in the source is crossfaded over its start with an equal-power curve. The last frame therefore runs into the first as the original take continued, with no fade. The loop's verification compares the wrap step with the clip's 99th-percentile sample step, and the level of the 50 ms around the seam with the whole clip.
+
+Nobody has listened to these candidates. The authoring agent could not hear audio, so its listen-proxy consisted of level, pitch, zero-crossing and band-energy measurements, as recorded on each review page. The candidates appear in the [catalog](../assets/catalog.md#sound-auditions) and await Tom's exact-version review. The inventory records them as private candidates for the family worlds; the game's cue map does not reference them yet.

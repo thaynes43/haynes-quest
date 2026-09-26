@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "service_checksum_matches_download": true,
+  "source": {
+    "path": "docs/assets/media/glide-wind/v001/source.wav",
+    "sha256": "c29b9905283c472418e4b8b33e4ba0791a822010b2a53a2f15ec89cfe8a0bb86",
+    "size_bytes": 1411244,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 352800,
+    "duration_seconds": 8.0,
+    "peak_amplitude": 0.06512451,
+    "peak_dbfs": -23.725,
+    "rms_amplitude": 0.0126739,
+    "rms_dbfs": -37.942,
+    "dc_offset": 4.52e-06,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "processed": {
+    "path": "docs/assets/media/glide-wind/v001/cue.wav",
+    "sha256": "771b0b48ed90995151f5702dbe6bfc629055a845a1fee0d58216dbdb80c3d046",
+    "size_bytes": 282284,
+    "codec": "pcm_s16le",
+    "sample_width_bits": 16,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "frames": 70560,
+    "duration_seconds": 1.6,
+    "peak_amplitude": 0.12588501,
+    "peak_dbfs": -18.001,
+    "rms_amplitude": 0.03076701,
+    "rms_dbfs": -30.238,
+    "dc_offset": 3.288e-05,
+    "clipped_sample_count": 0,
+    "non_silent": true
+  },
+  "checks": {
+    "processed_duration_matches_recipe": true,
+    "processed_has_no_clipped_samples": true,
+    "processed_is_non_silent": true,
+    "format_is_browser_wav_pcm16": true,
+    "loop_wrap_step_within_p99": true,
+    "loop_seam_level_within_3db": true
+  },
+  "limits": [
+    "Numerical analysis does not establish sound quality or prompt fidelity.",
+    "No browser, physical-device, or human listening test is performed by this script.",
+    "The seam checks compare sample steps and short-window level only; they do not prove an inaudible loop."
+  ],
+  "loop_seam": {
+    "wrap_sample_step": 270,
+    "p99_sample_step": 502,
+    "wrap_step_within_p99": true,
+    "seam_window_seconds": 0.049977,
+    "seam_window_rms_vs_clip_db": 0.098,
+    "seam_window_level_within_3db": true
+  }
+}
