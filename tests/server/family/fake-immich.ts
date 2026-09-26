@@ -101,6 +101,7 @@ export class FakeImmich implements AuthorizedImmichCaller {
     if (this.clock) this.clock.time += this.latencyMs;
     if (this.unavailable) return json({ message: 'down' }, 503);
     const url = new URL(path, 'http://immich.test');
+    if (init.method === 'GET' && url.pathname === '/api/search/person') return this.searchPeople(url);
     if (init.method === 'GET' && url.pathname === '/api/people') return this.peoplePage(url);
     if (init.method === 'POST' && url.pathname === '/api/search/metadata') return this.search(body!, false);
     if (init.method === 'POST' && url.pathname === '/api/search/smart') {
@@ -133,6 +134,21 @@ export class FakeImmich implements AuthorizedImmichCaller {
 
   searchCalls(): FakeCall[] {
     return this.calls.filter((call) => call.path.startsWith('/api/search/'));
+  }
+
+  private searchPeople(url: URL): Response {
+    const name = (url.searchParams.get('name') ?? '').toLocaleLowerCase();
+    const withHidden = url.searchParams.get('withHidden') === 'true';
+    return json(
+      this.people
+        .filter((person) => (withHidden || !person.isHidden) && person.name.toLocaleLowerCase().includes(name))
+        .map((person) => ({
+          id: person.id,
+          name: person.name,
+          isHidden: person.isHidden ?? false,
+          birthDate: person.birthDate ?? null,
+        })),
+    );
   }
 
   private peoplePage(url: URL): Response {

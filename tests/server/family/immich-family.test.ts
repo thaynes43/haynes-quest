@@ -149,15 +149,12 @@ describe('Immich family search adapter', () => {
   });
 
   it('reports people with a valid entered birthday only', async () => {
-    const caller = new CannedCaller([{
-      people: [
-        { id: PERSON, name: 'Test Child B', isHidden: false, birthDate: '2020-02-29' },
-        { id: 'p2', name: 'Test Child B', isHidden: false, birthDate: '2020-02-30' },
-        { id: 'p3', name: 'Test Child B', isHidden: false },
-      ],
-      total: 3,
-      hasNextPage: false,
-    }]);
+    const caller = new CannedCaller([[
+      { id: PERSON, name: 'Test Child B', isHidden: false, birthDate: '2020-02-29' },
+      { id: 'p2', name: 'Test Child B', isHidden: false, birthDate: '2020-02-30' },
+      { id: 'p3', name: 'Test Child B', isHidden: false },
+      { id: 'p4', name: 'Test Child Bee', isHidden: false, birthDate: '2020-03-01' },
+    ]]);
     const library = new ImmichPhotoSource(caller, SECRET, 'test-connection');
     const people = await library.findPeople('Test Child B', { deadline: deadline() });
     expect(people.map((person) => person.birthDate)).toEqual(['2020-02-29', null, null]);

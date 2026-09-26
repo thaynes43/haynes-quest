@@ -26,6 +26,10 @@ const personSchema = z
   })
   .passthrough();
 
+/** Immich's name search returns every (prefix) match; a sane household never nears this. */
+const PERSON_SEARCH_MAX = 500;
+const personSearchResponseSchema = z.array(personSchema).max(PERSON_SEARCH_MAX);
+
 const peopleResponseSchema = z
   .object({
     people: z.array(personSchema),
@@ -296,9 +300,14 @@ export class ImmichPhotoSource implements JourneyPhotoSource, FamilyPhotoLibrary
   private async matchingPeople(name: string, deadline: number): Promise<FamilyPerson[]> {
     const wanted = name.trim().toLocaleLowerCase();
     if (!wanted) return [];
+    // Prefer Immich's name search: large libraries hold far more people than
+    // any bounded page scan can cover. Older servers without it fall back to
+    // the page scan, which still refuses to claim an incomplete lookup.
+    const searched = await this.searchPeopleByName(name.trim(), deadline);
+    if (searched) return this.exactMatches(searched, wanted);
+
     const matches: FamilyPerson[] = [];
     const seen = new Set<string>();
-
     for (let page = 1; page <= this.limits.peoplePages; page += 1) {
       const response = await this.requestJson(
         `/api/people?page=${page}&size=${this.limits.peoplePageSize}&withHidden=false`,
@@ -307,20 +316,10 @@ export class ImmichPhotoSource implements JourneyPhotoSource, FamilyPhotoLibrary
         deadline,
       );
       if (response.people.length > this.limits.peoplePageSize) throw upstreamInvalid();
-      for (const person of response.people) {
-        if (
-          !person.isHidden &&
-          person.name.trim().toLocaleLowerCase() === wanted &&
-          !seen.has(person.id)
-        ) {
-          seen.add(person.id);
-          const birthDate = person.birthDate?.slice(0, 10) ?? null;
-          matches.push({
-            option: { id: this.opaqueId('person', person.id), label: person.name.trim() },
-            sourceId: person.id,
-            birthDate: birthDate && isDateOnly(birthDate) ? birthDate : null,
-          });
-        }
+      for (const match of this.exactMatches(response.people, wanted)) {
+        if (seen.has(match.sourceId)) continue;
+        seen.add(match.sourceId);
+        matches.push(match);
       }
 
       if (response.hasNextPage === false) break;
@@ -329,6 +328,48 @@ export class ImmichPhotoSource implements JourneyPhotoSource, FamilyPhotoLibrary
       if (page === this.limits.peoplePages) {
         throw new AppError(502, 'IMMICH_PEOPLE_LIMIT', 'Person lookup incomplete');
       }
+    }
+    return matches;
+  }
+
+  /** Returns null only when the server lacks the search endpoint (404). */
+  private async searchPeopleByName(
+    name: string,
+    deadline: number,
+  ): Promise<z.infer<typeof personSchema>[] | null> {
+    const path = `/api/search/person?name=${encodeURIComponent(name)}&withHidden=false`;
+    const response = await this.call(path, { method: 'GET' }, deadline);
+    if (response.status === 404) {
+      await response.body?.cancel().catch(() => undefined);
+      return null;
+    }
+    if (!response.ok) throw upstreamUnavailable();
+    const contentType = response.headers.get('content-type')?.split(';', 1)[0]?.toLowerCase();
+    if (contentType !== 'application/json') throw upstreamInvalid();
+    const bytes = await readLimited(response, this.limits.jsonBytes);
+    let value: unknown;
+    try {
+      value = JSON.parse(new TextDecoder().decode(bytes));
+    } catch {
+      throw upstreamInvalid();
+    }
+    const parsed = personSearchResponseSchema.safeParse(value);
+    if (!parsed.success) throw upstreamInvalid();
+    return parsed.data;
+  }
+
+  private exactMatches(people: readonly z.infer<typeof personSchema>[], wanted: string): FamilyPerson[] {
+    const matches: FamilyPerson[] = [];
+    const seen = new Set<string>();
+    for (const person of people) {
+      if (person.isHidden || person.name.trim().toLocaleLowerCase() !== wanted || seen.has(person.id)) continue;
+      seen.add(person.id);
+      const birthDate = person.birthDate?.slice(0, 10) ?? null;
+      matches.push({
+        option: { id: this.opaqueId('person', person.id), label: person.name.trim() },
+        sourceId: person.id,
+        birthDate: birthDate && isDateOnly(birthDate) ? birthDate : null,
+      });
     }
     return matches;
   }
