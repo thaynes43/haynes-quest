@@ -46,6 +46,7 @@ The static studio contains original fictional references, candidate media and th
 - `QUEST_E2E_URL=http://127.0.0.1:3000 node tests/e2e/mouse-combat.mjs` checks trusted desktop left/right clicks, mouse drags, touch scenery and the touch Attack button against the actual game canvas.
 - `QUEST_E2E_URL=http://127.0.0.1:3000 node tests/e2e/bonus-editor.mjs` removes and cleanly re-adds Golden through the editor, then checks that an unreachable post-boss placement is rejected.
 - `QUEST_E2E_URL=http://127.0.0.1:3000 node tests/e2e/casino-rewards.mjs` checks the casino tokens, the loft's golden ticket, contact before the server's reply, and the HUD tally at 390×844.
+- `QUEST_E2E_URL=http://127.0.0.1:3000 node_modules/.bin/tsx tests/e2e/family-world.ts` plays a checked-in family world template chapter by chapter through the editor playtest, in lockstep. See [Family worlds](../level-editor.md#family-worlds).
 - `node tests/e2e/studio.mjs` checks every candidate page, GLB/clip, media download, decoded audio audition and portrait layout. Set `QUEST_E2E_URL` to the private app origin to check deployed delivery. This checks audio decoding, not listening quality.
 - `scripts/docs/build.sh` runs the strict documentation build and local media/link checks using the pinned Python requirements.
 
@@ -63,6 +64,7 @@ Browser journeys use one of two clocks.
 | `journey.mjs`, `fresh-playtest.mjs`, `studio.mjs` and the other browser checks | Real time |
 | `rat-casino.mjs` (default) | Real time |
 | `rat-casino.mjs` with `QUEST_E2E_LOCKSTEP=1` | Lockstep from the ready course through the closing haul. The boss-stage frame-time sample is skipped, because a paused page clock cannot measure it. The editor sample, the three-chapter start with its garden frame sample, and the 390×844 check open new real-time pages. |
+| `family-world.ts` | Lockstep with 16 ms frames from the ready course through the chapter's completion. The stick input is planned with the chapter tests' kid model. |
 | `casino-rewards.mjs` | The foyer token trail and the 390×844 layout run in real time. The ticket-loft climb, the contact check and the defeat always run in lockstep with 16 ms frames. |
 | `pnpm test` (`tests/e2e/lockstep-control.test.ts`) | Runs the lockstep driver on the checked-in Rat Casino course using the game's real movement code, without a browser. |
 

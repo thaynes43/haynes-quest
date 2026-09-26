@@ -126,6 +126,8 @@ interface TimedInput {
   readonly moveY: number;
   readonly jump?: boolean;
   readonly attack?: boolean;
+  /** The Secondary control (the game's `guard` input; a guard-tool strike on route-memory worlds). */
+  readonly secondary?: boolean;
 }
 
 /** Where one rendered frame left the player (course time after the frame). */
@@ -218,11 +220,12 @@ function installHook(frameSeconds: number): boolean {
     while (plan.index < plan.frames.length && plan.frames[plan.index]!.t < target - 1e-7) plan.index += 1;
     const entry = plan.frames[plan.index];
     const input = entry && Math.abs(entry.t - target) <= 1e-7 ? entry : null;
-    for (const button of ["jump", "attack"]) handle.setInput(button, false);
+    for (const button of ["jump", "attack", "guard"]) handle.setInput(button, false);
     handle.setInput("moveX", input?.moveX ?? 0);
     handle.setInput("moveY", input?.moveY ?? 0);
     if (input?.jump) handle.setInput("jump", true);
     if (input?.attack) handle.setInput("attack", true);
+    if (input?.secondary) handle.setInput("guard", true);
   };
   const tick = () => {
     // Draw thinning (QUEST_E2E_DRAW_EVERY): decides whether the next frame rasterizes.
@@ -369,7 +372,7 @@ interface ChapterReport {
   hpDefeats: number;
   pickups: string[];
   memories: Array<{ slot: string; id: string }>;
-  fights: Array<{ slot: string; id: string; attacks: number; hpDefeats: number }>;
+  fights: Array<{ slot: string; id: string; attacks: number; secondaries: number; hpDefeats: number }>;
   screenshots: string[];
   completedLevelIds?: readonly string[];
   frames: number;
@@ -699,7 +702,12 @@ async function playChapter(browser: Browser, chapter: ChapterSource): Promise<Ch
     return "done";
   };
 
-  /** Fights one encounter with the Attack control until the save marks it defeated. */
+  /**
+   * Fights one encounter until the save marks it defeated. It walks in to
+   * mallet range (the Secondary reaches a little further, so the target hint
+   * alone does not mean Attack can land), then presses Attack whenever the
+   * game reports it ready, with the Secondary guard-tool strike alongside.
+   */
   const fight = async (
     slot: string,
     encounterId: string,
@@ -707,10 +715,11 @@ async function playChapter(browser: Browser, chapter: ChapterSource): Promise<Ch
   ): Promise<"done" | "fallen" | "moved"> => {
     let entry = report.fights.find((item) => item.id === encounterId);
     if (!entry) {
-      entry = { slot, id: encounterId, attacks: 0, hpDefeats: 0 };
+      entry = { slot, id: encounterId, attacks: 0, secondaries: 0, hpDefeats: 0 };
       report.fights.push(entry);
     }
     const defeated = () => activeLevel().encounters.find((item) => item.id === encounterId)?.defeated === true;
+    const reach = slot === "boss" ? 1.4 : 1.1;
     let bossShot = slot !== "boss";
     for (let round = 0; round < 1_500 && !defeated(); round += 1) {
       const live = await readFull();
@@ -722,10 +731,18 @@ async function playChapter(browser: Browser, chapter: ChapterSource): Promise<Ch
         return "fallen";
       }
       if (live.supportId && live.supportId !== platformId) return "moved";
-      if (live.nearEncounterId !== encounterId) {
-        const enemy = live.encounters.find((item) => item.id === encounterId);
-        assert.ok(enemy, `${slot}: encounter ${encounterId} is not rendered`);
-        await walkToward(insideTop(platformId, enemy, 0.6), 12);
+      const enemy = live.encounters.find((item) => item.id === encounterId);
+      assert.ok(enemy, `${slot}: encounter ${encounterId} is not rendered`);
+      const dx = enemy.x - live.position.x;
+      const dz = enemy.z - live.position.z;
+      const distance = Math.hypot(dx, dz);
+      if (live.nearEncounterId !== encounterId || (!live.attackReady && distance > reach)) {
+        // Stop just short of the enemy, on the line from it to the player.
+        const stand = distance > 1e-6 ? Math.max(0, distance - reach * 0.7) / distance : 0;
+        await walkToward(
+          insideTop(platformId, { x: live.position.x + dx * stand, z: live.position.z + dz * stand }, 0.6),
+          12,
+        );
         continue;
       }
       if (!bossShot) {
@@ -734,10 +751,13 @@ async function playChapter(browser: Browser, chapter: ChapterSource): Promise<Ch
       }
       if (live.attackReady) {
         entry.attacks += 1;
-        await plan([{ t: live.t + FRAME_SECONDS, moveX: 0, moveY: 0, attack: true }]);
+        entry.secondaries += 1;
+        await plan([{ t: live.t + FRAME_SECONDS, moveX: 0, moveY: 0, attack: true, secondary: true }]);
         await render(8);
       } else {
-        await idle(4);
+        entry.secondaries += 1;
+        await plan([{ t: live.t + FRAME_SECONDS, moveX: 0, moveY: 0, secondary: true }]);
+        await render(4);
       }
     }
     assert.ok(defeated(), `${slot}: combat timed out`);
