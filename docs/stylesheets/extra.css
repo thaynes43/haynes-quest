@@ -120,6 +120,12 @@ body {
   background: #fffcf7;
   box-shadow: 0 .2rem .65rem rgba(52, 44, 70, .07);
 }
+/* A section with a single card keeps the two-card width instead of stretching across the row. */
+@media (min-width: 45em) {
+  .md-typeset .catalog-grid > .catalog-card:only-child {
+    max-width: calc(50% - .5rem);
+  }
+}
 .md-typeset .catalog-card > p {
   margin: 0;
 }
