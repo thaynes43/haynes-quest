@@ -321,9 +321,10 @@ export function createApp(options: AppOptions): Hono {
         templates: family.templates,
         service: family.service,
         privateMedia: options.privateMedia ?? null,
-        jobs: family.jobs ?? new AutoPickJobs((code, kind) => emitSafeDiagnostic(diagnosticSink, {
+        // Only the error's class and a fixed code: messages can quote private values.
+        jobs: family.jobs ?? new AutoPickJobs((code, kind, error) => emitSafeDiagnostic(diagnosticSink, {
           event: kind === 'template-upgrade' ? 'template_upgrade_failed' : 'auto_pick_failed',
-          errorClass: 'app-error',
+          errorClass: classifyError(error),
           code,
         })),
         appOrigin: options.appOrigin,

@@ -123,7 +123,7 @@ Routes (all need a family session; `/api/admin/*` also needs `authentik Admins`)
 - `GET|POST /api/admin/children`, `POST /api/admin/templates {"birthDate"}` and `POST /api/admin/immich/people {"name"}`. The name and birthday travel in the body: edge and ingress access logs record request URLs.
 - `GET|PUT /api/admin/children/:id/draft`. `PUT {"op":"auto-pick"}` starts a background pick and answers `202`. Poll `GET` until `picking` is false. `caption` and `swap` edits take `expectedRevision`.
 - `GET /api/admin/children/:id/draft/slots/:chapter/:slot/suggestions?cursor=`, `GET /api/admin/candidates/:token/image` and `POST /api/admin/children/:id/publish {expectedRevision, requestId}`.
-- `POST /api/admin/children/:id/template {templateId, templateVersion, expectedRevision}` is **Update world** ([DESIGN-024 D-11](../designs/024-family-journeys.md)). It moves the child to a newer offered version of the same template, answers `202` and rebuilds the draft in the background; poll the draft as for a pick. `expectedRevision` is the draft revision, or `null` before the first pick. The admin child list and the draft read report `newerTemplate` when such a version exists. Publishing the rebuilt draft is a separate step, and started runs keep their version until **Start fresh**.
+- `POST /api/admin/children/:id/template {templateId, templateVersion, expectedRevision}` is **Update world** ([DESIGN-024 D-11](../designs/024-family-journeys.md)). It moves the child to a newer offered version of the same template, answers `202` and rebuilds the draft in the background; poll the draft as for a pick. `expectedRevision` is the draft revision, or `null` before the first pick. The admin child list and the draft read report `newerTemplate` when such a version exists. Publishing the rebuilt draft is a separate step, and started runs keep their version until **Start fresh**. The draft read's `publishedDraftRevision` is the draft revision the latest publication froze. The Memories screen offers **Start fresh with these photos** only when it matches the draft on screen, because a fresh run starts on the latest publication.
 
 Inside the family pod, `node dist/server/admin.js` performs the same service calls. It prints only opaque ids and counts, and errors print a fixed code only.
 
@@ -141,7 +141,7 @@ kubectl -n frontend exec -i deploy/haynes-quest -c app -- node dist/server/admin
 Commands that take only opaque ids need no stdin:
 
 ```bash
-node dist/server/admin.js auto-pick --child <child id>           # draft rN filled F/T needs-photo N
+node dist/server/admin.js auto-pick --child <child id>           # draft rN filled F/T needs-photo N (error CHILD_CONFLICT or DRAFT_CONFLICT: something changed meanwhile, run it again)
 node dist/server/admin.js publish --child <child id>             # publication <id> rN chapters C memories M
 node dist/server/admin.js verify-media --child <child id>        # decoded D/M failed F
 node dist/server/admin.js set-template --child <child id> --template family-world-a@v2   # draft rN carried K/T needs-photo N

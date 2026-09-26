@@ -95,6 +95,9 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
     const newest = deps.templates.newestUpgrade(child.templateId, child.templateVersion, child.birthDate, deps.today());
     return newest ? templateOffer(newest) : null;
   };
+  // Start fresh plays the latest publication; the screen compares its draft revision.
+  const publishedDraftRevision = async (id: string): Promise<number | null> =>
+    (await deps.familyStore.latestPublication(id))?.draftRevision ?? null;
   const childId = (context: Context): string => {
     const parsed = uuid.safeParse(context.req.param('id'));
     if (!parsed.success) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
@@ -244,6 +247,7 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
       picking: status.picking,
       lastPickError: status.lastError,
       newerTemplate: newerTemplate(child),
+      publishedDraftRevision: await publishedDraftRevision(id),
     };
     return context.json(response);
   });
@@ -261,7 +265,13 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
         expectedRevision: request.expectedRevision,
         reseed: request.reseed === true,
       }));
-      const response: AdminDraftResponse = { draft: null, picking: true, lastPickError: null, newerTemplate: null };
+      const response: AdminDraftResponse = {
+        draft: null,
+        picking: true,
+        lastPickError: null,
+        newerTemplate: null,
+        publishedDraftRevision: null,
+      };
       return context.json(response, 202);
     }
     if (deps.jobs.status(id).picking) throw new AppError(409, 'AUTO_PICK_RUNNING', 'Photos are being picked');
@@ -274,6 +284,7 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
       picking: false,
       lastPickError: null,
       newerTemplate: child ? newerTemplate(child) : null,
+      publishedDraftRevision: await publishedDraftRevision(id),
     };
     return context.json(response);
   });
@@ -291,7 +302,13 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
     if (deps.jobs.status(id).picking) throw new AppError(409, 'AUTO_PICK_RUNNING', 'Photos are being picked');
     await service.checkTemplateUpgrade(id, request);
     deps.jobs.start(id, () => service.upgradeTemplate(id, request, player.id), 'template-upgrade');
-    const response: AdminDraftResponse = { draft: null, picking: true, lastPickError: null, newerTemplate: null };
+    const response: AdminDraftResponse = {
+      draft: null,
+      picking: true,
+      lastPickError: null,
+      newerTemplate: null,
+      publishedDraftRevision: null,
+    };
     return context.json(response, 202);
   });
 

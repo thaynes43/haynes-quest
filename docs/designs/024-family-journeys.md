@@ -27,7 +27,7 @@ Publishing freezes these three parts into a `family-world-plan-v1` snapshot. The
 5. The **Memories** screen shows each chapter as a card (era name, age band, cast portrait) with three photo slots: two little, one big. Each slot shows a private thumbnail, date and caption. **Swap** opens suggestions for that slot's allowed dates, with **Show more**. **Edit caption** fixes the text.
 6. **Publish** makes the journey playable.
 
-Later edits create a new revision; a run already in progress keeps its photos unless the administrator chooses **Start fresh with these photos**.
+Later edits create a new revision; a run already in progress keeps its photos unless the administrator chooses **Start fresh with these photos**. A fresh run starts on the latest publication, so that button appears only once the draft on screen is published.
 
 When a newer version of the child's world is registered, the Memories screen shows "A new version of this world is ready." with **Update world**. Updating keeps the photos and captions of chapters that did not change and picks photos for the rest (D-11); **Publish** then makes the new version playable.
 
@@ -136,7 +136,7 @@ It reuses the frozen editor-world runtime (anchors, encounters, bonus slot, rout
 
 Save routes are unchanged in shape. The two `POST` lookups change nothing, but they carry the same exact-Origin and `X-Quest-Request` guard as every other `POST`. On the family host, `/studio/*` also needs a family session. Only the sign-in start, `/api/auth/*`, `/healthz` and `/readyz` answer without one ([ADR-006](../adrs/006-release-isolation-and-public-surface.md) D-02).
 
-**D-08a Background picking.** Automatic picking runs as a background job, and its request returns 202, because a full pick can take longer than Cloudflare's 100 s request limit. The admin screen shows progress.
+**D-08a Background picking.** Automatic picking runs as a background job, and its request returns 202, because a full pick can take longer than Cloudflare's 100 s request limit. The admin screen shows progress. A pick saves compare-and-set on the draft revision and on the child revision it was rebased from. A template or birthday change that commits while it runs refuses it with `409 DRAFT_CONFLICT` or `CHILD_CONFLICT`, and never pairs the changed child with a draft built on the old one. This also covers the operator CLI's `auto-pick`, which takes the current draft revision itself.
 
 **D-08b Time zone.** `QUEST_HOUSEHOLD_TIME_ZONE` (America/New_York in production) defines "today" for the final chapter's end and for pick windows.
 
@@ -153,9 +153,9 @@ The Immich name, the display name and the birthday arrive as one JSON object on 
 - **Rebuild.** The draft is rebased on the new template with the child's birthday and today's date, keeping its seed. A chapter is *unchanged* when its chapter id and its template age band (the template's own `startAge` and `recoveredAge`, D-03) are the same in the draft's template and the target. The draft must also carry the child's birthday; otherwise every chapter counts as changed.
   - **Unchanged chapters** keep each slot's current photo, caption and pick reason when the photo's date still fits that slot under the new template. "Fits" is the same rule a swap must meet: the slot's widened window, after the photos kept before it in journey order. Slots are checked in journey order, so every kept photo also fits once its later neighbours are kept. A slot that no longer fits, or that already needed a photo, becomes `needs-photo`. For example, a final chapter now rebased to a later birthday keeps its little memories, but its old big-memory photo is dropped.
   - **New or changed chapters** are auto-picked (D-04) for their slots only, around the kept photos. New picks never reuse a kept photo. A picked big memory ends before the next chapter's kept little memories, and picked little memories follow the previous chapter's big memory, whether kept or picked.
-- **Background job.** Picking can outlast a request (D-08a), so the route validates eligibility and the revision, answers `202` and runs the rebuild as the child's one background job. Auto-pick, edits and publishing wait for it (`409 AUTO_PICK_RUNNING`). A failure, such as losing a race to an edit, is kept as `lastPickError` with a fixed code.
-- **Publishing and saves.** The update changes only the child profile and the draft. Existing publications are immutable, and every started save stays pinned to its publication: a run in progress keeps its version until an administrator chooses **Start fresh**. Publishing the rebuilt draft is a separate, explicit step.
-- **Audit and privacy.** The child and draft rows record the acting player id in `updated_by` (`null` for the operator CLI), as other admin actions do. A failed background update emits only the diagnostic `{event: "template_upgrade_failed", errorClass, code}`. Responses and logs never carry names, dates or upstream ids.
+- **Background job.** Picking can outlast a request (D-08a), so the route validates eligibility and the revision, answers `202` and runs the rebuild as the child's one background job. Auto-pick, edits and publishing wait for it (`409 AUTO_PICK_RUNNING`). A failure, such as losing a race to an edit, is kept as `lastPickError` with a fixed code: the `AppError` code, or `TEMPLATE_UPGRADE_FAILED` for any other failure (`AUTO_PICK_FAILED` for a pick). Job status is shared by all of the child's administrators, and starting any job clears the last failure. The Memories screen therefore reports the update as done only when the draft it reads back is on the requested version. Otherwise it keeps offering **Update world**.
+- **Publishing and saves.** The update changes only the child profile and the draft. Existing publications are immutable, and every started save stays pinned to its publication: a run in progress keeps its version until an administrator chooses **Start fresh**. Publishing the rebuilt draft is a separate, explicit step. **Start fresh** plays the latest publication, so the draft read reports `publishedDraftRevision`, the draft revision that publication froze (`null` before the first publish). The Memories screen offers **Start fresh with these photos** only while it equals the draft's revision, so after **Update world** or an edit the administrator publishes first.
+- **Audit and privacy.** The child and draft rows record the acting player id in `updated_by` (`null` for the operator CLI), as other admin actions do. A failed background update emits only the diagnostic `{event: "template_upgrade_failed", errorClass, code}`: the failure's class (`app-error`, `type-error` and so on) and its fixed code. A failed automatic pick emits `auto_pick_failed` in the same shape. Responses and logs never carry names, dates or upstream ids.
 - **Operator CLI.** `set-template --child <id> --template <id>@<version>` runs the same service call from the current draft revision. It prints only `draft r<N> carried <kept>/<total> needs-photo <k>`, where `kept` counts slots whose photo and caption were kept, `total` counts every slot of the rebuilt draft, and `k` counts slots that now need a photo.
 - **Copy (final).** The Memories screen shows "A new version of this world is ready." with **Update world**. It confirms with "Update to the new version of this world? Photos and captions stay where the chapters match. A run already in progress keeps its version until you choose Start fresh." After the background update it shows "World updated. Publish to make it playable." `TEMPLATE_UPGRADE_UNAVAILABLE` reads "There's no newer version of this world yet."
 
@@ -177,6 +177,8 @@ The Immich name, the display name and the birthday arrive as one JSON object on 
   - caption bounds;
   - token expiry and tamper rejection;
   - **Update world** (D-11): carry-over of unchanged chapters with captions, `needs-photo` when a kept date no longer fits, auto-picks for new and changed chapters around kept photos, refusal of another template or an older, equal, unknown or unoffered version, and a revision race;
+  - an operator `auto-pick` refused when an update commits while it runs;
+  - failure codes and diagnostic labels for unexpected background failures;
   - the operator CLI's output shape, its stdin-only private input and its refusal of private arguments;
   - lookups that keep names and birthdays out of URLs;
   - smart results with an empty `people` list, and metadata picks and **Show more** pages centred on the target in a dense library;
@@ -187,12 +189,14 @@ The Immich name, the display name and the birthday arrive as one JSON object on 
   - idempotent publish;
   - a new revision does not alter a started save;
   - **Update world** writes the child and draft atomically, lets one of two racing updates land, and leaves a started save pinned until **Start fresh**;
+  - a draft save built from the child refuses a changed child, and never lands together with a racing template change;
   - household access;
   - admin-only routes;
   - fixture sessions see nothing.
 - **Browser (synthetic child, fake Immich):**
   - admin creates, swaps, recaptions and publishes;
   - admin confirms **Update world**, waits for the background update and is asked to publish (jsdom);
+  - with two administrators, a failed update is never reported as done and a landed one always is, and **Start fresh** waits until the draft on screen is published (jsdom, real routes);
   - child plays through a chapter;
   - the big memory advances age and shows the move card;
   - the non-admin sees no setup;

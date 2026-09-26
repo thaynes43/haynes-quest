@@ -10,6 +10,18 @@ import { AppError } from '../errors.js';
 /** What a background job does; failures are reported per kind. */
 export type FamilyJobKind = 'auto-pick' | 'template-upgrade';
 
+/** The fixed code kept for a failure that is not an `AppError`, per kind. */
+const UNEXPECTED_FAILURE: Readonly<Record<FamilyJobKind, string>> = {
+  'auto-pick': 'AUTO_PICK_FAILED',
+  'template-upgrade': 'TEMPLATE_UPGRADE_FAILED',
+};
+
+/**
+ * Reports a failed job. `error` is the original failure, passed only so the
+ * caller can classify it; it must never be logged or shown as is.
+ */
+export type FamilyJobFailureHandler = (code: string, kind: FamilyJobKind, error: unknown) => void;
+
 export interface AutoPickStatus {
   readonly picking: boolean;
   /** A fixed error code, never a message. */
@@ -20,11 +32,13 @@ export class AutoPickJobs {
   private readonly running = new Map<string, Promise<void>>();
   private readonly failures = new Map<string, string>();
 
-  constructor(private readonly onFailure: (code: string, kind: FamilyJobKind) => void = () => undefined) {}
+  constructor(private readonly onFailure: FamilyJobFailureHandler = () => undefined) {}
 
   /**
    * Starts `task` for `childId` unless one is already running. An automatic
    * pick and a world update (DESIGN-024 D-11) share the one slot per child.
+   * Starting a job clears the child's previous failure, whoever started it, so
+   * a screen must not read success from the status alone.
    */
   start(childId: string, task: () => Promise<unknown>, kind: FamilyJobKind = 'auto-pick'): void {
     if (this.running.has(childId)) throw new AppError(409, 'AUTO_PICK_RUNNING', 'Photos are being picked');
@@ -33,9 +47,9 @@ export class AutoPickJobs {
       try {
         await task();
       } catch (error) {
-        const code = error instanceof AppError ? error.code : 'AUTO_PICK_FAILED';
+        const code = error instanceof AppError ? error.code : UNEXPECTED_FAILURE[kind];
         this.failures.set(childId, code);
-        this.onFailure(code, kind);
+        this.onFailure(code, kind, error);
       } finally {
         this.running.delete(childId);
       }

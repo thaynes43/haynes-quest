@@ -125,6 +125,10 @@ export interface TemplateChangeCommand {
   readonly actorId: string | null;
 }
 
+export interface DraftSaveOptions {
+  readonly expectedChildRevision?: number;
+}
+
 export interface FamilyStore {
   createChild(profile: ChildProfile, actorId: string | null): Promise<ChildRecord>;
   getChild(childId: string): Promise<ChildRecord | null>;
@@ -139,13 +143,18 @@ export interface FamilyStore {
   getDraft(childId: string): Promise<DraftRecord | null>;
   /**
    * `expectedRevision: null` creates the child's first draft; a number is a
-   * compare-and-set on the current draft revision.
+   * compare-and-set on the current draft revision. With
+   * `expectedChildRevision`, the write is also a compare-and-set on the child
+   * revision, for content built from the child's template and birthday: a
+   * stale draft revision is `DRAFT_CONFLICT`, otherwise a stale child is
+   * `CHILD_CONFLICT`, and either leaves the draft unchanged.
    */
   saveDraft(
     childId: string,
     expectedRevision: number | null,
     content: DraftContent,
     actorId: string | null,
+    options?: DraftSaveOptions,
   ): Promise<DraftRecord>;
   /** Atomic template change plus draft rebuild (D-11); publications are untouched. */
   changeTemplate(command: TemplateChangeCommand): Promise<{ child: ChildRecord; draft: DraftRecord }>;

@@ -22,8 +22,10 @@ const UPDATE_DONE = "World updated. Publish to make it playable.";
  * with two little and one big photo slot, each with a private thumbnail, date,
  * age and caption. **Swap** shows suggestions for that slot's dates with
  * **Show more**; **Edit caption** fixes the text; **Publish** makes the journey
- * playable. When a newer version of the child's world is offered, **Update
- * world** rebuilds the draft on it (D-11); publishing stays a separate step.
+ * playable, and **Start fresh with these photos** appears once the draft on
+ * screen is the published one. When a newer version of the child's world is
+ * offered, **Update world** rebuilds the draft on it (D-11); publishing stays
+ * a separate step.
  */
 export function MemoriesScreen({
   childId,
@@ -41,17 +43,25 @@ export function MemoriesScreen({
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const publishRequest = useRef<{ revision: number; id: string } | null>(null);
-  // A world update runs in the background; its success shows once polling ends.
-  const updating = useRef(false);
+  // The version a background world update was asked for. Job status is shared
+  // by every administrator of the child, and any new job clears the last
+  // failure, so the update worked only if the draft read back is on it.
+  const updating = useRef<{ id: string; version: string } | null>(null);
 
   const load = useCallback(async () => {
     try {
       const next = await familyApi.draft(childId);
-      setState(next);
-      if (updating.current && !next.picking) {
-        updating.current = false;
-        if (!next.lastPickError) setNotice(UPDATE_DONE);
+      const target = updating.current;
+      if (target && !next.picking) {
+        updating.current = null;
+        if (next.draft?.templateId === target.id && next.draft.templateVersion === target.version) {
+          // Any error now is from a job someone else started after the update.
+          setState({ ...next, lastPickError: null });
+          setNotice(UPDATE_DONE);
+          return;
+        }
       }
+      setState(next);
     } catch (e) {
       setError(familyErrorText(e));
     }
@@ -67,6 +77,9 @@ export function MemoriesScreen({
   }, [state, load]);
 
   const draft = state?.draft ?? null;
+  // Start fresh plays the latest publication, so it is offered only when that
+  // publication is the draft on screen: after an edit or Update world, publish first.
+  const published = draft !== null && state?.publishedDraftRevision === draft.revision;
 
   async function edit(run: (current: DraftView) => Promise<AdminDraftResponse>) {
     if (!draft) return false;
@@ -113,7 +126,7 @@ export function MemoriesScreen({
         templateVersion: offer.version,
         expectedRevision: draft?.revision ?? null,
       });
-      updating.current = true;
+      updating.current = { id: offer.id, version: offer.version };
       setState(next);
     } catch (e) {
       setError(familyErrorText(e));
@@ -126,14 +139,16 @@ export function MemoriesScreen({
 
   async function publish() {
     if (!draft) return;
+    const revision = draft.revision;
     // One request id per draft revision, so a retried tap never publishes twice.
-    if (publishRequest.current?.revision !== draft.revision) {
-      publishRequest.current = { revision: draft.revision, id: crypto.randomUUID() };
+    if (publishRequest.current?.revision !== revision) {
+      publishRequest.current = { revision, id: crypto.randomUUID() };
     }
     setBusy(true);
     setError("");
     try {
-      const published = await familyApi.publish(childId, draft.revision, publishRequest.current.id);
+      const published = await familyApi.publish(childId, revision, publishRequest.current.id);
+      setState((current) => current && { ...current, publishedDraftRevision: revision });
       setNotice(`Published (version ${published.revision}). This quest is ready to play.`);
     } catch (e) {
       setError(familyErrorText(e));
@@ -216,9 +231,11 @@ export function MemoriesScreen({
             <button className="secondary" disabled={busy} onClick={() => void pickAgain()}>
               Pick all again
             </button>
-            <button className="secondary" disabled={busy} onClick={() => void startFresh()}>
-              Start fresh with these photos
-            </button>
+            {published && (
+              <button className="secondary" disabled={busy} onClick={() => void startFresh()}>
+                Start fresh with these photos
+              </button>
+            )}
           </div>
         </>
       )}

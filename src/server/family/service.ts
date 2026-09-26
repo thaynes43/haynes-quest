@@ -149,7 +149,11 @@ export class FamilyJourneyService {
   /**
    * Rebase the chapters and auto-pick every memory photo (D-03, D-04). A new
    * draft gets a fresh seed; re-running keeps the draft's seed unless `reseed`
-   * asks for different picks.
+   * asks for different picks. The save is a compare-and-set on the draft
+   * revision and on the child revision the picks were rebased from, so a world
+   * update or birthday change that commits during the pick refuses it
+   * (`DRAFT_CONFLICT` or `CHILD_CONFLICT`) instead of pairing the new child
+   * with a draft built on the old one.
    */
   async autoPick(
     childId: string,
@@ -183,7 +187,7 @@ export class FamilyJourneyService {
       rebasedOn: today,
       chapters: world.chapters,
       slots,
-    }, actorId);
+    }, actorId, { expectedChildRevision: child.revision });
     return this.draftView(child, draft);
   }
 
