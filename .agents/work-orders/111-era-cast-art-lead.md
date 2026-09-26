@@ -28,7 +28,7 @@ Produce original-parody candidates for Tom's locked era casts and matching theme
 
 Per PRD-004 Q-03, candidates may be used in the children's levels before Tom reviews them. Label each review page and catalog card **"Awaiting Tom's review · used in the family release"**. Tom's exact-version decision stays open.
 
-**Public repository.** Never include family names, birthdays, photos or likenesses. Characters are original parodies: recognizable silhouette and humor cues, with no copied names, logos, faces, costumes or audio. Keep everything kid-safe; for the Hazbin-inspired host, keep only a clean dapper radio-showman hook.
+**Public repository.** Never include family names, birthdays, photos or likenesses. Characters are original parodies: recognizable silhouette and humor cues, with no copied names, logos, faces, costumes or audio. Per Tom's September 26 ruling (DESIGN-027), characters may be genuinely creepy where the era calls for it (the radio showman's too-wide grin, glowing eyes and static; glowing animatronic eyes). There is still no gore.
 
 ## Locked roster and asset ids
 
@@ -48,7 +48,7 @@ Per PRD-004 Q-03, candidates may be used in the children's levels before Tom rev
 | 5 | B·2 kit | `casita-kit` | props | Colorful house terrace pieces, flower planters, a patterned door, a candle-and-butterfly arch |
 | 6 | A·3 (5–9) | `inator-monster` | boss | A giant rubber-suit monster (a single model) with the evil scientist riding a cockpit on its back, holding an "-inator" remote |
 | 6 | A·3 | `putty-grunt` | ordinary-a | A goofy clay putty foot-soldier |
-| 6 | B·3 (4–6) | `demon-band-idol` | ordinary (a and b) | A clean, sparkly demon boy-band idol with a microphone and horned hair, glam and not scary |
+| 6 | B·3 (4–6) | `demon-band-idol` | ordinary (a and b) | A sparkly demon boy-band idol with a microphone and horned hair. Glam; per DESIGN-027 it may be creepier in a later revision |
 | 7 | A·3 kit | `rooftop-city-kit` | props | Water tower, rooftop AC units, a crane hook and a billboard frame. The skyline toybox kit may inform it |
 | 7 | A·3 | `lab-robot` | ordinary-b | A runaway lab robot |
 | 8 | A·4 (9–11) | `radio-host-showman` | bonus (ordinary) | A dapper vintage radio-host showman with a microphone cane and a huge grin |
