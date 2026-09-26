@@ -28,6 +28,7 @@ import {
   lintFamilyChapter,
 } from "../../src/shared/family-world-lint";
 import { decorWorldBounds, placeableThemeKitProps, themeKitProp } from "../../src/shared/theme-kits";
+import { PARODY_CATALOGS } from "../../src/shared/parody-catalog";
 import { planCasinoCollectibles } from "../../src/game/casino-tokens";
 import { chapterCommands, worldShellCommands } from "../../scripts/levels/lib/growth-kit";
 import {
@@ -98,10 +99,9 @@ const branchSteps = document.branches.flatMap((branch) =>
 
 function oneChapterWorld(): LevelEditorProjectV2 {
   const chapter = chapterCommands(CHAPTER_ID);
-  const candidate = (candidateId: string) => ({ source: "candidate" as const, candidateId });
   const base = createWorldEditorProject({
     projectId: "family-a1-check",
-    catalogVersion: "parody-catalog-v8",
+    catalogVersion: "parody-catalog-v10",
   });
   const result = applyLevelEditorCommands(base, {
     expectedRevision: 0,
@@ -112,12 +112,12 @@ function oneChapterWorld(): LevelEditorProjectV2 {
         chapters: [familyA1ShellChapter(CHAPTER_ID)],
       }),
       chapter.replaceLevel(document),
-      // R11: one ordinary identity in all four ordinary slots.
-      chapter.addCandidate("ordinary-1", FAMILY_A1_CAST.ordinary),
-      chapter.assign("ordinary-2", candidate(FAMILY_A1_CAST.ordinary.id)),
-      chapter.assign("ordinary-3", candidate(FAMILY_A1_CAST.ordinary.id)),
-      chapter.assign("ordinary-4", candidate(FAMILY_A1_CAST.ordinary.id)),
-      // The bully cat's model is registered in parody-catalog-v8.
+      // R11: one ordinary identity in all four ordinary slots. The Runaway
+      // Gadget is registered in parody-catalog-v10, the bully cat in v8.
+      chapter.assign("ordinary-1", FAMILY_A1_CAST.ordinary),
+      chapter.assign("ordinary-2", FAMILY_A1_CAST.ordinary),
+      chapter.assign("ordinary-3", FAMILY_A1_CAST.ordinary),
+      chapter.assign("ordinary-4", FAMILY_A1_CAST.ordinary),
       chapter.assign("boss", FAMILY_A1_CAST.boss),
     ],
   });
@@ -164,7 +164,12 @@ describe("A1 generator", () => {
   it("keeps the chapter's rulings: cast kinds, decor kits, tickets and branch headings", () => {
     // R11: every ordinary anchor uses the one ordinary identity's kind.
     for (const slot of ["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4"] as const)
-      expect(document.anchors.encounters[slot].kind).toBe(FAMILY_A1_CAST.ordinary.kind);
+      expect(document.anchors.encounters[slot].kind).toBe(FAMILY_A1_CAST.ordinaryKind);
+    const gadget = FAMILY_A1_CAST.ordinary;
+    if (gadget.source !== "catalog") throw new Error("Expected the catalog gadget");
+    expect(
+      PARODY_CATALOGS["parody-catalog-v10"].find((entry) => entry.id === gadget.catalogEntryId)?.kind,
+    ).toBe(FAMILY_A1_CAST.ordinaryKind);
     // R12: only clubhouse-kit and shared props, at most 200.
     const placeable = new Set(placeableThemeKitProps("clubhouse").map((prop) => prop.id));
     expect(document.decor!.length).toBeGreaterThan(0);

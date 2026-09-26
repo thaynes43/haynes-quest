@@ -11,6 +11,7 @@ export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v7",
   "parody-catalog-v8",
   "parody-catalog-v9",
+  "parody-catalog-v10",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
 export const PARODY_CATALOG_VERSION = "parody-catalog-v5" as const;
@@ -27,8 +28,9 @@ export type ParodyPeriodId =
   | "magic-house-v1";
 /**
  * Family-world era periods (DESIGN-026). A cast member whose WO111 Blender
- * model has landed is a frozen catalog entry from parody-catalog-v8 on; the
- * rest stay project enemy candidates with neutral placeholder art.
+ * model has landed is a frozen catalog entry (the first two in
+ * parody-catalog-v8, six more in v10); the rest stay project enemy candidates
+ * with neutral placeholder art.
  */
 export const FAMILY_ERA_PERIOD_IDS = [
   "toon-clubhouse-v1",
@@ -500,6 +502,99 @@ const PARODY_CANDIDATES_V9: readonly ParodyCatalogEntry[] = Object.freeze(
   ),
 );
 
+/** One family-era cast member registered from its WORLD-SPEC row (DESIGN-026). */
+function familyEraEntry(
+  entry: Pick<
+    ParodyCatalogEntry,
+    "id" | "title" | "reference" | "role" | "kind" | "periodId" | "eligibleFrom" | "eligibleThrough"
+  >,
+): ParodyCatalogEntry {
+  return freezeV3Entry({
+    ...entry,
+    version: "v001",
+    referenceAvailableBy: entry.eligibleFrom,
+    requiredAbilities: ["move"],
+    assetId: entry.id,
+    assetVersion: "v001",
+  });
+}
+
+/**
+ * V10 keeps every v9 identity unchanged, including the Rat Casino and Besties
+ * parent locks, and adds the six family-era Blender models merged after v8,
+ * in delivery-log order (WO111). Display names, references, roles, periods and
+ * windows are the coordinator's family world spec rows (PLAN-019), and each
+ * ordinary takes the kind its chapter's anchors use (ordinary-a everywhere).
+ * As in v8, each window is its chapter's era window from the locked
+ * DESIGN-026 table, so `referenceAvailableBy` equals `eligibleFrom` and no
+ * entry needs a parent lock. The windows equal the project candidates' in
+ * `family-world-a@v2` and `family-world-b@v2`, so the v3 templates that switch
+ * to these entries serve exactly the same children. Catalogs v1-v9 stay frozen.
+ */
+const PARODY_CANDIDATES_V10: readonly ParodyCatalogEntry[] = Object.freeze([
+  ...PARODY_CANDIDATES_V9.map(freezeV3Entry),
+  familyEraEntry({
+    id: "gadget-helper",
+    title: "Runaway Gadget",
+    reference: "clubhouse toolbox helper gone haywire",
+    role: "ordinary",
+    kind: "ordinary-a",
+    periodId: "toon-clubhouse-v1",
+    eligibleFrom: "2006-05-05",
+    eligibleThrough: "2016-11-06",
+  }),
+  familyEraEntry({
+    id: "rival-mayor",
+    title: "Mayor Humdrum",
+    reference: "scheming rival-town mayor from rescue-pup cartoons",
+    role: "boss",
+    kind: "boss",
+    periodId: "rescue-harbor-v1",
+    eligibleFrom: "2013-08-12",
+    eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "yes-yes-veggie",
+    title: "Yes-Yes Veggie",
+    reference: 'the veggies from the "yes yes" eating song',
+    role: "ordinary",
+    kind: "ordinary-a",
+    periodId: "sing-along-playroom-v1",
+    eligibleFrom: "2018-01-01",
+    eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "magic-house",
+    title: "The Dancing House",
+    reference: "a magical family house that dances",
+    role: "boss",
+    kind: "boss",
+    periodId: "magic-house-v1",
+    eligibleFrom: "2019-09-01",
+    eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "mischief-kitten",
+    title: "Mischief Kitten",
+    reference: "the mayor's naughty kitten crew",
+    role: "ordinary",
+    kind: "ordinary-a",
+    periodId: "rescue-harbor-v1",
+    eligibleFrom: "2013-08-12",
+    eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "bin-chicken",
+    title: "Bin Chicken",
+    reference: "the cheeky bin-raiding ibis from a backyard cartoon dog family",
+    role: "ordinary",
+    kind: "ordinary-a",
+    periodId: "magic-house-v1",
+    eligibleFrom: "2019-09-01",
+    eligibleThrough: "2026-12-31",
+  }),
+]);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
@@ -512,6 +607,7 @@ export const PARODY_CATALOGS: Readonly<
   "parody-catalog-v7": PARODY_CANDIDATES_V7,
   "parody-catalog-v8": PARODY_CANDIDATES_V8,
   "parody-catalog-v9": PARODY_CANDIDATES_V9,
+  "parody-catalog-v10": PARODY_CANDIDATES_V10,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();

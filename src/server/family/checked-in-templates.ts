@@ -7,8 +7,10 @@ import ratCasinoWorldV1 from '../../shared/levels/rat-casino-world-v1.json';
 import ratCasinoWorldV2 from '../../shared/levels/rat-casino-world-v2.json';
 import familyWorldAV1 from '../../shared/levels/family-world-a-v1.json';
 import familyWorldAV2 from '../../shared/levels/family-world-a-v2.json';
+import familyWorldAV3 from '../../shared/levels/family-world-a-v3.json';
 import familyWorldBV1 from '../../shared/levels/family-world-b-v1.json';
 import familyWorldBV2 from '../../shared/levels/family-world-b-v2.json';
+import familyWorldBV3 from '../../shared/levels/family-world-b-v3.json';
 
 export interface FamilyTemplateSource {
   readonly id: string;
@@ -22,7 +24,8 @@ export interface FamilyTemplateSource {
  * administrators see (World A: "Clubhouse to Casino"; World B: "Playroom to
  * Big Stage"). A content fix is a new version beside the old one, never an
  * edit: World A v2 carries the fixes found in verification, and v1 stays for
- * the journeys published on it.
+ * the journeys published on it. The v3 of each world is its v2 levels with the
+ * landed family-era models cast from parody-catalog-v10; v1 and v2 stay.
  */
 export const CHECKED_IN_FAMILY_TEMPLATES: readonly FamilyTemplateSource[] = Object.freeze([
   { id: 'rat-casino-world', version: 'v1', project: ratCasinoWorldV1 },
@@ -30,6 +33,8 @@ export const CHECKED_IN_FAMILY_TEMPLATES: readonly FamilyTemplateSource[] = Obje
   // v1 stays registered: journeys already published on it keep loading.
   { id: 'family-world-a', version: 'v1', project: familyWorldAV1 },
   { id: 'family-world-a', version: 'v2', project: familyWorldAV2 },
+  { id: 'family-world-a', version: 'v3', project: familyWorldAV3 },
   { id: 'family-world-b', version: 'v1', project: familyWorldBV1 },
   { id: 'family-world-b', version: 'v2', project: familyWorldBV2 },
+  { id: 'family-world-b', version: 'v3', project: familyWorldBV3 },
 ]);

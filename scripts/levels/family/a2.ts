@@ -47,7 +47,7 @@ import {
   type AuthoredSweeperPiece,
 } from "../../../src/shared/authored-level.js";
 import type {
-  LevelEditorEnemyCandidate,
+  LevelEditorEncounterReference,
   WorldEditorLevelDocument,
 } from "../../../src/shared/editor-project.js";
 import { FAMILY_WORLD_LINT_PRESETS } from "../../../src/shared/family-world-lint.js";
@@ -756,40 +756,29 @@ export function familyA2Level(): WorldEditorLevelDocument {
   };
 }
 
-const HARBOR_WINDOW = Object.freeze({ startDate: "2013-08-12", endDate: "2026-12-31" });
-
 /**
- * A2's cast (WORLD-SPEC, verbatim), as project candidates in the
- * rescue-harbor-v1 period until their models land. The mischief kitten is the
- * one ordinary identity: it fills all four ordinary slots and bonus-1 with
- * kind ordinary-a (R11). The rival mayor is the boss.
+ * A2's cast (WORLD-SPEC) as exact parody-catalog-v10 references (DESIGN-026):
+ * the Mischief Kitten is the one ordinary identity, filling all four ordinary
+ * slots and bonus-1 with kind ordinary-a (R11), and Mayor Humdrum
+ * (`rival-mayor`) is the boss. Both share the rescue-harbor-v1 period and the
+ * 2013-08-12 -> 2026-12-31 window. `family-world-a@v1` and v2 froze them as
+ * project candidates; their command histories keep them.
  */
 export const FAMILY_A2_CAST: Readonly<{
-  ordinary: LevelEditorEnemyCandidate;
-  boss: LevelEditorEnemyCandidate;
+  ordinary: LevelEditorEncounterReference;
+  /** The kind every A2 ordinary anchor uses; the catalog entry's kind. */
+  ordinaryKind: "ordinary-a";
+  boss: LevelEditorEncounterReference;
 }> = Object.freeze({
-  ordinary: Object.freeze<LevelEditorEnemyCandidate>({
-    id: "mischief-kitten",
-    name: "Mischief Kitten",
-    periodId: "rescue-harbor-v1",
-    recognizableReference: "the mayor's naughty kitten crew",
-    visualJoke: "pounces then gets distracted",
-    obstacleOrAttack: "pounce",
-    eligibility: HARBOR_WINDOW,
-    role: "ordinary",
-    kind: "ordinary-a",
-    behaviorPreset: "ordinary-a",
+  ordinary: Object.freeze({
+    source: "catalog",
+    catalogEntryId: "mischief-kitten",
+    catalogEntryVersion: "v001",
   }),
-  boss: Object.freeze<LevelEditorEnemyCandidate>({
-    id: "rival-mayor",
-    name: "Mayor Humdrum",
-    periodId: "rescue-harbor-v1",
-    recognizableReference: "scheming rival-town mayor from rescue-pup cartoons",
-    visualJoke: "a remote that never does what he wants",
-    obstacleOrAttack: "zaps with his remote contraption",
-    eligibility: HARBOR_WINDOW,
-    role: "boss",
-    kind: "boss",
-    behaviorPreset: "boss",
+  ordinaryKind: "ordinary-a",
+  boss: Object.freeze({
+    source: "catalog",
+    catalogEntryId: "rival-mayor",
+    catalogEntryVersion: "v001",
   }),
 });

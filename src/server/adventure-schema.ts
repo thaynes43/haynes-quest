@@ -442,7 +442,8 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
       plan.catalogVersion !== 'parody-catalog-v6' &&
       plan.catalogVersion !== 'parody-catalog-v7' &&
       plan.catalogVersion !== 'parody-catalog-v8' &&
-      plan.catalogVersion !== 'parody-catalog-v9')
+      plan.catalogVersion !== 'parody-catalog-v9' &&
+      plan.catalogVersion !== 'parody-catalog-v10')
   ) return false;
   const preparedCatalog = levelEditorPreparedEnemies(plan.catalogVersion);
   const bonusCatalog = levelEditorPreparedBonusEnemies(plan.catalogVersion);

@@ -43,7 +43,7 @@ import type {
   AuthoredLevelPiece,
 } from "../../../src/shared/authored-level.js";
 import type {
-  LevelEditorEnemyCandidate,
+  LevelEditorEncounterReference,
   WorldEditorLevelDocument,
 } from "../../../src/shared/editor-project.js";
 import {
@@ -554,38 +554,32 @@ export const B2_SHELL_CHAPTER: WorldShellChapter = {
 
 export const B2_PERIOD_ID = "magic-house-v1" as const;
 
-const B2_ELIGIBILITY = { startDate: "2019-09-01", endDate: "2026-12-31" } as const;
-
-/** R11: one ordinary identity, so all four ordinary anchors use its kind. */
+/**
+ * B2's cast (WORLD-SPEC) as exact parody-catalog-v10 references (DESIGN-026):
+ * the Bin Chicken is the one ordinary identity, so all four ordinary anchors
+ * use its kind (R11, ordinary-a), and The Dancing House (`magic-house`) is the
+ * boss. Both share the magic-house-v1 period and the 2019-09-01 -> 2026-12-31
+ * window. `family-world-b@v1` and v2 froze them as project candidates; their
+ * command histories keep them.
+ */
 export const B2_CAST: Readonly<{
-  ordinary: LevelEditorEnemyCandidate;
-  boss: LevelEditorEnemyCandidate;
-}> = {
-  ordinary: {
-    id: "bin-chicken",
-    name: "Bin Chicken",
-    periodId: B2_PERIOD_ID,
-    recognizableReference: "the cheeky bin-raiding ibis from a backyard cartoon dog family",
-    visualJoke: "snatches snacks",
-    obstacleOrAttack: "beak peck",
-    eligibility: B2_ELIGIBILITY,
-    role: "ordinary",
-    kind: "ordinary-a",
-    behaviorPreset: "ordinary-a",
-  },
-  boss: {
-    id: "magic-house",
-    name: "The Dancing House",
-    periodId: B2_PERIOD_ID,
-    recognizableReference: "a magical family house that dances",
-    visualJoke: "shutters blink, tiles wiggle",
-    obstacleOrAttack: "tile shimmy shockwave",
-    eligibility: B2_ELIGIBILITY,
-    role: "boss",
-    kind: "boss",
-    behaviorPreset: "boss",
-  },
-};
+  ordinary: LevelEditorEncounterReference;
+  /** The kind every B2 ordinary anchor uses; the catalog entry's kind. */
+  ordinaryKind: "ordinary-a";
+  boss: LevelEditorEncounterReference;
+}> = Object.freeze({
+  ordinary: Object.freeze({
+    source: "catalog",
+    catalogEntryId: "bin-chicken",
+    catalogEntryVersion: "v001",
+  }),
+  ordinaryKind: "ordinary-a",
+  boss: Object.freeze({
+    source: "catalog",
+    catalogEntryId: "magic-house",
+    catalogEntryVersion: "v001",
+  }),
+});
 
 const isMain = import.meta.url === `file://${process.argv[1]}`;
 if (isMain) process.stdout.write(`${JSON.stringify(buildB2Level(), null, 2)}\n`);

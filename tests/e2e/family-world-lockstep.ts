@@ -24,12 +24,19 @@
  * ordinary input on the real client. It is not a frame-time or feel
  * measurement; software WebGL draws a few frames a second.
  *
+ * Screenshots: spawn, the first ordinary fight (taken beside the enemy before
+ * the first strike), mid-climb, the boss arena (beside the boss) and finish.
+ * `QUEST_E2E_UNTIL=boss-arena` bounds a run to a cast check: each chapter
+ * stops once the boss-arena screenshot is taken, and a stop there counts as a
+ * pass.
+ *
  *   QUEST_E2E_URL        origin of an ephemeral playtest build (required)
- *   QUEST_E2E_PROJECT    template project (default src/shared/levels/family-world-a-v2.json)
+ *   QUEST_E2E_PROJECT    template project (default src/shared/levels/family-world-a-v3.json)
  *   QUEST_E2E_CHAPTERS   comma-separated chapter ids (default: every chapter)
  *   QUEST_E2E_RUN_LABEL  report folder under test-results/family-world (default candidate)
  *   QUEST_E2E_SHOTS      screenshot folder (default the report folder)
  *   QUEST_E2E_SCALE      device scale while playing (default 0.25; screenshots use 1)
+ *   QUEST_E2E_UNTIL      complete (default) or boss-arena
  *
  *   pnpm build && QUEST_EPHEMERAL_PLAYTEST=true QUEST_FIXTURE_MODE=true \
  *     NODE_ENV=development BETTER_AUTH_SECRET=... QUEST_APP_ORIGIN=http://127.0.0.1:3000 \
@@ -72,11 +79,16 @@ import { planPatientLeg } from "../game/family-kid-lib";
 const url = process.env.QUEST_E2E_URL;
 assert.ok(url, "QUEST_E2E_URL is required; never test a stale implicit server");
 const runLabel = process.env.QUEST_E2E_RUN_LABEL ?? "candidate";
-const projectPath = resolve(process.env.QUEST_E2E_PROJECT ?? "src/shared/levels/family-world-a-v2.json");
+const projectPath = resolve(process.env.QUEST_E2E_PROJECT ?? "src/shared/levels/family-world-a-v3.json");
 const reportDirectory = resolve(`test-results/family-world-lockstep/${runLabel}`);
 const shotDirectory = resolve(process.env.QUEST_E2E_SHOTS ?? reportDirectory);
 const playScale = Number(process.env.QUEST_E2E_SCALE ?? 0.25);
 assert.ok(playScale >= 0.1 && playScale <= 1, "QUEST_E2E_SCALE must be 0.1 to 1");
+const until = process.env.QUEST_E2E_UNTIL ?? "complete";
+assert.ok(until === "complete" || until === "boss-arena", "QUEST_E2E_UNTIL must be complete or boss-arena");
+
+/** Thrown after the boss-arena screenshot when the run is bounded there. */
+class StopAtBossArena extends Error {}
 await mkdir(reportDirectory, { recursive: true });
 await mkdir(shotDirectory, { recursive: true });
 
@@ -421,6 +433,8 @@ interface ChapterReport {
   pickups: string[];
   memories: Array<{ slot: string; id: string }>;
   completed: boolean;
+  /** Set when a bounded run stopped on purpose (`QUEST_E2E_UNTIL`). */
+  stoppedAt: string | null;
   completion: Record<string, unknown> | null;
   screenshots: string[];
   frames: FrameStats | null;
@@ -771,8 +785,11 @@ class ChapterPilot {
     this.mark("memory", { slot, id: nearest.id });
   }
 
-  /** Approaches and defeats one encounter with the attack and secondary controls. */
-  async fight(slot: string, anchor: AuthoredEncounterAnchor, onBossReached: () => Promise<void>): Promise<void> {
+  /**
+   * Approaches and defeats one encounter with the attack and secondary
+   * controls. `onReached` runs once, beside the enemy, before the first strike.
+   */
+  async fight(slot: string, anchor: AuthoredEncounterAnchor, onReached: (role: string) => Promise<void>): Promise<void> {
     const role = slot === "boss" ? "boss" : "ordinary";
     const encounter = [...this.live.encounters]
       .filter((entry) => entry.role === role)
@@ -810,9 +827,9 @@ class ChapterPilot {
         continue;
       }
       await this.game.move(0, 0);
-      if (!shotTaken && role === "boss") {
+      if (!shotTaken) {
         shotTaken = true;
-        await onBossReached();
+        await onReached(role);
       }
       if (this.live.attackReady && !this.live.requestBusy) {
         await this.game.press("f");
@@ -852,6 +869,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     pickups: [],
     memories: [],
     completed: false,
+    stoppedAt: null,
     completion: null,
     screenshots: [],
     frames: null,
@@ -932,6 +950,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     await shot("01-spawn");
 
     const pilot = new ChapterPilot(game, level, chapter, report, mark);
+    let firstOrdinaryShot = false;
     const anchors = document.anchors;
     const mainPath = document.mainPath;
     const bossIndex = mainPath.indexOf(anchors.encounters.boss.platformId);
@@ -963,7 +982,15 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       for (const slot of ENCOUNTER_SLOTS) {
         const anchor = anchors.encounters[slot];
         if (anchor.platformId === platformId)
-          await pilot.fight(slot, anchor, () => shot("03-boss-arena"));
+          await pilot.fight(slot, anchor, async (role) => {
+            if (role === "boss") {
+              await shot("03-boss-arena");
+              if (until === "boss-arena") throw new StopAtBossArena();
+            } else if (!firstOrdinaryShot) {
+              firstOrdinaryShot = true;
+              await shot("02-first-ordinary-fight");
+            }
+          });
       }
       if (index === mainPath.length - 1) {
         await pilot.collectMemory("major", anchors.memories.major);
@@ -992,6 +1019,11 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     await shot("04-finish");
     assert.ok(report.completed, `${chapter.chapterId} did not complete: ${JSON.stringify(report.completion)}`);
   } catch (error) {
+    if (error instanceof StopAtBossArena) {
+      report.stoppedAt = "boss-arena";
+      mark("stopped", { at: report.stoppedAt, fights: report.fights.length });
+      return report;
+    }
     report.failure = error instanceof Error ? `${error.message}\n${error.stack ?? ""}` : String(error);
     if (game) {
       const file = `${shotDirectory}/${chapter.chapterId}-failure.png`;
@@ -1013,12 +1045,14 @@ for (const chapter of selected) {
   reports.push(report);
   await writeFile(`${reportDirectory}/${chapter.chapterId}.json`, `${JSON.stringify(report, null, 2)}\n`);
   console.log(
-    `[${chapter.chapterId}] ${report.completed ? "completed" : "FAILED"}: ${report.fights.length} fights, ` +
+    `[${chapter.chapterId}] ${report.completed ? "completed" : report.stoppedAt ? `stopped at ${report.stoppedAt}` : "FAILED"}: ${report.fights.length} fights, ` +
       `${report.memories.length} memories, ${report.legs.length} legs, ${report.recoveries} recoveries, ` +
       `${report.frames?.frames ?? 0} frames, ${report.wallSeconds}s wall`,
   );
 }
-const failed = reports.filter((report) => !report.completed || report.pageErrors.length > 0);
+const failed = reports.filter(
+  (report) => !(report.completed || report.stoppedAt === until) || report.pageErrors.length > 0,
+);
 if (failed.length > 0) {
   for (const report of failed) console.error(`[${report.chapterId}] ${report.failure ?? report.pageErrors.join("; ")}`);
   process.exitCode = 1;

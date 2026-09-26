@@ -124,11 +124,12 @@ function worldCommands(): LevelEditorCommand[] {
     standIn.addCandidate("boss", fixtureCandidate("stand-in-boss", "Stand-in Boss", "sing-along-playroom-v1", "boss", eligibility)),
     b2.replaceLevel(buildB2Level()),
     // R11: one ordinary identity, so all four ordinary slots share its kind.
-    b2.addCandidate("ordinary-1", B2_CAST.ordinary),
-    b2.assign("ordinary-2", candidate(B2_CAST.ordinary.id)),
-    b2.assign("ordinary-3", candidate(B2_CAST.ordinary.id)),
-    b2.assign("ordinary-4", candidate(B2_CAST.ordinary.id)),
-    b2.addCandidate("boss", B2_CAST.boss),
+    // The Bin Chicken and The Dancing House are parody-catalog-v10 entries.
+    b2.assign("ordinary-1", B2_CAST.ordinary),
+    b2.assign("ordinary-2", B2_CAST.ordinary),
+    b2.assign("ordinary-3", B2_CAST.ordinary),
+    b2.assign("ordinary-4", B2_CAST.ordinary),
+    b2.assign("boss", B2_CAST.boss),
   ];
 }
 
@@ -149,7 +150,7 @@ describe("B2 generator and validation", () => {
     ).toEqual([]);
     const base = createWorldEditorProject({
       projectId: "family-b2-check",
-      catalogVersion: "parody-catalog-v7",
+      catalogVersion: "parody-catalog-v10",
     });
     const result = applyLevelEditorCommands(base, { expectedRevision: 0, commands: worldCommands() });
     expect(result.issues).toEqual([]);
@@ -162,9 +163,17 @@ describe("B2 generator and validation", () => {
     expect(chapter.level).toEqual(level);
     for (const slot of ["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4"] as const) {
       expect(chapter.level.anchors.encounters[slot].kind).toBe("ordinary-a");
-      expect(chapter.encounterSlots[slot]).toEqual({ source: "candidate", candidateId: "bin-chicken" });
+      expect(chapter.encounterSlots[slot]).toEqual({
+        source: "catalog",
+        catalogEntryId: "bin-chicken",
+        catalogEntryVersion: "v001",
+      });
     }
-    expect(chapter.encounterSlots.boss).toEqual({ source: "candidate", candidateId: "magic-house" });
+    expect(chapter.encounterSlots.boss).toEqual({
+      source: "catalog",
+      catalogEntryId: "magic-house",
+      catalogEntryVersion: "v001",
+    });
   });
 
   it("needs its practice catch floor before the first required high jump", () => {

@@ -99,9 +99,9 @@ const REQUIRED_LIFTS = FAMILY_B1_MAIN_PATH.filter((id) => surface(id).type === "
 /** The one-chapter World B shell with B1's level and cast, as the assembler builds it. */
 function buildB1World(): { project: LevelEditorProjectV2; issues: readonly unknown[] } {
   const chapter = chapterCommands(FAMILY_B1_SHELL_CHAPTER.chapterId);
-  const veggie = { source: "candidate" as const, candidateId: FAMILY_B1_CAST.ordinary.id };
+  const veggie = FAMILY_B1_CAST.ordinary;
   const result = applyLevelEditorCommands(
-    createWorldEditorProject({ projectId: "family-b1-check", catalogVersion: "parody-catalog-v8" }),
+    createWorldEditorProject({ projectId: "family-b1-check", catalogVersion: "parody-catalog-v10" }),
     {
       expectedRevision: 0,
       commands: [
@@ -111,7 +111,8 @@ function buildB1World(): { project: LevelEditorProjectV2; issues: readonly unkno
           chapters: [FAMILY_B1_SHELL_CHAPTER],
         }),
         chapter.replaceLevel(familyB1Level()),
-        chapter.addCandidate("ordinary-1", FAMILY_B1_CAST.ordinary),
+        // Yes-Yes Veggie is registered in parody-catalog-v10, the bus in v8.
+        chapter.assign("ordinary-1", veggie),
         chapter.assign("ordinary-2", veggie),
         chapter.assign("ordinary-3", veggie),
         chapter.assign("ordinary-4", veggie),
@@ -140,7 +141,7 @@ describe("family B1 generator (a, b)", () => {
     expect(Object.keys(level.anchors.friendlies).sort()).toEqual(["friendly-1", "friendly-2", "friendly-3"]);
     // R11: one ordinary identity, so all four ordinary anchors share its kind.
     for (const slot of ["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4"] as const)
-      expect(level.anchors.encounters[slot].kind, slot).toBe(FAMILY_B1_CAST.ordinary.kind);
+      expect(level.anchors.encounters[slot].kind, slot).toBe(FAMILY_B1_CAST.ordinaryKind);
     // Every encounter has an arena and a retry checkpoint that exists.
     const checkpointIds = new Set(document.pieces.filter((piece) => piece.type === "checkpoint").map((piece) => piece.id));
     for (const [slot, encounter] of Object.entries(level.anchors.encounters))
@@ -170,7 +171,12 @@ describe("family B1 generator (a, b)", () => {
       catalogEntryVersion: "v001",
     });
     for (const slot of ["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4"] as const)
-      expect(chapter.encounterSlots[slot], slot).toEqual({ source: "candidate", candidateId: "yes-yes-veggie" });
+      expect(chapter.encounterSlots[slot], slot).toEqual({
+        source: "catalog",
+        catalogEntryId: "yes-yes-veggie",
+        catalogEntryVersion: "v001",
+      });
+    expect(project.enemyCandidates).toEqual([]);
   });
 
   it("passes every World B family lint with no errors and no warnings", () => {

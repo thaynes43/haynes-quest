@@ -281,7 +281,7 @@
       "prMerged": "0fdf3bc03a28dacf5057aaae0b2b73f469e4fd75",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned"
+        "runtimeIntegration": "registered in parody-catalog-v10 (PLAN-019 cast integration); family-world-a@v3 casts it in the four A·1 ordinary slots, and v1 and v2 keep their placeholder candidate"
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/93",
       "masterSha256": "f467492d4dd667a21a3d695925680ffed927b1457d138fe49536372b87011351",
@@ -391,7 +391,7 @@
       "prMerged": "f5b27b92e385dc84cfd4cbe97fb7b2245bcfac9c",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v1 uses a neutral placeholder for this boss slot"
+        "runtimeIntegration": "registered in parody-catalog-v10 (PLAN-019 cast integration); family-world-a@v3 casts it as the A·2 boss, and v1 and v2 keep their placeholder candidate"
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/96",
       "masterSha256": "53dbb763aacb5f6c4272f165d543168c2129fbd592453fd6b53cdb466175799a",
@@ -500,7 +500,7 @@
       "prMerged": "e9c98c86f52a8314a84334a6f06f2df2e57c4586",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v1 fills the four B·1 ordinary slots with the yes-yes-veggie project candidate, which renders neutral placeholder art until a catalog version registers this model"
+        "runtimeIntegration": "registered in parody-catalog-v10 (PLAN-019 cast integration); family-world-b@v3 casts it in the four B·1 ordinary slots, and v1 and v2 keep their placeholder candidate"
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/98",
       "masterSha256": "332d263434c22cdb607f02ba087a20b42c19c6814237a4d40913ab19fcc34672",
@@ -615,7 +615,7 @@
       "prMerged": "b71b630c143eec890686b7a853fad28cebf888fb",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v2 (and the frozen v1) fill the B·2 boss slot with The Dancing House project candidate (magic-house), which renders neutral placeholder art until a catalog version registers this model"
+        "runtimeIntegration": "registered in parody-catalog-v10 (PLAN-019 cast integration); family-world-b@v3 casts it as the B·2 boss, and v1 and v2 keep their placeholder candidate"
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/99",
       "masterSha256": "243b36560389175f6d865d957e455d2a666bfb22f612c5b87327e2622f4e38d3",
@@ -718,7 +718,7 @@
       "prMerged": "cfd4bbdbb2337be8599478bafe5f8c771ef936c9",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v2 (and the frozen v1) fill the four A·2 ordinary slots and the bonus slot with the mischief-kitten project candidate, which renders neutral placeholder art until a catalog version registers this model"
+        "runtimeIntegration": "registered in parody-catalog-v10 (PLAN-019 cast integration); family-world-a@v3 casts it in the four A·2 ordinary slots and the bonus slot, and v1 and v2 keep their placeholder candidate"
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/105",
       "masterSha256": "b95c8d0d69d641b48724d8e79331e1f4706df435c3ed3fc6e66e56ed807baaf1",
@@ -825,10 +825,10 @@
       "sceneReleasedAt": "2026-09-26T17:04:51.022420+00:00",
       "manifest": "docs/assets/media/bin-chicken/v001/sha256-manifest.json",
       "pr": 108,
-      "prMerged": null,
+      "prMerged": "5afce0bc3ddc36cb6f799d9c7282d423ec6a5566",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v2 (and the frozen v1) fill the four B·2 ordinary slots with the bin-chicken project candidate, which renders neutral placeholder art until a catalog version registers this model"
+        "runtimeIntegration": "registered in parody-catalog-v10 (PLAN-019 cast integration); family-world-b@v3 casts it in the four B·2 ordinary slots, and v1 and v2 keep their placeholder candidate"
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/108",
       "masterSha256": "1a8b30358de09ac35e6cabbc9f0172942cd9067f4c0451089ffbc9c4c073a8bf",
