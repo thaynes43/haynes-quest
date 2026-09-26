@@ -28,6 +28,8 @@ Each encounter slot offers prepared characters that match the level's start date
 
 **Add an optional enemy** in World to give a side platform an independent fight. Choose an eligible character and platform, then set X, Z and the arena half-width clear of existing fights and objectives. After adding it, select its marker to drag it or edit its arena in Properties. The optional fight can be removed or undone; it never blocks the boss or final memory. The agent CLI uses `encounter.bonus.add` and `encounter.bonus.remove` with the same validated anchor and candidate contract. Rat Casino's current sample uses Golden After-Hours Rat in this slot.
 
+A growth level (`authored-level-v4`) also offers a **Scare level** in World: **Not scary**, **Spooky** (dim flickering lights, a creepy ambience and sleeping animatronics that move while nobody is looking) or **Scary** (Spooky plus blackouts and jump scares), under [DESIGN-027](designs/027-scare-pass.md). A player can still turn **Scary moments** off on their own device, which plays every level as Not scary. Older levels have no scare level.
+
 An added level may remain a **Draft** while its dates or cast need attention. Export it safely, use **Review issues** to locate each conflict, and playtest when the whole project reads **Ready to play**.
 
 ## Build a climbing section
@@ -167,6 +169,8 @@ Theme kits are registered in `src/game/theme-kits.ts` (palette, fog, trail look 
 `inspect` also reports a top-level `growth` block with these limits, unlock ages and launch speeds, lift `stopTops`, `dwellSeconds` and `cycleSeconds`, and pad `launchApex`. `scripts/levels/build-vertical-v4-demo.ts` is a worked generator: it uses the helpers in `scripts/levels/lib/growth-kit.ts` to emit `scripts/levels/examples/vertical-v4-demo.commands.json`, which `pnpm levels:validate` replays into the checked-in example project.
 
 V4 levels may also use the family-world era themes `clubhouse`, `harbor`, `rooftop`, `playroom` and `casita` through `chapter.details.set`; a v3 level rejects them.
+
+A v4 level may also declare a scare level ([DESIGN-027](designs/027-scare-pass.md) D-01) with `{"type": "chapter.scare.set", "chapterId": "a4-casino", "scare": 2}`: `0` none, `1` spooky, `2` scary. Setting `0` removes the level's `scare` field, so an unscary level keeps its exact bytes; a v3 level refuses the command with `level.version`. `inspect` reports each world chapter's `scare` (0 when absent), and the level document carries it as `"scare": 1` or `2`. Generators use `chapterCommands(id).setScare(level)` from `growth-kit.ts`. A published family plan freezes the level with the rest of the chapter's geometry, so an existing journey never changes its scare level; a new template version does.
 
 ### Generate a whole world
 

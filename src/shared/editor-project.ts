@@ -14,6 +14,7 @@ import {
   AUTHORED_LEVEL_V4_THEMES,
   authoredLevelDocumentSchema,
   authoredDecorSchema,
+  authoredScareLevelSchema,
   authoredLevelV4ConnectionSchema,
   authoredLevelV4PieceSchema,
   resolveAuthoredLevelDocument,
@@ -31,6 +32,7 @@ import {
   type AuthoredRequiredEncounterSlot,
   type AuthoredLevelTheme,
   type AuthoredPosition,
+  type AuthoredScareLevel,
   type ResolvedAuthoredLevel,
 } from "./authored-level";
 import { validateGrowthRequirements } from "./authored-level-growth";
@@ -1539,6 +1541,14 @@ export type LevelEditorCommand =
       readonly type: "chapter.level.replace";
       readonly level: WorldEditorLevelDocument;
     } & ChapterCommand)
+  | ({
+      /**
+       * DESIGN-027 D-01: a v4 chapter's scare level. 0 removes the field, so
+       * an unscary level keeps its exact bytes and geometry fingerprint.
+       */
+      readonly type: "chapter.scare.set";
+      readonly scare: AuthoredScareLevel;
+    } & ChapterCommand)
   | ({ readonly type: "decor.add"; readonly decor: AuthoredDecor } & ChapterCommand)
   | ({ readonly type: "decor.remove"; readonly decorId: string } & ChapterCommand)
   | ({ readonly type: "chapter.reorder"; readonly index: number } & ChapterCommand)
@@ -1702,6 +1712,13 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
       type: z.literal("chapter.level.replace"),
       ...chapterIdField,
       level: authoredLevelV4Schema,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("chapter.scare.set"),
+      ...chapterIdField,
+      scare: authoredScareLevelSchema,
     })
     .strict(),
   z
@@ -2547,6 +2564,19 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
         `The replacement level id must equal the chapter route id ${worldChapter.routeId}`,
       );
     worldChapter.level = cloneJson(command.level) as MutableWorldChapter["level"];
+    return;
+  }
+  if (command.type === "chapter.scare.set") {
+    worldProjectForCommand(project);
+    const worldChapter = worldChapterForCommand(chapter);
+    if (worldChapter.level.schemaVersion !== AUTHORED_LEVEL_SCHEMA_VERSION_V4)
+      commandError(
+        "$.chapterId",
+        "level.version",
+        `Scare levels require ${AUTHORED_LEVEL_SCHEMA_VERSION_V4}; apply chapter.level.upgrade first`,
+      );
+    if (command.scare === 0) delete worldChapter.level.scare;
+    else worldChapter.level.scare = command.scare;
     return;
   }
   if (command.type === "decor.add" || command.type === "decor.remove") {

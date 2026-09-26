@@ -3097,6 +3097,35 @@ footer {
 .family-setup-button {
   margin-top: 12px;
 }
+/* DESIGN-027 D-02: the per-device Scary moments switch. */
+.scary-moments-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 460px;
+  margin: 8px auto 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fffaf1;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+.scary-moments-toggle input {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: 2px 0 0;
+  accent-color: #5b3a86;
+}
+.scary-moments-copy {
+  display: grid;
+  gap: 2px;
+}
+.scary-moments-copy small {
+  color: #685f70;
+}
 .family-admin,
 .family-add-child,
 .family-memories {

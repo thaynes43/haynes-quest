@@ -21,6 +21,7 @@ import {
   type EditorPlaytestResponse,
   type ResolvedEditorPlaytest,
 } from "./rat-casino-project";
+import { ScaryMomentsToggle } from "./ScaryMomentsToggle";
 import { installMultiTouchActivation } from "./touch-activation";
 import { installViewportZoomLock } from "./viewport-zoom";
 import "./styles.css";
@@ -275,6 +276,7 @@ function App() {
             </button>
           </div>
           {error && <p role="alert">{error}</p>}
+          <ScaryMomentsToggle className="playtest-scary-moments" />
           <p className="playtest-reset-note">
             Every test starts fresh. Progress resets when you leave or reload.
           </p>

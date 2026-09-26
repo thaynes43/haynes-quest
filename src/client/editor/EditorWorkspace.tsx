@@ -859,6 +859,7 @@ export function EditorWorkspace({
                   previewMemories: current.previewMemories,
                 });
               }}
+              onSetScare={(scare) => runCommand({ type: "chapter.scare.set", chapterId: cursor.chapterId, scare })}
               onSetBirthDate={(fictionalBirthDate) => runCommand({ type: "project.birthdate.set", fictionalBirthDate })}
               onAssignEncounter={(slot, encounter) => runCommand({ type: "encounter.assign", chapterId: cursor.chapterId, slot, encounter })}
               onCreateCandidate={(slot, candidate) => runCommand({

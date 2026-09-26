@@ -5,6 +5,7 @@ import { LEVEL_EDITOR_SECTION_LIMITS } from "../../src/shared/editor-sections.js
 import {
   AUTHORED_LEVEL_LIMITS,
   AUTHORED_LEVEL_V4_LIMITS,
+  authoredScareLevel,
   authoredSurfaceTopRange,
   isAuthoredSurfacePiece,
   type AuthoredAnchor,
@@ -423,6 +424,8 @@ async function run(args: readonly string[]): Promise<void> {
                 routeId: chapter.routeId,
                 sourceTemplateId: chapter.sourceTemplateId,
                 levelSchemaVersion: chapter.level.schemaVersion,
+                // DESIGN-027 D-01: 0 none, 1 spooky, 2 scary (v4 only).
+                scare: authoredScareLevel(chapter.level),
                 representedDateRange: chapter.representedDateRange,
                 recoveredAge: chapter.recoveredAge,
                 // The moves a required route may use in this chapter.

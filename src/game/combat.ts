@@ -38,6 +38,20 @@ interface LocalEnemy {
   maxHp: number;
   defeated: boolean;
   scripted: boolean;
+  /** Has chased the player since it last spawned (DESIGN-027 watchers sleep until then). */
+  awake: boolean;
+  /** DESIGN-027 D-04 idle pose; 0 is the authored stance. */
+  pose: number;
+}
+
+/** A sleeping ordinary enemy that DESIGN-027 watcher rules may change unseen. */
+export interface DormantWatcher {
+  id: string;
+  position: PositionSnapshot;
+  spawn: PositionSnapshot;
+  facing: number;
+  pose: number;
+  arena?: EnemyArena;
 }
 
 export interface EnemyStepOptions {
@@ -160,6 +174,12 @@ export function bossIsActive(save: SaveView): boolean {
 export class EnemySimulation {
   private enemies = new Map<string, LocalEnemy>();
   private hitCooldownSeconds = 0;
+  /**
+   * DESIGN-027 D-04, scare level 1+: a sleeping ordinary enemy holds its
+   * facing instead of tracking the player, so it only changes while unseen.
+   * Off (level 0) keeps the exact published behavior.
+   */
+  private watchers = false;
 
   constructor(level: LevelLayout, save: SaveView) {
     this.reset(level, save);
@@ -210,12 +230,66 @@ export class EnemySimulation {
         current.spawn = spawnFor(placement, current.arena);
         current.position = { ...current.spawn };
         current.facing = 0;
+        current.awake = false;
+        current.pose = 0;
         current.phase = "idle";
         current.phaseSeconds = 0;
         current.contactedDuringStrike = false;
         this.hitCooldownSeconds = 0;
       }
     }
+  }
+
+  /** Scare level 1+ turns the watcher rules on; level 0 leaves them off. */
+  setWatchers(enabled: boolean): void {
+    this.watchers = enabled;
+  }
+
+  /** Sleeping ordinary enemies: idle, never woken since spawning, alive. */
+  dormantWatchers(): DormantWatcher[] {
+    if (!this.watchers) return [];
+    return [...this.enemies.values()].flatMap((enemy) =>
+      this.isDormantWatcher(enemy)
+        ? [
+            {
+              id: enemy.id,
+              position: { ...enemy.position },
+              spawn: { ...enemy.spawn },
+              facing: enemy.facing,
+              pose: enemy.pose,
+              ...(enemy.arena ? { arena: { ...enemy.arena } } : {}),
+            },
+          ]
+        : [],
+    );
+  }
+
+  /**
+   * Applies a watcher change. The position is clamped to the arena again, and
+   * an enemy that has woken since the change was chosen is left alone.
+   */
+  applyWatcherMove(
+    id: string,
+    change: { position: PositionSnapshot; facing: number; pose: number },
+  ): boolean {
+    const enemy = this.enemies.get(id);
+    if (!enemy || !this.isDormantWatcher(enemy)) return false;
+    enemy.position = { ...change.position, y: enemy.position.y };
+    clampToArena(enemy.position, enemy.arena);
+    enemy.facing = change.facing;
+    enemy.pose = change.pose;
+    return true;
+  }
+
+  private isDormantWatcher(enemy: LocalEnemy): boolean {
+    return (
+      this.watchers &&
+      enemy.role === "ordinary" &&
+      !enemy.awake &&
+      !enemy.defeated &&
+      !enemy.scripted &&
+      enemy.phase === "idle"
+    );
   }
 
   restartThreatenedAttacks(): void {
@@ -254,12 +328,18 @@ export class EnemySimulation {
         enemy.arena,
         tuning.attackRange,
       );
-      enemy.facing = facingToward(enemy.position, options.player);
+      const sleeping = this.isDormantWatcher(enemy);
+      if (!sleeping) enemy.facing = facingToward(enemy.position, options.player);
       switch (enemy.phase) {
         case "idle":
           if (playerDistance <= enemyActivationRadius && playerReachable) {
             enemy.phase = "chasing";
             enemy.phaseSeconds = 0;
+            enemy.awake = true;
+            if (sleeping) {
+              enemy.facing = facingToward(enemy.position, options.player);
+              enemy.pose = 0;
+            }
           }
           break;
         case "chasing":
@@ -356,6 +436,8 @@ export class EnemySimulation {
             : 0,
         hp: enemy.hp,
         maxHp: enemy.maxHp,
+        // Only scare levels 1+ report a pose, so level 0 frames are unchanged.
+        ...(this.watchers ? { pose: enemy.pose } : {}),
       };
     });
   }
@@ -403,6 +485,8 @@ export class EnemySimulation {
       maxHp: encounter.maxHp,
       defeated: encounter.defeated,
       scripted: encounter.content?.assetId === "bickering-besties",
+      awake: false,
+      pose: 0,
     });
   }
 }

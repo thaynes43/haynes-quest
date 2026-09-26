@@ -54,6 +54,11 @@ export interface EnemyFrame {
   windupProgress: number;
   hp: number;
   maxHp: number;
+  /**
+   * DESIGN-027 D-04 watcher idle pose (0 is the authored stance). Present only
+   * on scare levels 1+, so level 0 frames are exactly as before.
+   */
+  pose?: number;
 }
 
 export interface SceneFrame {
@@ -82,6 +87,11 @@ export interface SceneFrame {
    * moves; absent keeps the exact published avatar and camera presentation.
    */
   growthScale?: number;
+  /**
+   * DESIGN-027 lighting, blackout and lunge state. Present only on chapters
+   * playing at scare level 1 or 2; absent keeps today's presentation.
+   */
+  scare?: import("./scare").ScareFrame;
 }
 
 /**
@@ -119,7 +129,23 @@ export type GameFeedbackEvent =
   /** The glide started holding the player's fall, or stopped (DESIGN-025 D-01). */
   | { type: "glide"; active: boolean }
   /** An enemy began winding up an attack; `assetId` is its rendered catalog model. */
-  | { type: "windup"; encounterId: string; assetId: string };
+  | { type: "windup"; encounterId: string; assetId: string }
+  /*
+   * DESIGN-027 scary moments. Only chapters playing at scare level 1 or 2
+   * report these, so every other chapter's events are unchanged.
+   */
+  /** Level 2: an enemy's lethal attack became a lunge for `durationMs`; recovery follows. */
+  | { type: "jump-scare"; encounterId: string; durationMs: number }
+  /** A sleeping animatronic that moved while unseen was seen again. */
+  | { type: "watcher-creak"; encounterId: string }
+  /** Level 2: the lights came back after a blackout. */
+  | { type: "blackout-return" }
+  /** Level 2: random distant mechanical laughter. */
+  | { type: "ambient-laugh" }
+  /** The radio showman began an attack. */
+  | { type: "radio-static"; encounterId: string }
+  /** The creepy ambience should play (active world at level 1+) or stop. */
+  | { type: "scare-ambient-loop"; active: boolean };
 
 export type AttackAttemptOutcome =
   | "accepted"
@@ -170,6 +196,13 @@ export interface SceneVisualInspection {
   collectibles?: import("./token-scene").TokenSceneInspection;
   /** Live effect particles, for checking that contact and pickups burst. */
   particles?: number;
+  /** DESIGN-027 presentation on chapters playing at scare level 1+. */
+  scare?: {
+    practicals: number;
+    practicalScale: number;
+    eyes: number;
+    eyesVisible: boolean;
+  };
 }
 
 export interface GameStatus {
@@ -282,6 +315,16 @@ export interface GameInspection {
       import("./casino-tokens").CollectiblePlacement & { collected: boolean }
     >;
   } | null;
+  /** DESIGN-027 runtime state; present only on chapters playing at scare level 1+. */
+  scare?: {
+    level: import("./scare").ScareLevel;
+    lighting: import("./scare").ScareLighting;
+    lunge: import("./scare").ScareLunge | null;
+    blackouts: number;
+    flickers: number;
+    watcherMoves: number;
+    jumpScares: number;
+  };
   disposed: boolean;
 }
 
@@ -300,6 +343,11 @@ export interface CreateGameOptions {
   authoredLevelResolver?: AuthoredLevelResolver;
   /** Fires at the moment of contact, pickup or defeat, before any server reply. */
   onFeedback?: (event: GameFeedbackEvent) => void;
+  /**
+   * DESIGN-027 D-02 per-device switch. `false` plays every chapter at scare
+   * level 0; omitted means on, the switch's default.
+   */
+  scaryMoments?: boolean;
 }
 
 export interface GameHandle {
