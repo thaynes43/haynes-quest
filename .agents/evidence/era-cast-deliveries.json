@@ -195,6 +195,116 @@
         "artifactHashesMatchedLocally": 96,
         "physicalSafari": false
       }
+    },
+    {
+      "assetId": "gadget-helper",
+      "version": "v001",
+      "role": "ordinary",
+      "world": "A",
+      "chapter": 1,
+      "glb": "docs/assets/media/gadget-helper/v001/gadget-helper.glb",
+      "sha256": "ff5d601b690541aec44e682835328ca55821762521412cd1e26f5c07cb6b6317",
+      "heightM": 1.118245,
+      "hoverGapM": 0.1,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root; the body hovers 0.100 m above the floor at rest",
+        "rest": {
+          "min": [
+            -0.9389113604051441,
+            0.1000000014901158,
+            -0.2849999964237213
+          ],
+          "max": [
+            0.6471952567812903,
+            1.1182450680878686,
+            0.2529999911785126
+          ]
+        },
+        "animated": {
+          "min": [
+            -1.0986103433527168,
+            0.0040173217713589116,
+            -0.7882742347268755
+          ],
+          "max": [
+            0.6576468807745004,
+            1.2309718215436818,
+            0.38788265630968805
+          ]
+        },
+        "culling": {
+          "min": [
+            -1.104,
+            -0.001,
+            -0.794
+          ],
+          "max": [
+            0.663,
+            1.236,
+            0.393
+          ]
+        }
+      },
+      "attackContactS": 1.25,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 2.4,
+          "channels": 30
+        },
+        {
+          "name": "move",
+          "duration_s": 1.2,
+          "channels": 30
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 30
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 30
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 30
+        }
+      ],
+      "review": "docs/assets/reviews/gadget-helper/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "sceneReleasedAt": "2026-09-26T04:30:53.639331+00:00",
+      "manifest": "docs/assets/media/gadget-helper/v001/sha256-manifest.json",
+      "pr": 93,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned"
+      },
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/93",
+      "masterSha256": "f467492d4dd667a21a3d695925680ffed927b1457d138fe49536372b87011351",
+      "concept": {
+        "source": "generated",
+        "generator": "OpenAI built-in image_gen tool, driving GPT-6 Astra / max",
+        "sha256": "a0dc75770229b72311b0f2d4268ced8385150686653fbef8bb05385ffa53be60"
+      },
+      "authoringAgent": "claude-opus-5-5 (xhigh)",
+      "integrationNotes": [
+        "Rest geometry starts 0.100 m above the floor (hover gap); the lowest animated point is 0.004 m in the held defeat pose. A registration contract that expects the rest minimum at y=0 needs a hover allowance.",
+        "The GLB scene extras say the body hovers 0.12 m; the measured rest gap is 0.100 m.",
+        "Exact intake values: 1,031,204 bytes, buffer 997,324 bytes, 14,574 triangles, 2 texture references to 1 embedded image, 2 materials, 2 primitives, 10 joints."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "threeAdapterChecksPassed": 27,
+        "attachmentChecksPassed": 8,
+        "chromiumChecksPassed": 9,
+        "artifactHashesMatchedLocally": 103,
+        "physicalSafari": false
+      }
     }
   ]
 }

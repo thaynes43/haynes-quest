@@ -220,6 +220,20 @@
       "sha256": "a078ddfeaaf8ec4fc899ab6876d95f457bb47b019bb25a3929bf1047dc3e62ab"
     },
     {
+      "source": "docs/assets/media/gadget-helper/v001/beauty.png",
+      "source_sha256": "3cf401c246bd566e570b3105cb67fbc93fd84d54e1f50a1a5c1f6964db7a02c9",
+      "path": "docs/assets/media/catalog-thumbnails/v001/6156b931d6ad1b31.webp",
+      "bytes": 6946,
+      "sha256": "0a7fbaf09675b9d4ad3d62193ea2b6194264c21a6d9c1fe8324e36577fdd9a94"
+    },
+    {
+      "source": "docs/assets/media/gadget-helper/v001/concept.png",
+      "source_sha256": "a0dc75770229b72311b0f2d4268ced8385150686653fbef8bb05385ffa53be60",
+      "path": "docs/assets/media/catalog-thumbnails/v001/7b5a8ec9be1d3e59.webp",
+      "bytes": 25354,
+      "sha256": "1945cb194977b473c678038fcdaad4cbdf13d08c32faa5d705601f2941b63993"
+    },
+    {
       "source": "docs/assets/media/golden-after-hours-rat/v001/beauty.png",
       "source_sha256": "7523ea63bb66c61d5d5508f9624197ce5c38a7b428d6a443a785b33b66123f72",
       "path": "docs/assets/media/catalog-thumbnails/v001/65a4d2e6b9d0e070.webp",

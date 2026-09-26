@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**42 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**43 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -43,6 +43,18 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D boss · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/5aac31e47d209b4d.webp" alt="Selected original cat captain construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="gadget-helper" markdown="1">
+
+[![Exact Gadget Helper model: a teal floating toolbox with an ochre lid and handle, big cream eyes, an orange clasp and a raised wrench on a hose arm](media/catalog-thumbnails/v001/6156b931d6ad1b31.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/gadget-helper/v001.md)
+
+### [Gadget Helper](reviews/gadget-helper/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/7b5a8ec9be1d3e59.webp" alt="Selected original floating toolbox construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
 </div>
 

@@ -1,0 +1,639 @@
+{
+  "asset_id": "gadget-helper",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Opus 5.5 continues WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "source_concept_sha256": "a0dc75770229b72311b0f2d4268ced8385150686653fbef8bb05385ffa53be60",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.9389114379882812,
+      -0.2529999911785126,
+      0.10000000149011612
+    ],
+    "max": [
+      0.6471952199935913,
+      0.2849999964237213,
+      1.118245005607605
+    ]
+  },
+  "height_m": 1.118245005607605,
+  "hover_gap_m": 0.10000000149011612,
+  "triangles": 14574,
+  "vertices": 7533,
+  "material_count": 2,
+  "bone_count": 10,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic soft painted palette atlas generated in Blender Python; no external textures.",
+    "palette": [
+      "3b8784",
+      "2c6866",
+      "e3a53c",
+      "c58a31",
+      "45414a",
+      "6e4d5e",
+      "d9763a",
+      "efdcb6",
+      "e8d0a6",
+      "2e2729",
+      "8f8a84",
+      "413b42",
+      "b9b0a3",
+      "2a2124",
+      "fff6e6",
+      "b35e2d"
+    ]
+  },
+  "parts": [
+    {
+      "name": "Rounded teal toolbox body",
+      "triangles": 936,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Ochre toolbox lid with rolled lower band",
+      "triangles": 700,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Soft plum hover skirt",
+      "triangles": 476,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Orange clasp plate",
+      "triangles": 188,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Raised orange clasp tongue",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Clasp hinge pin",
+      "triangles": 108,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Cream oval eye -1",
+      "triangles": 620,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Ink pupil -1",
+      "triangles": 284,
+      "bone_groups": [
+        "pupils"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Pupil catchlight -1",
+      "triangles": 116,
+      "bone_groups": [
+        "pupils"
+      ],
+      "atlas_tile": 14
+    },
+    {
+      "name": "Cream oval eye 1",
+      "triangles": 620,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Ink pupil 1",
+      "triangles": 284,
+      "bone_groups": [
+        "pupils"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Pupil catchlight 1",
+      "triangles": 116,
+      "bone_groups": [
+        "pupils"
+      ],
+      "atlas_tile": 14
+    },
+    {
+      "name": "Wavy little mouth",
+      "triangles": 346,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Body rivet 1 -0.30 0.34",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Body rivet 1 -0.30 0.65",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Body rivet 1 0.30 0.34",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Body rivet 1 0.30 0.65",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Body rivet -1 -0.30 0.34",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Body rivet -1 -0.30 0.65",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Body rivet -1 0.30 0.34",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Body rivet -1 0.30 0.65",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Side rivet -1 -0.07",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Side rivet -1 0.07",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Side rivet 1 -0.07",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Side rivet 1 0.07",
+      "triangles": 96,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Lid band rivet 1 -0.31",
+      "triangles": 96,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Lid band rivet 1 0.00",
+      "triangles": 96,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Lid band rivet 1 0.31",
+      "triangles": 96,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Lid band rivet -1 -0.31",
+      "triangles": 96,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Lid band rivet -1 0.00",
+      "triangles": 96,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Lid band rivet -1 0.31",
+      "triangles": 96,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Ochre folding strap handle",
+      "triangles": 556,
+      "bone_groups": [
+        "handle"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Ribbed charcoal plum grip",
+      "triangles": 976,
+      "bone_groups": [
+        "handle"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Handle hinge boss -1",
+      "triangles": 156,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Hinge rivet -1",
+      "triangles": 96,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Handle foot bracket -1",
+      "triangles": 108,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Handle hinge boss 1",
+      "triangles": 156,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Hinge rivet 1",
+      "triangles": 96,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Handle foot bracket 1",
+      "triangles": 108,
+      "bone_groups": [
+        "lid"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Dark nozzle can -0.225",
+      "triangles": 172,
+      "bone_groups": [
+        "thrusters"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Orange nozzle rim -0.225",
+      "triangles": 264,
+      "bone_groups": [
+        "thrusters"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Nozzle throat -0.225",
+      "triangles": 44,
+      "bone_groups": [
+        "thrusters"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Dark nozzle can 0.000",
+      "triangles": 172,
+      "bone_groups": [
+        "thrusters"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Orange nozzle rim 0.000",
+      "triangles": 264,
+      "bone_groups": [
+        "thrusters"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Nozzle throat 0.000",
+      "triangles": 44,
+      "bone_groups": [
+        "thrusters"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Dark nozzle can 0.225",
+      "triangles": 172,
+      "bone_groups": [
+        "thrusters"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Orange nozzle rim 0.225",
+      "triangles": 264,
+      "bone_groups": [
+        "thrusters"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Nozzle throat 0.225",
+      "triangles": 44,
+      "bone_groups": [
+        "thrusters"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Grey paddle bracket",
+      "triangles": 108,
+      "bone_groups": [
+        "paddle"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Orange paddle pivot",
+      "triangles": 124,
+      "bone_groups": [
+        "paddle"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Teal stabiliser paddle fin",
+      "triangles": 524,
+      "bone_groups": [
+        "paddle"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Paddle rivet front",
+      "triangles": 96,
+      "bone_groups": [
+        "paddle"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Orange shoulder collar",
+      "triangles": 216,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Dark flexible accordion hose",
+      "triangles": 1220,
+      "bone_groups": [
+        "body",
+        "arm_1",
+        "arm_2",
+        "wrench"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Orange wrist pivot drum",
+      "triangles": 156,
+      "bone_groups": [
+        "wrench"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Wrist rivet -1",
+      "triangles": 96,
+      "bone_groups": [
+        "wrench"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Wrist rivet 1",
+      "triangles": 96,
+      "bone_groups": [
+        "wrench"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Grey wrench shaft",
+      "triangles": 108,
+      "bone_groups": [
+        "wrench"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Grey open wrench head with cream jaw ends",
+      "triangles": 820,
+      "bone_groups": [
+        "wrench"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Rounded cream mitten jaw tip -1",
+      "triangles": 248,
+      "bone_groups": [
+        "wrench"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Rounded cream mitten jaw tip 1",
+      "triangles": 248,
+      "bone_groups": [
+        "wrench"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Wrench head rivet -1",
+      "triangles": 96,
+      "bone_groups": [
+        "wrench"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Wrench head rivet 1",
+      "triangles": 96,
+      "bone_groups": [
+        "wrench"
+      ],
+      "atlas_tile": 12
+    }
+  ],
+  "concept_resolution": [
+    "Front and back concept views are attachment authority: accordion wrench arm on anatomical LEFT (Blender -X, viewer right in front view), stabiliser paddle on anatomical RIGHT (+X).",
+    "The middle concept view is a construction study, not a true side; the box depth is resolved at 0.42 m body / 0.49 m skirt, following the brief.",
+    "Body hovers at rest: the lowest nozzle rim is 0.12 m above the floor; root stays at the floor origin.",
+    "Diagonal cream stripes are bisected paint bands: front band rises from behind the clasp to the wrench-side corner, back band to the paddle side, as in the concept front/back views."
+  ],
+  "notes": [
+    "Original toolbox gadget; no mouse ears, TV face, franchise logo, lettering or borrowed media.",
+    "Blunt wrench with rounded cream jaw tips; no blades, sparks or threatening face.",
+    "Every part is skinned to one rig; nozzles retract into the skirt only for the defeat landing."
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.2,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_warning_s": [
+        0.6,
+        1.05
+      ],
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_warning_s": null,
+      "held_final_pose_from_s": 1.68
+    }
+  ],
+  "files": {
+    "gadget-helper.blend": {
+      "bytes": 1120158,
+      "sha256": "f467492d4dd667a21a3d695925680ffed927b1457d138fe49536372b87011351"
+    },
+    "gadget-helper.glb": {
+      "bytes": 1031204,
+      "sha256": "ff5d601b690541aec44e682835328ca55821762521412cd1e26f5c07cb6b6317"
+    },
+    "pigment.png": {
+      "bytes": 237577,
+      "sha256": "cf41fd78fa51e0d90ca81d13e636066f0ebf553a1f8add57bf29159855279bae"
+    }
+  }
+}

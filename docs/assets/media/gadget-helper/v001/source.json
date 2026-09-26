@@ -1,0 +1,26 @@
+{
+  "asset_id": "gadget-helper",
+  "version": "v001",
+  "work_order": "WO111",
+  "created_utc": "2026-09-26T00:46:59.054414+00:00",
+  "generator": "OpenAI built-in image_gen tool",
+  "authoring_agent": "Driving GPT-6 Astra / max",
+  "reference_files": [],
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "selected_by": "Driving Astra",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "selection_notes": "Use the front and rear views for attachment consistency: wrench arm on anatomical LEFT, paddle on RIGHT. The middle small view is a construction study rather than a true orthographic side. Use a 0.4 m box depth and compact articulated arm; measure actual bounds. Keep original teal toolbox face and ochre handle.",
+  "files": {
+    "concept.png": {
+      "bytes": 2098302,
+      "sha256": "a0dc75770229b72311b0f2d4268ced8385150686653fbef8bb05385ffa53be60"
+    },
+    "prompt.txt": {
+      "bytes": 2122,
+      "sha256": "a63f861a0abf4cb52cbe56e728ad8fce34064bb25565832e1fd57f41a3c2c104"
+    }
+  },
+  "rights_note": "Original generated study; no franchise endorsement or exclusive-rights claim. Not automatically relicensed under code license."
+}
