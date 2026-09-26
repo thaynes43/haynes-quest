@@ -3,6 +3,7 @@ import ratCasinoWorldV2 from '../../../src/shared/levels/rat-casino-world-v2.jso
 import { parseLevelEditorProject, type LevelEditorProjectV2 } from '../../../src/shared/editor-project.js';
 import { ImmichPhotoSource } from '../../../src/server/photos/immich.js';
 import {
+  autoPickChapters,
   autoPickJourney,
   bigMemoryWindows,
   littleMemoryWindows,
@@ -272,5 +273,39 @@ describe('swap suggestions', () => {
       excludeAssetIds: new Set(),
       cursor: 99,
     }, { library: context.library, clock: context.clock })).rejects.toMatchObject({ code: 'INVALID_CURSOR' });
+  });
+});
+
+describe('partial picks around kept photos (DESIGN-024 D-11)', () => {
+  it('picks only the named chapters, never reuses a kept photo and stays chronological around them', async () => {
+    const context = setup();
+    const full = await pickAll(context);
+    // Keep chapter two as picked; pick the other two chapters again around it.
+    const kept = new Map(full
+      .filter((entry) => entry.chapterId === 'chapter-2' && entry.photo)
+      .map((entry) => [`${entry.chapterId}:${entry.slot}`, { assetId: entry.photo!.assetId, localDate: entry.photo!.localDate }]));
+    const partial = await autoPickChapters({
+      chapters: world.chapters,
+      birthDate: TEST_CHILD_B.birthDate,
+      today: TODAY,
+      personId: TEST_CHILD_B.personId,
+      seed: 'synthetic-seed-0001',
+      pickChapterIds: new Set(['chapter-1', 'rat-casino']),
+      fixed: kept,
+    }, { library: context.library, clock: context.clock });
+    expect(partial.map((entry) => `${entry.chapterId}:${entry.slot}`)).toEqual([
+      'chapter-1:minor-one', 'chapter-1:minor-two', 'chapter-1:major',
+      'rat-casino:minor-one', 'rat-casino:minor-two', 'rat-casino:major',
+    ]);
+    const keptAssets = new Set([...kept.values()].map((entry) => entry.assetId));
+    for (const entry of partial) expect(keptAssets.has(entry.photo!.assetId)).toBe(false);
+    expect(outcome(partial, 'chapter-1', 'major').photo!.localDate < kept.get('chapter-2:minor-one')!.localDate).toBe(true);
+    expect(outcome(partial, 'rat-casino', 'minor-one').photo!.localDate > kept.get('chapter-2:major')!.localDate).toBe(true);
+    // With the same seed and library, the picked chapters match a full pick.
+    for (const chapterId of ['chapter-1', 'rat-casino']) {
+      for (const slot of ['minor-one', 'minor-two', 'major']) {
+        expect(outcome(partial, chapterId, slot).photo).toEqual(outcome(full, chapterId, slot).photo);
+      }
+    }
   });
 });

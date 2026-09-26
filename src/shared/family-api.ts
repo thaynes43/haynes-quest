@@ -102,16 +102,28 @@ export interface AdminChildSummary {
     readonly needsPhoto: number;
   } | null;
   readonly publication: { readonly revision: number; readonly publishedAt: string } | null;
-  /** An automatic pick is running in the background. */
+  /** An automatic pick (or a world update, which may pick) is running in the background. */
   readonly picking: boolean;
-  /** Fixed error code from the last automatic pick, if it failed. */
+  /** Fixed error code from the last background pick or world update, if it failed. */
   readonly lastPickError: string | null;
+  /** DESIGN-024 D-11: the newest offered version of the child's world, when newer than theirs. */
+  readonly newerTemplate: TemplateOffer | null;
 }
 
 export interface AdminDraftResponse {
   readonly draft: DraftView | null;
   readonly picking: boolean;
   readonly lastPickError: string | null;
+  /** DESIGN-024 D-11: a newer offered version of the child's world, if one exists. */
+  readonly newerTemplate: TemplateOffer | null;
+}
+
+/** DESIGN-024 D-11 **Update world**: move the child to a newer version of the same world. */
+export interface TemplateUpgradeRequest {
+  readonly templateId: string;
+  readonly templateVersion: string;
+  /** The draft revision the administrator saw; null when the child has no draft yet. */
+  readonly expectedRevision: number | null;
 }
 
 export type DraftEditRequest =

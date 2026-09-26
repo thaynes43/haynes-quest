@@ -21,12 +21,16 @@ import {
 import { AppError } from '../errors.js';
 import type { FamilyPhotoLibrary } from '../photos/source.js';
 import {
+  autoPickChapters,
   autoPickJourney,
   manualSlotWindow,
+  slotKey,
   slotTargetDate,
   suggestForSlot,
+  type FixedSelection,
   type PickClock,
   type PickLimits,
+  type SlotOutcome,
 } from './pick.js';
 import { buildFamilyWorldPlan, FamilyPlanError } from './plan.js';
 import { FamilyRebaseError, rebaseWorldForChild, type RebasedChapter, type RebasedWorld } from './rebase.js';
@@ -38,7 +42,7 @@ import {
   type FamilyStore,
   type PublicationRecord,
 } from './store.js';
-import type { FamilyTemplate, FamilyTemplateRegistry } from './templates.js';
+import { templateOffer, type FamilyTemplate, type FamilyTemplateRegistry } from './templates.js';
 import type { CandidateTokens } from './tokens.js';
 import type {
   ChildView,
@@ -48,6 +52,7 @@ import type {
   PublicationSummary,
   SuggestionPageView,
   TemplateOffer,
+  TemplateUpgradeRequest,
 } from '../../shared/family-api.js';
 
 export type {
@@ -61,7 +66,18 @@ export type {
   SuggestionPageView,
   SuggestionView,
   TemplateOffer,
+  TemplateUpgradeRequest,
 } from '../../shared/family-api.js';
+
+/** The outcome of **Update world** (D-11), in counts the operator CLI may print. */
+export interface TemplateUpgradeResult {
+  readonly draft: DraftView;
+  /** Slots whose photo and caption were kept from the previous draft. */
+  readonly carried: number;
+  /** Every slot of the rebuilt draft. */
+  readonly total: number;
+  readonly needsPhoto: number;
+}
 
 export interface FamilyServiceOptions {
   readonly store: FamilyStore;
@@ -126,57 +142,6 @@ export class FamilyJourneyService {
     return childView(child);
   }
 
-  /**
-   * Moves a child to another registered template, usually a newer version of
-   * the same world: a template content fix ships as a new version, because a
-   * published journey freezes its template (DESIGN-024). When the new
-   * template rebases to the same chapters, the draft's photos, captions and
-   * swaps carry over, so the next publish uses the new template; otherwise
-   * the draft goes stale and the administrator picks the photos again. A
-   * started run keeps its frozen publication until an administrator starts a
-   * fresh run on the newer one.
-   */
-  async setTemplate(
-    childId: string,
-    templateId: string,
-    templateVersion: string,
-    actorId: string | null,
-  ): Promise<{ child: ChildView; draftCarried: boolean }> {
-    const child = await this.requireChild(childId);
-    const template = this.options.templates.require(templateId, templateVersion);
-    this.rebase(template, child.birthDate);
-    const updated = child.templateId === template.id && child.templateVersion === template.version
-      ? child
-      : await this.options.store.updateChild(child.id, child.revision, {
-        templateId: template.id,
-        templateVersion: template.version,
-      }, actorId);
-    const draft = await this.options.store.getDraft(child.id);
-    if (!draft) return { child: childView(updated), draftCarried: false };
-    if (draft.templateId === template.id && draft.templateVersion === template.version) {
-      return { child: childView(updated), draftCarried: true };
-    }
-    if (draft.birthDate !== updated.birthDate) return { child: childView(updated), draftCarried: false };
-    let world: RebasedWorld;
-    try {
-      world = rebaseWorldForChild(template.project, draft.birthDate, draft.rebasedOn);
-    } catch (error) {
-      if (error instanceof FamilyRebaseError) return { child: childView(updated), draftCarried: false };
-      throw error;
-    }
-    if (!sameChapters(world.chapters, draft.chapters)) return { child: childView(updated), draftCarried: false };
-    await this.options.store.saveDraft(child.id, draft.revision, {
-      templateId: template.id,
-      templateVersion: template.version,
-      seed: draft.seed,
-      birthDate: draft.birthDate,
-      rebasedOn: draft.rebasedOn,
-      chapters: draft.chapters,
-      slots: draft.slots,
-    }, actorId);
-    return { child: childView(updated), draftCarried: true };
-  }
-
   async listChildren(): Promise<ChildView[]> {
     return (await this.options.store.listChildren()).map(childView);
   }
@@ -207,25 +172,9 @@ export class FamilyJourneyService {
       personId: child.immichPersonId,
       seed,
     }, this.pickEnvironment());
-    const byKey = new Map(outcomes.map((outcome) => [`${outcome.chapterId}:${outcome.slot}`, outcome]));
-    const slots: DraftSlot[] = world.chapters.flatMap((chapter) => FAMILY_MEMORY_SLOTS.map((slot) => {
-      const outcome = byKey.get(`${chapter.chapterId}:${slot}`)!;
-      const photo = outcome.photo;
-      return {
-        chapterId: chapter.chapterId,
-        slot,
-        status: photo ? 'filled' as const : 'needs-photo' as const,
-        assetId: photo?.assetId ?? null,
-        localDate: photo?.localDate ?? null,
-        caption: photo
-          ? defaultCaption(slot, photo.localDate, familyWholeYearsAt(child.birthDate, photo.localDate))
-          : null,
-        captionEdited: false,
-        reason: photo
-          ? { ...photo.reason, timedOut: outcome.timedOut, degraded: outcome.degraded }
-          : { source: 'auto' as const, timedOut: outcome.timedOut, degraded: outcome.degraded },
-      };
-    }));
+    const byKey = new Map(outcomes.map((outcome) => [slotKey(outcome.chapterId, outcome.slot), outcome]));
+    const slots: DraftSlot[] = world.chapters.flatMap((chapter) => FAMILY_MEMORY_SLOTS.map((slot) =>
+      pickedSlot(child.birthDate, byKey.get(slotKey(chapter.chapterId, slot))!)));
     const draft = await this.options.store.saveDraft(childId, expectedRevision, {
       templateId: template.id,
       templateVersion: template.version,
@@ -236,6 +185,85 @@ export class FamilyJourneyService {
       slots,
     }, actorId);
     return this.draftView(child, draft);
+  }
+
+  /**
+   * D-11 checks without writing, so the admin route can refuse a request before
+   * it starts the background update.
+   */
+  async checkTemplateUpgrade(childId: string, request: TemplateUpgradeRequest): Promise<void> {
+    await this.planUpgrade(childId, request);
+  }
+
+  /**
+   * D-11 **Update world**: move the child to a newer offered version of the
+   * same template and rebuild the draft on it. Chapters whose id and template
+   * age band are unchanged keep each photo and caption whose date still fits the
+   * slot under the new template; other slots there need a photo. New or changed
+   * chapters are auto-picked around the kept photos. Publications and saves are
+   * untouched: publishing stays a separate step.
+   */
+  async upgradeTemplate(
+    childId: string,
+    request: TemplateUpgradeRequest,
+    actorId: string | null,
+  ): Promise<TemplateUpgradeResult> {
+    const { child, current, target } = await this.planUpgrade(childId, request);
+    const today = this.today();
+    const world = this.rebase(target, child.birthDate, today);
+    const unchanged = this.unchangedChapters(current, child, target);
+    const kept = carriedSelections(world.chapters, unchanged, current, child.birthDate, today, this.options.limits);
+    const pickChapterIds = new Set(world.chapters
+      .filter((chapter) => !unchanged.has(chapter.chapterId))
+      .map((chapter) => chapter.chapterId));
+    const seed = current?.seed ?? this.newSeed();
+    const outcomes = pickChapterIds.size === 0 ? [] : await autoPickChapters({
+      chapters: world.chapters,
+      birthDate: child.birthDate,
+      today,
+      personId: child.immichPersonId,
+      seed,
+      pickChapterIds,
+      fixed: new Map([...kept].map(([key, slot]) => [key, { assetId: slot.assetId!, localDate: slot.localDate! } satisfies FixedSelection])),
+    }, this.pickEnvironment());
+    const byKey = new Map(outcomes.map((outcome) => [slotKey(outcome.chapterId, outcome.slot), outcome]));
+    const slots: DraftSlot[] = world.chapters.flatMap((chapter) => FAMILY_MEMORY_SLOTS.map((slot): DraftSlot => {
+      const key = slotKey(chapter.chapterId, slot);
+      if (pickChapterIds.has(chapter.chapterId)) return pickedSlot(child.birthDate, byKey.get(key)!);
+      return kept.get(key) ?? {
+        chapterId: chapter.chapterId,
+        slot,
+        status: 'needs-photo',
+        assetId: null,
+        localDate: null,
+        caption: null,
+        captionEdited: false,
+        reason: null,
+      };
+    }));
+    const { child: updated, draft } = await this.options.store.changeTemplate({
+      childId,
+      expectedChildRevision: child.revision,
+      expectedDraftRevision: request.expectedRevision,
+      templateId: target.id,
+      templateVersion: target.version,
+      draft: {
+        templateId: target.id,
+        templateVersion: target.version,
+        seed,
+        birthDate: child.birthDate,
+        rebasedOn: today,
+        chapters: world.chapters,
+        slots,
+      },
+      actorId,
+    });
+    return {
+      draft: this.draftView(updated, draft),
+      carried: kept.size,
+      total: slots.length,
+      needsPhoto: slots.filter((entry) => entry.status !== 'filled').length,
+    };
   }
 
   async getDraft(childId: string): Promise<DraftView> {
@@ -411,6 +439,47 @@ export class FamilyJourneyService {
     }
   }
 
+  /**
+   * D-11 preconditions: only a newer version of the child's own template that
+   * is offered for their birthday, and only from the draft revision the
+   * administrator saw.
+   */
+  private async planUpgrade(childId: string, request: TemplateUpgradeRequest) {
+    const child = await this.requireChild(childId);
+    const target = this.options.templates
+      .newerOffered(child.templateId, child.templateVersion, child.birthDate, this.today())
+      .find((template) => template.id === request.templateId && template.version === request.templateVersion);
+    if (!target) throw new AppError(422, 'TEMPLATE_UPGRADE_UNAVAILABLE', 'No newer version of this world');
+    const current = await this.options.store.getDraft(childId);
+    if ((current?.revision ?? null) !== request.expectedRevision) {
+      throw new AppError(409, 'DRAFT_CONFLICT', 'Draft changed');
+    }
+    return { child, current, target };
+  }
+
+  /**
+   * D-11: chapters whose id and template age band are the same in the draft's
+   * template and the target. The band is the template's own `startAge` and
+   * `recoveredAge`, so a final chapter rebased to a later birthday still counts
+   * as unchanged and its slots face the window check instead.
+   */
+  private unchangedChapters(current: DraftRecord | null, child: ChildRecord, target: FamilyTemplate): Set<string> {
+    const previous = current ? this.options.templates.get(current.templateId, current.templateVersion) : null;
+    // Without the draft's template or its birthday, nothing can be compared safely.
+    if (!current || !previous || current.birthDate !== child.birthDate) return new Set();
+    const bands = (template: FamilyTemplate) => new Map(template.project.chapters.map((chapter, index) =>
+      [chapter.chapterId, template.ageBands[index]!] as const));
+    const before = bands(previous);
+    const after = bands(target);
+    return new Set(current.chapters.flatMap((chapter) => {
+      const old = before.get(chapter.chapterId);
+      const next = after.get(chapter.chapterId);
+      return old && next && old.startAge === next.startAge && old.recoveredAge === next.recoveredAge
+        ? [chapter.chapterId]
+        : [];
+    }));
+  }
+
   private draftView(child: ChildRecord, draft: DraftRecord): DraftView {
     const template = this.options.templates.get(draft.templateId, draft.templateVersion);
     return {
@@ -531,13 +600,64 @@ function childView(child: ChildRecord): ChildView {
   };
 }
 
-function templateOffer(template: FamilyTemplate): TemplateOffer {
+/** A draft slot from an automatic pick outcome, with its default caption. */
+function pickedSlot(birthDate: string, outcome: SlotOutcome): DraftSlot {
+  const photo = outcome.photo;
   return {
-    id: template.id,
-    version: template.version,
-    name: template.project.name,
-    chapterCount: template.project.chapters.length,
+    chapterId: outcome.chapterId,
+    slot: outcome.slot,
+    status: photo ? 'filled' : 'needs-photo',
+    assetId: photo?.assetId ?? null,
+    localDate: photo?.localDate ?? null,
+    caption: photo ? defaultCaption(outcome.slot, photo.localDate, familyWholeYearsAt(birthDate, photo.localDate)) : null,
+    captionEdited: false,
+    reason: photo
+      ? { ...photo.reason, timedOut: outcome.timedOut, degraded: outcome.degraded }
+      : { source: 'auto', timedOut: outcome.timedOut, degraded: outcome.degraded },
   };
+}
+
+/** Journey order within a chapter: the little memories come before the big one. */
+const CHRONOLOGICAL_SLOTS: readonly FamilyMemorySlot[] = ['minor-one', 'minor-two', 'major'];
+
+/**
+ * D-11 carry-over: walk the unchanged chapters in journey order and keep each
+ * filled slot whose date fits the slot's allowed dates under the new chapters
+ * (the same window a swap must fit), after the photos already kept. Keeping in
+ * order means every kept photo also fits once its later neighbours are kept.
+ */
+function carriedSelections(
+  chapters: readonly RebasedChapter[],
+  unchanged: ReadonlySet<string>,
+  current: DraftRecord | null,
+  birthDate: string,
+  today: string,
+  limits: Partial<PickLimits> | undefined,
+): Map<string, DraftSlot> {
+  const kept = new Map<string, DraftSlot>();
+  if (!current) return kept;
+  const assets = new Set<string>();
+  for (const [index, chapter] of chapters.entries()) {
+    if (!unchanged.has(chapter.chapterId)) continue;
+    for (const slot of CHRONOLOGICAL_SLOTS) {
+      const previous = current.slots.find((entry) =>
+        entry.chapterId === chapter.chapterId && entry.slot === slot && entry.status === 'filled');
+      if (!previous?.assetId || !previous.localDate || !previous.caption || assets.has(previous.assetId)) continue;
+      const range = manualSlotWindow(
+        chapters,
+        index,
+        slot,
+        (chapterId, neighbour) => kept.get(slotKey(chapterId, neighbour))?.localDate ?? null,
+        birthDate,
+        today,
+        limits,
+      );
+      if (!range || previous.localDate < range.from || previous.localDate > range.to) continue;
+      kept.set(slotKey(chapter.chapterId, slot), previous);
+      assets.add(previous.assetId);
+    }
+  }
+  return kept;
 }
 
 function publicationSummary(publication: PublicationRecord): PublicationSummary {

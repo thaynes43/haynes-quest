@@ -205,4 +205,85 @@ describe("family setup screens", () => {
     expect(container.textContent).toContain("Needs a photo");
     expect(button("Choose a photo")).toBeTruthy();
   });
+
+  describe("Update world (DESIGN-024 D-11)", () => {
+    const NEWER = { id: "rat-casino-world", version: "v3", name: "Synthetic World", chapterCount: 3 };
+    const CONFIRM =
+      "Update to the new version of this world? Photos and captions stay where the chapters match. A run already in progress keeps its version until you choose Start fresh.";
+    const tick = async (ms = 0) => {
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(ms);
+      });
+    };
+
+    it("confirms, starts the update, polls it and asks the admin to publish", async () => {
+      vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
+      const confirm = vi.fn(() => true);
+      vi.stubGlobal("confirm", confirm);
+      let phase: "ready" | "updating" | "done" = "ready";
+      const { requests } = routeFetch({
+        [`GET ${DRAFT_PATH}`]: () => phase === "ready"
+          ? { draft: draft(3), picking: false, lastPickError: null, newerTemplate: NEWER }
+          : phase === "updating"
+            ? (phase = "done", { draft: null, picking: true, lastPickError: null, newerTemplate: null })
+            : { draft: { ...draft(4), templateVersion: "v3" }, picking: false, lastPickError: null, newerTemplate: null },
+        [`POST /api/admin/children/${CHILD}/template`]: () => {
+          phase = "updating";
+          return [202, { draft: null, picking: true, lastPickError: null, newerTemplate: null }];
+        },
+      });
+      await act(async () => root.render(
+        <MemoriesScreen childId={CHILD} displayName="Test Child B" onBack={vi.fn()} onPlay={vi.fn()} />,
+      ));
+      await tick();
+      expect(container.textContent).toContain("A new version of this world is ready.");
+      await act(async () => button("Update world").click());
+      await tick();
+      expect(confirm).toHaveBeenCalledWith(CONFIRM);
+      expect(requests.find((entry) => entry.path.endsWith("/template"))?.body).toEqual({
+        templateId: "rat-casino-world",
+        templateVersion: "v3",
+        expectedRevision: 3,
+      });
+      expect(container.textContent).toContain("Picking photos");
+      expect(container.textContent).not.toContain("A new version of this world is ready.");
+      expect(container.textContent).not.toContain("World updated.");
+      await tick(2_000);
+      expect(container.textContent).toContain("Picking photos");
+      await tick(2_000);
+      expect(container.querySelector('[role="status"]')?.textContent).toBe("World updated. Publish to make it playable.");
+      expect(container.textContent).not.toContain("A new version of this world is ready.");
+      expect(button("Publish").disabled).toBe(false);
+    });
+
+    it("sends nothing when the admin cancels, and explains a missing newer version", async () => {
+      vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
+      const confirm = vi.fn(() => false);
+      vi.stubGlobal("confirm", confirm);
+      let newer: typeof NEWER | null = NEWER;
+      const { requests } = routeFetch({
+        [`GET ${DRAFT_PATH}`]: () => ({ draft: draft(2), picking: false, lastPickError: null, newerTemplate: newer }),
+        [`POST /api/admin/children/${CHILD}/template`]: () => {
+          newer = null;
+          return [422, { error: { code: "TEMPLATE_UPGRADE_UNAVAILABLE", message: "x" } }];
+        },
+      });
+      await act(async () => root.render(
+        <MemoriesScreen childId={CHILD} displayName="Test Child B" onBack={vi.fn()} onPlay={vi.fn()} />,
+      ));
+      await tick();
+      await act(async () => button("Update world").click());
+      await tick();
+      expect(confirm).toHaveBeenCalledTimes(1);
+      expect(requests.some((entry) => entry.method === "POST")).toBe(false);
+
+      confirm.mockReturnValue(true);
+      await act(async () => button("Update world").click());
+      await tick();
+      expect(container.querySelector('[role="alert"]')?.textContent).toBe("There's no newer version of this world yet.");
+      // The screen reloads, and the stale offer disappears.
+      expect(container.textContent).not.toContain("A new version of this world is ready.");
+      expect(container.querySelectorAll(".family-slot")).toHaveLength(3);
+    });
+  });
 });

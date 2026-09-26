@@ -21,8 +21,8 @@ import { parseJson } from '../validation.js';
 import type { AutoPickJobs } from './jobs.js';
 import { familyJourneyCards, familyWorldView, newFamilySave } from './saves.js';
 import type { FamilyJourneyService } from './service.js';
-import type { FamilyStore } from './store.js';
-import type { FamilyTemplateRegistry } from './templates.js';
+import type { ChildRecord, FamilyStore } from './store.js';
+import { templateOffer, type FamilyTemplateRegistry } from './templates.js';
 
 export interface FamilyRouteDependencies {
   readonly familyAuth: FamilyAuth;
@@ -72,6 +72,11 @@ const draftEditSchema = z.discriminatedUnion('op', [
 ]);
 
 const publishSchema = z.object({ expectedRevision: revision, requestId: uuid }).strict();
+const templateUpgradeSchema = z.object({
+  templateId: z.string().min(1).max(64),
+  templateVersion: z.string().min(1).max(8),
+  expectedRevision: revision.nullable(),
+}).strict();
 const playSchema = z.object({ fresh: z.boolean().optional() }).strict();
 
 export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): void {
@@ -81,6 +86,11 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
   const setup = (): FamilyJourneyService => {
     if (!deps.service) throw new AppError(503, 'FAMILY_SETUP_UNAVAILABLE', 'Photo setup unavailable');
     return deps.service;
+  };
+  // D-11: the newest offered version of the child's own world, when newer.
+  const newerTemplate = (child: ChildRecord) => {
+    const newest = deps.templates.newestUpgrade(child.templateId, child.templateVersion, child.birthDate, deps.today());
+    return newest ? templateOffer(newest) : null;
   };
   const childId = (context: Context): string => {
     const parsed = uuid.safeParse(context.req.param('id'));
@@ -183,6 +193,7 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
           : null,
         picking: status.picking,
         lastPickError: status.lastError,
+        newerTemplate: newerTemplate(child),
       };
     }));
     return context.json({ children: summaries });
@@ -204,14 +215,7 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
     if (!isDateOnly(birthDate) || birthDate > today) {
       throw new AppError(422, 'INVALID_BIRTH_DATE', 'Invalid birthday');
     }
-    return context.json({
-      templates: deps.templates.offeredFor(birthDate, today).map((template) => ({
-        id: template.id,
-        version: template.version,
-        name: template.project.name,
-        chapterCount: template.project.chapters.length,
-      })),
-    });
+    return context.json({ templates: deps.templates.offeredFor(birthDate, today).map(templateOffer) });
   });
 
   app.get('/api/admin/immich/people', async (context) => {
@@ -224,12 +228,14 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
     const player = await requireAdmin(context, deps.familyAuth);
     reads.take(`admin:${player.id}`);
     const id = childId(context);
-    if (!(await deps.familyStore.getChild(id))) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
+    const child = await deps.familyStore.getChild(id);
+    if (!child) throw new AppError(404, 'CHILD_NOT_FOUND', 'Child not found');
     const status = deps.jobs.status(id);
     const response: AdminDraftResponse = {
       draft: (await deps.familyStore.getDraft(id)) ? await setup().getDraft(id) : null,
       picking: status.picking,
       lastPickError: status.lastError,
+      newerTemplate: newerTemplate(child),
     };
     return context.json(response);
   });
@@ -247,15 +253,38 @@ export function registerFamilyRoutes(app: Hono, deps: FamilyRouteDependencies): 
         expectedRevision: request.expectedRevision,
         reseed: request.reseed === true,
       }));
-      const response: AdminDraftResponse = { draft: null, picking: true, lastPickError: null };
+      const response: AdminDraftResponse = { draft: null, picking: true, lastPickError: null, newerTemplate: null };
       return context.json(response, 202);
     }
     if (deps.jobs.status(id).picking) throw new AppError(409, 'AUTO_PICK_RUNNING', 'Photos are being picked');
     const draft = request.op === 'caption'
       ? await service.setCaption(id, request.expectedRevision, request.chapterId, request.slot, request.caption, player.id)
       : await service.swap(id, request.expectedRevision, request.chapterId, request.slot, request.token, player.id);
-    const response: AdminDraftResponse = { draft, picking: false, lastPickError: null };
+    const child = await deps.familyStore.getChild(id);
+    const response: AdminDraftResponse = {
+      draft,
+      picking: false,
+      lastPickError: null,
+      newerTemplate: child ? newerTemplate(child) : null,
+    };
     return context.json(response);
+  });
+
+  // D-11 **Update world**: refuse an unavailable version or a stale revision
+  // now, then rebuild the draft in the background, since chapters that changed
+  // are auto-picked (D-08a). The Memories screen polls the draft as for a pick.
+  app.post('/api/admin/children/:id/template', async (context) => {
+    enforceMutationSecurity(context, deps.appOrigin);
+    const player = await requireAdmin(context, deps.familyAuth);
+    writes.take(`admin:${player.id}`);
+    const id = childId(context);
+    const request = await parseJson(context, templateUpgradeSchema);
+    const service = setup();
+    if (deps.jobs.status(id).picking) throw new AppError(409, 'AUTO_PICK_RUNNING', 'Photos are being picked');
+    await service.checkTemplateUpgrade(id, request);
+    deps.jobs.start(id, () => service.upgradeTemplate(id, request, player.id), 'template-upgrade');
+    const response: AdminDraftResponse = { draft: null, picking: true, lastPickError: null, newerTemplate: null };
+    return context.json(response, 202);
   });
 
   app.get('/api/admin/children/:id/draft/slots/:chapter/:slot/suggestions', async (context) => {

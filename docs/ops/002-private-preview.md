@@ -123,6 +123,7 @@ Routes (all need a family session; `/api/admin/*` also needs `authentik Admins`)
 - `GET|POST /api/admin/children`, `GET /api/admin/templates?birthDate=`, `GET /api/admin/immich/people?name=`.
 - `GET|PUT /api/admin/children/:id/draft`. `PUT {"op":"auto-pick"}` starts a background pick and answers `202`. Poll `GET` until `picking` is false. `caption` and `swap` edits take `expectedRevision`.
 - `GET /api/admin/children/:id/draft/slots/:chapter/:slot/suggestions?cursor=`, `GET /api/admin/candidates/:token/image` and `POST /api/admin/children/:id/publish {expectedRevision, requestId}`.
+- `POST /api/admin/children/:id/template {templateId, templateVersion, expectedRevision}` is **Update world** ([DESIGN-024 D-11](../designs/024-family-journeys.md)). It moves the child to a newer offered version of the same template, answers `202` and rebuilds the draft in the background; poll the draft as for a pick. `expectedRevision` is the draft revision, or `null` before the first pick. The admin child list and the draft read report `newerTemplate` when such a version exists. Publishing the rebuilt draft is a separate step, and started runs keep their version until **Start fresh**.
 
 Inside the family pod, `node dist/server/admin.js` performs the same service calls. It prints only opaque ids and counts, and errors print a fixed code only:
 
@@ -134,16 +135,16 @@ node dist/server/admin.js create-child --name "<Immich name>" --choice <choice i
 node dist/server/admin.js auto-pick --child <child id>           # draft rN filled F/T needs-photo N
 node dist/server/admin.js publish --child <child id>             # publication <id> rN chapters C memories M
 node dist/server/admin.js verify-media --child <child id>        # decoded D/M failed F
-node dist/server/admin.js set-template --child <child id> --template family-world-a@v2
+node dist/server/admin.js set-template --child <child id> --template family-world-a@v2   # draft rN carried K/T needs-photo N
 node dist/server/admin.js status
 ```
 
-A template fix ships as a new template version, because a published journey freezes its template. `set-template` moves a child onto another template the child can play, usually a newer version of the same world. It prints `draft carried` when the new version rebases to the same chapters: the chosen photos, captions and swaps then carry over. Otherwise it prints `draft needs auto-pick`. Then run `publish`. The started run keeps its frozen publication. An administrator starts a fresh run on the new publication with **Start fresh with these photos** in Family setup, or with `POST /api/children/:id/play {"fresh": true}`.
+A template fix ships as a new template version, because a published journey freezes its template. `set-template` is the operator's **Update world** ([DESIGN-024 D-11](../designs/024-family-journeys.md)). It moves a child onto a newer version of the same world that fits their birthday, from the current draft revision. Anything else is refused with `TEMPLATE_UPGRADE_UNAVAILABLE`. Chapters whose id and ages did not change keep their chosen photos, captions and swaps wherever the dates still fit. New or changed chapters are auto-picked. It prints only `draft rN carried K/T needs-photo N`: K slots kept out of T, and N still needing a photo (fill those with **Choose a photo** on the Memories screen). Then run `publish`. The started run keeps its frozen publication. An administrator starts a fresh run on the new publication with **Start fresh with these photos** in Family setup, or with `POST /api/children/:id/play {"fresh": true}`.
 
 To move a child from World A v1 to v2 (use `family-world-b@v2` for World B):
 
 ```bash
-node dist/server/admin.js set-template --child <child id> --template family-world-a@v2   # draft carried
+node dist/server/admin.js set-template --child <child id> --template family-world-a@v2   # draft rN carried 12/12 needs-photo 0
 node dist/server/admin.js publish --child <child id>                                      # publication <id> rN ...
 ```
 

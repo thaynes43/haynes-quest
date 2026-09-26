@@ -109,6 +109,22 @@ export interface PublishCommand {
   build(child: ChildRecord, draft: DraftRecord): BuiltPublication;
 }
 
+/**
+ * DESIGN-024 D-11: move a child to another template version and replace its
+ * draft in one step. Both writes are compare-and-set; either conflict leaves
+ * the child and the draft unchanged.
+ */
+export interface TemplateChangeCommand {
+  readonly childId: string;
+  readonly expectedChildRevision: number;
+  /** `null` when the child has no draft yet: the rebuilt draft is its first. */
+  readonly expectedDraftRevision: number | null;
+  readonly templateId: string;
+  readonly templateVersion: string;
+  readonly draft: DraftContent;
+  readonly actorId: string | null;
+}
+
 export interface FamilyStore {
   createChild(profile: ChildProfile, actorId: string | null): Promise<ChildRecord>;
   getChild(childId: string): Promise<ChildRecord | null>;
@@ -131,6 +147,8 @@ export interface FamilyStore {
     content: DraftContent,
     actorId: string | null,
   ): Promise<DraftRecord>;
+  /** Atomic template change plus draft rebuild (D-11); publications are untouched. */
+  changeTemplate(command: TemplateChangeCommand): Promise<{ child: ChildRecord; draft: DraftRecord }>;
   publish(command: PublishCommand): Promise<PublicationRecord>;
   getPublication(publicationId: string): Promise<PublicationRecord | null>;
   latestPublication(childId: string): Promise<PublicationRecord | null>;
