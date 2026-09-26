@@ -485,6 +485,48 @@ describe("generator commands for a whole world", () => {
     expect(() => worldShellCommands({ fictionalBirthDate: "2015-03-01", chapters: [{ ...chapters[0]!, chapterId: "chapter-1" }] })).toThrow(
       /collide/,
     );
+    expect(() => worldShellCommands({ fictionalBirthDate: "2015-03-01", chapters: [chapters[0]!, { ...chapters[1]!, chapterId: "c1" }] })).toThrow(
+      /chapter id c1 is repeated/,
+    );
+    expect(() => worldShellCommands({ fictionalBirthDate: "2015-03-01", chapters: [chapters[0]!, { ...chapters[1]!, routeId: "c1-route" }] })).toThrow(
+      /route id c1-route is repeated/,
+    );
+  });
+
+  it("lets any chapter reuse a seeded route id, whatever its position", () => {
+    for (const [position, routeId] of [
+      [0, "chapter-1-route"],
+      [0, "chapter-2-route"],
+      [1, "chapter-1-route"],
+      [2, "chapter-2-route"],
+    ] as const) {
+      const chapters = FAMILY_FIXTURE_CHAPTERS.map((chapter, index) =>
+        index === position ? { ...chapter, routeId } : chapter,
+      );
+      const result = applyLevelEditorCommands(createWorldEditorProject({ projectId: "seed-routes" }), {
+        expectedRevision: 0,
+        commands: worldShellCommands({ fictionalBirthDate: "2015-03-01", chapters }),
+      });
+      const label = `${routeId} at ${position}`;
+      expect(result.ok, label).toBe(true);
+      // Only the unreplaced garden casts' date eligibility is left to fix.
+      expect(
+        result.issues.filter((entry) => entry.code !== "encounter.date-eligibility"),
+        label,
+      ).toEqual([]);
+      expect(
+        (result.project as LevelEditorProjectV2).chapters.map((chapter) => [chapter.chapterId, chapter.routeId]),
+        label,
+      ).toEqual(chapters.map((chapter) => [chapter.chapterId, chapter.routeId]));
+    }
+    // A world without seed collisions emits the original command order.
+    const plain = worldShellCommands({ fictionalBirthDate: "2015-03-01", chapters: FAMILY_FIXTURE_CHAPTERS });
+    expect(plain.map((command) => command.type).slice(0, 4)).toEqual([
+      "project.birthdate.set",
+      "chapter.add",
+      "chapter.remove",
+      "chapter.remove",
+    ]);
   });
 
   it("replaces a v4 chapter's level and refuses v3 chapters, wrong ids and v3 documents", () => {

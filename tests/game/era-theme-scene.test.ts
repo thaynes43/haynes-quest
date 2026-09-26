@@ -135,8 +135,32 @@ describe("era theme scenes", () => {
       const decor = world.getObjectByName("theme-kit-decor")!;
       expect(decor.getObjectByName("decor-fallback-water-tower")).toBeDefined();
       expect(decor.getObjectByName("decor-model-clearing-tree")).toBeDefined();
+      // No non-colliding side bank sits level with the decks as a fake floor.
+      expect(sideBanks(world)).toEqual([]);
+    } finally {
+      scene.dispose();
+    }
+  });
+
+  it("keeps the side banks for the earlier themes", () => {
+    const scene = sceneFor("garden");
+    try {
+      const banks = sideBanks(internals(scene).world);
+      expect(banks).toHaveLength(2);
+      for (const bank of banks) expect(bank.position.y + 0.7).toBeCloseTo(0, 9);
     } finally {
       scene.dispose();
     }
   });
 });
+
+/** The 16 m wide, 1.4 m deep boxes drawn beside a course with their tops at y=0. */
+function sideBanks(world: THREE.Group): THREE.Mesh[] {
+  const banks: THREE.Mesh[] = [];
+  world.traverse((node) => {
+    if (!(node instanceof THREE.Mesh) || !(node.geometry instanceof THREE.BoxGeometry)) return;
+    const { width, height } = node.geometry.parameters;
+    if (width === 16 && height === 1.4) banks.push(node);
+  });
+  return banks;
+}

@@ -24,6 +24,7 @@ import {
   type ObbyStepResult,
 } from "../../src/game/obby";
 import {
+  connectionAim,
   edgeEntry,
   ferryPhase,
   FRAME_SECONDS,
@@ -155,6 +156,16 @@ function arrived(simulation: GrowthSimulation, to: ObbyPlatform, launched: boole
   return simulation.state.grounded && simulation.state.supportId === to.id;
 }
 
+/** Connection options for the growth auto-pilot. */
+export interface GrowthConnectionOptions extends TraverseEdgeOptions {
+  /**
+   * Steer for a point this many metres to the side of the usual aim,
+   * perpendicular to the line between the two surfaces' centres (the same
+   * sign convention as `edgeEntry`'s lateral). Zero or absent keeps the aim.
+   */
+  readonly lateral?: number;
+}
+
 /**
  * Crosses one connection from the simulation's current state. The caller has
  * already put the player on the source. Returns when the destination supports
@@ -164,7 +175,7 @@ export function performConnection(
   simulation: GrowthSimulation,
   connection: AuthoredConnection,
   maxFrames = 240,
-  options: TraverseEdgeOptions = {},
+  options: GrowthConnectionOptions = {},
 ): ManeuverResult {
   const course = simulation.course;
   const to = coursePlatform(course, connection.to);
@@ -176,12 +187,15 @@ export function performConnection(
   let airborne = false;
   let secondPressDone = false;
   for (let frame = 0; frame < maxFrames; frame += 1) {
-    const target = sampledPlatform(
+    const aim = connectionAim(
       course,
-      to.id,
+      connection,
       simulation.timeSeconds + FRAME_SECONDS,
     );
-    const move = inputToward(simulation.state, target.center);
+    const target = options.lateral
+      ? lateralAim(course, connection, simulation.timeSeconds + FRAME_SECONDS, aim, options.lateral)
+      : aim;
+    const move = inputToward(simulation.state, target);
     // The second press of a double jump lands near the apex of the first.
     const secondPress =
       doubleJump &&
@@ -201,6 +215,22 @@ export function performConnection(
       return { reached: true, airborne };
   }
   return { reached: false, airborne };
+}
+
+/** `aim` moved `lateral` metres sideways, perpendicular to the centre line. */
+function lateralAim(
+  course: ObbyCourse,
+  connection: AuthoredConnection,
+  time: number,
+  aim: Readonly<{ x: number; z: number }>,
+  lateral: number,
+): Readonly<{ x: number; z: number }> {
+  const from = sampledPlatform(course, connection.from, time).center;
+  const to = sampledPlatform(course, connection.to, time).center;
+  const distance = Math.hypot(to.x - from.x, to.z - from.z) || 1;
+  const directionX = (to.x - from.x) / distance;
+  const directionZ = (to.z - from.z) / distance;
+  return { x: aim.x - directionZ * lateral, z: aim.z + directionX * lateral };
 }
 
 /** Waits, standing still, until `until(simulation)` holds or the budget ends. */
@@ -377,10 +407,109 @@ export interface RouteRun {
 }
 
 /**
+ * How one route leg reaches and crosses its connection. The default is the
+ * scripted kid of `runGrowthRoute`: straight to the takeoff point, no waits.
+ */
+export interface RouteLegPlan {
+  /** Points on the current support to walk through before the takeoff point. */
+  readonly waypoints?: readonly Readonly<{ x: number; z: number }>[];
+  /** Frames to stand still before walking. */
+  readonly waitBeforeFrames?: number;
+  /** Frames to stand still at the takeoff point (static destinations only). */
+  readonly waitAtTakeoffFrames?: number;
+  /** Sideways offset of the takeoff point and the aim, as `edgeEntry`'s lateral. */
+  readonly lateral?: number;
+  readonly dropStyle?: TraverseEdgeOptions["dropStyle"];
+}
+
+/**
+ * One leg of a route run: from the simulation's current position on the
+ * source, walk to the connection's takeoff point (waiting for a lift or ferry
+ * when needed) and cross. Returns whether the destination was reached; the
+ * caller decides what a recovery on the way means. With the default plan this
+ * is exactly one step of `runGrowthRoute`.
+ */
+export function runRouteLeg(
+  simulation: GrowthSimulation,
+  connection: AuthoredConnection,
+  plan: RouteLegPlan = {},
+): boolean {
+  const course = simulation.course;
+  const fromId = connection.from;
+  const toId = connection.to;
+  const from = coursePlatform(course, fromId);
+  const to = coursePlatform(course, toId);
+  const lateral = plan.lateral ?? 0;
+  const stand = (frames: number): boolean => {
+    const recoveries = simulation.recoveries;
+    for (let frame = 0; frame < frames; frame += 1) {
+      growthStep(simulation, { move: { moveX: 0, moveY: 0 } });
+      if (simulation.recoveries > recoveries) return false;
+    }
+    return true;
+  };
+  if (!stand(plan.waitBeforeFrames ?? 0)) return false;
+  if (!from.bounce) {
+    // Walk to the takeoff point for this edge on the source.
+    const inset = connection.mode === "walk" ? 1.2 : 0.75;
+    if (isLift(from)) {
+      const toTop = sampledTop(course, toId, simulation.timeSeconds);
+      waitUntil(
+        simulation,
+        (sim) =>
+          Math.abs(sampledTop(course, fromId, sim.timeSeconds) - toTop) <= 0.05,
+        liftWaitFrames(from),
+      );
+    } else {
+      for (const point of plan.waypoints ?? [])
+        if (!walkTo(simulation, point, 60 * 12)) return false;
+      const entry = edgeEntry(course, connection, simulation.timeSeconds, inset, lateral);
+      if (!walkTo(simulation, entry, 60 * 12)) return false;
+      if (isLift(to)) {
+        const fromTop = sampledTop(course, fromId, simulation.timeSeconds);
+        if (
+          !waitUntil(
+            simulation,
+            (sim) =>
+              Math.abs(sampledTop(course, toId, sim.timeSeconds + 0.2) - fromTop) <= 0.05,
+            liftWaitFrames(to),
+          )
+        )
+          return false;
+      } else if (to.motion) {
+        // A horizontal ferry: wait until it is at its nearest point.
+        const fromCenter = sampledPlatform(course, fromId, simulation.timeSeconds).center;
+        waitUntil(
+          simulation,
+          (sim) => {
+            const now = sampledPlatform(course, toId, sim.timeSeconds).center;
+            const next = sampledPlatform(course, toId, sim.timeSeconds + FRAME_SECONDS).center;
+            return (
+              Math.hypot(next.x - fromCenter.x, next.z - fromCenter.z) >
+                Math.hypot(now.x - fromCenter.x, now.z - fromCenter.z) - 1e-9 &&
+              Math.hypot(now.x - fromCenter.x, now.z - fromCenter.z) <=
+                Math.hypot(to.center.x - fromCenter.x, to.center.z - fromCenter.z)
+            );
+          },
+          60 * 20,
+        );
+      } else if (!stand(plan.waitAtTakeoffFrames ?? 0)) return false;
+    }
+  }
+  const options: GrowthConnectionOptions = {
+    ...(plan.dropStyle === undefined ? {} : { dropStyle: plan.dropStyle }),
+    ...(lateral === 0 ? {} : { lateral }),
+  };
+  return performConnection(simulation, connection, 240, options).reached;
+}
+
+/**
  * One uninterrupted run along `path` from the source's current position.
  * Before each connection the player walks to that connection's takeoff point
  * on the current support, waits for a lift when needed, then crosses. This is
- * the scripted-kid claim: one state, one clock, only `stepObby`.
+ * the scripted-kid claim: one state, one clock, only `stepObby`. It ignores
+ * sweepers; `runGrowthRouteWithWaits` in `family-kid-lib.ts` waits for them
+ * and walks around them.
  */
 export function runGrowthRoute(
   level: ResolvedAuthoredLevel,
@@ -388,14 +517,7 @@ export function runGrowthRoute(
   stage: AppearanceStage,
   abilities: AbilitySet,
 ): RouteRun {
-  const course = level.course;
-  const start = sampledPlatform(course, path[0]!, 0);
-  const simulation = createGrowthSimulation(level, stage, abilities, {
-    x: start.center.x,
-    y: start.center.y + start.size.y / 2,
-    z: start.center.z,
-  });
-  growthStep(simulation, { move: { moveX: 0, moveY: 0 } });
+  const simulation = startRouteSimulation(level, path, stage, abilities);
   const completed: string[] = [];
   for (let index = 0; index + 1 < path.length; index += 1) {
     const fromId = path[index]!;
@@ -404,71 +526,44 @@ export function runGrowthRoute(
       (candidate) => candidate.from === fromId && candidate.to === toId,
     );
     const label = `${fromId}->${toId}`;
-    if (!connection) return result(label);
-    const from = coursePlatform(course, fromId);
-    const to = coursePlatform(course, toId);
-    if (!from.bounce) {
-      // Walk to the takeoff point for this edge on the source.
-      const inset = connection.mode === "walk" ? 1.2 : 0.75;
-      if (isLift(from)) {
-        const toTop = sampledTop(course, toId, simulation.timeSeconds);
-        waitUntil(
-          simulation,
-          (sim) =>
-            Math.abs(sampledTop(course, fromId, sim.timeSeconds) - toTop) <= 0.05,
-          liftWaitFrames(from),
-        );
-      } else {
-        const entry = edgeEntry(course, connection, simulation.timeSeconds, inset, 0);
-        if (!walkTo(simulation, entry, 60 * 12)) return result(label);
-        if (isLift(to)) {
-          const fromTop = sampledTop(course, fromId, simulation.timeSeconds);
-          if (
-            !waitUntil(
-              simulation,
-              (sim) =>
-                Math.abs(sampledTop(course, toId, sim.timeSeconds + 0.2) - fromTop) <= 0.05,
-              liftWaitFrames(to),
-            )
-          )
-            return result(label);
-        } else if (to.motion) {
-          // A horizontal ferry: wait until it is at its nearest point.
-          const fromCenter = sampledPlatform(course, fromId, simulation.timeSeconds).center;
-          waitUntil(
-            simulation,
-            (sim) => {
-              const now = sampledPlatform(course, toId, sim.timeSeconds).center;
-              const next = sampledPlatform(course, toId, sim.timeSeconds + FRAME_SECONDS).center;
-              return (
-                Math.hypot(next.x - fromCenter.x, next.z - fromCenter.z) >
-                  Math.hypot(now.x - fromCenter.x, now.z - fromCenter.z) - 1e-9 &&
-                Math.hypot(now.x - fromCenter.x, now.z - fromCenter.z) <=
-                  Math.hypot(to.center.x - fromCenter.x, to.center.z - fromCenter.z)
-              );
-            },
-            60 * 20,
-          );
-        }
-      }
-    }
-    const outcome = performConnection(simulation, connection);
-    if (!outcome.reached) return result(label);
+    if (!connection) return routeRunResult(simulation, completed, label);
+    if (!runRouteLeg(simulation, connection)) return routeRunResult(simulation, completed, label);
     completed.push(label);
     // Riding a lift: the next edge waits on the lift for its stop.
   }
-  return result(null);
+  return routeRunResult(simulation, completed, null);
+}
 
-  function result(failedAt: string | null): RouteRun {
-    return {
-      completed,
-      failedAt,
-      recoveries: simulation.recoveries,
-      bounces: [...simulation.bounces],
-      seconds: simulation.timeSeconds,
-      maxFeetY: simulation.maxFeetY,
-    };
-  }
+/** A route run's simulation, standing at the centre of the path's first surface. */
+export function startRouteSimulation(
+  level: ResolvedAuthoredLevel,
+  path: readonly string[],
+  stage: AppearanceStage,
+  abilities: AbilitySet,
+): GrowthSimulation {
+  const start = sampledPlatform(level.course, path[0]!, 0);
+  const simulation = createGrowthSimulation(level, stage, abilities, {
+    x: start.center.x,
+    y: start.center.y + start.size.y / 2,
+    z: start.center.z,
+  });
+  growthStep(simulation, { move: { moveX: 0, moveY: 0 } });
+  return simulation;
+}
+
+export function routeRunResult(
+  simulation: GrowthSimulation,
+  completed: readonly string[],
+  failedAt: string | null,
+): RouteRun {
+  return {
+    completed: [...completed],
+    failedAt,
+    recoveries: simulation.recoveries,
+    bounces: [...simulation.bounces],
+    seconds: simulation.timeSeconds,
+    maxFeetY: simulation.maxFeetY,
+  };
 }
 
 export function sampleSupportTop(course: ObbyCourse, id: string, time: number): number {

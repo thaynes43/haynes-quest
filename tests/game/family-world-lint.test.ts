@@ -118,8 +118,13 @@ describe("family lint presets", () => {
       minLiftDwell: 1.5,
       maxLiftLandingGap: 0.15,
       maxLiftLandingOffset: 0.15,
+      liftBoardingCheckpoint: "warning",
     });
-    expect(FAMILY_WORLD_LINT_PRESETS.b).toMatchObject({ strikeDeckMargin: 1, minLiftDwell: 2 });
+    expect(FAMILY_WORLD_LINT_PRESETS.b).toMatchObject({
+      strikeDeckMargin: 1,
+      minLiftDwell: 2,
+      liftBoardingCheckpoint: "error",
+    });
     // Strike envelopes use the same reach as the runtime enemies.
     expect(AUTHORED_LEVEL_LIMITS.ordinaryAttackReach).toBe(enemyAttackRange("ordinary"));
     expect(AUTHORED_LEVEL_LIMITS.bossAttackReach).toBe(enemyAttackRange("boss"));
@@ -127,16 +132,41 @@ describe("family lint presets", () => {
 });
 
 describe("(a) bounce pad gaps", () => {
-  const rig = (landingGap: number, approachGap: number) =>
+  // The balcony reaches down to the pad top unless a thinner slab is asked for.
+  const rig = (landingGap: number, approachGap: number, balconyThickness = 2) =>
     level(
       [
         platform("deck", { x: 0, z: 0, sizeX: 4, sizeZ: 4, top: 0 }),
         bouncePad("pad", { x: 0, z: -2.8 - approachGap, sizeX: 1.6, sizeZ: 1.6, top: 0, strength: "big" }),
-        platform("balcony", { x: 0, z: -5.6 - approachGap - landingGap, sizeX: 4, sizeZ: 4, top: 2 }),
+        platform("balcony", {
+          x: 0,
+          z: -5.6 - approachGap - landingGap,
+          sizeX: 4,
+          sizeZ: 4,
+          top: 2,
+          thickness: balconyThickness,
+        }),
       ],
       [walk("deck", "pad"), bounce("pad", "balcony")],
       ["deck", "pad", "balcony"],
     );
+
+  it("reports a landing whose underside sits above the pad top, however small the gap", () => {
+    expect(lintPadGaps(rig(0.35, 0, 0.6))).toEqual([
+      expect.objectContaining({
+        code: "family.pad-gap.underhang",
+        severity: "error",
+        subject: "pad->balcony",
+        path: "$.connections[1]",
+        measured: 1.4,
+        limit: 0,
+      }),
+    ]);
+    expect(codes(lintPadGaps(rig(0, 0, 1.9)))).toEqual(["family.pad-gap.underhang"]);
+    // Reaching the pad top, or below it, closes the opening.
+    expect(lintPadGaps(rig(0, 0, 2))).toEqual([]);
+    expect(lintPadGaps(rig(0, 0, 3))).toEqual([]);
+  });
 
   it("accepts flush and 0.35 m gaps", () => {
     expect(lintPadGaps(rig(0.35, 0))).toEqual([]);
@@ -330,10 +360,27 @@ describe("(e) the major memory ends the chapter", () => {
 });
 
 describe("(f) lifts", () => {
-  const rig = (options: { dwell?: number; gap?: number; bottomTop?: number; topLanding?: number }) =>
+  const rig = (options: {
+    dwell?: number;
+    gap?: number;
+    bottomTop?: number;
+    topLanding?: number;
+    checkpoint?: boolean;
+  }) =>
     level(
       [
         platform("lower", { x: 0, z: 0, sizeX: 4, sizeZ: 4, top: options.bottomTop ?? 0 }),
+        ...(options.checkpoint === false
+          ? []
+          : [
+              {
+                type: "checkpoint",
+                id: "lower-safe",
+                platformId: "lower",
+                position: { x: 0, y: options.bottomTop ?? 0, z: 1 },
+                activation: { type: "platform" },
+              } satisfies AuthoredLevelPiece,
+            ]),
         lift("car", {
           x: 0,
           z: -3.5 - (options.gap ?? 0),
@@ -359,8 +406,57 @@ describe("(f) lifts", () => {
     expect(codes(lintLifts(rig({})))).toEqual(["family.lift.dwell"]);
     expect(lintLifts(rig({ dwell: 1.5 }))).toEqual([]);
     expect(lintLifts(rig({ dwell: 1.5 }), FAMILY_WORLD_LINT_PRESETS.b)).toEqual([
-      expect.objectContaining({ code: "family.lift.dwell", measured: 1.5, limit: 2, path: "$.pieces[2].travel.dwell" }),
+      expect.objectContaining({ code: "family.lift.dwell", measured: 1.5, limit: 2, path: "$.pieces[3].travel.dwell" }),
     ]);
+  });
+
+  it("asks for a checkpoint on every boarding landing, an error in World B", () => {
+    const bare = rig({ dwell: 2, checkpoint: false });
+    expect(lintLifts(bare)).toEqual([
+      expect.objectContaining({
+        code: "family.lift.boarding-checkpoint",
+        severity: "warning",
+        subject: "lower->car",
+        path: "$.connections[0]",
+      }),
+    ]);
+    expect(lintLifts(bare, FAMILY_WORLD_LINT_PRESETS.b)).toEqual([
+      expect.objectContaining({ code: "family.lift.boarding-checkpoint", severity: "error" }),
+    ]);
+    // A descending ride boards from the top landing.
+    const down = {
+      ...bare,
+      connections: [ride("upper", "car"), ride("car", "lower")],
+      mainPath: ["upper", "car", "lower"],
+    };
+    expect(lintLifts(down)).toEqual([
+      expect.objectContaining({ code: "family.lift.boarding-checkpoint", subject: "upper->car" }),
+    ]);
+  });
+
+  it("rejects a floor under the lift with less than the actor height beneath its bottom stop", () => {
+    const withPit = (top: number) => {
+      const document = rig({ dwell: 2 });
+      return {
+        ...document,
+        pieces: [
+          ...document.pieces,
+          platform("pit", { x: 0, z: -3.5, sizeX: 3, sizeZ: 3, top, thickness: 0.6 }),
+        ],
+      };
+    };
+    // The car is 0.6 m thick, so its underside at the bottom stop is -0.6.
+    expect(lintLifts(withPit(-0.6))).toEqual([
+      expect.objectContaining({
+        code: "family.lift.shaft-floor",
+        severity: "error",
+        subject: "car/pit",
+        measured: 0,
+        limit: AUTHORED_LEVEL_LIMITS.actorHeight,
+      }),
+    ]);
+    expect(codes(lintLifts(withPit(-1.5)))).toEqual(["family.lift.shaft-floor"]);
+    expect(lintLifts(withPit(-0.6 - AUTHORED_LEVEL_LIMITS.actorHeight))).toEqual([]);
   });
 
   it("reports wide or uneven landings, and warns when a walker must hop", () => {
@@ -376,6 +472,39 @@ describe("(f) lifts", () => {
     // The top landing 0.1 m below the top stop is an easy step down.
     expect(lintLifts(rig({ dwell: 2, topLanding: 3.9 }))).toEqual([]);
     expect(codes(lintLifts(rig({ dwell: 2, topLanding: 3.7 })))).toEqual(["family.lift.landing-offset"]);
+  });
+
+  it("reads the step direction from the ride, so descending rides warn correctly", () => {
+    const descending = (options: Parameters<typeof rig>[0]) => {
+      const document = rig(options);
+      const checkpoint = {
+        type: "checkpoint",
+        id: "upper-safe",
+        platformId: "upper",
+        position: { x: 0, y: options.topLanding ?? 4, z: -8 },
+        activation: { type: "platform" },
+      } satisfies AuthoredLevelPiece;
+      return {
+        ...document,
+        pieces: [...document.pieces, checkpoint],
+        connections: [ride("upper", "car"), ride("car", "lower")],
+        mainPath: ["upper", "car", "lower"],
+      };
+    };
+    // Boarding at the top from a landing 0.1 m below the stop, and leaving at
+    // the bottom onto a landing 0.1 m above it: both are step ups.
+    expect(
+      lintLifts(descending({ dwell: 2, topLanding: 3.9, bottomTop: 0.1 })).map((entry) => [
+        entry.code,
+        entry.subject,
+        entry.measured,
+      ]),
+    ).toEqual([
+      ["family.lift.step-up", "upper->car", 0.1],
+      ["family.lift.step-up", "car->lower", 0.1],
+    ]);
+    // Landings placed for a descent (both steps down) need no hop.
+    expect(lintLifts(descending({ dwell: 2, topLanding: 4.1, bottomTop: -0.1 }))).toEqual([]);
   });
 });
 
@@ -399,9 +528,13 @@ describe("lintFamilyChapter", () => {
     expect(lintFamilyChapter(document, { world: "b" })).toContainEqual(
       expect.objectContaining({ code: "family.lift.dwell", limit: 2 }),
     );
+    // Its thin sky balcony also leaves an opening under the landing.
+    expect(findings).toContainEqual(
+      expect.objectContaining({ code: "family.pad-gap.underhang", subject: "spring-pad->sky-balcony" }),
+    );
     expect(
-      lintFamilyChapter(document, { maxPadGap: 0.5 }).some((entry) => entry.rule === "pad-gap"),
-    ).toBe(false);
+      lintFamilyChapter(document, { maxPadGap: 0.5 }).filter((entry) => entry.rule === "pad-gap").map((entry) => entry.code),
+    ).toEqual(["family.pad-gap.underhang"]);
     expect(Object.isFrozen(findings)).toBe(true);
   });
 });

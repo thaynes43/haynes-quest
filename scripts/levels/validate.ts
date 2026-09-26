@@ -1,4 +1,5 @@
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveAuthoredLevelDocument } from "../../src/shared/authored-level.js";
 import {
@@ -70,34 +71,48 @@ if (requested.length === 0) {
     }
   }
 
-  // DESIGN-025 example world: generated commands must replay byte-identically
-  // into the checked-in authored-level-v4 project.
-  const demoPath = fileURLToPath(
-    new URL("./examples/vertical-v4-demo.project.json", import.meta.url),
-  );
-  try {
-    const source = await readFile(demoPath, "utf8");
-    const { project, levels } = resolveLevelEditorProject(JSON.parse(source));
-    const commands = JSON.parse(
-      await readFile(
-        new URL("./examples/vertical-v4-demo.commands.json", import.meta.url),
-        "utf8",
-      ),
-    );
-    const rebuilt = applyLevelEditorCommands(
-      createWorldEditorProject({ projectId: "vertical-v4-demo" }),
-      commands,
-    );
-    if (!rebuilt.ok) throw new Error("Vertical demo command history no longer builds");
-    if (serializeLevelEditorProject(rebuilt.project) !== source)
-      throw new Error("Vertical demo fixture differs from its shared editor commands");
-    console.log(
-      `${demoPath}: valid ${project.projectId}; ${project.chapters.length} chapters, ${Object.keys(levels).length} resolved routes; command history matches`,
-    );
-  } catch (error) {
-    console.error(
-      `${demoPath}: ${error instanceof Error ? error.message : "Validation failed"}`,
-    );
-    process.exitCode = 1;
+  // Generated example worlds (DESIGN-025): every `examples/<name>.project.json`
+  // with a sibling `<name>.commands.json` must replay byte-identically. The
+  // replay starts from `createWorldEditorProject` with the project's own id
+  // and catalog version (a family world pins parody-catalog-v7), and the
+  // command file holds one batch or an array of batches applied in order, so
+  // a whole world can stay under the per-batch size limit.
+  const examplesDirectory = fileURLToPath(new URL("./examples/", import.meta.url));
+  const examples = (await readdir(examplesDirectory))
+    .filter((file) => file.endsWith(".project.json"))
+    .sort();
+  for (const file of examples) {
+    const projectPath = join(examplesDirectory, file);
+    const commandsPath = join(examplesDirectory, file.replace(/\.project\.json$/, ".commands.json"));
+    try {
+      const source = await readFile(projectPath, "utf8");
+      const { project, levels } = resolveLevelEditorProject(JSON.parse(source));
+      const history = JSON.parse(await readFile(commandsPath, "utf8")) as unknown;
+      const batches = (Array.isArray(history) ? history : [history]) as Parameters<
+        typeof applyLevelEditorCommands
+      >[1][];
+      let rebuilt = createWorldEditorProject({
+        projectId: project.projectId,
+        catalogVersion: project.catalogVersion,
+      });
+      for (const [index, batch] of batches.entries()) {
+        const result = applyLevelEditorCommands(rebuilt, batch);
+        if (!result.ok)
+          throw new Error(
+            `Command batch ${index} no longer builds: ${result.issues.map((entry) => entry.code).join(", ")}`,
+          );
+        rebuilt = result.project as typeof rebuilt;
+      }
+      if (serializeLevelEditorProject(rebuilt) !== source)
+        throw new Error(`${file} differs from its shared editor commands`);
+      console.log(
+        `${projectPath}: valid ${project.projectId}; ${project.chapters.length} chapters, ${Object.keys(levels).length} resolved routes; command history matches`,
+      );
+    } catch (error) {
+      console.error(
+        `${projectPath}: ${error instanceof Error ? error.message : "Validation failed"}`,
+      );
+      process.exitCode = 1;
+    }
   }
 }

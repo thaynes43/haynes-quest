@@ -1172,6 +1172,32 @@ function gatewayClearanceFailure(
   return null;
 }
 
+/**
+ * A descent (`drop`, or a jump requiring `glide`) may land on a lower surface
+ * that reaches back under its takeoff deck, but the part of the landing past
+ * the takeoff edge must still hold an avatar-inset landing strip. Otherwise
+ * the landing lies under the deck: the gap reads as zero, yet a player who
+ * leaves the edge has already overshot it.
+ */
+function descentLandingFailure(
+  from: PlatformPiece,
+  to: PlatformPiece,
+  modeLabel: string,
+): string | null {
+  const deltaX = to.center.x - from.center.x;
+  const deltaZ = to.center.z - from.center.z;
+  const travelAxis: HorizontalAxis = Math.abs(deltaX) >= Math.abs(deltaZ) ? "x" : "z";
+  const travelDelta = travelAxis === "x" ? deltaX : deltaZ;
+  const direction: -1 | 1 = travelDelta < 0 ? -1 : 1;
+  const requiredDepth =
+    AUTHORED_LEVEL_LIMITS.supportEdgeClearance + GATEWAY_CLEARANCE_LENGTH;
+  const takeoffEdge = from.center[travelAxis] + direction * from.size[travelAxis] / 2;
+  const landingFarEdge = to.center[travelAxis] + direction * to.size[travelAxis] / 2;
+  const beyond = direction * (landingFarEdge - takeoffEdge);
+  if (beyond >= requiredDepth - EPSILON) return null;
+  return `${modeLabel} landing ${JSON.stringify(to.id)} extends ${beyond.toFixed(3)}m past the ${travelAxis} edge of ${JSON.stringify(from.id)}; it needs ${requiredDepth}m beyond that edge (an avatar-inset ${GATEWAY_CLEARANCE_LENGTH}m landing strip) so the landing does not lie under the takeoff deck`;
+}
+
 /** The narrow, avatar-width lane between the closest takeoff and landing edges. */
 function jumpGatewayCorridor(
   from: PlatformPiece,
@@ -1601,6 +1627,16 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
           "connection.gateway-clearance",
           clearanceFailure,
         );
+      const landingFailure = clearanceFailure
+        ? null
+        : descentLandingFailure(from, to, "drop");
+      if (landingFailure)
+        issue(
+          issues,
+          `$.connections[${index}]`,
+          "connection.landing-under-source",
+          landingFailure,
+        );
       return;
     }
     const requiredMove =
@@ -1674,6 +1710,17 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
           `$.connections[${index}]`,
           "connection.gateway-clearance",
           clearanceFailure,
+        );
+      const landingFailure =
+        requiredMove === "glide" && !clearanceFailure
+          ? descentLandingFailure(from, to, "glide")
+          : null;
+      if (landingFailure)
+        issue(
+          issues,
+          `$.connections[${index}]`,
+          "connection.landing-under-source",
+          landingFailure,
         );
     }
   });

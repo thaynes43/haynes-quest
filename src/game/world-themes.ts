@@ -77,6 +77,13 @@ export interface RuntimeWorldTheme {
   readonly environment: EnvironmentKit;
   readonly environmentScale: number;
   readonly usesPathTiles: boolean;
+  /**
+   * False drops the two non-colliding side banks drawn level with y=0 beside
+   * a course. The family era themes set it: their ground-level decks would
+   * otherwise sit beside a fake floor a child falls straight through.
+   * Absent means the banks are drawn, as every earlier theme does.
+   */
+  readonly sideBanks?: false;
 }
 
 const clearingAssets: EnvironmentAssetPaths = Object.freeze({
@@ -304,13 +311,16 @@ const casino: RuntimeWorldTheme = {
  * Family-world era themes (DESIGN-026), available only to authored-level-v4
  * levels. Each is a bright storybook palette for its era. They use the
  * pending-kit state without automatic scenery: no clearing trees, meadow or
- * hills, and no placeholder props of their own, so a level's placed decor
- * frames it. The finish shows the procedural pending marker until an exact
- * kit is reviewed.
+ * hills, no side banks and no placeholder props of their own, so a level's
+ * placed decor frames it. The finish shows the procedural pending marker
+ * until an exact kit is reviewed.
  */
 function eraTheme(
   id: AuthoredLevelTheme,
-  theme: Omit<RuntimeWorldTheme, "id" | "environment" | "environmentScale" | "usesPathTiles">,
+  theme: Omit<
+    RuntimeWorldTheme,
+    "id" | "environment" | "environmentScale" | "usesPathTiles" | "sideBanks"
+  >,
 ): RuntimeWorldTheme {
   return {
     id,
@@ -322,6 +332,7 @@ function eraTheme(
     },
     environmentScale: 1,
     usesPathTiles: false,
+    sideBanks: false,
   };
 }
 

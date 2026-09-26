@@ -30,6 +30,7 @@ import type {
   RequirableGrowthMove,
 } from "../../../src/shared/abilities.js";
 import {
+  createWorldEditorProject,
   LEVEL_EDITOR_CHAPTER_IDS,
   type LevelEditorAnchorSlot,
   type LevelEditorChapterV2,
@@ -347,9 +348,19 @@ export interface WorldShellSpec {
   /** Renames the project when present. */
   readonly name?: string;
   readonly fictionalBirthDate: string;
-  /** In play order; ids must differ from the seeded `chapter-1` and `chapter-2`. */
+  /**
+   * In play order. Chapter ids must differ from the seeded `chapter-1` and
+   * `chapter-2`; chapter and route ids must be unique. A route id may reuse a
+   * seeded route id (`chapter-1-route`, `chapter-2-route`) in any position.
+   */
   readonly chapters: readonly WorldShellChapter[];
 }
+
+/** The seeded chapters of `createWorldEditorProject`, with their route ids. */
+const SEEDED_WORLD_CHAPTERS: ReadonlyArray<Readonly<{ chapterId: string; routeId: string }>> =
+  createWorldEditorProject({ projectId: "world-shell-seeds" }).chapters.map(
+    ({ chapterId, routeId }) => Object.freeze({ chapterId, routeId }),
+  );
 
 /**
  * Commands that turn `createWorldEditorProject`'s two seeded chapters into
@@ -363,11 +374,20 @@ export function worldShellCommands(spec: WorldShellSpec): LevelEditorCommand[] {
   if (spec.chapters.length === 0)
     throw new Error("A world shell needs at least one chapter");
   const seeds = new Set<string>(LEVEL_EDITOR_CHAPTER_IDS);
-  for (const chapter of spec.chapters)
+  const chapterIds = new Set<string>();
+  const routeIds = new Set<string>();
+  for (const chapter of spec.chapters) {
     if (seeds.has(chapter.chapterId))
       throw new Error(
         `World shell chapter id ${chapter.chapterId} would collide with a seeded chapter`,
       );
+    if (chapterIds.has(chapter.chapterId))
+      throw new Error(`World shell chapter id ${chapter.chapterId} is repeated`);
+    if (routeIds.has(chapter.routeId))
+      throw new Error(`World shell route id ${chapter.routeId} is repeated`);
+    chapterIds.add(chapter.chapterId);
+    routeIds.add(chapter.routeId);
+  }
   const commands: LevelEditorCommand[] = [];
   if (spec.name !== undefined) commands.push({ type: "project.rename", name: spec.name });
   commands.push({
@@ -383,11 +403,22 @@ export function worldShellCommands(spec: WorldShellSpec): LevelEditorCommand[] {
     subtitle: chapter.subtitle,
     description: chapter.description,
   });
-  // Add the first chapter, drop both seeds, then add the rest, so a world can
-  // use the full chapter limit.
-  commands.push(add(spec.chapters[0]!));
-  for (const seed of LEVEL_EDITOR_CHAPTER_IDS)
-    commands.push({ type: "chapter.remove", chapterId: seed });
+  // A project always keeps one chapter, so add the first chapter before the
+  // last seed goes, then add the rest, so a world can use the full chapter
+  // limit. A seed whose route id the first chapter reuses goes first, so the
+  // result never depends on chapter order.
+  const first = spec.chapters[0]!;
+  const [earlySeeds, lateSeeds] = [
+    SEEDED_WORLD_CHAPTERS.filter((seed) => seed.routeId === first.routeId),
+    SEEDED_WORLD_CHAPTERS.filter((seed) => seed.routeId !== first.routeId),
+  ];
+  if (lateSeeds.length === 0)
+    throw new Error("A world shell needs a seed chapter to keep while adding the first");
+  for (const seed of earlySeeds)
+    commands.push({ type: "chapter.remove", chapterId: seed.chapterId });
+  commands.push(add(first));
+  for (const seed of lateSeeds)
+    commands.push({ type: "chapter.remove", chapterId: seed.chapterId });
   for (const chapter of spec.chapters.slice(1)) commands.push(add(chapter));
   for (const chapter of spec.chapters)
     commands.push(

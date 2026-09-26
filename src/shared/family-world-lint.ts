@@ -70,6 +70,13 @@ export interface FamilyLintOptions {
   readonly maxLiftLandingGap: number;
   /** (f) Largest height difference between a landing and the lift stop it serves. */
   readonly maxLiftLandingOffset: number;
+  /**
+   * (f) How a boarding landing without a checkpoint is reported. Dwell alone
+   * does not make a lift safe: a child who walks toward it while it is away
+   * falls into the open shaft about two times in three, so every landing
+   * that boards a lift should hold a checkpoint that makes the fall cheap.
+   */
+  readonly liftBoardingCheckpoint: "error" | "warning";
 }
 
 /**
@@ -87,6 +94,7 @@ export const FAMILY_WORLD_LINT_PRESETS: Readonly<
     minLiftDwell: 1.5,
     maxLiftLandingGap: 0.15,
     maxLiftLandingOffset: 0.15,
+    liftBoardingCheckpoint: "warning",
   }),
   b: Object.freeze({
     maxPadGap: 0.35,
@@ -96,6 +104,7 @@ export const FAMILY_WORLD_LINT_PRESETS: Readonly<
     minLiftDwell: 2,
     maxLiftLandingGap: 0.15,
     maxLiftLandingOffset: 0.15,
+    liftBoardingCheckpoint: "error",
   }),
 });
 
@@ -186,6 +195,14 @@ function encounterEntries(
  * R2: a walk-on player at partial stick falls through a pad gap wider than
  * about 0.35 m. Checks the gap from every bounce pad to each deck it launches
  * onto and to each deck that leads onto it.
+ *
+ * The small gap only helps when the landing's side reaches down to the pad:
+ * a slow bounce then meets that wall, drops back onto the pad and bounces
+ * again until it clears the edge. A landing whose underside sits above the
+ * pad top leaves an opening a partial-stick bounce drifts through, under the
+ * landing (`family.pad-gap.underhang`), however small the gap. Walk-on
+ * success at stick 0.4–1.0 still needs the kinematic check in
+ * `tests/game/family-kid-lib.ts` (`bounceWalkOn`).
  */
 export function lintPadGaps(
   level: AuthoredLevelDocument,
@@ -215,6 +232,19 @@ export function lintPadGaps(
         message: `The ${role} gap ${round(gap)}m for pad ${JSON.stringify(role === "landing" ? from.id : to.id)} exceeds ${options.maxPadGap}m; extend the deck toward the pad or make it flush`,
         measured: round(gap),
         limit: options.maxPadGap,
+      });
+    if (role !== "landing") return;
+    const underhang = to.center.y - to.size.y / 2 - authoredSurfaceTopRange(from).max;
+    if (underhang > EPSILON)
+      findings.push({
+        rule: "pad-gap",
+        code: "family.pad-gap.underhang",
+        severity: "error",
+        path: `$.connections[${index}]`,
+        subject: label(connection),
+        message: `The underside of landing ${JSON.stringify(to.id)} sits ${round(underhang)}m above pad ${JSON.stringify(from.id)}'s top, so a partial-stick bounce can drift under it; extend the landing down to the pad top`,
+        measured: round(underhang),
+        limit: 0,
       });
   });
   return findings;
@@ -509,16 +539,29 @@ const WALK_STEP_UP = 0.015;
  * each landing a ride connection serves sits within `maxLiftLandingGap`
  * horizontally and `maxLiftLandingOffset` vertically of its stop. A warning
  * notes a stop a walking child cannot step onto or off without a hop.
+ *
+ * Dwell does not close the shaft: while the lift is away, a child who walks
+ * off the boarding landing falls in (about two arrivals in three, dwell or
+ * not). So every landing that boards a lift needs a checkpoint
+ * (`family.lift.boarding-checkpoint`, an error in World B), which makes that
+ * fall a short retry. A static floor in the shaft is no guard: a descending
+ * lift pushes a player standing on it through the floor, so any surface under
+ * a lift must leave at least the actor height (1.22 m) below the lift's
+ * bottom stop (`family.lift.shaft-floor`).
  */
 export function lintLifts(
   level: AuthoredLevelDocument,
   options: Pick<
     FamilyLintOptions,
     "minLiftDwell" | "maxLiftLandingGap" | "maxLiftLandingOffset"
-  > = FAMILY_WORLD_LINT_PRESETS.a,
+  > &
+    Partial<Pick<FamilyLintOptions, "liftBoardingCheckpoint">> = FAMILY_WORLD_LINT_PRESETS.a,
 ): FamilyLintFinding[] {
   const surfaces = surfacesOf(level);
   const findings: FamilyLintFinding[] = [];
+  const checkpointed = new Set<string>();
+  for (const piece of level.pieces)
+    if (piece.type === "checkpoint") checkpointed.add(piece.platformId);
   level.pieces.forEach((piece, pieceIndex) => {
     if (piece.type !== "lift") return;
     const lift = piece as AuthoredLiftPiece;
@@ -535,6 +578,26 @@ export function lintLifts(
         limit: options.minLiftDwell,
       });
     const stops = authoredSurfaceTopRange(lift);
+    const liftBounds = authoredSurfaceBounds(lift);
+    const underside = lift.center.y - lift.size.y / 2;
+    for (const other of surfaces.values()) {
+      if (other.id === lift.id || other.type === "lift") continue;
+      if (!interiorOverlap(liftBounds, authoredSurfaceBounds(other))) continue;
+      const otherTop = authoredSurfaceTopRange(other).max;
+      if (otherTop > underside + EPSILON) continue;
+      const headroom = underside - otherTop;
+      if (headroom < AUTHORED_LEVEL_LIMITS.actorHeight - EPSILON)
+        findings.push({
+          rule: "lift",
+          code: "family.lift.shaft-floor",
+          severity: "error",
+          path: `$.pieces[${pieceIndex}]`,
+          subject: `${lift.id}/${other.id}`,
+          message: `${JSON.stringify(other.id)} lies under lift ${JSON.stringify(lift.id)} with ${round(headroom)}m below its bottom stop, so the descending lift pushes a player standing there through it; leave at least ${AUTHORED_LEVEL_LIMITS.actorHeight}m or open the shaft`,
+          measured: round(headroom),
+          limit: AUTHORED_LEVEL_LIMITS.actorHeight,
+        });
+    }
     level.connections.forEach((connection, index) => {
       if (connection.mode !== "ride") return;
       if (connection.from !== lift.id && connection.to !== lift.id) return;
@@ -547,6 +610,15 @@ export function lintLifts(
       const gap = authoredSurfaceGap(lift, landing);
       const offset = landingTop - stopTop;
       const path = `$.connections[${index}]`;
+      if (connection.to === lift.id && !checkpointed.has(landing.id))
+        findings.push({
+          rule: "lift",
+          code: "family.lift.boarding-checkpoint",
+          severity: options.liftBoardingCheckpoint ?? "warning",
+          path,
+          subject: label(connection),
+          message: `Landing ${JSON.stringify(landing.id)} boards lift ${JSON.stringify(lift.id)} but holds no checkpoint; a child who walks in while the lift is away falls into the shaft, so place a checkpoint on the landing`,
+        });
       if (gap > options.maxLiftLandingGap + EPSILON)
         findings.push({
           rule: "lift",
@@ -569,10 +641,12 @@ export function lintLifts(
           measured: round(Math.abs(offset)),
           limit: options.maxLiftLandingOffset,
         });
-      // Walking on at the bottom means stepping from the landing onto the
-      // lift; walking off at the top means stepping from the lift onto the
-      // landing. Either step up beyond the walk tolerance needs a hop.
-      const stepUp = stop === "bottom" ? -offset : offset;
+      // The connection's direction, not the stop, says which way a walking
+      // child steps: boarding steps from the landing onto the lift, leaving
+      // steps from the lift onto the landing, whether the ride goes up or
+      // down. Either step up beyond the walk tolerance needs a hop.
+      const boarding = connection.to === lift.id;
+      const stepUp = boarding ? -offset : offset;
       if (stepUp > WALK_STEP_UP + EPSILON)
         findings.push({
           rule: "lift",
@@ -580,7 +654,7 @@ export function lintLifts(
           severity: "warning",
           path,
           subject: label(connection),
-          message: `At its ${stop} stop lift ${JSON.stringify(lift.id)} needs a ${round(stepUp)}m step up to ${stop === "bottom" ? "board from" : "leave onto"} ${JSON.stringify(landing.id)}; a walking child must hop`,
+          message: `At its ${stop} stop lift ${JSON.stringify(lift.id)} needs a ${round(stepUp)}m step up to ${boarding ? "board from" : "leave onto"} ${JSON.stringify(landing.id)}; a walking child must hop`,
           measured: round(stepUp),
           limit: WALK_STEP_UP,
         });

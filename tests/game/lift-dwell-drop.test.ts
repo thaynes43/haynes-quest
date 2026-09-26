@@ -247,6 +247,39 @@ describe("drop connections", () => {
     expect(codes(narrow)).toEqual(["connection.gateway-clearance"]);
   });
 
+  it("rejects a landing under the takeoff deck, and crosses one that reaches back under it", () => {
+    // The reviewer's stacked pair: a zero gap, but the landing lies wholly
+    // under the deck, so a player who leaves the edge has overshot it.
+    const high = platform("drop-top", { x: 40, z: -20, sizeX: 6, sizeZ: 6, top: 2.5, thickness: 0.4 });
+    const stacked = platform("drop-bottom", { x: 40, z: -20.5, sizeX: 2, sizeZ: 2, top: 0 });
+    expect(codes(withRig([high, stacked], [drop("drop-top", "drop-bottom")]))).toEqual([
+      "connection.landing-under-source",
+    ]);
+    // Glides had the same hole.
+    expect(
+      codes(withRig([high, stacked], [jump("drop-top", "drop-bottom", { requires: "glide" })])),
+    ).toEqual(["connection.landing-under-source"]);
+    // A landing may reach back under the deck while 1.05 m (the avatar inset
+    // plus a 0.75 m landing strip) lies beyond the takeoff edge at z=-23.
+    const under = (farEdge: number) =>
+      platform("drop-bottom", { x: 40, z: (farEdge - 21) / 2, sizeX: 4, sizeZ: -21 - farEdge, top: 0 });
+    expect(codes(withRig([high, under(-24)], [drop("drop-top", "drop-bottom")]))).toEqual([
+      "connection.landing-under-source",
+    ]);
+    for (const farEdge of [-24.05, -24.5]) {
+      const document = withRig([high, under(farEdge)], [drop("drop-top", "drop-bottom")]);
+      expect(codes(document)).toEqual([]);
+      const level = resolveAuthoredLevelDocument(document);
+      const edge = connection(level.document, "drop-top", "drop-bottom");
+      for (const stage of STAGES) {
+        const label = `far edge ${farEdge}, ${stage}`;
+        expect(traverseEdge(level, edge, stage).reached, label).toBe(true);
+        expect(traverseEdge(level, edge, stage, 0, { dropStyle: "step" }).reached, label).toBe(true);
+        expect(traverseGrowthEdge(level, edge, stage, abilitiesForAge(0)).reached, label).toBe(true);
+      }
+    }
+  });
+
   it("never appears in v1–v3 documents", () => {
     const document = rig(1, 0);
     expect(codes({ ...document, schemaVersion: "authored-level-v3" }).some((code) => code.startsWith("schema."))).toBe(true);

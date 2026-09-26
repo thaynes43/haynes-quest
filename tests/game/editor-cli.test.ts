@@ -687,4 +687,25 @@ describe("level editor CLI", () => {
       await rm(directory, { recursive: true, force: true });
     }
   }, 90_000);
+
+  it("starts a world on a pinned parody catalog", () => {
+    const current = runEditor("world-template", "catalog-cli");
+    expect(current.status).toBe(0);
+    expect(parseLevelEditorProjectJson(current.stdout)).toMatchObject({ catalogVersion: "parody-catalog-v5" });
+    for (const args of [
+      ["catalog-cli", "Family world", "--catalog", "parody-catalog-v7"],
+      ["--catalog", "parody-catalog-v7", "catalog-cli", "Family world"],
+    ]) {
+      const pinned = runEditor("world-template", ...args);
+      expect(pinned.status, args.join(" ")).toBe(0);
+      const project = parseLevelEditorProjectJson(pinned.stdout);
+      expect(project).toMatchObject({ catalogVersion: "parody-catalog-v7", name: "Family world" });
+    }
+    const unknown = runEditor("world-template", "catalog-cli", "--catalog", "parody-catalog-v99");
+    expect(unknown.status).toBe(1);
+    expect(unknown.stdout).toBe("");
+    expect(unknown.stderr).toContain("Unknown catalog");
+    const missing = runEditor("world-template", "catalog-cli", "--catalog");
+    expect(missing.status).toBe(1);
+  }, 60_000);
 });
