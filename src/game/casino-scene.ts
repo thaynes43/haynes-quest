@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { AUTHORED_LEVEL_SCHEMA_VERSION_V4 } from "../shared/authored-level";
 import type { LevelLayout } from "./level";
 import type { SceneAssets } from "./scene-assets";
 
@@ -87,6 +88,36 @@ function matrixAt(x: number, y: number, z: number, rotationY = 0): THREE.Matrix4
 
 function staticPlatforms(level: LevelLayout) {
   return (level.course?.platforms ?? []).filter((platform) => !platform.motion);
+}
+
+/** How far past a room's far edge the chase camera still trails a player who has crossed into the next room. */
+const PORTAL_SIGHTLINE_REACH = 6;
+
+/**
+ * The height a room's far portal is measured from. On a v4 course (the
+ * family worlds' climbing courses) it is the highest standing top just past
+ * the room's far edge, the next room the player crosses into, when that is
+ * higher than the room itself. Earlier courses keep their own room's top, so
+ * published v1-v3 routes such as the Rat Casino render unchanged.
+ */
+function portalFloor(level: LevelLayout, host: ReturnType<typeof staticPlatforms>[number]): number {
+  const top = host.center.y + host.size.y / 2;
+  if (level.authored?.schemaVersion !== AUTHORED_LEVEL_SCHEMA_VERSION_V4) return top;
+  const left = host.center.x - host.size.x / 2;
+  const right = host.center.x + host.size.x / 2;
+  const far = host.center.z - host.size.z / 2;
+  let floor = top;
+  for (const other of staticPlatforms(level)) {
+    if (other === host) continue;
+    const otherFront = other.center.z + other.size.z / 2;
+    const otherFar = other.center.z - other.size.z / 2;
+    const otherLeft = other.center.x - other.size.x / 2;
+    const otherRight = other.center.x + other.size.x / 2;
+    if (otherFront <= far - PORTAL_SIGHTLINE_REACH || otherFar >= far) continue;
+    if (otherRight <= left || otherLeft >= right) continue;
+    floor = Math.max(floor, other.center.y + other.size.y / 2);
+  }
+  return floor;
 }
 
 function stagePlatform(level: LevelLayout, x: number, z: number) {
@@ -182,8 +213,11 @@ export class CasinoScene {
       const portalZ = far + 0.55;
       // The third-person camera trails the player about three metres above
       // the previous landing. Keep overhead trim above that sightline when
-      // the player has already crossed into the next room.
-      const portalTop = top + (arcade ? 4.6 : 4.35);
+      // the player has already crossed into the next room, measured from
+      // that room when it stands higher (a climbing course such as World A's
+      // casino finale, where backstage's beam otherwise hung inside the
+      // camera once the player landed on the 2 m higher Projection Balcony).
+      const portalTop = portalFloor(level, host) + (arcade ? 4.6 : 4.35);
 
       // A theatre-like frame at each room's far end creates a visible layered
       // destination without changing the authored lane or fight collision.
