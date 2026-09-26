@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**44 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**45 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -91,6 +91,18 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D boss · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/c7dd7b10f7951bca.webp" alt="Selected original nursery bus construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="yes-yes-veggie" markdown="1">
+
+[![Exact Yes-Yes Veggie model: a stubborn lime broccoli on two rounded feet with a lumpy dark-green crown, glaring cream eyes, a small frown and green leaf mittens](media/catalog-thumbnails/v001/8a4c8a2ea90e18fd.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/yes-yes-veggie/v001.md)
+
+### [Yes-Yes Veggie](reviews/yes-yes-veggie/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/48cd4b4d67e99ff2.webp" alt="Selected original stubborn broccoli construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
 </div>
 

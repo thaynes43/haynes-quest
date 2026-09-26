@@ -1,0 +1,340 @@
+{
+  "work_order": "WO111",
+  "asset_id": "yes-yes-veggie",
+  "version": "v001",
+  "scene_owner": "none",
+  "status": "released",
+  "scene_lease": "released",
+  "acquired_utc": "2026-09-26T04:33:17.934334+00:00",
+  "predecessor_asset": "gadget-helper",
+  "predecessor_status": "WO111 gadget-helper v001 \u00b7 Awaiting Tom's review \u00b7 used in the family release",
+  "predecessor_current_scene": "/workspace/haynes-quest/family-eras/gadget-helper/v001/live-scene-release.blend",
+  "predecessor_lease": "released",
+  "jobs": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "prior_masters": {
+    "bickering-besties/v001/bestie-black/bestie-black.blend": {
+      "path": "/workspace/haynes-quest/bickering-besties/v001/bestie-black/bestie-black.blend",
+      "sha256": "f4e43b9061ead88e7bd90ce34669ccb66c08b8330ce854789cde7478c6468b85"
+    },
+    "bickering-besties/v001/bestie-pink/bestie-pink.blend": {
+      "path": "/workspace/haynes-quest/bickering-besties/v001/bestie-pink/bestie-pink.blend",
+      "sha256": "c4f1b422552a64e8fdc283425b753c30f84e90d31e81aae54010ad046d30f0a2"
+    },
+    "bickering-besties/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/bickering-besties/v001/live-scene-release.blend",
+      "sha256": "927ee5a27a13707798ed0e1a98060f9eeda999de6fe485cf4bda410055a74e2f"
+    },
+    "clearing-kit/v001/arrival-landmark/arrival-landmark.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/arrival-landmark/arrival-landmark.blend",
+      "sha256": "6787f0f78b03c10f092f59a886934aaf01e23f4975dd5566c90292adf57d4b0a"
+    },
+    "clearing-kit/v001/clearing-stone/clearing-stone.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/clearing-stone/clearing-stone.blend",
+      "sha256": "2e26ac4613f7c7a5a165fb1abd956af211ca0568ee88714a04f334f294d60f8a"
+    },
+    "clearing-kit/v001/clearing-tree/clearing-tree.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/clearing-tree/clearing-tree.blend",
+      "sha256": "839ce2438106d8cea9f562a90c082c82049689cc56e44868473cb0bbffc9022b"
+    },
+    "clearing-kit/v001/ground-tile/ground-tile.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/ground-tile/ground-tile.blend",
+      "sha256": "960399fcb147db3cb54cbcd786007ffbaf7f85e794b636c1e3f5e23e96b2ed08"
+    },
+    "clearing-kit/v001/iterations/shape-a/arrival-landmark/arrival-landmark.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-a/arrival-landmark/arrival-landmark.blend",
+      "sha256": "a0a9b6605403f5bbf0dda76cde4a2a8739844f92234a11674eba9e7ae77368b1"
+    },
+    "clearing-kit/v001/iterations/shape-a/clearing-stone/clearing-stone.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-a/clearing-stone/clearing-stone.blend",
+      "sha256": "bbba74233d423f92a65bc550bcb3fdd54a2a89732e21a2d4d4959068d1cb8211"
+    },
+    "clearing-kit/v001/iterations/shape-a/clearing-tree/clearing-tree.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-a/clearing-tree/clearing-tree.blend",
+      "sha256": "e25b707b5b3ce381b6561f9734808d50ce3ba912eacb8f4c0da03f361285f99c"
+    },
+    "clearing-kit/v001/iterations/shape-a/ground-tile/ground-tile.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-a/ground-tile/ground-tile.blend",
+      "sha256": "13bd3bdf772816bba858948820e6bd45e96e4e342fe8ec1a51e9712584adc273"
+    },
+    "clearing-kit/v001/iterations/shape-a/low-step/low-step.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-a/low-step/low-step.blend",
+      "sha256": "bd976a88f11f234664b335f0b6a8ac324d3114c9fe9090880f37bfd1d46bd3a8"
+    },
+    "clearing-kit/v001/iterations/shape-a/memory-keepsake/memory-keepsake.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-a/memory-keepsake/memory-keepsake.blend",
+      "sha256": "c072924506137ac7885f8f35c93f25ff5b7b442514c3b50f852a961bfa1c5105"
+    },
+    "clearing-kit/v001/iterations/shape-a/path-tile/path-tile.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-a/path-tile/path-tile.blend",
+      "sha256": "a9ba1c0e77c3cfb9fb6539217decbbcb15c28574061b312808a4b6814db517ee"
+    },
+    "clearing-kit/v001/iterations/shape-b/arrival-landmark/arrival-landmark.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-b/arrival-landmark/arrival-landmark.blend",
+      "sha256": "55aa991a0c6f358dc8ff7609560ba5b95736fb755f30f9a3fe2f554c6b1efbec"
+    },
+    "clearing-kit/v001/iterations/shape-b/clearing-stone/clearing-stone.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-b/clearing-stone/clearing-stone.blend",
+      "sha256": "72eb17e206b9430f27dca36d0dd7dfd6a806297d91a78ff98aac4097a5638fb2"
+    },
+    "clearing-kit/v001/iterations/shape-b/clearing-tree/clearing-tree.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-b/clearing-tree/clearing-tree.blend",
+      "sha256": "f2b56071398fb2fd33b3378c827717938fb78379aac17d472cef1fb23cbf45b6"
+    },
+    "clearing-kit/v001/iterations/shape-b/ground-tile/ground-tile.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-b/ground-tile/ground-tile.blend",
+      "sha256": "11423754a44c3a9397c890eb8ccebd9fadc082967f5fbf2e29df67fdb0498406"
+    },
+    "clearing-kit/v001/iterations/shape-b/low-step/low-step.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-b/low-step/low-step.blend",
+      "sha256": "6a69e43146272386be7f1c0d90a839d24a5d03a78b81cf04e294af3d309730d8"
+    },
+    "clearing-kit/v001/iterations/shape-b/memory-keepsake/memory-keepsake.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-b/memory-keepsake/memory-keepsake.blend",
+      "sha256": "06de6e7621c7027a3981cf1a91760bd4f9685aa7fcc66393cae74ec723073e49"
+    },
+    "clearing-kit/v001/iterations/shape-b/path-tile/path-tile.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-b/path-tile/path-tile.blend",
+      "sha256": "93b33748425c932b6f3c6b98273aa6d366f1afea550d0cd83c63a90ff2085d16"
+    },
+    "clearing-kit/v001/iterations/shape-c/clearing-stone/clearing-stone.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/iterations/shape-c/clearing-stone/clearing-stone.blend",
+      "sha256": "89ea771b72da0ee1091e51cf7ed266a4a1fb797997d25403035c658cbe3edeb7"
+    },
+    "clearing-kit/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/live-scene-release.blend",
+      "sha256": "efa907e74c8e6fee25f7778a865d668430e547fc5b443d97bcb4d24893f38a40"
+    },
+    "clearing-kit/v001/low-step/low-step.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/low-step/low-step.blend",
+      "sha256": "355722f90edf9d712825c938fe8b61f0299991aba781a5cd1b4c5bce505b6ff5"
+    },
+    "clearing-kit/v001/memory-keepsake/memory-keepsake.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/memory-keepsake/memory-keepsake.blend",
+      "sha256": "a9fbeead38391f6a0c39a0c7b7c6a5031ffccf9fc9bac965031d49b9ed39cf37"
+    },
+    "clearing-kit/v001/path-tile/path-tile.blend": {
+      "path": "/workspace/haynes-quest/clearing-kit/v001/path-tile/path-tile.blend",
+      "sha256": "daba9a1f42a0cd6d9811f5f9a11b212e0aafacf01673060a468c7afd1b9f1a91"
+    },
+    "era-2020/v001/blockling/blockling.blend": {
+      "path": "/workspace/haynes-quest/era-2020/v001/blockling/blockling.blend",
+      "sha256": "ea7075a8729424bb476c8ee103bee654df2bae077c764d768a1d1dafcc4d52a9"
+    },
+    "era-2020/v001/buffer-baron/buffer-baron.blend": {
+      "path": "/workspace/haynes-quest/era-2020/v001/buffer-baron/buffer-baron.blend",
+      "sha256": "5b262f65de2ccd65c5c65c970088e81fa72b8f14c4eb30e5714d7611c9a9172c"
+    },
+    "era-2020/v001/signal-moth/signal-moth.blend": {
+      "path": "/workspace/haynes-quest/era-2020/v001/signal-moth/signal-moth.blend",
+      "sha256": "eec5407e9dd891dcfe2ee7617fed4f771f5e92668f3a2e17b454c69e17b8d22f"
+    },
+    "era-2024/v001/loop-dancer/loop-dancer.blend": {
+      "path": "/workspace/haynes-quest/era-2024/v001/loop-dancer/loop-dancer.blend",
+      "sha256": "e1ea1e148f009fe9fd8fa33d44b8895a743a08883091b64b1cfa00a6fde457d0"
+    },
+    "era-2024/v001/prism-mimic/prism-mimic.blend": {
+      "path": "/workspace/haynes-quest/era-2024/v001/prism-mimic/prism-mimic.blend",
+      "sha256": "9279833543039de1a07ab801a07d8db233bd5951a1db7d428e9779d6372ae746"
+    },
+    "era-2024/v001/trendweaver/trendweaver.blend": {
+      "path": "/workspace/haynes-quest/era-2024/v001/trendweaver/trendweaver.blend",
+      "sha256": "ab8730924e3b2025bf0185bc129c67a2b1f4e1f916b4e8c2ec53fc195b003c6c"
+    },
+    "era-equipment/v001/acorn-shield/acorn-shield.blend": {
+      "path": "/workspace/haynes-quest/era-equipment/v001/acorn-shield/acorn-shield.blend",
+      "sha256": "911ae6b54cefc02622ac9d5682846de355c0dc8237cbbe0514875cd839f31a3b"
+    },
+    "era-equipment/v001/checkpoints/initial-export/acorn-shield/acorn-shield.blend": {
+      "path": "/workspace/haynes-quest/era-equipment/v001/checkpoints/initial-export/acorn-shield/acorn-shield.blend",
+      "sha256": "46b16d885cf19aa5465272031bf6579c5a5cd7737d0c80f4b87aa8d1b8e61b0f"
+    },
+    "era-equipment/v001/checkpoints/initial-export/prism-wand/prism-wand.blend": {
+      "path": "/workspace/haynes-quest/era-equipment/v001/checkpoints/initial-export/prism-wand/prism-wand.blend",
+      "sha256": "47ed17b982fbf19787b715d59f72fa461e64d9e5bc3313105565907152188d99"
+    },
+    "era-equipment/v001/checkpoints/initial-export/ribbon-shield/ribbon-shield.blend": {
+      "path": "/workspace/haynes-quest/era-equipment/v001/checkpoints/initial-export/ribbon-shield/ribbon-shield.blend",
+      "sha256": "5d32cb8ce67df6430f690d5565531915180e254fcd64e6463acec29cd725274a"
+    },
+    "era-equipment/v001/checkpoints/initial-export/spark-mallet/spark-mallet.blend": {
+      "path": "/workspace/haynes-quest/era-equipment/v001/checkpoints/initial-export/spark-mallet/spark-mallet.blend",
+      "sha256": "ee64555339f4cb3b8ed296fd8591b5260395d74965dd0a5f09364add1655de2f"
+    },
+    "era-equipment/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/era-equipment/v001/live-scene-release.blend",
+      "sha256": "6ebc393a8b1197e9e0422af04a4fecd8bbf95f52aa6aba7c1ee22df5b5b9649d"
+    },
+    "era-equipment/v001/prism-wand/prism-wand.blend": {
+      "path": "/workspace/haynes-quest/era-equipment/v001/prism-wand/prism-wand.blend",
+      "sha256": "ed65e04ebaf8382bf445d923c5840d9292e617f7edd7a8dbca589c89ee153374"
+    },
+    "era-equipment/v001/ribbon-shield/ribbon-shield.blend": {
+      "path": "/workspace/haynes-quest/era-equipment/v001/ribbon-shield/ribbon-shield.blend",
+      "sha256": "6d4cf8de5781564cd1315b510627f8255102394ef2d3fee37425d6c58c8f25ae"
+    },
+    "era-equipment/v001/spark-mallet/spark-mallet.blend": {
+      "path": "/workspace/haynes-quest/era-equipment/v001/spark-mallet/spark-mallet.blend",
+      "sha256": "b794e64fc21cb39fd40ba2845c64f435a57f0d0e410b8021c2431ee4c85922c1"
+    },
+    "family-eras/bin-chicken/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/bin-chicken/v001/live-scene-release.blend",
+      "sha256": "042563ddff775abccc712a22c6f27795aa1e40c288bb6989547ddde35357708c"
+    },
+    "family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.blend",
+      "sha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496"
+    },
+    "family-eras/clubhouse-bully-cat/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/live-scene-release.blend",
+      "sha256": "4438513d36fb533061c4470f74f545a419a2f424acf0fa8ab9dd4ec8ac3ebb9d"
+    },
+    "family-eras/gadget-helper/v001/gadget-helper.blend": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/gadget-helper.blend",
+      "sha256": "f467492d4dd667a21a3d695925680ffed927b1457d138fe49536372b87011351"
+    },
+    "family-eras/gadget-helper/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/live-scene-release.blend",
+      "sha256": "460a074b810fcbf18e3fad8d18a2781349e52392eab475a0e85b831d5cac164c"
+    },
+    "family-eras/honk-bus/v001/honk-bus.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus.blend",
+      "sha256": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00"
+    },
+    "family-eras/honk-bus/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/live-scene-release.blend",
+      "sha256": "a3a94cd1a0b847a79266c8c1d43692d047be85c3a6eecacf6ede83296f8b0054"
+    },
+    "family-eras/magic-house/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/live-scene-release.blend",
+      "sha256": "a9a276022502083ee29f46a155bf908789570cd5f25df5d5f07f8a4f2e008d03"
+    },
+    "family-eras/mischief-kitten/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/live-scene-release.blend",
+      "sha256": "ee595224f2ff5a43d31f4187c5c1d9cc94a1fa7f0991b19e485a6be14d90254d"
+    },
+    "family-eras/rival-mayor/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/live-scene-release.blend",
+      "sha256": "3c8a63ede90e6214134aa8f9835d35c8b27724111652f29c9a6f541377d65efd"
+    },
+    "midnight-arcade-kit/v001/midnight-arcade-kit.blend": {
+      "path": "/workspace/haynes-quest/midnight-arcade-kit/v001/midnight-arcade-kit.blend",
+      "sha256": "60ebbb1387e5402ffa5c3ea2c32bf701896398976e8a0db5967de54f7e765be8"
+    },
+    "parody/block-party-pair/v001/drama-dragon/drama-dragon.blend": {
+      "path": "/workspace/haynes-quest/parody/block-party-pair/v001/drama-dragon/drama-dragon.blend",
+      "sha256": "59a45076f2cc5ab6f12b135b8272cbd771a25724d9275cfb98f24948f2fd9561"
+    },
+    "parody/block-party-pair/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/parody/block-party-pair/v001/live-scene-release.blend",
+      "sha256": "d89132f2ba7526a78b933aca4dea9de248cc7653a710d09e49abd2e5885c7b3c"
+    },
+    "parody/block-party-pair/v001/peel-patrol/peel-patrol.blend": {
+      "path": "/workspace/haynes-quest/parody/block-party-pair/v001/peel-patrol/peel-patrol.blend",
+      "sha256": "d9dacbbee93b4b660e64ed351092731016a184fc38a64eb45b73dabe76628e5e"
+    },
+    "parody/mister-hiss/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/parody/mister-hiss/v001/live-scene-release.blend",
+      "sha256": "d44ef91177adcc469431efa2310b56384bc37d168aabeea0671effaf54e9871f"
+    },
+    "parody/mister-hiss/v001/mister-hiss.blend": {
+      "path": "/workspace/haynes-quest/parody/mister-hiss/v001/mister-hiss.blend",
+      "sha256": "18781a327b2aba9387308daacf5f6e5aaf62851eae5a00e47fb15a2e93bf266a"
+    },
+    "parody/remix-trio/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/live-scene-release.blend",
+      "sha256": "9a84bd4c72e70292512bd605f4da44f6fcccdca290816d230aa0bc053c972afe"
+    },
+    "parody/remix-trio/v001/nap-captain/nap-captain.blend": {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/nap-captain/nap-captain.blend",
+      "sha256": "dd3d8efcebdda7db6b1381878ec4abdf9a08010c01317822266c07c206a5f7a3"
+    },
+    "parody/remix-trio/v001/sir-flush-a-lot/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/live-scene-release.blend",
+      "sha256": "ae7dce0836df8c078730236099126c00e14ea15b54d90215383fd6c64f702d6a"
+    },
+    "parody/remix-trio/v001/sir-flush-a-lot/sir-flush-a-lot.blend": {
+      "path": "/workspace/haynes-quest/parody/remix-trio/v001/sir-flush-a-lot/sir-flush-a-lot.blend",
+      "sha256": "228a8ff41533a830d386ff05bb8ba3367039f22ce8580186423bfd97912cfb30"
+    },
+    "rat-casino-cast/chick-flia/v001/chick-flia.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/chick-flia/v001/chick-flia.blend",
+      "sha256": "fec0fae84e0d5a50a0b6706f21decd4baeb48e8b7be6d0b616cf68932a9d3aed"
+    },
+    "rat-casino-cast/chick-flia/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/chick-flia/v001/live-scene-release.blend",
+      "sha256": "2512360ce88baaca745045be75f5920427b183e50920dfcb1047f21534e0bd9d"
+    },
+    "rat-casino-cast/fox-card-shark/v001/fox-card-shark.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/fox-card-shark/v001/fox-card-shark.blend",
+      "sha256": "d8868821affad96e55a3b63d0908e0bed88f7bf24626b7f22d77a73969554c6c"
+    },
+    "rat-casino-cast/fox-card-shark/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/fox-card-shark/v001/live-scene-release.blend",
+      "sha256": "aec42f661728ab70a3ee6c8eef571083f6281927e70e4c91bd04fa359c17b549"
+    },
+    "rat-casino-cast/golden-after-hours-rat/v001/golden-after-hours-rat.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/golden-after-hours-rat.blend",
+      "sha256": "f08904c3ebe10813065e62f2d0d2d1f0072f39f889e696218f767960e72a46ae"
+    },
+    "rat-casino-cast/golden-after-hours-rat/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/golden-after-hours-rat/v001/live-scene-release.blend",
+      "sha256": "0c6f20cb314b9a6cd2f7b5c108462a502a659513ea4ed70f765fc050e818b4e8"
+    },
+    "rat-casino-cast/jackrabbit-drummer/v001/jackrabbit-drummer.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/jackrabbit-drummer/v001/jackrabbit-drummer.blend",
+      "sha256": "9c2a45b5e91db402ffebc4d9171e0d7bed128312a20996f30652f7ba0ab57a0e"
+    },
+    "rat-casino-cast/jackrabbit-drummer/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/jackrabbit-drummer/v001/live-scene-release.blend",
+      "sha256": "74dbf6ffeebe084c79f6531c6ede6f24a609a1b0b15247500a3d1f665352a249"
+    },
+    "rat-casino-cast/moth-projectionist/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/live-scene-release.blend",
+      "sha256": "106464b9d3eb81890499a0d3850dc16a360fa1ad76d69537b95be231e9f0daf5"
+    },
+    "rat-casino-cast/moth-projectionist/v001/moth-projectionist.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/moth-projectionist.blend",
+      "sha256": "ba4eb25f1c4f14745b1132bc8a63cddde0c5a4de44ecc6f40b2cc189d26923fc"
+    },
+    "rat-casino-cast/moth-projectionist/v001/pre-WO105-metadata-correction/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/moth-projectionist/v001/pre-WO105-metadata-correction/live-scene-release.blend",
+      "sha256": "da5efade6fef5207b4b68f953fba6a16b8d878d6f7ba0e6f379d7b1509a617a5"
+    },
+    "rat-casino-cast/rat-pit-boss/v001/rat-pit-boss.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v001/rat-pit-boss.blend",
+      "sha256": "1796a6e96ea435eba6eee870394a75895fc025984e704f4b8669d5cad3dcd3ef"
+    },
+    "rat-casino-cast/rat-pit-boss/v002/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v002/live-scene-release.blend",
+      "sha256": "13846cee831dcea5522cf18ebbdb085457363f6f8544581f45f73e98542f5f86"
+    },
+    "rat-casino-cast/rat-pit-boss/v002/rat-pit-boss.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-cast/rat-pit-boss/v002/rat-pit-boss.blend",
+      "sha256": "498afc3120eb223164baa7d7da05e29846d2f99f89389cfb7364fa62a4aa1761"
+    },
+    "rat-casino-kit/v001/rat-casino-kit.blend": {
+      "path": "/workspace/haynes-quest/rat-casino-kit/v001/rat-casino-kit.blend",
+      "sha256": "99791504d602bf3f3abd06182f4c00e3b68dd954a14b5a05843c8208752c609e"
+    },
+    "skyline-toybox-kit/v001/skyline-toybox-kit.blend": {
+      "path": "/workspace/haynes-quest/skyline-toybox-kit/v001/skyline-toybox-kit.blend",
+      "sha256": "dcfcac4a9360529edd6d818827db7b0f3bd9d75534c0b49a5ac5b245358ae1f3"
+    }
+  },
+  "takeover": {
+    "reacquired_utc": "2026-09-26T14:14:27.323829+00:00",
+    "previous_owner": "yes-yes-veggie v001 \u00b7 claude-opus-5-5 xhigh Blender author (PLAN-019 coordinator workflow)",
+    "previous_acquired_utc": "2026-09-26T04:33:17.934334+00:00",
+    "reason": "Previous yes-yes-veggie v001 author (same work order, same asset) stopped after the static checkpoint without releasing; last scene save ~04:53 UTC. The PLAN-019 coordinator re-dispatched the full model to this continuation.",
+    "jobs": "{'RENDER': False, 'RENDER_PREVIEW': False, 'OBJECT_BAKE': False, 'COMPOSITE': False}",
+    "prior_masters_changed": []
+  },
+  "author_jobs_running": false,
+  "released_utc": "2026-09-26T14:47:26.336971+00:00",
+  "glb_sha256": "b513172d40b1e5ba581bc99a134bd9a26a1b7cdc7775c0c1f87056e0a18bf81f"
+}

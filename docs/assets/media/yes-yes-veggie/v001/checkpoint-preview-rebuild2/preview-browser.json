@@ -1,0 +1,26 @@
+{
+  "clips": {},
+  "calls": 3,
+  "triangles": 14356,
+  "glError": 0,
+  "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "pose": [
+    -0.20699999528194535,
+    0.30500005948611064,
+    -0.020000024650173254
+  ],
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "requests": [
+    "http://127.0.0.1:40689/",
+    "http://127.0.0.1:40689/three/build/three.module.js",
+    "http://127.0.0.1:40689/three/examples/jsm/loaders/GLTFLoader.js",
+    "http://127.0.0.1:40689/three/examples/jsm/utils/BufferGeometryUtils.js",
+    "http://127.0.0.1:40689/three/examples/jsm/utils/SkeletonUtils.js",
+    "http://127.0.0.1:40689/three/build/three.core.js",
+    "http://127.0.0.1:40689/asset.glb",
+    "blob:http://127.0.0.1:40689/b6a2d7de-27a2-4c6c-ba1e-10b8529a2869"
+  ],
+  "glb_sha256": "51840445c13cdaa1a1ca7a1c2903d2fd53841cd6215de8a8cd86d5623a0db692"
+}

@@ -1,0 +1,104 @@
+{
+  "asset_id": "yes-yes-veggie",
+  "version": "v001",
+  "glb_sha256": "b513172d40b1e5ba581bc99a134bd9a26a1b7cdc7775c0c1f87056e0a18bf81f",
+  "method": "WO111 yes-yes-veggie source-geometry clearance and attachment audit.\n\nSupplements the exact-GLB all-vertex checks. Uses the same authored part\nvertices, weights and baked actions as the exported GLB, sampled at 60 Hz:\n- leaf mittens and forearm stalks stay outside the posed stalk (trunk, legs,\n  feet, branches), the crown florets and the eyes;\n- the two leaf mittens never touch each other;\n- pupils and catchlights stay inside their cream eye ovals;\n- brows stay seated on the face (neither buried nor lifted off);\n- no source vertex goes below the floor.\nSigned distances use nearest-surface normals on per-frame BVHs of the posed\nparts. Not a universal triangle-collision proof.",
+  "samples": 515,
+  "worst": {
+    "leaf_vs_stalk": {
+      "margin_m": 0.004937872290611267,
+      "clip": "attack",
+      "time_s": 0.6,
+      "side": "L",
+      "point": [
+        -0.15746602791749598,
+        0.012045035488930572,
+        0.5216473259928586
+      ]
+    },
+    "leaf_vs_crown": {
+      "margin_m": 0.061003319919109344,
+      "clip": "attack",
+      "time_s": 0.6,
+      "side": "L",
+      "point": [
+        -0.28869341204389154,
+        -0.030387551325149073,
+        0.4775272312973671
+      ]
+    },
+    "leaf_vs_eyes": {
+      "margin_m": 0.03969992324709892,
+      "clip": "attack",
+      "time_s": 1.2,
+      "side": "R",
+      "point": [
+        0.15292606461311575,
+        0.1995566798846194,
+        0.4612809399835982
+      ]
+    },
+    "forearm_vs_stalk": {
+      "margin_m": 0.027432117611169815,
+      "clip": "attack",
+      "time_s": 1.25,
+      "side": "R",
+      "point": [
+        0.15967588444152742,
+        0.15582966252837607,
+        0.4032706801236303
+      ]
+    },
+    "forearm_vs_crown": {
+      "margin_m": 0.08409928530454636,
+      "clip": "attack",
+      "time_s": 0.75,
+      "side": "R",
+      "point": [
+        0.2218933496752375,
+        -0.020757176061941898,
+        0.45888794242829534
+      ]
+    },
+    "leaf_vs_leaf": {
+      "margin_m": 0.287821888923645,
+      "clip": "attack",
+      "time_s": 1.3
+    }
+  },
+  "pupils": {
+    "max_ellipse_radius": 0.8830325292717389,
+    "clip": "defeat",
+    "time_s": 1.6833,
+    "side": 1
+  },
+  "brow_signed_distance_range_m": [
+    -0.004123089835047722,
+    0.01555500365793705
+  ],
+  "brow_rest_signed_distance_range_m": [
+    -0.0030613280832767487,
+    0.013120894320309162
+  ],
+  "floor_minimum": {
+    "z": -1.432519335371225e-08,
+    "clip": "defeat",
+    "time_s": 0.5667,
+    "point": [
+      -0.16401486059899212,
+      0.06844435989314106,
+      -1.432519335371225e-08
+    ]
+  },
+  "checks": {
+    "leaf_clear_of_stalk": true,
+    "leaf_clear_of_crown": true,
+    "leaf_clear_of_eyes": true,
+    "forearm_clear_of_stalk": true,
+    "forearm_clear_of_crown": true,
+    "leaves_never_touch": true,
+    "pupils_inside_eye_ovals": true,
+    "brows_seated_on_face": true,
+    "no_source_floor_penetration": true
+  }
+}

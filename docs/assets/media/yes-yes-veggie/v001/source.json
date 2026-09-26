@@ -1,0 +1,36 @@
+{
+  "asset_id": "yes-yes-veggie",
+  "version": "v001",
+  "work_order": "WO111",
+  "created_utc": "2026-09-26T00:48:22.290727+00:00",
+  "generator": "OpenAI built-in image_gen tool; one generation then one presentation edit",
+  "authoring_agent": "Driving GPT-6 Astra / max",
+  "reference_files": [
+    "concept-draft.png"
+  ],
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "selected_by": "Driving Astra",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "selection_notes": "The first draft had a noisy transparent backdrop and tight top framing. One edit retained character design and replaced the backdrop with opaque parchment, adding margins. Use concept.png; retain draft for provenance. Model crown as broad scalloped masses with atlas texture, not thousands of little florets.",
+  "files": {
+    "concept.png": {
+      "bytes": 2240733,
+      "sha256": "57f267ed5ccef19ca44f756f6aaed02516ec2ded7d17c2ca2df2655057e34b34"
+    },
+    "concept-draft.png": {
+      "bytes": 2187800,
+      "sha256": "824df0843da718845fc6b0d24e8ac8d43103e00c99d9c0dad6a4cb285da26312"
+    },
+    "prompt.txt": {
+      "bytes": 1867,
+      "sha256": "2809905903f044f7abd2c966c7c8e7d3d2c84eb20db429801894b4bef07cf111"
+    },
+    "revision-prompt.txt": {
+      "bytes": 744,
+      "sha256": "1831b7ade4282efbe4ad48bc146f6ca6733d697e336f9c9cb987d65716634c7e"
+    }
+  },
+  "rights_note": "Original generated study; no franchise endorsement or exclusive-rights claim. Not automatically relicensed under code license."
+}

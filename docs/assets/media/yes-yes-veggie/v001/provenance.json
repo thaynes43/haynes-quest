@@ -1,0 +1,61 @@
+{
+  "work_order": "WO111",
+  "asset_id": "yes-yes-veggie",
+  "version": "v001",
+  "created_utc": "2026-09-26T14:46:39.494588+00:00",
+  "glb_sha256": "b513172d40b1e5ba581bc99a134bd9a26a1b7cdc7775c0c1f87056e0a18bf81f",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Opus 5.5 continues WO111 Blender work after the Codex usage limit (WO111 update on origin/main). This continuation took over the scene lease of an earlier Opus 5.5 run of the same work order that stopped after a static checkpoint without releasing.",
+  "authoring_tool": "Blender MCP execute_blender_code on the dedicated authoring service",
+  "blender_version": "4.5.13 LTS",
+  "source_concept": {
+    "file": "concept.png",
+    "sha256": "57f267ed5ccef19ca44f756f6aaed02516ec2ded7d17c2ca2df2655057e34b34",
+    "source_record": "source.json",
+    "earlier_draft": "concept-draft.png",
+    "generator": "OpenAI built-in image_gen tool, driving GPT-6 Astra / max",
+    "selection": "Driving Astra selected the framing-revised original concept before the Codex usage limit; no franchise source media. Not a Blender reference sheet."
+  },
+  "preserved_checkpoints": {
+    "checkpoint1": {
+      "glb": "yes-yes-veggie-checkpoint1.glb",
+      "sha256": "eb45f9e63d870694131e45e066e235a9a60955215e2d07a40999367e851c45c7",
+      "note": "Earlier static build by the stopped run; rejected by the author concept comparison (flat jagged stalk shelf, pole under the top floret, smooth mushroom-cap florets, scale-like curd texture, trunk too wide, pointed generic leaves)."
+    },
+    "rebuild2_static": {
+      "glb": "checkpoint-preview-rebuild2/yes-yes-veggie-checkpoint-rebuild2.glb",
+      "sha256": "51840445c13cdaa1a1ca7a1c2903d2fd53841cd6215de8a8cd86d5623a0db692",
+      "note": "Early exact-export static rebuild before rigging clearance changes."
+    }
+  },
+  "source_scripts": {
+    "animate.py": "0042e16c79d416b5305583d4af911372a540b1ddb28e52d3d430612f64d3a877",
+    "bounds.json": "9e396f8b65cf968a9207380fc2e62891087a62c1c05339dfde3ace613fe99876",
+    "build-checkpoint1.py": "83259f2cb962313862d0f6759fd26a76279283bff342974afe304944866bffbe",
+    "build.py": "961b77280a2566151db9a17ab58d918f98576ef25aaaffc32b79a7b9f94d75c6",
+    "common.py": "d2c78a621935bc57b17492d108e45eb5b8fe8df3a1710e6cbc610b967d497940",
+    "compare.mjs": "8dcc67bdef929aba3f3c925409613f365e6fcb27d87c8b1306d3724c8615addd",
+    "delivery.py": "fc7e6a47adec948dac20f9d02c35035d1d19456be2ffaa72482bd6c705f02f7c",
+    "grid.mjs": "65a3f632968635d9c95e2a7345b236a3902a2e102ac681528748f295879b5328",
+    "inspect-attachments.py": "57eae69edfcc7676c2da6d902da81fb635a0f90492add7e2e1e00601d39dc926",
+    "inspect-three.mjs": "e2ce78e41b7666f344cc32ab9ccff6a28aca14374ab1f9e873747504153de17d",
+    "look.mjs": "f1ee8b122c1ccf804bb8f1f2f38a131551a377c9e01a5045e9f457e59df2a48e",
+    "make-evidence.py": "7ccba614a2d51ff44544d00b9fd3b9df0bb110817e4cfb1159388ab2d62a797a",
+    "preview.mjs": "14542d7a06fa2fd9755c6d8ef79804f9c3c5f01e5a355c18396a1907ed0f02bb",
+    "release.py": "69b5dc41bb680958ebbee1eaf72c77f1da0740e82c97037fa4472c9c9d383259",
+    "transfer.py": "4bc371258d7e6d59f6d05b6a33ac0c27004121b75d289d21b68e4839a20cb9ff",
+    "upload.py": "5b2feb57a3448b2c2380202b73fd7678803fc4807bdc6b83c195e91fcdf69842",
+    "validate.mjs": "804190503a447bf8353e794764a1630224a36b11e583b33f54df9c8123068ed7"
+  },
+  "original_work": [
+    "Original broccoli geometry: voxel-merged stalk, feet and eleven thick branches, eleven lumpy florets, face, arms and cupped leaf mittens; all five clips.",
+    "Original deterministic 1024 indexed-palette atlas generated in Blender Python; soft occlusion ray-traced in Blender and stored as COLOR_0; no external texture.",
+    "Mesh, UV, transfer and validation utilities adapted from the WO111 gadget-helper and honk-bus and the Rat Casino authoring scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise models, faces, logos, costumes, recordings or textures; no melon motifs, lettering, teeth or props."
+  ],
+  "rights_note": "Original generated concept and authored study. Generated media is not automatically relicensed under the repository code license; no exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; owner exact-version and physical-device review remain open."
+}

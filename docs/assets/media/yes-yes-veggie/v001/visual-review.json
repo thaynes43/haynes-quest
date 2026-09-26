@@ -1,0 +1,105 @@
+{
+  "work_order": "WO111",
+  "asset_id": "yes-yes-veggie",
+  "version": "v001",
+  "created_utc": "2026-09-26T14:46:39.494588+00:00",
+  "glb_sha256": "b513172d40b1e5ba581bc99a134bd9a26a1b7cdc7775c0c1f87056e0a18bf81f",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back and beauty stills compared with the concept FRONT/SIDE/BACK construction views and the three-quarter hero (concept-vs-export.png); five-clip normal/small motion sheets; attack front/side windup-contact-recovery; held defeat front/side/beauty inspected.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "concept_matching": [
+    "Chunky yellow-lime stalk that splits into two bulbous feet with toe creases and, at the top, into thick branches separated by dark slits, as in the concept front and back views.",
+    "Broad dark-green crown about 0.75 m wide from about 0.52 m to 1.0 m, lumpy floret domes with painted curd bumps; low florets hang at the sides and back corners.",
+    "Big cream oval eyes with inward-glaring pupils and catchlights, thick dark brows tilted down to the middle, tiny pursed frown and warm cheeks.",
+    "Thin stalk arms from the stalk sides below the cheeks ending in broad cupped spinach-like leaf mittens at hip height.",
+    "Side view: crown centred behind the face with its front edge slightly ahead of it; the concept hero hands-on-hips pose is not the rest pose (the construction views are)."
+  ],
+  "author_corrections": [
+    "Checkpoint 1 (earlier run) was rebuilt: its stalk ended in a flat, jagged shelf with a thin pole under the top floret; the trunk is now about 15% narrower, flares gradually and splits into eleven fat branches whose tips end inside their florets.",
+    "Florets enlarged about 10%, bottom flattening reduced (0.74 to 0.86) and lobes strengthened so the crown reads as one lumpy cloud instead of mushroom caps; a bottom-centre back floret was replaced by two low back-corner florets to match the concept back view.",
+    "Curd texture changed from Voronoi cell edges (read as scales) to lit round bumps grouped in crevice-edged clusters.",
+    "Soft occlusion baked into COLOR_0 so slits, floret crevices, the leg notch and foot contact read dark in three.js.",
+    "Stalk palette shifted greener after sampling the render (#d0cb69) against the concept (#dbde74); leaves lightened slightly.",
+    "Feet rounded and widened into bulbous shoes; leaves broadened with rounded shoulders and turned 34 degrees from the front.",
+    "Crotch weights split smoothly between both legs after the first motion review showed a torn flap at the notch during the lunge and a V pinch in the held defeat.",
+    "Contact pose changed from a lean-back belly bump to a forward lunge with the leaves thrust out beside the face after the first motion review showed contact reading too close to the warning.",
+    "Defeat arms flopped outward after the source audit found a 2.6 cm leaf/stalk overlap; rest wrists moved 9 mm outward after the audit found 0.3 mm rest clearance. Final minimum leaf/stalk clearance is 4.9 mm."
+  ],
+  "dimensions_width_height_depth_m": [
+    0.7465757131576538,
+    0.9977976612705579,
+    0.541722773316405
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.37110376358032227,
+      9.440844987020468e-08,
+      -0.16775489180212916
+    ],
+    "max": [
+      0.37547194957733154,
+      0.9977977556790077,
+      0.37396788151427585
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -0.4217202614426762,
+      7.925323126909892e-08,
+      -0.36271027054305993
+    ],
+    "max": [
+      0.4215869094321191,
+      1.0342620889750378,
+      0.556946450644928
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -0.427,
+      -0.005,
+      -0.368
+    ],
+    "max": [
+      0.427,
+      1.04,
+      0.562
+    ]
+  },
+  "footprint_y_up": {
+    "min": [
+      -0.21004166696722631,
+      9.440844987020468e-08,
+      -0.11788132806071983
+    ],
+    "max": [
+      0.20992587953962577,
+      0.019729018464266706,
+      0.0819157465049235
+    ]
+  },
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "measured_stable_warning_seconds": [
+    0.6,
+    1.05
+  ],
+  "defeat_held_from_seconds": 1.68,
+  "no_floor_penetration": true,
+  "defeat_lowest_leaf_tip_m": 0.047859661848413615,
+  "attachment_worst_margins_m": {
+    "leaf_vs_stalk": 0.004937872290611267,
+    "leaf_vs_crown": 0.061003319919109344,
+    "leaf_vs_eyes": 0.03969992324709892,
+    "forearm_vs_stalk": 0.027432117611169815,
+    "forearm_vs_crown": 0.08409928530454636,
+    "leaf_vs_leaf": 0.287821888923645
+  },
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "Attachment audit supplements the exact GLB all-vertex checks; it does not claim universal triangle collision testing.",
+    "The defeat is a planted squash-down sulk (hips drop 8.5 cm, feet splay); the leg-weighted lower stalk keeps the bottom above the floor rather than sitting flat.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}
