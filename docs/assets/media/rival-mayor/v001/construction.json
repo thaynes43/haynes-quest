@@ -1,0 +1,815 @@
+{
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Opus 5.5 does the WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": "Blender reference sheet, no generated concept",
+  "source_sheet_sha256": "966bfd26ae6bb5f567d32b5528050d63d7f2634ef7af3e6e9b2abc5e2238f568",
+  "source_blockout_sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.5776881575584412,
+      -0.3497866094112396,
+      0.004000000189989805
+    ],
+    "max": [
+      0.7583291530609131,
+      0.39239683747291565,
+      2.4745280742645264
+    ]
+  },
+  "height_m": 2.4745280742645264,
+  "triangles": 14548,
+  "vertices": 7542,
+  "material_count": 2,
+  "bone_count": 28,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic soft painted palette atlas generated in Blender Python from the sheet colours; no external textures.",
+    "palette": [
+      "5b3b6a",
+      "2f2740",
+      "b54a5a",
+      "dca953",
+      "3f7f7a",
+      "f3e6cf",
+      "efc9a4",
+      "e39a88",
+      "2b2238",
+      "342c46",
+      "c9923e",
+      "3a2e4d",
+      "8a7c96",
+      "fbf6ec",
+      "2f625e",
+      "8f3848"
+    ]
+  },
+  "parts": [
+    {
+      "name": "R pinstripe trouser leg",
+      "triangles": 576,
+      "bone_groups": [
+        "foot_R",
+        "shin_R",
+        "thigh_R"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "R cream spat",
+      "triangles": 212,
+      "bone_groups": [
+        "foot_R",
+        "shin_R"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "R long pointed plum shoe",
+      "triangles": 332,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "R brass shoe buckle",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "L pinstripe trouser leg",
+      "triangles": 576,
+      "bone_groups": [
+        "foot_L",
+        "shin_L",
+        "thigh_L"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "L cream spat",
+      "triangles": 212,
+      "bone_groups": [
+        "foot_L",
+        "shin_L"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "L long pointed plum shoe",
+      "triangles": 332,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "L brass shoe buckle",
+      "triangles": 44,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Aubergine pear tailcoat body",
+      "triangles": 816,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Honey waistcoat front",
+      "triangles": 324,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Plum waistcoat button 0.96",
+      "triangles": 80,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Plum waistcoat button 1.08",
+      "triangles": 80,
+      "bone_groups": [
+        "chest",
+        "hips"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Plum waistcoat button 1.20",
+      "triangles": 80,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Plum waistcoat button 1.32",
+      "triangles": 80,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "R dark plum coat lapel",
+      "triangles": 216,
+      "bone_groups": [
+        "chest",
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "R padded coat shoulder",
+      "triangles": 196,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R brass coat-back button",
+      "triangles": 80,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "R swallow coat tail",
+      "triangles": 152,
+      "bone_groups": [
+        "tail_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L dark plum coat lapel",
+      "triangles": 216,
+      "bone_groups": [
+        "chest",
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "L padded coat shoulder",
+      "triangles": 196,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L brass coat-back button",
+      "triangles": 80,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "L swallow coat tail",
+      "triangles": 152,
+      "bone_groups": [
+        "tail_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Raspberry mayoral sash",
+      "triangles": 384,
+      "bone_groups": [
+        "chest",
+        "hips"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Pleated raspberry rosette",
+      "triangles": 156,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Honey rosette disc",
+      "triangles": 118,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Cream kitten face on rosette",
+      "triangles": 120,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Kitten rosette ear +1",
+      "triangles": 6,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Rosette ribbon tail +1",
+      "triangles": 56,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Kitten rosette ear -1",
+      "triangles": 6,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Rosette ribbon tail -1",
+      "triangles": 56,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Neck",
+      "triangles": 24,
+      "bone_groups": [
+        "chest",
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Cream high shirt collar",
+      "triangles": 196,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Cream collar point +1",
+      "triangles": 32,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Teal bow tie wing +1",
+      "triangles": 120,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Cream collar point -1",
+      "triangles": 32,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Teal bow tie wing -1",
+      "triangles": 120,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Teal bow tie knot",
+      "triangles": 80,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 14
+    },
+    {
+      "name": "Egg-shaped head",
+      "triangles": 542,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Ear +1",
+      "triangles": 144,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Eye white +1",
+      "triangles": 196,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Side-glancing pupil +1",
+      "triangles": 100,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Smug heavy eyelid +1",
+      "triangles": 144,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Plum side hair tuft +1",
+      "triangles": 100,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Ear -1",
+      "triangles": 144,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Eye white -1",
+      "triangles": 196,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Side-glancing pupil -1",
+      "triangles": 100,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Smug heavy eyelid -1",
+      "triangles": 144,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Plum side hair tuft -1",
+      "triangles": 100,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Raised skeptical brow right",
+      "triangles": 140,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Scheming slanted brow left",
+      "triangles": 140,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Long nose",
+      "triangles": 164,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Rosy nose tip",
+      "triangles": 196,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Smug smirk",
+      "triangles": 104,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Plum back hair tuft",
+      "triangles": 120,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Little chin",
+      "triangles": 144,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Curly handlebar mustache R",
+      "triangles": 496,
+      "bone_groups": [
+        "head",
+        "mustache_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Curly handlebar mustache L",
+      "triangles": 496,
+      "bone_groups": [
+        "head",
+        "mustache_L"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Hat brim",
+      "triangles": 480,
+      "bone_groups": [
+        "hat"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Tall stovepipe crown",
+      "triangles": 408,
+      "bone_groups": [
+        "hat"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Honey hat band",
+      "triangles": 192,
+      "bone_groups": [
+        "hat"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Cream kitten hat badge",
+      "triangles": 120,
+      "bone_groups": [
+        "hat"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Kitten hat badge ear +1",
+      "triangles": 6,
+      "bone_groups": [
+        "hat"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Kitten hat badge ear -1",
+      "triangles": 6,
+      "bone_groups": [
+        "hat"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "R aubergine coat sleeve",
+      "triangles": 380,
+      "bone_groups": [
+        "chest",
+        "upper_arm_R",
+        "forearm_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R cream shirt cuff",
+      "triangles": 108,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "L aubergine coat sleeve",
+      "triangles": 380,
+      "bone_groups": [
+        "chest",
+        "upper_arm_L",
+        "forearm_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L cream shirt cuff",
+      "triangles": 108,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Right cream glove gripping remote",
+      "triangles": 196,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Left cream glove fist on hip",
+      "triangles": 196,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Left glove thumb",
+      "triangles": 100,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Teal remote-control box",
+      "triangles": 108,
+      "bone_groups": [
+        "remote"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Big raspberry button",
+      "triangles": 94,
+      "bone_groups": [
+        "button"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Honey dial +1",
+      "triangles": 70,
+      "bone_groups": [
+        "remote"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Honey dial -1",
+      "triangles": 70,
+      "bone_groups": [
+        "remote"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Brass crank arm",
+      "triangles": 28,
+      "bone_groups": [
+        "remote"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Brass crank handle",
+      "triangles": 56,
+      "bone_groups": [
+        "remote"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Glove thumb on the remote",
+      "triangles": 100,
+      "bone_groups": [
+        "thumb_R"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Brass spring antenna",
+      "triangles": 566,
+      "bone_groups": [
+        "antenna_1",
+        "antenna_2"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Honey antenna ball",
+      "triangles": 120,
+      "bone_groups": [
+        "antenna_2"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Propeller spindle",
+      "triangles": 20,
+      "bone_groups": [
+        "propeller"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Tiny cream propeller blade A",
+      "triangles": 72,
+      "bone_groups": [
+        "propeller"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Tiny cream propeller blade B",
+      "triangles": 72,
+      "bone_groups": [
+        "propeller"
+      ],
+      "atlas_tile": 5
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 91,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "raised_warning_hold_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.2,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 37,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "raised_warning_hold_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "raised_warning_hold_s": [
+        0.84,
+        1.1
+      ],
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 22,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "raised_warning_hold_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 73,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "raised_warning_hold_s": null,
+      "held_final_pose_from_s": 1.728
+    }
+  ],
+  "rest_reproduction_max_error": 7.295608520507812e-05,
+  "files": {
+    "rival-mayor.blend": {
+      "bytes": 1454665,
+      "sha256": "53dbb763aacb5f6c4272f165d543168c2129fbd592453fd6b53cdb466175799a"
+    },
+    "rival-mayor.glb": {
+      "bytes": 1161872,
+      "sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e"
+    },
+    "pigment.png": {
+      "bytes": 235103,
+      "sha256": "098c94b3d8db18c4c6b3ca8c28414f921a944e3708ebd4ffededd5474c47f5a5"
+    }
+  }
+}

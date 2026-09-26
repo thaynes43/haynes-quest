@@ -1,0 +1,172 @@
+{
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "file": "rival-mayor.glb",
+  "sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+  "bytes": 1161872,
+  "triangles": 14548,
+  "draw_primitives": 2,
+  "materials": [
+    {
+      "name": "Matte painted felt, cloth and skin",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8399999737739563
+      }
+    },
+    {
+      "name": "Satin eyes, buttons, brass, shoes and remote",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.41999998688697815
+      }
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/png",
+      "bufferView": 6
+    }
+  ],
+  "joints": [
+    "root",
+    "hips",
+    "chest",
+    "neck",
+    "head",
+    "hat",
+    "mustache_R",
+    "mustache_L",
+    "upper_arm_R",
+    "forearm_R",
+    "hand_R",
+    "remote",
+    "button",
+    "thumb_R",
+    "antenna_1",
+    "antenna_2",
+    "propeller",
+    "upper_arm_L",
+    "forearm_L",
+    "hand_L",
+    "thigh_R",
+    "shin_R",
+    "foot_R",
+    "tail_R",
+    "thigh_L",
+    "shin_L",
+    "foot_L",
+    "tail_L"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3,
+      "channels": 84
+    },
+    {
+      "name": "move",
+      "duration_s": 1.2,
+      "channels": 84
+    },
+    {
+      "name": "attack",
+      "duration_s": 2,
+      "channels": 84
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "channels": 84
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "channels": 84
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "correct_scene_identity": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "attack_about_2_s": true,
+    "triangle_budget_15000": true,
+    "material_budget_2": true,
+    "primitive_budget_2": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_atlas": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "no_compression_extensions": true,
+    "all_have_uvs": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true
+  },
+  "validator": {
+    "uri": "rival-mayor.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-26T14:58:14.261Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 1077836
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 2,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 2,
+      "totalVertexCount": 12583,
+      "totalTriangleCount": 14548,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

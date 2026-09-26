@@ -1,0 +1,24 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "blender_instance": "blender-authoring-2",
+  "released_utc": "2026-09-26T15:00:25.390761+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "saved_live_scene": "/workspace/haynes-quest/family-eras/rival-mayor/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "a7ffd077cef3c4fdf8453b451450c79a2600afbe5f68659c93e4e5b1ae9071a7",
+  "editable_master": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor.blend",
+  "editable_master_sha256": "53dbb763aacb5f6c4272f165d543168c2129fbd592453fd6b53cdb466175799a",
+  "construction_master_sha256": "8db593111101eb1ec231b2e713f46c5c3c50ebd1cdeb5d90dd41fbc2592cba19",
+  "glb_sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+  "author_jobs_running": false,
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "failure": null,
+  "scope": "Awaiting Tom's review \u00b7 used in the family release. Candidate technical delivery only; the coordinator owns catalog publication and runtime integration. No physical-device acceptance."
+}

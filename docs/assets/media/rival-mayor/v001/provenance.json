@@ -1,0 +1,55 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "created_utc": "2026-09-26T14:59:47.724522+00:00",
+  "glb_sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Claude Opus 5.5 does the WO111 Blender work",
+  "authoring_tool": "Blender MCP execute_blender_code on the second isolated authoring service (blender-authoring-2), driven by a small streamable-HTTP JSON-RPC client (source/transfer.py)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": {
+    "kind": "Blender reference sheet, no generated concept",
+    "file": "reference-sheet.png",
+    "sha256": "966bfd26ae6bb5f567d32b5528050d63d7f2634ef7af3e6e9b2abc5e2238f568",
+    "notes": "reference-notes.md",
+    "notes_sha256": "804c7825e11837bd2f964b376d61d2d8f0713307be50a3c59825d74b804f8f89",
+    "blockout_master": "rival-mayor-blockout.blend",
+    "blockout_sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f",
+    "coordinator_review": "Approved Sept 26 (SHEET-REVIEWS.md): keep the tall stovepipe hat, curly mustache, red sash with rosette, spring-antenna remote in the right hand and pinstripe legs; the mustache may be 10-15% larger for read at play distance.",
+    "generator": "None. The sheet is a Cycles render of a procedural Blender blockout; no image-generation model was used for this asset."
+  },
+  "source_scripts": {
+    "animate.py": "0a2114c917ee8b3d9231279b2651b911f1e5cc24a81db09d01267b67e2745140",
+    "author_run.py": "99fc51bd38912c37cddc202d22f3c64a8c41f97ac3a84bed8b7124992d145d7f",
+    "bounds.json": "35639c64a7263787172466fedbb89f9950fcc5dd94c779f329e5e74019fc69c5",
+    "build.py": "a74657ca4071a74368721865bddea2a5b26dc780d21323b0068417fd3552cd23",
+    "claim.py": "641f5b0c66878bf13438bf4f5bdd38e2ac785bed525f25f3a08ae9abd6be8131",
+    "common.py": "16082102d214e65f47f33b0aa86592e68b5a7917d15a3617209c6a56177fd4ab",
+    "compare.mjs": "30fd5783bf276415a7f0871e179781daa92fcc57fe7d4a871d71c798136fd2d6",
+    "delivery.py": "ae2d4f8a77316f8c5b374feb79774040a83457e0d4f7a87d39c475b937e812ea",
+    "diag.py": "d48c95164da82f0b5949126f1c1ffd71d9e06b28af8db6a2c035f040056181f9",
+    "grid.mjs": "232de005933ae02fc2f8c59dc6da699fc2de7c2761d0e391c1c3c05e53fa8769",
+    "inspect-attachments.py": "9cc3c10c649e45ccde604e19389b3986718ae7d94757e53f42ac68f49e949a52",
+    "inspect-three.mjs": "5bb429df80310e23f0f717a0cd34314566896dbd99967a56de37a4ca11875162",
+    "look.mjs": "73bd2317ea793e75927b65482c148687c564bf10e9d5489d174d72284a51e408",
+    "make-evidence.py": "29c9013f07bbb6e13889ea73e0ced8c4fe7ac8df1e639addf5ecc486cd6d8a77",
+    "preview.mjs": "aaf3aef0cc2771a01f441c4224891683e9e9d9bad7c3b9e9632e62e22460acd1",
+    "release_model.py": "539fdc884f97cdf7858ff86d93d781723d285a808832542a09d81e37cd2ed8a5",
+    "run_validate.py": "ef2b1d16ed56147b2c226ee9b6d7d21f2c1e0cee17c02d48beb365aa0d513689",
+    "transfer.py": "bfc1b90a238d13e0c2ec90017d1b9fc7769d8ef3f15fa98290929cc8c71ca4a2",
+    "upload_inputs.py": "78836c0f0ad2ffb2f5044d83301841bcbbfa7335e6b7e318ae7445742c4cdbe7",
+    "validate.mjs": "5fe9c26b4004f8cf8daa2321f4eb0725cd1022135c86074b1fe87bf87d471664"
+  },
+  "original_work": [
+    "Final topology, UVs, weights, 28-bone rig and all five clips are new; the blockout supplied measured proportions, colours and parody hooks only.",
+    "Original deterministic 1024 palette atlas generated in Blender Python from the sheet colours; pinstripes are real 36-segment face columns, no external texture.",
+    "Mesh, UV, transfer and validation utilities adapted from the WO111 gadget-helper / honk-bus and Rat Casino authoring scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise names, models, faces, logos, costumes, lettering, recordings or textures."
+  ],
+  "rights_note": "Original authored study. No exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; the owner exact-version and physical-device review remain open."
+}

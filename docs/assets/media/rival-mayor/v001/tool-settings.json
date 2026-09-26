@@ -1,0 +1,95 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rival-mayor",
+  "version": "v001",
+  "created_utc": "2026-09-26T14:59:47.724522+00:00",
+  "glb_sha256": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "blender": {
+    "version": "4.5.13 LTS",
+    "instance": "blender-authoring-2",
+    "units": "METRIC",
+    "unit_scale": 1,
+    "authoring_axes": "+Z up / +Y forward (character right = +X)",
+    "frames_per_second": 30,
+    "animation_mode": "NLA_TRACKS",
+    "skin": "One skin; rigid props plus two-weight smoothstep blends at the shoulders, elbows, knees, ankles, neck, coat waist and mustache roots",
+    "root": "Identity, fixed floor-centred root; no root animation; the hips translate for the bob and the seated defeat",
+    "bind_pose": "The approved sheet pose (left fist on hip, remote held out); IK controls at rest reproduce it (max matrix error 7.3e-05)"
+  },
+  "export": {
+    "format": "GLB",
+    "axes": "+Y up / -Z forward",
+    "selection_only": true,
+    "materials": 2,
+    "texture": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "embedded": true
+    },
+    "no_external_resources": true,
+    "no_required_extensions": true,
+    "compression": "None; no Draco, Meshopt or KTX2 requirement"
+  },
+  "preview": {
+    "source": "Exact delivered GLB via Three.js GLTFLoader",
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport_px": [
+      800,
+      900
+    ],
+    "orthographic_camera": {
+      "left": -1.2,
+      "right": 1.2,
+      "top": 1.35,
+      "bottom": -1.35,
+      "target": [
+        0,
+        1.24,
+        0
+      ],
+      "views": {
+        "front": [
+          0,
+          1.24,
+          -8
+        ],
+        "side": [
+          8,
+          1.24,
+          0
+        ],
+        "back": [
+          0,
+          1.24,
+          8
+        ],
+        "threequarter": [
+          5.657,
+          1.24,
+          -5.657
+        ],
+        "beauty": [
+          4.1,
+          2.9,
+          -7.4
+        ]
+      }
+    },
+    "lighting": "Warm hemisphere plus three directional lights; ACES tone mapping exposure 1.0",
+    "scales": [
+      1,
+      0.35
+    ],
+    "no_physical_device_claim": true
+  },
+  "checks": {
+    "khronos_zero_errors_warnings": true,
+    "exact_three_adapter_all_checks": true,
+    "chromium_all_clips_normal_small": true,
+    "source_attachment_checks": true
+  }
+}
