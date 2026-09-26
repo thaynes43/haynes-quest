@@ -1,0 +1,1378 @@
+{
+  "work_order": "WO111",
+  "asset_id": "toon-clubhouse-kit",
+  "version": "v001",
+  "blender_version": "4.5.13 LTS",
+  "built_utc": "2026-09-26T19:56:34.264588+00:00",
+  "authoring_model": "claude-opus-5-5 xhigh",
+  "source_concept": {
+    "file": "inputs/concept-draft.png",
+    "sha256": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+    "author": "Codex GPT-6 Astra (WO111 driving lead), draft"
+  },
+  "axes": "Blender +Z up, front -Y; glTF +Y up, front +Z; floor-centred origin",
+  "palette_srgb": {
+    "cream": "#f1e4c4",
+    "light": "#f7eedb",
+    "stone": "#e4d3ae",
+    "teal": "#3b8784",
+    "deepteal": "#2c6866",
+    "glass": "#285e60",
+    "ochre": "#e3a53c",
+    "plum": "#76506a",
+    "moss": "#639436",
+    "leaf": "#bec94f",
+    "soil": "#5e4332",
+    "slot": "#4b3a42"
+  },
+  "materials": {
+    "matte": {
+      "name": "Clubhouse matte clay paint",
+      "roughness": 0.8
+    },
+    "satin": {
+      "name": "Clubhouse satin glaze",
+      "roughness": 0.5
+    },
+    "foliage": {
+      "name": "Clubhouse soft foliage",
+      "roughness": 0.93
+    }
+  },
+  "props": {
+    "clubhouse-tower-facade": {
+      "blender_min": [
+        -2.15259,
+        -0.6,
+        0.0
+      ],
+      "blender_max": [
+        2.13252,
+        0.59788,
+        6.36
+      ],
+      "gltf_min": [
+        -2.15259,
+        0.0,
+        -0.59788
+      ],
+      "gltf_max": [
+        2.13252,
+        6.36,
+        0.6
+      ],
+      "size_m": {
+        "width_x": 4.2851,
+        "height_y": 6.36,
+        "depth_z": 1.1979
+      },
+      "triangles": 4772,
+      "vertices": 2440,
+      "materials": [
+        "Clubhouse matte clay paint",
+        "Clubhouse satin glaze",
+        "Clubhouse soft foliage"
+      ],
+      "registry_box_gltf": {
+        "min": [
+          -2.2,
+          0.0,
+          -0.6
+        ],
+        "max": [
+          2.2,
+          6.5,
+          0.6
+        ]
+      },
+      "inside_registry_box": {
+        "x": true,
+        "y": true,
+        "z": true
+      },
+      "registry_fill": {
+        "width": 0.974,
+        "height": 0.978,
+        "depth": 0.998
+      },
+      "parts": [
+        {
+          "name": "Cream tapered tower body",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.55,
+          "triangles": 704
+        },
+        {
+          "name": "Teal droopy cone roof",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 780
+        },
+        {
+          "name": "Ochre leaning chimney",
+          "color": "#e3a53c",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 144
+        },
+        {
+          "name": "Cream chimney cap",
+          "color": "#f7eedb",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 196
+        },
+        {
+          "name": "Plum lower porch step",
+          "color": "#76506a",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 240
+        },
+        {
+          "name": "Plum upper porch step",
+          "color": "#76506a",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 230
+        },
+        {
+          "name": "Deep teal door backing",
+          "color": "#2c6866",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.8,
+          "triangles": 166
+        },
+        {
+          "name": "Teal door plank 1",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 70
+        },
+        {
+          "name": "Teal door plank 2",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 70
+        },
+        {
+          "name": "Teal door plank 3",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 70
+        },
+        {
+          "name": "Teal door plank 4",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 70
+        },
+        {
+          "name": "Cream half-round door arch frame",
+          "color": "#f7eedb",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 280
+        },
+        {
+          "name": "Ochre door knob",
+          "color": "#e3a53c",
+          "material": "Clubhouse satin glaze",
+          "occlusion_strength": 0.5,
+          "triangles": 96
+        },
+        {
+          "name": "Deep teal window glass",
+          "color": "#285e60",
+          "material": "Clubhouse satin glaze",
+          "occlusion_strength": 0.8,
+          "triangles": 120
+        },
+        {
+          "name": "Ochre round window frame",
+          "color": "#e3a53c",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 264
+        },
+        {
+          "name": "Ochre window mullion horizontal",
+          "color": "#e3a53c",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 84
+        },
+        {
+          "name": "Ochre window mullion vertical",
+          "color": "#e3a53c",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 84
+        },
+        {
+          "name": "Cream wall stone 1",
+          "color": "#e4d3ae",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.7,
+          "triangles": 80
+        },
+        {
+          "name": "Cream wall stone 2",
+          "color": "#e4d3ae",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.7,
+          "triangles": 80
+        },
+        {
+          "name": "Cream wall stone 3",
+          "color": "#e4d3ae",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.7,
+          "triangles": 80
+        },
+        {
+          "name": "Moss bush left big",
+          "color": "#639436",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 1.0,
+          "triangles": 168
+        },
+        {
+          "name": "Moss bush left small",
+          "color": "#639436",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 1.0,
+          "triangles": 168
+        },
+        {
+          "name": "Moss bush right tall",
+          "color": "#639436",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 1.0,
+          "triangles": 168
+        },
+        {
+          "name": "Moss bush right small",
+          "color": "#639436",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 1.0,
+          "triangles": 168
+        },
+        {
+          "name": "Lime leaf mark 1",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 2",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 3",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 4",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        }
+      ],
+      "occlusion": {
+        "Cream tapered tower body": {
+          "min_light": 0.506,
+          "mean_light": 0.867
+        },
+        "Teal droopy cone roof": {
+          "min_light": 0.3,
+          "mean_light": 0.917
+        },
+        "Ochre leaning chimney": {
+          "min_light": 0.3,
+          "mean_light": 0.561
+        },
+        "Cream chimney cap": {
+          "min_light": 0.457,
+          "mean_light": 0.924
+        },
+        "Plum lower porch step": {
+          "min_light": 0.3,
+          "mean_light": 0.588
+        },
+        "Plum upper porch step": {
+          "min_light": 0.3,
+          "mean_light": 0.605
+        },
+        "Deep teal door backing": {
+          "min_light": 0.3,
+          "mean_light": 0.476
+        },
+        "Teal door plank 1": {
+          "min_light": 0.3,
+          "mean_light": 0.663
+        },
+        "Teal door plank 2": {
+          "min_light": 0.3,
+          "mean_light": 0.671
+        },
+        "Teal door plank 3": {
+          "min_light": 0.3,
+          "mean_light": 0.673
+        },
+        "Teal door plank 4": {
+          "min_light": 0.3,
+          "mean_light": 0.671
+        },
+        "Cream half-round door arch frame": {
+          "min_light": 0.3,
+          "mean_light": 0.691
+        },
+        "Ochre door knob": {
+          "min_light": 0.55,
+          "mean_light": 0.746
+        },
+        "Deep teal window glass": {
+          "min_light": 0.3,
+          "mean_light": 0.587
+        },
+        "Ochre round window frame": {
+          "min_light": 0.3,
+          "mean_light": 0.681
+        },
+        "Ochre window mullion horizontal": {
+          "min_light": 0.3,
+          "mean_light": 0.469
+        },
+        "Ochre window mullion vertical": {
+          "min_light": 0.3,
+          "mean_light": 0.474
+        },
+        "Cream wall stone 1": {
+          "min_light": 0.518,
+          "mean_light": 0.85
+        },
+        "Cream wall stone 2": {
+          "min_light": 0.471,
+          "mean_light": 0.846
+        },
+        "Cream wall stone 3": {
+          "min_light": 0.425,
+          "mean_light": 0.822
+        },
+        "Moss bush left big": {
+          "min_light": 0.3,
+          "mean_light": 0.647
+        },
+        "Moss bush left small": {
+          "min_light": 0.3,
+          "mean_light": 0.461
+        },
+        "Moss bush right tall": {
+          "min_light": 0.3,
+          "mean_light": 0.685
+        },
+        "Moss bush right small": {
+          "min_light": 0.3,
+          "mean_light": 0.465
+        },
+        "Lime leaf mark 1": {
+          "min_light": 0.658,
+          "mean_light": 0.87
+        },
+        "Lime leaf mark 2": {
+          "min_light": 0.604,
+          "mean_light": 0.845
+        },
+        "Lime leaf mark 3": {
+          "min_light": 0.619,
+          "mean_light": 0.872
+        },
+        "Lime leaf mark 4": {
+          "min_light": 0.562,
+          "mean_light": 0.831
+        }
+      },
+      "notes": {
+        "surface": "elliptic body 0.208 depth ratio centred y=0.225; relief parts are projected onto it",
+        "roof_tilt_deg": 10.0
+      },
+      "glb": {
+        "file": "clubhouse-tower-facade.glb",
+        "bytes": 124360,
+        "sha256": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de"
+      }
+    },
+    "curly-slide": {
+      "blender_min": [
+        -1.19371,
+        -1.18,
+        0.0
+      ],
+      "blender_max": [
+        1.17,
+        1.19535,
+        3.19
+      ],
+      "gltf_min": [
+        -1.19371,
+        0.0,
+        -1.19535
+      ],
+      "gltf_max": [
+        1.17,
+        3.19,
+        1.18
+      ],
+      "size_m": {
+        "width_x": 2.3637,
+        "height_y": 3.19,
+        "depth_z": 2.3754
+      },
+      "triangles": 4168,
+      "vertices": 2130,
+      "materials": [
+        "Clubhouse matte clay paint",
+        "Clubhouse satin glaze"
+      ],
+      "registry_box_gltf": {
+        "min": [
+          -1.2,
+          0.0,
+          -1.2
+        ],
+        "max": [
+          1.2,
+          3.2,
+          1.2
+        ]
+      },
+      "inside_registry_box": {
+        "x": true,
+        "y": true,
+        "z": true
+      },
+      "registry_fill": {
+        "width": 0.985,
+        "height": 0.997,
+        "depth": 0.99
+      },
+      "parts": [
+        {
+          "name": "Teal support post",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 80
+        },
+        {
+          "name": "Cream post foot",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 160
+        },
+        {
+          "name": "Cream post ring 1.18",
+          "color": "#f7eedb",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 240
+        },
+        {
+          "name": "Cream post ring 2.14",
+          "color": "#f7eedb",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 240
+        },
+        {
+          "name": "Cream finial collar",
+          "color": "#f7eedb",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 240
+        },
+        {
+          "name": "Ochre ball finial",
+          "color": "#e3a53c",
+          "material": "Clubhouse satin glaze",
+          "occlusion_strength": 1.0,
+          "triangles": 360
+        },
+        {
+          "name": "Ochre curly chute",
+          "color": "#e3a53c",
+          "material": "Clubhouse satin glaze",
+          "occlusion_strength": 1.0,
+          "triangles": 1004
+        },
+        {
+          "name": "Cream stair block",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 140
+        },
+        {
+          "name": "Teal step cushion 1",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 128
+        },
+        {
+          "name": "Teal step cushion 2",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 128
+        },
+        {
+          "name": "Teal step cushion 3",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 128
+        },
+        {
+          "name": "Teal step cushion 4",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 128
+        },
+        {
+          "name": "Teal step cushion 5",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 128
+        },
+        {
+          "name": "Cream left stair panel",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 120
+        },
+        {
+          "name": "Ochre panel knob",
+          "color": "#e3a53c",
+          "material": "Clubhouse satin glaze",
+          "occlusion_strength": 0.5,
+          "triangles": 144
+        },
+        {
+          "name": "Cream start deck",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 192
+        },
+        {
+          "name": "Cream flared landing",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 240
+        },
+        {
+          "name": "Teal chute leg back-left",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 48
+        },
+        {
+          "name": "Cream leg foot back-left",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 96
+        },
+        {
+          "name": "Teal chute leg front-left",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 48
+        },
+        {
+          "name": "Cream leg foot front-left",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 96
+        },
+        {
+          "name": "Teal chute bracket 120",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 40
+        },
+        {
+          "name": "Teal chute bracket 205",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 40
+        }
+      ],
+      "occlusion": {
+        "Teal support post": {
+          "min_light": 0.3,
+          "mean_light": 0.563
+        },
+        "Cream post foot": {
+          "min_light": 0.3,
+          "mean_light": 0.738
+        },
+        "Cream post ring 1.18": {
+          "min_light": 0.3,
+          "mean_light": 0.712
+        },
+        "Cream post ring 2.14": {
+          "min_light": 0.424,
+          "mean_light": 0.803
+        },
+        "Cream finial collar": {
+          "min_light": 0.412,
+          "mean_light": 0.853
+        },
+        "Ochre ball finial": {
+          "min_light": 0.3,
+          "mean_light": 0.77
+        },
+        "Ochre curly chute": {
+          "min_light": 0.3,
+          "mean_light": 0.848
+        },
+        "Cream stair block": {
+          "min_light": 0.3,
+          "mean_light": 0.659
+        },
+        "Teal step cushion 1": {
+          "min_light": 0.3,
+          "mean_light": 0.54
+        },
+        "Teal step cushion 2": {
+          "min_light": 0.3,
+          "mean_light": 0.552
+        },
+        "Teal step cushion 3": {
+          "min_light": 0.3,
+          "mean_light": 0.549
+        },
+        "Teal step cushion 4": {
+          "min_light": 0.3,
+          "mean_light": 0.551
+        },
+        "Teal step cushion 5": {
+          "min_light": 0.3,
+          "mean_light": 0.759
+        },
+        "Cream left stair panel": {
+          "min_light": 0.3,
+          "mean_light": 0.718
+        },
+        "Ochre panel knob": {
+          "min_light": 0.6,
+          "mean_light": 0.765
+        },
+        "Cream start deck": {
+          "min_light": 0.3,
+          "mean_light": 0.625
+        },
+        "Cream flared landing": {
+          "min_light": 0.3,
+          "mean_light": 0.75
+        },
+        "Teal chute leg back-left": {
+          "min_light": 0.3,
+          "mean_light": 0.579
+        },
+        "Cream leg foot back-left": {
+          "min_light": 0.3,
+          "mean_light": 0.783
+        },
+        "Teal chute leg front-left": {
+          "min_light": 0.3,
+          "mean_light": 0.583
+        },
+        "Cream leg foot front-left": {
+          "min_light": 0.3,
+          "mean_light": 0.783
+        },
+        "Teal chute bracket 120": {
+          "min_light": 0.3,
+          "mean_light": 0.331
+        },
+        "Teal chute bracket 205": {
+          "min_light": 0.3,
+          "mean_light": 0.318
+        }
+      },
+      "notes": {
+        "chute": "half-spiral 202 deg around the post at R 0.76 m, floor 2.1 -> 0.74 m, then a 0.72 m runout to 0.32 m on the landing",
+        "bank_deg": 9.0
+      },
+      "glb": {
+        "file": "curly-slide.glb",
+        "bytes": 113004,
+        "sha256": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0"
+      }
+    },
+    "gadget-toolbox-stand": {
+      "blender_min": [
+        -0.595,
+        -0.43914,
+        0.0
+      ],
+      "blender_max": [
+        0.595,
+        0.42,
+        1.016
+      ],
+      "gltf_min": [
+        -0.595,
+        0.0,
+        -0.42
+      ],
+      "gltf_max": [
+        0.595,
+        1.016,
+        0.43914
+      ],
+      "size_m": {
+        "width_x": 1.19,
+        "height_y": 1.016,
+        "depth_z": 0.8591
+      },
+      "triangles": 2100,
+      "vertices": 1070,
+      "materials": [
+        "Clubhouse matte clay paint",
+        "Clubhouse satin glaze"
+      ],
+      "registry_box_gltf": {
+        "min": [
+          -0.6,
+          0.0,
+          -0.45
+        ],
+        "max": [
+          0.6,
+          1.3,
+          0.45
+        ]
+      },
+      "inside_registry_box": {
+        "x": true,
+        "y": true,
+        "z": true
+      },
+      "registry_fill": {
+        "width": 0.992,
+        "height": 0.782,
+        "depth": 0.955
+      },
+      "parts": [
+        {
+          "name": "Plum broad foot right",
+          "color": "#76506a",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 96
+        },
+        {
+          "name": "Plum broad foot left",
+          "color": "#76506a",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 96
+        },
+        {
+          "name": "Cream bench body",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 336
+        },
+        {
+          "name": "Teal rounded tabletop with recessed slot",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 672
+        },
+        {
+          "name": "Dark wrench slot floor",
+          "color": "#4b3a42",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.7,
+          "triangles": 144
+        },
+        {
+          "name": "Cream open wrench head",
+          "color": "#f7eedb",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 132
+        },
+        {
+          "name": "Teal wrench handle",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 140
+        },
+        {
+          "name": "Ochre wrench grip band",
+          "color": "#e3a53c",
+          "material": "Clubhouse satin glaze",
+          "occlusion_strength": 1.0,
+          "triangles": 128
+        },
+        {
+          "name": "Ochre drawer front",
+          "color": "#e3a53c",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 160
+        },
+        {
+          "name": "Ochre drawer knob",
+          "color": "#e3a53c",
+          "material": "Clubhouse satin glaze",
+          "occlusion_strength": 0.5,
+          "triangles": 196
+        }
+      ],
+      "occlusion": {
+        "Plum broad foot right": {
+          "min_light": 0.3,
+          "mean_light": 0.811
+        },
+        "Plum broad foot left": {
+          "min_light": 0.3,
+          "mean_light": 0.812
+        },
+        "Cream bench body": {
+          "min_light": 0.3,
+          "mean_light": 0.539
+        },
+        "Teal rounded tabletop with recessed slot": {
+          "min_light": 0.3,
+          "mean_light": 0.851
+        },
+        "Dark wrench slot floor": {
+          "min_light": 0.385,
+          "mean_light": 0.555
+        },
+        "Cream open wrench head": {
+          "min_light": 0.3,
+          "mean_light": 0.652
+        },
+        "Teal wrench handle": {
+          "min_light": 0.3,
+          "mean_light": 0.667
+        },
+        "Ochre wrench grip band": {
+          "min_light": 0.3,
+          "mean_light": 0.679
+        },
+        "Ochre drawer front": {
+          "min_light": 0.3,
+          "mean_light": 0.782
+        },
+        "Ochre drawer knob": {
+          "min_light": 0.57,
+          "mean_light": 0.814
+        }
+      },
+      "notes": {
+        "height_note": "waist-high bench at the registry width: 1.19 m wide, so about 1.02 m tall keeps the concept proportions (the registry allows 1.3 m)"
+      },
+      "glb": {
+        "file": "gadget-toolbox-stand.glb",
+        "bytes": 53684,
+        "sha256": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1"
+      }
+    },
+    "rounded-hedge": {
+      "blender_min": [
+        -1.08,
+        -0.50448,
+        0.0
+      ],
+      "blender_max": [
+        1.08,
+        0.50271,
+        1.14578
+      ],
+      "gltf_min": [
+        -1.08,
+        0.0,
+        -0.50271
+      ],
+      "gltf_max": [
+        1.08,
+        1.14578,
+        0.50448
+      ],
+      "size_m": {
+        "width_x": 2.16,
+        "height_y": 1.1458,
+        "depth_z": 1.0072
+      },
+      "triangles": 3176,
+      "vertices": 1632,
+      "materials": [
+        "Clubhouse matte clay paint",
+        "Clubhouse soft foliage"
+      ],
+      "registry_box_gltf": {
+        "min": [
+          -1.1,
+          0.0,
+          -0.6
+        ],
+        "max": [
+          1.1,
+          1.2,
+          0.6
+        ]
+      },
+      "inside_registry_box": {
+        "x": true,
+        "y": true,
+        "z": true
+      },
+      "registry_fill": {
+        "width": 0.982,
+        "height": 0.955,
+        "depth": 0.839
+      },
+      "parts": [
+        {
+          "name": "Teal bed rim",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 240
+        },
+        {
+          "name": "Dark soil bed",
+          "color": "#5e4332",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 408
+        },
+        {
+          "name": "Moss hedge mound centre",
+          "color": "#639436",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 1.0,
+          "triangles": 440
+        },
+        {
+          "name": "Moss hedge mound left",
+          "color": "#639436",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 1.0,
+          "triangles": 440
+        },
+        {
+          "name": "Moss hedge mound right",
+          "color": "#639436",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 1.0,
+          "triangles": 440
+        },
+        {
+          "name": "Moss hedge mound small front",
+          "color": "#639436",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 1.0,
+          "triangles": 440
+        },
+        {
+          "name": "Lime leaf mark 1.001",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 2.001",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 3.001",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 4.001",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 5",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 6",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 7",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 8",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 9",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 10",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 11",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 12",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 13",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 14",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 15",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        },
+        {
+          "name": "Lime leaf mark 16",
+          "color": "#bec94f",
+          "material": "Clubhouse soft foliage",
+          "occlusion_strength": 0.5,
+          "triangles": 48
+        }
+      ],
+      "occlusion": {
+        "Teal bed rim": {
+          "min_light": 0.3,
+          "mean_light": 0.788
+        },
+        "Dark soil bed": {
+          "min_light": 0.3,
+          "mean_light": 0.542
+        },
+        "Moss hedge mound centre": {
+          "min_light": 0.3,
+          "mean_light": 0.736
+        },
+        "Moss hedge mound left": {
+          "min_light": 0.3,
+          "mean_light": 0.699
+        },
+        "Moss hedge mound right": {
+          "min_light": 0.3,
+          "mean_light": 0.686
+        },
+        "Moss hedge mound small front": {
+          "min_light": 0.3,
+          "mean_light": 0.51
+        },
+        "Lime leaf mark 1.001": {
+          "min_light": 0.761,
+          "mean_light": 0.913
+        },
+        "Lime leaf mark 2.001": {
+          "min_light": 0.837,
+          "mean_light": 0.926
+        },
+        "Lime leaf mark 3.001": {
+          "min_light": 0.812,
+          "mean_light": 0.924
+        },
+        "Lime leaf mark 4.001": {
+          "min_light": 0.652,
+          "mean_light": 0.816
+        },
+        "Lime leaf mark 5": {
+          "min_light": 0.726,
+          "mean_light": 0.901
+        },
+        "Lime leaf mark 6": {
+          "min_light": 0.829,
+          "mean_light": 0.925
+        },
+        "Lime leaf mark 7": {
+          "min_light": 0.762,
+          "mean_light": 0.915
+        },
+        "Lime leaf mark 8": {
+          "min_light": 0.776,
+          "mean_light": 0.911
+        },
+        "Lime leaf mark 9": {
+          "min_light": 0.652,
+          "mean_light": 0.874
+        },
+        "Lime leaf mark 10": {
+          "min_light": 0.796,
+          "mean_light": 0.918
+        },
+        "Lime leaf mark 11": {
+          "min_light": 0.724,
+          "mean_light": 0.903
+        },
+        "Lime leaf mark 12": {
+          "min_light": 0.72,
+          "mean_light": 0.902
+        },
+        "Lime leaf mark 13": {
+          "min_light": 0.56,
+          "mean_light": 0.83
+        },
+        "Lime leaf mark 14": {
+          "min_light": 0.772,
+          "mean_light": 0.91
+        },
+        "Lime leaf mark 15": {
+          "min_light": 0.747,
+          "mean_light": 0.908
+        },
+        "Lime leaf mark 16": {
+          "min_light": 0.577,
+          "mean_light": 0.809
+        }
+      },
+      "notes": {
+        "mounds": [
+          "centre",
+          "left",
+          "right",
+          "small front"
+        ],
+        "leaf_marks": 16
+      },
+      "glb": {
+        "file": "rounded-hedge.glb",
+        "bytes": 80348,
+        "sha256": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f"
+      }
+    },
+    "stage-marker": {
+      "blender_min": [
+        -0.89,
+        -0.45,
+        0.0
+      ],
+      "blender_max": [
+        0.89,
+        0.45,
+        0.262
+      ],
+      "gltf_min": [
+        -0.89,
+        0.0,
+        -0.45
+      ],
+      "gltf_max": [
+        0.89,
+        0.262,
+        0.45
+      ],
+      "size_m": {
+        "width_x": 1.78,
+        "height_y": 0.262,
+        "depth_z": 0.9
+      },
+      "triangles": 2446,
+      "vertices": 1235,
+      "materials": [
+        "Clubhouse matte clay paint",
+        "Clubhouse satin glaze"
+      ],
+      "registry_box_gltf": {
+        "min": [
+          -0.9,
+          0.0,
+          -0.9
+        ],
+        "max": [
+          0.9,
+          0.35,
+          0.9
+        ]
+      },
+      "inside_registry_box": {
+        "x": true,
+        "y": true,
+        "z": true
+      },
+      "registry_fill": {
+        "width": 0.989,
+        "height": 0.749,
+        "depth": 0.5
+      },
+      "parts": [
+        {
+          "name": "Teal thick capsule rim",
+          "color": "#3b8784",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 1008
+        },
+        {
+          "name": "Cream dance top",
+          "color": "#f1e4c4",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 1.0,
+          "triangles": 440
+        },
+        {
+          "name": "Ochre mustard squiggle",
+          "color": "#e3a53c",
+          "material": "Clubhouse satin glaze",
+          "occlusion_strength": 0.4,
+          "triangles": 686
+        },
+        {
+          "name": "Plum footprint sole 1",
+          "color": "#76506a",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.4,
+          "triangles": 84
+        },
+        {
+          "name": "Plum footprint heel 1",
+          "color": "#76506a",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.4,
+          "triangles": 72
+        },
+        {
+          "name": "Plum footprint sole 2",
+          "color": "#76506a",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.4,
+          "triangles": 84
+        },
+        {
+          "name": "Plum footprint heel 2",
+          "color": "#76506a",
+          "material": "Clubhouse matte clay paint",
+          "occlusion_strength": 0.4,
+          "triangles": 72
+        }
+      ],
+      "occlusion": {
+        "Teal thick capsule rim": {
+          "min_light": 0.3,
+          "mean_light": 0.762
+        },
+        "Cream dance top": {
+          "min_light": 0.3,
+          "mean_light": 0.717
+        },
+        "Ochre mustard squiggle": {
+          "min_light": 0.808,
+          "mean_light": 0.95
+        },
+        "Plum footprint sole 1": {
+          "min_light": 0.88,
+          "mean_light": 0.94
+        },
+        "Plum footprint heel 1": {
+          "min_light": 0.879,
+          "mean_light": 0.94
+        },
+        "Plum footprint sole 2": {
+          "min_light": 0.88,
+          "mean_light": 0.938
+        },
+        "Plum footprint heel 2": {
+          "min_light": 0.873,
+          "mean_light": 0.934
+        }
+      },
+      "notes": {
+        "hot_dog_read": "capsule bun-shaped dais with a mustard squiggle and two goofy dance footprints; no text, logo or character"
+      },
+      "glb": {
+        "file": "stage-marker.glb",
+        "bytes": 61668,
+        "sha256": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec"
+      }
+    }
+  }
+}

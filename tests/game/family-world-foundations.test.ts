@@ -124,7 +124,11 @@ describe("era themes (v4 only)", () => {
       expect(kit.props.length).toBeLessThanOrEqual(6);
       for (const prop of kit.props) {
         expect(prop.theme).toBe(theme);
-        expect(prop.glb).toBeNull();
+        // Only the clubhouse kit has landed (WO111 toon-clubhouse-kit v001);
+        // every other era prop still draws its procedural stand-in.
+        if (theme === "clubhouse")
+          expect(prop.glb?.url).toBe(`/studio/assets/media/toon-clubhouse-kit/v001/${prop.id}.glb`);
+        else expect(prop.glb).toBeNull();
       }
       expect(resolveRuntimeWorldTheme({ schemaVersion: "authored-level-v4", theme }, false)).toBe(world);
     }
@@ -282,6 +286,48 @@ describe("shared prop kit", () => {
       expect(union.max.y - union.min.y).toBeCloseTo(max.y - min.y, 6);
     }
     expect(themeKitProp("water-tower")?.fallback.shape).toBe("tank");
+  });
+});
+
+describe("toon clubhouse kit (WO111)", () => {
+  it("registers the five exact toon-clubhouse-kit v001 props with tight bounds around each measured model", () => {
+    const clubhouse = themeKitPropsFor("clubhouse");
+    expect(clubhouse.map((prop) => prop.id)).toEqual([
+      "clubhouse-tower-facade",
+      "curly-slide",
+      "gadget-toolbox-stand",
+      "rounded-hedge",
+      "stage-marker",
+    ]);
+    for (const prop of clubhouse) {
+      const file = new URL(`../../docs${prop.glb!.url.replace("/studio", "")}`, import.meta.url);
+      const bytes = readFileSync(file);
+      expect(createHash("sha256").update(bytes).digest("hex"), prop.id).toBe(prop.glb!.sha256);
+      // The export names this kit, version and prop, and faces +Z at rotation 0.
+      const json = JSON.parse(bytes.subarray(20, 20 + bytes.readUInt32LE(12)).toString("utf8")) as {
+        scenes: Array<{ extras?: Record<string, unknown> }>;
+        nodes: Array<{ name?: string }>;
+      };
+      expect(json.scenes[0]!.extras, prop.id).toMatchObject({
+        work_order: "WO111",
+        asset_id: "toon-clubhouse-kit",
+        asset_version: "v001",
+        prop_id: prop.id,
+        theme: "clubhouse",
+      });
+      expect(String(json.scenes[0]!.extras!.orientation)).toContain("front toward +Z");
+      expect(json.nodes.map((node) => node.name)).toEqual([prop.id]);
+      const measured = glbBounds(file);
+      const registered = [prop.bounds.min, prop.bounds.max].map((point) => [point.x, point.y, point.z]);
+      expect(measured.min[1], `${prop.id} stands on the floor`).toBe(0);
+      for (let axis = 0; axis < 3; axis += 1) {
+        expect(registered[0]![axis]!, `${prop.id} min ${axis}`).toBeLessThanOrEqual(measured.min[axis]! + 1e-6);
+        expect(registered[1]![axis]!, `${prop.id} max ${axis}`).toBeGreaterThanOrEqual(measured.max[axis]! - 1e-6);
+        // Rounded outward to the millimetre, never padded further.
+        expect(measured.min[axis]! - registered[0]![axis]!).toBeLessThan(0.0011);
+        expect(registered[1]![axis]! - measured.max[axis]!).toBeLessThan(0.0011);
+      }
+    }
   });
 });
 

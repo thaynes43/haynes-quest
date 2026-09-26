@@ -1,12 +1,13 @@
 import { readFileSync } from "node:fs";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 import { CasinoScene } from "../../src/game/casino-scene";
 import { planCasinoCollectibles } from "../../src/game/casino-tokens";
 import { DecorScene } from "../../src/game/decor-scene";
 import type { LevelLayout } from "../../src/game/level";
-import type { SceneAssets } from "../../src/game/scene-assets";
+import { SceneAssets } from "../../src/game/scene-assets";
 import {
   CASINO_TRAIL_LOOK,
   courseFog,
@@ -17,7 +18,7 @@ import { TokenScene } from "../../src/game/token-scene";
 import { WORLD_THEMES } from "../../src/game/world-themes";
 import { AUTHORED_LEVEL_V4_ONLY_THEMES } from "../../src/shared/authored-level";
 import { resolveLevelEditorProject } from "../../src/shared/editor-project";
-import { THEME_KIT_PROPS } from "../../src/shared/theme-kits";
+import { decorWorldBounds, THEME_KIT_PROPS, themeKitPropsFor } from "../../src/shared/theme-kits";
 
 const demo = resolveLevelEditorProject(
   JSON.parse(
@@ -114,6 +115,70 @@ describe("placed decor rendering", () => {
     requests[0]!.target.add(new THREE.Group());
     scene.update();
     expect(fallback.visible).toBe(false);
+  });
+
+  it("swaps in the exact toon-clubhouse-kit models inside their bounds and keeps a stand-in for a missing one", async () => {
+    // The real SceneAssets parses the published GLB bytes; one file is missing.
+    const missing = "stage-marker";
+    const load = vi
+      .spyOn(GLTFLoader.prototype, "loadAsync")
+      .mockImplementation(async function (this: GLTFLoader, url: string) {
+        if (url.endsWith(`/${missing}.glb`)) throw new Error(`404 ${url}`);
+        const bytes = readFileSync(new URL(`../../docs${url.replace("/studio", "")}`, import.meta.url));
+        return this.parseAsync(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), "");
+      });
+    const assets = new SceneAssets();
+    const clubhouse = themeKitPropsFor("clubhouse");
+    const decor = clubhouse.flatMap((prop, index) => [
+      { id: `${prop.id}-a`, kitPropId: prop.id, position: { x: index * 12, y: 0, z: 0 }, rotationY: 0, scale: 1 },
+      { id: `${prop.id}-b`, kitPropId: prop.id, position: { x: index * 12, y: 0.5, z: -9 }, rotationY: Math.PI / 2, scale: 2.2 },
+    ]);
+    const scene = new DecorScene(decor, assets, () => true);
+    expect(load.mock.calls.map(([url]) => url)).toEqual(
+      clubhouse.map((prop) => `/studio/assets/media/toon-clubhouse-kit/v001/${prop.id}.glb`),
+    );
+    await vi.waitFor(() => {
+      for (const prop of clubhouse)
+        if (prop.id !== missing)
+          expect(scene.root.getObjectByName(`decor-model-${prop.id}`)!.children, prop.id).toHaveLength(1);
+      expect(assets.getState()).toEqual({ loading: 0, failed: 1 });
+    });
+    scene.update();
+    for (const prop of clubhouse) {
+      const fallback = scene.root.getObjectByName(`decor-fallback-${prop.id}`)!;
+      const model = scene.root.getObjectByName(`decor-model-${prop.id}`)!;
+      if (prop.id === missing) {
+        expect(fallback.visible).toBe(true);
+        expect(model.children).toHaveLength(0);
+        continue;
+      }
+      expect(fallback.visible, prop.id).toBe(false);
+      // Every placed instance stays inside the registered box at its placement.
+      model.updateMatrixWorld(true);
+      const meshes: THREE.InstancedMesh[] = [];
+      model.traverse((object) => {
+        if (object instanceof THREE.InstancedMesh) meshes.push(object);
+      });
+      expect(meshes.length, prop.id).toBeGreaterThan(0);
+      for (const [instance, entry] of decor.filter((candidate) => candidate.kitPropId === prop.id).entries()) {
+        const placed = new THREE.Box3();
+        for (const mesh of meshes) {
+          mesh.geometry.computeBoundingBox();
+          const matrix = new THREE.Matrix4();
+          mesh.getMatrixAt(instance, matrix);
+          placed.union(mesh.geometry.boundingBox!.clone().applyMatrix4(matrix.premultiply(mesh.matrixWorld)));
+        }
+        const allowed = decorWorldBounds(prop.bounds, entry);
+        expect(placed.min.x, `${entry.id} min x`).toBeGreaterThanOrEqual(allowed.min.x - 1e-4);
+        expect(placed.min.y, `${entry.id} min y`).toBeGreaterThanOrEqual(allowed.min.y - 1e-4);
+        expect(placed.min.z, `${entry.id} min z`).toBeGreaterThanOrEqual(allowed.min.z - 1e-4);
+        expect(placed.max.x, `${entry.id} max x`).toBeLessThanOrEqual(allowed.max.x + 1e-4);
+        expect(placed.max.y, `${entry.id} max y`).toBeLessThanOrEqual(allowed.max.y + 1e-4);
+        expect(placed.max.z, `${entry.id} max z`).toBeLessThanOrEqual(allowed.max.z + 1e-4);
+      }
+    }
+    assets.dispose();
+    load.mockRestore();
   });
 
   it("skips unknown props rather than breaking the scene", () => {

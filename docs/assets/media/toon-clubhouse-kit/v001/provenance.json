@@ -1,0 +1,40 @@
+{
+  "work_order": "WO111",
+  "asset_id": "toon-clubhouse-kit",
+  "version": "v001",
+  "created_utc": "2026-09-26T20:03:47.659444+00:00",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring": {
+    "model": "claude-opus-5-5 (Claude Code subagent, effort xhigh)",
+    "ruling": "Tom, September 26: Claude Opus 5.5 does the WO111 Blender work",
+    "blender_instance": "blender-authoring (instance 1); blender-authoring-2 was not touched",
+    "session": "https://claude.ai/code/session_016rSS1uA4XaroamTk1brNXn"
+  },
+  "source_concept": {
+    "file": "concept-draft.png",
+    "sha256": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
+    "prompt": "prompt.txt",
+    "prompt_sha256": "365aee8ad7817ec2913b1c6e31986c1af429254d9611c586cb3f40a30e1c128c",
+    "revision_prompt": "revision-prompt.txt",
+    "revision_prompt_sha256": "3554fc72fde700e45da5168107e6d1ce979c0d8ba2392c5a4ed0323c930b0f1f",
+    "author": "Codex GPT-6 Astra, WO111 driving lead (concept draft; the requested ivory-background revision was never produced, so the draft is the reference)"
+  },
+  "original_work": [
+    "Five original static props modelled procedurally in Blender Python (kit_common.py + build_kit.py): lathes, outline slabs, swept sections, surface-projected reliefs and noise blobs.",
+    "Colour is per-vertex only: base palette x low-frequency pigment mottling x ray-traced soft occlusion (BVH, 40 cosine rays) tinted plum-blue; no textures, images, fonts or external assets.",
+    "Reference sheets and the kit contact sheet are Blender Cycles renders of the exact export meshes; beauty/matched stills are headless-Chromium three.js renders of the exact GLB bytes."
+  ],
+  "adapted_from": [
+    "WO111 bin-chicken / rival-mayor sheet.py layout (parchment sheet, ruler, palette row, parody-hooks footer) and transfer/claim/release lease scripts",
+    "WO097 Rat Casino kit (vertex-tinted static props, per-prop Khronos checks)",
+    "WO111 yes-yes-veggie baked soft occlusion as COLOR_0"
+  ],
+  "kid_safety_and_originality": "Original parody props: no mouse ears or paired round lobes, no franchise characters, faces, logos, text, song references or copied clubhouse layout. No family names, birthdays, photos or likenesses.",
+  "glb_sha256": {
+    "clubhouse-tower-facade": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
+    "curly-slide": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
+    "gadget-toolbox-stand": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
+    "rounded-hedge": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
+    "stage-marker": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec"
+  }
+}

@@ -76,11 +76,15 @@ function box(
 }
 
 const casinoKit = "/studio/assets/media/rat-casino-kit/v001";
+const clubhouseKit = "/studio/assets/media/toon-clubhouse-kit/v001";
 const media = "/studio/assets/media";
 
 export const THEME_KIT_PROPS: readonly ThemeKitPropDefinition[] = Object.freeze([
   // Rat Casino kit v001 (WO097). Bounds are the exported floor-centred model
   // bounds from construction-measurements.json (Blender Z-up to glTF Y-up).
+  // Unlike the registry convention above, these three exports face -Z
+  // (Blender +Y); World A chapter 4 turns its cabinet walls to suit
+  // (`faceRight = -PI / 2` in scripts/levels/family/a4.ts).
   {
     id: "casino-marquee-arch",
     theme: "casino",
@@ -182,44 +186,65 @@ export const THEME_KIT_PROPS: readonly ThemeKitPropDefinition[] = Object.freeze(
     fallback: { shape: "cylinder", color: 0x6d7cb0, trim: 0xdca953 },
     glb: null,
   },
-  // Family-world era kits (DESIGN-026). The art lead's WO111 kits
-  // (toon-clubhouse-kit, rescue-harbor-kit, rooftop-city-kit, playroom-kit,
-  // casita-kit) add exact GLBs later; until then each prop draws its
-  // procedural stand-in at these bounds.
+  // Family-world era kits (DESIGN-026). Each WO111 kit (toon-clubhouse-kit,
+  // rescue-harbor-kit, rooftop-city-kit, playroom-kit, casita-kit) adds its
+  // exact GLBs as it lands; until then each prop draws its procedural
+  // stand-in at these bounds.
+  //
+  // Toon clubhouse kit v001 (WO111). Bounds are the floor-centred bounds
+  // measured from each exact GLB (accessor extents through the identity
+  // node, rounded outward to the millimetre); every prop sat inside its
+  // earlier planning box, so no placement grew. These exports follow the
+  // registry convention: the front faces +Z at rotation 0.
   {
     id: "clubhouse-tower-facade",
     theme: "clubhouse",
-    bounds: box(2.2, 6.5, 0.6),
+    bounds: { min: { x: -2.153, y: 0, z: -0.598 }, max: { x: 2.133, y: 6.36, z: 0.6 } },
     fallback: { shape: "box", color: 0xe8483f, trim: 0xffd23f },
-    glb: null,
+    glb: {
+      url: `${clubhouseKit}/clubhouse-tower-facade.glb`,
+      sha256: "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
+    },
   },
   {
     id: "curly-slide",
     theme: "clubhouse",
-    bounds: box(1.2, 3.2, 1.2),
+    bounds: { min: { x: -1.194, y: 0, z: -1.196 }, max: { x: 1.17, y: 3.19, z: 1.18 } },
     fallback: { shape: "cylinder", color: 0xffd23f, trim: 0xe8483f },
-    glb: null,
+    glb: {
+      url: `${clubhouseKit}/curly-slide.glb`,
+      sha256: "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
+    },
   },
   {
     id: "gadget-toolbox-stand",
     theme: "clubhouse",
-    bounds: box(0.6, 1.3, 0.45),
+    bounds: { min: { x: -0.595, y: 0, z: -0.42 }, max: { x: 0.595, y: 1.016, z: 0.44 } },
     fallback: { shape: "stack", color: 0x3f8fe8, trim: 0xffd23f },
-    glb: null,
+    glb: {
+      url: `${clubhouseKit}/gadget-toolbox-stand.glb`,
+      sha256: "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
+    },
   },
   {
     id: "rounded-hedge",
     theme: "clubhouse",
-    bounds: box(1.1, 1.2, 0.6),
+    bounds: { min: { x: -1.08, y: 0, z: -0.503 }, max: { x: 1.08, y: 1.146, z: 0.505 } },
     fallback: { shape: "sphere", color: 0x4fb548, trim: 0x2f8a3a },
-    glb: null,
+    glb: {
+      url: `${clubhouseKit}/rounded-hedge.glb`,
+      sha256: "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
+    },
   },
   {
     id: "stage-marker",
     theme: "clubhouse",
-    bounds: box(0.9, 0.35, 0.9),
+    bounds: box(0.89, 0.262, 0.45),
     fallback: { shape: "cylinder", color: 0xffd23f, trim: 0xe8483f },
-    glb: null,
+    glb: {
+      url: `${clubhouseKit}/stage-marker.glb`,
+      sha256: "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec",
+    },
   },
   {
     id: "lookout-tower-facade",

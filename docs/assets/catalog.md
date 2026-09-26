@@ -5,9 +5,9 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
+Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**50 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**55 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -55,6 +55,66 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/7b5a8ec9be1d3e59.webp" alt="Selected original floating toolbox construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="clubhouse-tower-facade" markdown="1">
+
+[![Exact Toon Clubhouse tower facade model: a cream tapering tower under a droopy teal cone roof with an ochre chimney, a round ochre window, an arched teal door, a plum porch and two small hedges](media/catalog-thumbnails/v001/58cdab389d7f8eed.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/toon-clubhouse-kit/v001.md#clubhouse-tower-facade)
+
+### [Toon Clubhouse tower facade](reviews/toon-clubhouse-kit/v001.md#clubhouse-tower-facade)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/72b5e5de8a7c64a2.webp" alt="Astra concept draft of the five Toon Clubhouse kit props" loading="lazy" decoding="async" width="68" height="50"><span>Astra concept draft included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="curly-slide" markdown="1">
+
+[![Exact Toon Clubhouse curly slide model: a broad ochre chute curling round a fat teal post with an ochre ball on top, a cream landing and a cream stair with teal treads](media/catalog-thumbnails/v001/812e3abc10920d75.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/toon-clubhouse-kit/v001.md#curly-slide)
+
+### [Toon Clubhouse curly slide](reviews/toon-clubhouse-kit/v001.md#curly-slide)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/72b5e5de8a7c64a2.webp" alt="Astra concept draft of the five Toon Clubhouse kit props" loading="lazy" decoding="async" width="68" height="50"><span>Astra concept draft included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="gadget-toolbox-stand" markdown="1">
+
+[![Exact Toon Clubhouse gadget toolbox stand model: a cream workbench on plum feet with a pillowy teal top, an ochre drawer with a round knob and a wrench resting in a slot](media/catalog-thumbnails/v001/20cd48ed6b8af9fa.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/toon-clubhouse-kit/v001.md#gadget-toolbox-stand)
+
+### [Toon Clubhouse gadget toolbox stand](reviews/toon-clubhouse-kit/v001.md#gadget-toolbox-stand)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/72b5e5de8a7c64a2.webp" alt="Astra concept draft of the five Toon Clubhouse kit props" loading="lazy" decoding="async" width="68" height="50"><span>Astra concept draft included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="rounded-hedge" markdown="1">
+
+[![Exact Toon Clubhouse rounded hedges model: three puffy green mounds and a small bud with lime leaf marks on a teal-rimmed soil bed](media/catalog-thumbnails/v001/16bed32a9dae862f.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/toon-clubhouse-kit/v001.md#rounded-hedge)
+
+### [Toon Clubhouse rounded hedges](reviews/toon-clubhouse-kit/v001.md#rounded-hedge)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/72b5e5de8a7c64a2.webp" alt="Astra concept draft of the five Toon Clubhouse kit props" loading="lazy" decoding="async" width="68" height="50"><span>Astra concept draft included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="stage-marker" markdown="1">
+
+[![Exact Toon Clubhouse dance stage marker model: a low teal-rimmed capsule with a cream top, a mustard squiggle and two plum footprints](media/catalog-thumbnails/v001/40ba57c3f77baccb.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/toon-clubhouse-kit/v001.md#stage-marker)
+
+### [Toon Clubhouse dance stage marker](reviews/toon-clubhouse-kit/v001.md#stage-marker)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · in the family release kit, not yet placed in a level</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/72b5e5de8a7c64a2.webp" alt="Astra concept draft of the five Toon Clubhouse kit props" loading="lazy" decoding="async" width="68" height="50"><span>Astra concept draft included</span></div>
 
 </div>
 
