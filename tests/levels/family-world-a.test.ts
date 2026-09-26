@@ -1,7 +1,7 @@
 /**
- * World A, "Clubhouse to Casino" (family-world-a@v1), assembled from its four
+ * World A, "Clubhouse to Casino" (family-world-a@v2), assembled from its four
  * chapter generators by `scripts/levels/build-family-world-a.ts`. These checks
- * run against the checked-in template project: the whole-world validator, the
+ * run against the checked-in v2 template project: the whole-world validator, the
  * WORLD-SPEC shell (copy, themes, dates and ages), every chapter's cast, the
  * family lints and the kid-model route on the assembled levels, and the World
  * A difficulty curve (R8). The world is fictional template data.
@@ -26,6 +26,7 @@ import { placeableThemeKitProps, themeKitProp } from "../../src/shared/theme-kit
 import {
   buildFamilyWorldA,
   FAMILY_WORLD_A_CHAPTERS,
+  FAMILY_WORLD_A_TEMPLATE_VERSION,
   familyWorldACommands,
 } from "../../scripts/levels/build-family-world-a";
 import { familyA1Level } from "../../scripts/levels/family/a1";
@@ -35,11 +36,16 @@ import { familyA4Level } from "../../scripts/levels/family/a4";
 import { runGrowthRouteWithWaits } from "../game/family-kid-lib";
 
 const PROJECT_SOURCE = readFileSync(
-  new URL("../../src/shared/levels/family-world-a-v1.json", import.meta.url),
+  new URL("../../src/shared/levels/family-world-a-v2.json", import.meta.url),
   "utf8",
 );
 const COMMANDS_SOURCE = readFileSync(
-  new URL("../../scripts/levels/family-world-a.commands.json", import.meta.url),
+  new URL("../../scripts/levels/family-world-a-v2.commands.json", import.meta.url),
+  "utf8",
+);
+/** v1 is frozen history for journeys published on it; no generator rewrites it. */
+const V1_PROJECT_SOURCE = readFileSync(
+  new URL("../../src/shared/levels/family-world-a-v1.json", import.meta.url),
   "utf8",
 );
 const { project: resolvedProject, levels } = resolveLevelEditorProject(JSON.parse(PROJECT_SOURCE));
@@ -88,10 +94,71 @@ function surfaceTop(chapter: LevelEditorChapterV2, id: string): number {
   return piece.center.y + piece.size.y / 2;
 }
 
-describe("World A template (family-world-a@v1)", () => {
+describe("World A template (family-world-a@v2)", () => {
   it("is the byte-identical output of its generator", () => {
+    expect(FAMILY_WORLD_A_TEMPLATE_VERSION).toBe("v2");
     expect(COMMANDS_SOURCE).toBe(`${JSON.stringify(familyWorldACommands(), null, 2)}\n`);
     expect(PROJECT_SOURCE).toBe(serializeLevelEditorProject(buildFamilyWorldA()));
+  });
+
+  it("keeps v1 valid and differs from it only in the verified fixes", () => {
+    const { project: v1 } = resolveLevelEditorProject(JSON.parse(V1_PROJECT_SOURCE));
+    expect(validateLevelEditorProject(v1)).toEqual([]);
+    const v1Chapters = (v1 as LevelEditorProjectV2).chapters as readonly LevelEditorChapterV2[];
+    type Piece = LevelEditorChapterV2["level"]["pieces"][number];
+    /** Every piece id whose JSON differs between the versions, with the differing fields. */
+    const changes = (before: LevelEditorChapterV2, after: LevelEditorChapterV2) => {
+      const byId = (pieces: readonly Piece[]) => new Map(pieces.map((piece) => [piece.id, piece]));
+      const [old, next] = [byId(before.level.pieces), byId(after.level.pieces)];
+      const out: Record<string, string[] | "removed" | "added"> = {};
+      for (const [id, piece] of old) {
+        const other = next.get(id);
+        if (!other) out[id] = "removed";
+        else {
+          const fields = (["center", "size", "travel"] as const).flatMap((key) =>
+            (["x", "y", "z", "distance", "period", "dwell", "phase"] as const)
+              .filter((axis) => {
+                const a = (piece as unknown as Record<string, Record<string, number> | undefined>)[key]?.[axis];
+                const b = (other as unknown as Record<string, Record<string, number> | undefined>)[key]?.[axis];
+                return a !== b;
+              })
+              .map((axis) => `${key}.${axis}`),
+          );
+          if (fields.length > 0) out[id] = fields;
+        }
+      }
+      for (const id of next.keys()) if (!old.has(id)) out[id] = "added";
+      // Nothing but pieces changes: same connections, paths, anchors and decor.
+      expect({ ...before.level, pieces: [] }).toEqual({ ...after.level, pieces: [] });
+      expect({ ...before, level: null }).toEqual({ ...after, level: null });
+      return out;
+    };
+    const deepCar = ["center.y", "size.y"];
+    expect(v1Chapters.map((chapter, index) => changes(chapter, chapters[index]!))).toEqual([
+      // A1: the mop sweeper across the boss pad's run-up is gone; deep cars.
+      { "cliff-lift": deepCar, "tower-lift": deepCar, "mop-sweeper": "removed" },
+      { "cargo-lift": deepCar },
+      { "freight-elevator": deepCar },
+      // A4: the optional On-Air pad is 0.8 m wider, toward the west; deep cars.
+      { "service-lift": deepCar, "on-air-pad": ["center.x", "size.x"], "marquee-hoist": deepCar },
+    ]);
+    // Every deep car keeps its standing top and travel, and hangs 0.6 m above
+    // its boarding landing at the top stop.
+    for (const [index, chapter] of chapters.entries())
+      for (const piece of chapter.level.pieces) {
+        if (piece.type !== "lift") continue;
+        const before = v1Chapters[index]!.level.pieces.find((entry) => entry.id === piece.id) as typeof piece;
+        const top = (entry: typeof piece) => entry.center.y + entry.size.y / 2;
+        expect(top(piece)).toBeCloseTo(top(before), 6);
+        expect(piece.size.y).toBeCloseTo(piece.travel.distance - 0.6, 6);
+      }
+    const pad = (chapter: LevelEditorChapterV2) => {
+      const piece = chapter.level.pieces.find((entry) => entry.id === "on-air-pad") as AuthoredSurfacePiece;
+      return [piece.center.x - piece.size.x / 2, piece.center.x + piece.size.x / 2].map((x) => Math.round(x * 10) / 10);
+    };
+    expect(pad(v1Chapters[3]!)).toEqual([-27.6, -25.2]);
+    expect(pad(chapters[3]!)).toEqual([-28.4, -25.2]);
+    expect({ ...v1, chapters: [] }).toEqual({ ...project, chapters: [] });
   });
 
   it("validates as a whole world with zero issues", () => {

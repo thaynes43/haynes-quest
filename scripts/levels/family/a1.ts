@@ -44,6 +44,7 @@ import type {
 import {
   bounce,
   bouncePad,
+  deepCarThickness,
   drop,
   jump,
   lift,
@@ -64,7 +65,6 @@ import {
   sandBlock,
   sized,
   slab,
-  slider,
   spinner,
   tray,
   type A1Rect,
@@ -247,7 +247,9 @@ function liftBetween(
     bottomTop,
     distance,
     period: 8,
-    thickness: 0.4,
+    // v2: a deep car closes the shaft while the lift is away (walk-ins fell
+    // in about two times in three with v1's 0.4 m car).
+    thickness: deepCarThickness(distance),
     dwell: LIFT_DWELL,
   });
 }
@@ -311,13 +313,10 @@ function pieces(): AuthoredLevelPiece[] {
     liftBetween("tower-lift", R.towerLift, CLUBHOUSE, BALCONY - CLUBHOUSE),
     P.balcony,
     checkpointOn("cp-balcony", P.balcony, -31.2, -141),
-    slider("mop-sweeper", { x: -35.2, z: -146.2 }, BALCONY, 1.2, {
-      axis: "x",
-      distance: 3,
-      period: 7,
-      phase: Math.PI / 2,
-    }),
-    // S14 The tower boing.
+    // S14 The tower boing. v1's mop sweeper slid across the pad's run-up
+    // 0.8 m from the balcony edge and knocked a slow walker (stick 0.4-0.5
+    // from 2.6 m or more back) off before the pad, against R2. v2 leaves the
+    // run-up clear, which also shortens every boss retry (R5).
     pad("tower-pad", R.towerPad, BALCONY, "big"),
     // S15 Tower top: the boss.
     P.tower,

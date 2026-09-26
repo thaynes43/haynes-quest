@@ -29,6 +29,7 @@ export const ADMIN_USAGE = `Usage: node dist/server/admin.js <command> [options]
   templates --birth-date <YYYY-MM-DD>
   create-child --name <Immich name> --choice <choice id> --display-name <name>
                (--birth-date <YYYY-MM-DD> | --immich-birth-date) --template <id>@<version>
+  set-template --child <child id> --template <id>@<version>
   auto-pick --child <child id> [--reseed]
   publish --child <child id> [--revision <draft revision>] [--request <uuid>]
   verify-media --child <child id>
@@ -105,6 +106,16 @@ export async function runAdminCommand(
         templateVersion,
       }, null);
       out(`child ${child.id}`);
+      return 0;
+    }
+    case 'set-template': {
+      // A template fix ships as a new version; this moves a child onto it.
+      // The draft carries over when the chapters rebase identically, so the
+      // next publish uses the new version.
+      const [templateId, templateVersion] = text('template').split('@');
+      if (!templateId || !templateVersion) throw new AppError(422, 'MISSING_OPTION', '--template is <id>@<version>');
+      const { child, draftCarried } = await context.service.setTemplate(text('child'), templateId, templateVersion, null);
+      out(`child ${child.id} template ${child.templateId}@${child.templateVersion} draft ${draftCarried ? 'carried' : 'needs auto-pick'}`);
       return 0;
     }
     case 'auto-pick': {

@@ -25,7 +25,7 @@
  * measurement; software WebGL draws a few frames a second.
  *
  *   QUEST_E2E_URL        origin of an ephemeral playtest build (required)
- *   QUEST_E2E_PROJECT    template project (default src/shared/levels/family-world-a-v1.json)
+ *   QUEST_E2E_PROJECT    template project (default src/shared/levels/family-world-a-v2.json)
  *   QUEST_E2E_CHAPTERS   comma-separated chapter ids (default: every chapter)
  *   QUEST_E2E_RUN_LABEL  report folder under test-results/family-world (default candidate)
  *   QUEST_E2E_SHOTS      screenshot folder (default the report folder)
@@ -72,7 +72,7 @@ import { planPatientLeg } from "../game/family-kid-lib";
 const url = process.env.QUEST_E2E_URL;
 assert.ok(url, "QUEST_E2E_URL is required; never test a stale implicit server");
 const runLabel = process.env.QUEST_E2E_RUN_LABEL ?? "candidate";
-const projectPath = resolve(process.env.QUEST_E2E_PROJECT ?? "src/shared/levels/family-world-a-v1.json");
+const projectPath = resolve(process.env.QUEST_E2E_PROJECT ?? "src/shared/levels/family-world-a-v2.json");
 const reportDirectory = resolve(`test-results/family-world-lockstep/${runLabel}`);
 const shotDirectory = resolve(process.env.QUEST_E2E_SHOTS ?? reportDirectory);
 const playScale = Number(process.env.QUEST_E2E_SCALE ?? 0.25);

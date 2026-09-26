@@ -126,6 +126,57 @@ export class FamilyJourneyService {
     return childView(child);
   }
 
+  /**
+   * Moves a child to another registered template, usually a newer version of
+   * the same world: a template content fix ships as a new version, because a
+   * published journey freezes its template (DESIGN-024). When the new
+   * template rebases to the same chapters, the draft's photos, captions and
+   * swaps carry over, so the next publish uses the new template; otherwise
+   * the draft goes stale and the administrator picks the photos again. A
+   * started run keeps its frozen publication until an administrator starts a
+   * fresh run on the newer one.
+   */
+  async setTemplate(
+    childId: string,
+    templateId: string,
+    templateVersion: string,
+    actorId: string | null,
+  ): Promise<{ child: ChildView; draftCarried: boolean }> {
+    const child = await this.requireChild(childId);
+    const template = this.options.templates.require(templateId, templateVersion);
+    this.rebase(template, child.birthDate);
+    const updated = child.templateId === template.id && child.templateVersion === template.version
+      ? child
+      : await this.options.store.updateChild(child.id, child.revision, {
+        templateId: template.id,
+        templateVersion: template.version,
+      }, actorId);
+    const draft = await this.options.store.getDraft(child.id);
+    if (!draft) return { child: childView(updated), draftCarried: false };
+    if (draft.templateId === template.id && draft.templateVersion === template.version) {
+      return { child: childView(updated), draftCarried: true };
+    }
+    if (draft.birthDate !== updated.birthDate) return { child: childView(updated), draftCarried: false };
+    let world: RebasedWorld;
+    try {
+      world = rebaseWorldForChild(template.project, draft.birthDate, draft.rebasedOn);
+    } catch (error) {
+      if (error instanceof FamilyRebaseError) return { child: childView(updated), draftCarried: false };
+      throw error;
+    }
+    if (!sameChapters(world.chapters, draft.chapters)) return { child: childView(updated), draftCarried: false };
+    await this.options.store.saveDraft(child.id, draft.revision, {
+      templateId: template.id,
+      templateVersion: template.version,
+      seed: draft.seed,
+      birthDate: draft.birthDate,
+      rebasedOn: draft.rebasedOn,
+      chapters: draft.chapters,
+      slots: draft.slots,
+    }, actorId);
+    return { child: childView(updated), draftCarried: true };
+  }
+
   async listChildren(): Promise<ChildView[]> {
     return (await this.options.store.listChildren()).map(childView);
   }

@@ -312,15 +312,18 @@ describe("A4 pads and lifts", () => {
     it(`walks onto ${entry.from} at every R2 stick and lands on ${entry.to}`, () => {
       const deck = document.connections.find((candidate) => candidate.to === entry.from && candidate.mode === "walk")!;
       expect(deck).toBeDefined();
+      // v2 widens the On-Air pad: in v1 a walk from 0.8 m to one side
+      // (run-up 0.6 or 1.5 m) stepped off backstage just west of it.
       const failures: string[] = [];
       for (const stage of STAGES)
         for (const stick of R2_STICKS)
-          for (const lateral of [-0.6, 0, 0.6]) {
-            const result = bounceWalkOn(level, deck.from, entry.from, entry.to, { stick, stage, lateral });
-            if (!result.reached || !result.startedOnSource) failures.push(`${stage}@${stick}/${lateral}`);
-          }
+          for (const runUp of [0.6, 1.5])
+            for (const lateral of [-0.8, -0.6, 0, 0.6, 0.8]) {
+              const result = bounceWalkOn(level, deck.from, entry.from, entry.to, { stick, stage, lateral, runUp });
+              if (!result.reached || !result.startedOnSource) failures.push(`${stage}@${stick}/${runUp}/${lateral}`);
+            }
       expect(failures).toEqual([]);
-    });
+    }, 60_000);
 
   for (const liftId of ["service-lift", "marquee-hoist"])
     it(`${liftId} carries a child who walks in, and its boarding landing holds a checkpoint`, () => {
@@ -329,14 +332,16 @@ describe("A4 pads and lifts", () => {
       const to = document.mainPath[index + 1]!;
       expect(document.pieces.some((piece) => piece.type === "checkpoint" && piece.platformId === from)).toBe(true);
       for (const stage of STAGES) {
-        const result = liftWalkIn(level, liftId, from, to, { phases: 12, stage });
-        // Dwell does not close the shaft (DESIGN-025 D-08 f): an arrival while
-        // the lift is away falls to the boarding checkpoint; nobody is stranded.
-        expect(result.ok, stage).toBeGreaterThan(0);
-        expect(result.other, stage).toBe(0);
-        expect(result.ok + result.fell).toBe(12);
+        // v2's deep car closes the shaft: every blind walk-in rides through
+        // (v1's 0.4 m car let about two in three fall in).
+        for (const stick of [0.4, 1])
+          for (const runUp of [0.6, 1.5, 3])
+            expect(
+              liftWalkIn(level, liftId, from, to, { phases: 24, stage, stick, runUp }),
+              `${stage}@${stick} run-up ${runUp}`,
+            ).toEqual({ ok: 24, fell: 0, other: 0 });
       }
-    });
+    }, 180_000);
 });
 
 // ---------------------------------------------------------------------------

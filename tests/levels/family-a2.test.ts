@@ -354,24 +354,26 @@ describe("A2 pads and lifts", () => {
     }
   });
 
-  it("carries a child who walks at the cargo lift, and every shaft fall restarts beside it", () => {
+  it("carries every child who walks at the cargo lift; none falls into the shaft", () => {
     const phases = 12;
     for (const stage of STAGES) {
-      const walkIns = liftWalkIn(resolved, "cargo-lift", "fish-market", "crane-roof", {
-        phases,
-        stage,
-        abilities: START_MOVES,
-      });
-      // Dwell does not close the shaft (DESIGN-025 D-08 f): measured 4 of 12
-      // ride through and 8 fall in. None is left stranded.
-      expect(walkIns.other).toBe(0);
-      expect(walkIns.ok).toBeGreaterThan(0);
-      expect(walkIns.ok + walkIns.fell).toBe(phases);
-      expect(shaftFallCheckpoints("cargo-lift", "fish-market", phases, stage)).toEqual(
-        Array(walkIns.fell).fill("market-safe"),
-      );
+      // v2's deep car closes the shaft: every blind walk-in rides through
+      // (v1's 0.4 m car let 8 of 12 fall in).
+      for (const stick of [0.4, 1])
+        for (const runUp of [0.6, 1.5, 3])
+          expect(
+            liftWalkIn(resolved, "cargo-lift", "fish-market", "crane-roof", {
+              phases,
+              stage,
+              stick,
+              runUp,
+              abilities: START_MOVES,
+            }),
+            `${stage}@${stick} run-up ${runUp}`,
+          ).toEqual({ ok: phases, fell: 0, other: 0 });
+      expect(shaftFallCheckpoints("cargo-lift", "fish-market", phases, stage)).toEqual([]);
     }
-  });
+  }, 120_000);
 });
 
 /**

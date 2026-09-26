@@ -348,16 +348,20 @@ describe.each(STAGES)("%s avatar, age-5 moves only", (stage) => {
         }
   });
 
-  it("(d) lets a child who walks at the elevator ride it or fall back to the start deck (R6)", () => {
-    const result = liftWalkIn(level, "freight-elevator", "launch-deck", "elevator-roof", { phases: 12, stage });
-    expect(result.other).toBe(0);
-    expect(result.ok).toBeGreaterThan(0);
-    expect(result.ok + result.fell).toBe(12);
-    // A fall into the open shaft is a short retry: the deck holds cp-launch.
+  it("(d) carries every child who walks at the elevator; none falls into the shaft (R6)", () => {
+    // v2's deep car closes the shaft: every blind walk-in rides through (v1's
+    // 0.4 m car let about two in three fall in).
+    for (const stick of [0.4, 1])
+      for (const runUp of [0.6, 1.5, 3])
+        expect(
+          liftWalkIn(level, "freight-elevator", "launch-deck", "elevator-roof", { phases: 24, stage, stick, runUp }),
+          `${stage}@${stick} run-up ${runUp}`,
+        ).toEqual({ ok: 24, fell: 0, other: 0 });
+    // The boarding deck still holds cp-launch.
     expect(document.pieces.some((piece) => piece.type === "checkpoint" && piece.platformId === "launch-deck")).toBe(
       true,
     );
-  });
+  }, 120_000);
 
   it.each(mainEdges.map((edge) => [label(edge), edge] as const))(
     "(e) crosses required edge %s",

@@ -92,6 +92,21 @@ export interface LiftSpec extends Footprint {
   readonly dwell?: number;
 }
 
+/** How far a deep car's underside hangs above its boarding landing at the top stop. */
+export const DEEP_CAR_CLEARANCE = 0.6;
+
+/**
+ * The car depth that closes a lift's shaft (B2's garden lift, World B v2 and
+ * World A v2). At its top stop the car's underside hangs
+ * {@link DEEP_CAR_CLEARANCE} above the boarding landing, lower than the
+ * infant avatar (0.88 m), so a child who walks at the empty shaft meets the
+ * car's side instead of falling in. Nothing may lie under the shaft
+ * (`family.lift.shaft-floor`).
+ */
+export function deepCarThickness(distance: number): number {
+  return mm(Math.max(DEFAULT_THICKNESS, distance - DEEP_CAR_CLEARANCE));
+}
+
 /** A lift that starts at its bottom stop at t=0 (phase 0), dwell first. */
 export function lift(id: string, spec: LiftSpec): AuthoredLiftPiece {
   return {

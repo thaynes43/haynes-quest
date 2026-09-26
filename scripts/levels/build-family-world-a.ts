@@ -1,5 +1,5 @@
 /**
- * Generates World A, "Clubhouse to Casino" (`family-world-a@v1`, PLAN-019).
+ * Generates World A, "Clubhouse to Casino" (`family-world-a@v2`, PLAN-019).
  *
  * Usage: tsx scripts/levels/build-family-world-a.ts [--write]
  *
@@ -29,10 +29,21 @@
  * (DESIGN-024 D-03) and replaces the preview memories with real photos.
  *
  * Without `--write` it prints the command batch. With it, it rewrites the
- * checked-in command history (`scripts/levels/family-world-a.commands.json`)
- * and the template project (`src/shared/levels/family-world-a-v1.json`) that
+ * checked-in command history (`scripts/levels/family-world-a-v2.commands.json`)
+ * and the template project (`src/shared/levels/family-world-a-v2.json`) that
  * `pnpm levels:validate` replays byte-identically and the family template
  * registry serves.
+ *
+ * Versions. A published journey freezes its template's fingerprint, so a
+ * content change is a new template version and the older one stays
+ * registered and loadable. v1 (`family-world-a-v1.json` and
+ * `family-world-a.commands.json`) is frozen history: `levels:validate` still
+ * replays it from its own checked-in commands, and no generator rewrites it.
+ * v2 carries the post-verification fixes:
+ * - A1's mop sweeper is gone from the boss pad's run-up;
+ * - A4's optional On-Air pad is wider;
+ * - every lift has a deep car that closes its shaft while it is away.
+ * Everything else is unchanged.
  */
 import { writeFile } from "node:fs/promises";
 import {
@@ -80,12 +91,12 @@ import {
 } from "./family/a4.js";
 
 export const FAMILY_WORLD_A_TEMPLATE_ID = "family-world-a";
-export const FAMILY_WORLD_A_TEMPLATE_VERSION = "v1";
+export const FAMILY_WORLD_A_TEMPLATE_VERSION = "v2";
 /** The name administrators see when they choose a template (WORLD-SPEC). */
 export const FAMILY_WORLD_A_NAME = "Clubhouse to Casino";
 export const FAMILY_WORLD_A_BIRTH_DATE = FAMILY_WORLD_A_FICTIONAL_BIRTH_DATE;
 /**
- * The newest parody catalog when v1 was generated. It is pinned, not derived:
+ * The newest parody catalog when v1 was generated (v2 keeps it). It is pinned, not derived:
  * a published template is frozen by fingerprint, so a later catalog version
  * belongs in a new template version.
  */
@@ -257,11 +268,11 @@ export function buildFamilyWorldA(): LevelEditorProjectV2 {
 }
 
 export const FAMILY_WORLD_A_COMMANDS_URL = new URL(
-  "./family-world-a.commands.json",
+  `./family-world-a-${FAMILY_WORLD_A_TEMPLATE_VERSION}.commands.json`,
   import.meta.url,
 );
 export const FAMILY_WORLD_A_PROJECT_URL = new URL(
-  "../../src/shared/levels/family-world-a-v1.json",
+  `../../src/shared/levels/family-world-a-${FAMILY_WORLD_A_TEMPLATE_VERSION}.json`,
   import.meta.url,
 );
 

@@ -22,6 +22,14 @@ Tom asked for the first real release for his two children:
 
 **Eras locked** September 26: [DESIGN-026](../docs/designs/026-personal-era-casts.md) gives World A four chapters and World B three. The Codex Astra art lead ([WO111](work-orders/111-era-cast-art-lead.md)) is producing the casts and kits.
 
+**World A v2** (September 26): verification of `family-world-a@v1` found two bounce-pad defects and open lift shafts. v2 fixes them:
+
+- The Toon Clubhouse's mop sweeper is removed from the boss pad's run-up.
+- The optional On-Air pad in Rat Casino After Hours is wider.
+- Every lift has a deep car, so walk-ins no longer fall into the shaft.
+
+v1 stays registered for the journey already published on it. To move that child to v2, run the operator's `set-template` and then `publish` ([runbook](../docs/ops/002-private-preview.md)). An administrator then presses **Start fresh with these photos**. The review's rejected findings and their reasons are in the World A fixes PR.
+
 **Next:**
 1. Foundations.
 2. Seven chapter builds.

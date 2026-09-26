@@ -55,6 +55,7 @@ import {
   bounce,
   bouncePad,
   decor,
+  deepCarThickness,
   drop,
   jump,
   lift,
@@ -326,7 +327,8 @@ function mainSurfaces(): AuthoredLevelPiece[] {
       distance: TOP.crane - TOP.market,
       period: 8,
       dwell: 2,
-      thickness: 0.4,
+      // v2: a deep car closes the shaft while the lift is away.
+      thickness: deepCarThickness(TOP.crane - TOP.market),
     }),
     deck("crane-roof", { ...alongX(L2.crane), ...alongZ(CRANE_Z), top: TOP.crane }),
     deck("chimney", { ...alongX(L2.chimney), z: LEG2_Z + 1.5, sizeZ: 4.4, top: TOP.chimney }),

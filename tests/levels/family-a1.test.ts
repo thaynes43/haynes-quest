@@ -245,19 +245,24 @@ describe("A1 kid model (jump only)", () => {
       "slide-pad-2",
       "slide-pad-3",
     ]);
+    // v2: from up to 3 m back too. v1's mop sweeper crossed the tower pad's
+    // run-up 0.8 m from the balcony edge and knocked a slow walker (stick
+    // 0.4-0.5, 2.6 m or more back) off before the pad.
+    expect(document.pieces.some((piece) => piece.id === "mop-sweeper")).toBe(false);
     for (const step of required) {
       const deck = document.mainPath[document.mainPath.indexOf(step.from) - 1]!;
       for (const stage of STAGES)
         for (const stick of R2_STICKS)
-          for (const lateral of [-0.6, 0, 0.6]) {
-            const result = bounceWalkOn(level, deck, step.from, step.to, { stick, stage, lateral });
-            expect(result.reached, `${step.from} ${stage}@${stick} lateral ${lateral}`).toBe(true);
-            expect(result.bounces).toBeGreaterThan(0);
-          }
+          for (const runUp of [0.6, 1.5, 3])
+            for (const lateral of [-0.8, -0.6, 0, 0.6, 0.8]) {
+              const result = bounceWalkOn(level, deck, step.from, step.to, { stick, stage, lateral, runUp });
+              expect(result.reached, `${step.from} ${stage}@${stick} run-up ${runUp} lateral ${lateral}`).toBe(true);
+              expect(result.bounces).toBeGreaterThan(0);
+            }
     }
-  });
+  }, 120_000);
 
-  it("(d) rides every required lift from a walk-in, and a fall into the open shaft retries on the boarding landing", () => {
+  it("(d) rides every required lift from a walk-in, and a child pressing at the empty shaft stays on the landing", () => {
     const lifts = requiredSteps.filter(
       (step) => step.mode === "ride" && surface(step.to).type === "lift",
     );
@@ -271,17 +276,18 @@ describe("A1 kid model (jump only)", () => {
       );
       expect(checkpoint, `${boarding.from} holds a checkpoint`).toBeDefined();
       for (const stage of STAGES) {
-        const result = liftWalkIn(level, liftId, boarding.from, exit.to, { phases, stage });
-        // Every arrival either rides through or falls into the shaft; none is stuck.
-        expect(result.other, `${liftId} ${stage}`).toBe(0);
-        expect(result.ok + result.fell).toBe(phases);
-        // The 2 s dwell lets a fair share of blind walk-ins board (measured 7–8 of 24).
-        expect(result.ok, `${liftId} ${stage}`).toBeGreaterThanOrEqual(phases / 4);
+        // v2's deep car closes the shaft: every blind walk-in rides through
+        // (v1's 0.4 m car let about two in three fall in).
+        for (const stick of [0.4, 1])
+          for (const runUp of [0.6, 1.5, 3]) {
+            const result = liftWalkIn(level, liftId, boarding.from, exit.to, { phases, stage, stick, runUp });
+            expect(result, `${liftId} ${stage}@${stick} run-up ${runUp}`).toEqual({ ok: phases, fell: 0, other: 0 });
+          }
 
-        // A walk-in while the lift waits at its top stop falls into the shaft
-        // and recovers at the boarding landing's checkpoint: a short retry.
+        // A child who keeps pushing at the shaft while the lift waits at its
+        // top stop meets the car's side and stays on the boarding landing.
         const lift = level.course.platforms.find((platform) => platform.id === liftId)!;
-        const startTime = motionCycleSeconds(lift) / 2;
+        const startTime = motionCycleSeconds(lift) / 2 - 1;
         const simulation = createGrowthSimulation(
           level,
           stage,
@@ -290,7 +296,7 @@ describe("A1 kid model (jump only)", () => {
           startTime,
         );
         let recovered = false;
-        for (let frame = 0; frame < 240 && !recovered; frame += 1) {
+        for (let frame = 0; frame < 90 && !recovered; frame += 1) {
           const target = sampledPlatform(level.course, liftId, simulation.timeSeconds + FRAME_SECONDS).center;
           const deltaX = target.x - simulation.state.position.x;
           const deltaZ = target.z - simulation.state.position.z;
@@ -299,11 +305,11 @@ describe("A1 kid model (jump only)", () => {
             move: { moveX: deltaX / distance, moveY: -deltaZ / distance },
           }).recovered;
         }
-        expect(recovered, `${liftId} ${stage} falls while the lift is away`).toBe(true);
-        expect(simulation.state.checkpointId).toBe(checkpoint!.id);
+        expect(recovered, `${liftId} ${stage} stays out of the shaft`).toBe(false);
+        expect(simulation.state.grounded && simulation.state.supportId, `${liftId} ${stage}`).toBe(boarding.from);
       }
     }
-  });
+  }, 120_000);
 
   it("traverses every required step from an isolated entry with jump only", () => {
     for (const step of requiredSteps)

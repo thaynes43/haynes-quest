@@ -425,12 +425,13 @@ function Adventure({
           setChapterMemoryId(action.memoryId);
         if (!next.completed) {
           // DESIGN-025: a growth level adds a short card per newly unlocked move.
+          // Each title already ends in "!", so the body follows after a space.
           const moveCards = growthMoveCardsForAdvance(
             before,
             next,
             authoredLevelResolver,
           )
-            .map((card) => `${card.title}: ${card.body}`)
+            .map((card) => `${card.title} ${card.body}`)
             .join(" ");
           setChapterNotice(
             `Three memories brought you to age ${next.ageYears}. Your next chapter begins in ${next.adventure?.activeLevel?.eraYear}. Bring your gear and keep exploring!${moveCards ? ` ${moveCards}` : ""}`,

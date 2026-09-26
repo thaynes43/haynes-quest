@@ -134,7 +134,17 @@ node dist/server/admin.js create-child --name "<Immich name>" --choice <choice i
 node dist/server/admin.js auto-pick --child <child id>           # draft rN filled F/T needs-photo N
 node dist/server/admin.js publish --child <child id>             # publication <id> rN chapters C memories M
 node dist/server/admin.js verify-media --child <child id>        # decoded D/M failed F
+node dist/server/admin.js set-template --child <child id> --template family-world-a@v2
 node dist/server/admin.js status
+```
+
+A template fix ships as a new template version, because a published journey freezes its template. `set-template` moves a child onto another template the child can play, usually a newer version of the same world. It prints `draft carried` when the new version rebases to the same chapters: the chosen photos, captions and swaps then carry over. Otherwise it prints `draft needs auto-pick`. Then run `publish`. The started run keeps its frozen publication. An administrator starts a fresh run on the new publication with **Start fresh with these photos** in Family setup, or with `POST /api/children/:id/play {"fresh": true}`.
+
+To move a child from World A v1 to v2 (use `family-world-b@v2` for World B):
+
+```bash
+node dist/server/admin.js set-template --child <child id> --template family-world-a@v2   # draft carried
+node dist/server/admin.js publish --child <child id>                                      # publication <id> rN ...
 ```
 
 The family screens live in `src/client/family/`: the household home with its journey cards, administrator setup, **Add a child** and the Memories screen. Their strings are `// COPY:` placeholders. The synthetic browser journey runs the real client and family routes against a fake session cookie and an in-process fake Immich, and exercises no real sign-in or photos. Start a fresh harness for each run:
