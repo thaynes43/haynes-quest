@@ -18,7 +18,19 @@ Tom asked for the first real release for his two children:
 
 [ADR-005](../docs/adrs/005-family-sign-in-and-admission.md), [DESIGN-024](../docs/designs/024-family-journeys.md) and [DESIGN-025](../docs/designs/025-growth-moves-and-vertical-courses.md) are the contracts.
 
-**Asset gate:** the era casts in [DESIGN-026](../docs/designs/026-personal-era-casts.md) are only a proposal. Tom ruled that no concept, model or sound may be generated until he locks the age-band associations. Children's names, birthdays and photos are private database configuration and never enter this public repository.
+**Live at [quest.haynesnetwork.com](https://quest.haynesnetwork.com)** behind Authentik (`authentik Admins` + `family`), with a Haynes Network portal tile. It runs main `e63f549`: sign-in, family journeys, the admin Memories screen, the operator CLI, growth moves and v4 pieces. Tom should sign in as `thaynes`; that account is in both groups, while the separate `thomashaynes620` account is in neither.
+
+**Eras locked** September 26: [DESIGN-026](../docs/designs/026-personal-era-casts.md) gives World A four chapters and World B three. The Codex Astra art lead ([WO111](work-orders/111-era-cast-art-lead.md)) is producing the casts and kits.
+
+**Next:**
+1. Foundations.
+2. Seven chapter builds.
+3. Register the World A and B templates.
+4. Deploy.
+5. The operator publishes both children's journeys.
+6. Adversarial review.
+
+Children's names, birthdays and photos are private database configuration and never enter this public repository.
 
 ## Golden encounter and PC mouse controls · September 25, 2026
 

@@ -1,7 +1,7 @@
 # DESIGN-024: Family journeys with real memories
 
 - **Status:** Accepted for the first family release, September 25, 2026
-- **Last updated:** 2026-09-25
+- **Last updated:** 2026-09-26
 - **Satisfies:** [PRD-004](../prds/004-family-release.md) R-02, R-04–R-08, R-12, R-13
 - **Governed by:** [ADR-001](../adrs/001-authentik-sign-in.md), [ADR-005](../adrs/005-family-sign-in-and-admission.md), [ADR-004](../adrs/004-versioned-world-projects.md)
 - **Builds on:** DESIGN-003, 004, 006, 009, 012, 016, 020; supersedes [PLAN-010](../../.agents/plans/010-parent-prepared-memories.md)'s unratified identity proposals where they differ
@@ -49,7 +49,7 @@ Revision checks use compare-and-set; publishing is idempotent per request id.
 
 **D-03 Age bands and rebase.** A template chapter's age band is derived from its fictional dates: `startAge = wholeYears(fictionalBirthDate, startDate)`, and `recoveredAge` is the chapter's end age. For a child with birthday `B`:
 
-- the chapter starts at `B + startAge` years;
+- the chapter starts at `B + startAge` years. That start date is also the date cast eligibility is checked against;
 - the target big-memory date is `B + recoveredAge` years, the birthday on which the child turns that age;
 - chapter `k+1` starts on chapter `k`'s big-memory date, as in plan v3.
 
@@ -87,7 +87,7 @@ The display name is never in a default caption. Administrators edit captions: 1�
 
 **D-06 Private media.**
 
-- **Candidate thumbnails** use short-lived opaque tokens: an HMAC over draft id, asset id and expiry, derived per ADR-005 D-08. They are served only to administrators.
+- **Candidate thumbnails** use short-lived opaque tokens, served only to administrators. The tokens are AES-GCM encrypted rather than only HMAC-signed, so the Immich asset id never reaches the browser. The key is derived per ADR-005 D-08.
 - **Published photos** are served through `/api/saves/:id/media/:memoryId`, with the membership, visibility and release rechecks that exist today.
 - **Sanitization:** bytes pass the existing sanitizer (re-encode to WebP, metadata stripped, ≤1600 px) and are served `no-store` with `nosniff`. An Immich failure is a friendly placeholder card in the game and an explicit error on the admin screen, never an upstream URL.
 
@@ -109,7 +109,8 @@ It reuses the frozen editor-world runtime (anchors, encounters, bonus slot, rout
 | `/api/session` | GET | Session view, extended to `mode: 'family'` with role | Admitted |
 | `/api/children` | GET | Published journeys and their saves | Admitted |
 | `/api/admin/children` | GET, POST | Child profiles | Admin |
-| `/api/admin/immich/people?name=` | GET | Person lookup | Admin |
+| `/api/admin/immich/people?name=` | GET | Person lookup, through Immich's name search (`/api/search/person`) with an exact, case-insensitive filter | Admin |
+| `/api/admin/templates?birthDate=` | GET | World templates that fit a birthday | Admin |
 | `/api/admin/children/:id/draft` | GET, PUT | Draft read and edit | Admin |
 | `/api/admin/children/:id/draft/slots/:chapter/:slot/suggestions?cursor=` | GET | Swap suggestions | Admin |
 | `/api/admin/candidates/:token/image` | GET | Candidate thumbnail | Admin |
@@ -117,6 +118,10 @@ It reuses the frozen editor-world runtime (anchors, encounters, bonus slot, rout
 | `/api/children/:id/play` | POST | Resume or create the household save for the latest publication | Admitted |
 
 Save routes are unchanged in shape.
+
+**D-08a Background picking.** Automatic picking runs as a background job, and its request returns 202, because a full pick can take longer than Cloudflare's 100 s request limit. The admin screen shows progress.
+
+**D-08b Time zone.** `QUEST_HOUSEHOLD_TIME_ZONE` (America/New_York in production) defines "today" for the final chapter's end and for pick windows.
 
 **D-09 Operator CLI.** For the first overnight setup, an operator runs `node dist/server/admin.js` inside the family pod. It performs the same service calls as the admin screen (create child from Immich name, confirm birthday, choose template, auto-pick, publish). It prints only opaque ids and counts, never names, dates or photo ids. This does not bypass validation.
 

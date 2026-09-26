@@ -1,6 +1,6 @@
 # Work order 106: Family sign-in and admission
 
-- **Status:** In progress
+- **Status:** Complete. [PR76](https://github.com/thaynes43/haynes-quest/pull/76) merged at `092a822` and was live on the family release on September 25. The live sign-in start was verified up to Authentik's login flow; Tom's own sign-in is an owner check
 - **Model / dispatch:** Native Claude Code subagent `claude-opus-5-5` (xhigh), dispatched by the PLAN-019 Claude coordinator
 - **Context:** Fresh agent; self-contained brief
 - **Required reading:** `AGENTS.md`, [ADR-001](../../docs/adrs/001-authentik-sign-in.md), [ADR-005](../../docs/adrs/005-family-sign-in-and-admission.md), [DESIGN-024](../../docs/designs/024-family-journeys.md) D-01/D-02/D-08, [WO080](080-identity-curation-readiness.md), `src/server/{config,app,index,security}.ts`, `src/server/db/**`, `migrations/**`, `tests/server/app.test.ts`; reference implementation in the cigar-journal repo (`packages/auth/src/auth.ts`, `packages/auth/src/oidc.test.ts`)

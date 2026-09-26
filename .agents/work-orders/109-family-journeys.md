@@ -1,6 +1,6 @@
 # Work order 109: Family journeys with real memories
 
-- **Status:** In progress
+- **Status:** Complete: [PR77](https://github.com/thaynes43/haynes-quest/pull/77), [PR81](https://github.com/thaynes43/haynes-quest/pull/81) and [PR82](https://github.com/thaynes43/haynes-quest/pull/82). A live check found a 400-person lookup cap, fixed by [PR84](https://github.com/thaynes43/haynes-quest/pull/84) (Immich name search). The coordinator's copy landed in [PR86](https://github.com/thaynes43/haynes-quest/pull/86). Live person lookup now resolves both children to single opaque matches with Immich birthdays on file
 - **Model / dispatch:** Native Claude Code subagent `claude-opus-5-5` (xhigh). The coordinator owns all user-visible copy and layout decisions.
 - **Required reading:** `AGENTS.md`; [DESIGN-024](../../docs/designs/024-family-journeys.md), the contract; DESIGN-004/006/009/012/016; [ADR-005](../../docs/adrs/005-family-sign-in-and-admission.md); `src/server/photos/**`; `src/server/{app,domain,postgres-store,memory-store}.ts`; `src/shared/adventure*.ts`; `src/shared/editor-project.ts`; `src/server/editor-preview.ts`; `src/shared/parody-*.ts`; `tests/server/**`
 - **Worktree / branch:** `~/work/hq-family-journeys` on `agent/hq-family-journeys` from `origin/main`; rebase onto WO106 once it merges
