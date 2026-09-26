@@ -8,8 +8,10 @@
 // stops and the harness renders one frame at a time with ordinary keyboard
 // input (lockstep-control.mjs): Space to jump, Space again in the air for the
 // double jump, W/A/S/D to steer. It climbs the vertical section — high-jump
-// ledge, double-jump ledge, bounce pad, sky balcony, lift down, dock — to the
-// picnic lawn, taking screenshots before, during and after.
+// ledge, double-jump ledge, bounce pad, sky balcony, lift down, dock — then
+// hops the two crumbling platforms to the picnic lawn, taking screenshots
+// before, during and after. It also checks the party-themed collectible trail
+// and the placed party-kit decor.
 //
 // Lockstep proves route logic, collisions and the growth-move runtime hook
 // under ordinary keyboard input. It is not a frame-time or feel measurement.
@@ -182,6 +184,12 @@ try {
   report.appearanceStage = opening.status.appearanceStage;
   report.mediaFailed = opening.status.mediaFailed;
   assert.deepEqual(report.growthMoves, ["jump", "high-jump", "double-jump"]);
+  report.collectibles = opening.collectibles?.counts ?? null;
+  report.collectibleNames = opening.status.collectibleNames ?? null;
+  assert.ok(report.collectibles?.tokenTotal > 20, "the v4 party level planned no trail");
+  assert.equal(report.collectibleNames?.tokens, "confetti coins");
+  report.tally = await page.locator(".casino-tally").getAttribute("aria-label");
+  assert.match(report.tally, /confetti coins/);
 
   await lockstep.pause();
   await shot("01-before-spawn");
@@ -233,13 +241,30 @@ try {
   );
   assert.ok(bottom, "the lift never carried the rider down");
   await steer({ x: 0, z: -25 }, onSupport("lift-dock"), { jumpAt: [0], label: "leave-lift" });
-  await steer({ x: 0, z: -31.5 }, onSupport("party-picnic"), { label: "walk-to-picnic" });
-  await shot("05-after-picnic");
+  // 6. The crumbling detour: hop across before each one drops.
+  await steer({ x: 2.2, z: -24 }, (s) => s.status.position.x >= 2.15, { label: "walk-to-crumble" });
+  await steer({ x: 4.8, z: -24 }, onSupport("crumble-a"), { jumpAt: [0], label: "onto-crumble-a" });
+  await steer({ x: 4.8, z: -27.4 }, onSupport("crumble-b"), { jumpAt: [0], label: "onto-crumble-b" });
+  await shot("05-crumbling-detour");
+  await steer({ x: 4.2, z: -31.5 }, onSupport("party-picnic"), { jumpAt: [0], label: "crumble-to-picnic" });
+  const dropped = await lockstep.until(
+    async () => {
+      const inspection = await state();
+      return inspection.obby.platforms.find((entry) => entry.id === "crumble-b")?.crumble === "down"
+        ? inspection
+        : null;
+    },
+    { timeout: 3_000, frame: 16 },
+  );
+  assert.ok(dropped, "the crumbling platform never dropped behind the player");
+  report.crumbleDropped = true;
+  await shot("06-after-picnic");
   const final = await state();
   report.final = {
     position: final.status.position,
     support: final.obby.supportId,
     recoveries: final.obby.recoveries,
+    collectibles: final.status.collectibles,
   };
   assert.equal(final.obby.recoveries, 0, "the climb needed a recovery");
   report.lockstep = lockstep.summary();

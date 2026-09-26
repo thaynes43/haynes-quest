@@ -6,6 +6,7 @@ import {
   type CollectiblePlacement,
   type CollectiblePlan,
 } from "./casino-tokens";
+import { CASINO_TRAIL_LOOK, type TrailLook } from "./theme-kits";
 import type { PositionSnapshot } from "./types";
 
 // Code-native casino tokens and golden tickets (DESIGN-022). Colors follow the
@@ -41,6 +42,8 @@ export class TokenScene {
   constructor(
     private readonly plan: CollectiblePlan,
     collected: ReadonlySet<string> = new Set(),
+    /** Theme-kit trail colours (DESIGN-025 D-05); the casino look by default. */
+    private readonly look: TrailLook = CASINO_TRAIL_LOOK,
   ) {
     this.root.name = "casino-collectibles";
     for (const id of collected) this.collected.add(id);
@@ -53,18 +56,18 @@ export class TokenScene {
     );
     discGeometry.rotateX(Math.PI / 2);
     const discMaterial = new THREE.MeshStandardMaterial({
-      color: 0xf2c14e,
+      color: look.disc,
       metalness: 0.55,
       roughness: 0.32,
-      emissive: 0x6b4308,
+      emissive: look.discEmissive,
       emissiveIntensity: 0.6,
     });
     const rimGeometry = new THREE.TorusGeometry(TOKEN_RADIUS, 0.028, 6, 22);
     const rimMaterial = new THREE.MeshStandardMaterial({
-      color: 0x5b3a86,
+      color: look.rim,
       metalness: 0.2,
       roughness: 0.5,
-      emissive: 0x24123a,
+      emissive: look.rimEmissive,
       emissiveIntensity: 0.4,
     });
     this.disposables.push(discGeometry, discMaterial, rimGeometry, rimMaterial);
@@ -94,10 +97,10 @@ export class TokenScene {
       0.05,
     );
     const faceMaterial = new THREE.MeshStandardMaterial({
-      color: 0xffd36b,
+      color: this.look.ticket,
       metalness: 0.6,
       roughness: 0.25,
-      emissive: 0x8a5a10,
+      emissive: this.look.ticketEmissive,
       emissiveIntensity: 0.9,
     });
     const stub = new THREE.BoxGeometry(
@@ -106,8 +109,8 @@ export class TokenScene {
       0.055,
     );
     const stubMaterial = new THREE.MeshStandardMaterial({
-      color: 0x5b3a86,
-      emissive: 0x2a1446,
+      color: this.look.stub,
+      emissive: this.look.stubEmissive,
       emissiveIntensity: 0.6,
     });
     const faceMesh = new THREE.Mesh(face, faceMaterial);
@@ -121,7 +124,7 @@ export class TokenScene {
       32,
     );
     const haloMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffe39a,
+      color: this.look.glow,
       transparent: true,
       opacity: 0.7,
       depthWrite: false,
@@ -139,7 +142,7 @@ export class TokenScene {
       true,
     );
     const beamMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffe39a,
+      color: this.look.glow,
       transparent: true,
       opacity: 0.18,
       depthWrite: false,

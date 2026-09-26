@@ -2,7 +2,12 @@ import { grassPlacements } from "./foliage";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { BestiesScene } from "./besties-scene";
-import { CasinoScene } from "./casino-scene";
+import { DecorScene } from "./decor-scene";
+import {
+  themeKitFor,
+  type ThemeKit,
+  type ThemeScenery,
+} from "./theme-kits";
 import type { CollectiblePlacement, CollectiblePlan } from "./casino-tokens";
 import { EffectsScene } from "./effects-scene";
 import { TokenScene } from "./token-scene";
@@ -95,7 +100,11 @@ export class GardenScene {
   private readonly environment: THREE.WebGLRenderTarget;
   private obbyVisual: ObbyScene | null = null;
   private friendlyVisual: FriendlyScene | null = null;
-  private casinoVisual: CasinoScene | null = null;
+  /** Prepared-kit scenery from the theme-kit registry (the Rat Casino today). */
+  private themeScenery: ThemeScenery | null = null;
+  /** Placed v4 decor, if the level has any. */
+  private decorVisual: DecorScene | null = null;
+  private themeKit: ThemeKit | null = null;
   private readonly resizeObserver: ResizeObserver | null;
   private readonly sun = new THREE.DirectionalLight(0xffedce, 2.1);
   private readonly target = new THREE.Vector3();
@@ -266,8 +275,9 @@ export class GardenScene {
     this.obbyVisual = null;
     this.friendlyVisual?.dispose();
     this.friendlyVisual = null;
-    this.casinoVisual?.dispose();
-    this.casinoVisual = null;
+    this.themeScenery?.dispose?.();
+    this.themeScenery = null;
+    this.decorVisual = null;
     this.scene.remove(this.world);
     disposeTree(this.world);
     this.particles = null;
@@ -284,13 +294,15 @@ export class GardenScene {
         period === "besties-obby-v1"
       : (save.adventure?.activeLevel?.eraYear ?? 2020) >= 2024;
     const worldTheme = resolveRuntimeWorldTheme(level.authored, later);
+    const kit = themeKitFor(worldTheme.id);
+    this.themeKit = kit;
     const palette = worldTheme.palette;
     const environmentAssets = worldTheme.environment.assets;
     this.world.userData.worldTheme = worldTheme.id;
     this.world.userData.environmentKitState = worldTheme.environment.state;
     const sky = level.course ? worldTheme.course.sky : palette.sky;
     this.scene.background = new THREE.Color(sky);
-    this.scene.fog = new THREE.Fog(sky, 20, 52);
+    this.scene.fog = new THREE.Fog(sky, kit.fog.near, kit.fog.far);
     this.sun.color.setHex(
       level.course ? worldTheme.course.light : palette.light,
     );
@@ -499,16 +511,15 @@ export class GardenScene {
     if (worldTheme.environment.state === "pending-kit") {
       this.addPendingWorldScenery(worldTheme, level);
     } else if (worldTheme.environment.state === "prepared-kit") {
-      this.casinoVisual = new CasinoScene(
-        level,
-        this.assets,
-        valid,
-        period === "rat-casino-v1" &&
-          !save.adventure?.activeLevel?.encounters.some(
-            (enemy) => enemy.content?.assetId === "golden-after-hours-rat",
-          ),
-      );
-      this.world.add(this.casinoVisual.root);
+      if (kit.scenery) {
+        this.themeScenery = kit.scenery({
+          level,
+          save,
+          assets: this.assets,
+          valid,
+        });
+        this.world.add(this.themeScenery.root);
+      }
     } else {
       for (let i = 0; i < (level.authored ? 12 : 8); i++) {
         const hill = shapeMesh(
@@ -546,14 +557,18 @@ export class GardenScene {
     if (environmentAssets)
       this.assets.attach(environmentAssets.gate, gate, valid);
     else if (worldTheme.environment.state === "prepared-kit") {
-      gate.name = "casino-exit-arch";
-      this.assets.attach(
-        "/studio/assets/media/rat-casino-kit/v001/marquee-arch.glb",
-        gate,
-        valid,
-      );
+      if (kit.exitGate) {
+        gate.name = kit.exitGate.name;
+        this.assets.attach(kit.exitGate.url, gate, valid);
+      }
     }
     else this.addPendingEnvironmentMarker(gate, worldTheme);
+    // DESIGN-025 placed decor: only authored-level-v4 documents carry any.
+    const decor = level.authored?.decor ?? [];
+    if (decor.length > 0) {
+      this.decorVisual = new DecorScene(decor, this.assets, valid);
+      this.world.add(this.decorVisual.root);
+    }
     for (const placement of level.memories) {
       const memory = new THREE.Group();
       memory.position.set(
@@ -753,7 +768,9 @@ export class GardenScene {
   ): void {
     if (this.disposed) return;
     this.tokens?.dispose();
-    this.tokens = plan ? new TokenScene(plan, collected) : null;
+    this.tokens = plan
+      ? new TokenScene(plan, collected, this.themeKit?.trail)
+      : null;
     if (this.tokens) this.world.add(this.tokens.root);
   }
 
@@ -1005,7 +1022,8 @@ export class GardenScene {
       }
     }
     this.friendlyVisual?.update(dt, elapsed, position, this.camera);
-    this.casinoVisual?.update(dt);
+    this.themeScenery?.update?.(dt);
+    this.decorVisual?.update();
     for (const enemy of frame?.enemies ?? [])
       this.animateEnemy(
         enemy,
@@ -1042,7 +1060,7 @@ export class GardenScene {
     this.equipment?.dispose();
     this.equipment = null;
     this.friendlyVisual?.dispose();
-    this.casinoVisual?.dispose();
+    this.themeScenery?.dispose?.();
     this.tokens?.dispose();
     this.tokens = null;
     this.effects.dispose();

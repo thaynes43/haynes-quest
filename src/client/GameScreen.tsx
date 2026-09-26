@@ -14,6 +14,7 @@ import type {
   GameStatus,
 } from "../game/index";
 import type { GameInputAction } from "../game/types";
+import type { TrailNames } from "../game/theme-kits";
 import { api, friendlyError } from "./api";
 
 import { QuestAudio } from "./audio";
@@ -229,12 +230,15 @@ function Adventure({
   const [chapterNotice, setChapterNotice] = useState("");
   const [chapterMemoryId, setChapterMemoryId] = useState<string | null>(null);
   // The casino haul of the chapter that just ended, kept past its last status.
-  const casinoTally = useRef<{ levelId: string; counts: CollectibleCounts }>(
-    undefined,
-  );
+  const casinoTally = useRef<{
+    levelId: string;
+    counts: CollectibleCounts;
+    names?: TrailNames;
+  }>(undefined);
   const [finishedTally, setFinishedTally] = useState<CollectibleCounts | null>(
     null,
   );
+  const [finishedNames, setFinishedNames] = useState<TrailNames | undefined>();
   const [photoDetail, setPhotoDetail] = useState<string | null>(null);
   const mounted = useRef(true);
   const latest = useRef(initialSave);
@@ -356,6 +360,9 @@ function Adventure({
         setFinishedTally(
           tally?.levelId === finishedLevelId ? tally.counts : null,
         );
+        setFinishedNames(
+          tally?.levelId === finishedLevelId ? tally.names : undefined,
+        );
       }
       if (next.revision > before.revision) {
         if (
@@ -469,6 +476,9 @@ function Adventure({
               casinoTally.current = {
                 levelId: next.activeLevelId,
                 counts: next.collectibles,
+                ...(next.collectibleNames
+                  ? { names: next.collectibleNames }
+                  : {}),
               };
             if (
               !previouslyGrounded &&
@@ -728,7 +738,12 @@ function Adventure({
             {view.playerHp}/{view.maxPlayerHp}
           </b>
         </div>
-        {status?.collectibles && <CasinoTally counts={status.collectibles} />}
+        {status?.collectibles && (
+          <CasinoTally
+            counts={status.collectibles}
+            names={status.collectibleNames}
+          />
+        )}
         {routeMemories && (
           <div
             className="route-memory-count"
@@ -1208,7 +1223,9 @@ function Adventure({
             />
           )}
           <p>{chapterNotice}</p>
-          {finishedTally && <CasinoHaul counts={finishedTally} />}
+          {finishedTally && (
+            <CasinoHaul counts={finishedTally} names={finishedNames} />
+          )}
           {chapterSubtitle && <p>{chapterSubtitle}</p>}
           <p>{chapterDescription}</p>
           <button className="primary" onClick={() => setChapterNotice("")}>
@@ -1291,7 +1308,9 @@ function Adventure({
               ? `${visibleRecoveredCount} ${familyPhotos ? "" : "fictional "}memories reclaimed. Your traveler reached age ${save.ageYears}.`
               : `${view.completedLevelIds.length} eras faced. ${save.recoveredIds.length} memories reclaimed. Your traveler reached age ${save.ageYears}; this journey ends where its selected memories end.`}
           </p>
-          {finishedTally && <CasinoHaul counts={finishedTally} />}
+          {finishedTally && (
+            <CasinoHaul counts={finishedTally} names={finishedNames} />
+          )}
           <div className="memory-grid">
             {visibleMemories.map((memory) => (
               <MemoryCard key={memory.id} memory={memory} />
@@ -1306,13 +1325,29 @@ function Adventure({
   );
 }
 
-/** Live casino tokens and golden-ticket slots (DESIGN-022). */
-function CasinoTally({ counts }: { counts: CollectibleCounts }) {
+const CASINO_TRAIL_NAMES: TrailNames = {
+  token: "casino token",
+  tokens: "casino tokens",
+  ticket: "golden ticket",
+  tickets: "golden tickets",
+};
+
+/**
+ * Live trail tokens and ticket slots (DESIGN-022); v4 themes name their own
+ * collectibles through the theme-kit registry (DESIGN-025 D-05).
+ */
+function CasinoTally({
+  counts,
+  names = CASINO_TRAIL_NAMES,
+}: {
+  counts: CollectibleCounts;
+  names?: TrailNames;
+}) {
   return (
     <div
       className="casino-tally"
       role="group"
-      aria-label={`${counts.tokens} casino tokens, ${counts.tickets} of ${counts.ticketTotal} golden tickets`}
+      aria-label={`${counts.tokens} ${names.tokens}, ${counts.tickets} of ${counts.ticketTotal} ${names.tickets}`}
     >
       <span className="token-count" aria-hidden="true">
         <i className="token-coin" />
@@ -1334,13 +1369,20 @@ function CasinoTally({ counts }: { counts: CollectibleCounts }) {
   );
 }
 
-function CasinoHaul({ counts }: { counts: CollectibleCounts }) {
+function CasinoHaul({
+  counts,
+  names = CASINO_TRAIL_NAMES,
+}: {
+  counts: CollectibleCounts;
+  names?: TrailNames;
+}) {
   const everyTicket = counts.ticketTotal > 0 && counts.tickets === counts.ticketTotal;
   return (
     <p className="casino-haul">
-      You grabbed {counts.tokens} of {counts.tokenTotal} casino tokens and{" "}
-      {counts.tickets} of {counts.ticketTotal} golden tickets.
-      {everyTicket ? " Every golden ticket found!" : ""}
+      You grabbed {counts.tokens} of {counts.tokenTotal} {names.tokens} and{" "}
+      {counts.tickets} of {counts.ticketTotal} {names.tickets}.
+      {/* COPY: the non-casino "every ticket" line reuses the theme's ticket name. */}
+      {everyTicket ? ` Every ${names.ticket} found!` : ""}
     </p>
   );
 }

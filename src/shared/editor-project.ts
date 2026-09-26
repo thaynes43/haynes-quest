@@ -12,6 +12,7 @@ import {
   AUTHORED_LEVEL_SCHEMA_VERSION_V4,
   AUTHORED_LEVEL_IDS,
   authoredLevelDocumentSchema,
+  authoredDecorSchema,
   authoredLevelV4ConnectionSchema,
   authoredLevelV4PieceSchema,
   resolveAuthoredLevelDocument,
@@ -20,6 +21,7 @@ import {
   type AuthoredArena,
   type AuthoredBonusEncounterSlot,
   type AuthoredConnection,
+  type AuthoredDecor,
   type AuthoredEncounterAnchor,
   type AuthoredEncounterSlot,
   type AuthoredLevelDocument,
@@ -1487,6 +1489,8 @@ export type LevelEditorCommand =
       readonly type: "chapter.level.upgrade";
       readonly schemaVersion: typeof AUTHORED_LEVEL_SCHEMA_VERSION_V4;
     } & ChapterCommand)
+  | ({ readonly type: "decor.add"; readonly decor: AuthoredDecor } & ChapterCommand)
+  | ({ readonly type: "decor.remove"; readonly decorId: string } & ChapterCommand)
   | ({ readonly type: "chapter.reorder"; readonly index: number } & ChapterCommand)
   | ({ readonly type: "chapter.rename"; readonly name: string } & ChapterCommand)
   | ({
@@ -1641,6 +1645,20 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
       type: z.literal("chapter.level.upgrade"),
       ...chapterIdField,
       schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION_V4),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("decor.add"),
+      ...chapterIdField,
+      decor: authoredDecorSchema,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("decor.remove"),
+      ...chapterIdField,
+      decorId: identifierSchema,
     })
     .strict(),
   z
@@ -2452,6 +2470,33 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
     // Every v3 document is a valid v4 document with the same content; the
     // upgrade only unlocks the v4 pieces, connections and decor.
     worldChapter.level.schemaVersion = command.schemaVersion;
+    return;
+  }
+  if (command.type === "decor.add" || command.type === "decor.remove") {
+    worldProjectForCommand(project);
+    const worldChapter = worldChapterForCommand(chapter);
+    if (worldChapter.level.schemaVersion !== AUTHORED_LEVEL_SCHEMA_VERSION_V4)
+      commandError(
+        "$.chapterId",
+        "level.version",
+        `Decor requires ${AUTHORED_LEVEL_SCHEMA_VERSION_V4}; apply chapter.level.upgrade first`,
+      );
+    const decor = (worldChapter.level.decor ??= []);
+    if (command.type === "decor.add") {
+      if (decor.some((entry) => entry.id === command.decor.id))
+        commandError(
+          "$.decor.id",
+          "decor.duplicate",
+          `Decor ${command.decor.id} already exists`,
+        );
+      decor.push(cloneJson(command.decor) as DeepMutable<AuthoredDecor>);
+    } else {
+      const index = decor.findIndex((entry) => entry.id === command.decorId);
+      if (index < 0)
+        commandError("$.decorId", "decor.missing", `Decor ${command.decorId} does not exist`);
+      decor.splice(index, 1);
+      if (decor.length === 0) delete worldChapter.level.decor;
+    }
     return;
   }
   if (command.type === "chapter.remove") {

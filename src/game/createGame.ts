@@ -42,6 +42,7 @@ import { getAvatarProportions, stepController } from "./controller";
 import { foregroundSimulationSteps } from "./frame-step";
 import { createObbyState, sampleObby, stepObby } from "./obby";
 import { growthScaleFor, levelGrowth, type LevelGrowth } from "./growth";
+import { themeKitFor } from "./theme-kits";
 import { bindBrowserInput, GameInputState } from "./input";
 import {
   checkpointForSave,
@@ -570,6 +571,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
       mediaFailed: media.failed,
       mediaReloadRequired: media.reloadRequired ?? false,
       collectibles: collectibles?.counts() ?? null,
+      ...(collectibles && level.authored && level.authored.theme !== "casino"
+        ? { collectibleNames: themeKitFor(level.authored.theme).trail.names }
+        : {}),
     };
   };
 
@@ -1464,7 +1468,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       currentTarget: target?.id ?? null,
       besties: bestiesEncounter() ? besties.frame() : undefined,
       bestiesHitActorId,
-      obby: level.course ? sampleObby(level.course, courseTime) : undefined,
+      obby: level.course ? sampleObby(level.course, courseTime, controller) : undefined,
       checkpointId: controller.checkpointId,
       recovering: controller.recoveryRemaining > 0,
       ...(level.course && currentGrowth()
@@ -1539,7 +1543,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         visuals: scene.inspectVisuals?.(),
         obby: level.course
           ? {
-              ...sampleObby(level.course, courseTime),
+              ...sampleObby(level.course, courseTime, controller),
               routeId: level.routeId!,
               checkpointId: controller.checkpointId,
               supportId: controller.supportId,

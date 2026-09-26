@@ -44,6 +44,16 @@ export interface ObbyBounce {
   velocity: number;
 }
 
+/**
+ * A crumbling platform (DESIGN-025 D-04): the first touch starts a shake; after
+ * `shakeSeconds` it drops away (no collision) and returns `downSeconds` later.
+ * The touch time lives in `ObbyState.crumbles`, so the course stays immutable.
+ */
+export interface ObbyCrumble {
+  shakeSeconds: number;
+  downSeconds: number;
+}
+
 /** A finite solid axis-aligned box. `center` is the box centre, `size` the full extents. */
 export interface ObbyPlatform {
   id: string;
@@ -52,6 +62,8 @@ export interface ObbyPlatform {
   motion?: ObbyMotion;
   /** Present only on v4 bounce pads. */
   bounce?: ObbyBounce;
+  /** Present only on v4 crumbling platforms. */
+  crumble?: ObbyCrumble;
 }
 
 /**
@@ -93,6 +105,12 @@ export interface SampledObbyPlatform {
   readonly id: string;
   readonly center: Readonly<PositionSnapshot>;
   readonly size: Readonly<PositionSnapshot>;
+  /**
+   * Present only on a touched crumbling platform when `sampleObby` receives a
+   * state: `shaking` before it drops, `down` while it has no collision (its
+   * centre is lowered to show it falling away).
+   */
+  readonly crumble?: "shaking" | "down";
 }
 
 export interface SampledObbyHazard {
@@ -201,6 +219,11 @@ export interface ObbyState {
    * state never gains the field.
    */
   airJumpUsed?: boolean;
+  /**
+   * First-touch game time per crumbling platform id, cleared when it returns.
+   * Only written on courses that contain crumbling platforms.
+   */
+  crumbles?: Record<string, number>;
   /**
    * Whether the player has stood on a platform since the last recovery. A
    * fall recovers immediately when true; when false (the spawn found no
@@ -420,10 +443,32 @@ function sampleCapsule(hazard: ObbyHazard, time: number): Capsule {
  * deeply frozen. Non-finite time samples at 0; periodic motion is evaluated on
  * the wrapped time so large clocks keep full precision.
  */
-export function sampleObby(course: ObbyCourse, timeSeconds: number): ObbySample {
+export function sampleObby(
+  course: ObbyCourse,
+  timeSeconds: number,
+  state?: Pick<ObbyState, "crumbles">,
+): ObbySample {
   const time = finiteOr(timeSeconds, 0);
   const platforms = (course.platforms ?? []).map((platform) => {
     const box = sampleBox(platform, time);
+    const phase = crumblePhase(platform, state?.crumbles, time);
+    if (phase.kind !== "solid" && phase.kind !== "returning") {
+      // Presentation only: a shake, then a fall out of view. Collision uses
+      // the phase directly and never these offsets.
+      const since = phase.since;
+      if (phase.kind === "shaking") {
+        box.center.x += 0.05 * Math.sin(since * 55);
+        box.center.z += 0.05 * Math.cos(since * 47);
+      } else {
+        box.center.y -= Math.min(14, 0.5 * 9.8 * since * since);
+      }
+      return Object.freeze({
+        id: box.id,
+        center: Object.freeze(box.center),
+        size: Object.freeze(box.size),
+        crumble: phase.kind,
+      });
+    }
     return Object.freeze({
       id: box.id,
       center: Object.freeze(box.center),
@@ -446,6 +491,29 @@ export function sampleObby(course: ObbyCourse, timeSeconds: number): ObbySample 
     platforms: Object.freeze(platforms),
     hazards: Object.freeze(hazards),
   });
+}
+
+type CrumblePhase =
+  | { kind: "solid" }
+  | { kind: "shaking"; since: number }
+  | { kind: "down"; since: number }
+  /** Due back; it reappears once nobody stands inside its volume. */
+  | { kind: "returning" };
+
+function crumblePhase(
+  platform: ObbyPlatform,
+  crumbles: Record<string, number> | undefined,
+  time: number,
+): CrumblePhase {
+  if (!platform.crumble || !crumbles) return { kind: "solid" };
+  const touched = crumbles[String(platform.id)];
+  if (touched === undefined || !Number.isFinite(touched)) return { kind: "solid" };
+  const shake = Math.max(0, finiteOr(platform.crumble.shakeSeconds, 0));
+  const down = Math.max(0, finiteOr(platform.crumble.downSeconds, 0));
+  const since = time - touched;
+  if (since < shake) return { kind: "shaking", since: Math.max(0, since) };
+  if (since < shake + down) return { kind: "down", since: since - shake };
+  return { kind: "returning" };
 }
 
 // ---------------------------------------------------------------------------
@@ -549,6 +617,37 @@ function capsuleHitsPlayer(
   if (dy >= capsule.radius) return false;
   const reach = radius + Math.sqrt(capsule.radius * capsule.radius - dy * dy);
   return distancePointSegmentXZ(position.x, position.z, capsule.start, capsule.end) < reach - EPSILON;
+}
+
+/**
+ * Boxes that collide at `time` on a course with crumbling platforms: a dropped
+ * crumble is left out, and one that is due back returns only when the player
+ * is not inside its volume (then its touch record is cleared).
+ */
+function solidBoxes(
+  platforms: readonly ObbyPlatform[],
+  state: ObbyState,
+  time: number,
+  previousTime: number,
+  radius: number,
+  height: number,
+): Box[] {
+  const boxes: Box[] = [];
+  for (const platform of platforms) {
+    const box = sampleBox(platform, time, previousTime);
+    const phase = crumblePhase(platform, state.crumbles, time);
+    if (phase.kind === "down") continue;
+    if (phase.kind === "returning") {
+      const inside =
+        circleOverlapsBox(box, state.position.x, state.position.z, radius) &&
+        state.position.y < box.top &&
+        state.position.y + height > box.bottom;
+      if (inside) continue;
+      delete state.crumbles![box.id];
+    }
+    boxes.push(box);
+  }
+  return boxes;
 }
 
 /** The box with this id whose centre is closest to `anchor`; tolerates duplicate ids. */
@@ -783,6 +882,7 @@ export function stepObby(
   const platforms = course.platforms ?? [];
   const hazards = course.hazards ?? [];
   const checkpoints = course.checkpoints ?? [];
+  const crumbling = platforms.some((platform) => platform.crumble !== undefined);
 
   // Camera-relative movement, identical to the existing controller: diagonal
   // input is normalised, partial stick scales speed, facing follows travel.
@@ -824,7 +924,9 @@ export function stepObby(
   for (let index = 1; index <= substeps; index += 1) {
     const time = timeStart + dt * (index / substeps);
     const previousTime = timeStart + dt * ((index - 1) / substeps);
-    const boxes = platforms.map((platform) => sampleBox(platform, time, previousTime));
+    const boxes = crumbling
+      ? solidBoxes(platforms, state, time, previousTime, radius, height)
+      : platforms.map((platform) => sampleBox(platform, time, previousTime));
     const position = state.position;
 
     state.recoveryRemaining = Math.max(0, state.recoveryRemaining - h);
@@ -989,6 +1091,16 @@ export function stepObby(
       result.bouncePadId = standingOn.id;
     }
     if (airJumpVelocity > 0 && state.grounded) state.airJumpUsed = false;
+    if (
+      crumbling &&
+      state.grounded &&
+      standingOn !== null &&
+      platforms.some((platform) => String(platform.id) === standingOn!.id && platform.crumble)
+    ) {
+      // The first touch starts the shake; standing on it longer changes nothing.
+      state.crumbles ??= {};
+      if (state.crumbles[standingOn.id] === undefined) state.crumbles[standingOn.id] = time;
+    }
     state.coyoteRemaining = state.grounded
       ? tuning.coyoteSeconds
       : Math.max(0, state.coyoteRemaining - h);

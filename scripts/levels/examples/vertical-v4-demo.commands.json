@@ -416,6 +416,139 @@
         "golden-perch",
         "sky-balcony"
       ]
+    },
+    {
+      "type": "piece.add",
+      "chapterId": "chapter-2",
+      "piece": {
+        "type": "crumble",
+        "id": "crumble-a",
+        "center": {
+          "x": 4.8,
+          "y": 0,
+          "z": -24
+        },
+        "size": {
+          "x": 2.4,
+          "y": 0.6,
+          "z": 2.4
+        }
+      }
+    },
+    {
+      "type": "piece.add",
+      "chapterId": "chapter-2",
+      "piece": {
+        "type": "crumble",
+        "id": "crumble-b",
+        "center": {
+          "x": 4.8,
+          "y": 0,
+          "z": -27.4
+        },
+        "size": {
+          "x": 2.4,
+          "y": 0.6,
+          "z": 2.4
+        }
+      }
+    },
+    {
+      "type": "connection.add",
+      "chapterId": "chapter-2",
+      "connection": {
+        "from": "lift-dock",
+        "to": "crumble-a",
+        "mode": "jump"
+      }
+    },
+    {
+      "type": "connection.add",
+      "chapterId": "chapter-2",
+      "connection": {
+        "from": "crumble-a",
+        "to": "crumble-b",
+        "mode": "jump"
+      }
+    },
+    {
+      "type": "connection.add",
+      "chapterId": "chapter-2",
+      "connection": {
+        "from": "crumble-b",
+        "to": "party-picnic",
+        "mode": "jump"
+      }
+    },
+    {
+      "type": "branch.add",
+      "chapterId": "chapter-2",
+      "platformIds": [
+        "lift-dock",
+        "crumble-a",
+        "crumble-b",
+        "party-picnic"
+      ]
+    },
+    {
+      "type": "decor.add",
+      "chapterId": "chapter-2",
+      "decor": {
+        "id": "welcome-arch",
+        "kitPropId": "party-arch",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 4.7
+        },
+        "rotationY": 0,
+        "scale": 1.2
+      }
+    },
+    {
+      "type": "decor.add",
+      "chapterId": "chapter-2",
+      "decor": {
+        "id": "welcome-balloons-left",
+        "kitPropId": "party-balloon-post",
+        "position": {
+          "x": -5.6,
+          "y": 0,
+          "z": 1.5
+        },
+        "rotationY": 0,
+        "scale": 1
+      }
+    },
+    {
+      "type": "decor.add",
+      "chapterId": "chapter-2",
+      "decor": {
+        "id": "welcome-balloons-right",
+        "kitPropId": "party-balloon-post",
+        "position": {
+          "x": 5.6,
+          "y": 0,
+          "z": 1.5
+        },
+        "rotationY": 0,
+        "scale": 1
+      }
+    },
+    {
+      "type": "decor.add",
+      "chapterId": "chapter-2",
+      "decor": {
+        "id": "floor-gifts",
+        "kitPropId": "party-gift-stack",
+        "position": {
+          "x": -6.9,
+          "y": 0,
+          "z": -8
+        },
+        "rotationY": 0.4,
+        "scale": 1
+      }
     }
   ]
 }
