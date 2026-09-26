@@ -7,11 +7,12 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. Arcade and toybox kits remain studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**40 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
+**41 completed models · 2 partial models · 2 concepts awaiting models · 4 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
 <nav class="catalog-jumps" aria-label="Asset categories">
+<a href="#family-eras">Family eras</a>
 <a href="#parody-characters">Parody characters</a>
 <a href="#travelers">Travelers</a>
 <a href="#world-and-keepsakes">World and keepsakes</a>
@@ -24,6 +25,28 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 <span id="images-and-models"></span>
 <span id="replacement-parody-direction"></span>
+
+## Family eras {#family-eras}
+
+Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open.
+
+### World A · Chapter 1
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="clubhouse-bully-cat" markdown="1">
+
+[![Exact Clubhouse Bully Cat model with a teal jacket, ochre cap, cream belly and wooden peg](media/catalog-thumbnails/v001/8ac6e5d485f5cf57.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/clubhouse-bully-cat/v001.md)
+
+### [Clubhouse Bully Cat](reviews/clubhouse-bully-cat/v001.md)
+
+<span class="catalog-state">3D boss · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/5aac31e47d209b4d.webp" alt="Selected original cat captain construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+</div>
 
 ## Parody characters {#parody-characters}
 

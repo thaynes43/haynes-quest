@@ -49,6 +49,7 @@ const requiredBestiesClips = [
   "dizzy",
 ];
 const mascotCandidateIds = [
+  "clubhouse-bully-cat",
   "rat-pit-boss",
   "chick-flia",
   "jackrabbit-drummer",
@@ -59,18 +60,18 @@ const mascotCandidateIds = [
 const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 57,
+  entries: 58,
   reference_sheet_entries: 8,
-  model_entries: 42,
-  model_files: 42,
-  completed_model_candidates: 40,
+  model_entries: 43,
+  model_files: 43,
+  completed_model_candidates: 41,
   paused_partial_model_candidates: 2,
   concept_only_entries: 2,
   audio_entries: 4,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 81;
+const expectedThumbnailFiles = 83;
 const integratedAssetIds = [
   "bestie-pink",
   "bestie-black",
@@ -625,7 +626,7 @@ async function inspectLanding(
       const cardState = cardInspections.find((entry) => entry.id === id)?.state;
       assert.match(
         cardState ?? "",
-        /in (?:private )?playtest/i,
+        /in (?:private (?:Rat Casino )?)?playtest/i,
         `${scope}: ${id} card records current gameplay use`,
       );
     }
@@ -1193,21 +1194,45 @@ async function inspectMascotCandidates(browser, inventory, report) {
         );
         if (viewport.hasTouch) await play.tap();
         else await play.click();
-        await viewer.evaluate(
+        const playing = await viewer.evaluate(
           (element) =>
             new Promise((resolve, reject) => {
-              const deadline = performance.now() + 3_000;
+              const deadline = performance.now() + 15_000;
               const inspect = () => {
+                const snapshot = {
+                  animationName: element.animationName,
+                  currentTime: element.currentTime,
+                  duration: element.duration,
+                  paused: element.paused,
+                  controlLabel:
+                    element.nextElementSibling?.querySelector("button")
+                      ?.textContent,
+                };
+                const playingNow =
+                  !snapshot.paused && snapshot.controlLabel === "Pause";
+                const completedNow =
+                  snapshot.paused &&
+                  snapshot.controlLabel === "Play" &&
+                  Number.isFinite(snapshot.duration) &&
+                  snapshot.duration > 0.03 &&
+                  Math.abs(snapshot.currentTime - snapshot.duration) <= 0.02;
                 if (
-                  element.animationName === "attack" &&
-                  !element.paused &&
-                  element.currentTime > 0.03
+                  snapshot.animationName === "attack" &&
+                  snapshot.currentTime > 0.03 &&
+                  (playingNow || completedNow)
                 ) {
-                  resolve();
+                  resolve({
+                    ...snapshot,
+                    observed: completedNow ? "completed" : "playing",
+                  });
                   return;
                 }
                 if (performance.now() >= deadline) {
-                  reject(new Error("mascot attack did not begin playback"));
+                  reject(
+                    new Error(
+                      `mascot attack did not advance: ${JSON.stringify(snapshot)}`,
+                    ),
+                  );
                   return;
                 }
                 requestAnimationFrame(inspect);
@@ -1215,15 +1240,61 @@ async function inspectMascotCandidates(browser, inventory, report) {
               inspect();
             }),
         );
-        const playing = await viewer.evaluate((element) => ({
+        assert.equal(
+          playing.controlLabel,
+          playing.observed === "completed" ? "Play" : "Pause",
+          `${scope}: ${entry.id} play control reflects attack playback`,
+        );
+        // Attack is a short one-shot. Verify pause/resume on looping idle so
+        // completion cannot turn the next click into a fresh play request.
+        await selector.selectOption("idle");
+        const idleSelected = await viewer.evaluate((element) => ({
           animationName: element.animationName,
           currentTime: element.currentTime,
           paused: element.paused,
         }));
         assert.equal(
+          idleSelected.animationName,
+          "idle",
+          `${scope}: ${entry.id} selects the looping idle clip`,
+        );
+        assert.ok(
+          idleSelected.currentTime <= 0.01,
+          `${scope}: ${entry.id} idle selection resets playback time`,
+        );
+        assert.equal(
+          idleSelected.paused,
+          true,
+          `${scope}: ${entry.id} idle selection remains paused`,
+        );
+        if (viewport.hasTouch) await play.tap();
+        else await play.click();
+        await viewer.evaluate(
+          (element) =>
+            new Promise((resolve, reject) => {
+              const deadline = performance.now() + 15_000;
+              const inspect = () => {
+                if (
+                  element.animationName === "idle" &&
+                  !element.paused &&
+                  element.currentTime > 0.03
+                ) {
+                  resolve();
+                  return;
+                }
+                if (performance.now() >= deadline) {
+                  reject(new Error("mascot idle did not begin playback"));
+                  return;
+                }
+                requestAnimationFrame(inspect);
+              };
+              inspect();
+            }),
+        );
+        assert.equal(
           await play.textContent(),
           "Pause",
-          `${scope}: ${entry.id} play control reflects playback`,
+          `${scope}: ${entry.id} idle control reflects playback`,
         );
         if (viewport.hasTouch) await play.tap();
         else await play.click();
@@ -1236,6 +1307,25 @@ async function inspectMascotCandidates(browser, inventory, report) {
           await play.textContent(),
           "Play",
           `${scope}: ${entry.id} pause restores the control label`,
+        );
+        if (viewport.hasTouch) await play.tap();
+        else await play.click();
+        assert.equal(
+          await viewer.evaluate((element) => element.paused),
+          false,
+          `${scope}: ${entry.id} playback resumes`,
+        );
+        assert.equal(
+          await play.textContent(),
+          "Pause",
+          `${scope}: ${entry.id} resume restores the control label`,
+        );
+        if (viewport.hasTouch) await play.tap();
+        else await play.click();
+        assert.equal(
+          await viewer.evaluate((element) => element.paused),
+          true,
+          `${scope}: ${entry.id} resumed playback pauses again`,
         );
         assert.deepEqual(
           [...new Set(modelRequests)],
@@ -1846,7 +1936,7 @@ const report = {
   externalRequests: [],
   physicalSafari: "not tested",
   scope:
-    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
+    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot and Clubhouse Bully Cat candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
   harnessNotes: [
     "The current first inspiration image must be displayed inline; retained superseded concepts may instead remain reachable as local links.",
     "Browser-cancelled preload=metadata requests are separated only for exact video URLs declared by an inspected review in the same browser scope; HTTP errors and every other request failure remain fatal, while video playback remains covered by earlier focused audits.",

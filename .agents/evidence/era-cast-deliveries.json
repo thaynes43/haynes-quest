@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "workOrder": "WO111",
+  "deliveries": [
+    {
+      "assetId": "clubhouse-bully-cat",
+      "version": "v001",
+      "role": "boss",
+      "world": "A",
+      "chapter": 1,
+      "glb": "docs/assets/media/clubhouse-bully-cat/v001/clubhouse-bully-cat.glb",
+      "sha256": "e082df0e5ebe116645aa800c26896b79b8a01025167446e00d1f37cb1788b447",
+      "heightM": 2.5,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root",
+        "rest": {
+          "min": [
+            -0.9262754582990024,
+            -1.385122547995252e-07,
+            -0.6474535465240479
+          ],
+          "max": [
+            0.9281791102804846,
+            2.5,
+            0.6914353858242517
+          ]
+        },
+        "animated": {
+          "min": [
+            -1.0424817537973161,
+            -1.385122547995252e-07,
+            -0.8295564826496716
+          ],
+          "max": [
+            0.9865120004333137,
+            2.5255944000257813,
+            0.8017180670431083
+          ]
+        },
+        "culling": {
+          "min": [
+            -1.048,
+            -0.006,
+            -0.835
+          ],
+          "max": [
+            0.992,
+            2.531,
+            0.807
+          ]
+        }
+      },
+      "attackContactS": 1.25,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 2.4,
+          "channels": 69
+        },
+        {
+          "name": "move",
+          "duration_s": 1.2,
+          "channels": 69
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 69
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 69
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 69
+        }
+      ],
+      "review": "docs/assets/reviews/clubhouse-bully-cat/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "sceneReleasedAt": "2026-09-26T01:06:52.236852+00:00",
+      "manifest": "docs/assets/media/clubhouse-bully-cat/v001/sha256-manifest.json",
+      "pr": 85,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned"
+      },
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/85",
+      "masterSha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496",
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "threeAdapterChecksPassed": 26,
+        "chromiumChecksPassed": 9,
+        "artifactHashesMatchedLocally": 86,
+        "physicalSafari": false
+      }
+    }
+  ]
+}

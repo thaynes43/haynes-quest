@@ -1,0 +1,718 @@
+{
+  "asset_id": "clubhouse-bully-cat",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "gpt-6-astra max",
+  "blender_version": "4.5.13 LTS",
+  "source_concept_sha256": "948adc37bd8418ea2b812d7a9c599d5dce8ae3fa54213896b367f3fb4fb93e75",
+  "height_m": 2.5,
+  "construction_scale_factor": 0.9289146695087682,
+  "construction_ground_shift": -0.0010000020265579224,
+  "triangles": 14492,
+  "vertices": 7488,
+  "material_count": 2,
+  "bone_count": 23,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic soft painted pigment; no external textures."
+  },
+  "parts": [
+    {
+      "name": "One softly rounded cat body",
+      "triangles": 700,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Broad fitted cream belly",
+      "triangles": 672,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Continuous curved open short teal jacket",
+      "triangles": 400,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Soft teal front facing -1",
+      "triangles": 106,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Ochre folded collar -1",
+      "triangles": 136,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Soft teal front facing 1",
+      "triangles": 106,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Ochre folded collar 1",
+      "triangles": 136,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Rounded short jacket hem",
+      "triangles": 446,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Curved overlapping teal button panel",
+      "triangles": 48,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Soft overlap edge",
+      "triangles": 86,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "Ochre jacket button 0",
+      "triangles": 140,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Button sewn inset 0",
+      "triangles": 26,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Ochre jacket button 1",
+      "triangles": 140,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Button sewn inset 1",
+      "triangles": 26,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Indigo cat head",
+      "triangles": 764,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Cream lower face and cheeks",
+      "triangles": 656,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Dark open smiling mouth",
+      "triangles": 220,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 9
+    },
+    {
+      "name": "Soft cream chin",
+      "triangles": 252,
+      "bone_groups": [
+        "jaw"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Rounded pink tongue",
+      "triangles": 96,
+      "bone_groups": [
+        "jaw"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Huge cream muzzle lobe -1",
+      "triangles": 316,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Small comic canine -1",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Cheek smile dimple -1",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Graphic whisker -1 0",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Graphic whisker -1 1",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Small pointed cat ear -1",
+      "triangles": 136,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Soft plum inner ear -1",
+      "triangles": 92,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Warm white eye -1",
+      "triangles": 284,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Dark eye pupil -1",
+      "triangles": 164,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Tiny eye glint -1",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Thick blustery eyebrow -1",
+      "triangles": 136,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Huge cream muzzle lobe 1",
+      "triangles": 316,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Small comic canine 1",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Cheek smile dimple 1",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Graphic whisker 1 0",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Graphic whisker 1 1",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Small pointed cat ear 1",
+      "triangles": 136,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Soft plum inner ear 1",
+      "triangles": 92,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Warm white eye 1",
+      "triangles": 284,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Dark eye pupil 1",
+      "triangles": 164,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Tiny eye glint 1",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Thick blustery eyebrow 1",
+      "triangles": 136,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 12
+    },
+    {
+      "name": "Big plum triangular nose",
+      "triangles": 164,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Soft nose highlight",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 15
+    },
+    {
+      "name": "Short muzzle center crease",
+      "triangles": 26,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Teal cap band",
+      "triangles": 212,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Lopsided soft ochre captain cap",
+      "triangles": 392,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Ochre cap peak",
+      "triangles": 188,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "R continuous rounded teal sleeve",
+      "triangles": 282,
+      "bone_groups": [
+        "upper_arm_R",
+        "forearm_R"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "R deep ochre turned cuff",
+      "triangles": 178,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "R cuff button",
+      "triangles": 76,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "R soft paw palm",
+      "triangles": 248,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R mitten finger 0",
+      "triangles": 164,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R mitten finger 1",
+      "triangles": 164,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R mitten finger 2",
+      "triangles": 164,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R curled thumb",
+      "triangles": 116,
+      "bone_groups": [
+        "hand_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L continuous rounded teal sleeve",
+      "triangles": 282,
+      "bone_groups": [
+        "upper_arm_L",
+        "forearm_L"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "L deep ochre turned cuff",
+      "triangles": 178,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "L cuff button",
+      "triangles": 76,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "L soft paw palm",
+      "triangles": 248,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L mitten finger 0",
+      "triangles": 164,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L mitten finger 1",
+      "triangles": 164,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L mitten finger 2",
+      "triangles": 164,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L curled thumb",
+      "triangles": 116,
+      "bone_groups": [
+        "hand_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R short furry thigh",
+      "triangles": 220,
+      "bone_groups": [
+        "thigh_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R soft ankle",
+      "triangles": 106,
+      "bone_groups": [
+        "shin_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Right plum boot shaft",
+      "triangles": 276,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Right turned boot top",
+      "triangles": 164,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Right flat boot sole",
+      "triangles": 108,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Right oversized plum boot toe",
+      "triangles": 252,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Right boot curved toe seam",
+      "triangles": 66,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "L short furry thigh",
+      "triangles": 220,
+      "bone_groups": [
+        "thigh_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Left ochre theatrical peg cuff",
+      "triangles": 204,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Left wooden peg stem",
+      "triangles": 172,
+      "bone_groups": [
+        "shin_L"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Left wooden peg round foot",
+      "triangles": 188,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Continuous stout curled cat tail",
+      "triangles": 546,
+      "bone_groups": [
+        "tail_1",
+        "tail_2",
+        "tail_3"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Soft rounded tail tip",
+      "triangles": 136,
+      "bone_groups": [
+        "tail_3"
+      ],
+      "atlas_tile": 0
+    }
+  ],
+  "notes": [
+    "Original cat anatomy and soft tailored costume. Only technical mesh/UV helpers reused.",
+    "Anatomical left peg and right boot resolve the selected turnaround side consistently.",
+    "No triangle padding. Continuous torso, sleeves and tail blend across bones.",
+    "The peg is a theatrical cartoon design; no injury detail.",
+    "Neutral A pose, forward -Z GLB, floor origin and unit scale."
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.4,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.2,
+      "loop": true,
+      "clamp_when_finished": false,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": 1.733334
+    }
+  ],
+  "files": {
+    "clubhouse-bully-cat.blend": {
+      "bytes": 1318446,
+      "sha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496"
+    },
+    "clubhouse-bully-cat.glb": {
+      "bytes": 1073732,
+      "sha256": "e082df0e5ebe116645aa800c26896b79b8a01025167446e00d1f37cb1788b447"
+    },
+    "pigment.png": {
+      "bytes": 234060,
+      "sha256": "716aa8457e5fab7d4de08801825432daf202450518f093a464af02eb95af9e1d"
+    }
+  },
+  "lead_corrections": [
+    "Confirmed anatomical left peg / right boot in final front view.",
+    "Soft rounded shoulder transitions.",
+    "Original overlapping short teal button panel.",
+    "Short rounded mitten lobes without claws.",
+    "Removed unnecessary floating crown seam; wood grain stays in the atlas."
+  ]
+}

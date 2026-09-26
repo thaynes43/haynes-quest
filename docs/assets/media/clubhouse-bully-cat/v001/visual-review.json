@@ -1,0 +1,47 @@
+{
+  "work_order": "WO111",
+  "asset_id": "clubhouse-bully-cat",
+  "version": "v001",
+  "glb_sha256": "e082df0e5ebe116645aa800c26896b79b8a01025167446e00d1f37cb1788b447",
+  "reviewed_utc": "2026-09-26T01:05:46.910265+00:00",
+  "reviewer": "Fresh native gpt-6-astra max Blender author; lead separately inspected exact final front/beauty and prior equivalent motion",
+  "reference_sha256": "948adc37bd8418ea2b812d7a9c599d5dce8ae3fa54213896b367f3fb4fb93e75",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "views": [
+    "front",
+    "side",
+    "back",
+    "beauty",
+    "all five clips at normal and 35% scale",
+    "attack front warning/contact",
+    "attack side contact",
+    "defeat side held"
+  ],
+  "checks": {
+    "left_peg_right_boot": true,
+    "broad_cream_belly_and_muzzle": true,
+    "pointed_ears_and_curled_tail": true,
+    "short_overlapping_teal_jacket_buttons_on_teal": true,
+    "rounded_mitten_paws": true,
+    "continuous_shoulder_sleeve_surface": true,
+    "warning_paw_clears_silhouette": true,
+    "forward_swat_at_1_25_s": true,
+    "attached_held_defeat": true,
+    "no_visible_floor_penetration": true,
+    "master_and_export_metadata_wo111": true
+  },
+  "corrections": [
+    "Handedness reconciled to the selected front/side/back sheet.",
+    "Buttons moved onto a curved overlapping teal panel.",
+    "Pointed-looking fingers simplified to short round mitten lobes.",
+    "Overlapping shoulder balls replaced with a continuous sleeve.",
+    "Floating crown seam removed.",
+    "Covered calf geometry shortened and tucked inside boot after a 5.7 mm floor intersection was found in defeat sampling."
+  ],
+  "limitations": [
+    "Stylized mobile-budget interpretation of the selected painterly concept; no hair/fur shader.",
+    "Cloth layers intentionally overlap; pivot tests and visual sampling are not a complete triangle self-collision solver.",
+    "Headless Chromium ANGLE SwiftShader only; no physical iPhone/iPad/Safari or gameplay performance acceptance.",
+    "Owner exact-version art review stays open; the PLAN-019 coordinator integrates runtime and publication."
+  ]
+}

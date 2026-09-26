@@ -31,11 +31,15 @@ Before merging an asset change:
 4. When thumbnail sources change, run `node scripts/assets/catalog-thumbnails.mjs` after updating the inventory, with repository Node dependencies installed. Commit affected WebPs and `docs/assets/media/catalog-thumbnails/v001/manifest.json`, then wire the cards to those outputs. **The script generates thumbnails; it does not update the Markdown cards or inventory, or remove obsolete files.** Verify each card's thumbnail maps to its current inventory source through the manifest, and reconcile the manifest with the committed derivatives. Remove obsolete generated thumbnails only after checking that no retained review references them. Preserve original images.
 5. Run the [strict documentation build and link/media checks](README.md#build-and-preview-the-site). Inspect affected cards and reviews on desktop and phone: visible thumbnails, correct inspiration/version, working model or audio delivery and usable navigation. The existing `tests/e2e/visual-catalog.mjs` can audit a served build using `QUEST_CATALOG_URL`; keep its asset-specific expectations aligned with intentional changes. Record actual results and limitations. Link checks alone cannot prove every new artifact was cataloged.
 
-With the documented preview running on port 8000, run the browser audit in a second terminal:
+Build the site, then serve its static output for the browser audit. Use a separate terminal for the audit command:
 
 ```bash
+python3 -m http.server 8000 --bind 127.0.0.1 --directory site
+# In another terminal:
 QUEST_CATALOG_URL=http://127.0.0.1:8000/assets/catalog.html node tests/e2e/visual-catalog.mjs
 ```
+
+Stop the MkDocs development preview first if it owns port 8000. Its live-reload requests can be canceled during the audit's page navigation and fail the network-error checks; the static build matches deployed delivery. Keep all asset-request checks enabled.
 
 Put asset files and their catalog updates in the **same PR**. Authoring agents return IDs, versions, paths/checksums, previews and catalog changes or precise intake data in their work orders. The coordinator owns final UI/copy and shared-catalog integration, and must finish it before marking the overall asset task complete. Interrupted authoring can checkpoint and release its scene immediately, but missing catalog/publication work stays explicitly open.
 
