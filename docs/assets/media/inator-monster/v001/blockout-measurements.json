@@ -1,0 +1,73 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster-blockout.blend",
+  "sha256": "d1fb9866c026f33d60309856ddf2f4261d600ecd720c2aa3c304446b08e3ea80",
+  "bounds_blender_zup": {
+    "min": [
+      -0.9654,
+      -1.9165,
+      -0.0084
+    ],
+    "max": [
+      0.71,
+      1.2651,
+      3.2167
+    ],
+    "size": [
+      1.6754,
+      3.1816,
+      3.2251
+    ],
+    "blockout_triangles": 78756
+  },
+  "feature_tops_m": {
+    "Zig-zag antenna tip": 3.2167,
+    "Bubble cockpit dome": 2.82,
+    "Googly eyes": 2.4893,
+    "Monster cranium": 2.3811,
+    "Back plates": 2.2504,
+    "Scientist head": 2.777,
+    "Cockpit rim": 2.368,
+    "Pear kaiju torso": 2.1623
+  },
+  "parts": 164,
+  "dome_parts": 48,
+  "materials": [
+    "IM antenna #f4c542",
+    "IM ball #ef7fa8",
+    "IM belly #f0d58c",
+    "IM belly_line #d9b466",
+    "IM blush #f2a08f",
+    "IM brass #c9923e",
+    "IM bubble glass #bfe6f0",
+    "IM bulb_green #7cc26b",
+    "IM bulb_red #e0524f",
+    "IM button #e0524f",
+    "IM claw #f3e6cf",
+    "IM coat #eef0ec",
+    "IM coat_shadow #cfd8d4",
+    "IM cockpit #6b5b95",
+    "IM eye #fbf8f2",
+    "IM eye_rim #c9d3d8",
+    "IM glove #7b5ea7",
+    "IM hair #dcd6ee",
+    "IM ink #2b2238",
+    "IM lens #a9d8ea",
+    "IM mouth #9c3a52",
+    "IM nose #e8a08c",
+    "IM plate_blue #5eaee0",
+    "IM plate_orange #f08a3c",
+    "IM plate_pink #ef7fa8",
+    "IM plate_yellow #f4c542",
+    "IM remote #4b4f63",
+    "IM skin #f2cfae",
+    "IM strap #3a3548",
+    "IM suit #72a95c",
+    "IM suit_dark #4f7f48",
+    "IM teal #3f9d9a",
+    "IM tongue #ef8a9a",
+    "IM tooth #fbf6ec",
+    "IM zip_metal #c9ccd3",
+    "IM zip_tape #3a3548"
+  ],
+  "utc": "2026-09-26T16:38:23.431886+00:00"
+}

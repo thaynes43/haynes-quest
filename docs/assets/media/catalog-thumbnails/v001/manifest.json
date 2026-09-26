@@ -318,6 +318,20 @@
       "sha256": "466c17e4b666486cb7057c56f69dd31d2b9f7aa4fa5fab32929faefa907acaba"
     },
     {
+      "source": "docs/assets/media/inator-monster/v001/beauty.png",
+      "source_sha256": "5f1d70509825781ac7349f1d44ccf04c972e243936d4c79e2ac9777c3f699d13",
+      "path": "docs/assets/media/catalog-thumbnails/v001/97523fa0eb51cce8.webp",
+      "bytes": 9142,
+      "sha256": "f0d94e442c09a83e47c76980b6c8a656dbcdaeee53043889b98f4aebd10d5e63"
+    },
+    {
+      "source": "docs/assets/media/inator-monster/v001/reference-sheet.png",
+      "source_sha256": "12bdf82a9f573692c05ac029d64dda3bc6d8b075c24ebabc10ddc9ea4be951b9",
+      "path": "docs/assets/media/catalog-thumbnails/v001/41055a7f0d677d04.webp",
+      "bytes": 25388,
+      "sha256": "06d154c4973353ad21ee00560d647b2234a2d754b2bfa6cd2d3ddece3071e8c7"
+    },
+    {
       "source": "docs/assets/media/jackrabbit-drummer/v001/beauty.png",
       "source_sha256": "886f370ce3c8b27406435f8e354834c8aae82eb35144051137c2e7c8890aee02",
       "path": "docs/assets/media/catalog-thumbnails/v001/7b9d7f82100c5daa.webp",

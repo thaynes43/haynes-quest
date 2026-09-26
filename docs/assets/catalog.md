@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**48 completed models · 2 partial models · 2 concepts awaiting models · 12 sound auditions · 6 fictional memory pictures**
+**49 completed models · 2 partial models · 2 concepts awaiting models · 12 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -85,6 +85,24 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/636bef6db1456f8f.webp" alt="Blender reference sheet of the mischief kitten in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+</div>
+
+### World A · Chapter 3
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="inator-monster" markdown="1">
+
+[![Exact Inator Monster model: a green googly-eyed rubber-suit dinosaur with a butter belly, buck teeth and toy-coloured back plates, carrying a violet cockpit tub with a glass dome where a goggled scientist raises a remote with a yellow zig-zag antenna](media/catalog-thumbnails/v001/97523fa0eb51cce8.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/inator-monster/v001.md)
+
+### [Inator Monster](reviews/inator-monster/v001.md)
+
+<span class="catalog-state">3D boss · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/41055a7f0d677d04.webp" alt="Blender reference sheet of the inator monster in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
 </div>
 

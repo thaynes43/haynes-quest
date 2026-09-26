@@ -1,0 +1,55 @@
+{
+  "work_order": "WO111",
+  "asset_id": "inator-monster",
+  "version": "v001",
+  "created_utc": "2026-09-26T18:51:14.738059+00:00",
+  "glb_sha256": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Claude Opus 5.5 does the WO111 Blender work",
+  "authoring_tool": "Blender MCP execute_blender_code on the second isolated authoring service (blender-authoring-2), driven by a small streamable-HTTP JSON-RPC client (source/transfer.py)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": {
+    "kind": "Blender reference sheet, no generated concept",
+    "file": "reference-sheet.png",
+    "sha256": "12bdf82a9f573692c05ac029d64dda3bc6d8b075c24ebabc10ddc9ea4be951b9",
+    "notes": "reference-notes.md",
+    "notes_sha256": "decc33c4e1255aa4bd79615f1e9427ea771c398375676911179f502ba132a345",
+    "blockout_master": "inator-monster-blockout.blend",
+    "blockout_sha256": "d1fb9866c026f33d60309856ddf2f4261d600ecd720c2aa3c304446b08e3ea80",
+    "coordinator_review": "Approved Sept 26 (SHEET-REVIEWS.md): excellent read; keep the googly-eyed rubber-suit monster with the costume zipper, toy back plates and the scientist in the bubble cockpit with the zig-zag -inator antenna; keep the pilot visible from the chase camera (above and behind); attack: stomp and roar while the scientist jabs the remote; defeat: slumps and the cockpit dome pops open, held.",
+    "generator": "None. The sheet is a Cycles render of a procedural Blender blockout; no image-generation model was used for this asset."
+  },
+  "source_scripts": {
+    "animate.py": "288cb984267af95b86d2bef33ffa06c49f839274f4de740c97be82fd681f5bdd",
+    "author_run.py": "7928cd7d8ed420ee7fc0e095291b68c1e6992d7fe56c9753fb34a0863085b0c2",
+    "bounds.json": "9e00ae7302e2d39b917aa0f68ea940542ab98efd4b216f2e111cd2701c023b3e",
+    "build.py": "c1c5548be77c363f5873af92cfcdf26470fd399f85990753f15476519656e2d6",
+    "claim_model.py": "bb530e325373552f374523eedd709a6277715d8710e5fda6c92a8223f69667ed",
+    "common.py": "bac96769a120f7c747cf265e74a3b89007839756d3c355317f95f63e119a8cf2",
+    "compare.mjs": "4974d105e73b176386750d81e16f552e190e236535cd1992aa0e77b9845c45b9",
+    "cycle.sh": "dedfc90abd01f79fbef3c35e98f2ad146fafe06577d75a6e7a5d41c4edab4779",
+    "delivery.py": "ee29fbd687904a7aea353065b071fe8d794951909cef9bde02a9a8fa7eaa5a06",
+    "grid.mjs": "29dedbf64d26036393c787060bbd7d3369cce728ef1e61092adcabb16edc6ad8",
+    "inspect-attachments.py": "3782b4761b12456a8e9c1e39d41ba1a8a7cbc18178ccc69e61e2447eee0f46b5",
+    "inspect-three.mjs": "20982c79e28a918f4dda19983944b955744b0b7d1ec1a688ef8892c0c950818b",
+    "look.mjs": "422b5e7a92c75581da4bc7a6eb913ba52a2ff1de0aadde0721f3d9874e9efed7",
+    "make-evidence.py": "310a6391ba93726ee6e4b988d22995ff035dba11c0d0c1db7ac746bb7bbe0874",
+    "preview.mjs": "0c3759a03561f245f2302ad48835fe68b217c96708125c0ee2f827827065a43a",
+    "release_model.py": "cc6efa85f7315e33b46ede5846d6c6ff8b4f0adf6c2bf55e4930b4b71655c3e6",
+    "run_validate.py": "d3b2ce2670c49871ef99b75dccf3abe956573f4846341b738f8144fc2e9e5696",
+    "transfer.py": "8e66253c54201c001b3366de4e77feb1d16ab0dfba8341ee87e6f482a5b2e053",
+    "upload_inputs.py": "2d5308372e682d1916162382a4ade64b6dccd8f492678062e5ebb567cd935947",
+    "validate.mjs": "92bc8f95034bc5703d14794442384672b24a8d8e65518578453a9eb668c94f6e"
+  },
+  "original_work": [
+    "Final topology, UVs, weights, the 41-bone rig (monster and pilot in one skin) and all five clips are new; the blockout supplied measured proportions, colours and parody hooks only.",
+    "Original deterministic 1024 indexed-palette atlas generated in Blender Python from the sheet colours, with a tRNS chunk: only the 2 x 2 glass block is translucent (rim-rising tint and a painted window glint). The pocket pens and the remote grille are painted tiles; the zipper teeth are alternating face tiles; the belly scutes are bisected bands. No external texture.",
+    "Mesh, UV, transfer and validation utilities adapted from the WO111 rival-mayor, mischief-kitten, gadget-helper / honk-bus and Rat Casino authoring scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise names, models, faces, logos, costumes, lettering, catchphrases, jingles, recordings or textures. The -inator is a generic chunky remote with a red button, two dials, a grille and a zig-zag antenna; no lettering anywhere on the model."
+  ],
+  "rights_note": "Original authored study. No exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; the owner exact-version and physical-device review remain open."
+}

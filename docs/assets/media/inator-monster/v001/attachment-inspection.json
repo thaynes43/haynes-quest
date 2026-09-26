@@ -1,0 +1,177 @@
+{
+  "asset_id": "inator-monster",
+  "version": "v001",
+  "glb_sha256": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+  "blend_sha256": "72542af836a6f6ba7284fab4584f339646f69145c6e39b9fa9eff1ee17f00f96",
+  "method": "WO111 inator-monster source-side attachment audit on the live scene that exported the exact GLB.\n\nPer clip and frame (30 fps): triangle overlap between listed part groups on the evaluated skin (BVH), joint\nconnectivity (IK legs, the tail chain and the FK arms/antenna keep each head on its parent's tail), the lowest\nevaluated vertex, and the rest reproduction error. Intended contacts are not tested: the leg tops and the tail\nroot inside the torso, the soles and the tail on the floor, the pilot's coat inside the tub, the antenna rod\nthrough the brass port (three-inspection.json checks it against the port), the pilot's hand on the rim in\nthe attack recovery, and the back of the monster's head tucked against the outside of the tub below the cockpit\nfloor (the approved blockout's design contact). Instead, every frame checks that no head vertex rises above the\ncockpit floor inside the rim, in the posed cockpit frame, and that the pilot's head stays inside the glass. Supplements the exact-GLB checks; not a universal collision proof. Adapted from mischief-kitten.",
+  "pairs": [
+    "tail_far~legR",
+    "tail_far~legL",
+    "legR~legL",
+    "feet~tail_far",
+    "head~dome_glass",
+    "pilot_upper~dome_glass",
+    "arm_lower~head"
+  ],
+  "groups": {
+    "tail_far": [
+      "tail_2",
+      "tail_3",
+      "tail_4",
+      "tail_5"
+    ],
+    "legR": [
+      "foot_R",
+      "shin_R",
+      "thigh_R"
+    ],
+    "legL": [
+      "foot_L",
+      "shin_L",
+      "thigh_L"
+    ],
+    "feet": [
+      "foot_L",
+      "foot_R"
+    ],
+    "head": [
+      "head",
+      "jaw",
+      "pupil_L",
+      "pupil_R",
+      "tongue"
+    ],
+    "cockpit": [
+      "cockpit"
+    ],
+    "dome_glass": [
+      "dome"
+    ],
+    "pilot_upper": [
+      "pilot_hand_L",
+      "pilot_head",
+      "pilot_lower_L",
+      "pilot_lower_R",
+      "pilot_upper_L",
+      "pilot_upper_R"
+    ],
+    "arm_lower": [
+      "arm_lower_L",
+      "arm_lower_R"
+    ],
+    "tab": [
+      "zipper_tab"
+    ]
+  },
+  "group_face_counts": {
+    "tail_far": 511,
+    "legR": 436,
+    "legL": 436,
+    "feet": 448,
+    "head": 2614,
+    "cockpit": 406,
+    "dome_glass": 192,
+    "pilot_upper": 908,
+    "arm_lower": 434,
+    "tab": 36
+  },
+  "max_influences": 3,
+  "rest_reproduction_max_error": 2.16066837310791e-06,
+  "clips": {
+    "idle": {
+      "frames": 91,
+      "overlaps": {
+        "tail_far~legR": 0,
+        "tail_far~legL": 0,
+        "legR~legL": 0,
+        "feet~tail_far": 0,
+        "head~dome_glass": 0,
+        "pilot_upper~dome_glass": 0,
+        "arm_lower~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 5.213277245919675e-07,
+      "lowest_m": 0.00591,
+      "head_verts_in_cockpit": 0,
+      "max_pilot_head_radius_in_dome_m": 0.4656753919402587
+    },
+    "move": {
+      "frames": 37,
+      "overlaps": {
+        "tail_far~legR": 0,
+        "tail_far~legL": 0,
+        "legR~legL": 0,
+        "feet~tail_far": 0,
+        "head~dome_glass": 0,
+        "pilot_upper~dome_glass": 0,
+        "arm_lower~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 5.95956219050141e-07,
+      "lowest_m": 0.00473,
+      "head_verts_in_cockpit": 0,
+      "max_pilot_head_radius_in_dome_m": 0.46305070696404155
+    },
+    "attack": {
+      "frames": 61,
+      "overlaps": {
+        "tail_far~legR": 0,
+        "tail_far~legL": 0,
+        "legR~legL": 0,
+        "feet~tail_far": 0,
+        "head~dome_glass": 0,
+        "pilot_upper~dome_glass": 0,
+        "arm_lower~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 7.402743308767212e-07,
+      "lowest_m": 0.00533,
+      "head_verts_in_cockpit": 0,
+      "max_pilot_head_radius_in_dome_m": 0.459023538399884
+    },
+    "hit": {
+      "frames": 22,
+      "overlaps": {
+        "tail_far~legR": 0,
+        "tail_far~legL": 0,
+        "legR~legL": 0,
+        "feet~tail_far": 0,
+        "head~dome_glass": 0,
+        "pilot_upper~dome_glass": 0,
+        "arm_lower~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 4.807789863616728e-07,
+      "lowest_m": 0.00587,
+      "head_verts_in_cockpit": 0,
+      "max_pilot_head_radius_in_dome_m": 0.4694568996068202
+    },
+    "defeat": {
+      "frames": 73,
+      "overlaps": {
+        "tail_far~legR": 0,
+        "tail_far~legL": 0,
+        "legR~legL": 0,
+        "feet~tail_far": 0,
+        "head~dome_glass": 0,
+        "pilot_upper~dome_glass": 0,
+        "arm_lower~head": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 5.464619280886337e-07,
+      "lowest_m": 0.00385,
+      "head_verts_in_cockpit": 0,
+      "max_pilot_head_radius_in_dome_m": 0.465284088883331
+    }
+  },
+  "checks": {
+    "no_listed_part_overlaps_any_frame": true,
+    "limb_tail_and_antenna_joints_stay_connected": true,
+    "no_floor_penetration": true,
+    "head_never_enters_the_cockpit": true,
+    "pilot_head_inside_the_closed_glass": true,
+    "rest_controls_reproduce_bind_pose": true,
+    "at_most_four_influences": true,
+    "five_clips": true
+  }
+}

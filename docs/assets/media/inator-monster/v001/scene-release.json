@@ -1,0 +1,26 @@
+{
+  "work_order": "WO111",
+  "asset_id": "inator-monster",
+  "version": "v001",
+  "blender_instance": "blender-authoring-2",
+  "released_utc": "2026-09-26T18:52:00.346687+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "saved_live_scene": "/workspace/haynes-quest/family-eras/inator-monster/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "38b67fab5dd761d3337c59736ddd7e832a9479a4e7b76aa4be4956a23de5d5f3",
+  "editable_master": "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster.blend",
+  "editable_master_sha256": "72542af836a6f6ba7284fab4584f339646f69145c6e39b9fa9eff1ee17f00f96",
+  "construction_master_sha256": "c0d6cbab2de1944cc37f86c1373c5b7e84031dbef20dd320973f192c7b4bc969",
+  "glb_sha256": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+  "author_jobs_running": false,
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "failure": null,
+  "other_instance2_files_checked": 77,
+  "other_instance2_files_changed": {},
+  "scope": "Awaiting Tom's review \u00b7 used in the family release. Candidate technical delivery only; the coordinator owns catalog publication and runtime integration. No physical-device acceptance."
+}

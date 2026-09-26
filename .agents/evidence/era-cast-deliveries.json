@@ -851,6 +851,128 @@
         "artifactHashesMatchedLocally": 146,
         "physicalSafari": false
       }
+    },
+    {
+      "assetId": "inator-monster",
+      "version": "v001",
+      "role": "boss",
+      "world": "A",
+      "chapter": 3,
+      "glb": "docs/assets/media/inator-monster/v001/inator-monster.glb",
+      "sha256": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+      "heightM": 3.216711139418322,
+      "heightMonsterMassM": 2.49,
+      "featureHeightsM": {
+        "antenna_ball_top": 3.2167,
+        "dome_top": 2.82,
+        "googly_eyes_top": 2.489,
+        "monster_mass_top": 2.49
+      },
+      "soleClearanceM": 0.00599995966758729,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root under the body; the monster's right hand at +X, the tail sweeping to -X and behind (+Z); the top is the antenna ball; the soles and the resting tail sit on a 6 mm contact plane",
+        "rest": {
+          "min": [
+            -0.9651285987348561,
+            0.00599995966758729,
+            -1.26512786815282
+          ],
+          "max": [
+            0.7099999944120641,
+            3.216711139418322,
+            1.9155887932651
+          ]
+        },
+        "animated": {
+          "min": [
+            -1.2826227027165906,
+            0.0012892825502524366,
+            -1.4473031957749818
+          ],
+          "max": [
+            0.7453688733744913,
+            3.2652603663958146,
+            2.136583197555626
+          ]
+        },
+        "culling": {
+          "min": [
+            -1.288,
+            -0.004,
+            -1.453
+          ],
+          "max": [
+            0.751,
+            3.271,
+            2.142
+          ]
+        },
+        "note": "Rest and animated bounds include the floor-resting tail (1.92 m behind the root) and the defeat's popped-open dome. The monster mass tops out at 2.49 m; only the glass dome (2.82 m) and the thin antenna (3.217 m) rise above it, so 2.49 m is a candidate collision height. The culling envelope is stored in the skin extras (model_space_bounds_y_up); the runtime does not yet apply it (issue #103)."
+      },
+      "attackContactS": 1.25,
+      "attackContactFraction": 0.625,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 3,
+          "channels": 123
+        },
+        {
+          "name": "move",
+          "duration_s": 1.2,
+          "channels": 123
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 123
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 123
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 123
+        }
+      ],
+      "review": "docs/assets/reviews/inator-monster/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+      "sceneReleasedAt": "2026-09-26T18:52:00.346687+00:00",
+      "manifest": "docs/assets/media/inator-monster/v001/sha256-manifest.json",
+      "pr": null,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v2 (and the frozen v1) fill the A·3 boss slot with The Monster-inator project candidate (inator-monster), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 3.2167}, or 2.49 for the monster mass alone"
+      },
+      "prUrl": null,
+      "masterSha256": "72542af836a6f6ba7284fab4584f339646f69145c6e39b9fa9eff1ee17f00f96",
+      "triangles": 14575,
+      "joints": 41,
+      "bytes": 1234756,
+      "integrationNotes": [
+        "Two materials: an opaque double-sided painted atlas (14,200 triangles) and an alpha-BLEND single-sided bubble glass (375 triangles; GLTFLoader sets depthWrite false), both sampling the one embedded 1024 x 1024 indexed-palette atlas. Render the glass after the opaque pilot so the scientist stays visible.",
+        "Rest geometry starts 0.006 m above the floor (the soles and tail rest on a 6 mm contact plane); the lowest animated point is 0.0013 m.",
+        "Only the hips, tongue, cockpit, pilot root and pilot head translate; every other joint is a fixed pivot, and the root bone never animates.",
+        "In the held defeat (from 1.80 s) the hips sit at 0.457 m and the dome is open 1.92 rad on its back hinge.",
+        "Runtime culling (issue #103), measured at intake against the idle-0 bounding spheres: the glass primitive leaves its sphere by up to 1.045 m during the defeat (dome popping open), and the opaque primitive by up to 0.107 m during the attack; apply the exported culling envelope or disable frustum culling for this skinned mesh.",
+        "The runtime casts shadows from every mesh, so the glass dome casts one too.",
+        "Exact intake values: 1,234,756 bytes, 14,575 triangles, 12,546 exported vertices (7,545 Blender mesh vertices before UV and normal splits), one embedded 1024 x 1024 atlas, 2 materials, 2 primitives, 41 joints, at most 4 influences per vertex."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "contractChecksPassed": 21,
+        "threeAdapterChecksPassed": 38,
+        "attachmentChecksPassed": 8,
+        "chromiumChecksPassed": 10,
+        "artifactHashesMatchedLocally": 157,
+        "physicalSafari": false
+      }
     }
   ]
 }

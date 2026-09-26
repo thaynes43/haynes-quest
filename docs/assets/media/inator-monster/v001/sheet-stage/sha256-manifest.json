@@ -1,0 +1,213 @@
+{
+  "work_order": "WO111",
+  "asset_id": "inator-monster",
+  "version": "v001",
+  "status": "sheet-ready",
+  "source": "Blender reference sheet, no generated concept",
+  "blender_instance": "blender-authoring (instance 1, primary)",
+  "remote_dir": "/workspace/haynes-quest/family-eras/inator-monster/v001",
+  "durable_dir": "/home/dev/artifacts/haynes-quest/family-eras/inator-monster/v001",
+  "glb_sha256": "none",
+  "scene_released_utc": "2026-09-26T16:47:51.165262+00:00",
+  "generated_utc": "2026-09-26T16:48:31.538995+00:00",
+  "notes": [
+    "remote inator-monster-blockout.blend1 is Blender's automatic backup of an earlier blockout save and is not copied.",
+    "claim-checkpoint.blend is a copy of the released predecessor (yes-yes-veggie v001) live scene taken at claim time, kept for recovery.",
+    "inator-monster-reference-sheet-checkpoint.blend is a safety copy of the final sheet scene saved just before release (lease still active in it); inator-monster-reference-sheet.blend is the released copy.",
+    "preview/sheet-preview.png is the last half-size iteration preview of the final geometry; reference-sheet.png is the final 2048x1024 render.",
+    "local_only files are local helpers and logs: source/run.py (MCP runner), source/sheet_preview.py (half-size preview helper; iterate_preview.py was used on the service) and source/*.log captured from run output; final-render.log records the MCP adapter timeout during the long combined final pass (Blender finished the work; outputs were verified afterwards)."
+  ],
+  "files": {
+    "blockout-measurements.json": {
+      "sha256": "28224934708e674a4aa99f914c98a7886576544b54bf017fe435416282fce7b5",
+      "bytes": 1720,
+      "remote_match": true
+    },
+    "claim-checkpoint.blend": {
+      "sha256": "6d17e9894fb59043f2f210785f443824eca40b1701eef7a00b221548fa0d91e1",
+      "bytes": 1371804,
+      "remote_match": true
+    },
+    "inator-monster-blockout.blend": {
+      "sha256": "d1fb9866c026f33d60309856ddf2f4261d600ecd720c2aa3c304446b08e3ea80",
+      "bytes": 600742,
+      "remote_match": true
+    },
+    "inator-monster-reference-sheet-checkpoint.blend": {
+      "sha256": "174750c46a375f6d4b13bc5f8141d93a914291df3595f1e111588d7abbb776ab",
+      "bytes": 829410,
+      "remote_match": true
+    },
+    "inator-monster-reference-sheet.blend": {
+      "sha256": "6bf675652d4bb2db88a1be5bd0a19e07ece58c6b8971b3951520f595081d86d1",
+      "bytes": 830200,
+      "remote_match": true
+    },
+    "live-scene-release.blend": {
+      "sha256": "674b1499ae1360144b38b2662b5941d18bf68f8498e25e35006b0ab90ce60607",
+      "bytes": 830187,
+      "remote_match": true
+    },
+    "part-measurements.json": {
+      "sha256": "86faffa059c97395de8a8f014e2bf63b2c273761d6caced4aab37a02162f4b57",
+      "bytes": 4609,
+      "remote_match": true
+    },
+    "preview/crop-back.png": {
+      "sha256": "bd740c8fc1a20f8bdded4c8b95e9d2e4210dd435d4b10ab7baa7dda321170dc2",
+      "bytes": 958200,
+      "remote_match": true
+    },
+    "preview/crop-cockpit-side.png": {
+      "sha256": "bb668bdde569be86565d91a7b2ac57f3a2f0c2ea89fe9d00e502b6d72684a0da",
+      "bytes": 995224,
+      "remote_match": true
+    },
+    "preview/crop-cockpit-three-quarter.png": {
+      "sha256": "75d768aea146c6d62f48565027ecf18aab4f3d4f2b695bef902d540d62dc9e01",
+      "bytes": 1021183,
+      "remote_match": true
+    },
+    "preview/crop-face-front.png": {
+      "sha256": "976ee0132b00a01db02f47ca251e8c45cd9161c54a49d34b846107e4f5911bce",
+      "bytes": 1066256,
+      "remote_match": true
+    },
+    "preview/crop-face-three-quarter.png": {
+      "sha256": "6ef8657a8cd8c4d3ad36af14926d5193855d0a673c77785daab900dac4eca6f5",
+      "bytes": 1037534,
+      "remote_match": true
+    },
+    "preview/crop-front.png": {
+      "sha256": "4515d4be8e41ee92c4e5b89b092505f92711800958d09c3eb7181c80220848a8",
+      "bytes": 1037263,
+      "remote_match": true
+    },
+    "preview/crop-side.png": {
+      "sha256": "0e0473b947f12dcb50dac9aed2b5997598ebd8ac641d7a64618cc742ad5c8807",
+      "bytes": 992381,
+      "remote_match": true
+    },
+    "preview/crop-three-quarter.png": {
+      "sha256": "4ed44a864af5b6d0610205599b1df0db21ab0aba7cd4c8642e4e11a6362a84d8",
+      "bytes": 976590,
+      "remote_match": true
+    },
+    "preview/sheet-preview.png": {
+      "sha256": "f99d2a00dd36c67f5dbbab602e94c54a98f3294e65db8a77316e05a65d5a7762",
+      "bytes": 589948,
+      "remote_match": true
+    },
+    "reference-notes.md": {
+      "sha256": "decc33c4e1255aa4bd79615f1e9427ea771c398375676911179f502ba132a345",
+      "bytes": 19767,
+      "remote_match": true
+    },
+    "reference-sheet.png": {
+      "sha256": "12bdf82a9f573692c05ac029d64dda3bc6d8b075c24ebabc10ddc9ea4be951b9",
+      "bytes": 2100836,
+      "remote_match": true
+    },
+    "scene-lease.json": {
+      "sha256": "d83b36aa33da202a7903221d8ba93d2780aed070056c9b61847ed98edf651f41",
+      "bytes": 10444,
+      "remote_match": true
+    },
+    "scene-release.json": {
+      "sha256": "c07e542763bced0a9a2c0c4c033574a18ddc062f67e192e3ab9ead0f76d9dd2b",
+      "bytes": 10631,
+      "remote_match": true
+    },
+    "sheet-render.json": {
+      "sha256": "df46961fc1275bc4e12f99388c911914013494101886f064097624c5f30d3966",
+      "bytes": 839,
+      "remote_match": true
+    },
+    "source/build_blockout.py": {
+      "sha256": "dfeb50a087d1257b1d9d102fec0c411730b913e4e186a1da94f3b3910d25e7db",
+      "bytes": 38182,
+      "remote_match": true
+    },
+    "source/claim.py": {
+      "sha256": "a6080b40785af94df3c741a5f191416b4dd0ae6dc1c6a5fed5aeacb5967de36a",
+      "bytes": 2936,
+      "remote_match": true
+    },
+    "source/crops-render.log": {
+      "sha256": "e3e00ae3f82962c15388fd6f947e542733869878c343eb00ddb35468a7794265",
+      "bytes": 882,
+      "remote_match": false,
+      "local_only": true
+    },
+    "source/crops.py": {
+      "sha256": "a3381eee47694507764960a5e875616ea159aad270ed6acc6d4a7643d68827e8",
+      "bytes": 2797,
+      "remote_match": true
+    },
+    "source/crops_quick.py": {
+      "sha256": "2b912fefa3795369fa1e0125dc0136e9d46209063ff5aab9d6d47455b8db4eaf",
+      "bytes": 362,
+      "remote_match": true
+    },
+    "source/final-render.log": {
+      "sha256": "f8f2ebd50da6dc55a31d68e98995e7bc9220f6077a537b977e2b62b1a350ef0e",
+      "bytes": 1734,
+      "remote_match": false,
+      "local_only": true
+    },
+    "source/final_crop_and_checkpoint.py": {
+      "sha256": "e42daa8e2e1b744a831447d7a6332b382b54e4d3b72cc871fc5c180b68486365",
+      "bytes": 618,
+      "remote_match": true
+    },
+    "source/final_render.py": {
+      "sha256": "71df83afa5f68440138b38af04efeeb756b0d001eb527b1c1c770143c947da2d",
+      "bytes": 698,
+      "remote_match": true
+    },
+    "source/iterate_preview.py": {
+      "sha256": "5e31ac52a173efc9e293061eca600e0c93264b77db25fd37d7e049c7679a3eb8",
+      "bytes": 380,
+      "remote_match": true
+    },
+    "source/measure_parts.py": {
+      "sha256": "dee3e0a30c570638efb466f7f360cfbda408426b4fdd27f65a8614ffe09b9833",
+      "bytes": 3497,
+      "remote_match": true
+    },
+    "source/release.log": {
+      "sha256": "5d9934a380d6efbc8d8416cfd79dc011cc8ffa52d8deb5c23eacfe26157f6df3",
+      "bytes": 820,
+      "remote_match": false,
+      "local_only": true
+    },
+    "source/release.py": {
+      "sha256": "08a7e9837e56042fe0439ec788e8feb2c14d9464decf2409a0694df5f06c6091",
+      "bytes": 3783,
+      "remote_match": true
+    },
+    "source/run.py": {
+      "sha256": "b6c85bd4b54a9dbe14d3b64d9b2bd34c48ef1a8873f88d741a382e95ea2010e0",
+      "bytes": 4597,
+      "remote_match": false,
+      "local_only": true
+    },
+    "source/sheet-render.log": {
+      "sha256": "61b55ceb65dfc758a715f41ab34d180b700644b92fded1f295532c585c553aee",
+      "bytes": 1037,
+      "remote_match": false,
+      "local_only": true
+    },
+    "source/sheet.py": {
+      "sha256": "30a2b04a3da97f94ce5d28e81dbdad576fe763f6dd324ac25abd9817840681de",
+      "bytes": 14878,
+      "remote_match": true
+    },
+    "source/sheet_preview.py": {
+      "sha256": "03af529ad814ea0cec2da11a1ddd7e1b13077923c675a6698544a8664e0e26c9",
+      "bytes": 331,
+      "remote_match": false,
+      "local_only": true
+    }
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "work_order": "WO111",
+  "asset_id": "inator-monster",
+  "version": "v001",
+  "created_utc": "2026-09-26T18:51:14.738059+00:00",
+  "glb_sha256": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back, three-quarter and beauty stills compared with the reference sheet at the same angles and metric scale (sheet-vs-export.png); five-clip normal/small motion sheet; attack front/side mash-rear-contact-recovery and 35% gameplay-scale strip; held defeat front/side/three-quarter/beauty; gameplay-camera views at five azimuths.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "sheet_matching": [
+    "Silhouette kept from the approved blockout at its measured coordinates: 3.217 m to the antenna ball, 2.82 m to the dome top, 2.49 m to the googly eyes, the forward-leaning pear torso, stumpy baggy legs, the tail swept to its left and resting on the floor, 8 + 6 staggered toy plates, the strapped-on violet tub with three signal lights a side, and the scientist raising the remote under the brass port while pointing forward.",
+    "Colours are the sheet hex values (atlas palette); the preview renders them darker and more saturated than the Cycles Standard-view sheet because of its ACES tone mapping and three-light rig. The belly scute bands keep the sheet #d9b466, lighter than the sheet ink outlines make them look.",
+    "Parody hooks kept: glued-on googly eyes with mismatched pupils, the costume zipper with interlocking teeth, slider and a dangling pull tab, baggy ankle wrinkles, toy-coloured plates, the ear-to-ear gormless grin with two buck teeth and a pink tongue, and the evil scientist in the bubble cockpit with the zig-zag -inator antenna.",
+    "The sheet glint is a camera-fixed specular highlight; the model paints one fixed window glint on the dome upper front-left (azimuth 150 deg, elevation 38 deg), placed where it never covers the pilot from the front, three-quarter or chase views, so it does not appear in every sheet angle."
+  ],
+  "pilot_visibility": {
+    "method": "Raycasts against the skinned opaque primitive to six pilot-head sample points from 7.9 m out and 2.62 m high",
+    "rest_fraction_by_azimuth_deg": {
+      "0": 1,
+      "45": 1,
+      "90": 1,
+      "180": 1,
+      "-45": 1,
+      "-90": 0.3333333333333333
+    },
+    "front_camera_through_attack": [
+      {
+        "time_s": 0,
+        "front_visibility": 1
+      },
+      {
+        "time_s": 0.3,
+        "front_visibility": 1
+      },
+      {
+        "time_s": 0.6,
+        "front_visibility": 1
+      },
+      {
+        "time_s": 0.8,
+        "front_visibility": 1
+      },
+      {
+        "time_s": 1,
+        "front_visibility": 0.16666666666666666
+      },
+      {
+        "time_s": 1.1,
+        "front_visibility": 0.6666666666666666
+      },
+      {
+        "time_s": 1.25,
+        "front_visibility": 1
+      },
+      {
+        "time_s": 1.4,
+        "front_visibility": 1
+      },
+      {
+        "time_s": 1.6,
+        "front_visibility": 1
+      },
+      {
+        "time_s": 2,
+        "front_visibility": 1
+      }
+    ],
+    "defeat_held": {
+      "0": 1,
+      "45": 1,
+      "90": 1,
+      "180": 1,
+      "-45": 0.8333333333333334,
+      "-90": 0.8333333333333334
+    }
+  },
+  "author_corrections": [
+    "First build: the glint arc became a full ring and sat over the pilot from front-left angles; moved to azimuth 150 / elevation 38, enlarged and limited to a crescent; the glass alpha was lowered (top 0.06, rim 0.38) because the dome read milky.",
+    "The blockout port ring was 8 mm off the antenna rod; recentred on the rod crossing so the antenna stays inside the port while the dome is closed (worst 24.5 mm of 30 mm allowed across all closed-dome frames).",
+    "Head segments raised (cranium 28 x 14, snout 32 x 16, jaw 28 x 12) after close-ups showed facets against the smooth sheet forms; paid for by dropping the eight 2 cm rim rivets and trimming the tail, dome, belly, rim and torso ring counts (14,575 triangles total).",
+    "The pull tab first hung straight down and sank into the bulging back; it now lies along the back so the costume gag reads from behind at rest and flips up on the hit.",
+    "Attack rear-back first tilted the head up far enough to hide the pilot from the front camera; head/neck tilt reduced (the roar stays in the jaw); the pilot now stays at least partly visible from the front through the whole attack.",
+    "Baked-keyframe interpolation dipped rolled feet up to 1.3 mm below the floor; soles and tail contact moved to a 6 mm plane and the foot guard keeps a smooth 4 mm margin for moving or rolled feet.",
+    "The hit head-bonk first pushed the frizz through the glass and the flailing pointing finger touched it; bonk reduced to 2 cm (frizz just reaches the glass) and the flail softened."
+  ],
+  "deviations_from_sheet_notes": [
+    "Bind pose is the sheet pose rather than a relaxed rest: the sheet silhouette (head tilt, raised remote, pointing arm) is what the approved views show and what the rest stills must match; blended weights and IK let every clip leave it.",
+    "The eight small rim rivets are omitted (sub-2 cm details) to fund smoother head forms; the tub keeps its brass rim and signal lights.",
+    "The back of the monster head tucks against the outside of the tub below the cockpit floor, as in the approved blockout; the audit checks every frame that no head vertex enters the cockpit above the floor."
+  ],
+  "dimensions_width_height_depth_m": [
+    1.6751285931469202,
+    3.2107111797507346,
+    3.18071666141792
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.9651285987348561,
+      0.00599995966758729,
+      -1.26512786815282
+    ],
+    "max": [
+      0.7099999944120641,
+      3.216711139418322,
+      1.9155887932651
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -1.2826227027165906,
+      0.0012892825502524366,
+      -1.4473031957749818
+    ],
+    "max": [
+      0.7453688733744913,
+      3.2652603663958146,
+      2.136583197555626
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -1.288,
+      -0.004,
+      -1.453
+    ],
+    "max": [
+      0.751,
+      3.271,
+      2.142
+    ]
+  },
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "defeat_held_from_seconds": 1.8,
+  "defeat_held": {
+    "hips_height_m": 0.45663130283355713,
+    "dome_open_rad": 1.920000245443063,
+    "antenna_ball_minus_remote_m": 0.10848290305207264,
+    "pupil_R_toward_other_eye_cos": 0.9682885279033442,
+    "pupil_L_toward_other_eye_cos": 0.9723285495659784,
+    "pilot_visibility": {
+      "0": 1,
+      "45": 1,
+      "90": 1,
+      "180": 1,
+      "-45": 0.8333333333333334,
+      "-90": 0.8333333333333334
+    }
+  },
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "The attachment audit tests listed part pairs every frame on the source scene; it is not a universal triangle-collision proof. Intended contacts (leg tops and tail root inside the torso, soles and tail on the floor, the pilot coat inside the tub, the antenna through the port, the hand on the rim in the attack recovery, the head against the tub below the floor) are not tested as overlaps.",
+    "In the game the windup phase scrubs the attack clip from 0 to the 1.25 s contact, so the mash-rear-stomp plays at the simulation windup speed.",
+    "Transparent sorting: the glass is a separate alpha-blended primitive drawn after opaque geometry; with the runtime casting shadows from every mesh, the dome also casts a shadow.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}

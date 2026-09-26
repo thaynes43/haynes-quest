@@ -1,0 +1,72 @@
+{
+  "work_order": "WO111",
+  "asset_id": "inator-monster",
+  "version": "v001",
+  "created_utc": "2026-09-26T18:51:14.738059+00:00",
+  "glb_sha256": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts; raycasts against the skinned opaque primitive from six gameplay camera azimuths (7.9 m out, 2.62 m high); antenna rod crossing tested against the posed brass port on every closed-dome frame. Rotation-only joints are checked as fixed local pivots; the hips, tongue, cockpit, pilot root and pilot head are the intentional translations. No physical-device or universal triangle-collision proof.",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.9651285987348561,
+      0.00599995966758729,
+      -1.26512786815282
+    ],
+    "max": [
+      0.7099999944120641,
+      3.216711139418322,
+      1.9155887932651
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    1.6751285931469202,
+    3.2107111797507346,
+    3.18071666141792
+  ],
+  "height_m": 3.216711139418322,
+  "feature_heights_m": {
+    "antenna_ball_top": 3.2167,
+    "dome_top": 2.82,
+    "googly_eyes_top": 2.489,
+    "monster_mass_top": 2.49
+  },
+  "sole_clearance_m": 0.00599995966758729,
+  "body_footprint_y_up": {
+    "min": [
+      -0.7099999944120641,
+      0.5616561721553676,
+      -0.811434153069104
+    ],
+    "max": [
+      0.7099999944120641,
+      1.9929612041210951,
+      0.7216103308457071
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -1.2826227027165906,
+      0.0012892825502524366,
+      -1.4473031957749818
+    ],
+    "max": [
+      0.7453688733744913,
+      3.2652603663958146,
+      2.136583197555626
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -1.288,
+      -0.004,
+      -1.453
+    ],
+    "max": [
+      0.751,
+      3.271,
+      2.142
+    ]
+  },
+  "defeat_held_hips_height_m": 0.45663130283355713,
+  "note": "glTF axes: +Y up, character faces -Z; its right hand is +X and the tail sweeps to -X, +Z (behind). Root at the floor origin under the body. The monster mass tops out at 2.49 m; only the glass dome (2.82 m) and the thin antenna (3.217 m) rise above it, if gameplay needs a smaller collision height."
+}

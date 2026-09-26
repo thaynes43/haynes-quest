@@ -1,0 +1,185 @@
+{
+  "work_order": "WO111",
+  "asset_id": "inator-monster",
+  "version": "v001",
+  "task": "reference sheet only (no final topology, no rig, no GLB)",
+  "blender_instance": "blender-authoring (instance 1, primary)",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "status": "released",
+  "claimed_utc": "2026-09-26T16:11:28.286870+00:00",
+  "predecessor": {
+    "scene_file": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/live-scene-release.blend",
+    "scene_file_sha256": "c2c1b3b834ed4e7ea488fd8209bad29cf5267aa32642823f1f6323d66329c353",
+    "dirty": false,
+    "props_before": {
+      "work_order": "WO111",
+      "scene_owner": "none",
+      "scene_lease": "released",
+      "asset_id": "yes-yes-veggie",
+      "asset_version": "v001",
+      "authoring_model": "claude-opus-5-5 xhigh",
+      "candidate_status": "WO111 yes-yes-veggie v001 \u00b7 Awaiting Tom's review \u00b7 used in the family release"
+    }
+  },
+  "claim_checkpoint": "/workspace/haynes-quest/family-eras/inator-monster/v001/claim-checkpoint.blend",
+  "claim_checkpoint_sha256": "6d17e9894fb59043f2f210785f443824eca40b1701eef7a00b221548fa0d91e1",
+  "jobs_at_claim": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "prior_files": {
+    "bin-chicken/v001/bin-chicken-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-blockout.blend",
+      "sha256": "ce5d128d315ad3a1d9188f60f97d18fcdc3ee138b742ca409ffd92e652500114"
+    },
+    "bin-chicken/v001/bin-chicken-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-reference-sheet.blend",
+      "sha256": "8cb7f5119cd43787d471ce4c6b29d5430e555ffe97b87024f73a0c69dd00be4e"
+    },
+    "bin-chicken/v001/claim-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/bin-chicken/v001/claim-checkpoint.blend",
+      "sha256": "5ec9f2392c840b6a9d7372918e3ba72db5bfa412917b7ac89d246c828a8cdee9"
+    },
+    "bin-chicken/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/bin-chicken/v001/live-scene-release.blend",
+      "sha256": "042563ddff775abccc712a22c6f27795aa1e40c288bb6989547ddde35357708c"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat-checkpoint.glb",
+      "sha256": "96f10990c3a1f77e097ec8c4aa036919c41910533b03ade27aa2d3b8ad45d67a"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat-construction.blend",
+      "sha256": "403b2e9ec72b7bb6394c8390839103fb3b08c57218c2c814a3578dadb6e44506"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.blend",
+      "sha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat.glb": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.glb",
+      "sha256": "e082df0e5ebe116645aa800c26896b79b8a01025167446e00d1f37cb1788b447"
+    },
+    "clubhouse-bully-cat/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/live-scene-release.blend",
+      "sha256": "4438513d36fb533061c4470f74f545a419a2f424acf0fa8ab9dd4ec8ac3ebb9d"
+    },
+    "gadget-helper/v001/gadget-helper-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/gadget-helper-checkpoint.glb",
+      "sha256": "7fbaff3b5f0bdd4bd7c262f9c79d920421d0c8ff998b221c4889e424b90eced5"
+    },
+    "gadget-helper/v001/gadget-helper-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/gadget-helper-construction.blend",
+      "sha256": "7cdb62d874070ec8d135fa212d7efd8a6a364d09028057c13f8f0900694188dc"
+    },
+    "gadget-helper/v001/gadget-helper.blend": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/gadget-helper.blend",
+      "sha256": "f467492d4dd667a21a3d695925680ffed927b1457d138fe49536372b87011351"
+    },
+    "gadget-helper/v001/gadget-helper.glb": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/gadget-helper.glb",
+      "sha256": "ff5d601b690541aec44e682835328ca55821762521412cd1e26f5c07cb6b6317"
+    },
+    "gadget-helper/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/live-scene-release.blend",
+      "sha256": "460a074b810fcbf18e3fad8d18a2781349e52392eab475a0e85b831d5cac164c"
+    },
+    "honk-bus/v001/honk-bus-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus-checkpoint.glb",
+      "sha256": "cc117a9abbbc47f33066aef63aafc75776041d7e0be2dc20c4977d6857a5bc7a"
+    },
+    "honk-bus/v001/honk-bus-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus-construction.blend",
+      "sha256": "50d10f352671528493b632a1d46a4fe58cb264b37f159a3fa2b4a994360d3260"
+    },
+    "honk-bus/v001/honk-bus-high-density-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus-high-density-checkpoint.blend",
+      "sha256": "70a651d0bff6d777036af215fa7891befadff926654c15b71852dac28af626c9"
+    },
+    "honk-bus/v001/honk-bus.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus.blend",
+      "sha256": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00"
+    },
+    "honk-bus/v001/honk-bus.glb": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus.glb",
+      "sha256": "0ea6f80966e4e11e7ec6251af9c371ad76f6a1a8f90aa67da27b7d5612b0a2ed"
+    },
+    "honk-bus/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/live-scene-release.blend",
+      "sha256": "a3a94cd1a0b847a79266c8c1d43692d047be85c3a6eecacf6ede83296f8b0054"
+    },
+    "magic-house/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/live-scene-release.blend",
+      "sha256": "a9a276022502083ee29f46a155bf908789570cd5f25df5d5f07f8a4f2e008d03"
+    },
+    "magic-house/v001/magic-house-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-blockout.blend",
+      "sha256": "a4367f504e3acf306b827430550cef9f1074092c90fece7a89244484d8b32ea6"
+    },
+    "magic-house/v001/magic-house-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-reference-sheet.blend",
+      "sha256": "a5178191f44c03d1984a97c3fc7572bcaa7c903b796be06ba9f58f5f474a5fc8"
+    },
+    "mischief-kitten/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/live-scene-release.blend",
+      "sha256": "ee595224f2ff5a43d31f4187c5c1d9cc94a1fa7f0991b19e485a6be14d90254d"
+    },
+    "mischief-kitten/v001/mischief-kitten-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-blockout.blend",
+      "sha256": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95"
+    },
+    "mischief-kitten/v001/mischief-kitten-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-reference-sheet.blend",
+      "sha256": "40568acd0c47cd7993db26e042a5431f792f106ed4986bef1be57e2066a423f2"
+    },
+    "rival-mayor/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/live-scene-release.blend",
+      "sha256": "3c8a63ede90e6214134aa8f9835d35c8b27724111652f29c9a6f541377d65efd"
+    },
+    "rival-mayor/v001/pre-takeover-live-scene.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/pre-takeover-live-scene.blend",
+      "sha256": "fb44c7cb71b2dccb992741e77915b555c2daf8971bfe4b25122271eb8459a11f"
+    },
+    "rival-mayor/v001/rival-mayor-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-blockout.blend",
+      "sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f"
+    },
+    "rival-mayor/v001/rival-mayor-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-reference-sheet.blend",
+      "sha256": "78b03aea57483f5b9514f60702072f9249ee51ce10a2e758d7909a84c6293489"
+    },
+    "yes-yes-veggie/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/live-scene-release.blend",
+      "sha256": "c2c1b3b834ed4e7ea488fd8209bad29cf5267aa32642823f1f6323d66329c353"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie-checkpoint.glb",
+      "sha256": "4f746b2fac92aac7f81668b2a2974f3562c1554258aa7efe5f0b32ed4a44a38b"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie-checkpoint1.glb": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie-checkpoint1.glb",
+      "sha256": "eb45f9e63d870694131e45e066e235a9a60955215e2d07a40999367e851c45c7"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie-construction-checkpoint1.blend": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie-construction-checkpoint1.blend",
+      "sha256": "0e504e02f99c0304742f9ee7119f0906913c21a90eebb0c28484d01d5c2ad202"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie-construction.blend",
+      "sha256": "d7a6cdf821a56e1e556f126d6d1f466d55d48172a8de44346a2b8cffc1c91340"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie.blend": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie.blend",
+      "sha256": "332d263434c22cdb607f02ba087a20b42c19c6814237a4d40913ab19fcc34672"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie.glb": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie.glb",
+      "sha256": "b513172d40b1e5ba581bc99a134bd9a26a1b7cdc7775c0c1f87056e0a18bf81f"
+    }
+  },
+  "released_utc": "2026-09-26T16:47:51.165262+00:00",
+  "author_jobs_running": false
+}
