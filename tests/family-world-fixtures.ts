@@ -13,6 +13,7 @@ import type {
 import {
   applyLevelEditorCommands,
   createWorldEditorProject,
+  type LevelEditorCatalogVersion,
   type LevelEditorCommand,
   type LevelEditorCommandBatch,
   type LevelEditorEnemyCandidate,
@@ -188,6 +189,119 @@ export function buildFamilyFixtureWorld(): LevelEditorProjectV2 {
   if (!result.ok)
     throw new Error(
       `Family fixture world failed: ${result.issues.map((entry) => `${entry.path}: ${entry.message}`).join("; ")}`,
+    );
+  return result.project as LevelEditorProjectV2;
+}
+
+/**
+ * One-chapter parody-catalog-v8 worlds whose boss is a landed family-era
+ * Blender model (DESIGN-026). The chapter copy is the coordinator's final
+ * family-world text; the ordinary cast stays a project candidate until its
+ * model lands, in all four slots with one kind (ruling R11). Every date is
+ * fictional template data.
+ */
+export interface FamilyCatalogBossWorldSpec {
+  readonly projectId: string;
+  readonly fictionalBirthDate: string;
+  readonly chapter: WorldShellChapter;
+  readonly bossEntryId: string;
+  readonly ordinary: LevelEditorEnemyCandidate;
+}
+
+function shiftYears(date: string, years: number): string {
+  return `${Number(date.slice(0, 4)) + years}${date.slice(4)}`;
+}
+
+function eraChapter(
+  birth: string,
+  chapter: Omit<WorldShellChapter, "representedDateRange" | "recoveredAge" | "previewMemories">,
+): WorldShellChapter {
+  return {
+    ...chapter,
+    representedDateRange: { startDate: birth, endDate: shiftYears(birth, 2) },
+    recoveredAge: { fromYears: 0, toYears: 2 },
+    previewMemories: [
+      { slotId: "minor-one", date: `${birth.slice(0, 4)}-09-01`, label: "Summer picnic" },
+      { slotId: "minor-two", date: `${Number(birth.slice(0, 4)) + 1}-07-01`, label: "A sunny afternoon" },
+      { slotId: "major", date: shiftYears(birth, 2), label: "Turning 2!" },
+    ],
+  };
+}
+
+export const FAMILY_CATALOG_BOSS_WORLDS = {
+  clubhouse: {
+    projectId: "family-v8-clubhouse",
+    fictionalBirthDate: "2015-01-15",
+    chapter: eraChapter("2015-01-15", {
+      chapterId: "a1-clubhouse",
+      routeId: "a1-clubhouse-route",
+      name: "The Toon Clubhouse",
+      subtitle: "Gadgets on the loose",
+      description:
+        "Bounce up the hill, ride the cliff lift and climb the clubhouse tower to face the bully cat.",
+      theme: "clubhouse",
+    }),
+    bossEntryId: "clubhouse-bully-cat",
+    ordinary: fixtureCandidate("gadget-helper", "Runaway Gadget", "toon-clubhouse-v1", "ordinary-a", {
+      startDate: "2006-05-05",
+      endDate: "2016-11-06",
+    }),
+  },
+  playroom: {
+    projectId: "family-v8-playroom",
+    fictionalBirthDate: "2020-06-01",
+    chapter: eraChapter("2020-06-01", {
+      chapterId: "b1-playroom",
+      routeId: "b1-playroom-route",
+      name: "The Sing-Along Playroom",
+      subtitle: "Block towers and bouncy beds",
+      description:
+        "Climb the playroom towers, bounce on the beds and cheer up the grumpy bus.",
+      theme: "playroom",
+    }),
+    bossEntryId: "honk-bus",
+    ordinary: fixtureCandidate("yes-yes-veggie", "Yes-Yes Veggie", "sing-along-playroom-v1", "ordinary-a", {
+      startDate: "2018-01-01",
+      endDate: "2026-12-31",
+    }),
+  },
+} as const satisfies Record<string, FamilyCatalogBossWorldSpec>;
+
+export function familyCatalogBossWorldCommands(
+  spec: FamilyCatalogBossWorldSpec,
+): LevelEditorCommandBatch {
+  const chapter = chapterCommands(spec.chapter.chapterId);
+  const ordinary = { source: "candidate" as const, candidateId: spec.ordinary.id };
+  return {
+    expectedRevision: 0,
+    commands: [
+      ...worldShellCommands({ fictionalBirthDate: spec.fictionalBirthDate, chapters: [spec.chapter] }),
+      chapter.setAnchor("encounter.ordinary-2", gardenOrdinaryAs("ordinary-2", "ordinary-a")),
+      chapter.setAnchor("encounter.ordinary-4", gardenOrdinaryAs("ordinary-4", "ordinary-a")),
+      chapter.addCandidate("ordinary-1", spec.ordinary),
+      chapter.assign("ordinary-2", ordinary),
+      chapter.assign("ordinary-3", ordinary),
+      chapter.assign("ordinary-4", ordinary),
+      chapter.assign("boss", {
+        source: "catalog",
+        catalogEntryId: spec.bossEntryId,
+        catalogEntryVersion: "v001",
+      }),
+    ],
+  };
+}
+
+export function buildFamilyCatalogBossWorld(
+  spec: FamilyCatalogBossWorldSpec,
+  catalogVersion: LevelEditorCatalogVersion = "parody-catalog-v8",
+): LevelEditorProjectV2 {
+  const result = applyLevelEditorCommands(
+    createWorldEditorProject({ projectId: spec.projectId, catalogVersion }),
+    familyCatalogBossWorldCommands(spec),
+  );
+  if (!result.ok)
+    throw new Error(
+      `Family catalog boss world failed: ${result.issues.map((entry) => `${entry.path}: ${entry.code}`).join("; ")}`,
     );
   return result.project as LevelEditorProjectV2;
 }

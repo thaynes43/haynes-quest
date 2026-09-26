@@ -9,6 +9,7 @@ export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v5",
   "parody-catalog-v6",
   "parody-catalog-v7",
+  "parody-catalog-v8",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
 export const PARODY_CATALOG_VERSION = "parody-catalog-v5" as const;
@@ -24,9 +25,9 @@ export type ParodyPeriodId =
   | "sing-along-playroom-v1"
   | "magic-house-v1";
 /**
- * Family-world era periods (DESIGN-026). Their casts are project enemy
- * candidates with neutral placeholder art until the WO111 models land; no
- * frozen catalog version lists an entry in them yet.
+ * Family-world era periods (DESIGN-026). A cast member whose WO111 Blender
+ * model has landed is a frozen catalog entry from parody-catalog-v8 on; the
+ * rest stay project enemy candidates with neutral placeholder art.
  */
 export const FAMILY_ERA_PERIOD_IDS = [
   "toon-clubhouse-v1",
@@ -429,6 +430,49 @@ const PARODY_CANDIDATES_V7: readonly ParodyCatalogEntry[] = Object.freeze(
   ),
 );
 
+/**
+ * V8 keeps every v7 identity unchanged, including the Rat Casino parent lock,
+ * and adds the family-era Blender models that have landed (DESIGN-026, WO111
+ * delivery log). Names, roles, kinds, periods and windows follow the
+ * coordinator's family world spec (PLAN-019). Each window starts no earlier
+ * than the show's public availability in DESIGN-026, so `referenceAvailableBy`
+ * equals `eligibleFrom` and neither entry needs a parent lock. Catalogs v1–v7
+ * stay frozen.
+ */
+const PARODY_CANDIDATES_V8: readonly ParodyCatalogEntry[] = Object.freeze([
+  ...PARODY_CANDIDATES_V7.map(freezeV3Entry),
+  freezeV3Entry({
+    id: "clubhouse-bully-cat",
+    version: "v001",
+    title: "Captain Bully Cat",
+    reference: "classic toon-clubhouse bully cat captain",
+    role: "boss",
+    kind: "boss",
+    periodId: "toon-clubhouse-v1",
+    eligibleFrom: "2006-05-05",
+    eligibleThrough: "2016-11-06",
+    referenceAvailableBy: "2006-05-05",
+    requiredAbilities: ["move"],
+    assetId: "clubhouse-bully-cat",
+    assetVersion: "v001",
+  }),
+  freezeV3Entry({
+    id: "honk-bus",
+    version: "v001",
+    title: "Big Honk Bus",
+    reference: "a toddler sing-along show's school bus",
+    role: "boss",
+    kind: "boss",
+    periodId: "sing-along-playroom-v1",
+    eligibleFrom: "2018-01-01",
+    eligibleThrough: "2026-12-31",
+    referenceAvailableBy: "2018-01-01",
+    requiredAbilities: ["move"],
+    assetId: "honk-bus",
+    assetVersion: "v001",
+  }),
+]);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
@@ -439,6 +483,7 @@ export const PARODY_CATALOGS: Readonly<
   "parody-catalog-v5": PARODY_CANDIDATES_V5,
   "parody-catalog-v6": PARODY_CANDIDATES_V6,
   "parody-catalog-v7": PARODY_CANDIDATES_V7,
+  "parody-catalog-v8": PARODY_CANDIDATES_V8,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();

@@ -86,7 +86,7 @@
       "prMerged": "dd8b86ab4ff3faa22065d950a4648efec33b8dbb",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned"
+        "runtimeIntegration": "registered in parody-catalog-v8 (PLAN-019 cast integration)"
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/85",
       "masterSha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496",
@@ -180,10 +180,10 @@
       "sceneReleasedAt": "2026-09-26T01:35:39.119027+00:00",
       "manifest": "docs/assets/media/honk-bus/v001/sha256-manifest.json",
       "pr": 89,
-      "prMerged": null,
+      "prMerged": "dd14ff2b3c7724b09b212bc076ce275c10339100",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned"
+        "runtimeIntegration": "registered in parody-catalog-v8 (PLAN-019 cast integration)"
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/89",
       "masterSha256": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00",

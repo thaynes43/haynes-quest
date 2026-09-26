@@ -355,7 +355,8 @@ describe("era periods and catalog v7", () => {
       expect(Object.isFrozen(entry)).toBe(true);
     });
     expect(v6.filter((entry) => entry.periodId === "rat-casino-v1").every((entry) => entry.eligibleFrom === "2024-01-01")).toBe(true);
-    expect(LEVEL_EDITOR_CATALOG_VERSIONS).toEqual(["parody-catalog-v5", "parody-catalog-v6", "parody-catalog-v7"]);
+    // Later catalogs (v8 onward) append; tests/game/parody-catalog-v8.test.ts pins the full list.
+    expect(LEVEL_EDITOR_CATALOG_VERSIONS.slice(0, 3)).toEqual(["parody-catalog-v5", "parody-catalog-v6", "parody-catalog-v7"]);
     expect(levelEditorPreparedEnemies("parody-catalog-v7").map((entry) => entry.id)).toEqual(
       levelEditorPreparedEnemies("parody-catalog-v6").map((entry) => entry.id),
     );

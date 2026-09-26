@@ -170,19 +170,21 @@ V4 levels may also use the family-world era themes `clubhouse`, `harbor`, `rooft
 
 ### Generate a whole world
 
-A generator can own a world's chapter list. Start the project on the catalog the world's casts use; the family worlds use `parody-catalog-v7`:
+A generator can own a world's chapter list. Start the project on the catalog the world's casts use; the family worlds use `parody-catalog-v8`, which adds the landed family-era models to v7:
 
 ```bash
-pnpm --silent levels:editor world-template family-world "Family world" --catalog parody-catalog-v7 > project.json
+pnpm --silent levels:editor world-template family-world "Family world" --catalog parody-catalog-v8 > project.json
 ```
 
-A TypeScript generator passes the same choice as `createWorldEditorProject({ projectId, catalogVersion: "parody-catalog-v7" })`. `worldShellCommands` in `growth-kit.ts` turns the project's two seeded chapters into the chapters it lists, in order: it adds each chapter, removes the seeds, upgrades each to v4 and sets its theme, dates, ages and preview memories. Chapter and route ids must be unique, and a chapter may reuse a seeded route id (`chapter-1-route` or `chapter-2-route`) in any position. The generator then replaces each chapter's level whole with `chapter.level.replace` and assigns the cast:
+A TypeScript generator passes the same choice as `createWorldEditorProject({ projectId, catalogVersion: "parody-catalog-v8" })`. `worldShellCommands` in `growth-kit.ts` turns the project's two seeded chapters into the chapters it lists, in order: it adds each chapter, removes the seeds, upgrades each to v4 and sets its theme, dates, ages and preview memories. Chapter and route ids must be unique, and a chapter may reuse a seeded route id (`chapter-1-route` or `chapter-2-route`) in any position. The generator then replaces each chapter's level whole with `chapter.level.replace` and assigns the cast:
 
 ```json
 { "type": "chapter.level.replace", "chapterId": "a1-clubhouse", "level": { "schemaVersion": "authored-level-v4", "id": "a1-clubhouse-route", "...": "..." } }
 ```
 
 The chapter must already be v4, and the level's `id` must equal the chapter's route id. The replacement is validated like any other edit, and the chapter keeps its encounter assignments. `pnpm --silent levels:editor level project.json <chapter-id>` prints one chapter's level for editing.
+
+A cast member whose Blender model has landed is a prepared catalog entry; assign it with its exact reference, for example `{ "type": "encounter.assign", "chapterId": "a1-clubhouse", "slot": "boss", "encounter": { "source": "catalog", "catalogEntryId": "clubhouse-bully-cat", "catalogEntryVersion": "v001" } }`. Anyone not yet modeled stays a project candidate (`enemy.add`) with neutral placeholder art. [DESIGN-026](designs/026-personal-era-casts.md#eligibility) lists the registered models and their windows.
 
 Check a generated world in three ways:
 
