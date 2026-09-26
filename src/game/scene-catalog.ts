@@ -18,6 +18,9 @@ const parodyMotion: Record<
   "moth-projectionist": { contactFraction: 0.625, height: 1.65 },
   "rat-pit-boss": { contactFraction: 0.625, height: 2.15 },
   "golden-after-hours-rat": { contactFraction: 0.625, height: 1.7 },
+  // Family-era models (WO111 delivery log): contact 1.25 s of a 2.0 s attack.
+  "clubhouse-bully-cat": { contactFraction: 0.625, height: 2.5 },
+  "honk-bus": { contactFraction: 0.625, height: 2.3 },
 };
 
 interface ParodyArtworkBase {
