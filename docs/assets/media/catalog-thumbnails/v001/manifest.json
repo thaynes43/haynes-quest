@@ -570,6 +570,20 @@
       "sha256": "8d1a4012eeb5fc3d4c6b5beba708fc7fd762779e792b2c829bd373e0055a896c"
     },
     {
+      "source": "docs/assets/media/radio-host-showman/v001/beauty.png",
+      "source_sha256": "608f3aeb6e1c5c56db3b1b9dd5a3b98880011bcede3818e363e97afe48e235fe",
+      "path": "docs/assets/media/catalog-thumbnails/v001/869cbc12d54cc88d.webp",
+      "bytes": 9136,
+      "sha256": "f0816ee8288214849999fe651f27d4e4067b27a050ce47b93a76e8e39cece811"
+    },
+    {
+      "source": "docs/assets/media/radio-host-showman/v001/reference-sheet.png",
+      "source_sha256": "07b06d16b5db373f2b5d7a2fa4c79b2c05503ca3d867546dbda2df700ca5e3ac",
+      "path": "docs/assets/media/catalog-thumbnails/v001/652b728fcf8d6965.webp",
+      "bytes": 20030,
+      "sha256": "2af44850b0fd63c7fe5ed099a6f6de630d64699101b39db2a1cef087d177a578"
+    },
+    {
       "source": "docs/assets/media/radio-static/v001/waveform.svg",
       "source_sha256": "f778b0d37547a6b4990be14a1a9a9e8d074a0b418c61f73d121c098609497644",
       "path": "docs/assets/media/catalog-thumbnails/v001/e45c547be9d45396.webp",

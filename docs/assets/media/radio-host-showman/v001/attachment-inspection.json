@@ -1,0 +1,320 @@
+{
+  "asset_id": "radio-host-showman",
+  "version": "v001",
+  "glb_sha256": "f4eb039b0d97ba97f093e6b69f2d3f4720d984cae4327ccc9f65861c363564a4",
+  "blend_sha256": "42a329e9fbcf3801048c79c96bfce337ab0d6b2953bb2b5f37ba77ed1a06ff55",
+  "method": "WO111 radio-host-showman source-side attachment audit on the live scene that exported the exact GLB.\n\nPer clip and frame (30 fps): triangle-overlap between listed part groups on the evaluated skin (BVH),\nIK joint connectivity (limb heads stay on their parents' tails), the lowest evaluated vertex, and the\nrest reproduction error. Intended contacts are not tested: the right fist round the cane shaft, the\nglove cuffs in the sleeve ends, sleeve roots in the jacket, trouser tops in the jacket and seat, the\ntuft roots in the hair cap, the iris shells on the face, the neck inside the collar. Supplements the\nexact-GLB checks in three-inspection.json; not a universal collision proof. Adapted from the\ndemon-band-idol v001 audit.",
+  "pairs": [
+    "cane~head",
+    "cane~body",
+    "cane~legs",
+    "cane~armL",
+    "cane~upperR",
+    "cane~upperL",
+    "cane~halo",
+    "cane~bowtie",
+    "burst~head",
+    "burst~body",
+    "burst~armR",
+    "burst~upperR",
+    "armR~head",
+    "armL~head",
+    "armL~legL",
+    "armR~legR",
+    "halo~head",
+    "halo~body",
+    "halo~tuft_tips",
+    "bowtie~head",
+    "legR~legL",
+    "upperL~head",
+    "upperR~head",
+    "tuft_tips~hair_cap",
+    "tuft_tips~face_skin",
+    "face_skin~collar",
+    "bowtie~face_skin"
+  ],
+  "groups": {
+    "cane": [
+      "cane"
+    ],
+    "burst": [
+      "burst"
+    ],
+    "head": [
+      "eye_L",
+      "eye_R",
+      "head"
+    ],
+    "halo": [
+      "halo"
+    ],
+    "body": [
+      "chest",
+      "hips",
+      "spine"
+    ],
+    "bowtie": [
+      "bowtie"
+    ],
+    "armR": [
+      "forearm_R",
+      "hand_R"
+    ],
+    "armL": [
+      "forearm_L",
+      "hand_L"
+    ],
+    "upperR": [
+      "upper_arm_R"
+    ],
+    "upperL": [
+      "upper_arm_L"
+    ],
+    "legR": [
+      "foot_R",
+      "shin_R",
+      "thigh_R"
+    ],
+    "legL": [
+      "foot_L",
+      "shin_L",
+      "thigh_L"
+    ],
+    "legs": [
+      "foot_L",
+      "foot_R",
+      "shin_L",
+      "shin_R",
+      "thigh_L",
+      "thigh_R"
+    ],
+    "tuft_tips": [
+      "tuft_L_2",
+      "tuft_R_2"
+    ],
+    "face_skin": [
+      "part: Showman head"
+    ],
+    "hair_cap": [
+      "part: Slicked auburn hair cap"
+    ],
+    "collar": [
+      "parts: White shirt collar, Black shawl collar band"
+    ]
+  },
+  "group_face_counts": {
+    "cane": 360,
+    "burst": 180,
+    "head": 1461,
+    "halo": 180,
+    "body": 1438,
+    "bowtie": 146,
+    "armR": 206,
+    "armL": 406,
+    "upperR": 40,
+    "upperL": 40,
+    "legR": 414,
+    "legL": 414,
+    "legs": 828,
+    "tuft_tips": 178,
+    "face_skin": 680,
+    "hair_cap": 432,
+    "collar": 186
+  },
+  "max_influences": 2,
+  "rest_reproduction_max_error": 8.58306884765625e-06,
+  "sheet_pose_reproduction_m": {
+    "cane_tip_err_m": 6.152149175479259e-07,
+    "mic_centre_err_m": 4.3213367462158203e-07,
+    "grip_err_m": 2.669762502188819e-07,
+    "wave_wrist_err_m": 2.4586915969848633e-07,
+    "ankle_R_err_m": 1.64757254626572e-07,
+    "ankle_L_err_m": 1.64757254626572e-07
+  },
+  "clips": {
+    "idle": {
+      "frames": 91,
+      "overlaps": {
+        "cane~head": 0,
+        "cane~body": 0,
+        "cane~legs": 0,
+        "cane~armL": 0,
+        "cane~upperR": 0,
+        "cane~upperL": 0,
+        "cane~halo": 0,
+        "cane~bowtie": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armR": 0,
+        "burst~upperR": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "armR~legR": 0,
+        "halo~head": 0,
+        "halo~body": 0,
+        "halo~tuft_tips": 0,
+        "bowtie~head": 0,
+        "legR~legL": 0,
+        "upperL~head": 0,
+        "upperR~head": 0,
+        "tuft_tips~hair_cap": 0,
+        "tuft_tips~face_skin": 0,
+        "face_skin~collar": 0,
+        "bowtie~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 3.6319192324895717e-07,
+      "lowest_m": 0.0019
+    },
+    "move": {
+      "frames": 31,
+      "overlaps": {
+        "cane~head": 0,
+        "cane~body": 0,
+        "cane~legs": 0,
+        "cane~armL": 0,
+        "cane~upperR": 0,
+        "cane~upperL": 0,
+        "cane~halo": 0,
+        "cane~bowtie": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armR": 0,
+        "burst~upperR": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "armR~legR": 0,
+        "halo~head": 0,
+        "halo~body": 0,
+        "halo~tuft_tips": 0,
+        "bowtie~head": 0,
+        "legR~legL": 0,
+        "upperL~head": 0,
+        "upperR~head": 0,
+        "tuft_tips~hair_cap": 0,
+        "tuft_tips~face_skin": 0,
+        "face_skin~collar": 0,
+        "bowtie~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 4.0605664253234863e-07,
+      "lowest_m": 0.003
+    },
+    "attack": {
+      "frames": 61,
+      "overlaps": {
+        "cane~head": 0,
+        "cane~body": 0,
+        "cane~legs": 0,
+        "cane~armL": 0,
+        "cane~upperR": 0,
+        "cane~upperL": 0,
+        "cane~halo": 0,
+        "cane~bowtie": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armR": 0,
+        "burst~upperR": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "armR~legR": 0,
+        "halo~head": 0,
+        "halo~body": 0,
+        "halo~tuft_tips": 0,
+        "bowtie~head": 0,
+        "legR~legL": 0,
+        "upperL~head": 0,
+        "upperR~head": 0,
+        "tuft_tips~hair_cap": 0,
+        "tuft_tips~face_skin": 0,
+        "face_skin~collar": 0,
+        "bowtie~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 3.782224698810892e-07,
+      "lowest_m": 0.0019
+    },
+    "hit": {
+      "frames": 22,
+      "overlaps": {
+        "cane~head": 0,
+        "cane~body": 0,
+        "cane~legs": 0,
+        "cane~armL": 0,
+        "cane~upperR": 0,
+        "cane~upperL": 0,
+        "cane~halo": 0,
+        "cane~bowtie": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armR": 0,
+        "burst~upperR": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "armR~legR": 0,
+        "halo~head": 0,
+        "halo~body": 0,
+        "halo~tuft_tips": 0,
+        "bowtie~head": 0,
+        "legR~legL": 0,
+        "upperL~head": 0,
+        "upperR~head": 0,
+        "tuft_tips~hair_cap": 0,
+        "tuft_tips~face_skin": 0,
+        "face_skin~collar": 0,
+        "bowtie~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 3.805635210610072e-07,
+      "lowest_m": 0.00184
+    },
+    "defeat": {
+      "frames": 73,
+      "overlaps": {
+        "cane~head": 0,
+        "cane~body": 0,
+        "cane~legs": 0,
+        "cane~armL": 0,
+        "cane~upperR": 0,
+        "cane~upperL": 0,
+        "cane~halo": 0,
+        "cane~bowtie": 0,
+        "burst~head": 0,
+        "burst~body": 0,
+        "burst~armR": 0,
+        "burst~upperR": 0,
+        "armR~head": 0,
+        "armL~head": 0,
+        "armL~legL": 0,
+        "armR~legR": 0,
+        "halo~head": 0,
+        "halo~body": 0,
+        "halo~tuft_tips": 0,
+        "bowtie~head": 0,
+        "legR~legL": 0,
+        "upperL~head": 0,
+        "upperR~head": 0,
+        "tuft_tips~hair_cap": 0,
+        "tuft_tips~face_skin": 0,
+        "face_skin~collar": 0,
+        "bowtie~face_skin": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 3.668985441996196e-07,
+      "lowest_m": 0.0019
+    }
+  },
+  "checks": {
+    "no_listed_part_overlaps_any_frame": true,
+    "limb_joints_stay_connected": true,
+    "no_floor_penetration": true,
+    "rest_controls_reproduce_bind_pose": true,
+    "idle_0_reproduces_sheet_pose": true,
+    "at_most_four_influences": true,
+    "five_clips": true
+  }
+}

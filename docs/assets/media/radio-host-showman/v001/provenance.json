@@ -1,0 +1,60 @@
+{
+  "work_order": "WO111",
+  "asset_id": "radio-host-showman",
+  "version": "v001",
+  "created_utc": "2026-09-26T22:43:01.556800+00:00",
+  "glb_sha256": "f4eb039b0d97ba97f093e6b69f2d3f4720d984cae4327ccc9f65861c363564a4",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Claude Opus 5.5 does the WO111 Blender work",
+  "authoring_tool": "Blender MCP execute_blender_code on the primary authoring service (blender-authoring, instance 1), driven by a small streamable-HTTP JSON-RPC client (source/mclient.py, source/author_run.py)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": {
+    "kind": "Blender reference sheet, no generated concept",
+    "file": "reference-sheet.png",
+    "sha256": "07b06d16b5db373f2b5d7a2fa4c79b2c05503ca3d867546dbda2df700ca5e3ac",
+    "notes": "reference-notes.md",
+    "notes_sha256": "4b49a99b2433da95b2f560e0c0f04f005eb38337b853cb5be1b663c367a58250",
+    "blockout_master": "radio-host-showman-blockout.blend",
+    "blockout_sha256": "987e297482975a913571a575e6e58a5bf02bb4a10eb8bce42588feaaa7ae6a0e",
+    "coordinator_review": "Approved Sept 26 (SHEET-REVIEWS.md): slicked hair with two tufts, a huge showman grin, a candy-stripe jacket, a bow tie and a vintage broadcast mic on a cane; subtle warm rim or brass highlights so he reads in the Rat Casino dim light. Revised model notes after Tom's Sept 26 ruling (DESIGN-027: scary is welcome, no gore): a too-wide grin with sharp teeth, eyes that glow red in the dark (emissive), a faint static halo; attack a mic-cane swing with a radio-static burst; defeat a jerky, glitchy bow frozen mid-grin, held.",
+    "generator": "None. The sheet is a Cycles render of a procedural Blender blockout; no image-generation model was used for this asset."
+  },
+  "source_scripts": {
+    "animate.py": "3e5f5964bbc41f977294be5adf46ea059d9ff80248b29f99864d9e9135d6c5e4",
+    "author_run.py": "b992f48fd263e95200c7270265356c80825318bd399774fc7f85a6b47822a823",
+    "bounds.json": "005828c420fde856d97f9b861ad7fe9d94b7053846eaa662f10c81a000f709e1",
+    "build.py": "8390c87e6107a8d00f467f39f649cfcabe4a97050deab1f1356118b57087b158",
+    "claim_model.py": "44cbe19a05418e08b665239fd2f0b926a97065fc0b4ab00551150bc5f7985ce9",
+    "common.py": "8c1858044aea35c189951a922d318b49c7e50a7b67b8f8d7e0f6430b89e3823f",
+    "compare.mjs": "bc622638fe758d330208a8a27ddfc5ec580bf4bcbbc8e1daf1048632a7d8578d",
+    "cycle.sh": "a73ea66c4c027bc1f13f3ed21729af960906f589dc1c0266682c5d08be87486f",
+    "delivery.py": "209bd9d3b77b2496ad01446b21ba9533ace6e2a9066ea889b4270c11f19ad592",
+    "grid.mjs": "554f6cd28370be01053e6ee5c0afc805007679ba737247de46519790ed15b748",
+    "inspect-attachments.py": "34a0c64a669a5ac8d067a39fb17053dd737cbdf6877b77f2ea7e124c0e477d33",
+    "inspect-three.mjs": "1a94f7e8a233592e5a1275fd5e75e246f11c664c432cb365578b11b0fb2a2cd8",
+    "look.mjs": "4d960c86c4fec19da42bbdc88bbb31ce7cc29a30c43378fb848b41d8c31a47ae",
+    "make-evidence.py": "7a8816eb7ab5823db5dd78fe7ccac9335aba385f90da292fa0bdb0fc9bd78273",
+    "mclient.py": "0f8253a0f3f3137a6aea13468d32d36f6fa1959ff1c6dadec39aff7c59320556",
+    "paint.py": "a377a9916f33eea422f5a8f47b6c25d43b4810657b3e456628fc4effd2e2f88e",
+    "paint_test.py": "a3bb59518f7ba9df91af088306266ca6c2c6c8442b98a77a06ba31a8f6e1d618",
+    "preview.mjs": "5649ec2a2d997fadc0ba5c7a54f0e8428655760a0f5f6e8b1e369ee3680bc4fa",
+    "probe_contacts.py": "00b51608257739e9537236d950ebf4d3e39bd492e79c5a5d2e7abbd7680a4825",
+    "probe_defeat.py": "2b4612fc9f1b5755fa8c2dd0fbefd35c8672a11b988ebeee6d9b6d991072f422",
+    "probe_halo.py": "062ced1e6aa1d8346339c1933f5ec6d953952fbcf94ccfc55cfb5c2ba887ca8e",
+    "release_model.py": "cf704f0f78615f3b2c81c35ec68e3adf02486c2d113a989502c9c2777e933bfe",
+    "rig.py": "a4d3b02c1e80ee64a2a01dd2c03996c55590e4e298a44ae78dbbadcf80557e21",
+    "run_validate.py": "1ce5d1d75031efafe011e0422c96532884409d8c0a921e02e6b319bd51dccdc2",
+    "validate.mjs": "717b693f4227b9e680fcb82064d96400d4b02fe964519e9326a0a19e2a821b4a"
+  },
+  "original_work": [
+    "Final topology, UVs, weights, 28-joint rig and all five clips are new; the approved blockout supplied measured proportions, colours, parody hooks and the sheet-pose coordinates (cane, fist, waving glove, feet) only.",
+    "Original 1024 painted atlas generated with numpy in Blender Python (paint.py): the creepier face (hollow sockets, heavy lids, high brows, too-wide sharp-toothed grin), the candy-stripe jacket map with shirt, lapels, brass piping, cutaway, pocket welt, lapel pin, back belt and vent, the glowing iris, the mic grille bands and flat sheet-colour and glow tiles. No external texture.",
+    "Mesh, UV, transfer, validation and evidence utilities adapted from the WO111 demon-band-idol / rival-mayor / gadget-helper scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise names, models, faces, logos, costumes, lettering, recordings or textures. No dial pupils, antlers, horns or demon sigils: the tufts stay hair, the pupils are plain pinpricks."
+  ],
+  "rights_note": "Original authored study. No exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; the owner exact-version and physical-device review remain open."
+}

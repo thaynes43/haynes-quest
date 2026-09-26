@@ -1,0 +1,68 @@
+{
+  "asset_id": "radio-host-showman",
+  "version": "v001",
+  "work_order": "WO111",
+  "created_utc": "2026-09-26T18:08:52.031400+00:00",
+  "kind": "blender-reference-sheet",
+  "source_label": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+  "generator": "None. A Cycles render of a procedural Blender blockout (Blender 4.5.13 LTS) with Freestyle ink outlines; no image-generation model was used.",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator",
+  "seed": null,
+  "reference_files": [],
+  "art_direction": "docs/assets/art-direction.md; DESIGN-026 locked roster brief for radio-host-showman; DESIGN-027 D-07 character direction",
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "selected_by": "PLAN-019 coordinator (sheet approved September 26, PRD-004 Q-07)",
+  "coordinator_sheet_notes": "Clean and friendly: slicked hair with two tufts, a huge showman grin, a candy-stripe jacket, a bow tie and a vintage broadcast mic on a cane. Keep it clearly non-demonic. For the Rat Casino's dim lighting, add a subtle warm rim or brass highlights so he reads at a distance. Attack: sweeping mic-cane swing with a showy bow; defeat: bows too far and plops down, still grinning, held.",
+  "coordinator_model_notes_revised": "Updated after Tom's September 26 ruling (DESIGN-027): scary is welcome, no gore. At the model stage push him creepier: a too-wide grin with sharp teeth, eyes that glow red in the dark (emissive), a faint static halo. Attack: a mic-cane swing with a radio-static burst. Defeat: a jerky, glitchy bow, frozen mid-grin, held.",
+  "sheet_vs_model_note": "The sheet was painted and approved before the DESIGN-027 ruling, so it shows the friendly, never-scary showman its notes describe. The revised model notes supersede the sheet's friendliness only; the silhouette, costume, colours, proportions and sheet pose carry over to the model.",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "ruling": "Tom, September 26: Claude Opus 5.5 does the remaining WO111 Blender work; assets without an Astra concept follow a painted Blender reference sheet that the coordinator reviewed (PRD-004 Q-07). Tom, September 26 (DESIGN-027): genuinely scary is welcome where the era fits, with no gore.",
+  "files": {
+    "reference-sheet.png": {
+      "sha256": "07b06d16b5db373f2b5d7a2fa4c79b2c05503ca3d867546dbda2df700ca5e3ac",
+      "bytes": 1990211
+    },
+    "reference-notes.md": {
+      "sha256": "4b49a99b2433da95b2f560e0c0f04f005eb38337b853cb5be1b663c367a58250",
+      "bytes": 12940
+    },
+    "radio-host-showman-blockout.blend": {
+      "sha256": "987e297482975a913571a575e6e58a5bf02bb4a10eb8bce42588feaaa7ae6a0e",
+      "bytes": 912679
+    },
+    "radio-host-showman-reference-sheet.blend": {
+      "sha256": "7d364460eca6a5619543d4bfd22e0b2aa2073967c07a2e8575915a132186bf40",
+      "bytes": 1077951
+    },
+    "radio-host-showman-reference-sheet-checkpoint.blend": {
+      "sha256": "c1e231d6fc6e07b57e529e50fcb078413f88503237582b6c5324f33276a98f26",
+      "bytes": 1073608
+    }
+  },
+  "unpublished_manifest_entries": {
+    "files": [],
+    "reason": "None. Every file in sha256-manifest.json is published."
+  },
+  "unpublished_author_files": {
+    "files": [],
+    "reason": "None. Every file in the author's artifact directory is published."
+  },
+  "duplicate_author_files": {
+    "files": [
+      "sheet-stage/claim-checkpoint.blend",
+      "sheet-stage/sheet-render.json",
+      "sheet-stage/source/"
+    ],
+    "reason": "The author's manifest lists these sheet-stage copies alongside the identical top-level claim-checkpoint.blend, sheet-render.json and sheet scripts in source/; both copies are published as manifested."
+  },
+  "intake_added_files": {
+    "files": [
+      "source.json",
+      "sheet-stage/README.md"
+    ],
+    "reason": "Written by the catalog intake to describe the source and the sheet-stage records; not listed in the author's sha256 manifest."
+  },
+  "rights_note": "Original authored parody of the era's dapper vintage radio-show host. No copied names, lettering, logos, faces, costumes, songs, recordings or franchise designs; no claim of exclusive rights or franchise endorsement."
+}

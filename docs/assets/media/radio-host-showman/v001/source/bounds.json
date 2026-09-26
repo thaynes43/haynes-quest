@@ -1,0 +1,15 @@
+{
+  "method": "All exact exported skin vertices, rest and every clip at 60 Hz; conservative 0.005 m padding per axis.",
+  "safe_culling_envelope": {
+    "min": [
+      -0.746,
+      -0.004,
+      -1.088
+    ],
+    "max": [
+      0.59,
+      2.239,
+      0.657
+    ]
+  }
+}

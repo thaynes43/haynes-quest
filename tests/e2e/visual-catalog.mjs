@@ -60,6 +60,7 @@ const mascotCandidateIds = [
   "inator-monster",
   "demon-band-idol",
   "putty-grunt",
+  "radio-host-showman",
   "rat-pit-boss",
   "chick-flia",
   "jackrabbit-drummer",
@@ -70,18 +71,18 @@ const mascotCandidateIds = [
 const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 87,
+  entries: 88,
   reference_sheet_entries: 8,
-  model_entries: 58,
-  model_files: 58,
-  completed_model_candidates: 56,
+  model_entries: 59,
+  model_files: 59,
+  completed_model_candidates: 57,
   paused_partial_model_candidates: 2,
   concept_only_entries: 2,
   audio_entries: 18,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 123;
+const expectedThumbnailFiles = 125;
 const integratedAssetIds = [
   "bestie-pink",
   "bestie-black",
@@ -1955,7 +1956,7 @@ const report = {
   externalRequests: [],
   physicalSafari: "not tested",
   scope:
-    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot, Clubhouse Bully Cat, Gadget Helper, Honk Bus, Yes-Yes Veggie, Rival Mayor, Magic House, Mischief Kitten, Bin Chicken, Inator Monster, Demon Band Idol and Putty Grunt candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
+    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot, Clubhouse Bully Cat, Gadget Helper, Honk Bus, Yes-Yes Veggie, Rival Mayor, Magic House, Mischief Kitten, Bin Chicken, Inator Monster, Demon Band Idol, Putty Grunt and Radio Host Showman candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
   harnessNotes: [
     "The current first inspiration image must be displayed inline; retained superseded concepts may instead remain reachable as local links.",
     "Browser-cancelled preload=metadata requests are separated only for exact video URLs declared by an inspected review in the same browser scope; HTTP errors and every other request failure remain fatal, while video playback remains covered by earlier focused audits.",
