@@ -238,6 +238,28 @@ export function edgeEntry(
 }
 
 /**
+ * How the auto-pilot takes a v4 `drop`: `hop` presses Jump at the edge, which
+ * covers the validator's whole drop envelope (up to a 1.4 m gap); `step`
+ * walks off the edge without jumping, as a cautious child would on a short
+ * gap.
+ */
+export type DropStyle = "hop" | "step";
+
+export interface TraverseEdgeOptions {
+  readonly dropStyle?: DropStyle;
+}
+
+/** Whether the auto-pilot presses Jump to cross this connection. */
+export function jumpsAcross(
+  connection: Pick<AuthoredConnection, "mode">,
+  options: TraverseEdgeOptions = {},
+): boolean {
+  if (connection.mode === "walk") return false;
+  if (connection.mode === "drop") return (options.dropStyle ?? "hop") === "hop";
+  return true;
+}
+
+/**
  * Exercises one edge from one valid entry. This is deliberately an isolated
  * edge check: after initial placement it advances only through `stepObby` and
  * does not claim that an automated player completed the uninterrupted route.
@@ -247,6 +269,7 @@ export function traverseEdge(
   connection: AuthoredConnection,
   stage: AppearanceStage,
   lateral = 0,
+  options: TraverseEdgeOptions = {},
 ): EdgeResult {
   if (
     connection.mode === "walk" &&
@@ -278,7 +301,8 @@ export function traverseEdge(
   let recovered = false;
   // Ride gaps are crossed with the normal jump input; the separate carry
   // checks below then prove the landing stays attached to the moving surface.
-  const jump = connection.mode !== "walk";
+  // A drop hops by default and steps off the edge when asked.
+  const jump = jumpsAcross(connection, options);
 
   for (let frame = 0; startedOnSource && frame < 180; frame += 1) {
     const target = sampledPlatform(

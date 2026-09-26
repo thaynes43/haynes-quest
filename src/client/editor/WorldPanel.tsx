@@ -36,7 +36,18 @@ const themeNames = {
   casino: "Rat Casino · private playtest kit",
 } as const;
 
-type Theme = keyof typeof themeNames;
+/** Family-world era themes; only growth (authored-level-v4) levels offer them. */
+const eraThemeNames = {
+  clubhouse: "Toon Clubhouse",
+  harbor: "Rescue Harbor",
+  rooftop: "Hero City Rooftops",
+  playroom: "Sing-Along Playroom",
+  casita: "Magic House Garden",
+} as const;
+
+const allThemeNames = { ...themeNames, ...eraThemeNames } as const;
+
+type Theme = keyof typeof allThemeNames;
 
 export interface WorldPanelProps {
   project: LevelEditorProjectV2;
@@ -380,7 +391,7 @@ export function WorldPanel({
                 onClick={() => onSelectChapter(item.chapterId)}
               >
                 <span>{index + 1}. {item.name}</span>
-                <small>{themeNames[item.level.theme as Theme] ?? "World"}</small>
+                <small>{allThemeNames[item.level.theme as Theme] ?? "World"}</small>
               </button>
             </li>
           ))}
@@ -402,12 +413,12 @@ export function WorldPanel({
         <label className="editor-field">
           <span>World theme</span>
           <select value={chapter.level.theme} onChange={(event) => onSetTheme(event.target.value as Theme)}>
-            {Object.entries(themeNames).map(([id, label]) => <option key={id} value={id}>{label}</option>)}
+            {Object.entries(chapter.level.schemaVersion === "authored-level-v4" ? allThemeNames : themeNames).map(([id, label]) => <option key={id} value={id}>{label}</option>)}
           </select>
         </label>
         <TextField label="Short introduction" value={chapter.subtitle ?? ""} maxLength={100} onCommit={(subtitle) => onSetDetails({ subtitle })} />
         <TextAreaField label="What happens here?" value={chapter.description ?? ""} maxLength={240} onCommit={(description) => onSetDetails({ description })} />
-        {(chapter.level.theme === "arcade" || chapter.level.theme === "toybox") &&
+        {(chapter.level.theme === "arcade" || chapter.level.theme === "toybox" || chapter.level.theme in eraThemeNames) &&
           <p className="editor-world-note">This theme has a preview kit while its final art is being reviewed.</p>}
         {chapter.level.theme === "casino" &&
           <p className="editor-world-note">This theme uses the reviewed Rat Casino scenery kit in the private playtest.</p>}

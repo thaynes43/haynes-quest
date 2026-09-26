@@ -12,6 +12,7 @@ import {
 } from '../shared/adventure.js';
 import type { FamilyWorldAdventurePlanV1 } from '../shared/family-plan.js';
 import {
+  FAMILY_ERA_PERIOD_IDS,
   PARODY_CATALOGS,
   PARODY_CATALOG_VERSIONS,
 } from '../shared/parody-catalog.js';
@@ -155,12 +156,14 @@ const editorWorldLevelShape = {
   ...levelShape,
   minorMemoryIds: z.tuple([identifier, identifier]),
   majorMemoryId: identifier,
+  // World projects may also cast the family-world era periods (DESIGN-026).
   periodId: z.enum([
     'block-party-v1',
     'remix-runway-v1',
     'remix-runway-v2',
     'besties-obby-v1',
     'rat-casino-v1',
+    ...FAMILY_ERA_PERIOD_IDS,
   ]),
   routeId: identifier,
   representedEndDate: dateOnly,
@@ -436,7 +439,8 @@ function validPlan(plan: AdventurePlan): boolean {
 function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdventurePlanV1): boolean {
   if (
     (plan.catalogVersion !== 'parody-catalog-v5' &&
-      plan.catalogVersion !== 'parody-catalog-v6')
+      plan.catalogVersion !== 'parody-catalog-v6' &&
+      plan.catalogVersion !== 'parody-catalog-v7')
   ) return false;
   const preparedCatalog = levelEditorPreparedEnemies(plan.catalogVersion);
   const bonusCatalog = levelEditorPreparedBonusEnemies(plan.catalogVersion);
@@ -458,10 +462,14 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
       kind: 'ordinary-a' | 'ordinary-b' | 'boss' | null;
       optional: boolean;
     }> = [
-      { id: `${level.id}-encounter-1`, role: 'ordinary', kind: 'ordinary-a', optional: false },
-      { id: `${level.id}-encounter-2`, role: 'ordinary', kind: 'ordinary-b', optional: false },
-      { id: `${level.id}-encounter-3`, role: 'ordinary', kind: 'ordinary-a', optional: false },
-      { id: `${level.id}-encounter-4`, role: 'ordinary', kind: 'ordinary-b', optional: false },
+      // Each ordinary slot takes either ordinary kind: the editor validator
+      // lets an author set every ordinary anchor's kind (for example one
+      // identity's kind in all four slots, DESIGN-026), and the frozen stats
+      // below follow the encounter's actual kind.
+      { id: `${level.id}-encounter-1`, role: 'ordinary', kind: null, optional: false },
+      { id: `${level.id}-encounter-2`, role: 'ordinary', kind: null, optional: false },
+      { id: `${level.id}-encounter-3`, role: 'ordinary', kind: null, optional: false },
+      { id: `${level.id}-encounter-4`, role: 'ordinary', kind: null, optional: false },
       { id: `${level.id}-boss`, role: 'boss', kind: 'boss', optional: false },
     ];
     if (optionalEncounterIds.length === 1) {

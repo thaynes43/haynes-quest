@@ -170,7 +170,11 @@ export function RouteEditor({
               <ConnectionSelect<AuthoredConnectionMode>
                 label="Mode"
                 value={connection.mode}
-                options={["walk", "jump", "ride"]}
+                options={
+                  document.schemaVersion === "authored-level-v4"
+                    ? ["walk", "jump", "ride", "bounce", "drop"]
+                    : ["walk", "jump", "ride"]
+                }
                 onChange={(mode) => {
                   if (mode) onUpdateConnection(index, { ...connection, mode });
                 }}

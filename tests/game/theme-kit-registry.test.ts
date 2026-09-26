@@ -14,6 +14,7 @@ import {
 } from "../../src/game/theme-kits";
 import { TokenScene } from "../../src/game/token-scene";
 import { WORLD_THEMES } from "../../src/game/world-themes";
+import { AUTHORED_LEVEL_V4_ONLY_THEMES } from "../../src/shared/authored-level";
 import { resolveLevelEditorProject } from "../../src/shared/editor-project";
 import { THEME_KIT_PROPS } from "../../src/shared/theme-kits";
 
@@ -30,9 +31,11 @@ const route = demo.levels["chapter-2-route"]!;
 describe("theme-kit registry (DESIGN-025 D-05)", () => {
   it("registers every world theme with its existing world entry and the shared props", () => {
     expect(Object.keys(THEME_KITS).sort()).toEqual(Object.keys(WORLD_THEMES).sort());
+    // The original themes keep their fog; the v4 era themes see further.
+    const eraThemes: readonly string[] = AUTHORED_LEVEL_V4_ONLY_THEMES;
     for (const kit of Object.values(THEME_KITS)) {
       expect(kit.world).toBe(WORLD_THEMES[kit.id]);
-      expect(kit.fog).toEqual({ near: 20, far: 52 });
+      expect(kit.fog).toEqual(eraThemes.includes(kit.id) ? { near: 30, far: 95 } : { near: 20, far: 52 });
       expect(kit.props).toEqual(THEME_KIT_PROPS.filter((prop) => prop.theme === kit.id));
     }
   });

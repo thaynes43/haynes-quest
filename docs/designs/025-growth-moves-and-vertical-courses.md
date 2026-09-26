@@ -52,6 +52,9 @@ Move speed, coyote time and jump buffer are unchanged. Falling and sweeper recov
 | `double-jump` | 1.30 m | 2.4 m | |
 | `glide` | 0 (must descend ≥ 0.8 m) | 4.0 m | |
 | `bounce` | 2.6 m | 2.2 m | From a bounce pad; any age |
+| `drop` (mode) | Must descend 0.36–3.0 m | 1.4 m | To a surface that does not move; any age; a jump's gateway strips |
+
+A `drop` replaces spending a growth move on a descent. A plain jump already covers 0.35 m either way, so a drop starts just below that.
 
 Rules:
 
@@ -59,15 +62,18 @@ Rules:
 - A branch connection may require any move unlocked at the start age.
 - A branch must never hold a required objective (existing rule).
 - Each chapter's first required use of a newly unlocked move must follow a practice stretch with a safe-miss floor (`safeMissPlatformId`). The validator reports a missing one as an error.
+- A `bounce` may also declare a `safeMissPlatformId`, so a practice bounce over a catch floor counts as practice. Its catch floor sits well below the pad, so its retry connection may lead either to the pad or to a deck that leads onto the pad.
 
 **D-04 New pieces** (world projects, `authored-level-v4`):
 
 | Piece | Behavior | Validator limits |
 | --- | --- | --- |
-| `lift` | A platform moving vertically with sine motion; connections touching it are `ride` | Distance 0.5–8 m, period 4–20 s; the top and bottom stops each need a clear landing |
+| `lift` | A platform moving vertically with sine motion; connections touching it are `ride`. An optional `dwell` pauses it at each stop | Distance 0.5–8 m, period 4–20 s, dwell 0–3 s; the top and bottom stops each need a clear landing |
 | `bounce-pad` | A flat pad ≥ 1.2 × 1.2 m that launches straight up at `small` 7.5 m/s (apex 1.9 m) or `big` 9 m/s (apex 2.7 m), with a squash animation and sound; the only start of a `bounce` connection | — |
 | `crumble` | A platform that shakes 0.8 s after the first touch, drops, and returns after 3 s | Only on branch routes, never under an objective, arena or checkpoint |
 | `decor` | A non-colliding prop instance: `{kitPropId, position, rotationY, scale 0.25–4}` from the theme-kit registry | ≤ 200 per level; its registry bounding box must not intersect any walkable volume (platform top to +2.4 m), connection strip or arena cylinder, unless it sits entirely ≥ 3 m above the route as overhead trim that clears the trailing camera |
+
+**Lift dwell.** With `travel.dwell` of `d` seconds, a lift waits `d` at its bottom stop, rises for `period / 2` with the same eased speed profile, waits `d` at its top stop and descends for `period / 2`. A cycle lasts `period + 2d`, and phase 0 still starts at the bottom stop, at the start of its pause. A zero or absent dwell produces exactly the original course and motion. The dwell turns a moving target into a platform a child can walk on and off.
 
 Collectible trails (tokens and golden tickets) extend from the casino to every v4 theme, each with a themed look. Counts stay client-only for the run.
 
@@ -79,7 +85,23 @@ Collectible trails (tokens and golden tickets) extend from the casino to every v
 
 The hard-wired `CasinoScene` becomes one registry entry with identical output. A theme can go live with its procedural fallback and gain placed props as candidates land. A missing or failed GLB falls back to procedural geometry, never a broken scene. New themes follow the locked era table in [DESIGN-026](026-personal-era-casts.md).
 
+**Era themes.** Five themes exist only in `authored-level-v4` levels, one per new era in DESIGN-026:
+
+| Theme | Name | Trail token / golden collectible | Kit props (procedural until the WO111 kit lands) |
+| --- | --- | --- | --- |
+| `clubhouse` | Toon Clubhouse | toon star / golden gadget | clubhouse tower facade, curly slide, gadget toolbox stand, rounded hedge, stage marker |
+| `harbor` | Rescue Harbor | rescue badge / golden bone | lookout tower facade, pier bollard, rescue buoy stand, small boat |
+| `rooftop` | Hero City Rooftops | city coin / golden gizmo | water tower, rooftop AC unit, crane hook, billboard frame |
+| `playroom` | Sing-Along Playroom | bubble / golden rattle | stacking-block tower, toy bus garage, crib-rail fence, giant plush ball |
+| `casita` | Magic House Garden | butterfly / golden candle | casita terrace wall, flower planter, patterned door, butterfly arch |
+
+Each has a bright storybook palette and no automatic scenery: no clearing trees, meadow, hills or placeholder props. Only the level's placed decor dresses it, and the finish shows the procedural pending marker. Their fog runs from 30 m to 95 m, inside the camera's 100 m far plane, so tall landmarks read from across a chapter; the older themes keep 20–52 m. The party kit also gains concert props for the Besties stage finale: a stage speaker, a light truss and a star backdrop. Stand-ins can now be a ball, a tank on legs, stacked blocks or a panel on legs, as well as a slab, post or arch.
+
+**Shared props.** Props registered to the `shared` kit may be placed in any v4 theme; every other prop stays bound to its own theme. The shared kit holds the existing exact GLBs: the clearing tree, stone and arrival landmark, the skyline toybox block tower, safety rail and wind-up lantern, and the midnight arcade ticket arch, cabinet and joystick bollard. Their ids are the catalog-inventory ids. Their bounds are measured from each GLB (accessor extents through the node transforms, rounded outward to the millimetre), and each SHA-256 is the inventory checksum of the exact file. Registering a prop does not put it in play: the first level that places a shared prop records that gameplay use in the asset catalog in the same PR.
+
 **D-06 Authoring.** Each family world is produced by a TypeScript generator in `scripts/levels/` that emits ordinary editor command batches through the shared editor/CLI commands. Helpers such as `terrace`, `tower`, `liftShaft`, `bounceBalcony`, `practiceStrip` and `decorRing` are generator code; the output is plain level documents, never executable level content. Commands and fixtures are checked in and replay byte-identically under `pnpm levels:validate`. Every level satisfies DESIGN-011: broad landings, no timers or lives, and checkpoints before and after each section.
+
+Generators own a whole world with shared commands. `chapter.add`, `chapter.remove` and `chapter.reorder` shape the chapter list, and `chapter.level.replace {chapterId, level}` replaces a v4 chapter's whole level document. The level must be v4 with the chapter's route id; it is validated like any other edit, and the chapter keeps its encounter assignments. `worldShellCommands` in `scripts/levels/lib/growth-kit.ts` turns a new world project's two seeded chapters into an exact chapter list.
 
 **D-07 Pacing targets per chapter** (the first release's authoring checklist):
 
@@ -88,15 +110,26 @@ The hard-wired `CasinoScene` becomes one registry entry with identical output. A
 - Pace: something new happens on screen every 10–15 seconds of normal play.
 - Length: the required route takes about 4–7 minutes for an experienced player.
 
+**D-08 Family-world lints.** `src/shared/family-world-lint.ts` holds pure checks for the coordinator's family-world rulings. Chapter generators run them in their tests; the game and validator do not, so no published route or saved project changes. `lintFamilyChapter(level, options)` returns structured findings (`rule`, `code`, `severity`, `path`, `subject`, `message`, and a `measured` value with its `limit`):
+
+- **(a) Bounce pads:** the gap from a pad to its landing and to its approach deck is at most 0.35 m.
+- **(b) Camera:** no main-path connection heads toward the camera (+z) more than 30° off the lateral axis.
+- **(c) Fight clearance:** each strike envelope (the arena expanded by the role's reach: 1.35 m for ordinaries, 2.25 m for bosses) stays a margin inside its deck and off every connection strip and pad or lift approach at its height.
+- **(d) Short boss retries:** the route from minor-two to the boss arena is at most a configurable length (25 m).
+- **(e) Chapter ending:** the major memory, reward respawn and finish share the final main-path platform, with nothing leaving it.
+- **(f) Lifts:** each lift dwells at least a configurable minimum, and its landings sit within 0.15 m horizontally and vertically of their stops. A warning flags a stop a walking child can board or leave only with a hop.
+
+World presets set the margin and dwell: World A uses 0.5 m and 1.5 s, and World B 1.0 m and 2.0 s.
+
 ## Limits and failure behavior
 
-- `requires` connections, new pieces and decor fail validation in v1–v3 documents.
+- `requires` connections, `bounce` and `drop` connections, new pieces, lift dwell, era themes and decor fail validation in v1–v3 documents.
 - A plan without a ladder behaves as jump-only.
 - If a decor GLB fails to load, it is skipped and the theme falls back to procedural geometry.
 - Reduced-motion settings disable lift and pad camera shake.
 
 ## Validation
 
-- **Unit tests:** move ladder physics for every age boundary; ability-aware validator accept and reject cases; decor intersection rules; lift, bounce and crumble timing.
-- **Autopilot (`authored-traversal-lib.ts`):** every required edge of every family chapter is traversed with **only** the moves unlocked at that chapter's start age; every branch edge with its declared move; every practice strip with a deliberate miss onto its catch floor.
+- **Unit tests:** move ladder physics for every age boundary; ability-aware validator accept and reject cases; decor intersection rules; lift, bounce and crumble timing; lift dwell motion and byte-identical zero dwell; drop and bounce-practice limits; each family-world lint.
+- **Autopilot (`authored-traversal-lib.ts`):** every required edge of every family chapter is traversed with **only** the moves unlocked at that chapter's start age; every branch edge with its declared move; every practice strip with a deliberate miss onto its catch floor, including practice bounces. A drop hops by default and can step off the edge instead; lift waits cover a whole cycle, dwell included.
 - **Browser (lockstep Chromium):** each chapter completes. A real-time spot check of each chapter records frame time on desktop Chromium. Physical Safari feel stays an owner check.

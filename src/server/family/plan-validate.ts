@@ -200,11 +200,14 @@ function validateCast(
   if (optionalIds.length > 1 || (optionalIds.length === 1 && optionalIds[0] !== bonusId)) {
     fail('level.optional-encounter');
   }
+  // Ordinary slots take either ordinary kind (a chapter with one ordinary
+  // identity uses its kind in all four, DESIGN-026); stats follow the
+  // encounter's actual kind.
   const expected: Array<{ id: string; role: 'ordinary' | 'boss'; kind: string | null; optional: boolean }> = [
-    { id: `${level.id}-encounter-1`, role: 'ordinary', kind: 'ordinary-a', optional: false },
-    { id: `${level.id}-encounter-2`, role: 'ordinary', kind: 'ordinary-b', optional: false },
-    { id: `${level.id}-encounter-3`, role: 'ordinary', kind: 'ordinary-a', optional: false },
-    { id: `${level.id}-encounter-4`, role: 'ordinary', kind: 'ordinary-b', optional: false },
+    { id: `${level.id}-encounter-1`, role: 'ordinary', kind: null, optional: false },
+    { id: `${level.id}-encounter-2`, role: 'ordinary', kind: null, optional: false },
+    { id: `${level.id}-encounter-3`, role: 'ordinary', kind: null, optional: false },
+    { id: `${level.id}-encounter-4`, role: 'ordinary', kind: null, optional: false },
     { id: `${level.id}-boss`, role: 'boss', kind: 'boss', optional: false },
     ...(optionalIds.length === 1
       ? [{ id: bonusId, role: 'ordinary' as const, kind: null, optional: true }]

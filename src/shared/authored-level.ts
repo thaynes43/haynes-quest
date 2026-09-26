@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import type { ObbyCourse } from "../game/obby";
-import { decorWorldBounds, themeKitProp } from "./theme-kits";
+import { decorWorldBounds, SHARED_THEME_KIT, themeKitProp } from "./theme-kits";
 import {
   BOUNCE_PAD_VELOCITY,
   REQUIRABLE_GROWTH_MOVES,
@@ -44,9 +44,33 @@ export type AuthoredLevelSchemaVersion =
  * an opaque string rather than infer gameplay or art from its spelling.
  */
 export type AuthoredLevelId = (typeof AUTHORED_LEVEL_IDS)[number] | string;
-export type AuthoredLevelTheme = "garden" | "party" | "arcade" | "toybox" | "casino";
-/** `bounce` exists only in authored-level-v4 documents. */
-export type AuthoredConnectionMode = "walk" | "jump" | "ride" | "bounce";
+/** Themes every world document (v3 and v4) may use. */
+export const AUTHORED_LEVEL_WORLD_THEMES = [
+  "garden",
+  "party",
+  "arcade",
+  "toybox",
+  "casino",
+] as const;
+/**
+ * Family-world era themes (DESIGN-025 D-05, DESIGN-026). Only
+ * authored-level-v4 documents may use them, so v3 documents and published
+ * routes keep exactly the themes they had.
+ */
+export const AUTHORED_LEVEL_V4_ONLY_THEMES = [
+  "clubhouse",
+  "harbor",
+  "rooftop",
+  "playroom",
+  "casita",
+] as const;
+export const AUTHORED_LEVEL_V4_THEMES = [
+  ...AUTHORED_LEVEL_WORLD_THEMES,
+  ...AUTHORED_LEVEL_V4_ONLY_THEMES,
+] as const;
+export type AuthoredLevelTheme = (typeof AUTHORED_LEVEL_V4_THEMES)[number];
+/** `bounce` and `drop` exist only in authored-level-v4 documents. */
+export type AuthoredConnectionMode = "walk" | "jump" | "ride" | "bounce" | "drop";
 export const AUTHORED_REQUIRED_ENCOUNTER_SLOTS = [
   "ordinary-1",
   "ordinary-2",
@@ -128,12 +152,19 @@ export interface AuthoredCheckpointPiece {
  * A v4 lift: a platform that moves straight up and down with sine motion.
  * `center` is the bottom stop; the top stop is `distance` metres higher. The
  * lift starts at the bottom stop at t=0 when `phase` is 0 and needs
- * `period` seconds for a full up-and-down cycle.
+ * `period` seconds of travel for a full up-and-down cycle.
+ *
+ * `dwell` (0–3 s, default 0) pauses the lift at each stop, so a full cycle
+ * takes `period + 2 × dwell` seconds: it waits at the bottom, rises for
+ * `period / 2`, waits at the top and descends for `period / 2`. The travel
+ * itself keeps the same eased speed profile, and a zero or absent dwell is
+ * exactly the original motion.
  */
 export interface AuthoredLiftTravel {
   readonly distance: number;
   readonly period: number;
   readonly phase?: number;
+  readonly dwell?: number;
 }
 
 export interface AuthoredLiftPiece {
@@ -326,6 +357,14 @@ export const AUTHORED_LEVEL_V4_LIMITS = Object.freeze({
   maxLiftDistance: 8,
   minLiftPeriod: 4,
   maxLiftPeriod: 20,
+  /** Seconds a lift may pause at each stop. */
+  maxLiftDwell: 3,
+  /**
+   * `drop` connections step or hop down to a lower static surface at any
+   * age: they must descend more than a plain jump's rise allowance and no
+   * more than 3 m, across at most a plain jump's gap.
+   */
+  drop: Object.freeze({ minDescent: 0.36, maxDescent: 3, maxGap: 1.4 }),
   crumbleShakeSeconds: 0.8,
   crumbleDownSeconds: 3,
   maxDecor: 200,
@@ -476,6 +515,11 @@ const liftPieceSchema = z
           .min(AUTHORED_LEVEL_V4_LIMITS.minLiftPeriod)
           .max(AUTHORED_LEVEL_V4_LIMITS.maxLiftPeriod),
         phase: z.number().min(-Math.PI * 2).max(Math.PI * 2).optional(),
+        dwell: z
+          .number()
+          .min(0)
+          .max(AUTHORED_LEVEL_V4_LIMITS.maxLiftDwell)
+          .optional(),
       })
       .strict(),
   })
@@ -541,12 +585,12 @@ const connectionV1Schema = z
 const connectionV2Schema = connectionV1Schema
   .extend({ safeMissPlatformId: identifierSchema.optional() })
   .strict();
-/** V4 adds bounce connections and ability-aware `requires`. */
+/** V4 adds bounce and drop connections and ability-aware `requires`. */
 export const authoredLevelV4ConnectionSchema = z
   .object({
     from: identifierSchema,
     to: identifierSchema,
-    mode: z.enum(["walk", "jump", "ride", "bounce"]),
+    mode: z.enum(["walk", "jump", "ride", "bounce", "drop"]),
     safeMissPlatformId: identifierSchema.optional(),
     requires: z.enum(REQUIRABLE_GROWTH_MOVES).optional(),
   })
@@ -658,7 +702,7 @@ const authoredLevelV3DocumentSchema = z
   .object({
     schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION_V3),
     id: authoredLevelProjectRouteIdSchema,
-    theme: z.enum(["garden", "party", "arcade", "toybox", "casino"]),
+    theme: z.enum(AUTHORED_LEVEL_WORLD_THEMES),
     ...authoredLevelDocumentFields,
     anchors: authoredLevelV3AnchorsSchema,
     connections: z
@@ -671,7 +715,7 @@ const authoredLevelV4DocumentSchema = z
   .object({
     schemaVersion: z.literal(AUTHORED_LEVEL_SCHEMA_VERSION_V4),
     id: authoredLevelProjectRouteIdSchema,
-    theme: z.enum(["garden", "party", "arcade", "toybox", "casino"]),
+    theme: z.enum(AUTHORED_LEVEL_V4_THEMES),
     ...authoredLevelDocumentFields,
     pieces: z
       .array(authoredLevelV4PieceSchema)
@@ -1374,12 +1418,16 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
     if (connection.safeMissPlatformId) {
       const catchPlatform = staticPlatforms.get(connection.safeMissPlatformId);
       const safeMissPath = `$.connections[${index}].safeMissPlatformId`;
-      if (connection.mode !== "jump")
+      // V4 bounce practice may also declare a catch floor (DESIGN-025).
+      const v4 = document.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V4;
+      if (connection.mode !== "jump" && !(v4 && connection.mode === "bounce"))
         issue(
           issues,
           safeMissPath,
           "safe-miss.mode",
-          "A safe miss platform may only be declared for a jump connection",
+          v4
+            ? "A safe miss platform may only be declared for a jump or bounce connection"
+            : "A safe miss platform may only be declared for a jump connection",
         );
       if (!catchPlatform)
         issue(
@@ -1455,6 +1503,16 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
         const hasRetryRoute = document.connections.some((retry) => {
           if (retry.from !== connection.safeMissPlatformId) return false;
           if (retry.to === connection.from) return true;
+          // A catch floor under a pad's launch sits well below the pad, so a
+          // bounce practice may retry via any deck that leads onto the pad.
+          if (
+            connection.mode === "bounce" &&
+            document.connections.some(
+              (approach) =>
+                approach.from === retry.to && approach.to === connection.from,
+            )
+          )
+            return true;
           const retryMainIndex = document.mainPath.indexOf(retry.to);
           return (
             sourceMainIndex >= 0 &&
@@ -1513,6 +1571,38 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
       );
     const gap = horizontalGap(from, to);
     const rise = connectionRise(from, to);
+    if (connection.mode === "drop") {
+      // DESIGN-025 drop: step or hop down to a lower surface at any age. The
+      // mode check above already rejects moving surfaces.
+      const limits = AUTHORED_LEVEL_V4_LIMITS.drop;
+      const descent = platformTop(from) - platformTop(to);
+      if (
+        descent < limits.minDescent - EPSILON ||
+        descent > limits.maxDescent + EPSILON
+      )
+        issue(
+          issues,
+          `$.connections[${index}]`,
+          "connection.rise",
+          `drop must descend between ${limits.minDescent}m and ${limits.maxDescent}m; this one descends ${descent.toFixed(3)}m`,
+        );
+      if (gap > limits.maxGap + EPSILON)
+        issue(
+          issues,
+          `$.connections[${index}]`,
+          "connection.gap",
+          `drop gap ${gap.toFixed(3)}m exceeds ${limits.maxGap}m across the motion envelope`,
+        );
+      const clearanceFailure = gatewayClearanceFailure(from, to, hazards);
+      if (clearanceFailure)
+        issue(
+          issues,
+          `$.connections[${index}]`,
+          "connection.gateway-clearance",
+          clearanceFailure,
+        );
+      return;
+    }
     const requiredMove =
       connection.mode === "jump" ? connection.requires : undefined;
     const growthLimit = requiredMove
@@ -2115,6 +2205,29 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
   return sortedIssues(issues);
 }
 
+/**
+ * Geometry the validator uses, for authoring lints (family-world-lint.ts):
+ * a surface's horizontal bounds across its motion, the closest horizontal
+ * gap between two surfaces across their motion envelopes, and an
+ * encounter's strike envelope (its arena expanded by its role's reach).
+ */
+export function authoredSurfaceBounds(platform: AuthoredSurfacePiece): AuthoredArena {
+  return platformBounds(platform);
+}
+
+export function authoredSurfaceGap(
+  first: AuthoredSurfacePiece,
+  second: AuthoredSurfacePiece,
+): number {
+  return horizontalGap(first, second);
+}
+
+export function authoredStrikeEnvelope(
+  encounter: AuthoredEncounterAnchor,
+): AuthoredArena {
+  return encounterStrikeEnvelope(encounter);
+}
+
 function boxesHaveInteriorOverlap(
   firstBounds: HorizontalBounds,
   firstVertical: NumericInterval,
@@ -2415,12 +2528,12 @@ function validateDecor(
       );
       return;
     }
-    if (prop.theme !== document.theme)
+    if (prop.theme !== document.theme && prop.theme !== SHARED_THEME_KIT)
       issue(
         issues,
         `${path}.kitPropId`,
         "decor.theme",
-        `Prop ${JSON.stringify(prop.id)} belongs to the ${prop.theme} kit, not ${document.theme}`,
+        `Prop ${JSON.stringify(prop.id)} belongs to the ${prop.theme} kit, not ${document.theme} or the shared kit`,
       );
     const world = decorWorldBounds(prop.bounds, entry);
     const footprint: HorizontalBounds = {
@@ -2490,7 +2603,10 @@ function courseFor(document: AuthoredLevelDocument): ObbyCourse {
       if (piece.type === "lift") {
         // The course motion is centred on the midpoint of the travel and starts
         // a quarter-cycle early, so t=0 (phase 0) is the authored bottom stop.
+        // A positive dwell pauses the sine at each stop; zero or absent keeps
+        // the course byte-identical to the original lift.
         const half = piece.travel.distance / 2;
+        const dwell = piece.travel.dwell ?? 0;
         return [
           {
             id: piece.id,
@@ -2501,6 +2617,7 @@ function courseFor(document: AuthoredLevelDocument): ObbyCourse {
               distance: half,
               period: piece.travel.period,
               phase: (piece.travel.phase ?? 0) - Math.PI / 2,
+              ...(dwell > 0 ? { dwell } : {}),
             },
           },
         ];

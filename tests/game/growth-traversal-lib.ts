@@ -28,11 +28,13 @@ import {
   ferryPhase,
   FRAME_SECONDS,
   inputToward,
+  jumpsAcross,
   ROUTE_MEMORY_TUNING,
   sampledPlatform,
   type AppearanceStage,
   type EdgeResult,
   type MoveInput,
+  type TraverseEdgeOptions,
 } from "./authored-traversal-lib";
 
 export interface GrowthSimulation {
@@ -110,9 +112,17 @@ function isLift(platform: ObbyPlatform): boolean {
   return platform.motion?.axis === "y";
 }
 
+/** Seconds per full cycle of a moving platform, including any stop dwell. */
+export function motionCycleSeconds(platform: ObbyPlatform): number {
+  const motion = platform.motion;
+  if (!motion) return 0;
+  return motion.period + 2 * Math.max(0, motion.dwell ?? 0);
+}
+
 /**
  * The first time at or after `from` when a lift's top is closest to `top`,
- * searched over two cycles at the frame rate.
+ * searched over two full cycles (dwell included) at the frame rate. With a
+ * dwell this is the start of the pause at that stop.
  */
 export function liftTimeAtTop(
   course: ObbyCourse,
@@ -121,7 +131,7 @@ export function liftTimeAtTop(
   from: number,
 ): number {
   const lift = coursePlatform(course, liftId);
-  const period = lift.motion?.period ?? 0;
+  const period = motionCycleSeconds(lift);
   let best = from;
   let bestError = Number.POSITIVE_INFINITY;
   for (let time = from; time <= from + period * 2; time += FRAME_SECONDS) {
@@ -154,11 +164,13 @@ export function performConnection(
   simulation: GrowthSimulation,
   connection: AuthoredConnection,
   maxFrames = 240,
+  options: TraverseEdgeOptions = {},
 ): ManeuverResult {
   const course = simulation.course;
   const to = coursePlatform(course, connection.to);
   const recoveriesBefore = simulation.recoveries;
-  const jumps = connection.mode === "jump" || connection.mode === "ride";
+  // A pad launches on its own; a drop hops unless asked to step off.
+  const jumps = connection.mode !== "bounce" && jumpsAcross(connection, options);
   const doubleJump = connection.requires === "double-jump";
   const glide = connection.requires === "glide";
   let airborne = false;
@@ -216,6 +228,7 @@ export function traverseGrowthEdge(
   stage: AppearanceStage,
   abilities: AbilitySet,
   lateral = 0,
+  options: TraverseEdgeOptions = {},
 ): EdgeResult & { readonly bounces: readonly string[] } {
   const course = level.course;
   const from = coursePlatform(course, connection.from);
@@ -245,7 +258,7 @@ export function traverseGrowthEdge(
       simulation.state.grounded && simulation.state.supportId === from.id;
   }
   const outcome = startedOnSource
-    ? performConnection(simulation, connection)
+    ? performConnection(simulation, connection, 240, options)
     : { reached: false, airborne: false };
   const launchedFromSource = !from.bounce || simulation.bounces.includes(from.id);
   return {
@@ -273,15 +286,18 @@ export function missGrowthPractice(
   if (!connection.safeMissPlatformId)
     throw new Error("A deliberate safe miss requires a catch platform");
   const course = level.course;
+  // A practice bounce starts with the pad's launch, like traverseGrowthEdge.
+  const bounce = connection.mode === "bounce";
   const simulation = createGrowthSimulation(
     level,
     stage,
     abilities,
-    edgeEntry(course, connection, 0, 0.75, 0),
+    edgeEntry(course, connection, 0, bounce ? 0.6 : 0.75, 0),
   );
   growthStep(simulation, { move: { moveX: 0, moveY: 0 } });
-  const startedOnSource =
-    simulation.state.grounded && simulation.state.supportId === connection.from;
+  const startedOnSource = bounce
+    ? simulation.bounces.includes(connection.from)
+    : simulation.state.grounded && simulation.state.supportId === connection.from;
   const destination = sampledPlatform(course, connection.to, 0);
   const proportions = getAvatarProportions(stage);
   const missTarget = {
@@ -298,7 +314,7 @@ export function missGrowthPractice(
       ) <= 0.08;
     growthStep(simulation, {
       move: reachedTarget ? { moveX: 0, moveY: 0 } : inputToward(simulation.state, missTarget),
-      jumpPressed: frame === 0,
+      jumpPressed: frame === 0 && !bounce,
     });
     airborne ||= !simulation.state.grounded;
     if (simulation.recoveries > 0) break;
@@ -341,6 +357,14 @@ export function walkTo(
     if (simulation.recoveries > recoveries) return false;
   }
   return false;
+}
+
+/**
+ * Frames to wait for a lift: the original 25 s budget, or one full cycle
+ * (dwell included) plus a second when that is longer.
+ */
+function liftWaitFrames(lift: ObbyPlatform): number {
+  return Math.max(60 * 25, Math.ceil((motionCycleSeconds(lift) + 1) / FRAME_SECONDS));
 }
 
 export interface RouteRun {
@@ -392,7 +416,7 @@ export function runGrowthRoute(
           simulation,
           (sim) =>
             Math.abs(sampledTop(course, fromId, sim.timeSeconds) - toTop) <= 0.05,
-          60 * 25,
+          liftWaitFrames(from),
         );
       } else {
         const entry = edgeEntry(course, connection, simulation.timeSeconds, inset, 0);
@@ -404,7 +428,7 @@ export function runGrowthRoute(
               simulation,
               (sim) =>
                 Math.abs(sampledTop(course, toId, sim.timeSeconds + 0.2) - fromTop) <= 0.05,
-              60 * 25,
+              liftWaitFrames(to),
             )
           )
             return result(label);

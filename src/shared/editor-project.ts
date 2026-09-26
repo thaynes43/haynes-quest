@@ -11,6 +11,7 @@ import {
   AUTHORED_LEVEL_SCHEMA_VERSION_V3,
   AUTHORED_LEVEL_SCHEMA_VERSION_V4,
   AUTHORED_LEVEL_IDS,
+  AUTHORED_LEVEL_V4_THEMES,
   authoredLevelDocumentSchema,
   authoredDecorSchema,
   authoredLevelV4ConnectionSchema,
@@ -67,6 +68,7 @@ export const LEVEL_EDITOR_PROJECT_SCHEMA_VERSIONS = [
 export const LEVEL_EDITOR_CATALOG_VERSIONS = [
   "parody-catalog-v5",
   "parody-catalog-v6",
+  "parody-catalog-v7",
 ] as const satisfies readonly ParodyCatalogVersion[];
 export type LevelEditorCatalogVersion =
   (typeof LEVEL_EDITOR_CATALOG_VERSIONS)[number];
@@ -329,7 +331,7 @@ const connectionMatchSchema = z
     index: z.number().int().nonnegative().optional(),
     from: identifierSchema,
     to: identifierSchema,
-    mode: z.enum(["walk", "jump", "ride", "bounce"]),
+    mode: z.enum(["walk", "jump", "ride", "bounce", "drop"]),
   })
   .strict();
 
@@ -1489,6 +1491,16 @@ export type LevelEditorCommand =
       readonly type: "chapter.level.upgrade";
       readonly schemaVersion: typeof AUTHORED_LEVEL_SCHEMA_VERSION_V4;
     } & ChapterCommand)
+  | ({
+      /**
+       * Replaces a v4 chapter's whole level document, for generators that
+       * compute a chapter at once. The level must be authored-level-v4 with
+       * the chapter's route id; it is validated like any other command's
+       * result, and the chapter's encounter assignments are kept.
+       */
+      readonly type: "chapter.level.replace";
+      readonly level: WorldEditorLevelDocument;
+    } & ChapterCommand)
   | ({ readonly type: "decor.add"; readonly decor: AuthoredDecor } & ChapterCommand)
   | ({ readonly type: "decor.remove"; readonly decorId: string } & ChapterCommand)
   | ({ readonly type: "chapter.reorder"; readonly index: number } & ChapterCommand)
@@ -1649,6 +1661,13 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
     .strict(),
   z
     .object({
+      type: z.literal("chapter.level.replace"),
+      ...chapterIdField,
+      level: authoredLevelV4Schema,
+    })
+    .strict(),
+  z
+    .object({
       type: z.literal("decor.add"),
       ...chapterIdField,
       decor: authoredDecorSchema,
@@ -1681,7 +1700,9 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
       ...chapterIdField,
       subtitle: portableProseSchema(100),
       description: portableProseSchema(240),
-      theme: z.enum(["garden", "party", "arcade", "toybox", "casino"]),
+      // The v4-only era themes fail the re-parse of a v3 chapter, so the
+      // whole batch rolls back exactly as a v4 piece would.
+      theme: z.enum(AUTHORED_LEVEL_V4_THEMES),
       representedDateRange: levelEditorRepresentedDateRangeSchema,
       recoveredAge: levelEditorRecoveredAgeSchema,
       previewMemories: z.tuple([
@@ -2470,6 +2491,24 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
     // Every v3 document is a valid v4 document with the same content; the
     // upgrade only unlocks the v4 pieces, connections and decor.
     worldChapter.level.schemaVersion = command.schemaVersion;
+    return;
+  }
+  if (command.type === "chapter.level.replace") {
+    worldProjectForCommand(project);
+    const worldChapter = worldChapterForCommand(chapter);
+    if (worldChapter.level.schemaVersion !== AUTHORED_LEVEL_SCHEMA_VERSION_V4)
+      commandError(
+        "$.chapterId",
+        "level.version",
+        `chapter.level.replace requires ${AUTHORED_LEVEL_SCHEMA_VERSION_V4}; apply chapter.level.upgrade first`,
+      );
+    if (command.level.id !== worldChapter.routeId)
+      commandError(
+        "$.level.id",
+        "route.level-id",
+        `The replacement level id must equal the chapter route id ${worldChapter.routeId}`,
+      );
+    worldChapter.level = cloneJson(command.level) as MutableWorldChapter["level"];
     return;
   }
   if (command.type === "decor.add" || command.type === "decor.remove") {
