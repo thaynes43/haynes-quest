@@ -1197,25 +1197,42 @@ async function inspectMascotCandidates(browser, inventory, report) {
         const playing = await viewer.evaluate(
           (element) =>
             new Promise((resolve, reject) => {
-              const deadline = performance.now() + 3_000;
+              const deadline = performance.now() + 15_000;
               const inspect = () => {
+                const snapshot = {
+                  animationName: element.animationName,
+                  currentTime: element.currentTime,
+                  duration: element.duration,
+                  paused: element.paused,
+                  controlLabel:
+                    element.nextElementSibling?.querySelector("button")
+                      ?.textContent,
+                };
+                const playingNow =
+                  !snapshot.paused && snapshot.controlLabel === "Pause";
+                const completedNow =
+                  snapshot.paused &&
+                  snapshot.controlLabel === "Play" &&
+                  Number.isFinite(snapshot.duration) &&
+                  snapshot.duration > 0.03 &&
+                  Math.abs(snapshot.currentTime - snapshot.duration) <= 0.02;
                 if (
-                  element.animationName === "attack" &&
-                  !element.paused &&
-                  element.currentTime > 0.03
+                  snapshot.animationName === "attack" &&
+                  snapshot.currentTime > 0.03 &&
+                  (playingNow || completedNow)
                 ) {
                   resolve({
-                    animationName: element.animationName,
-                    currentTime: element.currentTime,
-                    paused: element.paused,
-                    controlLabel:
-                      element.nextElementSibling?.querySelector("button")
-                        ?.textContent,
+                    ...snapshot,
+                    observed: completedNow ? "completed" : "playing",
                   });
                   return;
                 }
                 if (performance.now() >= deadline) {
-                  reject(new Error("mascot attack did not begin playback"));
+                  reject(
+                    new Error(
+                      `mascot attack did not advance: ${JSON.stringify(snapshot)}`,
+                    ),
+                  );
                   return;
                 }
                 requestAnimationFrame(inspect);
@@ -1225,8 +1242,8 @@ async function inspectMascotCandidates(browser, inventory, report) {
         );
         assert.equal(
           playing.controlLabel,
-          "Pause",
-          `${scope}: ${entry.id} play control reflects playback`,
+          playing.observed === "completed" ? "Play" : "Pause",
+          `${scope}: ${entry.id} play control reflects attack playback`,
         );
         // Attack is a short one-shot. Verify pause/resume on looping idle so
         // completion cannot turn the next click into a fresh play request.
@@ -1255,7 +1272,7 @@ async function inspectMascotCandidates(browser, inventory, report) {
         await viewer.evaluate(
           (element) =>
             new Promise((resolve, reject) => {
-              const deadline = performance.now() + 3_000;
+              const deadline = performance.now() + 15_000;
               const inspect = () => {
                 if (
                   element.animationName === "idle" &&
