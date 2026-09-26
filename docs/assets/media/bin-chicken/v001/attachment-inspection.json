@@ -1,0 +1,189 @@
+{
+  "asset_id": "bin-chicken",
+  "version": "v001",
+  "glb_sha256": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db",
+  "blend_sha256": "1a8b30358de09ac35e6cabbc9f0172942cd9067f4c0451089ffbc9c4c073a8bf",
+  "method": "WO111 bin-chicken source-side attachment audit on the live scene that exported the exact GLB.\n\nPer clip and frame (30 fps): triangle-overlap between listed part groups on the evaluated skin (BVH),\nIK joint connectivity (limb heads stay on their parents' tails), the lowest evaluated vertex, and the\nrest reproduction error. Intended contacts are not tested: the neck inside the ruff, the wing shells\nlying on the body and the black wing tips crossing over the cone, the feathered thighs over the leg\ntops, and the belly, neck, head, dropped chip and spilled chips resting on the floor in the defeat.\nSupplements the exact-GLB checks in three-inspection.json; not a universal collision proof.\nAdapted from the rival-mayor v001 audit.",
+  "pairs": [
+    "beak~body",
+    "beak~legs",
+    "beak~wings",
+    "head~body",
+    "head~legs",
+    "neck~legs",
+    "legR~legL",
+    "tail~legs",
+    "wings~legs",
+    "loot~legs"
+  ],
+  "groups": {
+    "beak": [
+      "beak",
+      "beak_chip"
+    ],
+    "head": [
+      "brow_R",
+      "flap_B",
+      "flap_L",
+      "flap_R",
+      "head",
+      "lid_L",
+      "peel"
+    ],
+    "body": [
+      "chest",
+      "hips"
+    ],
+    "neck": [
+      "neck_1",
+      "neck_2",
+      "neck_3",
+      "neck_4"
+    ],
+    "legs": [
+      "foot_L",
+      "foot_R",
+      "leg_L",
+      "leg_R",
+      "shank_L",
+      "shank_R"
+    ],
+    "legR": [
+      "foot_R",
+      "leg_R",
+      "shank_R"
+    ],
+    "legL": [
+      "foot_L",
+      "leg_L",
+      "shank_L"
+    ],
+    "tail": [
+      "tail"
+    ],
+    "wings": [
+      "wing_L",
+      "wing_R",
+      "wing_tip_L",
+      "wing_tip_R"
+    ],
+    "loot": [
+      "loot",
+      "loot_chips"
+    ]
+  },
+  "group_face_counts": {
+    "beak": 280,
+    "head": 2151,
+    "body": 1734,
+    "neck": 110,
+    "legs": 716,
+    "legR": 358,
+    "legL": 358,
+    "tail": 219,
+    "wings": 664,
+    "loot": 300
+  },
+  "max_influences": 2,
+  "rest_reproduction_max_error": 7.867813110351562e-06,
+  "clips": {
+    "idle": {
+      "frames": 91,
+      "overlaps": {
+        "beak~body": 0,
+        "beak~legs": 0,
+        "beak~wings": 0,
+        "head~body": 0,
+        "head~legs": 0,
+        "neck~legs": 0,
+        "legR~legL": 0,
+        "tail~legs": 0,
+        "wings~legs": 0,
+        "loot~legs": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.1662003280593849e-07,
+      "lowest_m": 0.00167
+    },
+    "move": {
+      "frames": 31,
+      "overlaps": {
+        "beak~body": 0,
+        "beak~legs": 0,
+        "beak~wings": 0,
+        "head~body": 0,
+        "head~legs": 0,
+        "neck~legs": 0,
+        "legR~legL": 0,
+        "tail~legs": 0,
+        "wings~legs": 0,
+        "loot~legs": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.0700081748027408e-07,
+      "lowest_m": 0.00167
+    },
+    "attack": {
+      "frames": 61,
+      "overlaps": {
+        "beak~body": 0,
+        "beak~legs": 0,
+        "beak~wings": 0,
+        "head~body": 0,
+        "head~legs": 0,
+        "neck~legs": 0,
+        "legR~legL": 0,
+        "tail~legs": 0,
+        "wings~legs": 0,
+        "loot~legs": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.3186685756167664e-07,
+      "lowest_m": 0.00167
+    },
+    "hit": {
+      "frames": 22,
+      "overlaps": {
+        "beak~body": 0,
+        "beak~legs": 0,
+        "beak~wings": 0,
+        "head~body": 0,
+        "head~legs": 0,
+        "neck~legs": 0,
+        "legR~legL": 0,
+        "tail~legs": 0,
+        "wings~legs": 0,
+        "loot~legs": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.0023731028343521e-07,
+      "lowest_m": 0.00167
+    },
+    "defeat": {
+      "frames": 73,
+      "overlaps": {
+        "beak~body": 0,
+        "beak~legs": 0,
+        "beak~wings": 0,
+        "head~body": 0,
+        "head~legs": 0,
+        "neck~legs": 0,
+        "legR~legL": 0,
+        "tail~legs": 0,
+        "wings~legs": 0,
+        "loot~legs": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.3514129182113002e-07,
+      "lowest_m": 0.00167
+    }
+  },
+  "checks": {
+    "no_listed_part_overlaps_any_frame": true,
+    "limb_joints_stay_connected": true,
+    "no_floor_penetration": true,
+    "rest_controls_reproduce_bind_pose": true,
+    "at_most_four_influences": true,
+    "five_clips": true
+  }
+}

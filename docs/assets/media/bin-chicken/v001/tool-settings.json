@@ -1,0 +1,91 @@
+{
+  "work_order": "WO111",
+  "asset_id": "bin-chicken",
+  "version": "v001",
+  "created_utc": "2026-09-26T17:04:24.873235+00:00",
+  "glb_sha256": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "blender": {
+    "version": "4.5.13 LTS",
+    "instance": "blender-authoring-2",
+    "units": "METRIC",
+    "unit_scale": 1,
+    "authoring_axes": "+Z up / +Y forward (character right = +X)",
+    "frames_per_second": 30,
+    "animation_mode": "NLA_TRACKS",
+    "skin": "One skin; rigid parts plus smoothstep blends along the body (hips/chest), the four neck joints, the knees and ankles, the wing roots/tips, the peel flaps and the plume roots",
+    "root": "Identity, fixed floor-centred root; no root animation; the hips translate for the bob, lunge and belly flop",
+    "bind_pose": "Neutral (head straight, both feet flat). The sheet design pose (head turned 17 deg right, tilted 7 deg, left foot on tiptoe) is the idle clip at 0 s. IK controls at rest reproduce the bind pose (max matrix error 7.9e-06)"
+  },
+  "export": {
+    "format": "GLB",
+    "axes": "+Y up / -Z forward",
+    "selection_only": true,
+    "materials": 2,
+    "texture": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "embedded": true
+    },
+    "no_external_resources": true,
+    "no_required_extensions": true,
+    "compression": "None; no Draco, Meshopt or KTX2 requirement",
+    "scene_extras": "Asset identity only; the live scene-lease/session keys are stripped for the export and restored afterwards"
+  },
+  "preview": {
+    "source": "Exact delivered GLB via Three.js GLTFLoader",
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport_px": [
+      800,
+      900
+    ],
+    "orthographic_camera": {
+      "half_height_m": 0.75,
+      "target_height_m": 0.64,
+      "views": {
+        "front": [
+          0,
+          0.64,
+          -8
+        ],
+        "side": [
+          8,
+          0.64,
+          0
+        ],
+        "back": [
+          0,
+          0.64,
+          8
+        ],
+        "threequarter": [
+          5.657,
+          0.64,
+          -5.657
+        ],
+        "beauty": [
+          4.1,
+          2.9,
+          -7.4
+        ]
+      },
+      "beauty_target_height_m": 0.52
+    },
+    "stills_pose": "idle clip at 0 s (the sheet design pose); rest-*.png show the bind pose",
+    "lighting": "Warm hemisphere plus three directional lights; ACES tone mapping exposure 1.0",
+    "scales": [
+      1,
+      0.35
+    ],
+    "no_physical_device_claim": true
+  },
+  "checks": {
+    "khronos_zero_errors_warnings": true,
+    "exact_three_adapter_all_checks": true,
+    "chromium_all_clips_normal_small": true,
+    "source_attachment_checks": true
+  }
+}

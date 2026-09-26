@@ -1,0 +1,1016 @@
+{
+  "asset_id": "bin-chicken",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Claude Opus 5.5 does the WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "blender_instance": "blender-authoring-2",
+  "source_reference": "Blender reference sheet, no generated concept",
+  "source_sheet_sha256": "cd9d2266f56b142709fb6526e6d8e1e0129cc84383ef0ebff4991ba721359044",
+  "source_blockout_sha256": "ce5d128d315ad3a1d9188f60f97d18fcdc3ee138b742ca409ffd92e652500114",
+  "bind_pose": "Head straight and both feet flat; the sheet design pose (head turned 17 deg right and tilted 7 deg, left tiptoe) is the idle clip at 0 s.",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.2124667465686798,
+      -0.414246529340744,
+      0.0016722315922379494
+    ],
+    "max": [
+      0.2124667465686798,
+      0.5914000272750854,
+      1.2570000886917114
+    ]
+  },
+  "height_m": 1.2570000886917114,
+  "triangles": 11196,
+  "vertices": 5806,
+  "material_count": 2,
+  "bone_count": 29,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original deterministic soft painted palette atlas generated in Blender Python from the sheet colours; no external textures.",
+    "palette": [
+      "f1f0ea",
+      "c9bca6",
+      "2e2a38",
+      "4c4657",
+      "7d6c7a",
+      "e3998d",
+      "fbf8f2",
+      "a8683e",
+      "f2c94c",
+      "f7e7b4",
+      "7a5634",
+      "f6f0e2",
+      "5d8fbf",
+      "e7b451",
+      "e6e3da",
+      "3a3547"
+    ]
+  },
+  "parts": [
+    {
+      "name": "Grubby white egg body",
+      "triangles": 1024,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Bin-grime smudge 0",
+      "triangles": 60,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime smudge 0 lobe",
+      "triangles": 60,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime crumb 0",
+      "triangles": 24,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime smudge 1",
+      "triangles": 60,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime smudge 1 lobe",
+      "triangles": 60,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime crumb 1",
+      "triangles": 24,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime smudge 2",
+      "triangles": 60,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime smudge 2 lobe",
+      "triangles": 60,
+      "bone_groups": [
+        "hips",
+        "chest"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime crumb 2",
+      "triangles": 24,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime smudge 3",
+      "triangles": 60,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime smudge 3 lobe",
+      "triangles": 60,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "Bin-grime crumb 3",
+      "triangles": 24,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 1
+    },
+    {
+      "name": "R folded white wing",
+      "triangles": 360,
+      "bone_groups": [
+        "wing_tip_R",
+        "wing_R"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R black wing-tip feather 0",
+      "triangles": 140,
+      "bone_groups": [
+        "wing_tip_R"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "R black wing-tip feather 1",
+      "triangles": 140,
+      "bone_groups": [
+        "wing_tip_R"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "L folded white wing",
+      "triangles": 360,
+      "bone_groups": [
+        "wing_tip_L",
+        "wing_L"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L black wing-tip feather 0",
+      "triangles": 140,
+      "bone_groups": [
+        "wing_tip_L"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "L black wing-tip feather 1",
+      "triangles": 140,
+      "bone_groups": [
+        "wing_tip_L"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Lacy black plume drape 0",
+      "triangles": 204,
+      "bone_groups": [
+        "hips",
+        "tail"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Lacy black plume drape 1",
+      "triangles": 204,
+      "bone_groups": [
+        "hips",
+        "tail"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Lacy black plume drape 2",
+      "triangles": 204,
+      "bone_groups": [
+        "hips",
+        "tail"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Striped paper chip cone",
+      "triangles": 252,
+      "bone_groups": [
+        "loot"
+      ],
+      "atlas_tile": 11
+    },
+    {
+      "name": "Stolen loot chip 0",
+      "triangles": 44,
+      "bone_groups": [
+        "loot_chips"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Stolen loot chip 1",
+      "triangles": 44,
+      "bone_groups": [
+        "loot_chips"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Stolen loot chip 2",
+      "triangles": 44,
+      "bone_groups": [
+        "loot_chips"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Stolen loot chip 3",
+      "triangles": 44,
+      "bone_groups": [
+        "loot_chips"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Stolen loot chip 4",
+      "triangles": 44,
+      "bone_groups": [
+        "loot_chips"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Stolen loot chip 5",
+      "triangles": 44,
+      "bone_groups": [
+        "loot_chips"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "White lower neck",
+      "triangles": 224,
+      "bone_groups": [
+        "chest"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 0",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 1",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 2",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 3",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 4",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 5",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 6",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 7",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 8",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 9",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 10",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 11",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 12",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Scruffy ruff feather 13",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Ruff cowlick 0",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Ruff cowlick 1",
+      "triangles": 36,
+      "bone_groups": [
+        "chest",
+        "neck_1"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "Bare black S neck",
+      "triangles": 316,
+      "bone_groups": [
+        "chest",
+        "neck_1",
+        "neck_2",
+        "neck_3",
+        "neck_4",
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Bald plum-black head",
+      "triangles": 728,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Long down-curved beak",
+      "triangles": 416,
+      "bone_groups": [
+        "beak"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Beak tip",
+      "triangles": 48,
+      "bone_groups": [
+        "beak"
+      ],
+      "atlas_tile": 3
+    },
+    {
+      "name": "Nostril slit +1",
+      "triangles": 20,
+      "bone_groups": [
+        "beak"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Nostril slit -1",
+      "triangles": 20,
+      "bone_groups": [
+        "beak"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Stolen hot chip in beak",
+      "triangles": 44,
+      "bone_groups": [
+        "beak_chip"
+      ],
+      "atlas_tile": 13
+    },
+    {
+      "name": "Pink gape grin right",
+      "triangles": 86,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Pink gape grin left",
+      "triangles": 46,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 5
+    },
+    {
+      "name": "Googly eye white +1",
+      "triangles": 324,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Amber iris +1",
+      "triangles": 140,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Big plum pupil +1",
+      "triangles": 120,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Eye highlight big +1",
+      "triangles": 48,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Eye highlight small +1",
+      "triangles": 24,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Raised brow right",
+      "triangles": 80,
+      "bone_groups": [
+        "brow_R"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Googly eye white -1",
+      "triangles": 324,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Amber iris -1",
+      "triangles": 140,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 7
+    },
+    {
+      "name": "Big plum pupil -1",
+      "triangles": 120,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Eye highlight big -1",
+      "triangles": 48,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Eye highlight small -1",
+      "triangles": 24,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": 6
+    },
+    {
+      "name": "Cheeky half-lid left",
+      "triangles": 224,
+      "bone_groups": [
+        "lid_L"
+      ],
+      "atlas_tile": 2
+    },
+    {
+      "name": "Banana peel cap",
+      "triangles": 120,
+      "bone_groups": [
+        "peel"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Banana peel stem",
+      "triangles": 48,
+      "bone_groups": [
+        "peel"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Banana peel stem tip",
+      "triangles": 48,
+      "bone_groups": [
+        "peel"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Banana peel flap 0",
+      "triangles": 236,
+      "bone_groups": [
+        "peel",
+        "flap_R"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Banana speckle 0 0",
+      "triangles": 24,
+      "bone_groups": [
+        "flap_R",
+        "peel"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Banana speckle 0 1",
+      "triangles": 24,
+      "bone_groups": [
+        "flap_R"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Banana peel flap 1",
+      "triangles": 236,
+      "bone_groups": [
+        "peel",
+        "flap_B"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Banana speckle 1 0",
+      "triangles": 24,
+      "bone_groups": [
+        "flap_B",
+        "peel"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Banana speckle 1 1",
+      "triangles": 24,
+      "bone_groups": [
+        "flap_B"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Banana peel flap 2",
+      "triangles": 236,
+      "bone_groups": [
+        "peel",
+        "flap_L"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Banana speckle 2 0",
+      "triangles": 24,
+      "bone_groups": [
+        "flap_L",
+        "peel"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Banana speckle 2 1",
+      "triangles": 24,
+      "bone_groups": [
+        "flap_L"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Banana peel flap 3",
+      "triangles": 236,
+      "bone_groups": [
+        "peel"
+      ],
+      "atlas_tile": 8
+    },
+    {
+      "name": "Banana speckle 3 0",
+      "triangles": 24,
+      "bone_groups": [
+        "peel"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "Banana speckle 3 1",
+      "triangles": 24,
+      "bone_groups": [
+        "peel"
+      ],
+      "atlas_tile": 10
+    },
+    {
+      "name": "R feathered white thigh",
+      "triangles": 196,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "R bare mauve stilt leg",
+      "triangles": 108,
+      "bone_groups": [
+        "leg_R",
+        "shank_R",
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R knobbly knee",
+      "triangles": 100,
+      "bone_groups": [
+        "shank_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R foot ball",
+      "triangles": 100,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R big toe 0",
+      "triangles": 56,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R toe tip pad 0",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R big toe 1",
+      "triangles": 56,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R toe tip pad 1",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R big toe 2",
+      "triangles": 56,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R toe tip pad 2",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "R back toe",
+      "triangles": 32,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L feathered white thigh",
+      "triangles": 196,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": 0
+    },
+    {
+      "name": "L bare mauve stilt leg",
+      "triangles": 108,
+      "bone_groups": [
+        "leg_L",
+        "shank_L",
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L knobbly knee",
+      "triangles": 100,
+      "bone_groups": [
+        "shank_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L foot ball",
+      "triangles": 100,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L big toe 0",
+      "triangles": 56,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L toe tip pad 0",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L big toe 1",
+      "triangles": 56,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L toe tip pad 1",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L big toe 2",
+      "triangles": 56,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L toe tip pad 2",
+      "triangles": 48,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    },
+    {
+      "name": "L back toe",
+      "triangles": 32,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": 4
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 91,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "rear_back_hold_s": null,
+      "chip_release_s": null,
+      "chip_lands_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 31,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "rear_back_hold_s": null,
+      "chip_release_s": null,
+      "chip_lands_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "rear_back_hold_s": [
+        0.9,
+        1.1
+      ],
+      "chip_release_s": null,
+      "chip_lands_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 22,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "rear_back_hold_s": null,
+      "chip_release_s": null,
+      "chip_lands_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 73,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "rear_back_hold_s": null,
+      "chip_release_s": 0.168,
+      "chip_lands_s": 0.624,
+      "held_final_pose_from_s": 1.8
+    }
+  ],
+  "rest_reproduction_max_error": 7.867813110351562e-06,
+  "files": {
+    "bin-chicken.blend": {
+      "bytes": 1393939,
+      "sha256": "1a8b30358de09ac35e6cabbc9f0172942cd9067f4c0451089ffbc9c4c073a8bf"
+    },
+    "bin-chicken.glb": {
+      "bytes": 1033964,
+      "sha256": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db"
+    },
+    "pigment.png": {
+      "bytes": 234769,
+      "sha256": "293782a5f8bfe43f47fb67678163bbd21ed54cfdec1190ac0ecc5d3b025c939d"
+    }
+  }
+}

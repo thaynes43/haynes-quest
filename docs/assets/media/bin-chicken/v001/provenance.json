@@ -1,0 +1,59 @@
+{
+  "work_order": "WO111",
+  "asset_id": "bin-chicken",
+  "version": "v001",
+  "created_utc": "2026-09-26T17:04:24.873235+00:00",
+  "glb_sha256": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Claude Opus 5.5 does the WO111 Blender work",
+  "authoring_tool": "Blender MCP execute_blender_code on the second isolated authoring service (blender-authoring-2), driven by a small streamable-HTTP JSON-RPC client (source/transfer.py)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": {
+    "kind": "Blender reference sheet, no generated concept",
+    "file": "reference-sheet.png",
+    "sha256": "cd9d2266f56b142709fb6526e6d8e1e0129cc84383ef0ebff4991ba721359044",
+    "notes": "reference-notes.md",
+    "notes_sha256": "9ec179dac05aaea8b0095bd8af7c264ded29cb10daec110aa87ae09acf4a8672",
+    "blockout_master": "bin-chicken-blockout.blend",
+    "blockout_sha256": "ce5d128d315ad3a1d9188f60f97d18fcdc3ee138b742ca409ffd92e652500114",
+    "coordinator_review": "Approved Sept 26 (SHEET-REVIEWS.md): keep the banana-peel hat, stolen hot chip, chip-paper loot on the back and the long curved beak; the thin legs must stay readable (a slightly thicker leg read is fine); beak-peck attack; defeat drops the chip.",
+    "generator": "None. The sheet is a Cycles render of a procedural Blender blockout; no image-generation model was used for this asset."
+  },
+  "source_scripts": {
+    "animate.py": "db6a1fd3be5c8783eb95d1d6278059009d20b2ae0849c21eeefbb1ac398e92b1",
+    "author_run.py": "dee57387fefb7046d9029c2fb498cd62ac03895d15065d52200370af0d65ad3c",
+    "bounds.json": "240cd9ebf1faeeba3f0c0b064046d2c81bbcc3fa084f3ad04b4c828c2ac7404d",
+    "build.py": "6530b3fbd163c666d2131afea02081e2d48ffd9dd803c9f4df1be88e7d47f2b8",
+    "claim.py": "4cab377c277c21d01d3af510ffa4864af86c4d5c47d75c67e2b6145b0d889dda",
+    "common.py": "bd4b37604f350145a277cd34d2407ece8cf1e90ca3d3b94001da2cce64c7926d",
+    "compare.mjs": "5788863d8b218aa0421a0eff80166a7fb2064018ab6bf58e3569d31564d176ee",
+    "delivery.py": "f61392ac67365af7898c1125195b691b7e9b82c31a92cf83ddf0598afbdc9eb0",
+    "diag.py": "9f035a25ffbdae599d350f73b997b22e3d6ecb67fbe9bad1750ae3e37b0e8867",
+    "diag2.py": "24e1bf1f22e1df2e44c7b1f75f72517142382557cb06505a6e9145e057697edf",
+    "grid.mjs": "232de005933ae02fc2f8c59dc6da699fc2de7c2761d0e391c1c3c05e53fa8769",
+    "inspect-attachments.py": "ddc433d9c09884918a3b40d49c45bb21ca353232edf0c231d41302cfd7d20853",
+    "inspect-three.mjs": "bb02e5dd97d2e132f0f40100d875887e2e9c8a76e7c46fc4dcc23a794f8e12f5",
+    "look.mjs": "28058437b339c5feb73e7cb971ede0c61c1e656ddc079161a2871ed7a4024b57",
+    "make-evidence.py": "28436df2a9327ffe3682dbe352b44b023bb4b93128b9125f8ceb43ca3a2a1602",
+    "preview.mjs": "76f44cb82a3a08b2d3cb872f14d7d61b8915f11c074578ce569ce4a4af5b584f",
+    "probe.py": "8cfa712804325958af4d26b450799cebd7d735441673c1e724d256177487b7c2",
+    "probe2.py": "77953df94fff555a51ea98d38dcc72dc4fc18eebdb89dfaf95121ece5d03b2b9",
+    "probe3.py": "ccb528717478ce7ee49e0c6faabe8ce8e4df83f9d891ec4dc086118d557f1277",
+    "release_model.py": "44480d6efaa5f970ba9309098ad755b8fe35caabe5f874e1cdf8b5cdb7812495",
+    "run_validate.py": "ffcfbec48e0d851eca49237cf0d895d976fa4c1d2fd2d9155b1edbbf9414cf48",
+    "transfer.py": "5ba90af3d107359d560143fbe689d20a385cf960001b04df7dd10e06140a132e",
+    "upload_inputs.py": "5e8a5ea9d0ac6c04a3181083bb269fd75e2e89d7ef3712a288c0509ba68a0530",
+    "validate.mjs": "af2ac52f82788e876d7b0f3c0fc7c7dd80c3da43981c236f83d15c78adaf9df7"
+  },
+  "original_work": [
+    "Final topology, UVs, weights, the 29-bone rig and all five clips are new; the blockout supplied measured proportions, colours and parody hooks only.",
+    "Original deterministic 1024 palette atlas generated in Blender Python from the sheet colours; cone stripes are real face columns and the grime smudges, peel speckles, nostrils and grin are small modelled decals, no external texture.",
+    "Mesh, UV, transfer, IK-bake and validation utilities adapted from the WO111 rival-mayor / gadget-helper / honk-bus and Rat Casino authoring scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise names, models, faces, logos, costumes, lettering, recordings or textures; the chip cone has no lettering or brand."
+  ],
+  "rights_note": "Original authored study of a real-world bird (the Australian white ibis, nicknamed \"bin chicken\"). No exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; the owner exact-version and physical-device review remain open."
+}

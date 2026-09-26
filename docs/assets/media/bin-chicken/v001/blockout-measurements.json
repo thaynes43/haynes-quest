@@ -1,0 +1,55 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-blockout.blend",
+  "sha256": "ce5d128d315ad3a1d9188f60f97d18fcdc3ee138b742ca409ffd92e652500114",
+  "bounds_blender_zup": {
+    "min": [
+      -0.211,
+      -0.4146,
+      0.0
+    ],
+    "max": [
+      0.211,
+      0.5774,
+      1.2542
+    ],
+    "size": [
+      0.4219,
+      0.9921,
+      1.2542
+    ],
+    "blockout_triangles": 69356
+  },
+  "feature_tops_m": {
+    "Banana peel stem tip": 1.2542,
+    "Banana peel flap": 1.1997,
+    "Bald ink head": 1.1826,
+    "Googly eye white": 1.1844,
+    "Striped paper chip cone": 0.7466,
+    "Stolen loot chip": 0.8133,
+    "Grubby white egg body": 0.8144,
+    "Long curved beak": 1.0903
+  },
+  "beak_forward_tip_m": [
+    0.1029,
+    0.5762,
+    0.839
+  ],
+  "parts": 105,
+  "materials": [
+    "BC beak #4c4657",
+    "BC brown #7a5634",
+    "BC chip #e7b451",
+    "BC eye #fbf8f2",
+    "BC grime #c9bca6",
+    "BC ink #2e2a38",
+    "BC iris #a8683e",
+    "BC leg #7d6c7a",
+    "BC paper #f6f0e2",
+    "BC peel #f2c94c",
+    "BC peelin #f7e7b4",
+    "BC pink #e3998d",
+    "BC stripe #5d8fbf",
+    "BC white #f1f0ea"
+  ],
+  "utc": "2026-09-26T03:52:48.115615+00:00"
+}

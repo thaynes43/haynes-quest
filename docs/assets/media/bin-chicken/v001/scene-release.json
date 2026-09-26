@@ -1,0 +1,24 @@
+{
+  "work_order": "WO111",
+  "asset_id": "bin-chicken",
+  "version": "v001",
+  "blender_instance": "blender-authoring-2",
+  "released_utc": "2026-09-26T17:04:51.022420+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "saved_live_scene": "/workspace/haynes-quest/family-eras/bin-chicken/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "99ace6b05f18d01a567eeb2ef3752bb0f70d97e94cee44537e166085ec2f0d22",
+  "editable_master": "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken.blend",
+  "editable_master_sha256": "1a8b30358de09ac35e6cabbc9f0172942cd9067f4c0451089ffbc9c4c073a8bf",
+  "construction_master_sha256": "1fdf6fc64ebdf107abc52c2bdf3f2d4260441877d7f41bc5e7814c28114b6698",
+  "glb_sha256": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db",
+  "author_jobs_running": false,
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "failure": null,
+  "scope": "Awaiting Tom's review \u00b7 used in the family release. Candidate technical delivery only; the coordinator owns catalog publication and runtime integration. No physical-device acceptance."
+}

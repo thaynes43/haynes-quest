@@ -1,0 +1,37 @@
+{
+  "work_order": "WO111",
+  "asset_id": "bin-chicken",
+  "version": "v001",
+  "task": "full model from the approved Blender reference sheet (refine, UV, rig, five clips, export, evidence)",
+  "blender_instance": "blender-authoring-2 (isolated second instance; own scene and /workspace)",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "status": "released",
+  "claimed_utc": "2026-09-26T16:32:56.671967+00:00",
+  "props_before_claim": {
+    "work_order": "WO111",
+    "scene_owner": "none",
+    "scene_lease": "released",
+    "asset_id": "mischief-kitten",
+    "asset_version": "v001",
+    "authoring_model": "claude-opus-5-5 xhigh"
+  },
+  "scene_before_claim": {
+    "file": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/live-scene-release.blend",
+    "object_count": 108
+  },
+  "jobs_at_claim": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "readyz_at_claim": {
+    "ready": true,
+    "busy": false
+  },
+  "note": "Claimed from the released mischief-kitten v001 scene; no earlier asset file is changed. The prior scene was not saved over.",
+  "author_jobs_running": false,
+  "released_utc": "2026-09-26T17:04:51.022420+00:00",
+  "glb_sha256": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db"
+}

@@ -715,7 +715,7 @@
       "sceneReleasedAt": "2026-09-26T16:28:06.825536+00:00",
       "manifest": "docs/assets/media/mischief-kitten/v001/sha256-manifest.json",
       "pr": 105,
-      "prMerged": null,
+      "prMerged": "cfd4bbdbb2337be8599478bafe5f8c771ef936c9",
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v2 (and the frozen v1) fill the four A·2 ordinary slots and the bonus slot with the mischief-kitten project candidate, which renders neutral placeholder art until a catalog version registers this model"
@@ -738,6 +738,117 @@
         "attachmentChecksPassed": 6,
         "chromiumChecksPassed": 9,
         "artifactHashesMatchedLocally": 143,
+        "physicalSafari": false
+      }
+    },
+    {
+      "assetId": "bin-chicken",
+      "version": "v001",
+      "role": "ordinary",
+      "world": "B",
+      "chapter": 2,
+      "glb": "docs/assets/media/bin-chicken/v001/bin-chicken.glb",
+      "sha256": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db",
+      "heightM": 1.2570000538098558,
+      "soleClearanceM": 0.0016718261435672297,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root between the feet, 1.8 cm in front of the egg body centre; the bird's right at +X; the top is the banana-peel stem tip; the soles sit 1.7 mm above the floor at rest",
+        "rest": {
+          "min": [
+            -0.21246674133166193,
+            0.0016718261435672297,
+            -0.5913999443524148
+          ],
+          "max": [
+            0.21246674133166193,
+            1.2570000538098558,
+            0.41424650303469346
+          ]
+        },
+        "animated": {
+          "min": [
+            -0.3427774133750009,
+            0.0013213851629093295,
+            -0.9656678850646059
+          ],
+          "max": [
+            0.3412249186426165,
+            1.3018727076083123,
+            0.5602374046857436
+          ]
+        },
+        "culling": {
+          "min": [
+            -0.348,
+            -0.004,
+            -0.971
+          ],
+          "max": [
+            0.347,
+            1.307,
+            0.566
+          ]
+        },
+        "note": "Animated bounds include the forward beak jab, which lands 0.369 m ahead of the sheet-pose beak tip at about 0.49 m above the floor at contact, and the belly-down defeat flop, which drapes the neck and head along the floor ahead of the body. The culling envelope is stored in the skin extras (model_space_bounds_y_up); the runtime does not yet apply it (issue #103)."
+      },
+      "attackContactS": 1.25,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 3,
+          "channels": 87
+        },
+        {
+          "name": "move",
+          "duration_s": 1,
+          "channels": 87
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 87
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 87
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 87
+        }
+      ],
+      "review": "docs/assets/reviews/bin-chicken/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+      "sceneReleasedAt": "2026-09-26T17:04:51.022420+00:00",
+      "manifest": "docs/assets/media/bin-chicken/v001/sha256-manifest.json",
+      "pr": null,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v2 (and the frozen v1) fill the four B·2 ordinary slots with the bin-chicken project candidate, which renders neutral placeholder art until a catalog version registers this model"
+      },
+      "prUrl": null,
+      "masterSha256": "1a8b30358de09ac35e6cabbc9f0172942cd9067f4c0451089ffbc9c4c073a8bf",
+      "triangles": 11196,
+      "joints": 29,
+      "bytes": 1033964,
+      "integrationNotes": [
+        "Rest geometry starts 0.0017 m above the floor (sole clearance); the lowest animated point is 0.0013 m.",
+        "Only the hips (bob, lunge and defeat flop), the peel (pop and slide), the beak chip (flip and drop), the loot cone (tip), the loot chips (jump and spill) and the right brow (raise) translate; every other joint is a fixed pivot, and the root bone never animates.",
+        "In the held defeat (from 1.80 s) the hips sit at 0.131 m and the dropped chip lies on the floor 0.300 m from the beak tip.",
+        "Runtime culling (issue #103): the eyes-and-beak primitive leaves its idle-0 bounding sphere by up to 0.894 m during the defeat, and the body primitive by up to 0.343 m; apply the exported culling envelope or disable frustum culling for this skinned mesh.",
+        "Exact intake values: 1,033,964 bytes, 11,196 triangles, 9,899 exported vertices (5,806 Blender mesh vertices before UV and normal splits), one embedded 1024 x 1024 atlas, 2 materials, 2 primitives, 29 joints, at most 2 influences per vertex."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "threeAdapterChecksPassed": 30,
+        "attachmentChecksPassed": 6,
+        "chromiumChecksPassed": 9,
+        "artifactHashesMatchedLocally": 146,
         "physicalSafari": false
       }
     }
