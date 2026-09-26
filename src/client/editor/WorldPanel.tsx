@@ -1,5 +1,11 @@
 import { useState } from "react";
-import type { AuthoredEncounterAnchor, AuthoredEncounterSlot, AuthoredPlatformPiece } from "../../shared/authored-level";
+import {
+  authoredScareLevel,
+  type AuthoredEncounterAnchor,
+  type AuthoredEncounterSlot,
+  type AuthoredPlatformPiece,
+  type AuthoredScareLevel,
+} from "../../shared/authored-level";
 import {
   levelEditorPreparedBonusEnemies,
   levelEditorPreparedEnemies,
@@ -47,6 +53,13 @@ const eraThemeNames = {
 
 const allThemeNames = { ...themeNames, ...eraThemeNames } as const;
 
+/** DESIGN-027 D-01 scare levels, offered on growth (authored-level-v4) levels. */
+const scareLevelNames: Readonly<Record<AuthoredScareLevel, string>> = {
+  0: "Not scary",
+  1: "Spooky · dim flickering lights, creepy sounds, watchers",
+  2: "Scary · adds blackouts and jump scares",
+};
+
 type Theme = keyof typeof allThemeNames;
 
 export interface WorldPanelProps {
@@ -59,6 +72,8 @@ export interface WorldPanelProps {
   onRemoveLevel(): void;
   onSetDetails(changes: Partial<Pick<LevelEditorChapterV2, "subtitle" | "description" | "representedDateRange" | "recoveredAge" | "previewMemories">>): void;
   onSetTheme(theme: Theme): void;
+  /** DESIGN-027 D-01: growth (authored-level-v4) levels only. */
+  onSetScare(scare: AuthoredScareLevel): void;
   onSetBirthDate(date: string): void;
   onAssignEncounter(slot: AuthoredEncounterSlot, reference: LevelEditorEncounterReference): void;
   onCreateCandidate(
@@ -350,6 +365,7 @@ export function WorldPanel({
   onRemoveLevel,
   onSetDetails,
   onSetTheme,
+  onSetScare,
   onSetBirthDate,
   onAssignEncounter,
   onCreateCandidate,
@@ -416,6 +432,19 @@ export function WorldPanel({
             {Object.entries(chapter.level.schemaVersion === "authored-level-v4" ? allThemeNames : themeNames).map(([id, label]) => <option key={id} value={id}>{label}</option>)}
           </select>
         </label>
+        {chapter.level.schemaVersion === "authored-level-v4" && (
+          <label className="editor-field">
+            <span>Scare level</span>
+            <select
+              value={authoredScareLevel(chapter.level)}
+              onChange={(event) => onSetScare(Number(event.target.value) as AuthoredScareLevel)}
+            >
+              {([0, 1, 2] as const).map((level) => <option key={level} value={level}>{scareLevelNames[level]}</option>)}
+            </select>
+          </label>
+        )}
+        {authoredScareLevel(chapter.level) > 0 &&
+          <p className="editor-world-note">Players can switch scary moments off on their own device.</p>}
         <TextField label="Short introduction" value={chapter.subtitle ?? ""} maxLength={100} onCommit={(subtitle) => onSetDetails({ subtitle })} />
         <TextAreaField label="What happens here?" value={chapter.description ?? ""} maxLength={240} onCommit={(description) => onSetDetails({ description })} />
         {(chapter.level.theme === "arcade" || chapter.level.theme === "toybox" || chapter.level.theme in eraThemeNames) &&

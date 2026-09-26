@@ -3,6 +3,7 @@ import React, { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  applyLevelEditorCommands,
   createLevelEditorProject,
   createWorldEditorProject,
   isLevelEditorProjectV2,
@@ -110,6 +111,42 @@ describe("complete world editor", () => {
     expect(project.chapters[2]?.routeId).toMatch(/^draft-world-/);
     expect(project.chapters[2]?.level.id).toBe(project.chapters[2]?.routeId);
     expect(project.chapters[0]?.routeId).toBe("chapter-1-route");
+  });
+
+  it("sets a growth level's scare level and offers none on older levels (DESIGN-027)", async () => {
+    const world = createWorldEditorProject({ projectId: "project-scare-draft" });
+    const upgraded = applyLevelEditorCommands(world, {
+      expectedRevision: world.revision,
+      commands: [{ type: "chapter.level.upgrade", chapterId: "chapter-1", schemaVersion: "authored-level-v4" }],
+    });
+    expect(upgraded.ok).toBe(true);
+    window.localStorage.setItem(EDITOR_STORAGE_KEY, JSON.stringify(upgraded.project));
+    await act(async () => root.render(<EditorWorkspace onPlaytest={vi.fn(async () => {})} />));
+    await press("World");
+    const scareSelect = () =>
+      [...container.querySelectorAll("label.editor-field")]
+        .find((item) => item.querySelector("span")?.textContent === "Scare level")
+        ?.querySelector("select") as HTMLSelectElement | undefined;
+    const select = scareSelect()!;
+    expect(select.value).toBe("0");
+    expect([...select.options].map((option) => option.value)).toEqual(["0", "1", "2"]);
+    expect(container.textContent).not.toContain("switch scary moments off");
+    await choose(select, "2");
+    await settleAutosave();
+    const stored = () => {
+      const project = parseLevelEditorProjectJson(window.localStorage.getItem(EDITOR_STORAGE_KEY)!);
+      if (!isLevelEditorProjectV2(project)) throw new Error("Expected a world project");
+      return project;
+    };
+    expect(stored().chapters[0]?.level.scare).toBe(2);
+    expect(container.textContent).toContain("Players can switch scary moments off on their own device.");
+    await choose(scareSelect()!, "0");
+    await settleAutosave();
+    expect(stored().chapters[0]?.level).not.toHaveProperty("scare");
+
+    const levels = [...container.querySelectorAll(".editor-world-levels button")] as HTMLButtonElement[];
+    await act(async () => levels[1]!.click());
+    expect(scareSelect()).toBeUndefined();
   });
 
   it("upgrades an older draft while preserving its course geometry", async () => {

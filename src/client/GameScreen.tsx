@@ -21,8 +21,10 @@ import { QuestAudio } from "./audio";
 import {
   plainJumpSinceLastStatus,
   playFeedbackSounds,
+  SCARE_AMBIENT_LOOP,
 } from "./feedback-sounds";
 import { MemoryImage } from "./MemoryImage";
+import { readScaryMoments } from "./scary-moments";
 import { draftEncounterLabel, equipmentName, eraStory } from "./era";
 
 // Touch and pen activate the browser on release; starting a resume promise on
@@ -249,6 +251,12 @@ function Adventure({
   const requestBusy = useRef(false);
   const recoveryRequested = useRef<string | null>(null);
   const [recoveryBlocked, setRecoveryBlocked] = useState(false);
+  // DESIGN-027 D-05: while a jump scare's lunge plays, the checkpoint return
+  // waits and the world keeps rendering the close shot.
+  const [jumpScare, setJumpScare] = useState<string | null>(null);
+  const jumpScareTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
   const victoryOpen = useRef(showVictory);
   victoryOpen.current = showVictory;
   const view = save.adventure!;
@@ -336,9 +344,18 @@ function Adventure({
     soundRef.current = sound;
     setMuted(sound.preferences().muted);
     setVolume(sound.preferences().volume);
+    // DESIGN-027: a scary chapter's ambience may be requested before the first
+    // gesture unlocks audio; ask again once it has.
+    let scareAmbientWanted = false;
     const audioGesture = (event: Event) => {
       if (!canUnlockAudio(event)) return;
-      void sound.start({ confirmation: true });
+      void sound.start({ confirmation: true }).then(
+        () => {
+          if (mounted.current && scareAmbientWanted)
+            void sound.loop(SCARE_AMBIENT_LOOP, true);
+        },
+        () => undefined,
+      );
     };
     document.addEventListener("pointerdown", audioGesture, true);
     document.addEventListener("pointerup", audioGesture, true);
@@ -467,8 +484,23 @@ function Adventure({
           onAction: act,
           onRefresh: async () =>
             update(await api<SaveView>(`/saves/${initialSave.id}`)),
+          // DESIGN-027 D-02: this device's Scary moments switch, read per game.
+          scaryMoments: readScaryMoments(),
           onFeedback: (event) => {
             if (!mounted.current) return;
+            if (event.type === "scare-ambient-loop")
+              scareAmbientWanted = event.active;
+            if (event.type === "jump-scare") {
+              // The fallen save and this event land together; should the
+              // checkpoint return already have paused the sound, the lunge
+              // takes over the screen (and the sound) until it ends.
+              sound.setPaused(false);
+              clearTimeout(jumpScareTimer.current);
+              setJumpScare(event.encounterId);
+              jumpScareTimer.current = setTimeout(() => {
+                if (mounted.current) setJumpScare(null);
+              }, event.durationMs);
+            }
             playFeedbackSounds(sound, event);
           },
           onStatus: (next) => {
@@ -528,6 +560,7 @@ function Adventure({
     }
     return () => {
       mounted.current = false;
+      clearTimeout(jumpScareTimer.current);
       document.removeEventListener("pointerdown", audioGesture, true);
       document.removeEventListener("pointerup", audioGesture, true);
       document.removeEventListener("touchend", audioGesture, true);
@@ -556,6 +589,7 @@ function Adventure({
       setRecoveryBlocked(false);
       return;
     }
+    if (jumpScare) return;
     if (!level || status?.requestBusy || requestBusy.current) return;
     const attempt = `${save.id}:${save.revision}`;
     if (recoveryRequested.current === attempt) {
@@ -578,12 +612,15 @@ function Adventure({
     save.revision,
     status?.requestBusy,
     status?.requestState,
+    jumpScare,
   ]);
 
   const activeModal = save.completed
     ? "complete"
     : view.phase === "fallen"
-      ? "fallen"
+      ? jumpScare
+        ? null
+        : "fallen"
       : showVictory && level && view.phase === "memory-released"
         ? "victory"
         : chapterNotice
@@ -675,6 +712,7 @@ function Adventure({
     <div
       className="game-screen era-game"
       data-period={level?.eraYear ?? "complete"}
+      data-jump-scare={jumpScare ? "true" : undefined}
     >
       <div className="game-canvas" ref={container} />
       <div className="game-vignette" />

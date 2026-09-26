@@ -223,7 +223,7 @@ describe("gameplay event sounds", () => {
         expect(gameplayFeedback[call.id]).toBeDefined();
         reached.add(gameplayFeedback[call.id].cueId);
       } else {
-        const cue: QuestAudioCue = questCues[call.id];
+        const cue = (questCues as Readonly<Record<string, QuestAudioCue>>)[call.id]!;
         expect(cue.loop, call.id).toBe(call.kind === "loop");
         reached.add(call.id);
       }

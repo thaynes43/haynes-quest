@@ -270,6 +270,13 @@ export interface AuthoredLevelAnchors {
   >;
 }
 
+/**
+ * DESIGN-027 D-01 scare levels: 0 none, 1 spooky (dark lighting, flicker,
+ * creepy ambience, watchers), 2 scary (level 1 plus blackouts and jump scares).
+ */
+export const AUTHORED_SCARE_LEVELS = [0, 1, 2] as const;
+export type AuthoredScareLevel = (typeof AUTHORED_SCARE_LEVELS)[number];
+
 export interface AuthoredLevelDocument {
   readonly schemaVersion: AuthoredLevelSchemaVersion;
   readonly id: AuthoredLevelId;
@@ -281,6 +288,19 @@ export interface AuthoredLevelDocument {
   readonly anchors: AuthoredLevelAnchors;
   /** V4 only; absent means no placed props. */
   readonly decor?: readonly AuthoredDecor[];
+  /**
+   * V4 only (DESIGN-027 D-01); absent means level 0. Editors write 1 or 2
+   * and remove the field for 0, so an unscary document keeps its exact bytes.
+   */
+  readonly scare?: AuthoredScareLevel;
+}
+
+/** A document's declared scare level; older documents and absent fields are 0. */
+export function authoredScareLevel(
+  document: Pick<AuthoredLevelDocument, "scare"> | null | undefined,
+): AuthoredScareLevel {
+  const scare = document?.scare;
+  return scare === 1 || scare === 2 ? scare : 0;
 }
 
 export interface AuthoredLevelGraph {
@@ -563,6 +583,12 @@ export const authoredLevelV4PieceSchema = z.discriminatedUnion("type", [
   bouncePadPieceSchema,
   crumblePieceSchema,
 ]);
+export const authoredScareLevelSchema = z.union([
+  z.literal(0),
+  z.literal(1),
+  z.literal(2),
+]);
+
 export const authoredDecorSchema = z
   .object({
     id: identifierSchema,
@@ -729,6 +755,7 @@ const authoredLevelV4DocumentSchema = z
       .array(authoredDecorSchema)
       .max(AUTHORED_LEVEL_V4_LIMITS.maxDecor)
       .optional(),
+    scare: authoredScareLevelSchema.optional(),
   })
   .strict();
 

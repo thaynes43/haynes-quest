@@ -159,7 +159,7 @@ A loop plays only through `QuestAudio.loop`, one instance per cue. Mute, pause, 
 
 They follow the family world procedure: one bounded job at a time on the audio service, a verified download, up to three takes per cue with a recorded reason for each unselected take, and processing by `scripts/assets/audio/process_cues.py`. The casino hum uses the loop recipe with a one-second crossfade. Nobody has listened to them; the review pages record the measurements that stood in for listening, and they await Tom's exact-version review in the [catalog](../assets/catalog.md#sound-auditions).
 
-`scareCues` in `src/client/audio.ts` pins each cue's asset ID, version, path, SHA-256, duration and loop flag under D-06, and `questCues` includes them, so the audio owner can play them. A feedback sound may name them too. **No gameplay event triggers them yet**; the scare pass adds those triggers. A test checks the manifest against the files, the inventory and the measurements.
+`scareCues` in `src/client/audio.ts` pins each cue's asset ID, version, path, SHA-256, duration and loop flag under D-06, and `questCues` includes them, so the audio owner can play them. A feedback sound may name them too, and the scare runtime's events trigger them ([wiring](#scary-moments-wiring)). A test checks the manifest against the files, the inventory and the measurements.
 
 The mix at the 0.8 master, under D-05's four-source cap:
 
@@ -169,3 +169,18 @@ The mix at the 0.8 master, under D-05's four-source cap:
 - **Casino hum:** loops under everything near −20 dBFS, about 4 dB below the glide wind. It ranks with the ability cue (priority 4), so ordinary one-shots cannot push it out at the cap. The ability cue or the sting can, and like any loop it then stays stopped until the game calls `QuestAudio.loop` again.
 
 Each cue allows one instance. Listening, mix and physical Safari checks remain open, as for the family world cues.
+
+### Scary moments wiring
+
+[DESIGN-027](027-scare-pass.md) D-06 adds six scare cues. They play only in chapters running at scare level 1 or 2, so a level 0 chapter, or any chapter with the device's **Scary moments** switch off, sounds exactly as before. `createGame` reports each moment through `onFeedback`, and `src/client/feedback-sounds.ts` maps it:
+
+| Moment | Event | Cue | Notes |
+| --- | --- | --- | --- |
+| A level 2 attack takes the player to 0 HP and becomes a lunge | `jump-scare` | `jump-scare-sting` | At most once a minute. The checkpoint return waits until the 0.9 s lunge ends (0.5 s with reduced motion), and the sound is not paused meanwhile. |
+| A sleeping animatronic that moved unseen comes back into view | `watcher-creak` | `servo-creak` | Once per unseen change. |
+| The lights return after a level 2 blackout | `blackout-return` | `light-buzz` | Not after a blackout that a lunge or a recovery ended early. |
+| Random level 2 ambience, every 20–45 s of active play | `ambient-laugh` | `distant-laugh` | |
+| The radio showman begins an attack | `radio-static` | `radio-static` | Its model id `radio-host-showman`, or the project candidate of that id; at most once in 1.5 s per enemy. |
+| A spooky or scary world is active | `scare-ambient-loop` | `casino-hum` (loop) | Starts when play is active and stops on pause, a menu, backgrounding or the fallen phase; the game asks again once the first gesture unlocks audio. |
+
+If a cue is ever missing from the manifest, `QuestAudio` plays nothing for it and raises no error.

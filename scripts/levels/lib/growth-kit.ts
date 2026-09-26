@@ -270,6 +270,8 @@ export interface ChapterCommands {
   readonly branch: (platformIds: readonly string[]) => LevelEditorCommand;
   readonly addDecor: (entry: AuthoredDecor) => LevelEditorCommand;
   readonly removeDecor: (decorId: string) => LevelEditorCommand;
+  /** DESIGN-027 D-01: 0 removes the field; 1 spooky, 2 scary. */
+  readonly setScare: (scare: 0 | 1 | 2) => LevelEditorCommand;
 }
 
 export function chapterCommands(chapterId: string): ChapterCommands {
@@ -340,6 +342,7 @@ export function chapterCommands(chapterId: string): ChapterCommands {
     }),
     addDecor: (entry) => ({ type: "decor.add", chapterId, decor: entry }),
     removeDecor: (decorId) => ({ type: "decor.remove", chapterId, decorId }),
+    setScare: (scare) => ({ type: "chapter.scare.set", chapterId, scare }),
   };
 }
 

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import type { FamilySessionView } from "../../shared/contracts";
 import type { FamilyJourneyCard, FamilyPlayResponse } from "../../shared/family-api";
+import { ScaryMomentsToggle } from "../ScaryMomentsToggle";
 import { FamilyAdmin } from "./FamilyAdmin";
 import { familyApi, familyErrorText } from "./family-client";
 
@@ -84,6 +85,7 @@ export function FamilyHome({
           </button>
         ))}
       </div>
+      <ScaryMomentsToggle className="family-scary-moments" />
       {admin && (
         <button className="secondary family-setup-button" disabled={busy} onClick={() => setSetup(true)}>
           Family setup

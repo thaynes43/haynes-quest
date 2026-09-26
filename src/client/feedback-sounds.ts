@@ -34,6 +34,9 @@ export type FeedbackSound =
       readonly active: boolean;
     };
 
+/** The creepy ambience loop under chapters playing at scare level 1 or 2. */
+export const SCARE_AMBIENT_LOOP: ScareCueId = "casino-hum";
+
 /**
  * An enemy's attack wind-up sound, keyed by the catalog model it renders.
  * Enemies without an entry wind up silently, as before.
@@ -92,6 +95,18 @@ export function feedbackSounds(
     case "hurt":
       // The server's lower HP plays the impact when the save arrives.
       return [];
+    case "jump-scare":
+      return [{ kind: "cue", id: "jump-scare-sting" }];
+    case "watcher-creak":
+      return [{ kind: "cue", id: "servo-creak" }];
+    case "blackout-return":
+      return [{ kind: "cue", id: "light-buzz" }];
+    case "ambient-laugh":
+      return [{ kind: "cue", id: "distant-laugh" }];
+    case "radio-static":
+      return [{ kind: "cue", id: "radio-static" }];
+    case "scare-ambient-loop":
+      return [{ kind: "loop", id: SCARE_AMBIENT_LOOP, active: event.active }];
   }
 }
 

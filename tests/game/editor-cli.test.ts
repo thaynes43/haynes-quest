@@ -688,6 +688,52 @@ describe("level editor CLI", () => {
     }
   }, 90_000);
 
+  it("sets a v4 chapter's scare level and reports it (DESIGN-027 D-01)", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "quest-editor-scare-"));
+    try {
+      const projectPath = join(directory, "project.json");
+      const template = runEditor("world-template", "scare-cli-project");
+      expect(template.status).toBe(0);
+      await writeFile(projectPath, template.stdout, "utf8");
+      const scaryPath = await applyBatch(directory, projectPath, "scary", {
+        expectedRevision: 0,
+        commands: [
+          { type: "chapter.level.upgrade", chapterId: "chapter-2", schemaVersion: "authored-level-v4" },
+          { type: "chapter.scare.set", chapterId: "chapter-2", scare: 2 },
+        ],
+      });
+      const scary = inspectProject(scaryPath) as unknown as {
+        chapters: Array<{ chapterId: string; scare: number }>;
+        issues: unknown[];
+      };
+      expect(scary.issues).toEqual([]);
+      expect(scary.chapters.map((chapter) => [chapter.chapterId, chapter.scare])).toEqual([
+        ["chapter-1", 0],
+        ["chapter-2", 2],
+      ]);
+      const level = runEditor("level", scaryPath, "chapter-2");
+      expect(JSON.parse(level.stdout)).toMatchObject({ schemaVersion: "authored-level-v4", scare: 2 });
+      const clearedPath = await applyBatch(directory, scaryPath, "cleared", {
+        expectedRevision: 1,
+        commands: [{ type: "chapter.scare.set", chapterId: "chapter-2", scare: 0 }],
+      });
+      expect(JSON.parse(runEditor("level", clearedPath, "chapter-2").stdout)).not.toHaveProperty("scare");
+      const v3Batch = join(directory, "v3-commands.json");
+      await writeFile(
+        v3Batch,
+        JSON.stringify({ expectedRevision: 0, commands: [{ type: "chapter.scare.set", chapterId: "chapter-1", scare: 1 }] }),
+        "utf8",
+      );
+      const refused = runEditor("apply", projectPath, v3Batch);
+      expect(refused.status).toBe(1);
+      expect(JSON.parse(refused.stdout).issues).toEqual([
+        expect.objectContaining({ code: "level.version" }),
+      ]);
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  }, 90_000);
+
   it("starts a world on a pinned parody catalog", () => {
     const current = runEditor("world-template", "catalog-cli");
     expect(current.status).toBe(0);

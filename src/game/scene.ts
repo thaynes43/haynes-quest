@@ -43,6 +43,8 @@ import {
   resolveRuntimeWorldTheme,
   type RuntimeWorldTheme,
 } from "./world-themes";
+import { effectiveScareLevel, type ScareLunge } from "./scare";
+import { ScareVisuals, watcherPoseRoll } from "./scare-scene";
 
 type PhotoState = {
   url: string;
@@ -64,9 +66,16 @@ type EncounterVisual = {
   lastHp: number;
   hitUntil: number;
   authored: boolean;
+  /** The model's expected height, used to frame DESIGN-027's lunge before it loads. */
+  height: number;
   animation?: EnemyAnimation;
   besties?: BestiesScene;
 };
+
+export interface GardenSceneOptions {
+  /** DESIGN-027 D-02 per-device switch; false plays every chapter at scare level 0. */
+  readonly scaryMoments?: boolean;
+}
 
 function setInstanceTransform(
   mesh: THREE.InstancedMesh,
@@ -108,6 +117,13 @@ export class GardenScene {
   private themeKit: ThemeKit | null = null;
   private readonly resizeObserver: ResizeObserver | null;
   private readonly sun = new THREE.DirectionalLight(0xffedce, 2.1);
+  private readonly hemisphere = new THREE.HemisphereLight(0xfff5e5, 0x607c8c, 1.15);
+  /** DESIGN-027 lighting and lunge presentation; null on every level 0 chapter. */
+  private scareVisuals: ScareVisuals | null = null;
+  private readonly scaryMoments: boolean;
+  private readonly frustum = new THREE.Frustum();
+  private readonly frustumMatrix = new THREE.Matrix4();
+  private readonly viewSphere = new THREE.Sphere();
   private readonly target = new THREE.Vector3();
   private readonly desiredCamera = new THREE.Vector3();
   private world = new THREE.Group();
@@ -177,7 +193,9 @@ export class GardenScene {
     private readonly container: HTMLElement,
     level: LevelLayout,
     save: SaveView,
+    options: GardenSceneOptions = {},
   ) {
+    this.scaryMoments = options.scaryMoments ?? true;
     this.save = save;
     this.stage = save.appearance.stage;
     this.renderer = new THREE.WebGLRenderer({
@@ -206,7 +224,7 @@ export class GardenScene {
     room.dispose();
     generator.dispose();
     container.append(this.canvas);
-    this.scene.add(new THREE.HemisphereLight(0xfff5e5, 0x607c8c, 1.15));
+    this.scene.add(this.hemisphere);
     this.sun.castShadow = true;
     this.sun.shadow.mapSize.set(2048, 2048);
     Object.assign(this.sun.shadow.camera, {
@@ -255,6 +273,8 @@ export class GardenScene {
   rebuildRoute(level: LevelLayout, save: SaveView): void {
     this.routeGeneration += 1;
     this.unsupportedContentCount = 0;
+    this.scareVisuals?.dispose();
+    this.scareVisuals = null;
     this.save = save;
     for (const photo of this.photos.values()) {
       if (photo.timer) clearTimeout(photo.timer);
@@ -655,6 +675,7 @@ export class GardenScene {
         lastHp: -1,
         hitUntil: 0,
         authored: Boolean(artwork),
+        height: artwork ? artwork.height : boss ? 2.1 : 1.35,
       };
       this.enemies.set(placement.id, visual);
       if (artwork?.kind === "duo") {
@@ -671,9 +692,52 @@ export class GardenScene {
             fallback.removeFromParent();
             disposeTree(fallback);
           }
+          this.scareVisuals?.fitEyes(placement.id, model);
         });
     }
+    // DESIGN-027: only a chapter playing at scare level 1 or 2 builds any of
+    // this, so level 0 keeps its exact lights, fog and scene graph.
+    const scareLevel = effectiveScareLevel(level.authored, this.scaryMoments);
+    if (scareLevel !== 0) {
+      this.scareVisuals = new ScareVisuals({
+        level: scareLevel,
+        scene: this.scene,
+        hemisphere: this.hemisphere,
+        sun: this.sun,
+        practicalRoots: () => this.practicalRoots(),
+      });
+      for (const [id, visual] of this.enemies)
+        if (!visual.besties) this.scareVisuals.attachEyes(id, visual.model, visual.height);
+    }
     this.updateProgress(save);
+  }
+
+  /** Scenery whose bulbs and emissive trim flicker and black out (DESIGN-027 D-03). */
+  private practicalRoots(): THREE.Object3D[] {
+    return [
+      ...(this.themeScenery ? [this.themeScenery.root] : []),
+      ...(this.decorVisual ? [this.decorVisual.root] : []),
+      ...this.world.children.filter((child) =>
+        child.name.endsWith("-pending-kit-placeholder-scenery"),
+      ),
+    ];
+  }
+
+  /**
+   * Whether a body standing at `position` is inside the camera frustum, as of
+   * the last rendered frame. Before the first frame everything counts as seen.
+   */
+  isInView(position: PositionSnapshot, radius = 0.6, height = 1.5): boolean {
+    if (this.disposed || !this.cameraPlaced) return true;
+    this.camera.updateMatrixWorld();
+    this.frustumMatrix.multiplyMatrices(
+      this.camera.projectionMatrix,
+      this.camera.matrixWorldInverse,
+    );
+    this.frustum.setFromProjectionMatrix(this.frustumMatrix);
+    this.viewSphere.center.set(position.x, position.y + height / 2, position.z);
+    this.viewSphere.radius = Math.hypot(radius, height / 2);
+    return this.frustum.intersectsSphere(this.viewSphere);
   }
 
   updateProgress(save: SaveView): void {
@@ -760,6 +824,7 @@ export class GardenScene {
       ...(besties.length > 0 ? { besties } : {}),
       ...(this.tokens ? { collectibles: this.tokens.inspect() } : {}),
       particles: this.effects.aliveCount,
+      ...(this.scareVisuals ? { scare: this.scareVisuals.inspect() } : {}),
     };
   }
 
@@ -1013,6 +1078,8 @@ export class GardenScene {
       this.camera.position.z += shake.z;
     }
     this.camera.lookAt(this.target);
+    const lunge = frame?.scare?.lunge;
+    if (lunge) this.frameLunge(lunge, frame.enemies);
     this.sun.position.set(position.x - 7, 13, position.z + 6);
     this.sun.target.position.set(position.x, 0, position.z - 4);
     for (const pickup of this.pickups.values()) {
@@ -1040,7 +1107,46 @@ export class GardenScene {
       this.particles.rotation.y = Math.sin(elapsed * 0.03) * 0.02;
     this.tokens?.update(elapsed);
     this.effects.update(dt);
+    this.scareVisuals?.update(frame?.scare);
     this.renderer.render(this.scene, this.camera);
+  }
+
+  /**
+   * DESIGN-027 D-05: the jump scare's close shot. The camera snaps in front of
+   * the attacker's face and closes in with a hard shake; reduced motion holds
+   * one still close shot instead.
+   */
+  private frameLunge(lunge: ScareLunge, enemies: readonly EnemyFrame[]): void {
+    const visual = this.enemies.get(lunge.encounterId);
+    if (!visual) return;
+    const facing =
+      enemies.find((enemy) => enemy.id === lunge.encounterId)?.facing ??
+      visual.model.rotation.y;
+    const forward = new THREE.Vector3(-Math.sin(facing), 0, -Math.cos(facing));
+    visual.root.updateWorldMatrix(true, false);
+    const eyeHeight = this.scareVisuals?.eyeHeight(lunge.encounterId);
+    const face = visual.root.position
+      .clone()
+      .add(new THREE.Vector3(0, eyeHeight ?? visual.height * 0.8, 0))
+      .addScaledVector(forward, visual.height * 0.18);
+    const approach = lunge.reducedMotion
+      ? 1
+      : 1 - Math.pow(1 - Math.min(1, lunge.progress / 0.2), 3);
+    const distance = lunge.reducedMotion
+      ? 1.2
+      : THREE.MathUtils.lerp(2.2, 0.85, approach) * Math.max(0.7, visual.height / 1.6);
+    this.camera.position.copy(face).addScaledVector(forward, distance);
+    this.camera.position.y += 0.05;
+    if (!lunge.reducedMotion) {
+      const amount = 0.075 * (1 - 0.6 * lunge.progress);
+      this.camera.position.x += amount * Math.sin(lunge.progress * 97.1 + 0.4);
+      this.camera.position.y += amount * Math.sin(lunge.progress * 83.7 + 1.3);
+      this.camera.position.z += amount * 0.6 * Math.cos(lunge.progress * 71.9 + 2.1);
+    }
+    this.camera.lookAt(face);
+    this.scareVisuals?.keyLight?.position
+      .copy(this.camera.position)
+      .add(new THREE.Vector3(0, 0.35, 0));
   }
 
   dispose(): void {
@@ -1061,6 +1167,8 @@ export class GardenScene {
     );
     this.equipment?.dispose();
     this.equipment = null;
+    this.scareVisuals?.dispose();
+    this.scareVisuals = null;
     this.friendlyVisual?.dispose();
     this.themeScenery?.dispose?.();
     this.tokens?.dispose();
@@ -1286,6 +1394,8 @@ export class GardenScene {
       return;
     }
     visual.model.rotation.y = enemy.facing;
+    // DESIGN-027 D-04 watcher idle pose; level 0 frames carry no pose.
+    if (enemy.pose !== undefined) visual.model.rotation.z = watcherPoseRoll(enemy.pose);
     // Only routes that still gate the boss behind its ordinaries render it
     // dormant. Share the rule with combat and the server so a v2 boss is never
     // fought with a hidden health bar.

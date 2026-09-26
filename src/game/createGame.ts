@@ -54,6 +54,19 @@ import {
 } from "./level";
 import { GardenScene } from "./scene";
 import { parodyArtwork } from "./scene-catalog";
+import {
+  effectiveScareLevel,
+  isRadioShowman,
+  JumpScareGate,
+  lungeDurationMs,
+  ScareDirector,
+  scareRandom,
+  scareSeed,
+  WatcherDirector,
+  watcherBlockedZones,
+  type ScareFrame,
+  type ScareLevel,
+} from "./scare";
 import type {
   CreateGameOptions,
   EnemyFrame,
@@ -111,10 +124,33 @@ interface RuntimeScene {
   expectHit?(encounterId: string): void;
   anticipateHit?(encounterId: string, at: PositionSnapshot): void;
   celebrate?(encounterId: string, boss: boolean): void;
+  /** DESIGN-027 watchers only change while this reports false. */
+  isInView?(position: PositionSnapshot, radius?: number, height?: number): boolean;
   dispose(): void;
 }
 
 type AttackKind = "primary" | "secondary";
+
+/** A take-hit that brings the player to 0 HP within this long can become a jump scare. */
+const lethalHitWindowMs = 3_000;
+
+/** DESIGN-027 runtime for a chapter playing at scare level 1 or 2. */
+interface ScareRuntime {
+  readonly level: Exclude<ScareLevel, 0>;
+  readonly director: ScareDirector;
+  readonly watchers: WatcherDirector;
+  /** Moving platforms, lifts and crumbling platforms: riding one holds blackouts. */
+  readonly ridingIds: ReadonlySet<string>;
+  lunge: {
+    readonly encounterId: string;
+    readonly startedAt: number;
+    readonly durationMs: number;
+    readonly reducedMotion: boolean;
+  } | null;
+  readonly phases: Map<string, EnemyPhase>;
+  readonly staticAt: Map<string, number>;
+  jumpScares: number;
+}
 
 function horizontalDistance(
   first: { x: number; z: number },
@@ -216,7 +252,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
     return growth;
   };
   const input = new GameInputState();
-  const scene = new GardenScene(options.container, level, save) as RuntimeScene;
+  // DESIGN-027 D-02: the per-device switch; on unless the caller says off.
+  const scaryMoments = options.scaryMoments ?? true;
+  const scene = new GardenScene(options.container, level, save, {
+    scaryMoments,
+  }) as RuntimeScene;
   const stopBrowserInput = bindBrowserInput({ target: scene.canvas, input });
   const windowTarget = options.container.ownerDocument.defaultView;
   if (!windowTarget) {
@@ -252,6 +292,38 @@ export function createGame(options: CreateGameOptions): GameHandle {
   showCollectibles();
 
   const enemies = new EnemySimulation(level, save);
+  // DESIGN-027 scary moments. Level 0 builds nothing, so every unscary chapter
+  // plays exactly as before.
+  let scare: ScareRuntime | null = null;
+  const jumpScareGate = new JumpScareGate();
+  let lastTakeHit: { encounterId: string; at: number } | null = null;
+  let scareAmbientPlaying = false;
+  const buildScare = (): void => {
+    const scareLevel = effectiveScareLevel(level.authored, scaryMoments);
+    enemies.setWatchers(scareLevel !== 0);
+    if (scareLevel === 0) {
+      scare = null;
+      return;
+    }
+    const random = scareRandom(
+      scareSeed(`${level.routeId ?? ""}:${save.adventure?.currentLevelId ?? ""}`),
+    );
+    scare = {
+      level: scareLevel,
+      director: new ScareDirector(scareLevel, random),
+      watchers: new WatcherDirector(random, watcherBlockedZones(level.authored)),
+      ridingIds: new Set(
+        (level.course?.platforms ?? [])
+          .filter((platform) => platform.motion || platform.crumble)
+          .map((platform) => platform.id),
+      ),
+      lunge: null,
+      phases: new Map(),
+      staticAt: new Map(),
+      jumpScares: 0,
+    };
+  };
+  buildScare();
   const bestiesEncounter = () =>
     requireAdventure(save).activeLevel?.encounters.find(
       (entry) => entry.content?.assetId === "bickering-besties",
@@ -666,6 +738,74 @@ export function createGame(options: CreateGameOptions): GameHandle {
     }
   };
 
+  /** DESIGN-027 D-06: the radio showman's attack crackles with static at level 1+. */
+  const reportRadioStatic = (now: number): void => {
+    if (!scare || !options.onFeedback) return;
+    for (const enemy of enemies.frames()) {
+      const before = scare.phases.get(enemy.id);
+      scare.phases.set(enemy.id, enemy.phase);
+      if (enemy.phase !== "windup" || before === "windup") continue;
+      const content = save.adventure?.activeLevel?.encounters.find(
+        (encounter) => encounter.id === enemy.id,
+      )?.content;
+      if (!isRadioShowman(content)) continue;
+      const last = scare.staticAt.get(enemy.id) ?? Number.NEGATIVE_INFINITY;
+      if (now - last < windupFeedbackIntervalMs) continue;
+      scare.staticAt.set(enemy.id, now);
+      options.onFeedback({ type: "radio-static", encounterId: enemy.id });
+    }
+  };
+
+  /**
+   * DESIGN-027 per-frame scare step: blackouts wait for safe footing, and
+   * sleeping animatronics change only while the camera cannot see them.
+   */
+  const stepScare = (
+    runtime: ScareRuntime,
+    deltaSeconds: number,
+    now: number,
+  ): void => {
+    const riding =
+      controller.supportId !== null && runtime.ridingIds.has(controller.supportId);
+    const events = runtime.director.step(
+      deltaSeconds,
+      !controller.grounded,
+      riding,
+      runtime.lunge !== null,
+    );
+    if (events.blackoutEnded) options.onFeedback?.({ type: "blackout-return" });
+    if (events.laugh) options.onFeedback?.({ type: "ambient-laugh" });
+    // Without a camera to ask (a headless scene), every watcher counts as seen.
+    const watched = runtime.watchers.step(
+      deltaSeconds,
+      enemies.dormantWatchers().map((watcher) => ({
+        ...watcher,
+        inView: scene.isInView?.(watcher.position, 0.6, 1.6) ?? true,
+      })),
+      controller.position,
+    );
+    for (const move of watched.moves) enemies.applyWatcherMove(move.id, move);
+    for (const id of watched.creaks)
+      options.onFeedback?.({ type: "watcher-creak", encounterId: id });
+    reportRadioStatic(now);
+  };
+
+  const scareFrame = (runtime: ScareRuntime, now: number): ScareFrame => {
+    if (runtime.lunge && now - runtime.lunge.startedAt >= runtime.lunge.durationMs)
+      runtime.lunge = null;
+    const lunge = runtime.lunge;
+    return {
+      ...runtime.director.lighting(),
+      lunge: lunge
+        ? {
+            encounterId: lunge.encounterId,
+            progress: Math.max(0, Math.min(1, (now - lunge.startedAt) / lunge.durationMs)),
+            reducedMotion: lunge.reducedMotion,
+          }
+        : null,
+    };
+  };
+
   const resetController = (
     nextCheckpoint: PositionSnapshot,
     checkpointId: string | null = null,
@@ -790,6 +930,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
       attackFeedback = null;
       resetController(checkpoint, resetCheckpointId);
       enemies.reset(level, save);
+      if (identityChanged) buildScare();
+      else if (scare) {
+        scare.director.noteRecovery();
+        scare.watchers.forget();
+        scare.lunge = null;
+        scare.phases.clear();
+      }
       besties = new BestiesSimulation(bestiesOrigin());
       scene.rebuildRoute(level, save);
       // A retry keeps this run's tokens; only a new chapter starts a new count.
@@ -843,6 +990,38 @@ export function createGame(options: CreateGameOptions): GameHandle {
       shake.add(0.45);
       options.onFeedback?.({ type: "hurt" });
     }
+    // DESIGN-027 D-05: at level 2, the enemy attack that takes the player to
+    // 0 HP becomes a lunge; normal recovery follows once it ends.
+    const lethalHit = lastTakeHit;
+    if (
+      hurt &&
+      scare?.level === 2 &&
+      lethalHit &&
+      previousPhase === "exploring" &&
+      nextAdventure.phase === "fallen" &&
+      nextAdventure.playerHp === 0 &&
+      windowTarget.performance.now() - lethalHit.at <= lethalHitWindowMs
+    ) {
+      const nowMs = windowTarget.performance.now();
+      if (jumpScareGate.allowed(nowMs / 1000, scare.director.lighting().blackoutElapsed)) {
+        jumpScareGate.trigger(nowMs / 1000);
+        scare.director.endBlackout();
+        const durationMs = lungeDurationMs(reducedMotion);
+        scare.lunge = {
+          encounterId: lethalHit.encounterId,
+          startedAt: nowMs,
+          durationMs,
+          reducedMotion,
+        };
+        scare.jumpScares += 1;
+        options.onFeedback?.({
+          type: "jump-scare",
+          encounterId: lethalHit.encounterId,
+          durationMs,
+        });
+      }
+    }
+    if (hurt) lastTakeHit = null;
     worldWasActive = false;
     emitStatus(true);
   };
@@ -891,6 +1070,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
       inFlightAction = "take-hit";
       pendingHit = null;
       enemies.noteHitDispatched();
+      lastTakeHit = {
+        encounterId: hit.encounterId,
+        at: windowTarget.performance.now(),
+      };
     } else {
       pendingHit = null;
     }
@@ -1335,8 +1518,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
       );
       const duo = bestiesEncounter();
       let glidingAfterStep = false;
+      let launchedThisFrame = false;
       for (const [stepIndex, stepSeconds] of simulationSteps.entries()) {
         const velocityBeforeStep = controller.velocityY;
+        const groundedBeforeStep = controller.grounded;
         let launchedWithSound = false;
         if (level.course) {
           courseTime += stepSeconds;
@@ -1391,7 +1576,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
             }))
               collectItem(item, now);
           }
+          if (
+            (groundedBeforeStep && !controller.grounded) ||
+            traversal.bouncePadId
+          )
+            launchedThisFrame = true;
           if (traversal.recovered) {
+            scare?.director.noteRecovery();
             traversalRecoveries++;
             besties.restartThreatenedTrick();
             if (isRouteMemoryAdventure(save)) input.clearActions();
@@ -1455,6 +1646,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
         );
       } else if (level.course) setGliding(glidingAfterStep);
       reportWindups(now);
+      if (scare) {
+        if (launchedThisFrame) scare.director.noteLaunch();
+        stepScare(scare, deltaSeconds, now);
+      }
       if (controller.recoveryRemaining <= 0) flushPendingHit();
       const collectedByContact = performAutoInteraction(now);
       if (actions.interact && !isRouteMemoryAdventure(save)) {
@@ -1524,6 +1719,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
       );
     }
     playPredictedContact(now);
+    // DESIGN-027 D-06: the creepy ambience plays while a scary world is active.
+    const ambientWanted = scare !== null && worldActive;
+    if (ambientWanted !== scareAmbientPlaying) {
+      scareAmbientPlaying = ambientWanted;
+      options.onFeedback?.({ type: "scare-ambient-loop", active: ambientWanted });
+    }
     shake.update(deltaSeconds);
     const visualDeltaSeconds = hitStop.step(deltaSeconds);
     const frames = enemyFrames();
@@ -1554,6 +1755,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       ...(level.course && currentGrowth()
         ? { growthScale: growthScaleFor(save, currentGrowth())! }
         : {}),
+      ...(scare ? { scare: scareFrame(scare, now) } : {}),
     });
     emitStatus();
     animationFrame = windowTarget.requestAnimationFrame(frame);
@@ -1646,6 +1848,19 @@ export function createGame(options: CreateGameOptions): GameHandle {
                 })),
               }
             : null,
+        ...(scare
+          ? {
+              scare: {
+                level: scare.level,
+                lighting: scare.director.lighting(),
+                lunge: scareFrame(scare, windowTarget.performance.now()).lunge,
+                blackouts: scare.director.blackouts,
+                flickers: scare.director.flickers,
+                watcherMoves: scare.watchers.moves,
+                jumpScares: scare.jumpScares,
+              },
+            }
+          : {}),
         disposed,
       };
     },
