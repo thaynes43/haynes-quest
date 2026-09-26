@@ -372,7 +372,11 @@ class LockstepGame {
     }
   }
 
-  /** A full-resolution screenshot: device scale 1 for one frame, then back. */
+  /**
+   * A full-resolution screenshot: device scale 1 for one frame, then back.
+   * It captures through CDP, because `page.screenshot()` re-applies the
+   * context's play scale and would return a quarter-size image.
+   */
   async screenshot(path: string): Promise<void> {
     const metrics = (scale: number) =>
       this.cdp.send("Emulation.setDeviceMetricsOverride", { ...VIEWPORT, deviceScaleFactor: scale, mobile: false });
@@ -381,7 +385,8 @@ class LockstepGame {
     let best: Buffer | null = null;
     for (let attempt = 0; attempt < 4; attempt += 1) {
       await this.step(FINE_MS);
-      const image = await this.page.screenshot();
+      const { data } = await this.cdp.send("Page.captureScreenshot", { format: "png" });
+      const image = Buffer.from(data, "base64");
       if (!best || image.length > best.length) best = image;
       if (image.length > 120_000) break;
     }
