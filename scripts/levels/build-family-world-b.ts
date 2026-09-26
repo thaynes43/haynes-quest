@@ -1,5 +1,5 @@
 /**
- * Generates World B, "Playroom to Big Stage" (`family-world-b@v3`, PLAN-019).
+ * Generates World B, "Playroom to Big Stage" (`family-world-b@v4`, PLAN-019).
  *
  * Usage: tsx scripts/levels/build-family-world-b.ts [--write]
  *
@@ -25,8 +25,8 @@
  * (DESIGN-024 D-03) and replaces the preview memories with real photos.
  *
  * Without `--write` it prints the command batch. With it, it rewrites the
- * checked-in command history (`scripts/levels/family-world-b-v3.commands.json`)
- * and the template project (`src/shared/levels/family-world-b-v3.json`) that
+ * checked-in command history (`scripts/levels/family-world-b-v4.commands.json`)
+ * and the template project (`src/shared/levels/family-world-b-v4.json`) that
  * `pnpm levels:validate` replays byte-identically and the family template
  * registry serves.
  *
@@ -42,11 +42,15 @@
  * frozen too. v3 is v2's levels exactly, with the cast switched to
  * parody-catalog-v10: Yes-Yes Veggie (B1 ordinaries), the Bin Chicken (B2
  * ordinaries) and The Dancing House (B2 boss) are catalog entries with their
- * Blender models instead of placeholder candidates. Chapter ids, routes,
- * dates and age bands are unchanged, so **Update world** carries every photo
- * over (DESIGN-024 D-11).
+ * Blender models instead of placeholder candidates. v3
+ * (`family-world-b-v3.commands.json` and `family-world-b-v3.json`) is frozen
+ * too. v4 is v3 exactly plus the DESIGN-027 scare levels: Besties' Big Stage
+ * (B3), with its demon idols, is spooky (1); B1 and B2 stay at 0, with no
+ * field. Chapter ids, routes, dates and age bands are unchanged, so
+ * **Update world** carries every photo over (DESIGN-024 D-11).
  */
 import { writeFile } from "node:fs/promises";
+import type { AuthoredScareLevel } from "../../src/shared/authored-level.js";
 import {
   applyLevelEditorCommands,
   createWorldEditorProject,
@@ -83,12 +87,12 @@ import {
 } from "./family/b3.js";
 
 export const FAMILY_WORLD_B_TEMPLATE_ID = "family-world-b";
-export const FAMILY_WORLD_B_TEMPLATE_VERSION = "v3";
+export const FAMILY_WORLD_B_TEMPLATE_VERSION = "v4";
 /** The name administrators see when they choose a template (WORLD-SPEC). */
 export const FAMILY_WORLD_B_NAME = "Playroom to Big Stage";
 export const FAMILY_WORLD_B_BIRTH_DATE = FAMILY_WORLD_B_FICTIONAL_BIRTH_DATE;
 /**
- * The parody catalog v3 pins: v10 is v9 (with the Besties' parent lock) plus
+ * The parody catalog v3 and v4 pin: v10 is v9 (with the Besties' parent lock) plus
  * the B1 and B2 models. It is pinned, not derived: a published template is
  * frozen by fingerprint, so a later catalog version belongs in a new template
  * version (v1 pins v8, v2 pins v9).
@@ -106,6 +110,12 @@ interface WorldBChapter {
   readonly ordinary: LevelEditorEncounterReference | LevelEditorEnemyCandidate;
   /** A catalog reference, or a project candidate the chapter adds. */
   readonly boss: LevelEditorEncounterReference | LevelEditorEnemyCandidate;
+  /**
+   * The chapter's DESIGN-027 scare level: 0 none, 1 spooky, 2 scary. Only a
+   * nonzero level emits `chapter.scare.set`, so an unscary chapter keeps the
+   * exact bytes it had in v3.
+   */
+  readonly scare: AuthoredScareLevel;
 }
 
 /**
@@ -119,6 +129,7 @@ export const FAMILY_WORLD_B_CHAPTERS: readonly WorldBChapter[] = Object.freeze([
     level: familyB1Level,
     ordinary: FAMILY_B1_CAST.ordinary,
     boss: FAMILY_B1_BOSS,
+    scare: 0,
   },
   {
     shell: {
@@ -133,6 +144,7 @@ export const FAMILY_WORLD_B_CHAPTERS: readonly WorldBChapter[] = Object.freeze([
     level: buildB2Level,
     ordinary: B2_CAST.ordinary,
     boss: B2_CAST.boss,
+    scare: 0,
   },
   {
     shell: {
@@ -153,6 +165,8 @@ export const FAMILY_WORLD_B_CHAPTERS: readonly WorldBChapter[] = Object.freeze([
     level: familyB3Level,
     ordinary: FAMILY_B3_ORDINARY,
     boss: FAMILY_B3_BOSS,
+    // The demon idols make the big stage spooky (DESIGN-027 D-01).
+    scare: 1,
   },
 ]);
 
@@ -180,6 +194,7 @@ function chapterCastCommands(chapter: WorldBChapter): LevelEditorCommand[] {
     isCandidate(chapter.boss)
       ? commands.addCandidate("boss", chapter.boss)
       : commands.assign("boss", chapter.boss),
+    ...(chapter.scare === 0 ? [] : [commands.setScare(chapter.scare)]),
   ];
 }
 
@@ -221,10 +236,19 @@ export function buildFamilyWorldB(): LevelEditorProjectV2 {
 }
 
 export const FAMILY_WORLD_B_COMMANDS_URL = new URL(
-  "./family-world-b-v3.commands.json",
+  `./family-world-b-${FAMILY_WORLD_B_TEMPLATE_VERSION}.commands.json`,
   import.meta.url,
 );
 export const FAMILY_WORLD_B_PROJECT_URL = new URL(
+  `../../src/shared/levels/family-world-b-${FAMILY_WORLD_B_TEMPLATE_VERSION}.json`,
+  import.meta.url,
+);
+/** The frozen v3 files; nothing regenerates them. */
+export const FAMILY_WORLD_B_V3_COMMANDS_URL = new URL(
+  "./family-world-b-v3.commands.json",
+  import.meta.url,
+);
+export const FAMILY_WORLD_B_V3_PROJECT_URL = new URL(
   "../../src/shared/levels/family-world-b-v3.json",
   import.meta.url,
 );

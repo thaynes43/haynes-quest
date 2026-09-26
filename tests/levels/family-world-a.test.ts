@@ -1,11 +1,12 @@
 /**
- * World A, "Clubhouse to Casino" (family-world-a@v3), assembled from its four
+ * World A, "Clubhouse to Casino" (family-world-a@v4), assembled from its four
  * chapter generators by `scripts/levels/build-family-world-a.ts`. These checks
- * run against the checked-in v3 template project: the whole-world validator, the
- * WORLD-SPEC shell (copy, themes, dates and ages), every chapter's cast, the
- * family lints and the kid-model route on the assembled levels, and the World
- * A difficulty curve (R8). v1 and v2 are frozen history, checked here against
- * v3. The world is fictional template data.
+ * run against the checked-in v4 template project: the whole-world validator, the
+ * WORLD-SPEC shell (copy, themes, dates and ages), every chapter's cast and
+ * DESIGN-027 scare level, the family lints and the kid-model route on the
+ * assembled levels, and the World A difficulty curve (R8). v1, v2 and v3 are
+ * frozen history, each checked here against its successor. The world is
+ * fictional template data.
  */
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -29,6 +30,8 @@ import {
   buildFamilyWorldA,
   FAMILY_WORLD_A_CHAPTERS,
   FAMILY_WORLD_A_TEMPLATE_VERSION,
+  FAMILY_WORLD_A_V3_COMMANDS_URL,
+  FAMILY_WORLD_A_V3_PROJECT_URL,
   familyWorldACommands,
 } from "../../scripts/levels/build-family-world-a";
 import { familyA1Level } from "../../scripts/levels/family/a1";
@@ -38,13 +41,16 @@ import { familyA4Level } from "../../scripts/levels/family/a4";
 import { runGrowthRouteWithWaits } from "../game/family-kid-lib";
 
 const PROJECT_SOURCE = readFileSync(
-  new URL("../../src/shared/levels/family-world-a-v3.json", import.meta.url),
+  new URL("../../src/shared/levels/family-world-a-v4.json", import.meta.url),
   "utf8",
 );
 const COMMANDS_SOURCE = readFileSync(
-  new URL("../../scripts/levels/family-world-a-v3.commands.json", import.meta.url),
+  new URL("../../scripts/levels/family-world-a-v4.commands.json", import.meta.url),
   "utf8",
 );
+/** v3 is frozen history; v4 adds only the DESIGN-027 scare levels. */
+const V3_PROJECT_SOURCE = readFileSync(FAMILY_WORLD_A_V3_PROJECT_URL, "utf8");
+const V3_COMMANDS_SOURCE = readFileSync(FAMILY_WORLD_A_V3_COMMANDS_URL, "utf8");
 /** v2 is frozen history too; v3 changes only its cast. */
 const V2_PROJECT_SOURCE = readFileSync(
   new URL("../../src/shared/levels/family-world-a-v2.json", import.meta.url),
@@ -58,6 +64,8 @@ const V1_PROJECT_SOURCE = readFileSync(
 const { project: resolvedProject, levels } = resolveLevelEditorProject(JSON.parse(PROJECT_SOURCE));
 const project = resolvedProject as LevelEditorProjectV2;
 const chapters = project.chapters as readonly LevelEditorChapterV2[];
+const v3Project = resolveLevelEditorProject(JSON.parse(V3_PROJECT_SOURCE)).project as LevelEditorProjectV2;
+const v3Chapters = v3Project.chapters as readonly LevelEditorChapterV2[];
 const v2Project = resolveLevelEditorProject(JSON.parse(V2_PROJECT_SOURCE)).project as LevelEditorProjectV2;
 const v2Chapters = v2Project.chapters as readonly LevelEditorChapterV2[];
 
@@ -103,25 +111,58 @@ function surfaceTop(chapter: LevelEditorChapterV2, id: string): number {
   return piece.center.y + piece.size.y / 2;
 }
 
-describe("World A template (family-world-a@v3)", () => {
+describe("World A template (family-world-a@v4)", () => {
   it("is the byte-identical output of its generator", () => {
-    expect(FAMILY_WORLD_A_TEMPLATE_VERSION).toBe("v3");
+    expect(FAMILY_WORLD_A_TEMPLATE_VERSION).toBe("v4");
     expect(COMMANDS_SOURCE).toBe(`${JSON.stringify(familyWorldACommands(), null, 2)}\n`);
     expect(PROJECT_SOURCE).toBe(serializeLevelEditorProject(buildFamilyWorldA()));
   });
 
-  it("keeps v2 valid and differs from it only in the cast: the landed A1 and A2 models from parody-catalog-v10", () => {
+  it("sets the DESIGN-027 scare levels: A4 scary, A3 spooky, A1 and A2 none", () => {
+    expect(FAMILY_WORLD_A_CHAPTERS.map((chapter) => chapter.scare)).toEqual([0, 0, 1, 2]);
+    // Level 0 is the absent field, so the unscary chapters keep their bytes.
+    expect(chapters.map((chapter) => chapter.level.scare)).toEqual([undefined, undefined, 1, 2]);
+    expect(chapters.map((chapter) => "scare" in chapter.level)).toEqual([false, false, true, true]);
+    // The field is set by the shared editor command, once per scary chapter.
+    const scareCommands = familyWorldACommands().commands.filter((command) => command.type === "chapter.scare.set");
+    expect(scareCommands).toEqual([
+      { type: "chapter.scare.set", chapterId: "family-a3", scare: 1 },
+      { type: "chapter.scare.set", chapterId: "family-a4", scare: 2 },
+    ]);
+  });
+
+  it("keeps v3 valid and byte for byte, and differs from it only in the scare levels", () => {
+    expect(validateLevelEditorProject(v3Project)).toEqual([]);
+    expect(serializeLevelEditorProject(v3Project)).toBe(V3_PROJECT_SOURCE);
+    expect(v3Chapters.every((chapter) => !("scare" in chapter.level))).toBe(true);
+    // v3's command history is v4's without the scare commands.
+    const v4History = JSON.parse(COMMANDS_SOURCE) as { commands: Array<{ type: string }> };
+    expect(JSON.parse(V3_COMMANDS_SOURCE)).toEqual({
+      ...v4History,
+      commands: v4History.commands.filter((command) => command.type !== "chapter.scare.set"),
+    });
+    // Same catalog, cast, chapter ids, routes, dates, ages, copy and geometry:
+    // Update world carries every photo from v3 to v4 (DESIGN-024 D-11).
+    expect(project.catalogVersion).toBe(v3Project.catalogVersion);
+    for (const [index, chapter] of chapters.entries()) {
+      const { scare: _scare, ...level } = chapter.level;
+      expect({ ...chapter, level }).toEqual(v3Chapters[index]!);
+    }
+    expect({ ...project, chapters: [] }).toEqual({ ...v3Project, chapters: [] });
+  });
+
+  it("keeps v2 valid, and v3 differs from it only in the cast: the landed A1 and A2 models from parody-catalog-v10", () => {
     expect(validateLevelEditorProject(v2Project)).toEqual([]);
     expect(v2Project.catalogVersion).toBe("parody-catalog-v8");
-    expect(project.catalogVersion).toBe("parody-catalog-v10");
+    expect(v3Project.catalogVersion).toBe("parody-catalog-v10");
     // Same levels, chapter ids, routes, dates, ages and copy: Update world
     // carries every photo from v2 to v3 (DESIGN-024 D-11).
-    for (const [index, chapter] of chapters.entries()) {
+    for (const [index, chapter] of v3Chapters.entries()) {
       const before = v2Chapters[index]!;
       expect({ ...chapter, encounterSlots: null }).toEqual({ ...before, encounterSlots: null });
     }
     const catalog = (catalogEntryId: string) => ({ source: "catalog", catalogEntryId, catalogEntryVersion: "v001" });
-    const changed = chapters.map((chapter, index) =>
+    const changed = v3Chapters.map((chapter, index) =>
       Object.fromEntries(
         Object.entries(chapter.encounterSlots).filter(
           ([slot, assigned]) =>
@@ -165,11 +206,11 @@ describe("World A template (family-world-a@v3)", () => {
           candidate.eligibility.endDate,
         ]);
       }
-    expect(project.enemyCandidates).toEqual(
+    expect(v3Project.enemyCandidates).toEqual(
       v2Project.enemyCandidates.filter((entry) => !["gadget-helper", "mischief-kitten", "rival-mayor"].includes(entry.id)),
     );
     expect({ ...v2Project, catalogVersion: null, enemyCandidates: [], chapters: [] }).toEqual({
-      ...project,
+      ...v3Project,
       catalogVersion: null,
       enemyCandidates: [],
       chapters: [],
@@ -263,8 +304,10 @@ describe("World A template (family-world-a@v3)", () => {
       });
       expect(chapter.level.theme).toBe(spec.theme);
       expect(chapter.level.schemaVersion).toBe("authored-level-v4");
-      // Assembly never alters a chapter generator's level.
-      expect(chapter.level).toEqual(GENERATORS[index]!());
+      // Assembly alters a chapter generator's level only by its scare level.
+      const { scare, ...level } = chapter.level;
+      expect(level).toEqual(GENERATORS[index]!());
+      expect(scare ?? 0).toBe(FAMILY_WORLD_A_CHAPTERS[index]!.scare);
       expect(chapter.level.id).toBe(chapter.routeId);
       // The major memory closes the represented range on the recovered birthday.
       expect(chapter.previewMemories.find((memory) => memory.slotId === "major")!.date).toBe(

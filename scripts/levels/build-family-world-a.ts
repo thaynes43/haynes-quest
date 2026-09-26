@@ -1,5 +1,5 @@
 /**
- * Generates World A, "Clubhouse to Casino" (`family-world-a@v3`, PLAN-019).
+ * Generates World A, "Clubhouse to Casino" (`family-world-a@v4`, PLAN-019).
  *
  * Usage: tsx scripts/levels/build-family-world-a.ts [--write]
  *
@@ -31,8 +31,8 @@
  * (DESIGN-024 D-03) and replaces the preview memories with real photos.
  *
  * Without `--write` it prints the command batch. With it, it rewrites the
- * checked-in command history (`scripts/levels/family-world-a-v3.commands.json`)
- * and the template project (`src/shared/levels/family-world-a-v3.json`) that
+ * checked-in command history (`scripts/levels/family-world-a-v4.commands.json`)
+ * and the template project (`src/shared/levels/family-world-a-v4.json`) that
  * `pnpm levels:validate` replays byte-identically and the family template
  * registry serves.
  *
@@ -49,11 +49,16 @@
  * v3 is v2's levels exactly, with the cast switched to parody-catalog-v10:
  * the Runaway Gadget (A1 ordinaries), the Mischief Kitten (A2 ordinaries and
  * bonus) and Mayor Humdrum (A2 boss) are catalog entries with their Blender
- * models instead of placeholder candidates. Chapter ids, routes, dates and
- * age bands are unchanged, so **Update world** carries every photo over
+ * models instead of placeholder candidates. v3
+ * (`family-world-a-v3.json` and `family-world-a-v3.commands.json`) is frozen
+ * too. v4 is v3 exactly plus the DESIGN-027 scare levels: Rat Casino After
+ * Hours (A4) is scary (2: blackouts and jump scares) and Hero City (A3) is
+ * spooky (1); A1 and A2 stay at 0, with no field. Chapter ids, routes, dates
+ * and age bands are unchanged, so **Update world** carries every photo over
  * (DESIGN-024 D-11).
  */
 import { writeFile } from "node:fs/promises";
+import type { AuthoredScareLevel } from "../../src/shared/authored-level.js";
 import {
   applyLevelEditorCommands,
   createWorldEditorProject,
@@ -98,13 +103,13 @@ import {
 } from "./family/a4.js";
 
 export const FAMILY_WORLD_A_TEMPLATE_ID = "family-world-a";
-export const FAMILY_WORLD_A_TEMPLATE_VERSION = "v3";
+export const FAMILY_WORLD_A_TEMPLATE_VERSION = "v4";
 /** The name administrators see when they choose a template (WORLD-SPEC). */
 export const FAMILY_WORLD_A_NAME = "Clubhouse to Casino";
 export const FAMILY_WORLD_A_BIRTH_DATE = FAMILY_WORLD_A_FICTIONAL_BIRTH_DATE;
 /**
- * The parody catalog v3 pins: v10 registers the A1 and A2 models (v1 and v2
- * pin v8). It is pinned, not derived: a published template is frozen by
+ * The parody catalog v3 and v4 pin: v10 registers the A1 and A2 models (v1
+ * and v2 pin v8). It is pinned, not derived: a published template is frozen by
  * fingerprint, so a later catalog version belongs in a new template version.
  */
 export const FAMILY_WORLD_A_CATALOG_VERSION: LevelEditorCatalogVersion = "parody-catalog-v10";
@@ -116,6 +121,12 @@ export interface WorldAChapter {
   readonly level: () => WorldEditorLevelDocument;
   /** Cast commands, run after the level is in place. */
   readonly cast: (chapterId: string) => LevelEditorCommand[];
+  /**
+   * The chapter's DESIGN-027 scare level: 0 none, 1 spooky, 2 scary. Only a
+   * nonzero level emits `chapter.scare.set`, so an unscary chapter keeps the
+   * exact bytes it had in v3.
+   */
+  readonly scare: AuthoredScareLevel;
 }
 
 /**
@@ -128,6 +139,7 @@ export const FAMILY_WORLD_A_CHAPTERS: readonly WorldAChapter[] = Object.freeze([
     key: "a1",
     shell: familyA1ShellChapter("family-a1"),
     level: familyA1Level,
+    scare: 0,
     cast: (chapterId) => {
       const chapter = chapterCommands(chapterId);
       return [
@@ -159,6 +171,7 @@ export const FAMILY_WORLD_A_CHAPTERS: readonly WorldAChapter[] = Object.freeze([
       ],
     },
     level: familyA2Level,
+    scare: 0,
     cast: (chapterId) => {
       const chapter = chapterCommands(chapterId);
       // The Mischief Kitten and Mayor Humdrum (parody-catalog-v10); the
@@ -190,6 +203,8 @@ export const FAMILY_WORLD_A_CHAPTERS: readonly WorldAChapter[] = Object.freeze([
       ],
     },
     level: familyA3Level,
+    // Night city and a monster boss: spooky (DESIGN-027 D-01).
+    scare: 1,
     // Putty grunts (a) and lab robots (b, and the bonus prototype); the
     // Monster-inator boss.
     cast: familyA3CastCommands,
@@ -213,6 +228,8 @@ export const FAMILY_WORLD_A_CHAPTERS: readonly WorldAChapter[] = Object.freeze([
       ],
     },
     level: familyA4Level,
+    // The after-hours casino is the world's scary chapter (DESIGN-027 D-01).
+    scare: 2,
     cast: (chapterId) => {
       const chapter = chapterCommands(chapterId);
       return [
@@ -239,6 +256,7 @@ export function familyWorldACommands(): LevelEditorCommandBatch {
       ...FAMILY_WORLD_A_CHAPTERS.flatMap((chapter) => [
         chapterCommands(chapter.shell.chapterId).replaceLevel(chapter.level()),
         ...chapter.cast(chapter.shell.chapterId),
+        ...(chapter.scare === 0 ? [] : [chapterCommands(chapter.shell.chapterId).setScare(chapter.scare)]),
       ]),
     ],
   };
@@ -272,6 +290,15 @@ export const FAMILY_WORLD_A_COMMANDS_URL = new URL(
 );
 export const FAMILY_WORLD_A_PROJECT_URL = new URL(
   `../../src/shared/levels/family-world-a-${FAMILY_WORLD_A_TEMPLATE_VERSION}.json`,
+  import.meta.url,
+);
+/** The frozen v3 files; nothing regenerates them. */
+export const FAMILY_WORLD_A_V3_COMMANDS_URL = new URL(
+  "./family-world-a-v3.commands.json",
+  import.meta.url,
+);
+export const FAMILY_WORLD_A_V3_PROJECT_URL = new URL(
+  "../../src/shared/levels/family-world-a-v3.json",
   import.meta.url,
 );
 /** The frozen v2 files; nothing regenerates them. */

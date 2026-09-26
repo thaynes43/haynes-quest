@@ -1059,7 +1059,7 @@ Eight new cues for bounce pads, lifts, crumbling platforms, the double jump, gli
 
 ### Scary moments
 
-Six creepy cues for the [scary chapters](../designs/027-scare-pass.md): the jump-scare sting, a watcher's servo creak, the lights buzzing back after a blackout, a distant animatronic laugh, the Radio Showman's static and an after-hours casino hum. They are genuinely unsettling on purpose, with no screams of pain and no words. The game knows these files but does not play them yet. The casino hum is a seamless loop.
+Six creepy cues for the [scary chapters](../designs/027-scare-pass.md): the jump-scare sting, a watcher's servo creak, the lights buzzing back after a blackout, a distant animatronic laugh, the Radio Showman's static and an after-hours casino hum. They are genuinely unsettling on purpose, with no screams of pain and no words. They play in the family worlds' scary chapters: Hero City and Besties' Big Stage are spooky, and Rat Casino After Hours is scary. The casino hum is a seamless loop.
 
 <div class="catalog-grid" markdown="1">
 
@@ -1069,7 +1069,7 @@ Six creepy cues for the [scary chapters](../designs/027-scare-pass.md): the jump
 
 ### [It found you · v001](reviews/jump-scare-sting/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -1079,7 +1079,7 @@ Six creepy cues for the [scary chapters](../designs/027-scare-pass.md): the jump
 
 ### [Did it just move? · v001](reviews/servo-creak/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -1089,7 +1089,7 @@ Six creepy cues for the [scary chapters](../designs/027-scare-pass.md): the jump
 
 ### [Lights back on · v001](reviews/light-buzz/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -1099,7 +1099,7 @@ Six creepy cues for the [scary chapters](../designs/027-scare-pass.md): the jump
 
 ### [Laughter down the hall · v001](reviews/distant-laugh/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -1109,7 +1109,7 @@ Six creepy cues for the [scary chapters](../designs/027-scare-pass.md): the jump
 
 ### [Between stations · v001](reviews/radio-static/v001.md#audition)
 
-<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · not yet played in the game</span>
+<span class="catalog-state">Sound cue · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 
@@ -1119,7 +1119,7 @@ Six creepy cues for the [scary chapters](../designs/027-scare-pass.md): the jump
 
 ### [After hours · v001](reviews/casino-hum/v001.md#audition)
 
-<span class="catalog-state">Sound loop · v001 · Awaiting Tom's review · not yet played in the game</span>
+<span class="catalog-state">Sound loop · v001 · Awaiting Tom's review · used in the family release</span>
 
 </div>
 

@@ -28,15 +28,38 @@
  * the first strike), mid-climb, the boss arena (beside the boss) and finish.
  * `QUEST_E2E_UNTIL=boss-arena` bounds a run to a cast check: each chapter
  * stops once the boss-arena screenshot is taken, and a stop there counts as a
- * pass.
+ * pass. `QUEST_E2E_UNTIL=spawn` bounds it to a load check: the chapter stops
+ * after its spawn screenshots and `QUEST_E2E_SPAWN_IDLE` seconds standing.
+ *
+ * Scary moments (DESIGN-027). The harness asserts that each chapter plays at
+ * its declared `scare` level (none with `QUEST_E2E_SCARY_MOMENTS=off`, which
+ * turns the per-device switch off before the page loads) and records the
+ * scare counters and events. On a chapter at level 1 or 2 it also saves
+ * `scare-01-dark-room` (at spawn), `scare-02-blackout` (inside the first
+ * blackout), `scare-03-watcher-moved` (the first watcher seen again at least
+ * 0.3 m from where it spawned) and `scare-04-jump-scare-lunge` (mid-lunge),
+ * each with the mean brightness of its central 80%.
+ * `QUEST_E2E_JUMP_SCARE=<slot>` forces a jump scare: beside that encounter
+ * the player stands still until its attacks knock them out, and at level 2
+ * the knockout must become a lunge. `QUEST_E2E_WATCHER_PROBE=1` runs one
+ * watcher check on the route: after the first leg that ends on a fixed deck
+ * 7 to 18 m from an idle ordinary, it drags the camera (mouse on open canvas)
+ * to face that ordinary (`scare-03a-watcher-before`), looks away until it can
+ * change, looks back, and saves `scare-03-watcher-moved` once it creaks. The
+ * camera then returns exactly to its starting angle, because the stick is
+ * camera-relative. `QUEST_E2E_UNTIL=watcher-probe` stops the chapter there.
  *
  *   QUEST_E2E_URL        origin of an ephemeral playtest build (required)
- *   QUEST_E2E_PROJECT    template project (default src/shared/levels/family-world-a-v3.json)
+ *   QUEST_E2E_PROJECT    template project (default src/shared/levels/family-world-a-v4.json)
  *   QUEST_E2E_CHAPTERS   comma-separated chapter ids (default: every chapter)
  *   QUEST_E2E_RUN_LABEL  report folder under test-results/family-world (default candidate)
  *   QUEST_E2E_SHOTS      screenshot folder (default the report folder)
  *   QUEST_E2E_SCALE      device scale while playing (default 0.25; screenshots use 1)
- *   QUEST_E2E_UNTIL      complete (default) or boss-arena
+ *   QUEST_E2E_UNTIL      complete (default), boss-arena, spawn or watcher-probe
+ *   QUEST_E2E_SPAWN_IDLE seconds of page time to stand at spawn for QUEST_E2E_UNTIL=spawn (default 20)
+ *   QUEST_E2E_SCARY_MOMENTS on (default) or off
+ *   QUEST_E2E_JUMP_SCARE encounter slot to be knocked out by (default none)
+ *   QUEST_E2E_WATCHER_PROBE 1 to run the route watcher check on a scary chapter
  *
  *   pnpm build && QUEST_EPHEMERAL_PLAYTEST=true QUEST_FIXTURE_MODE=true \
  *     NODE_ENV=development BETTER_AUTH_SECRET=... QUEST_APP_ORIGIN=http://127.0.0.1:3000 \
@@ -47,6 +70,7 @@ import assert from "node:assert/strict";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium, type CDPSession, type Page } from "playwright";
+import sharp from "sharp";
 import { abilitiesForAge, growthMovesFrom, type AbilitySet } from "../../src/shared/abilities";
 import type {
   AuthoredAnchor,
@@ -79,16 +103,31 @@ import { planPatientLeg } from "../game/family-kid-lib";
 const url = process.env.QUEST_E2E_URL;
 assert.ok(url, "QUEST_E2E_URL is required; never test a stale implicit server");
 const runLabel = process.env.QUEST_E2E_RUN_LABEL ?? "candidate";
-const projectPath = resolve(process.env.QUEST_E2E_PROJECT ?? "src/shared/levels/family-world-a-v3.json");
+const projectPath = resolve(process.env.QUEST_E2E_PROJECT ?? "src/shared/levels/family-world-a-v4.json");
 const reportDirectory = resolve(`test-results/family-world-lockstep/${runLabel}`);
 const shotDirectory = resolve(process.env.QUEST_E2E_SHOTS ?? reportDirectory);
 const playScale = Number(process.env.QUEST_E2E_SCALE ?? 0.25);
 assert.ok(playScale >= 0.1 && playScale <= 1, "QUEST_E2E_SCALE must be 0.1 to 1");
 const until = process.env.QUEST_E2E_UNTIL ?? "complete";
-assert.ok(until === "complete" || until === "boss-arena", "QUEST_E2E_UNTIL must be complete or boss-arena");
+assert.ok(
+  ["complete", "boss-arena", "spawn", "watcher-probe"].includes(until),
+  "QUEST_E2E_UNTIL must be complete, boss-arena, spawn or watcher-probe",
+);
+const spawnIdleSeconds = Number(process.env.QUEST_E2E_SPAWN_IDLE ?? 20);
+assert.ok(spawnIdleSeconds >= 0 && spawnIdleSeconds <= 300, "QUEST_E2E_SPAWN_IDLE must be 0 to 300");
+const scaryMoments = process.env.QUEST_E2E_SCARY_MOMENTS ?? "on";
+assert.ok(scaryMoments === "on" || scaryMoments === "off", "QUEST_E2E_SCARY_MOMENTS must be on or off");
+const jumpScareSlot = process.env.QUEST_E2E_JUMP_SCARE ?? "";
+const watcherProbe = process.env.QUEST_E2E_WATCHER_PROBE === "1" || until === "watcher-probe";
+/** `Scene.adjustCamera`: a mouse drag turns the camera yaw by -0.006 rad per CSS pixel. */
+const CAMERA_YAW_PER_PIXEL = 0.006;
 
-/** Thrown after the boss-arena screenshot when the run is bounded there. */
-class StopAtBossArena extends Error {}
+/** Thrown where a bounded run stops on purpose (`QUEST_E2E_UNTIL`). */
+class StopAt extends Error {
+  constructor(readonly at: string) {
+    super(`stopped at ${at}`);
+  }
+}
 await mkdir(reportDirectory, { recursive: true });
 await mkdir(shotDirectory, { recursive: true });
 
@@ -111,6 +150,21 @@ const STICK_REACH = 90;
 
 type Point = { x: number; z: number };
 
+/** DESIGN-027 runtime state, flattened from `GameInspection.scare`. */
+interface LiveScare {
+  level: number;
+  flicker: number;
+  blackout: number;
+  blackoutElapsed: number | null;
+  lunge: { encounterId: string; progress: number } | null;
+  blackouts: number;
+  flickers: number;
+  watcherMoves: number;
+  watcherCreaks: number;
+  lastWatcherCreakIds: string[];
+  jumpScares: number;
+}
+
 interface LiveEncounter {
   id: string;
   role: string;
@@ -120,6 +174,11 @@ interface LiveEncounter {
   x: number;
   y: number;
   z: number;
+  /** Heading and watcher idle pose from the enemy frames, where the game reports them. */
+  facing: number | null;
+  pose: number | null;
+  /** The local enemy phase (idle, chase, windup …), where the game reports it. */
+  phase: string | null;
 }
 
 interface Live {
@@ -144,6 +203,8 @@ interface Live {
   encounters: LiveEncounter[];
   memories: Array<{ id: string; state: string; x: number; y: number; z: number }>;
   pickups: Array<{ id: string; kind: string; collected: boolean; x: number; y: number; z: number }>;
+  /** Null on a chapter playing at scare level 0. */
+  scare: LiveScare | null;
 }
 
 /** The inspection fields this harness reads (src/game/types.ts GameInspection). */
@@ -164,13 +225,25 @@ interface PageInspection {
     mediaFailed: number;
   };
   input: Live["input"];
+  enemies?: Array<{ id: string; facing: number; pose?: number }>;
   level: {
     authored?: { id: string };
-    encounterPositions: LiveEncounter[];
+    encounterPositions: Array<Omit<LiveEncounter, "facing" | "pose" | "phase"> & { localPhase?: string }>;
     memoryPositions: Live["memories"];
     pickupPositions: Live["pickups"];
   };
   obby?: { timeSeconds: number; supportId: string | null; recoveries: number };
+  scare?: {
+    level: number;
+    lighting: { flicker: number; blackout: number; blackoutElapsed: number | null };
+    lunge: { encounterId: string; progress: number } | null;
+    blackouts: number;
+    flickers: number;
+    watcherMoves: number;
+    watcherCreaks?: number;
+    lastWatcherCreakIds?: string[];
+    jumpScares: number;
+  };
 }
 
 /** The parts of a save view the report records. */
@@ -217,7 +290,8 @@ function inspectInPage(draw: boolean): Live | null {
       if (candidate && typeof candidate.inspect === "function") inspection = candidate.inspect() as PageInspection;
     }
   if (!inspection) return null;
-  const { status, level, obby } = inspection;
+  const { status, level, obby, scare } = inspection;
+  const frames = inspection.enemies ?? [];
   return {
     position: status.position,
     grounded: status.grounded,
@@ -246,6 +320,9 @@ function inspectInPage(draw: boolean): Live | null {
       x: entry.x,
       y: entry.y,
       z: entry.z,
+      facing: frames.find((frame) => frame.id === entry.id)?.facing ?? null,
+      pose: frames.find((frame) => frame.id === entry.id)?.pose ?? null,
+      phase: entry.localPhase ?? null,
     })),
     memories: level.memoryPositions.map((entry) => ({
       id: entry.id,
@@ -262,6 +339,21 @@ function inspectInPage(draw: boolean): Live | null {
       y: entry.y,
       z: entry.z,
     })),
+    scare: scare
+      ? {
+          level: scare.level,
+          flicker: scare.lighting.flicker,
+          blackout: scare.lighting.blackout,
+          blackoutElapsed: scare.lighting.blackoutElapsed,
+          lunge: scare.lunge ? { encounterId: scare.lunge.encounterId, progress: scare.lunge.progress } : null,
+          blackouts: scare.blackouts,
+          flickers: scare.flickers,
+          watcherMoves: scare.watcherMoves,
+          watcherCreaks: scare.watcherCreaks ?? 0,
+          lastWatcherCreakIds: scare.lastWatcherCreakIds ?? [],
+          jumpScares: scare.jumpScares,
+        }
+      : null,
   };
 }
 
@@ -286,6 +378,12 @@ class LockstepGame {
   private mismatches = 0;
   private jiggle = 0;
   private readonly held = new Set<string>();
+  /**
+   * Runs after every frame the pilot steps (never inside itself, so a
+   * screenshot it takes does not re-enter it).
+   */
+  onFrame: ((live: Live) => Promise<void>) | null = null;
+  private inFrameHook = false;
 
   constructor(
     readonly page: Page,
@@ -336,7 +434,15 @@ class LockstepGame {
     )
       this.mismatches += 1;
     else this.mismatches = 0;
-    return live;
+    if (this.onFrame && !this.inFrameHook) {
+      this.inFrameHook = true;
+      try {
+        await this.onFrame(live);
+      } finally {
+        this.inFrameHook = false;
+      }
+    }
+    return this.live;
   }
 
   private async grabStick(): Promise<void> {
@@ -368,6 +474,32 @@ class LockstepGame {
     this.jiggle = resend ? (this.jiggle === 0 ? 0.5 : 0) : 0;
     await this.page.mouse.move(target.x + this.jiggle, target.z);
     this.stickTarget = target;
+  }
+
+  /** Lets go of the movement stick; the next `move` grabs it again. */
+  async releaseStick(): Promise<void> {
+    await this.page.mouse.up().catch(() => undefined);
+    this.stickCenter = null;
+    this.stickTarget = null;
+    this.intended = { moveX: 0, moveY: 0 };
+  }
+
+  /**
+   * Turns the camera by dragging the mouse `dx` CSS pixels across open canvas
+   * above the player, then renders a frame. Whole-pixel moves add up exactly,
+   * so an equal and opposite drag restores the angle.
+   */
+  async dragCamera(dx: number): Promise<void> {
+    if (dx === 0) return;
+    await this.releaseStick();
+    const start = { x: Math.round(VIEWPORT.width / 2), y: Math.round(VIEWPORT.height * 0.35) };
+    await this.page.mouse.move(start.x, start.y);
+    await this.page.mouse.down();
+    const steps = Math.max(1, Math.ceil(Math.abs(dx) / 40));
+    for (let index = 1; index <= steps; index += 1)
+      await this.page.mouse.move(start.x + Math.round((dx * index) / steps), start.y);
+    await this.page.mouse.up();
+    await this.step(FINE_MS);
   }
 
   async press(key: string): Promise<void> {
@@ -442,6 +574,19 @@ interface ChapterReport {
   consoleErrors: string[];
   responseErrors: string[];
   media: Record<string, number>;
+  /** DESIGN-027: the declared and live scare levels, counters, events and scare screenshots. */
+  scare: {
+    declared: number;
+    expected: number;
+    live: number;
+    blackouts: number;
+    flickers: number;
+    watcherMoves: number;
+    watcherCreaks: number;
+    jumpScares: number;
+    events: Array<{ event: string; time: number } & Record<string, unknown>>;
+    shots: Record<string, { file: string; luma: number; time: number }>;
+  };
   wallSeconds: number;
   failure: string | null;
 }
@@ -451,6 +596,8 @@ class ChapterPilot {
   private readonly course: ResolvedAuthoredLevel["course"];
   private readonly platforms: Map<string, ObbyPlatform>;
   private readonly mainIndex: Map<string, number>;
+  /** Runs after each leg `reach` completes, standing on its landing. */
+  afterLeg: (() => Promise<void>) | null = null;
 
   constructor(
     private readonly game: LockstepGame,
@@ -740,11 +887,13 @@ class ChapterPilot {
       if (supportId === platformId) return;
       // Legs run back to back: a pad's launch flows straight into its landing.
       let crossed = true;
-      for (const connection of this.routeBetween(supportId, platformId))
+      for (const connection of this.routeBetween(supportId, platformId)) {
         if (!(await this.cross(connection))) {
           crossed = false;
           break;
         }
+        await this.afterLeg?.();
+      }
       if (!crossed) {
         failures += 1;
         assert.ok(failures <= 12, `could not reach ${platformId}: stuck near ${this.live.supportId}`);
@@ -789,7 +938,12 @@ class ChapterPilot {
    * Approaches and defeats one encounter with the attack and secondary
    * controls. `onReached` runs once, beside the enemy, before the first strike.
    */
-  async fight(slot: string, anchor: AuthoredEncounterAnchor, onReached: (role: string) => Promise<void>): Promise<void> {
+  async fight(
+    slot: string,
+    anchor: AuthoredEncounterAnchor,
+    onReached: (role: string) => Promise<void>,
+    onKnockedOut?: () => void,
+  ): Promise<void> {
     const role = slot === "boss" ? "boss" : "ordinary";
     const encounter = [...this.live.encounters]
       .filter((entry) => entry.role === role)
@@ -797,6 +951,11 @@ class ChapterPilot {
     const current = () => this.live.encounters.find((entry) => entry.id === encounter.id)!;
     const record = { slot, encounterId: encounter.id, role, attacks: 0, bashes: 0, defeats: 0 };
     let shotTaken = false;
+    // A forced knockout (QUEST_E2E_JUMP_SCARE) stands still beside the enemy
+    // until its attacks take the player to 0 HP, then fights normally.
+    let knockoutPending = Boolean(onKnockedOut);
+    let knockoutStarted: number | null = null;
+    let knockoutLogged = Number.NEGATIVE_INFINITY;
     const deadline = this.live.time + 240;
     while (current().hp > 0) {
       assert.ok(this.live.time < deadline, `${slot}: combat timed out`);
@@ -804,6 +963,10 @@ class ChapterPilot {
         record.defeats += 1;
         assert.ok(record.defeats <= 6, `${slot}: too many defeats`);
         this.mark("fight:defeated", { slot, defeats: record.defeats });
+        if (knockoutPending) {
+          knockoutPending = false;
+          onKnockedOut!();
+        }
         await this.settle(60);
         continue;
       }
@@ -830,6 +993,41 @@ class ChapterPilot {
       if (!shotTaken) {
         shotTaken = true;
         await onReached(role);
+      }
+      if (knockoutPending) {
+        if (knockoutStarted === null || this.live.time - knockoutLogged >= 3) {
+          knockoutLogged = this.live.time;
+          this.mark("fight:knockout-wait", {
+            slot,
+            hp: this.live.playerHp,
+            enemyPhase: current().phase,
+            distance: Math.round(planar(current(), this.live.position) * 100) / 100,
+          });
+        }
+        knockoutStarted ??= this.live.time;
+        assert.ok(this.live.time - knockoutStarted < 90, `${slot}: the forced knockout never landed`);
+        // An idle enemy cannot reach a player outside its arena: step up to
+        // it until it wakes, then stand still and take the hits.
+        const enemy = current();
+        const gap = planar(enemy, this.live.position);
+        if ((enemy.phase ?? "idle") === "idle" && gap > 1.1) {
+          const deck = sampledPlatform(this.course, anchor.platformId, this.live.time);
+          const margin = 0.45;
+          const target = {
+            x: Math.max(deck.center.x - deck.size.x / 2 + margin, Math.min(deck.center.x + deck.size.x / 2 - margin, enemy.x)),
+            z: Math.max(deck.center.z - deck.size.z / 2 + margin, Math.min(deck.center.z + deck.size.z / 2 - margin, enemy.z)),
+          };
+          const distance = planar(this.live.position, target);
+          if (distance > 0.15)
+            await this.game.move((target.x - this.live.position.x) / distance, -(target.z - this.live.position.z) / distance);
+          else await this.game.move(0, 0);
+          await this.game.step(FINE_MS);
+          continue;
+        }
+        await this.game.move(0, 0);
+        // Standing still needs no fine frames; the lunge still spans many.
+        await this.game.step(CRUISE_MS);
+        continue;
       }
       if (this.live.attackReady && !this.live.requestBusy) {
         await this.game.press("f");
@@ -877,6 +1075,18 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     consoleErrors: [],
     responseErrors: [],
     media: {},
+    scare: {
+      declared: document.scare ?? 0,
+      expected: scaryMoments === "off" ? 0 : (document.scare ?? 0),
+      live: 0,
+      blackouts: 0,
+      flickers: 0,
+      watcherMoves: 0,
+      watcherCreaks: 0,
+      jumpScares: 0,
+      events: [],
+      shots: {},
+    },
     wallSeconds: 0,
     failure: null,
   };
@@ -906,6 +1116,14 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       const save = path === "/api/editor/playtests" ? payload?.save : payload;
       if (save?.id) latestSave = save;
     });
+    if (scaryMoments === "off")
+      await context.addInitScript(() => {
+        try {
+          localStorage.setItem("quest-scary-moments-v1", "off");
+        } catch {
+          /* Storage is optional; the default stays on. */
+        }
+      });
     await page.clock.install();
     await page.route("**/api/editor/playtests", async (route) => {
       if (route.request().method() !== "POST") return route.continue();
@@ -933,6 +1151,9 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     assert.deepEqual(opening.growthMoves, [...abilitiesForAge(startAge)], "the chapter starts with its age's moves");
     assert.equal(opening.ageYears, startAge);
     assert.equal(opening.mediaFailed, 0, "chapter media failed to load");
+    // The playtest froze the chapter's scare level, and the switch caps it.
+    report.scare.live = opening.scare?.level ?? 0;
+    assert.equal(report.scare.live, report.scare.expected, "the chapter plays at its declared scare level");
     const openingSave = latestSave as SaveLike | null;
     report.identities = (openingSave?.adventure?.activeLevel?.encounters ?? []).map(
       (entry) => ({
@@ -949,7 +1170,188 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     };
     await shot("01-spawn");
 
+    // DESIGN-027 evidence: counters, events and the four scare screenshots.
+    // Each encounter spawns on its anchor; a watcher never strays 1.5 m from it.
+    const encounterAnchors = Object.values(document.anchors.encounters)
+      .filter((anchor): anchor is AuthoredEncounterAnchor => Boolean(anchor))
+      .map((anchor) => anchor.position);
+    const spawns = new Map(
+      opening.encounters.map((entry) => {
+        const anchor = [...encounterAnchors].sort((a, b) => planar(a, entry) - planar(b, entry))[0]!;
+        return [entry.id, { x: anchor.x, z: anchor.z }];
+      }),
+    );
+    const scare = report.scare;
+    const scareEvent = (event: string, details: Record<string, unknown> = {}) => {
+      const entry = { event, time: Math.round(game!.live.time * 100) / 100, ...details };
+      scare.events.push(entry);
+      mark(`scare:${event}`, details);
+    };
+    const scareShot = async (name: string) => {
+      const file = `${shotDirectory}/${chapter.chapterId}-scare-${name}.png`;
+      const time = Math.round(game!.live.time * 100) / 100;
+      await game!.screenshot(file);
+      report.screenshots.push(file);
+      const { width = VIEWPORT.width, height = VIEWPORT.height } = await sharp(file).metadata();
+      const stats = await sharp(file)
+        .extract({
+          left: Math.round(width * 0.1),
+          top: Math.round(height * 0.1),
+          width: Math.round(width * 0.8),
+          height: Math.round(height * 0.8),
+        })
+        .greyscale()
+        .stats();
+      const luma = Math.round(stats.channels[0]!.mean * 10) / 10;
+      scare.shots[name] = { file, luma, time };
+      mark("screenshot", { file, luma });
+    };
+    /**
+     * The spawn watcher probe (D-04): face a sleeping ordinary, look away
+     * until it can change, look back, and photograph it once it creaks.
+     */
+    const probeWatcher = async () => {
+      const idler = new ChapterPilot(game!, level, chapter, report, mark);
+      const player = { ...game!.live.position };
+      const [watcher] = game!.live.encounters
+        .filter((entry) => entry.role === "ordinary" && entry.hp > 0 && (entry.phase ?? "idle") === "idle")
+        .map((entry) => ({ entry, distance: planar(entry, player) }))
+        .filter((entry) => entry.distance >= 7 && entry.distance <= 18)
+        .sort((a, b) => a.distance - b.distance);
+      if (!watcher) return false;
+      scareEvent("watcher-probe", { start: watcher.entry.id, supportId: game!.live.supportId, distance: Math.round(watcher.distance * 100) / 100 });
+      const id = watcher.entry.id;
+      let draggedPixels = 0;
+      const turnTo = async (yaw: number) => {
+        const current = -CAMERA_YAW_PER_PIXEL * draggedPixels;
+        const delta = Math.atan2(Math.sin(yaw - current), Math.cos(yaw - current));
+        const pixels = Math.round(-delta / CAMERA_YAW_PER_PIXEL);
+        await game!.dragCamera(pixels);
+        draggedPixels += pixels;
+        // The camera eases toward its new angle; let it settle.
+        await idler.idle(0.8);
+      };
+      const find = () => game!.live.encounters.find((entry) => entry.id === id)!;
+      const face = Math.atan2(-(watcher.entry.x - player.x), -(watcher.entry.z - player.z));
+      try {
+        await turnTo(face);
+        const before = { ...find() };
+        await scareShot("03a-watcher-before");
+        Object.assign(scare.shots["03a-watcher-before"]!, { watcher: id, distance: Math.round(watcher.distance * 100) / 100 });
+        for (let attempt = 1; attempt <= 6 && !scare.shots["03-watcher-moved"]; attempt += 1) {
+          const eventsBefore = scare.events.length;
+          await turnTo(face + Math.PI);
+          // Longer than the longest unseen spell before a change (3.5 s).
+          await idler.idle(4.5);
+          await turnTo(face);
+          const creaked = scare.events
+            .slice(eventsBefore)
+            .some((entry) => entry.event === "watcher-creak" && entry.id === id);
+          const now = find();
+          const change = {
+            watcher: id,
+            attempt,
+            shift: Math.round(planar(now, before) * 100) / 100,
+            turned: now.facing !== null && before.facing !== null ? Math.round(Math.abs(now.facing - before.facing) * 100) / 100 : null,
+            pose: [before.pose, now.pose],
+            distance: Math.round(planar(now, game!.live.position) * 100) / 100,
+          };
+          scareEvent("watcher-probe", { creaked, ...change });
+          // Prefer a shuffle; take a turn or pose change on the last try.
+          if (creaked && (change.shift >= 0.3 || attempt === 6)) {
+            await scareShot("03-watcher-moved");
+            Object.assign(scare.shots["03-watcher-moved"]!, change);
+          }
+        }
+      } finally {
+        // Back to the starting angle exactly: the stick is camera-relative.
+        await game!.dragCamera(-draggedPixels);
+        draggedPixels = 0;
+        await idler.idle(0.8);
+      }
+      return true;
+    };
+    const counted = { blackouts: 0, watcherMoves: 0, watcherCreaks: 0, jumpScares: 0 };
+    let lastLive: Live = opening;
+    /** While the spawn watcher probe runs, it takes the watcher screenshots itself. */
+    let probing = false;
+    game.onFrame = async (live) => {
+      const state = live.scare;
+      if (!state) return;
+      Object.assign(scare, {
+        blackouts: state.blackouts,
+        flickers: state.flickers,
+        watcherMoves: state.watcherMoves,
+        watcherCreaks: state.watcherCreaks,
+        jumpScares: state.jumpScares,
+      });
+      if (state.blackouts > counted.blackouts) {
+        counted.blackouts = state.blackouts;
+        scareEvent("blackout", {
+          count: state.blackouts,
+          supportId: live.supportId,
+          grounded: live.grounded,
+          wasGrounded: lastLive.grounded,
+        });
+      }
+      if (state.watcherMoves > counted.watcherMoves) {
+        counted.watcherMoves = state.watcherMoves;
+        const shifted = live.encounters
+          .map((entry) => {
+            const before = lastLive.encounters.find((item) => item.id === entry.id);
+            return { id: entry.id, step: before ? planar(entry, before) : 0 };
+          })
+          .filter((entry) => entry.step > 0.01)
+          .map((entry) => ({ id: entry.id, step: Math.round(entry.step * 100) / 100 }));
+        scareEvent("watcher-move", { count: state.watcherMoves, shifted });
+      }
+      if (state.jumpScares > counted.jumpScares) {
+        counted.jumpScares = state.jumpScares;
+        scareEvent("jump-scare", { count: state.jumpScares, encounterId: state.lunge?.encounterId ?? null });
+      }
+      lastLive = live;
+      if (!scare.shots["02-blackout"] && state.blackout >= 0.95 && (state.blackoutElapsed ?? 9) <= 0.8)
+        await scareShot("02-blackout");
+      if (state.watcherCreaks > counted.watcherCreaks) {
+        counted.watcherCreaks = state.watcherCreaks;
+        for (const id of state.lastWatcherCreakIds) {
+          const now = live.encounters.find((entry) => entry.id === id);
+          const spawn = spawns.get(id);
+          const shift = now && spawn ? Math.round(planar(now, spawn) * 100) / 100 : null;
+          const distance = now ? Math.round(planar(now, live.position) * 100) / 100 : null;
+          scareEvent("watcher-creak", { count: state.watcherCreaks, id, shiftFromSpawn: shift, distance });
+          // A creak counts only near enough to see: the frustum test ignores walls.
+          if (!probing && !scare.shots["03-watcher-moved"] && shift !== null && shift >= 0.3 && distance !== null && distance <= 18) {
+            await scareShot("03-watcher-moved");
+            Object.assign(scare.shots["03-watcher-moved"]!, { watcher: id, shiftFromSpawn: shift, distance });
+          }
+        }
+      }
+      if (!scare.shots["04-jump-scare-lunge"] && state.lunge && state.lunge.progress >= 0.25) {
+        await scareShot("04-jump-scare-lunge");
+        Object.assign(scare.shots["04-jump-scare-lunge"]!, { encounterId: state.lunge.encounterId });
+      }
+    };
+    if (report.scare.live > 0) await scareShot("01-dark-room");
+    else if (scaryMoments === "off" && report.scare.declared > 0) await scareShot("01-switch-off");
+    if (until === "spawn") {
+      await new ChapterPilot(game, level, chapter, report, mark).idle(spawnIdleSeconds);
+      throw new StopAt("spawn");
+    }
+
     const pilot = new ChapterPilot(game, level, chapter, report, mark);
+    let knockoutForced = false;
+    let probeDone = !(watcherProbe && report.scare.live > 0);
+    pilot.afterLeg = async () => {
+      if (probeDone || !game!.live.grounded || !staticDeck(game!.live.supportId ?? "")) return;
+      probing = true;
+      try {
+        probeDone = await probeWatcher();
+      } finally {
+        probing = false;
+      }
+      if (probeDone && until === "watcher-probe") throw new StopAt("watcher-probe");
+    };
     let firstOrdinaryShot = false;
     const anchors = document.anchors;
     const mainPath = document.mainPath;
@@ -981,16 +1383,34 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
         if (anchors.memories[slot].platformId === platformId) await pilot.collectMemory(slot, anchors.memories[slot]);
       for (const slot of ENCOUNTER_SLOTS) {
         const anchor = anchors.encounters[slot];
-        if (anchor.platformId === platformId)
-          await pilot.fight(slot, anchor, async (role) => {
-            if (role === "boss") {
-              await shot("03-boss-arena");
-              if (until === "boss-arena") throw new StopAtBossArena();
-            } else if (!firstOrdinaryShot) {
-              firstOrdinaryShot = true;
-              await shot("02-first-ordinary-fight");
-            }
-          });
+        if (anchor.platformId === platformId) {
+          const jumpsBefore = game.live.scare?.jumpScares ?? 0;
+          await pilot.fight(
+            slot,
+            anchor,
+            async (role) => {
+              if (role === "boss") {
+                await shot("03-boss-arena");
+                if (until === "boss-arena") throw new StopAt("boss-arena");
+              } else if (!firstOrdinaryShot) {
+                firstOrdinaryShot = true;
+                await shot("02-first-ordinary-fight");
+              }
+            },
+            slot === jumpScareSlot && !knockoutForced
+              ? () => {
+                  knockoutForced = true;
+                  scareEvent("forced-knockout", { slot });
+                }
+              : undefined,
+          );
+          // At level 2 the forced knockout had to become a lunge (D-05).
+          if (slot === jumpScareSlot && report.scare.live === 2)
+            assert.ok(
+              (game.live.scare?.jumpScares ?? 0) > jumpsBefore,
+              `${slot}: the forced knockout did not become a jump scare`,
+            );
+        }
       }
       if (index === mainPath.length - 1) {
         await pilot.collectMemory("major", anchors.memories.major);
@@ -1019,8 +1439,8 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     await shot("04-finish");
     assert.ok(report.completed, `${chapter.chapterId} did not complete: ${JSON.stringify(report.completion)}`);
   } catch (error) {
-    if (error instanceof StopAtBossArena) {
-      report.stoppedAt = "boss-arena";
+    if (error instanceof StopAt) {
+      report.stoppedAt = error.at;
       mark("stopped", { at: report.stoppedAt, fights: report.fights.length });
       return report;
     }
@@ -1047,7 +1467,9 @@ for (const chapter of selected) {
   console.log(
     `[${chapter.chapterId}] ${report.completed ? "completed" : report.stoppedAt ? `stopped at ${report.stoppedAt}` : "FAILED"}: ${report.fights.length} fights, ` +
       `${report.memories.length} memories, ${report.legs.length} legs, ${report.recoveries} recoveries, ` +
-      `${report.frames?.frames ?? 0} frames, ${report.wallSeconds}s wall`,
+      `${report.frames?.frames ?? 0} frames, ${report.wallSeconds}s wall; scare ${report.scare.live} ` +
+      `(${report.scare.blackouts} blackouts, ${report.scare.flickers} flickers, ${report.scare.watcherMoves} watcher moves, ` +
+      `${report.scare.watcherCreaks} creaks, ${report.scare.jumpScares} jump scares)`,
   );
 }
 const failed = reports.filter(

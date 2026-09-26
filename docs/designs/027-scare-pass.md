@@ -74,11 +74,11 @@ The v001 candidates are in the [catalog](../assets/catalog.md#sound-auditions), 
 
 No gore, dismemberment or blood.
 
-**D-08 Versioning.** Scare levels are template content: World A and World B get new template versions. Existing publications and saves keep their frozen plans, and Update world carries photos over.
+**D-08 Versioning.** Scare levels are template content: World A and World B get new template versions, `family-world-a@v4` and `family-world-b@v4` ([Template versions](#template-versions)). Existing publications and saves keep their frozen plans, and Update world carries photos over.
 
 ## Runtime
 
-The engine implements D-01 to D-06; template versions (D-08) and new art (D-07) follow separately.
+The engine implements D-01 to D-06, and the template versions below implement D-08. New art (D-07) follows separately.
 
 - **Where it lives.** `src/game/scare.ts` holds the timing and placement rules, `src/game/scare-scene.ts` the lighting, eyes and key light, and `createGame` the clocks. The switch is `src/client/scary-moments.ts` (`localStorage` key `quest-scary-moments-v1`, read once per game) with its toggle in the family home and on the fixture playtest's start screen.
 - **Level 0 builds nothing.** A chapter without `scare`, with `scare: 0`, or with the switch off creates no scare objects, lights or events. Tests pin the Rat Casino and theme scene fingerprints and a scripted runtime run to their values from before this design.
@@ -92,7 +92,29 @@ The engine implements D-01 to D-06; template versions (D-08) and new art (D-07) 
 - **Watchers.** A watcher is an ordinary enemy that is idle and has not chased the player since it spawned. From level 1 it holds its facing instead of tracking the player. After 1.2–3.5 s out of view it changes once per unseen spell: it turns to the player, rolls into another idle pose, or shuffles. A shuffle ends within 1.5 m of the watcher's spawn, inside its arena, at least 1.6 m from the player, and off every connection strip widened by the 0.42 m body radius. When the watcher is seen again, its creak plays once.
 - **Jump scares.** A take-hit that the server answers with 0 HP and the fallen phase within 3 s becomes a lunge at level 2. A key light and the eyes frame the face. The game screen holds the checkpoint return, and keeps the sound unpaused, until the lunge ends.
 - **Sound.** [DESIGN-008](008-audio-pipeline.md#scary-moments-wiring) lists the six events and their cues. The radio showman's static and the ambience also need level 1 or 2.
-- **Checked so far.** Unit and jsdom tests cover every Validation unit case below. A headless Chromium smoke run of a draft A4 at level 2, standing at the start, reached a blackout after about 190 s of wall time (software rendering runs the scare clock slowly): the practicals went dark, the six eyes and the tokens' golden glow stayed lit, and the page logged no errors. With the switch off, the same draft built no scare runtime. The full browser Validation waits for the D-08 template versions, which first put A4 at level 2.
+- **Checked so far.** Unit and jsdom tests cover every Validation unit case below. A headless Chromium smoke run of a draft A4 at level 2, standing at the start, reached a blackout after about 190 s of wall time (software rendering runs the scare clock slowly): the practicals went dark, the six eyes and the tokens' golden glow stayed lit, and the page logged no errors. With the switch off, the same draft built no scare runtime. The browser Validation on the D-08 templates is under [Template versions](#template-versions).
+
+## Template versions
+
+`family-world-a@v4` and `family-world-b@v4` are v3 exactly plus the initial assignment in D-01. Each world generator declares a `scare` level per chapter and emits one `chapter.scare.set` after a nonzero chapter's cast:
+
+| Template | Chapter | Level |
+| --- | --- | --- |
+| `family-world-a@v4` | A1 The Toon Clubhouse, A2 Harbor Rescue | 0 (no field) |
+| `family-world-a@v4` | A3 Hero City | 1 |
+| `family-world-a@v4` | A4 Rat Casino After Hours | 2 |
+| `family-world-b@v4` | B1 The Sing-Along Playroom, B2 The Magic House | 0 (no field) |
+| `family-world-b@v4` | B3 Besties' Big Stage | 1 |
+
+- **Nothing else changes.** The catalog (`parody-catalog-v10`), casts, geometry, chapter ids, routes, dates, age bands and copy are v3's. A level-0 chapter is byte for byte v3's, so v4 is offered to exactly v3's children and **Update world** carries every photo from any earlier version.
+- **Older versions stay.** v1 to v3 stay registered, replay byte for byte from their own command histories and keep their published fingerprints. A journey on them plays at level 0 until an administrator moves it to v4, publishes and starts fresh.
+- **The plan freezes it.** The scare level is part of each chapter's `authoredLevel` in `family-world-plan-v1`, so the geometry fingerprint covers it: dropping or raising it in a stored plan fails validation.
+- **Tests.** `tests/levels/family-world-a.test.ts` and `family-world-b.test.ts` check the generators, the frozen v3 files and the one-field difference. `tests/server/family/family-worlds-v4.test.ts` checks the registry, offers, rebasing and an Update world from v3 to v4 with every photo, and the frozen scare levels in the published plan.
+- **Browser check.** `tests/e2e/family-world-lockstep.ts` ran the v4 chapters through the fixture editor playtest in lockstep Chromium (software WebGL). It asserts each chapter plays at its declared level and records the scare counters. Brightness is the mean grey level of the screenshot's central 80%, out of 255.
+  - **A4 at level 2, complete.** Ages 9 to 11, all five fights and all three memories, with no traversal recovery and no page, console or response error. A forced knockout by the first ordinary (`QUEST_E2E_JUMP_SCARE=ordinary-1`) became the one jump scare: the chick's face in close-up, mid-lunge, then the normal recovery. Two blackouts started on firm footing, 55 s of course time apart. The first dropped brightness from 67.9 in the dark room to 11.7, with the tokens and a pair of eyes still lit. The run also saw 17 flickers, 6 watcher changes and 5 creaks in 119 s of page time.
+  - **Watchers.** A watcher probe (`QUEST_E2E_WATCHER_PROBE`) faced the first ordinary from 13.3 m away and looked away for 4.5 s. When it looked back, the chick creaked: it had shuffled 1.42 m, turned and was standing behind the arch's pillar.
+  - **A3 and B3 at level 1.** Both load at level 1. In 30 s at spawn A3 flickered 4 times and moved 4 watchers, B3 flickered 4 times, and neither blacked out. Dimming takes the spawn view from 142.0 to 104.2 in A3 and from 156.1 to 126.4 in B3; A4 goes from 97.0 to 67.9 at level 2. With the switch off, all three build no scare runtime.
+  - **Found.** The fitted eyes float in front of the face in the close shot ([#118](https://github.com/thaynes43/haynes-quest/issues/118), an art decision under D-07). Separately, and unrelated to the scare levels, the A4 ticket-room arch hides the player from the default camera at the first ordinary fight ([#119](https://github.com/thaynes43/haynes-quest/issues/119)). The screenshots stay outside git.
 
 ## Validation
 

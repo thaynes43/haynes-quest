@@ -323,6 +323,9 @@ export interface GameInspection {
     blackouts: number;
     flickers: number;
     watcherMoves: number;
+    /** Changed watchers seen again (each creaks once), and the ids of the latest frame that had any. */
+    watcherCreaks: number;
+    lastWatcherCreakIds: string[];
     jumpScares: number;
   };
   disposed: boolean;

@@ -72,7 +72,8 @@ describe.each(Object.keys(WORLDS) as WorldId[])('%s@v3', (world) => {
   const v3 = registry.require(world, 'v3');
 
   it('is registered beside the frozen v1 and v2, whose fingerprints are unchanged', () => {
-    expect(registry.list().filter((entry) => entry.id === world).map((entry) => entry.version)).toEqual(['v1', 'v2', 'v3']);
+    // v4 adds the DESIGN-027 scare levels (family-worlds-v4.test.ts).
+    expect(registry.list().filter((entry) => entry.id === world).map((entry) => entry.version)).toEqual(['v1', 'v2', 'v3', 'v4']);
     for (const version of ['v1', 'v2']) expect(registry.require(world, version).fingerprint).toBe(FROZEN_FINGERPRINTS[`${world}@${version}`]);
     expect(v3.fingerprint).toMatch(/^[0-9a-f]{64}$/);
     expect(Object.values(FROZEN_FINGERPRINTS)).not.toContain(v3.fingerprint);

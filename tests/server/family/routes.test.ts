@@ -148,6 +148,7 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
       'family-world-b@v1',
       'family-world-b@v2',
       'family-world-b@v3',
+      'family-world-b@v4',
     ]);
     expect((await json<{ templates: unknown[] }>(harness.request('/api/admin/templates', { body: { birthDate: '2016-02-29' } }), 200)).templates)
       .toEqual([]);
@@ -349,8 +350,8 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
         templateVersion: 'v1',
       },
     }), 201);
-    // The newest offered version is the update target: v3 casts the landed models.
-    const worldB = { id: 'family-world-b', version: 'v3', name: 'Playroom to Big Stage', chapterCount: 3 };
+    // The newest offered version is the update target: v4 adds the scare levels.
+    const worldB = { id: 'family-world-b', version: 'v4', name: 'Playroom to Big Stage', chapterCount: 3 };
     // Before any draft, the newer version is already visible and can be taken.
     expect((await json<AdminDraftResponse>(harness.request(`/api/admin/children/${child.id}/draft`), 200)).newerTemplate)
       .toEqual(worldB);
@@ -380,7 +381,7 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
       expect(response.status).toBe(status);
       expect(((await response.json()) as { error: { code: string } }).error.code).toBe(code);
     };
-    const request = { templateId: 'family-world-b', templateVersion: 'v3', expectedRevision: draft.revision };
+    const request = { templateId: 'family-world-b', templateVersion: 'v4', expectedRevision: draft.revision };
     await refuse(request, 'member', 403, 'ADMIN_REQUIRED');
     await refuse({ ...request, templateId: 'rat-casino-world' }, 'admin', 422, 'TEMPLATE_UPGRADE_UNAVAILABLE');
     await refuse({ ...request, templateVersion: 'v1' }, 'admin', 422, 'TEMPLATE_UPGRADE_UNAVAILABLE');
@@ -397,11 +398,11 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
       picking: false,
       lastPickError: null,
       newerTemplate: null,
-      draft: { revision: draft.revision + 1, templateVersion: 'v3', publishable: true },
+      draft: { revision: draft.revision + 1, templateVersion: 'v4', publishable: true },
       publishedDraftRevision: draft.revision,
     });
     expect(updated.draft!.chapters[0]!.slots[2]).toMatchObject({ caption: 'Two candles', captionEdited: true });
-    expect(await harness.familyStore.getChild(child.id)).toMatchObject({ templateVersion: 'v3', updatedBy: ADMIN.id });
+    expect(await harness.familyStore.getChild(child.id)).toMatchObject({ templateVersion: 'v4', updatedBy: ADMIN.id });
 
     // Nothing is playable on the new version until it is published.
     const cards = async () => (await json<FamilyJourneysResponse>(harness.request('/api/children', { as: 'member' }), 200)).journeys[0];
@@ -418,7 +419,10 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
     expect(await cards()).toMatchObject({ publicationRevision: 2, newerPublication: true, run: { publicationRevision: 1 } });
     const fresh = await json<FamilyPlayResponse>(harness.request(`/api/children/${child.id}/play`, { body: { fresh: true } }), 201);
     expect(fresh.save.id).not.toBe(started.save.id);
-    expect(fresh.world.templateVersion).toBe('v3');
+    expect(fresh.world.templateVersion).toBe('v4');
+    // The fresh run plays the frozen DESIGN-027 scare levels: B3 is spooky.
+    expect(fresh.world.chapters.map((chapter) => chapter.level.scare)).toEqual([undefined, undefined, 1]);
+    expect(still.world.chapters.every((chapter) => chapter.level.scare === undefined)).toBe(true);
     expect(fresh.save.memories.map((memory) => memory.label)).toContain('Two candles');
     expect(await json<FamilyPlayResponse>(harness.request(`/api/saves/${started.save.id}/world`, { as: 'member' }), 200))
       .toMatchObject({ templateVersion: 'v1' });

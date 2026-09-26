@@ -1857,6 +1857,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
                 blackouts: scare.director.blackouts,
                 flickers: scare.director.flickers,
                 watcherMoves: scare.watchers.moves,
+                watcherCreaks: scare.watchers.creaks,
+                lastWatcherCreakIds: [...scare.watchers.lastCreakIds],
                 jumpScares: scare.jumpScares,
               },
             }
