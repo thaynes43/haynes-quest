@@ -1624,7 +1624,7 @@
       "sceneReleasedAt": "2026-09-26T22:43:30.044547+00:00",
       "manifest": "docs/assets/media/radio-host-showman/v001/sha256-manifest.json",
       "pr": 121,
-      "prMerged": null,
+      "prMerged": "45fcc4f99d2f862573eb21ac4fa7c25e1bc02b55",
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v4 (like the frozen v1 to v3) fills the A·4 optional bonus slot (bonus-1) with the Radio Showman project candidate (radio-host-showman, role ordinary, behavior preset ordinary-a), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 2.0030001423669983}. At 2.0 m he follows his own brief, above the WO111 0.8-1.4 m ordinary band; scale uniformly at integration if the slot needs ordinary sizing. src/game/scare.ts already keys the D-06 radio-static cue on this id, including the frozen editor-candidate id, and v4 sets A·4 to scare level 2."
@@ -1651,6 +1651,135 @@
         "attachmentChecksPassed": 7,
         "chromiumChecksPassed": 9,
         "artifactHashesMatchedLocally": 180,
+        "physicalSafari": false
+      }
+    },
+    {
+      "assetId": "lab-robot",
+      "version": "v001",
+      "role": "ordinary",
+      "slot": "ordinary-b",
+      "world": "A",
+      "chapter": 3,
+      "glb": "docs/assets/media/lab-robot/v001/lab-robot.glb",
+      "sha256": "33be060d30dc50830380bab97021635a5e3b7a73f2208bfab1b1562075aeb76c",
+      "heightM": 1.2918970584869385,
+      "sheetPoseHeightM": 1.2918970584869385,
+      "soleClearanceM": 0.00031999964267015457,
+      "bounds": {
+        "convention": "Y-up, forward -Z, metres; floor-centered fixed root under the body centre; its right (the raised pincer) at +X; the top is the warning-light cage; the tread lugs sit 0.3 mm above the floor at rest",
+        "rest": {
+          "min": [
+            -0.5994448525064463,
+            0.00031999964267015457,
+            -0.280499997527323
+          ],
+          "max": [
+            0.5992227825012816,
+            1.2918970584869385,
+            0.6158898647816895
+          ]
+        },
+        "sheetPose": {
+          "min": [
+            -0.4269696610307324,
+            0.00031999964267015457,
+            -0.47004832805966135
+          ],
+          "max": [
+            0.4668682151315984,
+            1.2918970584869385,
+            0.615889557478939
+          ]
+        },
+        "animated": {
+          "min": [
+            -0.7425610156421001,
+            1.483518237047933e-05,
+            -0.9267980727857285
+          ],
+          "max": [
+            0.676712469937301,
+            1.5823697610674792,
+            0.6182973393127211
+          ]
+        },
+        "culling": {
+          "min": [
+            -0.748,
+            -0.005,
+            -0.932
+          ],
+          "max": [
+            0.682,
+            1.588,
+            0.624
+          ]
+        },
+        "note": "Rest bounds are the A-pose bind pose, 1.199 m wide x 1.292 m tall x 0.896 m deep. The sheet pose (raised right pincer, reaching left pincer, the cord curled into a tail behind) is recreated at idle 0 s: 0.894 m wide x 1.292 m tall x 1.086 m deep, the depth running from the reaching pincer to the plug tail. Animated bounds include the attack lunge (to z -0.927) and the rising defeat smoke (to 1.582 m). The culling envelope is stored in the skinned mesh node's extras (model_space_bounds_y_up); the runtime does not yet apply it (issue #103)."
+      },
+      "attackContactS": 1.25,
+      "attackContactFraction": 0.625,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 3,
+          "channels": 138
+        },
+        {
+          "name": "move",
+          "duration_s": 1,
+          "channels": 138
+        },
+        {
+          "name": "attack",
+          "duration_s": 2,
+          "channels": 138
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.7,
+          "channels": 138
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.4,
+          "channels": 138
+        }
+      ],
+      "review": "docs/assets/reviews/lab-robot/v001.md",
+      "status": "Awaiting Tom's review · used in the family release",
+      "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+      "sceneReleasedAt": "2026-09-26T23:30:56.513530+00:00",
+      "manifest": "docs/assets/media/lab-robot/v001/sha256-manifest.json",
+      "pr": null,
+      "prMerged": null,
+      "publication": {
+        "status": "pending checked image publication",
+        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v4 (like the frozen v1 to v3) fills two of the four A·3 ordinary slots (ordinary-2 and ordinary-4) and the optional bonus slot (bonus-1) with the Lab Robot project candidate (lab-robot, role ordinary, behavior preset ordinary-b), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.2919}. v4 sets A·3 (Hero City) to scare level 1. The sheet notes' beep-beep warning cue before move and attack is not made; it belongs to the audio lane (DESIGN-008)."
+      },
+      "prUrl": null,
+      "masterSha256": "94751fa7a568b5406dd5af8624b72f2e4d76e3b5931e9c338f3e1fa0c56a0e6a",
+      "triangles": 13420,
+      "joints": 46,
+      "bytes": 1506604,
+      "integrationNotes": [
+        "Two opaque materials, one draw primitive each: matte painted tin, brass, rubber and glass (12,904 triangles) and a glow material (516 triangles: the red pupil core, the red target glare, the amber warning light with its painted hot spot and eight defeat sparks). Both sample the one embedded 1024 x 1024 atlas; the glow material uses the same image as its emissiveTexture with emissiveFactor [1,1,1] and no KHR_materials_emissive_strength. KHR_materials_specular is used but not required.",
+        "The glow parts always glow, in lit rooms too; the warning light and the eye core cannot dim in idle. src/game/scare-scene.ts dims only the scenery roots' practicals during DESIGN-027 flickers, and emissive colour ignores scene light, so the red eye and the warning light stay lit in Hero City's dimmed level-1 lighting.",
+        "Rest geometry is the A-pose bind pose; idle 0 s recreates the approved sheet pose (both pincer wrists within 2.4e-7 m of the blockout, the 11-degree eyelid tilt, the low sideways glance and the cord path). The root bone never animates; the chassis carries the rocking and the slump. The slinky arms, neck bellows, waist and cord stretch by child translation along each parent's own axis (off-axis under 1e-6 m); the glare, sparks and smoke open by bone scale and stay hidden outside their clips. There are no morph targets.",
+        "At the 1.25 s contact the right pincer tip is at (0.108, 0.604, -0.877): 0.88 m in front of the root at 0.60 m high, with the right slinky arm 0.553 m long (54% past its 0.36 m rest length) and the jaw gap closed from 38.5 mm to 22.9 mm; the snap completes at 1.22 s and holds through contact. The game's wind-up scrubs 0 to 1.25 s, so the tell (three flashes, three light turns, the eyelid up and the red glare, to 0.45 s), the rock back and squash (0.45-1.0 s) and the spring forward play at the wind-up speed.",
+        "The hit jolts it back on its treads with the iris shrunk to 0.56 at 0.2 s; the defeat bonks the self-destruct button at 0.28 s, throws sparks from 0.29 to 1.25 s, raises smoke from 0.86 s and pops the dome lid at 0.92 s. The held defeat (from 1.9 s, frame 57) is rolled 14.3 degrees onto the left tread with the lid 68.8 degrees open, the smoke still up, the eyelid half shut and a small iris; top 1.53 m, lowest point 0.2 mm above the floor.",
+        "Runtime culling (issue #103), measured at intake with three.js r186 against the idle-0 bounding spheres, all vertices at 60 Hz: the glow primitive (a 0.396 m sphere round the head at rest) leaves its sphere by up to 0.552 m at defeat 0.933 s (the sparks), by 0.162 m in the hit and 0.372 m in the held defeat (the warning light riding the popped lid), and only 0.035 m at the attack contact; the matte primitive (a 0.781 m sphere) by 0.174 m at contact, 0.204 m at attack 1.467 s (the pincer jaws), up to 0.296 m at defeat 1.433 s (the smoke puffs and the lid) and 0.275 m held. Apply the exported culling envelope or disable frustum culling for this skinned mesh.",
+        "Exact intake values: 1,506,604 bytes (binary buffer 1,346,864 bytes), 13,420 triangles, 14,475 exported vertices (7,351 Blender mesh vertices before UV and normal splits), 3 textures sampling one embedded 1024 x 1024 atlas (45,636 bytes), 2 materials, 2 primitives, 46 joints, at most 2 influences per vertex."
+      ],
+      "validation": {
+        "khronosErrors": 0,
+        "khronosWarnings": 0,
+        "contractChecksPassed": 21,
+        "threeAdapterChecksPassed": 34,
+        "attachmentChecksPassed": 7,
+        "chromiumChecksPassed": 9,
+        "artifactHashesMatchedLocally": 179,
         "physicalSafari": false
       }
     }

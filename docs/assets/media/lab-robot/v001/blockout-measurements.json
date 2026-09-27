@@ -1,0 +1,53 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/lab-robot/v001/lab-robot-blockout.blend",
+  "sha256": "86dcd070c61ed236cec5713214ea561760fcc0718edbfa036a285caade4d113e",
+  "bounds_blender_zup": {
+    "min": [
+      -0.4284,
+      -0.6158,
+      -0.0
+    ],
+    "max": [
+      0.4673,
+      0.4709,
+      1.2925
+    ],
+    "size": [
+      0.8957,
+      1.0866,
+      1.2925
+    ],
+    "blockout_triangles": 80272
+  },
+  "feature_tops_m": {
+    "Beacon cage wire": 1.2925,
+    "Warning beacon amber dome": 1.278,
+    "Tin dome head": 1.18,
+    "Lens brass bezel": 1.128,
+    "Pincer tip right": 1.2101,
+    "Slinky arm right": 0.9968,
+    "Tin body box": 0.79,
+    "Chest control panel": 0.68,
+    "Self-destruct button": 0.565,
+    "Rubber tank tread": 0.2,
+    "Unplugged power cord": 0.3947,
+    "Power plug body": 0.3077
+  },
+  "parts": 201,
+  "materials": [
+    "LR amber #f39a3d",
+    "LR brass #dca953",
+    "LR cream #fbf6ea",
+    "LR glass #9fd6e3",
+    "LR iris #5a9cb4",
+    "LR plum #4a3f63",
+    "LR pupil #2e2840",
+    "LR rubber #3a3446",
+    "LR silver #dde2d9",
+    "LR steel #8e98a2",
+    "LR tin #5f9ea3",
+    "LR tomato #e0544b"
+  ],
+  "build_seconds": 1.0,
+  "utc": "2026-09-26T18:30:10.685842+00:00"
+}

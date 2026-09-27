@@ -1,0 +1,98 @@
+{
+  "work_order": "WO111",
+  "asset_id": "lab-robot",
+  "version": "v001",
+  "created_utc": "2026-09-26T23:30:26.008947+00:00",
+  "glb_sha256": "33be060d30dc50830380bab97021635a5e3b7a73f2208bfab1b1562075aeb76c",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "blender": {
+    "version": "4.5.13 LTS",
+    "instance": "blender-authoring (instance 1, primary)",
+    "units": "METRIC",
+    "unit_scale": 1,
+    "authoring_axes": "+Z up / +Y forward (character right = +X)",
+    "frames_per_second": 30,
+    "animation_mode": "NLA_TRACKS",
+    "animation_keys": "Every frame, linear, exported without keyframe optimisation",
+    "skin": "One skin; rigid tin parts 100% to one bone each; tent-weighted slinky arms and cord (two influences along each chain); the neck bellows blend body to head (at most 2 influences used)",
+    "root": "Identity, fixed floor-centred root; no root animation; the chassis carries the rocking and the slump with its pivots on the tread arcs and the left tread edge",
+    "stretch": "Slinky arms, the cord, the neck pop and the suspension bob are child translations along each parent bone's own axis (checked off-axis < 1e-4 m in Three.js and Blender); no bone basis carries shear (max 5.2e-06)",
+    "bind_pose": "Both slinky arms straight in the same relaxed A-shape, claws half open, eyelid level, iris centred, the cord on its sheet path (rest controls reproduce it, max matrix error 4.8e-07)",
+    "sheet_pose": "Idle at 0 s reproduces the blockout sheet pose (claw wrists and arm joints within 3.4e-06 m, claw frames, eyelid tilt and glance likewise)"
+  },
+  "export": {
+    "format": "GLB",
+    "axes": "+Y up / -Z forward",
+    "selection_only": true,
+    "materials": 2,
+    "glow_material": "Principled BSDF with the atlas linked to both Base Color and Emission Color, Emission Strength 1.0 (glTF emissiveTexture = the same image, emissiveFactor [1,1,1]; no KHR_materials_emissive_strength)",
+    "texture": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "embedded": true
+    },
+    "no_external_resources": true,
+    "no_required_extensions": true,
+    "compression": "None; no Draco, Meshopt or KTX2 requirement"
+  },
+  "preview": {
+    "source": "Exact delivered GLB via Three.js GLTFLoader",
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport_px": [
+      800,
+      900
+    ],
+    "orthographic_camera": {
+      "half_height_m": 0.8,
+      "px_per_m": 562.5,
+      "target": [
+        0,
+        0.65,
+        0
+      ],
+      "views": {
+        "front": [
+          0,
+          0.65,
+          -8
+        ],
+        "side": [
+          8,
+          0.65,
+          0
+        ],
+        "back": [
+          0,
+          0.65,
+          8
+        ],
+        "threequarter": [
+          5.657,
+          0.65,
+          -5.657
+        ],
+        "beauty": [
+          4.2,
+          2.6,
+          -7.2
+        ]
+      }
+    },
+    "stills_pose": "Main stills: idle at 0 s (the sheet pose); rest-*.png: the bind pose; dark-*.png: a dim rooftop-night rig (hemisphere 0.12, key lights at 5%) to show the emissive warning light, red eye core, target glare and sparks",
+    "lighting": "Warm hemisphere plus three directional lights; ACES tone mapping exposure 1.0",
+    "scales": [
+      1,
+      0.35
+    ],
+    "no_physical_device_claim": true
+  },
+  "checks": {
+    "khronos_zero_errors_warnings": true,
+    "exact_three_adapter_all_checks": true,
+    "chromium_all_clips_normal_small": true,
+    "source_attachment_checks": true
+  }
+}

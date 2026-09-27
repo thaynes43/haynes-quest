@@ -1,0 +1,82 @@
+{
+  "work_order": "WO111",
+  "asset_id": "lab-robot",
+  "version": "v001",
+  "created_utc": "2026-09-26T23:30:26.008947+00:00",
+  "glb_sha256": "33be060d30dc50830380bab97021635a5e3b7a73f2208bfab1b1562075aeb76c",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; actual src/game/enemy-animation.ts. Rotation/scale-only joints are checked as fixed local pivots; the chassis rocking/slump and the slinky/cord/neck/suspension stretch (child translation along the parent axis) are the intentional translations. No physical-device or universal triangle-collision proof (the Blender attachment audit covers listed part pairs).",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5994448525064463,
+      0.00031999964267015457,
+      -0.280499997527323
+    ],
+    "max": [
+      0.5992227825012816,
+      1.2918970584869385,
+      0.6158898647816895
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    1.1986676350077279,
+    1.2915770588442683,
+    0.8963898623090125
+  ],
+  "height_m": 1.2918970584869385,
+  "sheet_pose_bounds_y_up": {
+    "min": [
+      -0.4269696610307324,
+      0.00031999964267015457,
+      -0.47004832805966135
+    ],
+    "max": [
+      0.4668682151315984,
+      1.2918970584869385,
+      0.615889557478939
+    ]
+  },
+  "sheet_pose_dimensions_m": [
+    0.8938378761623308,
+    1.2915770588442683,
+    1.0859378855386004
+  ],
+  "sole_clearance_m": 0.00031999964267015457,
+  "body_footprint_y_up": {
+    "min": [
+      -0.3159999847412157,
+      0.00031999964267015457,
+      -0.25403407216072665
+    ],
+    "max": [
+      0.3159999847412157,
+      0.808000004053115,
+      0.25403407216072665
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.7425610156421001,
+      1.483518237047933e-05,
+      -0.9267980727857285
+    ],
+    "max": [
+      0.676712469937301,
+      1.5823697610674792,
+      0.6182973393127211
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -0.748,
+      -0.005,
+      -0.932
+    ],
+    "max": [
+      0.682,
+      1.588,
+      0.624
+    ]
+  },
+  "note": "glTF axes: +Y up, character faces -Z; its right (the raised claw) is +X. Root at the floor origin under the body centre. The rest width is set by the two A-pose arms; the sheet pose spans the reaching left claw to the raised right claw, and its depth runs from the curled plug tail (+Z, behind) to the reaching claw."
+}
