@@ -201,7 +201,10 @@ export interface SceneVisualInspection {
     practicals: number;
     practicalScale: number;
     eyes: number;
+    /** Level 2 eyes always show; they glow faintly between scares. */
     eyesVisible: boolean;
+    /** The eyes flare in a flicker dip, a blackout or a lunge. */
+    eyesFlared: boolean;
   };
 }
 

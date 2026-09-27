@@ -3,27 +3,38 @@
  * forbidden state, watchers change only unseen, inside their arena and off
  * connection strips, and the jump-scare gate keeps its cooldown.
  */
+import * as THREE from "three";
 import { describe, expect, it } from "vitest";
+import { createObbyState, sampleObby, stepObby } from "../../src/game/obby";
 import {
   blackoutAllowed,
   blackoutDarkness,
+  blackoutHazardZones,
   effectiveScareLevel,
   insideZone,
   isRadioShowman,
   JumpScareGate,
   lungeDurationMs,
+  nearBlackoutHazard,
   SCARE_TIMING,
   ScareDirector,
   scareRandom,
   scareSeed,
   WATCHER_POSES,
+  WATCHER_VIEW,
   WatcherDirector,
   watcherBlockedZones,
+  watcherBody,
   type WatcherCandidate,
+  type WatcherView,
 } from "../../src/game/scare";
-import { authoredScareLevel } from "../../src/shared/authored-level";
+import {
+  authoredScareLevel,
+  resolveAuthoredLevelDocument,
+} from "../../src/shared/authored-level";
 import { resolveLevelEditorProject } from "../../src/shared/editor-project";
 import familyWorldA from "../../src/shared/levels/family-world-a-v2.json";
+import familyWorldAV4 from "../../src/shared/levels/family-world-a-v4.json";
 
 const FRAME = 1 / 60;
 
@@ -48,7 +59,14 @@ describe("scare levels and the parent switch", () => {
 });
 
 describe("blackout safety", () => {
-  const safe = { airborne: false, riding: false, sinceLaunch: 5, sinceRecovery: 20 };
+  const safe = {
+    airborne: false,
+    riding: false,
+    sinceLaunch: 5,
+    sinceSettled: 5,
+    sinceRecovery: 20,
+    nearHazard: false,
+  };
 
   it("allows a blackout only on safe, settled footing", () => {
     expect(blackoutAllowed(safe)).toBe(true);
@@ -56,8 +74,181 @@ describe("blackout safety", () => {
     expect(blackoutAllowed({ ...safe, riding: true })).toBe(false);
     expect(blackoutAllowed({ ...safe, sinceLaunch: 1.99 })).toBe(false);
     expect(blackoutAllowed({ ...safe, sinceLaunch: 2 })).toBe(true);
+    expect(blackoutAllowed({ ...safe, sinceSettled: 0.99 })).toBe(false);
+    expect(blackoutAllowed({ ...safe, sinceSettled: 1 })).toBe(true);
     expect(blackoutAllowed({ ...safe, sinceRecovery: 9.99 })).toBe(false);
     expect(blackoutAllowed({ ...safe, sinceRecovery: 10 })).toBe(true);
+    expect(blackoutAllowed({ ...safe, nearHazard: true })).toBe(false);
+  });
+
+  const a4Chapter = familyWorldAV4.chapters.find((chapter) => chapter.chapterId === "family-a4")!;
+  const a4 = resolveAuthoredLevelDocument(
+    a4Chapter.level as Parameters<typeof resolveAuthoredLevelDocument>[0],
+  ).course;
+
+  it("waits a second after landing a glide that outlasts the launch guard (A4)", () => {
+    // The real A4 legs whose age 9+ glides last longer than 2 s.
+    for (const [from, to, startX, startZ] of [
+      ["high-board", "spotlight-trapeze", -15.5, -117],
+      ["spotlight-trapeze", "rat-pit-stage", -25.5, -116],
+      ["glide-landing", "ticket-counter", -1.2, -22],
+    ] as const) {
+      const leg = `${from} -> ${to}`;
+      const top = a4.platforms.find((platform) => platform.id === from)!;
+      const state = createObbyState({ x: startX, y: top.center.y + top.size.y / 2, z: startZ });
+      const director = new ScareDirector(2, scareRandom(1));
+      director.step(30, false, false);
+      const move = to === "spotlight-trapeze" ? { moveX: -1, moveY: 0 } : { moveX: 0, moveY: 1 };
+      let time = 0;
+      let launched = false;
+      let landedAt: number | null = null;
+      for (let frame = 0; frame < 60 * 12; frame += 1) {
+        time += FRAME;
+        const grounded = state.grounded;
+        const edgeAhead =
+          to === "spotlight-trapeze"
+            ? state.position.x < top.center.x - top.size.x / 2 + 0.45
+            : state.position.z < top.center.z - top.size.z / 2 + 0.45;
+        const result = stepObby(state, landedAt === null ? move : { moveX: 0, moveY: 0 }, a4, {
+          deltaSeconds: FRAME,
+          timeSeconds: time,
+          cameraYaw: 0,
+          canJump: true,
+          jumpPressed: !launched && edgeAhead,
+          jumpHeld: launched && landedAt === null,
+          abilities: { jumpVelocity: 5.9, airJumpVelocity: 4.6, glideFallSpeed: 1.6 },
+          radius: 0.24,
+          height: 1.22,
+        });
+        expect(result.recovered, leg).toBe(false);
+        if (grounded && !state.grounded) {
+          launched = true;
+          director.noteLaunch();
+        }
+        director.step(FRAME, !state.grounded, false);
+        if (!launched || !state.grounded) continue;
+        landedAt ??= director.time;
+        // Ignore the hazard zones here: this is the landing rule alone.
+        const safety = director.safety(false, false);
+        const sinceLanding = director.time - landedAt;
+        if (sinceLanding === 0) {
+          expect(safety.sinceLaunch, `${leg} airtime`).toBeGreaterThan(SCARE_TIMING.launchGuard);
+          expect(state.supportId, leg).toBe(to);
+        }
+        const at = `${leg} at ${sinceLanding.toFixed(2)} s`;
+        if (sinceLanding < SCARE_TIMING.settleGuard - 2 * FRAME)
+          expect(blackoutAllowed(safety), at).toBe(false);
+        if (sinceLanding > SCARE_TIMING.settleGuard + FRAME) {
+          expect(blackoutAllowed(safety), at).toBe(true);
+          break;
+        }
+      }
+      expect(landedAt, leg).not.toBeNull();
+      expect(director.time - landedAt!, leg).toBeGreaterThan(SCARE_TIMING.settleGuard);
+    }
+  });
+
+  it("keeps blackouts away from A4's sweepers and movers, and leaves most of the course open", () => {
+    const zones = blackoutHazardZones(a4);
+    const sweepers = a4.hazards.map((hazard) => hazard.id);
+    const movers = a4.platforms.filter((platform) => platform.motion).map((platform) => platform.id);
+    expect(sweepers.length).toBe(3);
+    expect(zones.map((zone) => zone.id).sort()).toEqual([...sweepers, ...movers].sort());
+    // Crumbling platforms and bounce pads hold still until touched.
+    for (const platform of a4.platforms.filter((entry) => !entry.motion))
+      expect(zones.some((zone) => zone.id === platform.id)).toBe(false);
+    // Every point a sweeper's bar can reach is guarded, at its height.
+    for (const hazard of a4.hazards) {
+      for (let seconds = 0; seconds < 12; seconds += 0.25) {
+        const bar = sampleObby(a4, seconds).hazards.find((entry) => entry.id === hazard.id)!;
+        for (const end of [bar.start, bar.center, bar.end])
+          expect(nearBlackoutHazard(zones, { x: end.x, y: end.y - 0.5, z: end.z })).toBe(true);
+      }
+    }
+    // The review's ledge: fox-card-room's west edge, 1 m from card-shuffle-one.
+    expect(nearBlackoutHazard(zones, { x: -8.75, y: 7.4, z: -80.5 })).toBe(true);
+    // Still most of the course's standing room can black out.
+    let total = 0;
+    let guarded = 0;
+    for (const platform of a4.platforms) {
+      if (platform.motion || platform.crumble) continue;
+      const top = platform.center.y + platform.size.y / 2;
+      for (let x = platform.center.x - platform.size.x / 2 + 0.25; x < platform.center.x + platform.size.x / 2; x += 0.5)
+        for (let z = platform.center.z - platform.size.z / 2 + 0.25; z < platform.center.z + platform.size.z / 2; z += 0.5) {
+          total += 1;
+          if (nearBlackoutHazard(zones, { x, y: top, z })) guarded += 1;
+        }
+    }
+    expect(guarded / total).toBeGreaterThan(0.05);
+    expect(guarded / total).toBeLessThan(0.4);
+    expect(blackoutHazardZones(undefined)).toEqual([]);
+  });
+
+  it("never blacks out while the player waits at the mover ledge in A4", () => {
+    const zones = blackoutHazardZones(a4);
+    const riding = new Set(a4.platforms.filter((p) => p.motion || p.crumble).map((p) => p.id));
+    const state = createObbyState({ x: -8.75, y: 7.4, z: -80.5 });
+    const director = new ScareDirector(2, scareRandom(scareSeed(`${a4Chapter.routeId}:level-4`)));
+    let time = 0;
+    for (let frame = 0; frame < 60 * 240; frame += 1) {
+      time += FRAME;
+      const grounded = state.grounded;
+      stepObby(state, { moveX: 0, moveY: 0 }, a4, {
+        deltaSeconds: FRAME,
+        timeSeconds: time,
+        cameraYaw: 0,
+        canJump: true,
+        jumpPressed: false,
+        radius: 0.24,
+        height: 1.22,
+      });
+      if (grounded && !state.grounded) director.noteLaunch();
+      const onRide = state.supportId !== null && riding.has(state.supportId);
+      const events = director.step(FRAME, !state.grounded, onRide, {
+        nearHazard: nearBlackoutHazard(zones, state.position),
+      });
+      expect(events.blackoutStarted).toBe(false);
+    }
+    expect(state.supportId).toBe("fox-card-room");
+    expect(director.flickers).toBeGreaterThan(0);
+  });
+
+  it("guards a turning sweeper's whole disc and a mover's whole travel", () => {
+    const zones = blackoutHazardZones({
+      hazards: [
+        { id: "spin", center: { x: 0, y: 1, z: 0 }, halfLength: 3, radius: 0.3, rotation: { period: 4 } },
+        { id: "still", center: { x: 50, y: 1, z: 0 }, halfLength: 3, radius: 0.3 },
+      ],
+      platforms: [
+        {
+          id: "slide",
+          center: { x: 0, y: 0, z: 50 },
+          size: { x: 2, y: 0.5, z: 2 },
+          motion: { axis: "x", distance: 3, period: 5 },
+        },
+        { id: "still-deck", center: { x: 0, y: 0, z: 90 }, size: { x: 4, y: 0.5, z: 4 } },
+        {
+          id: "frozen",
+          center: { x: 0, y: 0, z: 130 },
+          size: { x: 2, y: 0.5, z: 2 },
+          motion: { axis: "x", distance: 3, period: 0 },
+        },
+      ],
+    });
+    expect(zones.map((zone) => zone.id)).toEqual(["spin", "still", "slide"]);
+    const clear = SCARE_TIMING.hazardClearance;
+    // Turning: the full disc of radius halfLength + radius, plus the clearance.
+    expect(nearBlackoutHazard(zones, { x: 0, y: 0.5, z: 3.3 + clear - 0.01 })).toBe(true);
+    expect(nearBlackoutHazard(zones, { x: 0, y: 0.5, z: 3.3 + clear + 0.01 })).toBe(false);
+    // Still: only along its length (phase 0 lies along x).
+    expect(nearBlackoutHazard(zones, { x: 50, y: 0.5, z: 0.3 + clear + 0.01 })).toBe(false);
+    expect(nearBlackoutHazard(zones, { x: 53.3 + clear - 0.01, y: 0.5, z: 0 })).toBe(true);
+    // Height band: far above or below is not near.
+    expect(nearBlackoutHazard(zones, { x: 0, y: 1.3 + SCARE_TIMING.hazardHeightBand + 0.01, z: 0 })).toBe(false);
+    expect(nearBlackoutHazard(zones, { x: 0, y: 0.7 - SCARE_TIMING.hazardHeightBand - 0.01, z: 0 })).toBe(false);
+    // A mover's whole travel (±3 m on x) plus the clearance.
+    expect(nearBlackoutHazard(zones, { x: 4 + clear - 0.01, y: 0.25, z: 50 })).toBe(true);
+    expect(nearBlackoutHazard(zones, { x: 4 + clear + 0.01, y: 0.25, z: 50 })).toBe(false);
   });
 });
 
@@ -127,7 +318,7 @@ describe("the scare director", () => {
     });
   });
 
-  it("never starts a blackout airborne, riding, within 2 s of a launch or 10 s of a recovery", () => {
+  it("never starts a blackout airborne, riding, near a hazard, within 2 s of a launch, 1 s of landing or 10 s of a recovery", () => {
     for (const seed of [1, 2, 3, 4, 5]) {
       const random = scareRandom(seed * 7919);
       const director = new ScareDirector(2, scareRandom(seed));
@@ -135,6 +326,8 @@ describe("the scare director", () => {
       let ridingFor = 0;
       let launchedAt = Number.NEGATIVE_INFINITY;
       let recoveredAt = Number.NEGATIVE_INFINITY;
+      let unsettledAt = Number.NEGATIVE_INFINITY;
+      let nearHazardFor = 0;
       let started = 0;
       for (let frame = 0; frame < 60 * 1200; frame += 1) {
         // A restless player: jumps, rides, falls and recovers at random.
@@ -148,18 +341,24 @@ describe("the scare director", () => {
           recoveredAt = director.time;
           director.noteRecovery();
         }
+        if (nearHazardFor <= 0 && random() < 0.002) nearHazardFor = 1 + random() * 8;
         const airborne = airborneFor > 0;
         const riding = ridingFor > 0;
-        const events = director.step(FRAME, airborne, riding);
+        const nearHazard = nearHazardFor > 0;
+        const events = director.step(FRAME, airborne, riding, { nearHazard });
+        if (airborne || riding) unsettledAt = director.time;
         if (events.blackoutStarted) {
           started += 1;
           expect(airborne).toBe(false);
           expect(riding).toBe(false);
+          expect(nearHazard).toBe(false);
           expect(director.time - launchedAt).toBeGreaterThanOrEqual(SCARE_TIMING.launchGuard);
+          expect(director.time - unsettledAt).toBeGreaterThanOrEqual(SCARE_TIMING.settleGuard);
           expect(director.time - recoveredAt).toBeGreaterThanOrEqual(SCARE_TIMING.recoveryGuard);
         }
         airborneFor -= FRAME;
         ridingFor -= FRAME;
+        nearHazardFor -= FRAME;
       }
       expect(started, `seed ${seed}`).toBeGreaterThan(0);
     }
@@ -199,7 +398,7 @@ describe("the scare director", () => {
   it("holds new blackouts while a lunge plays", () => {
     const director = new ScareDirector(2, scareRandom(9));
     for (let frame = 0; frame < 60 * 120; frame += 1)
-      expect(director.step(FRAME, false, false, true).blackoutStarted).toBe(false);
+      expect(director.step(FRAME, false, false, { holdBlackouts: true }).blackoutStarted).toBe(false);
   });
 
   it("laughs in the distance every 20–45 s at level 2 only", () => {
@@ -275,10 +474,11 @@ describe("watchers", () => {
       facing: 0,
       pose: 0,
       arena: ordinary.arena,
-      inView: false,
       ...overrides,
     };
   }
+  const hidden: WatcherView = { inView: () => false };
+  const visible: WatcherView = { inView: () => true };
 
   it("builds blocked zones from every connection strip of a real chapter", () => {
     expect(zones.length).toBeGreaterThanOrEqual(casino.document.connections.length);
@@ -293,7 +493,7 @@ describe("watchers", () => {
     const director = new WatcherDirector(scareRandom(1), zones);
     const player = { x: ordinary.position.x + 5, y: ordinary.position.y, z: ordinary.position.z + 5 };
     for (let frame = 0; frame < 60 * 60; frame += 1) {
-      const step = director.step(FRAME, [candidate({ inView: true })], player);
+      const step = director.step(FRAME, [candidate()], player, visible);
       expect(step.moves).toEqual([]);
       expect(step.creaks).toEqual([]);
     }
@@ -306,7 +506,7 @@ describe("watchers", () => {
     let current = candidate();
     let moves = 0;
     for (let frame = 0; frame < 60 * 10; frame += 1) {
-      const step = director.step(FRAME, [current], player);
+      const step = director.step(FRAME, [current], player, hidden);
       for (const move of step.moves) {
         moves += 1;
         current = { ...current, position: move.position, facing: move.facing, pose: move.pose };
@@ -314,20 +514,21 @@ describe("watchers", () => {
       expect(step.creaks).toEqual([]);
     }
     expect(moves).toBe(1);
-    const seen = director.step(FRAME, [{ ...current, inView: true }], player);
+    const seen = director.step(FRAME, [current], player, visible);
     expect(seen.creaks).toEqual(["watcher"]);
-    expect(director.step(FRAME, [{ ...current, inView: true }], player).creaks).toEqual([]);
+    expect(director.step(FRAME, [current], player, visible).creaks).toEqual([]);
     // A new unseen spell may change it again.
     let again = 0;
-    for (let frame = 0; frame < 60 * 10; frame += 1) again += director.step(FRAME, [current], player).moves.length;
+    for (let frame = 0; frame < 60 * 10; frame += 1)
+      again += director.step(FRAME, [current], player, hidden).moves.length;
     expect(again).toBe(1);
   });
 
   it("seeing a watcher that has not changed yet plays no creak", () => {
     const director = new WatcherDirector(scareRandom(3), zones);
     const player = { x: 0, y: 0, z: 0 };
-    director.step(0.5, [candidate()], player);
-    expect(director.step(FRAME, [candidate({ inView: true })], player)).toEqual({ moves: [], creaks: [] });
+    director.step(0.5, [candidate()], player, hidden);
+    expect(director.step(FRAME, [candidate()], player, visible)).toEqual({ moves: [], creaks: [] });
   });
 
   it("shuffles at most 1.5 m, inside its arena, off every strip and clear of the player", () => {
@@ -344,7 +545,12 @@ describe("watchers", () => {
       };
       const spawn = random() < 0.5 ? { ...position } : { ...ordinary.position };
       const player = { x: position.x + (random() - 0.5) * 6, y: position.y, z: position.z + (random() - 0.5) * 6 };
-      const step = director.step(SCARE_TIMING.watcherUnseen[1] + 0.1, [candidate({ position, spawn })], player);
+      const step = director.step(
+        SCARE_TIMING.watcherUnseen[1] + 0.1,
+        [candidate({ position, spawn })],
+        player,
+        hidden,
+      );
       expect(step.moves.length).toBe(1);
       const move = step.moves[0]!;
       changes.set(move.change, (changes.get(move.change) ?? 0) + 1);
@@ -373,7 +579,7 @@ describe("watchers", () => {
     const everywhere = [{ minX: -1e3, maxX: 1e3, minZ: -1e3, maxZ: 1e3 }];
     for (let seed = 1; seed <= 100; seed += 1) {
       const director = new WatcherDirector(scareRandom(seed), everywhere);
-      const step = director.step(5, [candidate()], { x: 40, y: 0, z: 40 });
+      const step = director.step(5, [candidate()], { x: 40, y: 0, z: 40 }, hidden);
       for (const move of step.moves) {
         expect(move.change).not.toBe("shuffle");
         expect(move.position).toEqual(ordinary.position);
@@ -385,13 +591,110 @@ describe("watchers", () => {
     for (let seed = 1; seed <= 60; seed += 1) {
       const director = new WatcherDirector(scareRandom(seed), []);
       const player = { x: ordinary.position.x + 3, y: ordinary.position.y, z: ordinary.position.z };
-      const [move] = director.step(5, [candidate()], player).moves;
+      const [move] = director.step(5, [candidate()], player, hidden).moves;
       if (move?.change !== "turn") continue;
       // A facing of θ looks along (−sin θ, −cos θ): toward +x means θ = −π/2.
       expect(move.facing).toBeCloseTo(-Math.PI / 2);
     }
   });
+
+  /** GardenScene.isInView's test: a sphere around a body cylinder at the feet. */
+  function frustumView(camera: THREE.PerspectiveCamera) {
+    camera.updateMatrixWorld();
+    camera.updateProjectionMatrix();
+    const frustum = new THREE.Frustum().setFromProjectionMatrix(
+      new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse),
+    );
+    return (at: { x: number; y: number; z: number }, radius: number, height: number) =>
+      frustum.intersectsSphere(
+        new THREE.Sphere(new THREE.Vector3(at.x, at.y + height / 2, at.z), Math.hypot(radius, height / 2)),
+      );
+  }
+
+  it("never shuffles into the frame, even from just past its edge", () => {
+    // The chase camera behind and above a player at the origin, looking down −z.
+    const camera = new THREE.PerspectiveCamera(48, 1280 / 760, 0.08, 100);
+    camera.position.set(0, 3.2, 5.5);
+    camera.lookAt(0, 1, -4);
+    const test = frustumView(camera);
+    // A4's tallest ordinary, the 1.96 m drummer, measured as createGame sizes it.
+    const body = watcherBody(1.96);
+    const view: WatcherView = {
+      inView: (_candidate, at) =>
+        test(at, body.radius + WATCHER_VIEW.margin, body.height + WATCHER_VIEW.margin),
+    };
+    const player = { x: 0, y: 0, z: 0 };
+    let shuffles = 0;
+    for (let seed = 1; seed <= 2000; seed += 1) {
+      for (const side of [1, -1]) {
+        // 8 m ahead, slid sideways until even the padded body leaves the frame.
+        const start = { x: 0, y: 0, z: -8 };
+        while (view.inView(candidate(), start)) start.x += side * 0.05;
+        start.x += side * 0.05;
+        const director = new WatcherDirector(scareRandom(seed), []);
+        const watcher = candidate({
+          position: start,
+          spawn: { ...start },
+          arena: { minX: start.x - 3, maxX: start.x + 3, minZ: -11, maxZ: -5 },
+        });
+        const step = director.step(SCARE_TIMING.watcherUnseen[1] + 0.1, [watcher], player, view);
+        const move = step.moves[0];
+        if (move?.change !== "shuffle") continue;
+        shuffles += 1;
+        // The real 1.96 m body (plus its health bar) stays out of the frame.
+        expect(test(move.position, Math.max(0.6, 1.96 * 0.45), 1.96 + 0.3), `seed ${seed}`).toBe(false);
+        expect(view.inView(watcher, move.position)).toBe(false);
+      }
+    }
+    expect(shuffles).toBeGreaterThan(400);
+  });
+
+  it("sizes a watcher's view body from its model height", () => {
+    expect(watcherBody(1.72)).toEqual({ radius: 1.72 * 0.45, height: 1.72 + 0.3 });
+    expect(watcherBody(1.96).height).toBeCloseTo(2.26);
+    expect(watcherBody(1)).toEqual({ radius: 0.6, height: 1.3 });
+    // Unknown art falls back to the 1.35 m placeholder study.
+    expect(watcherBody(null)).toEqual(watcherBody(1.35));
+    expect(watcherBody(Number.NaN)).toEqual(watcherBody(1.35));
+  });
+
+  it("creaks only once the player really sees it, not while it hides in the frustum", () => {
+    const director = new WatcherDirector(scareRandom(4), zones);
+    const player = { x: ordinary.position.x + 5, y: ordinary.position.y, z: ordinary.position.z + 5 };
+    let current = candidate();
+    for (let frame = 0; frame < 60 * 5; frame += 1)
+      for (const move of director.step(FRAME, [current], player, hidden).moves)
+        current = { ...current, position: move.position, facing: move.facing, pose: move.pose };
+    expect(director.moves).toBe(1);
+    // Back in the frustum, but behind a pillar (or too far): no creak yet, and
+    // no change either, however long it stays there.
+    let asked = 0;
+    const behindPillar: WatcherView = {
+      inView: () => true,
+      seen: () => {
+        asked += 1;
+        return false;
+      },
+    };
+    for (let frame = 0; frame < 60 * 10; frame += 1) {
+      const step = director.step(FRAME, [current], player, behindPillar);
+      expect(step).toEqual({ moves: [], creaks: [] });
+    }
+    // It asks about ten times a second, not every frame.
+    expect(asked).toBeGreaterThanOrEqual(95);
+    expect(asked).toBeLessThanOrEqual(105);
+    // Out of view again it may change again; its creak still waits to be seen.
+    for (let frame = 0; frame < 60 * 5; frame += 1)
+      for (const move of director.step(FRAME, [current], player, hidden).moves)
+        current = { ...current, position: move.position, facing: move.facing, pose: move.pose };
+    expect(director.moves).toBe(2);
+    const inSight: WatcherView = { inView: () => true, seen: () => true };
+    expect(director.step(FRAME, [current], player, inSight).creaks).toEqual(["watcher"]);
+    expect(director.step(FRAME, [current], player, inSight).creaks).toEqual([]);
+    expect(director.creaks).toBe(1);
+  });
 });
+
 
 describe("the radio showman", () => {
   it("is recognized by its model, catalog entry or placeholder candidate", () => {

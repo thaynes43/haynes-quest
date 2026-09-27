@@ -44,7 +44,7 @@ import {
   type RuntimeWorldTheme,
 } from "./world-themes";
 import { effectiveScareLevel, type ScareLunge } from "./scare";
-import { ScareVisuals, watcherPoseRoll } from "./scare-scene";
+import { modelFrameBounds, ScareVisuals, watcherPoseRoll } from "./scare-scene";
 
 type PhotoState = {
   url: string;
@@ -68,6 +68,8 @@ type EncounterVisual = {
   authored: boolean;
   /** The model's expected height, used to frame DESIGN-027's lunge before it loads. */
   height: number;
+  /** DESIGN-027 D-04: the loaded model's measured view body, once asked for. */
+  viewBody?: { readonly radius: number; readonly height: number };
   animation?: EnemyAnimation;
   besties?: BestiesScene;
 };
@@ -99,6 +101,20 @@ function finishInstances(mesh: THREE.InstancedMesh): void {
   mesh.computeBoundingSphere();
 }
 
+/** A line-of-sight hit that hides what lies behind it: a visible, opaque mesh. */
+function blocksSight(object: THREE.Object3D): boolean {
+  if (!(object instanceof THREE.Mesh)) return false;
+  for (let node: THREE.Object3D | null = object; node; node = node.parent)
+    if (!node.visible) return false;
+  const materials = Array.isArray(object.material) ? object.material : [object.material];
+  return materials.some(
+    (entry: THREE.Material) =>
+      entry.visible &&
+      entry.blending !== THREE.AdditiveBlending &&
+      !(entry.transparent && entry.opacity < 0.6),
+  );
+}
+
 export class GardenScene {
   readonly canvas: HTMLCanvasElement;
   cameraYaw = 0;
@@ -124,6 +140,10 @@ export class GardenScene {
   private readonly frustum = new THREE.Frustum();
   private readonly frustumMatrix = new THREE.Matrix4();
   private readonly viewSphere = new THREE.Sphere();
+  private readonly sightRay = new THREE.Raycaster();
+  private readonly sightOrigin = new THREE.Vector3();
+  private readonly sightTarget = new THREE.Vector3();
+  private readonly sightDirection = new THREE.Vector3();
   private readonly target = new THREE.Vector3();
   private readonly desiredCamera = new THREE.Vector3();
   private world = new THREE.Group();
@@ -740,6 +760,73 @@ export class GardenScene {
     return this.frustum.intersectsSphere(this.viewSphere);
   }
 
+  /**
+   * Whether the player really sees a body standing at `position`, as of the
+   * last rendered frame: its head, chest or knees are on screen, within
+   * `maxDistance` of the camera, with no course, scenery or decor in the way.
+   * DESIGN-027 D-04 creaks a changed watcher only once this holds.
+   */
+  canSee(
+    position: PositionSnapshot,
+    radius: number,
+    height: number,
+    maxDistance: number,
+  ): boolean {
+    if (this.disposed || !this.cameraPlaced) return true;
+    if (!this.isInView(position, radius, height)) return false;
+    this.camera.getWorldPosition(this.sightOrigin);
+    const occluders = this.sightOccluders();
+    for (const share of [0.8, 0.5, 0.2]) {
+      this.sightTarget.set(position.x, position.y + height * share, position.z);
+      if (!this.frustum.containsPoint(this.sightTarget)) continue;
+      const distance = this.sightOrigin.distanceTo(this.sightTarget);
+      if (distance > maxDistance) continue;
+      if (distance <= 0.35 || occluders.length === 0) return true;
+      this.sightDirection
+        .copy(this.sightTarget)
+        .sub(this.sightOrigin)
+        .divideScalar(distance);
+      this.sightRay.set(this.sightOrigin, this.sightDirection);
+      this.sightRay.near = 0;
+      this.sightRay.far = distance - 0.3;
+      this.sightRay.camera = this.camera;
+      const blocked = this.sightRay
+        .intersectObjects(occluders, true)
+        .some((hit) => blocksSight(hit.object));
+      if (!blocked) return true;
+    }
+    return false;
+  }
+
+  /** What can hide a watcher: the course, the scenery kit and placed decor. */
+  private sightOccluders(): THREE.Object3D[] {
+    return [
+      ...(this.obbyVisual ? [this.obbyVisual.root] : []),
+      ...this.practicalRoots(),
+    ];
+  }
+
+  /**
+   * DESIGN-027 D-04: an encounter's loaded model measured for the watcher
+   * view test (its widest reach from the feet and its top, with room for the
+   * health bar), or null until the model has loaded.
+   */
+  watcherBody(encounterId: string): { radius: number; height: number } | null {
+    const visual = this.enemies.get(encounterId);
+    if (!visual?.animation) return null;
+    if (visual.viewBody) return visual.viewBody;
+    const bounds = modelFrameBounds(visual.model);
+    if (!bounds) return null;
+    const reachX = Math.max(Math.abs(bounds.min.x), Math.abs(bounds.max.x));
+    const reachZ = Math.max(Math.abs(bounds.min.z), Math.abs(bounds.max.z));
+    visual.viewBody = {
+      radius: Math.hypot(reachX, reachZ),
+      // The health bar floats 0.2 m above the expected height.
+      height: Math.max(bounds.max.y, visual.height + 0.2) + 0.1,
+    };
+    return visual.viewBody;
+  }
+
   updateProgress(save: SaveView): void {
     if (this.disposed) return;
     this.save = save;
@@ -1144,9 +1231,11 @@ export class GardenScene {
       this.camera.position.z += amount * 0.6 * Math.cos(lunge.progress * 71.9 + 2.1);
     }
     this.camera.lookAt(face);
+    // Horror under-lighting: a cold light low between the camera and the face.
     this.scareVisuals?.keyLight?.position
-      .copy(this.camera.position)
-      .add(new THREE.Vector3(0, 0.35, 0));
+      .copy(face)
+      .addScaledVector(forward, Math.min(0.7, distance * 0.6))
+      .add(new THREE.Vector3(0, -Math.max(0.35, visual.height * 0.28), 0));
   }
 
   dispose(): void {

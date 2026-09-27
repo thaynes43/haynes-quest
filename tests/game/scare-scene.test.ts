@@ -235,20 +235,66 @@ describe("DESIGN-027 scene presentation", () => {
     const beforeTokens = tokenGlow();
     const eyes = scene.inspectVisuals().scare!.eyes;
     expect(eyes).toBe(level.encounters.length);
-    expect(scene.inspectVisuals().scare!.eyesVisible).toBe(false);
+    // Between scares the eyes glow faintly and the practicals are browned out.
+    expect(scene.inspectVisuals().scare).toMatchObject({
+      eyesVisible: true,
+      eyesFlared: false,
+      practicalScale: 0.6,
+    });
     scene.render(level.checkpoint, 0, 0, frame(lit(2, { blackout: 1, blackoutElapsed: 0.5 })));
-    expect(lights(scene).hemisphere).toBeCloseTo(1.15 * 0.55 * 0.03);
+    expect(lights(scene).hemisphere).toBeCloseTo(1.15 * 0.38 * 0.03);
     expect(lights(scene).environment).toBe(0);
     const inner = internals(scene).scene;
     expect((inner.background as THREE.Color).getHex()).toBe(0x000000);
     expect((inner.fog as THREE.Fog).color.getHex()).toBe(0x000000);
     expect(bulbColor(scene)).toBe(0x000000);
-    expect(scene.inspectVisuals().scare).toMatchObject({ practicalScale: 0, eyesVisible: true });
+    expect(scene.inspectVisuals().scare).toMatchObject({
+      practicalScale: 0,
+      eyesVisible: true,
+      eyesFlared: true,
+    });
     expect(tokenGlow()).toEqual(beforeTokens);
     scene.render(level.checkpoint, 0, 0, frame(lit(2)));
-    expect(scene.inspectVisuals().scare).toMatchObject({ practicalScale: 1, eyesVisible: false });
-    expect(lights(scene).hemisphere).toBeCloseTo(1.15 * 0.55);
+    expect(scene.inspectVisuals().scare).toMatchObject({
+      practicalScale: 0.6,
+      eyesVisible: true,
+      eyesFlared: false,
+    });
+    expect(lights(scene).hemisphere).toBeCloseTo(1.15 * 0.38);
     scene.dispose();
+  });
+
+  it("darkens level 2 past level 1, with closer fog and browned-out practicals", () => {
+    const baseline = build(undefined);
+    const baseFog = internals(baseline.scene).scene.fog as THREE.Fog;
+    const [near, far] = [baseFog.near, baseFog.far];
+    const baseBulb = bulbColor(baseline.scene);
+    baseline.scene.dispose();
+    const { scene } = build(2);
+    expect(lights(scene).hemisphere).toBeCloseTo(1.15 * 0.38);
+    expect(lights(scene).sun).toBeCloseTo(2.1 * 0.38);
+    expect(lights(scene).environment).toBeCloseTo(0.3 * 0.38);
+    const fog = internals(scene).scene.fog as THREE.Fog;
+    expect(fog.near).toBeCloseTo(near * 0.35);
+    expect(fog.far).toBeCloseTo(far * 0.5);
+    expect(bulbColor(scene)).toBe(new THREE.Color(baseBulb).multiplyScalar(0.6).getHex());
+    scene.dispose();
+  });
+
+  it("browns out scenery that finishes loading after the chapter starts", () => {
+    const { scene, level } = build(2);
+    const kit = internals(scene).scene.getObjectByName("casino-decor-bulb-glow")!.parent!;
+    const late = new THREE.Mesh(
+      new THREE.SphereGeometry(0.1),
+      new THREE.MeshBasicMaterial({ color: 0xffcc66 }),
+    );
+    kit.add(late);
+    for (let index = 0; index < 60; index += 1) scene.render(level.checkpoint, 0, 0, frame(lit(2)));
+    expect((late.material as THREE.MeshBasicMaterial).color.getHex()).toBe(
+      new THREE.Color(0xffcc66).multiplyScalar(0.6).getHex(),
+    );
+    scene.dispose();
+    expect((late.material as THREE.MeshBasicMaterial).color.getHex()).toBe(0xffcc66);
   });
 
   it("frames the attacker's face close up with a key light for the lunge", () => {
@@ -295,11 +341,19 @@ describe("DESIGN-027 scene presentation", () => {
       expect(looking.setY(0).normalize().dot(forward)).toBeLessThan(-0.9);
       const key = internals(scene).scene.getObjectByName("scare-key-light") as THREE.PointLight;
       expect(key.intensity).toBeGreaterThan(0);
-      expect(scene.inspectVisuals().scare!.eyesVisible).toBe(true);
+      // A cold light from below the face, in front of it.
+      expect(key.position.y).toBeLessThan(face.y);
+      expect(key.position.clone().sub(face).setY(0).normalize().dot(forward)).toBeGreaterThan(0.9);
+      expect(key.color.b).toBeGreaterThan(key.color.r);
+      // The room drops almost black behind the face; the eyes flare.
+      expect(lights(scene).hemisphere).toBeLessThan(1.15 * 0.38 * 0.2);
+      expect(lights(scene).environment).toBeLessThan(0.3 * 0.38 * 0.2);
+      expect(scene.inspectVisuals().scare).toMatchObject({ eyesVisible: true, eyesFlared: true });
     }
     scene.render(player, 0, 0, frame(lit(2), [enemyFrame]));
     const key = internals(scene).scene.getObjectByName("scare-key-light") as THREE.PointLight;
     expect(key.intensity).toBe(0);
+    expect(lights(scene).hemisphere).toBeCloseTo(1.15 * 0.38);
     scene.dispose();
   });
 
@@ -396,6 +450,60 @@ describe("DESIGN-027 scene presentation", () => {
     expect(new Set(rolls).size).toBe(3);
     for (const roll of rolls) expect(Math.abs(roll)).toBeGreaterThan(0.05);
     expect(watcherPoseRoll(5)).toBe(watcherPoseRoll(1));
+  });
+
+  it("sees a watcher only on screen, in range and with nothing in the way", () => {
+    const { scene, level } = build(1);
+    const at = level.checkpoint;
+    const ahead = { x: at.x, y: at.y, z: at.z - 8 };
+    // Before the first frame everything counts as seen.
+    expect(scene.canSee({ x: at.x, y: at.y, z: at.z + 30 }, 0.8, 2, 20)).toBe(true);
+    scene.render(at, 0, 0, frame(lit(1)));
+    // WebGLRenderer.render refreshes world matrices; the fake renderer does not.
+    internals(scene).scene.updateMatrixWorld(true);
+    const camera = internals(scene).camera.position.clone();
+    // Behind the camera, and too far ahead, are not seen.
+    expect(scene.canSee({ x: at.x, y: at.y, z: at.z + 30 }, 0.8, 2, 20)).toBe(false);
+    expect(scene.canSee({ x: at.x, y: at.y, z: at.z - 40 }, 0.8, 2, 20)).toBe(false);
+    // A wall of scenery between the camera and the watcher hides it.
+    const open = scene.canSee(ahead, 0.8, 2, 20);
+    expect(open).toBe(true);
+    const themeRoot = (scene as unknown as { themeScenery: { root: THREE.Group } }).themeScenery.root;
+    const wall = new THREE.Mesh(new THREE.BoxGeometry(12, 12, 0.3), new THREE.MeshStandardMaterial());
+    wall.position.set(at.x, at.y + 2, (camera.z + ahead.z) / 2);
+    themeRoot.add(wall);
+    wall.updateMatrixWorld(true);
+    expect(scene.canSee(ahead, 0.8, 2, 20)).toBe(false);
+    // A see-through or hidden one does not.
+    wall.visible = false;
+    expect(scene.canSee(ahead, 0.8, 2, 20)).toBe(open);
+    wall.visible = true;
+    (wall.material as THREE.MeshStandardMaterial).transparent = true;
+    (wall.material as THREE.MeshStandardMaterial).opacity = 0.3;
+    expect(scene.canSee(ahead, 0.8, 2, 20)).toBe(open);
+    scene.dispose();
+  });
+
+  it("measures a loaded watcher model for the view test", () => {
+    const { scene, level } = build(1);
+    const enemy = level.encounters.find((entry) => entry.role === "ordinary")!;
+    // Not loaded yet: createGame sizes it from the catalog instead.
+    expect(scene.watcherBody(enemy.id)).toBeNull();
+    expect(scene.watcherBody("nobody")).toBeNull();
+    const visual = (scene as unknown as {
+      enemies: Map<string, { model: THREE.Group; height: number; animation?: unknown }>;
+    }).enemies.get(enemy.id)!;
+    for (const child of [...visual.model.children]) child.removeFromParent();
+    const body = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.9, 0.8));
+    body.position.set(0.1, 0.95, 0);
+    visual.model.add(body);
+    visual.model.rotation.set(0, 1.2, 0.2);
+    visual.animation = { dispose() {} };
+    const measured = scene.watcherBody(enemy.id)!;
+    expect(measured.radius).toBeCloseTo(Math.hypot(0.9, 0.4));
+    expect(measured.height).toBeCloseTo(Math.max(1.9, visual.height + 0.2) + 0.1);
+    expect(scene.watcherBody(enemy.id)).toBe(measured);
+    scene.dispose();
   });
 
   it("reports what the camera can see", () => {

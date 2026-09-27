@@ -177,7 +177,7 @@ Each cue allows one instance. Listening, mix and physical Safari checks remain o
 | Moment | Event | Cue | Notes |
 | --- | --- | --- | --- |
 | A level 2 attack takes the player to 0 HP and becomes a lunge | `jump-scare` | `jump-scare-sting` | At most once a minute. The checkpoint return waits until the 0.9 s lunge ends (0.5 s with reduced motion), and the sound is not paused meanwhile. |
-| A sleeping animatronic that moved unseen comes back into view | `watcher-creak` | `servo-creak` | Once per unseen change. |
+| A sleeping animatronic that moved unseen is seen again: on screen, within 20 m and not hidden behind scenery | `watcher-creak` | `servo-creak` | Once, however many unseen changes came before. |
 | The lights return after a level 2 blackout | `blackout-return` | `light-buzz` | Not after a blackout that a lunge or a recovery ended early. |
 | Random level 2 ambience, every 20–45 s of active play | `ambient-laugh` | `distant-laugh` | |
 | The radio showman begins an attack | `radio-static` | `radio-static` | Its model id `radio-host-showman`, or the project candidate of that id; at most once in 1.5 s per enemy. |
