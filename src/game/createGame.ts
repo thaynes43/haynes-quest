@@ -55,17 +55,23 @@ import {
 import { GardenScene } from "./scene";
 import { parodyArtwork } from "./scene-catalog";
 import {
+  blackoutHazardZones,
   effectiveScareLevel,
   isRadioShowman,
   JumpScareGate,
   lungeDurationMs,
+  nearBlackoutHazard,
   ScareDirector,
   scareRandom,
   scareSeed,
+  WATCHER_VIEW,
   WatcherDirector,
   watcherBlockedZones,
+  watcherBody,
+  type BlackoutHazardZone,
   type ScareFrame,
   type ScareLevel,
+  type WatcherView,
 } from "./scare";
 import type {
   CreateGameOptions,
@@ -124,8 +130,24 @@ interface RuntimeScene {
   expectHit?(encounterId: string): void;
   anticipateHit?(encounterId: string, at: PositionSnapshot): void;
   celebrate?(encounterId: string, boss: boolean): void;
-  /** DESIGN-027 watchers only change while this reports false. */
+  /**
+   * DESIGN-027 watchers only change while this reports false: whether a body
+   * of `radius` and `height` standing at `position` touches the camera frustum.
+   */
   isInView?(position: PositionSnapshot, radius?: number, height?: number): boolean;
+  /**
+   * Whether the player really sees such a body: part of it on screen, within
+   * `maxDistance` of the camera and not hidden behind scenery. Absent,
+   * `isInView` counts as seen.
+   */
+  canSee?(
+    position: PositionSnapshot,
+    radius: number,
+    height: number,
+    maxDistance: number,
+  ): boolean;
+  /** The measured view body of an encounter's loaded model, or null before it loads. */
+  watcherBody?(encounterId: string): { radius: number; height: number } | null;
   dispose(): void;
 }
 
@@ -141,6 +163,8 @@ interface ScareRuntime {
   readonly watchers: WatcherDirector;
   /** Moving platforms, lifts and crumbling platforms: riding one holds blackouts. */
   readonly ridingIds: ReadonlySet<string>;
+  /** Sweepers' reach and movers' travel: standing near one holds blackouts. */
+  readonly hazardZones: readonly BlackoutHazardZone[];
   lunge: {
     readonly encounterId: string;
     readonly startedAt: number;
@@ -298,7 +322,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const jumpScareGate = new JumpScareGate();
   let lastTakeHit: { encounterId: string; at: number } | null = null;
   let scareAmbientPlaying = false;
+  /** DESIGN-027 D-04: watcher view bodies sized from the catalog, per level. */
+  const catalogBodies = new Map<string, { radius: number; height: number }>();
   const buildScare = (): void => {
+    catalogBodies.clear();
     const scareLevel = effectiveScareLevel(level.authored, scaryMoments);
     enemies.setWatchers(scareLevel !== 0);
     if (scareLevel === 0) {
@@ -317,6 +344,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
           .filter((platform) => platform.motion || platform.crumble)
           .map((platform) => platform.id),
       ),
+      hazardZones: blackoutHazardZones(level.course),
       lunge: null,
       phases: new Map(),
       staticAt: new Map(),
@@ -757,8 +785,48 @@ export function createGame(options: CreateGameOptions): GameHandle {
   };
 
   /**
-   * DESIGN-027 per-frame scare step: blackouts wait for safe footing, and
-   * sleeping animatronics change only while the camera cannot see them.
+   * A sleeping animatronic's view body: the scene's measurement of its loaded
+   * model, else a cylinder sized from its catalog height.
+   */
+  const viewBody = (encounterId: string): { radius: number; height: number } => {
+    const measured = scene.watcherBody?.(encounterId);
+    if (measured) return measured;
+    let body = catalogBodies.get(encounterId);
+    if (!body) {
+      const content = save.adventure?.activeLevel?.encounters.find(
+        (encounter) => encounter.id === encounterId,
+      )?.content;
+      body = watcherBody(content ? parodyArtwork(content)?.height : null);
+      catalogBodies.set(encounterId, body);
+    }
+    return body;
+  };
+  /**
+   * DESIGN-027 D-04 as the camera answers it. Without a camera to ask (a
+   * headless scene), every watcher counts as seen, so none ever changes.
+   */
+  const watcherView: WatcherView = {
+    inView: (watcher, position) => {
+      if (!scene.isInView) return true;
+      const body = viewBody(watcher.id);
+      return scene.isInView(
+        position,
+        body.radius + WATCHER_VIEW.margin,
+        body.height + WATCHER_VIEW.margin,
+      );
+    },
+    seen: (watcher) => {
+      const body = viewBody(watcher.id);
+      if (scene.canSee)
+        return scene.canSee(watcher.position, body.radius, body.height, WATCHER_VIEW.seenRange);
+      return scene.isInView?.(watcher.position, body.radius, body.height) ?? true;
+    },
+  };
+
+  /**
+   * DESIGN-027 per-frame scare step: blackouts wait for safe footing away
+   * from sweepers and movers, and sleeping animatronics change only while the
+   * camera cannot see them.
    */
   const stepScare = (
     runtime: ScareRuntime,
@@ -767,22 +835,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
   ): void => {
     const riding =
       controller.supportId !== null && runtime.ridingIds.has(controller.supportId);
-    const events = runtime.director.step(
-      deltaSeconds,
-      !controller.grounded,
-      riding,
-      runtime.lunge !== null,
-    );
+    const events = runtime.director.step(deltaSeconds, !controller.grounded, riding, {
+      holdBlackouts: runtime.lunge !== null,
+      nearHazard: nearBlackoutHazard(runtime.hazardZones, controller.position),
+    });
     if (events.blackoutEnded) options.onFeedback?.({ type: "blackout-return" });
     if (events.laugh) options.onFeedback?.({ type: "ambient-laugh" });
-    // Without a camera to ask (a headless scene), every watcher counts as seen.
     const watched = runtime.watchers.step(
       deltaSeconds,
-      enemies.dormantWatchers().map((watcher) => ({
-        ...watcher,
-        inView: scene.isInView?.(watcher.position, 0.6, 1.6) ?? true,
-      })),
+      enemies.dormantWatchers(),
       controller.position,
+      watcherView,
     );
     for (const move of watched.moves) enemies.applyWatcherMove(move.id, move);
     for (const id of watched.creaks)

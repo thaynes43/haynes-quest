@@ -871,6 +871,36 @@ footer {
     #293b352b
   );
 }
+/* DESIGN-027 D-05: the lunge owns the whole screen. The HUD, touch controls
+   and prompts vanish, and a dark red vignette closes in on the face. */
+.game-screen[data-jump-scare] [data-quest-ui] {
+  visibility: hidden;
+}
+.game-screen[data-jump-scare] .game-vignette {
+  box-shadow: inset 0 0 22vmin 6vmin #000000e6;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 38%,
+    #3a00008c 72%,
+    #000000cc 100%
+  );
+}
+@media (prefers-reduced-motion: no-preference) {
+  .game-screen[data-jump-scare] .game-vignette {
+    animation: jump-scare-flash 0.9s ease-out both;
+  }
+}
+@keyframes jump-scare-flash {
+  0% {
+    background-color: #8a0c0a66;
+  }
+  12% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
 .game-header {
   position: absolute;
   top: max(22px, env(safe-area-inset-top));

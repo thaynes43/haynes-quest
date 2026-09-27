@@ -5,20 +5,28 @@
  * them, turns a lethal level 2 attack into a lunge with a cooldown, and
  * reports the scare sounds. The parent switch turns all of it off.
  */
+import * as THREE from "three";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   authoredRoute,
   type AuthoredLevelResolver,
 } from "../../src/game/authored-layout";
-import type { ObbyPlatform } from "../../src/game/obby";
+import type { ObbyHazard, ObbyPlatform } from "../../src/game/obby";
 import type { GameFeedbackEvent, SceneFrame } from "../../src/game/types";
 import { AUTHORED_LEVEL_SCHEMA_VERSION_V4 } from "../../src/shared/authored-level";
 import type { GameplayActionRequest, SaveView } from "../../src/shared/contracts";
 import { makeAuthoredSave } from "./authored-fixtures";
 
+type Point = { x: number; y: number; z: number };
 const runtimeState = vi.hoisted(() => ({
   spawnOverrides: [] as Array<{ x: number; y: number; z: number }>,
   inView: true,
+  /** When set, the scene's frustum test (position, radius, height). */
+  inViewFn: null as null | ((p: Point, radius: number, height: number) => boolean),
+  /** When set, the scene's line-of-sight answer; absent, the scene has no canSee. */
+  canSee: null as null | ((p: Point, radius: number, height: number, range: number) => boolean),
+  /** When set, the scene's measured watcher body. */
+  watcherBody: null as null | { radius: number; height: number },
   frames: [] as unknown[],
 }));
 
@@ -58,8 +66,16 @@ vi.mock("../../src/game/scene", () => ({
     expectHit(): void {}
     anticipateHit(): void {}
     celebrate(): void {}
-    isInView(): boolean {
-      return runtimeState.inView;
+    isInView(p: Point, radius = 0.6, height = 1.5): boolean {
+      return runtimeState.inViewFn ? runtimeState.inViewFn(p, radius, height) : runtimeState.inView;
+    }
+    get canSee() {
+      const see = runtimeState.canSee;
+      return see ? (p: Point, r: number, h: number, range: number) => see(p, r, h, range) : undefined;
+    }
+    get watcherBody() {
+      const body = runtimeState.watcherBody;
+      return body ? () => body : undefined;
     }
     render(_position: unknown, _facing: number, _elapsed: number, frame?: unknown): void {
       runtimeState.frames.push(frame);
@@ -74,6 +90,20 @@ import { createGame } from "../../src/game/createGame";
 
 const ROUTE = "garden-playground-v2";
 const garden = authoredRoute(ROUTE)!;
+
+/** A sweeper swinging over the far end of a second deck (x 76–96). */
+const sweeperDeck: ObbyPlatform = {
+  id: "sweeper-deck",
+  center: { x: 86, y: -0.5, z: 0 },
+  size: { x: 20, y: 1, z: 10 },
+};
+const sweeper: ObbyHazard = {
+  id: "scare-sweeper",
+  center: { x: 92, y: 0.6, z: 0 },
+  halfLength: 2.5,
+  radius: 0.3,
+  rotation: { period: 3 },
+};
 
 /** A test rig beside the garden course (x ≤ 12): a still deck and a lift. */
 const deck: ObbyPlatform = {
@@ -99,7 +129,8 @@ function resolverFor(scare: 0 | 1 | 2 | undefined): AuthoredLevelResolver {
     },
     course: {
       ...garden.course,
-      platforms: [...garden.course.platforms, deck, lift],
+      platforms: [...garden.course.platforms, deck, lift, sweeperDeck],
+      hazards: [...(garden.course.hazards ?? []), sweeper],
     },
   } as unknown as NonNullable<ReturnType<AuthoredLevelResolver>>;
   return (routeId) => (routeId === ROUTE ? route : authoredRoute(routeId));
@@ -159,6 +190,9 @@ describe("scary moments at runtime", () => {
     runtimeState.spawnOverrides.length = 0;
     runtimeState.frames.length = 0;
     runtimeState.inView = true;
+    runtimeState.inViewFn = null;
+    runtimeState.canSee = null;
+    runtimeState.watcherBody = null;
     nextFrame = undefined;
     now = 1_000;
     reducedMotion = false;
@@ -267,6 +301,21 @@ describe("scary moments at runtime", () => {
       game.dispose();
     });
 
+    it("never black out beside a sweeper, only once clear of it", () => {
+      // 2.2 m from the bar's 2.8 m reach: inside the 4 m clearance.
+      const near = start({ scare: 2, spawn: { x: 87, y: 0, z: 0 } });
+      for (let frame = 0; frame < 60 * 150; frame += 1) advance();
+      expect(near.game.inspect().obby!.state.supportId).toBe("sweeper-deck");
+      expect(near.game.inspect().scare!.blackouts).toBe(0);
+      near.game.dispose();
+      // The same deck's far end, clear of the sweeper, blacks out as usual.
+      const clear = start({ scare: 2, spawn: { x: 78, y: 0, z: 0 } });
+      for (let frame = 0; frame < 60 * 150; frame += 1) advance();
+      expect(clear.game.inspect().obby!.state.supportId).toBe("sweeper-deck");
+      expect(clear.game.inspect().scare!.blackouts).toBeGreaterThan(0);
+      clear.game.dispose();
+    });
+
     it("flicker but never black out at level 1", () => {
       const { game, feedback } = start({ scare: 1, spawn: { x: 40, y: 0, z: 0 } });
       for (let frame = 0; frame < 60 * 150; frame += 1) advance();
@@ -339,6 +388,86 @@ describe("scary moments at runtime", () => {
       // Inspection counts the creaks for lockstep harnesses.
       expect(game.inspect().scare).toMatchObject({ watcherCreaks: 4 });
       expect([...game.inspect().scare!.lastWatcherCreakIds].sort()).toEqual(creaks);
+      game.dispose();
+    });
+
+    it("never move into the camera frame, even from just past its edge", () => {
+      // The scene measures the loaded models; the runtime pads that body.
+      runtimeState.watcherBody = { radius: 0.95, height: 2.3 };
+      const save0 = equippedSave();
+      const ordinaryIds = save0
+        .adventure!.activeLevel!.encounters.filter((encounter) => encounter.role === "ordinary")
+        .map((encounter) => encounter.id);
+      let moves = 0;
+      for (const targetIndex of [0, 1, 2, 3])
+        for (const distance of [6, 9, 12])
+          for (const side of [1, -1]) {
+            runtimeState.inViewFn = null;
+            runtimeState.inView = true;
+            const { game } = start({ scare: 1, spawn: farFromEnemies });
+            const target = game
+              .inspect()
+              .enemies.find((enemy) => enemy.id === ordinaryIds[targetIndex])!;
+            // A chase-like camera facing the watcher, turned until it has just
+            // become free to change: its padded body has left the frame.
+            const camera = new THREE.PerspectiveCamera(48, 1280 / 760, 0.08, 100);
+            camera.position.set(target.position.x, target.position.y + 3, target.position.z + distance);
+            const frustum = new THREE.Frustum();
+            const aim = (yaw: number) => {
+              camera.rotation.set(-0.25, yaw, 0, "YXZ");
+              camera.updateMatrixWorld();
+              camera.updateProjectionMatrix();
+              frustum.setFromProjectionMatrix(
+                new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse),
+              );
+            };
+            const touches = (p: Point, radius: number, height: number) =>
+              frustum.intersectsSphere(
+                new THREE.Sphere(new THREE.Vector3(p.x, p.y + height / 2, p.z), Math.hypot(radius, height / 2)),
+              );
+            let yaw = 0;
+            aim(yaw);
+            while (touches(target.position, 0.95 + 0.5, 2.3 + 0.5)) aim((yaw += side * 0.005));
+            runtimeState.inViewFn = touches;
+            let before = new Map(game.inspect().enemies.map((enemy) => [enemy.id, { ...enemy.position }]));
+            for (let frame = 0; frame < 60 * 6; frame += 1) {
+              advance();
+              const after = new Map(game.inspect().enemies.map((enemy) => [enemy.id, { ...enemy.position }]));
+              for (const [id, position] of after) {
+                const previous = before.get(id)!;
+                if (Math.hypot(position.x - previous.x, position.z - previous.z) < 0.01) continue;
+                moves += 1;
+                expect(touches(previous, 0.95, 2.3), `${id} left from view`).toBe(false);
+                expect(touches(position, 0.95, 2.3), `${id} landed in view`).toBe(false);
+              }
+              before = after;
+            }
+            game.dispose();
+          }
+      // Watchers further out of frame still shuffle.
+      expect(moves).toBeGreaterThan(0);
+    });
+
+    it("creak only when the player can really see the changed watcher", () => {
+      runtimeState.inView = false;
+      const { game, feedback } = start({ scare: 1, spawn: farFromEnemies });
+      for (let frame = 0; frame < 60 * 8; frame += 1) advance();
+      expect(game.inspect().scare!.watcherMoves).toBe(4);
+      // Back in the frustum but hidden, or out of range: no creak.
+      runtimeState.inView = true;
+      const ranges: number[] = [];
+      runtimeState.canSee = (_p, _r, _h, range) => {
+        ranges.push(range);
+        return false;
+      };
+      for (let frame = 0; frame < 60 * 3; frame += 1) advance();
+      expect(ofType(feedback, "watcher-creak")).toEqual([]);
+      expect(ranges.length).toBeGreaterThan(0);
+      expect(new Set(ranges)).toEqual(new Set([20]));
+      // In sight at last: each creaks once.
+      runtimeState.canSee = () => true;
+      for (let frame = 0; frame < 12; frame += 1) advance();
+      expect(ofType(feedback, "watcher-creak")).toHaveLength(4);
       game.dispose();
     });
 
