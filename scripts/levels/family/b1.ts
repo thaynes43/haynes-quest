@@ -43,6 +43,7 @@ import type {
   AuthoredPlatformPiece,
 } from "../../../src/shared/authored-level.js";
 import type {
+  LevelEditorEncounterReference,
   LevelEditorEnemyCandidate,
   WorldEditorLevelDocument,
 } from "../../../src/shared/editor-project.js";
@@ -99,23 +100,22 @@ export const FAMILY_B1_SHELL_CHAPTER: WorldShellChapter = Object.freeze({
 });
 
 /**
- * The WORLD-SPEC cast as project candidates (no catalog entry exists yet):
- * Big Honk Bus for the boss and Yes-Yes Veggie in all four ordinary slots.
+ * Big Honk Bus, the boss: its Blender model landed in parody-catalog-v8, so
+ * the chapter uses the exact catalog entry (period sing-along-playroom-v1,
+ * window 2018-01-01 to 2026-12-31).
  */
-export const FAMILY_B1_CAST: Readonly<Record<"boss" | "ordinary", LevelEditorEnemyCandidate>> =
+export const FAMILY_B1_BOSS: LevelEditorEncounterReference = Object.freeze({
+  source: "catalog",
+  catalogEntryId: "honk-bus",
+  catalogEntryVersion: "v001",
+});
+
+/**
+ * The WORLD-SPEC ordinary as a project candidate (no catalog model yet):
+ * Yes-Yes Veggie in all four ordinary slots, in the boss's period.
+ */
+export const FAMILY_B1_CAST: Readonly<Record<"ordinary", LevelEditorEnemyCandidate>> =
   Object.freeze({
-    boss: Object.freeze({
-      id: "honk-bus",
-      name: "Big Honk Bus",
-      periodId: "sing-along-playroom-v1",
-      recognizableReference: "a toddler sing-along show's school bus",
-      visualJoke: "honks when it's grumpy",
-      obstacleOrAttack: "honk-bounce",
-      eligibility: { startDate: "2018-01-01", endDate: "2026-12-31" },
-      role: "boss",
-      kind: "boss",
-      behaviorPreset: "boss",
-    }),
     ordinary: Object.freeze({
       id: "yes-yes-veggie",
       name: "Yes-Yes Veggie",
