@@ -1752,13 +1752,13 @@
       "source": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
       "sceneReleasedAt": "2026-09-26T23:30:56.513530+00:00",
       "manifest": "docs/assets/media/lab-robot/v001/sha256-manifest.json",
-      "pr": null,
+      "pr": 124,
       "prMerged": null,
       "publication": {
         "status": "pending checked image publication",
         "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v4 (like the frozen v1 to v3) fills two of the four A·3 ordinary slots (ordinary-2 and ordinary-4) and the optional bonus slot (bonus-1) with the Lab Robot project candidate (lab-robot, role ordinary, behavior preset ordinary-b), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.2919}. v4 sets A·3 (Hero City) to scare level 1. The sheet notes' beep-beep warning cue before move and attack is not made; it belongs to the audio lane (DESIGN-008)."
       },
-      "prUrl": null,
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/124",
       "masterSha256": "94751fa7a568b5406dd5af8624b72f2e4d76e3b5931e9c338f3e1fa0c56a0e6a",
       "triangles": 13420,
       "joints": 46,
