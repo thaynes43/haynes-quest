@@ -99,7 +99,7 @@ The engine implements D-01 to D-06, and the template versions below implement D-
 - **The field.** `scare` exists only on `authored-level-v4` documents. `chapter.scare.set` sets it, and `0` removes it. `inspect` reports it per chapter. It freezes with the chapter's geometry in `family-world-plan-v1` and in editor playtest snapshots.
 - **Lighting.**
   - Level 1 scales the hemisphere, sun and environment light to 55%. It moves fog to half its start and 60% of its end distance, and mixes the sky and fog toward cold night.
-  - Level 2 scales them to 38%, moves fog to 35% of its start and half its end distance, and holds the practical lights at 60%. Scenery that loads later joins the dimmed practicals within a second.
+  - Level 2 scales them to 38%, moves fog to 35% of its start and half its end distance, mixes the sky and fog further toward cold night (82% instead of 62%), and holds the practical lights at 60%. Scenery that loads later joins the dimmed practicals within a second.
   - The practical lights are the scenery kit, placed decor and placeholder scenery, meaning their unlit bulbs and emissive trim. A flicker dip drops them to 12% of their level's value and the scene light to 80%.
   - At level 2 the eyes glow at 45% with a faint halo between scares, and at full strength in a dip, a blackout or a lunge.
 - **Blackouts.** Scene light falls to 3%, the environment light goes out, the sky and fog go black and the practicals go dark. Gameplay markers stay visible for fairness: attack warnings, checkpoints, rings and health bars. The animatronics' eyes (small red emissive pairs fitted to each model's face) and the golden glow stay visible too.

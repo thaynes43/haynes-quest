@@ -278,6 +278,14 @@ describe("DESIGN-027 scene presentation", () => {
     expect(fog.near).toBeCloseTo(near * 0.35);
     expect(fog.far).toBeCloseTo(far * 0.5);
     expect(bulbColor(scene)).toBe(new THREE.Color(baseBulb).multiplyScalar(0.6).getHex());
+    // Colder and darker sky and fog than level 1's.
+    const spooky = build(1);
+    const skyOne = (internals(spooky.scene).scene.background as THREE.Color).clone();
+    spooky.scene.dispose();
+    const skyTwo = internals(scene).scene.background as THREE.Color;
+    expect(skyTwo.r).toBeLessThan(skyOne.r);
+    expect(skyTwo.getHSL({ h: 0, s: 0, l: 0 }).l).toBeLessThan(skyOne.getHSL({ h: 0, s: 0, l: 0 }).l);
+    expect(fog.color.getHex()).toBe(skyTwo.getHex());
     scene.dispose();
   });
 

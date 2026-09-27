@@ -8,8 +8,9 @@ import type { ScareFrame, ScareLevel } from "./scare";
  *
  * - Level 1: scene light at 55%, colder and closer fog, and practical lights
  *   (the scenery kit's bulbs and emissive trim) that dip in short flickers.
- * - Level 2 is darker still: scene light at 38%, fog closer again, practical
- *   lights browned out to 60%, and every animatronic's eyes glowing faintly.
+ * - Level 2 is darker still: scene light at 38%, fog closer and colder again,
+ *   practical lights browned out to 60%, and every animatronic's eyes glowing
+ *   faintly.
  *   It adds blackouts, in which everything but gameplay markers, the
  *   golden-collectible glow and the eyes goes dark, and the jump scare's
  *   close shot: the room drops almost black while a cold light from below
@@ -33,7 +34,8 @@ export const SCARE_FOG_SCALE = Object.freeze({
   2: Object.freeze({ near: 0.35, far: 0.5 }),
 });
 const COLD_NIGHT = 0x0e1524;
-const COLD_MIX = 0.62;
+/** How far the sky and fog lean toward cold night: level 2 almost all the way. */
+const COLD_MIX = Object.freeze({ 1: 0.62, 2: 0.82 } as const);
 const EYE_COLOR = 0xff3b2e;
 /** Level 2 eyes between scares: a faint ember; flickers, blackouts and lunges flare them. */
 const EYE_DIM = 0.45;
@@ -113,7 +115,7 @@ export class ScareVisuals {
       this.scene.background instanceof THREE.Color
         ? this.scene.background
         : new THREE.Color(0x000000);
-    this.night.copy(background).lerp(new THREE.Color(COLD_NIGHT), COLD_MIX);
+    this.night.copy(background).lerp(new THREE.Color(COLD_NIGHT), COLD_MIX[this.level]);
     const fog = this.scene.fog instanceof THREE.Fog ? this.scene.fog : null;
     if (fog) {
       fog.near *= SCARE_FOG_SCALE[this.level].near;
