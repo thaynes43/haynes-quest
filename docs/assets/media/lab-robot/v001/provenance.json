@@ -1,0 +1,57 @@
+{
+  "work_order": "WO111",
+  "asset_id": "lab-robot",
+  "version": "v001",
+  "created_utc": "2026-09-26T23:30:26.008947+00:00",
+  "glb_sha256": "33be060d30dc50830380bab97021635a5e3b7a73f2208bfab1b1562075aeb76c",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator; Tom ruled on Sept 26 that Claude Opus 5.5 does the WO111 Blender work",
+  "authoring_tool": "Blender MCP execute_blender_code on the primary authoring service (blender-authoring, instance 1), driven by a small streamable-HTTP JSON-RPC client (source/mclient.py, source/author_run.py); instance 2 was not touched",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": {
+    "kind": "Blender reference sheet, no generated concept",
+    "file": "reference-sheet.png",
+    "sha256": "e8bbe412ab2f65ea08c05c5cc75a52db48e4e826f2dd39a2360e291e6a2ff259",
+    "notes": "reference-notes.md",
+    "notes_sha256": "cae3250c290d3dbe98bf99db279ce0805b643befeb3f1f4c4594a0bacea2e768",
+    "blockout_master": "lab-robot-blockout.blend",
+    "blockout_sha256": "86dcd070c61ed236cec5713214ea561760fcc0718edbfa036a285caade4d113e",
+    "coordinator_review": "Approved Sept 26 (SHEET-REVIEWS.md): a tin-toy lab robot with a big lens eye, a warning light, slinky pincer arms, a self-destruct button and a yanked-out power cord; tank treads. Hero City is spooky level 1 (DESIGN-027), so the lens eye may glow red in dim light. Attack: the warning light spins, then a pincer lunge. Defeat: sparks, the dome pops and it slumps smoking, held.",
+    "generator": "None. The sheet is a Cycles render of a procedural Blender blockout; no image-generation model was used for this asset."
+  },
+  "source_scripts": {
+    "animate.py": "0350340ffc7fe3ec8c764ace3ee6a52222db1d7a09b839744c9a097df7f98cf1",
+    "author_run.py": "53be13aab43f0cd3fc64749b63433860c0aea2fdd5c210e46a1f2d935467ed1f",
+    "bounds.json": "53dc805dceb54f75ab45c7737bf01bb312103d56b84919e6f2ac55f10e3cde40",
+    "build.py": "c0e4b78af660cd404b87c29f02f94091b9905cd01685ae6c63afdbfc51c8b80a",
+    "claim_model.py": "f75c31c2f340dda3c0b6903def8367039e59a0dfd27aa33bb5583646389f447e",
+    "common.py": "464d0fd4ac655086db05822b4d5f5d5d716cc9a0b854fdf8fd6e2b9c73c64471",
+    "compare.mjs": "52947680dcc09773e9da9f739e245d20793697fd85cd55118235b80f5978827d",
+    "cycle.sh": "a52d106368b76750db59a5542907a742a310354ecce01d8ad24cc214c67cb658",
+    "delivery.py": "146e640c2caf63b4a8fe995e2babb2377d52b6e4600f55f1824bd862e1781092",
+    "grid.mjs": "8406bf3b12b550afdc85d0f4dfff1e965a5e26c3071aa9c15e0dcaee6bc67846",
+    "inspect-attachments.py": "3ac2ea3f381cf7fbe2a5f4e1101ea3f7664834f157af1fe1c06c0a346161c99e",
+    "inspect-three.mjs": "5e95f4f420fff7820820c74e0fda605228622cb877a9534b2956b2468afc3848",
+    "look.mjs": "ad839d1a9c2f547554c118f766919b2f84748b8a612585787e044aeb1c2f4c01",
+    "make-evidence.py": "cfa7112f5e344c15ee58ec497565e3e0a26e0fc13aeda02be26d2f9ad41124c9",
+    "mclient.py": "1780a8a1611aa52f22e43aa93ff94be69e182f7ebe4a7a2d1068726d9dd4a383",
+    "paint.py": "b38bd2437e7edc023467e5c6d717753e1d953195cdbd1496b84805e355794218",
+    "paint_test.py": "1c00e979869c995b83d85e80a41477d60e70eacacddbf435f35c0fbaf2f32d42",
+    "preview.mjs": "2dd2bfc2154a1c460249859a0fb7adc47f3d777de47bbd8b5e34aaff9cbaf28e",
+    "release_model.py": "069f024164ed37334d2b7b362beb1288a0c642712a2c724df171fc1ba74f32ef",
+    "rig.py": "8178fb315d64740fe39ede47468048813a17e0b152caf000bdf85896d4177fca",
+    "run_validate.py": "d6bb03e0e186d3ac378dd58d2acea2b533ba76dbd1f1d03b99e816e69bc50802",
+    "validate.mjs": "3aecf6136a5a70e4171e96878f2a2ba4ce7904cd2451ffdd86e11ef1215765cc"
+  },
+  "original_work": [
+    "Final topology, UVs, weights, the 46-joint rig and all five clips are new; the approved blockout supplied measured proportions, colours, parody hooks and the sheet-pose coordinates (the slinky arm centrelines, both claw frames, the eyelid tilt, the glance and the cord path) only.",
+    "Original 1024 painted atlas generated with numpy in Blender Python (paint.py): the speaker-grille smile, the camera-aperture iris, the riveted panel and hatch, the seam rivets, the striped kick plate, the hazard ring, the slotted hubcaps, the two gauge dials, the warning light hot spot, the head interior and the button shine, plus flat sheet-colour and glow tiles. No external texture.",
+    "Mesh, UV, transfer, validation and evidence utilities adapted from the WO111 radio-host-showman / demon-band-idol / putty-grunt scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise names, models, faces, logos, lettering, recordings or textures; no lettering anywhere on the robot. No teeth, blades, lasers or weapons; the pincers keep ball tips; no gore."
+  ],
+  "rights_note": "Original authored study. No exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication and runtime integration; the owner exact-version and physical-device review remain open."
+}

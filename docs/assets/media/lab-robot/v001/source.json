@@ -1,0 +1,67 @@
+{
+  "asset_id": "lab-robot",
+  "version": "v001",
+  "work_order": "WO111",
+  "created_utc": "2026-09-26T18:36:24.116534+00:00",
+  "kind": "blender-reference-sheet",
+  "source_label": "Blender reference sheet, no generated concept; authored by Claude Opus 5.5",
+  "generator": "None. A Cycles render of a procedural Blender blockout (Blender 4.5.13 LTS); no image-generation model was used.",
+  "authoring_agent": "Claude Opus 5.5 (claude-opus-5-5, xhigh) Blender author under the PLAN-019 coordinator",
+  "seed": null,
+  "reference_files": [],
+  "art_direction": "docs/assets/art-direction.md; DESIGN-026 locked roster brief for lab-robot; DESIGN-027 D-01 scare level 1 for World A chapter 3 (Hero City)",
+  "private_inputs": false,
+  "franchise_media_inputs": false,
+  "selected_by": "PLAN-019 coordinator (sheet approved September 26, PRD-004 Q-07)",
+  "coordinator_sheet_notes": "A tin-toy lab robot with a big lens eye, a warning light, slinky pincer arms, a self-destruct button and a yanked-out power cord; tank treads. Hero City is spooky level 1 (DESIGN-027), so the lens eye may glow red in dim light. Attack: the warning light spins, then a pincer lunge. Defeat: sparks, the dome pops and it slumps smoking, held.",
+  "sheet_vs_model_note": "The sheet and its notes were written as a kid-safe robot with no sparks, smoke or scary eye. The coordinator's approval notes, written under Tom's September 26 DESIGN-027 ruling, set Hero City at spooky level 1 and ask for a red-glowing lens eye, a spinning warning light before a pincer lunge, and a sparking, dome-popping, smoking defeat. Those notes supersede the sheet notes' kid-safe limits only; the silhouette, colours, proportions, parody hooks and sheet pose carry over to the model.",
+  "owner_review": "Pending exact-version review",
+  "family_release_permission": "PRD-004 Q-03; WO111",
+  "ruling": "Tom, September 26: Claude Opus 5.5 does the remaining WO111 Blender work; assets without an Astra concept follow a painted Blender reference sheet that the coordinator reviewed (PRD-004 Q-07). Tom, September 26 (DESIGN-027): genuinely scary is welcome where the era fits, with no gore.",
+  "files": {
+    "reference-sheet.png": {
+      "sha256": "e8bbe412ab2f65ea08c05c5cc75a52db48e4e826f2dd39a2360e291e6a2ff259",
+      "bytes": 2091178
+    },
+    "reference-notes.md": {
+      "sha256": "cae3250c290d3dbe98bf99db279ce0805b643befeb3f1f4c4594a0bacea2e768",
+      "bytes": 19411
+    },
+    "lab-robot-blockout.blend": {
+      "sha256": "86dcd070c61ed236cec5713214ea561760fcc0718edbfa036a285caade4d113e",
+      "bytes": 734644
+    },
+    "lab-robot-reference-sheet.blend": {
+      "sha256": "2eb3d7689f7ca4df673fc423849db632342ecb82c44d5423360caac21ce8dbb3",
+      "bytes": 983545
+    },
+    "lab-robot-reference-sheet-checkpoint.blend": {
+      "sha256": "84ffabea8b610bc16e209240fb1b74ad5b993e8be579a9d75cce1080efb70381",
+      "bytes": 976680
+    }
+  },
+  "unpublished_manifest_entries": {
+    "files": [],
+    "reason": "None. Every file in sha256-manifest.json is published."
+  },
+  "unpublished_author_files": {
+    "files": [],
+    "reason": "None. Every file in the author's artifact directory is published."
+  },
+  "duplicate_author_files": {
+    "files": [
+      "sheet-stage/claim-checkpoint.blend",
+      "sheet-stage/sheet-render.json",
+      "sheet-stage/source/"
+    ],
+    "reason": "The author's manifest lists these sheet-stage copies alongside the identical top-level claim-checkpoint.blend, sheet-render.json and sheet scripts in source/; both copies are published as manifested."
+  },
+  "intake_added_files": {
+    "files": [
+      "source.json",
+      "sheet-stage/README.md"
+    ],
+    "reason": "Written by the catalog intake to describe the source and the sheet-stage records; not listed in the author's sha256 manifest."
+  },
+  "rights_note": "Original authored parody of the era's cartoon evil scientist's runaway lab robot, drawn as a vintage tin toy. No copied names, lettering, logos, faces, costumes, sounds or franchise designs; no claim of exclusive rights or franchise endorsement."
+}

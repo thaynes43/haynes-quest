@@ -1,0 +1,1259 @@
+{
+  "work_order": "WO111",
+  "asset_id": "lab-robot",
+  "version": "v001",
+  "status": "model-delivered",
+  "source": "Blender reference sheet, no generated concept",
+  "created_utc": "2026-09-26T23:31:05.475424+00:00",
+  "local_root": "/home/dev/artifacts/haynes-quest/family-eras/lab-robot/v001",
+  "remote_root": "/workspace/haynes-quest/family-eras/lab-robot/v001",
+  "blender_instance": "blender-authoring (instance 1, primary)",
+  "scene_lease": "released",
+  "scene_released_utc": "2026-09-26T23:30:56.513530+00:00",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "glb_sha256": "33be060d30dc50830380bab97021635a5e3b7a73f2208bfab1b1562075aeb76c",
+  "files": [
+    {
+      "path": "lab-robot.blend",
+      "bytes": 1666330,
+      "sha256": "94751fa7a568b5406dd5af8624b72f2e4d76e3b5931e9c338f3e1fa0c56a0e6a",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "lab-robot.glb",
+      "bytes": 1506604,
+      "sha256": "33be060d30dc50830380bab97021635a5e3b7a73f2208bfab1b1562075aeb76c",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "pigment.png",
+      "bytes": 45636,
+      "sha256": "d60f6155900ff13de1f3f43b1604417fb12a005b6999d1ca781e97872ccb1ed1",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "construction.json",
+      "bytes": 43109,
+      "sha256": "886563987e409d9e5d5843ac6f2a7ebab73d4ebe4aeb833e345e5d77aa25e9db",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 4212,
+      "sha256": "105a582e702da6cc1344126f2727ef4835420b3dc2fb82d3dd0d2fb8c1548bbc",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "attachment-inspection.json",
+      "bytes": 8014,
+      "sha256": "fbb9c31b5b6111ee98122e6187609debd87fe888fc84e4a1f816762ce16847b4",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "lab-robot-construction.blend",
+      "bytes": 624402,
+      "sha256": "3fc435548405217ad49079c53d452f0efa5c7450c934e1fabde85adf5fc16831",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "lab-robot-checkpoint.glb",
+      "bytes": 894792,
+      "sha256": "b72e2a333d2470288c1a189dafab681c7d0cc8ee0b06b457271f3e2f12bca124",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "model-claim-checkpoint.blend",
+      "bytes": 1211507,
+      "sha256": "8cbcee197d874c4626c2bc5ce7c949fced176c63c8c42f4790b6d849508c1cd9",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "front.png",
+      "bytes": 140364,
+      "sha256": "b52a937210eff2fec4ccdfd22afe2e00a943eee74f3b17de07e447c7e11e61b2",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "side.png",
+      "bytes": 116528,
+      "sha256": "bc181a5f1cf261b1f65f9fc55281569764a44bb2774325eca5eae73f3f974a67",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "back.png",
+      "bytes": 116798,
+      "sha256": "81de0e292e25a2b8a2be478db8bc7f90e3d1a93a944c349ac29f592587884879",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "threequarter.png",
+      "bytes": 157834,
+      "sha256": "45fd81507f8da4b8b7c6a82a944f518df3e09d466a0ed1571381051c286088ea",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "beauty.png",
+      "bytes": 150906,
+      "sha256": "28ea9fe8195affd3dadbb3583198eb7144c3d86359a7ad910f83d75f7ac99cc4",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "rest-front.png",
+      "bytes": 144655,
+      "sha256": "d407248e65697148bfd07db73a4a3be715593eb0d3d00134695e4096f346a062",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "rest-side.png",
+      "bytes": 110084,
+      "sha256": "60478514dbc0d3b2cfa393e6a04b4d73e1ad919d3f6ed1c763f48016c8a75aab",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "rest-back.png",
+      "bytes": 121668,
+      "sha256": "b73680b909718e442175d748a1e867b2d6c6967c2768482de56292d4e626d76c",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "rest-threequarter.png",
+      "bytes": 155315,
+      "sha256": "68f35e780ec9536a617a92180ccb00f957552cfffbec4fc7198091a50ca28a70",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "rest-beauty.png",
+      "bytes": 153384,
+      "sha256": "db0e53ef9a80f5898444d2591d5eaf5d82d3d4cea6cdd48440d5e6e493e1c625",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "dark-front.png",
+      "bytes": 89550,
+      "sha256": "9f3184bb5802888aa686c7e750f14c8c7bea04cf1ee0f338b8a8813ab60e1b10",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "dark-beauty.png",
+      "bytes": 94584,
+      "sha256": "1c582bd11c1a760ac832903a7cb66ec5ad5d4a43c0756b6d90bfb095395520c3",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "dark-attack-contact.png",
+      "bytes": 92412,
+      "sha256": "ec31d16ad371686adee7bba5ce25d5709da2a53d1e6eaf4556e17986a49a76ac",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "dark-defeat-sparks.png",
+      "bytes": 102604,
+      "sha256": "18ddf86d904784946e29a744af4616d4b51a0902c942a2b554946d6c3f9ee157",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "dark-defeat-held.png",
+      "bytes": 114966,
+      "sha256": "b7138725ef0cd31b831245d9134254bad66a3ac61494c67de86bdc5c180d4ebd",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "motion-contact-sheet.png",
+      "bytes": 1312690,
+      "sha256": "887c5756a62ad64a4f1695bc0a4fdad669a19a4094a1e1470c8cfb9a2f0a4a3a",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "attack-strip.png",
+      "bytes": 288245,
+      "sha256": "b7c8b4f062b55cc1da4c803be324b7854a31d1be9a7b7c98cf9d8d9e629bfcfd",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "attack-gameplay-scale.png",
+      "bytes": 183550,
+      "sha256": "20204981038d472bf03ae31f7e06dd97739a720dd9720ab6dbafe0184459f7e6",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "browser-inspection.json",
+      "bytes": 133091,
+      "sha256": "8ab7bf32426fb5985f8e0668f752f19bb485b0aa58cbec0d1fbb6d8a2d0ed31d",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "three-inspection.json",
+      "bytes": 132554,
+      "sha256": "b8fc733302cfaa2c4e1cc2fff68cc413057bb403f24c8326c4e88b8bc81e63fe",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 10531,
+      "sha256": "db81f1f6fa18606e6742246610ad1cc0108b9568bafa070627c37659f0b6d35b",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 5134,
+      "sha256": "2db58bd8f6fd39fc5292ee8b65580398f81d21c5e3f48a3580b9971e044f590e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "tool-settings.json",
+      "bytes": 3668,
+      "sha256": "d2061d938851b983c26bb933ddbbbe385dc65f7648ce34fdf11f94ef0662a6e1",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "bounds.json",
+      "bytes": 2460,
+      "sha256": "d5bd035dbc2abe485919bbd12c09b4c3d2a5c9bb790e9e1bca85e09eed648d82",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "sheet-vs-export.png",
+      "bytes": 1508142,
+      "sha256": "01fff34b5e05fc945dd39ca73d7e90788673e8c41102ae335fb5c3ed60ea26cf",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "reference-sheet.png",
+      "bytes": 2091178,
+      "sha256": "e8bbe412ab2f65ea08c05c5cc75a52db48e4e826f2dd39a2360e291e6a2ff259",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "lab-robot-blockout.blend",
+      "bytes": 734644,
+      "sha256": "86dcd070c61ed236cec5713214ea561760fcc0718edbfa036a285caade4d113e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "lab-robot-reference-sheet.blend",
+      "bytes": 983545,
+      "sha256": "2eb3d7689f7ca4df673fc423849db632342ecb82c44d5423360caac21ce8dbb3",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "blockout-measurements.json",
+      "bytes": 1224,
+      "sha256": "43fa7605574d28077c8941dca737d944349f8fc25fe1597ed7599feb4aef0f68",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "part-measurements.json",
+      "bytes": 6629,
+      "sha256": "1bcb14232d9aa6a478182a777f65cd0de34d23583a5d42caf673b9ec0f512090",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "sheet-render.json",
+      "bytes": 960,
+      "sha256": "a9d45cf74dc35ff7a27c28defa36ea82772c0b82d01e62e737993b0eb25c8d0d",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "lab-robot-reference-sheet-checkpoint.blend",
+      "bytes": 976680,
+      "sha256": "84ffabea8b610bc16e209240fb1b74ad5b993e8be579a9d75cce1080efb70381",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "claim-checkpoint.blend",
+      "bytes": 1077944,
+      "sha256": "1f0cbd39470cdb5f790b6db9b63595e3249c15b6ddb30f2a2ff030bd8e44f4ab",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "scene-lease.json",
+      "bytes": 21728,
+      "sha256": "fc69e1578aa375d05a7ad250890a436d0ff51b9f05c600b9d9917ceaf7481f7f",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "scene-release.json",
+      "bytes": 1365,
+      "sha256": "3fe4f18bcf9677160cbc603e444b3cbe61b330fbcd96a7c3469e17525f67694e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "live-scene-release.blend",
+      "bytes": 1669308,
+      "sha256": "bf173a34f9402c4d6cd7eef07276ebb8b6b0a7f72a0c55033c63b4d4708a4971",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "source/rig-rest.json",
+      "bytes": 8876,
+      "sha256": "a7e75356d663c99488645ba5806b92ac4af6014b4096e9ebb74e50d8d772c3c5",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "reference-notes.md",
+      "bytes": 19411,
+      "sha256": "cae3250c290d3dbe98bf99db279ce0805b643befeb3f1f4c4594a0bacea2e768",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/animate.py",
+      "bytes": 32516,
+      "sha256": "0350340ffc7fe3ec8c764ace3ee6a52222db1d7a09b839744c9a097df7f98cf1",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/author_run.py",
+      "bytes": 1142,
+      "sha256": "53be13aab43f0cd3fc64749b63433860c0aea2fdd5c210e46a1f2d935467ed1f",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/bounds.json",
+      "bytes": 273,
+      "sha256": "53dc805dceb54f75ab45c7737bf01bb312103d56b84919e6f2ac55f10e3cde40",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "source/build.py",
+      "bytes": 27595,
+      "sha256": "c0e4b78af660cd404b87c29f02f94091b9905cd01685ae6c63afdbfc51c8b80a",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/claim_model.py",
+      "bytes": 4237,
+      "sha256": "f75c31c2f340dda3c0b6903def8367039e59a0dfd27aa33bb5583646389f447e",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/common.py",
+      "bytes": 19333,
+      "sha256": "464d0fd4ac655086db05822b4d5f5d5d716cc9a0b854fdf8fd6e2b9c73c64471",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/compare.mjs",
+      "bytes": 2201,
+      "sha256": "52947680dcc09773e9da9f739e245d20793697fd85cd55118235b80f5978827d",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/cycle.sh",
+      "bytes": 1511,
+      "sha256": "a52d106368b76750db59a5542907a742a310354ecce01d8ad24cc214c67cb658",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/delivery.py",
+      "bytes": 7900,
+      "sha256": "146e640c2caf63b4a8fe995e2babb2377d52b6e4600f55f1824bd862e1781092",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/grid.mjs",
+      "bytes": 582,
+      "sha256": "8406bf3b12b550afdc85d0f4dfff1e965a5e26c3071aa9c15e0dcaee6bc67846",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/inspect-attachments.py",
+      "bytes": 8056,
+      "sha256": "3ac2ea3f381cf7fbe2a5f4e1101ea3f7664834f157af1fe1c06c0a346161c99e",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/inspect-three.mjs",
+      "bytes": 19855,
+      "sha256": "5e95f4f420fff7820820c74e0fda605228622cb877a9534b2956b2468afc3848",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/look.mjs",
+      "bytes": 3938,
+      "sha256": "ad839d1a9c2f547554c118f766919b2f84748b8a612585787e044aeb1c2f4c01",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/make-evidence.py",
+      "bytes": 18738,
+      "sha256": "cfa7112f5e344c15ee58ec497565e3e0a26e0fc13aeda02be26d2f9ad41124c9",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/mclient.py",
+      "bytes": 4443,
+      "sha256": "1780a8a1611aa52f22e43aa93ff94be69e182f7ebe4a7a2d1068726d9dd4a383",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/paint.py",
+      "bytes": 14043,
+      "sha256": "b38bd2437e7edc023467e5c6d717753e1d953195cdbd1496b84805e355794218",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/paint_test.py",
+      "bytes": 585,
+      "sha256": "1c00e979869c995b83d85e80a41477d60e70eacacddbf435f35c0fbaf2f32d42",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/preview.mjs",
+      "bytes": 12629,
+      "sha256": "2dd2bfc2154a1c460249859a0fb7adc47f3d777de47bbd8b5e34aaff9cbaf28e",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/release_model.py",
+      "bytes": 3383,
+      "sha256": "069f024164ed37334d2b7b362beb1288a0c642712a2c724df171fc1ba74f32ef",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/rig.py",
+      "bytes": 11405,
+      "sha256": "8178fb315d64740fe39ede47468048813a17e0b152caf000bdf85896d4177fca",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/run_validate.py",
+      "bytes": 531,
+      "sha256": "d6bb03e0e186d3ac378dd58d2acea2b533ba76dbd1f1d03b99e816e69bc50802",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/validate.mjs",
+      "bytes": 3862,
+      "sha256": "3aecf6136a5a70e4171e96878f2a2ba4ce7904cd2451ffdd86e11ef1215765cc",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "final-preview/attack-0p1.png",
+      "bytes": 152711,
+      "sha256": "4390733a3e12374466ed81eac8da3d0f3a96fe09dbeaae7983b151dfdca24f6c",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-0p45.png",
+      "bytes": 151117,
+      "sha256": "52857116f3cdb752c860703e5ca17b48a7058e27108675573b06a12de10c5e0e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-0p56.png",
+      "bytes": 141537,
+      "sha256": "18841a1fb7ea063d73f9cc0b281e9cfec1081de0f612185769a970f9b6d4dbb7",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-0p625.png",
+      "bytes": 150169,
+      "sha256": "38b62bae0721e8685ddbbcb4690e72885ace24066639c2d7c1826d1324af20c8",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-front-contact.png",
+      "bytes": 142913,
+      "sha256": "e5a7b3853ae935faaef079f8a506080414770687ff188041a569286aa699a11d",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-front-recovery.png",
+      "bytes": 140360,
+      "sha256": "4adad70b331ff4a5133af77a8c1ce3b4bd7ccd89777b599d88176039817ed3de",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-front-tell.png",
+      "bytes": 142165,
+      "sha256": "ba9c3d189885ea73aa2f5410f6fc4c29bf172595dfef33489325afd988fe0e7e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-front-windup.png",
+      "bytes": 142790,
+      "sha256": "d19e870dfbd1d82b553f9877f8e47228c8622ad86be8a48f50621e6bded5d854",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-gameplay-scale.png",
+      "bytes": 183550,
+      "sha256": "20204981038d472bf03ae31f7e06dd97739a720dd9720ab6dbafe0184459f7e6",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-side-contact.png",
+      "bytes": 148744,
+      "sha256": "5f6e58dc5ad4da813a22369010139b9acc512e741a5b28fbf220f407e90a9005",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-side-recovery.png",
+      "bytes": 116544,
+      "sha256": "18e9a9901866b0959f92a2f187ad605bc8f647192679deab5054101a2f835c6f",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-side-tell.png",
+      "bytes": 118505,
+      "sha256": "747e4e617e1b09a922bcf294a8981f12b72174fea2d1b1abda129ff87537f1bf",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-side-windup.png",
+      "bytes": 154497,
+      "sha256": "52f694636a41669373b54f40b7fc431d395f82df249992e89abc7afda29b09b3",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-small-0p1.png",
+      "bytes": 41202,
+      "sha256": "f71890b13c5ea8571b42cb911d6cea0f90f4ce906f0a11d708981cf8ff6dfd2f",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-small-0p45.png",
+      "bytes": 40091,
+      "sha256": "77591056cd51c74b48ee4fc61627cda4149261ef5c7ff6b701ef6bf0abf711a8",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-small-0p56.png",
+      "bytes": 38789,
+      "sha256": "9cdd4a95f97cca02d34d7adaeb8c449bff6786cbcdb9e10ae896c0c8108ab99b",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-small-0p625.png",
+      "bytes": 40624,
+      "sha256": "aa9238b92e9d2a009da8997309b72be8796c60b79050042f3896209c7d7a0545",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/attack-strip.png",
+      "bytes": 288245,
+      "sha256": "b7c8b4f062b55cc1da4c803be324b7854a31d1be9a7b7c98cf9d8d9e629bfcfd",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/back.png",
+      "bytes": 116798,
+      "sha256": "81de0e292e25a2b8a2be478db8bc7f90e3d1a93a944c349ac29f592587884879",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/beauty.png",
+      "bytes": 150906,
+      "sha256": "28ea9fe8195affd3dadbb3583198eb7144c3d86359a7ad910f83d75f7ac99cc4",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/browser-inspection.json",
+      "bytes": 133091,
+      "sha256": "8ab7bf32426fb5985f8e0668f752f19bb485b0aa58cbec0d1fbb6d8a2d0ed31d",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/dark-attack-contact.png",
+      "bytes": 92412,
+      "sha256": "ec31d16ad371686adee7bba5ce25d5709da2a53d1e6eaf4556e17986a49a76ac",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/dark-beauty.png",
+      "bytes": 94584,
+      "sha256": "1c582bd11c1a760ac832903a7cb66ec5ad5d4a43c0756b6d90bfb095395520c3",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/dark-defeat-held.png",
+      "bytes": 114966,
+      "sha256": "b7138725ef0cd31b831245d9134254bad66a3ac61494c67de86bdc5c180d4ebd",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/dark-defeat-sparks.png",
+      "bytes": 102604,
+      "sha256": "18ddf86d904784946e29a744af4616d4b51a0902c942a2b554946d6c3f9ee157",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/dark-front.png",
+      "bytes": 89550,
+      "sha256": "9f3184bb5802888aa686c7e750f14c8c7bea04cf1ee0f338b8a8813ab60e1b10",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-0p125.png",
+      "bytes": 152300,
+      "sha256": "c22d6e827610fdb604a28307cb40ba3ea447d062a3fdb8041e9b6e79e1a5fc6e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-0p25.png",
+      "bytes": 160123,
+      "sha256": "e664fa0ea4a2b3e73e6ea4a52d0ee9e7c584801c63aa6f5cfd5d2f47e684b1b1",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-0p46.png",
+      "bytes": 162657,
+      "sha256": "c3d73f4e4ba7735a5e6467433f8fd18026e36c43f2ede36c025310ec003b6a1d",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-1.png",
+      "bytes": 187752,
+      "sha256": "e6a7fb47c7ae51e6a68b7c4a218c99770af3247b0d606cd7b629e8e00b551818",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-beauty-held.png",
+      "bytes": 159081,
+      "sha256": "94083cbb0ed0595b42fe65dd6101b9bc3aeb9f4ab0eace0bbcd0db0625389c8d",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-front-held.png",
+      "bytes": 186207,
+      "sha256": "d30e007ce13c12b0f64b741e6fa117532da389c988f4cdb995dbbd4becd40bec",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-side-held.png",
+      "bytes": 148597,
+      "sha256": "1eaf7f9b09116f1007067916b07db19216afe30dfa26f686d263a72f52129e92",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-small-0p125.png",
+      "bytes": 41247,
+      "sha256": "0f016692c937eb4a0317543cc6d3e6b74bda206f1881a27fccb95d037128293c",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-small-0p25.png",
+      "bytes": 43151,
+      "sha256": "8ed8d8e3b2fdfdadfa84eb82e93b8eb2a4081f079419dd361f458d763840dc03",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-small-0p46.png",
+      "bytes": 43972,
+      "sha256": "40f136839b5f14723b08a04d881fe297a31998cec8084adddeddb3545319ffe4",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-small-1.png",
+      "bytes": 48671,
+      "sha256": "438d1255f5ac1915aed92765d09ce72a6d1dbb9f1a0646fcb530af4745deae05",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/defeat-threequarter-held.png",
+      "bytes": 188847,
+      "sha256": "96ac64bdaa01079c34cb38b4fe73e3a9c73bfdbd91059f5eb192b66c5767d011",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/front.png",
+      "bytes": 140364,
+      "sha256": "b52a937210eff2fec4ccdfd22afe2e00a943eee74f3b17de07e447c7e11e61b2",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/hit-0.png",
+      "bytes": 150909,
+      "sha256": "6fef28bb9259cf0d323b2fc1a975e44910962c2fb202e60fb6f2aa2fd0298085",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/hit-0p1.png",
+      "bytes": 163566,
+      "sha256": "560bd51cef5e3acb462fdf6edbcaa6bf66d2dbe7b002b458444adaed3fb33452",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/hit-0p4.png",
+      "bytes": 154585,
+      "sha256": "55bb7aa185d48e37e9d52aaa839e74637e50e49e9de91e44023168c37c36ec11",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/hit-1.png",
+      "bytes": 151515,
+      "sha256": "d9e7d3c7c9025fe21619ff9235d41ffb268dfff6d90387a73e785698d1840b44",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/hit-small-0.png",
+      "bytes": 41051,
+      "sha256": "ba81f773444968dd3c46d12601c5e6972bdb6f0e60b1c277f5ad5a9182ba6c7a",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/hit-small-0p1.png",
+      "bytes": 42592,
+      "sha256": "2efd355f1fc914b9221ffeb16c25851d12a74cfd8e07ec42ac9fdd6f8edd1826",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/hit-small-0p4.png",
+      "bytes": 41457,
+      "sha256": "8bf6dd7aab6e169647027df91e404318799f7c9dd46be7465f941b6665c4c861",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/hit-small-1.png",
+      "bytes": 41103,
+      "sha256": "890d50e4b0573d6efe0b2b4d78c36a1bdda12f8771f1364910697a708cacc76b",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/idle-0.png",
+      "bytes": 150906,
+      "sha256": "28ea9fe8195affd3dadbb3583198eb7144c3d86359a7ad910f83d75f7ac99cc4",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/idle-0p33.png",
+      "bytes": 151100,
+      "sha256": "c6fd43504cc4f13a5c84f39e95413fe15df7c5793144ec0e830a32390c85960a",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/idle-0p54.png",
+      "bytes": 149142,
+      "sha256": "aff9a3c8a4eea75ea13c1ab2c65e3d549feb5a5a4d708bb04e71c5bb67fc4f3f",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/idle-0p75.png",
+      "bytes": 153389,
+      "sha256": "51323bd85469fe5f377054824291aef0ba97f1047598d83b43bed9aa051498ed",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/idle-small-0.png",
+      "bytes": 41052,
+      "sha256": "3772183a92c9a0ea67d46b62c7148b44efd2573ce1251b05abbc6d034689495d",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/idle-small-0p33.png",
+      "bytes": 41116,
+      "sha256": "e7c1431132fe7c68352936446d0b2951a5ed89f1ee90be7dce7b57c6a328d19f",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/idle-small-0p54.png",
+      "bytes": 40745,
+      "sha256": "80329664187bc2d41b92bff1507d01c5072dfaf556f497ae0e53896106238be9",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/idle-small-0p75.png",
+      "bytes": 41444,
+      "sha256": "c3c5247d9693a3e73a8a89bc9b47bba18776b8c07276965c3391f789bad798c3",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/motion-contact-sheet.png",
+      "bytes": 1312690,
+      "sha256": "887c5756a62ad64a4f1695bc0a4fdad669a19a4094a1e1470c8cfb9a2f0a4a3a",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/move-0.png",
+      "bytes": 160854,
+      "sha256": "d4a7326bf391a9737f856fbe6f9f171196e333e8c12ad84e881656d7158b97d2",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/move-0p22.png",
+      "bytes": 161442,
+      "sha256": "23ad056dbd3dac359aa8119e741db2b1d932dd7e05d075ce42c141c0c1c7c4b1",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/move-0p5.png",
+      "bytes": 160924,
+      "sha256": "e2f648398469a6451c998234a859f5ee2c660ffba455f1197de28c642256012e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/move-0p75.png",
+      "bytes": 157510,
+      "sha256": "2a9ba78a34a4b37d480f78d5d510bb735deb5a01be3c69b12a2b9368a0d6be63",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/move-small-0.png",
+      "bytes": 42412,
+      "sha256": "f2d05189492acd1c69290a34233320e7ac56d1785afe54ffafdee9b61d3c4153",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/move-small-0p22.png",
+      "bytes": 42464,
+      "sha256": "44494b5d0dbaffb0481cb09af100580c7231b684e3fea88a6d978c46105818e3",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/move-small-0p5.png",
+      "bytes": 42406,
+      "sha256": "aa0a0bc0b65cdb9bbfd8f52c205b78f18529fe4fe25992d2a4b847f542cd6a9e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/move-small-0p75.png",
+      "bytes": 41641,
+      "sha256": "967f75609185943fa32a0ef8ca3f1c7d85b9e37dd40e94d9c778ba5a2936fd77",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/rest-back.png",
+      "bytes": 121668,
+      "sha256": "b73680b909718e442175d748a1e867b2d6c6967c2768482de56292d4e626d76c",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/rest-beauty.png",
+      "bytes": 153384,
+      "sha256": "db0e53ef9a80f5898444d2591d5eaf5d82d3d4cea6cdd48440d5e6e493e1c625",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/rest-front.png",
+      "bytes": 144655,
+      "sha256": "d407248e65697148bfd07db73a4a3be715593eb0d3d00134695e4096f346a062",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/rest-side.png",
+      "bytes": 110084,
+      "sha256": "60478514dbc0d3b2cfa393e6a04b4d73e1ad919d3f6ed1c763f48016c8a75aab",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/rest-threequarter.png",
+      "bytes": 155315,
+      "sha256": "68f35e780ec9536a617a92180ccb00f957552cfffbec4fc7198091a50ca28a70",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/side.png",
+      "bytes": 116528,
+      "sha256": "bc181a5f1cf261b1f65f9fc55281569764a44bb2774325eca5eae73f3f974a67",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "final-preview/threequarter.png",
+      "bytes": 157834,
+      "sha256": "45fd81507f8da4b8b7c6a82a944f518df3e09d466a0ed1571381051c286088ea",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "sheet-stage/scene-lease.json",
+      "bytes": 15656,
+      "sha256": "6d5a26a2eb84dd769609310cba45a5cd7d990c373d1624cb666e15abd2a65fdf",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "sheet-stage/scene-release.json",
+      "bytes": 15772,
+      "sha256": "37afdf8a4cffa3129f56f751785d15dbe0f9076445740702b868898b43e5329b",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "sheet-stage/live-scene-release.blend",
+      "bytes": 983541,
+      "sha256": "299f99e09214dc206dd27ef1d05626f04eeab82d2717367a8f0dacd87792ab49",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "sheet-stage/claim-checkpoint.blend",
+      "bytes": 1077944,
+      "sha256": "1f0cbd39470cdb5f790b6db9b63595e3249c15b6ddb30f2a2ff030bd8e44f4ab",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "sheet-stage/sheet-render.json",
+      "bytes": 960,
+      "sha256": "a9d45cf74dc35ff7a27c28defa36ea82772c0b82d01e62e737993b0eb25c8d0d",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/crop-back.png",
+      "bytes": 979745,
+      "sha256": "b9c79eb2259bc531e9123e17690650ba3d3c34bd3a19fac5f14b5847f2497acb",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/crop-face-front.png",
+      "bytes": 974154,
+      "sha256": "05ddd076a9bb7796e90bf6b1fc150ae2620ac34aea92b330e59e230f5715bf75",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/crop-face-three-quarter.png",
+      "bytes": 1045201,
+      "sha256": "0cda5bc1656a5ce3519f5ce22ce1d455dc643262773bc1a358b023bbf972ad60",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/crop-front.png",
+      "bytes": 1048895,
+      "sha256": "129a173af35bb3403c796a85f9f5e4c407bada385167e2299229bd997bccdd97",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/crop-side.png",
+      "bytes": 997408,
+      "sha256": "d6c992ddfcb50e4ab04c9c0a00d1b89c59315910da70b0684b8dcf3a057b796e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/crop-three-quarter.png",
+      "bytes": 1046023,
+      "sha256": "69c24a4a0d2df5b4eae9f6c50c2020bcf5c1cfcc5488a55131cdd8fc5b0aba2b",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/sheet-preview.png",
+      "bytes": 583618,
+      "sha256": "8d0b1f9bfecca3b17edee7422ea5741e32df7e53f8671223fe8e700c1a702ec0",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "source/build_blockout.py",
+      "bytes": 32721,
+      "sha256": "69c2d4ce14b12fa6e68e13b81f003f015e4835b5f46c9455b17e5ee49d101a1e",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/claim.py",
+      "bytes": 3322,
+      "sha256": "07e782d88e95b913899171af969bd83a9d21629c18bf19942186c66459d22f57",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/crops.py",
+      "bytes": 2447,
+      "sha256": "529d4ead03560f79c4b78234dad9b69a4a6707799fa7a1c8c1a0b32c1589af1c",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/final_render.py",
+      "bytes": 683,
+      "sha256": "459443b1ed7e7be653576990efd9bc10e9b4435701306c66622b23981de867d7",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/iterate_preview.py",
+      "bytes": 607,
+      "sha256": "5a3e742625ba3f13d3ef1f0c614d9f0d46341209863a033d143cc12709b94159",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/measure_parts.py",
+      "bytes": 3495,
+      "sha256": "8e8ca7dec694fabe5cd897ec675f95339cade44be8a605fb083d26974c071086",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/release.py",
+      "bytes": 3960,
+      "sha256": "d0f1b97ede4fa5b54cadd98d5d89caa93980b69e9083c6f0b462f67d7b7a9265",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "source/sheet.py",
+      "bytes": 13800,
+      "sha256": "98e04544a2fb4d52b266a4cbcbcb395381d7e049ce62ba2832bff351f042eb08",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 (the artifact route does not serve text sources)"
+    },
+    {
+      "path": "sheet-stage/sha256-manifest.json",
+      "bytes": 8386,
+      "sha256": "0d450dd4cd26bdf400a66f5587cc1e52ae868f6acdfce35f607e7141fd615409",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/build_blockout.py",
+      "bytes": 32721,
+      "sha256": "69c2d4ce14b12fa6e68e13b81f003f015e4835b5f46c9455b17e5ee49d101a1e",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/claim.py",
+      "bytes": 3322,
+      "sha256": "07e782d88e95b913899171af969bd83a9d21629c18bf19942186c66459d22f57",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/collect.py",
+      "bytes": 4331,
+      "sha256": "2b45e0dc6f67cf825192c77056e9808856c3cc7fcfffac80357837c5019caa9f",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/crops.py",
+      "bytes": 2447,
+      "sha256": "529d4ead03560f79c4b78234dad9b69a4a6707799fa7a1c8c1a0b32c1589af1c",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/fetchprev.py",
+      "bytes": 375,
+      "sha256": "9a3e7fd93cb4705b1ea0f1bba9d2938dc636e102482cfd6b7bdf214536007433",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/final_render.py",
+      "bytes": 683,
+      "sha256": "459443b1ed7e7be653576990efd9bc10e9b4435701306c66622b23981de867d7",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/iterate_preview.py",
+      "bytes": 607,
+      "sha256": "5a3e742625ba3f13d3ef1f0c614d9f0d46341209863a033d143cc12709b94159",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/measure_parts.py",
+      "bytes": 3495,
+      "sha256": "8e8ca7dec694fabe5cd897ec675f95339cade44be8a605fb083d26974c071086",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/release.py",
+      "bytes": 3960,
+      "sha256": "d0f1b97ede4fa5b54cadd98d5d89caa93980b69e9083c6f0b462f67d7b7a9265",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/run.py",
+      "bytes": 955,
+      "sha256": "4b855ea7f5a0652528d8506442fc59d31c0a46d2239f399389d541efd6a5db6a",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/sheet.py",
+      "bytes": 13800,
+      "sha256": "98e04544a2fb4d52b266a4cbcbcb395381d7e049ce62ba2832bff351f042eb08",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/transfer.py",
+      "bytes": 4442,
+      "sha256": "09ad7ff0b297dee9ceb76f6aaef15777f92815e70a12200467bc774fbb541b76",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "sheet-stage/source/upload_notes.py",
+      "bytes": 375,
+      "sha256": "de2c7c9da78cf4b197b48fbd47a32447e2a7f47bcf7ec949c899fc4380347e26",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "source/collect.py",
+      "bytes": 4331,
+      "sha256": "2b45e0dc6f67cf825192c77056e9808856c3cc7fcfffac80357837c5019caa9f",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "source/fetchprev.py",
+      "bytes": 375,
+      "sha256": "9a3e7fd93cb4705b1ea0f1bba9d2938dc636e102482cfd6b7bdf214536007433",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "source/run.py",
+      "bytes": 955,
+      "sha256": "4b855ea7f5a0652528d8506442fc59d31c0a46d2239f399389d541efd6a5db6a",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "source/transfer.py",
+      "bytes": 4442,
+      "sha256": "09ad7ff0b297dee9ceb76f6aaef15777f92815e70a12200467bc774fbb541b76",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    },
+    {
+      "path": "source/upload_notes.py",
+      "bytes": 375,
+      "sha256": "de2c7c9da78cf4b197b48fbd47a32447e2a7f47bcf7ec949c899fc4380347e26",
+      "remote_local_match": "not mirrored: local-only helper or sheet-stage record kept unchanged"
+    }
+  ],
+  "all_mirrored_remote_local_hashes_match": true,
+  "verification_method": "MCP SHA-256 for source/text extensions; HTTP byte round trip for media, JSON and masters.",
+  "excluded": [
+    "remote *.blend1 files are Blender automatic backups and are not copied.",
+    "remote author-preview/ (paint_test.py atlas preview) and the local scratch renders are author helpers, not evidence.",
+    "sheet-stage/ holds the reference-sheet stage lease, release, manifest, live scene and scripts; sheet-stage/sha256-manifest.json and the sheet-stage local helpers (run.py, transfer.py, upload_notes.py, collect.py, fetchprev.py) were never on the remote."
+  ],
+  "manifest_self_hash": "Excluded to avoid recursive hashing."
+}

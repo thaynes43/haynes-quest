@@ -1,0 +1,1849 @@
+{
+  "asset_id": "lab-robot",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "claude-opus-5-5 xhigh (Claude Code subagent; Tom ruled Sept 26 that Claude Opus 5.5 does the WO111 Blender work)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": "Blender reference sheet, no generated concept",
+  "source_sheet_sha256": "e8bbe412ab2f65ea08c05c5cc75a52db48e4e826f2dd39a2360e291e6a2ff259",
+  "source_blockout_sha256": "86dcd070c61ed236cec5713214ea561760fcc0718edbfa036a285caade4d113e",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.5994449257850647,
+      -0.6158897280693054,
+      0.00031999964267015457
+    ],
+    "max": [
+      0.5992227792739868,
+      0.28049999475479126,
+      1.2918970584869385
+    ]
+  },
+  "height_m": 1.2918970584869385,
+  "triangles": 13420,
+  "vertices": 7351,
+  "material_count": 2,
+  "materials": [
+    "Matte painted tin, brass, rubber and glass",
+    "Glowing warning light, red eye and sparks"
+  ],
+  "faces_per_material": {
+    "0": 6142,
+    "1": 449
+  },
+  "bone_count": 46,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original painted atlas generated with numpy in Blender Python (paint.py): the smile, iris, panel, seam-rivet, kick-plate, hazard-ring, hubcap, dial, warning-light, head-interior and button regions plus flat sheet-colour and glow tiles; no external textures. The glow material uses the same atlas as its emission texture.",
+    "layout": {
+      "tiles": [
+        "tin",
+        "silver",
+        "steel",
+        "steel_dark",
+        "brass",
+        "brass_hi",
+        "plum",
+        "rubber",
+        "rubber_hi",
+        "tomato",
+        "glass",
+        "cream",
+        "pupil",
+        "iris",
+        "smoke_light",
+        "smoke_mid",
+        "interior",
+        "amber_matte",
+        "tin_shade",
+        "plum_dark",
+        "silver_shade",
+        "tomato_dark",
+        "iris_dark",
+        "rubber",
+        "glow_red",
+        "glare_red",
+        "spark_yellow",
+        "spark_white",
+        "spark_orange",
+        "amber_glow",
+        "glow_red",
+        "glow_red"
+      ],
+      "glow_tiles": [
+        "amber_glow",
+        "glare_red",
+        "glow_red",
+        "spark_orange",
+        "spark_white",
+        "spark_yellow"
+      ],
+      "regions": {
+        "S": [
+          0,
+          0,
+          256,
+          256
+        ],
+        "I": [
+          256,
+          0,
+          256,
+          256
+        ],
+        "P": [
+          0,
+          256,
+          256,
+          256
+        ],
+        "K": [
+          256,
+          288,
+          256,
+          64
+        ],
+        "Z": [
+          256,
+          352,
+          128,
+          128
+        ],
+        "H": [
+          384,
+          352,
+          128,
+          128
+        ],
+        "DR": [
+          0,
+          512,
+          128,
+          128
+        ],
+        "DL": [
+          128,
+          512,
+          128,
+          128
+        ],
+        "A": [
+          256,
+          512,
+          128,
+          128
+        ],
+        "N": [
+          384,
+          512,
+          128,
+          128
+        ],
+        "BT": [
+          0,
+          640,
+          128,
+          128
+        ],
+        "R": [
+          0,
+          768,
+          512,
+          32
+        ]
+      },
+      "smile_src": [
+        0.0,
+        0.905,
+        0.11,
+        0.07
+      ],
+      "iris_r": 0.062,
+      "iris_ring": [
+        0.036,
+        0.056
+      ],
+      "seam_z": [
+        0.966,
+        0.984
+      ],
+      "kick": [
+        0.0,
+        0.361,
+        0.2,
+        0.024
+      ],
+      "hazard_r": 0.08,
+      "button_r": 0.05,
+      "dial_r": 0.034,
+      "interior_r": 0.205,
+      "beacon_z": [
+        1.2,
+        1.28
+      ],
+      "supersampling": 3
+    }
+  },
+  "glow_parts": [
+    "Glowing red pupil core",
+    "Glowing red target glare (opens over the iris)",
+    "Glowing amber warning light with a rotating hot spot",
+    "Glowing defeat spark 0",
+    "Glowing defeat spark 1",
+    "Glowing defeat spark 2",
+    "Glowing defeat spark 3",
+    "Glowing defeat spark 4",
+    "Glowing defeat spark 5",
+    "Glowing defeat spark 6",
+    "Glowing defeat spark 7"
+  ],
+  "parts": [
+    {
+      "name": "Plum head bottom trim",
+      "triangles": 156,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Pale tin head band with the painted speaker-grille smile",
+      "triangles": 80,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "1",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Dark works inside the head (cogs and spring)",
+      "triangles": 38,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "16",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass ear disc R",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel ear bolt R",
+      "triangles": 44,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass ear disc L",
+      "triangles": 76,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel ear bolt L",
+      "triangles": 44,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel lens barrel",
+      "triangles": 64,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass lens bezel",
+      "triangles": 94,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Pale blue domed lens glass",
+      "triangles": 288,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "10",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Blue camera iris with aperture blades and plum pupil",
+      "triangles": 352,
+      "bone_groups": [
+        "pupil"
+      ],
+      "atlas_tile": "13",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Glowing red pupil core",
+      "triangles": 36,
+      "bone_groups": [
+        "pupil"
+      ],
+      "atlas_tile": "24",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Glowing red target glare (opens over the iris)",
+      "triangles": 128,
+      "bone_groups": [
+        "glare"
+      ],
+      "atlas_tile": "25",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Cream lens glint big",
+      "triangles": 60,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Cream lens glint small",
+      "triangles": 60,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "11",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum lens eyelid shutter",
+      "triangles": 84,
+      "bone_groups": [
+        "eyelid"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum rubber neck bellows",
+      "triangles": 336,
+      "bone_groups": [
+        "body",
+        "head"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Pale tin dome lid",
+      "triangles": 760,
+      "bone_groups": [
+        "dome"
+      ],
+      "atlas_tile": "1",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Pale tin dome lid underside",
+      "triangles": 38,
+      "bone_groups": [
+        "dome"
+      ],
+      "atlas_tile": "20",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum seam ring with brass rivets",
+      "triangles": 320,
+      "bone_groups": [
+        "dome"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass warning light base",
+      "triangles": 92,
+      "bone_groups": [
+        "dome"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Glowing amber warning light with a rotating hot spot",
+      "triangles": 358,
+      "bone_groups": [
+        "beacon"
+      ],
+      "atlas_tile": "29",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Steel warning light cage wire 0",
+      "triangles": 296,
+      "bone_groups": [
+        "beacon"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel warning light cage wire 1",
+      "triangles": 296,
+      "bone_groups": [
+        "beacon"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Teal tin body",
+      "triangles": 188,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "0",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Pale tin control panel",
+      "triangles": 44,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "1",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass and plum hazard ring",
+      "triangles": 256,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Candy-red self-destruct button",
+      "triangles": 56,
+      "bone_groups": [
+        "button"
+      ],
+      "atlas_tile": "9",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Candy-red self-destruct button cap with its shine",
+      "triangles": 196,
+      "bone_groups": [
+        "button"
+      ],
+      "atlas_tile": "9",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass gauge dial DL",
+      "triangles": 76,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass gauge dial DR",
+      "triangles": 76,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Indicator light amber",
+      "triangles": 120,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "17",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Indicator light blue",
+      "triangles": 120,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "10",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Indicator light red",
+      "triangles": 120,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "9",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass hazard kick plate",
+      "triangles": 44,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum side louver R 0",
+      "triangles": 12,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum side louver R 1",
+      "triangles": 12,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum side louver R 2",
+      "triangles": 12,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum side louver R 3",
+      "triangles": 12,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass shoulder socket R",
+      "triangles": 224,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum side louver L 0",
+      "triangles": 12,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum side louver L 1",
+      "triangles": 12,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum side louver L 2",
+      "triangles": 12,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum side louver L 3",
+      "triangles": 12,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass shoulder socket L",
+      "triangles": 224,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Pale tin back hatch",
+      "triangles": 44,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "1",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum hatch handle",
+      "triangles": 44,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass cord grommet",
+      "triangles": 60,
+      "bone_groups": [
+        "body"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel swivel waist",
+      "triangles": 56,
+      "bone_groups": [
+        "waist"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass waist ring",
+      "triangles": 108,
+      "bone_groups": [
+        "waist"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum chassis crossbar",
+      "triangles": 44,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "6",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum rubber tank tread belt R",
+      "triangles": 352,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 00",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 01",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 02",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 03",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 04",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 05",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 06",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 07",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 08",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 09",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 10",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 11",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 12",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 13",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 14",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 15",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 16",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 17",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 18",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 19",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 20",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 21",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 22",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 23",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 24",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 25",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 26",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug R 27",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Teal tread housing plate R",
+      "triangles": 96,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "0",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel road wheel R front",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_R_0"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass hubcap R front",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_R_0"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel hub bolt R front",
+      "triangles": 28,
+      "bone_groups": [
+        "wheel_R_0"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel road wheel R back",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_R_1"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass hubcap R back",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_R_1"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel hub bolt R back",
+      "triangles": 28,
+      "bone_groups": [
+        "wheel_R_1"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel road wheel R mid front",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_R_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass hubcap R mid front",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_R_2"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel hub bolt R mid front",
+      "triangles": 28,
+      "bone_groups": [
+        "wheel_R_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel road wheel R mid back",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_R_3"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass hubcap R mid back",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_R_3"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel hub bolt R mid back",
+      "triangles": 28,
+      "bone_groups": [
+        "wheel_R_3"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Plum rubber tank tread belt L",
+      "triangles": 352,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 00",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 01",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 02",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 03",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 04",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 05",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 06",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 07",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 08",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 09",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 10",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 11",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 12",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 13",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 14",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 15",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 16",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 17",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 18",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 19",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 20",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 21",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 22",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 23",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 24",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 25",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 26",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Tread lug L 27",
+      "triangles": 12,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "8",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Teal tread housing plate L",
+      "triangles": 96,
+      "bone_groups": [
+        "chassis"
+      ],
+      "atlas_tile": "0",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel road wheel L front",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_L_0"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass hubcap L front",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_L_0"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel hub bolt L front",
+      "triangles": 28,
+      "bone_groups": [
+        "wheel_L_0"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel road wheel L back",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_L_1"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass hubcap L back",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_L_1"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel hub bolt L back",
+      "triangles": 28,
+      "bone_groups": [
+        "wheel_L_1"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel road wheel L mid front",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_L_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass hubcap L mid front",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_L_2"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel hub bolt L mid front",
+      "triangles": 28,
+      "bone_groups": [
+        "wheel_L_2"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel road wheel L mid back",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_L_3"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass hubcap L mid back",
+      "triangles": 60,
+      "bone_groups": [
+        "wheel_L_3"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel hub bolt L mid back",
+      "triangles": 28,
+      "bone_groups": [
+        "wheel_L_3"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel slinky spring arm R",
+      "triangles": 820,
+      "bone_groups": [
+        "arm_R_1",
+        "arm_R_2",
+        "arm_R_3",
+        "arm_R_4",
+        "arm_R_5",
+        "claw_R"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel wrist cuff R",
+      "triangles": 52,
+      "bone_groups": [
+        "claw_R"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass claw palm R",
+      "triangles": 52,
+      "bone_groups": [
+        "claw_R"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass pincer jaw R a",
+      "triangles": 140,
+      "bone_groups": [
+        "jaw_R_a"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass pincer ball tip R a",
+      "triangles": 64,
+      "bone_groups": [
+        "jaw_R_a"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass pincer jaw R b",
+      "triangles": 140,
+      "bone_groups": [
+        "jaw_R_b"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass pincer ball tip R b",
+      "triangles": 64,
+      "bone_groups": [
+        "jaw_R_b"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel slinky spring arm L",
+      "triangles": 820,
+      "bone_groups": [
+        "arm_L_1",
+        "arm_L_2",
+        "arm_L_3",
+        "arm_L_4",
+        "arm_L_5",
+        "claw_L"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel wrist cuff L",
+      "triangles": 52,
+      "bone_groups": [
+        "claw_L"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass claw palm L",
+      "triangles": 52,
+      "bone_groups": [
+        "claw_L"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass pincer jaw L a",
+      "triangles": 140,
+      "bone_groups": [
+        "jaw_L_a"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass pincer ball tip L a",
+      "triangles": 64,
+      "bone_groups": [
+        "jaw_L_a"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass pincer jaw L b",
+      "triangles": 140,
+      "bone_groups": [
+        "jaw_L_b"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass pincer ball tip L b",
+      "triangles": 64,
+      "bone_groups": [
+        "jaw_L_b"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Yanked-out rubber power cord",
+      "triangles": 732,
+      "bone_groups": [
+        "cord_1",
+        "cord_2",
+        "cord_3",
+        "cord_4",
+        "cord_5",
+        "plug"
+      ],
+      "atlas_tile": "7",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Brass two-prong plug",
+      "triangles": 44,
+      "bone_groups": [
+        "plug"
+      ],
+      "atlas_tile": "4",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel plug prong -1",
+      "triangles": 12,
+      "bone_groups": [
+        "plug"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Steel plug prong +1",
+      "triangles": 12,
+      "bone_groups": [
+        "plug"
+      ],
+      "atlas_tile": "2",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Glowing defeat spark 0",
+      "triangles": 32,
+      "bone_groups": [
+        "sparks"
+      ],
+      "atlas_tile": "26",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Glowing defeat spark 1",
+      "triangles": 32,
+      "bone_groups": [
+        "sparks"
+      ],
+      "atlas_tile": "27",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Glowing defeat spark 2",
+      "triangles": 32,
+      "bone_groups": [
+        "sparks"
+      ],
+      "atlas_tile": "28",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Glowing defeat spark 3",
+      "triangles": 32,
+      "bone_groups": [
+        "sparks"
+      ],
+      "atlas_tile": "26",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Glowing defeat spark 4",
+      "triangles": 32,
+      "bone_groups": [
+        "sparks"
+      ],
+      "atlas_tile": "27",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Glowing defeat spark 5",
+      "triangles": 32,
+      "bone_groups": [
+        "sparks"
+      ],
+      "atlas_tile": "28",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Glowing defeat spark 6",
+      "triangles": 32,
+      "bone_groups": [
+        "sparks"
+      ],
+      "atlas_tile": "27",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Glowing defeat spark 7",
+      "triangles": 32,
+      "bone_groups": [
+        "sparks"
+      ],
+      "atlas_tile": "26",
+      "material": "Glowing warning light, red eye and sparks"
+    },
+    {
+      "name": "Grey defeat smoke puff 0",
+      "triangles": 144,
+      "bone_groups": [
+        "smoke_a"
+      ],
+      "atlas_tile": "14",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Grey defeat smoke puff 1",
+      "triangles": 144,
+      "bone_groups": [
+        "smoke_a"
+      ],
+      "atlas_tile": "15",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Grey defeat smoke puff 2",
+      "triangles": 144,
+      "bone_groups": [
+        "smoke_b"
+      ],
+      "atlas_tile": "14",
+      "material": "Matte painted tin, brass, rubber and glass"
+    },
+    {
+      "name": "Grey defeat smoke puff 3",
+      "triangles": 144,
+      "bone_groups": [
+        "smoke_b"
+      ],
+      "atlas_tile": "15",
+      "material": "Matte painted tin, brass, rubber and glass"
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 91,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "tell_s": null,
+      "windup_s": null,
+      "glare_open_s": null,
+      "button_bonk_s": null,
+      "sparks_s": null,
+      "dome_pop_s": null,
+      "smoke_from_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 31,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "tell_s": null,
+      "windup_s": null,
+      "glare_open_s": null,
+      "button_bonk_s": null,
+      "sparks_s": null,
+      "dome_pop_s": null,
+      "smoke_from_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "tell_s": [
+        0.0,
+        0.45
+      ],
+      "windup_s": [
+        0.45,
+        1.0
+      ],
+      "glare_open_s": [
+        0.06,
+        1.75
+      ],
+      "button_bonk_s": null,
+      "sparks_s": null,
+      "dome_pop_s": null,
+      "smoke_from_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 22,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "tell_s": null,
+      "windup_s": null,
+      "glare_open_s": null,
+      "button_bonk_s": null,
+      "sparks_s": null,
+      "dome_pop_s": null,
+      "smoke_from_s": null,
+      "held_final_pose_from_s": null
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 73,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "tell_s": null,
+      "windup_s": null,
+      "glare_open_s": null,
+      "button_bonk_s": 0.28,
+      "sparks_s": [
+        0.29,
+        1.25
+      ],
+      "dome_pop_s": 0.92,
+      "smoke_from_s": 0.86,
+      "held_final_pose_from_s": 1.9
+    }
+  ],
+  "rest_reproduction_max_error": 4.76837158203125e-07,
+  "sheet_pose_reproduction": {
+    "claw_R_wrist_err_m": 8.971687092477304e-08,
+    "claw_R_frame_err": 2.980232238769531e-07,
+    "arm_R_joint_err_m": 0.0,
+    "claw_L_wrist_err_m": 5.960464477539063e-08,
+    "claw_L_frame_err": 1.7881393432617188e-07,
+    "arm_L_joint_err_m": 0.0,
+    "eyelid_tilt_err": 5.563539402396109e-15,
+    "glance_err_m": 3.417953848838806e-06,
+    "cord_err_m": 0.0
+  },
+  "max_bone_shear": 5.245208740234375e-06,
+  "sheet_targets": {
+    "claw_R": [
+      0.4101158380508423,
+      -0.014944814145565033,
+      0.9842771887779236
+    ],
+    "claw_L": [
+      -0.3500206470489502,
+      0.25992825627326965,
+      0.47003039717674255
+    ]
+  },
+  "sheet_targets_note": "Blender coordinates of the blockout claw wrists (the sheet pose), reproduced by idle at 0 s.",
+  "files": {
+    "lab-robot.blend": {
+      "bytes": 1666330,
+      "sha256": "94751fa7a568b5406dd5af8624b72f2e4d76e3b5931e9c338f3e1fa0c56a0e6a"
+    },
+    "lab-robot.glb": {
+      "bytes": 1506604,
+      "sha256": "33be060d30dc50830380bab97021635a5e3b7a73f2208bfab1b1562075aeb76c"
+    },
+    "pigment.png": {
+      "bytes": 45636,
+      "sha256": "d60f6155900ff13de1f3f43b1604417fb12a005b6999d1ca781e97872ccb1ed1"
+    }
+  }
+}

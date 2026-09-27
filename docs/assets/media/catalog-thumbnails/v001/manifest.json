@@ -374,6 +374,20 @@
       "sha256": "e82badd5c24b5755c67b4c5a7f822d9e5ba5c6506c2c3c6ccbb6431e3e53911a"
     },
     {
+      "source": "docs/assets/media/lab-robot/v001/beauty.png",
+      "source_sha256": "28ea9fe8195affd3dadbb3583198eb7144c3d86359a7ad910f83d75f7ac99cc4",
+      "path": "docs/assets/media/catalog-thumbnails/v001/66e5a644067784b0.webp",
+      "bytes": 11514,
+      "sha256": "d7ea4e88626ef2efd3e6918d34b9dd5a1fcfec98030cb668465eb1aabe50dbd4"
+    },
+    {
+      "source": "docs/assets/media/lab-robot/v001/reference-sheet.png",
+      "source_sha256": "e8bbe412ab2f65ea08c05c5cc75a52db48e4e826f2dd39a2360e291e6a2ff259",
+      "path": "docs/assets/media/catalog-thumbnails/v001/e3cbf79b20fa13dd.webp",
+      "bytes": 23646,
+      "sha256": "23e5cbaa45c29b7369d3b3af8237097e67b718dbd28515599dc20e15f667936c"
+    },
+    {
       "source": "docs/assets/media/lift-arrival-chime/v001/waveform.svg",
       "source_sha256": "8039cf0be1a3ea1bff3955aa54bb6703c03dc502f9f18709d7b131dbe455bc46",
       "path": "docs/assets/media/catalog-thumbnails/v001/416cf29cf22a3555.webp",

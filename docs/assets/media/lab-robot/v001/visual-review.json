@@ -1,0 +1,121 @@
+{
+  "work_order": "WO111",
+  "asset_id": "lab-robot",
+  "version": "v001",
+  "created_utc": "2026-09-26T23:30:26.008947+00:00",
+  "glb_sha256": "33be060d30dc50830380bab97021635a5e3b7a73f2208bfab1b1562075aeb76c",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back and three-quarter stills (idle at 0 s = the sheet pose) compared with the reference sheet at the same angles and metric scale (sheet-vs-export.png); rest-pose stills; dim-room glow stills; five-clip normal/small motion sheet; attack front/side tell-windup-contact-recovery and the 35% gameplay-scale strip; held defeat front/side/three-quarter/beauty; close-ups of the face, the chest panel, the back hatch, the treads, the popped lid and the lunge path.",
+  "coordinator_review": "Pending PLAN-019 coordinator intake. Not Tom approval.",
+  "owner_review": "Pending exact-version decision",
+  "sheet_matching": [
+    "Silhouette kept from the approved blockout at its measured coordinates: the caged amber warning light on a brass base, the pale tin dome head with plum trim, ten brass seam rivets and brass ear discs with steel bolts, the one big camera-lens eye (steel barrel, brass bezel, domed pale-blue glass, blue iris, plum pupil, two cream glints) under the tilted plum eyelid, the plum speaker-grille smile with three brass bars, the plum rubber neck bellows, the tapered teal tin body with the pale riveted control panel, red/blue/amber indicator lights, two brass gauge dials, the candy-red self-destruct button in its brass-and-plum hazard ring and the striped kick plate, four plum louvers per side, the riveted back hatch with its handle and the brass cord grommet, brass shoulder sockets, steel slinky arms and round brass pincer claws with ball tips, the steel swivel waist with its brass ring on the plum crossbar, the plum rubber tank treads with lugs, teal housing plates, steel road wheels and brass hubcaps, and the yanked-out power cord curling up beside the right tread with its brass two-prong plug.",
+    "Idle at 0 s reproduces the sheet pose: the raised right claw open in its V, the left claw reaching forward, the eyelid raised 11 deg on its left and the lens glancing low toward its right; both claw wrists within 2.4e-7 m of the blockout in the exact GLB.",
+    "Colours are the sheet hex values (atlas). The preview renders colours slightly deeper than the Cycles Standard-view sheet because of its ACES tone mapping; the glowing parts are painted darker than the sheet so lit colour plus emission lands near the sheet amber.",
+    "Spooky level 1 per the coordinator note (DESIGN-027): a red core glows in the pupil, so the lens stares red in the dark; during the attack a red target glare opens over the iris; the defeat throws glowing sparks, pops the dome lid and smokes. No teeth, lasers, blades or gore; the pincers keep their ball tips."
+  ],
+  "author_corrections": [
+    "Painted regions on boxes (panel and hatch rivets, kick-plate stripes) were first UV-mapped from box-local coordinates and came out blank; boxes are now placed before their UVs.",
+    "The small lens glint sat behind the iris shell's glass margin; both glints now sit 3.6 mm above the iris shell at its deepest.",
+    "Emission washed the amber warning light and the red eye toward pale yellow and salmon in lit rooms; the glow colours are painted darker so lit colour plus emission lands near the sheet amber and a clear red.",
+    "The popped dome's underside first rendered dark: its base disc shared the hemisphere's smooth rim normals and the seam ring's bottom cap covered it. The underside is now a flat disc with its own vertices and the seam ring a washer.",
+    "Linear joint blending collapsed the slinky chain through the shoulder mid-swing (a segment shrank to 9% of its rest length); arm poses now blend each joint by direction and distance about the shoulder.",
+    "The first lunge ran along the body's front corner and the spring forward swept the pincer across the lens; the lunge now bows out from the shoulder and the wind-up cocks the pincer forward-up beside the shoulder.",
+    "Tread lug corners dipped 0.3 mm below the floor while the chassis rocked on the tread arcs; the lug faces now sit inside the rolling radius.",
+    "The defeat tail flop first aimed the curl by minimal rotation and pushed cord vertices 2.4 cm below the floor; the curl now turns rigidly about the floor run's own axis.",
+    "The held defeat and the attack snap first fell between 30 fps frames, so the hold drifted and the jaws were only half shut at 1.25 s; the hold now starts on frame 57 and the snap completes at 1.22 s.",
+    "In the slump both hanging arms passed through the body sides and the drooping head sank into the body top; the hanging arms now bow outward and the head stays 7 cm up on its spring.",
+    "The first sparks were small at play distance; they are now 40% larger and spread 12% further."
+  ],
+  "deviations_from_sheet_notes": [
+    "The sheet notes describe a kid-safe robot with no smoke, sparks or scary eye; the coordinator's Sept 26 model notes (Hero City spooky level 1, DESIGN-027) supersede them: the red eye core and target glare, the sparks, the popped dome and the smoke. No gore.",
+    "Warning light spin: the notes suggested a reflector fin inside the glass or a scale pulse. The amber glass is opaque (two materials only), so the spin reads through a painted hot spot on the glowing amber dome and the rotating cage wires; the flashes are scale pulses. The beep-beep cue belongs to the audio lane (DESIGN-008).",
+    "The cord binds on its sheet path instead of lying straight back, so the bind pose and idle 0 s share it; its curl wags about the floor base and its floor run stays world-fixed.",
+    "Eye acting: the iris shell scales for focus and turns about the glass's centre of curvature for glances; its depth profile is shaped for scales down to 0.55 (the \"dot\"), so at full size it sits up to about 6 mm proud of the glass at its rim. The blink is a camera-shutter half blink (the lid scales down about its top edge to just below the pupil); a full blink would leave the bezel.",
+    "When the dome lid pops, the lens stays with the head band (it straddles the band and dome seam), so the face stays readable in the held defeat.",
+    "Attack follows the coordinator note \"the warning light spins, then a pincer lunge\": the tell (0-0.45 s: three flashes, spin, eyelid up, iris narrows, red glare opens), the rock back with the right slinky squashed short and two snips (0.45-1.0 s), then the rock forward as the right arm springs 54% past its rest length and snaps shut 0.88 m in front at 0.60 m high at the 1.25 s contact; boing back, proud head bob, settled by 2.0 s.",
+    "Defeat follows the coordinator note \"sparks, the dome pops and it slumps smoking, held\": the left claw bonks the self-destruct button at 0.28 s, sparks crackle, the head sproings up on the bellows while the light spins, the dome lid pops open at 0.92 s with smoke rising, then it slumps 14.3 deg onto its left tread with the head drooping, arms limp, the eyelid half shut and the iris circling; held from 1.90 s, still smoking.",
+    "Rig (46 joints): root, chassis, eight road wheels, waist, body, button, sparks, neck, head, dome lid, warning light, two smoke bones, eyelid tilt and shutter, pupil and glare, five-bone slinky chains with a claw and two jaws per arm, and a five-bone cord chain with the plug.",
+    "Height: 1.2919 m to the warning-light cage (blockout 1.2925 m), inside the WO111 ordinary band of 0.8-1.4 m."
+  ],
+  "dimensions_width_height_depth_m": [
+    1.1986676350077279,
+    1.2915770588442683,
+    0.8963898623090125
+  ],
+  "sheet_pose_dimensions_m": [
+    0.8938378761623308,
+    1.2915770588442683,
+    1.0859378855386004
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.5994448525064463,
+      0.00031999964267015457,
+      -0.280499997527323
+    ],
+    "max": [
+      0.5992227825012816,
+      1.2918970584869385,
+      0.6158898647816895
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -0.7425610156421001,
+      1.483518237047933e-05,
+      -0.9267980727857285
+    ],
+    "max": [
+      0.676712469937301,
+      1.5823697610674792,
+      0.6182973393127211
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -0.748,
+      -0.005,
+      -0.932
+    ],
+    "max": [
+      0.682,
+      1.588,
+      0.624
+    ]
+  },
+  "contact_seconds": 1.25,
+  "contact_claw_tip_y_up": [
+    0.10805719399069146,
+    0.6044191272044495,
+    -0.8770900792120411
+  ],
+  "contact_right_arm_length_m": 0.553372839308389,
+  "rest_arm_length_m": 0.36,
+  "attack_duration_seconds": 2.0,
+  "defeat_held_from_seconds": 1.9,
+  "defeat_held": {
+    "roll_deg": -14.323946151803485,
+    "dome_open_deg": 68.7549461069645,
+    "smoke_scale": [
+      25.000003814697266,
+      25.000003814697266
+    ],
+    "sparks_scale": 0.9999999403953552,
+    "eyelid_scale_z": 1.950000286102295,
+    "pupil_scale": 0.6000000238418579,
+    "head_height_m": 0.8941889722873888,
+    "top_m": 1.529619060014138,
+    "lowest_m": 0.00022099459009421174
+  },
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "The attachment audit tests listed part pairs every frame on the source scene; it is not a universal triangle-collision proof. Intended contacts (the arm roots in the sockets, the cord root in the grommet, the cuffs over the tube ends, the bellows in the body top and trim, the waist in the crossbar, the lens barrel through the dome, the seam ring over the band) are not tested.",
+    "In the game the windup phase scrubs the attack clip from 0 to the 1.25 s contact, so the tell and the wind-up play at the simulation windup speed.",
+    "Runtime culling: the lunge reaches 0.93 m in front and the rising smoke 1.58 m high; three.js computes a skinned bounding sphere once, so the coordinator should apply the stored safe envelope (skin extras model_space_bounds_y_up), as filed in haynes-quest issue #103.",
+    "The glow material uses the atlas as emission at factor 1, so the warning light and the red eye core always glow (they cannot dim in idle); the scare-scene blackouts dim scenery practicals, not characters.",
+    "The painted face cannot change expression beyond the eyelid shutter, the iris and the red glare.",
+    "Owner final-art review and runtime integration are separate from this authoring handoff."
+  ]
+}
