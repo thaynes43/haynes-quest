@@ -1,40 +1,74 @@
 # Current handoff
 
-## First family release live · September 26, 2026
+## First family release · weekend handoff · September 27, 2026
 
-**Both children's journeys are live** at [quest.haynesnetwork.com](https://quest.haynesnetwork.com), behind Authentik (`authentik Admins` + `family`), with a Haynes Network portal tile.
+Read this section first. [PLAN-019](plans/019-first-family-release.md) is **In progress**: the release is live and playable, and asset and polish work continues.
 
-- The older child plays `family-world-a@v2` ("Clubhouse to Casino", four chapters, ages 0→2→5→9→11).
-- The younger child plays `family-world-b@v2` ("Playroom to Big Stage", three chapters, ages 0→2→4→6).
-- Both are at publication r2. Photos were auto-picked from Immich (12 and 9) and decode server-side (12/12, 9/9). Tom can swap them in **Family setup → Memories**.
-- `family-world-a@v3` and `family-world-b@v3` keep the v2 levels and cast the six newer Blender models from `parody-catalog-v10` ([DESIGN-026](../docs/designs/026-personal-era-casts.md#eligibility)).
-- `family-world-a@v4` and `family-world-b@v4` are v3 plus the [DESIGN-027](../docs/designs/027-scare-pass.md#template-versions) scare levels: Rat Casino After Hours is scary (blackouts and jump scares), and Hero City and Besties' Big Stage are spooky. Once deployed, move each child straight to v4 with `set-template ... @v4`; every photo carries over. Then `publish` and **Start fresh**. The **Scary moments** switch on the family home turns it all off per device. The September 26 scare review's fixes (watchers never step into view and creak only when really seen; no blackout within 1 s of landing or near sweepers and movers; darker level 2 with faint eyes and a dark, HUD-free lunge) are runtime-only, so v4 is unchanged.
-- Tom signs in as `thaynes`. The separate `thomashaynes620` account is in neither group.
-- Children's names, birthdays and photo identifiers live only in the family database. The CLI takes private inputs on stdin, and the setup lookups are POST requests.
+### Live now
 
-[PLAN-019](plans/019-first-family-release.md) has the lanes and evidence. The contracts are [PRD-004](../docs/prds/004-family-release.md), [ADR-005](../docs/adrs/005-family-sign-in-and-admission.md), [ADR-006](../docs/adrs/006-release-isolation-and-public-surface.md), [DESIGN-024](../docs/designs/024-family-journeys.md), [DESIGN-025](../docs/designs/025-growth-moves-and-vertical-courses.md) and [DESIGN-026](../docs/designs/026-personal-era-casts.md). Tom locked the era casts on September 26 and ruled on four points:
+- **Where:** [quest.haynesnetwork.com](https://quest.haynesnetwork.com), behind Authentik (`authentik Admins` + `family`), with a Haynes Network portal tile.
+- **Image:** haynes-quest main `e976281`, pinned by haynes-ops #3222. The LAN fixture playtest runs the same image, isolated per ADR-006: no family secret and no database.
+- **Journeys:** both children are on **template v4, publication r4**. Photos carry over on every upgrade: 12/12 and 9/9 decode server-side.
+  - The older child plays `family-world-a@v4` "Clubhouse to Casino": Toon Clubhouse → Harbor Rescue → Hero City → Rat Casino After Hours; ages 0→2→5→9→11.
+  - The younger child plays `family-world-b@v4` "Playroom to Big Stage": Sing-Along Playroom → Magic House → Besties' Big Stage; ages 0→2→4→6.
+- **Moves:** each boss's big memory unlocks one. High jump at 2, double jump at 4, glide at 8.
+- **Scary moments** (DESIGN-027): A4 is level 2, with blackouts, watchers and jump scares; A3 and B3 are level 1. The per-device switch on the family home turns scares off.
+- **Sound:** eight mechanic cues and six scare cues are wired in.
+- **Enemies now in gameplay**, with the rest as neutral placeholders:
+  - catalog v8: Clubhouse Bully Cat and Honk Bus;
+  - catalog v10: Gadget Helper, Yes-Yes Veggie, Rival Mayor, Mischief Kitten, Magic House and Bin Chicken;
+  - the Rat Casino and Besties casts.
+- **Props:** the Toon Clubhouse kit is wired into the clubhouse theme.
+- **Tom's access:** he signs in as `thaynes`. The `thomashaynes620` account is in neither group. **Family setup → Memories** swaps photos and captions. Update world moves a child to a newer template, and **Start fresh** restarts a run on the latest publication.
 
-- Claude continues the Blender work after Codex's usage limit.
-- The Astra rule meant Astra over Sol.
-- Assets without an Astra concept use coordinator-reviewed Blender reference sheets.
-- Unreviewed candidates may appear in the children's levels, labeled "awaiting review".
+### How to operate
 
-**Operations:**
-- Deploy with `/home/dev/artifacts/haynes-quest/tools/pin-quest.sh <main-sha> "<desc>"`. It pins the signed image to the family release and to the fixture playtest.
-- Move a child to a new template with `set-template --child <id> --template <id>@<v>` (Update world carries photos over), then `publish` and `verify-media` inside the family pod.
-- A second, isolated Blender instance (`blender-authoring-2`, haynes-ops #3207) lets two authors model in parallel.
-- The playtest now runs with no family secret or database access (ADR-006).
+- **Deploy:** `/home/dev/artifacts/haynes-quest/tools/pin-quest.sh <main-sha> "<desc>"`. It resolves the signed digest, opens and merges the haynes-ops pin PR on green, and waits for the rollout. If the pod keeps its old image, run `flux reconcile source git haynes-ops -n flux-system` and `flux reconcile ks haynes-quest -n frontend`.
+- **Operator CLI,** run in the family pod: `kubectl exec -i -n frontend deploy/haynes-quest -c app -- node dist/server/admin.js <cmd>`.
+  - Commands: `status`, `set-template --child <id> --template <id>@<v>`, `publish --child <id>`, `verify-media --child <id>`.
+  - Private inputs (names, display names, birthdays) are **refused on argv** (`PRIVATE_OPTION_REFUSED`) and are read as JSON on stdin. See the runbook `docs/ops/002-private-preview.md`.
+  - Child ids: older `d4e76e34-71e4-44a6-bb7d-9a748242118e`, younger `3d3372eb-b874-49ba-8d10-980801e4e686`.
+- **Blender:**
+  - Instance 1 is `blender-authoring` (MCP tools or HTTP). Instance 2 is `blender-authoring-2` (haynes-ops #3207; HTTP JSON-RPC to `http://blender-authoring-2.dev.svc.cluster.local:8000/mcp` with the header `Host: localhost:8000`, else 421).
+  - Both are **idle and released**. Coordinator checkpoints are at `/workspace/haynes-quest/family-eras/{web-slinger-helper,casita-kit}/v001/coordinator-handoff-checkpoint.blend` (sha256 `26ef707a…`, `83948f25…`).
+- **Durable inputs:**
+  - `/home/dev/artifacts/haynes-quest/family-blueprints/`: chapter blueprints, critique, RULINGS.md, WORLD-SPEC.md, chapter-results.json.
+  - `/home/dev/artifacts/haynes-quest/family-eras/`: per-asset sheets, models and evidence, plus **SHEET-REVIEWS.md** with coordinator verdicts.
+  - Reusable workflow scripts are in this session's workflows folder (the Claude project dir, `…/workflows/scripts/family-*.js`).
 
-**Owner actions** ([haynes-ops#3214](https://github.com/thaynes43/haynes-ops/issues/3214)):
-- rotate the family `BETTER_AUTH_SECRET`;
-- give the family release a dedicated read-only Immich key;
-- enable HSTS at the Cloudflare edge.
+### Next, in priority order
 
-Also pending with Tom: review of every "awaiting review" asset, physical-device play with the children, and listening to the sound cues. Git history holds the children's first names in two September 10 bootstrap commits, written before characters became configurable. Rewriting public history is Tom's decision.
+1. **Register the merged Hero City, Big Stage and Casino bonus models in gameplay.** Inator Monster (A3 boss), Putty Grunt (A3 ordinary-a), Lab Robot (A3 ordinary-b), Demon Band Idol (B3 ordinaries) and Radio Host Showman (A4 bonus) are merged assets but still project candidates. Add `parody-catalog-v11` and `family-world-{a,b}@v5` (v10/v3 is the pattern, PR111), deploy, then `set-template @v5` + `publish` for both children.
+2. **Scripted jump scares** in A4, per Tom's ruling on #123: 2–3 set-piece lunges only when standing safely, as template v5+.
+3. **Prop kits:**
+   - Playroom and rescue-harbor sheets are rendered but **not yet reviewed**.
+   - The casita sheet is partial (checkpoint above).
+   - Rooftop-city is not started.
+   - Review the sheets, model the kits (WO111 checklist), then wire them into their themes like the Toon Clubhouse kit (PR116).
+4. **Web-slinger helper** (A3 friendly): the sheet is approved and a partial model is checkpointed on instance 1. Finish it under the friendly clip contract and register it as a friendly character.
+5. **Open issues:**
+   - #103: skinned-enemy culling sphere; apply the exported safe culling envelope.
+   - #118: scare eyes float in front of the face in the lunge close-up.
+   - #119: an A4 marquee arch blocks the camera at the first fight.
+6. **Parked WIP branches:** evaluate and then keep or delete them.
+   - `wip/scare-fixes-post-merge`: uncommitted scare-scene polish after PR122.
+   - `wip/family-b1-stale-rebuild`: a stopped B1 rebuild, superseded by World B v2+; probably delete.
+7. **Codex usage resets September 30.** Astra could add painted concepts for bosses. That is optional (Tom accepted Blender reference sheets).
 
-**Lessons:**
-- A transient "session limit" API error stopped every agent and the coordinator from about 05:00 to 14:00 UTC on September 26. Nothing resumes by itself after such an error, so the later workflows wrap every agent in automatic retries.
-- Workflow builders inherit the coordinator's worktree unless told to create their own.
+### Owner actions and reviews
+
+- **haynes-ops#3214:** rotate the family `BETTER_AUTH_SECRET`; give the family release a dedicated read-only Immich key; enable HSTS at the Cloudflare edge.
+- **Tom's reviews:**
+  - every "awaiting review" model and cue (catalog **Family eras** and **Scary moments** sections, now sign-in-only on the family host);
+  - a physical-device playtest with the children, and listening to the cues.
+- **Git history:** it holds the children's first names in two September 10 bootstrap commits. Rewriting public history is Tom's call.
+
+### Lessons for the next coordinator
+
+- **Session limits:** six parallel lanes exhausted a 5-hour window twice. Run **at most three lanes**. Wrap every agent in retries, but note that a limit error fails all immediate retries.
+- **Resuming workflows:** resuming a workflow whose `parallel()` stage had a failure re-runs **every** later call, including finished siblings (a merged audio PR nearly regenerated). Derive a new script that marks finished steps as done instead of resuming.
+- **Worktrees:** workflow builders inherit the coordinator's worktree unless given an explicit `git worktree add`. The coordinator works from `~/work/hq-coord`.
+- **Merging:** the repo has **no required checks**, so `gh pr merge --auto` merges instantly. Wait for green with `gh pr checks --watch`.
 
 ## Golden encounter and PC mouse controls · September 25, 2026
 
