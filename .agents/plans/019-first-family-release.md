@@ -60,26 +60,17 @@ A Claude Code session (`claude-opus-5-5`) started by Tom drives this plan. It ke
 - Every new asset appears in the catalog with its review page and live URLs verified.
 - Owner checks that stay pending until Tom does them, never simulated: his real sign-in, the portal tile click, photo swaps, final art and audio review, and device play.
 
-## Progress (September 26, 16:30 UTC)
+## Progress (September 27, weekend handoff)
 
-- **Live:**
-  - sign-in, hosting and the portal tile;
-  - family journeys, Update world, growth moves and v4 pieces;
-  - the family worlds A and B, both v2 and published for both children;
-  - eight sound cues, wired in main `278e3e8` and deployed with the next pin.
-- **Release review:** confirmed 13 findings. 11 were fixed in PR104 and haynes-ops #3211/#3213. Three are owner actions (#3214): the family secret rotation, the read-only Immich key and edge HSTS.
-- **Era models in the catalog:**
-  - Clubhouse Bully Cat, Honk Bus, Gadget Helper, Yes-Yes Veggie, Rival Mayor, Magic House, Mischief Kitten and Bin Chicken;
-  - the first two are gameplay-registered in catalog v8; the rest are going into v10 with world v3.
-- **In progress:**
-  - the Monster-inator, Demon Idol and Putty Grunt models (Blender 2);
-  - radio showman, lab robot and web-slinger sheets plus the toon-clubhouse kit (Blender 1);
-  - the catalog v10 / world v3 integration.
-- **Remaining:**
-  - models for the radio showman, lab robot, web-slinger helper and the playroom, harbor, casita and rooftop kits;
-  - world v4 with those models;
-  - Tom's device playtest feedback;
-  - the handoff at close.
+- **Live:** main `e976281`. Both children are on template v4 / publication r4: real photos, growth moves, scary moments, 14 sound cues, 8 era models in gameplay and the Toon Clubhouse kit.
+- **Merged but not yet in gameplay** (needs catalog v11 + template v5): Inator Monster, Putty Grunt, Lab Robot, Demon Band Idol, Radio Host Showman.
+- **Pending:**
+  - the web-slinger helper model (checkpointed);
+  - the playroom and rescue-harbor kit sheets (unreviewed), the casita sheet (partial) and the rooftop kit (not started);
+  - scripted jump scares (#123 ruling);
+  - issues #103, #118 and #119;
+  - owner actions in haynes-ops#3214.
+- See HANDOFF, "Next, in priority order".
 
 ## Result
 
