@@ -2129,7 +2129,10 @@
         "status": "pending coordinator merge and image publication; no deployment claim",
         "runtimeIntegration": "Exact URLs and hashes in src/shared/theme-kits.ts. Existing A2 v5 placements: 2 towers (1.5x/3x), 20 bollards (ten 1.1x/ten 2x), 6 buoy stands (1.6x, three each +/-90deg), 12 boats (0.8x). All origins Y=-1.4m; no template edit."
       },
-      "sceneReleasedAt": "2026-09-29T04:44:51.997495+00:00"
+      "sceneReleasedAt": "2026-09-29T04:44:51.997495+00:00",
+      "pr": 135,
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/135",
+      "implementationCommit": "361bf37"
     }
   ]
 }
