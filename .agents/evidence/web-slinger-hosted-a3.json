@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-29T06:37:25+00:00",
+  "scope": "Read-only hosted synthetic fixture check; no family account, child save or private media accessed",
+  "host": "https://haynes-quest-playtest.haynesops.com",
+  "deployedImage": {
+    "tag": "sha-d78e146f6db2db7eb2393ec164baa06536bb71b1",
+    "ociDigest": "sha256:f5f5c6787557564918b1768b22e78562bff9803db9dc4f30b338edd70e7cd2e4",
+    "observed": "Both frontend haynes-quest and haynes-quest-playtest pods reported this exact imageID and 1/1 ready deployments"
+  },
+  "syntheticRoute": {
+    "entry": "POST /api/editor/playtests through the hosted fixture UI",
+    "projectId": "family-world-a",
+    "projectName": "Clubhouse to Casino",
+    "chapterId": "family-a3",
+    "routeId": "family-a3-rooftop",
+    "sourceProject": "src/shared/levels/family-world-a-v5.json",
+    "sourceSha256": "fdf25561f1aedb1a7c5a7dcb7df7e9477ba095f8a02c0c9a95d5cbf10dd07f8c",
+    "familyV6Relationship": "family-world-a@v6 registers this unchanged v5 project with friendly-catalog-v2; editor previews use friendly-catalog-v1",
+    "completed": true,
+    "legs": 36,
+    "fights": 5,
+    "memories": 3,
+    "recoveries": 0,
+    "mediaFailures": 0,
+    "pageErrors": 0,
+    "consoleErrors": 0,
+    "httpErrors": 0,
+    "renderer": "Headless Chromium with SwiftShader; draw calls skipped between full-frame captures",
+    "screenshot": "web-slinger-hosted/a3-editor-boss-arena.png"
+  },
+  "hostedHelperAsset": {
+    "path": "/studio/assets/media/web-slinger-helper/v001/web-slinger-helper.glb",
+    "status": 200,
+    "contentType": "model/gltf-binary",
+    "bytes": 1159864,
+    "streamedSha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+    "matchesCheckedInGlb": true,
+    "viewerStatus": 200,
+    "viewerLoaded": true,
+    "animations": [
+      "idle",
+      "move",
+      "attack",
+      "hit",
+      "defeat"
+    ],
+    "attackClipPlayed": true,
+    "pageErrors": 0,
+    "consoleErrors": 0,
+    "httpErrors": 0,
+    "screenshot": "web-slinger-hosted/helper-viewer.png"
+  },
+  "limits": [
+    "The hosted editor route does not instantiate the v6 friendly roster or test the Helper interaction.",
+    "This Chromium lockstep run does not measure real-time rendering, physical Safari feel or an authenticated family journey."
+  ]
+}
