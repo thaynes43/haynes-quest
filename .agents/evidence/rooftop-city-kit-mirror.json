@@ -1,0 +1,523 @@
+{
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "recorded_utc": "2026-09-29T06:46:00.224782+00:00",
+  "authoritative_worktree": "/home/dev/work/hq-rooftop-city-kit",
+  "backup_mirror": "/home/dev/artifacts/haynes-quest/family-eras/rooftop-city-kit/v001",
+  "mirror_role": "backup only; editable repository/source remains in the worktree",
+  "media_manifest": "docs/assets/media/rooftop-city-kit/v001/sha256-manifest.json",
+  "media_manifest_sha256": "25e981f8d088244ec3489e91f7684653007e761ae9ef38a90366419a1430e139",
+  "manifest_files": 115,
+  "matching_media_files_including_manifest": 116,
+  "matching_original_source_files": 19,
+  "all_expected_files_match": true,
+  "media_files": {
+    "a3-camera/camera-probes.json": {
+      "sha256": "3ccbc9c05985a8c401792eecd3bd772ba7be1ba24275c0a1a3b43abc84b4b4c4",
+      "bytes": 8722
+    },
+    "a3-camera/family-a3-01-spawn-skyline-138-tank-desktop.png": {
+      "sha256": "3c56e8b48b1c2f84aed20a8f75343362eeba704416e20fe2b371eeb0e810cbf5",
+      "bytes": 223210
+    },
+    "a3-camera/family-a3-01-spawn-skyline-138-tank-phone.png": {
+      "sha256": "6495200ab92fcbd5796d89a4f45f74396887de219783f6b4528feabdfd041797",
+      "bytes": 121825
+    },
+    "a3-camera/family-a3-01-spawn.png": {
+      "sha256": "08355d2b0e3da2938316adc2e431254ed75a3935ea75bf342feb2c64dc28a359",
+      "bytes": 241081
+    },
+    "a3-camera/family-a3-02-first-ordinary-fight-ac-pigeon-roof-nx-0-desktop.png": {
+      "sha256": "88e1fe7327474e9704005ab1278a203e39d831875c9307e8abc9b95e2ca25344",
+      "bytes": 273225
+    },
+    "a3-camera/family-a3-02-first-ordinary-fight-ac-pigeon-roof-nx-0-phone.png": {
+      "sha256": "2c98a75eb623ac01dca8ddfebc742b4ab56700784bf1c1c400bc2c37c028ce9e",
+      "bytes": 138435
+    },
+    "a3-camera/family-a3-02-first-ordinary-fight-sign-pigeon-roof-nz-0-desktop.png": {
+      "sha256": "663e0100072ba3edc2122dddf353ed140789def8e962674bc89c20efce18090e",
+      "bytes": 204908
+    },
+    "a3-camera/family-a3-02-first-ordinary-fight-sign-pigeon-roof-nz-0-phone.png": {
+      "sha256": "fe736a1fd5b609e94d4322cb13a26ac9b664dd6a132ef10055588f0c97e5984b",
+      "bytes": 108493
+    },
+    "a3-camera/family-a3-02-first-ordinary-fight.png": {
+      "sha256": "601038de67689f294fc6cce5d161e90a102c1f34458e9dedb8e111715147f6c9",
+      "bytes": 205021
+    },
+    "a3-camera/family-a3-02-mid-climb-hook-crane-jib-nz-0-desktop.png": {
+      "sha256": "cd1d65100111807aab20e266cb7244f7d009ce6f068aadfcebe03e69134753b4",
+      "bytes": 304408
+    },
+    "a3-camera/family-a3-02-mid-climb-hook-crane-jib-nz-0-phone.png": {
+      "sha256": "8b2c03eabe2d071f713d13ca63d745bc7b91e84e681abf041df1dfc26f628cc0",
+      "bytes": 153002
+    },
+    "a3-camera/family-a3-02-mid-climb-sign-billboard-balcony-nx-0-desktop.png": {
+      "sha256": "cdc6b893668a7d997216a7bcb98c63ad928b10e80ef737334fd369a81dcdeb52",
+      "bytes": 245428
+    },
+    "a3-camera/family-a3-02-mid-climb-sign-billboard-balcony-nx-0-phone.png": {
+      "sha256": "c2dad77e93ff5c79ba30a3fb82ab0bb2508e2b12860e6cf2e9f5d20656f4bc1f",
+      "bytes": 122351
+    },
+    "a3-camera/family-a3-02-mid-climb.png": {
+      "sha256": "52f1997f3edbd0e1d7f1956d931a4b819c0657ffa222841f23789389f3a59897",
+      "bytes": 238312
+    },
+    "a3-camera/family-a3-03-boss-arena-hero-tank-tower-top-desktop.png": {
+      "sha256": "0c757c3e64b1698dc3bdf5125d381052ae2133284dc899fc034362de8d05e943",
+      "bytes": 265804
+    },
+    "a3-camera/family-a3-03-boss-arena-hero-tank-tower-top-phone.png": {
+      "sha256": "e495ff2ffc2804dbdc075be9d25a50cc882941562efcfa8e94f1c368e421556c",
+      "bytes": 122935
+    },
+    "a3-camera/family-a3-03-boss-arena.png": {
+      "sha256": "605eda405337ed98943bfde6604db4f5063a067dcc9b553e01d05024a0066dc0",
+      "bytes": 239822
+    },
+    "a3-camera/family-a3-04-finish.png": {
+      "sha256": "e849d3a96a8a980bad0f011dd88b4b471da02e0dd3c81c6d452e7d74e61a8710",
+      "bytes": 149442
+    },
+    "a3-camera/family-a3-scare-01-dark-room.png": {
+      "sha256": "cf9588ad3defdbf67f7d6f3603a25b2ae7862927cdaf2ec7a397d16fbbf6bc46",
+      "bytes": 237071
+    },
+    "a3-camera/family-a3-scare-03-watcher-moved.png": {
+      "sha256": "7d2d3f5be18bafb852ede3be0c4df75d23cf8d38428bea32a0188d4efe3f5743",
+      "bytes": 190066
+    },
+    "a3-camera/report.json": {
+      "sha256": "5fbe40e5f90abeaddbf504e08d55bb9ae4c35e2408d83dc0b2f7a2842f02b87c",
+      "bytes": 15646
+    },
+    "billboard-frame.glb": {
+      "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+      "bytes": 122480
+    },
+    "bounds.json": {
+      "sha256": "040712adf08f7d9185f0c8b71dc86007bab5f3459218042a6a06edac23a2218d",
+      "bytes": 3506
+    },
+    "catalog-audit/report.json": {
+      "sha256": "5b5a53b8717cd624d0a415b8fe374c66b7f8e9118fe4b923821d2edf6c55a8dd",
+      "bytes": 256139
+    },
+    "construction.json": {
+      "sha256": "34eca0cc18cf77381adbbe3026613bc182efdf9b3261320053bcc8efb845de58",
+      "bytes": 17946
+    },
+    "crane-hook.glb": {
+      "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+      "bytes": 43912
+    },
+    "final-verification.json": {
+      "sha256": "14e120ce2a8d610d00e3d02bdc23fcdb6a328550265155f5271b8cd9f147f047",
+      "bytes": 4283
+    },
+    "kit-beauty.png": {
+      "sha256": "f29b3c5e543dd299f501476b200bb065e49d5bbc8dae44630208b6e78aae2708",
+      "bytes": 498696
+    },
+    "model-notes.md": {
+      "sha256": "46bf4c10b6e9a7575ee681b550428619f1f9221a002530a7164751b2dfc9ac5c",
+      "bytes": 2002
+    },
+    "prompt.txt": {
+      "sha256": "eb6930fc06fa2fa2eebb6ad9407058e9119a76d705e6697355444bb3a2050d78",
+      "bytes": 937
+    },
+    "provenance.json": {
+      "sha256": "0001e8c8bae2fd5bbaeb0bfd7ec66387cc5c6474b29ed59fbd08ca949c98a11d",
+      "bytes": 2805
+    },
+    "reference-billboard-frame-front.png": {
+      "sha256": "a8bec072309c2c36aeba2c67996dfe828075eac9f68e5552bac9257136f078ec",
+      "bytes": 310531
+    },
+    "reference-billboard-frame-three-quarter.png": {
+      "sha256": "e1223e4cb4ac4c2f1ad0fa3d8d3916f2c914a0f33f6199869302980eb61cfbae",
+      "bytes": 400559
+    },
+    "reference-crane-hook-front.png": {
+      "sha256": "80390be00c7ad88900025eb9041e1ccaeadde8d74d27eaefce81bb5abe2d6ac1",
+      "bytes": 336816
+    },
+    "reference-crane-hook-three-quarter.png": {
+      "sha256": "27c14a67f2ea752fdcda806bad3415cb5f3b3d456868054a6dd327b18f3d3fd6",
+      "bytes": 324252
+    },
+    "reference-geometry.json": {
+      "sha256": "e6a11070a7e76efc010819a21695ab5deb5526fb7ebcbddbd3e6ad758c25508e",
+      "bytes": 1260
+    },
+    "reference-rooftop-ac-unit-front.png": {
+      "sha256": "df748bb0b4066a231587dcc572fea0ebfc1941991be4d36593a464fd70d064e6",
+      "bytes": 397904
+    },
+    "reference-rooftop-ac-unit-three-quarter.png": {
+      "sha256": "d7a422ccabc9cf194c8e95943a2c3a73d82952ad70dac794ac2cd74967db5bbf",
+      "bytes": 417309
+    },
+    "reference-sheet.png": {
+      "sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+      "bytes": 1058898
+    },
+    "reference-water-tower-front.png": {
+      "sha256": "f1a970cf558503a430457cced3e1a268e1e0498f054fe4131263ca1c0f715eb0",
+      "bytes": 385140
+    },
+    "reference-water-tower-three-quarter.png": {
+      "sha256": "25a49a5865b6b3ffab9e79674154f995472d29f40758c46c8d115ffa3d63d225",
+      "bytes": 391137
+    },
+    "reimport.json": {
+      "sha256": "29347c45788bc5aed151254d3b25f044bfbea5b364bb32470747a39908b6a63b",
+      "bytes": 2117
+    },
+    "remote-authoring-hashes.json": {
+      "sha256": "b8c2300d988032ad0e924a8ac070117ed5a33617e7fa786d0417a9d66b016bab",
+      "bytes": 1234
+    },
+    "review-audit/desktop-billboard-frame-card.png": {
+      "sha256": "de0fc94e00197600c661405bd12933768912e13de502a49c033fd38ec3a68bed",
+      "bytes": 42270
+    },
+    "review-audit/desktop-billboard-frame-viewer.png": {
+      "sha256": "fefe52d1de84772740005a7c07ff10eff0d90aac76bf6f9df2afcb38d57a4e43",
+      "bytes": 137249
+    },
+    "review-audit/desktop-crane-hook-card.png": {
+      "sha256": "5cebfc22a39f79f7b4a58132baf51f8fdc37c4f091b38bbf3a06e641520f37a8",
+      "bytes": 39420
+    },
+    "review-audit/desktop-crane-hook-viewer.png": {
+      "sha256": "94a85b3c4a2caaa0ba4a2bc35fc5dae990b171e6eb52939bc5c9f36d23995f18",
+      "bytes": 141331
+    },
+    "review-audit/desktop-rooftop-ac-unit-card.png": {
+      "sha256": "082384ac67ed849f14f5fe41366b729c8d10ce958f3d705b4a09b67a63a9a940",
+      "bytes": 48755
+    },
+    "review-audit/desktop-rooftop-ac-unit-viewer.png": {
+      "sha256": "31f206fa2cca2d4206ae7e6a01f3831e11721a0cc3f36522f78ef000361a555d",
+      "bytes": 134116
+    },
+    "review-audit/desktop-water-tower-card.png": {
+      "sha256": "b8aa7c3961edb4cfded5622f34d924a1791ea2e3a19568321d2da355a22860ed",
+      "bytes": 45646
+    },
+    "review-audit/desktop-water-tower-viewer.png": {
+      "sha256": "5a13b782184bac4e4258a93a28499467d9b5effe8ad8dbddacf3d38ed224218c",
+      "bytes": 138881
+    },
+    "review-audit/phone-billboard-frame-card.png": {
+      "sha256": "dd3f63b7d225372523ae265b696ce54aea2e75e6ceb5d7ba94c7424a3526f2fc",
+      "bytes": 49955
+    },
+    "review-audit/phone-billboard-frame-viewer.png": {
+      "sha256": "abc730c55c6a00403c1b6358fb4fb923ab2c4bce07555f83a0bf5bdc3bb92568",
+      "bytes": 55669
+    },
+    "review-audit/phone-crane-hook-card.png": {
+      "sha256": "e040808489f56a9856844861f39dd9f222c666b2a34ff00681c41ebcfd75041d",
+      "bytes": 46596
+    },
+    "review-audit/phone-crane-hook-viewer.png": {
+      "sha256": "d24deb00dc29dc0c8f25b8c0b19c2658190abd4a7b92fd8146ead1dd7d2a72fc",
+      "bytes": 60627
+    },
+    "review-audit/phone-rooftop-ac-unit-card.png": {
+      "sha256": "309ab677a7f255c9e58cc8964da74bd36e1f270d523ffabccd622925fcdc76a8",
+      "bytes": 59869
+    },
+    "review-audit/phone-rooftop-ac-unit-viewer.png": {
+      "sha256": "3d26a1d64a5c51f706812f42213b7c5d296b9fc3ae1a8cf5780c9bd9bdb566a3",
+      "bytes": 56102
+    },
+    "review-audit/phone-water-tower-card.png": {
+      "sha256": "6cfb996c0d009fbb42572efd611796e8082ac0309c663234af039dae0ae25fd3",
+      "bytes": 54515
+    },
+    "review-audit/phone-water-tower-viewer.png": {
+      "sha256": "1bfc8cc370d693768b7619282c769b9152ddb1667e8e0c9b34ae1ac28fc8c23a",
+      "bytes": 59510
+    },
+    "review-audit/report.json": {
+      "sha256": "86694762bbc4d72f8e5001bbe97d160577320d4b450a4bf21b9fd6cc573f1f1b",
+      "bytes": 1452
+    },
+    "rooftop-ac-unit.glb": {
+      "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+      "bytes": 88880
+    },
+    "rooftop-city-kit.blend": {
+      "sha256": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+      "bytes": 492136
+    },
+    "scene-lease.json": {
+      "sha256": "7953d8c59cb6ebe009beb388287ee95d474d51a9542302e8a12765d55e3d9ed9",
+      "bytes": 13598
+    },
+    "scene-release.json": {
+      "sha256": "bb4314dd0c1e368d8dbb217fd7ad7eaba4520cdf4d50cd008a6881e1ee3aecdb",
+      "bytes": 25207
+    },
+    "sheet-stage/README.md": {
+      "sha256": "c39fa16d148fda2a2743d050ee89ededa379d2d93b4ab78af7f17cb39b3e161f",
+      "bytes": 513
+    },
+    "sheet-stage/common.py": {
+      "sha256": "7a221ab6392e1f2c615ae05b547f8924e72d89bdff811a4128dcec566dc47ec8",
+      "bytes": 5483
+    },
+    "sheet-stage/design.py": {
+      "sha256": "4d2b5d64b9d675df9c355cf989e3dd8d43c23a4e33343cdf3866d6bf4a2f6a65",
+      "bytes": 6333
+    },
+    "sheet-stage/reference_sheet.py": {
+      "sha256": "af84be6469223c7b9d845976f7c2832a2ab035f6819d2878c9e8a4797d8d44d7",
+      "bytes": 3456
+    },
+    "sheet-stage/rooftop-city-kit-reference.blend": {
+      "sha256": "3aec97f0eb021cf959d335026ba7d2680e7c4339489d8b425b5e6dd585bdb02c",
+      "bytes": 357920
+    },
+    "sheet-vs-export.png": {
+      "sha256": "9364500a4de0cbfb2f4112342df6282aff0ab6653d2595bc25a978237df2db3c",
+      "bytes": 946448
+    },
+    "source/README.md": {
+      "sha256": "5710910cb8177a5934a65cf5ab2feb594a5f1f2939b65a1215d5b1baaa2ec7b9",
+      "bytes": 2038
+    },
+    "source/a3-camera-audit.mjs": {
+      "sha256": "909735b71942e6bbc5ed20de0b753ce5d21f152ecf8060da1aaa1babd4b48b27",
+      "bytes": 5909
+    },
+    "source/build_model.py": {
+      "sha256": "17d0cf4b9cf401a3719d09408c6fb7d880b1c568570b9e06cc24c291ad782c8f",
+      "bytes": 6963
+    },
+    "source/catalog-update.py": {
+      "sha256": "603eaf183dfcfd90467d8adc11d38ba36559f8f20a816b7ddbcd6539918590e5",
+      "bytes": 3178
+    },
+    "source/claim.py": {
+      "sha256": "58b07cb663064a2cd2cd41daadfc533d2f82b6858f5d6addfc9d72f1472a1e24",
+      "bytes": 2329
+    },
+    "source/common.py": {
+      "sha256": "7a221ab6392e1f2c615ae05b547f8924e72d89bdff811a4128dcec566dc47ec8",
+      "bytes": 5483
+    },
+    "source/compose-reference.mjs": {
+      "sha256": "94ac4af8c93d68eb1c178f7e7be16b122a7ad30a817fd706ac473e67018813c8",
+      "bytes": 2891
+    },
+    "source/compose.mjs": {
+      "sha256": "e8793c867b44db048f4a43dc2c07f777b8a5047d168297249b23160079ceba8f",
+      "bytes": 2089
+    },
+    "source/design.py": {
+      "sha256": "4d2b5d64b9d675df9c355cf989e3dd8d43c23a4e33343cdf3866d6bf4a2f6a65",
+      "bytes": 6333
+    },
+    "source/inspect-three.mjs": {
+      "sha256": "27155d532879dcbf48e139ff2fb0b7f5b7e885f5479855b736ecd705b4350f23",
+      "bytes": 9858
+    },
+    "source/preview.mjs": {
+      "sha256": "c702957e98c3d668a8864a8cb8acc4458fec682f4e04aafbc48b79b2b7acfd0d",
+      "bytes": 7738
+    },
+    "source/reference_sheet.py": {
+      "sha256": "af84be6469223c7b9d845976f7c2832a2ab035f6819d2878c9e8a4797d8d44d7",
+      "bytes": 3456
+    },
+    "source/reimport.py": {
+      "sha256": "fff2dec6595f4236599ad795230750203e6f6226a2ea4eb95ca34847d0a41183",
+      "bytes": 1763
+    },
+    "source/release_scene.py": {
+      "sha256": "61480fbec323d6fe9977fe0f942551e9f95cb6b36bd2f3a363ef060c376312f6",
+      "bytes": 2574
+    },
+    "source/review_audit.mjs": {
+      "sha256": "e0038ce88a29679b60f9b3ff8fe5dc6d7f11c871236b32ba638db7289fb741ef",
+      "bytes": 3474
+    },
+    "source/run.py": {
+      "sha256": "3430ad8884b2f7431533976e209fc4062775911dd8170397bcd59faefcef86d2",
+      "bytes": 608
+    },
+    "source/transfer.py": {
+      "sha256": "3223d93e5c41fbf4096cf1de4d6f87b7beb0d85ebed87e3a6b46c62226dbd02b",
+      "bytes": 4838
+    },
+    "source/validate.mjs": {
+      "sha256": "fe5003777afcdc075d0b17087f1c8bd2ca0d7d77250dc07b08aaaee2078bdcd1",
+      "bytes": 6448
+    },
+    "source.json": {
+      "sha256": "6862d44ccb8bdd0419f5f313e7fdb88f1c8695f9c6b89832b8be3be2742f57f8",
+      "bytes": 983
+    },
+    "static-contact-sheet.png": {
+      "sha256": "18e75e60ea56f76acfca32415e5fc45d495e922e87c0276e8ca67a5ca24c70c2",
+      "bytes": 997347
+    },
+    "stills/billboard-frame-back.png": {
+      "sha256": "1e2834aec2254e5caebd25998ab0dc185273cc37da364588ba1227536b59b32a",
+      "bytes": 18364
+    },
+    "stills/billboard-frame-beauty.png": {
+      "sha256": "36d08ce10e38a069a1a07dc306e3b69695cb7d077830355c51a3b0eca5243689",
+      "bytes": 138950
+    },
+    "stills/billboard-frame-front.png": {
+      "sha256": "7a85f317c239f301ceae36e8fbcd1cc6986b6b6c05abd58ae00c001b80aff6d9",
+      "bytes": 134354
+    },
+    "stills/billboard-frame-side.png": {
+      "sha256": "810a1e7b4234a0054bc6b2e1e28bae7e6c53c83c78eee91946721d2eb5936634",
+      "bytes": 61290
+    },
+    "stills/billboard-frame-threequarter.png": {
+      "sha256": "a5175f61ec7ce76eab8e4f270ef5eb1b57c2f30c4d08f8c4d1545c09786a98b3",
+      "bytes": 101480
+    },
+    "stills/browser-inspection.json": {
+      "sha256": "704c2ece33dccb1a667f929fa794a7e515c908c3f285b36365e63eba24a586b1",
+      "bytes": 17465
+    },
+    "stills/crane-hook-back.png": {
+      "sha256": "8d9793754444b6e820618a3b0ea4d56c7af51be02c1e5ff6623c00eb61b783c0",
+      "bytes": 70944
+    },
+    "stills/crane-hook-beauty.png": {
+      "sha256": "ce50d009643c4aa11c3cc1107d54114db9da2732f3e4597f765667c1f8938ce1",
+      "bytes": 179538
+    },
+    "stills/crane-hook-front.png": {
+      "sha256": "451ac0bdb5a0c7138a9953153d2b3f1cb03686652d8fe0ac8d1b2910b729b183",
+      "bytes": 196759
+    },
+    "stills/crane-hook-side.png": {
+      "sha256": "6a3bf8ae56021ce7ea6c1dc85a7e8334adf0888f6ef842b422a40b62e8609f50",
+      "bytes": 104994
+    },
+    "stills/crane-hook-threequarter.png": {
+      "sha256": "6783c2a90141221e0ba74dca53cb65e39063ac67e2ce5411e7c6e93a2fc71d6b",
+      "bytes": 169900
+    },
+    "stills/rooftop-ac-unit-back.png": {
+      "sha256": "98c0f9d543aaaef8a6a26fbe0d56f3464133201ced292808a4c4069f21830580",
+      "bytes": 19202
+    },
+    "stills/rooftop-ac-unit-beauty.png": {
+      "sha256": "7a0ebbe2142f347fd55891fd132da6c18bbb4d496b7402a8aa3ad7b771ea95da",
+      "bytes": 271217
+    },
+    "stills/rooftop-ac-unit-front.png": {
+      "sha256": "0f30e0c289a75357ee1cf4abd3e28e96f9f428ee604a0f34434d40d9d970c22b",
+      "bytes": 337664
+    },
+    "stills/rooftop-ac-unit-side.png": {
+      "sha256": "5c3f800decb05754cc3c3c534d97e02cd3d32f242c93c081a35c7210d8b04306",
+      "bytes": 443280
+    },
+    "stills/rooftop-ac-unit-threequarter.png": {
+      "sha256": "57546dc6811b9c308dcd0d9c9690b8f2f3ab9289dcfb80fcbb8c5c139eb6a068",
+      "bytes": 177647
+    },
+    "stills/water-tower-back.png": {
+      "sha256": "990862e74524923f6990071b8b730f0aa75c40a3c93948edcfe6f7ec51f7fb23",
+      "bytes": 69704
+    },
+    "stills/water-tower-beauty.png": {
+      "sha256": "32ad068eef61df188c2418105d30f8ba33af01a7494803490c56fa26b5b6e764",
+      "bytes": 197939
+    },
+    "stills/water-tower-front.png": {
+      "sha256": "6f20c5c2cbfb025ae030c67f8ac842409208546b662e239a1e3a6e5aff58b872",
+      "bytes": 213990
+    },
+    "stills/water-tower-side.png": {
+      "sha256": "d8834d6b21f3aa1ad69c3511455be38768848fa969a3391550c56eed7a994b51",
+      "bytes": 191319
+    },
+    "stills/water-tower-threequarter.png": {
+      "sha256": "64ecbc2abd943e82a50f05e0614a01e01be155ed03874fd98996ddcd1708af73",
+      "bytes": 158090
+    },
+    "three-inspection.json": {
+      "sha256": "6a912983075496e498fa04383acc3b422930f9125ada7a4cde91e6db38b7f68c",
+      "bytes": 74211
+    },
+    "validation.json": {
+      "sha256": "7a6333b888b2c420f298151cf0ea94da3b87388d70e16a3615de8f9a9c255307",
+      "bytes": 14295
+    },
+    "visual-review.json": {
+      "sha256": "53836682f1d32ab9725accd4c02434e918205f7e397393d647ae44cb0e4c1c9b",
+      "bytes": 936
+    },
+    "water-tower.glb": {
+      "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+      "bytes": 180172
+    },
+    "sha256-manifest.json": {
+      "sha256": "25e981f8d088244ec3489e91f7684653007e761ae9ef38a90366419a1430e139",
+      "bytes": 17894
+    }
+  },
+  "released_authoring_pvc": {
+    "scope": "Released Blender authoring PVC exact master, exports and approved reference; read-only HTTP downloads, no scene mutation",
+    "files": {
+      "rooftop-city-kit.blend": {
+        "bytes": 492136,
+        "sha256": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+        "remote_matches_worktree": true
+      },
+      "water-tower.glb": {
+        "bytes": 180172,
+        "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+        "remote_matches_worktree": true
+      },
+      "rooftop-ac-unit.glb": {
+        "bytes": 88880,
+        "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+        "remote_matches_worktree": true
+      },
+      "crane-hook.glb": {
+        "bytes": 43912,
+        "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+        "remote_matches_worktree": true
+      },
+      "billboard-frame.glb": {
+        "bytes": 122480,
+        "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+        "remote_matches_worktree": true
+      },
+      "reference-sheet.png": {
+        "bytes": 1058898,
+        "sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "remote_matches_worktree": true
+      }
+    }
+  },
+  "global_audit_captures_backup": "/home/dev/artifacts/haynes-quest/family-eras/rooftop-city-kit/v001/intake-evidence/catalog-audit",
+  "verification_log_backup": "/home/dev/artifacts/haynes-quest/family-eras/rooftop-city-kit/v001/intake-evidence/logs",
+  "final_intake_contracts": {
+    "test_files_passed": 2,
+    "tests_passed": 17
+  },
+  "scene_lease": "released; no subsequent scene mutation",
+  "owner_exact_version_review": "pending under PRD-004 Q-03"
+}

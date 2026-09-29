@@ -822,6 +822,41 @@
       "sha256": "141603698881a6485525d57592c85974551baf478be87d0ea23a7cfce452a73a"
     },
     {
+      "source": "docs/assets/media/rooftop-city-kit/v001/reference-sheet.png",
+      "source_sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+      "path": "docs/assets/media/catalog-thumbnails/v001/c8cd2666e561d82e.webp",
+      "bytes": 21368,
+      "sha256": "85dd613b58beccf1f7abc5abad3df1fc5a4105ea371f067b2805d143a2829776"
+    },
+    {
+      "source": "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-beauty.png",
+      "source_sha256": "36d08ce10e38a069a1a07dc306e3b69695cb7d077830355c51a3b0eca5243689",
+      "path": "docs/assets/media/catalog-thumbnails/v001/5cd667e88207be28.webp",
+      "bytes": 8712,
+      "sha256": "ec58205b2dca225d6ff0722bc256b37d2c0b50017d62aec71b07d654f6253a19"
+    },
+    {
+      "source": "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-beauty.png",
+      "source_sha256": "ce50d009643c4aa11c3cc1107d54114db9da2732f3e4597f765667c1f8938ce1",
+      "path": "docs/assets/media/catalog-thumbnails/v001/58797632b03f1b11.webp",
+      "bytes": 6398,
+      "sha256": "a2bab929c51aa8bd298be053fe001c166b7de60470ea1466b3799540f171432f"
+    },
+    {
+      "source": "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-beauty.png",
+      "source_sha256": "7a0ebbe2142f347fd55891fd132da6c18bbb4d496b7402a8aa3ad7b771ea95da",
+      "path": "docs/assets/media/catalog-thumbnails/v001/0ade60f9d1a436f4.webp",
+      "bytes": 9916,
+      "sha256": "71e404bb5b2cc13c8f3aa866e58c0f10153b30fce4e213eeb7e377eaf6a84125"
+    },
+    {
+      "source": "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-beauty.png",
+      "source_sha256": "32ad068eef61df188c2418105d30f8ba33af01a7494803490c56fa26b5b6e764",
+      "path": "docs/assets/media/catalog-thumbnails/v001/ef01f02947f49be3.webp",
+      "bytes": 9120,
+      "sha256": "d7c30b412ca5ac95ed92d0f9b5e0ed20df5146ee70ce46b1cf5cbda6cf79eb0b"
+    },
+    {
       "source": "docs/assets/media/servo-creak/v001/waveform.svg",
       "source_sha256": "7fdd0a3790e0c59e4bd6c432ef377ba752b035c33fb6bfc4e6d25d7f0e31a555",
       "path": "docs/assets/media/catalog-thumbnails/v001/fe79cd177e61552b.webp",

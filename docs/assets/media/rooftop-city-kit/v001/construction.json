@@ -1,0 +1,767 @@
+{
+  "work_order": "WO111",
+  "delivery_work_order": "WO142",
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "authoring_model": "gpt-6-astra max",
+  "sheet_sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+  "owner_review": "pending",
+  "method": "Approved component geometry preserved; opaque vertex colours with mild 12-ray contact shading; no decimation or external resources",
+  "props": {
+    "water-tower": {
+      "triangles": 2960,
+      "materials": 2,
+      "parts": [
+        {
+          "part": "Splayed steel shoe.004",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Timber leg.004",
+          "palette": "wood3",
+          "triangles": 44
+        },
+        {
+          "part": "Splayed steel shoe.005",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Timber leg.005",
+          "palette": "wood3",
+          "triangles": 44
+        },
+        {
+          "part": "Splayed steel shoe.006",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Timber leg.006",
+          "palette": "wood3",
+          "triangles": 44
+        },
+        {
+          "part": "Splayed steel shoe.007",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Timber leg.007",
+          "palette": "wood3",
+          "triangles": 44
+        },
+        {
+          "part": "Lower front tie.002",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Open diagonal brace.002",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Lower front tie.003",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Open diagonal brace.003",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Side diagonal brace.002",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Side diagonal brace.003",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Tank bearer.001",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Closed wooden tank.001",
+          "palette": "wood",
+          "triangles": 124
+        },
+        {
+          "part": "Coopered stave 00.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 01.001",
+          "palette": "wood2",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 02.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 03.001",
+          "palette": "wood3",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 04.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 05.001",
+          "palette": "wood2",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 06.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 07.001",
+          "palette": "wood3",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 08.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 09.001",
+          "palette": "wood2",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 10.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 11.001",
+          "palette": "wood3",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 12.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 13.001",
+          "palette": "wood2",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 14.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 15.001",
+          "palette": "wood3",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 16.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 17.001",
+          "palette": "wood2",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 18.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 19.001",
+          "palette": "wood3",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 20.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 21.001",
+          "palette": "wood2",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 22.001",
+          "palette": "wood",
+          "triangles": 12
+        },
+        {
+          "part": "Coopered stave 23.001",
+          "palette": "wood3",
+          "triangles": 12
+        },
+        {
+          "part": "Tank hoop.003",
+          "palette": "steel",
+          "triangles": 256
+        },
+        {
+          "part": "Tank hoop.004",
+          "palette": "steel",
+          "triangles": 256
+        },
+        {
+          "part": "Tank hoop.005",
+          "palette": "steel",
+          "triangles": 256
+        },
+        {
+          "part": "Roof eave.001",
+          "palette": "ink",
+          "triangles": 124
+        },
+        {
+          "part": "Shallow conical roof.001",
+          "palette": "steel",
+          "triangles": 124
+        },
+        {
+          "part": "Roof cap.001",
+          "palette": "honey",
+          "triangles": 60
+        },
+        {
+          "part": "Rear ladder rail.002",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rail.003",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.013",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.014",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.015",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.016",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.017",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.018",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.019",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.020",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.021",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.022",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.023",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.024",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Rear ladder rung.025",
+          "palette": "light",
+          "triangles": 44
+        },
+        {
+          "part": "Tank service plaque.001",
+          "palette": "honey",
+          "triangles": 108
+        },
+        {
+          "part": "Service stripe.001",
+          "palette": "cream",
+          "triangles": 44
+        }
+      ],
+      "bbox": {
+        "min": [
+          -1.2999999523162842,
+          0.0,
+          -1.2999999523162842
+        ],
+        "max": [
+          1.2999999523162842,
+          4.894999980926514,
+          1.2999999523162842
+        ]
+      },
+      "centering_shift": [
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "bytes": 180172,
+      "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f"
+    },
+    "rooftop-ac-unit": {
+      "triangles": 1496,
+      "materials": 1,
+      "parts": [
+        {
+          "part": "Foot skid.002",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Foot skid.003",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "AC housing.001",
+          "palette": "light",
+          "triangles": 108
+        },
+        {
+          "part": "Blue service cap.001",
+          "palette": "steel",
+          "triangles": 108
+        },
+        {
+          "part": "Front recessed fan grille.001",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Fan rim.002",
+          "palette": "steel",
+          "triangles": 224
+        },
+        {
+          "part": "Five-blade fan.010",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Five-blade fan.011",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Five-blade fan.012",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Five-blade fan.013",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Five-blade fan.014",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Fan hub.002",
+          "palette": "steel",
+          "triangles": 60
+        },
+        {
+          "part": "Fan guard.004",
+          "palette": "ink",
+          "triangles": 28
+        },
+        {
+          "part": "Fan guard.005",
+          "palette": "ink",
+          "triangles": 28
+        },
+        {
+          "part": "Fan rim.003",
+          "palette": "steel",
+          "triangles": 224
+        },
+        {
+          "part": "Five-blade fan.015",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Five-blade fan.016",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Five-blade fan.017",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Five-blade fan.018",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Five-blade fan.019",
+          "palette": "light",
+          "triangles": 16
+        },
+        {
+          "part": "Fan hub.003",
+          "palette": "steel",
+          "triangles": 60
+        },
+        {
+          "part": "Fan guard.006",
+          "palette": "ink",
+          "triangles": 28
+        },
+        {
+          "part": "Fan guard.007",
+          "palette": "ink",
+          "triangles": 28
+        },
+        {
+          "part": "Side vent dark recess.005",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Side vent dark recess.006",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Side vent dark recess.007",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Side vent dark recess.008",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Side vent dark recess.009",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Service door.001",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Small caution plaque.001",
+          "palette": "honey",
+          "triangles": 44
+        }
+      ],
+      "bbox": {
+        "min": [
+          -0.8899999856948853,
+          0.0,
+          -0.6974999904632568
+        ],
+        "max": [
+          0.8899999856948853,
+          1.0299999713897705,
+          0.6974999904632568
+        ]
+      },
+      "centering_shift": [
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "bytes": 88880,
+      "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b"
+    },
+    "crane-hook": {
+      "triangles": 880,
+      "materials": 1,
+      "parts": [
+        {
+          "part": "Top shackle.001",
+          "palette": "ink",
+          "triangles": 288
+        },
+        {
+          "part": "Pulley core.001",
+          "palette": "ink",
+          "triangles": 108
+        },
+        {
+          "part": "Ochre pulley cheek.002",
+          "palette": "honey",
+          "triangles": 68
+        },
+        {
+          "part": "Ochre pulley cheek.003",
+          "palette": "honey",
+          "triangles": 68
+        },
+        {
+          "part": "Pulley axle.001",
+          "palette": "steel",
+          "triangles": 60
+        },
+        {
+          "part": "Inset safety slash.002",
+          "palette": "black",
+          "triangles": 12
+        },
+        {
+          "part": "Inset safety slash.003",
+          "palette": "black",
+          "triangles": 12
+        },
+        {
+          "part": "Swivel stem.001",
+          "palette": "steel",
+          "triangles": 60
+        },
+        {
+          "part": "Rounded forged J hook.001",
+          "palette": "steel",
+          "triangles": 176
+        },
+        {
+          "part": "Safety latch.001",
+          "palette": "light",
+          "triangles": 28
+        }
+      ],
+      "bbox": {
+        "min": [
+          -0.3769734799861908,
+          0.0,
+          -0.31449997425079346
+        ],
+        "max": [
+          0.3769734799861908,
+          1.5861884355545044,
+          0.31449997425079346
+        ]
+      },
+      "centering_shift": [
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "bytes": 43912,
+      "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f"
+    },
+    "billboard-frame": {
+      "triangles": 1552,
+      "materials": 1,
+      "parts": [
+        {
+          "part": "Billboard foot.002",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Vertical support.002",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Support knee.002",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Billboard foot.003",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Vertical support.003",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Support knee.003",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Outer side rail.002",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Outer side rail.003",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Outer horizontal rail.002",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Outer horizontal rail.003",
+          "palette": "ink",
+          "triangles": 44
+        },
+        {
+          "part": "Faded mauve edge.004",
+          "palette": "mauve",
+          "triangles": 44
+        },
+        {
+          "part": "Faded mauve edge.005",
+          "palette": "mauve",
+          "triangles": 44
+        },
+        {
+          "part": "Faded mauve edge.006",
+          "palette": "mauve",
+          "triangles": 44
+        },
+        {
+          "part": "Faded mauve edge.007",
+          "palette": "mauve",
+          "triangles": 44
+        },
+        {
+          "part": "Lamp bracket.005",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Warm glass lamp.005",
+          "palette": "cream",
+          "triangles": 108
+        },
+        {
+          "part": "Lamp bracket.006",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Warm glass lamp.006",
+          "palette": "cream",
+          "triangles": 108
+        },
+        {
+          "part": "Lamp bracket.007",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Warm glass lamp.007",
+          "palette": "cream",
+          "triangles": 108
+        },
+        {
+          "part": "Lamp bracket.008",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Warm glass lamp.008",
+          "palette": "cream",
+          "triangles": 108
+        },
+        {
+          "part": "Lamp bracket.009",
+          "palette": "steel",
+          "triangles": 44
+        },
+        {
+          "part": "Warm glass lamp.009",
+          "palette": "cream",
+          "triangles": 108
+        },
+        {
+          "part": "Corner bolt.004",
+          "palette": "honey",
+          "triangles": 44
+        },
+        {
+          "part": "Corner bolt.005",
+          "palette": "honey",
+          "triangles": 44
+        },
+        {
+          "part": "Corner bolt.006",
+          "palette": "honey",
+          "triangles": 44
+        },
+        {
+          "part": "Corner bolt.007",
+          "palette": "honey",
+          "triangles": 44
+        }
+      ],
+      "bbox": {
+        "min": [
+          -2.440000057220459,
+          0.0,
+          -0.23999999463558197
+        ],
+        "max": [
+          2.440000057220459,
+          3.990000009536743,
+          0.23999999463558197
+        ]
+      },
+      "centering_shift": [
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "bytes": 122480,
+      "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf"
+    }
+  }
+}

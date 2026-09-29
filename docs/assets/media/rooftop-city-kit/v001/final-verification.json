@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "recorded_utc": "2026-09-29T06:44:45.307352+00:00",
+  "base_commit": "adf97ba781a6dc3a183f6f4c387eeeba609bfdab",
+  "tested_scope": "Combined Web-slinger Helper, Casita and Rooftop catalog on merged main; exact Rooftop registry, all 50 unchanged A3 transforms and v5/v6 scenery parity",
+  "owner_exact_version_review": "pending under PRD-004 Q-03",
+  "coordinator_visual_review": "reference and exact export comparison approved September 29",
+  "local_checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "production_build": "passed",
+    "focused_tests": {
+      "passed": 158,
+      "scope": "Rooftop City, A3 and theme registry"
+    },
+    "full_suite": {
+      "outcome": "passed",
+      "test_files_passed": 165,
+      "test_files_skipped": 3,
+      "tests_passed": 1908,
+      "tests_skipped": 34,
+      "duration_seconds": 248.78
+    },
+    "strict_docs_and_media_links": "passed",
+    "khronos": {
+      "files": 4,
+      "errors": 0,
+      "warnings": 0,
+      "report": "validation.json"
+    },
+    "blender_reimport": {
+      "outcome": "passed",
+      "report": "reimport.json"
+    },
+    "three_adapter": {
+      "outcome": "passed",
+      "actual_a3_placements": 50,
+      "rotation_scale_probes": 32,
+      "report": "three-inspection.json"
+    },
+    "exact_glb_browser_views": {
+      "passed": 20,
+      "report": "stills/browser-inspection.json"
+    },
+    "a3_camera": {
+      "outcome": "passed",
+      "report": "a3-camera/report.json",
+      "route_legs": 36,
+      "fights": 5,
+      "memories": 3,
+      "recoveries": 0,
+      "camera_probes": 12,
+      "screenshots": 19,
+      "errors": 0,
+      "scope": "Full normal-control route plus camera-only drags; no teleport or internal state mutation",
+      "rendering": "Lockstep; software drawing thinned between full captures; server combat input paced by real time",
+      "frozen_template": "family-world-a@v5",
+      "current_scenery_parity": "family-world-a@v6 resolves identical A3 decor; registry regression passes"
+    },
+    "level_validation": "passed"
+  },
+  "full_catalog_audit": {
+    "outcome": "passed",
+    "report": "catalog-audit/report.json",
+    "entries": 106,
+    "thumbnails": 149,
+    "review_pages": 72,
+    "exact_model_deliveries": 77,
+    "animated_viewer_checks": 40,
+    "errors": {
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "badResponses": 0,
+      "failedRequests": 0,
+      "externalRequests": 0
+    },
+    "expected_metadata_aborts": 12,
+    "browser": {
+      "engine": "Chromium",
+      "version": "153.0.8010.12",
+      "rendering": "SwiftShader software (requested)"
+    },
+    "chromium_lease": "closed and released"
+  },
+  "desktop_phone_static_viewers": {
+    "outcome": "passed",
+    "viewers": 8,
+    "errors": 0,
+    "report": "review-audit/report.json"
+  },
+  "scene_release": {
+    "instance": "blender-authoring-2",
+    "released_utc": "2026-09-29T06:11:06.741969+00:00",
+    "prior_files_unchanged": 78,
+    "report": "scene-release.json"
+  },
+  "physical_safari": "not tested",
+  "deployment": "pending coordinator PR review, merge and image release",
+  "authored_from_commit": "489902a8b0e22bbaaea1e9cd0eb20f365610907c",
+  "verification_history": [
+    {
+      "stage": "Initial Harbor-base full suite",
+      "outcome": "One obsolete expectation asserted Rooftop had no GLBs; 1893 passed, 1 failed, 34 skipped",
+      "resolution": "Added exact Rooftop URL expectation; corrected 20-test file passed, then complete merged-base suite passed."
+    },
+    {
+      "stage": "Pre-merge v6 parity check",
+      "outcome": "Typecheck caught an incorrect assumed v6 JSON filename; the pending suite was stopped",
+      "resolution": "Read v6 from the existing FamilyTemplateRegistry; its source project reuses frozen v5 geometry. Final typecheck and full suite pass."
+    }
+  ],
+  "upstream_preservation": {
+    "inventory_records_unchanged": 102,
+    "thumbnail_records_unchanged": 144,
+    "frozen_templates_saves_and_friendly_roster": "unchanged"
+  },
+  "authoring_pvc_check": {
+    "report": "remote-authoring-hashes.json",
+    "files": 6,
+    "outcome": "released master, exports and approved reference match exact worktree bytes; no scene mutation"
+  }
+}

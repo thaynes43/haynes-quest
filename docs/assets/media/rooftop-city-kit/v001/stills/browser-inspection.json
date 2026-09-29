@@ -1,0 +1,643 @@
+{
+  "tool": "Chromium headless (Playwright) + three.js GLTFLoader, real WebGL raster via ANGLE SwiftShader; no physical-device claim",
+  "props": {
+    "water-tower": {
+      "glb_sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 5922,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.741199989318848,
+          "bounds": {
+            "min": [
+              -1.2999999523162842,
+              0,
+              -1.2999999523162842
+            ],
+            "max": [
+              1.2999999523162842,
+              4.894999980926514,
+              1.2999999523162842
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            },
+            {
+              "name": "Rooftop City timber",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 5922,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.741199989318848,
+          "bounds": {
+            "min": [
+              -1.2999999523162842,
+              0,
+              -1.2999999523162842
+            ],
+            "max": [
+              1.2999999523162842,
+              4.894999980926514,
+              1.2999999523162842
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            },
+            {
+              "name": "Rooftop City timber",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 5922,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.741199989318848,
+          "bounds": {
+            "min": [
+              -1.2999999523162842,
+              0,
+              -1.2999999523162842
+            ],
+            "max": [
+              1.2999999523162842,
+              4.894999980926514,
+              1.2999999523162842
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            },
+            {
+              "name": "Rooftop City timber",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 5922,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.741199989318848,
+          "bounds": {
+            "min": [
+              -1.2999999523162842,
+              0,
+              -1.2999999523162842
+            ],
+            "max": [
+              1.2999999523162842,
+              4.894999980926514,
+              1.2999999523162842
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            },
+            {
+              "name": "Rooftop City timber",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 5922,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.741199989318848,
+          "bounds": {
+            "min": [
+              -1.2999999523162842,
+              0,
+              -1.2999999523162842
+            ],
+            "max": [
+              1.2999999523162842,
+              4.894999980926514,
+              1.2999999523162842
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            },
+            {
+              "name": "Rooftop City timber",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": 28,
+          "elevation_deg": 18
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "rooftop-ac-unit": {
+      "glb_sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 3,
+          "triangles": 2994,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.2664452737370258,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.6974999904632568
+            ],
+            "max": [
+              0.8899999856948853,
+              1.0299999713897705,
+              0.6974999904632568
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 3,
+          "triangles": 2994,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.2664452737370258,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.6974999904632568
+            ],
+            "max": [
+              0.8899999856948853,
+              1.0299999713897705,
+              0.6974999904632568
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 3,
+          "triangles": 2994,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.2664452737370258,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.6974999904632568
+            ],
+            "max": [
+              0.8899999856948853,
+              1.0299999713897705,
+              0.6974999904632568
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 3,
+          "triangles": 2994,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.2664452737370258,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.6974999904632568
+            ],
+            "max": [
+              0.8899999856948853,
+              1.0299999713897705,
+              0.6974999904632568
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 3,
+          "triangles": 2994,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.2664452737370258,
+          "bounds": {
+            "min": [
+              -0.8899999856948853,
+              0,
+              -0.6974999904632568
+            ],
+            "max": [
+              0.8899999856948853,
+              1.0299999713897705,
+              0.6974999904632568
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": 32,
+          "elevation_deg": 20
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "crane-hook": {
+      "glb_sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 3,
+          "triangles": 1762,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8882655239105225,
+          "bounds": {
+            "min": [
+              -0.3769734799861908,
+              0,
+              -0.31449997425079346
+            ],
+            "max": [
+              0.3769734799861908,
+              1.5861884355545044,
+              0.31449997425079346
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 3,
+          "triangles": 1762,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8882655239105225,
+          "bounds": {
+            "min": [
+              -0.3769734799861908,
+              0,
+              -0.31449997425079346
+            ],
+            "max": [
+              0.3769734799861908,
+              1.5861884355545044,
+              0.31449997425079346
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 3,
+          "triangles": 1762,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8882655239105225,
+          "bounds": {
+            "min": [
+              -0.3769734799861908,
+              0,
+              -0.31449997425079346
+            ],
+            "max": [
+              0.3769734799861908,
+              1.5861884355545044,
+              0.31449997425079346
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 3,
+          "triangles": 1762,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8882655239105225,
+          "bounds": {
+            "min": [
+              -0.3769734799861908,
+              0,
+              -0.31449997425079346
+            ],
+            "max": [
+              0.3769734799861908,
+              1.5861884355545044,
+              0.31449997425079346
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 3,
+          "triangles": 1762,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.8882655239105225,
+          "bounds": {
+            "min": [
+              -0.3769734799861908,
+              0,
+              -0.31449997425079346
+            ],
+            "max": [
+              0.3769734799861908,
+              1.5861884355545044,
+              0.31449997425079346
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": 24,
+          "elevation_deg": 16
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "billboard-frame": {
+      "glb_sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 3,
+          "triangles": 3106,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.7459879145843784,
+          "bounds": {
+            "min": [
+              -2.440000057220459,
+              0,
+              -0.23999999463558197
+            ],
+            "max": [
+              2.440000057220459,
+              3.990000009536743,
+              0.23999999463558197
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 3,
+          "triangles": 3106,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.7459879145843784,
+          "bounds": {
+            "min": [
+              -2.440000057220459,
+              0,
+              -0.23999999463558197
+            ],
+            "max": [
+              2.440000057220459,
+              3.990000009536743,
+              0.23999999463558197
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 3,
+          "triangles": 3106,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.7459879145843784,
+          "bounds": {
+            "min": [
+              -2.440000057220459,
+              0,
+              -0.23999999463558197
+            ],
+            "max": [
+              2.440000057220459,
+              3.990000009536743,
+              0.23999999463558197
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 3,
+          "triangles": 3106,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.7459879145843784,
+          "bounds": {
+            "min": [
+              -2.440000057220459,
+              0,
+              -0.23999999463558197
+            ],
+            "max": [
+              2.440000057220459,
+              3.990000009536743,
+              0.23999999463558197
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 3,
+          "triangles": 3106,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.7459879145843784,
+          "bounds": {
+            "min": [
+              -2.440000057220459,
+              0,
+              -0.23999999463558197
+            ],
+            "max": [
+              2.440000057220459,
+              3.990000009536743,
+              0.23999999463558197
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rooftop City equipment",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": 24,
+          "elevation_deg": 18
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    }
+  },
+  "browser": "153.0.8010.12",
+  "all_checks_pass": true
+}

@@ -2,7 +2,7 @@
 
 Open the [private playtest](https://haynes-quest-playtest.haynesops.com/) and choose **Enter Rat Casino** to start the new final level of a separate fictional three-chapter project at recovered age five. Its chapter-only finish shows the three memories earned there; the [level editor](../level-editor.md) can open, inspect, reshape and test the complete project. **Play from the beginning** retains the established age 0 → 4 → 7 route, and **Try the Besties chapter** jumps to its second chapter. Every test starts fresh. Leaving or reloading resets the run; there is no save or resume list in this playtest.
 
-The established two-chapter route uses [six fictional pictures](reviews/fixture-route-memories/v001.md); the separate Rat Casino project adds three more synthetic memories. Familiar controls, memory checkpoints and safe jumping practice for a six-year-old are the current focus. Identity and curated family photos are the next required part of the MVP; every fixture age and picture is fictional.
+The established two-chapter route uses [six fictional pictures](reviews/fixture-route-memories/v001.md); the separate Rat Casino project adds three more synthetic memories. Familiar controls, memory checkpoints and safe jumping practice remain part of the private fixture. Its ages and pictures are fictional. Authenticated family journeys and their current release are recorded separately in [the handoff](../../.agents/HANDOFF.md).
 
 ## Family Playroom scenery
 
@@ -20,6 +20,10 @@ publication and Tom's final art review remain pending.
 ## Magic House garden scenery
 
 The `casita` theme pins the four [Casita kit v001 candidates](reviews/casita-kit/v001.md): a tiled terrace wall, flower-filled planter, patterned door and candle-and-butterfly arch. The four planning boxes and all 36 B2 transforms stay unchanged. The complete synthetic B2 route passes with five fights, three memories and zero recoveries; desktop and phone camera views keep the traveler and route visible. Tom's exact-version review remains pending under PRD-004 Q-03. The release handoff records the deployed revision separately.
+
+## Hero City scenery
+
+Hero City uses the four [Rooftop City v001 scenery candidates](reviews/rooftop-city-kit/v001.md): wooden water towers, twin-fan AC boxes, hanging crane hooks and open billboard frames. All 50 A3 placements and their planning boxes stay unchanged. Tom's exact-version review remains pending under PRD-004 Q-03; these are labeled private candidates.
 
 ## How to play
 

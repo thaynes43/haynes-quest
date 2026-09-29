@@ -1,0 +1,182 @@
+{
+  "axes": "glTF metres, +Y up, front +Z, floor-centred origin",
+  "registry_boxes_unchanged": true,
+  "props": {
+    "water-tower": {
+      "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+      "exact_gltf": {
+        "min": {
+          "x": -1.3,
+          "y": 0,
+          "z": -1.3
+        },
+        "max": {
+          "x": 1.3,
+          "y": 4.895,
+          "z": 1.3
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -1.3,
+          "y": 0,
+          "z": -1.3
+        },
+        "max": {
+          "x": 1.3,
+          "y": 4.895,
+          "z": 1.3
+        }
+      },
+      "size_m": {
+        "width": 2.6,
+        "height": 4.895,
+        "depth": 2.6
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -1.4,
+          "y": 0,
+          "z": -1.4
+        },
+        "max": {
+          "x": 1.4,
+          "y": 5,
+          "z": 1.4
+        }
+      }
+    },
+    "rooftop-ac-unit": {
+      "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+      "exact_gltf": {
+        "min": {
+          "x": -0.89,
+          "y": 0,
+          "z": -0.6975
+        },
+        "max": {
+          "x": 0.89,
+          "y": 1.03,
+          "z": 0.6975
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -0.89,
+          "y": 0,
+          "z": -0.698
+        },
+        "max": {
+          "x": 0.89,
+          "y": 1.03,
+          "z": 0.698
+        }
+      },
+      "size_m": {
+        "width": 1.78,
+        "height": 1.03,
+        "depth": 1.395
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.9,
+          "y": 0,
+          "z": -0.7
+        },
+        "max": {
+          "x": 0.9,
+          "y": 1.1,
+          "z": 0.7
+        }
+      }
+    },
+    "crane-hook": {
+      "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+      "exact_gltf": {
+        "min": {
+          "x": -0.37697,
+          "y": 0,
+          "z": -0.3145
+        },
+        "max": {
+          "x": 0.37697,
+          "y": 1.58619,
+          "z": 0.3145
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -0.377,
+          "y": 0,
+          "z": -0.315
+        },
+        "max": {
+          "x": 0.377,
+          "y": 1.587,
+          "z": 0.315
+        }
+      },
+      "size_m": {
+        "width": 0.75395,
+        "height": 1.58619,
+        "depth": 0.629
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.5,
+          "y": 0,
+          "z": -0.5
+        },
+        "max": {
+          "x": 0.5,
+          "y": 1.6,
+          "z": 0.5
+        }
+      }
+    },
+    "billboard-frame": {
+      "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+      "exact_gltf": {
+        "min": {
+          "x": -2.44,
+          "y": 0,
+          "z": -0.24
+        },
+        "max": {
+          "x": 2.44,
+          "y": 3.99,
+          "z": 0.24
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -2.44,
+          "y": 0,
+          "z": -0.24
+        },
+        "max": {
+          "x": 2.44,
+          "y": 3.99,
+          "z": 0.24
+        }
+      },
+      "size_m": {
+        "width": 4.88,
+        "height": 3.99,
+        "depth": 0.48
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -2.5,
+          "y": 0,
+          "z": -0.25
+        },
+        "max": {
+          "x": 2.5,
+          "y": 4,
+          "z": 0.25
+        }
+      }
+    }
+  }
+}

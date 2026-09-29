@@ -1,0 +1,422 @@
+{
+  "work_order": "WO111",
+  "delivery_work_order": "WO142",
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "blender_instance": "blender-authoring-2",
+  "released_utc": "2026-09-29T06:11:06.741969+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "editable_master": "/workspace/haynes-quest/family-eras/rooftop-city-kit/v001/rooftop-city-kit.blend",
+  "editable_master_sha256": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+  "reference_master_sha256": "3aec97f0eb021cf959d335026ba7d2680e7c4339489d8b425b5e6dd585bdb02c",
+  "saved_live_scene": "/workspace/haynes-quest/family-eras/rooftop-city-kit/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "f44c5da3729a687306d95b7717f04d9d8b3f267855ea3a05ae25c25b0ed26c0d",
+  "glb_sha256": {
+    "water-tower": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+    "rooftop-ac-unit": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+    "crane-hook": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+    "billboard-frame": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf"
+  },
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "author_jobs_running": false,
+  "prior_scene_files_unchanged": {
+    "/workspace/haynes-quest/family-eras/playroom-kit/v001/playroom-kit-blockout.blend": {
+      "sha256_at_claim": "01db384d9ccc3bd5cf707cb3cdbb9056bc2e3d9565c5b01e1bbd21ae5a5c89d9",
+      "sha256_now": "01db384d9ccc3bd5cf707cb3cdbb9056bc2e3d9565c5b01e1bbd21ae5a5c89d9",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/playroom-kit/v001/live-scene-release.blend": {
+      "sha256_at_claim": "64edc8352c86eadfb8da2972e55fb8063587b77d4828cf03a035e945f542614f",
+      "sha256_now": "64edc8352c86eadfb8da2972e55fb8063587b77d4828cf03a035e945f542614f",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/playroom-kit/v001/playroom-kit-reference-sheet-checkpoint.blend": {
+      "sha256_at_claim": "db36c2c596593f016ed13825922bfe641ad840c0d8ed6a080098e8e56987727d",
+      "sha256_now": "db36c2c596593f016ed13825922bfe641ad840c0d8ed6a080098e8e56987727d",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/playroom-kit/v001/claim-checkpoint.blend": {
+      "sha256_at_claim": "673510dfdea298007eafa2d13f1c132e8044d174a2f179aca49715e347d78075",
+      "sha256_now": "673510dfdea298007eafa2d13f1c132e8044d174a2f179aca49715e347d78075",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/playroom-kit/v001/playroom-kit-reference-sheet.blend": {
+      "sha256_at_claim": "a1759db19361e5c2e61ef84357a18005a3f7ae972defa0ba30f0aaba1c679d17",
+      "sha256_now": "a1759db19361e5c2e61ef84357a18005a3f7ae972defa0ba30f0aaba1c679d17",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster.glb": {
+      "sha256_at_claim": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+      "sha256_now": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/inator-monster/v001/live-scene-release.blend": {
+      "sha256_at_claim": "38b67fab5dd761d3337c59736ddd7e832a9479a4e7b76aa4be4956a23de5d5f3",
+      "sha256_now": "38b67fab5dd761d3337c59736ddd7e832a9479a4e7b76aa4be4956a23de5d5f3",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster-construction.blend": {
+      "sha256_at_claim": "c0d6cbab2de1944cc37f86c1373c5b7e84031dbef20dd320973f192c7b4bc969",
+      "sha256_now": "c0d6cbab2de1944cc37f86c1373c5b7e84031dbef20dd320973f192c7b4bc969",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster-reference-sheet.blend": {
+      "sha256_at_claim": "6bf675652d4bb2db88a1be5bd0a19e07ece58c6b8971b3951520f595081d86d1",
+      "sha256_now": "6bf675652d4bb2db88a1be5bd0a19e07ece58c6b8971b3951520f595081d86d1",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster-blockout.blend": {
+      "sha256_at_claim": "d1fb9866c026f33d60309856ddf2f4261d600ecd720c2aa3c304446b08e3ea80",
+      "sha256_now": "d1fb9866c026f33d60309856ddf2f4261d600ecd720c2aa3c304446b08e3ea80",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster-checkpoint.glb": {
+      "sha256_at_claim": "29298300c270b1f13a3f79f1f88668a88ab900d918f00fb971318e3e20617bfe",
+      "sha256_now": "29298300c270b1f13a3f79f1f88668a88ab900d918f00fb971318e3e20617bfe",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster.blend": {
+      "sha256_at_claim": "72542af836a6f6ba7284fab4584f339646f69145c6e39b9fa9eff1ee17f00f96",
+      "sha256_now": "72542af836a6f6ba7284fab4584f339646f69145c6e39b9fa9eff1ee17f00f96",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten.glb": {
+      "sha256_at_claim": "ab0e3d2e36115cbc654a065c73f7fb973c136b67b3fce8ba947a3a5ada40b6f6",
+      "sha256_now": "ab0e3d2e36115cbc654a065c73f7fb973c136b67b3fce8ba947a3a5ada40b6f6",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-blockout.blend": {
+      "sha256_at_claim": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95",
+      "sha256_now": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-checkpoint.glb": {
+      "sha256_at_claim": "9a24e036519f7c063c42447cd34b2373ca554d5aa5346460b8af468cbc2caae8",
+      "sha256_now": "9a24e036519f7c063c42447cd34b2373ca554d5aa5346460b8af468cbc2caae8",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/mischief-kitten/v001/live-scene-release.blend": {
+      "sha256_at_claim": "414c72114bf77cc8b06583c1da97b29b8a4149212184078ef5890d35379cdfa6",
+      "sha256_now": "414c72114bf77cc8b06583c1da97b29b8a4149212184078ef5890d35379cdfa6",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten.blend": {
+      "sha256_at_claim": "b95c8d0d69d641b48724d8e79331e1f4706df435c3ed3fc6e66e56ed807baaf1",
+      "sha256_now": "b95c8d0d69d641b48724d8e79331e1f4706df435c3ed3fc6e66e56ed807baaf1",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-construction.blend": {
+      "sha256_at_claim": "a7d4e2d44f7082204833c476a7a80e8aaa0bdf001c8670a8ab80d59273a4172c",
+      "sha256_now": "a7d4e2d44f7082204833c476a7a80e8aaa0bdf001c8670a8ab80d59273a4172c",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-reference-sheet.blend": {
+      "sha256_at_claim": "40568acd0c47cd7993db26e042a5431f792f106ed4986bef1be57e2066a423f2",
+      "sha256_now": "40568acd0c47cd7993db26e042a5431f792f106ed4986bef1be57e2066a423f2",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-construction.blend": {
+      "sha256_at_claim": "8db593111101eb1ec231b2e713f46c5c3c50ebd1cdeb5d90dd41fbc2592cba19",
+      "sha256_now": "8db593111101eb1ec231b2e713f46c5c3c50ebd1cdeb5d90dd41fbc2592cba19",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor.glb": {
+      "sha256_at_claim": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+      "sha256_now": "0fecdd723ec735caa5761d1966e51ad03aec8025a4416bf08a599fa1677d516e",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-checkpoint.glb": {
+      "sha256_at_claim": "7def211e74004519efe2b9fd95984b78f2e26d318f67e7487986bc083647c892",
+      "sha256_now": "7def211e74004519efe2b9fd95984b78f2e26d318f67e7487986bc083647c892",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-reference-sheet.blend": {
+      "sha256_at_claim": "78b03aea57483f5b9514f60702072f9249ee51ce10a2e758d7909a84c6293489",
+      "sha256_now": "78b03aea57483f5b9514f60702072f9249ee51ce10a2e758d7909a84c6293489",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rival-mayor/v001/live-scene-release.blend": {
+      "sha256_at_claim": "a7ffd077cef3c4fdf8453b451450c79a2600afbe5f68659c93e4e5b1ae9071a7",
+      "sha256_now": "a7ffd077cef3c4fdf8453b451450c79a2600afbe5f68659c93e4e5b1ae9071a7",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor.blend": {
+      "sha256_at_claim": "53dbb763aacb5f6c4272f165d543168c2129fbd592453fd6b53cdb466175799a",
+      "sha256_now": "53dbb763aacb5f6c4272f165d543168c2129fbd592453fd6b53cdb466175799a",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-blockout.blend": {
+      "sha256_at_claim": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f",
+      "sha256_now": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-construction.blend": {
+      "sha256_at_claim": "1fdf6fc64ebdf107abc52c2bdf3f2d4260441877d7f41bc5e7814c28114b6698",
+      "sha256_now": "1fdf6fc64ebdf107abc52c2bdf3f2d4260441877d7f41bc5e7814c28114b6698",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-reference-sheet.blend": {
+      "sha256_at_claim": "8cb7f5119cd43787d471ce4c6b29d5430e555ffe97b87024f73a0c69dd00be4e",
+      "sha256_now": "8cb7f5119cd43787d471ce4c6b29d5430e555ffe97b87024f73a0c69dd00be4e",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/bin-chicken/v001/live-scene-release.blend": {
+      "sha256_at_claim": "99ace6b05f18d01a567eeb2ef3752bb0f70d97e94cee44537e166085ec2f0d22",
+      "sha256_now": "99ace6b05f18d01a567eeb2ef3752bb0f70d97e94cee44537e166085ec2f0d22",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-blockout.blend": {
+      "sha256_at_claim": "ce5d128d315ad3a1d9188f60f97d18fcdc3ee138b742ca409ffd92e652500114",
+      "sha256_now": "ce5d128d315ad3a1d9188f60f97d18fcdc3ee138b742ca409ffd92e652500114",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken.glb": {
+      "sha256_at_claim": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db",
+      "sha256_now": "5aa5bb2bfe3fce55a5ea20b766768a501710a998e20cd064b8c7db9c26cbf0db",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-checkpoint.glb": {
+      "sha256_at_claim": "24d86142fd8c74a8871ba8967d1701d4b07c6bc24f050a4f9c99ae364c784936",
+      "sha256_now": "24d86142fd8c74a8871ba8967d1701d4b07c6bc24f050a4f9c99ae364c784936",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken.blend": {
+      "sha256_at_claim": "1a8b30358de09ac35e6cabbc9f0172942cd9067f4c0451089ffbc9c4c073a8bf",
+      "sha256_now": "1a8b30358de09ac35e6cabbc9f0172942cd9067f4c0451089ffbc9c4c073a8bf",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol.glb": {
+      "sha256_at_claim": "332f1bfb66d611676b1864e968b5d4657ecfe73698d623541eca4379331df54c",
+      "sha256_now": "332f1bfb66d611676b1864e968b5d4657ecfe73698d623541eca4379331df54c",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/demon-band-idol/v001/live-scene-release.blend": {
+      "sha256_at_claim": "c1d7627fab617cf486f3498a5247ef183dc3291496620a2e39647c8f64ca62a9",
+      "sha256_now": "c1d7627fab617cf486f3498a5247ef183dc3291496620a2e39647c8f64ca62a9",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol-blockout.blend": {
+      "sha256_at_claim": "876f0e67cc23d866bfaff7dab5f87515af5fba8d70c85c87ee501b96e7525ef9",
+      "sha256_now": "876f0e67cc23d866bfaff7dab5f87515af5fba8d70c85c87ee501b96e7525ef9",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/demon-band-idol/v001/model-claim-checkpoint.blend": {
+      "sha256_at_claim": "d1259698593309a63c22ef20967c7e8a43537fbfaad9c6e7ae7e939a7ffb7822",
+      "sha256_now": "d1259698593309a63c22ef20967c7e8a43537fbfaad9c6e7ae7e939a7ffb7822",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol.blend": {
+      "sha256_at_claim": "b11910f9d2510b529e41d88cbbc01edc041161c53bac0d948f2f238f5cdc00c9",
+      "sha256_now": "b11910f9d2510b529e41d88cbbc01edc041161c53bac0d948f2f238f5cdc00c9",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol-reference-sheet.blend": {
+      "sha256_at_claim": "e1e6b29521376328d8d9ebbacb170b3d69dede0627c5913ecee774b61b6d55ec",
+      "sha256_now": "e1e6b29521376328d8d9ebbacb170b3d69dede0627c5913ecee774b61b6d55ec",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol-construction.blend": {
+      "sha256_at_claim": "de03990b57b568d2ede84e585fec92887300739f3e6ae994c83320d7c29ae2b6",
+      "sha256_now": "de03990b57b568d2ede84e585fec92887300739f3e6ae994c83320d7c29ae2b6",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol-checkpoint.glb": {
+      "sha256_at_claim": "91e76ddb1dc533378d7524d6a602ddd1cfa4e8b693f84b5c3d0858e76213be60",
+      "sha256_now": "91e76ddb1dc533378d7524d6a602ddd1cfa4e8b693f84b5c3d0858e76213be60",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt-blockout.blend": {
+      "sha256_at_claim": "fd12ee300007076081a4ae41886f797ce71ae5f6f7e96e47cde701a958c054eb",
+      "sha256_now": "fd12ee300007076081a4ae41886f797ce71ae5f6f7e96e47cde701a958c054eb",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt-checkpoint.glb": {
+      "sha256_at_claim": "77e4106de2b0cbdcd0688dff204e9870e1a18ccf2fb9e2507e5b40da5ec62d6a",
+      "sha256_now": "77e4106de2b0cbdcd0688dff204e9870e1a18ccf2fb9e2507e5b40da5ec62d6a",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt.glb": {
+      "sha256_at_claim": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522",
+      "sha256_now": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt.blend": {
+      "sha256_at_claim": "2cbe214c654a8c05e57ef25f6c72f5eb6a5a032c7f85c3d8992a330a7a80e273",
+      "sha256_now": "2cbe214c654a8c05e57ef25f6c72f5eb6a5a032c7f85c3d8992a330a7a80e273",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/putty-grunt/v001/live-scene-release.blend": {
+      "sha256_at_claim": "27e179a780b2fdcf3397aa77d3125cd1fdbbdf5a6a89e15a3b88bb9f31e9c59f",
+      "sha256_now": "27e179a780b2fdcf3397aa77d3125cd1fdbbdf5a6a89e15a3b88bb9f31e9c59f",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt-geometry-checkpoint.blend": {
+      "sha256_at_claim": "d0e70235e6e1cacd4b04f791fd396b6667fdce74192fc6b2ba40d07328c4a7bc",
+      "sha256_now": "d0e70235e6e1cacd4b04f791fd396b6667fdce74192fc6b2ba40d07328c4a7bc",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt-reference-sheet.blend": {
+      "sha256_at_claim": "3536fd696a282c4c12ea8fdda72cc84f6b9edff2e1435f971ba62e205f300089",
+      "sha256_now": "3536fd696a282c4c12ea8fdda72cc84f6b9edff2e1435f971ba62e205f300089",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt-construction.blend": {
+      "sha256_at_claim": "f75c61feedd4875c99866c97533181b699d6de27b82d30bd04b238e36b8e87ce",
+      "sha256_now": "f75c61feedd4875c99866c97533181b699d6de27b82d30bd04b238e36b8e87ce",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt-static-review.glb": {
+      "sha256_at_claim": "39bf661500fb465b26ef765a0d19327f5b3e403493271993449babc306a5529e",
+      "sha256_now": "39bf661500fb465b26ef765a0d19327f5b3e403493271993449babc306a5529e",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/resume-claim-checkpoint.blend": {
+      "sha256_at_claim": "5f256583d50add737379c225286e2130fe7fc3a4be1000c7d3cef2d24b57357b",
+      "sha256_now": "5f256583d50add737379c225286e2130fe7fc3a4be1000c7d3cef2d24b57357b",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/casita-kit-reference-sheet.blend": {
+      "sha256_at_claim": "79a8eb12cc9edfee73165bb19789c4c07b356f255dc0954abfb1357348ca0035",
+      "sha256_now": "79a8eb12cc9edfee73165bb19789c4c07b356f255dc0954abfb1357348ca0035",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/coordinator-handoff-checkpoint.blend": {
+      "sha256_at_claim": "83948f259373abff0f4541f86a7404bb177c74e3ae6a99dc6af97bd8e2dd6375",
+      "sha256_now": "83948f259373abff0f4541f86a7404bb177c74e3ae6a99dc6af97bd8e2dd6375",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/butterfly-arch.glb": {
+      "sha256_at_claim": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+      "sha256_now": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/live-scene-release.blend": {
+      "sha256_at_claim": "ec54e5e909bf105ec3b2276d085aa23786fe16a70d10951b095e77e8c13fe32a",
+      "sha256_now": "ec54e5e909bf105ec3b2276d085aa23786fe16a70d10951b095e77e8c13fe32a",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/casita-terrace-wall.glb": {
+      "sha256_at_claim": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+      "sha256_now": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/casita-kit-reference-sheet-checkpoint.blend": {
+      "sha256_at_claim": "724290118c41dca3fd494a498aac205f01aac1e91b3e2fc42c9727cc2799f964",
+      "sha256_now": "724290118c41dca3fd494a498aac205f01aac1e91b3e2fc42c9727cc2799f964",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/casita-kit-blockout.blend": {
+      "sha256_at_claim": "40f6cd473fadd57f9de031497c896cb9d7098be313e0d992a5614ca54bb65eb6",
+      "sha256_now": "40f6cd473fadd57f9de031497c896cb9d7098be313e0d992a5614ca54bb65eb6",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/flower-planter.glb": {
+      "sha256_at_claim": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+      "sha256_now": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/patterned-door.glb": {
+      "sha256_at_claim": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+      "sha256_now": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/casita-kit.blend": {
+      "sha256_at_claim": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
+      "sha256_now": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/claim-checkpoint.blend": {
+      "sha256_at_claim": "10619c4b7014ab509fcb6430334bbb7b446ffee240cc31b4097c085e8684036f",
+      "sha256_now": "10619c4b7014ab509fcb6430334bbb7b446ffee240cc31b4097c085e8684036f",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/partial-0926-preserved/coordinator-handoff-checkpoint.blend": {
+      "sha256_at_claim": "83948f259373abff0f4541f86a7404bb177c74e3ae6a99dc6af97bd8e2dd6375",
+      "sha256_now": "83948f259373abff0f4541f86a7404bb177c74e3ae6a99dc6af97bd8e2dd6375",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/partial-0926-preserved/casita-kit-reference-sheet-checkpoint.blend": {
+      "sha256_at_claim": "724290118c41dca3fd494a498aac205f01aac1e91b3e2fc42c9727cc2799f964",
+      "sha256_now": "724290118c41dca3fd494a498aac205f01aac1e91b3e2fc42c9727cc2799f964",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/partial-0926-preserved/casita-kit-blockout.blend": {
+      "sha256_at_claim": "40f6cd473fadd57f9de031497c896cb9d7098be313e0d992a5614ca54bb65eb6",
+      "sha256_now": "40f6cd473fadd57f9de031497c896cb9d7098be313e0d992a5614ca54bb65eb6",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/casita-kit/v001/partial-0926-preserved/claim-checkpoint.blend": {
+      "sha256_at_claim": "10619c4b7014ab509fcb6430334bbb7b446ffee240cc31b4097c085e8684036f",
+      "sha256_now": "10619c4b7014ab509fcb6430334bbb7b446ffee240cc31b4097c085e8684036f",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rescue-harbor-kit/v001/rescue-harbor-kit-reference-sheet-checkpoint.blend": {
+      "sha256_at_claim": "c53b8884ec93f89c9f22ad99c0077f46c98f857d6339ea8c16e71b5ef7050574",
+      "sha256_now": "c53b8884ec93f89c9f22ad99c0077f46c98f857d6339ea8c16e71b5ef7050574",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rescue-harbor-kit/v001/live-scene-release.blend": {
+      "sha256_at_claim": "8c56b4f0298e7e0e745764c8217642707fa416f2b0652b6079d127105251c635",
+      "sha256_now": "8c56b4f0298e7e0e745764c8217642707fa416f2b0652b6079d127105251c635",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rescue-harbor-kit/v001/rescue-harbor-kit-reference-sheet.blend": {
+      "sha256_at_claim": "b565f1b30c3e2ab24b2968981eda94bfcae019bbaf6d38fba4c2fb7639405e04",
+      "sha256_now": "b565f1b30c3e2ab24b2968981eda94bfcae019bbaf6d38fba4c2fb7639405e04",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rescue-harbor-kit/v001/rescue-harbor-kit-blockout.blend": {
+      "sha256_at_claim": "acf0a3c3a9873ac1924435a3c8fe666c472bbe26d23e840e3d768287bba386c0",
+      "sha256_now": "acf0a3c3a9873ac1924435a3c8fe666c472bbe26d23e840e3d768287bba386c0",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/rescue-harbor-kit/v001/claim-checkpoint.blend": {
+      "sha256_at_claim": "ff8feaf094d85076de60cc2beefaf4cf680d2b0c3941e313386ff2234c31e660",
+      "sha256_now": "ff8feaf094d85076de60cc2beefaf4cf680d2b0c3941e313386ff2234c31e660",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/magic-house/v001/live-scene-release.blend": {
+      "sha256_at_claim": "2a180b9e20b9f1b1133b99e1e25281a2a080d7c6e33c887e053c228875ef21af",
+      "sha256_now": "2a180b9e20b9f1b1133b99e1e25281a2a080d7c6e33c887e053c228875ef21af",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-blockout.blend": {
+      "sha256_at_claim": "a4367f504e3acf306b827430550cef9f1074092c90fece7a89244484d8b32ea6",
+      "sha256_now": "a4367f504e3acf306b827430550cef9f1074092c90fece7a89244484d8b32ea6",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house.glb": {
+      "sha256_at_claim": "13c83db22907a6e3996c26abf46f92dab9038392e69e2ec854299614b287c2dc",
+      "sha256_now": "13c83db22907a6e3996c26abf46f92dab9038392e69e2ec854299614b287c2dc",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-construction.blend": {
+      "sha256_at_claim": "88f237498a3fa1f896e9bbdeb2b3fb4dab9887c07e985bf266e1641ab53801b9",
+      "sha256_now": "88f237498a3fa1f896e9bbdeb2b3fb4dab9887c07e985bf266e1641ab53801b9",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-checkpoint.glb": {
+      "sha256_at_claim": "423107cf29f1552a50b0c76fef2f5657845e1f544abbe864552660d767d194aa",
+      "sha256_now": "423107cf29f1552a50b0c76fef2f5657845e1f544abbe864552660d767d194aa",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house.blend": {
+      "sha256_at_claim": "243b36560389175f6d865d957e455d2a666bfb22f612c5b87327e2622f4e38d3",
+      "sha256_now": "243b36560389175f6d865d957e455d2a666bfb22f612c5b87327e2622f4e38d3",
+      "unchanged": true
+    },
+    "/workspace/haynes-quest/family-eras/magic-house/v001/claim-checkpoint.blend": {
+      "sha256_at_claim": "30110bd3a08b9212822767ef53b3fa140401c954e9be97c7e37d9b701a113491",
+      "sha256_now": "30110bd3a08b9212822767ef53b3fa140401c954e9be97c7e37d9b701a113491",
+      "unchanged": true
+    }
+  },
+  "owner_exact_version_review": "pending under PRD-004 Q-03",
+  "deployment": "coordinator owns PR review, merge and release"
+}

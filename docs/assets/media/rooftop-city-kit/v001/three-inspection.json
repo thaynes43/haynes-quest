@@ -1,0 +1,2869 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "three_revision": "186",
+  "source": "family-world-a-v5 A3",
+  "adapter": "GLTFLoader.parseAsync exact bytes + SceneAssets.attachInstances (DecorScene path)",
+  "actual_placement_count": 50,
+  "all_checks_pass": true,
+  "props": {
+    "water-tower": {
+      "file": "water-tower.glb",
+      "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+      "bytes": 180172,
+      "triangles": 2960,
+      "meshes": 2,
+      "materials": [
+        {
+          "name": "Rooftop City equipment",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Rooftop City timber",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -1.3,
+          "y": 0,
+          "z": -1.3
+        },
+        "max": {
+          "x": 1.3,
+          "y": 4.895,
+          "z": 1.3
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -1.3,
+          "y": 0,
+          "z": -1.3
+        },
+        "max": {
+          "x": 1.3,
+          "y": 4.895,
+          "z": 1.3
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -1.4,
+          "y": 0,
+          "z": -1.4
+        },
+        "max": {
+          "x": 1.4,
+          "y": 5,
+          "z": 1.4
+        }
+      },
+      "size_m": {
+        "width": 2.6,
+        "height": 4.895,
+        "depth": 2.6
+      },
+      "adapter": {
+        "instanced_batches": 2,
+        "actual_a3_placements": 21,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "hero-tank-water-tower-roof",
+            "rotationY": 1.571,
+            "scale": 0.911,
+            "bounds": {
+              "min": {
+                "x": -28.4843,
+                "y": 5.6,
+                "z": -40.7373
+              },
+              "max": {
+                "x": -26.1157,
+                "y": 10.05934,
+                "z": -38.3687
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -28.575659738350428,
+                "y": 5.6,
+                "z": -40.828659738350424
+              },
+              "max": {
+                "x": -26.024340261649574,
+                "y": 10.155,
+                "z": -38.27734026164957
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "hero-tank-satellite-roof",
+            "rotationY": 0,
+            "scale": 0.911,
+            "bounds": {
+              "min": {
+                "x": -61.7373,
+                "y": 5.6,
+                "z": -30.1843
+              },
+              "max": {
+                "x": -59.3687,
+                "y": 10.05934,
+                "z": -27.8157
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -61.828399999999995,
+                "y": 5.6,
+                "z": -30.2754
+              },
+              "max": {
+                "x": -59.2776,
+                "y": 10.155,
+                "z": -27.7246
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "hero-tank-putty-plaza",
+            "rotationY": 0,
+            "scale": 0.651,
+            "bounds": {
+              "min": {
+                "x": -60.6843,
+                "y": 8.598,
+                "z": -115.5963
+              },
+              "max": {
+                "x": -58.9917,
+                "y": 11.78464,
+                "z": -113.9037
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -60.7494,
+                "y": 8.598,
+                "z": -115.6614
+              },
+              "max": {
+                "x": -58.9266,
+                "y": 11.853000000000002,
+                "z": -113.8386
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "hero-tank-tower-top",
+            "rotationY": 1.571,
+            "scale": 1.002,
+            "bounds": {
+              "min": {
+                "x": 30.2974,
+                "y": 13.998,
+                "z": -136.5056
+              },
+              "max": {
+                "x": 32.9026,
+                "y": 18.90279,
+                "z": -133.9004
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 30.196914316325877,
+                "y": 13.998,
+                "z": -136.60608568367414
+              },
+              "max": {
+                "x": 33.00308568367413,
+                "y": 19.008,
+                "z": -133.79991431632587
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-138-tank",
+            "rotationY": 3.142,
+            "scale": 0.843,
+            "bounds": {
+              "min": {
+                "x": 6.9041,
+                "y": 4.79,
+                "z": -40.0959
+              },
+              "max": {
+                "x": 9.0959,
+                "y": 8.91648,
+                "z": -37.9041
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.819319347695909,
+                "y": 4.79,
+                "z": -40.18068065230409
+              },
+              "max": {
+                "x": 9.18068065230409,
+                "y": 9.004999999999999,
+                "z": -37.81931934769591
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-135-tank",
+            "rotationY": 4.712,
+            "scale": 0.887,
+            "bounds": {
+              "min": {
+                "x": -17.1531,
+                "y": 5.275,
+                "z": -40.1531
+              },
+              "max": {
+                "x": -14.8469,
+                "y": 9.61687,
+                "z": -37.8469
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -17.242282941883794,
+                "y": 5.275,
+                "z": -40.24228294188379
+              },
+              "max": {
+                "x": -14.757717058116205,
+                "y": 9.71,
+                "z": -37.75771705811621
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-150-tank",
+            "rotationY": 0,
+            "scale": 0.968,
+            "bounds": {
+              "min": {
+                "x": -41.2584,
+                "y": 6.175,
+                "z": -48.2584
+              },
+              "max": {
+                "x": -38.7416,
+                "y": 10.91336,
+                "z": -45.7416
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -41.355199999999996,
+                "y": 6.175,
+                "z": -48.355199999999996
+              },
+              "max": {
+                "x": -38.644800000000004,
+                "y": 11.015,
+                "z": -45.644800000000004
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-129-tank",
+            "rotationY": 0,
+            "scale": 0.974,
+            "bounds": {
+              "min": {
+                "x": -65.2662,
+                "y": 6.247,
+                "z": -40.2662
+              },
+              "max": {
+                "x": -62.7338,
+                "y": 11.01473,
+                "z": -37.7338
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.3636,
+                "y": 6.247,
+                "z": -40.3636
+              },
+              "max": {
+                "x": -62.6364,
+                "y": 11.117,
+                "z": -37.6364
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-183-tank",
+            "rotationY": 1.571,
+            "scale": 1.086,
+            "bounds": {
+              "min": {
+                "x": -65.4118,
+                "y": 4.162,
+                "z": -64.4118
+              },
+              "max": {
+                "x": -62.5882,
+                "y": 9.47797,
+                "z": -61.5882
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.5207096332037,
+                "y": 4.162,
+                "z": -64.5207096332037
+              },
+              "max": {
+                "x": -62.479290366796306,
+                "y": 9.592,
+                "z": -61.479290366796306
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-291-tank",
+            "rotationY": 0,
+            "scale": 1.011,
+            "bounds": {
+              "min": {
+                "x": -65.3143,
+                "y": 6.651,
+                "z": -112.3143
+              },
+              "max": {
+                "x": -62.6857,
+                "y": 11.59985,
+                "z": -109.6857
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.4154,
+                "y": 6.651,
+                "z": -112.4154
+              },
+              "max": {
+                "x": -62.5846,
+                "y": 11.706,
+                "z": -109.5846
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-309-tank",
+            "rotationY": 1.571,
+            "scale": 1.048,
+            "bounds": {
+              "min": {
+                "x": -65.3624,
+                "y": 7.067,
+                "z": -120.3624
+              },
+              "max": {
+                "x": -62.6376,
+                "y": 12.19696,
+                "z": -117.6376
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.46749879889269,
+                "y": 7.067,
+                "z": -120.46749879889269
+              },
+              "max": {
+                "x": -62.5325012011073,
+                "y": 12.307,
+                "z": -117.53250120110731
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-93-tank",
+            "rotationY": 4.712,
+            "scale": 0.899,
+            "bounds": {
+              "min": {
+                "x": -65.1687,
+                "y": 5.417,
+                "z": -24.1687
+              },
+              "max": {
+                "x": -62.8313,
+                "y": 9.8176,
+                "z": -21.8313
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.25908947548312,
+                "y": 5.417,
+                "z": -24.259089475483123
+              },
+              "max": {
+                "x": -62.74091052451688,
+                "y": 9.911999999999999,
+                "z": -21.740910524516877
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-147-tank",
+            "rotationY": 0,
+            "scale": 1.012,
+            "bounds": {
+              "min": {
+                "x": -65.3156,
+                "y": 6.66,
+                "z": -48.3156
+              },
+              "max": {
+                "x": -62.6844,
+                "y": 11.61374,
+                "z": -45.6844
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.4168,
+                "y": 6.66,
+                "z": -48.4168
+              },
+              "max": {
+                "x": -62.5832,
+                "y": 11.72,
+                "z": -45.5832
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-201-tank",
+            "rotationY": 3.142,
+            "scale": 0.824,
+            "bounds": {
+              "min": {
+                "x": -65.0712,
+                "y": 4.578,
+                "z": -72.0712
+              },
+              "max": {
+                "x": -62.9288,
+                "y": 8.61148,
+                "z": -69.9288
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.15406981909676,
+                "y": 4.578,
+                "z": -72.15406981909676
+              },
+              "max": {
+                "x": -62.84593018090324,
+                "y": 8.698,
+                "z": -69.84593018090324
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-165-tank",
+            "rotationY": 1.571,
+            "scale": 1.049,
+            "bounds": {
+              "min": {
+                "x": -65.3637,
+                "y": 7.076,
+                "z": -56.3637
+              },
+              "max": {
+                "x": -62.6363,
+                "y": 12.21086,
+                "z": -53.6363
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.46889908400614,
+                "y": 7.076,
+                "z": -56.468899084006146
+              },
+              "max": {
+                "x": -62.531100915993854,
+                "y": 12.320999999999998,
+                "z": -53.531100915993854
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-168-tank",
+            "rotationY": 0,
+            "scale": 1.005,
+            "bounds": {
+              "min": {
+                "x": -41.3065,
+                "y": 6.591,
+                "z": -56.3065
+              },
+              "max": {
+                "x": -38.6935,
+                "y": 11.51048,
+                "z": -53.6935
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -41.407,
+                "y": 6.591,
+                "z": -56.407
+              },
+              "max": {
+                "x": -38.593,
+                "y": 11.616,
+                "z": -53.593
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-273-tank",
+            "rotationY": 0,
+            "scale": 0.973,
+            "bounds": {
+              "min": {
+                "x": -65.2649,
+                "y": 6.237,
+                "z": -104.2649
+              },
+              "max": {
+                "x": -62.7351,
+                "y": 10.99983,
+                "z": -101.7351
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.3622,
+                "y": 6.237,
+                "z": -104.3622
+              },
+              "max": {
+                "x": -62.6378,
+                "y": 11.102,
+                "z": -101.6378
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-279-tank",
+            "rotationY": 4.712,
+            "scale": 0.886,
+            "bounds": {
+              "min": {
+                "x": -17.1518,
+                "y": 5.265,
+                "z": -104.1518
+              },
+              "max": {
+                "x": -14.8482,
+                "y": 9.60197,
+                "z": -101.8482
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -17.240882397417185,
+                "y": 5.265,
+                "z": -104.24088239741718
+              },
+              "max": {
+                "x": -14.759117602582815,
+                "y": 9.695,
+                "z": -101.75911760258282
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-255-tank",
+            "rotationY": 4.712,
+            "scale": 0.936,
+            "bounds": {
+              "min": {
+                "x": -65.2168,
+                "y": 5.821,
+                "z": -96.2168
+              },
+              "max": {
+                "x": -62.7832,
+                "y": 10.40272,
+                "z": -93.7832
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.31090962074772,
+                "y": 5.821,
+                "z": -96.31090962074772
+              },
+              "max": {
+                "x": -62.68909037925228,
+                "y": 10.501000000000001,
+                "z": -93.68909037925228
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-237-tank",
+            "rotationY": 4.712,
+            "scale": 0.898,
+            "bounds": {
+              "min": {
+                "x": -65.1674,
+                "y": 5.408,
+                "z": -88.1674
+              },
+              "max": {
+                "x": -62.8326,
+                "y": 9.80371,
+                "z": -85.8326
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -65.25768893101652,
+                "y": 5.408,
+                "z": -88.25768893101652
+              },
+              "max": {
+                "x": -62.74231106898348,
+                "y": 9.898,
+                "z": -85.74231106898348
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "skyline-282-tank",
+            "rotationY": 3.142,
+            "scale": 0.842,
+            "bounds": {
+              "min": {
+                "x": 6.9054,
+                "y": 4.78,
+                "z": -104.0946
+              },
+              "max": {
+                "x": 9.0946,
+                "y": 8.90159,
+                "z": -101.9054
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.820719917864715,
+                "y": 4.78,
+                "z": -104.17928008213528
+              },
+              "max": {
+                "x": 9.179280082135284,
+                "y": 8.99,
+                "z": -101.82071991786472
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 18.7,
+                "y": -1.4,
+                "z": -21.3
+              },
+              "max": {
+                "x": 21.3,
+                "y": 3.495,
+                "z": -18.7
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 18.6,
+                "y": -1.4,
+                "z": -21.4
+              },
+              "max": {
+                "x": 21.4,
+                "y": 3.6,
+                "z": -18.6
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 23.7,
+                "y": -1.4,
+                "z": -26.3
+              },
+              "max": {
+                "x": 26.3,
+                "y": 3.495,
+                "z": -23.7
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 23.6,
+                "y": -1.4,
+                "z": -26.4
+              },
+              "max": {
+                "x": 26.4,
+                "y": 3.6,
+                "z": -23.6
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 28.7,
+                "y": -1.4,
+                "z": -31.3
+              },
+              "max": {
+                "x": 31.3,
+                "y": 3.495,
+                "z": -28.7
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 28.6,
+                "y": -1.4,
+                "z": -31.4
+              },
+              "max": {
+                "x": 31.4,
+                "y": 3.6,
+                "z": -28.6
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 33.7,
+                "y": -1.4,
+                "z": -36.3
+              },
+              "max": {
+                "x": 36.3,
+                "y": 3.495,
+                "z": -33.7
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 33.6,
+                "y": -1.4,
+                "z": -36.4
+              },
+              "max": {
+                "x": 36.4,
+                "y": 3.6,
+                "z": -33.6
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 18.375,
+                "y": -1.4,
+                "z": -21.625
+              },
+              "max": {
+                "x": 21.625,
+                "y": 4.71875,
+                "z": -18.375
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 18.25,
+                "y": -1.4,
+                "z": -21.75
+              },
+              "max": {
+                "x": 21.75,
+                "y": 4.85,
+                "z": -18.25
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 23.375,
+                "y": -1.4,
+                "z": -26.625
+              },
+              "max": {
+                "x": 26.625,
+                "y": 4.71875,
+                "z": -23.375
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 23.25,
+                "y": -1.4,
+                "z": -26.75
+              },
+              "max": {
+                "x": 26.75,
+                "y": 4.85,
+                "z": -23.25
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 28.375,
+                "y": -1.4,
+                "z": -31.625
+              },
+              "max": {
+                "x": 31.625,
+                "y": 4.71875,
+                "z": -28.375
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 28.25,
+                "y": -1.4,
+                "z": -31.75
+              },
+              "max": {
+                "x": 31.75,
+                "y": 4.85,
+                "z": -28.25
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 33.375,
+                "y": -1.4,
+                "z": -36.625
+              },
+              "max": {
+                "x": 36.625,
+                "y": 4.71875,
+                "z": -33.375
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 33.25,
+                "y": -1.4,
+                "z": -36.75
+              },
+              "max": {
+                "x": 36.75,
+                "y": 4.85,
+                "z": -33.25
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_a3_count": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_a3_placement_inside_box": true,
+        "no_false_footholds_in_actual_a3": true,
+        "recognizable_height": true
+      }
+    },
+    "rooftop-ac-unit": {
+      "file": "rooftop-ac-unit.glb",
+      "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+      "bytes": 88880,
+      "triangles": 1496,
+      "meshes": 1,
+      "materials": [
+        {
+          "name": "Rooftop City equipment",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -0.89,
+          "y": 0,
+          "z": -0.6975
+        },
+        "max": {
+          "x": 0.89,
+          "y": 1.03,
+          "z": 0.6975
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -0.89,
+          "y": 0,
+          "z": -0.698
+        },
+        "max": {
+          "x": 0.89,
+          "y": 1.03,
+          "z": 0.698
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.9,
+          "y": 0,
+          "z": -0.7
+        },
+        "max": {
+          "x": 0.9,
+          "y": 1.1,
+          "z": 0.7
+        }
+      },
+      "size_m": {
+        "width": 1.78,
+        "height": 1.03,
+        "depth": 1.395
+      },
+      "adapter": {
+        "instanced_batches": 1,
+        "actual_a3_placements": 16,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "ac-pigeon-roof-nz-0",
+            "rotationY": -3.141,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -0.89035,
+                "y": 3.8,
+                "z": -36.84788
+              },
+              "max": {
+                "x": 0.89039,
+                "y": 4.83,
+                "z": -35.45199
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -0.9004146994313494,
+                "y": 3.8,
+                "z": -36.85053326526619
+              },
+              "max": {
+                "x": 0.9004146994313494,
+                "y": 4.9,
+                "z": -35.449466734733804
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-pigeon-roof-nx-0",
+            "rotationY": -1.571,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -8.44763,
+                "y": 3.8,
+                "z": -30.29012
+              },
+              "max": {
+                "x": -7.05233,
+                "y": 4.83,
+                "z": -28.50986
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -8.450183291364354,
+                "y": 3.8,
+                "z": -30.300142552575338
+              },
+              "max": {
+                "x": -7.049816708635645,
+                "y": 4.9,
+                "z": -28.49985744742466
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-pigeon-roof-px-0",
+            "rotationY": 1.571,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 7.05233,
+                "y": 3.8,
+                "z": -30.29012
+              },
+              "max": {
+                "x": 8.44763,
+                "y": 4.83,
+                "z": -28.50986
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 7.049816708635645,
+                "y": 3.8,
+                "z": -30.300142552575338
+              },
+              "max": {
+                "x": 8.450183291364354,
+                "y": 4.9,
+                "z": -28.49985744742466
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-water-tower-roof-nz-0",
+            "rotationY": -3.141,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -31.19035,
+                "y": 4.4,
+                "z": -38.44788
+              },
+              "max": {
+                "x": -29.40961,
+                "y": 5.43,
+                "z": -37.05199
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -31.20041469943135,
+                "y": 4.4,
+                "z": -38.450533265266195
+              },
+              "max": {
+                "x": -29.399585300568653,
+                "y": 5.5,
+                "z": -37.049466734733805
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-water-tower-roof-nx-0",
+            "rotationY": -1.571,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -37.24763,
+                "y": 4.4,
+                "z": -33.39012
+              },
+              "max": {
+                "x": -35.85233,
+                "y": 5.43,
+                "z": -31.60987
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -37.25018329136435,
+                "y": 4.4,
+                "z": -33.40014255257534
+              },
+              "max": {
+                "x": -35.84981670863564,
+                "y": 5.5,
+                "z": -31.59985744742466
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-water-tower-roof-px-0",
+            "rotationY": 1.571,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -24.74767,
+                "y": 4.4,
+                "z": -33.39012
+              },
+              "max": {
+                "x": -23.35237,
+                "y": 5.43,
+                "z": -31.60987
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -24.750183291364355,
+                "y": 4.4,
+                "z": -33.40014255257534
+              },
+              "max": {
+                "x": -23.349816708635647,
+                "y": 5.5,
+                "z": -31.59985744742466
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-water-tower-roof-pz-0",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -31.19,
+                "y": 4.4,
+                "z": -27.9475
+              },
+              "max": {
+                "x": -29.41,
+                "y": 5.43,
+                "z": -26.5525
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -31.2,
+                "y": 4.4,
+                "z": -27.95
+              },
+              "max": {
+                "x": -29.400000000000002,
+                "y": 5.5,
+                "z": -26.55
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-satellite-roof-nz-0",
+            "rotationY": -3.141,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -52.89035,
+                "y": 4.4,
+                "z": -45.44788
+              },
+              "max": {
+                "x": -51.10961,
+                "y": 5.43,
+                "z": -44.05199
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -52.90041469943135,
+                "y": 4.4,
+                "z": -45.450533265266195
+              },
+              "max": {
+                "x": -51.09958530056865,
+                "y": 5.5,
+                "z": -44.049466734733805
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-satellite-roof-nx-0",
+            "rotationY": -1.571,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -59.44763,
+                "y": 4.4,
+                "z": -35.89012
+              },
+              "max": {
+                "x": -58.05233,
+                "y": 5.43,
+                "z": -34.10987
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -59.450183291364354,
+                "y": 4.4,
+                "z": -35.90014255257534
+              },
+              "max": {
+                "x": -58.049816708635646,
+                "y": 5.5,
+                "z": -34.09985744742466
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-satellite-roof-px-0",
+            "rotationY": 1.571,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -45.94767,
+                "y": 4.4,
+                "z": -35.89012
+              },
+              "max": {
+                "x": -44.55237,
+                "y": 5.43,
+                "z": -34.10987
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -45.950183291364354,
+                "y": 4.4,
+                "z": -35.90014255257534
+              },
+              "max": {
+                "x": -44.549816708635646,
+                "y": 5.5,
+                "z": -34.09985744742466
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-satellite-roof-pz-0",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -52.89,
+                "y": 4.4,
+                "z": -25.9475
+              },
+              "max": {
+                "x": -51.11,
+                "y": 5.43,
+                "z": -24.5525
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -52.9,
+                "y": 4.4,
+                "z": -25.95
+              },
+              "max": {
+                "x": -51.1,
+                "y": 5.5,
+                "z": -24.55
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-billboard-balcony-nz-0",
+            "rotationY": -3.141,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -52.89035,
+                "y": 7.1,
+                "z": -68.99788
+              },
+              "max": {
+                "x": -51.10961,
+                "y": 8.13,
+                "z": -67.602
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -52.90041469943135,
+                "y": 7.1,
+                "z": -69.0005332652662
+              },
+              "max": {
+                "x": -51.09958530056865,
+                "y": 8.2,
+                "z": -67.5994667347338
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-billboard-balcony-nx-0",
+            "rotationY": -1.571,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -59.44763,
+                "y": 7.1,
+                "z": -63.94012
+              },
+              "max": {
+                "x": -58.05233,
+                "y": 8.13,
+                "z": -62.15986
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -59.450183291364354,
+                "y": 7.1,
+                "z": -63.950142552575336
+              },
+              "max": {
+                "x": -58.049816708635646,
+                "y": 8.2,
+                "z": -62.14985744742466
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-billboard-balcony-px-0",
+            "rotationY": 1.571,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -45.94767,
+                "y": 7.1,
+                "z": -63.94012
+              },
+              "max": {
+                "x": -44.55237,
+                "y": 8.13,
+                "z": -62.15986
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -45.950183291364354,
+                "y": 7.1,
+                "z": -63.950142552575336
+              },
+              "max": {
+                "x": -44.549816708635646,
+                "y": 8.2,
+                "z": -62.14985744742466
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-putty-plaza-nz-0",
+            "rotationY": -3.141,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -52.89035,
+                "y": 7.4,
+                "z": -120.19788
+              },
+              "max": {
+                "x": -51.10961,
+                "y": 8.43,
+                "z": -118.80199
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -52.90041469943135,
+                "y": 7.4,
+                "z": -120.2005332652662
+              },
+              "max": {
+                "x": -51.09958530056865,
+                "y": 8.5,
+                "z": -118.7994667347338
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "ac-putty-plaza-nx-0",
+            "rotationY": -1.571,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -59.44763,
+                "y": 7.4,
+                "z": -113.64012
+              },
+              "max": {
+                "x": -58.05233,
+                "y": 8.43,
+                "z": -111.85987
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -59.450183291364354,
+                "y": 7.4,
+                "z": -113.65014255257533
+              },
+              "max": {
+                "x": -58.049816708635646,
+                "y": 8.5,
+                "z": -111.84985744742467
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 19.11,
+                "y": -1.4,
+                "z": -20.6975
+              },
+              "max": {
+                "x": 20.89,
+                "y": -0.37,
+                "z": -19.3025
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.1,
+                "y": -1.4,
+                "z": -20.7
+              },
+              "max": {
+                "x": 20.9,
+                "y": -0.2999999999999998,
+                "z": -19.3
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 24.3025,
+                "y": -1.4,
+                "z": -25.89
+              },
+              "max": {
+                "x": 25.6975,
+                "y": -0.37,
+                "z": -24.11
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.3,
+                "y": -1.4,
+                "z": -25.9
+              },
+              "max": {
+                "x": 25.7,
+                "y": -0.2999999999999998,
+                "z": -24.1
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 29.11,
+                "y": -1.4,
+                "z": -30.6975
+              },
+              "max": {
+                "x": 30.89,
+                "y": -0.37,
+                "z": -29.3025
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.1,
+                "y": -1.4,
+                "z": -30.7
+              },
+              "max": {
+                "x": 30.9,
+                "y": -0.2999999999999998,
+                "z": -29.3
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 34.3025,
+                "y": -1.4,
+                "z": -35.89
+              },
+              "max": {
+                "x": 35.6975,
+                "y": -0.37,
+                "z": -34.11
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.3,
+                "y": -1.4,
+                "z": -35.9
+              },
+              "max": {
+                "x": 35.7,
+                "y": -0.2999999999999998,
+                "z": -34.1
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 18.8875,
+                "y": -1.4,
+                "z": -20.87187
+              },
+              "max": {
+                "x": 21.1125,
+                "y": -0.1125,
+                "z": -19.12813
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 18.875,
+                "y": -1.4,
+                "z": -20.875
+              },
+              "max": {
+                "x": 21.125,
+                "y": -0.02499999999999991,
+                "z": -19.125
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 24.12813,
+                "y": -1.4,
+                "z": -26.1125
+              },
+              "max": {
+                "x": 25.87187,
+                "y": -0.1125,
+                "z": -23.8875
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.125,
+                "y": -1.4,
+                "z": -26.125
+              },
+              "max": {
+                "x": 25.875,
+                "y": -0.02499999999999991,
+                "z": -23.875
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 28.8875,
+                "y": -1.4,
+                "z": -30.87187
+              },
+              "max": {
+                "x": 31.1125,
+                "y": -0.1125,
+                "z": -29.12813
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 28.875,
+                "y": -1.4,
+                "z": -30.875
+              },
+              "max": {
+                "x": 31.125,
+                "y": -0.02499999999999991,
+                "z": -29.125
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 34.12813,
+                "y": -1.4,
+                "z": -36.1125
+              },
+              "max": {
+                "x": 35.87187,
+                "y": -0.1125,
+                "z": -33.8875
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.125,
+                "y": -1.4,
+                "z": -36.125
+              },
+              "max": {
+                "x": 35.875,
+                "y": -0.02499999999999991,
+                "z": -33.875
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_a3_count": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_a3_placement_inside_box": true,
+        "no_false_footholds_in_actual_a3": true,
+        "recognizable_height": true
+      }
+    },
+    "crane-hook": {
+      "file": "crane-hook.glb",
+      "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+      "bytes": 43912,
+      "triangles": 880,
+      "meshes": 1,
+      "materials": [
+        {
+          "name": "Rooftop City equipment",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -0.37697,
+          "y": 0,
+          "z": -0.3145
+        },
+        "max": {
+          "x": 0.37697,
+          "y": 1.58619,
+          "z": 0.3145
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -0.377,
+          "y": 0,
+          "z": -0.315
+        },
+        "max": {
+          "x": 0.377,
+          "y": 1.587,
+          "z": 0.315
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.5,
+          "y": 0,
+          "z": -0.5
+        },
+        "max": {
+          "x": 0.5,
+          "y": 1.6,
+          "z": 0.5
+        }
+      },
+      "size_m": {
+        "width": 0.75395,
+        "height": 1.58619,
+        "depth": 0.629
+      },
+      "adapter": {
+        "instanced_batches": 1,
+        "actual_a3_placements": 5,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "hook-crane-mast-1-nz-0",
+            "rotationY": -3.141,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -32.77712,
+                "y": 5.6,
+                "z": -42.06455
+              },
+              "max": {
+                "x": -32.02285,
+                "y": 7.18619,
+                "z": -41.43529
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -32.90029623896798,
+                "y": 5.6,
+                "z": -42.250296238967984
+              },
+              "max": {
+                "x": -31.899703761032015,
+                "y": 7.199999999999999,
+                "z": -41.249703761032016
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "hook-crane-mast-2-pz-0",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -37.97697,
+                "y": 6.8,
+                "z": -38.1645
+              },
+              "max": {
+                "x": -37.22302,
+                "y": 8.38619,
+                "z": -37.5355
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -38.1,
+                "y": 6.8,
+                "z": -38.35
+              },
+              "max": {
+                "x": -37.1,
+                "y": 8.4,
+                "z": -37.35
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "hook-crane-mast-2-nz-0",
+            "rotationY": -3.141,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -37.97712,
+                "y": 6.8,
+                "z": -42.06455
+              },
+              "max": {
+                "x": -37.22285,
+                "y": 8.38619,
+                "z": -41.43529
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -38.100296238967985,
+                "y": 6.8,
+                "z": -42.250296238967984
+              },
+              "max": {
+                "x": -37.09970376103202,
+                "y": 8.4,
+                "z": -41.249703761032016
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "hook-crane-jib-pz-0",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -43.27698,
+                "y": 6.8,
+                "z": -38.1645
+              },
+              "max": {
+                "x": -42.52303,
+                "y": 8.38619,
+                "z": -37.5355
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -43.4,
+                "y": 6.8,
+                "z": -38.35
+              },
+              "max": {
+                "x": -42.4,
+                "y": 8.4,
+                "z": -37.35
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "hook-crane-jib-nz-0",
+            "rotationY": -3.141,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": -43.27712,
+                "y": 6.8,
+                "z": -42.06455
+              },
+              "max": {
+                "x": -42.52285,
+                "y": 8.38619,
+                "z": -41.43529
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -43.40029623896798,
+                "y": 6.8,
+                "z": -42.250296238967984
+              },
+              "max": {
+                "x": -42.399703761032015,
+                "y": 8.4,
+                "z": -41.249703761032016
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 19.62303,
+                "y": -1.4,
+                "z": -20.3145
+              },
+              "max": {
+                "x": 20.37697,
+                "y": 0.18619,
+                "z": -19.6855
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.5,
+                "y": -1.4,
+                "z": -20.5
+              },
+              "max": {
+                "x": 20.5,
+                "y": 0.20000000000000018,
+                "z": -19.5
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 24.6855,
+                "y": -1.4,
+                "z": -25.37697
+              },
+              "max": {
+                "x": 25.3145,
+                "y": 0.18619,
+                "z": -24.62303
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.5,
+                "y": -1.4,
+                "z": -25.5
+              },
+              "max": {
+                "x": 25.5,
+                "y": 0.20000000000000018,
+                "z": -24.5
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 29.62303,
+                "y": -1.4,
+                "z": -30.3145
+              },
+              "max": {
+                "x": 30.37697,
+                "y": 0.18619,
+                "z": -29.6855
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.5,
+                "y": -1.4,
+                "z": -30.5
+              },
+              "max": {
+                "x": 30.5,
+                "y": 0.20000000000000018,
+                "z": -29.5
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 34.6855,
+                "y": -1.4,
+                "z": -35.37697
+              },
+              "max": {
+                "x": 35.3145,
+                "y": 0.18619,
+                "z": -34.62303
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.5,
+                "y": -1.4,
+                "z": -35.5
+              },
+              "max": {
+                "x": 35.5,
+                "y": 0.20000000000000018,
+                "z": -34.5
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 19.52878,
+                "y": -1.4,
+                "z": -20.39312
+              },
+              "max": {
+                "x": 20.47122,
+                "y": 0.58274,
+                "z": -19.60688
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.375,
+                "y": -1.4,
+                "z": -20.625
+              },
+              "max": {
+                "x": 20.625,
+                "y": 0.6000000000000001,
+                "z": -19.375
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 24.60688,
+                "y": -1.4,
+                "z": -25.47122
+              },
+              "max": {
+                "x": 25.39312,
+                "y": 0.58274,
+                "z": -24.52878
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.375,
+                "y": -1.4,
+                "z": -25.625
+              },
+              "max": {
+                "x": 25.625,
+                "y": 0.6000000000000001,
+                "z": -24.375
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 29.52878,
+                "y": -1.4,
+                "z": -30.39312
+              },
+              "max": {
+                "x": 30.47122,
+                "y": 0.58274,
+                "z": -29.60688
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.375,
+                "y": -1.4,
+                "z": -30.625
+              },
+              "max": {
+                "x": 30.625,
+                "y": 0.6000000000000001,
+                "z": -29.375
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 34.60688,
+                "y": -1.4,
+                "z": -35.47122
+              },
+              "max": {
+                "x": 35.39312,
+                "y": 0.58274,
+                "z": -34.52878
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.375,
+                "y": -1.4,
+                "z": -35.625
+              },
+              "max": {
+                "x": 35.625,
+                "y": 0.6000000000000001,
+                "z": -34.375
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_a3_count": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_a3_placement_inside_box": true,
+        "no_false_footholds_in_actual_a3": true,
+        "recognizable_height": true
+      }
+    },
+    "billboard-frame": {
+      "file": "billboard-frame.glb",
+      "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+      "bytes": 122480,
+      "triangles": 1552,
+      "meshes": 1,
+      "materials": [
+        {
+          "name": "Rooftop City equipment",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -2.44,
+          "y": 0,
+          "z": -0.24
+        },
+        "max": {
+          "x": 2.44,
+          "y": 3.99,
+          "z": 0.24
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -2.44,
+          "y": 0,
+          "z": -0.24
+        },
+        "max": {
+          "x": 2.44,
+          "y": 3.99,
+          "z": 0.24
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -2.5,
+          "y": 0,
+          "z": -0.25
+        },
+        "max": {
+          "x": 2.5,
+          "y": 4,
+          "z": 0.25
+        }
+      },
+      "size_m": {
+        "width": 4.88,
+        "height": 3.99,
+        "depth": 0.48
+      },
+      "adapter": {
+        "instanced_batches": 1,
+        "actual_a3_placements": 8,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "sign-pigeon-roof-nz-0",
+            "rotationY": -3.141,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -2.68407,
+                "y": 5.2,
+                "z": -35.99027
+              },
+              "max": {
+                "x": 2.68407,
+                "y": 9.589,
+                "z": -35.45973
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -2.750162496775035,
+                "y": 5.2,
+                "z": -36.001629748981266
+              },
+              "max": {
+                "x": 2.750162496775035,
+                "y": 9.600000000000001,
+                "z": -35.44837025101874
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "sign-pigeon-roof-px-0",
+            "rotationY": 1.571,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": 7.06056,
+                "y": 5.2,
+                "z": -32.08402
+              },
+              "max": {
+                "x": 7.58944,
+                "y": 9.589,
+                "z": -26.71598
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 7.0494399043937195,
+                "y": 5.2,
+                "z": -32.1500559530922
+              },
+              "max": {
+                "x": 7.600560095606281,
+                "y": 9.600000000000001,
+                "z": -26.649944046907798
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "sign-satellite-roof-nx-0",
+            "rotationY": -1.571,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -58.58944,
+                "y": 5.8,
+                "z": -37.68402
+              },
+              "max": {
+                "x": -58.06056,
+                "y": 10.189,
+                "z": -32.31598
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -58.60056009560628,
+                "y": 5.8,
+                "z": -37.7500559530922
+              },
+              "max": {
+                "x": -58.04943990439372,
+                "y": 10.2,
+                "z": -32.2499440469078
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "sign-billboard-balcony-nx-0",
+            "rotationY": -1.571,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -58.58944,
+                "y": 8.5,
+                "z": -65.73402
+              },
+              "max": {
+                "x": -58.06056,
+                "y": 12.889,
+                "z": -60.36598
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -58.60056009560628,
+                "y": 8.5,
+                "z": -65.8000559530922
+              },
+              "max": {
+                "x": -58.04943990439372,
+                "y": 12.9,
+                "z": -60.2999440469078
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "sign-putty-plaza-nz-0",
+            "rotationY": -3.141,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -54.68407,
+                "y": 8.8,
+                "z": -119.34027
+              },
+              "max": {
+                "x": -49.31593,
+                "y": 13.189,
+                "z": -118.80972
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -54.75016249677503,
+                "y": 8.8,
+                "z": -119.35162974898127
+              },
+              "max": {
+                "x": -49.24983750322497,
+                "y": 13.200000000000001,
+                "z": -118.79837025101874
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "sign-putty-plaza-nx-0",
+            "rotationY": -1.571,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -58.58944,
+                "y": 8.8,
+                "z": -115.43402
+              },
+              "max": {
+                "x": -58.06056,
+                "y": 13.189,
+                "z": -110.06598
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -58.60056009560628,
+                "y": 8.8,
+                "z": -115.5000559530922
+              },
+              "max": {
+                "x": -58.04943990439372,
+                "y": 13.200000000000001,
+                "z": -109.9999440469078
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "sign-scaffold-deck-nz-0",
+            "rotationY": -3.141,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -20.48407,
+                "y": 10,
+                "z": -122.99027
+              },
+              "max": {
+                "x": -15.11593,
+                "y": 14.389,
+                "z": -122.45973
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -20.550162496775037,
+                "y": 10,
+                "z": -123.00162974898126
+              },
+              "max": {
+                "x": -15.049837503224966,
+                "y": 14.4,
+                "z": -122.44837025101873
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "sign-tower-top-nz-0",
+            "rotationY": -3.141,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": 24.91593,
+                "y": 14.2,
+                "z": -132.99028
+              },
+              "max": {
+                "x": 30.28407,
+                "y": 18.589,
+                "z": -132.45973
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.84983750322497,
+                "y": 14.2,
+                "z": -133.00162974898126
+              },
+              "max": {
+                "x": 30.350162496775035,
+                "y": 18.6,
+                "z": -132.44837025101873
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 17.56,
+                "y": -1.4,
+                "z": -20.24
+              },
+              "max": {
+                "x": 22.44,
+                "y": 2.59,
+                "z": -19.76
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 17.5,
+                "y": -1.4,
+                "z": -20.25
+              },
+              "max": {
+                "x": 22.5,
+                "y": 2.6,
+                "z": -19.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 24.76,
+                "y": -1.4,
+                "z": -27.44
+              },
+              "max": {
+                "x": 25.24,
+                "y": 2.59,
+                "z": -22.56
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.75,
+                "y": -1.4,
+                "z": -27.5
+              },
+              "max": {
+                "x": 25.25,
+                "y": 2.6,
+                "z": -22.5
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 27.56,
+                "y": -1.4,
+                "z": -30.24
+              },
+              "max": {
+                "x": 32.44,
+                "y": 2.59,
+                "z": -29.76
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 27.5,
+                "y": -1.4,
+                "z": -30.25
+              },
+              "max": {
+                "x": 32.5,
+                "y": 2.6,
+                "z": -29.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 34.76,
+                "y": -1.4,
+                "z": -37.44
+              },
+              "max": {
+                "x": 35.24,
+                "y": 2.59,
+                "z": -32.56
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.75,
+                "y": -1.4,
+                "z": -37.5
+              },
+              "max": {
+                "x": 35.25,
+                "y": 2.6,
+                "z": -32.5
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 16.95,
+                "y": -1.4,
+                "z": -20.3
+              },
+              "max": {
+                "x": 23.05,
+                "y": 3.5875,
+                "z": -19.7
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 16.875,
+                "y": -1.4,
+                "z": -20.3125
+              },
+              "max": {
+                "x": 23.125,
+                "y": 3.6,
+                "z": -19.6875
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 24.7,
+                "y": -1.4,
+                "z": -28.05
+              },
+              "max": {
+                "x": 25.3,
+                "y": 3.5875,
+                "z": -21.95
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.6875,
+                "y": -1.4,
+                "z": -28.125
+              },
+              "max": {
+                "x": 25.3125,
+                "y": 3.6,
+                "z": -21.875
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 26.95,
+                "y": -1.4,
+                "z": -30.3
+              },
+              "max": {
+                "x": 33.05,
+                "y": 3.5875,
+                "z": -29.7
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 26.875,
+                "y": -1.4,
+                "z": -30.3125
+              },
+              "max": {
+                "x": 33.125,
+                "y": 3.6,
+                "z": -29.6875
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 34.7,
+                "y": -1.4,
+                "z": -38.05
+              },
+              "max": {
+                "x": 35.3,
+                "y": 3.5875,
+                "z": -31.95
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.6875,
+                "y": -1.4,
+                "z": -38.125
+              },
+              "max": {
+                "x": 35.3125,
+                "y": 3.6,
+                "z": -31.875
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_a3_count": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_a3_placement_inside_box": true,
+        "no_false_footholds_in_actual_a3": true,
+        "recognizable_height": true
+      }
+    }
+  }
+}

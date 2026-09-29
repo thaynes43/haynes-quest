@@ -1,0 +1,12 @@
+Original Rooftop City scenery for World A chapter A3, following WO111 and DESIGN-026.
+Blender reference sheet, no generated concept. Four static props: water tower,
+rooftop AC unit, crane hook, billboard frame. Painted warm timber, faded blue-grey
+equipment, navy steel and restrained honey/mauve accents. Soft deliberate edges,
+readable at phone chase-camera distance. Water tower has an open trestle with
+rear ladder. AC has two broad fan faces. Crane hook is compact hanging tackle
+for the existing crane wall placements. Billboard is a truly open frame with
+five warm practical lamps, no advertising panel or borrowed identity.
+Front and three-quarter views, independent panel scales, labeled planning-box
+dimensions and placement notes. No GLB before coordinator ratification.
+Keep four registry IDs, all planning boxes and published placements unchanged.
+No family photos, private names, likenesses, copied logos or source assets.
