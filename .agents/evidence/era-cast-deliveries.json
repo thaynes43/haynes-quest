@@ -2293,7 +2293,10 @@
         "template": "family-world-a@v6",
         "frozenHistory": "friendly-catalog-v1 and family-world-a@v1-v5 unchanged",
         "runtimeIntegration": "Prepared in friendly-catalog-v2 and family-world-a@v6: only A3 friendly-2 uses web-slinger-helper@v001, at the unchanged satellite-roof anchor beside the vent bounce. Healing, deliberate harm and Make amends use DESIGN-013; no gap assist. Earlier friendly rosters and published journeys stay frozen. Awaiting coordinator merge and publication."
-      }
+      },
+      "pr": 136,
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/136",
+      "implementationCommit": "7f33bf1"
     }
   ]
 }
