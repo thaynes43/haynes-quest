@@ -130,6 +130,7 @@ export function buildFamilyWorldPlan(input: BuildFamilyPlanInput): BuiltFamilyPl
   const plan: FamilyWorldAdventurePlanV1 = {
     version: FAMILY_WORLD_PLAN_VERSION,
     catalogVersion: world.project.catalogVersion,
+    ...(template.friendlyCatalogVersion ? { friendlyCatalogVersion: template.friendlyCatalogVersion } : {}),
     projectFingerprint: familyGeometryFingerprint(levels),
     template: { id: template.id, version: template.version, fingerprint: template.fingerprint },
     ageRule: FAMILY_AGE_RULE,
@@ -140,4 +141,3 @@ export function buildFamilyWorldPlan(input: BuildFamilyPlanInput): BuiltFamilyPl
   if (issues.length > 0) throw new FamilyPlanError('PLAN_INVALID', issues);
   return { plan, memories, versions: FAMILY_RULE_VERSIONS(plan.catalogVersion) };
 }
-

@@ -13,6 +13,7 @@ import {
 import type { Ability } from "./contracts.js";
 import type { WorldEditorLevelDocument } from "./editor-project.js";
 import type { ParodyCatalogVersion } from "./parody-catalog.js";
+import type { FriendlyCatalogVersion } from "./friendly.js";
 
 export const FAMILY_WORLD_PLAN_VERSION = "family-world-plan-v1" as const;
 
@@ -279,6 +280,8 @@ export interface FrozenFamilyWorldLevelPlanV1 extends FrozenEditorWorldLevelPlan
 export interface FamilyWorldAdventurePlanV1 {
   readonly version: typeof FAMILY_WORLD_PLAN_VERSION;
   readonly catalogVersion: ParodyCatalogVersion;
+  /** Absent on historical plans: their friendly catalog is permanently V1. */
+  readonly friendlyCatalogVersion?: FriendlyCatalogVersion;
   /** SHA-256 of the canonical frozen authored levels (geometry and anchors only). */
   readonly projectFingerprint: string;
   readonly template: {

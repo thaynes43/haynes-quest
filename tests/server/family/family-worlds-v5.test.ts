@@ -50,7 +50,9 @@ describe.each(Object.entries(WORLDS) as [keyof typeof WORLDS, (typeof WORLDS)[ke
   const v5 = registry.require(world, "v5");
 
   it("replays the new command history and keeps v1–v4 fingerprints", () => {
-    expect(registry.list().filter((entry) => entry.id === world).map((entry) => entry.version)).toEqual(["v1", "v2", "v3", "v4", "v5"]);
+    expect(registry.list().filter((entry) => entry.id === world).map((entry) => entry.version)).toEqual(
+      world === 'family-world-a' ? ["v1", "v2", "v3", "v4", "v5", "v6"] : ["v1", "v2", "v3", "v4", "v5"],
+    );
     for (const [index, fingerprint] of FROZEN[world].entries())
       expect(registry.require(world, `v${index + 1}`).fingerprint).toBe(fingerprint);
     expect(readFileSync(spec.commandUrl, "utf8")).toBe(`${JSON.stringify(spec.commands(), null, 2)}\n`);
@@ -129,6 +131,8 @@ describe.each(Object.entries(WORLDS) as [keyof typeof WORLDS, (typeof WORLDS)[ke
       };
       expect(validateFamilyWorldPlan(tampered, { birthDate: after.birthDate, memories: after.memories })).toContain("plan.geometry-fingerprint");
     }
-    expect(registry.newestUpgrade(world, "v5", spec.child.birthDate, HARNESS_TODAY)).toBeNull();
+    expect(registry.newestUpgrade(world, "v5", spec.child.birthDate, HARNESS_TODAY)?.version ?? null).toBe(
+      world === 'family-world-a' ? 'v6' : null,
+    );
   });
 });

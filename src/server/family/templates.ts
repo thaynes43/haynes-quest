@@ -10,6 +10,7 @@ import {
   type LevelEditorProjectV2,
 } from '../../shared/editor-project.js';
 import type { TemplateOffer } from '../../shared/family-api.js';
+import type { FriendlyCatalogVersion } from '../../shared/friendly.js';
 import { AppError } from '../errors.js';
 import { CHECKED_IN_FAMILY_TEMPLATES, type FamilyTemplateSource } from './checked-in-templates.js';
 import { familyTemplateFingerprint, rememberFamilyTemplate } from './template-candidates.js';
@@ -24,7 +25,8 @@ export interface FamilyTemplate {
   readonly id: string;
   readonly version: string;
   readonly project: LevelEditorProjectV2;
-  /** SHA-256 of the canonical template project. */
+  readonly friendlyCatalogVersion?: FriendlyCatalogVersion;
+  /** SHA-256 of the canonical project, including an explicit friendly roster pin. */
   readonly fingerprint: string;
   readonly ageBands: readonly ChapterAgeBand[];
   /** The last chapter's template recovered age; the youngest child it can serve. */
@@ -54,13 +56,14 @@ export class FamilyTemplateRegistry {
       const { project } = resolveLevelEditorProject(source.project);
       if (!isLevelEditorProjectV2(project)) throw new Error('Family templates must be world projects');
       const ageBands = templateAgeBands(project);
-      const fingerprint = familyTemplateFingerprint(project);
+      const fingerprint = familyTemplateFingerprint(project, source.friendlyCatalogVersion);
       // Load validation re-checks a frozen plan's candidate cast against it (D-07).
-      rememberFamilyTemplate(fingerprint, project);
+      rememberFamilyTemplate(fingerprint, project, source.id, source.version, source.friendlyCatalogVersion);
       this.entries.set(key, Object.freeze({
         id: source.id,
         version: source.version,
         project,
+        ...(source.friendlyCatalogVersion ? { friendlyCatalogVersion: source.friendlyCatalogVersion } : {}),
         fingerprint,
         ageBands: Object.freeze(ageBands.map((band) => Object.freeze(band))),
         finalAge: ageBands.at(-1)!.recoveredAge,

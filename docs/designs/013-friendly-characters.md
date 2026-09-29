@@ -46,4 +46,4 @@ art review and physical-device acceptance remain pending.
 
 Test once-only healing, full-health preservation, first-harm HP floor/penalty, defeat and amends, retry/reload, advancement with harmed friends, old/null-sidecar saves, malformed sidecars and exact legacy catalog retention. Add meaningful owner/revision/duplicate/concurrent PostgreSQL tests using existing transaction infrastructure. Real controls must show friendly markers, greetings, warning/intentional attacks, penalty feedback and recovery without stealing hostile targeting.
 
-All six review pages, inventory entries and thumbnail cards describe friendly roles and match actual integration status. Final exact-model approval remains separate from the requested isolated playtest integration.
+Every resident's review page, inventory entry and thumbnail card describes its friendly role and matches its actual integration status. Final exact-model approval remains separate from the requested isolated playtest integration.

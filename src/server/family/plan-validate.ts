@@ -28,7 +28,7 @@ import {
 } from '../../shared/family-plan.js';
 import type { RuleVersions } from '../../shared/contracts.js';
 import type { FrozenMemory } from '../domain.js';
-import { familyTemplateCandidates, type FamilyTemplateCandidates } from './template-candidates.js';
+import { familyTemplateCandidates, isKnownFamilyTemplate, type FamilyTemplateCandidates } from './template-candidates.js';
 
 export const FAMILY_PROGRESSION_RULE = 'family-world-route-memory-v1';
 
@@ -85,6 +85,12 @@ export function validateFamilyWorldPlan(
     !/^[a-z0-9][a-z0-9-]{0,63}$/.test(plan.template.id) ||
     !/^v[0-9]{1,4}$/.test(plan.template.version)
   ) fail('plan.identity');
+  if (!isKnownFamilyTemplate(
+    plan.template.id,
+    plan.template.version,
+    plan.template.fingerprint,
+    plan.friendlyCatalogVersion,
+  )) fail('plan.template');
   if (!Array.isArray(plan.levels) || plan.levels.length < 1 || plan.levels.length > 8) {
     return [...issues, 'plan.levels'];
   }

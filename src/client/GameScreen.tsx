@@ -43,6 +43,7 @@ const friendlyNames: Record<string, string> = {
   "loop-dancer": "Loop Dancer",
   "prism-mimic": "Prism Mimic",
   trendweaver: "Trendweaver",
+  "web-slinger-helper": "Web-slinger Helper",
 };
 
 /** Preview-only presentation; omitting these leaves ordinary private play unchanged. */
