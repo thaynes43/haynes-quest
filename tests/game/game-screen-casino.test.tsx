@@ -140,6 +140,7 @@ beforeEach(() => {
     performAction: vi.fn(() => true),
     returnToMissingMemory: vi.fn(() => true),
     returnToMajorMemory: vi.fn(() => true),
+    returnToChapterStart: vi.fn(() => true),
     retryMedia: vi.fn(),
     inspect: vi.fn(() => inspection(status())),
     dispose: vi.fn(),

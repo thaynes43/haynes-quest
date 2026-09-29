@@ -582,6 +582,50 @@ export function createGame(options: CreateGameOptions): GameHandle {
       : null;
   };
 
+  const lockedFamilyBossId = (): string | null => {
+    const adventure = requireAdventure(save);
+    const active = adventure.activeLevel;
+    if (
+      save.format !== "era-combat-v2" ||
+      adventure.planVersion !== "family-world-plan-v1" ||
+      adventure.phase !== "exploring" ||
+      !active?.minorMemoryIds ||
+      !active.majorMemoryId ||
+      active.bossGate !== "independent" ||
+      !active.bossPrerequisiteDefeats ||
+      level.id !== adventure.currentLevelId ||
+      !level.authored ||
+      !level.course
+    ) return null;
+    const ordinaryWins = active.encounters.filter(
+      (enemy) => enemy.role === "ordinary" && enemy.defeated,
+    ).length;
+    const boss = active.encounters.find((enemy) => enemy.id === active.bossId);
+    return ordinaryWins < active.bossPrerequisiteDefeats &&
+      boss?.role === "boss" &&
+      !boss.defeated
+      ? boss.id
+      : null;
+  };
+
+  const nearLockedBossId = (): string | null => {
+    const bossId = lockedFamilyBossId();
+    if (!bossId || !controller.grounded || controller.recoveryRemaining > 0)
+      return null;
+    const boss = level.encounters.find((enemy) => enemy.id === bossId);
+    if (!boss || !sameInteractionFeetHeight(controller.position, boss.position))
+      return null;
+    const arena = boss.arena;
+    const nearArena = arena &&
+      controller.position.x >= arena.minX - interactionRadius &&
+      controller.position.x <= arena.maxX + interactionRadius &&
+      controller.position.z >= arena.minZ - interactionRadius &&
+      controller.position.z <= arena.maxZ + interactionRadius;
+    return nearArena || horizontalDistance(controller.position, boss.position) <= interactionRadius
+      ? bossId
+      : null;
+  };
+
   const nearestEligibleFriendlyId = (): string | null => {
     const adventure = requireAdventure(save);
     if (!controller.grounded || controller.recoveryRemaining > 0) return null;
@@ -702,6 +746,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       nearEncounterId: target?.id ?? secondaryTarget?.id ?? null,
       nearMemoryId: nearestMemoryId(),
       nearLockedMajorMemoryId: nearLockedMajorMemoryId(),
+      nearLockedBossId: nearLockedBossId(),
       nearFinish:
         canConsume() &&
         sameInteractionFeetHeight(controller.position, level.finish) &&
@@ -2005,6 +2050,22 @@ export function createGame(options: CreateGameOptions): GameHandle {
         !level.course
       ) return false;
       returnLocally(level.authored.anchors.rewardRespawn.position, null);
+      return true;
+    },
+    returnToChapterStart(): boolean {
+      if (
+        disposed ||
+        paused ||
+        requestState.requestState === "acting" ||
+        pendingHit ||
+        !lockedFamilyBossId()
+      ) return false;
+      // Authored anchor validation proves the spawn is supported, clear and on
+      // a static platform. Match the runtime course before moving the player.
+      const spawn = level.authored!.anchors.spawn;
+      if (!level.course!.platforms.some((platform) => platform.id === spawn.platformId))
+        return false;
+      returnLocally(spawn.position, null);
       return true;
     },
     inspect() {

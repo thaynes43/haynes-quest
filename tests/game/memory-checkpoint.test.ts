@@ -67,6 +67,7 @@ vi.mock("../../src/game/scene", () => ({
 }));
 
 import { createGame } from "../../src/game/createGame";
+import { bossIsActive } from "../../src/game/combat";
 
 function withRecoveredMinors(
   count: 0 | 1 | 2,
@@ -112,6 +113,20 @@ function familyA1Save(
         : slots[`ordinary-${index + 1}` as keyof typeof slots]!.kind,
     })),
   };
+  return save;
+}
+
+function gatedFamilyA1Save(ordinaryWins: number, revision = 0): SaveView {
+  const save = familyA1Save(0, {
+    defeatedOrdinaryCount: ordinaryWins,
+    revision,
+  });
+  const adventure = save.adventure!;
+  adventure.planVersion = "family-world-plan-v1";
+  const active = adventure.activeLevel!;
+  active.bossGate = "independent";
+  active.bossPrerequisiteDefeats = 2;
+  active.encounters.find((enemy) => enemy.id === active.bossId)!.available = ordinaryWins >= 2;
   return save;
 }
 
@@ -289,6 +304,136 @@ describe("authored memory checkpoints", () => {
       firstMissing,
       createLevelLayout(firstMissing, familyA1Resolver),
     )?.id).toBe("cp-gear");
+  });
+
+  it("escapes A1's one-way party lawn when its new boss gate still needs two wins", () => {
+    const save = gatedFamilyA1Save(0);
+    const active = save.adventure!.activeLevel!;
+    const firstMinorId = active.minorMemoryIds![0];
+    save.adventure!.playerHp = Math.max(1, save.adventure!.maxPlayerHp - 2);
+    save.adventure!.inventory = [{ ...active.pickups[1]!, collected: true }];
+    active.pickups[1]!.collected = true;
+    save.recoveredIds.push(firstMinorId);
+    save.memories.find((memory) => memory.id === firstMinorId)!.state = "revealed";
+    const progressBeforeReturn = structuredClone(save);
+    const onAction = vi.fn(async () => save);
+    const game = createGame({
+      container: document.createElement("div"),
+      save,
+      authoredLevelResolver: familyA1Resolver,
+      onAction,
+      onRefresh: async () => save,
+    });
+    const controller = runtimeState.controllers.at(-1)!;
+    const boss = familyA1.document.anchors.encounters.boss;
+    const lawn = familyA1.document.anchors.memories.major.position;
+    const spawn = familyA1.document.anchors.spawn.position;
+    expect(familyA1.document.connections.some((edge) => edge.from === "party-lawn")).toBe(false);
+    Object.assign(controller.position, boss.position);
+    controller.grounded = true;
+    expect(game.inspect().status.nearLockedBossId).toBe(save.adventure!.activeLevel!.bossId);
+    controller.grounded = false;
+    expect(game.inspect().status.nearLockedBossId).toBeNull();
+    controller.grounded = true;
+    controller.position.y += 1;
+    expect(game.inspect().status.nearLockedBossId).toBeNull();
+    Object.assign(controller.position, {
+      x: boss.arena.minX,
+      y: boss.position.y,
+      z: boss.arena.minZ,
+    });
+    expect(game.inspect().status.nearLockedBossId).toBe(save.adventure!.activeLevel!.bossId);
+    Object.assign(controller.position, lawn);
+    expect(game.inspect().status.nearLockedBossId).toBeNull();
+
+    game.setInput("moveY", 1);
+    expect(game.returnToChapterStart()).toBe(true);
+    expect(game.inspect()).toMatchObject({
+      status: {
+        position: spawn,
+        nearLockedBossId: null,
+        playerHp: progressBeforeReturn.adventure!.playerHp,
+      },
+      input: { moveY: 0 },
+      checkpoint: spawn,
+      obby: { checkpointId: null },
+    });
+    expect(save).toEqual(progressBeforeReturn);
+    expect(onAction).not.toHaveBeenCalled();
+
+    const oneWin = structuredClone(save);
+    oneWin.revision = 1;
+    const ordinary = oneWin.adventure!.activeLevel!.encounters.filter(
+      (enemy) => enemy.role === "ordinary",
+    );
+    ordinary[0]!.hp = 0;
+    ordinary[0]!.defeated = true;
+    ordinary[0]!.available = false;
+    game.updateSave(oneWin);
+    expect(bossIsActive(oneWin)).toBe(false);
+    expect(game.returnToChapterStart()).toBe(true);
+    const twoWins = structuredClone(oneWin);
+    twoWins.revision = 2;
+    const nextOrdinary = twoWins.adventure!.activeLevel!.encounters.find(
+      (enemy) => enemy.role === "ordinary" && !enemy.defeated,
+    )!;
+    nextOrdinary.hp = 0;
+    nextOrdinary.defeated = true;
+    nextOrdinary.available = false;
+    twoWins.adventure!.activeLevel!.encounters.find(
+      (enemy) => enemy.role === "boss",
+    )!.available = true;
+    game.updateSave(twoWins);
+    expect(bossIsActive(twoWins)).toBe(true);
+    expect(game.returnToChapterStart()).toBe(false);
+    Object.assign(runtimeState.controllers.at(-1)!.position, boss.position);
+    expect(game.inspect().status.nearLockedBossId).toBeNull();
+    expect(onAction).not.toHaveBeenCalled();
+    game.dispose();
+  });
+
+  it("limits the chapter-start escape to active new family gates", async () => {
+    const save = gatedFamilyA1Save(0);
+    let reply: ((next: SaveView) => void) | undefined;
+    const game = createGame({
+      container: document.createElement("div"),
+      save,
+      authoredLevelResolver: familyA1Resolver,
+      onAction: () => new Promise<SaveView>((resolve) => { reply = resolve; }),
+      onRefresh: async () => save,
+    });
+    game.setPaused(true);
+    expect(game.returnToChapterStart()).toBe(false);
+    game.setPaused(false);
+    const active = save.adventure!.activeLevel!;
+    Object.assign(runtimeState.controllers.at(-1)!.position,
+      familyA1.document.anchors.memories["minor-one"].position);
+    expect(game.performAction({
+      type: "recover-memory", levelId: active.id, memoryId: active.minorMemoryIds![0],
+    })).toBe(true);
+    expect(game.returnToChapterStart()).toBe(false);
+    reply!(gatedFamilyA1Save(1, 1));
+    await vi.waitFor(() => expect(game.inspect().status.requestBusy).toBe(false));
+    game.dispose();
+    expect(game.returnToChapterStart()).toBe(false);
+
+    for (const invalid of [
+      familyA1Save(0),
+      (() => { const old = gatedFamilyA1Save(0); delete old.adventure!.activeLevel!.bossPrerequisiteDefeats; return old; })(),
+      (() => { const released = gatedFamilyA1Save(0); released.adventure!.phase = "memory-released"; return released; })(),
+      (() => { const wrongLevel = gatedFamilyA1Save(0); wrongLevel.adventure!.currentLevelId = "another-level"; return wrongLevel; })(),
+    ]) {
+      const older = createGame({
+        container: document.createElement("div"),
+        save: invalid,
+        authoredLevelResolver: familyA1Resolver,
+        onAction: async () => invalid,
+        onRefresh: async () => invalid,
+      });
+      expect(older.returnToChapterStart()).toBe(false);
+      expect(older.inspect().status.nearLockedBossId).toBeNull();
+      older.dispose();
+    }
   });
 
   it("keeps the A1 boss victory in place but returns a fall or explicit action to the missing memory", () => {
