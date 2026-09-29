@@ -185,6 +185,59 @@ function disposeAttachmentResources(resources: AttachmentResources): void {
     resource.dispose();
 }
 
+/**
+ * Authored GLBs store a whole-animation envelope on the skinned glTF node.
+ * A node with several material primitives loads as a Group, so each child
+ * SkinnedMesh needs that same envelope in its own local coordinates.
+ */
+function applySkinnedCullingBounds(root: THREE.Object3D): void {
+  root.updateMatrixWorld(true);
+  root.traverse((object) => {
+    if (!(object instanceof THREE.SkinnedMesh)) return;
+    let holder: THREE.Object3D | null = object;
+    let envelope: unknown;
+    while (holder) {
+      if (Object.hasOwn(holder.userData, "model_space_bounds_y_up")) {
+        envelope = holder.userData.model_space_bounds_y_up;
+        break;
+      }
+      if (holder === root) break;
+      holder = holder.parent;
+    }
+    const bounds = envelope as { min?: unknown; max?: unknown } | undefined;
+    const min = bounds?.min;
+    const max = bounds?.max;
+    if (
+      !Array.isArray(min) || min.length !== 3 ||
+      !Array.isArray(max) || max.length !== 3 ||
+      !min.every((value) => typeof value === "number" && Number.isFinite(value)) ||
+      !max.every((value) => typeof value === "number" && Number.isFinite(value)) ||
+      min.some((value, index) => value > max[index]) || !holder
+    ) {
+      // A moving mesh without a trustworthy envelope must never use an idle
+      // pose sphere for visibility, even if this costs a draw call offscreen.
+      object.frustumCulled = false;
+      return;
+    }
+    const determinant = object.matrixWorld.determinant();
+    if (!Number.isFinite(determinant) || Math.abs(determinant) < 1e-12) {
+      object.frustumCulled = false;
+      return;
+    }
+    const toMesh = new THREE.Matrix4()
+      .copy(object.matrixWorld)
+      .invert()
+      .multiply(holder.matrixWorld);
+    const box = new THREE.Box3(
+      new THREE.Vector3(min[0], min[1], min[2]),
+      new THREE.Vector3(max[0], max[1], max[2]),
+    ).applyMatrix4(toMesh);
+    object.boundingBox = box;
+    object.boundingSphere = box.getBoundingSphere(new THREE.Sphere());
+    object.frustumCulled = true;
+  });
+}
+
 function createAttachmentClone(sourceRoot: THREE.Group): AttachmentClone {
   const source = collectAttachmentResources(sourceRoot);
   const owned = attachmentResources();
@@ -250,6 +303,7 @@ function createAttachmentClone(sourceRoot: THREE.Group): AttachmentClone {
       object.castShadow = true;
       object.receiveShadow = true;
     });
+    applySkinnedCullingBounds(root);
     return { root, source, owned };
   } catch (error) {
     disposeAttachmentResources(owned);
