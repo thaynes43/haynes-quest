@@ -267,9 +267,15 @@ describe("DESIGN-027 scene presentation", () => {
   it("darkens level 2 past level 1, with closer fog and browned-out practicals", () => {
     const baseline = build(undefined);
     const baseFog = internals(baseline.scene).scene.fog as THREE.Fog;
+    const baseSky = (internals(baseline.scene).scene.background as THREE.Color).clone();
     const [near, far] = [baseFog.near, baseFog.far];
     const baseBulb = bulbColor(baseline.scene);
     baseline.scene.dispose();
+    const levelOne = build(1);
+    const levelOneSky = internals(levelOne.scene).scene.background as THREE.Color;
+    const coldNight = new THREE.Color(0x0e1524);
+    expect(levelOneSky.toArray()).toEqual(baseSky.clone().lerp(coldNight, 0.62).toArray());
+    levelOne.scene.dispose();
     const { scene } = build(2);
     expect(lights(scene).hemisphere).toBeCloseTo(1.15 * 0.38);
     expect(lights(scene).sun).toBeCloseTo(2.1 * 0.38);
@@ -278,6 +284,10 @@ describe("DESIGN-027 scene presentation", () => {
     expect(fog.near).toBeCloseTo(near * 0.35);
     expect(fog.far).toBeCloseTo(far * 0.5);
     expect(bulbColor(scene)).toBe(new THREE.Color(baseBulb).multiplyScalar(0.6).getHex());
+    const sky = internals(scene).scene.background as THREE.Color;
+    const expectedNight = baseSky.clone().lerp(coldNight, 0.82);
+    expect(sky.toArray()).toEqual(expectedNight.toArray());
+    expect(fog.color.toArray()).toEqual(expectedNight.toArray());
     scene.dispose();
   });
 
