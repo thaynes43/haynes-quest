@@ -12,6 +12,7 @@ import {
   type AuthoredArena,
   type AuthoredLevelDocument,
   type AuthoredScareLevel,
+  type AuthoredScriptedScare,
   type AuthoredSurfacePiece,
 } from "../shared/authored-level";
 import { connectionStrips } from "../shared/family-world-lint";
@@ -232,6 +233,17 @@ export function nearBlackoutHazard(
       position.y <= zone.maxY &&
       position.z >= zone.minZ &&
       position.z <= zone.maxZ,
+  );
+}
+
+/** A spot only catches a player whose feet are on its own floor. */
+export function insideScriptedScareSpot(
+  spot: Pick<AuthoredScriptedScare, "position" | "radius">,
+  player: PositionSnapshot,
+): boolean {
+  return (
+    Math.abs(player.y - spot.position.y) <= 0.3 &&
+    Math.hypot(player.x - spot.position.x, player.z - spot.position.z) <= spot.radius
   );
 }
 

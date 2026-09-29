@@ -55,8 +55,10 @@ import {
 import { GardenScene } from "./scene";
 import { parodyArtwork } from "./scene-catalog";
 import {
+  blackoutAllowed,
   blackoutHazardZones,
   effectiveScareLevel,
+  insideScriptedScareSpot,
   isRadioShowman,
   JumpScareGate,
   lungeDurationMs,
@@ -165,11 +167,20 @@ interface ScareRuntime {
   readonly ridingIds: ReadonlySet<string>;
   /** Sweepers' reach and movers' travel: standing near one holds blackouts. */
   readonly hazardZones: readonly BlackoutHazardZone[];
+  /** Optional v5+ one-time set pieces, mapped from authored slots to save ids. */
+  readonly scriptedScares: readonly {
+    readonly id: string;
+    readonly encounterId: string;
+    readonly position: PositionSnapshot;
+    readonly radius: number;
+  }[];
+  readonly firedScriptedScares: Set<string>;
   lunge: {
     readonly encounterId: string;
     readonly startedAt: number;
     readonly durationMs: number;
     readonly reducedMotion: boolean;
+    readonly scripted: boolean;
   } | null;
   readonly phases: Map<string, EnemyPhase>;
   readonly staticAt: Map<string, number>;
@@ -335,6 +346,15 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const random = scareRandom(
       scareSeed(`${level.routeId ?? ""}:${save.adventure?.currentLevelId ?? ""}`),
     );
+    const optionalIds = new Set(save.adventure?.activeLevel?.optionalEncounterIds ?? []);
+    const ordinary = level.encounters.filter(
+      (enemy) => enemy.role === "ordinary" && !optionalIds.has(enemy.id),
+    );
+    const scriptedEncounterIds = new Map<string, string>([
+      ...ordinary.map((enemy, index) => [`ordinary-${index + 1}`, enemy.id] as const),
+      ...level.encounters.filter((enemy) => optionalIds.has(enemy.id)).map((enemy) => ["bonus-1", enemy.id] as const),
+      ...level.encounters.filter((enemy) => enemy.role === "boss").map((enemy) => ["boss", enemy.id] as const),
+    ]);
     scare = {
       level: scareLevel,
       director: new ScareDirector(scareLevel, random),
@@ -345,6 +365,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
           .map((platform) => platform.id),
       ),
       hazardZones: blackoutHazardZones(level.course),
+      scriptedScares: scareLevel === 2
+        ? (level.authored?.scriptedScares ?? []).flatMap((spot) => {
+            const encounterId = scriptedEncounterIds.get(spot.encounterSlot);
+            return encounterId ? [{ ...spot, encounterId }] : [];
+          })
+        : [],
+      firedScriptedScares: new Set(),
       lunge: null,
       phases: new Map(),
       staticAt: new Map(),
@@ -835,12 +862,30 @@ export function createGame(options: CreateGameOptions): GameHandle {
   ): void => {
     const riding =
       controller.supportId !== null && runtime.ridingIds.has(controller.supportId);
+    const nearHazard = nearBlackoutHazard(runtime.hazardZones, controller.position);
     const events = runtime.director.step(deltaSeconds, !controller.grounded, riding, {
       holdBlackouts: runtime.lunge !== null,
-      nearHazard: nearBlackoutHazard(runtime.hazardZones, controller.position),
+      nearHazard,
     });
     if (events.blackoutEnded) options.onFeedback?.({ type: "blackout-return" });
     if (events.laugh) options.onFeedback?.({ type: "ambient-laugh" });
+    if (
+      runtime.level === 2 && runtime.lunge === null &&
+      save.adventure?.phase === "exploring" && controller.recoveryRemaining <= 0 &&
+      !pendingHit && inFlightAction === null &&
+      blackoutAllowed(runtime.director.safety(!controller.grounded, riding, nearHazard)) &&
+      jumpScareGate.allowed(now / 1000, runtime.director.lighting().blackoutElapsed)
+    ) {
+      const spot = runtime.scriptedScares.find(
+        (entry) => !runtime.firedScriptedScares.has(entry.id) &&
+          save.adventure?.activeLevel?.encounters.find((enemy) => enemy.id === entry.encounterId)?.defeated !== true &&
+          insideScriptedScareSpot(entry, controller.position),
+      );
+      if (spot) {
+        runtime.firedScriptedScares.add(spot.id);
+        startLunge(runtime, spot.encounterId, now, true);
+      }
+    }
     const watched = runtime.watchers.step(
       deltaSeconds,
       enemies.dormantWatchers(),
@@ -851,6 +896,24 @@ export function createGame(options: CreateGameOptions): GameHandle {
     for (const id of watched.creaks)
       options.onFeedback?.({ type: "watcher-creak", encounterId: id });
     reportRadioStatic(now);
+  };
+
+  const startLunge = (
+    runtime: ScareRuntime,
+    encounterId: string,
+    now: number,
+    scripted: boolean,
+  ): void => {
+    jumpScareGate.trigger(now / 1000);
+    runtime.director.endBlackout();
+    const durationMs = lungeDurationMs(reducedMotion);
+    runtime.lunge = { encounterId, startedAt: now, durationMs, reducedMotion, scripted };
+    runtime.jumpScares += 1;
+    options.onFeedback?.({ type: "jump-scare", encounterId, durationMs });
+    if (scripted) {
+      combatNeedsFreshTelegraph = true;
+      attackBuffer.clear();
+    }
   };
 
   const scareFrame = (runtime: ScareRuntime, now: number): ScareFrame => {
@@ -1067,21 +1130,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     ) {
       const nowMs = windowTarget.performance.now();
       if (jumpScareGate.allowed(nowMs / 1000, scare.director.lighting().blackoutElapsed)) {
-        jumpScareGate.trigger(nowMs / 1000);
-        scare.director.endBlackout();
-        const durationMs = lungeDurationMs(reducedMotion);
-        scare.lunge = {
-          encounterId: lethalHit.encounterId,
-          startedAt: nowMs,
-          durationMs,
-          reducedMotion,
-        };
-        scare.jumpScares += 1;
-        options.onFeedback?.({
-          type: "jump-scare",
-          encounterId: lethalHit.encounterId,
-          durationMs,
-        });
+        startLunge(scare, lethalHit.encounterId, nowMs, false);
       }
     }
     if (hurt) lastTakeHit = null;
@@ -1544,6 +1593,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const worldActive =
       !paused &&
       visible &&
+      !(scare?.lunge?.scripted && now - scare.lunge.startedAt < scare.lunge.durationMs) &&
       (adventure.phase === "exploring" ||
         adventure.phase === "memory-released");
     const combatActive = worldActive && adventure.phase === "exploring";
@@ -1713,9 +1763,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
         if (launchedThisFrame) scare.director.noteLaunch();
         stepScare(scare, deltaSeconds, now);
       }
-      if (controller.recoveryRemaining <= 0) flushPendingHit();
-      const collectedByContact = performAutoInteraction(now);
-      if (actions.interact && !isRouteMemoryAdventure(save)) {
+      // A scripted close shot starts after physics. Do not collect a nearby
+      // memory or accept an attack in that same frame while the HUD is hidden.
+      const canAct = scare?.lunge?.scripted !== true;
+      if (canAct && controller.recoveryRemaining <= 0) flushPendingHit();
+      const collectedByContact = canAct && performAutoInteraction(now);
+      if (canAct && actions.interact && !isRouteMemoryAdventure(save)) {
         const pickupId = nearestPickupId();
         const memoryId = nearestMemoryId();
         const friendlyId = nearestFriendlyId();
@@ -1749,12 +1802,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
         }
       }
       const levelId = adventure.currentLevelId;
-      if (actions.attack && levelId) {
+      if (canAct && actions.attack && levelId) {
         if (shouldBufferAttack("primary", now, collectedByContact))
           holdAttack("primary", now);
         else if (!collectedByContact) pressAttack("primary", levelId);
       }
-      if (actions.guard && levelId) {
+      if (canAct && actions.guard && levelId) {
         if (isRouteMemoryAdventure(save)) {
           if (shouldBufferAttack("secondary", now, collectedByContact))
             holdAttack("secondary", now);
@@ -1766,7 +1819,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       const buffered =
         actions.attack || actions.guard ? null : attackBuffer.peek(now);
       if (
-        buffered &&
+        canAct && buffered &&
         levelId &&
         requestState.requestState !== "acting" &&
         now >= attackReadyAt(buffered)

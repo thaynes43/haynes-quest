@@ -13,7 +13,10 @@ import {
 } from "../../src/game/authored-layout";
 import type { ObbyHazard, ObbyPlatform } from "../../src/game/obby";
 import type { GameFeedbackEvent, SceneFrame } from "../../src/game/types";
-import { AUTHORED_LEVEL_SCHEMA_VERSION_V4 } from "../../src/shared/authored-level";
+import {
+  AUTHORED_LEVEL_SCHEMA_VERSION_V4,
+  type AuthoredScriptedScare,
+} from "../../src/shared/authored-level";
 import type { GameplayActionRequest, SaveView } from "../../src/shared/contracts";
 import { makeAuthoredSave } from "./authored-fixtures";
 
@@ -118,7 +121,10 @@ const lift: ObbyPlatform = {
   motion: { axis: "y", distance: 1, period: 6, phase: (3 * Math.PI) / 2, dwell: 1 },
 };
 
-function resolverFor(scare: 0 | 1 | 2 | undefined): AuthoredLevelResolver {
+function resolverFor(
+  scare: 0 | 1 | 2 | undefined,
+  scriptedScares?: readonly AuthoredScriptedScare[],
+): AuthoredLevelResolver {
   const route = {
     ...garden,
     document: {
@@ -126,6 +132,7 @@ function resolverFor(scare: 0 | 1 | 2 | undefined): AuthoredLevelResolver {
       schemaVersion: AUTHORED_LEVEL_SCHEMA_VERSION_V4,
       theme: "casino",
       ...(scare === undefined ? {} : { scare }),
+      ...(scriptedScares ? { scriptedScares } : {}),
     },
     course: {
       ...garden.course,
@@ -230,6 +237,7 @@ describe("scary moments at runtime", () => {
 
   function start(options: {
     scare: 0 | 1 | 2 | undefined;
+    scriptedScares?: readonly AuthoredScriptedScare[];
     spawn: { x: number; y: number; z: number };
     scaryMoments?: boolean;
     save?: SaveView;
@@ -241,7 +249,7 @@ describe("scary moments at runtime", () => {
     const game = createGame({
       container: document.createElement("div"),
       save,
-      authoredLevelResolver: resolverFor(options.scare),
+      authoredLevelResolver: resolverFor(options.scare, options.scriptedScares),
       onAction: async (request) => options.onAction?.(request, save) ?? save,
       onRefresh: async () => save,
       onFeedback: (event) => feedback.push(event),
@@ -513,6 +521,127 @@ describe("scary moments at runtime", () => {
   });
 
   describe("jump scares", () => {
+    const spot = (id = "ticket-counter"): AuthoredScriptedScare => ({
+      id,
+      encounterSlot: "ordinary-1",
+      position: { x: 40, y: 0, z: 0 },
+      radius: 1.2,
+    });
+
+    it("fires a scripted set piece once on safe footing without a hit, then resumes play", () => {
+      const { game, save, feedback } = start({
+        scare: 2,
+        scriptedScares: [spot()],
+        spawn: { x: 40, y: 0, z: 0 },
+      });
+      const encounterId = save.adventure!.activeLevel!.encounters[0]!.id;
+      expect(ofType(feedback, "jump-scare")).toEqual([
+        { type: "jump-scare", encounterId, durationMs: 900 },
+      ]);
+      expect(ofType(feedback, "hurt")).toEqual([]);
+      expect(game.inspect().scare!.lunge?.encounterId).toBe(encounterId);
+      const courseTime = game.inspect().obby!.timeSeconds;
+      advance(450);
+      expect(game.inspect().obby!.timeSeconds).toBe(courseTime);
+      expect(game.inspect().scare!.lunge?.progress).toBeGreaterThan(0.4);
+      advance(500);
+      advance();
+      expect(game.inspect().scare!.lunge).toBeNull();
+      expect(game.inspect().obby!.timeSeconds).toBeGreaterThan(courseTime);
+      for (let frame = 0; frame < 60 * 65; frame += 1) advance();
+      expect(ofType(feedback, "jump-scare")).toHaveLength(1);
+      game.dispose();
+    });
+
+    it("does not auto-collect a nearby pickup on the trigger frame", async () => {
+      const position = garden.anchors.pickups["attack-tool"].position;
+      const requests: GameplayActionRequest[] = [];
+      const { game, feedback } = start({
+        scare: 2,
+        scriptedScares: [{ ...spot(), position }],
+        spawn: position,
+        save: makeAuthoredSave({ routeId: ROUTE }),
+        onAction: (request, base) => {
+          requests.push(request);
+          return base;
+        },
+      });
+      expect(ofType(feedback, "jump-scare")).toHaveLength(1);
+      expect(requests).toEqual([]);
+      advance(450);
+      expect(requests).toEqual([]);
+      advance(500);
+      advance();
+      await flush();
+      expect(requests.some((request) => request.action.type === "collect-equipment")).toBe(true);
+      game.dispose();
+    });
+
+    it("waits for safe footing and the shared cooldown before another set piece", () => {
+      const spots = [spot("first"), spot("second")];
+      const { game, feedback } = start({
+        scare: 2,
+        scriptedScares: spots,
+        spawn: { x: 40, y: 0, z: 0 },
+      });
+      expect(ofType(feedback, "jump-scare")).toHaveLength(1);
+      advance(1_000);
+      advance(30_000);
+      advance();
+      expect(ofType(feedback, "jump-scare")).toHaveLength(1);
+      advance(31_000);
+      advance();
+      expect(ofType(feedback, "jump-scare")).toHaveLength(2);
+      game.dispose();
+    });
+
+    it("does not fire by a sweeper, in the air, at level 1, or with the switch off", () => {
+      for (const options of [
+        { scare: 2 as const, spawn: { x: 87, y: 0, z: 0 }, spot: { ...spot(), position: { x: 87, y: 0, z: 0 } } },
+        { scare: 2 as const, spawn: { x: 40, y: 3, z: 0 }, spot: spot() },
+        { scare: 1 as const, spawn: { x: 40, y: 0, z: 0 }, spot: spot() },
+        { scare: 2 as const, spawn: { x: 40, y: 0, z: 0 }, spot: spot(), scaryMoments: false },
+      ]) {
+        const { game, feedback } = start({ ...options, scriptedScares: [options.spot] });
+        expect(ofType(feedback, "jump-scare")).toEqual([]);
+        game.dispose();
+      }
+    });
+
+    it("defers an airborne arrival until the player lands and settles", () => {
+      const { game, feedback } = start({
+        scare: 2,
+        scriptedScares: [spot()],
+        spawn: { x: 40, y: 3, z: 0 },
+      });
+      expect(ofType(feedback, "jump-scare")).toEqual([]);
+      let landedAt: number | null = null;
+      for (let frame = 0; frame < 60 * 6; frame += 1) {
+        advance();
+        if (game.inspect().obby!.state.grounded && landedAt === null)
+          landedAt = now;
+        if (landedAt !== null && now - landedAt < 1_000 - 1000 / 60)
+          expect(ofType(feedback, "jump-scare")).toEqual([]);
+        if (ofType(feedback, "jump-scare").length) break;
+      }
+      expect(landedAt).not.toBeNull();
+      expect(ofType(feedback, "jump-scare")).toHaveLength(1);
+      expect(now - landedAt!).toBeGreaterThanOrEqual(1_000 - 1000 / 60);
+      game.dispose();
+    });
+
+    it("uses the reduced-motion cut for a scripted set piece", () => {
+      reducedMotion = true;
+      const { game, feedback } = start({
+        scare: 2,
+        scriptedScares: [spot()],
+        spawn: { x: 40, y: 0, z: 0 },
+      });
+      expect(ofType(feedback, "jump-scare")[0]?.durationMs).toBe(500);
+      expect(game.inspect().scare!.lunge?.reducedMotion).toBe(true);
+      game.dispose();
+    });
+
     const beside = () => {
       const anchor = garden.anchors.encounters["ordinary-1"].position;
       return { x: anchor.x, y: anchor.y, z: anchor.z + 1.1 };
