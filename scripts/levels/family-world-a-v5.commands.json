@@ -10081,6 +10081,39 @@
             "rotationY": 0,
             "scale": 1.3
           }
+        ],
+        "scare": 2,
+        "scriptedScares": [
+          {
+            "id": "ticket-counter-lunge",
+            "encounterSlot": "ordinary-1",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": -31.5
+            },
+            "radius": 1.3
+          },
+          {
+            "id": "projection-room-lunge",
+            "encounterSlot": "ordinary-4",
+            "position": {
+              "x": -34.25,
+              "y": 9.7,
+              "z": -88.8
+            },
+            "radius": 1.2
+          },
+          {
+            "id": "rat-pit-runway-lunge",
+            "encounterSlot": "boss",
+            "position": {
+              "x": -25.5,
+              "y": 16.5,
+              "z": -129
+            },
+            "radius": 1.3
+          }
         ]
       }
     },
@@ -10143,11 +10176,6 @@
         "catalogEntryId": "radio-host-showman",
         "catalogEntryVersion": "v001"
       }
-    },
-    {
-      "type": "chapter.scare.set",
-      "chapterId": "family-a4",
-      "scare": 2
     }
   ]
 }

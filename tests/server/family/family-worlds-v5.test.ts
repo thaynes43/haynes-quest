@@ -2,7 +2,7 @@
 import { randomUUID } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { buildFamilyWorldAV5, familyWorldAV5Commands, FAMILY_WORLD_A_V5_COMMANDS_URL, FAMILY_WORLD_A_V5_PROJECT_URL } from "../../../scripts/levels/build-family-world-a-v5";
+import { buildFamilyWorldAV5, familyWorldAV5Commands, FAMILY_A4_V5_SCRIPTED_SCARES, FAMILY_WORLD_A_V5_COMMANDS_URL, FAMILY_WORLD_A_V5_PROJECT_URL } from "../../../scripts/levels/build-family-world-a-v5";
 import { buildFamilyWorldBV5, familyWorldBV5Commands, FAMILY_WORLD_B_V5_COMMANDS_URL, FAMILY_WORLD_B_V5_PROJECT_URL } from "../../../scripts/levels/build-family-world-b-v5";
 import { parodyArtwork } from "../../../src/game/scene-catalog";
 import { validateFamilyWorldPlan } from "../../../src/server/family/plan";
@@ -64,6 +64,11 @@ describe.each(Object.entries(WORLDS) as [keyof typeof WORLDS, (typeof WORLDS)[ke
     );
     expect(v5.ageBands).toEqual(v4.ageBands);
     expect(v5.project.enemyCandidates).toEqual([]);
+    if (world === "family-world-a") {
+      expect(v4.project.chapters[3]!.level.scriptedScares).toBeUndefined();
+      expect(v5.project.chapters[3]!.level.scriptedScares).toEqual(FAMILY_A4_V5_SCRIPTED_SCARES);
+      expect(v5.project.chapters[3]!.level.scare).toBe(2);
+    }
     for (const [index, slots] of Object.entries(spec.cast))
       for (const [slot, id] of Object.entries(slots) as [string, string][]) {
         const old = (v4.project.chapters[Number(index)]!.encounterSlots as Record<string, unknown>)[slot];
@@ -103,6 +108,18 @@ describe.each(Object.entries(WORLDS) as [keyof typeof WORLDS, (typeof WORLDS)[ke
     expect(after.plan.template).toEqual({ id: world, version: "v5", fingerprint: v5.fingerprint });
     expect(after.plan.catalogVersion).toBe("parody-catalog-v11");
     expect(validateFamilyWorldPlan(after.plan, { birthDate: after.birthDate, memories: after.memories })).toEqual([]);
+    if (world === "family-world-a") {
+      expect(after.plan.levels[3]!.authoredLevel.scriptedScares).toEqual(FAMILY_A4_V5_SCRIPTED_SCARES);
+      const tampered = {
+        ...after.plan,
+        levels: after.plan.levels.map((level, index) => {
+          if (index !== 3) return level;
+          const { scriptedScares: _scriptedScares, ...authoredLevel } = level.authoredLevel;
+          return { ...level, authoredLevel };
+        }),
+      };
+      expect(validateFamilyWorldPlan(tampered, { birthDate: after.birthDate, memories: after.memories })).toContain("plan.geometry-fingerprint");
+    }
     expect(registry.newestUpgrade(world, "v5", spec.child.birthDate, HARNESS_TODAY)).toBeNull();
   });
 });

@@ -14,6 +14,12 @@ import { chapterCommands } from "./lib/growth-kit.js";
 
 export const FAMILY_WORLD_A_V5_CATALOG_VERSION = "parody-catalog-v11" as const;
 const A3_IDS = new Set(["putty-grunt", "lab-robot", "inator-monster"]);
+/** Safe standing-deck set pieces in route order (DESIGN-027; issue #123). */
+export const FAMILY_A4_V5_SCRIPTED_SCARES = [
+  { id: "ticket-counter-lunge", encounterSlot: "ordinary-1", position: { x: 0, y: 0, z: -31.5 }, radius: 1.3 },
+  { id: "projection-room-lunge", encounterSlot: "ordinary-4", position: { x: -34.25, y: 9.7, z: -88.8 }, radius: 1.2 },
+  { id: "rat-pit-runway-lunge", encounterSlot: "boss", position: { x: -25.5, y: 16.5, z: -129 }, radius: 1.3 },
+] as const;
 
 const catalog = (catalogEntryId: string) => ({
   source: "catalog" as const,
@@ -35,7 +41,16 @@ function castModel(command: LevelEditorCommand): LevelEditorCommand {
 
 export function familyWorldAV5Commands(): LevelEditorCommandBatch {
   const v4 = familyWorldACommands();
-  return { ...v4, commands: v4.commands.map(castModel) };
+  return {
+    ...v4,
+    commands: v4.commands
+      .filter((command) => !(command.type === "chapter.scare.set" && command.chapterId === "family-a4"))
+      .map((command): LevelEditorCommand => {
+        if (command.type === "chapter.level.replace" && command.chapterId === "family-a4")
+          return { ...command, level: { ...command.level, scare: 2, scriptedScares: [...FAMILY_A4_V5_SCRIPTED_SCARES] } };
+        return castModel(command);
+      }),
+  };
 }
 
 export function buildFamilyWorldAV5(): LevelEditorProjectV2 {
