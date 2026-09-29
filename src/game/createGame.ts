@@ -252,6 +252,13 @@ function isRouteMemoryAdventure(save: SaveView): boolean {
   return Boolean(requireAdventure(save).activeLevel?.majorMemoryId);
 }
 
+function canPrimaryAttack(save: SaveView): boolean {
+  return (
+    (isRouteMemoryAdventure(save) && requireAdventure(save).equippedId === null) ||
+    hasEquipment(save, "attack-tool")
+  );
+}
+
 function facingDifference(from: number, to: number): number {
   let difference = from - to;
   while (difference > Math.PI) difference -= Math.PI * 2;
@@ -690,7 +697,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       eraYear: adventure.activeLevel?.eraYear ?? null,
       attackReady:
         adventure.phase === "exploring" &&
-        hasEquipment(save, "attack-tool") &&
+        canPrimaryAttack(save) &&
         Boolean(target) &&
         now >= attackCooldownUntil &&
         !requestBusy,
@@ -1264,7 +1271,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       case "attack": {
         if (adventure.phase !== "exploring")
           return recordAttackFeedback("unavailable");
-        if (!hasEquipment(save, "attack-tool"))
+        if (!canPrimaryAttack(save))
           return recordAttackFeedback("unarmed");
         if (requestState.requestState === "acting")
           return recordAttackFeedback("busy");

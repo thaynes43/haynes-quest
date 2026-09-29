@@ -123,6 +123,60 @@ function saveRecord(plan = routePlan()): SaveRecord {
 }
 
 describe('route-memory plan v3', () => {
+  it('allows a one-damage basic attack, then upgrades damage from the frozen pickup', () => {
+    const plan = routePlan();
+    const level = plan.levels[0]!;
+    const enemy = level.encounters[0]!;
+    const initial = createInitialAdventureState(plan);
+    expect(initial.equippedId).toBeNull();
+
+    const barehanded = apply(plan, initial, {
+      type: 'attack', levelId: level.id, encounterId: enemy.id,
+    }, 0);
+    expect(barehanded.encounters[enemy.id]).toMatchObject({ hp: enemy.maxHp - 1, defeated: false });
+    expect(toAdventureView(plan, barehanded, 0).attackCooldownRemainingMs)
+      .toBe(ROUTE_ATTACK_COOLDOWN_MS);
+    expect(() => apply(plan, barehanded, {
+      type: 'attack', levelId: level.id, encounterId: enemy.id,
+    }, ROUTE_ATTACK_COOLDOWN_MS - 1)).toThrow('ATTACK_COOLDOWN');
+
+    const upgraded = collect(plan, barehanded, 'attack-tool');
+    const tool = level.pickups.find((pickup) => pickup.kind === 'attack-tool')!;
+    const struck = apply(plan, upgraded, {
+      type: 'attack', levelId: level.id, encounterId: enemy.id,
+    }, ROUTE_ATTACK_COOLDOWN_MS);
+    expect(struck.encounters[enemy.id]!.hp).toBe(enemy.maxHp - 1 - tool.damage);
+
+    const forged = { ...initial, equippedId: 'missing-attack-tool' };
+    expect(() => apply(plan, forged, {
+      type: 'attack', levelId: level.id, encounterId: enemy.id,
+    }, 0)).toThrow('ATTACK_TOOL_REQUIRED');
+    const withGuard = collect(plan, initial, 'guard-tool');
+    const guard = level.pickups.find((pickup) => pickup.kind === 'guard-tool')!;
+    expect(() => apply(plan, { ...withGuard, equippedId: guard.id }, {
+      type: 'attack', levelId: level.id, encounterId: enemy.id,
+    }, 0)).toThrow('ATTACK_TOOL_REQUIRED');
+    expect(() => reduceFriendlyAction(plan, withGuard, createInitialFriendlyState(plan), {
+      type: 'attack-friendly', levelId: level.id,
+      friendlyId: friendlyDefinitionsForLevel(level.id, level.index)[0]!.id,
+    }, 0)).toThrow('ATTACK_TOOL_REQUIRED');
+  });
+
+  it('persists a basic attack as an authoritative save action', () => {
+    const save = saveRecord();
+    const level = save.adventurePlan!.levels[0]!;
+    const enemy = level.encounters[0]!;
+    const result = applyGameplayActionToSave(save, {
+      actionId: randomUUID(),
+      expectedRevision: save.revision,
+      action: { type: 'attack', levelId: level.id, encounterId: enemy.id },
+    }, new Date('2026-09-12T00:00:01.000Z'));
+    expect(result.save.adventureState!.encounters[enemy.id]!.hp).toBe(enemy.maxHp - 1);
+    expect(toSaveView(result.save, new Date('2026-09-12T00:00:01.000Z'))
+      .adventure!.activeLevel!.encounters.find((entry) => entry.id === enemy.id)?.hp)
+      .toBe(enemy.maxHp - 1);
+  });
+
   it('offers six deterministic fictional photos only in route-memory fixture mode', async () => {
     const subject = { option: FIXTURE_SUBJECT, sourceId: FIXTURE_SUBJECT.id };
     const request = { name: FIXTURE_SUBJECT.label, birthDate: '2020-01-01' };

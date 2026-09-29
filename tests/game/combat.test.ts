@@ -3,6 +3,7 @@ import {
   EnemySimulation,
   bossIsActive,
   findAttackTarget,
+  playerAttackRange,
 } from "../../src/game/combat";
 import {
   createLevelLayout,
@@ -428,5 +429,23 @@ describe("attack targeting", () => {
         true,
       ),
     ).toBeNull();
+  });
+
+  it("gives basic and tier-one route-memory attacks reach beyond Bash without changing archived reach", () => {
+    const archived = makeEraSave();
+    const route = structuredClone(archived);
+    route.adventure!.planVersion = "era-level-plan-v3";
+    route.adventure!.activeLevel!.majorMemoryId = "memory-2";
+    const tierOne = structuredClone(route);
+    const tool = tierOne.adventure!.activeLevel!.pickups.find((pickup) => pickup.kind === "attack-tool")!;
+    tierOne.adventure!.inventory.push({ ...tool, collected: true });
+    tierOne.adventure!.equippedId = tool.id;
+
+    for (const role of ["ordinary", "boss"] as const) {
+      expect(playerAttackRange(route, role)).toBe(2.4);
+      expect(playerAttackRange(tierOne, role)).toBe(2.4);
+    }
+    expect(playerAttackRange(archived, "ordinary")).toBe(1.7);
+    expect(playerAttackRange(archived, "boss")).toBe(2);
   });
 });

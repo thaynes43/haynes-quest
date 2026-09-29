@@ -530,12 +530,18 @@ export function reduceAdventureAction(
     if (boundedRemainingMs(state.attackReadyAtMs, nowMs, attackCooldownMs) > 0) {
       throw new AdventureRuleError('ATTACK_COOLDOWN');
     }
-    const equipment = findEquipment(plan, state.equippedId);
-    if (!equipment || equipment.kind !== 'attack-tool' || !state.inventoryIds.includes(equipment.id)) {
-      throw new AdventureRuleError('ATTACK_TOOL_REQUIRED');
+    // Route-memory chapters grant a basic strike before the attack-tool pickup.
+    // A non-null equipped id still has to name a collected attack tool.
+    let damage = 1;
+    if (state.equippedId !== null || !usesRouteMemoryRules(plan)) {
+      const equipment = findEquipment(plan, state.equippedId);
+      if (!equipment || equipment.kind !== 'attack-tool' || !state.inventoryIds.includes(equipment.id)) {
+        throw new AdventureRuleError('ATTACK_TOOL_REQUIRED');
+      }
+      damage = equipment.damage;
     }
     const progress = state.encounters[encounter.id]!;
-    progress.hp = Math.max(0, progress.hp - equipment.damage);
+    progress.hp = Math.max(0, progress.hp - damage);
     progress.defeated = progress.hp === 0;
     state.attackReadyAtMs = nowMs + attackCooldownMs;
     if (progress.defeated && encounter.role === 'boss') state.phase = 'memory-released';

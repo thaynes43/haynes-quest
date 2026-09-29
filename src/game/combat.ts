@@ -501,6 +501,7 @@ const malletAttackRange = {
   ordinary: 1.7,
   boss: 2,
 } as const;
+const routeMemoryMeleeRange = 2.4;
 const prismWandAttackRange = 4.25;
 
 function equippedAttackTier(save: SaveView): number {
@@ -514,12 +515,13 @@ function equippedAttackTier(save: SaveView): number {
   return equipment?.tier ?? 0;
 }
 
-/** The tier-two Prism wand is ranged; the starting mallet remains melee. */
+/** The tier-two Prism wand is ranged; route-memory melee reaches past Bash. */
 export function playerAttackRange(
   save: SaveView,
   role: EncounterView["role"],
 ): number {
   if (equippedAttackTier(save) >= 2) return prismWandAttackRange;
+  if (save.adventure?.activeLevel?.majorMemoryId) return routeMemoryMeleeRange;
   return malletAttackRange[role];
 }
 
