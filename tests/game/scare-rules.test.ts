@@ -16,6 +16,7 @@ import {
   JumpScareGate,
   lungeDurationMs,
   nearBlackoutHazard,
+  insideScriptedScareSpot,
   SCARE_TIMING,
   ScareDirector,
   scareRandom,
@@ -31,6 +32,7 @@ import {
 import {
   authoredScareLevel,
   resolveAuthoredLevelDocument,
+  validateAuthoredLevelDocument,
 } from "../../src/shared/authored-level";
 import { resolveLevelEditorProject } from "../../src/shared/editor-project";
 import familyWorldA from "../../src/shared/levels/family-world-a-v2.json";
@@ -55,6 +57,39 @@ describe("scare levels and the parent switch", () => {
       expect(effectiveScareLevel({ scare }, true)).toBe(scare);
     }
     expect(effectiveScareLevel(undefined, true)).toBe(0);
+  });
+});
+
+describe("authored scripted scare spots", () => {
+  const a4 = familyWorldAV4.chapters.find((chapter) => chapter.chapterId === "family-a4")!.level;
+  const first = {
+    id: "ticket-counter-surprise",
+    encounterSlot: "ordinary-1",
+    position: { x: 0, y: 0, z: -31.5 },
+    radius: 1.3,
+  };
+
+  it("accepts a supported A4 level-2 spot without changing the frozen v4 template", () => {
+    expect(a4).not.toHaveProperty("scriptedScares");
+    expect(validateAuthoredLevelDocument({ ...a4, scriptedScares: [first] })).toEqual([]);
+    expect(insideScriptedScareSpot(first, { x: 1.3, y: 0, z: -31.5 })).toBe(true);
+    expect(insideScriptedScareSpot(first, { x: 0, y: 4, z: -31.5 })).toBe(false);
+  });
+
+  it("rejects wrong scare levels, duplicate ids, missing slots and unsupported centres", () => {
+    const bad = validateAuthoredLevelDocument({
+      ...a4,
+      scare: 1,
+      scriptedScares: [first, { ...first, position: { x: 240, y: 0, z: 240 } }],
+    });
+    expect(bad.map((entry) => entry.code)).toEqual(expect.arrayContaining([
+      "scare.level", "scare.duplicate-id", "scare.support",
+    ]));
+    const missingSlot = validateAuthoredLevelDocument({
+      ...a4,
+      scriptedScares: [{ ...first, encounterSlot: "bonus-2" }],
+    });
+    expect(missingSlot.some((entry) => entry.path.endsWith("encounterSlot"))).toBe(true);
   });
 });
 

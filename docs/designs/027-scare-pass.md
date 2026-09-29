@@ -59,13 +59,14 @@ Initial assignment:
 
 **D-05 Jump scares** (level 2):
 - **Trigger:** an animatronic or boss attack reduces the player to 0 HP.
+- **Scripted set pieces (Tom's September 26 ruling on [#123](https://github.com/thaynes43/haynes-quest/issues/123)):** A4 adds 2–3 one-time lunges at authored spots in template v5 or later. The player must stand within the spot's radius at the same floor height, with the same safe-footing rules as a blackout: no airborne or riding state, recent jump/drop/bounce, recent landing, nearby sweeper or mover, or recent recovery. An unsafe arrival waits until the player is safe while still in the spot. A scripted lunge briefly holds gameplay, then resumes at the same spot without damage or checkpoint recovery. Knockout jump scares remain.
 - **The lunge:** the camera snaps to a close shot of that enemy's face for about 0.9 s, with the jump-scare sting and a hard camera shake. Reduced motion turns this into a 0.5 s cut with no shake.
 - **The look** (amended September 26):
   - the room drops almost black;
   - a cold light from below catches the face and the eyes flare;
   - the HUD, touch controls and prompts vanish behind a dark red vignette;
   - with full motion, a red flash opens the lunge.
-- **Afterwards:** normal recovery to the memory checkpoint.
+- **Afterwards:** a knockout follows normal recovery to the memory checkpoint; a scripted set piece resumes play in place.
 - **Limits:** at most once per 60 s, and never during a blackout's first 0.3 s.
 
 **D-06 Sound.** New cues from the self-hosted audio service, with the usual catalog steps:
@@ -97,6 +98,7 @@ The engine implements D-01 to D-06, and the template versions below implement D-
 - **Where it lives.** `src/game/scare.ts` holds the timing and placement rules, `src/game/scare-scene.ts` the lighting, eyes and key light, and `createGame` the clocks. The switch is `src/client/scary-moments.ts` (`localStorage` key `quest-scary-moments-v1`, read once per game) with its toggle in the family home and on the fixture playtest's start screen.
 - **Level 0 builds nothing.** A chapter without `scare`, with `scare: 0`, or with the switch off creates no scare objects, lights or events. Tests pin the Rat Casino and theme scene fingerprints and a scripted runtime run to their values from before this design.
 - **The field.** `scare` exists only on `authored-level-v4` documents. `chapter.scare.set` sets it, and `0` removes it. `inspect` reports it per chapter. It freezes with the chapter's geometry in `family-world-plan-v1` and in editor playtest snapshots.
+- **Scripted spot data.** A level-2 v4 document may optionally declare `scriptedScares` with up to three `{ id, encounterSlot, position, radius }` entries. The centre is a player-feet position on a static platform, the radius is 0.75–2 m, and the slot identifies the placed encounter whose face appears in the lunge. IDs must be unique. Earlier documents have no field and keep their frozen bytes and behavior. A4's new spots belong in `family-world-a@v5+`; v4 stays immutable.
 - **Lighting.**
   - Level 1 scales the hemisphere, sun and environment light to 55%. It moves fog to half its start and 60% of its end distance, and mixes the sky and fog toward cold night.
   - Level 2 scales them to 38%, moves fog to 35% of its start and half its end distance, and holds the practical lights at 60%. Scenery that loads later joins the dimmed practicals within a second.
@@ -113,10 +115,10 @@ The engine implements D-01 to D-06, and the template versions below implement D-
   - **Placement.** A shuffle ends within 1.5 m of the watcher's spawn, inside its arena, at least 1.6 m from the player, and off every connection strip widened by the 0.42 m body radius.
   - **Out of view.** The view test uses the watcher's own body: the loaded model measured by the scene, or before it loads a cylinder from its catalog height (radius the larger of 0.6 m and 45% of the height, plus 0.3 m of headroom for the health bar). Every test adds a 0.5 m margin, for an idle pose's lean and a frame of camera motion. A watcher changes only while that padded body is out of the frustum, and a shuffle tries only spots where it would still be out of it.
   - **Creak.** A changed watcher creaks once when the player really sees it. At least one of its knees, chest or head must be on screen within 20 m of the camera, with no course, scenery or decor between them. The game checks about ten times a second while it is in the frustum. A watcher that is in the frustum but hidden cannot change, and its creak waits.
-- **Jump scares.** A take-hit that the server answers with 0 HP and the fallen phase within 3 s becomes a lunge at level 2.
+- **Jump scares.** A take-hit that the server answers with 0 HP and the fallen phase within 3 s becomes a lunge at level 2. A scripted spot starts the same lunge only while the player is safely standing inside its radius. Both use the same 60 s cooldown, blackout-start guard, reduced-motion duration, sound and visuals. Each scripted spot fires at most once in the current chapter run, including retries; starting a new run can play it again.
   - The room falls to 90% of a blackout's darkness. A cold key light sits below the face, between it and the camera, and the eyes flare.
   - The game screen hides everything marked as game UI while the lunge plays and darkens its edges.
-  - It holds the checkpoint return, and keeps the sound unpaused, until the lunge ends.
+  - A knockout holds the checkpoint return; a scripted lunge holds gameplay and input. The sting keeps playing until the lunge ends.
 - **Sound.** [DESIGN-008](008-audio-pipeline.md#scary-moments-wiring) lists the six events and their cues. The radio showman's static and the ambience also need level 1 or 2.
 - **Checked so far.** Unit and jsdom tests cover every Validation unit case below. A headless Chromium smoke run of a draft A4 at level 2, standing at the start, reached a blackout after about 190 s of wall time (software rendering runs the scare clock slowly): the practicals went dark, the six eyes and the tokens' golden glow stayed lit, and the page logged no errors. With the switch off, the same draft built no scare runtime. The browser Validation on the D-08 templates is under [Template versions](#template-versions).
 

@@ -277,6 +277,16 @@ export interface AuthoredLevelAnchors {
 export const AUTHORED_SCARE_LEVELS = [0, 1, 2] as const;
 export type AuthoredScareLevel = (typeof AUTHORED_SCARE_LEVELS)[number];
 
+/** A one-time level-2 lunge at a safe standing spot, using a placed encounter's face. */
+export interface AuthoredScriptedScare {
+  readonly id: string;
+  readonly encounterSlot: AuthoredEncounterSlot;
+  /** Player feet at the centre of the trigger, on a static platform. */
+  readonly position: AuthoredPosition;
+  /** Horizontal trigger radius in metres. */
+  readonly radius: number;
+}
+
 export interface AuthoredLevelDocument {
   readonly schemaVersion: AuthoredLevelSchemaVersion;
   readonly id: AuthoredLevelId;
@@ -293,6 +303,8 @@ export interface AuthoredLevelDocument {
    * and remove the field for 0, so an unscary document keeps its exact bytes.
    */
   readonly scare?: AuthoredScareLevel;
+  /** V4 level data for template v5+; absent on every earlier publication. */
+  readonly scriptedScares?: readonly AuthoredScriptedScare[];
 }
 
 /** A document's declared scare level; older documents and absent fields are 0. */
@@ -363,6 +375,9 @@ export const AUTHORED_LEVEL_LIMITS = Object.freeze({
  * `small` keeps the same forgiveness against its lower apex.
  */
 export const AUTHORED_LEVEL_V4_LIMITS = Object.freeze({
+  maxScriptedScares: 3,
+  minScriptedScareRadius: 0.75,
+  maxScriptedScareRadius: 2,
   requires: Object.freeze({
     "high-jump": Object.freeze({ maxRise: 0.7, maxGap: 1.7 }),
     "double-jump": Object.freeze({ maxRise: 1.3, maxGap: 2.4 }),
@@ -589,6 +604,16 @@ export const authoredScareLevelSchema = z.union([
   z.literal(2),
 ]);
 
+export const authoredScriptedScareSchema = z
+  .object({
+    id: identifierSchema,
+    encounterSlot: z.enum(AUTHORED_ENCOUNTER_SLOTS),
+    position: positionSchema,
+    radius: z.number().min(AUTHORED_LEVEL_V4_LIMITS.minScriptedScareRadius)
+      .max(AUTHORED_LEVEL_V4_LIMITS.maxScriptedScareRadius),
+  })
+  .strict();
+
 export const authoredDecorSchema = z
   .object({
     id: identifierSchema,
@@ -756,6 +781,10 @@ const authoredLevelV4DocumentSchema = z
       .max(AUTHORED_LEVEL_V4_LIMITS.maxDecor)
       .optional(),
     scare: authoredScareLevelSchema.optional(),
+    scriptedScares: z.array(authoredScriptedScareSchema)
+      .min(1)
+      .max(AUTHORED_LEVEL_V4_LIMITS.maxScriptedScares)
+      .optional(),
   })
   .strict();
 
@@ -2274,6 +2303,21 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
   if (document.schemaVersion === AUTHORED_LEVEL_SCHEMA_VERSION_V4) {
     validateGrowthPieces(document, platforms, hazards, issues);
     validateDecor(document, platforms, staticPlatforms, issues);
+    if (document.scriptedScares) {
+      if (document.scare !== 2)
+        issue(issues, "$.scriptedScares", "scare.level", "Scripted scares require scare level 2");
+      const scareIds = new Set<string>();
+      document.scriptedScares.forEach((scare, index) => {
+        const path = `$.scriptedScares[${index}]`;
+        if (scareIds.has(scare.id))
+          issue(issues, `${path}.id`, "scare.duplicate-id", `Scripted scare ${JSON.stringify(scare.id)} repeats an earlier id`);
+        scareIds.add(scare.id);
+        if (!document.anchors.encounters[scare.encounterSlot])
+          issue(issues, `${path}.encounterSlot`, "reference.encounter", `Encounter slot ${JSON.stringify(scare.encounterSlot)} is absent`);
+        if (![...staticPlatforms.values()].some((platform) => pointSupported(scare.position, platform)))
+          issue(issues, `${path}.position`, "scare.support", "Scripted scare centre must stand on a static platform with edge clearance");
+      });
+    }
   }
 
   return sortedIssues(issues);
