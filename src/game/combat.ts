@@ -429,14 +429,12 @@ export class EnemySimulation {
                 y: enemy.position.y,
                 z: options.player.z + (pursuitTarget.z - options.player.z) * 2,
               };
-              clampToArena(enemy.windupTarget, enemy.arena);
             }
           } else {
             const target =
               enemy.role === "ordinary" && enemy.arena
                 ? { ...pursuitTarget }
                 : { ...options.player };
-            if (enemy.role === "ordinary") clampToArena(target, enemy.arena);
             const targetDistance = distance(enemy.position, target);
             const travel = Math.min(
               (enemy.arena ? tuning.speed : tuning.legacySpeed) * dt,

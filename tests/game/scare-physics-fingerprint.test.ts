@@ -180,8 +180,8 @@ describe("scare level 0 preserves the current combat runtime", () => {
       .digest("hex");
   }
 
-  /** Recorded after the authored-enemy pursuit change (fa6e8d5). */
-  const EXPECTED = "1cbe53149e942a65a9f46588de9679069faaa332a1ed65668a858b924f8d690f";
+  /** Recorded after authored-enemy pursuit and arena-edge reach were corrected. */
+  const EXPECTED = "609cf12d979b7167de75ede99b05c905b7a12d2d31224df5f5eafb7278ddf7e8";
 
   it("matches the current runtime without a scare level", () => {
     const actual = fingerprint({});
