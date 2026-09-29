@@ -17,7 +17,7 @@ The studio's review pages, exact model and Blender downloads, audio, thumbnails 
 
 **D-02 Publish the review surface.** The runtime media package excludes only generated PNG frames in `preview`, `final-preview`, `checkpoint-preview-rebuild2` and `blender-previews` directories that have no direct review-page or runtime URL. Two directly linked bind-pose frames remain. Every GLB, Blender master, audio file, catalog thumbnail and audit capture remains. A final-site check must reject a review link to any omitted file. If a future review links a preview, the runtime keep list must be updated in the same PR.
 
-**D-03 Use a stable media layer.** Docker builds the pruned media from `docs/assets/media` in its own stage and copies it into the runtime image in its own layer. The full MkDocs build runs separately; its media copy is removed before the generated HTML/CSS/JS site is copied into the runtime image. Code-only and documentation-only releases can reuse the media layer when source media and the keep list are unchanged.
+**D-03 Use a stable media layer.** Docker builds the pruned media from `docs/assets/media` in its own stage and copies it into the runtime image in its own layer. The full MkDocs build runs separately. Its copied source media is removed, but MkDocs-generated HTML under `site/assets/media` stays in the pages layer: review links to media Markdown are rewritten to those HTML URLs. Code-only and documentation-only releases can reuse the media layer when source media and the keep list are unchanged.
 
 ## Consequences
 

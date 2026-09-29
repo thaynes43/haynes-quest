@@ -28,7 +28,7 @@ COPY docs ./docs
 COPY .agents ./.agents
 COPY scripts ./scripts
 COPY AGENTS.md mkdocs.yml ./
-RUN scripts/docs/build.sh && rm -rf site/assets/media
+RUN scripts/docs/build.sh && python scripts/docs/retain_runtime_media_html.py site
 
 FROM docs-build AS runtime-site-check
 COPY --from=media-build /app/media /app/site/assets/media
