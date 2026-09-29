@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-29T04:58:08Z",
+  "status": "private-family-v5-published",
+  "scope": "Family worlds v5 and two authored A4 scare set pieces, Playroom kit, skinned-mesh/camera fixes; both family children published on v5/r5. No existing started run was restarted.",
+  "application": {
+    "pullRequest": "https://github.com/thaynes43/haynes-quest/pull/128",
+    "reviewedHead": "b31e72d47233a7edd890fee5d76e6164f4a7cfbb",
+    "mergeCommit": "7f9701e5ce7ebbb37d12d8ed8a3aefe3941c0576",
+    "mergedAt": "2026-09-29T04:34:47Z",
+    "pullRequestChecks": {
+      "verify": "https://github.com/thaynes43/haynes-quest/actions/runs/36521610905/job/109255495811",
+      "containerCheck": "https://github.com/thaynes43/haynes-quest/actions/runs/36521610905/job/109256940864"
+    },
+    "mainChecks": {
+      "verify": "https://github.com/thaynes43/haynes-quest/actions/runs/36522258201/job/109257485941",
+      "documentation": "https://github.com/thaynes43/haynes-quest/actions/runs/36522258138/job/109257485761",
+      "image": "https://github.com/thaynes43/haynes-quest/actions/runs/36522258201/job/109258960005"
+    },
+    "allListedChecks": "success"
+  },
+  "image": {
+    "repository": "ghcr.io/thaynes43/haynes-quest",
+    "tag": "sha-7f9701e5ce7ebbb37d12d8ed8a3aefe3941c0576",
+    "ociDigest": "sha256:5f526911e856989d3ef9930a4e7ef1076fe86633dd6c833c8ca2d33cf39b2a41",
+    "buildProvenance": "success",
+    "cosignSign": "success",
+    "ghcrManifestDigestMatchedPin": true
+  },
+  "gitOps": {
+    "pullRequest": "https://github.com/thaynes43/haynes-ops/pull/3255",
+    "mergeCommit": "d0a962f938bbc435b7b766f0a12048327a8e6ee9",
+    "mergedAt": "2026-09-29T04:50:34Z",
+    "fluxRevision": "main@sha1:d0a962f938bbc435b7b766f0a12048327a8e6ee9",
+    "fluxKustomizationReady": true,
+    "checks": {
+      "diffScope": "success",
+      "fluxLocal": "success",
+      "fluxLocalTest": "https://github.com/thaynes43/haynes-ops/actions/runs/36523200863/job/109260425329"
+    },
+    "localKubeconform": "blocked before local manifest validation: DNS failure downloading external Flux schema from kubernetes-schemas.pages.dev; Flux Local PR checks passed"
+  },
+  "deployments": {
+    "family": {
+      "helmRelease": "haynes-quest",
+      "helmGeneration": 13,
+      "helmRevision": 14,
+      "helmReady": true,
+      "pod": "haynes-quest-57cf67b74d-s7p5v",
+      "podUid": "973fdae6-73b3-4d0f-b80d-ab2af4e75ce7",
+      "ready": true,
+      "restarts": 0,
+      "imageId": "ghcr.io/thaynes43/haynes-quest@sha256:5f526911e856989d3ef9930a4e7ef1076fe86633dd6c833c8ca2d33cf39b2a41"
+    },
+    "fixture": {
+      "helmRelease": "haynes-quest-playtest",
+      "helmGeneration": 34,
+      "helmRevision": 35,
+      "helmReady": true,
+      "pod": "haynes-quest-playtest-56f986bf4b-6snf7",
+      "podUid": "13659456-984d-4695-a1ce-7510f1c3b818",
+      "ready": true,
+      "restarts": 0,
+      "imageId": "ghcr.io/thaynes43/haynes-quest@sha256:5f526911e856989d3ef9930a4e7ef1076fe86633dd6c833c8ca2d33cf39b2a41"
+    },
+    "familyReadyzHttp": 200,
+    "fixtureIngressReadyzHttp": 200,
+    "familyUnauthenticatedStudioMediaHttp": 401
+  },
+  "hostedMedia": {
+    "host": "haynes-quest-playtest.haynesops.com",
+    "exactGlbsMatched": 9,
+    "totalBytes": 6629640,
+    "assets": [
+      {
+        "id": "inator-monster",
+        "url": "https://haynes-quest-playtest.haynesops.com/studio/assets/media/inator-monster/v001/inator-monster.glb",
+        "bytes": 1234756,
+        "sha256": "215e6c5fad6db31c04eb4a5df5538a4fbc285aee00147294110b943166b82671",
+        "hostedStatus": 200,
+        "matchesSource": true
+      },
+      {
+        "id": "putty-grunt",
+        "url": "https://haynes-quest-playtest.haynesops.com/studio/assets/media/putty-grunt/v001/putty-grunt.glb",
+        "bytes": 1148172,
+        "sha256": "e54116896e0ab27f8cbbff8cab9edfe8b566dac7f2216f5dcd3d3a2782d82522",
+        "hostedStatus": 200,
+        "matchesSource": true
+      },
+      {
+        "id": "lab-robot",
+        "url": "https://haynes-quest-playtest.haynesops.com/studio/assets/media/lab-robot/v001/lab-robot.glb",
+        "bytes": 1506604,
+        "sha256": "33be060d30dc50830380bab97021635a5e3b7a73f2208bfab1b1562075aeb76c",
+        "hostedStatus": 200,
+        "matchesSource": true
+      },
+      {
+        "id": "demon-band-idol",
+        "url": "https://haynes-quest-playtest.haynesops.com/studio/assets/media/demon-band-idol/v001/demon-band-idol.glb",
+        "bytes": 1240728,
+        "sha256": "332f1bfb66d611676b1864e968b5d4657ecfe73698d623541eca4379331df54c",
+        "hostedStatus": 200,
+        "matchesSource": true
+      },
+      {
+        "id": "radio-host-showman",
+        "url": "https://haynes-quest-playtest.haynesops.com/studio/assets/media/radio-host-showman/v001/radio-host-showman.glb",
+        "bytes": 1034532,
+        "sha256": "f4eb039b0d97ba97f093e6b69f2d3f4720d984cae4327ccc9f65861c363564a4",
+        "hostedStatus": 200,
+        "matchesSource": true
+      },
+      {
+        "id": "stacking-block-tower",
+        "url": "https://haynes-quest-playtest.haynesops.com/studio/assets/media/playroom-kit/v001/stacking-block-tower.glb",
+        "bytes": 106928,
+        "sha256": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
+        "hostedStatus": 200,
+        "matchesSource": true
+      },
+      {
+        "id": "toy-bus-garage",
+        "url": "https://haynes-quest-playtest.haynesops.com/studio/assets/media/playroom-kit/v001/toy-bus-garage.glb",
+        "bytes": 121300,
+        "sha256": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
+        "hostedStatus": 200,
+        "matchesSource": true
+      },
+      {
+        "id": "crib-rail-fence",
+        "url": "https://haynes-quest-playtest.haynesops.com/studio/assets/media/playroom-kit/v001/crib-rail-fence.glb",
+        "bytes": 121288,
+        "sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
+        "hostedStatus": 200,
+        "matchesSource": true
+      },
+      {
+        "id": "giant-plush-ball",
+        "url": "https://haynes-quest-playtest.haynesops.com/studio/assets/media/playroom-kit/v001/giant-plush-ball.glb",
+        "bytes": 115332,
+        "sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49",
+        "hostedStatus": 200,
+        "matchesSource": true
+      }
+    ],
+    "note": "Fixture ingress served exact bytes; family media requires authentication and correctly returned 401 without a session. Both pods have the same signed imageID."
+  },
+  "publications": {
+    "older": {
+      "template": "family-world-a@v5",
+      "draftRevision": 4,
+      "carriedPhotos": "12/12",
+      "needsPhoto": 0,
+      "publicationRevision": 5,
+      "chapters": 4,
+      "memories": 12,
+      "verifyMediaDecoded": "12/12",
+      "verifyMediaFailed": 0
+    },
+    "younger": {
+      "template": "family-world-b@v5",
+      "draftRevision": 4,
+      "carriedPhotos": "9/9",
+      "needsPhoto": 0,
+      "publicationRevision": 5,
+      "chapters": 3,
+      "memories": 9,
+      "verifyMediaDecoded": "9/9",
+      "verifyMediaFailed": 0
+    },
+    "note": "Role labels and counts only; no child identifiers or photo data are recorded. Started saves remain on their frozen prior publications until Start fresh."
+  },
+  "browser": {
+    "environment": "local synthetic fixture in Chromium with lockstep route; no real family photo, physical device, or authenticated hosted full-route assertion",
+    "reports": [
+      {
+        "name": "a4-two-scares-normal-route",
+        "file": ".agents/evidence/family-world-v5/a4-two-scares-normal-route.json",
+        "sha256": "1b12ac80f5d55e13bd065eb946e5153356f557d5334beccd75cd0c139b68efa8",
+        "stoppedAt": "boss-arena",
+        "legs": 35,
+        "fights": 4,
+        "memories": 2,
+        "recoveries": 0,
+        "jumpScares": 2,
+        "pageErrors": 0,
+        "consoleErrors": 0,
+        "responseErrors": 0,
+        "mediaFailed": 0
+      },
+      {
+        "name": "a4-scares-off",
+        "file": ".agents/evidence/family-world-v5/a4-scares-off.json",
+        "sha256": "ddaf44e7ee9fe727d01b245a8649c14be000fc66acff45e66956b10906e8e676",
+        "stoppedAt": "first-ordinary",
+        "legs": 6,
+        "fights": 0,
+        "memories": 0,
+        "recoveries": 0,
+        "jumpScares": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0,
+        "responseErrors": 0,
+        "mediaFailed": 0
+      },
+      {
+        "name": "a4-combined-first-fight",
+        "file": ".agents/evidence/family-world-v5/a4-combined-first-fight.json",
+        "sha256": "6523aa90fe6d8844dcce9355d9ef91f6ff3f9a112ecbd7b8bd5823df0d610bd4",
+        "stoppedAt": "first-fight",
+        "legs": 6,
+        "fights": 0,
+        "memories": 0,
+        "recoveries": 0,
+        "jumpScares": 1,
+        "pageErrors": 0,
+        "consoleErrors": 0,
+        "responseErrors": 0,
+        "mediaFailed": 0
+      }
+    ],
+    "selectedScreenshots": [
+      {
+        "file": ".agents/evidence/family-world-v5/a4-foyer-lunge.png",
+        "sha256": "97a84a88924214d4bca563ab573fcf6be0d6a6a995cb437c5a69b5e4478d8596"
+      },
+      {
+        "file": ".agents/evidence/family-world-v5/a4-boss-lunge.png",
+        "sha256": "24df2a56e4efc6ed812d3a43a7435a0a894c2cb610e46ad8f7334dd34d2eee3a"
+      },
+      {
+        "file": ".agents/evidence/family-world-v5/a4-first-fight-clear.png",
+        "sha256": "0e273cb3acef7feee6705a3ffdcaa37741059948d74c01a91d44ec278497321c"
+      }
+    ],
+    "twoScares": {
+      "foyerTimeSeconds": 2.07,
+      "bossTimeSeconds": 94.91,
+      "separationSeconds": 92.84,
+      "bothGroundedBeforeTheirFights": true,
+      "bossRouteFights": 4,
+      "bossRouteMemories": 2,
+      "bossRouteRecoveries": 0
+    },
+    "scaresOff": "zero scare events and jump scares across foyer to first ordinary",
+    "combinedTreeFirstFight": "foyer lunge and first-fight camera screenshot checked after marquee/cold-fog fixes"
+  },
+  "ownerGates": [
+    "Tom exact-version art/audio review",
+    "physical Safari play and listening with children",
+    "owner family sign-in, photo swaps and portal check",
+    "haynes-ops#3214 secret/key/HSTS actions"
+  ]
+}

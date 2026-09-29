@@ -60,17 +60,12 @@ A Claude Code session (`claude-opus-5-5`) started by Tom drives this plan. It ke
 - Every new asset appears in the catalog with its review page and live URLs verified.
 - Owner checks that stay pending until Tom does them, never simulated: his real sign-in, the portal tile click, photo swaps, final art and audio review, and device play.
 
-## Progress (September 27, weekend handoff)
+## Progress (September 29, v5 publication)
 
-- **Live:** main `e976281`. Both children are on template v4 / publication r4: real photos, growth moves, scary moments, 14 sound cues, 8 era models in gameplay and the Toon Clubhouse kit.
-- **Prepared but not yet deployed:** catalog v11 and template v5 register Inator Monster, Putty Grunt, Lab Robot, Demon Band Idol and Radio Host Showman. The checked image and both children's v5 publications remain pending. Tom's exact-version reviews remain open under PRD-004 Q-03.
-- **Pending:**
-  - the web-slinger helper model (checkpointed);
-  - the playroom and rescue-harbor kit sheets (unreviewed), the casita sheet (partial) and the rooftop kit (not started);
-  - scripted jump scares (#123 ruling);
-  - issues #103, #118 and #119;
-  - owner actions in haynes-ops#3214.
-- See HANDOFF, "Next, in priority order".
+- **Live:** signed main `7f9701e` at OCI digest `sha256:5f526911e856989d3ef9930a4e7ef1076fe86633dd6c833c8ca2d33cf39b2a41`, pinned to both family and isolated fixture by [haynes-ops #3255](https://github.com/thaynes43/haynes-ops/pull/3255). Both HelmReleases, exact-image pods and Flux are Ready. Both children are on template v5/publication r5; photo carry and decode passed 12/12 and 9/9 with zero failures. Started runs remain frozen until **Start fresh**.
+- **Content:** catalog v11 places exact v001 Inator Monster, Putty Grunt, Lab Robot, Demon Band Idol and Radio Host Showman as labeled private candidates. A4 has two authored scare spots; the Playroom kit is wired, and culling, lunge eyes and A4 camera occlusion are fixed. The nine new GLBs matched repository hashes through the hosted fixture ingress. [The release record](../evidence/family-world-v5-release.json) preserves CI, image, Flux, media and synthetic browser evidence. Tom's exact-version reviews remain pending under PRD-004 Q-03.
+- **In flight:** Rescue Harbor exact kit and the Web-slinger A3 healing helper are being produced in separate worktrees. Casita's reference sheet is partial; Rooftop City has not started.
+- **Owner gates:** haynes-ops #3214, Tom's sign-in/portal/photo check, exact model and audio review, listening and physical Safari play with the children. The browser route evidence is synthetic and lockstep, not an authenticated hosted full journey or device-feel measurement.
 
 ## Result
 
