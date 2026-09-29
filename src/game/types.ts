@@ -371,7 +371,7 @@ export interface GameHandle {
   returnToMissingMemory(): boolean;
   /** Return locally to the final memory once both little memories are held. */
   returnToMajorMemory(): boolean;
-  /** Escape a one-way route while a family chapter's boss still needs ordinary wins. */
+  /** Escape a one-way route while an authored chapter's boss still needs ordinary wins. */
   returnToChapterStart(): boolean;
   retryMedia(): void;
   inspect(): GameInspection;

@@ -582,12 +582,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
       : null;
   };
 
-  const lockedFamilyBossId = (): string | null => {
+  const lockedRouteBossId = (): string | null => {
     const adventure = requireAdventure(save);
     const active = adventure.activeLevel;
     if (
       save.format !== "era-combat-v2" ||
-      adventure.planVersion !== "family-world-plan-v1" ||
       adventure.phase !== "exploring" ||
       !active?.minorMemoryIds ||
       !active.majorMemoryId ||
@@ -609,7 +608,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
   };
 
   const nearLockedBossId = (): string | null => {
-    const bossId = lockedFamilyBossId();
+    const bossId = lockedRouteBossId();
     if (!bossId || !controller.grounded || controller.recoveryRemaining > 0)
       return null;
     const boss = level.encounters.find((enemy) => enemy.id === bossId);
@@ -2058,7 +2057,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         paused ||
         requestState.requestState === "acting" ||
         pendingHit ||
-        !lockedFamilyBossId()
+        !lockedRouteBossId()
       ) return false;
       // Authored anchor validation proves the spawn is supported, clear and on
       // a static platform. Match the runtime course before moving the player.
