@@ -83,9 +83,19 @@ export function authoredLevelLayout(
   );
   const optionalIds = active.optionalEncounterIds ?? [];
   const optionalSet = new Set(optionalIds);
+  const legacyBonusId = optionalIds.length === 1 &&
+    !AUTHORED_BONUS_ENCOUNTER_SLOTS.some((slot) =>
+      optionalIds[0] === `${active.id}-encounter-${slot}`)
+    ? optionalIds[0]
+    : undefined;
+  const optionalSlotIds = new Map(AUTHORED_BONUS_ENCOUNTER_SLOTS.flatMap((slot) => {
+    const canonical = `${active.id}-encounter-${slot}`;
+    const id = optionalSet.has(canonical) ? canonical : slot === "bonus-1" ? legacyBonusId : undefined;
+    return id === undefined ? [] : [[slot, id] as const];
+  }));
   const expectedOptionalIds = AUTHORED_BONUS_ENCOUNTER_SLOTS
-    .map((slot) => `${active.id}-encounter-${slot}`)
-    .filter((id) => optionalSet.has(id));
+    .map((slot) => optionalSlotIds.get(slot))
+    .filter((id): id is string => id !== undefined);
   const requiredOrdinary = ordinary.filter((enemy) => !optionalSet.has(enemy.id));
   if (
     requiredOrdinary.length !== 4 ||
@@ -94,7 +104,7 @@ export function authoredLevelLayout(
     optionalSet.size !== optionalIds.length ||
     optionalIds.some((id) => !ordinary.some((enemy) => enemy.id === id)) ||
     AUTHORED_BONUS_ENCOUNTER_SLOTS.some((slot) =>
-      Boolean(anchors.encounters[slot]) !== optionalSet.has(`${active.id}-encounter-${slot}`)) ||
+      Boolean(anchors.encounters[slot]) !== optionalSlotIds.has(slot)) ||
     active.encounters.filter((enemy) => enemy.role === "boss").length !== 1
   ) {
     throw new Error("Authored encounter slots do not match the frozen roster");
@@ -106,7 +116,7 @@ export function authoredLevelLayout(
           ? "boss"
           : optionalSet.has(enemy.id)
             ? (AUTHORED_BONUS_ENCOUNTER_SLOTS.find((slot) =>
-                enemy.id === `${active.id}-encounter-${slot}`)!)
+                optionalSlotIds.get(slot) === enemy.id)!)
             : (`ordinary-${requiredOrdinary.indexOf(enemy) + 1}` as AuthoredEncounterSlot);
       const binding = anchors.encounters[slot];
       if (!binding || binding.kind !== enemy.kind) {
