@@ -61,6 +61,9 @@
  *   QUEST_E2E_SCARY_MOMENTS on (default) or off
  *   QUEST_E2E_JUMP_SCARE encounter slot to be knocked out by (default none)
  *   QUEST_E2E_WATCHER_PROBE 1 to run the route watcher check on a scary chapter
+ *   QUEST_E2E_FAMILY_CARD synthetic family card label; uses its real published save instead of an editor playtest
+ *   QUEST_E2E_FRIENDLY_ASSET exact friendly asset to exercise; requires UNTIL=friendly and FAMILY_CARD
+ *   QUEST_E2E_SKIP_DRAW 1 to skip GPU drawing between captures (simulation and input remain unchanged)
  *
  *   pnpm build && QUEST_EPHEMERAL_PLAYTEST=true QUEST_FIXTURE_MODE=true \
  *     NODE_ENV=development BETTER_AUTH_SECRET=... QUEST_APP_ORIGIN=http://127.0.0.1:3000 \
@@ -73,6 +76,7 @@ import { resolve } from "node:path";
 import { chromium, type CDPSession, type Page } from "playwright";
 import sharp from "sharp";
 import { abilitiesForAge, growthMovesFrom, type AbilitySet } from "../../src/shared/abilities";
+import type { FriendlyView } from "../../src/shared/contracts";
 import type {
   AuthoredAnchor,
   AuthoredConnection,
@@ -111,9 +115,13 @@ const playScale = Number(process.env.QUEST_E2E_SCALE ?? 0.25);
 assert.ok(playScale >= 0.1 && playScale <= 1, "QUEST_E2E_SCALE must be 0.1 to 1");
 const until = process.env.QUEST_E2E_UNTIL ?? "complete";
 assert.ok(
-  ["complete", "first-fight", "boss-arena", "spawn", "watcher-probe"].includes(until),
-  "QUEST_E2E_UNTIL must be complete, first-fight, boss-arena, spawn or watcher-probe",
+  ["complete", "first-fight", "boss-arena", "spawn", "watcher-probe", "friendly"].includes(until),
+  "QUEST_E2E_UNTIL must be complete, first-fight, boss-arena, spawn, watcher-probe or friendly",
 );
+const familyCard = process.env.QUEST_E2E_FAMILY_CARD ?? "";
+const friendlyAsset = process.env.QUEST_E2E_FRIENDLY_ASSET ?? "";
+const skipDraw = process.env.QUEST_E2E_SKIP_DRAW === "1";
+assert.ok(until !== "friendly" || (familyCard && friendlyAsset), "friendly checks require a synthetic family card and exact asset");
 const spawnIdleSeconds = Number(process.env.QUEST_E2E_SPAWN_IDLE ?? 20);
 assert.ok(spawnIdleSeconds >= 0 && spawnIdleSeconds <= 300, "QUEST_E2E_SPAWN_IDLE must be 0 to 300");
 const scaryMoments = process.env.QUEST_E2E_SCARY_MOMENTS ?? "on";
@@ -138,8 +146,9 @@ const chapters = project.chapters as readonly LevelEditorChapterV2[];
 const requested = (process.env.QUEST_E2E_CHAPTERS ?? "").split(",").filter(Boolean);
 const selected = requested.length ? chapters.filter((entry) => requested.includes(entry.chapterId)) : chapters;
 assert.equal(selected.length, requested.length || chapters.length, "unknown chapter requested");
+assert.ok(!familyCard || selected.length === 1, "a synthetic family checkpoint selects exactly one chapter");
 
-const VIEWPORT = { width: 1280, height: 760 };
+let VIEWPORT = { width: 1280, height: 760 };
 const FINE_MS = 16;
 const CRUISE_MS = 48;
 const IDLE_MS = 192;
@@ -188,6 +197,7 @@ interface Live {
   phase: string;
   playerHp: number;
   nearEncounterId: string | null;
+  nearFriendlyId: string | null;
   attackReady: boolean;
   guardReady: boolean;
   requestBusy: boolean;
@@ -204,6 +214,7 @@ interface Live {
   encounters: LiveEncounter[];
   memories: Array<{ id: string; state: string; x: number; y: number; z: number }>;
   pickups: Array<{ id: string; kind: string; collected: boolean; x: number; y: number; z: number }>;
+  friendlies: Array<{ id: string; assetId: string; x: number; y: number; z: number }>;
   /** Null on a chapter playing at scare level 0. */
   scare: LiveScare | null;
 }
@@ -216,6 +227,7 @@ interface PageInspection {
     phase: string;
     playerHp: number;
     nearEncounterId: string | null;
+    nearFriendlyId?: string | null;
     attackReady: boolean;
     guardReady: boolean;
     requestBusy: boolean;
@@ -232,6 +244,7 @@ interface PageInspection {
     encounterPositions: Array<Omit<LiveEncounter, "facing" | "pose" | "phase"> & { localPhase?: string }>;
     memoryPositions: Live["memories"];
     pickupPositions: Live["pickups"];
+    friendlyPositions?: Live["friendlies"];
   };
   obby?: { timeSeconds: number; supportId: string | null; recoveries: number };
   scare?: {
@@ -250,14 +263,18 @@ interface PageInspection {
 /** The parts of a save view the report records. */
 interface SaveLike {
   id: string;
+  revision: number;
   ageYears: number;
   recoveredIds?: string[];
   adventure?: {
     phase?: string;
     currentLevelId?: string;
     completedLevelIds?: string[];
+    playerHp?: number;
+    maxPlayerHp?: number;
     activeLevel?: {
       encounters?: Array<{ id: string; role: string; content?: { assetId?: string; placeholder?: string } }>;
+      friendlies?: FriendlyView[];
     };
   };
 }
@@ -299,6 +316,7 @@ function inspectInPage(draw: boolean): Live | null {
     phase: status.phase,
     playerHp: status.playerHp,
     nearEncounterId: status.nearEncounterId,
+    nearFriendlyId: status.nearFriendlyId ?? null,
     attackReady: status.attackReady,
     guardReady: status.guardReady,
     requestBusy: status.requestBusy,
@@ -340,6 +358,7 @@ function inspectInPage(draw: boolean): Live | null {
       y: entry.y,
       z: entry.z,
     })),
+    friendlies: level.friendlyPositions ?? [],
     scare: scare
       ? {
           level: scare.level,
@@ -379,6 +398,7 @@ class LockstepGame {
   private mismatches = 0;
   private jiggle = 0;
   private readonly held = new Set<string>();
+  private lastRealStrike = 0;
   /**
    * Runs after every frame the pilot steps (never inside itself, so a
    * screenshot it takes does not re-enter it).
@@ -504,6 +524,12 @@ class LockstepGame {
   }
 
   async press(key: string): Promise<void> {
+    // The server clock stays real when the page clock advances faster.
+    if (skipDraw && (key === "f" || key === "Shift")) {
+      const remaining = this.lastRealStrike + 1_100 - Date.now();
+      if (remaining > 0) await new Promise((wait) => setTimeout(wait, remaining));
+      this.lastRealStrike = Date.now();
+    }
     await this.page.keyboard.press(key);
   }
 
@@ -523,6 +549,7 @@ class LockstepGame {
    * context's play scale and would return a quarter-size image.
    */
   async screenshot(path: string): Promise<void> {
+    if (skipDraw) await this.page.evaluate("globalThis.__questSkipDraw=false");
     const metrics = (scale: number) =>
       this.cdp.send("Emulation.setDeviceMetricsOverride", { ...VIEWPORT, deviceScaleFactor: scale, mobile: false });
     await metrics(1);
@@ -538,6 +565,7 @@ class LockstepGame {
     await writeFile(path, best!);
     await metrics(playScale);
     await this.page.evaluate(() => window.dispatchEvent(new Event("resize")));
+    if (skipDraw) await this.page.evaluate("globalThis.__questSkipDraw=true");
   }
 }
 
@@ -575,6 +603,8 @@ interface ChapterReport {
   consoleErrors: string[];
   responseErrors: string[];
   media: Record<string, number>;
+  friendly?: Record<string, unknown>;
+  drawingBetweenCaptures?: boolean;
   /** DESIGN-027: the declared and live scare levels, counters, events and scare screenshots. */
   scare: {
     declared: number;
@@ -1080,6 +1110,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     consoleErrors: [],
     responseErrors: [],
     media: {},
+    drawingBetweenCaptures: !skipDraw,
     scare: {
       declared: document.scare ?? 0,
       expected: scaryMoments === "off" ? 0 : (document.scare ?? 0),
@@ -1105,6 +1136,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
   let game: LockstepGame | null = null;
   try {
     const context = await browser.newContext({ viewport: VIEWPORT, deviceScaleFactor: playScale });
+    if (familyCard) await context.addCookies([{ name: "quest_test_session", value: "admin", url: url! }]);
     const page = await context.newPage();
     const cdp = await context.newCDPSession(page);
     let latestSave: SaveLike | null = null;
@@ -1117,9 +1149,10 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       if (response.status() >= 400) report.responseErrors.push(`${response.status()} ${path}`);
       if (path.startsWith("/studio/assets/media/") && path.endsWith(".glb")) report.media[path] = response.status();
       if (response.request().method() !== "POST" || !response.ok()) return;
-      if (path !== "/api/editor/playtests" && !/^\/api\/saves\/[^/]+\/actions$/.test(path)) return;
+      const startsFamily = /^\/api\/children\/[^/]+\/play$/.test(path);
+      if (path !== "/api/editor/playtests" && !startsFamily && !/^\/api\/saves\/[^/]+\/actions$/.test(path)) return;
       const payload = (await response.json().catch(() => null)) as (SaveLike & { save?: SaveLike }) | null;
-      const save = path === "/api/editor/playtests" ? payload?.save : payload;
+      const save = path === "/api/editor/playtests" || startsFamily ? payload?.save : payload;
       if (save?.id) latestSave = save;
     });
     if (scaryMoments === "off")
@@ -1130,8 +1163,22 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
           /* Storage is optional; the default stays on. */
         }
       });
+    if (skipDraw) await page.addInitScript({ content: `(() => {
+      globalThis.__questSkipDraw = false;
+      for (const type of [globalThis.WebGL2RenderingContext, globalThis.WebGLRenderingContext]) {
+        if (!type) continue;
+        for (const name of ['drawArrays', 'drawElements', 'drawArraysInstanced', 'drawElementsInstanced', 'drawRangeElements', 'clear']) {
+          const original = type.prototype[name];
+          if (typeof original !== 'function') continue;
+          type.prototype[name] = function(...args) {
+            if (globalThis.__questSkipDraw) return;
+            return original.apply(this, args);
+          };
+        }
+      }
+    })();` });
     await page.clock.install();
-    await page.route("**/api/editor/playtests", async (route) => {
+    if (!familyCard) await page.route("**/api/editor/playtests", async (route) => {
       if (route.request().method() !== "POST") return route.continue();
       await route.continue({
         postData: JSON.stringify({ project, chapterId: chapter.chapterId, scope: "chapter" }),
@@ -1139,7 +1186,8 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       });
     });
     await page.goto(url!, { waitUntil: "domcontentloaded" });
-    await page.getByRole("button", { name: "Enter Rat Casino", exact: true }).click({ timeout: 60_000 });
+    if (familyCard) await page.locator(".family-journey-card").filter({ hasText: familyCard }).click({ timeout: 60_000 });
+    else await page.getByRole("button", { name: "Enter Rat Casino", exact: true }).click({ timeout: 60_000 });
     await page.locator("canvas[data-quest-canvas=true]").waitFor({ timeout: 90_000 });
     game = new LockstepGame(page, cdp);
     const readyBy = Date.now() + 180_000;
@@ -1150,6 +1198,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       await new Promise((resolveWait) => setTimeout(resolveWait, 250));
     }
     await game.pause();
+    if (skipDraw) await page.evaluate("globalThis.__questSkipDraw=true");
     const opening = game.live;
     report.growthMoves = opening.growthMoves;
     report.appearanceStage = opening.stage;
@@ -1397,6 +1446,142 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     };
     let firstOrdinaryShot = false;
     const anchors = document.anchors;
+    const helper = friendlyAsset ? opening.friendlies.find((friend) => friend.assetId === friendlyAsset) : null;
+    const helperAnchor = helper
+      ? Object.values(anchors.friendlies).find((anchor) => planar(anchor.position, helper) < 0.01)
+      : null;
+    if (until === "friendly") assert.ok(helper && helperAnchor, "the exact friendly occupies an authored anchor");
+    const exerciseFriend = async () => {
+      assert.ok(helper && helperAnchor && openingSave);
+      const readSave = async (): Promise<SaveLike> => {
+        const response = await page.request.get(`${url}/api/saves/${openingSave.id}`);
+        assert.ok(response.ok(), `read family save: ${response.status()}`);
+        return response.json() as Promise<SaveLike>;
+      };
+      const friend = (save: SaveLike) => {
+        const value = save.adventure?.activeLevel?.friendlies?.find((entry) => entry.id === helper.id);
+        assert.ok(value && value.assetId === friendlyAsset);
+        return value;
+      };
+      const settleUi = async (condition: () => Promise<boolean>, label: string) => {
+        const deadline = Date.now() + 15_000;
+        while (!(await condition())) {
+          assert.ok(Date.now() < deadline, label);
+          await game!.step(CRUISE_MS);
+          await new Promise((wait) => setTimeout(wait, 30));
+        }
+      };
+      const changed = async (revision: number) => {
+        let save = await readSave();
+        await settleUi(async () => {
+          save = await readSave();
+          return save.revision > revision;
+        }, "friendly action did not persist");
+        await game!.step(CRUISE_MS);
+        return save;
+      };
+      const dialog = page.getByRole("dialog");
+      const open = async () => {
+        await settleUi(() => page.locator(".friendly-prompt").isVisible(), "friendly prompt not visible");
+        await page.locator(".friendly-prompt").click({ force: true });
+        await settleUi(() => dialog.isVisible(), "friendly dialog not visible");
+      };
+      assert.ok(await pilot.walkTo(helper, { tolerance: 1.1, until: () => game!.live.nearFriendlyId === helper.id }));
+      await pilot.idle(0.2);
+      await game!.releaseStick();
+      assert.equal(game!.live.nearFriendlyId, helper.id);
+      let save = await readSave();
+      const before = structuredClone(save);
+      assert.equal(friend(save).boonClaimed, false);
+      const encounters = JSON.stringify(save.adventure?.activeLevel?.encounters);
+      const cameraYaw = Math.atan2(-(helper.x - game!.live.position.x), -(helper.z - game!.live.position.z));
+      const cameraPixels = Math.round(-cameraYaw / CAMERA_YAW_PER_PIXEL);
+      await game!.dragCamera(cameraPixels);
+      await pilot.idle(0.5);
+      const capture = async (name: string) => {
+        const desktop = { ...VIEWPORT };
+        try {
+          for (const viewport of [{ name: "desktop", width: 1280, height: 760 }, { name: "phone", width: 390, height: 844 }]) {
+            VIEWPORT = { width: viewport.width, height: viewport.height };
+            await page.setViewportSize(VIEWPORT);
+            await game!.step(CRUISE_MS);
+            await shot(`${name}-${viewport.name}`);
+          }
+        } finally {
+          VIEWPORT = desktop;
+          await page.setViewportSize(VIEWPORT);
+          await game!.step(CRUISE_MS);
+        }
+      };
+      await capture("friendly-idle");
+      await game!.press("f");
+      await pilot.idle(0.25);
+      save = await readSave();
+      assert.equal(save.revision, before.revision, "normal attack never targets this friend");
+      assert.equal(friend(save).hp, friend(before).hp);
+      await open();
+      const fullHealthGiftPreserved = save.adventure?.playerHp === save.adventure?.maxPlayerHp;
+      if (fullHealthGiftPreserved) {
+        assert.equal(await dialog.getByRole("button", { name: "You’re already healthy", exact: true }).isDisabled(), true);
+        assert.equal(friend(await readSave()).boonClaimed, false);
+      }
+      const harms: Array<{ friendHp: number; playerHp: number | undefined }> = [];
+      while (!friend(save).defeated) {
+        await dialog.getByRole("button", { name: "Hurt this friend…", exact: true }).click({ force: true });
+        await settleUi(() => dialog.getByRole("button", { name: "Attack anyway", exact: true }).isVisible(), "harm warning missing");
+        if (harms.length === 0) await capture("friendly-harm-warning");
+        // Shared weapon deadlines use real server time even in lockstep.
+        await new Promise((wait) => setTimeout(wait, 1_100));
+        const revision = save.revision;
+        await dialog.getByRole("button", { name: "Attack anyway", exact: true }).click({ force: true });
+        save = await changed(revision);
+        harms.push({ friendHp: friend(save).hp, playerHp: save.adventure?.playerHp });
+        assert.ok(friend(save).penaltyActive);
+        assert.equal(save.adventure?.playerHp, Math.max(1, before.adventure!.playerHp! - 2), "only first harm costs player health");
+        await settleUi(async () => !(await dialog.isVisible()), "harm dialog did not close");
+        await pilot.idle(2.2);
+        if (!friend(save).defeated) await open();
+        assert.ok(harms.length <= 4, "friendly defeat did not finish");
+      }
+      await capture("friendly-held-defeat");
+      await open();
+      await dialog.getByRole("button", { name: "Make amends", exact: true }).click({ force: true });
+      save = await changed(save.revision);
+      assert.deepEqual({ hp: friend(save).hp, defeated: friend(save).defeated, penalty: friend(save).penaltyActive, gift: friend(save).boonClaimed },
+        { hp: friend(save).maxHp, defeated: false, penalty: false, gift: false });
+      const hpBeforeHeal = save.adventure!.playerHp!;
+      await settleUi(() => dialog.getByRole("button", { name: "Say hello · +2 health", exact: true }).isEnabled(), "healing did not become available after amends");
+      await dialog.getByRole("button", { name: "Say hello · +2 health", exact: true }).click({ force: true });
+      save = await changed(save.revision);
+      assert.equal(save.adventure?.playerHp, Math.min(save.adventure!.maxPlayerHp!, hpBeforeHeal + 2));
+      assert.equal(friend(save).boonClaimed, true);
+      assert.equal(await dialog.getByRole("button", { name: "Gift already shared", exact: true }).isDisabled(), true);
+      await capture("friendly-amends-healed");
+      assert.equal(JSON.stringify(save.adventure?.activeLevel?.encounters), encounters, "friendship never changes enemies or boss gates");
+      await dialog.getByRole("button", { name: "Keep exploring", exact: true }).click({ force: true });
+      const repaired = structuredClone(friend(save));
+      const healedHp = save.adventure?.playerHp;
+      await page.clock.resume();
+      await page.reload({ waitUntil: "domcontentloaded" });
+      await page.locator(".family-journey-card").filter({ hasText: familyCard }).click({ timeout: 30_000 });
+      const readyBy = Date.now() + 90_000;
+      for (;;) {
+        const live = await page.evaluate(inspectInPage, false).catch(() => null);
+        if (live?.routeId === chapter.routeId && live.mediaLoading === 0 && live.supportId) break;
+        assert.ok(Date.now() < readyBy, "family reload did not load");
+        await new Promise((wait) => setTimeout(wait, 100));
+      }
+      await game!.pause();
+      if (skipDraw) await page.evaluate("globalThis.__questSkipDraw=true");
+      save = await readSave();
+      assert.deepEqual(friend(save), repaired, "reload preserves repaired friendship and consumed gift");
+      assert.equal(save.adventure?.playerHp, healedHp);
+      assert.equal(game!.live.friendlies.find((entry) => entry.id === helper.id)?.assetId, friendlyAsset);
+      report.friendly = { assetId: friendlyAsset, id: helper.id, anchor: helperAnchor, placement: helper, fullHealthGiftPreserved,
+        normalAttackIgnored: true, harms, amendsRestored: true, healedHp, giftOnceOnly: true, reloadPreserved: true,
+        enemiesUnchanged: true, familyCard, initialSaveRevision: before.revision, finalSaveRevision: save.revision };
+      mark("friendly:passed", report.friendly);
+    };
     const mainPath = document.mainPath;
     const bossIndex = mainPath.indexOf(anchors.encounters.boss.platformId);
     // Mid-climb: the first main-path deck at least half as high as the boss deck.
@@ -1414,6 +1599,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       anchors.memories["minor-one"].platformId,
       anchors.memories["minor-two"].platformId,
       ...ENCOUNTER_SLOTS.map((slot) => anchors.encounters[slot].platformId),
+      ...(helperAnchor ? [helperAnchor.platformId] : []),
     ]);
     for (const [index, platformId] of mainPath.entries()) {
       // Pads, lifts and movers in between are crossed on the way.
@@ -1455,6 +1641,10 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
               `${slot}: the forced knockout did not become a jump scare`,
             );
         }
+      }
+      if (until === "friendly" && helperAnchor?.platformId === platformId) {
+        await exerciseFriend();
+        throw new StopAt("friendly");
       }
       if (index === mainPath.length - 1) {
         await pilot.collectMemory("major", anchors.memories.major);
