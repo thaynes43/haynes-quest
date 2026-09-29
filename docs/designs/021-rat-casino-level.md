@@ -18,6 +18,10 @@ The world should feel occupied from the player's camera: use the already deliver
 
 The roulette dais sits in the left stage wing, clear of Rat's fight arena and the straight route to the major memory. Golden remains on the right; Rat owns the center. Overhead room trim must clear the trailing player camera at the next platform, including in portrait view.
 
+### Camera and scenic sightlines · September 28, 2026
+
+The family A4 ticket-room marquee can fill the chase camera during its first ordinary fight ([issue #119](https://github.com/thaynes43/haynes-quest/issues/119)). The runtime now clears opaque `scenicOnly` meshes or individual instances crossing the camera-to-traveler sightline, including a camera already inside a prop's bounds. When an instanced GLB has several material primitives, the whole obstructing prop instance clears together; leaving its brass or bulbs behind would still clip the frame. It restores them as soon as the view moves clear. This applies to existing published journeys without rewriting their level documents, and leaves authored platforms, collision and gameplay objects intact. The camera keeps its usual distance and orientation so the surrounding room remains recognizable. Browser acceptance includes the normal first A4 fight view and a clear-view restoration; physical Safari play remains a separate check.
+
 ## One new world in a portable project
 
 The first Rat Casino course is an independently identified third chapter in a checked-in `level-editor-project-v2` fictional project. Its local route is `rat-casino-v1`. The normal level editor can inspect, change, export and preview it through the same commands and validators as any other project. The private playtest offers a direct start at this chapter using the editor preview service's frozen project path. Published garden and Besties routes, their saved plans and the regular two-chapter fictional start remain unchanged.
