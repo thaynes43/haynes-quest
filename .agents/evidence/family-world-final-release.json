@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-29T07:57:12Z",
+  "status": "final-gameplay-image-live; owner-acceptance-pending",
+  "scope": "Read-only final September 29 gameplay image checkpoint; public counts and synthetic fixture media only. No family run was restarted.",
+  "application": {
+    "commit": "24bc5105cfc253ab5c1472eb44693546ea04e0d6",
+    "mainWorkflow": "https://github.com/thaynes43/haynes-quest/actions/runs/36536004893",
+    "verify": "success",
+    "image": "success",
+    "provenance": "success",
+    "signature": "success",
+    "mergedPullRequests": [
+      "https://github.com/thaynes43/haynes-quest/pull/135",
+      "https://github.com/thaynes43/haynes-quest/pull/136",
+      "https://github.com/thaynes43/haynes-quest/pull/137",
+      "https://github.com/thaynes43/haynes-quest/pull/139",
+      "https://github.com/thaynes43/haynes-quest/pull/138"
+    ]
+  },
+  "image": {
+    "repository": "ghcr.io/thaynes43/haynes-quest",
+    "tag": "sha-24bc5105cfc253ab5c1472eb44693546ea04e0d6",
+    "ociDigest": "sha256:0dd8f0d1687427e33b536328dfd7415cde1122e4e80bf6ff2e5bbdaa56cb5207"
+  },
+  "gitOps": {
+    "imagePromotion": "https://github.com/thaynes43/haynes-ops/pull/3260",
+    "rolloutTimeoutFix": "https://github.com/thaynes43/haynes-ops/pull/3261",
+    "fluxRevision": "main@sha1:cee2b71d3174c385ba7cdaafb8b211f2bed2a631",
+    "kustomizationReady": true,
+    "helmReleaseTimeout": "20m",
+    "note": "The initial 5-minute Helm action timed out during the large image pull. The 20-minute timeout applied through GitOps; both releases then reconciled successfully."
+  },
+  "deployments": {
+    "family": {
+      "helmRelease": "haynes-quest",
+      "helmGeneration": 18,
+      "helmRevision": 22,
+      "helmReady": true,
+      "pod": "haynes-quest-758df5cf7-q9pmr",
+      "podUid": "ddad6ac7-5b49-4e19-ad0c-89028e8052da",
+      "ready": true,
+      "restarts": 0,
+      "imageDigestMatches": true,
+      "readyzHttp": 200
+    },
+    "fixture": {
+      "helmRelease": "haynes-quest-playtest",
+      "helmGeneration": 39,
+      "helmRevision": 43,
+      "helmReady": true,
+      "pod": "haynes-quest-playtest-64d4f4ccc5-5x9xx",
+      "podUid": "21effd07-7761-4d3b-8b11-477a0ff00184",
+      "ready": true,
+      "restarts": 0,
+      "imageDigestMatches": true,
+      "readyzHttp": 200
+    }
+  },
+  "publications": {
+    "worldA": {
+      "template": "family-world-a@v6",
+      "publicationRevision": 6,
+      "photos": 12,
+      "decoded": 12,
+      "mediaFailures": 0
+    },
+    "worldB": {
+      "template": "family-world-b@v5",
+      "publicationRevision": 5,
+      "photos": 9,
+      "decoded": 9,
+      "mediaFailures": 0
+    },
+    "startedRunsRestarted": false
+  },
+  "hostedFixture": {
+    "host": "https://haynes-quest-playtest.haynesops.com",
+    "checkedAt": "2026-09-29T07:50:01.854Z",
+    "routes": {
+      "heroCityA3": {
+        "chapterId": "family-a3",
+        "routeId": "family-a3-rooftop",
+        "completed": true,
+        "legs": 36,
+        "fights": 5,
+        "memories": 3,
+        "pickups": 2,
+        "recoveries": 0,
+        "startAge": 5,
+        "completionAge": 9,
+        "mediaFailures": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0,
+        "httpResponseErrors": 0,
+        "drawingBetweenCaptures": false
+      },
+      "magicHouseB2": {
+        "chapterId": "family-b2",
+        "routeId": "family-b2-casita",
+        "completed": true,
+        "legs": 29,
+        "fights": 5,
+        "memories": 3,
+        "pickups": 2,
+        "recoveries": 0,
+        "startAge": 2,
+        "completionAge": 4,
+        "mediaFailures": 0,
+        "pageErrors": 0,
+        "consoleErrors": 0,
+        "httpResponseErrors": 0,
+        "drawingBetweenCaptures": false
+      }
+    },
+    "exactModelDeliveries": [
+      {
+        "path": "rooftop-city-kit/v001/water-tower.glb",
+        "status": 200,
+        "bytes": 180172,
+        "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+        "matchesSource": true
+      },
+      {
+        "path": "rooftop-city-kit/v001/rooftop-ac-unit.glb",
+        "status": 200,
+        "bytes": 88880,
+        "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+        "matchesSource": true
+      },
+      {
+        "path": "rooftop-city-kit/v001/crane-hook.glb",
+        "status": 200,
+        "bytes": 43912,
+        "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+        "matchesSource": true
+      },
+      {
+        "path": "rooftop-city-kit/v001/billboard-frame.glb",
+        "status": 200,
+        "bytes": 122480,
+        "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+        "matchesSource": true
+      },
+      {
+        "path": "casita-kit/v001/casita-terrace-wall.glb",
+        "status": 200,
+        "bytes": 153388,
+        "sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+        "matchesSource": true
+      },
+      {
+        "path": "casita-kit/v001/flower-planter.glb",
+        "status": 200,
+        "bytes": 131712,
+        "sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+        "matchesSource": true
+      },
+      {
+        "path": "casita-kit/v001/patterned-door.glb",
+        "status": 200,
+        "bytes": 97932,
+        "sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+        "matchesSource": true
+      },
+      {
+        "path": "casita-kit/v001/butterfly-arch.glb",
+        "status": 200,
+        "bytes": 193420,
+        "sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+        "matchesSource": true
+      }
+    ],
+    "exactModelDeliveriesPassed": 8,
+    "reviewPages": {
+      "casitaKitV001Http": 200,
+      "rooftopCityKitV001Http": 200,
+      "webSlingerHelperV001Http": 200
+    },
+    "limits": [
+      "The lockstep Chromium editor routes suppress drawing between rendered screenshots; they do not measure real-time frame cost or physical Safari feel.",
+      "The editor A3 route uses friendly-catalog-v1 and does not exercise World A v6 Web-slinger healing, harm or amends. The earlier local v6 family-card check covers that interaction.",
+      "The isolated fixture has no family credentials or private photos; its routes do not verify an authenticated family journey."
+    ]
+  },
+  "ownerGates": [
+    "Tom's real sign-in, portal tile and photo review",
+    "Tom's exact-version candidate art and audio review under PRD-004 Q-03",
+    "Tom's physical Safari play and listening with the children",
+    "haynes-ops issue 3214 owner-access security tasks"
+  ]
+}
