@@ -21,8 +21,29 @@ A nullable `friendly_state` JSON sidecar on the save stores its schema/catalog v
 
 Expose the current level's friendly views (stable instance and asset/version, HP/maxHP, defeated, boonClaimed, penaltyActive) independently of encounter views. Catalog identity and state validation must reject mismatched instance sets, impossible health/defeat relationships and unknown versions. The client chooses labels/positions from known catalog IDs and does not invent earned rewards.
 
+## World A helper roster · September 29, 2026
+
+The approved Web-slinger Helper joins Hero City in `family-world-a@v6` as an
+original masked child hero. The three existing friendly anchors stay in place;
+only `friendly-2`, beside the vent bounce, changes from Signal Moth to the helper.
+Greeting restores the same two health points and uses the existing once-only
+gift, deliberate-harm penalty and Make amends rules. No gap-assist mechanic is
+introduced. The helper remains outside enemy targeting and boss requirements.
+
+The new immutable `friendly-catalog-v2` retains every v1 identity and adds
+`web-slinger-helper@v001`. Its assignment table preserves the existing three
+residents everywhere except World A's third chapter. The new family template
+explicitly pins v2 and includes that pin in its fingerprint. Published family
+plans freeze `friendlyCatalogVersion`; plans without the field retain v1.
+Saved friendly sidecars must match their plan's pin, so a new catalog cannot
+change a frozen journey or reinterpret an old resident's progress. Earlier
+templates, v1 catalog entries and v5 course geometry remain unchanged.
+
+This exact model is a private candidate under PRD-004 Q-03. Tom's exact-version
+art review and physical-device acceptance remain pending.
+
 ## Acceptance
 
 Test once-only healing, full-health preservation, first-harm HP floor/penalty, defeat and amends, retry/reload, advancement with harmed friends, old/null-sidecar saves, malformed sidecars and exact legacy catalog retention. Add meaningful owner/revision/duplicate/concurrent PostgreSQL tests using existing transaction infrastructure. Real controls must show friendly markers, greetings, warning/intentional attacks, penalty feedback and recovery without stealing hostile targeting.
 
-All six review pages, inventory entries and thumbnail cards describe friendly roles and match actual integration status. Final exact-model approval remains separate from the requested isolated playtest integration.
+Every resident's review page, inventory entry and thumbnail card describes its friendly role and matches its actual integration status. Final exact-model approval remains separate from the requested isolated playtest integration.

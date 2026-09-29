@@ -23,6 +23,7 @@ import {
 } from '../shared/editor-project.js';
 import {
   FRIENDLY_CATALOG_VERSIONS,
+  friendlyCatalogVersionForPlan,
   friendlyDefinitionsForPlan,
   type FriendlyState,
 } from '../shared/friendly.js';
@@ -205,6 +206,7 @@ const familyWorldLevelSchema = z.object({
 const familyWorldPlanSchema = z.object({
   version: z.literal('family-world-plan-v1'),
   catalogVersion: z.enum(PARODY_CATALOG_VERSIONS),
+  friendlyCatalogVersion: z.enum(FRIENDLY_CATALOG_VERSIONS).optional(),
   projectFingerprint: z.string().regex(/^[a-f0-9]{64}$/),
   template: z.object({
     id: z.string().regex(/^[a-z0-9][a-z0-9-]{0,63}$/),
@@ -344,6 +346,7 @@ export function parseStoredFriendlyState(
   const parsed = friendlyStateSchema.safeParse(raw);
   if (!parsed.success) invalid();
   const state = parsed.data as FriendlyState;
+  if (state.catalogVersion !== friendlyCatalogVersionForPlan(plan)) invalid();
   const definitions = friendlyDefinitionsForPlan(plan, state.catalogVersion);
   const expected = new Map(definitions.map((definition) => [definition.id, definition]));
   const levelIndexes = new Map(plan.levels.map((level) => [level.id, level.index]));

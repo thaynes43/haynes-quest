@@ -1,0 +1,363 @@
+{
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "glb_sha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+  "blend_sha256": "89c1008dfe2e95af8c8d1adb02da85ebaf11d96652a553679f577a97fc04ef42",
+  "method": "WO111 web-slinger-helper source-side attachment audit on the live scene that exported the exact GLB.\n\nPer clip and frame (30 fps): triangle-overlap between listed part groups on the evaluated skin (BVH), IK joint\nconnectivity (limb heads stay on their parents' tails), the lowest evaluated vertex, and the rest/sheet/defeat\nreproduction errors. Intended contacts are not tested: the left fist pressed onto the hip in the sheet pose (fist ~\nbody), the left mitten tapping the right cuff's heart while charging, sleeve roots inside the shoulder balls, legging\ntops inside the torso and seat, the hood's lower rim round the neck, the legging hems inside the boots. Rope pairs are not counted on the two or three defeat frames in which the\ncollapsed rope tangle springs open out of the left boot (its bone scale between 1 and 100); those frames and their\noverlaps are recorded under rope_growth_*. Supplements the\nexact-GLB checks in three-inspection.json; not a universal collision proof. Adapted from the demon-band-idol v001 audit.",
+  "pairs": [
+    "mittR~head",
+    "mittL~head",
+    "foreR~head",
+    "foreL~head",
+    "upperR~head",
+    "upperL~head",
+    "mittR~body",
+    "mittR~legs",
+    "mittL~legs",
+    "foreR~body",
+    "mittR~mittL",
+    "legR~legL",
+    "footR~footL",
+    "footR~legL",
+    "footL~legR",
+    "rope~footL",
+    "rope~footR",
+    "rope~legs",
+    "rope~body",
+    "rope~mittL",
+    "coil~legR",
+    "coil~mittR",
+    "coil~foreR",
+    "coil~body",
+    "fringe~face_skin",
+    "mittR~hood",
+    "mittL~hood"
+  ],
+  "groups": {
+    "head": [
+      "eye_L",
+      "eye_R",
+      "fringe",
+      "head",
+      "mask"
+    ],
+    "body": [
+      "chest",
+      "hips",
+      "spine"
+    ],
+    "upperR": [
+      "upper_arm_R"
+    ],
+    "upperL": [
+      "upper_arm_L"
+    ],
+    "foreR": [
+      "forearm_R",
+      "heart_R"
+    ],
+    "foreL": [
+      "forearm_L",
+      "heart_L"
+    ],
+    "mittR": [
+      "fingers_R",
+      "hand_R",
+      "thumb_R"
+    ],
+    "mittL": [
+      "fingers_L",
+      "hand_L",
+      "thumb_L"
+    ],
+    "legR": [
+      "shin_R",
+      "thigh_R"
+    ],
+    "legL": [
+      "shin_L",
+      "thigh_L"
+    ],
+    "legs": [
+      "shin_L",
+      "shin_R",
+      "thigh_L",
+      "thigh_R"
+    ],
+    "footR": [
+      "foot_R"
+    ],
+    "footL": [
+      "foot_L"
+    ],
+    "coil": [
+      "parts: the three cream coil loops (the clip sits on the belt by design)"
+    ],
+    "rope": [
+      "rope"
+    ],
+    "face_skin": [
+      "part: Round face with the painted grin, blush and nose shade"
+    ],
+    "fringe": [
+      "fringe-dominant faces of the three chestnut locks"
+    ],
+    "hood": [
+      "parts: hood shell and face rim"
+    ]
+  },
+  "group_face_counts": {
+    "head": 2834,
+    "body": 1480,
+    "upperR": 208,
+    "upperL": 208,
+    "foreR": 340,
+    "foreL": 340,
+    "mittR": 220,
+    "mittL": 220,
+    "legR": 108,
+    "legL": 108,
+    "legs": 216,
+    "footR": 374,
+    "footL": 374,
+    "coil": 288,
+    "rope": 588,
+    "face_skin": 392,
+    "fringe": 294,
+    "hood": 1104
+  },
+  "max_influences": 2,
+  "rest_reproduction_max_error": 8.702278137207031e-06,
+  "sheet_pose_reproduction_m": {
+    "wrist_R_err_m": 8.197755025575082e-08,
+    "ankle_R_err_m": 2.4087693227607922e-08,
+    "heart_R_err_m": 2.457562461863554e-07,
+    "wrist_L_err_m": 1.195036025230163e-07,
+    "ankle_L_err_m": 1.787510539677991e-08,
+    "heart_L_err_m": 6.664001874625056e-08,
+    "mitten_R_centre_err_m": 2.2626347301990113e-07
+  },
+  "defeat_feet_reproduction": {
+    "ankle_L_err_m": 1.4901161193847656e-08,
+    "ankle_R_err_m": 1.4901161193847656e-08,
+    "foot_L_rot_err": 2.384185791015625e-07
+  },
+  "clips": {
+    "idle": {
+      "frames": 91,
+      "overlaps": {
+        "mittR~head": 0,
+        "mittL~head": 0,
+        "foreR~head": 0,
+        "foreL~head": 0,
+        "upperR~head": 0,
+        "upperL~head": 0,
+        "mittR~body": 0,
+        "mittR~legs": 0,
+        "mittL~legs": 0,
+        "foreR~body": 0,
+        "mittR~mittL": 0,
+        "legR~legL": 0,
+        "footR~footL": 0,
+        "footR~legL": 0,
+        "footL~legR": 0,
+        "rope~footL": 0,
+        "rope~footR": 0,
+        "rope~legs": 0,
+        "rope~body": 0,
+        "rope~mittL": 0,
+        "coil~legR": 0,
+        "coil~mittR": 0,
+        "coil~foreR": 0,
+        "coil~body": 0,
+        "fringe~face_skin": 0,
+        "mittR~hood": 0,
+        "mittL~hood": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 2.0336127376491101e-07,
+      "lowest_m": 0.003,
+      "rope_growth_frames": [],
+      "rope_growth_overlaps": {}
+    },
+    "move": {
+      "frames": 31,
+      "overlaps": {
+        "mittR~head": 0,
+        "mittL~head": 0,
+        "foreR~head": 0,
+        "foreL~head": 0,
+        "upperR~head": 0,
+        "upperL~head": 0,
+        "mittR~body": 0,
+        "mittR~legs": 0,
+        "mittL~legs": 0,
+        "foreR~body": 0,
+        "mittR~mittL": 0,
+        "legR~legL": 0,
+        "footR~footL": 0,
+        "footR~legL": 0,
+        "footL~legR": 0,
+        "rope~footL": 0,
+        "rope~footR": 0,
+        "rope~legs": 0,
+        "rope~body": 0,
+        "rope~mittL": 0,
+        "coil~legR": 0,
+        "coil~mittR": 0,
+        "coil~foreR": 0,
+        "coil~body": 0,
+        "fringe~face_skin": 0,
+        "mittR~hood": 0,
+        "mittL~hood": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.3657139822709083e-07,
+      "lowest_m": 0.003,
+      "rope_growth_frames": [],
+      "rope_growth_overlaps": {}
+    },
+    "attack": {
+      "frames": 61,
+      "overlaps": {
+        "mittR~head": 0,
+        "mittL~head": 0,
+        "foreR~head": 0,
+        "foreL~head": 0,
+        "upperR~head": 0,
+        "upperL~head": 0,
+        "mittR~body": 0,
+        "mittR~legs": 0,
+        "mittL~legs": 0,
+        "foreR~body": 0,
+        "mittR~mittL": 0,
+        "legR~legL": 0,
+        "footR~footL": 0,
+        "footR~legL": 0,
+        "footL~legR": 0,
+        "rope~footL": 0,
+        "rope~footR": 0,
+        "rope~legs": 0,
+        "rope~body": 0,
+        "rope~mittL": 0,
+        "coil~legR": 0,
+        "coil~mittR": 0,
+        "coil~foreR": 0,
+        "coil~body": 0,
+        "fringe~face_skin": 0,
+        "mittR~hood": 0,
+        "mittL~hood": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.9371509552001953e-07,
+      "lowest_m": 0.003,
+      "rope_growth_frames": [],
+      "rope_growth_overlaps": {}
+    },
+    "hit": {
+      "frames": 19,
+      "overlaps": {
+        "mittR~head": 0,
+        "mittL~head": 0,
+        "foreR~head": 0,
+        "foreL~head": 0,
+        "upperR~head": 0,
+        "upperL~head": 0,
+        "mittR~body": 0,
+        "mittR~legs": 0,
+        "mittL~legs": 0,
+        "foreR~body": 0,
+        "mittR~mittL": 0,
+        "legR~legL": 0,
+        "footR~footL": 0,
+        "footR~legL": 0,
+        "footL~legR": 0,
+        "rope~footL": 0,
+        "rope~footR": 0,
+        "rope~legs": 0,
+        "rope~body": 0,
+        "rope~mittL": 0,
+        "coil~legR": 0,
+        "coil~mittR": 0,
+        "coil~foreR": 0,
+        "coil~body": 0,
+        "fringe~face_skin": 0,
+        "mittR~hood": 0,
+        "mittL~hood": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.8907453925087333e-07,
+      "lowest_m": 0.003,
+      "rope_growth_frames": [],
+      "rope_growth_overlaps": {}
+    },
+    "defeat": {
+      "frames": 61,
+      "overlaps": {
+        "mittR~head": 0,
+        "mittL~head": 0,
+        "foreR~head": 0,
+        "foreL~head": 0,
+        "upperR~head": 0,
+        "upperL~head": 0,
+        "mittR~body": 0,
+        "mittR~legs": 0,
+        "mittL~legs": 0,
+        "foreR~body": 0,
+        "mittR~mittL": 0,
+        "legR~legL": 0,
+        "footR~footL": 0,
+        "footR~legL": 0,
+        "footL~legR": 0,
+        "rope~footL": 0,
+        "rope~footR": 0,
+        "rope~legs": 0,
+        "rope~body": 0,
+        "rope~mittL": 0,
+        "coil~legR": 0,
+        "coil~mittR": 0,
+        "coil~foreR": 0,
+        "coil~body": 0,
+        "fringe~face_skin": 0,
+        "mittR~hood": 0,
+        "mittL~hood": 0
+      },
+      "overlap_frames": {},
+      "max_joint_gap_m": 1.3758380198940178e-07,
+      "lowest_m": 0.003,
+      "rope_growth_frames": [
+        26,
+        27,
+        28
+      ],
+      "rope_growth_overlaps": {
+        "rope~footL": [
+          [
+            26,
+            10
+          ],
+          [
+            27,
+            210
+          ]
+        ],
+        "rope~footR": [
+          [
+            27,
+            72
+          ]
+        ]
+      }
+    }
+  },
+  "checks": {
+    "no_listed_part_overlaps_any_frame": true,
+    "limb_joints_stay_connected": true,
+    "no_floor_penetration": true,
+    "rest_controls_reproduce_bind_pose": true,
+    "idle_0_reproduces_sheet_pose": true,
+    "held_defeat_reproduces_the_rope_bound_feet": true,
+    "at_most_four_influences": true,
+    "five_clips": true
+  }
+}

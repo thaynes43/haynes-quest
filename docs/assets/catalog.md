@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**66 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**67 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -235,6 +235,18 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D ordinary enemy · v001 · Prepared for v5 private gameplay · awaiting Tom's exact-version review</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/e3cbf79b20fa13dd.webp" alt="Blender reference sheet of the lab robot in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="web-slinger-helper" markdown="1">
+
+[![Exact Web-slinger Helper waving in a cobalt hood and star-web suit, with an orange domino mask, sunny boots and pink heart-button cuffs](media/catalog-thumbnails/v001/a658fc0ca7c72727.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/web-slinger-helper/v001.md)
+
+### [Web-slinger Helper](reviews/web-slinger-helper/v001.md)
+
+<span class="catalog-state">3D friendly · v001 · Prepared for World A v6 · awaiting Tom's exact-version review</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/66c6724a1be722bd.webp" alt="Approved Blender reference sheet of the smiling masked child hero in four views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
 </div>
 

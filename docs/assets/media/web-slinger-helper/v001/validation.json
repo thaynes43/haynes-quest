@@ -1,0 +1,177 @@
+{
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "role": "friendly helper (DESIGN-013 friendly clip contract: idle loops, hit plays for the runtime 0.6 s window, defeat holds its last frame)",
+  "file": "web-slinger-helper.glb",
+  "sha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+  "bytes": 1159864,
+  "triangles": 14330,
+  "draw_primitives": 2,
+  "materials": [
+    {
+      "name": "Matte painted suit, skin, gloves and boots",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.6200000047683716
+      }
+    },
+    {
+      "name": "Glowing heart buttons",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.30000001192092896
+      }
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/png",
+      "bufferView": 6
+    }
+  ],
+  "joints": [
+    "root",
+    "hips",
+    "spine",
+    "chest",
+    "neck",
+    "head",
+    "fringe",
+    "mask",
+    "eye_R",
+    "eye_L",
+    "upper_arm_R",
+    "forearm_R",
+    "hand_R",
+    "fingers_R",
+    "thumb_R",
+    "heart_R",
+    "upper_arm_L",
+    "forearm_L",
+    "hand_L",
+    "fingers_L",
+    "thumb_L",
+    "heart_L",
+    "coil",
+    "thigh_L",
+    "shin_L",
+    "foot_L",
+    "rope",
+    "thigh_R",
+    "shin_R",
+    "foot_R"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3,
+      "channels": 90
+    },
+    {
+      "name": "move",
+      "duration_s": 1,
+      "channels": 90
+    },
+    {
+      "name": "attack",
+      "duration_s": 2,
+      "channels": 90
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.6,
+      "channels": 90
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2,
+      "channels": 90
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "correct_scene_identity": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "attack_about_2_s": true,
+    "hit_fits_friendly_runtime_0_6_s_window": true,
+    "defeat_has_duration_to_hold": true,
+    "triangle_budget_15000": true,
+    "material_budget_2": true,
+    "primitive_budget_2": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_atlas": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "no_compression_extensions": true,
+    "all_have_uvs": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true
+  },
+  "validator": {
+    "uri": "web-slinger-helper.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-09-29T04:51:53.278Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 1049160
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 2,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 2,
+      "totalVertexCount": 11291,
+      "totalTriangleCount": 14330,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "work_order": "WO111",
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "role": "friendly helper (DESIGN-013): heals the player, never an enemy",
+  "created_utc": "2026-09-29T04:56:06.033016+00:00",
+  "glb_sha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "author_review": "Exact-export front, side, back and three-quarter stills (idle at 0 s = the sheet pose) compared with the reference sheet at the same angles and metric scale (sheet-vs-export.png); rest-pose stills; the five-clip normal/small motion sheet; attack front/side point-charge-contact-pump and the 35% gameplay-scale strip; held defeat front/side/three-quarter/beauty; close-ups of the face, the waving mitten and cuff, the hip fist, the held-defeat face and the rope-bound boots.",
+  "coordinator_review": "Driving Astra reviewed the approved sheet, fresh Blender idle render, exact-export five-clip contact sheet and 35% gameplay-scale strip on September 29 and approved the exact candidate for the private model PR. Tom exact-version review remains pending.",
+  "owner_review": "Pending exact-version decision",
+  "sheet_matching": [
+    "Silhouette kept from the approved blockout at its measured coordinates: idle 0 s measures 0.720 m wide x 1.1918 m tall x 0.375 m deep (the blockout: 0.718 x 1.191 x 0.383 m); 1.1938 m to the crown knot in the bind pose.",
+    "Open-face cobalt hood with the rolled rim, the eight cream dew-drop strands from the crown knot with two sagging rings (painted, clipped 1.17x clear of the face exactly like the blockout) and the six strand-tip drops as small bumps; round face with the tangerine domino mask shell arching over two big friendly eyes (cream whites, warm brown irises, plum pupils, two glints), button nose, big open grin with one rounded strip of top teeth and a pink tongue, pink cheeks and the three chestnut fringe locks.",
+    "Cobalt kid suit with the tilted sunny chest star (raised) inside the ten-ray cream web with two scallop rings and dew drops, the smaller back star and web, the tangerine belt with the sunny buckle and the three-loop cream rope coil on its tangerine clip at the right hip.",
+    "Sunny mitten gloves with flared cuffs and painted finger grooves, chunky tangerine web-shooter cuffs with the pink heart buttons (softly glowing) and cream nozzles, cobalt leggings and sunny rain boots with rolled cuffs and plum soles.",
+    "Idle at 0 s reproduces the sheet pose exactly: the palm-forward wave turned outward with the thumb toward the head, the left fist on the hip above the belt, the head tilted 6 deg into the wave and the toes turned out 8 / 15 deg (wrists within 5e-7 m of the blockout).",
+    "Colours are the sheet hex values exactly (atlas); the preview renders them a little deeper than the Cycles Standard-view sheet because of its ACES tone mapping and three-light rig.",
+    "Friendly and distinct from the chapter's enemies: warm cobalt, sunny yellow and tangerine, the only visible human face in the chapter, open body language, no weapons, blunt rounded teeth, heart buttons as the healer's cue; no spider anywhere."
+  ],
+  "inherited_source_iteration_notes_rechecked_by_this_delivery": [
+    "The first export rendered the lower face cobalt and put the palm grooves off the mitten: the face and mitten projections read their parts' local (centred) coordinates; both now add the part centre.",
+    "The blockout's round fringe locks sank 8 mm into the forehead; they are flattened along the face normal (55%) so they sit on it.",
+    "The blockout's rope coil cut 1-1.4 cm into the right thigh; it now hangs 4.2 cm further out along the belt normal at the same height.",
+    "The first held defeat pitched the boots toes-down (a sign error), so the shafts pointed away from the shins; the boots now lie heels-down, toes up, shafts along the shins.",
+    "The first rope loop (an ellipse round both boots) grazed each shaft; it is now a racetrack 2.2 cm clear of both parallel shafts, above the boot feet and below the rolled cuffs.",
+    "The rope tail first dipped 1 cm below the floor, and while the tangle opened before the feet had settled it dipped 2 cm; the tail is clamped to the floor and the tangle now springs open as he lands.",
+    "The first idle wave swung the mitten into the hood; the wave now swings outward from the sheet pose.",
+    "The first charge cocked the arm beside the hood and sent the left mitten across the face to tap it; he now charges with the fist in front of his chest and the wind-up and toss detour outward.",
+    "The first hit raised the mittens into the hood sides and the first defeat rub pressed the mitten into the hood; both now sit clear, and the flail-to-rub and flail-to-floor moves detour round the hood and the left thigh.",
+    "Interpolated 30 fps frames dipped the soles about 1.9 mm; the soles now clear the floor by 3 mm, and the seated pair of boots is lifted together whenever a pitched boot would touch the floor.",
+    "The jog first swung the right mitten and forearm into the torso; the jogging wrists sit 3.5 cm further out."
+  ],
+  "deviations_from_sheet_notes": [
+    "Bind pose is neutral as the notes suggest; the sheet pose is recreated at idle 0 s, so the matched stills show idle 0 s and rest-*.png show the bind pose.",
+    "Rig (30 joints): root, hips, spine, chest, neck, head, one fringe bone, a mask bone (the defeat tilt), two eye bones (blink, squeeze and squint by scale), per arm upper arm, forearm, hand, a mitten-finger bone, a thumb bone and a heart-button bone (pulse by scale), per leg thigh, shin and foot, a coil bone and the rope-tangle bone. No clavicles and no toe bones (the rain boots stay rigid on the foot); the spine is hips + spine + chest.",
+    "Friendly clip contract: exactly idle, move, attack, hit and defeat. hit is 0.6 s so it completes inside friendly-scene.ts's 0.6 s hit window, and hit and attack begin and end exactly on idle 0 s because the runtime switches clips without a fade.",
+    "idle has no every-few-loops fist pump (one looping clip cannot vary between loops); it has a blink and two heart pulses per loop instead.",
+    "attack follows the notes' heal toss (spot and point with the hearts blinking, a crouched charge tapping the cuff heart, an overhand toss with the mitten open at a child's chest height at the 1.25 s contact, a fist pump with a hop), but the charge happens with the fist in front of his chest (beside the hood the arm and the tapping hand crossed the hood), followed by a quick wind-up behind the shoulder. The suggested web-line effect is not implemented; the attack is a studio animation only.",
+    "defeat: the coil shrinks to 55% as it unspools and a cream rope springs round both ankles as he lands (model geometry bound collapsed inside the left boot, opened by the rope bone's scale from 0.84 to 0.94 s); he sits with the boots up and bound, the mask tilted 13 deg, the head tilted 16 deg, a sheepish squint and the right mitten rubbing the back of his hood; held from 1.60 s.",
+    "The coil hangs 4.2 cm further out than the blockout and the soles sit 3 mm above the floor (both for clearance, above).",
+    "The heart buttons use a second material with the atlas as a 0.35 emissive texture for the sheet's slight glow."
+  ],
+  "dimensions_width_height_depth_m": [
+    0.913638619064436,
+    1.1908400396405219,
+    0.3753591023764418
+  ],
+  "rest_bounds_y_up": {
+    "min": [
+      -0.456819309532218,
+      0.0030000647020955924,
+      -0.19735909573956723
+    ],
+    "max": [
+      0.456819309532218,
+      1.1938401043426174,
+      0.1780000066368746
+    ]
+  },
+  "idle0_sheet_pose_bounds_y_up": {
+    "min": [
+      -0.33446647137604435,
+      0.003000214250868821,
+      -0.1973590970349446
+    ],
+    "max": [
+      0.385741636821598,
+      1.1917646676021116,
+      0.17800000585668202
+    ]
+  },
+  "animated_bounds_y_up": {
+    "min": [
+      -0.456819309532218,
+      0.001313448579116634,
+      -0.4989295749286611
+    ],
+    "max": [
+      0.46724795955818066,
+      1.2860457287572613,
+      0.34771769341416287
+    ]
+  },
+  "stored_safe_culling_bounds": {
+    "min": [
+      -0.462,
+      -0.004,
+      -0.504
+    ],
+    "max": [
+      0.473,
+      1.292,
+      0.353
+    ]
+  },
+  "sheet_pose_height_m": 1.1917646676021116,
+  "contact_seconds": 1.25,
+  "attack_duration_seconds": 2.0,
+  "hit_duration_seconds": 0.6,
+  "defeat_held_from_seconds": 1.6,
+  "defeat_held": {
+    "hips_height_m": 0.12000000476837158,
+    "head_height_m": 0.46265190120188304,
+    "top_m": 0.8266289310884442,
+    "rope_extent_m": 0.5046390633640704,
+    "rope_box_y_up": {
+      "min": [
+        -0.17990129131946908,
+        0.0030096442685048075,
+        -0.4988243908342782
+      ],
+      "max": [
+        0.1785495399050454,
+        0.20390172918598104,
+        -0.20588078519501796
+      ]
+    },
+    "ankles": {
+      "L": [
+        -0.08800250559145076,
+        0.1007675964928256,
+        -0.3000008144897658
+      ],
+      "R": [
+        0.08800250559145076,
+        0.1007675964928256,
+        -0.3000008144897658
+      ]
+    },
+    "rope_scale": 100,
+    "coil_scale": 0.550000011920929,
+    "mask_roll_deg": 13.000043361581008,
+    "head_turn_deg": 16.051174204557356,
+    "eye_scale": 0.7799997925758362,
+    "hand_R": [
+      0.2503790774380435,
+      0.5734409557249813,
+      0.11675981306840025
+    ],
+    "hand_L": [
+      -0.26999994955151874,
+      0.1299999988105033,
+      -0.020000035979558843
+    ]
+  },
+  "friendly_runtime": {
+    "attached_skinned_meshes": 2,
+    "urls": [
+      "/studio/assets/media/web-slinger-helper/v001/web-slinger-helper.glb"
+    ],
+    "authored_bounds_applied": true,
+    "idle0_vs_clip_idle0_m": 0,
+    "model_rotation_y": 0,
+    "idle_after_3_5_s_vs_clip_idle_0_5_m": 2.6931108824576684e-08,
+    "hit_start_pop_vs_idle_at_3_5_s_m": 0,
+    "hit_mid_vs_clip_hit_0_3_m": 0,
+    "clip_sequence_after_hp_loss": [
+      "hit",
+      "idle"
+    ],
+    "hit_frames": 36,
+    "hit_to_idle_switch_frame_jump_m": 0.01134535118300508,
+    "after_hit_back_in_idle_vs_clip_idle_m": 3.3766115072321297e-16,
+    "defeat_hold_drift_m": 0,
+    "defeat_hold_vs_clip_end_m": 0,
+    "model_rotation_y_while_defeated": 0,
+    "after_amends_vs_idle0_m": 0,
+    "defeated_at_load_vs_clip_end_m": 0
+  },
+  "no_floor_penetration": true,
+  "limitations": [
+    "Headless software Chromium is not physical Safari or hardware performance acceptance.",
+    "FriendlyScene now registers web-slinger-helper v001 at its measured height. The Three inspection drives the exact asset URL and verifies idle, hit, held defeat, reload and amends through SceneAssets.",
+    "The runtime switches clips with stop() and reset().play() and no fade, so a hit that interrupts idle can pop by up to 0.11 m (the wave); hit and attack end exactly on idle 0 s, so the return is seamless (0.011 m on the switch frame is ordinary motion).",
+    "The final export carries a fresh whole-animation envelope. SceneAssets applies it to both primitives; the Three runtime harness asserts this. The isolated preview disables skinned-mesh frustum culling while inspecting every pose.",
+    "The attachment audit tests listed part pairs every frame on the source scene; it is not a universal triangle-collision proof. Intended contacts (the fist on the hip, the charging tap on the cuff heart, sleeve roots in the shoulders, legging tops in the torso and seat, the hood round the neck, legging hems in the boots) are not tested, and the rope passes through the boots during the two or three frames in which it springs open (recorded under rope_growth_*).",
+    "The painted face cannot change expression; the grin holds in every clip and only the eyes squash (blink, squeeze, squint) and the mask tilts.",
+    "Tom exact-version art review and physical-device acceptance remain pending; the family release may use this private candidate under PRD-004 Q-03."
+  ]
+}

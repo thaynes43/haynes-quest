@@ -12,6 +12,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parodyArtwork } from "../../src/game/scene-catalog";
 import { PARODY_CATALOGS } from "../../src/shared/parody-catalog";
+import { FRIENDLY_CATALOGS } from "../../src/shared/friendly";
 
 const REQUIRED_CLIPS = ["attack", "defeat", "hit", "idle", "move"];
 const JSON_CHUNK = 0x4e4f534a;
@@ -275,4 +276,31 @@ describe("family-era enemy artifacts registered through parody-catalog-v11", () 
       expect(Math.abs(Math.max(...heights) - delivery.heightM)).toBeLessThan(1e-4);
     });
   }
+});
+
+describe("family-era friendly artifact registration", () => {
+  it("pins the delivered helper in the friendly catalog without adding an enemy", () => {
+    const assetId = "web-slinger-helper";
+    expect(FRIENDLY_CATALOGS["friendly-catalog-v1"].some((entry) => entry.assetId === assetId)).toBe(false);
+    expect(FRIENDLY_CATALOGS["friendly-catalog-v2"].filter((entry) => entry.assetId === assetId))
+      .toEqual([expect.objectContaining({ id: assetId, assetId, version: "v001", assetVersion: "v001" })]);
+    expect(Object.values(PARODY_CATALOGS).flat().some((entry) => entry.assetId === assetId)).toBe(false);
+    const delivery = deliveries.find((entry) => entry.assetId === assetId)!;
+    expect(delivery.role).toBe("friendly");
+    expect(delivery.publication.runtimeIntegration).toContain("friendly-catalog-v2");
+    expect(delivery.publication.runtimeIntegration).toContain("family-world-a@v6");
+    const file = `docs/assets/media/${assetId}/v001/${assetId}.glb`;
+    expect(delivery.glb).toBe(file);
+    const bytes = repoFile(file);
+    const hash = createHash("sha256").update(bytes).digest("hex");
+    expect(bytes.length).toBe(1_159_864);
+    expect(hash).toBe("f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3");
+    expect(hash).toBe(delivery.sha256);
+    const asset = inventory.assets.find((entry) => entry.id === assetId)!;
+    expect(asset.gameplay_use).toBe("private-candidate");
+    expect(asset.checksums[file]).toBe(hash);
+    const { document } = parseGlb(bytes);
+    expect(document.animations.map((clip) => clip.name).sort()).toEqual(REQUIRED_CLIPS);
+    expect(document.skins).toHaveLength(1);
+  });
 });

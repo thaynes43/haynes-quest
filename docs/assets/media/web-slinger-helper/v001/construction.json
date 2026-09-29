@@ -1,0 +1,729 @@
+{
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "work_order": "WO111",
+  "role": "friendly helper (DESIGN-013)",
+  "authoring_model": "gpt-6-astra max (fresh WO111 Blender author; source checkpoint by Claude Opus 5.5 preserved)",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": "Blender reference sheet, no generated concept",
+  "source_sheet_sha256": "54b756f6b8f2753990a1de0d348cc4f0692e470520030dea3ecc4fb44b3c8deb",
+  "source_blockout_sha256": "68b4e49d2b9ab8d2d26740ffd61b2c45abdb20cbef0ac772dcd9c06ed23bc505",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.4568192660808563,
+      -0.17800000309944153,
+      0.00299999862909317
+    ],
+    "max": [
+      0.4568192660808563,
+      0.197359099984169,
+      1.1938400268554688
+    ]
+  },
+  "height_m": 1.1938400268554688,
+  "triangles": 14330,
+  "vertices": 7419,
+  "material_count": 2,
+  "bone_count": 30,
+  "hood_dew_drops": 6,
+  "rope_tangle_world_min_z": 0.001999999858438968,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "origin": "Original painted atlas generated with numpy in Blender Python (paint.py): face, hood, torso, eye and palm regions painted in the blockout projections plus flat sheet-colour tiles; no external textures.",
+    "layout": {
+      "tiles": {
+        "suit": [
+          512,
+          512
+        ],
+        "cream": [
+          640,
+          512
+        ],
+        "sun": [
+          768,
+          512
+        ],
+        "tang": [
+          896,
+          512
+        ],
+        "skin": [
+          512,
+          640
+        ],
+        "hair": [
+          640,
+          640
+        ],
+        "heart": [
+          768,
+          640
+        ],
+        "sole": [
+          896,
+          640
+        ],
+        "suit_d": [
+          896,
+          768
+        ],
+        "sun_d": [
+          768,
+          896
+        ],
+        "tang_d": [
+          896,
+          896
+        ]
+      },
+      "regions": {
+        "FACE": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "HOOD": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "TORSO_FRONT": [
+          0,
+          512,
+          512,
+          256
+        ],
+        "TORSO_BACK": [
+          0,
+          768,
+          512,
+          256
+        ],
+        "EYE": [
+          512,
+          768,
+          256,
+          256
+        ],
+        "MITT": [
+          768,
+          768,
+          128,
+          128
+        ]
+      },
+      "face_src_xz": [
+        -0.165,
+        0.165,
+        0.807,
+        1.137
+      ],
+      "torso_z": [
+        0.485,
+        0.815
+      ],
+      "eye_src_local_xz": [
+        -0.04,
+        0.04,
+        -0.048,
+        0.048
+      ],
+      "mitt_src_local_xz": [
+        -0.052,
+        0.052,
+        -0.012,
+        0.128
+      ],
+      "hood_map": "azimuthal from the crown; rho = 0.82 theta/1.45 up to theta 1.45 rad, then linear to pi",
+      "hood": {
+        "full_strands": 6,
+        "drops": 6
+      },
+      "torso_front_web": {
+        "rays": 10,
+        "arcs": 19,
+        "drops": 2
+      },
+      "torso_back_web": {
+        "rays": 10,
+        "arcs": 19,
+        "drops": 5
+      },
+      "hex": {
+        "suit": "3b7dd8",
+        "cream": "fbf6ea",
+        "sun": "f7c64a",
+        "tang": "f28c3a",
+        "skin": "f0c7a0",
+        "hair": "7a4a30",
+        "heart": "e8566f",
+        "sole": "4a3f63",
+        "ink": "342c46",
+        "iris": "7b5234",
+        "tongue": "ef8f98",
+        "blush": "f4a79d",
+        "suit_d": "2c63b6",
+        "sun_d": "d9a53a",
+        "tang_d": "cf6f28",
+        "iris_d": "5a3a24",
+        "skin_d": "dba47f"
+      }
+    }
+  },
+  "parts": [
+    {
+      "name": "Cobalt open-face hood with the painted dew-drop web",
+      "triangles": 1392,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "HOOD"
+    },
+    {
+      "name": "Cobalt hood face rim",
+      "triangles": 768,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Round face with the painted grin, blush and nose shade",
+      "triangles": 728,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "4"
+    },
+    {
+      "name": "Tangerine domino mask",
+      "triangles": 468,
+      "bone_groups": [
+        "mask"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Big friendly eye R",
+      "triangles": 324,
+      "bone_groups": [
+        "eye_R"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Big friendly eye L",
+      "triangles": 324,
+      "bone_groups": [
+        "eye_L"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Button nose",
+      "triangles": 100,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "4"
+    },
+    {
+      "name": "Chestnut fringe lock 0",
+      "triangles": 238,
+      "bone_groups": [
+        "head",
+        "fringe"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Chestnut fringe lock 1",
+      "triangles": 238,
+      "bone_groups": [
+        "head",
+        "fringe"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Chestnut fringe lock 2",
+      "triangles": 238,
+      "bone_groups": [
+        "head",
+        "fringe"
+      ],
+      "atlas_tile": "5"
+    },
+    {
+      "name": "Hood web dew drop 1",
+      "triangles": 64,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Hood web dew drop 2",
+      "triangles": 64,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Hood web dew drop 3",
+      "triangles": 64,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Hood web dew drop 4",
+      "triangles": 64,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Hood web dew drop 5",
+      "triangles": 64,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Hood web dew drop 6",
+      "triangles": 64,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Crown web knot",
+      "triangles": 64,
+      "bone_groups": [
+        "head"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Cobalt neck",
+      "triangles": 28,
+      "bone_groups": [
+        "chest",
+        "head"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Cobalt torso with the painted chest and back webs",
+      "triangles": 1344,
+      "bone_groups": [
+        "hips",
+        "spine",
+        "chest"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Tangerine belt",
+      "triangles": 384,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Sunny belt buckle",
+      "triangles": 192,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sunny chest star emblem",
+      "triangles": 280,
+      "bone_groups": [
+        "spine",
+        "chest"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sunny back star emblem",
+      "triangles": 280,
+      "bone_groups": [
+        "spine",
+        "chest"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Cobalt seat",
+      "triangles": 224,
+      "bone_groups": [
+        "hips"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Tangerine coil clip",
+      "triangles": 48,
+      "bone_groups": [
+        "coil"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Cream web-rope coil loop 0",
+      "triangles": 192,
+      "bone_groups": [
+        "coil"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Cream web-rope coil loop 1",
+      "triangles": 192,
+      "bone_groups": [
+        "coil"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Cream web-rope coil loop 2",
+      "triangles": 192,
+      "bone_groups": [
+        "coil"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Cobalt shoulder R",
+      "triangles": 224,
+      "bone_groups": [
+        "upper_arm_R"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Cobalt sleeve R",
+      "triangles": 340,
+      "bone_groups": [
+        "upper_arm_R",
+        "forearm_R"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Sunny glove flare R",
+      "triangles": 56,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Tangerine web-shooter cuff R",
+      "triangles": 192,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Cream web nozzle R",
+      "triangles": 32,
+      "bone_groups": [
+        "forearm_R"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Pink heart button R",
+      "triangles": 96,
+      "bone_groups": [
+        "heart_R"
+      ],
+      "atlas_tile": "6"
+    },
+    {
+      "name": "Sunny mitten R",
+      "triangles": 288,
+      "bone_groups": [
+        "hand_R",
+        "fingers_R"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sunny mitten thumb R",
+      "triangles": 100,
+      "bone_groups": [
+        "thumb_R"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Cobalt shoulder L",
+      "triangles": 224,
+      "bone_groups": [
+        "upper_arm_L"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Cobalt sleeve L",
+      "triangles": 340,
+      "bone_groups": [
+        "upper_arm_L",
+        "forearm_L"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Sunny glove flare L",
+      "triangles": 56,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Tangerine web-shooter cuff L",
+      "triangles": 192,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "atlas_tile": "3"
+    },
+    {
+      "name": "Cream web nozzle L",
+      "triangles": 32,
+      "bone_groups": [
+        "forearm_L"
+      ],
+      "atlas_tile": "1"
+    },
+    {
+      "name": "Pink heart button L",
+      "triangles": 96,
+      "bone_groups": [
+        "heart_L"
+      ],
+      "atlas_tile": "6"
+    },
+    {
+      "name": "Sunny mitten L",
+      "triangles": 288,
+      "bone_groups": [
+        "hand_L",
+        "fingers_L"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sunny mitten thumb L",
+      "triangles": 100,
+      "bone_groups": [
+        "thumb_L"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Cobalt legging R",
+      "triangles": 312,
+      "bone_groups": [
+        "hips",
+        "thigh_R",
+        "shin_R",
+        "foot_R"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Sunny boot shaft R",
+      "triangles": 32,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sunny rolled boot cuff R",
+      "triangles": 216,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sunny boot foot R",
+      "triangles": 224,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Plum boot sole R",
+      "triangles": 160,
+      "bone_groups": [
+        "foot_R"
+      ],
+      "atlas_tile": "7"
+    },
+    {
+      "name": "Cobalt legging L",
+      "triangles": 312,
+      "bone_groups": [
+        "hips",
+        "thigh_L",
+        "shin_L",
+        "foot_L"
+      ],
+      "atlas_tile": "0"
+    },
+    {
+      "name": "Sunny boot shaft L",
+      "triangles": 32,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sunny rolled boot cuff L",
+      "triangles": 216,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Sunny boot foot L",
+      "triangles": 224,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "2"
+    },
+    {
+      "name": "Plum boot sole L",
+      "triangles": 160,
+      "bone_groups": [
+        "foot_L"
+      ],
+      "atlas_tile": "7"
+    },
+    {
+      "name": "Cream web-rope tangle (defeat; bound collapsed in the left boot",
+      "triangles": 1164,
+      "bone_groups": [
+        "rope"
+      ],
+      "atlas_tile": "1"
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 3.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 91,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null,
+      "ends_on_sheet_pose": true
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 31,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null,
+      "ends_on_sheet_pose": false
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "held_final_pose_from_s": null,
+      "ends_on_sheet_pose": true
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.6,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 19,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": null,
+      "ends_on_sheet_pose": true
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 61,
+      "fps": 30,
+      "contact_time_s": null,
+      "contact_fraction": null,
+      "held_final_pose_from_s": 1.6,
+      "ends_on_sheet_pose": false
+    }
+  ],
+  "rest_reproduction_max_error": 8.702278137207031e-06,
+  "sheet_pose_reproduction_m": {
+    "wrist_R_err_m": 8.197755025575082e-08,
+    "ankle_R_err_m": 2.4087693227607922e-08,
+    "heart_R_err_m": 2.457562461863554e-07,
+    "wrist_L_err_m": 1.195036025230163e-07,
+    "ankle_L_err_m": 1.787510539677991e-08,
+    "heart_L_err_m": 6.664001874625056e-08,
+    "mitten_R_centre_err_m": 2.2626347301990113e-07
+  },
+  "defeat_feet_reproduction": {
+    "ankle_L_err_m": 1.4901161193847656e-08,
+    "ankle_R_err_m": 1.4901161193847656e-08,
+    "foot_L_rot_err": 2.384185791015625e-07
+  },
+  "files": {
+    "web-slinger-helper.blend": {
+      "bytes": 1398180,
+      "sha256": "89c1008dfe2e95af8c8d1adb02da85ebaf11d96652a553679f577a97fc04ef42"
+    },
+    "web-slinger-helper.glb": {
+      "bytes": 1159864,
+      "sha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3"
+    },
+    "pigment.png": {
+      "bytes": 60159,
+      "sha256": "f1ff1361e17ad38696391b9b23da32f6e16d346aa327db3e76075b758509a8f7"
+    }
+  }
+}

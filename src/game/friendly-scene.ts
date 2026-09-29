@@ -12,6 +12,7 @@ const heights: Record<string, number> = {
   "loop-dancer": 1.1,
   "prism-mimic": 1.05,
   trendweaver: 1.9,
+  "web-slinger-helper": 1.194,
 };
 
 /** Retains the authored defeat pose so making amends always has a visible target. */

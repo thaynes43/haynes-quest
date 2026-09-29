@@ -1,0 +1,322 @@
+{
+  "chapterId": "family-a3",
+  "routeId": "family-a3-rooftop",
+  "name": "Hero City",
+  "theme": "rooftop",
+  "startAge": 5,
+  "growthMoves": [
+    "jump",
+    "high-jump",
+    "double-jump"
+  ],
+  "appearanceStage": "child",
+  "mediaFailed": 0,
+  "identities": [
+    {
+      "id": "family-a3-rooftop-encounter-1",
+      "role": "ordinary",
+      "asset": "putty-grunt"
+    },
+    {
+      "id": "family-a3-rooftop-encounter-2",
+      "role": "ordinary",
+      "asset": "lab-robot"
+    },
+    {
+      "id": "family-a3-rooftop-encounter-3",
+      "role": "ordinary",
+      "asset": "putty-grunt"
+    },
+    {
+      "id": "family-a3-rooftop-encounter-4",
+      "role": "ordinary",
+      "asset": "lab-robot"
+    },
+    {
+      "id": "family-a3-rooftop-boss",
+      "role": "boss",
+      "asset": "inator-monster"
+    },
+    {
+      "id": "family-a3-rooftop-encounter-bonus-1",
+      "role": "ordinary",
+      "asset": "lab-robot"
+    }
+  ],
+  "legs": [
+    {
+      "leg": "launch-deck->freight-elevator",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "freight-elevator->elevator-roof",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "elevator-roof->fire-escape-1",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "fire-escape-1->fire-escape-2",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "double-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "fire-escape-2->pigeon-roof",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "double-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "pigeon-roof->chimney-1",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "chimney-1->chimney-2",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "chimney-2->chimney-3",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "chimney-3->chimney-4",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "chimney-4->water-tower-roof",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "water-tower-roof->gondola-1",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "gondola-1->gondola-2",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "gondola-2->satellite-roof",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    }
+  ],
+  "recoveries": 0,
+  "fights": [
+    {
+      "slot": "ordinary-1",
+      "encounterId": "family-a3-rooftop-encounter-1",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-2",
+      "encounterId": "family-a3-rooftop-encounter-2",
+      "role": "ordinary",
+      "attacks": 3,
+      "bashes": 0,
+      "defeats": 0
+    }
+  ],
+  "pickups": [
+    "attack-tool",
+    "guard-tool"
+  ],
+  "memories": [],
+  "completed": false,
+  "stoppedAt": "friendly",
+  "completion": null,
+  "screenshots": [
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-01-spawn.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-scare-01-dark-room.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-02-first-ordinary-fight.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-friendly-idle-desktop.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-friendly-idle-phone.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-friendly-harm-warning-desktop.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-friendly-harm-warning-phone.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-friendly-held-defeat-desktop.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-friendly-held-defeat-phone.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-friendly-amends-healed-desktop.png",
+    "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-friendly-amends-healed-phone.png"
+  ],
+  "frames": {
+    "frames": 1473,
+    "fineFrames": 1167,
+    "pageMs": 46608,
+    "wallMs": 25710
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "responseErrors": [],
+  "media": {
+    "/studio/assets/media/traveler-child/v001/traveler-child.glb": 200,
+    "/studio/assets/media/skyline-toybox-kit/v001/block-tower.glb": 200,
+    "/studio/assets/media/midnight-arcade-kit/v001/arcade-cabinet.glb": 200,
+    "/studio/assets/media/midnight-arcade-kit/v001/joystick-bollard.glb": 200,
+    "/studio/assets/media/skyline-toybox-kit/v001/safety-rail.glb": 200,
+    "/studio/assets/media/skyline-toybox-kit/v001/windup-lantern.glb": 200,
+    "/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb": 200,
+    "/studio/assets/media/era-equipment/v001/prism-wand/prism-wand.glb": 200,
+    "/studio/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb": 200,
+    "/studio/assets/media/blockling/v001/blockling.glb": 200,
+    "/studio/assets/media/web-slinger-helper/v001/web-slinger-helper.glb": 200,
+    "/studio/assets/media/buffer-baron/v001/buffer-baron.glb": 200,
+    "/studio/assets/media/putty-grunt/v001/putty-grunt.glb": 200,
+    "/studio/assets/media/lab-robot/v001/lab-robot.glb": 200,
+    "/studio/assets/media/inator-monster/v001/inator-monster.glb": 200
+  },
+  "drawingBetweenCaptures": false,
+  "scare": {
+    "declared": 1,
+    "expected": 1,
+    "live": 1,
+    "blackouts": 0,
+    "flickers": 0,
+    "watcherMoves": 0,
+    "watcherCreaks": 0,
+    "jumpScares": 0,
+    "events": [
+      {
+        "event": "watcher-move",
+        "time": 1.31,
+        "count": 1,
+        "shifted": [
+          {
+            "id": "family-a3-rooftop-encounter-4",
+            "step": 1.29
+          }
+        ]
+      },
+      {
+        "event": "watcher-move",
+        "time": 1.48,
+        "count": 2,
+        "shifted": [
+          {
+            "id": "family-a3-rooftop-encounter-bonus-1",
+            "step": 1.19
+          }
+        ]
+      },
+      {
+        "event": "watcher-move",
+        "time": 2.99,
+        "count": 3,
+        "shifted": [
+          {
+            "id": "family-a3-rooftop-encounter-3",
+            "step": 1.24
+          }
+        ]
+      },
+      {
+        "event": "watcher-move",
+        "time": 3.48,
+        "count": 4,
+        "shifted": []
+      },
+      {
+        "event": "watcher-move",
+        "time": 46.55,
+        "count": 5,
+        "shifted": []
+      },
+      {
+        "event": "watcher-move",
+        "time": 46.63,
+        "count": 6,
+        "shifted": [
+          {
+            "id": "family-a3-rooftop-encounter-bonus-1",
+            "step": 1.22
+          }
+        ]
+      }
+    ],
+    "closestSpots": {},
+    "shots": {
+      "01-dark-room": {
+        "file": "/home/dev/work/hq-web-slinger-helper/test-results/web-helper-v6/family-a3-scare-01-dark-room.png",
+        "luma": 104.4,
+        "time": 1.05
+      }
+    }
+  },
+  "wallSeconds": 40,
+  "failure": null,
+  "friendly": {
+    "assetId": "web-slinger-helper",
+    "id": "family-a3-rooftop-friendly-web-slinger-helper",
+    "anchor": {
+      "platformId": "satellite-roof",
+      "position": {
+        "x": -55.9,
+        "y": 6.6,
+        "z": -42.5
+      }
+    },
+    "placement": {
+      "id": "family-a3-rooftop-friendly-web-slinger-helper",
+      "assetId": "web-slinger-helper",
+      "x": -55.9,
+      "y": 6.6,
+      "z": -42.5
+    },
+    "fullHealthGiftPreserved": true,
+    "normalAttackIgnored": true,
+    "harms": [
+      {
+        "friendHp": 0,
+        "playerHp": 8
+      }
+    ],
+    "amendsRestored": true,
+    "healedHp": 10,
+    "giftOnceOnly": true,
+    "reloadPreserved": true,
+    "enemiesUnchanged": true,
+    "familyCard": "Web helper synthetic",
+    "initialSaveRevision": 7,
+    "finalSaveRevision": 10
+  }
+}

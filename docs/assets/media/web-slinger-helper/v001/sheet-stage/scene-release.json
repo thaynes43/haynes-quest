@@ -1,0 +1,278 @@
+{
+  "work_order": "WO111",
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "blender_instance": "blender-authoring (instance 1, primary)",
+  "released_utc": "2026-09-26T19:04:06.800778+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "saved_live_scene": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "a9704bebbbbdaeede16c95b464990fbaa612e4ec400110dbd47ea0fbea07919d",
+  "reference_sheet": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/reference-sheet.png",
+  "reference_sheet_sha256": "54b756f6b8f2753990a1de0d348cc4f0692e470520030dea3ecc4fb44b3c8deb",
+  "reference_notes_sha256": "0ea718598806c763613b69af8d2a2265b5c044b7f4e6607ce030d1cc6c8531ed",
+  "blockout_master": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/web-slinger-helper-blockout.blend",
+  "blockout_master_sha256": "68b4e49d2b9ab8d2d26740ffd61b2c45abdb20cbef0ac772dcd9c06ed23bc505",
+  "sheet_scene": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/web-slinger-helper-reference-sheet.blend",
+  "sheet_scene_sha256": "359e560e2a0cdd58aff1f321d5a72253a0d26f26d20b68c15966df249c3f53bc",
+  "glb_sha256": "none",
+  "author_jobs_running": false,
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "failure": null,
+  "prior_files_unchanged": {
+    "bin-chicken/v001/bin-chicken-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-blockout.blend",
+      "sha256": "ce5d128d315ad3a1d9188f60f97d18fcdc3ee138b742ca409ffd92e652500114"
+    },
+    "bin-chicken/v001/bin-chicken-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/bin-chicken/v001/bin-chicken-reference-sheet.blend",
+      "sha256": "8cb7f5119cd43787d471ce4c6b29d5430e555ffe97b87024f73a0c69dd00be4e"
+    },
+    "bin-chicken/v001/claim-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/bin-chicken/v001/claim-checkpoint.blend",
+      "sha256": "5ec9f2392c840b6a9d7372918e3ba72db5bfa412917b7ac89d246c828a8cdee9"
+    },
+    "bin-chicken/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/bin-chicken/v001/live-scene-release.blend",
+      "sha256": "042563ddff775abccc712a22c6f27795aa1e40c288bb6989547ddde35357708c"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat-checkpoint.glb",
+      "sha256": "96f10990c3a1f77e097ec8c4aa036919c41910533b03ade27aa2d3b8ad45d67a"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat-construction.blend",
+      "sha256": "403b2e9ec72b7bb6394c8390839103fb3b08c57218c2c814a3578dadb6e44506"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.blend",
+      "sha256": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496"
+    },
+    "clubhouse-bully-cat/v001/clubhouse-bully-cat.glb": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/clubhouse-bully-cat.glb",
+      "sha256": "e082df0e5ebe116645aa800c26896b79b8a01025167446e00d1f37cb1788b447"
+    },
+    "clubhouse-bully-cat/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/clubhouse-bully-cat/v001/live-scene-release.blend",
+      "sha256": "4438513d36fb533061c4470f74f545a419a2f424acf0fa8ab9dd4ec8ac3ebb9d"
+    },
+    "demon-band-idol/v001/claim-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/demon-band-idol/v001/claim-checkpoint.blend",
+      "sha256": "ed8565e8b03ebe037e7a9a67f6a10aa6115e89e8bc348545cf1ff69bbc0ce701"
+    },
+    "demon-band-idol/v001/demon-band-idol-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol-blockout.blend",
+      "sha256": "876f0e67cc23d866bfaff7dab5f87515af5fba8d70c85c87ee501b96e7525ef9"
+    },
+    "demon-band-idol/v001/demon-band-idol-reference-sheet-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol-reference-sheet-checkpoint.blend",
+      "sha256": "9110ebe3a08767a2263c9a41021e86391acb10d8b03edf618aa3d24d2971668e"
+    },
+    "demon-band-idol/v001/demon-band-idol-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/demon-band-idol/v001/demon-band-idol-reference-sheet.blend",
+      "sha256": "e1e6b29521376328d8d9ebbacb170b3d69dede0627c5913ecee774b61b6d55ec"
+    },
+    "demon-band-idol/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/demon-band-idol/v001/live-scene-release.blend",
+      "sha256": "989d3c3188e54a0b27fabfcbfdf8f57f29d4c8b72f53ba905ed0a86ef4fc265f"
+    },
+    "gadget-helper/v001/gadget-helper-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/gadget-helper-checkpoint.glb",
+      "sha256": "7fbaff3b5f0bdd4bd7c262f9c79d920421d0c8ff998b221c4889e424b90eced5"
+    },
+    "gadget-helper/v001/gadget-helper-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/gadget-helper-construction.blend",
+      "sha256": "7cdb62d874070ec8d135fa212d7efd8a6a364d09028057c13f8f0900694188dc"
+    },
+    "gadget-helper/v001/gadget-helper.blend": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/gadget-helper.blend",
+      "sha256": "f467492d4dd667a21a3d695925680ffed927b1457d138fe49536372b87011351"
+    },
+    "gadget-helper/v001/gadget-helper.glb": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/gadget-helper.glb",
+      "sha256": "ff5d601b690541aec44e682835328ca55821762521412cd1e26f5c07cb6b6317"
+    },
+    "gadget-helper/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/gadget-helper/v001/live-scene-release.blend",
+      "sha256": "460a074b810fcbf18e3fad8d18a2781349e52392eab475a0e85b831d5cac164c"
+    },
+    "honk-bus/v001/honk-bus-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus-checkpoint.glb",
+      "sha256": "cc117a9abbbc47f33066aef63aafc75776041d7e0be2dc20c4977d6857a5bc7a"
+    },
+    "honk-bus/v001/honk-bus-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus-construction.blend",
+      "sha256": "50d10f352671528493b632a1d46a4fe58cb264b37f159a3fa2b4a994360d3260"
+    },
+    "honk-bus/v001/honk-bus-high-density-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus-high-density-checkpoint.blend",
+      "sha256": "70a651d0bff6d777036af215fa7891befadff926654c15b71852dac28af626c9"
+    },
+    "honk-bus/v001/honk-bus.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus.blend",
+      "sha256": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00"
+    },
+    "honk-bus/v001/honk-bus.glb": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/honk-bus.glb",
+      "sha256": "0ea6f80966e4e11e7ec6251af9c371ad76f6a1a8f90aa67da27b7d5612b0a2ed"
+    },
+    "honk-bus/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/honk-bus/v001/live-scene-release.blend",
+      "sha256": "a3a94cd1a0b847a79266c8c1d43692d047be85c3a6eecacf6ede83296f8b0054"
+    },
+    "inator-monster/v001/claim-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/inator-monster/v001/claim-checkpoint.blend",
+      "sha256": "6d17e9894fb59043f2f210785f443824eca40b1701eef7a00b221548fa0d91e1"
+    },
+    "inator-monster/v001/inator-monster-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster-blockout.blend",
+      "sha256": "d1fb9866c026f33d60309856ddf2f4261d600ecd720c2aa3c304446b08e3ea80"
+    },
+    "inator-monster/v001/inator-monster-reference-sheet-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster-reference-sheet-checkpoint.blend",
+      "sha256": "174750c46a375f6d4b13bc5f8141d93a914291df3595f1e111588d7abbb776ab"
+    },
+    "inator-monster/v001/inator-monster-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/inator-monster/v001/inator-monster-reference-sheet.blend",
+      "sha256": "6bf675652d4bb2db88a1be5bd0a19e07ece58c6b8971b3951520f595081d86d1"
+    },
+    "inator-monster/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/inator-monster/v001/live-scene-release.blend",
+      "sha256": "674b1499ae1360144b38b2662b5941d18bf68f8498e25e35006b0ab90ce60607"
+    },
+    "lab-robot/v001/claim-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/lab-robot/v001/claim-checkpoint.blend",
+      "sha256": "1f0cbd39470cdb5f790b6db9b63595e3249c15b6ddb30f2a2ff030bd8e44f4ab"
+    },
+    "lab-robot/v001/lab-robot-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/lab-robot/v001/lab-robot-blockout.blend",
+      "sha256": "86dcd070c61ed236cec5713214ea561760fcc0718edbfa036a285caade4d113e"
+    },
+    "lab-robot/v001/lab-robot-reference-sheet-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/lab-robot/v001/lab-robot-reference-sheet-checkpoint.blend",
+      "sha256": "84ffabea8b610bc16e209240fb1b74ad5b993e8be579a9d75cce1080efb70381"
+    },
+    "lab-robot/v001/lab-robot-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/lab-robot/v001/lab-robot-reference-sheet.blend",
+      "sha256": "2eb3d7689f7ca4df673fc423849db632342ecb82c44d5423360caac21ce8dbb3"
+    },
+    "lab-robot/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/lab-robot/v001/live-scene-release.blend",
+      "sha256": "299f99e09214dc206dd27ef1d05626f04eeab82d2717367a8f0dacd87792ab49"
+    },
+    "magic-house/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/live-scene-release.blend",
+      "sha256": "a9a276022502083ee29f46a155bf908789570cd5f25df5d5f07f8a4f2e008d03"
+    },
+    "magic-house/v001/magic-house-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-blockout.blend",
+      "sha256": "a4367f504e3acf306b827430550cef9f1074092c90fece7a89244484d8b32ea6"
+    },
+    "magic-house/v001/magic-house-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/magic-house/v001/magic-house-reference-sheet.blend",
+      "sha256": "a5178191f44c03d1984a97c3fc7572bcaa7c903b796be06ba9f58f5f474a5fc8"
+    },
+    "mischief-kitten/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/live-scene-release.blend",
+      "sha256": "ee595224f2ff5a43d31f4187c5c1d9cc94a1fa7f0991b19e485a6be14d90254d"
+    },
+    "mischief-kitten/v001/mischief-kitten-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-blockout.blend",
+      "sha256": "e0096cc3054a1943bc999bf8e47f5af85330b7ad06bd2f81a2b2b3e808ff5d95"
+    },
+    "mischief-kitten/v001/mischief-kitten-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/mischief-kitten/v001/mischief-kitten-reference-sheet.blend",
+      "sha256": "40568acd0c47cd7993db26e042a5431f792f106ed4986bef1be57e2066a423f2"
+    },
+    "putty-grunt/v001/claim-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/putty-grunt/v001/claim-checkpoint.blend",
+      "sha256": "0d2381f93bce7b702013fb385eb213503b74c46ece3b59e228ff2c193a2d10b6"
+    },
+    "putty-grunt/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/putty-grunt/v001/live-scene-release.blend",
+      "sha256": "e478e9a159754dea516a227e8d9315a604354d4437fc5eaf9c406298abe340c6"
+    },
+    "putty-grunt/v001/putty-grunt-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt-blockout.blend",
+      "sha256": "fd12ee300007076081a4ae41886f797ce71ae5f6f7e96e47cde701a958c054eb"
+    },
+    "putty-grunt/v001/putty-grunt-reference-sheet-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt-reference-sheet-checkpoint.blend",
+      "sha256": "3a69e652993e4cf87d1a15d1fd38d9b6df46db0d663e5fbbc818ee5b7e60984d"
+    },
+    "putty-grunt/v001/putty-grunt-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/putty-grunt/v001/putty-grunt-reference-sheet.blend",
+      "sha256": "3536fd696a282c4c12ea8fdda72cc84f6b9edff2e1435f971ba62e205f300089"
+    },
+    "radio-host-showman/v001/claim-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/radio-host-showman/v001/claim-checkpoint.blend",
+      "sha256": "69ea6186e7c96a0989f7ea52a58849e947aaee4103120b293aaf5e3a28e3fbaf"
+    },
+    "radio-host-showman/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/radio-host-showman/v001/live-scene-release.blend",
+      "sha256": "46f0ecb32185d93f154b743c712c901012f9407792f976548071243d6199ee77"
+    },
+    "radio-host-showman/v001/radio-host-showman-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/radio-host-showman/v001/radio-host-showman-blockout.blend",
+      "sha256": "987e297482975a913571a575e6e58a5bf02bb4a10eb8bce42588feaaa7ae6a0e"
+    },
+    "radio-host-showman/v001/radio-host-showman-reference-sheet-checkpoint.blend": {
+      "path": "/workspace/haynes-quest/family-eras/radio-host-showman/v001/radio-host-showman-reference-sheet-checkpoint.blend",
+      "sha256": "c1e231d6fc6e07b57e529e50fcb078413f88503237582b6c5324f33276a98f26"
+    },
+    "radio-host-showman/v001/radio-host-showman-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/radio-host-showman/v001/radio-host-showman-reference-sheet.blend",
+      "sha256": "7d364460eca6a5619543d4bfd22e0b2aa2073967c07a2e8575915a132186bf40"
+    },
+    "rival-mayor/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/live-scene-release.blend",
+      "sha256": "3c8a63ede90e6214134aa8f9835d35c8b27724111652f29c9a6f541377d65efd"
+    },
+    "rival-mayor/v001/pre-takeover-live-scene.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/pre-takeover-live-scene.blend",
+      "sha256": "fb44c7cb71b2dccb992741e77915b555c2daf8971bfe4b25122271eb8459a11f"
+    },
+    "rival-mayor/v001/rival-mayor-blockout.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-blockout.blend",
+      "sha256": "a1c88a2aad4b6450a39194ada19419e392877d155b3e9d9120bbdc2b8e40046f"
+    },
+    "rival-mayor/v001/rival-mayor-reference-sheet.blend": {
+      "path": "/workspace/haynes-quest/family-eras/rival-mayor/v001/rival-mayor-reference-sheet.blend",
+      "sha256": "78b03aea57483f5b9514f60702072f9249ee51ce10a2e758d7909a84c6293489"
+    },
+    "yes-yes-veggie/v001/live-scene-release.blend": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/live-scene-release.blend",
+      "sha256": "c2c1b3b834ed4e7ea488fd8209bad29cf5267aa32642823f1f6323d66329c353"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie-checkpoint.glb": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie-checkpoint.glb",
+      "sha256": "4f746b2fac92aac7f81668b2a2974f3562c1554258aa7efe5f0b32ed4a44a38b"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie-checkpoint1.glb": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie-checkpoint1.glb",
+      "sha256": "eb45f9e63d870694131e45e066e235a9a60955215e2d07a40999367e851c45c7"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie-construction-checkpoint1.blend": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie-construction-checkpoint1.blend",
+      "sha256": "0e504e02f99c0304742f9ee7119f0906913c21a90eebb0c28484d01d5c2ad202"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie-construction.blend": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie-construction.blend",
+      "sha256": "d7a6cdf821a56e1e556f126d6d1f466d55d48172a8de44346a2b8cffc1c91340"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie.blend": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie.blend",
+      "sha256": "332d263434c22cdb607f02ba087a20b42c19c6814237a4d40913ab19fcc34672"
+    },
+    "yes-yes-veggie/v001/yes-yes-veggie.glb": {
+      "path": "/workspace/haynes-quest/family-eras/yes-yes-veggie/v001/yes-yes-veggie.glb",
+      "sha256": "b513172d40b1e5ba581bc99a134bd9a26a1b7cdc7775c0c1f87056e0a18bf81f"
+    }
+  },
+  "scope": "Reference sheet only: Blender reference sheet, no generated concept. Coordinator review pending before detailing; no GLB, rig or animation; Tom review open."
+}

@@ -9,8 +9,9 @@ import {
 } from './adventure.js';
 import type { FriendlyView, GameplayAction } from './contracts.js';
 
-export const FRIENDLY_CATALOG_VERSIONS = ['friendly-catalog-v1'] as const;
+export const FRIENDLY_CATALOG_VERSIONS = ['friendly-catalog-v1', 'friendly-catalog-v2'] as const;
 export type FriendlyCatalogVersion = (typeof FRIENDLY_CATALOG_VERSIONS)[number];
+/** Immutable default for every old or non-family plan, including null sidecars. */
 export const FRIENDLY_CATALOG_VERSION = 'friendly-catalog-v1' as const;
 export const FRIENDLY_STATE_VERSION = 'friendly-state-v1' as const;
 export const FRIENDLY_MAX_HP = 4;
@@ -85,11 +86,32 @@ export const FRIENDLY_CATALOG_V1 = [
   },
 ] as const satisfies readonly FriendlyCatalogEntry[];
 
+/** V2 retains every frozen V1 entry and adds the Hero City resident. */
+export const FRIENDLY_CATALOG_V2 = [
+  ...FRIENDLY_CATALOG_V1,
+  {
+    id: 'web-slinger-helper',
+    version: 'v001',
+    title: 'Web-slinger Helper',
+    assetId: 'web-slinger-helper',
+    assetVersion: 'v001',
+    chapterGroup: 0,
+    maxHp: FRIENDLY_MAX_HP,
+  },
+] as const satisfies readonly FriendlyCatalogEntry[];
+
 export const FRIENDLY_CATALOGS: Readonly<
   Record<FriendlyCatalogVersion, readonly FriendlyCatalogEntry[]>
 > = {
   'friendly-catalog-v1': FRIENDLY_CATALOG_V1,
+  'friendly-catalog-v2': FRIENDLY_CATALOG_V2,
 };
+
+export function friendlyCatalogVersionForPlan(plan: AdventurePlan): FriendlyCatalogVersion {
+  return plan.version === 'family-world-plan-v1'
+    ? plan.friendlyCatalogVersion ?? FRIENDLY_CATALOG_VERSION
+    : FRIENDLY_CATALOG_VERSION;
+}
 
 export interface FriendlyDefinition {
   id: string;
@@ -125,8 +147,11 @@ export function friendlyDefinitionsForLevel(
   catalogVersion: FriendlyCatalogVersion = FRIENDLY_CATALOG_VERSION,
 ): FriendlyDefinition[] {
   const chapterGroup = (levelIndex % 2) as 0 | 1;
-  return FRIENDLY_CATALOGS[catalogVersion]
-    .filter((entry) => entry.chapterGroup === chapterGroup)
+  const residents = FRIENDLY_CATALOG_V1.filter((entry) => entry.chapterGroup === chapterGroup);
+  const assigned = catalogVersion === 'friendly-catalog-v2' && levelIndex === 2
+    ? residents.map((entry) => entry.id === 'signal-moth' ? FRIENDLY_CATALOG_V2[6] : entry)
+    : residents;
+  return assigned
     .map((entry) => ({
       id: `${levelId}-friendly-${entry.id}`,
       levelId,
@@ -140,7 +165,7 @@ export function friendlyDefinitionsForLevel(
 
 export function friendlyDefinitionsForPlan(
   plan: AdventurePlan,
-  catalogVersion: FriendlyCatalogVersion = FRIENDLY_CATALOG_VERSION,
+  catalogVersion: FriendlyCatalogVersion = friendlyCatalogVersionForPlan(plan),
 ): FriendlyDefinition[] {
   return plan.levels.flatMap((level) =>
     friendlyDefinitionsForLevel(level.id, level.index, catalogVersion),
@@ -148,11 +173,12 @@ export function friendlyDefinitionsForPlan(
 }
 
 export function createInitialFriendlyState(plan: AdventurePlan): FriendlyState {
+  const catalogVersion = friendlyCatalogVersionForPlan(plan);
   return {
     version: FRIENDLY_STATE_VERSION,
-    catalogVersion: FRIENDLY_CATALOG_VERSION,
+    catalogVersion,
     friendlies: Object.fromEntries(
-      friendlyDefinitionsForPlan(plan).map((friendly) => [
+      friendlyDefinitionsForPlan(plan, catalogVersion).map((friendly) => [
         friendly.id,
         {
           hp: friendly.maxHp,
@@ -197,6 +223,9 @@ export function reduceFriendlyAction(
 ): { adventureState: AdventureState; friendlyState: FriendlyState } {
   const adventureState = structuredClone(currentAdventure);
   const friendlyState = structuredClone(currentFriendly);
+  if (friendlyState.catalogVersion !== friendlyCatalogVersionForPlan(plan)) {
+    throw new AdventureRuleError('FRIENDLY_NOT_FOUND');
+  }
   const level = plan.levels[adventureState.activeLevelIndex];
   if (!level || action.levelId !== level.id) {
     throw new AdventureRuleError('LEVEL_NOT_ACTIVE');

@@ -1,0 +1,100 @@
+{
+  "work_order": "WO111",
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "role": "friendly helper (DESIGN-013): heals the player, never an enemy",
+  "created_utc": "2026-09-29T04:56:06.033016+00:00",
+  "glb_sha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "blender": {
+    "version": "4.5.13 LTS",
+    "instance": "blender-authoring (instance 1, primary)",
+    "units": "METRIC",
+    "unit_scale": 1,
+    "authoring_axes": "+Z up / +Y forward (character right = +X)",
+    "frames_per_second": 30,
+    "animation_mode": "NLA_TRACKS",
+    "animation_keys": "Every frame, linear, exported without keyframe optimisation",
+    "skin": "One skin; rigid parts plus smoothstep blends at the neck, waist, elbows, hips, knees, ankles, knuckles and fringe (at most 2 influences used)",
+    "root": "Identity, fixed floor-centred root; no root animation; the hips carry every translation",
+    "bind_pose": "Neutral: head straight, arms in a 45 deg A-pose with a 40 deg elbow bend and open mittens, feet parallel (rest controls reproduce it, max matrix error 8.7e-06)",
+    "sheet_pose": "Idle at 0 s reproduces the blockout sheet pose (wrists, ankles, heart buttons and the waving mitten within 2.5e-07 m)"
+  },
+  "export": {
+    "format": "GLB",
+    "axes": "+Y up / -Z forward",
+    "selection_only": true,
+    "materials": 2,
+    "material_notes": "Matte painted atlas for everything except the two heart buttons, which use a second material with the same atlas as an emissive texture at factor 0.35 (the sheet's slight heart glow)",
+    "texture": {
+      "file": "pigment.png",
+      "width": 1024,
+      "height": 1024,
+      "embedded": true
+    },
+    "no_external_resources": true,
+    "no_required_extensions": true,
+    "compression": "None; no Draco, Meshopt or KTX2 requirement"
+  },
+  "preview": {
+    "source": "Exact delivered GLB via Three.js GLTFLoader",
+    "three_revision": "186",
+    "browser": "153.0.8010.12",
+    "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster; no physical device claim",
+    "viewport_px": [
+      800,
+      900
+    ],
+    "orthographic_camera": {
+      "left": -0.72,
+      "right": 0.72,
+      "top": 0.81,
+      "bottom": -0.81,
+      "target": [
+        0,
+        0.6,
+        0
+      ],
+      "views": {
+        "front": [
+          0,
+          0.6,
+          -8
+        ],
+        "side": [
+          8,
+          0.6,
+          0
+        ],
+        "back": [
+          0,
+          0.6,
+          8
+        ],
+        "threequarter": [
+          5.657,
+          0.6,
+          -5.657
+        ],
+        "beauty": [
+          3.6,
+          2.3,
+          -6.6
+        ]
+      }
+    },
+    "stills_pose": "Main stills: idle at 0 s (the sheet pose); rest-*.png: the bind pose",
+    "lighting": "Warm hemisphere plus three directional lights; ACES tone mapping exposure 1.0",
+    "scales": [
+      1,
+      0.35
+    ],
+    "no_physical_device_claim": true
+  },
+  "checks": {
+    "khronos_zero_errors_warnings": true,
+    "exact_three_and_friendly_runtime_all_checks": true,
+    "chromium_all_clips_normal_small": true,
+    "source_attachment_checks": true
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/web-slinger-helper-blockout.blend",
+  "sha256": "68b4e49d2b9ab8d2d26740ffd61b2c45abdb20cbef0ac772dcd9c06ed23bc505",
+  "bounds_blender_zup": {
+    "min": [
+      -0.3332,
+      -0.178,
+      0.0
+    ],
+    "max": [
+      0.3848,
+      0.205,
+      1.1913
+    ],
+    "size": [
+      0.718,
+      0.383,
+      1.1913
+    ],
+    "blockout_triangles": 120352
+  },
+  "feature_tops_m": {
+    "Cobalt hood": 1.1839,
+    "Hood web": 1.1903,
+    "Waving mitten right": 1.1216,
+    "Mitten thumb right": 1.0829,
+    "Round face": 1.1331,
+    "Tangerine domino mask": 1.083,
+    "Eye white": 1.0507,
+    "Chest star emblem": 0.7187,
+    "Cobalt torso": 0.808,
+    "Tangerine belt": 0.492,
+    "Hip fist left": 0.5634,
+    "Web rope coil loop": 0.4757,
+    "Boot rolled cuff": 0.187
+  },
+  "parts": 157,
+  "materials": [
+    "WSH blush #f4a79d",
+    "WSH cream #fbf6ea",
+    "WSH hair #7a4a30",
+    "WSH heart #e8566f",
+    "WSH ink #342c46",
+    "WSH iris #7b5234",
+    "WSH skin #f0c7a0",
+    "WSH sole #4a3f63",
+    "WSH suit #3b7dd8",
+    "WSH sun #f7c64a",
+    "WSH tang #f28c3a",
+    "WSH tongue #ef8f98"
+  ],
+  "build_seconds": 0.9,
+  "utc": "2026-09-26T18:57:02.147930+00:00"
+}

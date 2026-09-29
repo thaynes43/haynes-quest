@@ -948,6 +948,20 @@
       "sha256": "6bad41a5a7961390016f576815892b01e1fb2dc667d1d4a2736de504e7ffc9cf"
     },
     {
+      "source": "docs/assets/media/web-slinger-helper/v001/beauty.png",
+      "source_sha256": "b710a2e7353fb91c96906ad2153f7352c7ef9107d27e6f89553ac1c25deaf741",
+      "path": "docs/assets/media/catalog-thumbnails/v001/a658fc0ca7c72727.webp",
+      "bytes": 11420,
+      "sha256": "cee882b842786b219666349f2a12911af12e98620edf3ba1b2a4b924dddd2452"
+    },
+    {
+      "source": "docs/assets/media/web-slinger-helper/v001/reference-sheet.png",
+      "source_sha256": "54b756f6b8f2753990a1de0d348cc4f0692e470520030dea3ecc4fb44b3c8deb",
+      "path": "docs/assets/media/catalog-thumbnails/v001/66c6724a1be722bd.webp",
+      "bytes": 21496,
+      "sha256": "08393aad30cfb932efba0d82032a4e1aec35fa223ec849c6fb805bd3cf2e108c"
+    },
+    {
       "source": "docs/assets/media/yes-yes-veggie/v001/beauty.png",
       "source_sha256": "47ab59d90f084916818bf6c272cef9f4c120e2e7b0ddc7f3cbd9b2ec00fbb906",
       "path": "docs/assets/media/catalog-thumbnails/v001/8a4c8a2ea90e18fd.webp",

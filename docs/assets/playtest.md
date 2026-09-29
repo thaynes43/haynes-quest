@@ -8,6 +8,15 @@ The established two-chapter route uses [six fictional pictures](reviews/fixture-
 
 The Sing-Along Playroom now uses the four [Playroom kit v001 candidates](reviews/playroom-kit/v001.md): pastel stacking-block towers, an open toy bus garage, crib rails and sewn-panel plush balls. They replace the existing scenery stand-ins at the same placements and keep the same planning boxes. Tom's exact-version review remains pending under PRD-004 Q-03.
 
+## Hero City friendly candidate
+
+[Web-slinger Helper v001](reviews/web-slinger-helper/v001.md) is prepared for
+`family-world-a@v6`. He replaces the resident beside the vent bounce, greets the
+player with the same healing gift and uses the existing deliberate-harm and
+Make amends rules. He offers no gap assist. Earlier templates keep their original
+friendly residents. The exact candidate is reviewable in the studio; v6
+publication and Tom's final art review remain pending.
+
 ## How to play
 
 | Action | Touch | Keyboard and mouse |
