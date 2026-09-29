@@ -1,10 +1,10 @@
 // @vitest-environment jsdom
 /**
- * DESIGN-027 validation: scare level 0 is byte-identical to the behavior before
- * scary moments existed. A scripted run on a family-style (authored-level-v4)
- * garden chapter records the player, every enemy and every presentation event
- * frame by frame, and hashes the lot. The expected hash was recorded from the
- * runtime on main before DESIGN-027 (73bb0fd). A chapter without `scare`, with
+ * DESIGN-027 validation: disabling scares leaves the current combat runtime
+ * byte-identical across scare settings. A scripted run on a family-style
+ * (authored-level-v4) garden chapter records the player, every enemy and every
+ * presentation event frame by frame, and hashes the lot. The baseline includes
+ * the later authored-enemy pursuit change. A chapter without `scare`, with
  * `scare: 0`, and a scary chapter with the parent switch off must all match it.
  */
 import { createHash } from "node:crypto";
@@ -98,7 +98,7 @@ function equippedSave(): SaveView {
 
 const round = (value: number) => Math.round(value * 1e6) / 1e6;
 
-describe("scare level 0 keeps the runtime byte-identical", () => {
+describe("scare level 0 preserves the current combat runtime", () => {
   let nextFrame: FrameRequestCallback | undefined;
   let now: number;
 
@@ -180,10 +180,10 @@ describe("scare level 0 keeps the runtime byte-identical", () => {
       .digest("hex");
   }
 
-  /** Recorded on main at 73bb0fd, before DESIGN-027. */
-  const EXPECTED = "6c62cd4de8dba327ad0c1d9eb7a7ce37d55e63e4df133bc83004f3e1ab7e1e4d";
+  /** Recorded after the authored-enemy pursuit change (fa6e8d5). */
+  const EXPECTED = "1cbe53149e942a65a9f46588de9679069faaa332a1ed65668a858b924f8d690f";
 
-  it("matches the pre-DESIGN-027 runtime without a scare level", () => {
+  it("matches the current runtime without a scare level", () => {
     const actual = fingerprint({});
     if (process.env.PRINT_RUNTIME_FINGERPRINTS) console.log(`RUNTIME ${actual}`);
     expect(actual).toBe(EXPECTED);
