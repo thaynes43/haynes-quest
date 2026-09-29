@@ -373,6 +373,9 @@ function createInstanceBatch(
   const materialClones = new Map<THREE.Material, THREE.Material>();
   const textureClones = new Map<THREE.Texture, THREE.Texture>();
   assembly.name = `${gltf.scene.name || "model"}-instances`;
+  // All primitive batches belong to one visible prop per placement. Camera
+  // occlusion must clear the whole instance, not leave its trim in the lens.
+  assembly.userData.scenicInstanceBatch = true;
   gltf.scene.updateWorldMatrix(true, true);
   try {
     const primitives: SourcePrimitive[] = [];

@@ -19,10 +19,25 @@ describe("chase-camera scenic occlusion", () => {
     );
     const scene = new THREE.Group();
     scene.userData.scenicOnly = true;
+    const assembly = new THREE.Group();
+    assembly.userData.scenicInstanceBatch = true;
     // family-world-a@v4 ticket-counter is 14 x 12 at z=-35.8; CasinoScene
     // places this exact GLB 0.4 m inside the room's near edge, at z=-30.2.
-    scene.position.z = -30.2;
-    scene.add(gltf.scene);
+    gltf.scene.updateMatrixWorld(true);
+    const originals = new Map<THREE.InstancedMesh, { first: THREE.Matrix4; second: THREE.Matrix4 }>();
+    gltf.scene.traverse((object) => {
+      if (!(object instanceof THREE.Mesh)) return;
+      const mesh = new THREE.InstancedMesh(object.geometry, object.material, 2);
+      mesh.name = object.name;
+      const first = new THREE.Matrix4().makeTranslation(0, 0, -30.2).multiply(object.matrixWorld);
+      const second = new THREE.Matrix4().makeTranslation(15, 0, -30.2).multiply(object.matrixWorld);
+      mesh.setMatrixAt(0, first);
+      mesh.setMatrixAt(1, second);
+      mesh.computeBoundingSphere();
+      assembly.add(mesh);
+      originals.set(mesh, { first, second });
+    });
+    scene.add(assembly);
     scene.updateMatrixWorld(true);
     // The child approaches Chick-flia (3.2, 0, -35.8) from the south and
     // fights near the right pillar. This is the obstructed camera geometry.
@@ -30,12 +45,26 @@ describe("chase-camera scenic occlusion", () => {
     const camera = new THREE.Vector3(2.6, 3.1, -27.5);
     const before = sightHits(scene, target, camera);
     expect(before.length).toBeGreaterThan(0);
+    expect(before.some((hit) => hit.object.name === "marquee-arch_export_mesh")).toBe(true);
 
     const occlusion = new ScenicCameraOcclusion();
     occlusion.update(camera, target, [scene]);
-    expect(before.some((hit) => !hit.object.visible)).toBe(true);
-    occlusion.update(new THREE.Vector3(0, 3.1, -27.5), new THREE.Vector3(0, 1.5, -32), [scene]);
-    expect(before.every((hit) => hit.object.visible)).toBe(true);
+    const actual = new THREE.Matrix4();
+    for (const mesh of originals.keys()) {
+      mesh.getMatrixAt(0, actual);
+      expect(actual.determinant()).toBe(0);
+      mesh.getMatrixAt(1, actual);
+      expect(actual.determinant()).not.toBe(0);
+    }
+    occlusion.update(new THREE.Vector3(10, 3.1, -27.5), new THREE.Vector3(10, 1.5, -32), [scene]);
+    for (const [mesh, { first, second }] of originals) {
+      mesh.getMatrixAt(0, actual);
+      for (let index = 0; index < 16; index++)
+        expect(actual.elements[index]).toBeCloseTo(first.elements[index]!, 5);
+      mesh.getMatrixAt(1, actual);
+      for (let index = 0; index < 16; index++)
+        expect(actual.elements[index]).toBeCloseTo(second.elements[index]!, 5);
+    }
     occlusion.clear();
   });
 

@@ -21,11 +21,19 @@ export class ScenicCameraOcclusion {
     if (roots.length === 0 || camera.distanceToSquared(target) < 0.25) return;
     const candidates = new Map<THREE.Mesh, Set<number>>();
     for (const root of roots) root.updateWorldMatrix(true, true);
+    const addCandidate = (mesh: THREE.Mesh, index?: number) => {
+      const indices = candidates.get(mesh) ?? new Set<number>();
+      if (index !== undefined) indices.add(index);
+      candidates.set(mesh, indices);
+    };
     const include = (object: THREE.Object3D, index?: number) => {
       if (!(object instanceof THREE.Mesh) || !this.isScenic(object) || !this.isOpaque(object)) return;
-      const indices = candidates.get(object) ?? new Set<number>();
-      if (index !== undefined) indices.add(index);
-      candidates.set(object, indices);
+      if (object instanceof THREE.InstancedMesh && index !== undefined &&
+          object.parent?.userData.scenicInstanceBatch === true) {
+        for (const sibling of object.parent.children)
+          if (sibling instanceof THREE.InstancedMesh && sibling.count > index)
+            addCandidate(sibling, index);
+      } else addCandidate(object, index);
     };
 
     // Front-face materials may not report a ray that starts inside them. The
