@@ -105,8 +105,8 @@
       "bytes": 43912
     },
     "final-verification.json": {
-      "sha256": "ab677814261dfcee666daac20a8309a4bba82fc72009b21f11d2093b57e1e90e",
-      "bytes": 2111
+      "sha256": "1627c70554110b5270a944c33df66f57e3403afa24ac9788593b7bfb8b17aeac",
+      "bytes": 2420
     },
     "kit-beauty.png": {
       "sha256": "f29b3c5e543dd299f501476b200bb065e49d5bbc8dae44630208b6e78aae2708",
@@ -168,6 +168,74 @@
       "sha256": "29347c45788bc5aed151254d3b25f044bfbea5b364bb32470747a39908b6a63b",
       "bytes": 2117
     },
+    "review-audit/desktop-billboard-frame-card.png": {
+      "sha256": "de0fc94e00197600c661405bd12933768912e13de502a49c033fd38ec3a68bed",
+      "bytes": 42270
+    },
+    "review-audit/desktop-billboard-frame-viewer.png": {
+      "sha256": "fefe52d1de84772740005a7c07ff10eff0d90aac76bf6f9df2afcb38d57a4e43",
+      "bytes": 137249
+    },
+    "review-audit/desktop-crane-hook-card.png": {
+      "sha256": "5cebfc22a39f79f7b4a58132baf51f8fdc37c4f091b38bbf3a06e641520f37a8",
+      "bytes": 39420
+    },
+    "review-audit/desktop-crane-hook-viewer.png": {
+      "sha256": "94a85b3c4a2caaa0ba4a2bc35fc5dae990b171e6eb52939bc5c9f36d23995f18",
+      "bytes": 141331
+    },
+    "review-audit/desktop-rooftop-ac-unit-card.png": {
+      "sha256": "082384ac67ed849f14f5fe41366b729c8d10ce958f3d705b4a09b67a63a9a940",
+      "bytes": 48755
+    },
+    "review-audit/desktop-rooftop-ac-unit-viewer.png": {
+      "sha256": "31f206fa2cca2d4206ae7e6a01f3831e11721a0cc3f36522f78ef000361a555d",
+      "bytes": 134116
+    },
+    "review-audit/desktop-water-tower-card.png": {
+      "sha256": "b8aa7c3961edb4cfded5622f34d924a1791ea2e3a19568321d2da355a22860ed",
+      "bytes": 45646
+    },
+    "review-audit/desktop-water-tower-viewer.png": {
+      "sha256": "5a13b782184bac4e4258a93a28499467d9b5effe8ad8dbddacf3d38ed224218c",
+      "bytes": 138881
+    },
+    "review-audit/phone-billboard-frame-card.png": {
+      "sha256": "dd3f63b7d225372523ae265b696ce54aea2e75e6ceb5d7ba94c7424a3526f2fc",
+      "bytes": 49955
+    },
+    "review-audit/phone-billboard-frame-viewer.png": {
+      "sha256": "abc730c55c6a00403c1b6358fb4fb923ab2c4bce07555f83a0bf5bdc3bb92568",
+      "bytes": 55669
+    },
+    "review-audit/phone-crane-hook-card.png": {
+      "sha256": "e040808489f56a9856844861f39dd9f222c666b2a34ff00681c41ebcfd75041d",
+      "bytes": 46596
+    },
+    "review-audit/phone-crane-hook-viewer.png": {
+      "sha256": "d24deb00dc29dc0c8f25b8c0b19c2658190abd4a7b92fd8146ead1dd7d2a72fc",
+      "bytes": 60627
+    },
+    "review-audit/phone-rooftop-ac-unit-card.png": {
+      "sha256": "309ab677a7f255c9e58cc8964da74bd36e1f270d523ffabccd622925fcdc76a8",
+      "bytes": 59869
+    },
+    "review-audit/phone-rooftop-ac-unit-viewer.png": {
+      "sha256": "3d26a1d64a5c51f706812f42213b7c5d296b9fc3ae1a8cf5780c9bd9bdb566a3",
+      "bytes": 56102
+    },
+    "review-audit/phone-water-tower-card.png": {
+      "sha256": "6cfb996c0d009fbb42572efd611796e8082ac0309c663234af039dae0ae25fd3",
+      "bytes": 54515
+    },
+    "review-audit/phone-water-tower-viewer.png": {
+      "sha256": "1bfc8cc370d693768b7619282c769b9152ddb1667e8e0c9b34ae1ac28fc8c23a",
+      "bytes": 59510
+    },
+    "review-audit/report.json": {
+      "sha256": "86694762bbc4d72f8e5001bbe97d160577320d4b450a4bf21b9fd6cc573f1f1b",
+      "bytes": 1452
+    },
     "rooftop-ac-unit.glb": {
       "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
       "bytes": 88880
@@ -221,8 +289,8 @@
       "bytes": 6963
     },
     "source/catalog-update.py": {
-      "sha256": "9e6bf01e566cda05e97413d8171198725916f4819f7afd1bb7c29706ba420610",
-      "bytes": 2833
+      "sha256": "603eaf183dfcfd90467d8adc11d38ba36559f8f20a816b7ddbcd6539918590e5",
+      "bytes": 3178
     },
     "source/claim.py": {
       "sha256": "58b07cb663064a2cd2cd41daadfc533d2f82b6858f5d6addfc9d72f1472a1e24",
@@ -249,8 +317,8 @@
       "bytes": 9858
     },
     "source/preview.mjs": {
-      "sha256": "3e476fbc01e05dc367f2d7c7c64156a020c8ce31b41c64176fb6873c6e4c124a",
-      "bytes": 7873
+      "sha256": "c702957e98c3d668a8864a8cb8acc4458fec682f4e04aafbc48b79b2b7acfd0d",
+      "bytes": 7738
     },
     "source/reference_sheet.py": {
       "sha256": "af84be6469223c7b9d845976f7c2832a2ab035f6819d2878c9e8a4797d8d44d7",

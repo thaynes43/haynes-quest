@@ -10,6 +10,7 @@ import { SceneAssets } from "../../src/game/scene-assets";
 import { authoredSurfaceBounds, authoredSurfaceTopRange, isAuthoredSurfacePiece, type AuthoredLevelDocument } from "../../src/shared/authored-level";
 import { decorWorldBounds, themeKitPropsFor } from "../../src/shared/theme-kits";
 import familyWorldAV5 from "../../src/shared/levels/family-world-a-v5.json";
+import { FamilyTemplateRegistry } from "../../src/server/family/templates";
 
 const ids = ["water-tower", "rooftop-ac-unit", "crane-hook", "billboard-frame"] as const;
 const props = themeKitPropsFor("rooftop");
@@ -52,6 +53,8 @@ function expectInside(actual: THREE.Box3, allowed: { min: { x: number; y: number
 describe("Rooftop City v001 production kit", () => {
   it("keeps the fixed planning boxes and all 50 placements in the checked-in A3 route", () => {
     expect(level.decor).toEqual(familyA3Level().decor);
+    const v6 = new FamilyTemplateRegistry().require("family-world-a", "v6");
+    expect(v6.project.chapters.find((chapter) => chapter.chapterId === "family-a3")!.level.decor).toEqual(level.decor);
     expect(props.map((prop) => prop.id)).toEqual(ids);
     expect(props.map((prop) => prop.bounds)).toEqual([
       { min: { x: -1.4, y: 0, z: -1.4 }, max: { x: 1.4, y: 5, z: 1.4 } },

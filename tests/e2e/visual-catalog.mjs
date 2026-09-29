@@ -84,8 +84,12 @@ const expectedInventoryCounts = {
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 144;
+const expectedThumbnailFiles = 149;
 const integratedAssetIds = [
+  "water-tower",
+  "rooftop-ac-unit",
+  "crane-hook",
+  "billboard-frame",
   "casita-terrace-wall",
   "flower-planter",
   "patterned-door",
